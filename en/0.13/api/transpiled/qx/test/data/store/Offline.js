@@ -56,8 +56,8 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.dev.unit.MRequirements, qx.dev.unit.MMock],
     members: {
-      __P_340_0: null,
-      __P_340_1: "qx-unit-test",
+      __P_341_0: null,
+      __P_341_1: "qx-unit-test",
       hasLocalStorage: function hasLocalStorage() {
         return qx.core.Environment.get("html.storage.local");
       },
@@ -69,16 +69,16 @@
       },
       tearDown: function tearDown() {
         this.getSandbox().restore();
-        if (this.__P_340_0) {
-          this.__P_340_0.dispose();
+        if (this.__P_341_0) {
+          this.__P_341_0.dispose();
         }
         // erase the data from the storages
-        qx.bom.Storage.getLocal().removeItem(this.__P_340_1);
+        qx.bom.Storage.getLocal().removeItem(this.__P_341_1);
       },
-      __P_340_2: function __P_340_2() {
-        this.__P_340_0 = new qx.data.store.Offline(this.__P_340_1, "local");
+      __P_341_2: function __P_341_2() {
+        this.__P_341_0 = new qx.data.store.Offline(this.__P_341_1, "local");
       },
-      __P_340_3: function __P_340_3() {
+      __P_341_3: function __P_341_3() {
         return qx.data.marshal.Json.createModel({
           a: "a"
         }, true);
@@ -91,46 +91,46 @@
         });
 
         // fallback for the storage is local
-        store = new qx.data.store.Offline(this.__P_340_1);
+        store = new qx.data.store.Offline(this.__P_341_1);
         this.assertEquals(store._storage, qx.bom.Storage.getLocal());
         store.dispose();
 
         // assert no exception
-        this.__P_340_2();
-        this.assertEquals(this.__P_340_1, this.__P_340_0.getKey());
+        this.__P_341_2();
+        this.assertEquals(this.__P_341_1, this.__P_341_0.getKey());
       },
       testCreateWithDelegate: function testCreateWithDelegate() {
         var del = {};
         var spy = this.spy(qx.data.marshal, "Json");
-        var store = new qx.data.store.Offline(this.__P_340_1, "local", del);
+        var store = new qx.data.store.Offline(this.__P_341_1, "local", del);
         this.assertCalledWith(spy, del);
         store.dispose();
       },
       testCheckEmptyModel: function testCheckEmptyModel() {
-        this.__P_340_2();
-        this.assertNull(this.__P_340_0.getModel());
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
-        this.__P_340_0.setModel(null);
+        this.__P_341_2();
+        this.assertNull(this.__P_341_0.getModel());
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
+        this.__P_341_0.setModel(null);
         this.wait(1000, function () {
-          this.assertNull(this.__P_340_0.getModel());
+          this.assertNull(this.__P_341_0.getModel());
           model.dispose();
         }.bind(this));
       },
       testSetModel: function testSetModel() {
-        this.__P_340_2();
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
         this.wait(1000, function () {
-          this.assertEquals("a", this.__P_340_0.getModel().getA());
+          this.assertEquals("a", this.__P_341_0.getModel().getA());
           model.dispose();
         }.bind(this));
       },
       testSetModelDebounce: function testSetModelDebounce() {
-        this.__P_340_2();
-        var storeModelCallback = this.spy(this.__P_340_0._storage, "setItem");
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        var storeModelCallback = this.spy(this.__P_341_0._storage, "setItem");
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
         model.setA("b");
         model.setA("c");
         this.wait(1000, function () {
@@ -138,80 +138,80 @@
         }, this);
       },
       testChangeModel: function testChangeModel() {
-        this.__P_340_2();
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
         this.wait(1000, function () {
-          this.assertEquals("a", this.__P_340_0.getModel().getA());
+          this.assertEquals("a", this.__P_341_0.getModel().getA());
           model.setA("A");
-          this.assertEquals("A", this.__P_340_0.getModel().getA());
+          this.assertEquals("A", this.__P_341_0.getModel().getA());
           model.dispose();
         }.bind(this));
       },
       testModelWriteRead: function testModelWriteRead() {
-        this.__P_340_2();
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
         this.wait(1000, function () {
-          this.assertEquals("a", this.__P_340_0.getModel().getA());
+          this.assertEquals("a", this.__P_341_0.getModel().getA());
 
           // dispose the store to test the load of the model
-          this.__P_340_0.dispose();
+          this.__P_341_0.dispose();
           model.dispose();
-          this.__P_340_2();
-          this.assertNotNull(this.__P_340_0.getModel());
-          this.assertEquals("a", this.__P_340_0.getModel().getA());
+          this.__P_341_2();
+          this.assertNotNull(this.__P_341_0.getModel());
+          this.assertEquals("a", this.__P_341_0.getModel().getA());
         }.bind(this));
       },
       testModelRead: function testModelRead() {
         this.stub(qx.bom.Storage.getLocal(), "getItem").returns({
           b: "b"
         });
-        this.__P_340_2();
-        this.assertNotUndefined(this.__P_340_0.getModel());
-        this.assertFunction(this.__P_340_0.getModel().getB);
-        this.assertEquals("b", this.__P_340_0.getModel().getB());
+        this.__P_341_2();
+        this.assertNotUndefined(this.__P_341_0.getModel());
+        this.assertFunction(this.__P_341_0.getModel().getB);
+        this.assertEquals("b", this.__P_341_0.getModel().getB());
       },
       testUpdateModel: function testUpdateModel() {
-        this.__P_340_2();
-        var model = this.__P_340_3();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        var model = this.__P_341_3();
+        this.__P_341_0.setModel(model);
         this.wait(1000, function () {
-          this.assertEquals("a", this.__P_340_0.getModel().getA());
+          this.assertEquals("a", this.__P_341_0.getModel().getA());
 
           // dispose the store to test the load of the model
-          this.__P_340_0.dispose();
+          this.__P_341_0.dispose();
           model.dispose();
-          this.__P_340_2();
-          this.assertNotNull(this.__P_340_0.getModel());
-          this.__P_340_0.getModel().setA("b");
+          this.__P_341_2();
+          this.assertNotNull(this.__P_341_0.getModel());
+          this.__P_341_0.getModel().setA("b");
           this.wait(1000, function () {
-            this.assertEquals("b", this.__P_340_0.getModel().getA(), "1");
+            this.assertEquals("b", this.__P_341_0.getModel().getA(), "1");
 
             // dispose the store to test the load of the model
-            this.__P_340_0.dispose();
-            this.__P_340_2();
-            this.assertNotNull(this.__P_340_0.getModel());
-            this.assertEquals("b", this.__P_340_0.getModel().getA(), "2");
+            this.__P_341_0.dispose();
+            this.__P_341_2();
+            this.assertNotNull(this.__P_341_0.getModel());
+            this.assertEquals("b", this.__P_341_0.getModel().getA(), "2");
           }.bind(this));
         }.bind(this));
       },
       testReplaceModel: function testReplaceModel() {
-        this.__P_340_2();
-        var model1 = this.__P_340_3();
-        this.__P_340_0.setModel(model1);
+        this.__P_341_2();
+        var model1 = this.__P_341_3();
+        this.__P_341_0.setModel(model1);
         var model2 = qx.data.marshal.Json.createModel({
           x: "x"
         }, true);
-        this.__P_340_0.setModel(model2);
+        this.__P_341_0.setModel(model2);
         this.wait(1000, function () {
-          this.__P_340_2();
-          this.assertNotNull(this.__P_340_0.getModel());
-          this.assertFunction(this.__P_340_0.getModel().getX);
-          this.assertEquals("x", this.__P_340_0.getModel().getX());
+          this.__P_341_2();
+          this.assertNotNull(this.__P_341_0.getModel());
+          this.assertFunction(this.__P_341_0.getModel().getX);
+          this.assertEquals("x", this.__P_341_0.getModel().getX());
 
           // get rid of all the created stuff
-          this.__P_340_0.dispose();
+          this.__P_341_0.dispose();
           model1.dispose();
           model2.dispose();
         }.bind(this));
@@ -224,12 +224,12 @@
           }, 12.567, "a"]
         };
         var model = qx.data.marshal.Json.createModel(data, true);
-        this.__P_340_2();
-        this.__P_340_0.setModel(model);
+        this.__P_341_2();
+        this.__P_341_0.setModel(model);
         this.wait(1000, function () {
-          this.assertEquals(1, this.__P_340_0.getModel().getA().getItem(0).getB());
-          this.assertEquals(true, this.__P_340_0.getModel().getA().getItem(0).getC());
-          this.assertEquals("a", this.__P_340_0.getModel().getA().getItem(2));
+          this.assertEquals(1, this.__P_341_0.getModel().getA().getItem(0).getB());
+          this.assertEquals(true, this.__P_341_0.getModel().getA().getItem(0).getC());
+          this.assertEquals("a", this.__P_341_0.getModel().getA().getItem(2));
           model.dispose();
         }.bind(this));
       }
@@ -238,4 +238,4 @@
   qx.test.data.store.Offline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Offline.js.map?dt=1731948115302
+//# sourceMappingURL=Offline.js.map?dt=1735222427693

@@ -178,7 +178,7 @@
       changePosition: "Number"
     },
     members: {
-      __P_718_0: null,
+      __P_719_0: null,
       _value: 0,
       init: function init() {
         if (!qx.ui.website.Slider.superclass.prototype.init.call(this)) {
@@ -238,7 +238,7 @@
         }
         this._value = value;
         if (qxWeb.type.get(step) != "Array" || step.indexOf(value) != -1) {
-          this.__P_718_1(value);
+          this.__P_719_1(value);
           this.getChildren("." + this.getCssPrefix() + "-knob").setHtml(this._getKnobContent());
           this.emit("changeValue", value);
         }
@@ -387,10 +387,10 @@
       _onPointerDown: function _onPointerDown(e) {
         // this can happen if the user releases the button while dragging outside
         // of the browser viewport
-        if (this.__P_718_0) {
+        if (this.__P_719_0) {
           return;
         }
-        this.__P_718_0 = true;
+        this.__P_719_0 = true;
         qxWeb(document.documentElement).on("pointermove", this._onPointerMove, this).setStyle("cursor", "pointer");
         e.stopPropagation();
       },
@@ -401,10 +401,10 @@
        * @param e {qx.event.Emitter} Incoming event object
        */
       _onDocPointerUp: function _onDocPointerUp(e) {
-        if (this.__P_718_0 === true) {
+        if (this.__P_719_0 === true) {
           // Cleanup status flags
-          delete this.__P_718_0;
-          this.__P_718_1(this.getValue());
+          delete this.__P_719_0;
+          this.__P_719_1(this.getValue());
           qxWeb(document.documentElement).off("pointermove", this._onPointerMove, this).setStyle("cursor", "auto");
           e.stopPropagation();
         }
@@ -416,7 +416,7 @@
        */
       _onPointerMove: function _onPointerMove(e) {
         e.preventDefault();
-        if (this.__P_718_0) {
+        if (this.__P_719_0) {
           var dragPosition = e.getDocumentLeft();
           var dragBoundaries = this._getDragBoundaries();
           var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
@@ -518,7 +518,7 @@
         if (qxWeb.type.get(this.getConfig("step")) == "Array") {
           this._getPixels();
         }
-        this.__P_718_1(this._value);
+        this.__P_719_1(this._value);
       },
       /**
        * Positions the slider knob to the given value and fires the "changePosition"
@@ -526,7 +526,7 @@
        *
        * @param value {Integer} slider step value
        */
-      __P_718_1: function __P_718_1(value) {
+      __P_719_1: function __P_719_1(value) {
         var pixels = this._getPixels();
         var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
         var valueToPixel;
@@ -565,4 +565,4 @@
   qx.ui.website.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1731948143597
+//# sourceMappingURL=Slider.js.map?dt=1735222451022

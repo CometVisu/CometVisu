@@ -93,7 +93,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_476_0: null,
+      __P_477_0: null,
       /**
        * Updates the cache with information from GitHub.
        */
@@ -107,7 +107,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 qx.tool.cli.commands["package"].Update.superclass.prototype.process.call(_this);
 
                 // init
-                _this.__P_476_0 = [];
+                _this.__P_477_0 = [];
 
                 // export only
                 if (!_this.argv.exportOnly) {
@@ -300,7 +300,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (_this3.argv.verbose) {
                   qx.tool.compiler.Console.info("### Found ".concat(name, " ..."));
                 }
-                _this3.__P_476_0.push(name);
+                _this3.__P_477_0.push(name);
                 repository = new Repository(name, auth);
                 repos_data[name] = {
                   description: repo.description,
@@ -556,7 +556,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this3.getCache().version = qx.tool.config.Lockfile.getInstance().getVersion();
                 _this3.getCache().num_libraries = num_libraries;
                 if (!_this3.argv.repository) {
-                  _this3.getCache().repos.list = _this3.__P_476_0.sort();
+                  _this3.getCache().repos.list = _this3.__P_477_0.sort();
                 }
                 if (!_this3.argv.quiet && !_this3.argv.verbose) {
                   _process.stdout.write("\n");
@@ -573,4 +573,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1731948127746
+//# sourceMappingURL=Update.js.map?dt=1735222437970

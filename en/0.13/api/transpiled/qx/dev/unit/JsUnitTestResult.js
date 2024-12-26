@@ -42,7 +42,7 @@
     */
     construct: function construct() {
       qx.dev.unit.TestResult.constructor.call(this);
-      this.__P_196_0 = [];
+      this.__P_197_0 = [];
     },
     /*
     *****************************************************************************
@@ -51,7 +51,7 @@
     */
 
     members: {
-      __P_196_0: null,
+      __P_197_0: null,
       /**
        * Run the test
        * @param test {qx.dev.unit.TestFunction} The test.
@@ -59,7 +59,7 @@
        */
       run: function run(test, testFunction) {
         var testFunctionName = "$test_" + test.getFullName().replace(/\W/g, "_");
-        this.__P_196_0.push(testFunctionName);
+        this.__P_197_0.push(testFunctionName);
         window[testFunctionName] = testFunction;
       },
       /**
@@ -70,7 +70,7 @@
 
         // global
         window.exposeTestFunctionNames = function () {
-          return self.__P_196_0;
+          return self.__P_197_0;
         };
 
         // global
@@ -81,4 +81,4 @@
   qx.dev.unit.JsUnitTestResult.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=JsUnitTestResult.js.map?dt=1731948104010
+//# sourceMappingURL=JsUnitTestResult.js.map?dt=1735222418232

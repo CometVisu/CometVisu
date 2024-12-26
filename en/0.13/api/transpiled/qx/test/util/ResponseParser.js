@@ -39,41 +39,41 @@
       tearDown: function tearDown() {
         this.responseParser = null;
       },
-      __P_452_0: function __P_452_0(contentType, parser) {
+      __P_453_0: function __P_453_0(contentType, parser) {
         var msg = "Content type '" + contentType + "' handled incorrectly";
         this.assertEquals(parser, this.responseParser._getParser(contentType), msg);
       },
       "test: getParser() returns undefined for unknown": function test_getParser_returns_undefined_for_unknown() {
-        this.__P_452_0("text/html", undefined);
-        this.__P_452_0("application/pdf", undefined);
+        this.__P_453_0("text/html", undefined);
+        this.__P_453_0("application/pdf", undefined);
       },
       "test: getParser() returns undefined for malformed": function test_getParser_returns_undefined_for_malformed() {
-        this.__P_452_0("", undefined);
-        this.__P_452_0("json", undefined);
-        this.__P_452_0("text/foo+json", undefined);
-        this.__P_452_0("application/foo+jsonish", undefined);
-        this.__P_452_0("application/foo+xmlish", undefined);
+        this.__P_453_0("", undefined);
+        this.__P_453_0("json", undefined);
+        this.__P_453_0("text/foo+json", undefined);
+        this.__P_453_0("application/foo+jsonish", undefined);
+        this.__P_453_0("application/foo+xmlish", undefined);
       },
       "test: getParser() detects json": function test_getParser_detects_json() {
         var json = qx.util.ResponseParser.PARSER.json;
-        this.__P_452_0("application/json", json);
-        this.__P_452_0("application/vnd.affe+json", json);
-        this.__P_452_0("application/prs.affe+json", json);
-        this.__P_452_0("application/vnd.oneandone.onlineoffice.email+json", json);
+        this.__P_453_0("application/json", json);
+        this.__P_453_0("application/vnd.affe+json", json);
+        this.__P_453_0("application/prs.affe+json", json);
+        this.__P_453_0("application/vnd.oneandone.onlineoffice.email+json", json);
       },
       "test: getParser() detects xml": function test_getParser_detects_xml() {
         var xml = qx.util.ResponseParser.PARSER.xml;
-        this.__P_452_0("application/xml", xml);
-        this.__P_452_0("application/vnd.oneandone.domains.domain+xml", xml);
-        this.__P_452_0("text/xml"); // Deprecated
+        this.__P_453_0("application/xml", xml);
+        this.__P_453_0("application/vnd.oneandone.domains.domain+xml", xml);
+        this.__P_453_0("text/xml"); // Deprecated
       },
       "test: getParser() detects deprecated xml": function test_getParser_detects_deprecated_xml() {
         var xml = qx.util.ResponseParser.PARSER.xml;
-        this.__P_452_0("text/xml");
+        this.__P_453_0("text/xml");
       },
       "test: getParser() handles character set": function test_getParser_handles_character_set() {
         var json = qx.util.ResponseParser.PARSER.json;
-        this.__P_452_0("application/json; charset=utf-8", json);
+        this.__P_453_0("application/json; charset=utf-8", json);
       },
       "test: setParser() function": function test_setParser_function() {
         var customParser = function customParser() {};
@@ -117,4 +117,4 @@
   qx.test.util.ResponseParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResponseParser.js.map?dt=1731948122929
+//# sourceMappingURL=ResponseParser.js.map?dt=1735222433935

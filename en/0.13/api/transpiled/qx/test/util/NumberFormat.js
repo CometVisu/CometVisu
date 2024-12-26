@@ -35,17 +35,17 @@
   qx.Class.define("qx.test.util.NumberFormat", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_451_0: null,
-      __P_451_1: null,
+      __P_452_0: null,
+      __P_452_1: null,
       setUp: function setUp() {
         this.assertNotUndefined(qx.util.format.NumberFormat);
-        this.__P_451_1 = qx.locale.Manager.getInstance().getLocale();
+        this.__P_452_1 = qx.locale.Manager.getInstance().getLocale();
         qx.locale.Manager.getInstance().setLocale("de_DE");
-        this.__P_451_0 = new qx.util.format.NumberFormat();
+        this.__P_452_0 = new qx.util.format.NumberFormat();
       },
       tearDown: function tearDown() {
-        this.__P_451_0.dispose();
-        qx.locale.Manager.getInstance().setLocale(this.__P_451_1);
+        this.__P_452_0.dispose();
+        qx.locale.Manager.getInstance().setLocale(this.__P_452_1);
       },
       testNumberFormatConstructor: function testNumberFormatConstructor() {
         var wrongArgs = [null, undefined, NaN, Infinity, 1, {}, [], true],
@@ -89,7 +89,7 @@
         }
       },
       testNumberFormat: function testNumberFormat() {
-        var nf = this.__P_451_0;
+        var nf = this.__P_452_0;
 
         // this failed due to a rounding error
         this.assertEquals("1.000.000", nf.format(1000000));
@@ -106,7 +106,7 @@
         this.assertEquals("NaN", nf.format(nan));
       },
       testNumberParse: function testNumberParse() {
-        var nf = this.__P_451_0;
+        var nf = this.__P_452_0;
         var goodNumbers = {
           1000: 1000,
           "-0,02": -0.02,
@@ -131,7 +131,7 @@
         }
       },
       testLocaleSwitch: function testLocaleSwitch() {
-        var nf = this.__P_451_0;
+        var nf = this.__P_452_0;
         nf.setMinimumFractionDigits(0);
         nf.setMaximumFractionDigits(2);
         var numberStr = "0.5";
@@ -142,7 +142,7 @@
         this.assertEquals(0.5, nf.parse("0.5"), "parsing failed after locale change");
       },
       testNumberFormatChange: function testNumberFormatChange() {
-        var nf = this.__P_451_0;
+        var nf = this.__P_452_0;
         nf.setPostfix(" %");
         var numberStr = "5 Percent";
         this.assertException(function () {
@@ -172,4 +172,4 @@
   qx.test.util.NumberFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NumberFormat.js.map?dt=1731948122865
+//# sourceMappingURL=NumberFormat.js.map?dt=1735222433882

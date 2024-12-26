@@ -55,7 +55,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct(source, target) {
       qx.core.Object.constructor.call(this);
-      this._updatePosition = this.__P_89_0.bind(this);
+      this._updatePosition = this.__P_90_0.bind(this);
       this._debouncedUpdatePosition = qx.util.Function.debounce(this._updatePosition, 50);
       this._sourceObserver = new MutationObserver(this._onMutation.bind(this));
       this._targetObserver = new MutationObserver(this._onMutation.bind(this));
@@ -98,13 +98,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       sourceConnectionPoint: {
         check: ['top', 'right', 'bottom', 'left', 'auto'],
         init: 'auto',
-        apply: "__P_89_0",
+        apply: "__P_90_0",
         validate: '_validateConnectionPoint'
       },
       targetConnectionPoint: {
         check: ['top', 'right', 'bottom', 'left', 'auto'],
         init: 'auto',
-        apply: "__P_89_0",
+        apply: "__P_90_0",
         validate: '_validateConnectionPoint'
       },
       styleClass: {
@@ -218,7 +218,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           this._path = path;
           setTimeout(function () {
-            _this.__P_89_0();
+            _this.__P_90_0();
           }, 1000);
         }
       },
@@ -238,7 +238,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           _iterator.f();
         }
       },
-      __P_89_0: function __P_89_0() {
+      __P_90_0: function __P_90_0() {
         var _this2 = this;
         var retried = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
         var sourceEntity = this.getSource();
@@ -378,20 +378,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this._path.removeAttribute('marker-start');
           this._path.removeAttribute('marker-end');
         } else if (value === 'both') {
-          markerId = this.__P_89_1();
+          markerId = this.__P_90_1();
           this._path.setAttribute('marker-start', "url(#".concat(markerId, ")"));
           this._path.setAttribute('marker-end', "url(#".concat(markerId, ")"));
         } else if (value === 'source' && !this.isInverted() || value === 'target' && this.isInverted()) {
-          markerId = this.__P_89_1();
+          markerId = this.__P_90_1();
           this._path.setAttribute('marker-start', "url(#".concat(markerId, ")"));
           this._path.removeAttribute('marker-end');
         } else if (value === 'target' && !this.isInverted() || value === 'source' && this.isInverted()) {
-          markerId = this.__P_89_1();
+          markerId = this.__P_90_1();
           this._path.removeAttribute('marker-start');
           this._path.setAttribute('marker-end', "url(#".concat(markerId, ")"));
         }
       },
-      __P_89_1: function __P_89_1() {
+      __P_90_1: function __P_90_1() {
         var arrowId = 'arrow';
         var styleClass = this.getStyleClass();
         if (styleClass) {
@@ -488,4 +488,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.svg.Connector.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Connector.js.map?dt=1731948097601
+//# sourceMappingURL=Connector.js.map?dt=1735222412817

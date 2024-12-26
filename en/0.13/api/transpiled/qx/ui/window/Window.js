@@ -405,13 +405,13 @@
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
       /** @type {Integer} Original top value before maximation had occurred */
-      __P_724_0: null,
+      __P_725_0: null,
       /** @type {Integer} Original left value before maximation had occurred */
-      __P_724_1: null,
+      __P_725_1: null,
       /** @type {Integer} Listener ID for centering on appear */
-      __P_724_2: null,
+      __P_725_2: null,
       /** @type {Integer} Listener ID for centering on resize */
-      __P_724_3: null,
+      __P_725_3: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -442,9 +442,9 @@
         // Before changing the parent, if there's a prior one, remove our resize
         // listener
         oldParent = this.getLayoutParent();
-        if (oldParent && this.__P_724_3) {
-          oldParent.removeListenerById(this.__P_724_3);
-          this.__P_724_3 = null;
+        if (oldParent && this.__P_725_3) {
+          oldParent.removeListenerById(this.__P_725_3);
+          this.__P_725_3 = null;
         }
 
         // Call the superclass
@@ -452,7 +452,7 @@
 
         // Re-add a listener for resize, if required
         if (parent && this.getCenterOnContainerResize()) {
-          this.__P_724_3 = parent.addListener("resize", this.center, this);
+          this.__P_725_3 = parent.addListener("resize", this.center, this);
         }
       },
       // overridden
@@ -682,8 +682,8 @@
 
             // store current dimension and location
             var props = this.getLayoutProperties();
-            this.__P_724_1 = props.left === undefined ? 0 : props.left;
-            this.__P_724_0 = props.top === undefined ? 0 : props.top;
+            this.__P_725_1 = props.left === undefined ? 0 : props.left;
+            this.__P_725_0 = props.top === undefined ? 0 : props.top;
 
             // Update layout properties
             this.setLayoutProperties({
@@ -713,8 +713,8 @@
         if (this.fireNonBubblingEvent("beforeMinimize", qx.event.type.Event, [false, true])) {
           // store current dimension and location
           var props = this.getLayoutProperties();
-          this.__P_724_1 = props.left === undefined ? 0 : props.left;
-          this.__P_724_0 = props.top === undefined ? 0 : props.top;
+          this.__P_725_1 = props.left === undefined ? 0 : props.left;
+          this.__P_725_0 = props.top === undefined ? 0 : props.top;
           this.removeState("maximized");
           this.hide();
           this.fireEvent("minimize");
@@ -734,8 +734,8 @@
           }
 
           // Restore old properties
-          var left = this.__P_724_1;
-          var top = this.__P_724_0;
+          var left = this.__P_725_1;
+          var top = this.__P_725_0;
           this.setLayoutProperties({
             edge: null,
             left: left,
@@ -866,29 +866,29 @@
       },
       _applyCenterOnAppear: function _applyCenterOnAppear(value, old) {
         // Remove prior listener for centering on appear
-        if (this.__P_724_2 !== null) {
-          this.removeListenerById(this.__P_724_2);
-          this.__P_724_2 = null;
+        if (this.__P_725_2 !== null) {
+          this.removeListenerById(this.__P_725_2);
+          this.__P_725_2 = null;
         }
 
         // If we are to center on appear, arrange to do so
         if (value) {
-          this.__P_724_2 = this.addListener("appear", this.center, this);
+          this.__P_725_2 = this.addListener("appear", this.center, this);
         }
       },
       _applyCenterOnContainerResize: function _applyCenterOnContainerResize(value, old) {
         var parent = this.getLayoutParent();
 
         // Remove prior listener for centering on resize
-        if (this.__P_724_3 !== null) {
-          parent.removeListenerById(this.__P_724_3);
-          this.__P_724_3 = null;
+        if (this.__P_725_3 !== null) {
+          parent.removeListenerById(this.__P_725_3);
+          this.__P_725_3 = null;
         }
 
         // If we are to center on resize, arrange to do so
         if (value) {
           if (parent) {
-            this.__P_724_3 = parent.addListener("resize", this.center, this);
+            this.__P_725_3 = parent.addListener("resize", this.center, this);
           }
         }
       },
@@ -999,7 +999,7 @@
       parent = this.getLayoutParent();
       if (parent) {
         // Remove the listener for resize, if there is one
-        id = this.__P_724_3;
+        id = this.__P_725_3;
         id && parent.removeListenerById(id);
 
         // Remove ourself from our parent
@@ -1010,4 +1010,4 @@
   qx.ui.window.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1731948143954
+//# sourceMappingURL=Window.js.map?dt=1735222451325

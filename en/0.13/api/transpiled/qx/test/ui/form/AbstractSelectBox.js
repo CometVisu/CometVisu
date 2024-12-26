@@ -34,36 +34,36 @@
     extend: qx.test.ui.LayoutTestCase,
     members: {
       setUp: function setUp() {
-        this.__P_390_0 = new qx.ui.form.SelectBox();
-        this.getRoot().add(this.__P_390_0);
-        this.__P_390_1 = new qx.ui.form.ComboBox();
-        this.getRoot().add(this.__P_390_1);
+        this.__P_391_0 = new qx.ui.form.SelectBox();
+        this.getRoot().add(this.__P_391_0);
+        this.__P_391_1 = new qx.ui.form.ComboBox();
+        this.getRoot().add(this.__P_391_1);
         this.flush();
       },
       tearDown: function tearDown() {
         qx.test.ui.form.AbstractSelectBox.superclass.prototype.tearDown.call(this);
-        this.__P_390_0.dispose();
-        this.__P_390_0 = null;
-        this.__P_390_1.dispose();
-        this.__P_390_1 = null;
+        this.__P_391_0.dispose();
+        this.__P_391_0 = null;
+        this.__P_391_1.dispose();
+        this.__P_391_1 = null;
       },
       testStatePopupOpen: function testStatePopupOpen() {
-        this.__P_390_0.open();
+        this.__P_391_0.open();
         this.flush();
-        this.assertTrue(this.__P_390_0.hasState("popupOpen"));
-        this.__P_390_0.close();
+        this.assertTrue(this.__P_391_0.hasState("popupOpen"));
+        this.__P_391_0.close();
         this.flush();
-        this.assertFalse(this.__P_390_0.hasState("popupOpen"));
-        this.__P_390_1.open();
+        this.assertFalse(this.__P_391_0.hasState("popupOpen"));
+        this.__P_391_1.open();
         this.flush();
-        this.assertTrue(this.__P_390_1.hasState("popupOpen"));
-        this.__P_390_1.close();
+        this.assertTrue(this.__P_391_1.hasState("popupOpen"));
+        this.__P_391_1.close();
         this.flush();
-        this.assertFalse(this.__P_390_1.hasState("popupOpen"));
+        this.assertFalse(this.__P_391_1.hasState("popupOpen"));
       }
     }
   });
   qx.test.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1731948119665
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1735222431259

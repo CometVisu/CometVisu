@@ -119,16 +119,16 @@ by an online translation service.</p>
 <h3>Switch<a class="headerlink" href="#switch" title="Link to this heading"></a></h3>
 <p>The switch button allows sending and displaying a state. The simplest example is an on/off switch.
 The button displays the current state and toggles between the two possible states when clicked.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id1">
 <img alt="Switched off" src="../../../_images/cv-button-off.png" />
 <figcaption>
-<p><span class="caption-text">Switched off</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<p><span class="caption-text">Switched off</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id2">
 <img alt="Switched on" src="../../../_images/cv-button-on.png" />
 <figcaption>
-<p><span class="caption-text">Switched on</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<p><span class="caption-text">Switched on</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -180,16 +180,16 @@ button is released (<code class="docutils literal notranslate"><span class="pre"
 <h4>Round button<a class="headerlink" href="#round-button" title="Link to this heading"></a></h4>
 <p>As an additional option, the button can be displayed as a circle. To do this, simply add a <code class="docutils literal notranslate"><span class="pre">class=&quot;round-button&quot;</span></code>
 to the &lt;cv-button&gt; element.</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id3">
 <img alt="Switched off" src="../../../_images/cv-button-round-off.png" />
 <figcaption>
-<p><span class="caption-text">Switched off</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+<p><span class="caption-text">Switched off</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id4">
 <img alt="Switched on" src="../../../_images/cv-button-round-on.png" />
 <figcaption>
-<p><span class="caption-text">Switched on</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+<p><span class="caption-text">Switched on</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-button</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;round-button&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;light&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
@@ -204,10 +204,10 @@ of a currently playing song, a volume, or the brightness value of a dimmer can b
 <p class="admonition-title">Hint</p>
 <p>To make sure that border of the button and the progress bar overlap each other, the round button should always be used here.</p>
 </div>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id5">
 <img alt="75% brightness " src="../../../_images/cv-button-progress.png" />
 <figcaption>
-<p><span class="caption-text">75% brightness</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+<p><span class="caption-text">75% brightness</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
@@ -338,7 +338,7 @@ of a currently playing song, a volume, or the brightness value of a dimmer can b
 </tr>
 <tr class="row-even"><td><p>mode</p></td>
 <td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
-<td><p>Defines if this address is only used to <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, both <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> or none of them <a href="#id1"><span class="problematic" id="id2">``</span></a>disable`.</p></td>
+<td><p>Defines if this address is only used to <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, both <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> or none of them <code class="docutils literal notranslate"><span class="pre">disable</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>value</p></td>
 <td><p>string</p></td>
@@ -346,7 +346,7 @@ of a currently playing song, a volume, or the brightness value of a dimmer can b
 </tr>
 <tr class="row-even"><td><p>on</p></td>
 <td><p><em>click</em>, <em>down</em> or <em>up</em></p></td>
-<td><p>Event on which a <code class="docutils literal notranslate"><span class="pre">value</span></code> should be sent to this address (only useful in mode=``write or <code class="docutils literal notranslate"><span class="pre">readwrite`),</span> <span class="pre">also</span> <span class="pre">needs</span> <span class="pre">``value</span></code>.</p></td>
+<td><p>Event on which a <code class="docutils literal notranslate"><span class="pre">value</span></code> should be sent to this address (only useful in mode <code class="docutils literal notranslate"><span class="pre">write</span></code> or <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>), also needs <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>target</p></td>
 <td><p>string</p></td>

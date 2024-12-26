@@ -47,7 +47,7 @@
       if (source) {
         this.setSource(source);
       }
-      this._getIframeElement().addListener("navigate", this.__P_564_0, this);
+      this._getIframeElement().addListener("navigate", this.__P_565_0, this);
     },
     events: {
       /**
@@ -144,7 +144,7 @@
        *
        * @param e {qx.event.type.Data} navigate event
        */
-      __P_564_0: function __P_564_0(e) {
+      __P_565_0: function __P_565_0(e) {
         var actualUrl = e.getData();
         if (actualUrl) {
           this.setSource(actualUrl);
@@ -156,4 +156,4 @@
   qx.ui.embed.AbstractIframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractIframe.js.map?dt=1731948135124
+//# sourceMappingURL=AbstractIframe.js.map?dt=1735222444189

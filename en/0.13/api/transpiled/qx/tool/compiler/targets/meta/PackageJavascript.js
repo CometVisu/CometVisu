@@ -53,7 +53,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(appMeta, pkg) {
       qx.tool.compiler.targets.meta.AbstractJavascriptMeta.constructor.call(this, appMeta, "".concat(appMeta.getApplicationRoot(), "package-").concat(pkg.getPackageIndex(), ".js"));
-      this.__P_506_0 = pkg;
+      this.__P_507_0 = pkg;
     },
     properties: {
       needsWriteToDisk: {
@@ -62,7 +62,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_506_1: null,
+      __P_507_1: null,
       /*
        * @Override
        */
@@ -73,7 +73,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                pkg = _this.__P_506_0;
+                pkg = _this.__P_507_0;
                 data = {
                   locales: pkg.getLocales(),
                   resources: {},
@@ -96,7 +96,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context2.next = 10;
                   break;
                 }
-                _this.__P_506_1 = [];
+                _this.__P_507_1 = [];
                 strip = new qx.tool.utils.Utils.StripSourceMapTransform();
                 strip.pipe(ws);
                 _context2.next = 9;
@@ -113,7 +113,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             break;
                           }
                           js = pkg.getJavascriptMetas()[i];
-                          _this.__P_506_1.push(ws.getLineNumber());
+                          _this.__P_507_1.push(ws.getLineNumber());
                           _context.next = 6;
                           return js.unwrap().writeSourceCodeToStream(strip);
                         case 6:
@@ -137,7 +137,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 9:
                 ws.write("//# sourceMappingURL=".concat(path.basename(_this.getFilename()), ".map?dt=").concat(new Date().getTime(), "\n"));
               case 10:
-                ws.write("qx.$$packageData['".concat(_this.__P_506_0.getPackageIndex(), "'] = ").concat(JSON.stringify(data, null, 2), ";\n"));
+                ws.write("qx.$$packageData['".concat(_this.__P_507_0.getPackageIndex(), "'] = ").concat(JSON.stringify(data, null, 2), ";\n"));
               case 11:
               case "end":
                 return _context2.stop();
@@ -158,18 +158,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context3.next = 2;
                 return qx.tool.compiler.targets.meta.PackageJavascript.superclass.prototype.writeToDisk.call(_this2);
               case 2:
-                if (_this2.__P_506_0.isEmbedAllJavascript()) {
+                if (_this2.__P_507_0.isEmbedAllJavascript()) {
                   _context3.next = 10;
                   break;
                 }
                 i = 0;
               case 4:
-                if (!(i < _this2.__P_506_0.getJavascriptMetas().length)) {
+                if (!(i < _this2.__P_507_0.getJavascriptMetas().length)) {
                   _context3.next = 10;
                   break;
                 }
                 _context3.next = 7;
-                return _this2.__P_506_0.getJavascriptMetas()[i].unwrap().writeToDisk();
+                return _this2.__P_507_0.getJavascriptMetas()[i].unwrap().writeToDisk();
               case 7:
                 i++;
                 _context3.next = 4;
@@ -190,19 +190,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
-                if (_this3.__P_506_0.isEmbedAllJavascript()) {
+                if (_this3.__P_507_0.isEmbedAllJavascript()) {
                   _context4.next = 2;
                   break;
                 }
                 return _context4.abrupt("return", null);
               case 2:
-                if (!(_this3.__P_506_1 === null)) {
+                if (!(_this3.__P_507_1 === null)) {
                   _context4.next = 4;
                   break;
                 }
                 throw new Error("Cannot get the source map for ".concat(_this3, " until the stream has been written"));
               case 4:
-                return _context4.abrupt("return", _this3._copySourceMap(_this3.__P_506_0.getJavascriptMetas(), _this3.__P_506_1));
+                return _context4.abrupt("return", _this3._copySourceMap(_this3.__P_507_0.getJavascriptMetas(), _this3.__P_507_1));
               case 5:
               case "end":
                 return _context4.stop();
@@ -215,4 +215,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.PackageJavascript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageJavascript.js.map?dt=1731948131242
+//# sourceMappingURL=PackageJavascript.js.map?dt=1735222440917

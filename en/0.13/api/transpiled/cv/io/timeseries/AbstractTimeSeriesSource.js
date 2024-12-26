@@ -49,8 +49,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       CONSTRUCTOR
     ***********************************************
     */
-    construct: function construct(resource) {
+    construct: function construct(resource, chart) {
       qx.core.Object.constructor.call(this);
+      this._chart = chart;
       this.initConfig(resource);
       this.init();
     },
@@ -60,7 +61,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     statics: {
-      urlRegex: /^(flux|openhab|rrd|demo):\/\/((\w+)@)?([^\/]+)(\/[^?]*)?\??(.*)/
+      urlRegex: /^(flux|openhab|rrd|demo|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?#]+)(\/[^?]*)?\??([^#]*)#?(.*)/
     },
     /*
     ***********************************************
@@ -80,6 +81,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     members: {
+      _chart: null,
       _initialized: null,
       _url: null,
       init: function init() {
@@ -94,17 +96,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         if (match) {
           return {
             type: match[1],
-            authority: match[3],
-            name: match[4],
-            path: match[5],
-            params: match[6] ? match[6].split('&').reduce(function (map, entry) {
+            subType: match[2],
+            authority: match[4],
+            name: match[5],
+            path: match[6],
+            params: match[7] ? match[7].split('&').reduce(function (map, entry) {
               var _entry$split = entry.split('='),
                 _entry$split2 = _slicedToArray(_entry$split, 2),
                 key = _entry$split2[0],
                 value = _entry$split2[1];
               map[key] = value;
               return map;
-            }, {}) : {}
+            }, {}) : {},
+            anchor: match[8]
           };
         }
         this.error('invalid url ' + url + ' this source will not be usable!');
@@ -189,4 +193,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.io.timeseries.AbstractTimeSeriesSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1731948148670
+//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1735222406116

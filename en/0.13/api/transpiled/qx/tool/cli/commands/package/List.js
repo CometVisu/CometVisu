@@ -143,9 +143,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.next = 2;
                 return qx.tool.cli.commands["package"].List.superclass.prototype.process.call(_this);
               case 2:
-                _this.__P_473_0 = [];
-                _this.__P_473_1 = {};
-                _this.__P_473_2 = {};
+                _this.__P_474_0 = [];
+                _this.__P_474_1 = {};
+                _this.__P_474_2 = {};
                 localPathRepoName = qx.tool.cli.commands["package"].List.localPathRepoName;
                 repos_cache = _this.getCache().repos; // implicit qx package update, disabled
                 // if (repos_cache.list.length === 0 || this.getCache().version !== qx.tool.config.Lockfile.getInstance().getVersion()) {
@@ -165,7 +165,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 process.exit(1);
               case 17:
                 _context.next = 19;
-                return _this.__P_473_3(qxVersion);
+                return _this.__P_474_3(qxVersion);
               case 19:
                 num_compat_repos = _context.sent;
                 if (_this.argv.verbose) {
@@ -190,7 +190,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 throw new qx.tool.utils.Utils.UserError("Repository ".concat(repo, " does not exist or is not a qooxdoo package repo."));
               case 28:
-                if (_this.__P_473_1[repo] && _this.__P_473_1[repo].length) {
+                if (_this.__P_474_1[repo] && _this.__P_474_1[repo].length) {
                   _columnify_options = {
                     columnSplitter: "   ",
                     config: {
@@ -222,7 +222,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     }
                   };
                   if (!_this.argv.quiet) {
-                    data = _this.__P_473_1[repo]
+                    data = _this.__P_474_1[repo]
                     // shallow copy
                     .map(function (row) {
                       return Object.assign({}, row);
@@ -322,7 +322,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     }
                   }
                 }; // filter by compatibility unless --all
-                list = _this.argv.all ? _this.__P_473_0 : _this.__P_473_0.filter(function (item) {
+                list = _this.argv.all ? _this.__P_474_0 : _this.__P_474_0.filter(function (item) {
                   return item.latestCompatible || _this.argv.installed && item.name === localPathRepoName;
                 }); // sort
                 list.sort(function (l, r) {
@@ -342,13 +342,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _repo = _step2.value;
                 repo_libs = [];
-                if (qx.lang.Type.isArray(_this.__P_473_1[_repo.name])) {
+                if (qx.lang.Type.isArray(_this.__P_474_1[_repo.name])) {
                   _context.next = 44;
                   break;
                 }
                 return _context.abrupt("continue", 65);
               case 44:
-                _iterator3 = _createForOfIteratorHelper(_this.__P_473_1[_repo.name]);
+                _iterator3 = _createForOfIteratorHelper(_this.__P_474_1[_repo.name]);
                 _context.prev = 45;
                 _iterator3.s();
               case 47:
@@ -463,7 +463,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
 
                 // save to cache
-                _this.getCache().compat[qxVersion] = _this.__P_473_2[qxVersion];
+                _this.getCache().compat[qxVersion] = _this.__P_474_2[qxVersion];
                 _context.next = 81;
                 return _this.saveCache();
               case 81:
@@ -476,15 +476,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * compatibility indexes
        */
-      __P_473_0: null,
-      __P_473_1: null,
-      __P_473_2: null,
+      __P_474_0: null,
+      __P_474_1: null,
+      __P_474_2: null,
       /**
        * Create compatibilty indexes of repositories and the contained libraries
        * @param qooxdoo_version {String} The qooxdoo version to check compatibiity with
        * @return {Number} The number of repositories containing compatible libraries
        */
-      __P_473_3: function __P_473_3(qooxdoo_version) {
+      __P_474_3: function __P_474_3(qooxdoo_version) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var localPathRepoName, libData, _iterator4, _step4, lib, manifest_path, manifest, info, repos_cache, num_compat_repos, _iterator5, _step5, repo_name, repo_data, d, tag_names, description, hasCompatibleRelease, latestVersion, repoInstalledVersion, _iterator6, _step6, tag_name, release_data, prerelease, manifests, _iterator7, _step7, _manifest, qx_versions, _info, provides, _manifest_path, installedVersion, library_name, version, tag_version, installed, _lib, compatibility, latestCompatibleRelease, latestCompatibleVersion;
@@ -497,11 +497,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 // local libraries
                 localPathRepoName = qx.tool.cli.commands["package"].List.localPathRepoName;
-                _this2.__P_473_0.push({
+                _this2.__P_474_0.push({
                   name: localPathRepoName,
                   description: "Libraries on local filesystem"
                 });
-                _this2.__P_473_1[localPathRepoName] = [];
+                _this2.__P_474_1[localPathRepoName] = [];
                 _context2.next = 6;
                 return _this2.getLockfileData();
               case 6:
@@ -525,7 +525,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 16:
                 manifest = _context2.sent;
                 info = manifest.info;
-                _this2.__P_473_1[localPathRepoName].push({
+                _this2.__P_474_1[localPathRepoName].push({
                   name: info.name,
                   namespace: manifest.provides.namespace,
                   summary: info.summary,
@@ -553,8 +553,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 // repositories
                 repos_cache = _this2.getCache().repos;
                 num_compat_repos = 0;
-                if (_this2.__P_473_2[qooxdoo_version] === undefined) {
-                  _this2.__P_473_2[qooxdoo_version] = {};
+                if (_this2.__P_474_2[qooxdoo_version] === undefined) {
+                  _this2.__P_474_2[qooxdoo_version] = {};
                 }
 
                 // iterate over repositories
@@ -662,23 +662,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 83:
                 // check compatibility of library
                 compatibility = semver.satisfies(qooxdoo_version, qx_versions, true); // prepare indexes
-                if (_this2.__P_473_1[repo_name] === undefined) {
-                  _this2.__P_473_1[repo_name] = [];
+                if (_this2.__P_474_1[repo_name] === undefined) {
+                  _this2.__P_474_1[repo_name] = [];
                 }
 
                 // use the latest compatible release, i.e the one that satisfies the following conditions:
                 // 1) must be semver-compatible with the qooxdoo version
                 // 2) must be the higher than any other version found so far
                 // 3) should not be a pre-release unless there are no other compatible releases
-                latestCompatibleRelease = _this2.__P_473_2[qooxdoo_version][repo_name];
+                latestCompatibleRelease = _this2.__P_474_2[qooxdoo_version][repo_name];
                 latestCompatibleVersion = latestCompatibleRelease ? latestCompatibleRelease.replace(/v/, "") : undefined;
                 if (compatibility === true && (latestCompatibleRelease === undefined || semver.gt(tag_version, latestCompatibleVersion, false) && (!prerelease || _this2.argv.prereleases))) {
-                  _this2.__P_473_2[qooxdoo_version][repo_name] = tag_name;
+                  _this2.__P_474_2[qooxdoo_version][repo_name] = tag_name;
                   hasCompatibleRelease = true;
                 }
 
                 // save data
-                _this2.__P_473_1[repo_name].push({
+                _this2.__P_474_1[repo_name].push({
                   name: _info.name,
                   namespace: provides ? provides.namespace : "",
                   summary: _info.summary,
@@ -723,12 +723,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
 
                 // add to list
-                _this2.__P_473_0.push({
+                _this2.__P_474_0.push({
                   name: repo_name,
                   description: description,
                   installedVersion: repoInstalledVersion,
                   latestVersion: latestVersion,
-                  latestCompatible: hasCompatibleRelease ? _this2.__P_473_2[qooxdoo_version][repo_name] : false
+                  latestCompatible: hasCompatibleRelease ? _this2.__P_474_2[qooxdoo_version][repo_name] : false
                 });
               case 111:
                 _context2.next = 35;
@@ -758,4 +758,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1731948127282
+//# sourceMappingURL=List.js.map?dt=1735222437578

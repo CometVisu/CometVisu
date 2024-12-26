@@ -49,33 +49,33 @@
      */
     construct: function construct(target, name, partIndex) {
       qx.core.Object.constructor.call(this);
-      this.__P_507_0 = target;
-      this.__P_507_1 = name;
-      this.__P_507_2 = partIndex;
-      this.__P_507_3 = [];
-      this.__P_507_4 = {};
+      this.__P_508_0 = target;
+      this.__P_508_1 = name;
+      this.__P_508_2 = partIndex;
+      this.__P_508_3 = [];
+      this.__P_508_4 = {};
     },
     members: {
-      __P_507_0: null,
-      __P_507_1: null,
-      __P_507_2: -1,
-      __P_507_3: null,
-      __P_507_4: null,
+      __P_508_0: null,
+      __P_508_1: null,
+      __P_508_2: -1,
+      __P_508_3: null,
+      __P_508_4: null,
       addPackage: function addPackage(pkg) {
-        if (!this.__P_507_4[pkg.toHashCode()]) {
-          this.__P_507_3.push(pkg);
-          this.__P_507_4[pkg.toHashCode()] = pkg;
+        if (!this.__P_508_4[pkg.toHashCode()]) {
+          this.__P_508_3.push(pkg);
+          this.__P_508_4[pkg.toHashCode()] = pkg;
         }
       },
       hasPackage: function hasPackage(pkg) {
-        return Boolean(this.__P_507_4[pkg.toHashCode()]);
+        return Boolean(this.__P_508_4[pkg.toHashCode()]);
       },
       getDefaultPackage: function getDefaultPackage() {
-        return this.__P_507_3[0] || null;
+        return this.__P_508_3[0] || null;
       },
       serializeInto: function serializeInto(parts) {
-        var arr = parts[this.__P_507_1] = [];
-        this.__P_507_3.forEach(function (pkg) {
+        var arr = parts[this.__P_508_1] = [];
+        this.__P_508_3.forEach(function (pkg) {
           return arr.push(String(pkg.getPackageIndex()));
         });
       }
@@ -84,4 +84,4 @@
   qx.tool.compiler.targets.meta.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1731948131256
+//# sourceMappingURL=Part.js.map?dt=1735222440929

@@ -57,47 +57,47 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.dev.unit.MRequirements],
     members: {
-      __P_320_0: null,
-      __P_320_1: null,
+      __P_321_0: null,
+      __P_321_1: null,
       setUp: function setUp() {
-        this.__P_320_1 = qx.core.Environment.get("css.transform");
-        if (this.__P_320_1 == null) {
+        this.__P_321_1 = qx.core.Environment.get("css.transform");
+        if (this.__P_321_1 == null) {
           // skip the test
           throw new qx.dev.unit.RequirementError("css.transform");
         }
-        this.__P_320_0 = {
+        this.__P_321_0 = {
           style: {}
         };
       },
       tearDown: function tearDown() {
-        this.__P_320_0 = null;
+        this.__P_321_0 = null;
       },
       /**
        * TRANSFORM FUNCTIONS
        */
       testTranslate: function testTranslate() {
-        qx.bom.element.Transform.translate(this.__P_320_0, "123px");
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translate(123px)") != -1);
+        qx.bom.element.Transform.translate(this.__P_321_0, "123px");
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translate(123px)") != -1);
       },
       testRotate: function testRotate() {
-        qx.bom.element.Transform.rotate(this.__P_320_0, "123deg");
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("rotate(123deg)") != -1);
+        qx.bom.element.Transform.rotate(this.__P_321_0, "123deg");
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("rotate(123deg)") != -1);
       },
       testSkew: function testSkew() {
-        qx.bom.element.Transform.skew(this.__P_320_0, "123deg");
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("skew(123deg)") != -1);
+        qx.bom.element.Transform.skew(this.__P_321_0, "123deg");
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("skew(123deg)") != -1);
       },
       testScale: function testScale() {
-        qx.bom.element.Transform.scale(this.__P_320_0, 1.5);
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("scale(1.5)") != -1);
+        qx.bom.element.Transform.scale(this.__P_321_0, 1.5);
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("scale(1.5)") != -1);
       },
       testTransform: function testTransform() {
-        qx.bom.element.Transform.transform(this.__P_320_0, {
+        qx.bom.element.Transform.transform(this.__P_321_0, {
           scale: 1.2,
           translate: "123px"
         });
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translate(123px)") != -1);
-        this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("scale(1.2)") != -1);
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translate(123px)") != -1);
+        this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("scale(1.2)") != -1);
       },
       "testAddStyleSheetRuleWith-X-Axis": function testAddStyleSheetRuleWithXAxis() {
         var css = qx.bom.element.Transform.getCss({
@@ -125,16 +125,16 @@
        * ARRAY VALUES
        */
       test3D: function test3D() {
-        qx.bom.element.Transform.translate(this.__P_320_0, ["1px", "2px", "3px"]);
+        qx.bom.element.Transform.translate(this.__P_321_0, ["1px", "2px", "3px"]);
 
         // 3d property
         if (qx.core.Environment.get("css.transform.3d")) {
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translate3d(1px, 2px, 3px)") != -1, "translate3d");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translate3d(1px, 2px, 3px)") != -1, "translate3d");
         }
 
         // 2d property
         else {
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translateX(1px) translateY(2px)") != -1);
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translateX(1px) translateY(2px)") != -1);
         }
       },
       "testAddStyleSheetRuleWith-XYZ-Axis": function testAddStyleSheetRuleWithXYZAxis() {
@@ -169,35 +169,35 @@
         var value = qx.bom.element.Transform.getCss({
           scale: 1.2
         });
-        this.assertEquals(qx.bom.Style.getCssName(this.__P_320_1.name) + ":scale(1.2);", value);
+        this.assertEquals(qx.bom.Style.getCssName(this.__P_321_1.name) + ":scale(1.2);", value);
       },
       /**
        * ADDITIONAL CSS TRANSFORM PROPERTIES
        */
       testOrigin: function testOrigin() {
-        qx.bom.element.Transform.setOrigin(this.__P_320_0, "30% 20%");
-        this.assertEquals("30% 20%", this.__P_320_0.style[this.__P_320_1["origin"]]);
-        this.assertEquals("30% 20%", qx.bom.element.Transform.getOrigin(this.__P_320_0));
+        qx.bom.element.Transform.setOrigin(this.__P_321_0, "30% 20%");
+        this.assertEquals("30% 20%", this.__P_321_0.style[this.__P_321_1["origin"]]);
+        this.assertEquals("30% 20%", qx.bom.element.Transform.getOrigin(this.__P_321_0));
       },
       testStyle: function testStyle() {
-        qx.bom.element.Transform.setStyle(this.__P_320_0, "affe");
-        this.assertEquals("affe", this.__P_320_0.style[this.__P_320_1["style"]]);
-        this.assertEquals("affe", qx.bom.element.Transform.getStyle(this.__P_320_0));
+        qx.bom.element.Transform.setStyle(this.__P_321_0, "affe");
+        this.assertEquals("affe", this.__P_321_0.style[this.__P_321_1["style"]]);
+        this.assertEquals("affe", qx.bom.element.Transform.getStyle(this.__P_321_0));
       },
       testPerspective: function testPerspective() {
-        qx.bom.element.Transform.setPerspective(this.__P_320_0, 123);
-        this.assertEquals("123px", this.__P_320_0.style[this.__P_320_1["perspective"]]);
-        this.assertEquals("123px", qx.bom.element.Transform.getPerspective(this.__P_320_0));
+        qx.bom.element.Transform.setPerspective(this.__P_321_0, 123);
+        this.assertEquals("123px", this.__P_321_0.style[this.__P_321_1["perspective"]]);
+        this.assertEquals("123px", qx.bom.element.Transform.getPerspective(this.__P_321_0));
       },
       testPerspectiveOrigin: function testPerspectiveOrigin() {
-        qx.bom.element.Transform.setPerspectiveOrigin(this.__P_320_0, "30% 10%");
-        this.assertEquals("30% 10%", this.__P_320_0.style[this.__P_320_1["perspective-origin"]]);
-        this.assertEquals("30% 10%", qx.bom.element.Transform.getPerspectiveOrigin(this.__P_320_0));
+        qx.bom.element.Transform.setPerspectiveOrigin(this.__P_321_0, "30% 10%");
+        this.assertEquals("30% 10%", this.__P_321_0.style[this.__P_321_1["perspective-origin"]]);
+        this.assertEquals("30% 10%", qx.bom.element.Transform.getPerspectiveOrigin(this.__P_321_0));
       },
       testBackfaceVisibility: function testBackfaceVisibility() {
-        qx.bom.element.Transform.setBackfaceVisibility(this.__P_320_0, true);
-        this.assertEquals("visible", this.__P_320_0.style[this.__P_320_1["backface-visibility"]]);
-        this.assertTrue(qx.bom.element.Transform.getBackfaceVisibility(this.__P_320_0));
+        qx.bom.element.Transform.setBackfaceVisibility(this.__P_321_0, true);
+        this.assertEquals("visible", this.__P_321_0.style[this.__P_321_1["backface-visibility"]]);
+        this.assertTrue(qx.bom.element.Transform.getBackfaceVisibility(this.__P_321_0));
       },
       testGetTransformValue: function testGetTransformValue() {
         var cssValue;
@@ -230,7 +230,7 @@
         }
       },
       testTransformArray: function testTransformArray() {
-        qx.bom.element.Transform.transform(this.__P_320_0, {
+        qx.bom.element.Transform.transform(this.__P_321_0, {
           translate: ["1px", "2px", "3px"],
           scale: [1, 2, 3],
           rotate: ["1deg", "2deg", "3deg"],
@@ -239,17 +239,17 @@
 
         // 3d property
         if (qx.core.Environment.get("css.transform.3d")) {
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translate3d(1px, 2px, 3px)") != -1, "translate3d");
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("scale3d(1, 2, 3)") != -1, "scale3d");
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("rotateZ(3deg)") != -1, "rotate");
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("skewX(1deg) skewY(2deg)") != -1, "skew");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translate3d(1px, 2px, 3px)") != -1, "translate3d");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("scale3d(1, 2, 3)") != -1, "scale3d");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("rotateZ(3deg)") != -1, "rotate");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("skewX(1deg) skewY(2deg)") != -1, "skew");
         }
 
         // 2d property
         else {
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("translateX(1px) translateY(2px)") != -1, "translate");
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("scaleX(1) scaleY(2)") != -1, "scale");
-          this.assertTrue(this.__P_320_0.style[this.__P_320_1.name].indexOf("skewX(1deg) skewY(2deg)") != -1, "skew");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("translateX(1px) translateY(2px)") != -1, "translate");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("scaleX(1) scaleY(2)") != -1, "scale");
+          this.assertTrue(this.__P_321_0.style[this.__P_321_1.name].indexOf("skewX(1deg) skewY(2deg)") != -1, "skew");
         }
       }
     }
@@ -257,4 +257,4 @@
   qx.test.bom.element.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1731948112961
+//# sourceMappingURL=Transform.js.map?dt=1735222425843

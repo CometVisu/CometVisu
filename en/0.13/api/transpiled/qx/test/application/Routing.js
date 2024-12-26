@@ -38,30 +38,30 @@
     extend: qx.dev.unit.TestCase,
     include: qx.dev.unit.MMock,
     members: {
-      __P_302_0: null,
-      __P_302_1: null,
+      __P_303_0: null,
+      __P_303_1: null,
       setUp: function setUp() {
-        this.__P_302_1 = qx.bom.History.getInstance().getState();
-        this.__P_302_0 = new qx.application.Routing();
+        this.__P_303_1 = qx.bom.History.getInstance().getState();
+        this.__P_303_0 = new qx.application.Routing();
       },
       tearDown: function tearDown() {
-        qx.bom.History.getInstance().setState(this.__P_302_1);
-        this.__P_302_0.dispose();
+        qx.bom.History.getInstance().setState(this.__P_303_1);
+        this.__P_303_0.dispose();
       },
       testGet: function testGet() {
         var handler = this.spy();
-        this.__P_302_0.onGet("/abc", handler);
-        this.__P_302_0.executeGet("/abc");
+        this.__P_303_0.onGet("/abc", handler);
+        this.__P_303_0.executeGet("/abc");
         this.assertCalledOnce(handler);
       },
       testBack: function testBack() {
         var aHandler = this.spy();
         var bHandler = this.spy();
-        this.__P_302_0.onGet("/a", aHandler);
-        this.__P_302_0.onGet("/b", bHandler);
-        this.__P_302_0.executeGet("/a");
-        this.__P_302_0.executeGet("/b");
-        this.__P_302_0.back();
+        this.__P_303_0.onGet("/a", aHandler);
+        this.__P_303_0.onGet("/b", bHandler);
+        this.__P_303_0.executeGet("/a");
+        this.__P_303_0.executeGet("/b");
+        this.__P_303_0.back();
         this.assertCalledTwice(aHandler);
         this.assertCalledOnce(bHandler);
       },
@@ -73,22 +73,22 @@
         var aHandler = this.spy();
         var bHandler = this.spy();
         var cHandler = this.spy();
-        this.__P_302_0.onGet("/a", aHandler);
-        this.__P_302_0.onGet("/b", bHandler);
-        this.__P_302_0.onGet("/c", cHandler);
-        this.__P_302_0.executeGet("/a");
-        this.__P_302_0.executeGet("/b");
-        this.__P_302_0.executeGet("/c");
-        this.__P_302_0.executeGet("/b");
-        this.__P_302_0.back();
+        this.__P_303_0.onGet("/a", aHandler);
+        this.__P_303_0.onGet("/b", bHandler);
+        this.__P_303_0.onGet("/c", cHandler);
+        this.__P_303_0.executeGet("/a");
+        this.__P_303_0.executeGet("/b");
+        this.__P_303_0.executeGet("/c");
+        this.__P_303_0.executeGet("/b");
+        this.__P_303_0.back();
         this.assertCalledTwice(aHandler);
         this.assertCalledTwice(bHandler);
         this.assertCalledOnce(cHandler);
       },
       testGetCustomData: function testGetCustomData() {
         var handler = this.spy();
-        this.__P_302_0.onGet("/abc", handler);
-        this.__P_302_0.executeGet("/abc", {
+        this.__P_303_0.onGet("/abc", handler);
+        this.__P_303_0.executeGet("/abc", {
           a: true
         });
         this.assertCalledOnce(handler);
@@ -97,7 +97,7 @@
       testGetCustomDataTwoInstances: function testGetCustomDataTwoInstances() {
         var r2 = new qx.application.Routing();
         var handler = this.spy();
-        this.__P_302_0.onGet("/abc", handler);
+        this.__P_303_0.onGet("/abc", handler);
         r2.executeGet("/abc", {
           a: true
         });
@@ -107,14 +107,14 @@
       },
       testOn: function testOn() {
         var handler = this.spy();
-        this.__P_302_0.on("/", handler);
-        this.__P_302_0.execute("/");
+        this.__P_303_0.on("/", handler);
+        this.__P_303_0.execute("/");
         this.assertCalledOnce(handler);
       },
       testPost: function testPost() {
         var handler = this.spy();
-        this.__P_302_0.onPost("/abc", handler);
-        this.__P_302_0.executePost("/abc");
+        this.__P_303_0.onPost("/abc", handler);
+        this.__P_303_0.executePost("/abc");
         this.assertCalledOnce(handler);
       },
       testPostParam: function testPostParam() {
@@ -122,8 +122,8 @@
         var data = {
           data: "test"
         };
-        this.__P_302_0.onPost("/{id}/affe", handler);
-        this.__P_302_0.executePost("/123456/affe", data, "custom data");
+        this.__P_303_0.onPost("/{id}/affe", handler);
+        this.__P_303_0.executePost("/123456/affe", data, "custom data");
         this.assertCalledOnce(handler);
         this.assertCalledWith(handler, {
           customData: "custom data",
@@ -136,49 +136,49 @@
       },
       testDelete: function testDelete() {
         var handler = this.spy();
-        this.__P_302_0.onDelete("/abc", handler);
-        this.__P_302_0.executeDelete("/abc");
+        this.__P_303_0.onDelete("/abc", handler);
+        this.__P_303_0.executeDelete("/abc");
         this.assertCalledOnce(handler);
       },
       testPut: function testPut() {
         var handler = this.spy();
-        this.__P_302_0.onPut("/abc", handler);
-        this.__P_302_0.executePut("/abc");
+        this.__P_303_0.onPut("/abc", handler);
+        this.__P_303_0.executePut("/abc");
         this.assertCalledOnce(handler);
       },
       testAny: function testAny() {
         var handler = this.spy();
-        this.__P_302_0.onAny("/abc", handler);
-        this.__P_302_0.executePost("/abc");
-        this.__P_302_0.executeDelete("/abc");
+        this.__P_303_0.onAny("/abc", handler);
+        this.__P_303_0.executePost("/abc");
+        this.__P_303_0.executeDelete("/abc");
         this.assertCalledTwice(handler);
       },
       testInit: function testInit() {
         var handler = this.spy();
         var defaultHandler = this.spy();
-        this.__P_302_0.dispose();
-        this.__P_302_0 = new qx.application.Routing();
-        this.__P_302_0.onGet("/a/b/c", handler);
+        this.__P_303_0.dispose();
+        this.__P_303_0 = new qx.application.Routing();
+        this.__P_303_0.onGet("/a/b/c", handler);
         this.assertNotCalled(handler);
-        this.__P_302_0.onGet("/", defaultHandler);
+        this.__P_303_0.onGet("/", defaultHandler);
         this.assertNotCalled(defaultHandler);
-        this.__P_302_0.init();
+        this.__P_303_0.init();
         this.assertNotCalled(handler);
         this.assertCalledOnce(defaultHandler);
         qx.bom.History.getInstance().setState("/a/b/c");
         this.assertCalledOnce(handler);
       },
       testGetPathOrFallback: function testGetPathOrFallback() {
-        this.__P_302_0.on("/registered", function () {});
-        this.assertEquals("/", this.__P_302_0._getPathOrFallback(""));
-        this.assertEquals("/", this.__P_302_0._getPathOrFallback(null));
-        this.assertEquals("/", this.__P_302_0._getPathOrFallback("/not/registered"));
-        this.assertEquals("/given/default", this.__P_302_0._getPathOrFallback("use_default_instead_of_this", "/given/default"));
-        this.assertEquals("/registered", this.__P_302_0._getPathOrFallback("/registered"));
+        this.__P_303_0.on("/registered", function () {});
+        this.assertEquals("/", this.__P_303_0._getPathOrFallback(""));
+        this.assertEquals("/", this.__P_303_0._getPathOrFallback(null));
+        this.assertEquals("/", this.__P_303_0._getPathOrFallback("/not/registered"));
+        this.assertEquals("/given/default", this.__P_303_0._getPathOrFallback("use_default_instead_of_this", "/given/default"));
+        this.assertEquals("/registered", this.__P_303_0._getPathOrFallback("/registered"));
       }
     }
   });
   qx.test.application.Routing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Routing.js.map?dt=1731948112193
+//# sourceMappingURL=Routing.js.map?dt=1735222425248

@@ -236,9 +236,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type {Map} maps filenames to uris */
-      __P_499_0: null,
+      __P_500_0: null,
       /** @type {qx.tool.compiler.targets.meta.ApplicationMeta} for the current application */
-      __P_499_1: null,
+      __P_500_1: null,
       /**
        * Initialises the target, creating directories etc
        */
@@ -302,10 +302,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       addPathMapping: function addPathMapping(fromFile, toUri) {
         fromFile = path.resolve(fromFile);
-        if (this.__P_499_0 === null) {
-          this.__P_499_0 = {};
+        if (this.__P_500_0 === null) {
+          this.__P_500_0 = {};
         }
-        this.__P_499_0[fromFile] = toUri;
+        this.__P_500_0[fromFile] = toUri;
       },
       /**
        * Converts a filename to a URI, taking into account mappings added via `addMapping`.  If there is
@@ -315,13 +315,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String} the URI for the file, null if not found
        */
       getPathMapping: function getPathMapping(filename) {
-        if (this.__P_499_0) {
+        if (this.__P_500_0) {
           var absFilename = path.resolve(filename);
 
           // Search
-          for (var fromFile in this.__P_499_0) {
+          for (var fromFile in this.__P_500_0) {
             if (absFilename.startsWith(fromFile)) {
-              var toUri = this.__P_499_0[fromFile];
+              var toUri = this.__P_500_0[fromFile];
               filename = toUri + absFilename.substring(fromFile.length);
               return filename;
             }
@@ -364,7 +364,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 t = _this;
                 analyser = application.getAnalyser();
                 rm = analyser.getResourceManager();
-                appMeta = _this.__P_499_1 = new qx.tool.compiler.targets.meta.ApplicationMeta(_this, application);
+                appMeta = _this.__P_500_1 = new qx.tool.compiler.targets.meta.ApplicationMeta(_this, application);
                 appMeta.setAddTimestampsToUrls(_this.getAddTimestampsToUrls());
                 targetUri = "";
                 if (!_this.isPrivateArtifacts() || application.getType() != "browser") {
@@ -510,15 +510,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 appMeta.addPreBootCode("qx.$$fontBootstrap={};\n");
                 _context2.next = 48;
-                return _this.__P_499_2(application, appMeta, assets);
+                return _this.__P_500_2(application, appMeta, assets);
               case 48:
                 _context2.next = 50;
-                return _this.__P_499_3(application, appMeta, assets, bootPackage);
+                return _this.__P_500_3(application, appMeta, assets, bootPackage);
               case 50:
                 _context2.next = 52;
                 return _this._writeApplication();
               case 52:
-                _this.__P_499_1 = null;
+                _this.__P_500_1 = null;
               case 53:
               case "end":
                 return _context2.stop();
@@ -530,7 +530,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Writes the fonts defined in provides.webfonts
        * @deprecated
        */
-      __P_499_2: function __P_499_2(application, appMeta, assets) {
+      __P_500_2: function __P_500_2(application, appMeta, assets) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var analyser, requiredLibs, appLibrary, fontsToLoad, addLibraryFonts, loadFont, _i, _Object$keys, fontName, _fontsToLoad$fontName, font, library;
@@ -643,7 +643,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Writes the fonts defined in provides.fonts
        */
-      __P_499_3: function __P_499_3(application, appMeta, assets, bootPackage) {
+      __P_500_3: function __P_500_3(application, appMeta, assets, bootPackage) {
         var _this3 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var analyser, rm, addResourcesToBuild, fontNames, _iterator2, _step2, _loop, key, code, _ret;
@@ -1315,11 +1315,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       getAppMeta: function getAppMeta() {
-        return this.__P_499_1;
+        return this.__P_500_1;
       }
     }
   });
   qx.tool.compiler.targets.Target.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Target.js.map?dt=1731948130658
+//# sourceMappingURL=Target.js.map?dt=1735222440422

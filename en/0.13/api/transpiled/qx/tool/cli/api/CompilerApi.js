@@ -55,8 +55,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     construct: function construct() {
       var _this = this;
       qx.tool.cli.api.AbstractApi.constructor.call(this);
-      this.__P_463_0 = {};
-      this.__P_463_1 = true;
+      this.__P_464_0 = {};
+      this.__P_464_1 = true;
       this.addListener("changeCommand", function () {
         _this.afterCommandLoaded(_this.getCommand());
       });
@@ -76,7 +76,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_463_0: null,
+      __P_464_0: null,
       /**
        * Called after the command is loaded
        * @param cmd {qx.tool.cli.commands.Command} current command
@@ -150,7 +150,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context3.next = 11;
                 break;
               case 10:
-                _this2.__P_463_1 = false;
+                _this2.__P_464_1 = false;
               case 11:
                 _this2.setConfiguration(config);
                 return _context3.abrupt("return", qx.tool.cli.api.CompilerApi.superclass.prototype.load.call(_this2));
@@ -162,7 +162,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       compileJsonExists: function compileJsonExists() {
-        return this.__P_463_1;
+        return this.__P_464_1;
       },
       /**
        * runs after the whole process is finished
@@ -217,7 +217,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       addLibraryApi: function addLibraryApi(libraryApi) {
         var dir = path.resolve(libraryApi.getRootDir());
-        this.__P_463_0[dir] = libraryApi;
+        this.__P_464_0[dir] = libraryApi;
       },
       /**
        * Returns an array of library configurations
@@ -225,11 +225,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {LibraryApi[]}
        */
       getLibraryApis: function getLibraryApis() {
-        return Object.values(this.__P_463_0);
+        return Object.values(this.__P_464_0);
       }
     }
   });
   qx.tool.cli.api.CompilerApi.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CompilerApi.js.map?dt=1731948124887
+//# sourceMappingURL=CompilerApi.js.map?dt=1735222435517

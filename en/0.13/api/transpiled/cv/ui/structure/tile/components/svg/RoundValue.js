@@ -95,7 +95,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     members: {
       _target: null,
       _svg: null,
-      __P_91_0: null,
+      __P_92_0: null,
       _radius: null,
       _iconSize: null,
       _iconOffset: null,
@@ -143,8 +143,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         if (!element.hasAttribute('no-background')) {
           var bg = document.createElementNS(ns, 'circle');
           bg.classList.add('bg');
-          if (this.__P_91_0) {
-            bg.setAttribute('r', '' + this.__P_91_0);
+          if (this.__P_92_0) {
+            bg.setAttribute('r', '' + this.__P_92_0);
           }
           bg.setAttribute('cx', '50%');
           bg.setAttribute('cy', '50%');
@@ -218,7 +218,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             amount.classList.add('amount');
             amount.style.fontSize = "".concat(this._iconSize - 5, "px");
             this._target.appendChild(amount);
-            this.__P_91_1();
+            this.__P_92_1();
           }
           if (this._iconOffset !== 5) {
             this._iconOffset = 5;
@@ -233,10 +233,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           }
         }
         if (updateIconPosition) {
-          this.__P_91_2();
+          this.__P_92_2();
         }
       },
-      __P_91_1: function __P_91_1() {
+      __P_92_1: function __P_92_1() {
         var amount = this._target.querySelector('text.amount');
         if (amount) {
           var radius = this.getRadius();
@@ -247,7 +247,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           amount.setAttribute('y', "".concat(y));
         }
       },
-      __P_91_2: function __P_91_2() {
+      __P_92_2: function __P_92_2() {
         var icon = this._target.querySelector('cv-icon');
         if (icon) {
           icon.style.fontSize = this._iconSize + 'px';
@@ -268,12 +268,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         this._updateNormalizedRadius();
         this._iconSize = Math.round(radius / 2);
         if (this._target) {
-          this.__P_91_2();
+          this.__P_92_2();
           var value = this._target.querySelector('.value');
           if (value) {
             value.style.fontSize = "".concat(this._iconSize - 4, "px");
           }
-          this.__P_91_1();
+          this.__P_92_1();
         }
         if (this._svg) {
           this.setHeight(radius * 2);
@@ -289,15 +289,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _updateNormalizedRadius: function _updateNormalizedRadius() {
         if (this._target) {
           var newValue = this.getRadius() - this.getStroke() / 2;
-          if (this.__P_91_0 !== newValue) {
-            this.__P_91_0 = newValue;
+          if (this.__P_92_0 !== newValue) {
+            this.__P_92_0 = newValue;
             var bg = this._target.querySelector('circle.bg');
             if (bg) {
-              bg.setAttribute('r', '' + this.__P_91_0);
+              bg.setAttribute('r', '' + this.__P_92_0);
             }
             var bar = this._target.querySelector('circle.bar');
             if (bar) {
-              bar.setAttribute('r', '' + this.__P_91_0);
+              bar.setAttribute('r', '' + this.__P_92_0);
             }
           }
         }
@@ -318,7 +318,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           if (!bar) {
             bar = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             bar.classList.add('bar');
-            bar.setAttribute('r', '' + this.__P_91_0);
+            bar.setAttribute('r', '' + this.__P_92_0);
             bar.setAttribute('cx', '50%');
             bar.setAttribute('cy', '50%');
             bar.setAttribute('pathLength', '100');
@@ -352,7 +352,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             icon.style.fontSize = this._iconSize + 'px';
             fo.appendChild(icon);
             this._target.appendChild(fo);
-            this.__P_91_2();
+            this.__P_92_2();
           }
         } else if (icon) {
           this._target.remove(icon);
@@ -421,4 +421,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.svg.RoundValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundValue.js.map?dt=1731948097727
+//# sourceMappingURL=RoundValue.js.map?dt=1735222412917

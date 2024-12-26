@@ -54,8 +54,8 @@
       this._setLayout(new qx.ui.layout.HBox());
 
       // add blocker
-      this.__P_677_0 = new qx.ui.core.Blocker(this);
-      this.__P_677_1 = paneScroller;
+      this.__P_678_0 = new qx.ui.core.Blocker(this);
+      this.__P_678_1 = paneScroller;
 
       // ARIA attrs
       this.getContentElement().setAttribute("role", "row");
@@ -67,17 +67,17 @@
     */
 
     members: {
-      __P_677_1: null,
-      __P_677_2: null,
-      __P_677_3: null,
-      __P_677_0: null,
+      __P_678_1: null,
+      __P_678_2: null,
+      __P_678_3: null,
+      __P_678_0: null,
       /**
        * Returns the TablePaneScroller this header belongs to.
        *
        * @return {qx.ui.table.pane.Scroller} the TablePaneScroller.
        */
       getPaneScroller: function getPaneScroller() {
-        return this.__P_677_1;
+        return this.__P_678_1;
       },
       /**
        * Returns the table this header belongs to.
@@ -85,7 +85,7 @@
        * @return {qx.ui.table.Table} the table.
        */
       getTable: function getTable() {
-        return this.__P_677_1.getTable();
+        return this.__P_678_1.getTable();
       },
       /**
        * Returns the blocker of the header.
@@ -93,7 +93,7 @@
        * @return {qx.ui.core.Blocker} the blocker.
        */
       getBlocker: function getBlocker() {
-        return this.__P_677_0;
+        return this.__P_678_0;
       },
       /**
        * Event handler. Called the column order has changed.
@@ -142,9 +142,9 @@
        *      null if the pointer is over no column.
        */
       setPointerOverColumn: function setPointerOverColumn(col) {
-        if (col != this.__P_677_3) {
-          if (this.__P_677_3 != null) {
-            var widget = this.getHeaderWidgetAtColumn(this.__P_677_3);
+        if (col != this.__P_678_3) {
+          if (this.__P_678_3 != null) {
+            var widget = this.getHeaderWidgetAtColumn(this.__P_678_3);
             if (widget != null) {
               widget.removeState("hovered");
             }
@@ -152,7 +152,7 @@
           if (col != null) {
             this.getHeaderWidgetAtColumn(col).addState("hovered");
           }
-          this.__P_677_3 = col;
+          this.__P_678_3 = col;
         }
       },
       /**
@@ -174,7 +174,7 @@
        */
       showColumnMoveFeedback: function showColumnMoveFeedback(col, x) {
         var pos = this.getContentLocation();
-        if (this.__P_677_2 == null) {
+        if (this.__P_678_2 == null) {
           var table = this.getTable();
           var xPos = this.getPaneScroller().getTablePaneModel().getX(col);
           var cellWidget = this._getChildren()[xPos];
@@ -199,20 +199,20 @@
             top: pos.top
           });
           this.getApplicationRoot().add(feedback);
-          this.__P_677_2 = feedback;
+          this.__P_678_2 = feedback;
         }
-        this.__P_677_2.setLayoutProperties({
+        this.__P_678_2.setLayoutProperties({
           left: pos.left + x
         });
-        this.__P_677_2.show();
+        this.__P_678_2.show();
       },
       /**
        * Hides the feedback shown while a column is moved by the user.
        */
       hideColumnMoveFeedback: function hideColumnMoveFeedback() {
-        if (this.__P_677_2 != null) {
-          this.__P_677_2.destroy();
-          this.__P_677_2 = null;
+        if (this.__P_678_2 != null) {
+          this.__P_678_2.destroy();
+          this.__P_678_2 = null;
         }
       },
       /**
@@ -222,7 +222,7 @@
        *    currently shown, <code>false</code> otherwise.
        */
       isShowingColumnMoveFeedback: function isShowingColumnMoveFeedback() {
-        return this.__P_677_2 != null;
+        return this.__P_678_2 != null;
       },
       /**
        * Updates the content of the header.
@@ -308,11 +308,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_677_0.dispose();
-      this._disposeObjects("__P_677_1");
+      this.__P_678_0.dispose();
+      this._disposeObjects("__P_678_1");
     }
   });
   qx.ui.table.pane.Header.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Header.js.map?dt=1731948141164
+//# sourceMappingURL=Header.js.map?dt=1735222449043

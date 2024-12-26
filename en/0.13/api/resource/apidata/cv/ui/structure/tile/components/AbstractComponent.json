@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857575,
-  "lastModifiedIso": "2024-11-18T16:37:37.575Z",
+  "lastModified": 1735222205778,
+  "lastModifiedIso": "2024-12-26T14:10:05.778Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/AbstractComponent.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 866
     },
     "end": {
-      "line": 455,
+      "line": 473,
       "column": 3,
-      "index": 13992
+      "index": 14615
     }
   },
   "className": "cv.ui.structure.tile.components.AbstractComponent",
@@ -919,9 +919,9 @@
           "index": 13033
         },
         "end": {
-          "line": 442,
+          "line": 460,
           "column": 5,
-          "index": 13671
+          "index": 14294
         }
       },
       "type": "function",
@@ -942,14 +942,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 450,
+        "line": 468,
         "column": 2,
-        "index": 13805
+        "index": 14428
       },
       "end": {
-        "line": 454,
+        "line": 472,
         "column": 3,
-        "index": 13988
+        "index": 14611
       }
     }
   }

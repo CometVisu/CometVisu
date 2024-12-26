@@ -301,8 +301,8 @@
     ******************************************************
     */
     members: {
-      __P_11_0: null,
-      __P_11_1: null,
+      __P_12_0: null,
+      __P_12_1: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor' + (this.getPagejumpTarget() ? 'clickable' : '') + '"><canvas id="gauge_' + this.getPath() + '"></canvas></div>';
       },
@@ -320,7 +320,7 @@
           ledColor: steelseries.LedColor.RED_LED
         };
         var params = Object.assign({}, cv.data.Model.getInstance().getWidgetData(this.getPath()), additional);
-        this.__P_11_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
+        this.__P_12_0 = new steelseries[this.getGType()]('gauge_' + this.getPath(), params);
         cv.plugins.Gauge.superclass.prototype._onDomReady.call(this);
       },
       // overridden
@@ -350,7 +350,7 @@
           return;
         }
         var variant = this.getAddress()[address].variantInfo;
-        var gaugeElement = this.__P_11_0;
+        var gaugeElement = this.__P_12_0;
         if (gaugeElement) {
           switch (variant) {
             case 'average':
@@ -419,4 +419,4 @@
   cv.plugins.Gauge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Gauge.js.map?dt=1731948090723
+//# sourceMappingURL=Gauge.js.map?dt=1735222406966

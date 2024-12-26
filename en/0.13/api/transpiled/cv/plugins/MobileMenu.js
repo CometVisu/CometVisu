@@ -89,12 +89,12 @@
     ******************************************************
     */
     members: {
-      __P_12_0: null,
-      __P_12_1: null,
+      __P_13_0: null,
+      __P_13_1: null,
       // overridden
       getDomString: function getDomString() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-          var navLeft = this.__P_12_0 = document.querySelector('#navbarLeft');
+          var navLeft = this.__P_13_0 = document.querySelector('#navbarLeft');
           if (!navLeft.classList.contains('mobilemenu')) {
             navLeft.classList.add('mobilemenu');
           }
@@ -118,8 +118,8 @@
       _action: function _action() {
         if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
           if (this.isTouchDevice()) {
-            this.__P_12_0.style.display = 'block';
-            var navbar = this.__P_12_0.querySelector('.navbar.navbarActive');
+            this.__P_13_0.style.display = 'block';
+            var navbar = this.__P_13_0.querySelector('.navbar.navbarActive');
             qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
           }
         }
@@ -137,15 +137,15 @@
         }, false);
       },
       isTouchDevice: function isTouchDevice() {
-        if (this.__P_12_1 === null) {
+        if (this.__P_13_1 === null) {
           try {
             document.createEvent('TouchEvent');
-            this.__P_12_1 = true;
+            this.__P_13_1 = true;
           } catch (e) {
-            this.__P_12_1 = false;
+            this.__P_13_1 = false;
           }
         }
-        return this.__P_12_1;
+        return this.__P_13_1;
       }
     },
     // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
@@ -165,4 +165,4 @@
   cv.plugins.MobileMenu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MobileMenu.js.map?dt=1731948090764
+//# sourceMappingURL=MobileMenu.js.map?dt=1735222407000

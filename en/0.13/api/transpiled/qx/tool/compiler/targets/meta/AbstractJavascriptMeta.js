@@ -67,7 +67,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       qx.core.Object.constructor.call(this);
       this._appMeta = appMeta;
       this.__filename = filename;
-      this.__P_501_0 = originalSourceFile;
+      this.__P_502_0 = originalSourceFile;
     },
     properties: {
       /** If true, this is generated on the fly and needs to be output */
@@ -79,8 +79,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     members: {
       _appMeta: null,
       __filename: null,
-      __P_501_0: null,
-      __P_501_1: null,
+      __P_502_0: null,
+      __P_502_1: null,
       /**
        * Returns the ApplicationMeta
        *
@@ -98,14 +98,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return this.__filename;
       },
       wrap: function wrap(jsMeta) {
-        this.__P_501_1 = jsMeta;
+        this.__P_502_1 = jsMeta;
       },
       getWrapper: function getWrapper() {
-        return this.__P_501_1;
+        return this.__P_502_1;
       },
       unwrap: function unwrap() {
-        if (this.__P_501_1) {
-          return this.__P_501_1.unwrap();
+        if (this.__P_502_1) {
+          return this.__P_502_1.unwrap();
         }
         return this;
       },
@@ -283,4 +283,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.AbstractJavascriptMeta.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractJavascriptMeta.js.map?dt=1731948130876
+//# sourceMappingURL=AbstractJavascriptMeta.js.map?dt=1735222440612

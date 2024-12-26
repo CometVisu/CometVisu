@@ -34,12 +34,12 @@
   qx.Class.define("qx.test.data.DataArray", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_326_0: null,
+      __P_327_0: null,
       setUp: function setUp() {
-        this.__P_326_0 = new qx.data.Array("one", "two", "three");
+        this.__P_327_0 = new qx.data.Array("one", "two", "three");
       },
       tearDown: function tearDown() {
-        this.__P_326_0.dispose();
+        this.__P_327_0.dispose();
       },
       testConstructor: function testConstructor() {
         // create empty array
@@ -79,26 +79,26 @@
       },
       testGetItem: function testGetItem() {
         // check the getvalue function
-        this.assertEquals("one", this.__P_326_0.getItem(0), "IndexAt does not work at position 0");
-        this.assertEquals("two", this.__P_326_0.getItem(1), "IndexAt does not work at position 1");
-        this.assertEquals("three", this.__P_326_0.getItem(2), "IndexAt does not work at position 2");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "IndexAt does not work at position 0");
+        this.assertEquals("two", this.__P_327_0.getItem(1), "IndexAt does not work at position 1");
+        this.assertEquals("three", this.__P_327_0.getItem(2), "IndexAt does not work at position 2");
 
         // try some wrong inputs
-        this.assertUndefined(this.__P_326_0.getItem(-1), "There should be no element at -1");
-        this.assertUndefined(this.__P_326_0.getItem(3), "There should be no element at 3");
+        this.assertUndefined(this.__P_327_0.getItem(-1), "There should be no element at -1");
+        this.assertUndefined(this.__P_327_0.getItem(3), "There should be no element at 3");
       },
       testSetItem: function testSetItem() {
-        this.__P_326_0.setItem(0, "eins");
-        this.assertEquals("eins", this.__P_326_0.getItem(0), "IndexAt does not work at position 0");
-        this.__P_326_0.setItem(3, "drei");
-        this.assertEquals("drei", this.__P_326_0.getItem(3), "IndexAt does not work at position 0");
+        this.__P_327_0.setItem(0, "eins");
+        this.assertEquals("eins", this.__P_327_0.getItem(0), "IndexAt does not work at position 0");
+        this.__P_327_0.setItem(3, "drei");
+        this.assertEquals("drei", this.__P_327_0.getItem(3), "IndexAt does not work at position 0");
       },
       testJoin: function testJoin() {
-        this.assertEquals("one, two, three", this.__P_326_0.join(", "), "Join does not work");
+        this.assertEquals("one, two, three", this.__P_327_0.join(", "), "Join does not work");
       },
       testReverse: function testReverse() {
-        this.__P_326_0.reverse();
-        this.assertEquals("one", this.__P_326_0.getItem(2), "Reverse does not work");
+        this.__P_327_0.reverse();
+        this.assertEquals("one", this.__P_327_0.getItem(2), "Reverse does not work");
 
         // test for the event
         var a = new qx.data.Array(1, 2, 3);
@@ -113,12 +113,12 @@
         a.dispose();
       },
       testSort: function testSort() {
-        this.__P_326_0.sort();
-        this.assertEquals("one three two", this.__P_326_0.join(" "), "Simple sort does not work");
-        this.__P_326_0.sort(function (a, b) {
+        this.__P_327_0.sort();
+        this.assertEquals("one three two", this.__P_327_0.join(" "), "Simple sort does not work");
+        this.__P_327_0.sort(function (a, b) {
           return a > b ? -1 : 1;
         });
-        this.assertEquals("two three one", this.__P_326_0.join(" "), "Own sort does not work");
+        this.assertEquals("two three one", this.__P_327_0.join(" "), "Own sort does not work");
 
         // test for the event
         var a = new qx.data.Array(2, 7, 5);
@@ -133,63 +133,63 @@
         a.dispose();
       },
       testConcat: function testConcat() {
-        var b = this.__P_326_0.concat(["four", "five"]);
+        var b = this.__P_327_0.concat(["four", "five"]);
         this.assertEquals("one two three four five", b.join(" "), "Concat does not work");
         b.dispose();
-        var b = this.__P_326_0.concat(new qx.data.Array(["four", "five"]));
+        var b = this.__P_327_0.concat(new qx.data.Array(["four", "five"]));
         this.assertEquals("one two three four five", b.join(" "), "Concat does not work");
         b.dispose();
       },
       testSlice: function testSlice() {
-        var slice = this.__P_326_0.slice(0, 1);
+        var slice = this.__P_327_0.slice(0, 1);
         this.assertEquals("one", slice.getItem(0), "Slice does not work");
         slice.dispose();
-        slice = this.__P_326_0.slice(1, 2);
+        slice = this.__P_327_0.slice(1, 2);
         this.assertEquals("two", slice.getItem(0), "Slice does not work");
         slice.dispose();
-        slice = this.__P_326_0.slice(0, 2);
+        slice = this.__P_327_0.slice(0, 2);
         this.assertEquals("one", slice.getItem(0), "Slice does not work");
         slice.dispose();
-        slice = this.__P_326_0.slice(0, 2);
+        slice = this.__P_327_0.slice(0, 2);
         this.assertEquals("two", slice.getItem(1), "Slice does not work");
         slice.dispose();
       },
       testReplace: function testReplace() {
         var numFired = 0;
-        var id = this.__P_326_0.addListener("change", function () {
+        var id = this.__P_327_0.addListener("change", function () {
           numFired++;
         });
-        this.__P_326_0.replace(["one", "two", "three"]);
+        this.__P_327_0.replace(["one", "two", "three"]);
         this.assertEquals(0, numFired);
-        this.__P_326_0.replace(["one", "three"]);
+        this.__P_327_0.replace(["one", "three"]);
         this.assertEquals(1, numFired);
-        this.assertArrayEquals(["one", "three"], this.__P_326_0.toArray());
-        this.__P_326_0.replace(new qx.data.Array(["two", "four"]));
+        this.assertArrayEquals(["one", "three"], this.__P_327_0.toArray());
+        this.__P_327_0.replace(new qx.data.Array(["two", "four"]));
         this.assertEquals(2, numFired);
-        this.assertArrayEquals(["two", "four"], this.__P_326_0.toArray());
-        this.__P_326_0.removeListenerById(id);
+        this.assertArrayEquals(["two", "four"], this.__P_327_0.toArray());
+        this.__P_327_0.removeListenerById(id);
       },
       testPop: function testPop() {
-        this.assertEquals("three", this.__P_326_0.pop(), "Pop does not work.");
-        this.assertEquals(2, this.__P_326_0.length, "Wrong length after pop");
-        this.assertEquals("two", this.__P_326_0.pop(), "Pop does not work.");
-        this.assertEquals("one", this.__P_326_0.pop(), "Pop does not work.");
-        this.assertEquals(0, this.__P_326_0.length, "Wrong length after pop");
+        this.assertEquals("three", this.__P_327_0.pop(), "Pop does not work.");
+        this.assertEquals(2, this.__P_327_0.length, "Wrong length after pop");
+        this.assertEquals("two", this.__P_327_0.pop(), "Pop does not work.");
+        this.assertEquals("one", this.__P_327_0.pop(), "Pop does not work.");
+        this.assertEquals(0, this.__P_327_0.length, "Wrong length after pop");
       },
       testPush: function testPush() {
-        this.assertEquals(4, this.__P_326_0.push("four"), "Push does not give the right length back.");
-        this.assertEquals("one two three four", this.__P_326_0.join(" "), "Single push does not work.");
-        this.assertEquals(4, this.__P_326_0.length, "Single push does not work.");
-        this.__P_326_0.dispose();
-        this.__P_326_0 = new qx.data.Array();
-        this.__P_326_0.push(1, 2, 3);
-        this.assertEquals("1 2 3", this.__P_326_0.join(" "), "Multiple push does not work.");
+        this.assertEquals(4, this.__P_327_0.push("four"), "Push does not give the right length back.");
+        this.assertEquals("one two three four", this.__P_327_0.join(" "), "Single push does not work.");
+        this.assertEquals(4, this.__P_327_0.length, "Single push does not work.");
+        this.__P_327_0.dispose();
+        this.__P_327_0 = new qx.data.Array();
+        this.__P_327_0.push(1, 2, 3);
+        this.assertEquals("1 2 3", this.__P_327_0.join(" "), "Multiple push does not work.");
       },
       testShift: function testShift() {
-        this.assertEquals("one", this.__P_326_0.shift(), "Shift does not work.");
-        this.assertEquals("two three", this.__P_326_0.join(" "), "Shift does not work.");
-        this.assertEquals("two", this.__P_326_0.shift(), "Shift does not work.");
-        this.assertEquals(1, this.__P_326_0.length, "Shift does not work.");
+        this.assertEquals("one", this.__P_327_0.shift(), "Shift does not work.");
+        this.assertEquals("two three", this.__P_327_0.join(" "), "Shift does not work.");
+        this.assertEquals("two", this.__P_327_0.shift(), "Shift does not work.");
+        this.assertEquals(1, this.__P_327_0.length, "Shift does not work.");
       },
       testShiftWithEventPropagation: function testShiftWithEventPropagation() {
         var data = {
@@ -200,10 +200,10 @@
         model.dispose();
       },
       testUnshift: function testUnshift() {
-        this.assertEquals(4, this.__P_326_0.unshift("zero"), "Unshift does not return the proper length.");
-        this.assertEquals("zero one two three", this.__P_326_0.join(" "), "Unshift does not work!");
-        this.assertEquals(6, this.__P_326_0.unshift("-2", "-1"), "Unshift does not return the proper length.");
-        this.assertEquals("-2 -1 zero one two three", this.__P_326_0.join(" "), "Unshift does not work!");
+        this.assertEquals(4, this.__P_327_0.unshift("zero"), "Unshift does not return the proper length.");
+        this.assertEquals("zero one two three", this.__P_327_0.join(" "), "Unshift does not work!");
+        this.assertEquals(6, this.__P_327_0.unshift("-2", "-1"), "Unshift does not return the proper length.");
+        this.assertEquals("-2 -1 zero one two three", this.__P_327_0.join(" "), "Unshift does not work!");
       },
       testSplice: function testSplice() {
         var a = new qx.data.Array(1, 2, 3, 4, 5, 6, 7, 8);
@@ -231,8 +231,8 @@
         a.dispose();
       },
       testToArray: function testToArray() {
-        this.assertEquals("one two three", this.__P_326_0.toArray().join(" "), "toArray does not work!");
-        this.assertInstance(this.__P_326_0.toArray(), Array, "toArray does not work!");
+        this.assertEquals("one two three", this.__P_327_0.toArray().join(" "), "toArray does not work!");
+        this.assertInstance(this.__P_327_0.toArray(), Array, "toArray does not work!");
       },
       testLengthEvent: function testLengthEvent() {
         var self = this;
@@ -247,32 +247,32 @@
         a.dispose();
       },
       testToString: function testToString() {
-        this.assertEquals(this.__P_326_0.toArray().toString(), this.__P_326_0.toString(), "toString does not work!");
+        this.assertEquals(this.__P_327_0.toArray().toString(), this.__P_327_0.toString(), "toString does not work!");
       },
       testContains: function testContains() {
-        this.assertTrue(this.__P_326_0.contains("one"), "contains does not work!");
-        this.assertTrue(this.__P_326_0.contains("two"), "contains does not work!");
-        this.assertTrue(this.__P_326_0.contains("three"), "contains does not work!");
+        this.assertTrue(this.__P_327_0.contains("one"), "contains does not work!");
+        this.assertTrue(this.__P_327_0.contains("two"), "contains does not work!");
+        this.assertTrue(this.__P_327_0.contains("three"), "contains does not work!");
       },
       testIndexOf: function testIndexOf() {
-        this.assertEquals(0, this.__P_326_0.indexOf("one"), "indexOf does not work!");
-        this.assertEquals(1, this.__P_326_0.indexOf("two"), "indexOf does not work!");
-        this.assertEquals(2, this.__P_326_0.indexOf("three"), "indexOf does not work!");
+        this.assertEquals(0, this.__P_327_0.indexOf("one"), "indexOf does not work!");
+        this.assertEquals(1, this.__P_327_0.indexOf("two"), "indexOf does not work!");
+        this.assertEquals(2, this.__P_327_0.indexOf("three"), "indexOf does not work!");
       },
       testLastIndexOf: function testLastIndexOf() {
-        this.__P_326_0.push("one");
-        this.__P_326_0.push("two");
-        this.__P_326_0.push("three");
-        this.assertEquals(3, this.__P_326_0.lastIndexOf("one"), "lastIndexOf does not work!");
-        this.assertEquals(4, this.__P_326_0.lastIndexOf("two"), "lastIndexOf does not work!");
-        this.assertEquals(5, this.__P_326_0.lastIndexOf("three"), "lastIndexOf does not work!");
+        this.__P_327_0.push("one");
+        this.__P_327_0.push("two");
+        this.__P_327_0.push("three");
+        this.assertEquals(3, this.__P_327_0.lastIndexOf("one"), "lastIndexOf does not work!");
+        this.assertEquals(4, this.__P_327_0.lastIndexOf("two"), "lastIndexOf does not work!");
+        this.assertEquals(5, this.__P_327_0.lastIndexOf("three"), "lastIndexOf does not work!");
       },
       testCopy: function testCopy(attribute) {
-        var a = this.__P_326_0.copy();
+        var a = this.__P_327_0.copy();
         // change the original array
-        this.__P_326_0.setItem(0, "0");
-        this.__P_326_0.setItem(1, "1");
-        this.__P_326_0.setItem(2, "2");
+        this.__P_327_0.setItem(0, "0");
+        this.__P_327_0.setItem(1, "1");
+        this.__P_327_0.setItem(2, "2");
 
         // check the value
         this.assertEquals("one", a.getItem(0), "Copy does not work");
@@ -281,57 +281,57 @@
         a.dispose();
       },
       testInsertAt: function testInsertAt() {
-        this.__P_326_0.insertAt(1, "eins");
-        this.__P_326_0.insertAt(3, "drei");
+        this.__P_327_0.insertAt(1, "eins");
+        this.__P_327_0.insertAt(3, "drei");
 
         // check the value
-        this.assertEquals("one", this.__P_326_0.getItem(0), "insertAt does not work");
-        this.assertEquals("eins", this.__P_326_0.getItem(1), "insertAt does not work");
-        this.assertEquals("two", this.__P_326_0.getItem(2), "insertAt does not work");
-        this.assertEquals("drei", this.__P_326_0.getItem(3), "insertAt does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(4), "insertAt does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "insertAt does not work");
+        this.assertEquals("eins", this.__P_327_0.getItem(1), "insertAt does not work");
+        this.assertEquals("two", this.__P_327_0.getItem(2), "insertAt does not work");
+        this.assertEquals("drei", this.__P_327_0.getItem(3), "insertAt does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(4), "insertAt does not work");
       },
       testInsertBefore: function testInsertBefore() {
-        this.__P_326_0.insertBefore("two", "eins");
-        this.__P_326_0.insertBefore("three", "drei");
+        this.__P_327_0.insertBefore("two", "eins");
+        this.__P_327_0.insertBefore("three", "drei");
 
         // check the value
-        this.assertEquals("one", this.__P_326_0.getItem(0), "insertBefore does not work");
-        this.assertEquals("eins", this.__P_326_0.getItem(1), "insertBefore does not work");
-        this.assertEquals("two", this.__P_326_0.getItem(2), "insertBefore does not work");
-        this.assertEquals("drei", this.__P_326_0.getItem(3), "insertBefore does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(4), "insertBefore does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "insertBefore does not work");
+        this.assertEquals("eins", this.__P_327_0.getItem(1), "insertBefore does not work");
+        this.assertEquals("two", this.__P_327_0.getItem(2), "insertBefore does not work");
+        this.assertEquals("drei", this.__P_327_0.getItem(3), "insertBefore does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(4), "insertBefore does not work");
       },
       testInsertAfter: function testInsertAfter() {
-        this.__P_326_0.insertAfter("one", "eins");
-        this.__P_326_0.insertAfter("two", "drei");
+        this.__P_327_0.insertAfter("one", "eins");
+        this.__P_327_0.insertAfter("two", "drei");
 
         // check the value
-        this.assertEquals("one", this.__P_326_0.getItem(0), "insertAfter does not work");
-        this.assertEquals("eins", this.__P_326_0.getItem(1), "insertAfter does not work");
-        this.assertEquals("two", this.__P_326_0.getItem(2), "insertAfter does not work");
-        this.assertEquals("drei", this.__P_326_0.getItem(3), "insertAfter does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(4), "insertAfter does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "insertAfter does not work");
+        this.assertEquals("eins", this.__P_327_0.getItem(1), "insertAfter does not work");
+        this.assertEquals("two", this.__P_327_0.getItem(2), "insertAfter does not work");
+        this.assertEquals("drei", this.__P_327_0.getItem(3), "insertAfter does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(4), "insertAfter does not work");
       },
       testRemoveAt: function testRemoveAt() {
-        var removed = this.__P_326_0.removeAt(1);
+        var removed = this.__P_327_0.removeAt(1);
 
         // check the value
         this.assertEquals("two", removed, "no return type");
-        this.assertEquals("one", this.__P_326_0.getItem(0), "removeAt does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(1), "removeAt does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "removeAt does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(1), "removeAt does not work");
       },
       testRemoveAll: function testRemoveAll() {
         var self = this;
-        this.assertEventFired(self.__P_326_0, "changeLength", function () {
-          self.__P_326_0.removeAll();
+        this.assertEventFired(self.__P_327_0, "changeLength", function () {
+          self.__P_327_0.removeAll();
         }, function (e) {
-          self.assertEquals(0, self.__P_326_0.getLength(), "length not 0");
+          self.assertEquals(0, self.__P_327_0.getLength(), "length not 0");
         }, "Change event not fired!");
-        this.__P_326_0.push("a");
-        this.__P_326_0.push("b");
-        this.assertEventFired(self.__P_326_0, "change", function () {
-          var removed = self.__P_326_0.removeAll();
+        this.__P_327_0.push("a");
+        this.__P_327_0.push("b");
+        this.assertEventFired(self.__P_327_0, "change", function () {
+          var removed = self.__P_327_0.removeAll();
           self.assertEquals(2, removed.length);
           self.assertEquals("a", removed[0]);
           self.assertEquals("b", removed[1]);
@@ -342,24 +342,24 @@
           self.assertEquals("a", e.getData().removed[0]);
           self.assertEquals("b", e.getData().removed[1]);
         }, "Change event not fired!");
-        this.assertEquals(0, this.__P_326_0.length, "RemoveAll does not work.");
+        this.assertEquals(0, this.__P_327_0.length, "RemoveAll does not work.");
       },
       testAppend: function testAppend() {
         var dArray = new qx.data.Array("4", "5");
-        this.__P_326_0.append(dArray.toArray());
+        this.__P_327_0.append(dArray.toArray());
 
         // check the value
-        this.assertEquals("one", this.__P_326_0.getItem(0), "append does not work");
-        this.assertEquals("two", this.__P_326_0.getItem(1), "append does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(2), "append does not work");
-        this.assertEquals("4", this.__P_326_0.getItem(3), "append does not work");
-        this.assertEquals("5", this.__P_326_0.getItem(4), "append does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "append does not work");
+        this.assertEquals("two", this.__P_327_0.getItem(1), "append does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(2), "append does not work");
+        this.assertEquals("4", this.__P_327_0.getItem(3), "append does not work");
+        this.assertEquals("5", this.__P_327_0.getItem(4), "append does not work");
         dArray.dispose();
 
         // check if qx arrays work
         dArray = new qx.data.Array(["sechs"]);
-        this.__P_326_0.append(dArray);
-        this.assertEquals("sechs", this.__P_326_0.getItem(5), "append does not work");
+        this.__P_327_0.append(dArray);
+        this.assertEquals("sechs", this.__P_327_0.getItem(5), "append does not work");
         dArray.dispose();
       },
       testExclude: function testExclude() {
@@ -371,17 +371,17 @@
         this.assertArrayEquals(tmp.toArray(), ["two", "four"]);
       },
       testRemove: function testRemove() {
-        this.__P_326_0.remove("two");
+        this.__P_327_0.remove("two");
 
         // check the value
-        this.assertEquals("one", this.__P_326_0.getItem(0), "removeAt does not work");
-        this.assertEquals("three", this.__P_326_0.getItem(1), "removeAt does not work");
+        this.assertEquals("one", this.__P_327_0.getItem(0), "removeAt does not work");
+        this.assertEquals("three", this.__P_327_0.getItem(1), "removeAt does not work");
       },
       testEquals: function testEquals() {
         var a = new qx.data.Array("one", "two", "three");
-        this.assertTrue(this.__P_326_0.equals(a), "equals does not work.");
+        this.assertTrue(this.__P_327_0.equals(a), "equals does not work.");
         a.dispose();
-        this.assertTrue(this.__P_326_0.equals(["one", "two", "three"]), "equals does not work.");
+        this.assertTrue(this.__P_327_0.equals(["one", "two", "three"]), "equals does not work.");
       },
       testSum: function testSum() {
         var a = new qx.data.Array(1, 2, 3);
@@ -633,7 +633,7 @@
           self.assertEquals(this, thisContext);
           // check the parameter
           self.assertEquals(i, index);
-          self.assertEquals(self.__P_326_0, array);
+          self.assertEquals(self.__P_327_0, array);
           // check the tree items
           if (i == 0) {
             i++;
@@ -653,32 +653,32 @@
         };
 
         // invoke the forEach
-        this.__P_326_0.forEach(forEachHandler, thisContext);
+        this.__P_327_0.forEach(forEachHandler, thisContext);
 
         // check if the handlers has been called
         this.assertTrue(handlerCalled);
       },
       testNotAutoDisposeItems: function testNotAutoDisposeItems() {
         var o = new qx.core.Object();
-        this.__P_326_0.push(o);
-        this.__P_326_0.dispose();
+        this.__P_327_0.push(o);
+        this.__P_327_0.dispose();
         this.assertFalse(o.isDisposed());
         o.dispose();
       },
       testAutoDisposeItems: function testAutoDisposeItems() {
         var o = new qx.core.Object();
-        this.__P_326_0.push(o);
-        this.__P_326_0.setAutoDisposeItems(true);
-        this.__P_326_0.dispose();
+        this.__P_327_0.push(o);
+        this.__P_327_0.setAutoDisposeItems(true);
+        this.__P_327_0.dispose();
         this.assertTrue(o.isDisposed());
       },
       testFilter: function testFilter() {
         var self = this;
-        var b = this.__P_326_0.filter(function (item, index, array) {
+        var b = this.__P_327_0.filter(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return item == "one" || item == "three";
         }, this);
         this.assertEquals(2, b.length);
@@ -688,33 +688,33 @@
       },
       testFind: function testFind() {
         var self = this;
-        var found = this.__P_326_0.find(function (item, index, array) {
+        var found = this.__P_327_0.find(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return item == "three";
         }, this);
         this.assertEquals("three", found);
       },
       testFindNonExistingElement: function testFindNonExistingElement() {
         var self = this;
-        var found = this.__P_326_0.find(function (item, index, array) {
+        var found = this.__P_327_0.find(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return item == "four";
         }, this);
         this.assertUndefined(found);
       },
       testMap: function testMap() {
         var self = this;
-        var b = this.__P_326_0.map(function (item, index, array) {
+        var b = this.__P_327_0.map(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return item + "!";
         }, this);
         this.assertEquals(3, b.length);
@@ -725,48 +725,48 @@
       },
       testSome: function testSome() {
         var self = this;
-        this.assertTrue(this.__P_326_0.some(function (item, index, array) {
+        this.assertTrue(this.__P_327_0.some(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return item == "one";
         }, this));
-        this.assertFalse(this.__P_326_0.some(function (item, index, array) {
+        this.assertFalse(this.__P_327_0.some(function (item, index, array) {
           return item == "xxx";
         }, this));
       },
       testEvery: function testEvery() {
         var self = this;
-        this.assertTrue(this.__P_326_0.every(function (item, index, array) {
+        this.assertTrue(this.__P_327_0.every(function (item, index, array) {
           self.assertEquals(self, this);
           self.assertString(item);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return ["one", "two", "three"].indexOf(item) >= 0;
         }, this));
-        this.assertFalse(this.__P_326_0.every(function (item, index, array) {
+        this.assertFalse(this.__P_327_0.every(function (item, index, array) {
           return item == "one";
         }, this));
       },
       testReduce: function testReduce() {
         var self = this;
-        var reduced = this.__P_326_0.reduce(function (previousValue, currentValue, index, array) {
+        var reduced = this.__P_327_0.reduce(function (previousValue, currentValue, index, array) {
           self.assertString(previousValue);
           self.assertString(currentValue);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return previousValue + currentValue;
         }, "---");
         this.assertEquals("---onetwothree", reduced);
       },
       testReduceRight: function testReduceRight() {
         var self = this;
-        var reduced = this.__P_326_0.reduceRight(function (previousValue, currentValue, index, array) {
+        var reduced = this.__P_327_0.reduceRight(function (previousValue, currentValue, index, array) {
           self.assertString(previousValue);
           self.assertString(currentValue);
           self.assertNumber(index);
-          self.assertEquals(self.__P_326_0.toArray(), array);
+          self.assertEquals(self.__P_327_0.toArray(), array);
           return previousValue + currentValue;
         }, "---");
         this.assertEquals("---threetwoone", reduced);
@@ -776,4 +776,4 @@
   qx.test.data.DataArray.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DataArray.js.map?dt=1731948114094
+//# sourceMappingURL=DataArray.js.map?dt=1735222426794

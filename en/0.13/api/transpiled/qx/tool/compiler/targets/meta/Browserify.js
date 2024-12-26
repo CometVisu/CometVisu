@@ -58,10 +58,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this.setNeedsWriteToDisk(true);
     },
     members: {
-      __P_504_0: null,
-      __P_504_1: null,
-      __P_504_2: function __P_504_2() {
-        if (this.__P_504_0 === null) {
+      __P_505_0: null,
+      __P_505_1: null,
+      __P_505_2: function __P_505_2() {
+        if (this.__P_505_0 === null) {
           var commonjsModules = new Set();
           var references = {};
           var db = this.getAppMeta().getAnalyser().getDatabase();
@@ -88,12 +88,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           for (var className in db.classInfo) {
             _loop();
           }
-          this.__P_504_0 = _toConsumableArray(commonjsModules);
-          this.__P_504_1 = references;
+          this.__P_505_0 = _toConsumableArray(commonjsModules);
+          this.__P_505_1 = references;
         }
         return {
-          commonjsModules: this.__P_504_0,
-          references: this.__P_504_1
+          commonjsModules: this.__P_505_0,
+          references: this.__P_505_1
         };
       },
       /**
@@ -103,13 +103,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var _db$modulesInfo2;
-          var localModules, db, _this$__P_504_, commonjsModules, modules, modulesInfo, doIt, requireName, _db$modulesInfo, stat;
+          var localModules, db, _this$__P_505_, commonjsModules, modules, modulesInfo, doIt, requireName, _db$modulesInfo, stat;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
                 localModules = _this.getAppMeta().getApplication().getLocalModules();
                 db = _this.getAppMeta().getAnalyser().getDatabase();
-                _this$__P_504_ = _this.__P_504_2(), commonjsModules = _this$__P_504_.commonjsModules;
+                _this$__P_505_ = _this.__P_505_2(), commonjsModules = _this$__P_505_.commonjsModules;
                 modules = [];
                 modulesInfo = {};
                 _context.next = 7;
@@ -169,7 +169,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-          var localModules, _this2$__P_504_, commonjsModules, references;
+          var localModules, _this2$__P_505_, commonjsModules, references;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -178,13 +178,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   break;
                 }
                 localModules = _this2.getAppMeta().getApplication().getLocalModules();
-                _this2$__P_504_ = _this2.__P_504_2(), commonjsModules = _this2$__P_504_.commonjsModules, references = _this2$__P_504_.references;
+                _this2$__P_505_ = _this2.__P_505_2(), commonjsModules = _this2$__P_505_.commonjsModules, references = _this2$__P_505_.references;
                 if (!(commonjsModules.length > 0 || localModules)) {
                   _context2.next = 6;
                   break;
                 }
                 _context2.next = 6;
-                return _this2.__P_504_3(commonjsModules, references, localModules, ws);
+                return _this2.__P_505_3(commonjsModules, references, localModules, ws);
               case 6:
                 _context2.next = 8;
                 return new Promise(function (resolve) {
@@ -197,7 +197,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }, _callee2);
         }))();
       },
-      __P_504_3: function __P_504_3(commonjsModules, references, localModules, ws) {
+      __P_505_3: function __P_505_3(commonjsModules, references, localModules, ws) {
         var babelify = require("babelify");
         var preset = require("@babel/preset-env");
         var browserify = require("browserify");
@@ -295,4 +295,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.compiler.targets.meta.Browserify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browserify.js.map?dt=1731948131090
+//# sourceMappingURL=Browserify.js.map?dt=1735222440795

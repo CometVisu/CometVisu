@@ -65,7 +65,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_37_0 = {};
+      this.__P_38_0 = {};
       this._client = cv.io.rest.Client.getDataProviderClient();
     },
     /*
@@ -196,19 +196,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     members: {
-      __P_37_0: null,
+      __P_38_0: null,
       _getFromCache: function _getFromCache(cacheId) {
-        return this.__P_37_0[cacheId];
+        return this.__P_38_0[cacheId];
       },
-      __P_37_1: function __P_37_1(cacheId) {
+      __P_38_1: function __P_38_1(cacheId) {
         if (!cacheId) {
-          this.__P_37_0 = {};
+          this.__P_38_0 = {};
         } else {
-          delete this.__P_37_0[cacheId];
+          delete this.__P_38_0[cacheId];
         }
       },
       _addToCache: function _addToCache(cacheId, data) {
-        this.__P_37_0[cacheId] = data;
+        this.__P_38_0[cacheId] = data;
       },
       /**
        * Returns the available design names as array of suggestions.
@@ -249,7 +249,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @returns {Promise<any>}
        * @private
        */
-      __P_37_2: function __P_37_2(cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
+      __P_38_2: function __P_38_2(cacheId, rpc, rpcContext, args, converter, converterContext, cache) {
         var cached = cache ? this._getFromCache(cacheId) : null;
         if (cached) {
           return Promise.resolve(converter.call(converterContext || this, cached));
@@ -282,7 +282,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }
         }.bind(this));
       },
-      __P_37_3: function __P_37_3(url, converter, converterContext, cache) {
+      __P_38_3: function __P_38_3(url, converter, converterContext, cache) {
         var cached = cache ? this._getFromCache(url) : null;
         if (cached) {
           if (converter) {
@@ -324,11 +324,11 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         if (client && client.hasProvider('addresses')) {
           var url = client.getProviderUrl('addresses');
           if (url) {
-            return this.__P_37_3(url, client.getProviderConvertFunction('addresses', format), client, config.cache);
+            return this.__P_38_3(url, client.getProviderConvertFunction('addresses', format), client, config.cache);
           }
           return client.getProviderData('addresses', format);
         }
-        return this.__P_37_2('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+        return this.__P_38_2('addresses', 'addressesSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       getRrds: function getRrds(format, config) {
         var client = cv.io.BackendConnections.getClient();
@@ -338,15 +338,15 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           };
         }
         if (client && client.hasProvider('rrd')) {
-          return this.__P_37_3(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
+          return this.__P_38_3(client.getProviderUrl('rrd'), client.getProviderConvertFunction('rrd', format), client, config.cache);
         }
-        return this.__P_37_2('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+        return this.__P_38_2('rrds', 'rrdsSync', null, [], format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
       getInfluxDBs: function getInfluxDBs(format, config, element) {
-        var args = this.__P_37_4(element, false);
-        return this.__P_37_2('influxdbs', 'influxdbsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+        var args = this.__P_38_4(element, false);
+        return this.__P_38_2('influxdbs', 'influxdbsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
       },
-      __P_37_4: function __P_37_4(element, withMeasurement) {
+      __P_38_4: function __P_38_4(element, withMeasurement) {
         var args = [];
         if (element.hasAttribute('authentication')) {
           args.push({
@@ -371,22 +371,22 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       getInfluxDBFields: function getInfluxDBFields(format, config, element) {
         try {
-          var args = this.__P_37_4(element, true);
-          return this.__P_37_2('influxdbfields|' + args.measurement + '|' + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
+          var args = this.__P_38_4(element, true);
+          return this.__P_38_2('influxdbfields|' + args.measurement + '|' + args.auth, 'influxdbfieldsSync', null, args, format === 'dp' ? this._parseDpResponseForEditor : this._parseDpResponseForMonaco, this, config.cache);
         } catch (e) {
           return [];
         }
       },
-      __P_37_5: function __P_37_5(format, config, element, converter) {
+      __P_38_5: function __P_38_5(format, config, element, converter) {
         try {
-          var args = this.__P_37_4(element, true);
-          return this.__P_37_2('influxdbtags|' + args.measurement + '|' + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
+          var args = this.__P_38_4(element, true);
+          return this.__P_38_2('influxdbtags|' + args.measurement + '|' + args.auth, 'influxdbtagsSync', null, args, converter, this, config.cache);
         } catch (e) {
           return [];
         }
       },
       getInfluxDBTags: function getInfluxDBTags(format, config, element) {
-        return this.__P_37_5(format, config, element, function (res) {
+        return this.__P_38_5(format, config, element, function (res) {
           if (format === 'monaco') {
             return Object.keys(res).map(function (x) {
               return {
@@ -405,7 +405,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         });
       },
       getInfluxDBValues: function getInfluxDBValues(format, config, element, tag) {
-        return this.__P_37_5(format, config, element, function (res) {
+        return this.__P_38_5(format, config, element, function (res) {
           if (res === null || !(element.attributes.key in res)) {
             return [];
           }
@@ -427,12 +427,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         });
       },
       _parseDpResponseForMonaco: function _parseDpResponseForMonaco(data) {
-        return this.__P_37_6(data, 'monaco');
+        return this.__P_38_6(data, 'monaco');
       },
       _parseDpResponseForEditor: function _parseDpResponseForEditor(data) {
-        return this.__P_37_6(data, 'dp');
+        return this.__P_38_6(data, 'dp');
       },
-      __P_37_6: function __P_37_6(data, format) {
+      __P_38_6: function __P_38_6(data, format) {
         var target = [];
         if (!format || format === 'monaco') {
           data.forEach(function (entry) {
@@ -449,7 +449,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       getMediaFiles: function getMediaFiles(format, config, typeFilter) {
         var fsClient = cv.io.rest.Client.getFsClient();
-        return this.__P_37_2('media', fsClient.readSync, fsClient, [{
+        return this.__P_38_2('media', fsClient.readSync, fsClient, [{
           path: 'media',
           recursive: true
         }], function (res) {
@@ -643,10 +643,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_37_0 = null;
+      this.__P_38_0 = null;
     }
   });
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1731948093071
+//# sourceMappingURL=Provider.js.map?dt=1735222409002

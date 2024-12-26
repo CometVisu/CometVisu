@@ -94,7 +94,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       this._defaultLevel = this._levels.info;
     },
     statics: {
-      __P_514_0: null,
+      __P_515_0: null,
       /**
        * create a logger for a specified category
        *
@@ -111,10 +111,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {null}
        */
       getInstance: function getInstance() {
-        if (!this.__P_514_0) {
-          this.__P_514_0 = new qx.tool.utils.LogManager();
+        if (!this.__P_515_0) {
+          this.__P_515_0 = new qx.tool.utils.LogManager();
         }
-        return this.__P_514_0;
+        return this.__P_515_0;
       },
       nullSink: function nullSink(logger, level, msg) {
         // Nothing
@@ -210,4 +210,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.LogManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LogManager.js.map?dt=1731948132330
+//# sourceMappingURL=LogManager.js.map?dt=1735222441843

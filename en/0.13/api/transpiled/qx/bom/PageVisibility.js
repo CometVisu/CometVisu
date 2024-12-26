@@ -57,11 +57,11 @@
      * @param document {document?} Optional document element.
      */
     construct: function construct(document) {
-      this.__P_120_0 = document || window.document;
-      this.__P_120_1();
+      this.__P_121_0 = document || window.document;
+      this.__P_121_1();
       var self = this;
       // forward the event
-      qx.bom.Event.addNativeListener(this.__P_120_0, this.__P_120_2, function (e) {
+      qx.bom.Event.addNativeListener(this.__P_121_0, this.__P_121_2, function (e) {
         self.emit("change", e);
       });
     },
@@ -72,25 +72,25 @@
       change: "Event"
     },
     members: {
-      __P_120_0: null,
-      __P_120_3: null,
-      __P_120_4: null,
-      __P_120_2: null,
+      __P_121_0: null,
+      __P_121_3: null,
+      __P_121_4: null,
+      __P_121_2: null,
       /**
        * Internal helper to feature check the attribute names and the event name.
        * As the event can not be detected using the on<name> attribute, we need
        * to guess the event name by checking for the hidden attribute.
        */
-      __P_120_1: function __P_120_1() {
+      __P_121_1: function __P_121_1() {
         var prefix = qx.bom.Style.VENDOR_PREFIXES;
 
         // check for the hidden attribute name
         for (var i = 0; i < prefix.length; i++) {
           var attr = prefix[i].toLowerCase() + "Hidden";
-          if (this.__P_120_0[attr] != undefined) {
-            this.__P_120_3 = attr;
+          if (this.__P_121_0[attr] != undefined) {
+            this.__P_121_3 = attr;
             // also use the same prefix for the event name
-            this.__P_120_2 = prefix[i].toLowerCase() + "visibilitychange";
+            this.__P_121_2 = prefix[i].toLowerCase() + "visibilitychange";
             break;
           }
         }
@@ -98,19 +98,19 @@
         // check for the visibilityState attribute name
         for (var i = 0; i < prefix.length; i++) {
           var attr = prefix[i].toLowerCase() + "VisibilityState";
-          if (this.__P_120_0[attr] != undefined) {
-            this.__P_120_4 = attr;
+          if (this.__P_121_0[attr] != undefined) {
+            this.__P_121_4 = attr;
             break;
           }
         }
 
         // use the non prefixed if not supported prefixed
-        if (this.__P_120_3 == null) {
-          this.__P_120_3 = "hidden";
-          this.__P_120_2 = "visibilitychange";
+        if (this.__P_121_3 == null) {
+          this.__P_121_3 = "hidden";
+          this.__P_121_2 = "visibilitychange";
         }
-        if (this.__P_120_4 == null) {
-          this.__P_120_4 = "visibilityState";
+        if (this.__P_121_4 == null) {
+          this.__P_121_4 = "visibilityState";
         }
       },
       /**
@@ -120,7 +120,7 @@
        * @return {Boolean} <code>true</code>, if the page is hidden
        */
       isHidden: function isHidden() {
-        return !!this.__P_120_0[this.__P_120_3];
+        return !!this.__P_121_0[this.__P_121_3];
       },
       /**
        * Returns the visibility state of the page. If we can not detect it,
@@ -129,11 +129,11 @@
        * @return {String} The state of the page visibility.
        */
       getVisibilityState: function getVisibilityState() {
-        return this.__P_120_0[this.__P_120_4] || "visible";
+        return this.__P_121_0[this.__P_121_4] || "visible";
       }
     }
   });
   qx.bom.PageVisibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageVisibility.js.map?dt=1731948100028
+//# sourceMappingURL=PageVisibility.js.map?dt=1735222414858

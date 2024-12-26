@@ -54,7 +54,7 @@
       change: "qx.event.type.Event"
     },
     members: {
-      __P_703_0: null,
+      __P_704_0: null,
       /**
        * Get the default size of the items.
        *
@@ -71,7 +71,7 @@
       setDefaultItemSize: function setDefaultItemSize(defaultItemSize) {
         if (this.defaultItemSize !== defaultItemSize) {
           this.defaultItemSize = defaultItemSize;
-          this.__P_703_0 = null;
+          this.__P_704_0 = null;
           this.fireNonBubblingEvent("change");
         }
       },
@@ -91,7 +91,7 @@
       setItemCount: function setItemCount(itemCount) {
         if (this.itemCount !== itemCount) {
           this.itemCount = itemCount;
-          this.__P_703_0 = null;
+          this.__P_704_0 = null;
           this.fireNonBubblingEvent("change");
         }
       },
@@ -111,7 +111,7 @@
         } else {
           this.customSizes[index] = size;
         }
-        this.__P_703_0 = null;
+        this.__P_704_0 = null;
         this.fireNonBubblingEvent("change");
       },
       /**
@@ -129,7 +129,7 @@
        */
       resetItemSizes: function resetItemSizes() {
         this.customSizes = {};
-        this.__P_703_0 = null;
+        this.__P_704_0 = null;
         this.fireNonBubblingEvent("change");
       },
       /**
@@ -141,9 +141,9 @@
        *
        * @return {Map[]} The sorted list of ranges.
        */
-      __P_703_1: function __P_703_1() {
-        if (this.__P_703_0) {
-          return this.__P_703_0;
+      __P_704_1: function __P_704_1() {
+        if (this.__P_704_0) {
+          return this.__P_704_0;
         }
         var defaultSize = this.defaultItemSize;
         var itemCount = this.itemCount;
@@ -162,7 +162,7 @@
             rangeStart: 0,
             rangeEnd: itemCount * defaultSize - 1
           }];
-          this.__P_703_0 = ranges;
+          this.__P_704_0 = ranges;
           return ranges;
         }
         indexes.sort(function (a, b) {
@@ -205,7 +205,7 @@
         var remainingItemsSize = (itemCount - lastRange.startIndex - 1) * defaultSize;
         lastRange.rangeEnd = lastRange.rangeStart + lastRange.firstItemSize + remainingItemsSize - 1;
         lastRange.endIndex = itemCount - 1;
-        this.__P_703_0 = ranges;
+        this.__P_704_0 = ranges;
         return ranges;
       },
       /**
@@ -216,8 +216,8 @@
        * @param position {Integer} The position.
        * @return {Map} The range, which contains the given position.
        */
-      __P_703_2: function __P_703_2(position) {
-        var ranges = this.__P_703_0 || this.__P_703_1();
+      __P_704_2: function __P_704_2(position) {
+        var ranges = this.__P_704_0 || this.__P_704_1();
         var start = 0;
         var end = ranges.length - 1;
 
@@ -247,7 +247,7 @@
         if (position < 0 || position >= this.getTotalSize()) {
           return null;
         }
-        var range = this.__P_703_2(position);
+        var range = this.__P_704_2(position);
         var startPos = range.rangeStart;
         var index = range.startIndex;
         var firstItemSize = range.firstItemSize;
@@ -272,8 +272,8 @@
        * @param index {Integer} The index of the item to get the range for.
        * @return {Map} The range for the index.
        */
-      __P_703_3: function __P_703_3(index) {
-        var ranges = this.__P_703_0 || this.__P_703_1();
+      __P_704_3: function __P_704_3(index) {
+        var ranges = this.__P_704_0 || this.__P_704_1();
         var start = 0;
         var end = ranges.length - 1;
 
@@ -301,7 +301,7 @@
         if (index < 0 || index >= this.itemCount) {
           return null;
         }
-        var range = this.__P_703_3(index);
+        var range = this.__P_704_3(index);
         if (range.startIndex == index) {
           return range.rangeStart;
         } else {
@@ -314,7 +314,7 @@
        * @return {Integer} The sum of all item sizes.
        */
       getTotalSize: function getTotalSize() {
-        var ranges = this.__P_703_0 || this.__P_703_1();
+        var ranges = this.__P_704_0 || this.__P_704_1();
         return ranges[ranges.length - 1].rangeEnd + 1;
       },
       /**
@@ -346,10 +346,10 @@
       }
     },
     destruct: function destruct() {
-      this.customSizes = this.__P_703_0 = null;
+      this.customSizes = this.__P_704_0 = null;
     }
   });
   qx.ui.virtual.core.Axis.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Axis.js.map?dt=1731948142836
+//# sourceMappingURL=Axis.js.map?dt=1735222450373

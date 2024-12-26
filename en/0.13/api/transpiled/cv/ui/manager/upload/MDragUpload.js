@@ -67,7 +67,7 @@
       }
       var layout = this._getLayout();
       if (!(layout instanceof qx.ui.layout.Grow) && !(layout instanceof qx.ui.layout.Canvas)) {
-        this.addListener('resize', this.__P_54_0, this);
+        this.addListener('resize', this.__P_55_0, this);
       }
     },
     /*
@@ -79,7 +79,7 @@
       uploadMode: {
         check: 'Boolean',
         init: false,
-        apply: "__P_54_1"
+        apply: "__P_55_1"
       },
       uploadHint: {
         check: 'String',
@@ -170,9 +170,9 @@
     *****************************************************************************
     */
     members: {
-      __P_54_2: null,
+      __P_55_2: null,
       _boundOnStop: null,
-      __P_54_0: function __P_54_0() {
+      __P_55_0: function __P_55_0() {
         var bounds = this.getBounds();
         this.getChildControl('upload-overlay').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
         this.getChildControl('upload-dropbox').setUserBounds(bounds.left, bounds.top, bounds.width, bounds.height);
@@ -302,18 +302,18 @@
         }
       },
       // property apply
-      __P_54_1: function __P_54_1(value) {
+      __P_55_1: function __P_55_1(value) {
         if (value === true) {
           this.getChildControl('upload-dropbox').show();
           if (this.hasChildControl('empty-info') && this.getChildControl('empty-info').isVisible()) {
             this.getChildControl('empty-info').exclude();
-            this.__P_54_2 = true;
+            this.__P_55_2 = true;
           } else {
-            this.__P_54_2 = false;
+            this.__P_55_2 = false;
           }
         } else {
           this.getChildControl('upload-dropbox').exclude();
-          if (this.__P_54_2 === true) {
+          if (this.__P_55_2 === true) {
             this.getChildControl('empty-info').show();
           }
         }
@@ -323,4 +323,4 @@
   cv.ui.manager.upload.MDragUpload.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDragUpload.js.map?dt=1731948094369
+//# sourceMappingURL=MDragUpload.js.map?dt=1735222410089

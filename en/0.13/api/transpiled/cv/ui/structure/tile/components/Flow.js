@@ -202,15 +202,15 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       _applyCenterX: function _applyCenterX(value) {
         if (value) {
-          this.__P_79_0('row', this.getRows());
+          this.__P_80_0('row', this.getRows());
         }
       },
       _applyCenterY: function _applyCenterY(value) {
         if (value) {
-          this.__P_79_0('column', this.getColumns());
+          this.__P_80_0('column', this.getColumns());
         }
       },
-      __P_79_0: function __P_79_0(selector, total) {
+      __P_80_0: function __P_80_0(selector, total) {
         // do not center the middle one(s)
         var skip = [];
         if (total > 2) {
@@ -224,14 +224,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         for (var i = 0; i < total; i++) {
           if (!skip.includes(i)) {
             if (selector === 'row') {
-              this.__P_79_1(this._element.querySelectorAll(":scope > *[row=\"".concat(i, "\"]")));
+              this.__P_80_1(this._element.querySelectorAll(":scope > *[row=\"".concat(i, "\"]")));
             } else {
-              this.__P_79_2(this._element.querySelectorAll(":scope > *[column=\"".concat(i, "\"]")));
+              this.__P_80_2(this._element.querySelectorAll(":scope > *[column=\"".concat(i, "\"]")));
             }
           }
         }
       },
-      __P_79_1: function __P_79_1(rowElements) {
+      __P_80_1: function __P_80_1(rowElements) {
         if (rowElements.length === 1) {
           rowElements[0].setAttribute('column', '1');
         } else if (rowElements.length === 2) {
@@ -243,7 +243,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           sorted[1].setAttribute('column', '1.5');
         }
       },
-      __P_79_2: function __P_79_2(columnElements) {
+      __P_80_2: function __P_80_2(columnElements) {
         if (columnElements.length === 1) {
           columnElements[0].setAttribute('row', '1');
         } else if (columnElements.length === 2) {
@@ -697,4 +697,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.structure.tile.components.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1731948096714
+//# sourceMappingURL=Flow.js.map?dt=1735222412099

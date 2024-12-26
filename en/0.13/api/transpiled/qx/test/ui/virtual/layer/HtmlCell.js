@@ -37,14 +37,14 @@
     members: {
       tearDown: function tearDown() {
         qx.test.ui.virtual.layer.HtmlCell.superclass.prototype.tearDown.call(this);
-        this.__P_442_0.dispose();
+        this.__P_443_0.dispose();
       },
       _createLayer: function _createLayer() {
-        this.__P_442_0 = new qx.ui.virtual.cell.Cell();
+        this.__P_443_0 = new qx.ui.virtual.cell.Cell();
         return new qx.ui.virtual.layer.HtmlCell(this);
       },
       getCellProperties: function getCellProperties(row, column) {
-        return this.__P_442_0.getCellProperties(row + " / " + column, {});
+        return this.__P_443_0.getCellProperties(row + " / " + column, {});
       },
       _assertCells: function _assertCells(firstRow, firstColumn, rowCount, columnCount, msg) {
         var children = this.layer.getContentElement().getDomElement().childNodes;
@@ -60,10 +60,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_442_0 = null;
+      this.__P_443_0 = null;
     }
   });
   qx.test.ui.virtual.layer.HtmlCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlCell.js.map?dt=1731948122201
+//# sourceMappingURL=HtmlCell.js.map?dt=1735222433360

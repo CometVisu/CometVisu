@@ -160,34 +160,34 @@
         var control;
         switch (id) {
           case 'view-button':
-            control = this.__P_30_0('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
+            control = this.__P_31_0('view', this.tr('View'), cv.theme.dark.Images.getIcon('view', 18));
             control.exclude();
             break;
           case 'edit-button':
-            control = this.__P_30_0('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
+            control = this.__P_31_0('edit', this.tr('Edit'), cv.theme.dark.Images.getIcon('edit', 18));
             break;
           case 'delete-button':
-            control = this.__P_30_0('delete', this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
+            control = this.__P_31_0('delete', this.tr('Delete'), cv.theme.dark.Images.getIcon('delete', 18));
             break;
           case 'cut-button':
-            control = this.__P_30_0('cut', this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18));
+            control = this.__P_31_0('cut', this.tr('Cut'), cv.theme.dark.Images.getIcon('cut', 18));
             break;
           case 'copy-button':
-            control = this.__P_30_0('copy', this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18));
+            control = this.__P_31_0('copy', this.tr('Copy'), cv.theme.dark.Images.getIcon('copy', 18));
             break;
           case 'paste-button':
-            control = this.__P_30_0('paste', this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18));
+            control = this.__P_31_0('paste', this.tr('Paste'), cv.theme.dark.Images.getIcon('paste', 18));
             break;
           case 'create-menu':
             control = new qx.ui.menu.Menu();
             break;
           case 'create-button':
-            control = this.__P_30_0('create', this.tr('Add child'), cv.theme.dark.Images.getIcon('add', 18));
+            control = this.__P_31_0('create', this.tr('Add child'), cv.theme.dark.Images.getIcon('add', 18));
             break;
         }
         return control || cv.ui.manager.contextmenu.ConfigElement.superclass.prototype._createChildControlImpl.call(this, id);
       },
-      __P_30_0: function __P_30_0(action, title, icon, command, menu) {
+      __P_31_0: function __P_31_0(action, title, icon, command, menu) {
         var _this3 = this;
         var button = new qx.ui.menu.Button(title, icon, command, menu);
         button.addListener('execute', function () {
@@ -211,4 +211,4 @@
   cv.ui.manager.contextmenu.ConfigElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigElement.js.map?dt=1731948091987
+//# sourceMappingURL=ConfigElement.js.map?dt=1735222408059

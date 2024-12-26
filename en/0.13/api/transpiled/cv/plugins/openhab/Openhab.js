@@ -84,7 +84,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       if (!Object.prototype.hasOwnProperty.call(cv.Config.request.queryKey, 'preview')) {
-        this.__P_22_0 = cv.core.notifications.Router.getInstance();
+        this.__P_23_0 = cv.core.notifications.Router.getInstance();
 
         // listen to notifications
         var client = cv.io.BackendConnections.getClientByType('openhab');
@@ -103,8 +103,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     *****************************************************************************
     */
     members: {
-      __P_22_0: null,
-      __P_22_1: null,
+      __P_23_0: null,
+      __P_23_1: null,
       _openSettings: null,
       _createSettings: function _createSettings() {
         var _this = this;
@@ -123,12 +123,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         this._openSettings = new qx.ui.command.Command('Ctrl+S');
         this._openSettings.addListener('execute', function () {
           cv.ui.NotificationCenter.getInstance().show();
-          _this.__P_22_1.show();
+          _this.__P_23_1.show();
         });
         cv.TemplateEngine.getInstance().getCommands().add('open-settings', this._openSettings);
         qx.dom.Element.insertBegin(button, document.querySelector('#notification-center footer'));
         qx.event.Registration.addListener(button, 'tap', function () {
-          this.__P_22_1.show();
+          this.__P_23_1.show();
         }, this);
 
         //add to DOM
@@ -140,9 +140,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
         this._inline = new qx.ui.root.Inline(document.querySelector('#qxsettings > div'), true, false);
         this._inline.setLayout(new qx.ui.layout.VBox());
-        this.__P_22_1 = new cv.plugins.openhab.Settings();
-        this.__P_22_1.exclude();
-        this._inline.add(this.__P_22_1, {
+        this.__P_23_1 = new cv.plugins.openhab.Settings();
+        this.__P_23_1.exclude();
+        this._inline.add(this.__P_23_1, {
           flex: 1
         });
       },
@@ -156,7 +156,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           this.error('invalid content received from SSE: ', e);
         }
         var json = _typeof(e.data) === 'object' ? e.data : JSON.parse(e.data);
-        this.__P_22_0.dispatchMessage(json.topic || 'cv.backend', json);
+        this.__P_23_0.dispatchMessage(json.topic || 'cv.backend', json);
       }
     },
     /*
@@ -165,8 +165,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_22_1", '_openSettings');
-      this.__P_22_0 = null;
+      this._disposeObjects("__P_23_1", '_openSettings');
+      this.__P_23_0 = null;
     },
     defer: function defer(statics) {
       // initialize on load but delay the call
@@ -176,4 +176,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.plugins.openhab.Openhab.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Openhab.js.map?dt=1731948091255
+//# sourceMappingURL=Openhab.js.map?dt=1735222407424

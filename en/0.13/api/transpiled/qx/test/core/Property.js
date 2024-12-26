@@ -441,7 +441,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param value {number} Value to check
        * @return {Boolean} whether the value is <code>-0</code>
        */
-      __P_324_0: function __P_324_0(value) {
+      __P_325_0: function __P_325_0(value) {
         return value === 0 && 1 / value < 0; // 1/-0 => -Infinity
       },
       /**
@@ -450,7 +450,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param value {number} Value to check
        * @return {Boolean} whether the value is <code>+0</code>
        */
-      __P_324_1: function __P_324_1(value) {
+      __P_325_1: function __P_325_1(value) {
         return value === 0 && 1 / value > 0; // 1/+0 => +Infinity
       },
       testWrongIsEqualDefinitions: function testWrongIsEqualDefinitions() {},
@@ -484,8 +484,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         this.assertEventFired(object, "changeProp", function () {
           object.setProp(-0);
         }, function (e) {
-          var isNegativeZero = self.__P_324_0(e.getData());
-          var isPositiveZero = self.__P_324_1(e.getOldData());
+          var isNegativeZero = self.__P_325_0(e.getData());
+          var isPositiveZero = self.__P_325_1(e.getOldData());
           self.assertTrue(isNegativeZero, "Wrong data in the event!");
           self.assertTrue(isPositiveZero, "Wrong old data in the event!");
         }, "Change event not fired!");
@@ -526,8 +526,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         this.assertEventFired(object, "changeProp", function () {
           object.setProp(-0);
         }, function (e) {
-          var isNegativeZero = self.__P_324_0(e.getData());
-          var isPositiveZero = self.__P_324_1(e.getOldData());
+          var isNegativeZero = self.__P_325_0(e.getData());
+          var isPositiveZero = self.__P_325_1(e.getOldData());
           self.assertTrue(isNegativeZero, "Wrong data in the event!");
           self.assertTrue(isPositiveZero, "Wrong old data in the event!");
         }, "Change event not fired!");
@@ -544,11 +544,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               check: "Number",
               nullable: true,
               event: "changeProp",
-              isEqual: "__P_324_2"
+              isEqual: "__P_325_2"
             }
           },
           members: {
-            __P_324_2: function __P_324_2(foo, bar) {
+            __P_325_2: function __P_325_2(foo, bar) {
               return Object.is(foo, bar);
             }
           }
@@ -571,8 +571,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         this.assertEventFired(object, "changeProp", function () {
           object.setProp(-0);
         }, function (e) {
-          var isNegativeZero = self.__P_324_0(e.getData());
-          var isPositiveZero = self.__P_324_1(e.getOldData());
+          var isNegativeZero = self.__P_325_0(e.getData());
+          var isPositiveZero = self.__P_325_1(e.getOldData());
           self.assertTrue(isNegativeZero, "Wrong data in the event!");
           self.assertTrue(isPositiveZero, "Wrong old data in the event!");
         }, "Change event not fired!");
@@ -635,11 +635,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               check: "Number",
               nullable: true,
               event: "changeProp",
-              isEqual: "__P_324_3"
+              isEqual: "__P_325_3"
             }
           },
           members: {
-            __P_324_3: function __P_324_3(foo, bar) {
+            __P_325_3: function __P_325_3(foo, bar) {
               context = this;
             }
           }
@@ -655,7 +655,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         qx.Class.define("qx.Super", {
           extend: qx.core.Object,
           members: {
-            __P_324_3: function __P_324_3(foo, bar) {
+            __P_325_3: function __P_325_3(foo, bar) {
               context = this;
             }
           }
@@ -667,7 +667,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               check: "Number",
               nullable: true,
               event: "changeProp",
-              isEqual: "__P_324_3"
+              isEqual: "__P_325_3"
             }
           }
         });
@@ -689,18 +689,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               check: "qx.data.Array",
               nullable: true,
               event: "changeProp",
-              transform: "__P_324_4"
+              transform: "__P_325_4"
             },
             propTwo: {
               check: "qx.data.Array",
               nullable: true,
               event: "changePropTwo",
-              transform: "__P_324_4",
+              transform: "__P_325_4",
               deferredInit: true
             }
           },
           members: {
-            __P_324_4: function __P_324_4(value, oldValue) {
+            __P_325_4: function __P_325_4(value, oldValue) {
               if (oldValue === undefined) {
                 return value;
               }
@@ -913,4 +913,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1731948113920
+//# sourceMappingURL=Property.js.map?dt=1735222426606

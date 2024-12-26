@@ -39,11 +39,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_481_0 = {};
-      this.__P_481_1 = {};
-      this.__P_481_2 = {};
-      this.__P_481_3 = {};
-      this.__P_481_4 = {};
+      this.__P_482_0 = {};
+      this.__P_482_1 = {};
+      this.__P_482_2 = {};
+      this.__P_482_3 = {};
+      this.__P_482_4 = {};
     },
     properties: {
       /** Where the meta files for individual classes are stored */
@@ -54,11 +54,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type{Map<String,qx.tool.compiler.MetaExtraction>} list of meta indexed by classname */
-      __P_481_0: null,
+      __P_482_0: null,
       /** @type{Map<String,Boolean} list of classes which need to have their second pass */
-      __P_481_3: null,
+      __P_482_3: null,
       /** The database */
-      __P_481_4: null,
+      __P_482_4: null,
       /**
        * Saves the database
        */
@@ -71,9 +71,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.next = 2;
                 return qx.tool.utils.Utils.makeDirs(_this.getRootDir());
               case 2:
-                _this.__P_481_4.classnames = Object.keys(_this.__P_481_0);
+                _this.__P_482_4.classnames = Object.keys(_this.__P_482_0);
                 _context.next = 5;
-                return qx.tool.utils.Json.saveJsonAsync(_this.getRootDir() + "/db.json", _this.__P_481_4);
+                return qx.tool.utils.Json.saveJsonAsync(_this.getRootDir() + "/db.json", _this.__P_482_4);
               case 5:
               case "end":
                 return _context.stop();
@@ -82,7 +82,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       getDatabase: function getDatabase() {
-        return this.__P_481_4;
+        return this.__P_482_4;
       },
       /**
        * Loads the database and all of the meta data
@@ -101,13 +101,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 return _context2.abrupt("return");
               case 3:
-                _this2.__P_481_0 = {};
-                _this2.__P_481_3 = {};
+                _this2.__P_482_0 = {};
+                _this2.__P_482_3 = {};
                 _context2.next = 7;
                 return qx.tool.utils.Json.loadJsonAsync(filename);
               case 7:
                 data = _context2.sent;
-                _this2.__P_481_4 = data;
+                _this2.__P_482_4 = data;
                 _iterator = _createForOfIteratorHelper(data.classnames);
                 _context2.prev = 10;
                 _iterator.s();
@@ -129,10 +129,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context2.next = 21;
                 return meta.loadMeta(_filename);
               case 21:
-                _this2.__P_481_0[classname] = meta;
+                _this2.__P_482_0[classname] = meta;
                 classFilename = meta.getMetaData().classFilename;
                 classFilename = path.resolve(path.join(_this2.getRootDir(), classFilename));
-                _this2.__P_481_1[classFilename] = meta;
+                _this2.__P_482_1[classFilename] = meta;
               case 25:
                 _context2.next = 12;
                 break;
@@ -190,7 +190,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var packageName = pos > -1 ? currentClassMeta.className.substring(0, pos) : null;
         if (packageName) {
           pos = type.indexOf(".");
-          if (pos < 0 && this.__P_481_0[packageName + "." + type]) {
+          if (pos < 0 && this.__P_482_0[packageName + "." + type]) {
             return packageName + "." + type;
           }
         }
@@ -214,7 +214,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 2:
                 filename = _context3.sent;
                 filename = path.resolve(filename);
-                meta = _this3.__P_481_1[filename];
+                meta = _this3.__P_482_1[filename];
                 _context3.t0 = meta && !force;
                 if (!_context3.t0) {
                   _context3.next = 10;
@@ -242,9 +242,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 return _context3.abrupt("return");
               case 18:
-                _this3.__P_481_0[metaData.className] = meta;
-                _this3.__P_481_1[filename] = meta;
-                _this3.__P_481_3[metaData.className] = true;
+                _this3.__P_482_0[metaData.className] = meta;
+                _this3.__P_482_1[filename] = meta;
+                _this3.__P_482_3[metaData.className] = true;
               case 21:
               case "end":
                 return _context3.stop();
@@ -258,7 +258,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String[]}
        */
       getClassnames: function getClassnames() {
-        return Object.keys(this.__P_481_0);
+        return Object.keys(this.__P_482_0);
       },
       /**
        * Returns the meta data for a class
@@ -267,8 +267,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns
        */
       getMetaData: function getMetaData(className) {
-        var _this$__P_481_0$class;
-        return ((_this$__P_481_0$class = this.__P_481_0[className]) === null || _this$__P_481_0$class === void 0 ? void 0 : _this$__P_481_0$class.getMetaData()) || null;
+        var _this$__P_482_0$class;
+        return ((_this$__P_482_0$class = this.__P_482_0[className]) === null || _this$__P_482_0$class === void 0 ? void 0 : _this$__P_482_0$class.getMetaData()) || null;
       },
       /**
        * Once all meta data has been loaded, this method traverses the database
@@ -282,9 +282,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
-                classnames = Object.keys(_this4.__P_481_3);
-                _this4.__P_481_3 = {};
-                derivedClassLookup = _this4.__P_481_5();
+                classnames = Object.keys(_this4.__P_482_3);
+                _this4.__P_482_3 = {};
+                derivedClassLookup = _this4.__P_482_5();
                 for (i = 0; i < classnames.length; i++) {
                   className = classnames[i];
                   derived = derivedClassLookup[className];
@@ -309,16 +309,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _className = _classnames[_i];
-                meta = _this4.__P_481_0[_className];
+                meta = _this4.__P_482_0[_className];
                 metaData = meta.getMetaData();
                 typeResolver = {
                   resolveType: _this4.resolveType.bind(_this4, metaData)
                 };
                 meta.fixupJsDoc(typeResolver);
-                _this4.__P_481_6(metaData);
-                _this4.__P_481_7(metaData, "members");
-                _this4.__P_481_7(metaData, "statics");
-                _this4.__P_481_7(metaData, "properties");
+                _this4.__P_482_6(metaData);
+                _this4.__P_482_7(metaData, "members");
+                _this4.__P_482_7(metaData, "statics");
+                _this4.__P_482_7(metaData, "properties");
                 filename = _this4.getRootDir() + "/" + _className.replace(/\./g, "/") + ".json";
                 _context4.next = 18;
                 return meta.saveMeta(filename);
@@ -333,17 +333,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee4);
         }))();
       },
-      __P_481_5: function __P_481_5() {
+      __P_482_5: function __P_482_5() {
         var lookup = {};
         var add = function add(key, item) {
           var _lookup$key;
           (_lookup$key = lookup[key]) !== null && _lookup$key !== void 0 ? _lookup$key : lookup[key] = new Set();
           lookup[key].add(item);
         };
-        for (var classname in this.__P_481_0) {
+        for (var classname in this.__P_482_0) {
           var _lookup$classname, _metaData$mixins, _metaData$interfaces;
           (_lookup$classname = lookup[classname]) !== null && _lookup$classname !== void 0 ? _lookup$classname : lookup[classname] = new Set(); // ensuring this makes operations with the lookup simpler
-          var metaData = this.__P_481_0[classname].getMetaData();
+          var metaData = this.__P_482_0[classname].getMetaData();
           if (metaData.superClass) {
             add(metaData.superClass, classname);
           }
@@ -382,7 +382,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Boolean} firstPass
        * @returns {*} meta data values to add to the method
        */
-      __P_481_8: function __P_481_8(metaData, methodName, firstPass) {
+      __P_482_8: function __P_482_8(metaData, methodName, firstPass) {
         if (!firstPass) {
           var _metaData$members;
           var method = (_metaData$members = metaData.members) === null || _metaData$members === void 0 ? void 0 : _metaData$members[methodName];
@@ -398,7 +398,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           try {
             for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
               var mixinName = _step5.value;
-              var mixinMeta = this.__P_481_0[mixinName];
+              var mixinMeta = this.__P_482_0[mixinName];
               if (mixinMeta) {
                 var _mixinMetaData$member;
                 var mixinMetaData = mixinMeta.getMetaData();
@@ -419,9 +419,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (!metaData.superClass) {
           return null;
         }
-        var superMeta = this.__P_481_0[metaData.superClass];
+        var superMeta = this.__P_482_0[metaData.superClass];
         if (superMeta) {
-          return this.__P_481_8(superMeta.getMetaData(), methodName, false);
+          return this.__P_482_8(superMeta.getMetaData(), methodName, false);
         }
         return null;
       },
@@ -431,7 +431,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {string} entryName name of the entry
        * @returns {string[]} list of classes where the entry appears
        */
-      __P_481_9: function __P_481_9(metaData, entryKind, entryName) {
+      __P_482_9: function __P_482_9(metaData, entryKind, entryName) {
         var getSuperLikes = function getSuperLikes(meta) {
           var _meta$mixins, _meta$interfaces;
           return [].concat(_toConsumableArray((_meta$mixins = meta.mixins) !== null && _meta$mixins !== void 0 ? _meta$mixins : []), _toConsumableArray(meta.superClass ? [meta.superClass] : []), _toConsumableArray((_meta$interfaces = meta.interfaces) !== null && _meta$interfaces !== void 0 ? _meta$interfaces : []));
@@ -445,7 +445,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var appearances = [];
         var toResolve = getSuperLikes(metaData);
         while (toResolve.length) {
-          var currentMeta = this.__P_481_0[toResolve.shift()];
+          var currentMeta = this.__P_482_0[toResolve.shift()];
           if (currentMeta) {
             resolve(currentMeta.getMetaData());
             toResolve.push.apply(toResolve, _toConsumableArray(getSuperLikes(currentMeta.getMetaData())));
@@ -458,7 +458,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @param {*} metaData
        */
-      __P_481_6: function __P_481_6(metaData) {
+      __P_482_6: function __P_482_6(metaData) {
         if (!metaData.members) {
           return;
         }
@@ -468,9 +468,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             _step6;
           try {
             for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-              var _this$__P_481_0$itf;
+              var _this$__P_482_0$itf;
               var itf = _step6.value;
-              var itfMembers = (_this$__P_481_0$itf = this.__P_481_0[itf]) === null || _this$__P_481_0$itf === void 0 ? void 0 : _this$__P_481_0$itf.getMetaData().members;
+              var itfMembers = (_this$__P_482_0$itf = this.__P_482_0[itf]) === null || _this$__P_482_0$itf === void 0 ? void 0 : _this$__P_482_0$itf.getMetaData().members;
               for (var memberName in itfMembers !== null && itfMembers !== void 0 ? itfMembers : {}) {
                 var member = itfMembers[memberName];
                 if (!metaData.members[memberName]) {
@@ -489,7 +489,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         for (var methodName in metaData.members) {
           var methodMeta = metaData.members[methodName];
-          var superMethod = this.__P_481_8(metaData, methodName, true);
+          var superMethod = this.__P_482_8(metaData, methodName, true);
           if (superMethod) {
             for (var key in superMethod) {
               methodMeta[key] = superMethod[key];
@@ -503,19 +503,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {*} metaData
        * @param {string} kind
        */
-      __P_481_7: function __P_481_7(metaData, kind) {
+      __P_482_7: function __P_482_7(metaData, kind) {
         var _metaData$kind, _metaData$mixins2;
         (_metaData$kind = metaData[kind]) !== null && _metaData$kind !== void 0 ? _metaData$kind : metaData[kind] = {};
         var _iterator7 = _createForOfIteratorHelper((_metaData$mixins2 = metaData.mixins) !== null && _metaData$mixins2 !== void 0 ? _metaData$mixins2 : []),
           _step7;
         try {
           for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-            var _this$__P_481_0$mixin;
+            var _this$__P_482_0$mixin;
             var mixin = _step7.value;
-            var mixinMeta = (_this$__P_481_0$mixin = this.__P_481_0[mixin]) === null || _this$__P_481_0$mixin === void 0 ? void 0 : _this$__P_481_0$mixin.getMetaData();
+            var mixinMeta = (_this$__P_482_0$mixin = this.__P_482_0[mixin]) === null || _this$__P_482_0$mixin === void 0 ? void 0 : _this$__P_482_0$mixin.getMetaData();
             for (var _name in (_mixinMeta$kind = mixinMeta === null || mixinMeta === void 0 ? void 0 : mixinMeta[kind]) !== null && _mixinMeta$kind !== void 0 ? _mixinMeta$kind : {}) {
               var _mixinMeta$kind;
-              var appearsIn = this.__P_481_9(metaData, kind, _name);
+              var appearsIn = this.__P_482_9(metaData, kind, _name);
               var _meta = qx.lang.Object.clone(mixinMeta[kind][_name]);
               _meta.mixin = mixin;
               _meta.appearsIn = appearsIn;
@@ -530,7 +530,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         for (var name in (_metaData$kind2 = metaData[kind]) !== null && _metaData$kind2 !== void 0 ? _metaData$kind2 : {}) {
           var _metaData$kind2;
           var meta = metaData[kind][name];
-          meta.appearsIn = this.__P_481_9(metaData, kind, name);
+          meta.appearsIn = this.__P_482_9(metaData, kind, name);
         }
       },
       /**
@@ -601,4 +601,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.MetaDatabase.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaDatabase.js.map?dt=1731948128612
+//# sourceMappingURL=MetaDatabase.js.map?dt=1735222438695

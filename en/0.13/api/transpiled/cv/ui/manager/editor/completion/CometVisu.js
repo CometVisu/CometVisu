@@ -54,6 +54,7 @@
     members: {
       TEMPLATES: null,
       getTemplates: function getTemplates() {
+        var _this = this;
         if (!this.TEMPLATES) {
           this.TEMPLATES = [{
             filterText: 'cvclass',
@@ -128,7 +129,10 @@
           }];
 
           // load plugin template from backend
-          return new Promise(function (resolve, reject) {
+          var promises = [];
+
+          // load pure plugin template
+          promises.push([new Promise(function (resolve, reject) {
             cv.io.rest.Client.getFsClient().readSync({
               path: 'demo/templates/Plugin.js'
             }, function (err, res) {
@@ -145,8 +149,32 @@
                 });
                 resolve(this.TEMPLATES);
               }
-            }, this);
-          }.bind(this));
+            }, _this);
+          })]);
+
+          // load tile chart source plugin template
+          promises.push([new Promise(function (resolve, reject) {
+            cv.io.rest.Client.getFsClient().readSync({
+              path: 'demo/templates/ChartSourcePlugin.js'
+            }, function (err, res) {
+              if (err) {
+                reject(err);
+              } else {
+                this.TEMPLATES.push({
+                  filterText: 'cvchartsourceplugin',
+                  label: 'Tile chart source plugin',
+                  kind: window.monaco.languages.CompletionItemKind.Class,
+                  detail: 'A CometVisu plugin for loading chart data into a tile chart component.',
+                  insertText: res.replace('###SINCE###', cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)'),
+                  insertTextRules: window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet | window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
+                });
+                resolve(this.TEMPLATES);
+              }
+            }, _this);
+          })]);
+          return Promise.all(promises).then(function () {
+            return _this.TEMPLATES;
+          });
         }
         return Promise.resolve(this.TEMPLATES);
       },
@@ -168,4 +196,4 @@
   cv.ui.manager.editor.completion.CometVisu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CometVisu.js.map?dt=1731948092838
+//# sourceMappingURL=CometVisu.js.map?dt=1735222408804

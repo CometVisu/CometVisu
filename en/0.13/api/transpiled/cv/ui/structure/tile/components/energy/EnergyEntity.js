@@ -183,18 +183,18 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             _arrow.setAttribute('fill', 'transparent');
             this._target.appendChild(_arrow);
           }
-          this.__P_88_0();
+          this.__P_89_0();
         }
       },
       _applyOffsetY: function _applyOffsetY(value) {
         cv.ui.structure.tile.components.energy.EnergyEntity.superclass.prototype._applyOffsetY.call(this, value);
-        this.__P_88_0();
+        this.__P_89_0();
       },
       _applyScale: function _applyScale(scale) {
         cv.ui.structure.tile.components.energy.EnergyEntity.superclass.prototype._applyScale.call(this, scale);
-        this.__P_88_0();
+        this.__P_89_0();
       },
-      __P_88_0: function __P_88_0() {
+      __P_89_0: function __P_89_0() {
         var arrow = this._target.querySelector('path.energy-direction');
         if (arrow) {
           arrow.setAttribute('transform', "translate(28, ".concat(this.getOffsetY() + 8, ") rotate(").concat(this.getDirection() === 'incoming' ? '90' : '-90', ", 3, 4)"));
@@ -218,4 +218,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.energy.EnergyEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EnergyEntity.js.map?dt=1731948097427
+//# sourceMappingURL=EnergyEntity.js.map?dt=1735222412682

@@ -58,15 +58,15 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_753_0 = [];
-      this.__P_753_1 = {};
-      this.__P_753_2 = Date.now();
-      this.__P_753_3 = {
+      this.__P_754_0 = [];
+      this.__P_754_1 = {};
+      this.__P_754_2 = Date.now();
+      this.__P_754_3 = {
         response: [],
         request: []
       };
-      this.__P_753_4 = {};
-      this.__P_753_5 = {};
+      this.__P_754_4 = {};
+      this.__P_754_5 = {};
     },
     /*
     ******************************************************
@@ -218,46 +218,46 @@
     ******************************************************
     */
     members: {
-      __P_753_2: null,
-      __P_753_0: null,
-      __P_753_3: null,
-      __P_753_1: null,
-      __P_753_4: null,
-      __P_753_6: 50,
-      __P_753_7: 1,
-      __P_753_8: 50,
-      __P_753_5: null,
-      __P_753_9: 0,
+      __P_754_2: null,
+      __P_754_0: null,
+      __P_754_3: null,
+      __P_754_1: null,
+      __P_754_4: null,
+      __P_754_6: 50,
+      __P_754_7: 1,
+      __P_754_8: 50,
+      __P_754_5: null,
+      __P_754_9: 0,
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
             if (path === 'response') {
-              this.__P_753_10(category, data);
+              this.__P_754_10(category, data);
             }
             data.t = Date.now();
-            this.__P_753_3[path].push(data);
+            this.__P_754_3[path].push(data);
             break;
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
-            this.__P_753_4[category] = data;
+            this.__P_754_4[category] = data;
             break;
           case cv.report.Record.STORAGE:
-            if (!Object.prototype.hasOwnProperty.call(this.__P_753_4, category)) {
-              this.__P_753_4[category] = {};
+            if (!Object.prototype.hasOwnProperty.call(this.__P_754_4, category)) {
+              this.__P_754_4[category] = {};
             }
-            this.__P_753_4[category][path] = data;
+            this.__P_754_4[category][path] = data;
             break;
           default:
-            this.__P_753_0.push({
+            this.__P_754_0.push({
               c: category,
               t: Date.now(),
               i: path,
               d: data,
               o: options,
-              ID: this.__P_753_9
+              ID: this.__P_754_9
             });
         }
-        this.__P_753_9++;
+        this.__P_754_9++;
       },
       /**
        * Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config
@@ -265,7 +265,7 @@
        * @param data {Object} recorded content
        * @private
        */
-      __P_753_10: function __P_753_10(category, data) {
+      __P_754_10: function __P_754_10(category, data) {
         if (category === cv.report.Record.XHR) {
           if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
             try {
@@ -304,8 +304,8 @@
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __P_753_11: function __P_753_11(nativeEvent) {
-        var _this$__P_753_, _this$__P_753_2;
+      __P_754_11: function __P_754_11(nativeEvent) {
+        var _this$__P_754_, _this$__P_754_2;
         var data = {
           eventClass: nativeEvent.constructor.name,
           "native": {
@@ -313,8 +313,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: (_this$__P_753_ = this.__P_753_12(nativeEvent.currentTarget)) !== null && _this$__P_753_ !== void 0 ? _this$__P_753_ : undefined,
-            relatedTarget: (_this$__P_753_2 = this.__P_753_12(nativeEvent.relatedTarget)) !== null && _this$__P_753_2 !== void 0 ? _this$__P_753_2 : undefined,
+            currentTarget: (_this$__P_754_ = this.__P_754_12(nativeEvent.currentTarget)) !== null && _this$__P_754_ !== void 0 ? _this$__P_754_ : undefined,
+            relatedTarget: (_this$__P_754_2 = this.__P_754_12(nativeEvent.relatedTarget)) !== null && _this$__P_754_2 !== void 0 ? _this$__P_754_2 : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -380,38 +380,38 @@
         if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID || ev.constructor.name === 'CustomEvent') {
           return;
         }
-        ev.$$RID = this.__P_753_9;
+        ev.$$RID = this.__P_754_9;
         if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
-          this.__P_753_6 = this.__P_753_7;
+          this.__P_754_6 = this.__P_754_7;
         } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
-          this.__P_753_6 = this.__P_753_8;
+          this.__P_754_6 = this.__P_754_8;
         }
         if (/.+(move|over|out)/.test(ev.type)) {
-          if (!this.__P_753_5[ev.type]) {
-            this.__P_753_5[ev.type] = {
+          if (!this.__P_754_5[ev.type]) {
+            this.__P_754_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           } else {
-            var lastDelta = this.__P_753_5[ev.type];
-            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_753_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_753_6) {
+            var lastDelta = this.__P_754_5[ev.type];
+            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_754_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_754_6) {
               // below delta -> skip this event
               return;
             }
-            this.__P_753_5[ev.type] = {
+            this.__P_754_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           }
         }
         // get path
-        var path = this.__P_753_12(ev.target);
+        var path = this.__P_754_12(ev.target);
         if (!path) {
           this.debug('path to event target not found, skip recording ' + ev.type + ' event');
           return;
         }
         this.debug('recording ' + ev.type + ' on ' + path);
-        var data = this.__P_753_11(ev);
+        var data = this.__P_754_11(ev);
         this.record(cv.report.Record.USER, path, data);
       },
       recordScroll: function recordScroll(ev) {
@@ -429,7 +429,7 @@
        * @param el {Element|Node|Window|undefined}
        * @return {string} CSS selector to element
        */
-      __P_753_12: function __P_753_12(el) {
+      __P_754_12: function __P_754_12(el) {
         if (!el) {
           return '';
         }
@@ -473,10 +473,10 @@
           cv.Config.reporting = false;
         }
         return {
-          data: this.__P_753_4,
-          start: this.__P_753_2,
-          xhr: this.__P_753_3,
-          log: this.__P_753_0,
+          data: this.__P_754_4,
+          start: this.__P_754_2,
+          xhr: this.__P_754_3,
+          log: this.__P_754_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         };
@@ -513,4 +513,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1731948145497
+//# sourceMappingURL=Record.js.map?dt=1735222452590

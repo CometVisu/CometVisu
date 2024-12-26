@@ -141,7 +141,7 @@
       testVisibility: function testVisibility() {
         var widget = new qx.ui.mobile.core.Widget();
         this.getRoot().add(widget);
-        this.__P_357_0(widget);
+        this.__P_358_0(widget);
         widget.exclude();
         this.assertFalse(widget.isVisible(), "Exclude: Widget should not be visible");
         this.assertTrue(widget.isExcluded(), "Exclude: Widget should be excluded");
@@ -149,7 +149,7 @@
         this.assertTrue(widget.hasCssClass("exclude"), "Exclude: No exclude class set");
         this.assertEquals("visible", widget._getStyle("visibility"), "Exclude: Visibility style should be null");
         widget.show();
-        this.__P_357_0(widget);
+        this.__P_358_0(widget);
         widget.hide();
         this.assertFalse(widget.isVisible(), "Hide: Widget should not be visible");
         this.assertFalse(widget.isExcluded(), "Hide: Widget should not be excluded");
@@ -159,10 +159,10 @@
         this.assertFalse(widget.hasCssClass("exclude"), "Hide: Exclude class set");
         this.assertEquals("hidden", widget._getStyle("visibility"), "Hide: Visibility style should be hidden");
         widget.show();
-        this.__P_357_0(widget);
+        this.__P_358_0(widget);
         widget.destroy();
       },
-      __P_357_0: function __P_357_0(widget) {
+      __P_358_0: function __P_358_0(widget) {
         this.assertTrue(widget.isVisible(), "Show: Widget should be visible");
         this.assertFalse(widget.isExcluded(), "Show: Widget should not be excluded");
         this.assertFalse(widget.isHidden(), "Show: Widget should not be hidden");
@@ -208,4 +208,4 @@
   qx.test.mobile.core.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1731948117661
+//# sourceMappingURL=Widget.js.map?dt=1735222429660

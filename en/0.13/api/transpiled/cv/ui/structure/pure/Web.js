@@ -129,7 +129,10 @@
           var iframe = this.getDomElement().querySelector('iframe');
           this.refreshAction(iframe, iframe.getAttribute('src'));
           // reset the value
-          cv.io.BackendConnections.getClient(addr.backendType).write(address, cv.Transform.encode(addr, 0));
+          var client = cv.io.BackendConnections.getClient(addr.backendType);
+          if (client) {
+            client.write(address, cv.Transform.encode(addr, 0));
+          }
         }
       }
     }
@@ -137,4 +140,4 @@
   cv.ui.structure.pure.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1731948095483
+//# sourceMappingURL=Web.js.map?dt=1735222411033

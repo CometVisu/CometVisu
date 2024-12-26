@@ -86,7 +86,7 @@
     ******************************************************
     */
     members: {
-      __P_56_0: null,
+      __P_57_0: null,
       _domElement: null,
       /**
        * Override DomElement
@@ -96,17 +96,17 @@
         this._domElement = node;
       },
       setParentWidget: function setParentWidget(value) {
-        this.__P_56_0 = value;
+        this.__P_57_0 = value;
       },
       getParentWidget: function getParentWidget() {
-        if (cv.Config.lazyLoading === true && this.__P_56_0 === null && this.getPath() !== 'id_') {
+        if (cv.Config.lazyLoading === true && this.__P_57_0 === null && this.getPath() !== 'id_') {
           // creating parent widget on demand
           var parentData = cv.util.Tree.getParentData(this.getPath());
           // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
           var parent = cv.ui.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
           this.setParentWidget(parent);
         }
-        return this.__P_56_0;
+        return this.__P_57_0;
       },
       /**
        * Returns the DOMElement of this widget
@@ -158,4 +158,4 @@
   cv.ui.structure.pure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1731948094566
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1735222410256

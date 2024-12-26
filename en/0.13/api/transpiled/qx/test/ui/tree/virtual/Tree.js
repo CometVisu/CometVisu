@@ -95,57 +95,57 @@
         var root = this.createModelAndSetModel(2);
         var expected = this.getVisibleItemsFrom(root, [root]);
         qx.lang.Array.insertAt(expected, root, 0);
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
       testBuildLookupTableWithOpenNodes: function testBuildLookupTableWithOpenNodes() {
         var root = this.createModelAndSetModel(3);
         var nodesToOpen = [root, root.getChildren().getItem(4), root.getChildren().getItem(4).getChildren().getItem(2)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         var expected = this.getVisibleItemsFrom(root, nodesToOpen);
         qx.lang.Array.insertAt(expected, root, 0);
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
       testBuildLookupTableWithRemovedNodes: function testBuildLookupTableWithRemovedNodes() {
         var root = this.createModelAndSetModel(3);
         var nodesToOpen = [root, root.getChildren().getItem(4), root.getChildren().getItem(4).getChildren().getItem(2)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.tree.closeNode(nodesToOpen[nodesToOpen.length - 1]);
         nodesToOpen.pop();
         var expected = this.getVisibleItemsFrom(root, nodesToOpen);
         qx.lang.Array.insertAt(expected, root, 0);
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
       testBuildLookupTableWithClosedRoot: function testBuildLookupTableWithClosedRoot() {
         var root = this.createModelAndSetModel(1);
         this.tree.closeNode(root);
-        this.__P_437_0([root]);
+        this.__P_438_0([root]);
       },
       testBuildLookupTableWithNoModel: function testBuildLookupTableWithNoModel() {
         this.createModelAndSetModel(1);
         this.tree.setModel(null);
-        this.__P_437_0([]);
+        this.__P_438_0([]);
       },
       testBuildLookupTableOnModelChange: function testBuildLookupTableOnModelChange() {
         var root = this.createModelAndSetModel(1);
         var nodesToOpen = [root, root.getChildren().getItem(2)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         var newBranch = new qx.test.ui.tree.virtual.Node("New Branch");
         this._createNodes(newBranch, 2);
         root.getChildren().getItem(2).getChildren().push(newBranch);
         var expected = this.getVisibleItemsFrom(root, nodesToOpen);
         qx.lang.Array.insertAt(expected, root, 0);
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
       testBuildLookupTableWithHiddenRoot: function testBuildLookupTableWithHiddenRoot() {
         var root = this.createModelAndSetModel(1);
         this.tree.setHideRoot(true);
         var expected = this.getVisibleItemsFrom(root, [root]);
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
       testBuildLookupWithoutLeafs: function testBuildLookupWithoutLeafs() {
         var root = this.createModelAndSetModel(2);
         var nodesToOpen = [root, root.getChildren().getItem(2)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.tree.setShowLeafs(false);
         var allVisibleItems = this.getVisibleItemsFrom(root, nodesToOpen);
         qx.lang.Array.insertAt(allVisibleItems, root, 0);
@@ -156,9 +156,9 @@
             expected.push(item);
           }
         }
-        this.__P_437_0(expected);
+        this.__P_438_0(expected);
       },
-      __P_437_0: function __P_437_0(expected) {
+      __P_438_0: function __P_438_0(expected) {
         this.assertArrayEquals(expected, this.tree.getLookupTable().toArray());
         this.assertEquals(expected.length, this.tree.getPane().getRowConfig().getItemCount());
       },
@@ -192,10 +192,10 @@
         var root = this.createModelAndSetModel(2);
         var spy = this.spy(this.tree, "buildLookupTable");
         var removed = root.getChildren().getItem(2).getChildren().removeAll();
-        this.__P_437_2(removed);
+        this.__P_438_2(removed);
         this.assertCalledOnce(spy);
         removed = root.getChildren().removeAll();
-        this.__P_437_2(removed);
+        this.__P_438_2(removed);
         this.assertCalledTwice(spy);
       },
       testChangeBubblesChangeProperty: function testChangeBubblesChangeProperty() {
@@ -220,7 +220,7 @@
       testIsNodeOpen: function testIsNodeOpen() {
         var root = this.createModelAndSetModel(2);
         var nodesToOpen = [root, root.getChildren().getItem(0)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.assertTrue(this.tree.isNodeOpen(nodesToOpen[0]));
         this.assertTrue(this.tree.isNodeOpen(nodesToOpen[1]));
         this.assertFalse(this.tree.isNodeOpen(root.getChildren().getItem(1)));
@@ -228,7 +228,7 @@
       testOpenNode: function testOpenNode() {
         var root = this.createModelAndSetModel(3);
         var nodesToOpen = [root, root.getChildren().getItem(0)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.assertArrayEquals(nodesToOpen, this.tree.getOpenNodes());
         this.tree.openNode(nodesToOpen[1]);
         this.assertArrayEquals(nodesToOpen, this.tree.getOpenNodes());
@@ -236,7 +236,7 @@
       testCloseNode: function testCloseNode() {
         var root = this.createModelAndSetModel(2);
         var nodesToOpen = [root, root.getChildren().getItem(0)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.assertArrayEquals(nodesToOpen, this.tree.getOpenNodes());
         this.tree.closeNode(nodesToOpen[1]);
         nodesToOpen.pop();
@@ -245,7 +245,7 @@
       testCloseNodeWithRoot: function testCloseNodeWithRoot() {
         var root = this.createModelAndSetModel(2);
         var nodesToOpen = [root, root.getChildren().getItem(0)];
-        this.__P_437_1(nodesToOpen);
+        this.__P_438_1(nodesToOpen);
         this.assertArrayEquals(nodesToOpen, this.tree.getOpenNodes());
         this.tree.closeNode(nodesToOpen[1]);
         this.tree.closeNode(nodesToOpen[0]);
@@ -272,20 +272,20 @@
       testGetLevel: function testGetLevel() {
         var root = this.createModelAndSetModel(3);
         var nodesToOpen = [root, root.getChildren().getItem(2), root.getChildren().getItem(2).getChildren().getItem(3), root.getChildren().getItem(2).getChildren().getItem(3).getChildren().getItem(1)];
-        this.__P_437_1(nodesToOpen);
-        this.assertEquals(0, this.tree.getLevel(this.__P_437_3(nodesToOpen[0])));
-        this.assertEquals(1, this.tree.getLevel(this.__P_437_3(nodesToOpen[1])));
-        this.assertEquals(2, this.tree.getLevel(this.__P_437_3(nodesToOpen[2])));
-        this.assertEquals(3, this.tree.getLevel(this.__P_437_3(nodesToOpen[3])));
-        this.assertEquals(4, this.tree.getLevel(this.__P_437_3(nodesToOpen[3].getChildren().getItem(4))));
+        this.__P_438_1(nodesToOpen);
+        this.assertEquals(0, this.tree.getLevel(this.__P_438_3(nodesToOpen[0])));
+        this.assertEquals(1, this.tree.getLevel(this.__P_438_3(nodesToOpen[1])));
+        this.assertEquals(2, this.tree.getLevel(this.__P_438_3(nodesToOpen[2])));
+        this.assertEquals(3, this.tree.getLevel(this.__P_438_3(nodesToOpen[3])));
+        this.assertEquals(4, this.tree.getLevel(this.__P_438_3(nodesToOpen[3].getChildren().getItem(4))));
       },
       testGetLevelWithHiddenRoot: function testGetLevelWithHiddenRoot() {
         var root = this.createModelAndSetModel(1);
         this.tree.openNode(root.getChildren().getItem(4));
         this.tree.setHideRoot(true);
         var excpected = [root.getChildren().getItem(4), root.getChildren().getItem(4).getChildren().getItem(2)];
-        this.assertEquals(0, this.tree.getLevel(this.__P_437_3(excpected[0])));
-        this.assertEquals(1, this.tree.getLevel(this.__P_437_3(excpected[1])));
+        this.assertEquals(0, this.tree.getLevel(this.__P_438_3(excpected[0])));
+        this.assertEquals(1, this.tree.getLevel(this.__P_438_3(excpected[1])));
       },
       testHasChildren: function testHasChildren() {
         var root = this.createModelAndSetModel(1);
@@ -310,17 +310,17 @@
       },
       testSetOpenModeWithTap: function testSetOpenModeWithTap() {
         this.tree.setOpenMode("tap");
-        this.__P_437_4(false, true);
+        this.__P_438_4(false, true);
         this.tree.resetOpenMode();
-        this.__P_437_4(true, false);
+        this.__P_438_4(true, false);
       },
       testSetOpenModeWithNone: function testSetOpenModeWithNone() {
         this.tree.setOpenMode("none");
-        this.__P_437_4(false, false);
+        this.__P_438_4(false, false);
         this.tree.resetOpenMode();
-        this.__P_437_4(true, false);
+        this.__P_438_4(true, false);
       },
-      __P_437_4: function __P_437_4(dbltap, tap) {
+      __P_438_4: function __P_438_4(dbltap, tap) {
         var pane = this.tree.getPane();
         this.assertEquals(dbltap, pane.hasListener("cellDbltap"), "Expected " + (dbltap ? "" : "no ") + " listener for 'cellDbltap'!");
         this.assertEquals(tap, pane.hasListener("cellTap"), "Expected " + (tap ? "" : "no ") + " listener for 'cellTap'!");
@@ -381,7 +381,7 @@
         HELPER METHOD TO CALCULATE THE VISIBLE ITEMS
       ---------------------------------------------------------------------------
       */
-      __P_437_3: function __P_437_3(item) {
+      __P_438_3: function __P_438_3(item) {
         return this.tree.getLookupTable().indexOf(item);
       },
       /*
@@ -389,12 +389,12 @@
         HELPER METHOD TO OPEN NODES ON TREE
       ---------------------------------------------------------------------------
       */
-      __P_437_1: function __P_437_1(nodes) {
+      __P_438_1: function __P_438_1(nodes) {
         for (var i = 0; i < nodes.length; i++) {
           this.tree.openNodeWithoutScrolling(nodes[i]);
         }
       },
-      __P_437_2: function __P_437_2(nativeArray) {
+      __P_438_2: function __P_438_2(nativeArray) {
         for (var i = 0; i < nativeArray.length; i++) {
           nativeArray[i].dispose();
         }
@@ -404,4 +404,4 @@
   qx.test.ui.tree.virtual.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1731948121674
+//# sourceMappingURL=Tree.js.map?dt=1735222433004

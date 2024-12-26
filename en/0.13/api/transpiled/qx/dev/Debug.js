@@ -303,8 +303,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       startDisposeProfiling: qx.core.Environment.select("qx.debug.dispose", {
         "true": function _true() {
           this.disposeProfilingActive = true;
-          this.__P_192_0 = qx.core.ObjectRegistry.getNextHash();
-          return this.__P_192_0;
+          this.__P_193_0 = qx.core.ObjectRegistry.getNextHash();
+          return this.__P_193_0;
         },
         "default": function _default() {}
       }),
@@ -325,15 +325,15 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       stopDisposeProfiling: qx.core.Environment.select("qx.debug.dispose", {
         "true": function _true(checkFunction, startHandle) {
-          if (!this.__P_192_0) {
+          if (!this.__P_193_0) {
             qx.log.Logger.error("Call " + this.classname + ".startDisposeProfiling first.");
             return [];
           }
 
           //qx.core.ObjectRegistry.saveStackTraces = false;
           this.disposeProfilingActive = false;
-          var undisposedObjects = this.showDisposeProfiling(checkFunction, startHandle || this.__P_192_0);
-          delete this.__P_192_0;
+          var undisposedObjects = this.showDisposeProfiling(checkFunction, startHandle || this.__P_193_0);
+          delete this.__P_193_0;
           return undisposedObjects;
         },
         "default": function _default() {}
@@ -366,7 +366,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           var nextHashLast = qx.core.ObjectRegistry.getNextHash();
           var postId = qx.core.ObjectRegistry.getPostId();
           var traces = qx.core.ObjectRegistry.getStackTraces();
-          for (var hash = this.__P_192_0; hash < nextHashLast; hash++) {
+          for (var hash = this.__P_193_0; hash < nextHashLast; hash++) {
             var obj = qx.core.ObjectRegistry.fromHashCode(hash + postId);
             if (obj && obj.isDisposed && !obj.isDisposed()) {
               // User-defined check
@@ -412,4 +412,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.dev.Debug.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Debug.js.map?dt=1731948103816
+//# sourceMappingURL=Debug.js.map?dt=1735222418074

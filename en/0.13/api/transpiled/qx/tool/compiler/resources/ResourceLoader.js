@@ -53,11 +53,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(match, manager) {
       qx.tool.compiler.resources.AbstractMatcher.constructor.call(this, match);
-      this.__P_496_0 = manager;
+      this.__P_497_0 = manager;
     },
     members: {
       /** @type{qx.tool.compiler.resources.Manager} the resource manager this loader belongs to */
-      __P_496_0: null,
+      __P_497_0: null,
       /**
        * Detects whether the file needs to be recompiled/coverted/analysed/ etc; this should
        * not take any time or be asynchronous, if you need to do any real work it should be
@@ -100,11 +100,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {qx.tool.compiler.resources.Manager} the manager
        */
       getManager: function getManager() {
-        return this.__P_496_0;
+        return this.__P_497_0;
       }
     }
   });
   qx.tool.compiler.resources.ResourceLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceLoader.js.map?dt=1731948130021
+//# sourceMappingURL=ResourceLoader.js.map?dt=1735222439906

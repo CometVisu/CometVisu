@@ -197,29 +197,29 @@
     ******************************************************
     */
     members: {
-      __P_15_0: null,
-      __P_15_1: null,
-      __P_15_2: null,
-      __P_15_3: null,
-      __P_15_4: false,
-      __P_15_5: null,
-      __P_15_6: null,
-      __P_15_7: null,
-      __P_15_8: null,
+      __P_16_0: null,
+      __P_16_1: null,
+      __P_16_2: null,
+      __P_16_3: null,
+      __P_16_4: false,
+      __P_16_5: null,
+      __P_16_6: null,
+      __P_16_7: null,
+      __P_16_8: null,
       /**
        * Strip querystring from URL and store it as Map
        * @param value {String} URL
        * @return {String} normalized URL
        */
       normalizeUrl: function normalizeUrl(value) {
-        this.__P_15_3 = {};
+        this.__P_16_3 = {};
         if (value && value.indexOf('?') > 0) {
           var parts = qx.util.Uri.parseUri(value);
           value = value.substring(0, value.indexOf('?'));
-          this.__P_15_3 = parts.queryKey;
+          this.__P_16_3 = parts.queryKey;
         }
         if (this.getDatabase()) {
-          this.__P_15_3.database = this.getDatabase();
+          this.__P_16_3.database = this.getDatabase();
         }
         return value;
       },
@@ -228,7 +228,7 @@
         if (value.match(/rsslog_mysql\.php/)) {
           this.error('Use of rsslog_mysql.php is depreciated. Please consult the documentation.');
         }
-        this.__P_15_4 = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
+        this.__P_16_4 = !value.match(/rsslog\.php/) && !value.match(/rsslog_mysql\.php/) && !value.match(/rsslog_oh\.php/);
       },
       _getInnerDomString: function _getInnerDomString() {
         var style = '';
@@ -252,11 +252,11 @@
         if (!this.$$domReady) {
           cv.plugins.RssLog.superclass.prototype._onDomReady.call(this);
           qx.event.message.Bus.subscribe('path.' + this.getParentPage().getPath() + '.beforePageChange', this.refreshRSSlog, this);
-          this.__P_15_1 = '<span class="mappedValue"></span><span>{text}</span>';
+          this.__P_16_1 = '<span class="mappedValue"></span><span>{text}</span>';
           if (this.getDatetime()) {
-            this.__P_15_1 = '{date}: ' + this.__P_15_1;
+            this.__P_16_1 = '{date}: ' + this.__P_16_1;
           }
-          this.__P_15_2 = 'li';
+          this.__P_16_2 = 'li';
           if (cv.Config.currentPageId === this.getParentPage().getPath()) {
             this.refreshRSSlog();
           }
@@ -309,7 +309,10 @@
               if (!cv.data.Model.isWriteAddress(adddressSettings)) {
                 continue;
               } // skip when write flag not set
-              cv.io.BackendConnections.getClient(adddressSettings.backendType).write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+              var client = cv.io.BackendConnections.getClient(adddressSettings.backendType);
+              if (client) {
+                client.write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+              }
             }
           }
         }, this);
@@ -322,16 +325,16 @@
           this.error('no src given, aborting RSS-Log refresh');
           return;
         }
-        if (!this.__P_15_0) {
-          if (!this.__P_15_4) {
-            this.__P_15_9();
+        if (!this.__P_16_0) {
+          if (!this.__P_16_4) {
+            this.__P_16_9();
           } else {
             this.error('external sources are no longer supported');
           }
         }
-        this.__P_15_0.setUserData('big', isBig);
-        if (this.__P_15_0 instanceof qx.io.request.Xhr) {
-          this.__P_15_0.send();
+        this.__P_16_0.setUserData('big', isBig);
+        if (this.__P_16_0 instanceof qx.io.request.Xhr) {
+          this.__P_16_0.send();
         }
         var refresh = this.getRefresh();
         if (typeof refresh !== 'undefined' && refresh) {
@@ -344,10 +347,10 @@
       /**
        * Fetch data from builtin PHP script
        */
-      __P_15_9: function __P_15_9() {
+      __P_16_9: function __P_16_9() {
         var _this3 = this;
         var src = this.getSrc();
-        var requestData = Object.assign({}, this.__P_15_3);
+        var requestData = Object.assign({}, this.__P_16_3);
         if (this.getFilter()) {
           requestData.f = this.getFilter();
         }
@@ -358,18 +361,18 @@
           requestData.future = this.getFuture();
         }
         requestData.j = 1;
-        this.__P_15_0 = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
-        this.__P_15_0.set({
+        this.__P_16_0 = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
+        this.__P_16_0.set({
           accept: 'application/json',
           requestData: requestData,
           method: 'GET'
         });
-        this.__P_15_0.addListener('success', this.__P_15_10, this);
-        this.__P_15_0.addListener('error', function (ev) {
+        this.__P_16_0.addListener('success', this.__P_16_10, this);
+        this.__P_16_0.addListener('error', function (ev) {
           _this3.error('C: #rss_%s, Error: %s, Feed: %s', _this3.getPath(), ev.getTarget().getResponse(), src);
         });
       },
-      __P_15_11: function __P_15_11(ul, c) {
+      __P_16_11: function __P_16_11(ul, c) {
         c.replaceChildren(); // delete anything inside
 
         c.appendChild(ul);
@@ -396,7 +399,7 @@
         c.dataset.last_rowcount = displayrows;
         return displayrows;
       },
-      __P_15_10: function __P_15_10(ev) {
+      __P_16_10: function __P_16_10(ev) {
         var result = ev.getTarget().getResponse();
         if (typeof result === 'string') {
           // no json -> error
@@ -404,16 +407,16 @@
           this.error(result);
           return;
         }
-        this.__P_15_12(result.responseData.feed.entries);
+        this.__P_16_12(result.responseData.feed.entries);
       },
-      __P_15_12: function __P_15_12(items) {
-        var isBig = this.__P_15_0.getUserData('big');
+      __P_16_12: function __P_16_12(items) {
+        var isBig = this.__P_16_0.getUserData('big');
         var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
         var c = document.querySelector(selector);
         var itemack = isBig === true ? this.getItemack() : this.getItemack() === 'modify' ? 'display' : this.getItemack();
         this.debug('ID: ' + c.getAttribute('id') + ', Feed: ' + this.getSrc());
         var ul = document.createElement('ul');
-        var displayrows = this.__P_15_11(ul, c);
+        var displayrows = this.__P_16_11(ul, c);
         var itemnum = items.length;
         this.debug('C: #' + this.getPath() + ', ' + itemnum + ' element(s) found, ' + displayrows + ' displayrow(s) available');
         var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
@@ -434,16 +437,16 @@
         var row = 'rsslogodd';
         var last = itemoffset + displayrows;
         last = last > itemnum ? itemnum : last;
-        this.__P_15_5 = new Date().strftime('%d');
-        this.__P_15_6 = false;
-        this.__P_15_8 = false;
-        this.__P_15_7 = false;
+        this.__P_16_5 = new Date().strftime('%d');
+        this.__P_16_6 = false;
+        this.__P_16_8 = false;
+        this.__P_16_7 = false;
         for (var i = itemoffset; i < last; i++) {
           this.debug('C: #' + this.getPath() + ', processing item: ' + i + ' of ' + itemnum);
           var idx = i;
           idx = i >= itemnum ? idx -= itemnum : idx;
           var item = items[idx];
-          var itemHtml = this.__P_15_13(item, isBig);
+          var itemHtml = this.__P_16_13(item, isBig);
           var rowElem = qx.dom.Element.create('li', {
             "class": 'rsslogRow ' + row
           });
@@ -453,16 +456,16 @@
             var span = rowElem.querySelector('.mappedValue');
             this.defaultValue2DOM(mappedValue, span);
           }
-          if (this.__P_15_6 && idx !== 0) {
+          if (this.__P_16_6 && idx !== 0) {
             rowElem.classList.add('rsslog_separator');
-            this.__P_15_8 = true;
+            this.__P_16_8 = true;
           } else {
-            this.__P_15_8 = false;
+            this.__P_16_8 = false;
           }
-          if (this.__P_15_8 === true) {
+          if (this.__P_16_8 === true) {
             rowElem.classList.add('rsslog_prevday');
           }
-          if (this.__P_15_7) {
+          if (this.__P_16_7) {
             rowElem.classList.add(row === 'rsslogodd' ? 'rsslog_futureeven' : 'rsslog_futureodd');
           }
           rowElem.dataset.id = item.id;
@@ -494,18 +497,18 @@
           row = row === 'rsslogodd' ? 'rsslogeven' : 'rsslogodd';
         }
       },
-      __P_15_13: function __P_15_13(item, isBig) {
+      __P_16_13: function __P_16_13(item, isBig) {
         var itemHtml = '';
-        if (!this.__P_15_4) {
-          itemHtml = this.__P_15_1;
+        if (!this.__P_16_4) {
+          itemHtml = this.__P_16_1;
           itemHtml = itemHtml.replace(/\{text\}/, item.content);
           var entryDate = new Date(item.publishedDate);
           if (entryDate) {
             itemHtml = this.getTimeformat() ? itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;') : itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
             var thisday = entryDate.strftime('%d');
-            this.__P_15_6 = this.__P_15_5 > 0 && this.__P_15_5 !== thisday;
-            this.__P_15_5 = thisday;
-            this.__P_15_7 = entryDate > new Date();
+            this.__P_16_6 = this.__P_16_5 > 0 && this.__P_16_5 !== thisday;
+            this.__P_16_5 = thisday;
+            this.__P_16_7 = entryDate > new Date();
           } else {
             itemHtml = itemHtml.replace(/\{date\}/, '');
           }
@@ -529,10 +532,10 @@
           span.replaceChildren(); // delete anything inside
           this.defaultValue2DOM(mappedValue, span);
         }
-        var req = new qx.io.request.Xhr(this.__P_15_0.getUrl());
+        var req = new qx.io.request.Xhr(this.__P_16_0.getUrl());
         req.set({
           method: 'GET',
-          requestData: Object.assign({}, this.__P_15_3, {
+          requestData: Object.assign({}, this.__P_16_3, {
             u: id,
             state: state
           }),
@@ -551,4 +554,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1731948090960
+//# sourceMappingURL=RssLog.js.map?dt=1735222407168

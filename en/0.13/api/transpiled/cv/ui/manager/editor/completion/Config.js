@@ -66,8 +66,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_36_0 = {};
-      this.__P_36_1 = {};
+      this.__P_37_0 = {};
+      this.__P_37_1 = {};
       this._dataProvider = cv.ui.manager.editor.data.Provider.getInstance();
     },
     /*
@@ -89,16 +89,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     members: {
       _schemas: null,
-      __P_36_2: null,
-      __P_36_0: null,
-      __P_36_3: null,
+      __P_37_2: null,
+      __P_37_0: null,
+      __P_37_3: null,
       _dataProvider: null,
-      __P_36_4: null,
-      __P_36_5: null,
+      __P_37_4: null,
+      __P_37_5: null,
       _getSuggestions: null,
       _applyCurrentPath: function _applyCurrentPath() {
-        this.__P_36_2 = null;
-        this.__P_36_4 = '';
+        this.__P_37_2 = null;
+        this.__P_37_4 = '';
       },
       setStructure: function setStructure(name) {
         var _this = this;
@@ -107,7 +107,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                loaded = Object.prototype.hasOwnProperty.call(_this.__P_36_1, name);
+                loaded = Object.prototype.hasOwnProperty.call(_this.__P_37_1, name);
                 _context.t0 = name;
                 _context.next = _context.t0 === 'pure' ? 4 : _context.t0 === 'tile' ? 13 : 22;
                 break;
@@ -119,11 +119,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.next = 7;
                 return cv.ui.manager.model.Schema.getInstance('visu_config.xsd');
               case 7:
-                _this.__P_36_1.pure = _context.sent;
+                _this.__P_37_1.pure = _context.sent;
               case 8:
-                _this.__P_36_2 = _this.__P_36_1.pure;
-                _this.__P_36_4 = 'pages';
-                _this.__P_36_5 = 'meta';
+                _this.__P_37_2 = _this.__P_37_1.pure;
+                _this.__P_37_4 = 'pages';
+                _this.__P_37_5 = 'meta';
                 _this._getSuggestions = _this.providePureCompletionItems;
                 return _context.abrupt("break", 22);
               case 13:
@@ -134,11 +134,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.next = 16;
                 return cv.ui.manager.model.Schema.getInstance('visu_config_tile.xsd');
               case 16:
-                _this.__P_36_1.tile = _context.sent;
+                _this.__P_37_1.tile = _context.sent;
               case 17:
-                _this.__P_36_2 = _this.__P_36_1.tile;
-                _this.__P_36_4 = 'config';
-                _this.__P_36_5 = 'cv-meta';
+                _this.__P_37_2 = _this.__P_37_1.tile;
+                _this.__P_37_4 = 'config';
+                _this.__P_37_5 = 'cv-meta';
                 _this._getSuggestions = _this.provideTileCompletionItems;
                 return _context.abrupt("break", 22);
               case 22:
@@ -214,7 +214,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return null;
       },
       findElements: function findElements(parent, elementName, maxDepth, currentDepth, inMeta) {
-        var cache = inMeta === true ? this.__P_36_3 : this.__P_36_0;
+        var cache = inMeta === true ? this.__P_37_3 : this.__P_37_0;
         if (elementName in cache) {
           return cache[elementName];
         }
@@ -222,7 +222,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return null;
         }
         if (!parent) {
-          parent = this.__P_36_2.getElementNode(this.__P_36_4);
+          parent = this.__P_37_2.getElementNode(this.__P_37_4);
         }
         if (currentDepth === undefined) {
           currentDepth = 1;
@@ -231,11 +231,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
         if (elementName in allowedElements) {
           // console.log("found "+elementName+" in tree level "+currentDepth);
-          this.__P_36_0[elementName] = allowedElements[elementName];
+          this.__P_37_0[elementName] = allowedElements[elementName];
           return allowedElements[elementName];
         }
         for (var element in allowedElements) {
-          if (inMeta !== true && element === this.__P_36_5) {
+          if (inMeta !== true && element === this.__P_37_5) {
             continue;
           }
           if (maxDepth > currentDepth) {
@@ -393,7 +393,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   case 0:
                     this.setCurrentPath(model.uri.toString());
                     completeText = model.getValue();
-                    if (this.__P_36_2) {
+                    if (this.__P_37_2) {
                       _context3.next = 5;
                       break;
                     }
@@ -678,7 +678,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             };
           });
         }
-        var currentItem = this.findElements(this.__P_36_2.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta'));
+        var currentItem = this.findElements(this.__P_37_2.getElementNode('pages'), searchedElement, openedTags.length, openedTags.includes('meta'));
 
         // return available elements/attributes if the tag exists in the schema, or an empty
         // array if it doesn't
@@ -877,7 +877,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             };
           });
         }
-        var currentItem = this.findElements(this.__P_36_2.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta'));
+        var currentItem = this.findElements(this.__P_37_2.getElementNode('config'), searchedElement, openedTags.length, openedTags.includes('cv-meta'));
 
         // return available elements/attributes if the tag exists in the schema, or an empty
         // array if it doesn't
@@ -923,7 +923,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_36_0 = null;
+      this.__P_37_0 = null;
       this._schema = null;
       this._dataProvider = null;
     }
@@ -931,4 +931,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1731948092994
+//# sourceMappingURL=Config.js.map?dt=1735222408935

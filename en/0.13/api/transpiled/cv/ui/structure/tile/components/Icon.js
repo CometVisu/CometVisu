@@ -89,7 +89,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_80_0: false,
+      __P_81_0: false,
       _idRegex: null,
       _transformId: function _transformId(value) {
         if (this._idRegex.test(value)) {
@@ -102,7 +102,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         cv.ui.structure.tile.components.Icon.superclass.prototype._init.call(this);
         var element = this._element;
         if (element.textContent.trim()) {
-          this.__P_80_0 = true;
+          this.__P_81_0 = true;
           this.setId(element.textContent.trim());
         } else {
           var it = element.classList.values();
@@ -122,11 +122,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             _iterator.f();
           }
         }
-        this.__P_80_0 = true;
+        this.__P_81_0 = true;
       },
       _applyId: function _applyId(value, oldValue) {
         var element = this._element;
-        if (this.__P_80_0) {
+        if (this.__P_81_0) {
           if (oldValue) {
             element.classList.remove(oldValue);
           }
@@ -174,4 +174,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1731948096755
+//# sourceMappingURL=Icon.js.map?dt=1735222412130

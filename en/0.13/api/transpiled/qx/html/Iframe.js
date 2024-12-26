@@ -54,7 +54,7 @@
       qx.html.Element.constructor.call(this, "iframe", styles, attributes);
       this.registerProperty("source", null, this._setSourceProperty);
       this.setSource(url);
-      this.addListener("navigate", this.__P_246_0, this);
+      this.addListener("navigate", this.__P_247_0, this);
 
       // add yourself to the element queue to enforce the creation of DOM element
       qx.html.Element._modified[this.toHashCode()] = this;
@@ -218,7 +218,7 @@
        *
        * @param e {qx.event.type.Data} navigate event
        */
-      __P_246_0: function __P_246_0(e) {
+      __P_247_0: function __P_247_0(e) {
         var actualUrl = e.getData();
         if (actualUrl) {
           this.setSource(actualUrl);
@@ -229,4 +229,4 @@
   qx.html.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1731948108429
+//# sourceMappingURL=Iframe.js.map?dt=1735222422201

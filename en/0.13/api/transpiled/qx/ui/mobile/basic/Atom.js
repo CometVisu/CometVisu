@@ -67,7 +67,7 @@
      */
     construct: function construct(label, icon) {
       qx.ui.mobile.core.Widget.constructor.call(this);
-      this.__P_609_0(label, icon);
+      this.__P_610_0(label, icon);
       this.addCssClass("gap");
     },
     /*
@@ -117,51 +117,51 @@
       }
     },
     members: {
-      __P_609_1: null,
-      __P_609_2: null,
-      __P_609_3: null,
-      __P_609_4: null,
+      __P_610_1: null,
+      __P_610_2: null,
+      __P_610_3: null,
+      __P_610_4: null,
       // property apply
       _applyIconPosition: function _applyIconPosition(value, old) {
         var verticalLayout = ["top", "bottom"].indexOf(value) != -1;
-        var hasNoLabel = !this.__P_609_2;
-        this.__P_609_5(verticalLayout, hasNoLabel);
+        var hasNoLabel = !this.__P_610_2;
+        this.__P_610_5(verticalLayout, hasNoLabel);
         var isReverse = ["right", "bottom"].indexOf(value) != -1;
-        this.__P_609_4.setLayout(this.__P_609_1);
-        this.__P_609_1.setReversed(isReverse);
+        this.__P_610_4.setLayout(this.__P_610_1);
+        this.__P_610_1.setReversed(isReverse);
         this._domUpdated();
       },
       // property apply
       _applyShow: function _applyShow(value, old) {
-        if (this.__P_609_2) {
+        if (this.__P_610_2) {
           if (value === "both" || value === "label") {
-            this.__P_609_2.show();
+            this.__P_610_2.show();
           } else if (value === "icon") {
-            this.__P_609_2.exclude();
+            this.__P_610_2.exclude();
           }
         }
-        if (this.__P_609_3) {
+        if (this.__P_610_3) {
           if (value === "both" || value === "icon") {
-            this.__P_609_3.show();
+            this.__P_610_3.show();
           } else if (value === "label") {
-            this.__P_609_3.exclude();
+            this.__P_610_3.exclude();
           }
         }
       },
       // property apply
       _applyLabel: function _applyLabel(value, old) {
-        if (this.__P_609_2) {
-          this.__P_609_2.setValue(value);
+        if (this.__P_610_2) {
+          this.__P_610_2.setValue(value);
         } else {
-          this.__P_609_2 = this._createLabelWidget(value);
+          this.__P_610_2 = this._createLabelWidget(value);
         }
       },
       // property apply
       _applyIcon: function _applyIcon(value, old) {
-        if (this.__P_609_3) {
-          this.__P_609_3.setSource(value);
+        if (this.__P_610_3) {
+          this.__P_610_3.setSource(value);
         } else {
-          this.__P_609_3 = this._createIconWidget(value);
+          this.__P_610_3 = this._createIconWidget(value);
         }
       },
       /**
@@ -171,30 +171,30 @@
        * @param verticalLayout {Boolean} Whether icon and label should be vertically aligned.
        * @param hasNoLabel {Boolean} Whether the atom currently contains a label.
        */
-      __P_609_5: function __P_609_5(verticalLayout, hasNoLabel) {
+      __P_610_5: function __P_610_5(verticalLayout, hasNoLabel) {
         if (verticalLayout || hasNoLabel) {
-          if (this.__P_609_1) {
-            if (this.__P_609_1.classname !== "qx.ui.mobile.layout.VBox") {
-              this.__P_609_1.dispose();
-              this.__P_609_1 = new qx.ui.mobile.layout.VBox();
+          if (this.__P_610_1) {
+            if (this.__P_610_1.classname !== "qx.ui.mobile.layout.VBox") {
+              this.__P_610_1.dispose();
+              this.__P_610_1 = new qx.ui.mobile.layout.VBox();
             }
           }
           // layout == null
           else {
-            this.__P_609_1 = new qx.ui.mobile.layout.VBox();
+            this.__P_610_1 = new qx.ui.mobile.layout.VBox();
           }
         }
         // horizontal layout and has label
         else {
-          if (this.__P_609_1) {
-            if (this.__P_609_1.classname !== "qx.ui.mobile.layout.HBox") {
-              this.__P_609_1.dispose();
-              this.__P_609_1 = new qx.ui.mobile.layout.HBox();
+          if (this.__P_610_1) {
+            if (this.__P_610_1.classname !== "qx.ui.mobile.layout.HBox") {
+              this.__P_610_1.dispose();
+              this.__P_610_1 = new qx.ui.mobile.layout.HBox();
             }
           }
           // layout == null
           else {
-            this.__P_609_1 = new qx.ui.mobile.layout.HBox();
+            this.__P_610_1 = new qx.ui.mobile.layout.HBox();
           }
         }
       },
@@ -204,7 +204,7 @@
        * @return {qx.ui.mobile.basic.Image} The icon widget.
        */
       getIconWidget: function getIconWidget() {
-        return this.__P_609_3;
+        return this.__P_610_3;
       },
       /**
        * Returns the label widget.
@@ -212,7 +212,7 @@
        * @return {qx.ui.mobile.basic.Label} The label widget.
        */
       getLabelWidget: function getLabelWidget() {
-        return this.__P_609_2;
+        return this.__P_610_2;
       },
       /**
        * Creates the icon widget.
@@ -247,43 +247,43 @@
        * @param icon {String} A path to an image resource
        *
        */
-      __P_609_0: function __P_609_0(label, icon) {
-        this.__P_609_2 = this._createLabelWidget(label);
+      __P_610_0: function __P_610_0(label, icon) {
+        this.__P_610_2 = this._createLabelWidget(label);
         if (label) {
           this.setLabel(label);
         }
-        this.__P_609_3 = this._createIconWidget(icon);
+        this.__P_610_3 = this._createIconWidget(icon);
         if (icon) {
           this.setIcon(icon);
         } else {
-          this.__P_609_3.exclude();
+          this.__P_610_3.exclude();
         }
         var verticalLayout = ["top", "bottom"].indexOf(this.getIconPosition()) != -1;
         // If Atom has no Label, only Icon is shown, and should vertically centered.
-        var hasNoLabel = !this.__P_609_2;
-        this.__P_609_5(verticalLayout, hasNoLabel);
-        if (this.__P_609_4) {
-          this.__P_609_4.dispose();
+        var hasNoLabel = !this.__P_610_2;
+        this.__P_610_5(verticalLayout, hasNoLabel);
+        if (this.__P_610_4) {
+          this.__P_610_4.dispose();
         }
-        this.__P_609_4 = new qx.ui.mobile.container.Composite(this.__P_609_1);
-        this.__P_609_4.addCssClass("qx-flex-center");
-        this.__P_609_4.setAnonymous(true);
-        if (this.__P_609_3) {
-          this.__P_609_4.add(this.__P_609_3);
+        this.__P_610_4 = new qx.ui.mobile.container.Composite(this.__P_610_1);
+        this.__P_610_4.addCssClass("qx-flex-center");
+        this.__P_610_4.setAnonymous(true);
+        if (this.__P_610_3) {
+          this.__P_610_4.add(this.__P_610_3);
         }
-        if (this.__P_609_2) {
-          this.__P_609_2.addCssClass("qx-flex-center");
-          this.__P_609_4.add(this.__P_609_2);
+        if (this.__P_610_2) {
+          this.__P_610_2.addCssClass("qx-flex-center");
+          this.__P_610_4.add(this.__P_610_2);
         }
 
         // Show/Hide Label/Icon
-        if (this.getShow() === "icon" && this.__P_609_2) {
-          this.__P_609_2.exclude();
+        if (this.getShow() === "icon" && this.__P_610_2) {
+          this.__P_610_2.exclude();
         }
-        if (this.getShow() === "label" && this.__P_609_3) {
-          this.__P_609_3.exclude();
+        if (this.getShow() === "label" && this.__P_610_3) {
+          this.__P_610_3.exclude();
         }
-        this._add(this.__P_609_4);
+        this._add(this.__P_610_4);
       }
     },
     /*
@@ -292,10 +292,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_609_1", "__P_609_2", "__P_609_3", "__P_609_4");
+      this._disposeObjects("__P_610_1", "__P_610_2", "__P_610_3", "__P_610_4");
     }
   });
   qx.ui.mobile.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1731948137678
+//# sourceMappingURL=Atom.js.map?dt=1735222446358

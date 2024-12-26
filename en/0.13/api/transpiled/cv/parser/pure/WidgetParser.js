@@ -46,22 +46,22 @@
      ******************************************************
      */
     statics: {
-      __P_9_0: {},
+      __P_10_0: {},
       lookupM: [0, 2, 4, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12],
       lookupS: [0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12],
       model: cv.data.Model.getInstance(),
-      __P_9_1: {},
+      __P_10_1: {},
       getTemplates: function getTemplates() {
-        return this.__P_9_1;
+        return this.__P_10_1;
       },
       addTemplate: function addTemplate(name, templateData) {
-        this.__P_9_1[name] = templateData;
+        this.__P_10_1[name] = templateData;
       },
       addHandler: function addHandler(tagName, handler) {
-        this.__P_9_0[tagName.toLowerCase()] = handler;
+        this.__P_10_0[tagName.toLowerCase()] = handler;
       },
       getHandler: function getHandler(tagName) {
-        return this.__P_9_0[tagName.toLowerCase()] || this.__P_9_0.unknown;
+        return this.__P_10_0[tagName.toLowerCase()] || this.__P_10_0.unknown;
       },
       /**
        * Renders templates into the config file, if they are used
@@ -74,8 +74,8 @@
           Array.prototype.forEach.call(elem.children, function (variable) {
             variables[variable.getAttribute('name')] = variable.innerHTML;
           });
-          if (Object.prototype.hasOwnProperty.call(this.__P_9_1, templateName)) {
-            var renderedString = qx.bom.Template.render(this.__P_9_1[templateName], variables).replace('\n', '').trim();
+          if (Object.prototype.hasOwnProperty.call(this.__P_10_1, templateName)) {
+            var renderedString = qx.bom.Template.render(this.__P_10_1[templateName], variables).replace('\n', '').trim();
             var helperNode = elem.ownerDocument.createElement('template');
             helperNode.innerHTML = renderedString.substring(6, renderedString.length - 7).trim();
             // replace existing element with the rendered templates child
@@ -161,7 +161,7 @@
        * @param handler {Class} parser handler
        * @return {Map} parser configuration: describes how Attributes are mapped to properties
        */
-      __P_9_2: function __P_9_2(handler) {
+      __P_10_2: function __P_10_2(handler) {
         return handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};
       },
       getElementType: function getElementType(element) {
@@ -251,13 +251,13 @@
           defaultValues = {};
         }
         ['x', 'y', 'width', 'height', 'scale', 'rowspan', 'colspan'].forEach(function (prop) {
-          this.__P_9_3(ret_val, prop, layout, defaultValues);
-          this.__P_9_3(ret_val, prop + '-m', layout, defaultValues);
-          this.__P_9_3(ret_val, prop + '-s', layout, defaultValues);
+          this.__P_10_3(ret_val, prop, layout, defaultValues);
+          this.__P_10_3(ret_val, prop + '-m', layout, defaultValues);
+          this.__P_10_3(ret_val, prop + '-s', layout, defaultValues);
         }, this);
         return ret_val;
       },
-      __P_9_3: function __P_9_3(ret_val, property, layout, defaultValues) {
+      __P_10_3: function __P_10_3(ret_val, property, layout, defaultValues) {
         if (layout.getAttribute(property)) {
           ret_val[property] = layout.getAttribute(property);
         } else if (defaultValues[property]) {
@@ -519,4 +519,4 @@
   cv.parser.pure.WidgetParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetParser.js.map?dt=1731948090047
+//# sourceMappingURL=WidgetParser.js.map?dt=1735222406440

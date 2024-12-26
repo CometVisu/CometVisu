@@ -48,7 +48,7 @@
      */
     construct: function construct(styles, attributes) {
       qx.html.Element.constructor.call(this, "canvas", styles, attributes);
-      this.__P_243_0 = document.createElement("canvas");
+      this.__P_244_0 = document.createElement("canvas");
     },
     /*
     *****************************************************************************
@@ -57,10 +57,10 @@
     */
 
     members: {
-      __P_243_0: null,
+      __P_244_0: null,
       // overridden
       _createDomElement: function _createDomElement() {
-        return this.__P_243_0;
+        return this.__P_244_0;
       },
       /**
        * Get the canvas element [<a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas">W3C-HMTL5</a>]
@@ -68,7 +68,7 @@
        * @return {Element} The canvas DOM element.
        */
       getCanvas: function getCanvas() {
-        return this.__P_243_0;
+        return this.__P_244_0;
       },
       /**
        * Set the width attribute of the canvas element. This property controls the
@@ -77,7 +77,7 @@
        * @param width {Integer} canvas width
        */
       setWidth: function setWidth(width) {
-        this.__P_243_0.width = width;
+        this.__P_244_0.width = width;
       },
       /**
        * Get the width attribute of the canvas element
@@ -85,7 +85,7 @@
        * @return {Integer} canvas width
        */
       getWidth: function getWidth() {
-        return this.__P_243_0.width;
+        return this.__P_244_0.width;
       },
       /**
        * Set the height attribute of the canvas element. This property controls the
@@ -94,7 +94,7 @@
        * @param height {Integer} canvas height
        */
       setHeight: function setHeight(height) {
-        this.__P_243_0.height = height;
+        this.__P_244_0.height = height;
       },
       /**
        * Get the height attribute of the canvas element
@@ -102,7 +102,7 @@
        * @return {Integer} canvas height
        */
       getHeight: function getHeight() {
-        return this.__P_243_0.height;
+        return this.__P_244_0.height;
       },
       /**
        * Get the canvas' 2D rendering context
@@ -112,11 +112,11 @@
        * @return {CanvasRenderingContext2D} The 2D rendering context.
        */
       getContext2d: function getContext2d() {
-        return this.__P_243_0.getContext("2d");
+        return this.__P_244_0.getContext("2d");
       }
     }
   });
   qx.html.Canvas.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Canvas.js.map?dt=1731948108218
+//# sourceMappingURL=Canvas.js.map?dt=1735222422029

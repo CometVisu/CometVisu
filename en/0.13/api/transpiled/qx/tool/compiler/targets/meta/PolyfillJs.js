@@ -69,7 +69,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.__P_508_0(path.join(require.resolve("core-js-bundle"), "../minified.js"), ws);
+                return _this.__P_509_0(path.join(require.resolve("core-js-bundle"), "../minified.js"), ws);
               case 2:
                 _context.next = 4;
                 return new Promise(function (resolve) {
@@ -77,7 +77,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 });
               case 4:
                 _context.next = 6;
-                return _this.__P_508_0(path.join(require.resolve("regenerator-runtime"), "../runtime.js"), ws);
+                return _this.__P_509_0(path.join(require.resolve("regenerator-runtime"), "../runtime.js"), ws);
               case 6:
               case "end":
                 return _context.stop();
@@ -85,7 +85,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee);
         }))();
       },
-      __P_508_0: function __P_508_0(srcFilename, ws) {
+      __P_509_0: function __P_509_0(srcFilename, ws) {
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var rs;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -128,4 +128,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.PolyfillJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PolyfillJs.js.map?dt=1731948131302
+//# sourceMappingURL=PolyfillJs.js.map?dt=1735222440970

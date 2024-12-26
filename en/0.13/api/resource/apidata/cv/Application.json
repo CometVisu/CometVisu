@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857559,
-  "lastModifiedIso": "2024-11-18T16:37:37.559Z",
+  "lastModified": 1735222205762,
+  "lastModifiedIso": "2024-12-26T14:10:05.762Z",
   "classFilename": "../../source/class/cv/Application.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1028
     },
     "end": {
-      "line": 1237,
+      "line": 1235,
       "column": 3,
-      "index": 41078
+      "index": 41034
     }
   },
   "className": "cv.Application",
@@ -1099,9 +1099,9 @@
           "index": 24087
         },
         "end": {
-          "line": 803,
+          "line": 801,
           "column": 5,
-          "index": 25481
+          "index": 25437
         }
       },
       "type": "function",
@@ -1135,14 +1135,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 809,
+          "line": 807,
           "column": 4,
-          "index": 25604
+          "index": 25560
         },
         "end": {
-          "line": 898,
+          "line": 896,
           "column": 5,
-          "index": 29220
+          "index": 29176
         }
       },
       "type": "function",
@@ -1181,14 +1181,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 904,
+          "line": 902,
           "column": 4,
-          "index": 29296
+          "index": 29252
         },
         "end": {
-          "line": 917,
+          "line": 915,
           "column": 5,
-          "index": 29770
+          "index": 29726
         }
       },
       "type": "function",
@@ -1228,14 +1228,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 923,
+          "line": 921,
           "column": 4,
-          "index": 29860
+          "index": 29816
         },
         "end": {
-          "line": 930,
+          "line": 928,
           "column": 5,
-          "index": 30080
+          "index": 30036
         }
       },
       "type": "function",
@@ -1265,14 +1265,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 935,
+          "line": 933,
           "column": 4,
-          "index": 30123
+          "index": 30079
         },
         "end": {
-          "line": 1016,
+          "line": 1014,
           "column": 5,
-          "index": 33033
+          "index": 32989
         }
       },
       "type": "function",
@@ -1284,14 +1284,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1018,
+          "line": 1016,
           "column": 4,
-          "index": 33040
+          "index": 32996
         },
         "end": {
-          "line": 1071,
+          "line": 1069,
           "column": 5,
-          "index": 35012
+          "index": 34968
         }
       },
       "type": "function",
@@ -1310,14 +1310,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1073,
+          "line": 1071,
           "column": 4,
-          "index": 35019
+          "index": 34975
         },
         "end": {
-          "line": 1180,
+          "line": 1178,
           "column": 5,
-          "index": 39365
+          "index": 39321
         }
       },
       "type": "function",
@@ -1329,14 +1329,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1182,
+          "line": 1180,
           "column": 4,
-          "index": 39372
+          "index": 39328
         },
         "end": {
-          "line": 1188,
+          "line": 1186,
           "column": 5,
-          "index": 39556
+          "index": 39512
         }
       },
       "type": "function",
@@ -1364,14 +1364,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1193,
+          "line": 1191,
           "column": 4,
-          "index": 39625
+          "index": 39581
         },
         "end": {
-          "line": 1235,
+          "line": 1233,
           "column": 5,
-          "index": 41070
+          "index": 41026
         }
       },
       "type": "function",

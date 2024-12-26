@@ -110,12 +110,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_38_0: null,
-      __P_38_1: null,
+      __P_39_0: null,
+      __P_39_1: null,
       _rootListenerId: null,
       _applyFormData: function _applyFormData(formData, old) {
         var _this = this;
-        this.__P_38_0 = {
+        this.__P_39_0 = {
           map: {},
           inverse: {}
         };
@@ -154,8 +154,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               mappedKey = mappedKey.substr(0, mappedKey.length - 1) + _i++;
             }
             if (mappedKey !== key) {
-              this.__P_38_0.map[mappedKey] = key;
-              this.__P_38_0.inverse[key] = mappedKey;
+              this.__P_39_0.map[mappedKey] = key;
+              this.__P_39_0.inverse[key] = mappedKey;
             }
             modelData[mappedKey] = formData[key].value !== undefined ? formData[key].value : null;
           }
@@ -181,7 +181,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         try {
           var _loop = function _loop() {
             var key = _step2.value;
-            var mappedKey = _this.__P_38_0.inverse[key];
+            var mappedKey = _this.__P_39_0.inverse[key];
             var fieldData = formData[key];
             var formElement = null;
             var elementModel = null;
@@ -283,9 +283,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   selection.addListener('change', function (ev) {
                     var selected = selection.getItem(0);
                     if (selected && selected instanceof cv.ui.manager.form.Option) {
-                      _this.__P_38_1 = selected.getHints();
+                      _this.__P_39_1 = selected.getHints();
                     } else {
-                      _this.__P_38_1 = null;
+                      _this.__P_39_1 = null;
                     }
                   });
                   elementModel = new qx.data.Array();
@@ -633,11 +633,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   var method = fieldData.validation.method;
                   var message = fieldData.validation.invalidMessage;
                   var validationFunc = function validationFunc(validatorObj, value) {
-                    if (!validatorObj.__P_38_2) {
-                      validatorObj.__P_38_2 = true;
+                    if (!validatorObj.__P_39_2) {
+                      validatorObj.__P_39_2 = true;
                       proxy(method, [value], function (valid) {
                         validatorObj.setValid(valid, message || qx.locale.Manager.tr('Value is invalid'));
-                        validatorObj.__P_38_2 = false;
+                        validatorObj.__P_39_2 = false;
                       });
                     }
                   };
@@ -725,16 +725,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         this.hide();
         if (this.getCallback()) {
           var data = qx.util.Serializer.toNativeObject(this.getModel());
-          var mappedNames = Object.keys(this.__P_38_0.map);
+          var mappedNames = Object.keys(this.__P_39_0.map);
           mappedNames.forEach(function (mappedKey) {
             if (Object.prototype.hasOwnProperty.call(data, mappedKey)) {
-              data[_this2.__P_38_0.map[mappedKey]] = data[mappedKey];
+              data[_this2.__P_39_0.map[mappedKey]] = data[mappedKey];
               delete data[mappedKey];
             }
           });
-          if (this.__P_38_1) {
-            Object.keys(this.__P_38_1).forEach(function (name) {
-              return data[name] = _this2.__P_38_1[name];
+          if (this.__P_39_1) {
+            Object.keys(this.__P_39_1).forEach(function (name) {
+              return data[name] = _this2.__P_39_1[name];
             });
           }
           this.getCallback().call(this.getContext(), data);
@@ -757,4 +757,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.manager.form.ElementForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementForm.js.map?dt=1731948093211
+//# sourceMappingURL=ElementForm.js.map?dt=1735222409120

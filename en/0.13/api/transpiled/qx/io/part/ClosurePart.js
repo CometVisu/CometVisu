@@ -49,7 +49,7 @@
       qx.io.part.Part.call(this, name, packages, loader);
     },
     members: {
-      __P_257_0: 0,
+      __P_258_0: 0,
       // overridden
       preload: function preload(callback, self) {
         // store how many packages are already preloaded
@@ -85,7 +85,7 @@
         if (callback) {
           this._appendPartListener(callback, self, this);
         }
-        this.__P_257_0 = this._packages.length;
+        this.__P_258_0 = this._packages.length;
         for (var i = 0; i < this._packages.length; i++) {
           var pkg = this._packages[i];
           var pkgReadyState = pkg.getReadyState();
@@ -103,20 +103,20 @@
             return;
           } else {
             // "complete" and "cached"
-            this.__P_257_0--;
+            this.__P_258_0--;
           }
         }
 
         // execute closures in case everything is already loaded/cached
-        if (this.__P_257_0 <= 0) {
-          this.__P_257_1();
+        if (this.__P_258_0 <= 0) {
+          this.__P_258_1();
         }
       },
       /**
        * Executes the packages in their correct order and marks the part as
        * complete after execution.
        */
-      __P_257_1: function __P_257_1() {
+      __P_258_1: function __P_258_1() {
         for (var i = 0; i < this._packages.length; i++) {
           this._packages[i].execute();
         }
@@ -142,9 +142,9 @@
         }
 
         // every package could be loaded -> execute the closures
-        this.__P_257_0--;
-        if (this.__P_257_0 <= 0) {
-          this.__P_257_1();
+        this.__P_258_0--;
+        if (this.__P_258_0 <= 0) {
+          this.__P_258_1();
         }
       }
     }
@@ -152,4 +152,4 @@
   qx.io.part.ClosurePart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClosurePart.js.map?dt=1731948109131
+//# sourceMappingURL=ClosurePart.js.map?dt=1735222422766

@@ -230,11 +230,11 @@
           while ((hit = lineRe.exec(error.stack)) != null) {
             url = hit[1];
             lineNumber = hit[2];
-            className = this.__P_195_0(url);
+            className = this.__P_196_0(url);
             trace.push(className + ":" + lineNumber);
           }
           if (trace.length > 0) {
-            return this.__P_195_1(trace);
+            return this.__P_196_1(trace);
           }
           /*
            * Chrome trace info comes in three flavors:
@@ -248,12 +248,12 @@
           while ((hit = lineRe.exec(error.stack)) != null) {
             var fileMatch = fileReParens.exec(hit[1]);
             if (fileMatch) {
-              className = this.__P_195_0(fileMatch[2]);
+              className = this.__P_196_0(fileMatch[2]);
               trace.push(className + fileMatch[3]);
             } else {
               fileMatch = fileRe.exec(hit[1]);
               if (fileMatch) {
-                className = this.__P_195_0(fileMatch[1]);
+                className = this.__P_196_0(fileMatch[1]);
                 trace.push(className + fileMatch[2]);
               } else {
                 trace.push(hit[1]);
@@ -276,11 +276,11 @@
             lineNumber = hit[1];
             columnNumber = hit[2];
             url = hit[3];
-            className = this.__P_195_0(url);
+            className = this.__P_196_0(url);
             trace.push(className + ":" + lineNumber + ":" + columnNumber);
           }
           if (trace.length > 0) {
-            return this.__P_195_1(trace);
+            return this.__P_196_1(trace);
           }
 
           // older Opera style
@@ -288,7 +288,7 @@
           while ((hit = lineRe.exec(stacktrace)) != null) {
             lineNumber = hit[1];
             url = hit[2];
-            className = this.__P_195_0(url);
+            className = this.__P_196_0(url);
             trace.push(className + ":" + lineNumber);
           }
         } else if (error.message && error.message.indexOf("Backtrace:") >= 0) {
@@ -299,15 +299,15 @@
             var reResult = lines[i].match(/\s*Line ([0-9]+) of.* (\S.*)/);
             if (reResult && reResult.length >= 2) {
               lineNumber = reResult[1];
-              fileName = this.__P_195_0(reResult[2]);
+              fileName = this.__P_196_0(reResult[2]);
               trace.push(fileName + ":" + lineNumber);
             }
           }
         } else if (error.sourceURL && error.line) {
           // Safari
-          trace.push(this.__P_195_0(error.sourceURL) + ":" + error.line);
+          trace.push(this.__P_196_0(error.sourceURL) + ":" + error.line);
         }
-        return this.__P_195_1(trace);
+        return this.__P_196_1(trace);
       },
       /**
        * Converts the URL of a JavaScript file to a class name using either a
@@ -317,7 +317,7 @@
        * @param fileName {String} URL of the JavaScript file
        * @return {String} Result of the conversion
        */
-      __P_195_0: function __P_195_0(fileName) {
+      __P_196_0: function __P_196_0(fileName) {
         if (typeof qx.dev.StackTrace.FILENAME_TO_CLASSNAME == "function") {
           var convertedName = qx.dev.StackTrace.FILENAME_TO_CLASSNAME(fileName);
           if (false && !qx.lang.Type.isString(convertedName)) {
@@ -325,7 +325,7 @@
           }
           return convertedName;
         }
-        return qx.dev.StackTrace.__P_195_2(fileName);
+        return qx.dev.StackTrace.__P_196_2(fileName);
       },
       /**
        * Converts the URL of a JavaScript file to a class name if the file is
@@ -335,7 +335,7 @@
        * @return {String} class name of the file if conversion was possible.
        * Otherwise the fileName is returned unmodified.
        */
-      __P_195_2: function __P_195_2(fileName) {
+      __P_196_2: function __P_196_2(fileName) {
         var scriptDir = "/source/class/";
         var jsPos = fileName.indexOf(scriptDir);
         if (jsPos < 0) {
@@ -357,7 +357,7 @@
        * @param trace {String[]} Stack trace information
        * @return {String[]} Formatted stack trace info
        */
-      __P_195_1: function __P_195_1(trace) {
+      __P_196_1: function __P_196_1(trace) {
         if (typeof qx.dev.StackTrace.FORMAT_STACKTRACE == "function") {
           trace = qx.dev.StackTrace.FORMAT_STACKTRACE(trace);
           // Can't use qx.core.Assert here since it throws an AssertionError which
@@ -378,4 +378,4 @@
   qx.dev.StackTrace.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StackTrace.js.map?dt=1731948103937
+//# sourceMappingURL=StackTrace.js.map?dt=1735222418172

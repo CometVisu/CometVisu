@@ -117,10 +117,10 @@ by an online translation service.</p>
 <p>The SVG text value component consists of an icon or a title and a value. It forms the technical basis for the
 <a class="reference internal" href="energy-entity.html#tile-component-energy-entity"><span class="std std-ref">Energy Entity component</span></a> and is used in the
 <a class="reference internal" href="../widgets/energy.html#tile-energy"><span class="std std-ref">Energy Widget</span></a>.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id1">
 <img alt="With icon" src="../../../_images/cv-svg-text-value.png" />
 <figcaption>
-<p><span class="caption-text">With icon</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+<p><span class="caption-text">With icon</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-text-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-measure_battery_100&quot;</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
@@ -128,10 +128,10 @@ by an online translation service.</p>
 <span class="nt">&lt;/cv-svg-text-value&gt;</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id2">
 <img alt="With title" src="../../../_images/cv-svg-text-value-title.png" />
 <figcaption>
-<p><span class="caption-text">With title</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+<p><span class="caption-text">With title</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-text-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Battery&quot;</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
@@ -232,7 +232,7 @@ by an online translation service.</p>
 </tr>
 <tr class="row-even"><td><p>mode</p></td>
 <td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
-<td><p>Defines if this address is only used to <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, both <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> or none of them <a href="#id1"><span class="problematic" id="id2">``</span></a>disable`.</p></td>
+<td><p>Defines if this address is only used to <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, both <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> or none of them <code class="docutils literal notranslate"><span class="pre">disable</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>value</p></td>
 <td><p>string</p></td>
@@ -240,7 +240,7 @@ by an online translation service.</p>
 </tr>
 <tr class="row-even"><td><p>on</p></td>
 <td><p><em>click</em>, <em>down</em> or <em>up</em></p></td>
-<td><p>Event on which a <code class="docutils literal notranslate"><span class="pre">value</span></code> should be sent to this address (only useful in mode=``write or <code class="docutils literal notranslate"><span class="pre">readwrite`),</span> <span class="pre">also</span> <span class="pre">needs</span> <span class="pre">``value</span></code>.</p></td>
+<td><p>Event on which a <code class="docutils literal notranslate"><span class="pre">value</span></code> should be sent to this address (only useful in mode <code class="docutils literal notranslate"><span class="pre">write</span></code> or <code class="docutils literal notranslate"><span class="pre">readwrite</span></code>), also needs <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>target</p></td>
 <td><p>string</p></td>

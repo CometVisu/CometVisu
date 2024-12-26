@@ -90,8 +90,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_85_0: null,
-      __P_85_1: null,
+      __P_86_0: null,
+      __P_86_1: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Slider.superclass.prototype._init.call(this);
@@ -110,10 +110,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           input.setAttribute('type', 'range');
           element.insertBefore(input, element.querySelector(':scope > .up'));
           input.oninput = function () {
-            return _this.__P_85_0.call();
+            return _this.__P_86_0.call();
           };
         }
-        this.__P_85_1 = input;
+        this.__P_86_1 = input;
         if (element.hasAttribute('step-width')) {
           this.setStepWidth(parseInt(element.getAttribute('step-width')));
         }
@@ -144,12 +144,12 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       _applyThrottleInterval: function _applyThrottleInterval(value) {
         var _this2 = this;
         if (value > 0) {
-          this.__P_85_0 = cv.util.Function.throttle(this.onInput, value, {
+          this.__P_86_0 = cv.util.Function.throttle(this.onInput, value, {
             trailing: true
           }, this);
         } else {
           // no throttling, direct call
-          this.__P_85_0 = {
+          this.__P_86_0 = {
             call: function call() {
               return _this2.onInput();
             },
@@ -193,17 +193,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       onInput: function onInput() {
-        this.__P_85_2(this.__P_85_1.value);
+        this.__P_86_2(this.__P_86_1.value);
       },
       onDecrease: function onDecrease() {
         var value = this.getValue() - this.getStepWidth();
-        this.__P_85_2(value, 'decrease');
+        this.__P_86_2(value, 'decrease');
       },
       onIncrease: function onIncrease() {
         var value = this.getValue() + this.getStepWidth();
-        this.__P_85_2(value, 'increase');
+        this.__P_86_2(value, 'increase');
       },
-      __P_85_2: function __P_85_2(value, on) {
+      __P_86_2: function __P_86_2(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -233,4 +233,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1731948097323
+//# sourceMappingURL=Slider.js.map?dt=1735222412596

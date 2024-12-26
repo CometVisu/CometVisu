@@ -132,7 +132,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   files[i] = path.join(process.cwd(), files[i]);
                 }
                 _context.next = 5;
-                return _this.__P_467_0(files);
+                return _this.__P_468_0(files);
               case 5:
                 helperFilePath = require.main.path;
               case 6:
@@ -159,7 +159,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context.t0 = Object;
                 _context.t1 = lintOptions.globals || {};
                 _context.next = 21;
-                return _this.__P_467_1(config);
+                return _this.__P_468_1(config);
               case 21:
                 _context.t2 = _context.sent;
                 lintOptions.globals = _context.t0.assign.call(_context.t0, _context.t1, _context.t2);
@@ -281,7 +281,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Object} data
        * @return {Promise<void>}
        */
-      __P_467_1: function __P_467_1(data) {
+      __P_468_1: function __P_468_1(data) {
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var result;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -330,7 +330,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_467_0: function __P_467_0(files) {
+      __P_468_0: function __P_468_0(files) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var fixParams, regex, replaceInFiles;
@@ -362,4 +362,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Lint.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Lint.js.map?dt=1731948126075
+//# sourceMappingURL=Lint.js.map?dt=1735222436533

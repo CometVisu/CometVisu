@@ -10,6 +10,10 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
 function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -58,6 +62,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       "cv.io.timeseries.OpenhabPersistenceSource": {},
       "cv.io.timeseries.RRDSource": {},
       "cv.io.timeseries.DemoSource": {},
+      "cv.io.timeseries.Plugin": {},
       "cv.io.Fetch": {},
       "cv.core.notifications.Router": {},
       "qx.util.format.DateFormat": {},
@@ -194,7 +199,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       currentPeriod: {
         check: 'Number',
         init: 0,
-        apply: "__P_77_0"
+        apply: "__P_78_0"
       },
       startTime: {
         check: 'Number',
@@ -222,12 +227,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _dataSetConfigs: null,
       _initializing: null,
       _navigationEnabled: null,
-      __P_77_1: null,
-      __P_77_2: false,
-      __P_77_3: null,
-      __P_77_4: null,
-      __P_77_5: null,
-      __P_77_6: null,
+      __P_78_1: null,
+      __P_78_2: false,
+      __P_78_3: null,
+      __P_78_4: null,
+      __P_78_5: null,
+      __P_78_6: null,
+      __P_78_7: null,
       /**
       * @type {d3.Selection}
       */
@@ -244,8 +250,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @type {String}
        */
       _titleString: null,
-      __P_77_7: null,
-      __P_77_8: null,
+      __P_78_8: null,
+      __P_78_9: null,
       // all chart properties
       _chartConf: null,
       _init: function _init() {
@@ -257,10 +263,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 _this2._checkEnvironment();
                 _this2._initializing = true;
+                _this2.__P_78_7 = {};
                 element = _this2._element;
-                _context2.next = 5;
+                _context2.next = 6;
                 return cv.ui.structure.tile.components.Chart.JS_LOADED;
-              case 5:
+              case 6:
                 _this2._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
                 element.setAttribute('data-chart-id', _this2._id.toString());
                 inBackground = _this2._element.hasAttribute('background') && _this2._element.getAttribute('background') === 'true';
@@ -442,7 +449,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     return true;
                   }]]);
                 }
-                _this2.__P_77_8 = {
+                _this2.__P_78_9 = {
                   x: function x(d) {
                     return d.time;
                   },
@@ -507,7 +514,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   xPadding: 0.1 // amount of x-range to reserve to separate bars
                 };
                 _this2._initializing = false;
-                _this2.__P_77_9();
+                _this2.__P_78_10();
+                qx.locale.Manager.getInstance().addListener('changeLocale', _this2._onLocaleChanged, _this2);
 
                 // check if we have a read address for live updates
                 datasetSources = Array.from(_this2._element.querySelectorAll(':scope > dataset')).map(function (elem) {
@@ -523,12 +531,30 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     ev.stopPropagation();
                   });
                 }
-              case 34:
+              case 36:
               case "end":
                 return _context2.stop();
             }
           }, _callee2);
         }))();
+      },
+      _onLocaleChanged: function _onLocaleChanged() {
+        this.__P_78_10();
+        var popup = this._headerFooterParent.querySelector('div.popup.series');
+        if (popup) {
+          var _iterator2 = _createForOfIteratorHelper(popup.querySelectorAll('cv-option')),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var option = _step2.value;
+              option.textContent = this._seriesToShort(option.getAttribute('key'));
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+        }
       },
       onStateUpdate: function onStateUpdate(ev) {
         var targetDataset = this._element.querySelector(':scope > dataset[src="' + ev.detail.target + '"]');
@@ -568,7 +594,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       refresh: function refresh() {
         this._loaded = false;
-        this.__P_77_0();
+        this.__P_78_0();
         this._loadData();
       },
       // triggered after a change os series or period
@@ -585,7 +611,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this._loaded = false;
           this._loadData();
         }
-        this.__P_77_9();
+        this.__P_78_10();
       },
       _applyCurrentSeries: function _applyCurrentSeries(series) {
         var currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
@@ -603,9 +629,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             newSelection.setAttribute('selected', 'selected');
           }
         }
-        this.__P_77_0();
+        this.__P_78_0();
       },
-      __P_77_0: function __P_77_0() {
+      __P_78_0: function __P_78_0() {
         var series = this.getCurrentSeries();
         var currentPeriod = this.getCurrentPeriod();
         var end = new Date();
@@ -679,19 +705,37 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return;
         }
         var url;
-        var dataSets = this._element.querySelectorAll(':scope > dataset');
+        var dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
+        var datasetSources = dataSets.map(function (elem) {
+          return elem.getAttribute('src');
+        });
+        var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > h-line, v-line')),
+          _step3;
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var line = _step3.value;
+            if (line.hasAttribute('src') && !datasetSources.includes(line.getAttribute('src'))) {
+              dataSets.push(line);
+            }
+          }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
+        }
         var promises = [];
         if (!this._dataSetConfigs) {
           this._dataSetConfigs = {};
-          var _iterator2 = _createForOfIteratorHelper(dataSets),
-            _step2;
+          var _iterator4 = _createForOfIteratorHelper(dataSets),
+            _step4;
           try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var dataSet = _step2.value;
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+              var dataSet = _step4.value;
               var ts = {
-                showArea: true,
+                showArea: dataSet.localName === 'dataset',
                 color: '#FF9900',
                 chartType: 'line',
+                element: dataSet,
                 title: '',
                 curve: 'linear',
                 aggregationInterval: 0
@@ -719,25 +763,37 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 ts[name] = value;
               }
               var type = ts.src.split('://')[0].toLowerCase();
+              if (type.startsWith('plugin+')) {
+                ts.subType = type.substring(7);
+                type = type.substring(0, 6);
+              }
               ts.type = type;
               var key = ts.src;
               switch (type) {
                 case 'flux':
-                  ts.source = new cv.io.timeseries.FluxSource(ts.src);
+                  ts.source = new cv.io.timeseries.FluxSource(ts.src, this);
                   if (ts.source.isInline()) {
                     var fluxQuery = dataSet.textContent.trim();
                     key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                    if (!this.__P_78_7[ts.src]) {
+                      this.__P_78_7[ts.src] = key;
+                    } else {
+                      this.error("duplicate flux inline source, you must append an unique anchor ID like ".concat(ts.src, "#12345"), ts.src);
+                    }
                     ts.source.setQueryTemplate(fluxQuery);
                   }
                   break;
                 case 'openhab':
-                  ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src);
+                  ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src, this);
                   break;
                 case 'rrd':
-                  ts.source = new cv.io.timeseries.RRDSource(ts.src);
+                  ts.source = new cv.io.timeseries.RRDSource(ts.src, this);
                   break;
                 case 'demo':
-                  ts.source = new cv.io.timeseries.DemoSource(ts.src);
+                  ts.source = new cv.io.timeseries.DemoSource(ts.src, this);
+                  break;
+                case 'plugin':
+                  ts.source = new cv.io.timeseries.Plugin(ts.src, this);
                   break;
                 default:
                   this.error('unknown chart data source type ' + type);
@@ -747,13 +803,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               this._dataSetConfigs[key] = ts;
             }
           } catch (err) {
-            _iterator2.e(err);
+            _iterator4.e(err);
           } finally {
-            _iterator2.f();
+            _iterator4.f();
           }
         }
         var _loop = function _loop() {
-          var ts = _this3._dataSetConfigs[src];
+          var ts = _this3._dataSetConfigs[_key];
           var proxy = false;
           var options = {
             ttl: _this3.getRefresh()
@@ -763,6 +819,28 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             url = config.url;
             proxy = config.proxy;
             options = Object.assign(options, config.options);
+            if (config.fetch === false) {
+              // data retrieval is handled by the source itself
+              promises.push(ts.source.fetchData(_this3.getStartTime(), _this3.getEndTime(), _this3.getCurrentSeries(), _this3.getCurrentPeriod()).then(function (data) {
+                _this3.debug('data successfully loaded by source');
+                if (ts.source) {
+                  data = ts.source.processResponse(data);
+                }
+                if (!_this3._lastRefresh) {
+                  _this3._lastRefresh = Date.now();
+                }
+                return {
+                  data: data || [],
+                  ts: ts
+                };
+              })["catch"](function (err) {
+                _this3._onStatusError(ts, url, err);
+                return {
+                  data: [],
+                  ts: ts
+                };
+              }));
+            }
           }
           if (!url) {
             return 1; // continue
@@ -788,7 +866,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             };
           }));
         };
-        for (var src in this._dataSetConfigs) {
+        for (var _key in this._dataSetConfigs) {
           if (_loop()) continue;
         }
         Promise.all(promises).then(function (responses) {
@@ -798,22 +876,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _onSuccess: function _onSuccess(data) {
         var _this4 = this;
         var chartData = [];
-        var _iterator3 = _createForOfIteratorHelper(data),
-          _step3;
+        var _iterator5 = _createForOfIteratorHelper(data),
+          _step5;
         try {
-          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-            var entry = _step3.value;
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var entry = _step5.value;
             var tsdata = entry.data;
             if (tsdata !== null) {
               // TODO: stacked bar times (entry.ts.chartType === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
               var mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
-              var _iterator4 = _createForOfIteratorHelper(tsdata),
-                _step4;
+              var _iterator6 = _createForOfIteratorHelper(tsdata),
+                _step6;
               try {
-                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                  var _step4$value = _slicedToArray(_step4.value, 2),
-                    time = _step4$value[0],
-                    value = _step4$value[1];
+                for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                  var _step6$value = _slicedToArray(_step6.value, 2),
+                    time = _step6$value[0],
+                    value = _step6$value[1];
                   chartData.push({
                     key: entry.ts.key,
                     src: entry.ts.src,
@@ -822,20 +900,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                 }
               } catch (err) {
-                _iterator4.e(err);
+                _iterator6.e(err);
               } finally {
-                _iterator4.f();
+                _iterator6.f();
               }
             }
           }
         } catch (err) {
-          _iterator3.e(err);
+          _iterator5.e(err);
         } finally {
-          _iterator3.f();
+          _iterator5.f();
         }
         if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
           // no margins
-          this.__P_77_8 = Object.assign(this.__P_77_8, {
+          this.__P_78_9 = Object.assign(this.__P_78_9, {
             marginRight: 0,
             marginBottom: 0,
             marginLeft: 0
@@ -860,9 +938,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _onRendered: function _onRendered(chartData, retries) {
         var _this5 = this;
-        if (this.__P_77_4) {
-          clearTimeout(this.__P_77_4);
-          this.__P_77_4 = null;
+        if (this.__P_78_4) {
+          clearTimeout(this.__P_78_4);
+          this.__P_78_4 = null;
         }
         if (this.isVisible()) {
           var _this$_getSize = this._getSize(),
@@ -871,7 +949,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             height = _this$_getSize2[1];
           if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
             // this makes no sense
-            this.__P_77_4 = setTimeout(function () {
+            this.__P_78_4 = setTimeout(function () {
               _this5._onRendered(chartData, retries > 0 ? retries + 1 : 1);
             }, 150);
           }
@@ -879,8 +957,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             // do nothing, these values are invalid
             return;
           }
-          this.__P_77_8.width = width;
-          this.__P_77_8.height = height;
+          this.__P_78_9.width = width;
+          this.__P_78_9.height = height;
           d3.select(this._element).select('svg').attr('viewBox', "0, 0, ".concat(width, ", ").concat(height));
           if (chartData) {
             this._renderChart(chartData);
@@ -907,7 +985,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         if (!this._element.style.height && (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
           // the parent container has height: auto, so we need to have one
-          this._element.style.height = height + this.__P_77_8.marginTop + this.__P_77_8.marginBottom + 'px';
+          this._element.style.height = height + this.__P_78_9.marginTop + this.__P_78_9.marginBottom + 'px';
         }
         return [width, height];
       },
@@ -971,7 +1049,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _renderChart: function _renderChart(data, single) {
         var _this6 = this;
-        var config = this.__P_77_8;
+        var config = this.__P_78_9;
         var svg = d3.select(this._element).select('svg');
 
         // Compute values.
@@ -1204,7 +1282,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           if (this._chartConf.areaGroups.size > 0) {
             this._chartConf.areaContainer = this._getSvgElement(svg, 'g', ['area'], {
               stroke: 'none',
-              fill: typeof config.color === 'string' ? this.__P_77_10(config.color, '30') : null
+              fill: typeof config.color === 'string' ? this.__P_78_11(config.color, '30') : null
             });
           }
           if (this._chartConf.barGroups.size > 0) {
@@ -1239,79 +1317,79 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
 
         // update groups
-        var _iterator5 = _createForOfIteratorHelper(this._chartConf.lineGroups.keys()),
-          _step5;
+        var _iterator7 = _createForOfIteratorHelper(this._chartConf.lineGroups.keys()),
+          _step7;
         try {
           var _loop3 = function _loop3() {
-            var key = _step5.value;
+            var key = _step7.value;
             var idx = I.filter(function (i) {
               return Z[i] === key;
             });
             _this6._chartConf.lineGroups.set(key, idx);
           };
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            _loop3();
-          }
-        } catch (err) {
-          _iterator5.e(err);
-        } finally {
-          _iterator5.f();
-        }
-        var _iterator6 = _createForOfIteratorHelper(this._chartConf.areaGroups.keys()),
-          _step6;
-        try {
-          var _loop4 = function _loop4() {
-            var key = _step6.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key && Y[i] !== undefined;
-            });
-            _this6._chartConf.areaGroups.set(key, idx);
-          };
-          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-            _loop4();
-          }
-        } catch (err) {
-          _iterator6.e(err);
-        } finally {
-          _iterator6.f();
-        }
-        var _iterator7 = _createForOfIteratorHelper(this._chartConf.barGroups.keys()),
-          _step7;
-        try {
-          var _loop5 = function _loop5() {
-            var key = _step7.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key && Y[i] !== undefined;
-            });
-            _this6._chartConf.barGroups.set(key, idx);
-          };
           for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-            _loop5();
+            _loop3();
           }
         } catch (err) {
           _iterator7.e(err);
         } finally {
           _iterator7.f();
         }
-        var _iterator8 = _createForOfIteratorHelper(this._chartConf.stackedBarGroups.keys()),
+        var _iterator8 = _createForOfIteratorHelper(this._chartConf.areaGroups.keys()),
           _step8;
         try {
-          var _loop6 = function _loop6() {
+          var _loop4 = function _loop4() {
             var key = _step8.value;
             var idx = I.filter(function (i) {
               return Z[i] === key && Y[i] !== undefined;
             });
-            _this6._chartConf.stackedBarGroups.set(key, idx);
+            _this6._chartConf.areaGroups.set(key, idx);
           };
           for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-            _loop6();
+            _loop4();
           }
         } catch (err) {
           _iterator8.e(err);
         } finally {
           _iterator8.f();
         }
-        this.__P_77_8 = config;
+        var _iterator9 = _createForOfIteratorHelper(this._chartConf.barGroups.keys()),
+          _step9;
+        try {
+          var _loop5 = function _loop5() {
+            var key = _step9.value;
+            var idx = I.filter(function (i) {
+              return Z[i] === key && Y[i] !== undefined;
+            });
+            _this6._chartConf.barGroups.set(key, idx);
+          };
+          for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+            _loop5();
+          }
+        } catch (err) {
+          _iterator9.e(err);
+        } finally {
+          _iterator9.f();
+        }
+        var _iterator10 = _createForOfIteratorHelper(this._chartConf.stackedBarGroups.keys()),
+          _step10;
+        try {
+          var _loop6 = function _loop6() {
+            var key = _step10.value;
+            var idx = I.filter(function (i) {
+              return Z[i] === key && Y[i] !== undefined;
+            });
+            _this6._chartConf.stackedBarGroups.set(key, idx);
+          };
+          for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+            _loop6();
+          }
+        } catch (err) {
+          _iterator10.e(err);
+        } finally {
+          _iterator10.f();
+        }
+        this.__P_78_9 = config;
         this._dot = svg.select('g.dot');
 
         // show zero line in grid for non-zero based charts
@@ -1332,7 +1410,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         var t = d3.transition().duration(single ? 0 : 500).ease(d3.easeLinear);
         if (this._chartConf.lineContainer) {
-          this._chartConf.lineContainer.selectAll('path').data(this._chartConf.lineGroups).join(function (enter) {
+          this._chartConf.lineContainer.selectAll('path').data(new Map(_toConsumableArray(this._chartConf.lineGroups).filter(function (_ref2) {
+            var _ref3 = _slicedToArray(_ref2, 2),
+              k = _ref3[0],
+              v = _ref3[1];
+            var config = _this6._dataSetConfigs[k];
+            // do not use h-/v-line here, only datasets
+            return config.element.localName === 'dataset';
+          }))).join(function (enter) {
             return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('stroke', typeof config.color === 'function' ? function (p) {
               return config.color(p[0]);
             } : null);
@@ -1348,7 +1433,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (this._chartConf.areaContainer) {
           this._chartConf.areaContainer.selectAll('path').data(this._chartConf.areaGroups).join(function (enter) {
             return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('fill', typeof config.color === 'function' ? function (p) {
-              return _this6.__P_77_10(config.color(p[0]), '30');
+              return _this6.__P_78_11(config.color(p[0]), '30');
             } : null);
           }).transition(t).attr('d', function (d) {
             var curveName = _this6._dataSetConfigs[d[0]].curve || 'linear';
@@ -1379,143 +1464,187 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
 
         // add fixed/calculated lines
-        var _iterator9 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > h-line').entries()),
-          _step9;
-        try {
-          var _loop7 = function _loop7() {
-              var _step9$value = _slicedToArray(_step9.value, 2),
-                i = _step9$value[0],
-                line = _step9$value[1];
-              var src = line.getAttribute('src');
-              var targetContainer = null;
-              var data = null;
-              var yValue = NaN;
-              if (src) {
-                if (_this6._chartConf.lineGroups.get(src)) {
-                  targetContainer = _this6._chartConf.lineContainer;
-                  data = _this6._chartConf.lineGroups.get(src);
-                } else if (_this6._chartConf.areaGroups.get(src)) {
-                  targetContainer = _this6._chartConf.areaContainer;
-                  data = _this6._chartConf.areaGroups.get(src);
-                } else if (_this6._chartConf.barGroups.get(src)) {
-                  targetContainer = _this6._chartConf.barContainer;
-                  data = _this6._chartConf.barGroups.get(src);
-                }
-                if (!data) {
-                  _this6.error('no data found for src ' + src);
-                  return 0; // continue
-                }
-                switch (line.getAttribute('value')) {
-                  case 'avg':
-                    {
-                      var sum = 0.0;
-                      var _iterator10 = _createForOfIteratorHelper(data),
-                        _step10;
-                      try {
-                        for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
-                          var di = _step10.value;
-                          sum += Y[di];
-                        }
-                      } catch (err) {
-                        _iterator10.e(err);
-                      } finally {
-                        _iterator10.f();
-                      }
-                      yValue = sum / data.length;
-                      break;
-                    }
-                  case 'max':
-                    yValue = d3.max(Y.filter(function (v, i) {
-                      return data.includes(i);
-                    }, function (d) {
-                      return d;
-                    }));
-                    break;
-                  case 'min':
-                    yValue = d3.min(Y.filter(function (v, i) {
-                      return data.includes(i);
-                    }, function (d) {
-                      return d;
-                    }));
-                    break;
-                  default:
-                    _this6.error('unknown value calculation: ' + line.getAttribute('value'));
-                    break;
-                }
-              } else {
-                targetContainer = _this6._chartConf.lineContainer || _this6._chartConf.areaContainer || _this6._chartConf.barContainer;
-                yValue = parseFloat(line.getAttribute('value'));
-                data = [0, X.length - 1];
-              }
-              if (!targetContainer) {
-                return 0; // continue
-              }
-              var lineElem = targetContainer.select('.line-' + i);
-              if (isNaN(yValue) && !lineElem.empty()) {
-                // remove line
-                lineElem.remove();
-                if (line.getAttribute('show-value') === 'true') {
-                  targetContainer.select('.line-value-' + i).remove();
-                }
-              } else if (!isNaN(yValue)) {
-                var color = line.getAttribute('color') || 'currentColor';
-                if (lineElem.empty()) {
-                  lineElem = targetContainer.append('line').attr('class', 'line-' + i).attr('stroke', color);
-                }
-                var _x3 = _this6._chartConf.x(X[data[0]]);
-                var _x4 = _this6._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
-                var _y = _this6._chartConf.y(yValue);
-                lineElem.attr('x1', _x3).attr('x2', _x4).attr('y1', _y).attr('y2', _y);
-                if (line.getAttribute('show-value') === 'true') {
-                  var format = line.hasAttribute('format') ? line.getAttribute('format') : _this6._element.hasAttribute('y-format') ? _this6._element.getAttribute('y-format') : '%s';
-                  var valueElem = targetContainer.select('.line-value-' + i);
-                  if (valueElem.empty()) {
-                    valueElem = targetContainer.append('text').attr('class', 'line-value-' + i).attr('fill', line.getAttribute('value-color') || color).attr('font-size', '10').attr('text-anchor', 'start');
-                  }
-                  // show value on right side of the chart
-                  valueElem.attr('x', _x4 + 2).attr('y', _y + 5).text(cv.util.String.sprintf(format, yValue));
-                }
-              }
-            },
-            _ret;
-          for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-            _ret = _loop7();
-            if (_ret === 0) continue;
-          }
+        this.__P_78_12(X, Y);
 
-          // dot must be added last
-        } catch (err) {
-          _iterator9.e(err);
-        } finally {
-          _iterator9.f();
-        }
+        // dot must be added last
         var dot = svg.select('g.dot');
         if (dot.empty()) {
           svg.append('g').attr('class', 'dot').attr('display', 'none').attr('fill', 'currentColor').append('circle').attr('r', 2.5);
         }
         this._dot = svg.select('g.dot');
       },
-      _onPointerEntered: function _onPointerEntered(ev) {
+      __P_78_12: function __P_78_12(X, Y) {
         var _this7 = this;
+        var _iterator11 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > h-line, v-line').entries()),
+          _step11;
+        try {
+          var _loop7 = function _loop7() {
+              var _step11$value = _slicedToArray(_step11.value, 2),
+                i = _step11$value[0],
+                line = _step11$value[1];
+              var key = line.getAttribute('src');
+              if (_this7.__P_78_7[key]) {
+                key = _this7.__P_78_7[key];
+              }
+              var name = line.localName;
+              var targetContainer = null;
+              var data = null;
+              var value = NaN;
+              if (key) {
+                if (_this7._chartConf.lineGroups.get(key)) {
+                  targetContainer = _this7._chartConf.lineContainer;
+                  data = _this7._chartConf.lineGroups.get(key);
+                } else if (_this7._chartConf.areaGroups.get(key)) {
+                  targetContainer = _this7._chartConf.areaContainer;
+                  data = _this7._chartConf.areaGroups.get(key);
+                } else if (_this7._chartConf.barGroups.get(key)) {
+                  targetContainer = _this7._chartConf.barContainer;
+                  data = _this7._chartConf.barGroups.get(key);
+                }
+                if (!data) {
+                  _this7.error('no data found for key ' + key);
+                  return 0; // continue
+                }
+                if (name === 'h-line') {
+                  // we can only do calculations for values on the Y-Axis for horizontal lines
+                  switch (line.getAttribute('value')) {
+                    case 'avg':
+                      {
+                        var sum = 0.0;
+                        var _iterator12 = _createForOfIteratorHelper(data),
+                          _step12;
+                        try {
+                          for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
+                            var di = _step12.value;
+                            sum += Y[di];
+                          }
+                        } catch (err) {
+                          _iterator12.e(err);
+                        } finally {
+                          _iterator12.f();
+                        }
+                        value = sum / data.length;
+                        break;
+                      }
+                    case 'max':
+                      value = d3.max(Y.filter(function (v, i) {
+                        return data.includes(i);
+                      }, function (d) {
+                        return d;
+                      }));
+                      break;
+                    case 'min':
+                      value = d3.min(Y.filter(function (v, i) {
+                        return data.includes(i);
+                      }, function (d) {
+                        return d;
+                      }));
+                      break;
+                    default:
+                      _this7.error('unknown value calculation: ' + line.getAttribute('value'));
+                      break;
+                  }
+                } else {
+                  value = X[data[0]];
+                }
+              } else {
+                targetContainer = _this7._chartConf.lineContainer || _this7._chartConf.areaContainer || _this7._chartConf.barContainer;
+                if (name === 'h-line') {
+                  value = parseFloat(line.getAttribute('value'));
+                } else {
+                  value = new Date(line.getAttribute('value')).getTime();
+                }
+                data = [0, X.length - 1];
+              }
+              if (!targetContainer) {
+                return 0; // continue
+              }
+              var lineElem = targetContainer.select(".".concat(name, "-").concat(i));
+              if (isNaN(value) && !lineElem.empty()) {
+                // remove line
+                lineElem.remove();
+                if (line.getAttribute('show-value') === 'true') {
+                  targetContainer.select(".".concat(name, "-value-").concat(i)).remove();
+                }
+              } else if (!isNaN(value)) {
+                var color = line.getAttribute('color') || 'currentColor';
+                if (lineElem.empty()) {
+                  lineElem = targetContainer.append('line').attr('class', "".concat(name, "-").concat(i)).attr('stroke', color);
+                }
+                var formatAttribute = 'y-format';
+                var x1;
+                var x2;
+                var y1;
+                var y2 = 0;
+                if (name === 'h-line') {
+                  var _this7$_chartConf$x$d = _this7._chartConf.x.domain(),
+                    _this7$_chartConf$x$d2 = _slicedToArray(_this7$_chartConf$x$d, 2),
+                    xMin = _this7$_chartConf$x$d2[0],
+                    xMax = _this7$_chartConf$x$d2[1];
+                  x1 = _this7._chartConf.x(xMin);
+                  x2 = _this7._chartConf.x(xMax); // always draw until end of chart (not until end of src dataset)
+                  y1 = _this7._chartConf.y(value);
+                  y2 = y1;
+                } else {
+                  var _this7$_chartConf$y$d = _this7._chartConf.y.domain(),
+                    _this7$_chartConf$y$d2 = _slicedToArray(_this7$_chartConf$y$d, 2),
+                    yMin = _this7$_chartConf$y$d2[0],
+                    yMax = _this7$_chartConf$y$d2[1];
+                  y1 = _this7._chartConf.y(yMin);
+                  y2 = _this7._chartConf.y(yMax);
+                  x1 = _this7._chartConf.x(value);
+                  x2 = x1;
+                  formatAttribute = 'x-format';
+                }
+                lineElem.attr('x1', x1).attr('x2', x2).attr('y1', y1).attr('y2', y2);
+                if (line.getAttribute('show-value') === 'true') {
+                  var format = line.hasAttribute('format') ? line.getAttribute('format') : _this7._element.hasAttribute(formatAttribute) ? _this7._element.getAttribute(formatAttribute) : '%s';
+                  var valueElem = targetContainer.select(".".concat(name, "-value-").concat(i));
+                  if (valueElem.empty()) {
+                    valueElem = targetContainer.append('text').attr('class', "".concat(name, "-value-").concat(i)).attr('fill', line.getAttribute('value-color') || color).attr('font-size', '10').attr('text-anchor', 'start');
+                  }
+                  if (name === 'h-line') {
+                    // show value on right side of the chart
+                    valueElem.attr('x', x2 + 2).attr('y', y1 + 5).text(cv.util.String.sprintf(format, value));
+                  } else {
+                    // show value on top of the chart
+                    valueElem.attr('x', x1 + 2).attr('y', y2).text(d3.timeFormat(format)(value));
+                  }
+                }
+              }
+            },
+            _ret;
+          for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+            _ret = _loop7();
+            if (_ret === 0) continue;
+          }
+        } catch (err) {
+          _iterator11.e(err);
+        } finally {
+          _iterator11.f();
+        }
+      },
+      _onPointerEntered: function _onPointerEntered(ev) {
+        var _this8 = this;
         if (this._loaded) {
-          this.__P_77_1 = setTimeout(function () {
-            _this7.__P_77_11(true, ev);
-            _this7.__P_77_1 = null;
+          this.__P_78_1 = setTimeout(function () {
+            _this8.__P_78_13(true, ev);
+            _this8.__P_78_1 = null;
           }, 500);
         }
       },
       _onPointerLeft: function _onPointerLeft(ev) {
-        if (this.__P_77_1) {
-          clearTimeout(this.__P_77_1);
+        if (this.__P_78_1) {
+          clearTimeout(this.__P_78_1);
         }
         if (this._loaded) {
           if (ev.relatedTarget !== this._tooltip) {
-            this.__P_77_11(false);
+            this.__P_78_13(false);
           }
         }
       },
-      __P_77_11: function __P_77_11(val, ev) {
-        this.__P_77_2 = val;
+      __P_78_13: function __P_78_13(val, ev) {
+        this.__P_78_2 = val;
         if (val) {
           if (this._dot) {
             this._dot.attr('display', null);
@@ -1536,7 +1665,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
       },
       _onPointerMoved: function _onPointerMoved(event, center) {
-        if (this._loaded && this.__P_77_2) {
+        if (this._loaded && this.__P_78_2) {
           var xm = 0;
           var ym = 0;
           if (event) {
@@ -1545,8 +1674,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             xm = _d3$pointer2[0];
             ym = _d3$pointer2[1];
           } else if (center) {
-            xm = this.__P_77_8.width / 2;
-            ym = this.__P_77_8.height / 2;
+            xm = this.__P_78_9.width / 2;
+            ym = this.__P_78_9.height / 2;
           } else {
             return;
           }
@@ -1564,14 +1693,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var i = d3.least(I, function (i) {
             return Math.hypot(x(X[i]) - xm, y(Y[i]) - ym);
           });
-          var scaleFactorX = this._element.offsetWidth / this.__P_77_8.width;
-          var scaleFactorY = this._element.offsetHeight / this.__P_77_8.height;
+          var scaleFactorX = this._element.offsetWidth / this.__P_78_9.width;
+          var scaleFactorY = this._element.offsetHeight / this.__P_78_9.height;
           // closest point
           var xOffset = xz ? xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0) : 0;
           this._dot.attr('transform', "translate(".concat(x(X[i]) + xOffset, ",").concat(y(Y[i]), ")"));
           if (T) {
             var cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
-            var timeString = this.__P_77_8.xFormat(new Date(X[i]));
+            var timeString = this.__P_78_9.xFormat(new Date(X[i]));
             var top = ym * scaleFactorY - this._tooltip.offsetHeight;
             if (top < 0) {
               top += cursorOffset + this._tooltip.offsetHeight;
@@ -1595,7 +1724,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           });
         }
       },
-      __P_77_9: function __P_77_9() {
+      __P_78_10: function __P_78_10() {
         if (this._navigationEnabled) {
           var title = this.getHeader('label.title span');
           if (title) {
@@ -1680,7 +1809,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {string|*}
        * @private
        */
-      __P_77_10: function __P_77_10(color, opacity) {
+      __P_78_11: function __P_78_11(color, opacity) {
         if (color.startsWith('var(')) {
           color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length - 1));
         }
@@ -1700,6 +1829,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     destruct: function destruct() {
       this._chartConf = null;
       this._helpers = null;
+      qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'chart', /*#__PURE__*/function (_QxConnector) {
@@ -1717,4 +1847,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1731948096549
+//# sourceMappingURL=Chart.js.map?dt=1735222411964

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857563,
-  "lastModifiedIso": "2024-11-18T16:37:37.563Z",
+  "lastModified": 1735222205770,
+  "lastModifiedIso": "2024-12-26T14:10:05.770Z",
   "classFilename": "../../source/class/cv/plugins/Gauge.js",
   "type": "class",
   "location": {
@@ -1332,14 +1332,14 @@
           "*",
           "     * Send the given value to all writeable addresses known to this widget",
           "     *",
-          "     * @param value {var} value to send",
+          "     * @param value {any} value to send",
           "     * @param filter {Function} optional filter function for addresses",
           "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
           "     *          that were sent on the bus. When the encoding of the new value",
           "     *          to send is equal to the currentBusValues a transmission will",
           "     *          be suppressed. The object is a hash with the encoding as a key",
           "     *          for the encoded value",
-          "     * @return the object/hash of encoded values that were sent last time",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
           "     "
         ],
         "@description": [
@@ -1351,7 +1351,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {var} value to send"
+            "body": "value {any} value to send"
           },
           {
             "name": "@param",
@@ -1365,7 +1365,7 @@
         "@return": [
           {
             "name": "@return",
-            "body": "the object/hash of encoded values that were sent last time"
+            "body": "{Object} the object/hash of encoded values that were sent last time"
           }
         ]
       },
@@ -1374,12 +1374,12 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2594
+          "index": 2603
         },
         "end": {
-          "line": 116,
+          "line": 113,
           "column": 5,
-          "index": 4221
+          "index": 4060
         }
       },
       "type": "function",

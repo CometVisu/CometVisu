@@ -133,7 +133,7 @@
           var currentDepth = currentPath.split('_').length;
           var targetDepth = target.split('_').length;
           direction = currentDepth <= targetDepth ? 'down' : 'up';
-          animationConfig = this.__P_71_0(direction);
+          animationConfig = this.__P_72_0(direction);
 
           // show the new page (because animations do not work on hidden elements) + hide scrollbar
           Object.entries({
@@ -147,15 +147,15 @@
         }
         if (!animationEnabled) {
           if (oldPageWidget) {
-            this.__P_71_1(oldPageWidget);
+            this.__P_72_1(oldPageWidget);
           }
-          this.__P_71_2(pageWidget, 0, true);
+          this.__P_72_2(pageWidget, 0, true);
         } else {
           if (oldPageWidget) {
             var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.leavePage, speed);
             oldPageWidget.getDomElement().style['overflow-y'] = 'hidden';
             outAnim.addListenerOnce('end', function () {
-              _this.__P_71_1(oldPageWidget);
+              _this.__P_72_1(oldPageWidget);
             });
           }
           var oldPos = window.getComputedStyle(pageWidget.getDomElement()).position;
@@ -164,7 +164,7 @@
             var _this2 = this;
             var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig.enterPage, speed);
             animation.addListenerOnce('end', function () {
-              _this2.__P_71_2(pageWidget, oldPos);
+              _this2.__P_72_2(pageWidget, oldPos);
             });
           }, this);
         }
@@ -173,7 +173,7 @@
        * Get the animation configs for the current animationType setting
        * @param direction {String} "up" or "down"
        */
-      __P_71_0: function __P_71_0(direction) {
+      __P_72_0: function __P_72_0(direction) {
         var inAnim;
         var outAnim;
 
@@ -215,7 +215,7 @@
        * Cleanup after page has been left
        * @param oldPageWidget {cv.ui.structure.pure.Page}
        */
-      __P_71_1: function __P_71_1(oldPageWidget) {
+      __P_72_1: function __P_72_1(oldPageWidget) {
         oldPageWidget.getDomElement().classList.remove('pageActive', 'activePage');
         oldPageWidget.getDomElement().style.overflow = null;
         qx.event.message.Bus.dispatchByName('path.' + oldPageWidget.getPath() + '.afterPageChange', oldPageWidget.getPath());
@@ -228,7 +228,7 @@
        * @param oldPos {String} CSS-position value to set
        * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
        */
-      __P_71_2: function __P_71_2(pageWidget, oldPos, updateVisibility) {
+      __P_72_2: function __P_72_2(pageWidget, oldPos, updateVisibility) {
         var page = pageWidget.getDomElement();
         var target = pageWidget.getPath();
         page.classList.add('pageActive', 'activePage'); // show new page
@@ -258,4 +258,4 @@
   cv.ui.structure.pure.navigation.PageHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageHandler.js.map?dt=1731948095640
+//# sourceMappingURL=PageHandler.js.map?dt=1735222411160

@@ -35,14 +35,14 @@
   qx.Class.define("qx.test.ui.core.Appearance", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_384_0: null,
+      __P_385_0: null,
       setUp: function setUp() {
-        this.__P_384_0 = qx.theme.manager.Appearance.getInstance().getTheme();
+        this.__P_385_0 = qx.theme.manager.Appearance.getInstance().getTheme();
         qx.theme.manager.Appearance.getInstance().setTheme(qx.test.ui.core.AppearanceTheme);
       },
       tearDown: function tearDown() {
         qx.test.ui.core.Appearance.superclass.prototype.tearDown.call(this);
-        qx.theme.manager.Appearance.getInstance().setTheme(this.__P_384_0);
+        qx.theme.manager.Appearance.getInstance().setTheme(this.__P_385_0);
       },
       testDefault: function testDefault() {
         var a = new qx.test.ui.core.AppearanceTest();
@@ -101,4 +101,4 @@
   qx.test.ui.core.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1731948119365
+//# sourceMappingURL=Appearance.js.map?dt=1735222431020

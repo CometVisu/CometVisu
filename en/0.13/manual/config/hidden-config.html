@@ -132,18 +132,25 @@ stored as a PHP array:</p>
 <span class="c1">// File for configurations that shouldn&#39;t be shared with the user</span>
 <span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;{</span>
 <span class="s1">  &quot;fritzbox&quot;: {</span>
-<span class="s1">    &quot;uri&quot;: &quot;https://192.168.0.1:49443/&quot;,</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://192.168.0.1:49443/&quot;, </span>
 <span class="s1">    &quot;user&quot;: &quot;CometVisuTestUser&quot;,</span>
 <span class="s1">    &quot;pass&quot;: &quot;secret&quot;</span>
 <span class="s1">  },</span>
 <span class="s1">  &quot;influx&quot;: {</span>
-<span class="s1">    &quot;uri&quot;: &quot;https://172.17.0.1/proxy/ts/query&quot;,</span>
+<span class="s1">    &quot;uri&quot;: &quot;https://172.17.0.1/proxy/ts/query&quot;, </span>
 <span class="s1">    &quot;user&quot;: &quot;docker&quot;,</span>
-<span class="s1">    &quot;pass&quot;: &quot;secret&quot;,</span>
+<span class="s1">    &quot;pass&quot;: &quot;secret&quot;, </span>
 <span class="s1">    &quot;selfsigned&quot;: &quot;true&quot;</span>
+<span class="s1">  },</span>
+<span class="s1">  &quot;proxy.whitelist&quot;: {</span>
 <span class="s1">  }</span>
 <span class="s1">}&#39;</span><span class="p">;</span>
-<span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$hidden</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="nx">JSON_THROW_ON_ERROR</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">JsonException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nv">$hidden</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">&quot;data&quot;</span> <span class="o">=&gt;</span> <span class="nv">$data</span><span class="p">];</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -176,6 +183,10 @@ name for entries, which can reduce the configuration effort.</p>
 <tr class="row-odd"><td><p>influx</p></td>
 <td><p><a class="reference internal" href="widgets/plugins/diagram/index.html#diagram"><span class="std std-ref">The diagram plugin</span></a></p></td>
 <td><p>X</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy.whitelist</p></td>
+<td><p><a class="reference internal" href="structure-tile/components/image.html#tile-component-image"><span class="std std-ref">Image component of the tile-structure</span></a></p></td>
+<td></td>
 </tr>
 </tbody>
 </table>

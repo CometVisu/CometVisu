@@ -47,8 +47,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     construct: function construct() {
-      this.__P_49_0 = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
-      this.__P_49_1 = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
+      this.__P_50_0 = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
+      this.__P_50_1 = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
     },
     /*
     ***********************************************
@@ -60,15 +60,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * cache for getAppinfo
        * @var array
        */
-      __P_49_2: null,
-      __P_49_0: null,
-      __P_49_1: null,
+      __P_50_2: null,
+      __P_50_0: null,
+      __P_50_1: null,
       /**
        * cache for getDocumentation
        * @var array
        */
-      __P_49_3: null,
-      __P_49_4: function __P_49_4(node, xpath) {
+      __P_50_3: null,
+      __P_50_4: function __P_50_4(node, xpath) {
         var texts = [];
         var doc = node.ownerDocument;
         var nsResolver = doc.createNSResolver(doc.documentElement);
@@ -90,16 +90,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return  array   list of texts, or empty list if none
        */
       getAppinfo: function getAppinfo() {
-        if (this.__P_49_2 !== null) {
-          return this.__P_49_2;
+        if (this.__P_50_2 !== null) {
+          return this.__P_50_2;
         }
         var node = this.getNode();
-        var appInfo = this.__P_49_4(node, 'xsd:annotation/xsd:appinfo');
+        var appInfo = this.__P_50_4(node, 'xsd:annotation/xsd:appinfo');
         var type = this.getType();
         if (type === 'element') {
           // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
           if (node.querySelectorAll(':scope > complexType').length === 0) {
-            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_49_4(this._type, 'xsd:annotation/xsd:appinfo')));
+            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_50_4(this._type, 'xsd:annotation/xsd:appinfo')));
           }
         } else if (type === 'attribute') {
           if (node.hasAttribute('ref')) {
@@ -107,12 +107,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
             var refName = node.getAttribute('ref');
             var ref = this.getSchema().getReferencedNode('attribute', refName);
-            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_49_4(ref, 'xsd:annotation/xsd:appinfo')));
+            appInfo.push.apply(appInfo, _toConsumableArray(this.__P_50_4(ref, 'xsd:annotation/xsd:appinfo')));
           }
         }
 
         // fill the cache
-        this.__P_49_2 = appInfo;
+        this.__P_50_2 = appInfo;
         return appInfo;
       },
       /**
@@ -122,21 +122,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       getDocumentation: function getDocumentation() {
         var _this = this;
-        if (this.__P_49_3 !== null) {
-          return this.__P_49_3;
+        if (this.__P_50_3 !== null) {
+          return this.__P_50_3;
         }
         var node = this.getNode();
         var lang = qx.locale.Manager.getInstance().getLanguage();
         var selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
 
         // any appinfo this element itself might carry
-        var documentation = this.__P_49_4(node, selector);
+        var documentation = this.__P_50_4(node, selector);
         var type = this.getType();
         if (type === 'element') {
           // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
           if (node.querySelectorAll(':scope > complexType').length === 0) {
             var _documentation;
-            (_documentation = documentation).push.apply(_documentation, _toConsumableArray(this.__P_49_4(this._type, selector)));
+            (_documentation = documentation).push.apply(_documentation, _toConsumableArray(this.__P_50_4(this._type, selector)));
           }
         } else if (type === 'attribute') {
           if (node.hasAttribute('ref')) {
@@ -145,13 +145,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
             var refName = node.getAttribute('ref');
             var ref = this.getSchema().getReferencedNode('attribute', refName);
-            (_documentation2 = documentation).push.apply(_documentation2, _toConsumableArray(this.__P_49_4(ref, selector)));
+            (_documentation2 = documentation).push.apply(_documentation2, _toConsumableArray(this.__P_50_4(ref, selector)));
             documentation = documentation.map(function (entry) {
               return _this.createDocumentationWebLinks(entry);
             });
           }
         }
-        this.__P_49_3 = documentation;
+        this.__P_50_3 = documentation;
         return documentation;
       },
       /**
@@ -161,8 +161,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return string The transformed input string.
        */
       createDocumentationWebLinks: function createDocumentationWebLinks(text) {
-        var language = this.__P_49_1;
-        return text.replace(this.__P_49_0, function (match, contents) {
+        var language = this.__P_50_1;
+        return text.replace(this.__P_50_0, function (match, contents) {
           var reference = contents.match(/^(.*?) *<([^<]*)>$/);
           var label = reference ? reference[1] : contents;
           var key = reference ? reference[2] : contents;
@@ -180,12 +180,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_49_2 = null;
-      this.__P_49_3 = null;
-      this.__P_49_0 = null;
+      this.__P_50_2 = null;
+      this.__P_50_3 = null;
+      this.__P_50_0 = null;
     }
   });
   cv.ui.manager.model.schema.MAnnotation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAnnotation.js.map?dt=1731948094142
+//# sourceMappingURL=MAnnotation.js.map?dt=1735222409898

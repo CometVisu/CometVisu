@@ -78,8 +78,8 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_32_0 = {};
-      this.__P_32_1 = [];
+      this.__P_33_0 = {};
+      this.__P_33_1 = [];
 
       // register viewers
       this.registerFileHandler(new RegExp('\\.(' + cv.ui.manager.viewer.Image.SUPPORTED_FILES.join('|') + ')$', 'i'), cv.ui.manager.viewer.Image, {
@@ -121,8 +121,8 @@
     ***********************************************
     */
     members: {
-      __P_32_0: null,
-      __P_32_1: null,
+      __P_33_0: null,
+      __P_33_1: null,
       /**
        * Registers an editor for a specific file, that is identified by the given selector.
        * @param selector {String|RegExp|Class|Function|null} filename-/path or regular expression. If null this is a special handler that must be loaded manually (like cv.ui.manager.Start)
@@ -162,22 +162,22 @@
           config.selectorId = 'none';
           config.priority = 10;
         }
-        this.__P_32_0[clazz.classname] = config;
+        this.__P_33_0[clazz.classname] = config;
       },
       getFileHandler: function getFileHandler(file, type) {
         var handlers = [];
         if (!(file instanceof cv.ui.manager.model.CompareFiles)) {
           // check if there is a default first
           var defaultHandler;
-          Object.keys(this.__P_32_1).some(function (key) {
-            if (this.__P_32_1[key].regex.test(file.getFullPath()) && (!file.isTemporary() || !this.__P_32_1[key].noTemporaryFiles) && (file.isWriteable() || !this.__P_32_1[key].noReadOnlyFiles)) {
+          Object.keys(this.__P_33_1).some(function (key) {
+            if (this.__P_33_1[key].regex.test(file.getFullPath()) && (!file.isTemporary() || !this.__P_33_1[key].noTemporaryFiles) && (file.isWriteable() || !this.__P_33_1[key].noReadOnlyFiles)) {
               if (type) {
-                var config = this.getFileHandlerById(this.__P_32_1[key].clazz.classname);
+                var config = this.getFileHandlerById(this.__P_33_1[key].clazz.classname);
                 if (config.type === type) {
                   defaultHandler = config;
                 }
               } else {
-                defaultHandler = this.getFileHandlerById(this.__P_32_1[key].clazz.classname);
+                defaultHandler = this.getFileHandlerById(this.__P_33_1[key].clazz.classname);
               }
             }
             return !!defaultHandler;
@@ -186,9 +186,9 @@
             return defaultHandler;
           }
         }
-        Object.keys(this.__P_32_0).forEach(function (classname) {
-          var config = this.__P_32_0[classname];
-          if (this.__P_32_2(config, file) && (!type || config.type === type)) {
+        Object.keys(this.__P_33_0).forEach(function (classname) {
+          var config = this.__P_33_0[classname];
+          if (this.__P_33_2(config, file) && (!type || config.type === type)) {
             handlers.push(config);
           }
         }, this);
@@ -210,12 +210,12 @@
         return handlers[0];
       },
       getFileHandlerById: function getFileHandlerById(handlerId) {
-        return this.__P_32_0[handlerId];
+        return this.__P_33_0[handlerId];
       },
       hasFileHandler: function hasFileHandler(file, type) {
-        return Object.keys(this.__P_32_0).some(function (classname) {
-          var config = this.__P_32_0[classname];
-          return this.__P_32_2(config, file) && (!type || config.type === type);
+        return Object.keys(this.__P_33_0).some(function (classname) {
+          var config = this.__P_33_0[classname];
+          return this.__P_33_2(config, file) && (!type || config.type === type);
         }, this);
       },
       /**
@@ -226,7 +226,7 @@
        * @param noReadOnlyFiles {Boolean} fleag to prevent this default editor from being used to open file that are not writeable
        */
       setDefault: function setDefault(selector, clazz, noTemporaryFiles, noReadOnlyFiles) {
-        this.__P_32_1[selector.toString()] = {
+        this.__P_33_1[selector.toString()] = {
           regex: selector,
           clazz: clazz,
           noTemporaryFiles: noTemporaryFiles,
@@ -243,7 +243,7 @@
             break;
         }
       },
-      __P_32_2: function __P_32_2(config, file) {
+      __P_33_2: function __P_33_2(config, file) {
         if (config.noTemporaryFiles === true && file.isTemporary()) {
           return false;
         } else if (config.noReadOnlyFiles === true && !file.isWriteable()) {
@@ -262,10 +262,10 @@
         return false;
       },
       getAllFileHandlers: function getAllFileHandlers(file, type) {
-        return Object.keys(this.__P_32_0).filter(function (key) {
-          return this.__P_32_2(this.__P_32_0[key], file) && (!type || this.__P_32_0[key].type === type);
+        return Object.keys(this.__P_33_0).filter(function (key) {
+          return this.__P_33_2(this.__P_33_0[key], file) && (!type || this.__P_33_0[key].type === type);
         }, this).map(function (key) {
-          return this.__P_32_0[key];
+          return this.__P_33_0[key];
         }, this);
       }
     },
@@ -276,10 +276,10 @@
     */
     destruct: function destruct() {
       // cleanup handler instances
-      Object.keys(this.__P_32_0).forEach(function (regex) {
-        if (this.__P_32_0[regex].instance) {
-          this.__P_32_0[regex].instance.dispose();
-          this.__P_32_0[regex].instance = null;
+      Object.keys(this.__P_33_0).forEach(function (regex) {
+        if (this.__P_33_0[regex].instance) {
+          this.__P_33_0[regex].instance.dispose();
+          this.__P_33_0[regex].instance = null;
         }
       }, this);
       cv.ui.manager.model.Preferences.getInstance().removeListener('changeDefaultConfigEditor', this._onChangesDefaultConfigEditor, this);
@@ -288,4 +288,4 @@
   cv.ui.manager.control.FileHandlerRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileHandlerRegistry.js.map?dt=1731948092150
+//# sourceMappingURL=FileHandlerRegistry.js.map?dt=1735222408207

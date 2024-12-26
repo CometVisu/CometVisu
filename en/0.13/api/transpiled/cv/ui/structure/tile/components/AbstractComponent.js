@@ -115,7 +115,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _headerFooterParent: null,
       _preMappingHooks: null,
       _tileElement: null,
-      __P_75_0: null,
+      __P_76_0: null,
       _checkEnvironment: function _checkEnvironment() {
         var inPopup = false;
         if (this._element.parentElement.localName === 'cv-popup') {
@@ -186,7 +186,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
 
         // has mobile attributes
-        this.__P_75_0 = [];
+        this.__P_76_0 = [];
         var check = function check(element) {
           var _iterator = _createForOfIteratorHelper(element.getAttributeNames()),
             _step;
@@ -195,7 +195,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var name = _step.value;
               if (name.startsWith('mobile-')) {
                 var targetName = name.substring(7);
-                _this.__P_75_0.push({
+                _this.__P_76_0.push({
                   name: targetName,
                   mobile: element.getAttribute(name),
                   desktop: element.getAttribute(targetName),
@@ -213,16 +213,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (this._headerFooterParent && this._headerFooterParent.localName === 'cv-widget') {
           check(this._headerFooterParent);
         }
-        if (this.__P_75_0.length > 0) {
-          qx.core.Init.getApplication().addListener('changeMobile', this.__P_75_1, this);
+        if (this.__P_76_0.length > 0) {
+          qx.core.Init.getApplication().addListener('changeMobile', this.__P_76_1, this);
         }
         if (document.body.classList.contains('mobile')) {
-          this.__P_75_1();
+          this.__P_76_1();
         }
       },
-      __P_75_1: function __P_75_1() {
+      __P_76_1: function __P_76_1() {
         var isMobile = document.body.classList.contains('mobile');
-        var _iterator2 = _createForOfIteratorHelper(this.__P_75_0),
+        var _iterator2 = _createForOfIteratorHelper(this.__P_76_0),
           _step2;
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -449,6 +449,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
             ev.stopPropagation();
             return true;
+          case 'styling':
+            {
+              var styling = '';
+              if (ev.detail.targetConfig) {
+                // use address styling if available
+                styling = ev.detail.targetConfig[0];
+              } else if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
+                // fallback to element styling
+                styling = this._element.getAttribute('styling');
+              }
+              var styleClass = cv.Application.structureController.styleValue(styling, ev.detail.state);
+              this.setStyleClass(styleClass);
+              ev.stopPropagation();
+              return true;
+            }
           case '':
             this.setValue(ev.detail.state);
             ev.stopPropagation();
@@ -465,10 +480,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     destruct: function destruct() {
       this._writeAddresses = null;
       this._headerFooterParent = null;
-      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_75_1, this);
+      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_76_1, this);
     }
   });
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1731948096124
+//# sourceMappingURL=AbstractComponent.js.map?dt=1735222411583

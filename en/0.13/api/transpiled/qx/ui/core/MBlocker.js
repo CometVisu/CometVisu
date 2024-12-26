@@ -60,7 +60,7 @@
       }
     },
     members: {
-      __P_536_0: null,
+      __P_537_0: null,
       /**
        * Template method for creating the blocker item.
        * @return {qx.ui.core.Blocker} The blocker to use.
@@ -89,7 +89,7 @@
        * @return {Boolean} Whether the widget is blocked.
        */
       isBlocked: function isBlocked() {
-        return this.__P_536_0 && this.__P_536_0.isBlocked();
+        return this.__P_537_0 && this.__P_537_0.isBlocked();
       },
       /**
        * Unblock the widget blocked by {@link #block}, but it takes care of
@@ -97,8 +97,8 @@
        * the number of {@link #unblock} calls is identical to {@link #block} calls.
        */
       unblock: function unblock() {
-        if (this.__P_536_0) {
-          this.__P_536_0.unblock();
+        if (this.__P_537_0) {
+          this.__P_537_0.unblock();
         }
       },
       /**
@@ -106,8 +106,8 @@
        * the amount of {@link #block} calls. The blocker is directly removed.
        */
       forceUnblock: function forceUnblock() {
-        if (this.__P_536_0) {
-          this.__P_536_0.forceUnblock();
+        if (this.__P_537_0) {
+          this.__P_537_0.forceUnblock();
         }
       },
       /**
@@ -125,17 +125,17 @@
        * @return {qx.ui.core.Blocker} The blocker
        */
       getBlocker: function getBlocker() {
-        if (!this.__P_536_0) {
-          this.__P_536_0 = this._createBlocker();
+        if (!this.__P_537_0) {
+          this.__P_537_0 = this._createBlocker();
         }
-        return this.__P_536_0;
+        return this.__P_537_0;
       }
     },
     destruct: function destruct() {
-      this._disposeObjects("__P_536_0");
+      this._disposeObjects("__P_537_0");
     }
   });
   qx.ui.core.MBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBlocker.js.map?dt=1731948133839
+//# sourceMappingURL=MBlocker.js.map?dt=1735222443106

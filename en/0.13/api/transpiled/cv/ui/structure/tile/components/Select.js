@@ -74,24 +74,24 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_84_0: null,
-      __P_84_1: null,
-      __P_84_2: null,
+      __P_85_0: null,
+      __P_85_1: null,
+      __P_85_2: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Select.superclass.prototype._init.call(this);
         var element = this._element;
-        this.__P_84_0 = new Map();
-        var popup = this.__P_84_2 = document.createElement('div');
+        this.__P_85_0 = new Map();
+        var popup = this.__P_85_2 = document.createElement('div');
         popup.classList.add('popup');
         element.querySelectorAll(':scope > cv-option').forEach(function (option, i) {
           popup.appendChild(option);
           if (!option.hasAttribute('key')) {
             option.setAttribute('key', '' + i);
           }
-          _this.__P_84_0.set(option.getAttribute('key'), option);
+          _this.__P_85_0.set(option.getAttribute('key'), option);
         });
-        var value = this.__P_84_1 = document.createElement('span');
+        var value = this.__P_85_1 = document.createElement('span');
         value.classList.add('value');
         element.appendChild(value);
         element.appendChild(popup);
@@ -108,9 +108,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _toggleOptions: function _toggleOptions(close) {
         var _this2 = this;
         // open popup
-        var style = getComputedStyle(this.__P_84_2);
+        var style = getComputedStyle(this.__P_85_2);
         if (style.getPropertyValue('display') === 'none' && !close) {
-          this.__P_84_2.style.display = 'block';
+          this.__P_85_2.style.display = 'block';
           window.requestAnimationFrame(function () {
             // delay adding this listener, otherwise it would fire immediately
             // also the native addEventListener does not allow the listener to be re-added once removed, so we use the qx way here
@@ -118,7 +118,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             qx.event.Registration.addListener(document.body, 'click', _this2.handleEvent, _this2, true);
           });
         } else {
-          this.__P_84_2.style.display = 'none';
+          this.__P_85_2.style.display = 'none';
           qx.event.Registration.removeListener(document.body, 'click', this.handleEvent, this, true);
         }
       },
@@ -157,9 +157,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _updateValue: function _updateValue(mappedValue, value) {
         var key = typeof mappedValue !== 'undefined' ? '' + mappedValue : '';
-        if (this.__P_84_0.has(key)) {
-          this.__P_84_1.innerHTML = '';
-          var current = this.__P_84_0.get(key);
+        if (this.__P_85_0.has(key)) {
+          this.__P_85_1.innerHTML = '';
+          var current = this.__P_85_0.get(key);
           switch (this.getShow()) {
             case 'icon':
               // if we have non text children, we only use them (only icons no text)
@@ -169,7 +169,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 for (_iterator.s(); !(_step = _iterator.n()).done;) {
                   var child = _step.value;
                   if (child.nodeName.toLowerCase() === 'cv-icon') {
-                    this.__P_84_1.appendChild(child.cloneNode());
+                    this.__P_85_1.appendChild(child.cloneNode());
                   }
                 }
               } catch (err) {
@@ -185,7 +185,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
                   var _child = _step2.value;
                   if (_child.nodeType === Node.TEXT_NODE || _child.nodeType === Node.ELEMENT_NODE && _child.nodeName.toLowerCase() === 'label') {
-                    this.__P_84_1.appendChild(_child.cloneNode());
+                    this.__P_85_1.appendChild(_child.cloneNode());
                   }
                 }
               } catch (err) {
@@ -195,7 +195,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
               break;
             case 'both':
-              this.__P_84_1.innerHTML = current.innerHTML;
+              this.__P_85_1.innerHTML = current.innerHTML;
               break;
           }
         }
@@ -223,4 +223,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Select.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Select.js.map?dt=1731948097281
+//# sourceMappingURL=Select.js.map?dt=1735222412564

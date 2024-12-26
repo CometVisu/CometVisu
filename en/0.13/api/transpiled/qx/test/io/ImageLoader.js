@@ -43,127 +43,127 @@
     extend: qx.dev.unit.TestCase,
     members: {
       setUp: function setUp() {
-        this.__P_348_0 = qx.util.ResourceManager.getInstance().toUri("qx/test/colorstrip.gif");
-        this.__P_348_1 = this.__P_348_0.replace(/color/, "foocolor");
-        this.__P_348_2 = qx.util.ResourceManager.getInstance().toUri("qx/test/bluebar.svg");
-        this.__P_348_3 = this.__P_348_2.replace(/blue/, "fooblue");
+        this.__P_349_0 = qx.util.ResourceManager.getInstance().toUri("qx/test/colorstrip.gif");
+        this.__P_349_1 = this.__P_349_0.replace(/color/, "foocolor");
+        this.__P_349_2 = qx.util.ResourceManager.getInstance().toUri("qx/test/bluebar.svg");
+        this.__P_349_3 = this.__P_349_2.replace(/blue/, "fooblue");
       },
       tearDown: function tearDown() {
         qx.io.ImageLoader.dispose();
       },
       testLoadImageSuccess: function testLoadImageSuccess() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertTrue(qx.io.ImageLoader.isLoaded(this.__P_348_4));
+            this.assertTrue(qx.io.ImageLoader.isLoaded(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testLoadVectorImageSuccess: function testLoadVectorImageSuccess() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_2, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_2, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertTrue(qx.io.ImageLoader.isLoaded(this.__P_348_4));
+            this.assertTrue(qx.io.ImageLoader.isLoaded(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testLoadImageFailure: function testLoadImageFailure() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_1, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_1, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertTrue(qx.io.ImageLoader.isFailed(this.__P_348_4));
+            this.assertTrue(qx.io.ImageLoader.isFailed(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testLoadVectorImageFailure: function testLoadVectorImageFailure() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_3, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_3, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertTrue(qx.io.ImageLoader.isFailed(this.__P_348_4));
+            this.assertTrue(qx.io.ImageLoader.isFailed(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testImageWidth: function testImageWidth() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertEquals(192, qx.io.ImageLoader.getWidth(this.__P_348_4));
+            this.assertEquals(192, qx.io.ImageLoader.getWidth(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testVectorImageWidth: function testVectorImageWidth() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_2, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_2, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertEquals(192, qx.io.ImageLoader.getWidth(this.__P_348_4));
+            this.assertEquals(192, qx.io.ImageLoader.getWidth(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testImageHeight: function testImageHeight() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertEquals(10, qx.io.ImageLoader.getHeight(this.__P_348_4));
+            this.assertEquals(10, qx.io.ImageLoader.getHeight(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testVectorImageHeight: function testVectorImageHeight() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_2, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_2, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertEquals(10, qx.io.ImageLoader.getHeight(this.__P_348_4));
+            this.assertEquals(10, qx.io.ImageLoader.getHeight(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testImageSize: function testImageSize() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            var size = qx.io.ImageLoader.getSize(this.__P_348_4);
+            var size = qx.io.ImageLoader.getSize(this.__P_349_4);
             this.assertEquals(192, size.width);
             this.assertEquals(10, size.height);
           }, self);
@@ -171,14 +171,14 @@
         this.wait();
       },
       testVectorImageSize: function testVectorImageSize() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_2, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_2, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            var size = qx.io.ImageLoader.getSize(this.__P_348_4);
+            var size = qx.io.ImageLoader.getSize(this.__P_349_4);
             this.assertEquals(192, size.width);
             this.assertEquals(10, size.height);
           }, self);
@@ -186,27 +186,27 @@
         this.wait();
       },
       testImageFormat: function testImageFormat() {
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
-          this.__P_348_4 = source;
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
+          this.__P_349_4 = source;
         }, this);
         qx.event.Timer.once(function (e) {
           var self = this;
           this.resume(function () {
-            this.assertEquals("gif", qx.io.ImageLoader.getFormat(this.__P_348_4));
+            this.assertEquals("gif", qx.io.ImageLoader.getFormat(this.__P_349_4));
           }, self);
         }, this, 500);
         this.wait();
       },
       testAbort: function testAbort() {
         var aborted = false;
-        this.__P_348_4 = null;
-        qx.io.ImageLoader.load(this.__P_348_0, function (source, entry) {
+        this.__P_349_4 = null;
+        qx.io.ImageLoader.load(this.__P_349_0, function (source, entry) {
           aborted = true;
           this.assertTrue(entry.aborted);
-          this.assertEquals(this.__P_348_0, source);
+          this.assertEquals(this.__P_349_0, source);
         }, this);
-        qx.io.ImageLoader.abort(this.__P_348_0);
+        qx.io.ImageLoader.abort(this.__P_349_0);
         this.assertTrue(aborted);
       }
     }
@@ -214,4 +214,4 @@
   qx.test.io.ImageLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageLoader.js.map?dt=1731948116171
+//# sourceMappingURL=ImageLoader.js.map?dt=1735222428431

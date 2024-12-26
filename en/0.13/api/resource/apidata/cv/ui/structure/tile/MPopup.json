@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857575,
-  "lastModifiedIso": "2024-11-18T16:37:37.575Z",
+  "lastModified": 1735222205778,
+  "lastModifiedIso": "2024-12-26T14:10:05.778Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/MPopup.js",
   "type": "mixin",
   "location": {
@@ -11,9 +11,9 @@
       "index": 952
     },
     "end": {
-      "line": 135,
+      "line": 137,
       "column": 3,
-      "index": 4220
+      "index": 4291
     }
   },
   "className": "cv.ui.structure.tile.MPopup",
@@ -40,9 +40,9 @@
         "index": 1130
       },
       "end": {
-        "line": 32,
+        "line": 33,
         "column": 3,
-        "index": 1212
+        "index": 1279
       }
     }
   },
@@ -52,14 +52,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 39,
+          "line": 40,
           "column": 4,
-          "index": 1353
+          "index": 1420
         },
         "end": {
-          "line": 39,
+          "line": 40,
           "column": 20,
-          "index": 1369
+          "index": 1436
         }
       },
       "appearsIn": []
@@ -71,14 +71,14 @@
       "jsdoc": null,
       "location": {
         "start": {
-          "line": 43,
+          "line": 44,
           "column": 4,
-          "index": 1392
+          "index": 1459
         },
         "end": {
-          "line": 43,
+          "line": 44,
           "column": 33,
-          "index": 1421
+          "index": 1488
         }
       }
     }
@@ -89,14 +89,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 52,
+          "line": 53,
           "column": 4,
-          "index": 1567
+          "index": 1634
         },
         "end": {
-          "line": 52,
+          "line": 53,
           "column": 21,
-          "index": 1584
+          "index": 1651
         }
       },
       "appearsIn": []
@@ -106,14 +106,31 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 4,
-          "index": 1590
+          "index": 1657
         },
         "end": {
-          "line": 53,
+          "line": 54,
           "column": 31,
-          "index": 1617
+          "index": 1684
+        }
+      },
+      "appearsIn": []
+    },
+    "_openPopupChildBounded": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1690
+        },
+        "end": {
+          "line": 55,
+          "column": 32,
+          "index": 1718
         }
       },
       "appearsIn": []
@@ -123,14 +140,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 57,
           "column": 4,
-          "index": 1624
+          "index": 1725
         },
         "end": {
-          "line": 73,
+          "line": 75,
           "column": 5,
-          "index": 2321
+          "index": 2407
         }
       },
       "type": "function",
@@ -142,14 +159,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 75,
+          "line": 77,
           "column": 4,
-          "index": 2328
+          "index": 2414
         },
         "end": {
-          "line": 81,
+          "line": 83,
           "column": 5,
-          "index": 2499
+          "index": 2585
         }
       },
       "type": "function",
@@ -161,14 +178,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 83,
+          "line": 85,
           "column": 4,
-          "index": 2506
+          "index": 2592
         },
         "end": {
-          "line": 88,
+          "line": 90,
           "column": 5,
-          "index": 2672
+          "index": 2758
         }
       },
       "type": "function",
@@ -180,14 +197,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 92,
           "column": 4,
-          "index": 2679
+          "index": 2765
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 5,
-          "index": 3130
+          "index": 3216
         }
       },
       "type": "function",
@@ -199,14 +216,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 103,
+          "line": 105,
           "column": 4,
-          "index": 3137
+          "index": 3223
         },
         "end": {
-          "line": 112,
+          "line": 114,
           "column": 5,
-          "index": 3585
+          "index": 3671
         }
       },
       "type": "function",
@@ -218,14 +235,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 114,
+          "line": 116,
           "column": 4,
-          "index": 3592
+          "index": 3678
         },
         "end": {
-          "line": 122,
+          "line": 124,
           "column": 5,
-          "index": 3944
+          "index": 4030
         }
       },
       "type": "function",
@@ -242,14 +259,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 130,
+        "line": 132,
         "column": 2,
-        "index": 4078
+        "index": 4164
       },
       "end": {
-        "line": 134,
+        "line": 136,
         "column": 3,
-        "index": 4216
+        "index": 4287
       }
     }
   },

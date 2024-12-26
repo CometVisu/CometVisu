@@ -1,44 +1,23 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857323,
-  "lastModifiedIso": "2024-11-18T16:37:37.323Z",
+  "lastModified": 1735222205526,
+  "lastModifiedIso": "2024-12-26T14:10:05.526Z",
   "classFilename": "../../client/source/class/cv/io/transport/LongPolling.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 20,
+      "line": 21,
       "column": 0,
-      "index": 818
+      "index": 832
     },
     "end": {
       "line": 345,
       "column": 3,
-      "index": 11088
+      "index": 11126
     }
   },
   "className": "cv.io.transport.LongPolling",
-  "jsdoc": {
-    "raw": [
-      " LongPolling.js",
-      " *",
-      " * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.",
-      " *",
-      " * This program is free software; you can redistribute it and/or modify it",
-      " * under the terms of the GNU General Public License as published by the Free",
-      " * Software Foundation; either version 3 of the License, or (at your option)",
-      " * any later version.",
-      " *",
-      " * This program is distributed in the hope that it will be useful, but WITHOUT",
-      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
-      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
-      " * more details.",
-      " *",
-      " * You should have received a copy of the GNU General Public License along",
-      " * with this program; if not, write to the Free Software Foundation, Inc.,",
-      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
-      " "
-    ]
-  },
+  "jsdoc": null,
   "superClass": "qx.core.Object",
   "construct": {
     "type": "function",
@@ -49,31 +28,47 @@
     ],
     "location": {
       "start": {
-        "line": 32,
+        "line": 33,
         "column": 2,
-        "index": 1087
+        "index": 1101
       },
       "end": {
-        "line": 36,
+        "line": 37,
         "column": 3,
-        "index": 1215
+        "index": 1229
       }
     }
   },
   "members": {
     "watchdog": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "* @type {cv.io.Watchdog} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.io.Watchdog}"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 46,
           "column": 4,
-          "index": 1371
+          "index": 1419
         },
         "end": {
-          "line": 44,
+          "line": 46,
           "column": 18,
-          "index": 1385
+          "index": 1433
         }
       },
       "appearsIn": []
@@ -83,14 +78,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 47,
           "column": 4,
-          "index": 1391
+          "index": 1439
         },
         "end": {
-          "line": 45,
+          "line": 47,
           "column": 20,
-          "index": 1407
+          "index": 1455
         }
       },
       "appearsIn": []
@@ -98,20 +93,20 @@
     "xhr": {
       "jsdoc": {
         "raw": [
-          " are we currently in a restart, e.g. due to the watchdog"
+          " are we currently in a restart, e.g. due to the watchdog?"
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 48,
           "column": 4,
-          "index": 1472
+          "index": 1521
         },
         "end": {
-          "line": 46,
+          "line": 48,
           "column": 13,
-          "index": 1481
+          "index": 1530
         }
       },
       "appearsIn": []
@@ -125,14 +120,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 47,
+          "line": 49,
           "column": 4,
-          "index": 1515
+          "index": 1564
         },
         "end": {
-          "line": 47,
+          "line": 49,
           "column": 17,
-          "index": 1528
+          "index": 1577
         }
       },
       "appearsIn": []
@@ -146,14 +141,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 50,
           "column": 4,
-          "index": 1572
+          "index": 1621
         },
         "end": {
-          "line": 48,
+          "line": 50,
           "column": 19,
-          "index": 1587
+          "index": 1636
         }
       },
       "appearsIn": []
@@ -161,20 +156,20 @@
     "retryServerErrorCounter": {
       "jsdoc": {
         "raw": [
-          " count number of retries (reset with each valid response)"
+          " count the number of retries (reset with each valid response)"
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 51,
           "column": 4,
-          "index": 1653
+          "index": 1706
         },
         "end": {
-          "line": 49,
+          "line": 51,
           "column": 30,
-          "index": 1679
+          "index": 1732
         }
       },
       "appearsIn": []
@@ -182,37 +177,53 @@
     "sessionId": {
       "jsdoc": {
         "raw": [
-          " count number of successive temporary server errors"
+          " count the number of successive temporary server errors"
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 52,
           "column": 4,
-          "index": 1739
+          "index": 1796
         },
         "end": {
-          "line": 50,
+          "line": 52,
           "column": 19,
-          "index": 1754
+          "index": 1811
         }
       },
       "appearsIn": []
     },
     "client": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "* @type {cv.io.Client} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.io.Client}"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 51,
+          "line": 54,
           "column": 4,
-          "index": 1760
+          "index": 1849
         },
         "end": {
-          "line": 51,
+          "line": 54,
           "column": 16,
-          "index": 1772
+          "index": 1861
         }
       },
       "appearsIn": []
@@ -222,14 +233,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 55,
           "column": 4,
-          "index": 1778
+          "index": 1867
         },
         "end": {
-          "line": 52,
+          "line": 55,
           "column": 17,
-          "index": 1791
+          "index": 1880
         }
       },
       "appearsIn": []
@@ -271,14 +282,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 64,
           "column": 4,
-          "index": 2080
+          "index": 2169
         },
         "end": {
-          "line": 77,
+          "line": 80,
           "column": 5,
-          "index": 2732
+          "index": 2823
         }
       },
       "type": "function",
@@ -299,14 +310,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 82,
           "column": 4,
-          "index": 2739
+          "index": 2830
         },
         "end": {
-          "line": 95,
+          "line": 98,
           "column": 5,
-          "index": 3269
+          "index": 3360
         }
       },
       "type": "function",
@@ -318,14 +329,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 97,
+          "line": 100,
           "column": 4,
-          "index": 3276
+          "index": 3367
         },
         "end": {
-          "line": 109,
+          "line": 112,
           "column": 5,
-          "index": 3680
+          "index": 3757
         }
       },
       "type": "function",
@@ -357,14 +368,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 118,
           "column": 4,
-          "index": 3822
+          "index": 3899
         },
         "end": {
-          "line": 175,
+          "line": 178,
           "column": 5,
-          "index": 5926
+          "index": 5999
         }
       },
       "type": "function",
@@ -376,14 +387,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 177,
+          "line": 180,
           "column": 4,
-          "index": 5933
+          "index": 6006
         },
         "end": {
-          "line": 215,
+          "line": 218,
           "column": 5,
-          "index": 7362
+          "index": 7445
         }
       },
       "type": "function",
@@ -418,14 +429,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 223,
+          "line": 226,
           "column": 4,
-          "index": 7469
+          "index": 7552
         },
         "end": {
-          "line": 276,
+          "line": 275,
           "column": 6,
-          "index": 9319
+          "index": 9346
         }
       },
       "appearsIn": []
@@ -434,8 +445,8 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * manipulates the header of the current ajax query before it is",
-          "     * been send to the server",
+          "     * manipulates the header of the current ajax query before it will",
+          "     * be sent to the server",
           "     *",
           "     * @param xhr {Object} the native XHR object",
           "     *",
@@ -444,7 +455,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>manipulates the header of the current ajax query before it is\n been send to the server</p>"
+            "body": "<p>manipulates the header of the current ajax query before it will\n be sent to the server</p>"
           }
         ],
         "@param": [
@@ -460,14 +471,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 285,
+          "line": 284,
           "column": 4,
-          "index": 9505
+          "index": 9532
         },
         "end": {
-          "line": 296,
+          "line": 295,
           "column": 5,
-          "index": 9916
+          "index": 9951
         }
       },
       "type": "function",
@@ -497,14 +508,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 302,
+          "line": 301,
           "column": 4,
-          "index": 10033
+          "index": 10068
         },
         "end": {
-          "line": 306,
+          "line": 305,
           "column": 5,
-          "index": 10205
+          "index": 10242
         }
       },
       "type": "function",
@@ -528,14 +539,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 311,
+          "line": 310,
           "column": 4,
-          "index": 10277
+          "index": 10314
         },
         "end": {
-          "line": 313,
+          "line": 312,
           "column": 5,
-          "index": 10325
+          "index": 10362
         }
       },
       "type": "function",
@@ -570,14 +581,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 320,
+          "line": 319,
           "column": 4,
-          "index": 10505
+          "index": 10542
         },
         "end": {
-          "line": 328,
+          "line": 327,
           "column": 5,
-          "index": 10731
+          "index": 10768
         }
       },
       "type": "function",
@@ -609,12 +620,12 @@
         "start": {
           "line": 333,
           "column": 4,
-          "index": 10799
+          "index": 10837
         },
         "end": {
           "line": 343,
           "column": 5,
-          "index": 11080
+          "index": 11118
         }
       },
       "type": "function",

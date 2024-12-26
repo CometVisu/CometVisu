@@ -43,7 +43,7 @@
       qx.ui.virtual.layer.Abstract.constructor.call(this);
       this._cellProvider = htmlCellProvider;
       var clazz = qx.test.ui.virtual.performance.layer.HtmlTableCssCell;
-      if (!clazz.__P_446_0) {
+      if (!clazz.__P_447_0) {
         var stylesheet = "table.qooxdoo-table {" + qx.bom.element.Style.compile({
           tableLayout: "fixed",
           borderCollapse: "collapse",
@@ -56,7 +56,7 @@
           margin: "0px",
           padding: "0px"
         }) + "} ";
-        clazz.__P_446_0 = qx.bom.Stylesheet.createElement(stylesheet);
+        clazz.__P_447_0 = qx.bom.Stylesheet.createElement(stylesheet);
       }
     },
     /*
@@ -101,4 +101,4 @@
   qx.test.ui.virtual.performance.layer.HtmlTableCssCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlTableCssCell.js.map?dt=1731948122539
+//# sourceMappingURL=HtmlTableCssCell.js.map?dt=1735222433618

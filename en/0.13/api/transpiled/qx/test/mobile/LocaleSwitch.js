@@ -67,10 +67,10 @@
     },
     members: {
       manager: null,
-      __P_356_0: null,
+      __P_357_0: null,
       setUp: function setUp() {
         qx.test.mobile.LocaleSwitch.superclass.prototype.setUp.call(this);
-        if (!this.__P_356_0) {
+        if (!this.__P_357_0) {
           // add dummy translations
           this.manager.addTranslation("en_QX", {
             "test one": "test one",
@@ -84,7 +84,7 @@
             "test Hello %1!": "Servus %1!",
             "test Jonny": "Jonathan"
           });
-          this.__P_356_0 = true;
+          this.__P_357_0 = true;
         }
         this.manager.setLocale("en_QX");
       },
@@ -129,7 +129,7 @@
         list.setModel(new qx.data.Array(data));
         this.addAutoDispose(list);
         this.getRoot().add(list);
-        this.__P_356_1();
+        this.__P_357_1();
         this.manager.setLocale("de_QX");
         var title0 = q(".list * .list-item-title").eq(0).getHtml();
         this.assertEquals("Eins".title0);
@@ -140,9 +140,9 @@
         var subtitle1 = q(".list * .list-item-subtitle").eq(1).getHtml();
         this.assertEquals("Jonathan", subtitle1);
         this.manager.setLocale("en_QX");
-        this.__P_356_1();
+        this.__P_357_1();
       },
-      __P_356_1: function __P_356_1() {
+      __P_357_1: function __P_357_1() {
         //debugger
         var title0 = q(".list * .list-item-title").eq(0).getHtml();
         this.assertEquals("test one".title0);
@@ -176,4 +176,4 @@
   qx.test.mobile.LocaleSwitch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LocaleSwitch.js.map?dt=1731948117454
+//# sourceMappingURL=LocaleSwitch.js.map?dt=1735222429494

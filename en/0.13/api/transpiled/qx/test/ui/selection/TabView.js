@@ -34,7 +34,7 @@
   qx.Class.define("qx.test.ui.selection.TabView", {
     extend: qx.test.ui.selection.AbstractSingleSelectonTest,
     members: {
-      __P_430_0: null,
+      __P_431_0: null,
       setUp: function setUp() {
         var length = 10;
         this._notInSelection = [];
@@ -94,4 +94,4 @@
   qx.test.ui.selection.TabView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TabView.js.map?dt=1731948121083
+//# sourceMappingURL=TabView.js.map?dt=1735222432436

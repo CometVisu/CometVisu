@@ -122,9 +122,9 @@
     ***********************************************
     */
     members: {
-      __P_51_0: null,
-      __P_51_1: 500,
-      __P_51_2: false,
+      __P_52_0: null,
+      __P_52_1: 500,
+      __P_52_2: false,
       _replacementManager: null,
       reload: function reload() {
         var tree = this.getChildControl('tree');
@@ -173,8 +173,8 @@
       _onDblTapTreeSelection: function _onDblTapTreeSelection() {
         var sel = this.getSelectedNode();
         if (sel) {
-          if (this.__P_51_0) {
-            this.__P_51_0.stop();
+          if (this.__P_52_0) {
+            this.__P_52_0.stop();
           }
           // only files show a different behaviour when double-clicked (permanent vs. preview mode)
           if (sel.getType() === 'file') {
@@ -186,10 +186,10 @@
         }
       },
       _onChangeTreeSelection: function _onChangeTreeSelection() {
-        if (this.__P_51_0) {
-          this.__P_51_0.stop();
+        if (this.__P_52_0) {
+          this.__P_52_0.stop();
         }
-        if (this.__P_51_2 === true) {
+        if (this.__P_52_2 === true) {
           return;
         }
         var tree = this.getChildControl('tree');
@@ -199,13 +199,13 @@
           this.setSelectedNode(node);
           // wait for double tap
           if (node.getType() === 'file') {
-            this.__P_51_0 = qx.event.Timer.once(function () {
+            this.__P_52_0 = qx.event.Timer.once(function () {
               this.fireDataEvent('changeSelection', {
                 node: this.getSelectedNode(),
                 mode: 'tap'
               });
-              this.__P_51_0 = null;
-            }, this, this.__P_51_1);
+              this.__P_52_0 = null;
+            }, this, this.__P_52_1);
           } else {
             this.fireDataEvent('changeSelection', {
               node: node,
@@ -223,14 +223,14 @@
         if (widget instanceof cv.ui.manager.tree.VirtualFsItem) {
           var node = widget.getModel();
           if (node) {
-            this.__P_51_2 = true;
+            this.__P_52_2 = true;
             tree.getSelection().replace([node]);
             this.setSelectedNode(node);
             this.fireDataEvent('changeSelection', {
               node: node,
               mode: 'contextmenu'
             });
-            this.__P_51_2 = false;
+            this.__P_52_2 = false;
           }
         }
       },
@@ -298,4 +298,4 @@
   cv.ui.manager.tree.FileSystem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileSystem.js.map?dt=1731948094277
+//# sourceMappingURL=FileSystem.js.map?dt=1735222410013

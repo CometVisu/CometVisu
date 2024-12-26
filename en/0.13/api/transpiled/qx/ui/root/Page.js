@@ -87,7 +87,7 @@
      */
     construct: function construct(doc) {
       // Temporary storage of element to use
-      this.__P_658_0 = doc;
+      this.__P_659_0 = doc;
       qx.ui.root.Abstract.constructor.call(this);
 
       // Use a hard-coded basic layout
@@ -100,7 +100,7 @@
       qx.ui.core.queue.Layout.add(this);
 
       // Register resize listener
-      this.addListener("resize", this.__P_658_1, this);
+      this.addListener("resize", this.__P_659_1, this);
 
       // Register as root
       qx.ui.core.FocusHandler.getInstance().connectTo(this);
@@ -118,12 +118,12 @@
     */
 
     members: {
-      __P_658_2: null,
-      __P_658_0: null,
+      __P_659_2: null,
+      __P_659_0: null,
       // overridden
       _createContentElement: function _createContentElement() {
-        var elem = this.__P_658_0.createElement("div");
-        this.__P_658_0.body.appendChild(elem);
+        var elem = this.__P_659_0.createElement("div");
+        this.__P_659_0.body.appendChild(elem);
         var root = new qx.html.Root(elem);
         root.setStyles({
           position: "absolute",
@@ -161,7 +161,7 @@
        *
        * @param e {qx.event.type.Data} event object
        */
-      __P_658_1: function __P_658_1(e) {
+      __P_659_1: function __P_659_1(e) {
         // set the size to 0 so make the content element invisible
         // this works because the content element has overflow "show"
         this.getContentElement().setStyles({
@@ -192,10 +192,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_658_0 = null;
+      this.__P_659_0 = null;
     }
   });
   qx.ui.root.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1731948139971
+//# sourceMappingURL=Page.js.map?dt=1735222448102

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857575,
-  "lastModifiedIso": "2024-11-18T16:37:37.575Z",
+  "lastModified": 1735222205778,
+  "lastModifiedIso": "2024-12-26T14:10:05.778Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/Web.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 934
     },
     "end": {
-      "line": 124,
+      "line": 127,
       "column": 3,
-      "index": 3557
+      "index": 3622
     }
   },
   "className": "cv.ui.structure.pure.Web",
@@ -471,9 +471,9 @@
           "index": 3132
         },
         "end": {
-          "line": 122,
+          "line": 125,
           "column": 5,
-          "index": 3549
+          "index": 3614
         }
       },
       "type": "function",

@@ -1,0 +1,391 @@
+{
+  "version": 0.3,
+  "lastModified": 1735222205766,
+  "lastModifiedIso": "2024-12-26T14:10:05.766Z",
+  "classFilename": "../../source/class/cv/io/timeseries/Plugin.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 916
+    },
+    "end": {
+      "line": 113,
+      "column": 3,
+      "index": 4091
+    }
+  },
+  "className": "cv.io.timeseries.Plugin",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for plugins that can be used as time series sources.",
+      " * @since 2024",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for plugins that can be used as time series sources.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2024"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "statics": {
+    "_registry": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1154
+        },
+        "end": {
+          "line": 34,
+          "column": 17,
+          "index": 1167
+        }
+      },
+      "appearsIn": []
+    },
+    "registerPlugin": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1245
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "clazz"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_plugin": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1391
+        },
+        "end": {
+          "line": 47,
+          "column": 17,
+          "index": 1404
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1411
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1739
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "getRequestConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate the request configuration for the chart component or disable it if the plugin",
+          "     * fetches the data itself.",
+          "     * @param {number} start start time as unix timestamp",
+          "     * @param {number} end end time as unix timestamp",
+          "     * @param {string} series series name e.g. 'day', 'month', 'year'",
+          "     * @param {number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+          "     * @returns {FetchRequestConfig|OwnFetchRequestConfig}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generate the request configuration for the chart component or disable it if the plugin\n fetches the data itself.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{number} start start time as unix timestamp",
+            "paramName": "start",
+            "description": "start time as unix timestamp",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} end end time as unix timestamp",
+            "paramName": "end",
+            "description": "end time as unix timestamp",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{string} series series name e.g. 'day', 'month', 'year'",
+            "paramName": "series",
+            "description": "series name e.g. 'day', 'month', 'year'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+            "paramName": "offset",
+            "description": "series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{FetchRequestConfig|OwnFetchRequestConfig}",
+            "type": "FetchRequestConfig|OwnFetchRequestConfig",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2840
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2964
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "number"
+        },
+        {
+          "name": "end",
+          "type": "number"
+        },
+        {
+          "name": "series",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "FetchRequestConfig|OwnFetchRequestConfig"
+      },
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "fetchData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the plugin request the data from an external source this function is called.",
+          "     * getRequestConfig() must return {fetch: false} to disable the charts builtin data fetching and",
+          "     * call this function instead.",
+          "     * @param {number} start start time as unix timestamp",
+          "     * @param {number} end end time as unix timestamp",
+          "     * @param {string} series series name e.g. 'day', 'month', 'year'",
+          "     * @param {number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+          "     * @returns {Promise<*>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the plugin request the data from an external source this function is called.\n getRequestConfig() must return {fetch: false} to disable the charts builtin data fetching and\n call this function instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{number} start start time as unix timestamp",
+            "paramName": "start",
+            "description": "start time as unix timestamp",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} end end time as unix timestamp",
+            "paramName": "end",
+            "description": "end time as unix timestamp",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{string} series series name e.g. 'day', 'month', 'year'",
+            "paramName": "series",
+            "description": "series name e.g. 'day', 'month', 'year'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+            "paramName": "offset",
+            "description": "series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<*>}",
+            "type": "Promise<*>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3578
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 3694
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "number"
+        },
+        {
+          "name": "end",
+          "type": "number"
+        },
+        {
+          "name": "series",
+          "type": "string"
+        },
+        {
+          "name": "offset",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<*>"
+      },
+      "appearsIn": []
+    },
+    "processResponse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the response data before it is used in the chart.",
+          "     * If the plugin has a processResponse method it will be used.",
+          "     * @param {any} data",
+          "     * @returns {any}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the response data before it is used in the chart.\n If the plugin has a processResponse method it will be used.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{any} data",
+            "paramName": "data",
+            "description": "",
+            "type": "any"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{any}",
+            "type": "any",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3896
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 4083
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "any"
+        }
+      ],
+      "returnType": {
+        "type": "any"
+      },
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    }
+  },
+  "properties": {}
+}

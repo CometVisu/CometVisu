@@ -62,7 +62,7 @@
     construct: function construct() {
       qx.ui.menubar.MenuBar.constructor.call(this);
       this._commandGroup = qx.core.Init.getApplication().getCommandManager().getActive();
-      this.__P_26_0 = {};
+      this.__P_27_0 = {};
       this._draw();
     },
     /*
@@ -72,9 +72,9 @@
     */
     members: {
       _commandGroup: null,
-      __P_26_0: null,
-      __P_26_1: null,
-      __P_26_2: null,
+      __P_27_0: null,
+      __P_27_1: null,
+      __P_27_2: null,
       _draw: function _draw() {
         this._createChildControl('file');
         this._createChildControl('edit');
@@ -88,7 +88,7 @@
         });
         this._createChildControl('help');
         var editorGroup = new qx.ui.form.RadioGroup();
-        this.__P_26_1 = {
+        this.__P_27_1 = {
           'new-file': {
             menu: 'new-menu',
             args: [this.tr('New file'), cv.theme.dark.Images.getIcon('new-file', 18), this._commandGroup.get('new-file')],
@@ -220,10 +220,10 @@
         editorGroup.getModelSelection().addListener('change', function () {
           prefs.setDefaultConfigEditor(editorGroup.getModelSelection().getItem(0));
         });
-        this.__P_26_3('quick-preview', 'quickPreview');
-        this.__P_26_3('expert-mode', 'expertMode');
+        this.__P_27_3('quick-preview', 'quickPreview');
+        this.__P_27_3('expert-mode', 'expertMode');
       },
-      __P_26_3: function __P_26_3(buttonName, preferenceName) {
+      __P_27_3: function __P_27_3(buttonName, preferenceName) {
         var button = this.getButton(buttonName);
         var prefs = cv.ui.manager.model.Preferences.getInstance();
         prefs.bind(preferenceName, button, 'value');
@@ -231,15 +231,15 @@
       },
       maintainButtons: function maintainButtons(config) {
         if (!config) {
-          config = this.__P_26_1;
+          config = this.__P_27_1;
         } else {
-          config = Object.merge(this.__P_26_1, config);
-          this.__P_26_2 = config;
+          config = Object.merge(this.__P_27_1, config);
+          this.__P_27_2 = config;
         }
         Object.keys(config).forEach(function (id) {
           var button;
           var buttonConf = config[id];
-          if (!Object.prototype.hasOwnProperty.call(this.__P_26_0, id)) {
+          if (!Object.prototype.hasOwnProperty.call(this.__P_27_0, id)) {
             // create button
             var label = buttonConf.args[0];
             var icon = buttonConf.args[1];
@@ -274,12 +274,12 @@
                 menu.add(new qx.ui.menu.Separator());
               }
             }
-            this.__P_26_0[id] = button;
+            this.__P_27_0[id] = button;
             if (Object.prototype.hasOwnProperty.call(buttonConf, 'onAfterCreate')) {
               buttonConf.onAfterCreate(button);
             }
           } else {
-            button = this.__P_26_0[id];
+            button = this.__P_27_0[id];
           }
           button.setEnabled(buttonConf.enabled);
           if (buttonConf.properties) {
@@ -288,10 +288,10 @@
         }, this);
       },
       getButton: function getButton(id) {
-        return this.__P_26_0[id];
+        return this.__P_27_0[id];
       },
       getButtonConfiguration: function getButtonConfiguration() {
-        return this.__P_26_2 || this.__P_26_1;
+        return this.__P_27_2 || this.__P_27_1;
       },
       // overridden
       _createChildControlImpl: function _createChildControlImpl(id) {
@@ -356,4 +356,4 @@
   cv.ui.manager.MenuBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuBar.js.map?dt=1731948091747
+//# sourceMappingURL=MenuBar.js.map?dt=1735222407854

@@ -174,11 +174,11 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 </tr>
 <tr class="row-odd"><td><p>y-format</p></td>
 <td><p>Text</p></td>
-<td><p>Formatierung der y-Achse.</p></td>
+<td><p>Formatierung des Werts auf der y-Achse. (printf-Syntax)</p></td>
 </tr>
 <tr class="row-even"><td><p>x-format</p></td>
 <td><p>Text</p></td>
-<td><p>Formatierung der x-Achse.</p></td>
+<td><p>Formatierung des Datums auf der x-Achse. (siehe: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>). Wird keine Formatierung angegeben, wird diese automatisch bestimmt auf Basis der gerade angezeigten ‚series‘. Eine explizite Angabe der Formatierung deaktiviert die Automatik.</p></td>
 </tr>
 <tr class="row-odd"><td><p>size</p></td>
 <td><p><em>button</em>, <em>0.5x0.5</em>, <em>1x0.5</em>, <em>1x1</em>, <em>2x1</em>, <em>2x1.5</em>, <em>1x2</em>, <em>2x2</em>, <em>2x4</em> oder <em>4x2</em></p></td>
@@ -388,6 +388,96 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 <td></td>
 <td><p>Text</p></td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status-chart</dt><dd><ul class="simple">
+<li><p>h-line</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>Text</p></td>
+<td><p>Datenquelle für diese Linie</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe der Linie.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-value</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Wert anzeigen</p></td>
+</tr>
+<tr class="row-even"><td><p>value-color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Werts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td></td>
+<td><p>Typ des Chart-Elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Werts auf der y-Achse. (printf-Syntax)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-status-chart</dt><dd><ul class="simple">
+<li><p>v-line</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>Text</p></td>
+<td><p>Datenquelle für diese Linie</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe der Linie.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-value</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Wert anzeigen</p></td>
+</tr>
+<tr class="row-even"><td><p>value-color</p></td>
+<td><p>Text</p></td>
+<td><p>Farbe des Werts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td></td>
+<td><p>Datumswert an dem die vertikale Linie angezeigt werden soll.</p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Datums auf der x-Achse. (siehe: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>).</p></td>
 </tr>
 </tbody>
 </table>

@@ -154,7 +154,7 @@
       _containerElementWidth: null,
       _containerElementLeft: null,
       _pixelPerStep: null,
-      __P_630_0: 0,
+      __P_631_0: 0,
       /**
        * Increments the current value.
        */
@@ -274,7 +274,7 @@
        * @param value {Integer} the new value of the slider
        */
       _setValue: function _setValue(value) {
-        this.__P_630_0 = value;
+        this.__P_631_0 = value;
         qx.bom.AnimationFrame.request(this._refresh, this);
       },
       /**
@@ -283,7 +283,7 @@
        * @return {Integer} the value of the slider
        */
       _getValue: function _getValue() {
-        return this.__P_630_0;
+        return this.__P_631_0;
       },
       /**
        * Updates the knob position based on the current value.
@@ -395,4 +395,4 @@
   qx.ui.mobile.form.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1731948138835
+//# sourceMappingURL=Slider.js.map?dt=1735222447207

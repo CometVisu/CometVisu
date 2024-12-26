@@ -116,7 +116,7 @@
 
     statics: {
       /** Internal map of attribute conversions */
-      __P_141_0: {
+      __P_142_0: {
         // Name translation table (camelcase is important for some attributes)
         names: {
           "class": "className",
@@ -225,7 +225,7 @@
        */
       compile: function compile(map) {
         var html = [];
-        var runtime = this.__P_141_0.runtime;
+        var runtime = this.__P_142_0.runtime;
         for (var key in map) {
           if (!runtime[key]) {
             html.push(key, "='", map[key], "'");
@@ -241,7 +241,7 @@
        * @return {var} The value of the attribute
        */
       get: function get(element, name) {
-        var hints = this.__P_141_0;
+        var hints = this.__P_142_0;
         var value;
 
         // normalize name
@@ -283,7 +283,7 @@
         if (typeof value === "undefined") {
           return;
         }
-        var hints = this.__P_141_0;
+        var hints = this.__P_142_0;
 
         // normalize name
         name = hints.names[name] || name;
@@ -333,7 +333,7 @@
         if (typeof value === "undefined") {
           return null;
         }
-        var hints = this.__P_141_0;
+        var hints = this.__P_142_0;
 
         // Skip serialization of hidden Qooxdoo state properties
         if (hints.qxProperties[name]) {
@@ -377,4 +377,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1731948101310
+//# sourceMappingURL=Attribute.js.map?dt=1735222415949

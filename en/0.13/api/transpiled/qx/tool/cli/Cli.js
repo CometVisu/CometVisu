@@ -69,16 +69,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     properties: {
       command: {
-        apply: "__P_460_0"
+        apply: "__P_461_0"
       }
     },
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      if (qx.tool.cli.Cli.__P_460_1) {
+      if (qx.tool.cli.Cli.__P_461_1) {
         throw new Error("qx.tool.cli.Cli has already been initialized!");
       }
-      this.__P_460_2 = false;
-      qx.tool.cli.Cli.__P_460_1 = this;
+      this.__P_461_2 = false;
+      qx.tool.cli.Cli.__P_461_1 = this;
       // include & register log appender
       qx.log.appender.NodeConsole;
     },
@@ -94,10 +94,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /** @type {String} the compile.json filename, if there is one */
       _compileJsonFilename: null,
       /** @type {Object} Parsed arguments */
-      __P_460_3: null,
+      __P_461_3: null,
       /** @type {Boolean} Whether libraries have had their `.load()` method called yet */
-      __P_460_4: false,
-      __P_460_0: function __P_460_0(command) {
+      __P_461_4: false,
+      __P_461_0: function __P_461_0(command) {
         command.setCompilerApi(this._compilerApi);
         this._compilerApi.setCommand(command);
       },
@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @return {import("yargs")}
        */
-      __P_460_5: function __P_460_5() {
+      __P_461_5: function __P_461_5() {
         return this.yargs = require("yargs").locale("en").version().strict(false).showHelpOnFail().help(false).option("force", {
           describe: "Override warnings",
           type: "boolean",
@@ -139,7 +139,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Initialises this.argv with the bare minimum required to load the config files and begin
        * processing
        */
-      __P_460_6: function __P_460_6() {
+      __P_461_6: function __P_461_6() {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var title, yargs;
@@ -157,7 +157,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 title = _context.t0 += _context.t1.concat.call(_context.t1, _context.t2, "\n");
                 title += "\n";
                 title += "Typical usage:\n        qx <commands> [options]\n\n      Type qx <command> --help for options and subcommands.";
-                yargs = _this.__P_460_5().usage(title);
+                yargs = _this.__P_461_5().usage(title);
                 _this.argv = yargs.argv;
                 // Logging - needs to be unified..
                 if (_this.argv.debug) {
@@ -179,14 +179,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Reloads this.argv with the full set of arguments
        */
-      __P_460_7: function __P_460_7() {
+      __P_461_7: function __P_461_7() {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var yargs;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                yargs = _this2.__P_460_5().help(true).option("set", {
+                yargs = _this2.__P_461_5().help(true).option("set", {
                   describe: "sets an environment value for the compiler",
                   nargs: 1,
                   requiresArg: true,
@@ -218,7 +218,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 4:
                 _this2.argv = _context2.sent;
                 _context2.next = 7;
-                return _this2.__P_460_8();
+                return _this2.__P_461_8();
               case 7:
               case "end":
                 return _context2.stop();
@@ -231,7 +231,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * The commands can overload special arg arguments here.
        * e.g. Deploy will will overload the target.
        */
-      __P_460_9: function __P_460_9() {
+      __P_461_9: function __P_461_9() {
         var cmd = this._compilerApi.getCommand();
         if (cmd) {
           this._compilerApi.getCommand().processArgs(this.argv);
@@ -242,20 +242,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * to delay the calling of `load()` until after we know that the command has been selected
        * by Yargs
        */
-      __P_460_8: function __P_460_8() {
+      __P_461_8: function __P_461_8() {
         var _this3 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var i, arr, libraryApi;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
-                if (!_this3.__P_460_4) {
+                if (!_this3.__P_461_4) {
                   _context3.next = 2;
                   break;
                 }
                 return _context3.abrupt("return");
               case 2:
-                _this3.__P_460_4 = true;
+                _this3.__P_461_4 = true;
                 i = 0, arr = _this3._compilerApi.getLibraryApis();
               case 4:
                 if (!(i < arr.length)) {
@@ -295,7 +295,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 qx.tool.compiler.Console.getInstance().setVerbose(_this4.argv.verbose);
                 _context4.next = 3;
-                return _this4.__P_460_8();
+                return _this4.__P_461_8();
               case 3:
                 _context4.next = 5;
                 return command.process();
@@ -318,7 +318,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Object}
        */
       getParsedArgs: function getParsedArgs() {
-        return this.__P_460_3;
+        return this.__P_461_3;
       },
       /**
        * Parses the command line and loads configuration data from a .js or .json file;
@@ -346,7 +346,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 args.shift();
                 process.title = args.join(" ");
                 _context5.next = 5;
-                return _this5.__P_460_10();
+                return _this5.__P_461_10();
               case 5:
                 return _context5.abrupt("return", _this5.processCommand(_this5.getCommand()));
               case 6:
@@ -359,7 +359,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Does the work of parsing command line arguments and loading `compile.js[on]`
        */
-      __P_460_10: function __P_460_10() {
+      __P_461_10: function __P_461_10() {
         var _this6 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           var defaultConfigFilename, lockfileContent, compileJsFilename, compileJsonFilename, CompilerApi, compileJs, compilerApi, config, lockfile, name, schemaVersion, fileVersion, _config, installer, filepath, backup, _iterator, _step, lib, needLibraries, neededLibraries, _installer, _iterator2, _step2, aPath, libCompileJsFilename, LibraryApi, _compileJs, libraryApi, parsedArgs, targetType, target;
@@ -367,7 +367,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return _this6.__P_460_6();
+                return _this6.__P_461_6();
               case 2:
                 /*
                  * Detect and load compile.json and compile.js
@@ -410,9 +410,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context6.next = 22;
                   break;
                 }
-                _this6.__P_460_2 = true;
+                _this6.__P_461_2 = true;
                 _context6.next = 19;
-                return _this6.__P_460_11(compileJsFilename);
+                return _this6.__P_461_11(compileJsFilename);
               case 19:
                 compileJs = _context6.sent;
                 _this6._compileJsFilename = compileJsFilename;
@@ -618,7 +618,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context6.next = 113;
-                return _this6.__P_460_11(libCompileJsFilename);
+                return _this6.__P_461_11(libCompileJsFilename);
               case 113:
                 _compileJs = _context6.sent;
                 if (_compileJs.LibraryApi) {
@@ -648,9 +648,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context6.finish(126);
               case 129:
                 _context6.next = 131;
-                return _this6.__P_460_7();
+                return _this6.__P_461_7();
               case 131:
-                _this6.__P_460_9();
+                _this6.__P_461_9();
                 parsedArgs = {
                   target: _this6.argv.target,
                   outputPath: null,
@@ -710,8 +710,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _context6.next = 146;
                 return compilerApi.getConfiguration();
               case 146:
-                _this6.__P_460_3 = _context6.sent;
-                return _context6.abrupt("return", _this6.__P_460_3);
+                _this6.__P_461_3 = _context6.sent;
+                return _context6.abrupt("return", _this6.__P_461_3);
               case 148:
               case "end":
                 return _context6.stop();
@@ -725,7 +725,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param aPath {String} the file to load
        * @return {Object} the module
        */
-      __P_460_11: function __P_460_11(aPath) {
+      __P_461_11: function __P_461_11(aPath) {
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var module, lines, i, lineNumber;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -765,7 +765,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {Boolean}
        */
       compileJsExists: function compileJsExists() {
-        return this.__P_460_2;
+        return this.__P_461_2;
       },
       /**
        * Returns the CompilerApi instance
@@ -809,17 +809,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     statics: {
       compileJsFilename: "compile.js",
       /** {CompileJs} singleton instance */
-      __P_460_1: null,
+      __P_461_1: null,
       /**
        * Returns the singleton instance, throws an error if it has not been created
        *
        * @return {qx.tool.cli.Cli}
        */
       getInstance: function getInstance() {
-        if (!qx.tool.cli.Cli.__P_460_1) {
+        if (!qx.tool.cli.Cli.__P_461_1) {
           throw new Error("CompileJs has not been initialized yet!");
         }
-        return qx.tool.cli.Cli.__P_460_1;
+        return qx.tool.cli.Cli.__P_461_1;
       },
       /**
        * Adds commands to Yargs
@@ -855,4 +855,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.Cli.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Cli.js.map?dt=1731948124577
+//# sourceMappingURL=Cli.js.map?dt=1735222435262

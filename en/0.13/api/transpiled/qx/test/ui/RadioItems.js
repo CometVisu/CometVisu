@@ -37,20 +37,20 @@
     members: {
       testTwiceClickForm: function testTwiceClickForm() {
         var item = new qx.ui.form.RadioButton();
-        this.__P_379_0(item);
+        this.__P_380_0(item);
         item.destroy();
       },
       testTwiceClickMenu: function testTwiceClickMenu() {
         var item = new qx.ui.menu.RadioButton();
-        this.__P_379_0(item);
+        this.__P_380_0(item);
         item.destroy();
       },
       testTwiceClickToolbar: function testTwiceClickToolbar() {
         var item = new qx.ui.toolbar.RadioButton();
-        this.__P_379_0(item);
+        this.__P_380_0(item);
         item.destroy();
       },
-      __P_379_0: function __P_379_0(widget) {
+      __P_380_0: function __P_380_0(widget) {
         this.assertFalse(widget.getValue());
         // execute the widget
         widget.execute();
@@ -62,20 +62,20 @@
       },
       testTwiceClickEmptySelectionForm: function testTwiceClickEmptySelectionForm() {
         var item = new qx.ui.form.RadioButton();
-        this.__P_379_1(item);
+        this.__P_380_1(item);
         item.destroy();
       },
       testTwiceClickEmptySelectionMenu: function testTwiceClickEmptySelectionMenu() {
         var item = new qx.ui.menu.RadioButton();
-        this.__P_379_1(item);
+        this.__P_380_1(item);
         item.destroy();
       },
       testTwiceClickEmptySelectionToolbar: function testTwiceClickEmptySelectionToolbar() {
         var item = new qx.ui.toolbar.RadioButton();
-        this.__P_379_1(item);
+        this.__P_380_1(item);
         item.destroy();
       },
-      __P_379_1: function __P_379_1(widget) {
+      __P_380_1: function __P_380_1(widget) {
         var grp = new qx.ui.form.RadioGroup();
         grp.setAllowEmptySelection(true);
         widget.setGroup(grp);
@@ -94,4 +94,4 @@
   qx.test.ui.RadioItems.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioItems.js.map?dt=1731948119073
+//# sourceMappingURL=RadioItems.js.map?dt=1735222430787

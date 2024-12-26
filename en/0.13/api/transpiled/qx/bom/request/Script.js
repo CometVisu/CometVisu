@@ -81,18 +81,18 @@
   qx.Bootstrap.define("qx.bom.request.Script", {
     implement: [qx.core.IDisposable],
     construct: function construct() {
-      this.__P_153_0();
-      this.__P_153_1 = qx.Bootstrap.bind(this._onNativeLoad, this);
-      this.__P_153_2 = qx.Bootstrap.bind(this._onNativeError, this);
-      this.__P_153_3 = qx.Bootstrap.bind(this._onTimeout, this);
-      this.__P_153_4 = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+      this.__P_154_0();
+      this.__P_154_1 = qx.Bootstrap.bind(this._onNativeLoad, this);
+      this.__P_154_2 = qx.Bootstrap.bind(this._onNativeError, this);
+      this.__P_154_3 = qx.Bootstrap.bind(this._onTimeout, this);
+      this.__P_154_4 = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
       this._emitter = new qx.event.Emitter();
 
       // BUGFIX: Browsers not supporting error handler
       // Set default timeout to capture network errors
       //
       // Note: The script is parsed and executed, before a "load" is fired.
-      this.timeout = this.__P_153_5() ? 0 : 15000;
+      this.timeout = this.__P_154_5() ? 0 : 15000;
     },
     events: {
       /** Fired at ready state changes. */
@@ -146,7 +146,7 @@
       /**
        * @type {Function} Function that is executed once the script was loaded.
        */
-      __P_153_6: null,
+      __P_154_6: null,
       /**
        * Add an event listener for the given event name.
        *
@@ -170,15 +170,15 @@
        *   The URL to which to send the request.
        */
       open: function open(method, url) {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return;
         }
 
         // Reset XHR properties that may have been set by previous request
-        this.__P_153_0();
-        this.__P_153_8 = null;
-        this.__P_153_9 = url;
-        if (this.__P_153_10("qx.debug.io")) {
+        this.__P_154_0();
+        this.__P_154_8 = null;
+        this.__P_154_9 = url;
+        if (this.__P_154_10("qx.debug.io")) {
           qx.Bootstrap.debug(qx.bom.request.Script, "Open native request with url: " + url);
         }
         this._readyStateChange(1);
@@ -199,7 +199,7 @@
        * @return {qx.bom.request.Script} Self for chaining.
        */
       setRequestHeader: function setRequestHeader(key, value) {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return null;
         }
         var param = {};
@@ -207,7 +207,7 @@
           throw new Error("Invalid state");
         }
         param[key] = value;
-        this.__P_153_9 = qx.util.Uri.appendParamsToUrl(this.__P_153_9, param);
+        this.__P_154_9 = qx.util.Uri.appendParamsToUrl(this.__P_154_9, param);
         return this;
       },
       /**
@@ -215,16 +215,16 @@
        * @return {qx.bom.request.Script} Self for chaining.
        */
       send: function send() {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return null;
         }
-        var script = this.__P_153_11(),
-          head = this.__P_153_4,
+        var script = this.__P_154_11(),
+          head = this.__P_154_4,
           that = this;
         if (this.timeout > 0) {
-          this.__P_153_12 = window.setTimeout(this.__P_153_3, this.timeout);
+          this.__P_154_12 = window.setTimeout(this.__P_154_3, this.timeout);
         }
-        if (this.__P_153_10("qx.debug.io")) {
+        if (this.__P_154_10("qx.debug.io")) {
           qx.Bootstrap.debug(qx.bom.request.Script, "Send native request");
         }
 
@@ -244,11 +244,11 @@
        * @return {qx.bom.request.Script} Self for chaining.
        */
       abort: function abort() {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return null;
         }
-        this.__P_153_8 = true;
-        this.__P_153_13();
+        this.__P_154_8 = true;
+        this.__P_154_13();
         this._emit("abort");
         return this;
       },
@@ -326,10 +326,10 @@
        * is disposed
        */
       getResponseHeader: function getResponseHeader(key) {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return null;
         }
-        if (this.__P_153_10("qx.debug")) {
+        if (this.__P_154_10("qx.debug")) {
           qx.Bootstrap.debug("Response header cannot be determined for requests made with script transport.");
         }
         return "unknown";
@@ -343,10 +343,10 @@
        * is disposed
        */
       getAllResponseHeaders: function getAllResponseHeaders() {
-        if (this.__P_153_7) {
+        if (this.__P_154_7) {
           return null;
         }
-        if (this.__P_153_10("qx.debug")) {
+        if (this.__P_154_10("qx.debug")) {
           qx.Bootstrap.debug("Response headers cannot be determined forrequests made with script transport.");
         }
         return "Unknown response headers";
@@ -361,23 +361,23 @@
        *
        */
       setDetermineSuccess: function setDetermineSuccess(check) {
-        this.__P_153_6 = check;
+        this.__P_154_6 = check;
       },
       /**
        * Dispose object.
        */
       dispose: function dispose() {
-        var script = this.__P_153_14;
-        if (!this.__P_153_7) {
+        var script = this.__P_154_14;
+        if (!this.__P_154_7) {
           // Prevent memory leaks
           if (script) {
             script.onload = script.onreadystatechange = null;
-            this.__P_153_13();
+            this.__P_154_13();
           }
-          if (this.__P_153_12) {
-            window.clearTimeout(this.__P_153_12);
+          if (this.__P_154_12) {
+            window.clearTimeout(this.__P_154_12);
           }
-          this.__P_153_7 = true;
+          this.__P_154_7 = true;
         }
       },
       /**
@@ -385,7 +385,7 @@
        * @return {Boolean} <code>true</code>, if the request has been disposed.
        */
       isDisposed: function isDisposed() {
-        return !!this.__P_153_7;
+        return !!this.__P_154_7;
       },
       /*
       ---------------------------------------------------------------------------
@@ -398,7 +398,7 @@
        * @return {String} URL of request.
        */
       _getUrl: function _getUrl() {
-        return this.__P_153_9;
+        return this.__P_154_9;
       },
       /**
        * Get script element used for request.
@@ -406,18 +406,18 @@
        * @return {Element} Script element.
        */
       _getScriptElement: function _getScriptElement() {
-        return this.__P_153_14;
+        return this.__P_154_14;
       },
       /**
        * Handle timeout.
        */
       _onTimeout: function _onTimeout() {
-        this.__P_153_15();
-        if (!this.__P_153_5()) {
+        this.__P_154_15();
+        if (!this.__P_154_5()) {
           this._emit("error");
         }
         this._emit("timeout");
-        if (!this.__P_153_5()) {
+        if (!this.__P_154_5()) {
           this._emit("loadend");
         }
       },
@@ -425,28 +425,28 @@
        * Handle native load.
        */
       _onNativeLoad: function _onNativeLoad() {
-        var script = this.__P_153_14,
-          determineSuccess = this.__P_153_6,
+        var script = this.__P_154_14,
+          determineSuccess = this.__P_154_6,
           that = this;
 
         // Aborted request must not fire load
-        if (this.__P_153_8) {
+        if (this.__P_154_8) {
           return;
         }
 
         // BUGFIX: IE < 9
         // When handling "readystatechange" event, skip if readyState
         // does not signal loaded script
-        if (this.__P_153_10("engine.name") === "mshtml" && this.__P_153_10("browser.documentmode") < 9) {
+        if (this.__P_154_10("engine.name") === "mshtml" && this.__P_154_10("browser.documentmode") < 9) {
           if (!/loaded|complete/.test(script.readyState)) {
             return;
           } else {
-            if (this.__P_153_10("qx.debug.io")) {
+            if (this.__P_154_10("qx.debug.io")) {
               qx.Bootstrap.debug(qx.bom.request.Script, "Received native readyState: loaded");
             }
           }
         }
-        if (this.__P_153_10("qx.debug.io")) {
+        if (this.__P_154_10("qx.debug.io")) {
           qx.Bootstrap.debug(qx.bom.request.Script, "Received native load");
         }
 
@@ -458,12 +458,12 @@
           }
         }
         if (this.status === 500) {
-          if (this.__P_153_10("qx.debug.io")) {
+          if (this.__P_154_10("qx.debug.io")) {
             qx.Bootstrap.debug(qx.bom.request.Script, "Detected error");
           }
         }
-        if (this.__P_153_12) {
-          window.clearTimeout(this.__P_153_12);
+        if (this.__P_154_12) {
+          window.clearTimeout(this.__P_154_12);
         }
         window.setTimeout(function () {
           that._success();
@@ -476,7 +476,7 @@
        * Handle native error.
        */
       _onNativeError: function _onNativeError() {
-        this.__P_153_15();
+        this.__P_154_15();
         this._emit("error");
         this._emit("loadend");
       },
@@ -489,39 +489,39 @@
       /**
        * @type {Element} Script element
        */
-      __P_153_14: null,
+      __P_154_14: null,
       /**
        * @type {Element} Head element
        */
-      __P_153_4: null,
+      __P_154_4: null,
       /**
        * @type {String} URL
        */
-      __P_153_9: "",
+      __P_154_9: "",
       /**
        * @type {Function} Bound _onNativeLoad handler.
        */
-      __P_153_1: null,
+      __P_154_1: null,
       /**
        * @type {Function} Bound _onNativeError handler.
        */
-      __P_153_2: null,
+      __P_154_2: null,
       /**
        * @type {Function} Bound _onTimeout handler.
        */
-      __P_153_3: null,
+      __P_154_3: null,
       /**
        * @type {Number} Timeout timer iD.
        */
-      __P_153_12: null,
+      __P_154_12: null,
       /**
        * @type {Boolean} Whether request was aborted.
        */
-      __P_153_8: null,
+      __P_154_8: null,
       /**
        * @type {Boolean} Whether request was disposed.
        */
-      __P_153_7: null,
+      __P_154_7: null,
       /*
       ---------------------------------------------------------------------------
         HELPER
@@ -530,7 +530,7 @@
       /**
        * Initialize properties.
        */
-      __P_153_0: function __P_153_0() {
+      __P_154_0: function __P_154_0() {
         this.readyState = 0;
         this.status = 0;
         this.statusText = "";
@@ -548,7 +548,7 @@
        * Handle success.
        */
       _success: function _success() {
-        this.__P_153_13();
+        this.__P_154_13();
         this.readyState = 4;
 
         // By default, load is considered successful
@@ -560,8 +560,8 @@
       /**
        * Handle failure.
        */
-      __P_153_15: function __P_153_15() {
-        this.__P_153_13();
+      __P_154_15: function __P_154_15() {
+        this.__P_154_13();
         this.readyState = 4;
         this.status = 0;
         this.statusText = null;
@@ -571,9 +571,9 @@
        *
        * @return {Boolean} Whether browser supports error handler.
        */
-      __P_153_5: function __P_153_5() {
-        var isLegacyIe = this.__P_153_10("engine.name") === "mshtml" && this.__P_153_10("browser.documentmode") < 9;
-        var isOpera = this.__P_153_10("engine.name") === "opera";
+      __P_154_5: function __P_154_5() {
+        var isLegacyIe = this.__P_154_10("engine.name") === "mshtml" && this.__P_154_10("browser.documentmode") < 9;
+        var isOpera = this.__P_154_10("engine.name") === "opera";
         return !(isLegacyIe || isOpera);
       },
       /**
@@ -581,27 +581,27 @@
        *
        * @return {Element} Configured script element.
        */
-      __P_153_11: function __P_153_11() {
-        var script = this.__P_153_14 = document.createElement("script");
-        script.src = this.__P_153_9;
-        script.onerror = this.__P_153_2;
-        script.onload = this.__P_153_1;
+      __P_154_11: function __P_154_11() {
+        var script = this.__P_154_14 = document.createElement("script");
+        script.src = this.__P_154_9;
+        script.onerror = this.__P_154_2;
+        script.onload = this.__P_154_1;
 
         // BUGFIX: IE < 9
         // Legacy IEs do not fire the "load" event for script elements.
         // Instead, they support the "readystatechange" event
-        if (this.__P_153_10("engine.name") === "mshtml" && this.__P_153_10("browser.documentmode") < 9) {
-          script.onreadystatechange = this.__P_153_1;
+        if (this.__P_154_10("engine.name") === "mshtml" && this.__P_154_10("browser.documentmode") < 9) {
+          script.onreadystatechange = this.__P_154_1;
         }
         return script;
       },
       /**
        * Remove script element from DOM.
        */
-      __P_153_13: function __P_153_13() {
-        var script = this.__P_153_14;
+      __P_154_13: function __P_154_13() {
+        var script = this.__P_154_14;
         if (script && script.parentNode) {
-          this.__P_153_4.removeChild(script);
+          this.__P_154_4.removeChild(script);
         }
       },
       /**
@@ -611,7 +611,7 @@
        * @return {var} Value of the queried environment key
        * @lint environmentNonLiteralKey(key)
        */
-      __P_153_10: function __P_153_10(key) {
+      __P_154_10: function __P_154_10(key) {
         if (qx && qx.core && qx.core.Environment) {
           return qx.core.Environment.get(key);
         } else {
@@ -637,4 +637,4 @@
   qx.bom.request.Script.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Script.js.map?dt=1731948101825
+//# sourceMappingURL=Script.js.map?dt=1735222416395

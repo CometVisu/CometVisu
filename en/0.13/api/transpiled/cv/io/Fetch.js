@@ -45,10 +45,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     statics: {
-      __P_764_0: {},
+      __P_765_0: {},
       DEFAULT_CACHE_TTL: 300,
       // 5 minutes
-      __P_764_1: null,
+      __P_765_1: null,
       cachedFetch: function cachedFetch(resource) {
         var _arguments = arguments;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -59,7 +59,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 options = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : {};
                 proxy = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : false;
                 client = _arguments.length > 3 && _arguments[3] !== undefined ? _arguments[3] : undefined;
-                cache = cv.io.Fetch.__P_764_0;
+                cache = cv.io.Fetch.__P_765_0;
                 if (!Object.prototype.hasOwnProperty.call(cache, resource)) {
                   _context.next = 13;
                   break;
@@ -94,8 +94,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   qx.log.Logger.error(cv.io.Fetch, 'error loading ' + resource + ': ', e);
                   delete cache[resource];
                 });
-                if (!cv.io.Fetch.__P_764_1) {
-                  cv.io.Fetch.__P_764_1 = setInterval(function () {
+                if (!cv.io.Fetch.__P_765_1) {
+                  cv.io.Fetch.__P_765_1 = setInterval(function () {
                     cv.io.Fetch._gc();
                   }, cv.io.Fetch.DEFAULT_CACHE_TTL);
                 }
@@ -218,10 +218,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var entry;
         var maxAge = 3600000; // one hour
         var eol = Date.now() - maxAge;
-        for (var resource in cv.io.Fetch.__P_764_0) {
-          entry = cv.io.Fetch.__P_764_0[resource];
+        for (var resource in cv.io.Fetch.__P_765_0) {
+          entry = cv.io.Fetch.__P_765_0[resource];
           if (entry.time <= eol && entry.ttl * 1000 < maxAge) {
-            delete cv.io.Fetch.__P_764_0[resource];
+            delete cv.io.Fetch.__P_765_0[resource];
           }
         }
       }
@@ -230,4 +230,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.io.Fetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Fetch.js.map?dt=1731948146093
+//# sourceMappingURL=Fetch.js.map?dt=1735222453176

@@ -56,8 +56,8 @@
     */
     construct: function construct(props) {
       cv.ui.structure.pure.AbstractBasicWidget.constructor.call(this, props);
-      this.__P_18_0 = 0;
-      this.__P_18_1();
+      this.__P_19_0 = 0;
+      this.__P_19_1();
     },
     /*
     ******************************************************
@@ -121,20 +121,20 @@
     ******************************************************
     */
     members: {
-      __P_18_0: null,
-      __P_18_2: null,
-      __P_18_3: null,
-      __P_18_4: null,
-      __P_18_5: null,
-      __P_18_1: function __P_18_1() {
+      __P_19_0: null,
+      __P_19_2: null,
+      __P_19_3: null,
+      __P_19_4: null,
+      __P_19_5: null,
+      __P_19_1: function __P_19_1() {
         if (this.isDebug()) {
           this.debug('Timeout Set to : ' + this.getTime());
           this.debug('Target Page: ' + this.getTarget());
         }
         var deltaT = this.getTime() * 100;
-        this.__P_18_5 = new qx.event.Timer(deltaT);
-        this.__P_18_5.addListener('interval', this.timeoutTrigger, this);
-        this.__P_18_5.start();
+        this.__P_19_5 = new qx.event.Timer(deltaT);
+        this.__P_19_5.addListener('interval', this.timeoutTrigger, this);
+        this.__P_19_5.start();
 
         // Reset Counter on every interaction
         qx.event.Registration.addListener(window, 'useraction', this._onUserAction, this);
@@ -142,9 +142,9 @@
         // Keep track of current page
         qx.event.message.Bus.subscribe('path.pageChanged', function (ev) {
           var path = ev.getData();
-          this.__P_18_2 = path;
-          this.__P_18_3 = document.querySelector('#' + path + ' div > h1').innerText;
-          this.__P_18_0 = 0;
+          this.__P_19_2 = path;
+          this.__P_19_3 = document.querySelector('#' + path + ' div > h1').innerText;
+          this.__P_19_0 = 0;
           /* We could trun on and off the above binds if we are already on the right page
           if (timeoutCurrentPage === timeoutTargetPage) {
           console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
@@ -155,27 +155,27 @@
         }, this);
       },
       _onUserAction: function _onUserAction() {
-        this.__P_18_0 = 0;
+        this.__P_19_0 = 0;
       },
       timeoutTrigger: function timeoutTrigger() {
         if (this.isDebug()) {
-          this.debug('TIMEOUT: Got Trigger (' + this.__P_18_0 + ')');
+          this.debug('TIMEOUT: Got Trigger (' + this.__P_19_0 + ')');
         }
-        this.__P_18_0++;
-        this.__P_18_4 = this.getTarget();
-        if (this.__P_18_0 >= 10) {
-          this.__P_18_0 = 0;
+        this.__P_19_0++;
+        this.__P_19_4 = this.getTarget();
+        if (this.__P_19_0 >= 10) {
+          this.__P_19_0 = 0;
           var pageNavigationHandler = cv.Application.structureController;
-          if (this.__P_18_2 !== this.__P_18_4 && this.__P_18_3 !== this.__P_18_4) {
+          if (this.__P_19_2 !== this.__P_19_4 && this.__P_19_3 !== this.__P_19_4) {
             if (this.isDebug()) {
-              this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__P_18_4);
+              this.debug('TIMEOUT: Got Timeout - Now Goto Page ' + this.__P_19_4);
             }
-            pageNavigationHandler.scrollToPage(this.__P_18_4);
+            pageNavigationHandler.scrollToPage(this.__P_19_4);
             pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
             //templateEngine.updateTopNavigation();
           } else {
             if (this.isDebug()) {
-              this.debug('TIMEOUT: Already on page ' + this.__P_18_4);
+              this.debug('TIMEOUT: Already on page ' + this.__P_19_4);
             }
             pageNavigationHandler.getCurrentPage().getDomElement().scrollTop = 0;
           }
@@ -188,7 +188,7 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_18_5");
+      this._disposeObjects("__P_19_5");
     },
     defer: function defer(statics) {
       cv.parser.pure.WidgetParser.addHandler('timeout', cv.plugins.Timeout);
@@ -198,4 +198,4 @@
   cv.plugins.Timeout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timeout.js.map?dt=1731948091049
+//# sourceMappingURL=Timeout.js.map?dt=1735222407245

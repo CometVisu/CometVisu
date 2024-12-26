@@ -60,11 +60,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct(target, library, filename) {
       qx.core.Object.constructor.call(this);
-      this.__P_497_0 = library;
+      this.__P_498_0 = library;
       this.__filename = filename;
-      this.__P_497_1 = target;
-      this.__P_497_2 = {};
-      this.__P_497_3 = {};
+      this.__P_498_1 = target;
+      this.__P_498_2 = {};
+      this.__P_498_3 = {};
     },
     properties: {
       file: {
@@ -78,12 +78,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_497_0: null,
+      __P_498_0: null,
       __filename: null,
-      __P_497_4: null,
-      __P_497_5: null,
-      __P_497_2: null,
-      __P_497_3: null,
+      __P_498_4: null,
+      __P_498_5: null,
+      __P_498_2: null,
+      __P_498_3: null,
       /**
        * Compiles the SCSS, returns a list of files that were imported)
        *
@@ -97,10 +97,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                _this.__P_497_4 = path.dirname(outputFilename);
-                _this.__P_497_5 = {};
+                _this.__P_498_4 = path.dirname(outputFilename);
+                _this.__P_498_5 = {};
                 _context.next = 4;
-                return _this.loadSource(_this.__filename, _this.__P_497_0);
+                return _this.loadSource(_this.__filename, _this.__P_498_0);
               case 4:
                 inputFileData = _context.sent;
                 _context.next = 7;
@@ -117,11 +117,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                      * Importer
                      */
                     importer: function importer(url, prev, done) {
-                      var contents = _this.__P_497_2[url];
+                      var contents = _this.__P_498_2[url];
                       if (!contents) {
-                        var tmp = _this.__P_497_3[url];
+                        var tmp = _this.__P_498_3[url];
                         if (tmp) {
-                          contents = _this.__P_497_2[tmp];
+                          contents = _this.__P_498_2[tmp];
                         }
                       }
                       return contents ? {
@@ -130,7 +130,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     },
                     functions: {
                       "qooxdooUrl($filename, $url)": function qooxdooUrl$filename_$url($filename, $url, done) {
-                        return _this.__P_497_6($filename, $url, done);
+                        return _this.__P_498_6($filename, $url, done);
                       }
                     }
                   }, function (error, result) {
@@ -147,7 +147,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                 });
               case 7:
-                return _context.abrupt("return", Object.keys(_this.__P_497_2));
+                return _context.abrupt("return", Object.keys(_this.__P_498_2));
               case 8:
               case "end":
                 return _context.stop();
@@ -184,7 +184,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         // Must be relative to current file
         var dir = path.dirname(currentFilename);
         var filename = path.resolve(dir, url);
-        var library = this.__P_497_1.getAnalyser().getLibraries().find(function (library) {
+        var library = this.__P_498_1.getAnalyser().getLibraries().find(function (library) {
           return filename.startsWith(path.resolve(library.getRootDir()));
         });
         if (!library) {
@@ -200,7 +200,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       reloadSource: function reloadSource(filename) {
         filename = path.resolve(filename);
-        delete this.__P_497_2[filename];
+        delete this.__P_498_2[filename];
         return this.loadSource(filename);
       },
       loadSource: function loadSource(filename, library) {
@@ -230,14 +230,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context2.next = 8;
                   break;
                 }
-                _this2.__P_497_2[absFilename] = null;
+                _this2.__P_498_2[absFilename] = null;
                 return _context2.abrupt("return", null);
               case 8:
-                if (!(_this2.__P_497_2[absFilename] !== undefined)) {
+                if (!(_this2.__P_498_2[absFilename] !== undefined)) {
                   _context2.next = 10;
                   break;
                 }
-                return _context2.abrupt("return", qx.Promise.resolve(_this2.__P_497_2[absFilename]));
+                return _context2.abrupt("return", qx.Promise.resolve(_this2.__P_498_2[absFilename]));
               case 10:
                 _context2.next = 12;
                 return fs.readFileAsync(absFilename, "utf8");
@@ -249,7 +249,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   if (pathInfo.externalUrl) {
                     return '@import "' + pathInfo.externalUrl + '"';
                   }
-                  var newLibrary = _this2.__P_497_1.getAnalyser().findLibrary(pathInfo.namespace);
+                  var newLibrary = _this2.__P_498_1.getAnalyser().findLibrary(pathInfo.namespace);
                   if (!newLibrary) {
                     qx.tool.compiler.Console.error("Cannot find file to import, url=" + p1 + " in file " + absFilename);
                     return null;
@@ -274,15 +274,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                       return "url(\"".concat(pathInfo.externalUrl, "\")");
                     }
                     if (pathInfo.namespace) {
-                      var targetFile = path.relative(process.cwd(), path.join(_this2.__P_497_1.getOutputDir(), "resource", pathInfo.filename));
-                      var relative = path.relative(_this2.__P_497_4, targetFile);
+                      var targetFile = path.relative(process.cwd(), path.join(_this2.__P_498_1.getOutputDir(), "resource", pathInfo.filename));
+                      var relative = path.relative(_this2.__P_498_4, targetFile);
                       return "url(\"".concat(relative, "\")");
                     }
                   }
                   return "url(\"".concat(url, "\")");
                 });
-                _this2.__P_497_2[absFilename] = contents;
-                _this2.__P_497_3[filename] = absFilename;
+                _this2.__P_498_2[absFilename] = contents;
+                _this2.__P_498_3[filename] = absFilename;
                 _context2.next = 20;
                 return qx.Promise.all(promises);
               case 20:
@@ -295,9 +295,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       getSourceFilenames: function getSourceFilenames() {
-        return Object.keys(this.__P_497_2);
+        return Object.keys(this.__P_498_2);
       },
-      __P_497_6: function __P_497_6($filename, $url, done) {
+      __P_498_6: function __P_498_6($filename, $url, done) {
         var currentFilename = $filename.getValue();
         var url = $url.getValue();
         var pathInfo = this._analyseFilename(url, currentFilename);
@@ -306,8 +306,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return sass.types.String("url(" + pathInfo.externalUrl + ")");
           }
           if (pathInfo.namespace) {
-            var targetFile = path.relative(process.cwd(), path.join(this.__P_497_1.getOutputDir(), "resource", pathInfo.filename));
-            var relative = path.relative(this.__P_497_4, targetFile);
+            var targetFile = path.relative(process.cwd(), path.join(this.__P_498_1.getOutputDir(), "resource", pathInfo.filename));
+            var relative = path.relative(this.__P_498_4, targetFile);
             return sass.types.String("url(" + relative + ")");
           }
         }
@@ -318,4 +318,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ScssFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScssFile.js.map?dt=1731948130189
+//# sourceMappingURL=ScssFile.js.map?dt=1735222440027

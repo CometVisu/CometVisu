@@ -195,7 +195,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var rootList = this._element.querySelector(':scope > ul');
               if (rootList) {
                 rootList.replaceChildren();
-                this.__P_81_0(rootList, parentElement, currentPage, 0);
+                this.__P_82_0(rootList, parentElement, currentPage, 0);
               }
               break;
             }
@@ -345,7 +345,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
         }
       },
-      __P_81_0: function __P_81_0(parentList, parentElement, currentPage, currentLevel) {
+      __P_82_0: function __P_82_0(parentList, parentElement, currentPage, currentLevel) {
         var _this3 = this;
         if (!parentElement) {
           return;
@@ -431,7 +431,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               details.appendChild(summary);
               var subList = document.createElement('ul');
               details.appendChild(subList);
-              _this3.__P_81_0(subList, page, currentPage, currentLevel + 1);
+              _this3.__P_82_0(subList, page, currentPage, currentLevel + 1);
               li.appendChild(details);
             } else {
               li.appendChild(a);
@@ -517,4 +517,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1731948097051
+//# sourceMappingURL=Menu.js.map?dt=1735222412376

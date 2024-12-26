@@ -1,3 +1,24 @@
+/* LongPolling.js
+ *
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+'use strict';
+
+function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -29,25 +50,6 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-  /* LongPolling.js
-   *
-   * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
-   *
-   * This program is free software; you can redistribute it and/or modify it
-   * under the terms of the GNU General Public License as published by the Free
-   * Software Foundation; either version 3 of the License, or (at your option)
-   * any later version.
-   *
-   * This program is distributed in the hope that it will be useful, but WITHOUT
-   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-   * more details.
-   *
-   * You should have received a copy of the GNU General Public License along
-   * with this program; if not, write to the Free Software Foundation, Inc.,
-   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-   */
-
   qx.Class.define('cv.io.transport.LongPolling', {
     extend: qx.core.Object,
     /*
@@ -70,18 +72,20 @@
     ******************************************************
     */
     members: {
+      /** @type {cv.io.Watchdog} */
       watchdog: null,
       doRestart: false,
-      // are we currently in a restart, e.g. due to the watchdog
+      // are we currently in a restart, e.g. due to the watchdog?
       xhr: null,
       // the ongoing AJAX request
       lastIndex: -1,
       // index returned by the last request
       retryCounter: 0,
-      // count number of retries (reset with each valid response)
+      // count the number of retries (reset with each valid response)
       retryServerErrorCounter: 0,
-      // count number of successive temporary server errors
+      // count the number of successive temporary server errors
       sessionId: null,
+      /** @type {cv.io.Client} */
       client: null,
       running: null,
       /**
@@ -125,8 +129,9 @@
         this.watchdog.start(5);
       },
       __P_783_0: function __P_783_0(data, callback) {
-        data = data || this.client.buildRequest();
-        callback = callback || this.handleRead;
+        var _data, _callback;
+        (_data = data) !== null && _data !== void 0 ? _data : data = this.client.buildRequest();
+        (_callback = callback) !== null && _callback !== void 0 ? _callback : callback = this.handleRead;
         data.t = 0;
         var options = {
           beforeSend: this.beforeSend.bind(this),
@@ -150,9 +155,9 @@
             this.retryCounter++;
             if (this.doRestart) {
               // planned restart, only inform user
-              this.info('restarting XHR read requests in ' + delay + ' ms as planned');
+              this.info("restarting XHR read requests in ".concat(delay, " ms as planned"));
             } else {
-              this.info('restarting XHR read requests in ' + delay + ' ms as forced to');
+              this.info("restarting XHR read requests in ".concat(delay, " ms as forced to"));
             }
             if (!this.watchdog.isActive()) {
               // watchdog has been stopped in the abort function -> restart it
@@ -215,7 +220,7 @@
           // request
           // addresses-startPageAddresses
           var diffAddresses = [];
-          for (var i = 0; i < this.client.addresses.length; i++) {
+          for (var i = 0; i < this.client.addresses.length; +i, _readOnlyError("i")) {
             if (!this.client.initialAddresses.includes(this.client.addresses[i])) {
               diffAddresses.push(this.client.addresses[i]);
             }
@@ -239,16 +244,17 @@
       handleError: qx.core.Environment.select('cv.xhr', {
         qx: function qx(ev) {
           var req = ev.getTarget();
+          var status = req.getStatus();
           // check for temporary server errors and retry a few times
-          if ([408, 444, 499, 502, 503, 504].indexOf(req.getStatus()) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
-            this.info('Temporary connection problem (status: ' + req.getStatus() + ') - retry count: ' + this.retryServerErrorCounter);
+          if ([408, 444, 499, 502, 503, 504].indexOf(status) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
+            this.info("Temporary connection problem (status: ".concat(status, ") - retry count: ").concat(this.retryServerErrorCounter));
             this.retryServerErrorCounter++;
             req.serverErrorHandled = true;
             this.restart();
             return;
           }
           // ignore error when connection is irrelevant
-          if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
+          if (this.running && req.getReadyState() !== 4 && !this.doRestart && status !== 0) {
             this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
             this.client.setConnected(false);
           }
@@ -280,8 +286,8 @@
         }
       }),
       /**
-       * manipulates the header of the current ajax query before it is
-       * been send to the server
+       * manipulates the header of the current ajax query before it will
+       * be sent to the server
        *
        * @param xhr {Object} the native XHR object
        *
@@ -292,9 +298,9 @@
             xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
           }
         }
-        for (headerName in this.headers) {
-          if (this.headers[headerName] !== undefined) {
-            xhr.setRequestHeader(headerName, this.headers[headerName]);
+        for (var _headerName in this.headers) {
+          if (this.headers[_headerName] !== undefined) {
+            xhr.setRequestHeader(_headerName, this.headers[_headerName]);
           }
         }
       },
@@ -332,6 +338,7 @@
        *
        */
       abort: function abort() {
+        this.watchdog.stop();
         if (this.xhr && this.xhr.abort) {
           this.xhr.abort();
           this.xhr = null;
@@ -339,11 +346,10 @@
             this.client.backend.hooks.onClose.bind(this);
           }
         }
-        this.watchdog.stop();
       }
     }
   });
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1731948148109
+//# sourceMappingURL=LongPolling.js.map?dt=1735222454668

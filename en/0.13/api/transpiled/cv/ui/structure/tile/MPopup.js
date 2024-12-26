@@ -5,7 +5,6 @@
         "usage": "dynamic",
         "require": true
       },
-      "qx.event.Registration": {},
       "cv.util.Tree": {},
       "qx.event.Timer": {}
     }
@@ -41,6 +40,7 @@
     */
     construct: function construct() {
       this._onPointerDownBounded = this._onPointerDown.bind(this);
+      this._openPopupChildBounded = this._openPopupChild.bind(this);
     },
     /*
     ***********************************************
@@ -61,10 +61,11 @@
     members: {
       _childPopup: null,
       _onPointerDownBounded: null,
+      _openPopupChildBounded: null,
       _initPopupChild: function _initPopupChild() {
         var popup = this._childPopup = this._element.querySelector(':scope > cv-popup');
         if (popup) {
-          qx.event.Registration.addListener(this._element, 'tap', this._openPopupChild, this);
+          this._element.addEventListener('click', this._openPopupChildBounded);
 
           // we need to tell the parent widget that is inside a group that wen have a popup here
           var parent = popup.parentElement;
@@ -128,11 +129,11 @@
     ***********************************************
     */
     destruct: function destruct() {
-      qx.event.Registration.removeListener(this._element, 'tap', this._openPopupChild, this);
+      this._element.removeEventListener('click', this._openPopupChildBounded);
       this._childPopup = null;
     }
   });
   cv.ui.structure.tile.MPopup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MPopup.js.map?dt=1731948096010
+//# sourceMappingURL=MPopup.js.map?dt=1735222411483

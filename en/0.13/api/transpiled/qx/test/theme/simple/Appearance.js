@@ -35,9 +35,9 @@
   qx.Class.define("qx.test.theme.simple.Appearance", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_373_0: qx.theme.simple.Appearance.appearances,
+      __P_374_0: qx.theme.simple.Appearance.appearances,
       testLabel: function testLabel() {
-        var obj = this.__P_373_0.label;
+        var obj = this.__P_374_0.label;
         this.assertIdentical("text-disabled", obj.style({
           disabled: true
         }).textColor);
@@ -46,7 +46,7 @@
         }).textColor);
       },
       testImage: function testImage() {
-        var obj = this.__P_373_0.image;
+        var obj = this.__P_374_0.image;
         var states = {
           replacement: false,
           disabled: true
@@ -56,20 +56,20 @@
         this.assertUndefined(obj.style(states).opacity);
       },
       testRoot: function testRoot() {
-        var obj = this.__P_373_0.root;
+        var obj = this.__P_374_0.root;
         var style = obj.style();
         this.assertIdentical("background", style.backgroundColor);
         this.assertIdentical("text", style.textColor);
         this.assertIdentical("default", style.font);
       },
       testPopup: function testPopup() {
-        var obj = this.__P_373_0.popup;
+        var obj = this.__P_374_0.popup;
         var style = obj.style();
         this.assertIdentical("popup", style.decorator);
         this.assertIdentical("background-pane", style.backgroundColor);
       },
       testTooltip: function testTooltip() {
-        var obj = this.__P_373_0.tooltip;
+        var obj = this.__P_374_0.tooltip;
         var style = obj.style();
         this.assertIdentical("tooltip", style.backgroundColor);
         this.assertIdentical("tooltip-text", style.textColor);
@@ -78,7 +78,7 @@
         this.assertArrayEquals([10, 5, 5, 5], style.offset);
       },
       testTooltipError: function testTooltipError() {
-        var obj = this.__P_373_0["tooltip-error"];
+        var obj = this.__P_374_0["tooltip-error"];
         var style = obj.style();
         this.assertIdentical("text-selected", style.textColor);
         this.assertIdentical(100, style.showTimeout);
@@ -88,18 +88,18 @@
         this.assertUndefined(style.backgroundColor);
       },
       testIframe: function testIframe() {
-        var obj = this.__P_373_0.iframe;
+        var obj = this.__P_374_0.iframe;
         var style = obj.style();
         this.assertIdentical("white", style.backgroundColor);
         this.assertIdentical("main-dark", style.decorator);
       },
       testMoveFrame: function testMoveFrame() {
-        var obj = this.__P_373_0["move-frame"];
+        var obj = this.__P_374_0["move-frame"];
         var style = obj.style();
         this.assertIdentical("main-dark", style.decorator);
       },
       testDragDropCursor: function testDragDropCursor() {
-        var obj = this.__P_373_0["dragdrop-cursor"];
+        var obj = this.__P_374_0["dragdrop-cursor"];
         var states = {
           copy: true,
           move: true,
@@ -120,7 +120,7 @@
         this.assertArrayEquals([2, 16, 2, 6], style.offset);
       },
       testSlideBarButtonForward: function testSlideBarButtonForward() {
-        var style = this.__P_373_0["slidebar/button-forward"].style;
+        var style = this.__P_374_0["slidebar/button-forward"].style;
         this.assertIdentical(qx.theme.simple.Image.URLS["arrow-down"], style({
           vertical: true
         }).icon);
@@ -129,7 +129,7 @@
         }).icon);
       },
       testSlideBarButtonBackward: function testSlideBarButtonBackward() {
-        var style = this.__P_373_0["slidebar/button-backward"].style;
+        var style = this.__P_374_0["slidebar/button-backward"].style;
         this.assertIdentical(qx.theme.simple.Image.URLS["arrow-up"], style({
           vertical: true
         }).icon);
@@ -138,35 +138,35 @@
         }).icon);
       },
       testTableStatusBar: function testTableStatusBar() {
-        var style = this.__P_373_0["table/statusbar"].style();
+        var style = this.__P_374_0["table/statusbar"].style();
         this.assertIdentical("statusbar", style.decorator);
         this.assertArrayEquals([2, 5], style.padding);
       },
       testTableColumnButton: function testTableColumnButton() {
-        var style = this.__P_373_0["table/column-button"].style();
+        var style = this.__P_374_0["table/column-button"].style();
         this.assertIdentical("table-header-column-button", style.decorator);
         this.assertIdentical(3, style.padding);
         this.assertIdentical(qx.theme.simple.Image.URLS["select-column-order"], style.icon);
       },
       testTableColumnResetButton: function testTableColumnResetButton() {
-        var style = this.__P_373_0["table-column-reset-button"].style();
+        var style = this.__P_374_0["table-column-reset-button"].style();
         this.assertIdentical("icon/16/actions/view-refresh.png", style.icon);
       },
       testTableScrollerHeader: function testTableScrollerHeader() {
-        var style = this.__P_373_0["table-scroller/header"].style();
+        var style = this.__P_374_0["table-scroller/header"].style();
         this.assertIdentical("table-header", style.decorator);
       },
       testTableScrollerFocusIndicator: function testTableScrollerFocusIndicator() {
-        var style = this.__P_373_0["table-scroller/focus-indicator"].style();
+        var style = this.__P_374_0["table-scroller/focus-indicator"].style();
         this.assertIdentical("main", style.decorator);
       },
       testTableScrollerResizeLine: function testTableScrollerResizeLine() {
-        var style = this.__P_373_0["table-scroller/resize-line"].style();
+        var style = this.__P_374_0["table-scroller/resize-line"].style();
         this.assertIdentical("button-border", style.backgroundColor);
         this.assertIdentical(3, style.width);
       },
       testTableHeaderCell: function testTableHeaderCell() {
-        var styleFunc = this.__P_373_0["table-header-cell"].style;
+        var styleFunc = this.__P_374_0["table-header-cell"].style;
         var states = {
           first: true,
           disabled: true,
@@ -195,39 +195,39 @@
         this.assertIdentical("table-header-cell", style.decorator);
       },
       testTableHeaderCellIcon: function testTableHeaderCellIcon() {
-        var style = this.__P_373_0["table-header-cell/icon"].style();
+        var style = this.__P_374_0["table-header-cell/icon"].style();
         this.assertIdentical(5, style.paddingRight);
       },
       testTableHeaderCellSortIcon: function testTableHeaderCellSortIcon() {
-        var style = this.__P_373_0["table-header-cell/sort-icon"].style();
+        var style = this.__P_374_0["table-header-cell/sort-icon"].style();
         this.assertIdentical("middle", style.alignY);
         this.assertIdentical("right", style.alignX);
         this.assertIdentical(5, style.paddingRight);
       },
       testTableEditorTextField: function testTableEditorTextField() {
-        var style = this.__P_373_0["table-editor-textfield"].style();
+        var style = this.__P_374_0["table-editor-textfield"].style();
         this.assertUndefined(style.decorator);
         this.assertArrayEquals([2, 2], style.padding);
       },
       testTableEditorSelectBox: function testTableEditorSelectBox() {
-        var style = this.__P_373_0["table-editor-selectbox"].style();
+        var style = this.__P_374_0["table-editor-selectbox"].style();
         this.assertArrayEquals([0, 2], style.padding);
       },
       testTableEditorComboBox: function testTableEditorComboBox() {
-        var style = this.__P_373_0["table-editor-combobox"].style();
+        var style = this.__P_374_0["table-editor-combobox"].style();
         this.assertUndefined(style.decorator);
       },
       testProgressiveTableHeader: function testProgressiveTableHeader() {
-        var style = this.__P_373_0["progressive-table-header"].style();
+        var style = this.__P_374_0["progressive-table-header"].style();
         this.assertIdentical("progressive-table-header", style.decorator);
       },
       testProgressiveTableHeaderCell: function testProgressiveTableHeaderCell() {
-        var style = this.__P_373_0["progressive-table-header-cell"].style();
+        var style = this.__P_374_0["progressive-table-header-cell"].style();
         this.assertIdentical("progressive-table-header-cell", style.decorator);
         this.assertArrayEquals([5, 6, 5, 6], style.padding);
       },
       testTreeVirtual: function testTreeVirtual() {
-        var styleFunc = this.__P_373_0["treevirtual"].style;
+        var styleFunc = this.__P_374_0["treevirtual"].style;
         var superStyles = {
           padding: [3, 4]
         };
@@ -235,7 +235,7 @@
         this.assertArrayEquals([5, 5], style.padding);
       },
       testTreeVirtualFolder: function testTreeVirtualFolder() {
-        var styleFunc = this.__P_373_0["treevirtual-folder"].style;
+        var styleFunc = this.__P_374_0["treevirtual-folder"].style;
         var states = {
           opened: true,
           drag: true
@@ -250,7 +250,7 @@
         this.assertUndefined(style.opacity);
       },
       testTreeVirtualFile: function testTreeVirtualFile() {
-        var styleFunc = this.__P_373_0["treevirtual-file"].style;
+        var styleFunc = this.__P_374_0["treevirtual-file"].style;
         this.assertIdentical("icon/16/mimetypes/text-plain.png", styleFunc({
           drag: false
         }).icon);
@@ -262,67 +262,67 @@
         }).opacity);
       },
       testTreeVirtualLine: function testTreeVirtualLine() {
-        var style = this.__P_373_0["treevirtual-line"].style();
+        var style = this.__P_374_0["treevirtual-line"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-line"], style.icon);
       },
       testTreeVirtualContract: function testTreeVirtualContract() {
-        var style = this.__P_373_0["treevirtual-contract"].style();
+        var style = this.__P_374_0["treevirtual-contract"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["tree-minus"], style.icon);
       },
       testTreeVirtualExpand: function testTreeVirtualExpand() {
-        var style = this.__P_373_0["treevirtual-expand"].style();
+        var style = this.__P_374_0["treevirtual-expand"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["tree-plus"], style.icon);
       },
       testTreeVirtualOnlyContract: function testTreeVirtualOnlyContract() {
-        var style = this.__P_373_0["treevirtual-only-contract"].style();
+        var style = this.__P_374_0["treevirtual-only-contract"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-minus-only"], style.icon);
       },
       testTreeVirtualOnlyExpand: function testTreeVirtualOnlyExpand() {
-        var style = this.__P_373_0["treevirtual-only-expand"].style();
+        var style = this.__P_374_0["treevirtual-only-expand"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-plus-only"], style.icon);
       },
       testTreeVirtualStartContract: function testTreeVirtualStartContract() {
-        var style = this.__P_373_0["treevirtual-start-contract"].style();
+        var style = this.__P_374_0["treevirtual-start-contract"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-minus-start"], style.icon);
       },
       testTreeVirtualStartExpand: function testTreeVirtualStartExpand() {
-        var style = this.__P_373_0["treevirtual-start-expand"].style();
+        var style = this.__P_374_0["treevirtual-start-expand"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-plus-start"], style.icon);
       },
       testTreeVirtualEndContract: function testTreeVirtualEndContract() {
-        var style = this.__P_373_0["treevirtual-end-contract"].style();
+        var style = this.__P_374_0["treevirtual-end-contract"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-minus-end"], style.icon);
       },
       testTreeVirtualEndExpand: function testTreeVirtualEndExpand() {
-        var style = this.__P_373_0["treevirtual-end-expand"].style();
+        var style = this.__P_374_0["treevirtual-end-expand"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-plus-end"], style.icon);
       },
       testTreeVirtualCrossContract: function testTreeVirtualCrossContract() {
-        var style = this.__P_373_0["treevirtual-cross-contract"].style();
+        var style = this.__P_374_0["treevirtual-cross-contract"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-minus-cross"], style.icon);
       },
       testTreeVirtualCrossExpand: function testTreeVirtualCrossExpand() {
-        var style = this.__P_373_0["treevirtual-cross-expand"].style();
+        var style = this.__P_374_0["treevirtual-cross-expand"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-plus-cross"], style.icon);
       },
       testTreeVirtualEnd: function testTreeVirtualEnd() {
-        var style = this.__P_373_0["treevirtual-end"].style();
+        var style = this.__P_374_0["treevirtual-end"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-end"], style.icon);
       },
       testTreeVirtualCross: function testTreeVirtualCross() {
-        var style = this.__P_373_0["treevirtual-cross"].style();
+        var style = this.__P_374_0["treevirtual-cross"].style();
         this.assertIdentical(qx.theme.simple.Image.URLS["treevirtual-cross"], style.icon);
       },
       testResizer: function testResizer() {
-        var style = this.__P_373_0["resizer"].style();
+        var style = this.__P_374_0["resizer"].style();
         this.assertIdentical("main-dark", style.decorator);
       },
       testSplitpaneSplitter: function testSplitpaneSplitter() {
-        var style = this.__P_373_0["splitpane/splitter"].style();
+        var style = this.__P_374_0["splitpane/splitter"].style();
         this.assertIdentical("light-background", style.backgroundColor);
       },
       testSplitpaneSplitterKnob: function testSplitpaneSplitterKnob() {
-        var styleFunc = this.__P_373_0["splitpane/splitter/knob"].style;
+        var styleFunc = this.__P_374_0["splitpane/splitter/knob"].style;
         var states = {
           horizontal: true
         };
@@ -335,12 +335,12 @@
         this.assertIdentical(qx.theme.simple.Image.URLS["knob-vertical"], style.source);
       },
       testSplitpaneSlider: function testSplitpaneSlider() {
-        var style = this.__P_373_0["splitpane/slider"].style();
+        var style = this.__P_374_0["splitpane/slider"].style();
         this.assertIdentical("border-light-shadow", style.backgroundColor);
         this.assertIdentical(0.3, style.opacity);
       },
       testMenu: function testMenu() {
-        var styleFunc = this.__P_373_0["menu"].style;
+        var styleFunc = this.__P_374_0["menu"].style;
         var states = {
           submenu: true,
           contextmenu: true
@@ -370,7 +370,7 @@
         this.assertUndefined(style.offset);
       },
       testMenuSlideBarButton: function testMenuSlideBarButton() {
-        var styleFunc = this.__P_373_0["menu-slidebar-button"].style;
+        var styleFunc = this.__P_374_0["menu-slidebar-button"].style;
         var style = styleFunc({
           hovered: true
         });
@@ -383,7 +383,7 @@
         this.assertUndefined(style.backgroundColor);
       },
       testMenuSlideBarButtonBackward: function testMenuSlideBarButtonBackward() {
-        var styleFunc = this.__P_373_0["menu-slidebar/button-backward"].style;
+        var styleFunc = this.__P_374_0["menu-slidebar/button-backward"].style;
         var style = styleFunc({
           hovered: true
         });
@@ -394,7 +394,7 @@
         this.assertIdentical(qx.theme.simple.Image.URLS["arrow-up"], style.icon);
       },
       testMenuSlideBarButtonForward: function testMenuSlideBarButtonForward() {
-        var styleFunc = this.__P_373_0["menu-slidebar/button-forward"].style;
+        var styleFunc = this.__P_374_0["menu-slidebar/button-forward"].style;
         var style = styleFunc({
           hovered: true
         });
@@ -405,7 +405,7 @@
         this.assertIdentical(qx.theme.simple.Image.URLS["arrow-down"], style.icon);
       },
       testMenuSeparator: function testMenuSeparator() {
-        var style = this.__P_373_0["menu-separator"].style();
+        var style = this.__P_374_0["menu-separator"].style();
         this.assertIdentical(0, style.height);
         this.assertIdentical("menu-separator", style.decorator);
         this.assertIdentical(4, style.marginTop);
@@ -414,7 +414,7 @@
         this.assertIdentical(2, style.marginRight);
       },
       testMenuButton: function testMenuButton() {
-        var styleFunc = this.__P_373_0["menu-button"].style;
+        var styleFunc = this.__P_374_0["menu-button"].style;
         this.assertIdentical("background-selected", styleFunc({
           selected: true
         }).backgroundColor);
@@ -432,22 +432,22 @@
         }).textColor);
       },
       testMenuButtonIcon: function testMenuButtonIcon() {
-        var style = this.__P_373_0["menu-button/icon"].style();
+        var style = this.__P_374_0["menu-button/icon"].style();
         this.assertIdentical("middle", style.alignY);
       },
       testMenuButtonLabel: function testMenuButtonLabel() {
-        var style = this.__P_373_0["menu-button/label"].style();
+        var style = this.__P_374_0["menu-button/label"].style();
         this.assertIdentical("middle", style.alignY);
         this.assertIdentical(1, style.padding);
       },
       testMenuButtonShortcut: function testMenuButtonShortcut() {
-        var style = this.__P_373_0["menu-button/shortcut"].style();
+        var style = this.__P_374_0["menu-button/shortcut"].style();
         this.assertIdentical("middle", style.alignY);
         this.assertIdentical(1, style.padding);
         this.assertIdentical(14, style.marginLeft);
       },
       testMenuButtonArrow: function testMenuButtonArrow() {
-        var styleFunc = this.__P_373_0["menu-button/arrow"].style;
+        var styleFunc = this.__P_374_0["menu-button/arrow"].style;
         var states = {
           selected: true
         };
@@ -459,7 +459,7 @@
         this.assertIdentical(qx.theme.simple.Image.URLS["arrow-right"], style.source);
       },
       testMenuCheckbox: function testMenuCheckbox() {
-        var styleFunc = this.__P_373_0["menu-checkbox"].style;
+        var styleFunc = this.__P_374_0["menu-checkbox"].style;
         var states = {
           checked: true,
           selected: true
@@ -474,7 +474,7 @@
         this.assertUndefined(style.icon);
       },
       testMenuRadioButton: function testMenuRadioButton() {
-        var styleFunc = this.__P_373_0["menu-radiobutton"].style;
+        var styleFunc = this.__P_374_0["menu-radiobutton"].style;
         var states = {
           checked: true,
           selected: true
@@ -489,12 +489,12 @@
         this.assertUndefined(style.icon);
       },
       testMenuBar: function testMenuBar() {
-        var style = this.__P_373_0["menubar"].style();
+        var style = this.__P_374_0["menubar"].style();
         this.assertIdentical("light-background", style.backgroundColor);
         this.assertArrayEquals([4, 2], style.padding);
       },
       testMenuBarButton: function testMenuBarButton() {
-        var styleFunc = this.__P_373_0["menubar-button"].style;
+        var styleFunc = this.__P_374_0["menubar-button"].style;
         var states = {
           disabled: false,
           pressed: true,
@@ -519,18 +519,18 @@
         this.assertUndefined(style.cursor);
       },
       testGroupItem: function testGroupItem() {
-        var style = this.__P_373_0["group-item"].style();
+        var style = this.__P_374_0["group-item"].style();
         this.assertIdentical(4, style.padding);
         this.assertIdentical("#BABABA", style.backgroundColor);
         this.assertIdentical("white", style.textColor);
         this.assertIdentical("bold", style.font);
       },
       testVirtualTree: function testVirtualTree() {
-        var style = this.__P_373_0["virtual-tree"].style();
+        var style = this.__P_374_0["virtual-tree"].style();
         this.assertIdentical(21, style.itemHeight);
       },
       testCell: function testCell() {
-        var styleFunc = this.__P_373_0["cell"].style;
+        var styleFunc = this.__P_374_0["cell"].style;
         var style = styleFunc({
           selected: true
         });
@@ -544,7 +544,7 @@
         this.assertIdentical("text", style.textColor);
       },
       testCellNumber: function testCellNumber() {
-        var style = this.__P_373_0["cell-number"].style();
+        var style = this.__P_374_0["cell-number"].style();
         this.assertIdentical("right", style.textAlign);
       }
     }
@@ -552,4 +552,4 @@
   qx.test.theme.simple.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1731948118680
+//# sourceMappingURL=Appearance.js.map?dt=1735222430465

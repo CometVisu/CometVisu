@@ -51,7 +51,7 @@
     type: "singleton",
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_245_0 = {};
+      this.__P_246_0 = {};
       this.registerFactory("#text", function (tagName, styles, attributes) {
         return new qx.html.Text("");
       });
@@ -77,7 +77,7 @@
       });
     },
     members: {
-      __P_245_0: null,
+      __P_246_0: null,
       /**
        * Registers a factory; a factory is either a class, or a function which is
        * called with the parameters (tagName {String}, styles{Map?}, attributes {Map?}), and
@@ -88,10 +88,10 @@
        */
       registerFactory: function registerFactory(tagName, factory) {
         tagName = tagName.toLowerCase();
-        if (this.__P_245_0[tagName] === undefined) {
-          this.__P_245_0[tagName] = [];
+        if (this.__P_246_0[tagName] === undefined) {
+          this.__P_246_0[tagName] = [];
         }
-        this.__P_245_0[tagName].push(factory);
+        this.__P_246_0[tagName].push(factory);
       },
       /**
        * Called to create an {Element}
@@ -127,7 +127,7 @@
             var clazz = qx.Class.getByName(classname);
           }
         }
-        var factories = this.__P_245_0[tagName];
+        var factories = this.__P_246_0[tagName];
         if (factories) {
           for (var i = factories.length - 1; i > -1; i--) {
             var factory = factories[i];
@@ -147,4 +147,4 @@
   qx.html.Factory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Factory.js.map?dt=1731948108410
+//# sourceMappingURL=Factory.js.map?dt=1735222422184

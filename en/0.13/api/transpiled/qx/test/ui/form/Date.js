@@ -34,7 +34,7 @@
   qx.Class.define("qx.test.ui.form.Date", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_395_0: function __P_395_0(widget) {
+      __P_396_0: function __P_396_0(widget) {
         // check if the interface is implemented
         this.assertTrue(qx.Class.hasInterface(widget.constructor, qx.ui.form.IDateForm), "Interface is not implemented.");
 
@@ -61,12 +61,12 @@
       },
       testDateField: function testDateField() {
         var df = new qx.ui.form.DateField();
-        this.__P_395_0(df);
+        this.__P_396_0(df);
         df.dispose();
       },
       testDateChooser: function testDateChooser() {
         var dc = new qx.ui.control.DateChooser();
-        this.__P_395_0(dc);
+        this.__P_396_0(dc);
         dc.dispose();
       },
       testDateFieldIsEmpty: function testDateFieldIsEmpty() {
@@ -94,4 +94,4 @@
   qx.test.ui.form.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1731948119739
+//# sourceMappingURL=Date.js.map?dt=1735222431324

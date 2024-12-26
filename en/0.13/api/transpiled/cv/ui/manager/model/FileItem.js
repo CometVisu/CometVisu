@@ -86,7 +86,7 @@
         if (!path.endsWith('/')) {
           path += '/';
         }
-        this.__P_43_0 = path;
+        this.__P_44_0 = path;
       }
       if (name) {
         this.setName(name);
@@ -326,9 +326,9 @@
     ***********************************************
     */
     members: {
-      __P_43_0: null,
-      __P_43_1: null,
-      __P_43_2: null,
+      __P_44_0: null,
+      __P_44_1: null,
+      __P_44_2: null,
       _toLowerCase: function _toLowerCase(name) {
         return name.toLowerCase();
       },
@@ -369,23 +369,23 @@
         }
       },
       _applyName: function _applyName(value, old) {
-        this.__P_43_1 = null;
+        this.__P_44_1 = null;
         if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
           // use name as default display name
           this.setDisplayName(value);
         }
       },
       getPath: function getPath() {
-        if (!this.__P_43_0) {
+        if (!this.__P_44_0) {
           var parentFolder = this.getParentFolder();
           if (!parentFolder) {
             parentFolder = '';
           } else if (!parentFolder.endsWith('/')) {
             parentFolder += '/';
           }
-          this.__P_43_0 = parentFolder;
+          this.__P_44_0 = parentFolder;
         }
-        return this.__P_43_0;
+        return this.__P_44_0;
       },
       _onOpen: function _onOpen(value) {
         if (!this.isLoaded() && value) {
@@ -466,8 +466,8 @@
         }
         this.sortElements();
         this.setLoaded(true);
-        if (this.__P_43_2) {
-          this.__P_43_2();
+        if (this.__P_44_2) {
+          this.__P_44_2();
         }
         this.setLoading(false);
       },
@@ -478,8 +478,8 @@
           this.removeRelatedBindings(child);
         }, this);
         this.setLoaded(true);
-        if (this.__P_43_2) {
-          this.__P_43_2();
+        if (this.__P_44_2) {
+          this.__P_44_2();
         }
         this.setLoading(false);
       },
@@ -508,7 +508,7 @@
         } else {
           this.setLoading(true);
           if (callback) {
-            this.__P_43_2 = callback.bind(context || this);
+            this.__P_44_2 = callback.bind(context || this);
           }
           cv.io.rest.Client.getFsClient().readSync({
             path: this.getFullPath()
@@ -526,10 +526,10 @@
        * @returns {null}
        */
       getFullPath: function getFullPath() {
-        if (!this.__P_43_1) {
-          this.__P_43_1 = this.getPath() + this.getName();
+        if (!this.__P_44_1) {
+          this.__P_44_1 = this.getPath() + this.getName();
         }
-        return this.__P_43_1;
+        return this.__P_44_1;
       },
       getBusTopic: function getBusTopic() {
         return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
@@ -611,10 +611,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_43_1 = null;
+      this.__P_44_1 = null;
     }
   });
   cv.ui.manager.model.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1731948093545
+//# sourceMappingURL=FileItem.js.map?dt=1735222409400

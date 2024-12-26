@@ -47,7 +47,7 @@
         this.tree.openNode(root.getChildren().getItem(2));
         this.tree.openNode(root.getChildren().getItem(2).getChildren().getItem(4));
         var openNodes = [sortedModel, sortedModel.getChildren().getItem(2), sortedModel.getChildren().getItem(2).getChildren().getItem(4)];
-        this.__P_436_0(sortedModel, sorter);
+        this.__P_437_0(sortedModel, sorter);
         var delegate = {
           sorter: sorter
         };
@@ -55,7 +55,7 @@
         this.flush();
         var expected = this.getVisibleItemsFrom(sortedModel, openNodes);
         qx.lang.Array.insertAt(expected, sortedModel, 0);
-        this.__P_436_1(expected);
+        this.__P_437_1(expected);
 
         //this.__logModel(sortedModel);
         sortedModel.dispose();
@@ -73,7 +73,7 @@
         };
         this.tree.setDelegate(delegate);
         this.flush();
-        this.__P_436_2(rootChildrenClone.toArray(), root.getChildren().toArray());
+        this.__P_437_2(rootChildrenClone.toArray(), root.getChildren().toArray());
         rootChildrenClone.dispose();
       },
       testSorterAndFilter: function testSorterAndFilter() {
@@ -87,7 +87,7 @@
 
         // remove filtered node "Node 2"
         sortedModel.getChildren().removeAt(2);
-        this.__P_436_0(sortedModel, sorter);
+        this.__P_437_0(sortedModel, sorter);
         var delegate = {
           sorter: sorter,
           filter: function filter(child) {
@@ -98,22 +98,22 @@
         this.flush();
         var expected = this.getVisibleItemsFrom(sortedModel, []);
         qx.lang.Array.insertAt(expected, sortedModel, 0);
-        this.__P_436_1(expected);
+        this.__P_437_1(expected);
 
         //this.__logModel(sortedModel);
         sortedModel.dispose();
       },
-      __P_436_0: function __P_436_0(model, sorter) {
+      __P_437_0: function __P_437_0(model, sorter) {
         var children = model.getChildren();
         children.sort(sorter);
         for (var i = 0; i < children.getLength(); i++) {
           var child = children.getItem(i);
           if (child instanceof qx.test.ui.tree.virtual.Node) {
-            this.__P_436_0(child, sorter);
+            this.__P_437_0(child, sorter);
           }
         }
       },
-      __P_436_1: function __P_436_1(expected) {
+      __P_437_1: function __P_437_1(expected) {
         var found = this.tree.getLookupTable().toArray();
         var msg = "Expected [" + expected.join(", ") + "], but found [" + found.join(", ") + "]";
         this.assertEquals(expected.length, found.length, msg);
@@ -122,7 +122,7 @@
         }
         this.assertEquals(expected.length, this.tree.getPane().getRowConfig().getItemCount());
       },
-      __P_436_2: function __P_436_2(expected, found) {
+      __P_437_2: function __P_437_2(expected, found) {
         var msg = "Expected [" + expected.join(", ") + "], but found [" + found.join(", ") + "]";
         this.assertEquals(expected.length, found.length, msg);
         for (var i = 0; i < expected.length; i++) {
@@ -134,7 +134,7 @@
         HELPER METHOD TO LOG TREE MODEL
       ---------------------------------------------------------------------------
       */
-      __P_436_3: function __P_436_3(model, level) {
+      __P_437_3: function __P_437_3(model, level) {
         level = level != null ? level : 0;
         var prefix = "";
         for (var i = 0; i < level; i++) {
@@ -146,7 +146,7 @@
         }
         var children = model.getChildren();
         for (var i = 0; i < children.getLength(); i++) {
-          this.__P_436_3(children.getItem(i), level + 1);
+          this.__P_437_3(children.getItem(i), level + 1);
         }
       }
     }
@@ -154,4 +154,4 @@
   qx.test.ui.tree.virtual.Sorting.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sorting.js.map?dt=1731948121611
+//# sourceMappingURL=Sorting.js.map?dt=1735222432945

@@ -107,7 +107,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     construct: function construct(argv) {
       qx.tool.cli.commands.Serve.constructor.call(this, argv);
-      this.__P_471_0 = [];
+      this.__P_472_0 = [];
       this.addListener("changeExitCode", function (evt) {
         var exitCode = evt.getData();
         // overwrite error code only in case of errors
@@ -140,7 +140,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * @var {Array}
        */
-      __P_471_0: null,
+      __P_472_0: null,
       /**
        * add a test object and listens for the change of exitCode property
        * @param {qx.tool.cli.api.Test} test
@@ -163,7 +163,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             _this.setExitCode(exitCode);
           }
         });
-        this.__P_471_0.push(test);
+        this.__P_472_0.push(test);
         return test;
       },
       /**
@@ -184,7 +184,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _this2.argv.configFile = qx.tool.cli.commands.Test.CONFIG_FILENAME;
                 }
                 _this2.addListener("making", function () {
-                  if (!_this2.hasListener("runTests") && _this2.__P_471_0.length === 0 && (!_this2.getCompilerApi() || typeof _this2.getCompilerApi().beforeTests != "function")) {
+                  if (!_this2.hasListener("runTests") && _this2.__P_472_0.length === 0 && (!_this2.getCompilerApi() || typeof _this2.getCompilerApi().beforeTests != "function")) {
                     qx.tool.compiler.Console.error("No tests are registered! You need to either register tests, or install a testrunner.\n             See documentation at https://qooxdoo.org/docs/#/development/testing/");
                     _process.exit(1);
                   }
@@ -205,7 +205,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                         _context.next = 6;
                         return _this2.getCompilerApi().beforeTests(_this2);
                       case 6:
-                        _iterator = _createForOfIteratorHelper(_this2.__P_471_0);
+                        _iterator = _createForOfIteratorHelper(_this2.__P_472_0);
                         _context.prev = 7;
                         _iterator.s();
                       case 9:
@@ -241,7 +241,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     }
                   }, _callee, null, [[7, 18, 21, 24]]);
                 })));
-                if (!_this2.__P_471_1()) {
+                if (!_this2.__P_472_1()) {
                   _context2.next = 12;
                   break;
                 }
@@ -263,8 +263,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      __P_471_1: function __P_471_1() {
-        return !this.argv.disableWebserver && (this.getNeedsServer() || this.__P_471_0.some(function (test) {
+      __P_472_1: function __P_472_1() {
+        return !this.argv.disableWebserver && (this.getNeedsServer() || this.__P_472_0.some(function (test) {
           return test.getNeedsServer();
         }));
       }
@@ -273,4 +273,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Test.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Test.js.map?dt=1731948126453
+//# sourceMappingURL=Test.js.map?dt=1735222436856

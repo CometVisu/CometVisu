@@ -45,7 +45,7 @@
     */
     construct: function construct() {
       if (qx.Class.hasMixin(this.constructor, cv.ui.structure.tile.MVisibility)) {
-        this.addListener('changeVisible', this.__P_74_0, this);
+        this.addListener('changeVisible', this.__P_75_0, this);
       }
     },
     /*
@@ -75,7 +75,7 @@
           }
         } else if (!this._refreshTimer) {
           this._refreshTimer = new qx.event.Timer(value * 1000);
-          this._refreshTimer.addListener('interval', this.__P_74_1, this);
+          this._refreshTimer.addListener('interval', this.__P_75_1, this);
           if (typeof this.isVisible === 'function') {
             if (this.isVisible()) {
               this._refreshTimer.start();
@@ -87,23 +87,23 @@
           this._refreshTimer.restartWith(value * 1000);
         }
       },
-      __P_74_0: function __P_74_0(ev) {
+      __P_75_0: function __P_75_0(ev) {
         if (ev.getData()) {
           if (this._refreshTimer) {
             this._refreshTimer.start();
             if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
               // last execution time too old, refresh now
-              this.__P_74_1();
+              this.__P_75_1();
             }
           } else if (!this._lastRefresh) {
             // refresh once when the item becomes visible
-            this.__P_74_1();
+            this.__P_75_1();
           }
         } else if (this._refreshTimer) {
           this._refreshTimer.stop();
         }
       },
-      __P_74_1: function __P_74_1() {
+      __P_75_1: function __P_75_1() {
         if (typeof this.refresh === 'function') {
           this.refresh();
           this._lastRefresh = Date.now();
@@ -124,4 +124,4 @@
   cv.ui.structure.tile.MRefresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRefresh.js.map?dt=1731948096025
+//# sourceMappingURL=MRefresh.js.map?dt=1735222411495

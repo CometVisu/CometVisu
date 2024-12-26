@@ -35,14 +35,14 @@
   qx.Class.define("qx.test.ui.list.ObjectGroup", {
     extend: qx.test.ui.list.AbstractListTest,
     members: {
-      __P_426_0: ["Luise Siemer", "Trauhard Franke", "Sarina Wilde", "Florine Bähr", "Sigurd Adolph", "Sigmund Kurz", "Pankratius Hill", "Gerlinda Seel", "Trixi Clauß", "Cecilia Hemmer", "Rosely Fröhlich", "Annemargret Hunger", "Dietgar Münster", "Bertwin Joseph", "Edwina Schwarz", "Riana Dirks"],
-      __P_426_1: null,
+      __P_427_0: ["Luise Siemer", "Trauhard Franke", "Sarina Wilde", "Florine Bähr", "Sigurd Adolph", "Sigmund Kurz", "Pankratius Hill", "Gerlinda Seel", "Trixi Clauß", "Cecilia Hemmer", "Rosely Fröhlich", "Annemargret Hunger", "Dietgar Münster", "Bertwin Joseph", "Edwina Schwarz", "Riana Dirks"],
+      __P_427_1: null,
       createModelData: function createModelData() {
         var model = new qx.data.Array();
         model.setAutoDisposeItems(true);
-        var groups = this.__P_426_1 = {};
-        for (var i = 0; i < this.__P_426_0.length; i++) {
-          var name = this.__P_426_0[i];
+        var groups = this.__P_427_1 = {};
+        for (var i = 0; i < this.__P_427_0.length; i++) {
+          var name = this.__P_427_0[i];
           var groupName = name.charAt(0);
           var group = groups[groupName];
           if (group == null) {
@@ -62,12 +62,12 @@
       },
       tearDown: function tearDown() {
         qx.test.ui.list.ObjectGroup.superclass.prototype.tearDown.call(this);
-        for (var key in this.__P_426_1) {
-          if (this.__P_426_1.hasOwnProperty(key)) {
-            this.__P_426_1[key].dispose();
+        for (var key in this.__P_427_1) {
+          if (this.__P_427_1.hasOwnProperty(key)) {
+            this.__P_427_1[key].dispose();
           }
         }
-        this.__P_426_1 = null;
+        this.__P_427_1 = null;
       },
       testGroup: function testGroup() {
         // Expected result
@@ -91,7 +91,7 @@
         };
         this._list.setDelegate(delegate);
         this.flush();
-        var groupedModel = this.__P_426_2(this._model);
+        var groupedModel = this.__P_427_2(this._model);
         this.assertModelEqualsRowData(groupedModel, this._list);
         this.assertEquals(groupedModel.getLength(), this._list.getPane().getRowConfig().getItemCount(), "On Layer");
         this.assertEquals(12, this._list.getGroups().getLength(), "On List");
@@ -196,14 +196,14 @@
         };
         this._list.setDelegate(delegate);
         this.flush();
-        var groupedModel = this.__P_426_2(sortedModel);
+        var groupedModel = this.__P_427_2(sortedModel);
         this.assertModelEqualsRowData(groupedModel, this._list);
         this.assertEquals(groupedModel.getLength(), this._list.getPane().getRowConfig().getItemCount(), "On Layer");
         this.assertEquals(12, this._list.getGroups().getLength(), "On List");
         groupedModel.dispose();
         sortedModel.dispose();
       },
-      __P_426_2: function __P_426_2(model) {
+      __P_427_2: function __P_427_2(model) {
         var result = new qx.data.Array();
 
         // get all groups
@@ -233,4 +233,4 @@
   qx.test.ui.list.ObjectGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectGroup.js.map?dt=1731948120847
+//# sourceMappingURL=ObjectGroup.js.map?dt=1735222432237

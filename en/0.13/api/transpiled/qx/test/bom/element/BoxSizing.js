@@ -60,7 +60,7 @@
     include: [qx.dev.unit.MRequirements],
     construct: function construct() {
       qx.dev.unit.TestCase.constructor.call(this);
-      this.__P_317_0 = {
+      this.__P_318_0 = {
         mshtml: ["border-box", "content-box"],
         opera: ["border-box", "content-box"],
         gecko: ["border-box", "content-box"],
@@ -68,34 +68,34 @@
       };
     },
     members: {
-      __P_317_0: null,
-      __P_317_1: null,
+      __P_318_0: null,
+      __P_318_1: null,
       setUp: function setUp() {
-        this.__P_317_1 = document.createElement("div");
-        document.body.appendChild(this.__P_317_1);
+        this.__P_318_1 = document.createElement("div");
+        document.body.appendChild(this.__P_318_1);
       },
       tearDown: function tearDown() {
-        document.body.removeChild(this.__P_317_1);
-        delete this.__P_317_1;
+        document.body.removeChild(this.__P_318_1);
+        delete this.__P_318_1;
       },
       hasBoxsizing: function hasBoxsizing() {
         return !!qx.core.Environment.get("css.boxsizing");
       },
       testGet: function testGet() {
         this.require(["boxsizing"]);
-        var supported = this.__P_317_0[qx.core.Environment.get("engine.name")] || [];
-        this.assertInArray(qx.bom.element.BoxSizing.get(this.__P_317_1), supported);
+        var supported = this.__P_318_0[qx.core.Environment.get("engine.name")] || [];
+        this.assertInArray(qx.bom.element.BoxSizing.get(this.__P_318_1), supported);
       },
       testSet: function testSet() {
         this.require(["boxsizing"]);
-        var allValues = this.__P_317_0["gecko"];
-        var supported = this.__P_317_0[qx.core.Environment.get("engine.name")] || [];
+        var allValues = this.__P_318_0["gecko"];
+        var supported = this.__P_318_0[qx.core.Environment.get("engine.name")] || [];
         for (var i = 0, l = allValues.length; i < l; i++) {
-          qx.bom.element.BoxSizing.set(this.__P_317_1, allValues[i]);
+          qx.bom.element.BoxSizing.set(this.__P_318_1, allValues[i]);
           if (supported.includes(allValues[i])) {
-            this.assertEquals(supported[i], qx.bom.element.BoxSizing.get(this.__P_317_1), "supported boxSizing value was not applied!");
+            this.assertEquals(supported[i], qx.bom.element.BoxSizing.get(this.__P_318_1), "supported boxSizing value was not applied!");
           } else {
-            this.assertNotEquals(supported[i], qx.bom.element.BoxSizing.get(this.__P_317_1), "boxSizing value was unexpectedly applied, maybe browser support has changed?");
+            this.assertNotEquals(supported[i], qx.bom.element.BoxSizing.get(this.__P_318_1), "boxSizing value was unexpectedly applied, maybe browser support has changed?");
           }
         }
       },
@@ -109,4 +109,4 @@
   qx.test.bom.element.BoxSizing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BoxSizing.js.map?dt=1731948112848
+//# sourceMappingURL=BoxSizing.js.map?dt=1735222425757

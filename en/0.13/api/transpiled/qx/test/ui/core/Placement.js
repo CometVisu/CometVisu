@@ -35,26 +35,26 @@
   qx.Class.define("qx.test.ui.core.Placement", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_386_0: null,
+      __P_387_0: null,
       setUp: function setUp() {
-        this.__P_386_0 = new qx.ui.core.Widget().set({
+        this.__P_387_0 = new qx.ui.core.Widget().set({
           backgroundColor: "red",
           width: 100,
           height: 300
         });
-        this.getRoot().add(this.__P_386_0, {
+        this.getRoot().add(this.__P_387_0, {
           left: 150
         });
 
         // set the always visible element
-        qx.ui.core.MPlacement.setVisibleElement(this.__P_386_0);
+        qx.ui.core.MPlacement.setVisibleElement(this.__P_387_0);
       },
       tearDown: function tearDown() {
         qx.test.ui.core.Placement.superclass.prototype.tearDown.call(this);
         qx.ui.core.MPlacement.setVisibleElement(null);
-        this.__P_386_0.destroy();
+        this.__P_387_0.destroy();
       },
-      __P_386_1: function __P_386_1(w) {
+      __P_387_1: function __P_387_1(w) {
         // force an addition to the dom!
         w.show();
         w.hide();
@@ -76,15 +76,15 @@
       },
       testVisibleWithPopoup: function testVisibleWithPopoup() {
         var w = new qx.ui.popup.Popup();
-        this.__P_386_1(w);
+        this.__P_387_1(w);
         w.destroy();
       },
       testVisibleWithMenu: function testVisibleWithMenu() {
         var w = new qx.ui.menu.Menu();
-        this.__P_386_1(w);
+        this.__P_387_1(w);
         w.destroy();
       },
-      __P_386_2: function __P_386_2(w) {
+      __P_387_2: function __P_387_2(w) {
         // force an addition to the dom!
         w.show();
         w.hide();
@@ -107,19 +107,19 @@
       },
       testVisibleWithPopoupTooBig: function testVisibleWithPopoupTooBig() {
         var w = new qx.ui.popup.Popup();
-        this.__P_386_2(w);
+        this.__P_387_2(w);
         w.destroy();
       },
       testVisibleWithMenuTooBig: function testVisibleWithMenuTooBig() {
         var w = new qx.ui.menu.Menu();
-        this.__P_386_2(w);
+        this.__P_387_2(w);
         w.destroy();
       },
-      __P_386_3: function __P_386_3(w) {
+      __P_387_3: function __P_387_3(w) {
         // force an addition to the dom!
         w.show();
         w.hide();
-        this.__P_386_0.setLayoutProperties({
+        this.__P_387_0.setLayoutProperties({
           top: 100
         });
 
@@ -141,15 +141,15 @@
       },
       testVisibleWithPopoupAbove: function testVisibleWithPopoupAbove() {
         var w = new qx.ui.popup.Popup();
-        this.__P_386_3(w);
+        this.__P_387_3(w);
         w.destroy();
       },
       testVisibleWithMenuAbove: function testVisibleWithMenuAbove() {
         var w = new qx.ui.menu.Menu();
-        this.__P_386_3(w);
+        this.__P_387_3(w);
         w.destroy();
       },
-      __P_386_4: function __P_386_4(w) {
+      __P_387_4: function __P_387_4(w) {
         // force an addition to the dom!
         w.show();
         w.hide();
@@ -171,12 +171,12 @@
       },
       testVisibleWithPopoupBelow: function testVisibleWithPopoupBelow() {
         var w = new qx.ui.popup.Popup();
-        this.__P_386_4(w);
+        this.__P_387_4(w);
         w.destroy();
       },
       testVisibleWithMenuBelow: function testVisibleWithMenuBelow() {
         var w = new qx.ui.menu.Menu();
-        this.__P_386_4(w);
+        this.__P_387_4(w);
         w.destroy();
       }
     }
@@ -184,4 +184,4 @@
   qx.test.ui.core.Placement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Placement.js.map?dt=1731948119467
+//# sourceMappingURL=Placement.js.map?dt=1735222431100

@@ -241,8 +241,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _initialAttributes: null,
       _initialChildNames: null,
       _initialTextContent: null,
-      __P_46_0: false,
-      __P_46_1: null,
+      __P_47_0: false,
+      __P_47_1: null,
       _structure: null,
       _maintainStatus: function _maintainStatus() {
         if (this._node.nodeType === Node.COMMENT_NODE) {
@@ -498,9 +498,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param excludeComment {Boolean} exclude #comment child when set to true
        */
       getAddableChildren: function getAddableChildren(excludeComment) {
-        if (!this.__P_46_1) {
+        if (!this.__P_47_1) {
           if (this.getName().startsWith('#')) {
-            this.__P_46_1 = [];
+            this.__P_47_1 = [];
           } else {
             var schemaElement = this.getSchemaElement();
             var allowed = schemaElement.getAllowedElements();
@@ -548,10 +548,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 stillAllowed.push(elementName);
               }
             });
-            this.__P_46_1 = stillAllowed;
+            this.__P_47_1 = stillAllowed;
           }
         }
-        return this.__P_46_1;
+        return this.__P_47_1;
       },
       /**
        * Checks if a new child is allowed at the given position
@@ -719,7 +719,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _validateTextContent: function _validateTextContent(value) {
         // do not validate content that is loaded from the actual node
-        if (!this.__P_46_0) {
+        if (!this.__P_47_0) {
           if (this._node) {
             if (!this.getSchemaElement().isValueValid(value)) {
               throw new qx.core.ValidationError(qx.locale.Manager.tr('Invalid text content: \'%1\'', value));
@@ -803,7 +803,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return this.getName() === '#text' || this.getName() === '#cdata-section';
       },
       _applyTextContent: function _applyTextContent(value) {
-        if (!this.__P_46_0) {
+        if (!this.__P_47_0) {
           if (this._node) {
             if (this._node.nodeType === Node.TEXT_NODE || this._node.nodeType === Node.COMMENT_NODE || this._node.nodeType === Node.CDATA_SECTION_NODE) {
               this._node.nodeValue = value;
@@ -1041,7 +1041,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       load: function load(force) {
         if (!this.isLoaded() || force) {
-          this.__P_46_0 = true;
+          this.__P_47_0 = true;
           var children = this.getChildren();
           children.removeListener('change', this._syncChildNodes, this);
           children.removeAll();
@@ -1123,7 +1123,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this.setLoaded(true);
           children.addListener('change', this._syncChildNodes, this);
           this._updateChildrenDeletableFlags();
-          this.__P_46_0 = false;
+          this.__P_47_0 = false;
         }
       },
       appendInvalidMessage: function appendInvalidMessage(errorMsg) {
@@ -1221,7 +1221,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _syncChildNodes: function _syncChildNodes(ev) {
         // children have changed clear cache
-        this.__P_46_1 = null;
+        this.__P_47_1 = null;
         // we have to update all deletable flags for this elements children, when their siblings changed
         this._updateChildrenDeletableFlags();
       },
@@ -1306,11 +1306,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this._node = null;
       this._schema = null;
       this._initialAttributes = null;
-      this.__P_46_1 = null;
+      this.__P_47_1 = null;
       this._disposeObjects('_schemaElement');
     }
   });
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1731948093865
+//# sourceMappingURL=XmlElement.js.map?dt=1735222409662

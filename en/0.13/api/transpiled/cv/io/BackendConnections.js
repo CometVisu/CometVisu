@@ -52,26 +52,26 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     statics: {
-      __P_760_0: {},
-      __P_760_1: null,
-      __P_760_2: null,
-      __P_760_3: false,
-      __P_760_4: null,
-      __P_760_5: {},
-      __P_760_6: {},
+      __P_761_0: {},
+      __P_761_1: null,
+      __P_761_2: null,
+      __P_761_3: false,
+      __P_761_4: null,
+      __P_761_5: {},
+      __P_761_6: {},
       addClassLoadedListener: function addClassLoadedListener(className, callback) {
-        if (!this.__P_760_5[className]) {
-          this.__P_760_5[className] = [];
+        if (!this.__P_761_5[className]) {
+          this.__P_761_5[className] = [];
         }
-        if (!this.__P_760_5[className].includes(callback)) {
-          this.__P_760_5[className].push(callback);
+        if (!this.__P_761_5[className].includes(callback)) {
+          this.__P_761_5[className].push(callback);
         }
       },
       registerClientClass: function registerClientClass(name, Clazz) {
-        if (!this.__P_760_6[name]) {
-          this.__P_760_6[name] = Clazz;
-          if (this.__P_760_5[name]) {
-            var _iterator = _createForOfIteratorHelper(this.__P_760_5[name]),
+        if (!this.__P_761_6[name]) {
+          this.__P_761_6[name] = Clazz;
+          if (this.__P_761_5[name]) {
+            var _iterator = _createForOfIteratorHelper(this.__P_761_5[name]),
               _step;
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -87,26 +87,27 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       isRegistered: function isRegistered(name) {
-        return !!this.__P_760_6[name];
+        return !!this.__P_761_6[name];
       },
       /**
        * Initialize all {@link cv.io.IClient} clients for backend communication,
-       * return the default one (for backwards compability)
+       * return the default one (for backwards compatibility)
        */
       initBackendClients: function initBackendClients() {
+        var _ref, _ref2, _cv$Config$URL$backen, _ref3, _cv$Config$URL$backen2, _ref4, _cv$Config$URL$backen3, _ref5, _cv$Config$URL$backen4, _cv$data$Model$getIns;
         if (cv.Config.testMode === true || window.cvTestMode === true) {
           if (cv.Config.testMode === true) {
             cv.data.Model.getInstance().setDefaultBackendName('simulated');
           }
           return this.addBackendClient(cv.data.Model.getInstance().getDefaultBackendName(), 'simulated');
         }
-        var backendNames = (cv.Config.URL.backend || cv.Config.configSettings.backend || cv.Config.server.backend || 'default').split(',');
-        var backendKnxdUrl = cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
-        var backendMQTTUrl = cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
-        var backendOpenHABUrl = cv.Config.URL.backendOpenHABUrl || cv.Config.configSettings.backendOpenHABUrl || cv.Config.server.backendOpenHABUrl;
-        var defaultName = cv.data.Model.getInstance().getDefaultBackendName() || 'main';
-        var defaultClient;
+        var backendNames = ((_ref = (_ref2 = (_cv$Config$URL$backen = cv.Config.URL.backend) !== null && _cv$Config$URL$backen !== void 0 ? _cv$Config$URL$backen : cv.Config.configSettings.backend) !== null && _ref2 !== void 0 ? _ref2 : cv.Config.server.backend) !== null && _ref !== void 0 ? _ref : 'default').split(',');
+        var backendKnxdUrl = (_ref3 = (_cv$Config$URL$backen2 = cv.Config.URL.backendKnxdUrl) !== null && _cv$Config$URL$backen2 !== void 0 ? _cv$Config$URL$backen2 : cv.Config.configSettings.backendKnxdUrl) !== null && _ref3 !== void 0 ? _ref3 : cv.Config.server.backendKnxdUrl;
+        var backendMQTTUrl = (_ref4 = (_cv$Config$URL$backen3 = cv.Config.URL.backendMQTTUrl) !== null && _cv$Config$URL$backen3 !== void 0 ? _cv$Config$URL$backen3 : cv.Config.configSettings.backendMQTTUrl) !== null && _ref4 !== void 0 ? _ref4 : cv.Config.server.backendMQTTUrl;
+        var backendOpenHABUrl = (_ref5 = (_cv$Config$URL$backen4 = cv.Config.URL.backendOpenHABUrl) !== null && _cv$Config$URL$backen4 !== void 0 ? _cv$Config$URL$backen4 : cv.Config.configSettings.backendOpenHABUrl) !== null && _ref5 !== void 0 ? _ref5 : cv.Config.server.backendOpenHABUrl;
+        var defaultName = (_cv$data$Model$getIns = cv.data.Model.getInstance().getDefaultBackendName()) !== null && _cv$data$Model$getIns !== void 0 ? _cv$data$Model$getIns : 'main';
         var defaultType;
+        var defaultClient;
         switch (backendNames[0]) {
           case 'knxd':
           case 'default':
@@ -150,21 +151,30 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
         return defaultClient;
       },
+      /**
+       *  Add a backend client.
+       * @param name {string}
+       * @param type {string}
+       * @param backendUrl {string}
+       * @param source {string?}
+       * @return {cv.io.IClient}
+       */
       addBackendClient: function addBackendClient(name, type, backendUrl, source) {
         var _this = this;
         if (name === 'system') {
           throw Error('"system" is not allowed as a backend name');
         }
-        if (this.__P_760_0[name]) {
-          this.__P_760_0[name].dispose();
-          delete this.__P_760_0[name];
+        if (this.__P_761_0[name]) {
+          this.__P_761_0[name].dispose();
+          delete this.__P_761_0[name];
         }
-        var Clazz = this.__P_760_6[type];
+        var Clazz = this.__P_761_6[type];
+        /** @type {cv.io.IClient} */
         var client = Clazz ? new Clazz(type, backendUrl) : cv.Application.createClient(type, backendUrl);
         if (source) {
           client.configuredIn = source;
         }
-        this.__P_760_0[name] = client;
+        this.__P_761_0[name] = client;
         client.setName(name);
         var model = cv.data.Model.getInstance();
         client.addListener('changeConnected', function (ev) {
@@ -200,10 +210,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             return _this._updateClientScope(name);
           });
         }
-        if (!this.__P_760_4) {
+        if (!this.__P_761_4) {
           var app = qx.core.Init.getApplication();
           if (app) {
-            this.__P_760_4 = app.addListener('changeActive', this._onActiveChanged, this);
+            this.__P_761_4 = app.addListener('changeActive', this._onActiveChanged, this);
           }
         }
 
@@ -214,9 +224,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return client;
       },
       removeClient: function removeClient(client) {
-        for (var name in this.__P_760_0) {
-          if (this.__P_760_0[name] === client) {
-            delete this.__P_760_0[name];
+        for (var name in this.__P_761_0) {
+          if (this.__P_761_0[name] === client) {
+            delete this.__P_761_0[name];
             break;
           }
         }
@@ -227,7 +237,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {boolean}
        */
       hasClient: function hasClient(name) {
-        return Object.prototype.hasOwnProperty.call(this.__P_760_0, name);
+        return Object.prototype.hasOwnProperty.call(this.__P_761_0, name);
       },
       /**
        * Get the backend client by name, if the name is not set the default backend is used.
@@ -237,14 +247,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       getClient: function getClient(backendName) {
         if (backendName === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_760_0.system = new cv.io.System();
+            this.__P_761_0.system = new cv.io.System();
           }
-          return this.__P_760_0.system;
+          return this.__P_761_0.system;
         }
         if (!backendName) {
           backendName = cv.data.Model.getInstance().getDefaultBackendName();
         }
-        if (!this.__P_760_0[backendName]) {
+        if (!this.__P_761_0[backendName]) {
           if (cv.Config.testMode) {
             // in testMode the client might not have been initialized yet
             return this.addBackendClient('simulated', 'simulated');
@@ -252,18 +262,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           // backendName might be a type
           return this.getClientByType(backendName);
         }
-        return this.__P_760_0[backendName];
+        return this.__P_761_0[backendName];
       },
       getClientByType: function getClientByType(type) {
         if (type === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_760_0.system = new cv.io.System();
+            this.__P_761_0.system = new cv.io.System();
           }
-          return this.__P_760_0.system;
+          return this.__P_761_0.system;
         }
         var client;
-        for (var name in this.__P_760_0) {
-          client = this.__P_760_0[name];
+        for (var name in this.__P_761_0) {
+          client = this.__P_761_0[name];
           if (client.getType() === type) {
             return client;
           }
@@ -271,14 +281,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return null;
       },
       getClients: function getClients() {
-        return this.__P_760_0;
+        return this.__P_761_0;
       },
       initSystemBackend: function initSystemBackend() {
         // make sure that we have a "system" backend
         if (!this.hasClient('system')) {
-          this.__P_760_0.system = new cv.io.System();
+          this.__P_761_0.system = new cv.io.System();
         }
-        var client = this.__P_760_0.system;
+        var client = this.__P_761_0.system;
         var addressesToSubscribe = cv.data.Model.getInstance().getAddresses('system');
         if (addressesToSubscribe.length !== 0) {
           client.subscribe(addressesToSubscribe);
@@ -289,7 +299,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       startInitialRequests: function startInitialRequests() {
         var _this2 = this;
-        Object.getOwnPropertyNames(this.__P_760_0).forEach(function (name) {
+        Object.getOwnPropertyNames(this.__P_761_0).forEach(function (name) {
           _this2.startInitialRequest(name);
         });
       },
@@ -308,13 +318,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this3 = this;
         var app = qx.core.Init.getApplication();
         if (app.isActive()) {
-          if (this.__P_760_2) {
-            this.__P_760_2.dispose();
-            this.__P_760_2 = null;
+          if (this.__P_761_2) {
+            this.__P_761_2.dispose();
+            this.__P_761_2 = null;
           }
-          Object.getOwnPropertyNames(this.__P_760_0).forEach(function (backendName) {
-            var client = _this3.__P_760_0[backendName];
-            if (!client.isConnected() && _this3.__P_760_3) {
+          Object.getOwnPropertyNames(this.__P_761_0).forEach(function (backendName) {
+            var client = _this3.__P_761_0[backendName];
+            if (!client.isConnected() && _this3.__P_761_3) {
               // reconnect
               qx.log.Logger.debug(_this3, "restarting ".concat(backendName, " backend connection"));
               client.restart(true);
@@ -322,37 +332,37 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           });
 
           // wait for 3 seconds before checking the backend connection
-          if (!this.__P_760_1) {
-            this.__P_760_1 = new qx.event.Timer(3000);
-            this.__P_760_1.addListener('interval', function () {
+          if (!this.__P_761_1) {
+            this.__P_761_1 = new qx.event.Timer(3000);
+            this.__P_761_1.addListener('interval', function () {
               if (app.isActive()) {
-                Object.getOwnPropertyNames(_this3.__P_760_0).forEach(_this3._checkBackendConnection, _this3);
+                Object.getOwnPropertyNames(_this3.__P_761_0).forEach(_this3._checkBackendConnection, _this3);
               }
-              _this3.__P_760_1.dispose();
-              _this3.__P_760_1 = null;
+              _this3.__P_761_1.dispose();
+              _this3.__P_761_1 = null;
             });
           }
-          this.__P_760_1.restart();
+          this.__P_761_1.restart();
         } else {
-          if (this.__P_760_1) {
-            this.__P_760_1.dispose();
-            this.__P_760_1 = null;
+          if (this.__P_761_1) {
+            this.__P_761_1.dispose();
+            this.__P_761_1 = null;
           }
-          if (!this.__P_760_2) {
+          if (!this.__P_761_2) {
             // disconnect after 60 secs
-            this.__P_760_2 = new qx.event.Timer(60000);
-            this.__P_760_2.addListener('interval', function () {
-              Object.getOwnPropertyNames(_this3.__P_760_0).forEach(function (name) {
+            this.__P_761_2 = new qx.event.Timer(60000);
+            this.__P_761_2.addListener('interval', function () {
+              Object.getOwnPropertyNames(_this3.__P_761_0).forEach(function (name) {
                 var client = _this3.getClient(name);
                 if (client.isConnected()) {
                   client.terminate();
                 }
               });
-              _this3.__P_760_2.dispose();
-              _this3.__P_760_2 = null;
+              _this3.__P_761_2.dispose();
+              _this3.__P_761_2 = null;
             });
           }
-          this.__P_760_2.restart();
+          this.__P_761_2.restart();
         }
       },
       _checkBackendConnection: function _checkBackendConnection(name) {
@@ -364,7 +374,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           severity: 'urgent',
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_760_3 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_761_3 && qx.core.Init.getApplication().isActive()
         };
         var lastError = client.getLastError();
         if (!connected) {
@@ -382,7 +392,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             }]
           };
         } else {
-          this.__P_760_3 = true;
+          this.__P_761_3 = true;
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       },
@@ -432,4 +442,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1731948145905
+//# sourceMappingURL=BackendConnections.js.map?dt=1735222452931

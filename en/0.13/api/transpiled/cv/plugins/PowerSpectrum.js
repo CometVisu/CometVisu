@@ -246,8 +246,8 @@
     ******************************************************
     */
     members: {
-      __P_14_0: null,
-      __P_14_1: null,
+      __P_15_0: null,
+      __P_15_1: null,
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var actor = '<div class="actor clickable">';
@@ -299,8 +299,8 @@
           }
         };
         var init = function () {
-          this.__P_14_1 = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
-          this.__P_14_0 = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
+          this.__P_15_1 = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
+          this.__P_15_0 = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
         }.bind(this);
 
         // check if sizes are set yet, otherwise wait some time
@@ -333,12 +333,12 @@
             values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
             this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
           }
-          this.__P_14_0.setData(this.createDatasetSpectrum());
-          this.__P_14_0.draw();
-          if (this.__P_14_1) {
+          this.__P_15_0.setData(this.createDatasetSpectrum());
+          this.__P_15_0.draw();
+          if (this.__P_15_1) {
             this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
-            this.__P_14_1.setData(this.createDatasetCurve());
-            this.__P_14_1.draw();
+            this.__P_15_1.setData(this.createDatasetCurve());
+            this.__P_15_1.draw();
           }
         }
       },
@@ -487,4 +487,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1731948090848
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1735222407082

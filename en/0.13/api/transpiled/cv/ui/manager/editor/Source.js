@@ -350,17 +350,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             // ask user if he really want to save a file with warnings
             qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
               if (confirmed) {
-                this.__P_34_0();
+                this.__P_35_0();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_34_0();
+            this.__P_35_0();
           }
         } else {
           cv.ui.manager.editor.Source.superclass.prototype.save.call(this, callback, overrideHash);
         }
       },
-      __P_34_0: function __P_34_0() {
+      __P_35_0: function __P_35_0() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -557,4 +557,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1731948092467
+//# sourceMappingURL=Source.js.map?dt=1735222408491

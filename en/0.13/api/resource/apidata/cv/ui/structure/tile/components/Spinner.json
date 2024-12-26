@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857579,
-  "lastModifiedIso": "2024-11-18T16:37:37.579Z",
+  "lastModified": 1735222205782,
+  "lastModifiedIso": "2024-12-26T14:10:05.782Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Spinner.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 907
     },
     "end": {
-      "line": 127,
+      "line": 129,
       "column": 3,
-      "index": 4046
+      "index": 4110
     }
   },
   "className": "cv.ui.structure.tile.components.Spinner",
@@ -89,7 +89,7 @@
         "end": {
           "line": 84,
           "column": 5,
-          "index": 2942
+          "index": 2946
         }
       },
       "type": "function",
@@ -107,16 +107,20 @@
         "start": {
           "line": 86,
           "column": 4,
-          "index": 2949
+          "index": 2953
         },
         "end": {
-          "line": 89,
+          "line": 90,
           "column": 5,
-          "index": 3130
+          "index": 3164
         }
       },
       "type": "function",
-      "params": [],
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
       "appearsIn": []
     },
     "onIncrease": {
@@ -124,18 +128,22 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 92,
           "column": 4,
-          "index": 3137
+          "index": 3171
         },
         "end": {
-          "line": 94,
+          "line": 96,
           "column": 5,
-          "index": 3313
+          "index": 3377
         }
       },
       "type": "function",
-      "params": [],
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
       "appearsIn": []
     },
     "_updateValue": {
@@ -143,14 +151,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 96,
+          "line": 98,
           "column": 4,
-          "index": 3320
+          "index": 3384
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 5,
-          "index": 3481
+          "index": 3545
         }
       },
       "type": "function",
@@ -169,14 +177,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 103,
+          "line": 105,
           "column": 4,
-          "index": 3488
+          "index": 3552
         },
         "end": {
-          "line": 114,
+          "line": 116,
           "column": 5,
-          "index": 3819
+          "index": 3883
         }
       },
       "type": "function",

@@ -73,9 +73,9 @@
     },
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_673_0 = [];
-      this.__P_673_1 = [];
-      this.__P_673_2 = {};
+      this.__P_674_0 = [];
+      this.__P_674_1 = [];
+      this.__P_674_2 = {};
     },
     statics: {
       /**
@@ -87,11 +87,11 @@
       THROW_ON_MODEL_CHANGE_DURING_EDIT: parseInt(null, 10) >= 8
     },
     members: {
-      __P_673_0: null,
-      __P_673_1: null,
-      __P_673_2: null,
-      __P_673_3: null,
-      __P_673_4: null,
+      __P_674_0: null,
+      __P_674_1: null,
+      __P_674_2: null,
+      __P_674_3: null,
+      __P_674_4: null,
       /**
        * Initialize the table model <--> table interaction. The table model is
        * passed to the table constructor, but the table model doesn't otherwise
@@ -105,7 +105,7 @@
        */
       init: function init(table) {
         // store a reference back to the table
-        this.__P_673_4 = table;
+        this.__P_674_4 = table;
       },
       /**
        *
@@ -113,7 +113,7 @@
        * @returns table {qx.ui.table.Table}
        */
       getTable: function getTable() {
-        return this.__P_673_4;
+        return this.__P_674_4;
       },
       /**
        * Abstract method
@@ -170,19 +170,19 @@
       },
       // overridden
       getColumnCount: function getColumnCount() {
-        return this.__P_673_0.length;
+        return this.__P_674_0.length;
       },
       // overridden
       getColumnIndexById: function getColumnIndexById(columnId) {
-        return this.__P_673_2[columnId];
+        return this.__P_674_2[columnId];
       },
       // overridden
       getColumnId: function getColumnId(columnIndex) {
-        return this.__P_673_0[columnIndex];
+        return this.__P_674_0[columnIndex];
       },
       // overridden
       getColumnName: function getColumnName(columnIndex) {
-        return this.__P_673_1[columnIndex];
+        return this.__P_674_1[columnIndex];
       },
       /**
        * Sets the column IDs. These IDs may be used internally to identify a
@@ -195,17 +195,17 @@
        * @see #setColumns
        */
       setColumnIds: function setColumnIds(columnIdArr) {
-        this.__P_673_0 = columnIdArr;
+        this.__P_674_0 = columnIdArr;
 
         // Create the reverse map
-        this.__P_673_2 = {};
+        this.__P_674_2 = {};
         for (var i = 0; i < columnIdArr.length; i++) {
-          this.__P_673_2[columnIdArr[i]] = i;
+          this.__P_674_2[columnIdArr[i]] = i;
         }
-        this.__P_673_1 = new Array(columnIdArr.length);
+        this.__P_674_1 = new Array(columnIdArr.length);
 
         // Inform the listeners
-        if (!this.__P_673_3) {
+        if (!this.__P_674_3) {
           this.fireEvent("metaDataChanged");
         }
       },
@@ -220,10 +220,10 @@
        * @see #setColumnIds
        */
       setColumnNamesByIndex: function setColumnNamesByIndex(columnNameArr) {
-        if (this.__P_673_0.length != columnNameArr.length) {
-          throw new Error("this.__columnIdArr and columnNameArr have different length: " + this.__P_673_0.length + " != " + columnNameArr.length);
+        if (this.__P_674_0.length != columnNameArr.length) {
+          throw new Error("this.__columnIdArr and columnNameArr have different length: " + this.__P_674_0.length + " != " + columnNameArr.length);
         }
-        this.__P_673_1 = columnNameArr;
+        this.__P_674_1 = columnNameArr;
 
         // Inform the listeners
         this.fireEvent("metaDataChanged");
@@ -239,9 +239,9 @@
        * @see #setColumnIds
        */
       setColumnNamesById: function setColumnNamesById(columnNameMap) {
-        this.__P_673_1 = new Array(this.__P_673_0.length);
-        for (var i = 0; i < this.__P_673_0.length; ++i) {
-          this.__P_673_1[i] = columnNameMap[this.__P_673_0[i]];
+        this.__P_674_1 = new Array(this.__P_674_0.length);
+        for (var i = 0; i < this.__P_674_0.length; ++i) {
+          this.__P_674_1[i] = columnNameMap[this.__P_674_0[i]];
         }
       },
       /**
@@ -266,21 +266,21 @@
        *
        */
       setColumns: function setColumns(columnNameArr, columnIdArr) {
-        var bSetIds = this.__P_673_0.length == 0 || columnIdArr;
+        var bSetIds = this.__P_674_0.length == 0 || columnIdArr;
         if (columnIdArr == null) {
-          if (this.__P_673_0.length == 0) {
+          if (this.__P_674_0.length == 0) {
             columnIdArr = columnNameArr;
           } else {
-            columnIdArr = this.__P_673_0;
+            columnIdArr = this.__P_674_0;
           }
         }
         if (columnIdArr.length != columnNameArr.length) {
           throw new Error("columnIdArr and columnNameArr have different length: " + columnIdArr.length + " != " + columnNameArr.length);
         }
         if (bSetIds) {
-          this.__P_673_3 = true;
+          this.__P_674_3 = true;
           this.setColumnIds(columnIdArr);
-          this.__P_673_3 = false;
+          this.__P_674_3 = false;
         }
         this.setColumnNamesByIndex(columnNameArr);
       },
@@ -294,10 +294,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_673_0 = this.__P_673_1 = this.__P_673_2 = null;
+      this.__P_674_0 = this.__P_674_1 = this.__P_674_2 = null;
     }
   });
   qx.ui.table.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1731948140937
+//# sourceMappingURL=Abstract.js.map?dt=1735222448855

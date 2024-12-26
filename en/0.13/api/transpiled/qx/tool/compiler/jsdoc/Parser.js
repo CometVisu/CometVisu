@@ -161,7 +161,7 @@
        */
       parseJsDoc: function parseJsDoc(jsdoc, typeResolver) {
         for (var key in jsdoc) {
-          var parser = this.__P_489_0[key];
+          var parser = this.__P_490_0[key];
           if (parser) {
             jsdoc[key].forEach(function (pdoc) {
               return parser.parseCommand(pdoc, typeResolver);
@@ -169,7 +169,7 @@
           }
         }
       },
-      __P_489_0: {
+      __P_490_0: {
         "@param": new qx.tool.compiler.jsdoc.ParamParser(),
         "@return": new qx.tool.compiler.jsdoc.ReturnParser(),
         "@throws": new qx.tool.compiler.jsdoc.ThrowsParser(),
@@ -211,4 +211,4 @@
   qx.tool.compiler.jsdoc.Parser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Parser.js.map?dt=1731948129312
+//# sourceMappingURL=Parser.js.map?dt=1735222439378

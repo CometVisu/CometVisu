@@ -58,62 +58,62 @@
       // Set a default height for the progress bar
       this.setHeight(16);
       this.setPadding(0);
-      this.__P_647_0 = {};
-      this.__P_647_1();
+      this.__P_648_0 = {};
+      this.__P_648_1();
       this.set({
-        backgroundColor: this.__P_647_0.background
+        backgroundColor: this.__P_648_0.background
       });
 
       // Create a widget that continually increases its width for progress bar
-      this.__P_647_2 = new qx.ui.core.Widget();
-      this.__P_647_2.set({
+      this.__P_648_2 = new qx.ui.core.Widget();
+      this.__P_648_2.set({
         width: 0,
-        backgroundColor: this.__P_647_0.indicatorDone
+        backgroundColor: this.__P_648_0.indicatorDone
       });
-      this.add(this.__P_647_2);
+      this.add(this.__P_648_2);
 
       // Create a flex area between the progress bar and the percent done
       var spacer = new qx.ui.core.Widget();
       spacer.set({
-        backgroundColor: this.__P_647_0.indicatorUndone
+        backgroundColor: this.__P_648_0.indicatorUndone
       });
       this.add(spacer, {
         flex: 1
       });
 
       // We also like to show progress as a percentage done string.
-      this.__P_647_3 = new qx.ui.basic.Atom("0%");
-      this.__P_647_3.set({
+      this.__P_648_3 = new qx.ui.basic.Atom("0%");
+      this.__P_648_3.set({
         width: 100,
-        backgroundColor: this.__P_647_0.percentBackground,
-        textColor: this.__P_647_0.percentText
+        backgroundColor: this.__P_648_0.percentBackground,
+        textColor: this.__P_648_0.percentText
       });
-      this.add(this.__P_647_3);
+      this.add(this.__P_648_3);
 
       // We're initially invisible
       this.exclude();
     },
     members: {
-      __P_647_4: null,
-      __P_647_0: null,
-      __P_647_2: null,
-      __P_647_3: null,
+      __P_648_4: null,
+      __P_648_0: null,
+      __P_648_2: null,
+      __P_648_3: null,
       // overridden
       _onChangeTheme: function _onChangeTheme() {
         qx.ui.progressive.headfoot.Progress.superclass.prototype._onChangeTheme.call(this);
-        this.__P_647_1();
+        this.__P_648_1();
       },
       /**
        * Helper to link the theme colors to the current class.
        */
-      __P_647_1: function __P_647_1() {
+      __P_648_1: function __P_648_1() {
         // link to color theme
         var colorMgr = qx.theme.manager.Color.getInstance();
-        this.__P_647_0.background = colorMgr.resolve("progressive-progressbar-background");
-        this.__P_647_0.indicatorDone = colorMgr.resolve("progressive-progressbar-indicator-done");
-        this.__P_647_0.indicatorUndone = colorMgr.resolve("progressive-progressbar-indicator-undone");
-        this.__P_647_0.percentBackground = colorMgr.resolve("progressive-progressbar-percent-background");
-        this.__P_647_0.percentText = colorMgr.resolve("progressive-progressbar-percent-text");
+        this.__P_648_0.background = colorMgr.resolve("progressive-progressbar-background");
+        this.__P_648_0.indicatorDone = colorMgr.resolve("progressive-progressbar-indicator-done");
+        this.__P_648_0.indicatorUndone = colorMgr.resolve("progressive-progressbar-indicator-undone");
+        this.__P_648_0.percentBackground = colorMgr.resolve("progressive-progressbar-percent-background");
+        this.__P_648_0.percentText = colorMgr.resolve("progressive-progressbar-percent-text");
       },
       // overridden
       join: function join(progressive) {
@@ -124,20 +124,20 @@
         // Listen for the "renderStart" event, to save the number of elements on
         // the queue, and to set ourself visible
         progressive.addListener("renderStart", function (e) {
-          _this.__P_647_4 = e.getData().initial;
+          _this.__P_648_4 = e.getData().initial;
           _this.show();
         });
 
         // Listen for the "progress" event, to update the progress bar
         progressive.addListener("progress", function (e) {
-          var complete = 1.0 - e.getData().remaining / _this.__P_647_4;
+          var complete = 1.0 - e.getData().remaining / _this.__P_648_4;
           var mySize = _this.getBounds();
           if (mySize) {
-            var barWidth = Math.floor((mySize.width - _this.__P_647_3.getBounds().width) * complete);
+            var barWidth = Math.floor((mySize.width - _this.__P_648_3.getBounds().width) * complete);
             var percent = Math.floor(complete * 100) + "%";
             if (!isNaN(barWidth)) {
-              _this.__P_647_2.setMinWidth(barWidth);
-              _this.__P_647_3.setLabel(percent);
+              _this.__P_648_2.setMinWidth(barWidth);
+              _this.__P_648_3.setLabel(percent);
             }
           }
         });
@@ -149,11 +149,11 @@
       }
     },
     destruct: function destruct() {
-      this.__P_647_0 = null;
-      this._disposeObjects("__P_647_2", "__P_647_3");
+      this.__P_648_0 = null;
+      this._disposeObjects("__P_648_2", "__P_648_3");
     }
   });
   qx.ui.progressive.headfoot.Progress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Progress.js.map?dt=1731948139568
+//# sourceMappingURL=Progress.js.map?dt=1735222447796

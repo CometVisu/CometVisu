@@ -45,24 +45,24 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   qx.Class.define("qx.test.theme.manager.Font", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_370_0: null,
-      __P_370_1: null,
+      __P_371_0: null,
+      __P_371_1: null,
       setUp: function setUp() {
         this.manager = qx.theme.manager.Font.getInstance();
-        this.__P_370_0 = this.manager.getTheme();
+        this.__P_371_0 = this.manager.getTheme();
         var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
         var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        this.__P_370_1 = _objectSpread({}, listener[hash]);
+        this.__P_371_1 = _objectSpread({}, listener[hash]);
         delete listener[hash];
       },
       tearDown: function tearDown() {
         qx.test.Theme.themes = null;
-        this.manager.setTheme(this.__P_370_0);
-        this.__P_370_0 = null;
+        this.manager.setTheme(this.__P_371_0);
+        this.__P_371_0 = null;
         var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
         var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        listener[hash] = this.__P_370_1;
-        this.__P_370_1 = null;
+        listener[hash] = this.__P_371_1;
+        this.__P_371_1 = null;
         qx.ui.core.queue.Manager.flush();
       },
       testInclude: function testInclude() {
@@ -94,4 +94,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   qx.test.theme.manager.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1731948118505
+//# sourceMappingURL=Font.js.map?dt=1735222430324

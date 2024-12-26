@@ -117,7 +117,7 @@
         // the theme and are not updating the cache
         var theme = this.getTheme();
         if (theme !== null && theme.fonts[value]) {
-          var createdFonts = this.__P_458_0(theme.fonts);
+          var createdFonts = this.__P_459_0(theme.fonts);
           var font = createdFonts[value] || null;
           if (font) {
             cache[value] = font;
@@ -144,7 +144,7 @@
         // the theme and are not updating the cache
         var theme = this.getTheme();
         if (theme !== null && value && theme.fonts[value]) {
-          var fontClass = this.__P_458_1(theme.fonts[value]);
+          var fontClass = this.__P_459_1(theme.fonts[value]);
           var font = new fontClass();
 
           // Inject information about custom charcter set tests before we apply the
@@ -163,7 +163,7 @@
        * @param fonts {Map} all fonts of the theme
        * @param fontName {String} font name to include
        */
-      __P_458_2: function __P_458_2(fonts, fontName) {
+      __P_459_2: function __P_459_2(fonts, fontName) {
         if (fonts[fontName].include) {
           // get font infos out of the font theme
           var fontToInclude = fonts[fonts[fontName].include];
@@ -172,7 +172,7 @@
           fonts[fontName].include = null;
           delete fonts[fontName].include;
           fonts[fontName] = qx.lang.Object.mergeWith(fonts[fontName], fontToInclude, false);
-          this.__P_458_2(fonts, fontName);
+          this.__P_459_2(fonts, fontName);
         }
       },
       /**
@@ -181,14 +181,14 @@
        * @param {Map<String,Object>} fontDefs indexed by font ID
        * @return {Map<String,qx.bom.Font>} created fonts
        */
-      __P_458_0: function __P_458_0(fontDefs) {
+      __P_459_0: function __P_459_0(fontDefs) {
         var _this = this;
         var webFontDefs = [];
         var createdFonts = {};
         var _loop = function _loop() {
             var fontDef = fontDefs[fontId];
             if (fontDef.include && fontDefs[fontDef.include]) {
-              _this.__P_458_2(fontDefs, fontId);
+              _this.__P_459_2(fontDefs, fontId);
             }
             if (fontDef.fontName) {
               var preset = _this._manifestFonts[fontDef.fontName];
@@ -236,7 +236,7 @@
             if (fontDef.css || fontDef.fontFaces) {
               webFontDefs.push(fontDef);
             }
-            fontClass = _this.__P_458_1(fontDef);
+            fontClass = _this.__P_459_1(fontDef);
             font = new fontClass(); // Inject information about custom charcter set tests before we apply the
             // complete blob in one.
             if (fontDef.comparisonString) {
@@ -290,7 +290,7 @@
         }
         if (value) {
           var fonts = this._manifestFonts ? Object.assign(value.fonts, this._manifestFonts) : value.fonts;
-          createdFonts = this.__P_458_0(fonts);
+          createdFonts = this.__P_459_0(fonts);
         }
         this._setDynamic(createdFonts);
       },
@@ -300,7 +300,7 @@
        * @param config {Map} The font's configuration map
        * @return {Class}
        */
-      __P_458_1: function __P_458_1(config) {
+      __P_459_1: function __P_459_1(config) {
         if (config.fontFaces || config.css) {
           return qx.bom.webfonts.WebFont;
         }
@@ -327,4 +327,4 @@
   qx.theme.manager.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1731948123702
+//# sourceMappingURL=Font.js.map?dt=1735222434542

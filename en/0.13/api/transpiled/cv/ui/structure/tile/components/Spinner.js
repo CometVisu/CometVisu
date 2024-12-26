@@ -96,8 +96,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         decrease.classList.add('left');
         var decreaseIcon = document.createElement('cv-icon');
         decreaseIcon.classList.add('ri-arrow-down-s-line');
-        decrease.addEventListener('click', function () {
-          return _this.onDecrease();
+        decrease.addEventListener('click', function (ev) {
+          return _this.onDecrease(ev);
         });
         decrease.appendChild(decreaseIcon);
         element.insertBefore(decrease, valueElement);
@@ -107,18 +107,20 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var increaseIcon = document.createElement('cv-icon');
         increaseIcon.classList.add('ri-arrow-up-s-line');
         increase.appendChild(increaseIcon);
-        increase.addEventListener('click', function () {
-          return _this.onIncrease();
+        increase.addEventListener('click', function (ev) {
+          return _this.onIncrease(ev);
         });
         element.appendChild(increase);
       },
-      onDecrease: function onDecrease() {
+      onDecrease: function onDecrease(ev) {
         var value = this.getMode() === 'absolute' ? this.getValue() - this.getStepWidth() : this.getStepWidth() * -1;
-        this.__P_86_0(value, 'decrease');
+        ev.stopPropagation();
+        this.__P_87_0(value, 'decrease');
       },
-      onIncrease: function onIncrease() {
+      onIncrease: function onIncrease(ev) {
         var value = this.getMode() === 'absolute' ? this.getValue() + this.getStepWidth() : this.getStepWidth();
-        this.__P_86_0(value, 'increase');
+        ev.stopPropagation();
+        this.__P_87_0(value, 'increase');
       },
       _updateValue: function _updateValue(mappedValue) {
         var target = this._element.querySelector('.value');
@@ -126,7 +128,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           target.innerHTML = mappedValue;
         }
       },
-      __P_86_0: function __P_86_0(value, on) {
+      __P_87_0: function __P_87_0(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -156,4 +158,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1731948097356
+//# sourceMappingURL=Spinner.js.map?dt=1735222412623

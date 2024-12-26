@@ -211,8 +211,8 @@
             /** @lint ignoreUndeclaredPrivates(__b) */foo: function foo(dontRecurs) {
               var s = "";
               if (!dontRecurs) {
-                this.__P_300_0 = new qx.Patch2();
-                s += "++" + this.__P_300_0.foo(true) + "__";
+                this.__P_301_0 = new qx.Patch2();
+                s += "++" + this.__P_301_0.foo(true) + "__";
               }
               s += qx.Mixin.baseClassMethod(this.constructor, qx.MPatch, "foo").call(this);
               return s;
@@ -237,7 +237,7 @@
         // the mixin member
         var o = new qx.Patch1();
         this.assertEquals("++bar__foo", o.foo());
-        o.__P_300_0.dispose();
+        o.__P_301_0.dispose();
         o.dispose();
       },
       testPatchConstructors: function testPatchConstructors() {
@@ -712,4 +712,4 @@
   qx.test.Mixin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mixin.js.map?dt=1731948111995
+//# sourceMappingURL=Mixin.js.map?dt=1735222425105

@@ -91,7 +91,7 @@
        * @param style {String} Style property
        * @return {String} Value of given style property
        */
-      __P_148_0: function __P_148_0(elem, style) {
+      __P_149_0: function __P_149_0(elem, style) {
         return qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false);
       },
       /**
@@ -101,7 +101,7 @@
        * @param style {String} Style property
        * @return {Integer} Value of given style property
        */
-      __P_148_1: function __P_148_1(elem, style) {
+      __P_149_1: function __P_149_1(elem, style) {
         return parseInt(qx.bom.element.Style.get(elem, style, qx.bom.element.Style.COMPUTED_MODE, false), 10) || 0;
       },
       /**
@@ -111,7 +111,7 @@
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> scroll offsets
        */
-      __P_148_2: function __P_148_2(elem) {
+      __P_149_2: function __P_149_2(elem) {
         var left = 0,
           top = 0;
         // Find window
@@ -130,7 +130,7 @@
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets
        */
-      __P_148_3: qx.core.Environment.select("engine.name", {
+      __P_149_3: qx.core.Environment.select("engine.name", {
         mshtml: function mshtml(elem) {
           // Find body element
           var doc = qx.dom.Node.getDocument(elem);
@@ -140,8 +140,8 @@
           left -= body.clientLeft + doc.documentElement.clientLeft;
           top -= body.clientTop + doc.documentElement.clientTop;
           if (!qx.core.Environment.get("browser.quirksmode")) {
-            left += this.__P_148_1(body, "borderLeftWidth");
-            top += this.__P_148_1(body, "borderTopWidth");
+            left += this.__P_149_1(body, "borderLeftWidth");
+            top += this.__P_149_1(body, "borderTopWidth");
           }
           return {
             left: left,
@@ -171,8 +171,8 @@
 
           // Correct substracted border (only in content-box mode)
           if (qx.bom.element.BoxSizing.get(body) !== "border-box") {
-            left += this.__P_148_1(body, "borderLeftWidth");
-            top += this.__P_148_1(body, "borderTopWidth");
+            left += this.__P_149_1(body, "borderLeftWidth");
+            top += this.__P_149_1(body, "borderTopWidth");
           }
           return {
             left: left,
@@ -200,7 +200,7 @@
        * @param elem {Element} DOM element to query
        * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets
        */
-      __P_148_4: function __P_148_4(elem) {
+      __P_149_4: function __P_149_4(elem) {
         var rect = elem.getBoundingClientRect();
 
         // Firefox 3.0 alpha 6 (gecko 1.9) returns floating point numbers
@@ -231,17 +231,17 @@
        */
       get: function get(elem, mode) {
         if (elem.tagName == "BODY") {
-          var location = this.__P_148_5(elem);
+          var location = this.__P_149_5(elem);
           var left = location.left;
           var top = location.top;
         } else {
-          var body = this.__P_148_3(elem);
-          var offset = this.__P_148_4(elem);
+          var body = this.__P_149_3(elem);
+          var offset = this.__P_149_4(elem);
           // Reduce by viewport scrolling.
           // Hint: getBoundingClientRect returns the location of the
           // element in relation to the viewport which includes
           // the scrolling
-          var scroll = this.__P_148_2(elem);
+          var scroll = this.__P_149_2(elem);
           var left = offset.left + body.left - scroll.left;
           var top = offset.top + body.top - scroll.top;
         }
@@ -263,19 +263,19 @@
           if (mode == "padding" || mode == "scroll") {
             var overX = qx.bom.element.Style.get(elem, "overflowX");
             if (overX == "scroll" || overX == "auto") {
-              right += elem.scrollWidth - elementWidth + this.__P_148_1(elem, "borderLeftWidth") + this.__P_148_1(elem, "borderRightWidth");
+              right += elem.scrollWidth - elementWidth + this.__P_149_1(elem, "borderLeftWidth") + this.__P_149_1(elem, "borderRightWidth");
             }
             var overY = qx.bom.element.Style.get(elem, "overflowY");
             if (overY == "scroll" || overY == "auto") {
-              bottom += elem.scrollHeight - elementHeight + this.__P_148_1(elem, "borderTopWidth") + this.__P_148_1(elem, "borderBottomWidth");
+              bottom += elem.scrollHeight - elementHeight + this.__P_149_1(elem, "borderTopWidth") + this.__P_149_1(elem, "borderBottomWidth");
             }
           }
           switch (mode) {
             case "padding":
-              left += this.__P_148_1(elem, "paddingLeft");
-              top += this.__P_148_1(elem, "paddingTop");
-              right -= this.__P_148_1(elem, "paddingRight");
-              bottom -= this.__P_148_1(elem, "paddingBottom");
+              left += this.__P_149_1(elem, "paddingLeft");
+              top += this.__P_149_1(elem, "paddingTop");
+              right -= this.__P_149_1(elem, "paddingRight");
+              bottom -= this.__P_149_1(elem, "paddingBottom");
             // no break here
 
             case "scroll":
@@ -286,16 +286,16 @@
             // no break here
 
             case "border":
-              left += this.__P_148_1(elem, "borderLeftWidth");
-              top += this.__P_148_1(elem, "borderTopWidth");
-              right -= this.__P_148_1(elem, "borderRightWidth");
-              bottom -= this.__P_148_1(elem, "borderBottomWidth");
+              left += this.__P_149_1(elem, "borderLeftWidth");
+              top += this.__P_149_1(elem, "borderTopWidth");
+              right -= this.__P_149_1(elem, "borderRightWidth");
+              bottom -= this.__P_149_1(elem, "borderBottomWidth");
               break;
             case "margin":
-              left -= this.__P_148_1(elem, "marginLeft");
-              top -= this.__P_148_1(elem, "marginTop");
-              right += this.__P_148_1(elem, "marginRight");
-              bottom += this.__P_148_1(elem, "marginBottom");
+              left -= this.__P_149_1(elem, "marginLeft");
+              top -= this.__P_149_1(elem, "marginTop");
+              right += this.__P_149_1(elem, "marginRight");
+              bottom += this.__P_149_1(elem, "marginBottom");
               break;
           }
         }
@@ -311,14 +311,14 @@
        * @param body {Element} The body element.
        * @return {Map} map with the keys <code>left</code> and <code>top</code>
        */
-      __P_148_5: function __P_148_5(body) {
+      __P_149_5: function __P_149_5(body) {
         var top = body.offsetTop;
         var left = body.offsetLeft;
-        top += this.__P_148_1(body, "marginTop");
-        left += this.__P_148_1(body, "marginLeft");
+        top += this.__P_149_1(body, "marginTop");
+        left += this.__P_149_1(body, "marginLeft");
         if (qx.core.Environment.get("engine.name") === "gecko") {
-          top += this.__P_148_1(body, "borderLeftWidth");
-          left += this.__P_148_1(body, "borderTopWidth");
+          top += this.__P_149_1(body, "borderLeftWidth");
+          left += this.__P_149_1(body, "borderTopWidth");
         }
         return {
           left: left,
@@ -431,4 +431,4 @@
   qx.bom.element.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1731948101554
+//# sourceMappingURL=Location.js.map?dt=1735222416159

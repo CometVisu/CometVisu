@@ -51,8 +51,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.tool.compiler.targets.meta.AbstractJavascriptMeta,
     construct: function construct(appMeta) {
       qx.tool.compiler.targets.meta.AbstractJavascriptMeta.constructor.call(this, appMeta, "".concat(appMeta.getApplicationRoot(), "index.js"));
-      this.__P_503_0 = [];
-      this.__P_503_1 = {};
+      this.__P_504_0 = [];
+      this.__P_504_1 = {};
     },
     properties: {
       needsWriteToDisk: {
@@ -61,8 +61,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_503_0: null,
-      __P_503_2: null,
+      __P_504_0: null,
+      __P_504_2: null,
       /**
        * Adds Javascript which is to be added to the end of the index.js, just before the app
        * is finalised
@@ -70,9 +70,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param jsMeta {AbstractJavascriptMeta} the jaavscript to add
        */
       addEmbeddedJs: function addEmbeddedJs(jsMeta) {
-        if (!this.__P_503_1[jsMeta.toHashCode()]) {
-          this.__P_503_0.push(jsMeta);
-          this.__P_503_1[jsMeta.toHashCode()] = jsMeta;
+        if (!this.__P_504_1[jsMeta.toHashCode()]) {
+          this.__P_504_0.push(jsMeta);
+          this.__P_504_1[jsMeta.toHashCode()] = jsMeta;
         }
       },
       /*
@@ -179,7 +179,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   MAP.Translations[localeId] = null;
                   MAP.Locales[localeId] = null;
                 });
-                _this.__P_503_2 = [];
+                _this.__P_504_2 = [];
                 _context.next = 38;
                 return fs.readFileAsync(application.getLoaderTemplate(), {
                   encoding: "utf-8"
@@ -207,13 +207,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 j = 0;
               case 48:
-                if (!(j < _this.__P_503_0.length)) {
+                if (!(j < _this.__P_504_0.length)) {
                   _context.next = 56;
                   break;
                 }
-                _this.__P_503_2.push(ws.getLineNumber());
+                _this.__P_504_2.push(ws.getLineNumber());
                 _context.next = 52;
-                return _this.__P_503_0[j].unwrap().writeSourceCodeToStream(ws);
+                return _this.__P_504_0[j].unwrap().writeSourceCodeToStream(ws);
               case 52:
                 ws.write("\n");
               case 53:
@@ -262,14 +262,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(_this2.__P_503_2 === null)) {
+                if (!(_this2.__P_504_2 === null)) {
                   _context2.next = 2;
                   break;
                 }
                 throw new Error("Cannot get the source map for ".concat(_this2, " until the stream has been written"));
               case 2:
                 _context2.next = 4;
-                return _this2._copySourceMap(_this2.__P_503_0, _this2.__P_503_2);
+                return _this2._copySourceMap(_this2.__P_504_0, _this2.__P_504_2);
               case 4:
                 res = _context2.sent;
                 target = _this2._appMeta.getTarget();
@@ -291,4 +291,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.BootJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BootJs.js.map?dt=1731948131011
+//# sourceMappingURL=BootJs.js.map?dt=1735222440729

@@ -68,14 +68,14 @@
     */
 
     statics: {
-      __P_166_0: null,
+      __P_167_0: null,
       /**
        * Returns the instantiated qooxdoo application.
        *
        * @return {qx.core.Object} The application instance.
        */
       getApplication: function getApplication() {
-        return this.__P_166_0 || null;
+        return this.__P_167_0 || null;
       },
       /**
        * Runs when the application is loaded. Automatically creates an instance
@@ -83,7 +83,7 @@
        *
        */
       ready: function ready() {
-        if (this.__P_166_0) {
+        if (this.__P_167_0) {
           return;
         }
         if (qx.core.Environment.get("engine.name") == "") {
@@ -101,14 +101,14 @@
         var app = qx.core.Environment.get("qx.application");
         var clazz = qx.Class.getByName(app);
         if (clazz) {
-          this.__P_166_0 = new clazz();
+          this.__P_167_0 = new clazz();
           var start = new Date();
-          this.__P_166_0.main();
+          this.__P_167_0.main();
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Main runtime: " + (new Date() - start) + "ms");
           }
           var start = new Date();
-          this.__P_166_0.finalize();
+          this.__P_167_0.finalize();
           if (qx.core.Environment.get("qx.debug.startupTimings")) {
             qx.log.Logger.debug(this, "Finalize runtime: " + (new Date() - start) + "ms");
           }
@@ -123,8 +123,8 @@
        *
        * @param e {qx.event.type.Native} Incoming beforeunload event.
        */
-      __P_166_1: function __P_166_1(e) {
-        var app = this.__P_166_0;
+      __P_167_1: function __P_167_1(e) {
+        var app = this.__P_167_0;
         if (app) {
           app.close();
         }
@@ -134,8 +134,8 @@
        * created application instance.
        *
        */
-      __P_166_2: function __P_166_2() {
-        var app = this.__P_166_0;
+      __P_167_2: function __P_167_2() {
+        var app = this.__P_167_0;
         if (app) {
           app.terminate();
         }
@@ -145,4 +145,4 @@
   qx.core.BaseInit.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseInit.js.map?dt=1731948102444
+//# sourceMappingURL=BaseInit.js.map?dt=1735222416912

@@ -32,36 +32,36 @@
   qx.Class.define("qx.test.ui.Widget", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_380_0: null,
+      __P_381_0: null,
       setUp: function setUp() {
-        this.__P_380_0 = new qx.ui.core.Widget();
+        this.__P_381_0 = new qx.ui.core.Widget();
       },
       tearDown: function tearDown() {
-        this.__P_380_0.destroy();
+        this.__P_381_0.destroy();
       },
       testAddState: function testAddState() {
-        this.__P_380_0.addState("test");
-        this.assertTrue(this.__P_380_0.hasState("test"));
+        this.__P_381_0.addState("test");
+        this.assertTrue(this.__P_381_0.hasState("test"));
       },
       testRemoveState: function testRemoveState() {
-        this.__P_380_0.addState("test");
-        this.assertTrue(this.__P_380_0.hasState("test"));
-        this.__P_380_0.removeState("test");
-        this.assertFalse(this.__P_380_0.hasState("test"));
+        this.__P_381_0.addState("test");
+        this.assertTrue(this.__P_381_0.hasState("test"));
+        this.__P_381_0.removeState("test");
+        this.assertFalse(this.__P_381_0.hasState("test"));
       },
       testReplaceState: function testReplaceState() {
-        this.__P_380_0.addState("test");
-        this.assertTrue(this.__P_380_0.hasState("test"));
-        this.__P_380_0.replaceState("test", "affe");
-        this.assertTrue(this.__P_380_0.hasState("affe"));
-        this.assertFalse(this.__P_380_0.hasState("test"));
+        this.__P_381_0.addState("test");
+        this.assertTrue(this.__P_381_0.hasState("test"));
+        this.__P_381_0.replaceState("test", "affe");
+        this.assertTrue(this.__P_381_0.hasState("affe"));
+        this.assertFalse(this.__P_381_0.hasState("test"));
       },
       testWidgetThatContainsItself: function testWidgetThatContainsItself() {
-        this.assertFalse(qx.ui.core.Widget.contains(this.__P_380_0, this.__P_380_0));
+        this.assertFalse(qx.ui.core.Widget.contains(this.__P_381_0, this.__P_381_0));
       }
     }
   });
   qx.test.ui.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1731948119085
+//# sourceMappingURL=Widget.js.map?dt=1735222430799

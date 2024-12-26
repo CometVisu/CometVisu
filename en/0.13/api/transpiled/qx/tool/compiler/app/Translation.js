@@ -71,8 +71,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       if (locale) {
         this.setLocale(locale);
       }
-      this.__P_487_0 = {};
-      this.__P_487_1 = {};
+      this.__P_488_0 = {};
+      this.__P_488_1 = {};
     },
     properties: {
       /** The library that this translation is for */
@@ -93,10 +93,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_487_0: null,
-      __P_487_1: null,
-      __P_487_2: 0,
-      __P_487_3: null,
+      __P_488_0: null,
+      __P_488_1: null,
+      __P_488_2: 0,
+      __P_488_3: null,
       /**
        * Filename for the .po file
        * @returns {string}
@@ -117,7 +117,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                if (_this.__P_487_2) {
+                if (_this.__P_488_2) {
                   _context.next = 2;
                   break;
                 }
@@ -128,7 +128,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return qx.tool.utils.files.Utils.safeStat(poFile);
               case 5:
                 stat = _context.sent;
-                if (!(stat && _this.__P_487_2 == stat.mtime)) {
+                if (!(stat && _this.__P_488_2 == stat.mtime)) {
                   _context.next = 8;
                   break;
                 }
@@ -148,12 +148,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       read: function read() {
         var _this2 = this;
         var t = this;
-        if (t.__P_487_3) {
-          return t.__P_487_3;
+        if (t.__P_488_3) {
+          return t.__P_488_3;
         }
-        return t.__P_487_3 = new Promise(function (resolve, reject) {
-          t.__P_487_0 = {};
-          t.__P_487_1 = {};
+        return t.__P_488_3 = new Promise(function (resolve, reject) {
+          t.__P_488_0 = {};
+          t.__P_488_1 = {};
           var poFile = _this2.getPoFilename();
           fs.stat(poFile, function (err, stat) {
             if (err) {
@@ -164,7 +164,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               reject(err);
               return undefined;
             }
-            t.__P_487_2 = stat.mtime;
+            t.__P_488_2 = stat.mtime;
             return readFile(poFile, {
               encoding: "utf8"
             }).then(function (data) {
@@ -178,7 +178,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   } else {
                     key = entry.msgid;
                   }
-                  t.__P_487_0[key] = entry;
+                  t.__P_488_0[key] = entry;
                 }
                 entry = null;
                 lastKey = null;
@@ -335,8 +335,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           value = value.replace(/\t/g, "\\t").replace(/\r/g, "\\r").replace(/\n/g, "\\n").replace(/"/g, '\\"');
           lines.push(key + ' "' + value + '"');
         }
-        for (var msgid in t.__P_487_0) {
-          var entry = t.__P_487_0[msgid];
+        for (var msgid in t.__P_488_0) {
+          var entry = t.__P_488_0[msgid];
           if (entry.comments) {
             if (entry.comments.translator) {
               lines.push("# " + entry.comments.translator);
@@ -440,7 +440,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {*|null}
        */
       getEntry: function getEntry(id) {
-        return this.__P_487_0[id] || null;
+        return this.__P_488_0[id] || null;
       },
       /**
        * Deletes the entry with the given msgid; return the deleted value, or null if it does not exist
@@ -448,8 +448,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {*|null}
        */
       deleteEntry: function deleteEntry(id) {
-        var entry = this.__P_487_0[id] || null;
-        delete this.__P_487_0[id];
+        var entry = this.__P_488_0[id] || null;
+        delete this.__P_488_0[id];
         return entry;
       },
       /**
@@ -459,9 +459,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getOrCreateEntry: function getOrCreateEntry(id) {
         var t = this;
-        var entry = t.__P_487_0[id];
+        var entry = t.__P_488_0[id];
         if (!entry) {
-          entry = t.__P_487_0[id] = {
+          entry = t.__P_488_0[id] = {
             msgid: id
           };
         }
@@ -472,18 +472,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {null}
        */
       getEntries: function getEntries() {
-        return this.__P_487_0;
+        return this.__P_488_0;
       },
       /**
        * Returns the translation headers
        * @returns {null}
        */
       getHeaders: function getHeaders() {
-        return this.__P_487_1;
+        return this.__P_488_1;
       }
     }
   });
   qx.tool.compiler.app.Translation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Translation.js.map?dt=1731948129135
+//# sourceMappingURL=Translation.js.map?dt=1735222439233

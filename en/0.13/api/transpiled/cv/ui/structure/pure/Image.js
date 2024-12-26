@@ -96,7 +96,7 @@
     ******************************************************
     */
     members: {
-      __P_60_0: null,
+      __P_61_0: null,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
@@ -122,7 +122,7 @@
           }
           imgStyle += 'object-position:0% ' + top + ';' + bottom;
         }
-        var src = this.__P_60_1();
+        var src = this.__P_61_1();
         if (!src) {
           switch (this.getPlaceholder()) {
             case 'hide':
@@ -141,24 +141,24 @@
       /**
        * Return the real src value
        */
-      __P_60_1: function __P_60_1() {
-        if (!this.__P_60_0) {
+      __P_61_1: function __P_61_1() {
+        if (!this.__P_61_0) {
           var src = this.getSrc();
           var parsedUri = qx.util.Uri.parseUri(this.getSrc());
           if (!parsedUri.protocol && !src.startsWith('/')) {
             // is relative URI, use the ResourceManager
             src = qx.util.ResourceManager.getInstance().toUri(src);
           }
-          this.__P_60_0 = src || '';
+          this.__P_61_0 = src || '';
         }
-        return this.__P_60_0;
+        return this.__P_61_0;
       },
       handleUpdate: function handleUpdate(text, address) {
         var valueElem = this.getValueElement();
         if (!text) {
           switch (this.getPlaceholder()) {
             case 'src':
-              text = this.__P_60_1();
+              text = this.__P_61_1();
               valueElem.style.display = 'inline';
               break;
             case 'hide':
@@ -185,7 +185,7 @@
           return;
         }
         if (value === true) {
-          valueElem.setAttribute('src', this.__P_60_1());
+          valueElem.setAttribute('src', this.__P_61_1());
         } else {
           valueElem.setAttribute('src', '');
         }
@@ -198,4 +198,4 @@
   cv.ui.structure.pure.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1731948094932
+//# sourceMappingURL=Image.js.map?dt=1735222410578

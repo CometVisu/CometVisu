@@ -115,14 +115,14 @@
      */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_237_0 = {};
+      this.__P_238_0 = {};
     },
     members: {
       /**
        * Subscriptions cache
        * @var {Object}
        */
-      __P_237_0: null,
+      __P_238_0: null,
       /**
        * Returns the map of message subscriptions with registered subscriptions. The key is
        * the topic and the value is a map with <code>{subscriber:
@@ -131,7 +131,7 @@
        * @return {Object}
        */
       getSubscriptions: function getSubscriptions() {
-        return this.__P_237_0;
+        return this.__P_238_0;
       },
       /**
        * Subscribes to a topic
@@ -290,18 +290,18 @@
           if (topic[len - 1] === "*") {
             // use of wildcard, only allowed as "*" or at the end of the topic
             if (len === 1 || topic.substr(0, len - 2) === msgName.substr(0, len - 2)) {
-              this.__P_237_1(sub[topic], message);
+              this.__P_238_1(sub[topic], message);
               dispatched = true;
             }
           } else if (sub[topic][0].regex) {
             // regular expression
             if (message.getName().match(sub[topic][0].regex)) {
-              this.__P_237_1(sub[topic], message);
+              this.__P_238_1(sub[topic], message);
               dispatched = true;
             }
           } else if (topic === msgName) {
             // exact match
-            this.__P_237_1(sub[topic], message);
+            this.__P_238_1(sub[topic], message);
             dispatched = true;
           }
         }
@@ -349,7 +349,7 @@
        * @param subscribers {Array} subscribers to call
        * @param message {qx.event.message.Message} message for subscribers
        */
-      __P_237_1: function __P_237_1(subscribers, message) {
+      __P_238_1: function __P_238_1(subscribers, message) {
         // (Shallow) clone the subscribers array in case one of them alters the
         // list, e.g., by unsubscribing
         subscribers = subscribers.slice();
@@ -375,4 +375,4 @@
   qx.event.message.Bus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bus.js.map?dt=1731948107755
+//# sourceMappingURL=Bus.js.map?dt=1735222421656

@@ -124,13 +124,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
       // init schema
       this._schemas = {};
-      this.__P_35_0 = [];
-      this.__P_35_1 = new qx.data.Array();
-      this.__P_35_1.addListener('changeLength', function (ev) {
+      this.__P_36_0 = [];
+      this.__P_36_1 = new qx.data.Array();
+      this.__P_36_1.addListener('changeLength', function (ev) {
         if (ev.getData() === 0) {
           _this.setPreviewState('synced');
         } else {
-          var structureChanges = _this.__P_35_1.some(function (element) {
+          var structureChanges = _this.__P_36_1.some(function (element) {
             return element.hasChildrenModified();
           });
           _this.setPreviewState(structureChanges ? 'structureChanged' : 'changed');
@@ -138,7 +138,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       });
       this.initUnDos(new qx.data.Array());
       this.initReDos(new qx.data.Array());
-      this.__P_35_2 = {};
+      this.__P_36_2 = {};
       qx.core.Init.getApplication().getRoot().addListener('keyup', this._onElementKeyUp, this);
       this.addListener('resize', this._maintainPreviewVisibility, this);
       this._draw();
@@ -234,13 +234,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     members: {
       _schemas: null,
-      __P_35_0: null,
-      __P_35_1: null,
+      __P_36_0: null,
+      __P_36_1: null,
       _workerWrapper: null,
-      __P_35_3: false,
-      __P_35_2: null,
-      __P_35_4: null,
-      __P_35_5: 0,
+      __P_36_3: false,
+      __P_36_2: null,
+      __P_36_4: null,
+      __P_36_5: 0,
       _structure: null,
       getSchema: function getSchema(file) {
         var _this2 = this;
@@ -283,7 +283,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var handlerOptions = this.getHandlerOptions();
         var enablePreview = qx.bom.Viewport.getWidth() > 800 && (!handlerOptions || !handlerOptions.noPreview);
         if (enablePreview) {
-          var previewFile = this.__P_35_6();
+          var previewFile = this.__P_36_6();
           if (!previewFile.isTemporary() && !previewFile.isWriteable()) {
             // preview file already exists, but it is not writable
             enablePreview = false;
@@ -312,7 +312,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var preview = this.getChildControl('preview');
           if (file.isWriteable()) {
             if (!preview.getFile()) {
-              preview.setFile(this.__P_35_6());
+              preview.setFile(this.__P_36_6());
             }
           } else {
             // this file is not writable, we can use the real one for preview
@@ -325,12 +325,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (this.canHandleAction(actionName)) {
           switch (actionName) {
             case 'undo':
-              if (!this.__P_35_3) {
+              if (!this.__P_36_3) {
                 this.undo();
               }
               break;
             case 'redo':
-              if (!this.__P_35_3) {
+              if (!this.__P_36_3) {
                 this.redo();
               }
               break;
@@ -344,7 +344,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               this._onPaste();
               break;
             case 'help':
-              if (!this.__P_35_3) {
+              if (!this.__P_36_3) {
                 this._showHelp();
               }
               break;
@@ -358,7 +358,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         var _this3 = this;
         switch (actionId) {
           case 'undo':
-            this.__P_35_2[actionId] = this.getUnDos().addListener('changeLength', function () {
+            this.__P_36_2[actionId] = this.getUnDos().addListener('changeLength', function () {
               var length = _this3.getUnDos().length;
               if (length > 0) {
                 button.setEnabled(true);
@@ -371,7 +371,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             button.setEnabled(this.getUnDos().length > 0);
             break;
           case 'redo':
-            this.__P_35_2[actionId] = this.getReDos().addListener('changeLength', function () {
+            this.__P_36_2[actionId] = this.getReDos().addListener('changeLength', function () {
               var length = _this3.getReDos().length;
               if (length > 0) {
                 button.setEnabled(true);
@@ -409,16 +409,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       unConfigureButton: function unConfigureButton(actionId, button) {
         switch (actionId) {
           case 'undo':
-            if (this.__P_35_2[actionId]) {
-              this.getUnDos().removeListenerById(this.__P_35_2[actionId]);
-              delete this.__P_35_2[actionId];
+            if (this.__P_36_2[actionId]) {
+              this.getUnDos().removeListenerById(this.__P_36_2[actionId]);
+              delete this.__P_36_2[actionId];
             }
             button.setEnabled(false);
             break;
           case 'redo':
-            if (this.__P_35_2[actionId]) {
-              this.getReDos().removeListenerById(this.__P_35_2[actionId]);
-              delete this.__P_35_2[actionId];
+            if (this.__P_36_2[actionId]) {
+              this.getReDos().removeListenerById(this.__P_36_2[actionId]);
+              delete this.__P_36_2[actionId];
             }
             button.setEnabled(false);
             break;
@@ -811,9 +811,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var rootNode = tree.getModel().getNode();
           var result = rootNode.querySelector(selector);
           if (result) {
-            _this5.__P_35_4 = [result];
-            _this5.__P_35_5 = 0;
-            _this5.__P_35_7();
+            _this5.__P_36_4 = [result];
+            _this5.__P_36_5 = 0;
+            _this5.__P_36_7();
             if (edit) {
               _this5._onEdit();
             }
@@ -825,33 +825,33 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _onSearch: function _onSearch(ev) {
         var value = ev.getData();
-        this.__P_35_4 = [];
-        this.__P_35_5 = 0;
+        this.__P_36_4 = [];
+        this.__P_36_5 = 0;
         if (value.length > 2) {
           var tree = this.getChildControl('tree');
           var rootNode = tree.getModel().getNode();
-          this.__P_35_4 = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
+          this.__P_36_4 = Array.from(rootNode.querySelectorAll('*')).filter(function (el) {
             return el.tagName.startsWith(value) || el.hasAttribute('name') && el.getAttribute('name').startsWith(value);
           });
-          this.__P_35_7();
+          this.__P_36_7();
         }
       },
       _showNextResult: function _showNextResult() {
-        if (this.__P_35_4 && this.__P_35_4.length > this.__P_35_5 + 1) {
-          this.__P_35_5++;
-          this.__P_35_7();
+        if (this.__P_36_4 && this.__P_36_4.length > this.__P_36_5 + 1) {
+          this.__P_36_5++;
+          this.__P_36_7();
         }
       },
       _showPreviousResult: function _showPreviousResult() {
-        if (this.__P_35_4 && this.__P_35_5 > 0) {
-          this.__P_35_5--;
-          this.__P_35_7();
+        if (this.__P_36_4 && this.__P_36_5 > 0) {
+          this.__P_36_5--;
+          this.__P_36_7();
         }
       },
-      __P_35_7: function __P_35_7() {
-        if (this.__P_35_4.length > this.__P_35_5) {
+      __P_36_7: function __P_36_7() {
+        if (this.__P_36_4.length > this.__P_36_5) {
           // find and open the first result and save the rest for traversal (with keyboard arrows
-          var firstMatch = this.__P_35_4[this.__P_35_5];
+          var firstMatch = this.__P_36_4[this.__P_36_5];
           var tree = this.getChildControl('tree');
           if (firstMatch.$$widget) {
             tree.openNodeAndParents(firstMatch.$$widget);
@@ -995,7 +995,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     var acc = Allowed.NONE;
                     var allowedSorting = parentSchemaElement.getAllowedElementsSorting();
                     addable.some(function (elementName) {
-                      acc |= _this6.__P_35_8(allowedSorting, elementName, model.getName());
+                      acc |= _this6.__P_36_8(allowedSorting, elementName, model.getName());
                       if (acc & Allowed.BEFORE && acc & Allowed.AFTER) {
                         // we cannot find more
                         return true;
@@ -1021,7 +1021,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               accepted.mode = Allowed.BEFORE | Allowed.AFTER;
             } else {
               // check position
-              accepted.mode = _this6.__P_35_8(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
+              accepted.mode = _this6.__P_36_8(parentSchemaElement.getAllowedElementsSorting(), element.getName(), model.getName());
             }
           } else {
             accepted.mode = Allowed.NONE;
@@ -1433,7 +1433,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
         }
         if (addable.length > 0) {
-          this.__P_35_3 = true;
+          this.__P_36_3 = true;
           var typeChooserForm;
           if (addable.length > 1) {
             // user has to select a type
@@ -1552,7 +1552,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           });
         }
       },
-      __P_35_8: function __P_35_8(allowedSorting, elementName, targetName, depth) {
+      __P_36_8: function __P_36_8(allowedSorting, elementName, targetName, depth) {
         if (allowedSorting) {
           var currentPosition = allowedSorting[elementName];
           if (typeof currentPosition === 'string') {
@@ -1584,7 +1584,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         return cv.ui.manager.editor.Tree.Allowed.NONE;
       },
-      __P_35_9: function __P_35_9(id, formData, element) {
+      __P_36_9: function __P_36_9(id, formData, element) {
         var _this8 = this;
         var provider = cv.ui.manager.editor.data.Provider.get(id);
         if (provider) {
@@ -1634,7 +1634,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
         }
       },
-      __P_35_10: function __P_35_10(element, attribute) {
+      __P_36_10: function __P_36_10(element, attribute) {
         var docs = attribute.getDocumentation();
         var def = {
           type: 'TextField',
@@ -1683,7 +1683,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
               } else {
                 // check if we have a dataprovider for this
-                this.__P_35_9(element.getName() + '@' + attribute.getName(), def, element.getNode());
+                this.__P_36_9(element.getName() + '@' + attribute.getName(), def, element.getNode());
               }
               break;
             }
@@ -1728,7 +1728,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return;
               }
             }
-            formData[name] = _this9.__P_35_10(element, attribute);
+            formData[name] = _this9.__P_36_10(element, attribute);
           });
           if (typeElement.isChildElementAllowed('*')) {
             var parser = new DOMParser();
@@ -1822,9 +1822,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               delete formData[nodeName].placeholder;
             }
           }
-          this.__P_35_9(element.getParent().getName() + '@' + element.getName(), formData[nodeName], element.getNode());
+          this.__P_36_9(element.getParent().getName() + '@' + element.getName(), formData[nodeName], element.getNode());
         }
-        this.__P_35_3 = true;
+        this.__P_36_3 = true;
         var formDialog = new cv.ui.manager.form.ElementForm({
           allowCancel: true,
           context: this,
@@ -1843,7 +1843,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               element.validate();
             }
           }
-          _this9.__P_35_3 = false;
+          _this9.__P_36_3 = false;
           formDialog.destroy();
           return data;
         });
@@ -1860,7 +1860,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return null;
       },
       _onCut: function _onCut() {
-        if (this.__P_35_3) {
+        if (this.__P_36_3) {
           document.execCommand('cut');
         } else {
           var element = this._onDelete();
@@ -1870,7 +1870,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
       },
       _onCopy: function _onCopy() {
-        if (this.__P_35_3) {
+        if (this.__P_36_3) {
           document.execCommand('copy');
         } else {
           var element = this.getSelected();
@@ -1896,32 +1896,32 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param element {cv.ui.manager.model.XmlElement}
        */
       updateModified: function updateModified(element) {
-        var index = this.__P_35_0.indexOf(element);
-        var previewIndex = this.__P_35_1.indexOf(element);
+        var index = this.__P_36_0.indexOf(element);
+        var previewIndex = this.__P_36_1.indexOf(element);
         if (element.$$removed) {
           // we dont care about elements that have been removed (its the parent that has changed then by loosing a child)
           if (index >= 0) {
-            this.__P_35_0.splice(index, 1);
+            this.__P_36_0.splice(index, 1);
           }
           if (previewIndex >= 0) {
-            this.__P_35_1.splice(index, 1);
+            this.__P_36_1.splice(index, 1);
           }
         } else if (element.isModified()) {
           if (index === -1) {
-            this.__P_35_0.push(element);
+            this.__P_36_0.push(element);
           }
           if (previewIndex === -1) {
-            this.__P_35_1.push(element);
+            this.__P_36_1.push(element);
           }
         } else {
           if (index >= 0) {
-            this.__P_35_0.splice(index, 1);
+            this.__P_36_0.splice(index, 1);
           }
           if (previewIndex >= 0) {
-            this.__P_35_1.splice(index, 1);
+            this.__P_36_1.splice(index, 1);
           }
         }
-        this.getFile().setModified(this.__P_35_0.length > 0);
+        this.getFile().setModified(this.__P_36_0.length > 0);
         this._onContentChanged();
       },
       _draw: function _draw() {
@@ -2001,7 +2001,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _onElementKeyUp: function _onElementKeyUp(ev) {
         if (this.getSelected() && this.isVisible()) {
           if (ev.getKeyIdentifier() === 'Enter') {
-            if (!this.__P_35_3) {
+            if (!this.__P_36_3) {
               this._onEdit();
             }
           }
@@ -2022,13 +2022,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             this._workerWrapper.validateXmlConfig(value).then(function (res) {
               if (res === true) {
                 _this10.info(file.getPath() + ' is a valid config file');
-                _this10.__P_35_11(value);
+                _this10.__P_36_11(value);
               } else {
                 var dialog = new cv.ui.manager.dialog.ValidationError(file, value, res);
                 dialog.addListener('action', function (ev) {
                   switch (ev.getData()) {
                     case 'proceed':
-                      _this10.__P_35_11(value, res);
+                      _this10.__P_36_11(value, res);
                       break;
                     case 'open-source':
                       {
@@ -2062,7 +2062,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
         }
       },
-      __P_35_6: function __P_35_6() {
+      __P_36_6: function __P_36_6() {
         var file;
         cv.ui.manager.model.FileItem.ROOT.getChildren().some(function (f) {
           if (f.getName() === 'visu_config_previewtemp.xml') {
@@ -2077,7 +2077,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         return file;
       },
-      __P_35_11: function __P_35_11(value, errors) {
+      __P_36_11: function __P_36_11(value, errors) {
         var _this11 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var tree, file, doc, rootElement, schema, schemaElement, rootNode, preview;
@@ -2112,7 +2112,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   preview = _this11.getChildControl('preview');
                   if (file.isWriteable()) {
                     if (!preview.getFile()) {
-                      preview.setFile(_this11.__P_35_6());
+                      preview.setFile(_this11.__P_36_6());
                     }
                   } else {
                     preview.setFile(file);
@@ -2209,7 +2209,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   data: content,
                   source: _this12
                 });
-                _this12.__P_35_1.removeAll();
+                _this12.__P_36_1.removeAll();
                 _this12.resetPreviewState();
                 previewFile.resetTemporary();
               }
@@ -2228,7 +2228,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   data: content,
                   source: _this12
                 });
-                _this12.__P_35_1.removeAll();
+                _this12.__P_36_1.removeAll();
                 _this12.resetPreviewState();
               }
             }, this);
@@ -2249,10 +2249,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _onSaved: function _onSaved() {
         cv.ui.manager.editor.Tree.superclass.prototype._onSaved.call(this);
-        this.__P_35_0.forEach(function (elem) {
+        this.__P_36_0.forEach(function (elem) {
           return elem.onSaved();
         });
-        this.__P_35_0 = [];
+        this.__P_36_0 = [];
         this.clearUnDosReDos();
       },
       isSupported: function isSupported(file) {
@@ -2310,11 +2310,11 @@ refresh after you have changed something. You can refresh is manually by clickin
     destruct: function destruct() {
       this._schemas = null;
       this._workerWrapper = null;
-      this._disposeArray("__P_35_0", "__P_35_1");
+      this._disposeArray("__P_36_0", "__P_36_1");
       qx.core.Init.getApplication().getRoot().removeListener('keyup', this._onElementKeyUp, this);
     }
   });
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1731948092790
+//# sourceMappingURL=Tree.js.map?dt=1735222408758

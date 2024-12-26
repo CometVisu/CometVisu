@@ -339,9 +339,9 @@
           var control = this.getChildControl('atom').getChildControl('icon');
           if (!cv.ui.manager.viewer.Image.getImageData(value)) {
             // wait for image to be loaded
-            control.addListenerOnce('loaded', this.__P_39_0, this);
+            control.addListenerOnce('loaded', this.__P_40_0, this);
           } else {
-            this.__P_39_0();
+            this.__P_40_0();
           }
         }
       },
@@ -382,7 +382,7 @@
           this.getChildControl('bottom-bar').exclude();
         }
       },
-      __P_39_0: function __P_39_0() {
+      __P_40_0: function __P_40_0() {
         var data = cv.ui.manager.viewer.Image.getImageData(this.getIcon());
         var control = this.getChildControl('atom').getChildControl('icon');
         var sizeHint = control.getSizeHint();
@@ -528,4 +528,4 @@
   cv.ui.manager.form.FileListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileListItem.js.map?dt=1731948093291
+//# sourceMappingURL=FileListItem.js.map?dt=1735222409187

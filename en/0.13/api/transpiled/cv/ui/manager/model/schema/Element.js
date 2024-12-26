@@ -195,11 +195,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_48_0: false,
-      __P_48_1: null,
-      __P_48_2: null,
-      __P_48_3: null,
-      __P_48_4: undefined,
+      __P_49_0: false,
+      __P_49_1: null,
+      __P_49_2: null,
+      __P_49_3: null,
+      __P_49_4: undefined,
       /**
        * get and set the type-node for the element
        * @var object  Type-Node (most certainly a complexType)
@@ -217,8 +217,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         this.setMixed(this._type.hasAttribute('mixed') && this._type.getAttribute('mixed') === 'true');
       },
       getExtendedElement: function getExtendedElement() {
-        if (this.__P_48_4 === undefined) {
-          this.__P_48_4 = null;
+        if (this.__P_49_4 === undefined) {
+          this.__P_49_4 = null;
           if (this._type.querySelectorAll(':scope > complexContent').length > 0) {
             var complex = this._type.querySelector(':scope > complexContent');
             var extension = complex.querySelector(':scope > extension');
@@ -227,12 +227,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var baseType = extension.getAttribute('base');
               var extendedNode = schema.getReferencedNode('complexType', baseType);
               if (extendedNode) {
-                this.__P_48_4 = new cv.ui.manager.model.schema.Element(extendedNode, schema);
+                this.__P_49_4 = new cv.ui.manager.model.schema.Element(extendedNode, schema);
               }
             }
           }
         }
-        return this.__P_48_4;
+        return this.__P_49_4;
       },
       /**
        * get a list of allowed elements for this element
@@ -240,9 +240,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return  object  object of SchemaElement-elements, key is the name
        */
       getAllowedContent: function getAllowedContent() {
-        if (this.__P_48_1 !== null) {
+        if (this.__P_49_1 !== null) {
           // if we have parsed this already, we can simply return the 'cache'
-          return this.__P_48_1;
+          return this.__P_49_1;
         }
         var schema = this.getSchema();
         var allowedContent = {
@@ -274,7 +274,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           allowedContent._text = new cv.ui.manager.model.schema.SimpleType(this._type, schema);
         } else {
           // no type, no children, no choice - this is an element with NO allowed content/children
-          this.__P_48_1 = allowedContent;
+          this.__P_49_1 = allowedContent;
           return allowedContent;
         }
         var children = Array.from(this._type.querySelectorAll(':scope > element'));
@@ -284,7 +284,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         });
 
         // fill the cache
-        this.__P_48_1 = allowedContent;
+        this.__P_49_1 = allowedContent;
         return allowedContent;
       },
       _parseGrouping: function _parseGrouping(node, schema) {
@@ -316,7 +316,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       getAllowedAttributes: function getAllowedAttributes() {
         var _this = this;
-        if (this.__P_48_2 === null) {
+        if (this.__P_49_2 === null) {
           var allowedAttributes = {};
           var attributes = [];
           var attributeGroups = [];
@@ -373,9 +373,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             var attribute = new cv.ui.manager.model.schema.Attribute(attr, _this.getSchema());
             allowedAttributes[attribute.getName()] = attribute;
           });
-          this.__P_48_2 = allowedAttributes;
+          this.__P_49_2 = allowedAttributes;
         }
-        return this.__P_48_2;
+        return this.__P_49_2;
       },
       /**
        * are these elements children sortable? this is not the case if a sequence is used, e.g.
@@ -589,18 +589,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (this.isTextContentAllowed() === false) {
             return undefined;
           }
-          if (!this.__P_48_3) {
+          if (!this.__P_49_3) {
             var tmpXML = this.getSchema().getSchemaDOM().createElement('element');
             tmpXML.setAttribute('name', '#text');
             tmpXML.setAttribute('type', 'xsd:string');
-            this.__P_48_3 = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
+            this.__P_49_3 = new cv.ui.manager.model.schema.Element(tmpXML, this.getSchema());
             if (allowedContent._text) {
-              this.__P_48_3.getAllowedContent()._text = allowedContent._text;
+              this.__P_49_3.getAllowedContent()._text = allowedContent._text;
             } else if (this.isMixed()) {
-              this.__P_48_3.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
+              this.__P_49_3.getAllowedContent._text = this.getSchema().getTextNodeSchemaElement();
             }
           }
-          return this.__P_48_3;
+          return this.__P_49_3;
         } else if (elementName === '#comment') {
           // comments are always allowed
           return this.getSchema().getCommentNodeSchemaElement();
@@ -712,12 +712,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__P_48_2");
-      this._disposeMap("__P_48_1");
-      this._disposeObjects("__P_48_3", "__P_48_4");
+      this._disposeMap("__P_49_2");
+      this._disposeMap("__P_49_1");
+      this._disposeObjects("__P_49_3", "__P_49_4");
     }
   });
   cv.ui.manager.model.schema.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1731948094087
+//# sourceMappingURL=Element.js.map?dt=1735222409849

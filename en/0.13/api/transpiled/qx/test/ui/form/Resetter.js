@@ -45,63 +45,63 @@
       qx.test.ui.LayoutTestCase.constructor.call(this);
     },
     members: {
-      __P_412_0: null,
-      __P_412_1: null,
-      __P_412_2: null,
-      __P_412_3: null,
+      __P_413_0: null,
+      __P_413_1: null,
+      __P_413_2: null,
+      __P_413_3: null,
       setUp: function setUp() {
-        this.__P_412_0 = new qx.ui.form.TextField();
-        this.__P_412_1 = new qx.ui.form.TextField();
-        this.__P_412_2 = new qx.ui.form.TextField();
-        this.__P_412_3 = new qx.ui.form.Resetter();
+        this.__P_413_0 = new qx.ui.form.TextField();
+        this.__P_413_1 = new qx.ui.form.TextField();
+        this.__P_413_2 = new qx.ui.form.TextField();
+        this.__P_413_3 = new qx.ui.form.Resetter();
       },
       tearDown: function tearDown() {
-        this.__P_412_3.dispose();
-        this.__P_412_0.dispose();
-        this.__P_412_1.dispose();
-        this.__P_412_2.dispose();
+        this.__P_413_3.dispose();
+        this.__P_413_0.dispose();
+        this.__P_413_1.dispose();
+        this.__P_413_2.dispose();
       },
       testReset: function testReset() {
         // set the initial values
-        this.__P_412_0.setValue("A");
-        this.__P_412_1.setValue("B");
-        this.__P_412_2.setValue("C");
+        this.__P_413_0.setValue("A");
+        this.__P_413_1.setValue("B");
+        this.__P_413_2.setValue("C");
         // add the fields to the form manager
-        this.__P_412_3.add(this.__P_412_0);
-        this.__P_412_3.add(this.__P_412_1);
-        this.__P_412_3.add(this.__P_412_2);
+        this.__P_413_3.add(this.__P_413_0);
+        this.__P_413_3.add(this.__P_413_1);
+        this.__P_413_3.add(this.__P_413_2);
         // change the values of the fields
-        this.__P_412_0.setValue("a");
-        this.__P_412_1.setValue("b");
-        this.__P_412_2.setValue("c");
+        this.__P_413_0.setValue("a");
+        this.__P_413_1.setValue("b");
+        this.__P_413_2.setValue("c");
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the initial values are reset
-        this.assertEquals("A", this.__P_412_0.getValue());
-        this.assertEquals("B", this.__P_412_1.getValue());
-        this.assertEquals("C", this.__P_412_2.getValue());
+        this.assertEquals("A", this.__P_413_0.getValue());
+        this.assertEquals("B", this.__P_413_1.getValue());
+        this.assertEquals("C", this.__P_413_2.getValue());
       },
       testRemove: function testRemove() {
         // set the initial values
-        this.__P_412_0.setValue("A");
-        this.__P_412_1.setValue("B");
+        this.__P_413_0.setValue("A");
+        this.__P_413_1.setValue("B");
         // add the fields to the form manager
-        this.__P_412_3.add(this.__P_412_0);
-        this.__P_412_3.add(this.__P_412_1);
+        this.__P_413_3.add(this.__P_413_0);
+        this.__P_413_3.add(this.__P_413_1);
         // change the values of the fields
-        this.__P_412_0.setValue("a");
-        this.__P_412_1.setValue("b");
+        this.__P_413_0.setValue("a");
+        this.__P_413_1.setValue("b");
         // remove one item
-        this.assertTrue(this.__P_412_3.remove(this.__P_412_1));
+        this.assertTrue(this.__P_413_3.remove(this.__P_413_1));
         // remove again to see that it has not been removed
-        this.assertFalse(this.__P_412_3.remove(this.__P_412_1));
+        this.assertFalse(this.__P_413_3.remove(this.__P_413_1));
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the initial values are reset or kept
-        this.assertEquals("A", this.__P_412_0.getValue());
-        this.assertEquals("b", this.__P_412_1.getValue());
+        this.assertEquals("A", this.__P_413_0.getValue());
+        this.assertEquals("b", this.__P_413_1.getValue());
       },
       testResetWithSelectBox: function testResetWithSelectBox() {
         var box = new qx.ui.form.SelectBox();
@@ -115,14 +115,14 @@
         this.assertEquals(item2, box.getSelection()[0], "1");
 
         // add the box to the manager
-        this.__P_412_3.add(box);
+        this.__P_413_3.add(box);
         // change the selection
         box.setSelection([item1]);
         // check the new selection
         this.assertEquals(item1, box.getSelection()[0], "");
 
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the selection has been reseted
         this.assertEquals(item2, box.getSelection()[0], "3");
@@ -151,11 +151,11 @@
         vsb.getSelection().setItem(0, "b");
 
         // add the resetter
-        this.__P_412_3.add(slider);
-        this.__P_412_3.add(textarea);
-        this.__P_412_3.add(radiobutton);
-        this.__P_412_3.add(list);
-        this.__P_412_3.add(vsb);
+        this.__P_413_3.add(slider);
+        this.__P_413_3.add(textarea);
+        this.__P_413_3.add(radiobutton);
+        this.__P_413_3.add(list);
+        this.__P_413_3.add(vsb);
 
         // change the values
         slider.setValue(55);
@@ -165,7 +165,7 @@
         vsb.getSelection().setItem(0, "c");
 
         // reset
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check
         this.assertEquals(22, slider.getValue());
@@ -184,31 +184,31 @@
       },
       testRedefine: function testRedefine() {
         // set the initial values
-        this.__P_412_0.setValue("A");
-        this.__P_412_1.setValue("B");
-        this.__P_412_2.setValue("C");
+        this.__P_413_0.setValue("A");
+        this.__P_413_1.setValue("B");
+        this.__P_413_2.setValue("C");
         // add the fields to the form manager
-        this.__P_412_3.add(this.__P_412_0);
-        this.__P_412_3.add(this.__P_412_1);
-        this.__P_412_3.add(this.__P_412_2);
+        this.__P_413_3.add(this.__P_413_0);
+        this.__P_413_3.add(this.__P_413_1);
+        this.__P_413_3.add(this.__P_413_2);
         // change the values of the fields
-        this.__P_412_0.setValue("a");
-        this.__P_412_1.setValue("b");
-        this.__P_412_2.setValue("c");
+        this.__P_413_0.setValue("a");
+        this.__P_413_1.setValue("b");
+        this.__P_413_2.setValue("c");
         // redefine the manager
-        this.__P_412_3.redefine();
+        this.__P_413_3.redefine();
         // change the values of the fields
-        this.__P_412_0.setValue("aa");
-        this.__P_412_1.setValue("bb");
-        this.__P_412_2.setValue("cc");
+        this.__P_413_0.setValue("aa");
+        this.__P_413_1.setValue("bb");
+        this.__P_413_2.setValue("cc");
 
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the initial values are reset
-        this.assertEquals("a", this.__P_412_0.getValue());
-        this.assertEquals("b", this.__P_412_1.getValue());
-        this.assertEquals("c", this.__P_412_2.getValue());
+        this.assertEquals("a", this.__P_413_0.getValue());
+        this.assertEquals("b", this.__P_413_1.getValue());
+        this.assertEquals("c", this.__P_413_2.getValue());
       },
       testRefineSelection: function testRefineSelection() {
         var box = new qx.ui.form.SelectBox();
@@ -219,18 +219,18 @@
         box.setSelection([item2]);
 
         // add the box to the manager
-        this.__P_412_3.add(box);
+        this.__P_413_3.add(box);
         // change the selection
         box.setSelection([item1]);
         // check the new selection
         this.assertEquals(item1, box.getSelection()[0]);
 
         // redefine the manager
-        this.__P_412_3.redefine();
+        this.__P_413_3.redefine();
         // change the selection
         box.setSelection([item2]);
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the selection has been reseted
         this.assertEquals(item1, box.getSelection()[0]);
@@ -240,64 +240,64 @@
       },
       testResetOneItem: function testResetOneItem() {
         // set the initial values
-        this.__P_412_0.setValue("A");
-        this.__P_412_1.setValue("B");
-        this.__P_412_2.setValue("C");
+        this.__P_413_0.setValue("A");
+        this.__P_413_1.setValue("B");
+        this.__P_413_2.setValue("C");
         // add the fields to the form manager
-        this.__P_412_3.add(this.__P_412_0);
-        this.__P_412_3.add(this.__P_412_1);
-        this.__P_412_3.add(this.__P_412_2);
+        this.__P_413_3.add(this.__P_413_0);
+        this.__P_413_3.add(this.__P_413_1);
+        this.__P_413_3.add(this.__P_413_2);
         // change the values of the fields
-        this.__P_412_0.setValue("a");
-        this.__P_412_1.setValue("b");
-        this.__P_412_2.setValue("c");
+        this.__P_413_0.setValue("a");
+        this.__P_413_1.setValue("b");
+        this.__P_413_2.setValue("c");
         // reset the first two items
-        this.__P_412_3.resetItem(this.__P_412_0);
-        this.__P_412_3.resetItem(this.__P_412_1);
+        this.__P_413_3.resetItem(this.__P_413_0);
+        this.__P_413_3.resetItem(this.__P_413_1);
 
         // check if the initial values are reset
-        this.assertEquals("A", this.__P_412_0.getValue());
-        this.assertEquals("B", this.__P_412_1.getValue());
-        this.assertEquals("c", this.__P_412_2.getValue());
+        this.assertEquals("A", this.__P_413_0.getValue());
+        this.assertEquals("B", this.__P_413_1.getValue());
+        this.assertEquals("c", this.__P_413_2.getValue());
 
         // check for a not added item
         var self = this;
         this.assertException(function () {
-          self.__P_412_3.resetItem(this);
+          self.__P_413_3.resetItem(this);
         }, Error);
       },
       testRedefineOneItem: function testRedefineOneItem() {
         // set the initial values
-        this.__P_412_0.setValue("A");
-        this.__P_412_1.setValue("B");
-        this.__P_412_2.setValue("C");
+        this.__P_413_0.setValue("A");
+        this.__P_413_1.setValue("B");
+        this.__P_413_2.setValue("C");
         // add the fields to the form manager
-        this.__P_412_3.add(this.__P_412_0);
-        this.__P_412_3.add(this.__P_412_1);
-        this.__P_412_3.add(this.__P_412_2);
+        this.__P_413_3.add(this.__P_413_0);
+        this.__P_413_3.add(this.__P_413_1);
+        this.__P_413_3.add(this.__P_413_2);
         // change the values of the fields
-        this.__P_412_0.setValue("a");
-        this.__P_412_1.setValue("b");
-        this.__P_412_2.setValue("c");
+        this.__P_413_0.setValue("a");
+        this.__P_413_1.setValue("b");
+        this.__P_413_2.setValue("c");
         // redefine the first two items
-        this.__P_412_3.redefineItem(this.__P_412_0);
-        this.__P_412_3.redefineItem(this.__P_412_1);
+        this.__P_413_3.redefineItem(this.__P_413_0);
+        this.__P_413_3.redefineItem(this.__P_413_1);
         // change the first two items
-        this.__P_412_0.setValue("1");
-        this.__P_412_1.setValue("2");
+        this.__P_413_0.setValue("1");
+        this.__P_413_1.setValue("2");
 
         // reset the manager
-        this.__P_412_3.reset();
+        this.__P_413_3.reset();
 
         // check if the initial values are reset
-        this.assertEquals("a", this.__P_412_0.getValue());
-        this.assertEquals("b", this.__P_412_1.getValue());
-        this.assertEquals("C", this.__P_412_2.getValue());
+        this.assertEquals("a", this.__P_413_0.getValue());
+        this.assertEquals("b", this.__P_413_1.getValue());
+        this.assertEquals("C", this.__P_413_2.getValue());
 
         // check for a not added item
         var self = this;
         this.assertException(function () {
-          self.__P_412_3.redefineItem(this);
+          self.__P_413_3.redefineItem(this);
         }, Error);
       }
     }
@@ -305,4 +305,4 @@
   qx.test.ui.form.Resetter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resetter.js.map?dt=1731948120274
+//# sourceMappingURL=Resetter.js.map?dt=1735222431763

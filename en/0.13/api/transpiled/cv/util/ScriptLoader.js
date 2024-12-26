@@ -51,10 +51,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_758_0 = new qx.data.Array();
-      this.__P_758_1 = new qx.data.Array();
-      this.__P_758_2 = new qx.data.Array();
-      this.__P_758_3 = [];
+      this.__P_759_0 = new qx.data.Array();
+      this.__P_759_1 = new qx.data.Array();
+      this.__P_759_2 = new qx.data.Array();
+      this.__P_759_3 = [];
     },
     /*
     ***********************************************
@@ -153,20 +153,20 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     ******************************************************
     */
     members: {
-      __P_758_4: false,
-      __P_758_5: false,
-      __P_758_6: true,
-      __P_758_0: null,
-      __P_758_1: null,
-      __P_758_7: null,
-      __P_758_3: null,
+      __P_759_4: false,
+      __P_759_5: false,
+      __P_759_6: true,
+      __P_759_0: null,
+      __P_759_1: null,
+      __P_759_7: null,
+      __P_759_3: null,
       addStyles: function addStyles(styleArr) {
         var _this2 = this;
         var queue = typeof styleArr === 'string' ? [styleArr] : styleArr.concat();
         var suffix = cv.Config.forceReload === true ? '?' + Date.now() : '';
         var promises = [];
-        this.__P_758_6 = false;
-        this.__P_758_5 = true;
+        this.__P_759_6 = false;
+        this.__P_759_5 = true;
         queue.forEach(function (style) {
           var media;
           var src;
@@ -193,9 +193,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }, this);
         Promise.all(promises).then(function () {
           _this2.debug('styles have been loaded');
-          _this2.__P_758_6 = true;
+          _this2.__P_759_6 = true;
           _this2.fireEvent('stylesLoaded');
-          if (_this2.getFinished() && _this2.__P_758_4 && _this2.__P_758_5) {
+          if (_this2.getFinished() && _this2.__P_759_4 && _this2.__P_759_5) {
             _this2.fireEvent('stylesAndScriptsLoaded');
           }
         })["catch"](function (reason) {
@@ -205,13 +205,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         });
       },
       markAsLoaded: function markAsLoaded(path) {
-        if (!this.__P_758_3.includes(path)) {
+        if (!this.__P_759_3.includes(path)) {
           this.debug('marking ' + path + ' as loaded');
-          this.__P_758_3.push(path);
+          this.__P_759_3.push(path);
         }
       },
       isMarkedAsLoaded: function isMarkedAsLoaded(path) {
-        return this.__P_758_3.includes(path);
+        return this.__P_759_3.includes(path);
       },
       addScripts: function addScripts(scriptArr, order) {
         var queue = typeof scriptArr === 'string' ? [scriptArr] : scriptArr;
@@ -220,9 +220,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var realQueue = [];
         var i = 0;
         var l = queue.length;
-        this.__P_758_4 = true;
+        this.__P_759_4 = true;
         for (; i < l; i++) {
-          if (!this.__P_758_3.includes(queue[i])) {
+          if (!this.__P_759_3.includes(queue[i])) {
             realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
           }
         }
@@ -231,16 +231,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
         this.debug('queueing ' + realQueue.length + ' scripts');
         this.resetFinished();
-        this.__P_758_0.append(realQueue);
+        this.__P_759_0.append(realQueue);
         if (order) {
           var processQueue = function () {
             if (order.length > 0) {
               var loadIndex = order.shift();
               var script = realQueue.splice(loadIndex, 1)[0];
-              var loader = this.__P_758_8(script);
+              var loader = this.__P_759_8(script);
               loader.addListener('ready', processQueue, this);
             } else {
-              realQueue.forEach(this.__P_758_8, this);
+              realQueue.forEach(this.__P_759_8, this);
             }
           }.bind(this);
           processQueue();
@@ -248,7 +248,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           // use an extra DynamicScriptLoader for every single script because loading errors stop the process
           // and the loader would not try to load the other scripts
           // queue.forEach(this.__loadSingleScript, this);
-          this.__P_758_8(realQueue);
+          this.__P_759_8(realQueue);
         }
       },
       /**
@@ -256,14 +256,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *
        * @param script {String} path to script
        */
-      __P_758_8: function __P_758_8(script) {
+      __P_759_8: function __P_759_8(script) {
         var _this3 = this;
         var loader = new qx.util.DynamicScriptLoader(script);
-        this.__P_758_1.push(loader);
+        this.__P_759_1.push(loader);
         loader.addListener('loaded', this._onLoaded, this);
         loader.addListener('failed', this._onFailed, this);
         loader.addListenerOnce('ready', function () {
-          _this3.__P_758_1.remove(loader);
+          _this3.__P_759_1.remove(loader);
           loader.removeListener('loaded', _this3._onLoaded, _this3);
           loader.removeListener('failed', _this3._onFailed, _this3);
         });
@@ -272,13 +272,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       _onLoaded: function _onLoaded(ev) {
         var data = ev.getData();
-        this.__P_758_0.remove(data.script);
+        this.__P_759_0.remove(data.script);
         this.debug(data.script + ' loaded');
         this._checkQueue();
       },
       _onFailed: function _onFailed(ev) {
         var data = ev.getData();
-        this.__P_758_0.remove(data.script);
+        this.__P_759_0.remove(data.script);
         if (data.script.startsWith('design')) {
           var failedDesign = data.script.split('/')[1];
           this.fireDataEvent('designError', failedDesign);
@@ -305,30 +305,30 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       // property apply
       _checkQueue: function _checkQueue() {
         var _this4 = this;
-        if (this.__P_758_0.length === 0) {
+        if (this.__P_759_0.length === 0) {
           if (this.isAllQueued()) {
             this.debug('script loader finished');
             this.fireEvent('finished');
             this.setFinished(true);
-            if (this.__P_758_6 && this.__P_758_4 && this.__P_758_5) {
+            if (this.__P_759_6 && this.__P_759_4 && this.__P_759_5) {
               this.fireEvent('stylesAndScriptsLoaded');
             }
-          } else if (!this.__P_758_7) {
+          } else if (!this.__P_759_7) {
             this.debug('script loader waiting for all scripts beeing queued');
-            this.__P_758_7 = this.addListener('changeAllQueued', function (ev) {
+            this.__P_759_7 = this.addListener('changeAllQueued', function (ev) {
               if (ev.getData() === true) {
-                if (_this4.__P_758_0.length === 0) {
+                if (_this4.__P_759_0.length === 0) {
                   _this4.debug('script loader finished');
                   _this4.fireEvent('finished');
                   _this4.setFinished(true);
                 }
-                _this4.removeListenerById(_this4.__P_758_7);
-                _this4.__P_758_7 = null;
+                _this4.removeListenerById(_this4.__P_759_7);
+                _this4.__P_759_7 = null;
               }
             });
           }
         } else {
-          this.debug(this.__P_758_0.length + ' scripts remaining');
+          this.debug(this.__P_759_0.length + ' scripts remaining');
         }
       }
     }
@@ -336,4 +336,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.util.ScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScriptLoader.js.map?dt=1731948145815
+//# sourceMappingURL=ScriptLoader.js.map?dt=1735222452854

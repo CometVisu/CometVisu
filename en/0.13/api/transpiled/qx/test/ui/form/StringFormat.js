@@ -37,7 +37,7 @@
   qx.Class.define("qx.test.ui.form.StringFormat", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_414_0: function __P_414_0(widget) {
+      __P_415_0: function __P_415_0(widget) {
         // check if the interface is implemented
         this.assertTrue(qx.Class.hasInterface(widget.constructor, qx.ui.form.IStringForm), "Interface is not implemented.");
 
@@ -71,23 +71,23 @@
         widget.destroy();
       },
       testTextField: function testTextField() {
-        this.__P_414_0(new qx.ui.form.TextField());
+        this.__P_415_0(new qx.ui.form.TextField());
       },
       testPasswordField: function testPasswordField() {
-        this.__P_414_0(new qx.ui.form.PasswordField());
+        this.__P_415_0(new qx.ui.form.PasswordField());
       },
       testTextArea: function testTextArea() {
-        this.__P_414_0(new qx.ui.form.TextArea());
+        this.__P_415_0(new qx.ui.form.TextArea());
       },
       testComboBox: function testComboBox() {
-        this.__P_414_0(new qx.ui.form.ComboBox());
+        this.__P_415_0(new qx.ui.form.ComboBox());
       },
       testLabel: function testLabel() {
-        this.__P_414_0(new qx.ui.basic.Label());
+        this.__P_415_0(new qx.ui.basic.Label());
       }
     }
   });
   qx.test.ui.form.StringFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StringFormat.js.map?dt=1731948120335
+//# sourceMappingURL=StringFormat.js.map?dt=1735222431812

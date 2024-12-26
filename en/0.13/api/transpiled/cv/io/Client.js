@@ -1,3 +1,36 @@
+/* Client.js
+ *
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+'use strict';
+
+/**
+ * The JavaScript library that implements the CometVisu protocol.
+ * The Client handles all communication issues to supply the user
+ * of this object with reliable realtime data.
+ * It can be seen as the session layer (layer 5) according to the OSI
+ * model.
+ *
+ * @author Christan Mayer
+ * @author Tobias Bräutigam
+ * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)
+ *
+ * @ignore($)
+ */
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
@@ -39,38 +72,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
-  /* Client.js
-   *
-   * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
-   *
-   * This program is free software; you can redistribute it and/or modify it
-   * under the terms of the GNU General Public License as published by the Free
-   * Software Foundation; either version 3 of the License, or (at your option)
-   * any later version.
-   *
-   * This program is distributed in the hope that it will be useful, but WITHOUT
-   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-   * more details.
-   *
-   * You should have received a copy of the GNU General Public License along
-   * with this program; if not, write to the Free Software Foundation, Inc.,
-   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-   */
-
-  /**
-   * The JavaScript library that implements the CometVisu protocol.
-   * The Client handles all communication issues to supply the user
-   * of this object with reliable realtime data.
-   * It can be seen as the session layer (layer 5) according to the OSI
-   * model.
-   *
-   * @author Christan Mayer
-   * @author Tobias Bräutigam
-   * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)
-   *
-   * @ignore($)
-   */
   qx.Class.define('cv.io.Client', {
     extend: qx.core.Object,
     implement: cv.io.IClient,
@@ -126,6 +127,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       this.pass = '';
       this.device = '';
       this.headers = {};
+      this.resendHeaders = {};
       this.delayedRestart = qx.util.Function.debounce(this.restart.bind(this), 50);
     },
     /*
@@ -173,11 +175,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           maxConnectionAge: 60000,
           // in milliseconds - restart if last read is older
           maxDataAge: 3200000,
-          // in milliseconds - reload all data when last successful
+          // in milliseconds - reload all data when the last successful
           // read is older (should be faster than the index overflow at max data rate,
           // i.e. 2^16 @ 20 tps for KNX TP)
           maxRetries: 3,
-          // amount of connection retries for temporary server failures
+          // number of connection retries for temporary server failures
           hooks: {}
         },
         openhab: {
@@ -263,14 +265,19 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
       loginSettings: null,
       headers: null,
-      __P_748_0: null,
+      resendHeaders: null,
+      __P_749_0: null,
       getType: function getType() {
         return this._type;
       },
-      // property apply
+      /**
+       * Method to call when the `connected` property is set
+       * @param value {boolean}
+       * @private
+       */
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_748_0 = null;
+          this.__P_749_0 = null;
         }
         this.record('connected', value);
       },
@@ -289,7 +296,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
         }
         // add trailing slash to baseURL if not set
-        if (backend.baseURL && backend.baseURL.substr(-1) !== '/') {
+        if (backend.baseURL && backend.baseURL.slice(-1) !== '/') {
           backend.baseURL += '/';
         }
         var currentTransport = this.getCurrentTransport();
@@ -322,7 +329,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         return this.backend;
       },
       /**
-       * manipulates the header of the current ajax query before it is been send to the server
+       * manipulates the header of the current ajax query before it will be sent to the server
        * @param xhr
        */
       beforeSend: function beforeSend(xhr) {
@@ -331,9 +338,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
           }
         }
-        for (headerName in this.headers) {
-          if (this.headers[headerName] !== undefined) {
-            xhr.setRequestHeader(headerName, this.headers[headerName]);
+        for (var _headerName in this.headers) {
+          if (this.headers[_headerName] !== undefined) {
+            xhr.setRequestHeader(_headerName, this.headers[_headerName]);
           }
         }
       },
@@ -357,12 +364,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param filters {Array?} Filters
        *
        */
-      subscribe: function subscribe(addresses, filters) {
+      subscribe: function subscribe() {
+        var addresses = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        var filters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
         var startCommunication = !this.addresses.length; // start when
-        // addresses were
-        // empty
-        this.addresses = addresses ? addresses : [];
-        this.filters = filters ? filters : [];
+        // addresses were empty
+        this.addresses = addresses;
+        this.filters = filters;
         if (!addresses.length) {
           this.stop(); // stop when new addresses are empty
         } else if (startCommunication) {
@@ -389,13 +397,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *
        * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
        *                            to addresses (default: false)
-       * @param credentials {Map?} not used in this client
-       * @param callback {Function} call this function when login is done
-       * @param context {Object} context for the callback (this)
+       * @param credentials {Object?} not used in this client
+       * @param callback {Function?} call this function when login is done
+       * @param context {Object?} context for the callback (this)
        *
        */
       login: function login(loginOnly, credentials, callback, context) {
         if (!this.loginSettings.loggedIn) {
+          var _this$backendLoginUrl;
           this.loginSettings.loginOnly = !!loginOnly;
           this.loginSettings.callbackAfterLoggedIn = callback;
           this.loginSettings.context = context;
@@ -409,7 +418,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           if (this.device !== '') {
             request.d = this.device;
           }
-          this.doRequest(this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'), request, this.handleLogin, this);
+          this.doRequest((_this$backendLoginUrl = this.backendLoginUrl) !== null && _this$backendLoginUrl !== void 0 ? _this$backendLoginUrl : this.getResourcePath('login'), request, this.handleLogin, this);
         } else if (typeof this.loginSettings.callbackAfterLoggedIn === 'function') {
           // call callback immediately
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -428,12 +437,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
           return data;
         },
-        qx: function qx(args) {
-          var ev = args[0];
-          if (!ev) {
+        /**
+         *
+         * @param ev {[qx.event.type.Event]}
+         * @return {*|null}
+         */
+        qx: function qx(ev) {
+          if (!ev[0]) {
             return null;
           }
-          var json = ev.getTarget().getResponse();
+          var json = ev[0].getTarget().getResponse();
           if (!json) {
             return null;
           }
@@ -476,12 +489,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         return prefix + suffix;
       },
       /**
-       * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
+       * Creates an XHR request. The request type depends on the "cv.xhr" environment setting
        * (currently "qx" and "jquery" are supported)
        * @param url {String} URI
-       * @param data {Map} request data
+       * @param data {Object} request data
        * @param callback {Function} success callback
-       * @param context {Object} context fot the callback
+       * @param context {Object} context for the callback
        * @return {qx.io.request.Xhr|jQuery}
        */
       doRequest: qx.core.Environment.select('cv.xhr', {
@@ -503,7 +516,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               delete options.listeners;
             }
           }
-          config = $.extend(config, options || {});
+          config = $.extend(config, options !== null && options !== void 0 ? options : {});
           var request = new cv.io.request.Jquery(config);
           request.send();
           return request;
@@ -539,7 +552,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
           ajaxRequest.set(Object.assign({
             accept: 'application/json'
-          }, options || {}));
+          }, options !== null && options !== void 0 ? options : {}));
           if (callback) {
             ajaxRequest.addListener('success', callback, context);
           }
@@ -557,7 +570,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (req.serverErrorHandled) {
           return; // ignore error when already handled
         }
-        this.__P_748_0 = {
+        this.__P_749_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -573,14 +586,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_748_0;
+        return this.__P_749_0;
       },
       /**
        * Handles login response, applies backend configuration if send by
-       * backend and forwards to the configurated transport handleSession
+       * backend and forwards to the configured transport handleSession
        * function
        *
-       * Parameter vary dependent from the XHR type used
+       * Parameter varies depending on the XHR type used
        * qx (Qooxdoo):
        *   ev {Event} the 'success' event from the XHR request
        *
@@ -590,13 +603,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *   request {Object} the jqXHR object
        */
       handleLogin: function handleLogin() {
+        var _json$s;
         var args = Array.prototype.slice.call(arguments, 0);
         var json = this.getResponse(args);
         // read backend configuration if send by backend
         if (json.c) {
           this.setBackend(Object.assign(this.getBackend(), json.c));
         }
-        this.session = json.s || 'SESSION';
+        this.session = (_json$s = json.s) !== null && _json$s !== void 0 ? _json$s : 'SESSION';
         this.setServer(this.getResponseHeader(args, 'Server'));
         this.setDataReceived(false);
         if (this.loginSettings.loginOnly) {
@@ -624,15 +638,18 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       /**
        * Build the URL part that contains the addresses and filters
-       * @param addresses {Array}
-       * @param asString
-       * @return {Map}
+       * @param addresses {Array?}
+       * @param asString {boolean?}
+       * @return {Object}
        */
-      buildRequest: function buildRequest(addresses, asString) {
+      buildRequest: function buildRequest(addresses) {
+        var _addresses2;
+        var asString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         if (asString === true) {
+          var _addresses;
           // return as query string
           var qs = 's=' + this.session;
-          addresses = addresses ? addresses : this.addresses;
+          (_addresses = addresses) !== null && _addresses !== void 0 ? _addresses : addresses = this.addresses;
           qs += '&a=' + addresses.join('&a=');
           if (this.filters.length) {
             qs += '&f=' + this.filters.join('&f=');
@@ -642,7 +659,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var data = {
           s: this.session
         };
-        addresses = addresses || this.addresses;
+        (_addresses2 = addresses) !== null && _addresses2 !== void 0 ? _addresses2 : addresses = this.addresses;
         if (addresses && addresses.length) {
           data.a = addresses;
         }
@@ -726,4 +743,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1731948145210
+//# sourceMappingURL=Client.js.map?dt=1735222452343

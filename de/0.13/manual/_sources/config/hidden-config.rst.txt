@@ -30,26 +30,9 @@ Die versteckten Konfigurationen werden in der Datei ``config/hidden.php`` abgele
 Der Inhalt besteht aus mehreren Einträgen die einen *Name* mit mehreren *Schlüssel* und *Wert* Paaren enthalten.
 In der Datei selbst werden diese Informationen als PHP Array abgelegt:
 
-.. code-block:: php
+.. literalinclude:: ../../../../source/resource/config/hidden.php
+   :language: php
 
-    <?php
-    // File for configurations that shouldn't be shared with the user
-    $data = '{
-      "fritzbox": {
-        "uri": "https://192.168.0.1:49443/",
-        "user": "CometVisuTestUser",
-        "pass": "secret"
-      },
-      "influx": {
-        "uri": "https://172.17.0.1/proxy/ts/query",
-        "user": "docker",
-        "pass": "secret",
-        "selfsigned": "true"
-      }
-      "proxy.whitelist": {
-      }
-    }';
-    $hidden = json_decode($data, true);
 
 Manager
 -------

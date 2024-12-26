@@ -1,33 +1,33 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857323,
-  "lastModifiedIso": "2024-11-18T16:37:37.323Z",
+  "lastModified": 1735222205526,
+  "lastModifiedIso": "2024-12-26T14:10:05.526Z",
   "classFilename": "../../client/source/class/cv/io/Watchdog.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 24,
+      "line": 25,
       "column": 0,
-      "index": 980
+      "index": 993
     },
     "end": {
-      "line": 99,
+      "line": 136,
       "column": 3,
-      "index": 2569
+      "index": 3561
     }
   },
   "className": "cv.io.Watchdog",
   "jsdoc": {
     "raw": [
       "*",
-      " * The Watchdog observes the backend communication and restarts the connection, if",
+      " * The Watchdog observes the backend communication and restarts the connection if",
       " * the client received to data from the backend within a defined timeout.",
       " "
     ],
     "@description": [
       {
         "name": "@description",
-        "body": "<p>The Watchdog observes the backend communication and restarts the connection, if\n the client received to data from the backend within a defined timeout.</p>"
+        "body": "<p>The Watchdog observes the backend communication and restarts the connection if\n the client received to data from the backend within a defined timeout.</p>"
       }
     ]
   },
@@ -37,14 +37,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 32,
+        "line": 33,
         "column": 2,
-        "index": 1185
+        "index": 1198
       },
       "end": {
-        "line": 34,
+        "line": 35,
         "column": 3,
-        "index": 1230
+        "index": 1243
       }
     }
   },
@@ -52,14 +52,14 @@
     "client": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 43,
           "column": 4,
-          "index": 1392
+          "index": 1405
         },
         "end": {
-          "line": 46,
+          "line": 47,
           "column": 5,
-          "index": 1475
+          "index": 1488
         }
       },
       "json": {
@@ -72,69 +72,142 @@
   },
   "members": {
     "last": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Time of the last successful watchdog update.",
+          "     * @type {Date}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Time of the last successful watchdog update.</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Date}"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 60,
           "column": 4,
-          "index": 1635
+          "index": 1736
         },
         "end": {
-          "line": 55,
+          "line": 60,
           "column": 14,
-          "index": 1645
+          "index": 1746
         }
       },
       "appearsIn": []
     },
     "hardLast": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Time of the last successful watchdog update when the data were loaded",
+          "     * completely.",
+          "     * @type {Date}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Time of the last successful watchdog update when the data were loaded\n completely.</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Date}"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 67,
           "column": 4,
-          "index": 1651
+          "index": 1885
         },
         "end": {
-          "line": 56,
+          "line": 67,
           "column": 18,
-          "index": 1665
+          "index": 1899
         }
       },
       "appearsIn": []
     },
     "__id": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * ID of the setInterval",
+          "     * @type {number|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the setInterval</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{number|null}"
+          }
+        ]
+      },
       "access": "private",
       "location": {
         "start": {
-          "line": 57,
+          "line": 73,
           "column": 4,
-          "index": 1671
+          "index": 1978
         },
         "end": {
-          "line": 57,
+          "line": 73,
           "column": 14,
-          "index": 1681
+          "index": 1988
         }
       },
       "appearsIn": []
     },
     "aliveCheckFunction": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the watchdog was pinged recently enough.",
+          "     * If not, restart the connection. When the last data reading is older than",
+          "     * `maxDataAge` a reload is requested.",
+          "     * This does not update the last ping.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the watchdog was pinged recently enough.\n If not, restart the connection. When the last data reading is older than\n <code>maxDataAge</code> a reload is requested.\n This does not update the last ping.</p>"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 59,
+          "line": 81,
           "column": 4,
-          "index": 1688
+          "index": 2239
         },
         "end": {
-          "line": 72,
+          "line": 93,
           "column": 5,
-          "index": 2094
+          "index": 2640
         }
       },
       "type": "function",
@@ -142,41 +215,76 @@
       "appearsIn": []
     },
     "start": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the watchdog.",
+          "     * @param watchdogTimer {number} The interval in seconds.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the watchdog.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "watchdogTimer {number} The interval in seconds.",
+            "paramName": "watchdogTimer",
+            "description": " The interval in seconds.",
+            "type": "number"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 99,
           "column": 4,
-          "index": 2101
+          "index": 2752
         },
         "end": {
-          "line": 79,
+          "line": 104,
           "column": 5,
-          "index": 2270
+          "index": 2930
         }
       },
       "type": "function",
       "params": [
         {
-          "name": "watchdogTimer"
+          "name": "watchdogTimer",
+          "type": "number"
         }
       ],
       "appearsIn": []
     },
     "stop": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the watchdog.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the watchdog.</p>"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 109,
           "column": 4,
-          "index": 2277
+          "index": 2979
         },
         "end": {
-          "line": 86,
+          "line": 114,
           "column": 5,
-          "index": 2382
+          "index": 3093
         }
       },
       "type": "function",
@@ -184,37 +292,81 @@
       "appearsIn": []
     },
     "isActive": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return whether the watchdog is running.",
+          "     * @return {boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return whether the watchdog is running.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 120,
           "column": 4,
-          "index": 2389
+          "index": 3188
         },
         "end": {
-          "line": 90,
+          "line": 122,
           "column": 5,
-          "index": 2433
+          "index": 3239
         }
       },
       "type": "function",
       "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
       "appearsIn": []
     },
     "ping": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Ping the watchdog to tell it that the function is still running.",
+          "     * @param fullReload {boolean} Were all data read?",
+          "     *   (Relevant for data aging)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Ping the watchdog to tell it that the function is still running.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "Relevant for data aging"
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 129,
           "column": 4,
-          "index": 2440
+          "index": 3424
         },
         "end": {
-          "line": 97,
+          "line": 134,
           "column": 5,
-          "index": 2561
+          "index": 3553
         }
       },
       "type": "function",

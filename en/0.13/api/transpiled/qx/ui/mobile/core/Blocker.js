@@ -63,29 +63,29 @@
       }
     },
     members: {
-      __P_615_0: 0,
+      __P_616_0: 0,
       /**
        * Shows the blocker. When the show method is called a counter is incremented.
        * The {@link #hide} method needs to be called as many times as the {@link #show}
        * method. This behavior is useful, when you want to show a loading indicator.
        */
       show: function show() {
-        if (this.__P_615_0 == 0) {
+        if (this.__P_616_0 == 0) {
           this._updateSize();
-          this.__P_615_1();
+          this.__P_616_1();
           qx.ui.mobile.core.Blocker.superclass.prototype.show.call(this);
         }
-        this.__P_615_0++;
+        this.__P_616_0++;
       },
       /**
        * Hides the blocker. The blocker is only hidden when the hide method
        * is called as many times as the {@link #show} method.
        */
       hide: function hide() {
-        this.__P_615_0--;
-        if (this.__P_615_0 <= 0) {
-          this.__P_615_0 = 0;
-          this.__P_615_2();
+        this.__P_616_0--;
+        if (this.__P_616_0 <= 0) {
+          this.__P_616_0 = 0;
+          this.__P_616_2();
           this.exclude();
         }
       },
@@ -94,7 +94,7 @@
        * zero.
        */
       forceHide: function forceHide() {
-        this.__P_615_0 = 0;
+        this.__P_616_0 = 0;
         this.hide();
       },
       /**
@@ -102,7 +102,7 @@
        * @return {Boolean} <code>true</code> if the blocker is shown
        */
       isShown: function isShown() {
-        return this.__P_615_0 > 0;
+        return this.__P_616_0 > 0;
       },
       /**
        * Event handler. Called whenever the size of the blocker should be updated.
@@ -130,7 +130,7 @@
       /**
        * Registers all needed event listener.
        */
-      __P_615_1: function __P_615_1() {
+      __P_616_1: function __P_616_1() {
         qx.event.Registration.addListener(window, "resize", this._updateSize, this);
         qx.event.Registration.addListener(window, "scroll", this._onScroll, this);
         this.addListener("pointerdown", qx.bom.Event.preventDefault, this);
@@ -139,7 +139,7 @@
       /**
        * Unregisters all needed event listener.
        */
-      __P_615_2: function __P_615_2() {
+      __P_616_2: function __P_616_2() {
         qx.event.Registration.removeListener(window, "resize", this._updateSize, this);
         qx.event.Registration.removeListener(window, "scroll", this._onScroll, this);
         this.removeListener("pointerdown", qx.bom.Event.preventDefault, this);
@@ -148,10 +148,10 @@
     },
     destruct: function destruct() {
       qx.ui.mobile.core.Blocker.ROOT.remove(this);
-      this.__P_615_2();
+      this.__P_616_2();
     }
   });
   qx.ui.mobile.core.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1731948138088
+//# sourceMappingURL=Blocker.js.map?dt=1735222446683

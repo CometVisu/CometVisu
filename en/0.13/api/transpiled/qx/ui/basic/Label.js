@@ -261,10 +261,10 @@
     */
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
     members: {
-      __P_525_0: null,
-      __P_525_1: null,
-      __P_525_2: null,
-      __P_525_3: null,
+      __P_526_0: null,
+      __P_526_1: null,
+      __P_526_2: null,
+      __P_526_3: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -272,13 +272,13 @@
       */
       // overridden
       _getContentHint: function _getContentHint() {
-        if (this.__P_525_1) {
-          this.__P_525_4 = this.__P_525_5();
-          delete this.__P_525_1;
+        if (this.__P_526_1) {
+          this.__P_526_4 = this.__P_526_5();
+          delete this.__P_526_1;
         }
         return {
-          width: this.__P_525_4.width,
-          height: this.__P_525_4.height
+          width: this.__P_526_4.width,
+          height: this.__P_526_4.height
         };
       },
       // overridden
@@ -302,7 +302,7 @@
         if (!this.getRich() && !this.getWrap()) {
           return null;
         }
-        return this.__P_525_5(width).height;
+        return this.__P_526_5(width).height;
       },
       // overridden
       _createContentElement: function _createContentElement() {
@@ -331,16 +331,16 @@
        *
        * @lint ignoreReferenceField(__contentSize)
        */
-      __P_525_4: {
+      __P_526_4: {
         width: 0,
         height: 0
       },
       // property apply
       _applyFont: function _applyFont(value, old) {
         var _this = this;
-        if (old && this.__P_525_0 && this.__P_525_3) {
-          this.__P_525_0.removeListenerById(this.__P_525_3);
-          this.__P_525_3 = null;
+        if (old && this.__P_526_0 && this.__P_526_3) {
+          this.__P_526_0.removeListenerById(this.__P_526_3);
+          this.__P_526_3 = null;
         }
         // Apply
         var styles;
@@ -348,18 +348,18 @@
           if (qx.lang.Type.isString(value)) {
             value = qx.theme.manager.Font.getInstance().resolve(value);
           }
-          this.__P_525_0 = value;
-          if (this.__P_525_0 instanceof qx.bom.webfonts.WebFont && !this.__P_525_0.isValid()) {
-            this.__P_525_3 = this.__P_525_0.addListener("changeStatus", function (evt) {
+          this.__P_526_0 = value;
+          if (this.__P_526_0 instanceof qx.bom.webfonts.WebFont && !this.__P_526_0.isValid()) {
+            this.__P_526_3 = this.__P_526_0.addListener("changeStatus", function (evt) {
               if (evt.getData().valid) {
-                _this.__P_525_1 = true;
+                _this.__P_526_1 = true;
                 qx.ui.core.queue.Layout.add(_this);
               }
             });
           }
-          styles = this.__P_525_0.getStyles();
+          styles = this.__P_526_0.getStyles();
         } else {
-          this.__P_525_0 = null;
+          this.__P_526_0 = null;
           styles = qx.bom.Font.getDefaultStyles();
         }
 
@@ -370,7 +370,7 @@
         this.getContentElement().setStyles(styles);
 
         // Invalidate text size
-        this.__P_525_1 = true;
+        this.__P_526_1 = true;
 
         // Update layout
         qx.ui.core.queue.Layout.add(this);
@@ -381,14 +381,14 @@
        * @param width {Integer?null} Optional width constraint
        * @return {Map} Map with <code>width</code> and <code>height</code> keys
        */
-      __P_525_5: function __P_525_5(width) {
+      __P_526_5: function __P_526_5(width) {
         var Label = qx.bom.Label;
         var font = this.getFont();
-        var styles = font ? this.__P_525_0.getStyles() : qx.bom.Font.getDefaultStyles();
+        var styles = font ? this.__P_526_0.getStyles() : qx.bom.Font.getDefaultStyles();
         var content = this.getValue() || "A";
         var rich = this.getRich();
-        if (this.__P_525_3) {
-          this.__P_525_6();
+        if (this.__P_526_3) {
+          this.__P_526_6();
         }
         if (rich && this.getBreakWithinWords()) {
           styles = qx.lang.Object.clone(styles);
@@ -401,7 +401,7 @@
        * though there is enough space for the text. Re-applying the content forces
        * a recalculation and fixes the problem. See qx bug #6293
        */
-      __P_525_6: function __P_525_6() {
+      __P_526_6: function __P_526_6() {
         if (!this.getContentElement()) {
           return;
         }
@@ -422,12 +422,12 @@
       _applyBuddy: function _applyBuddy(value, old) {
         if (old != null) {
           this.removeRelatedBindings(old);
-          this.removeListenerById(this.__P_525_2);
-          this.__P_525_2 = null;
+          this.removeListenerById(this.__P_526_2);
+          this.__P_526_2 = null;
         }
         if (value != null) {
           value.bind("enabled", this, "enabled");
-          this.__P_525_2 = this.addListener("tap", function () {
+          this.__P_526_2 = this.addListener("tap", function () {
             // only focus focusable elements [BUG #3555]
             if (value.isFocusable()) {
               value.focus.apply(value);
@@ -445,7 +445,7 @@
         this.getContentElement().setRich(value);
 
         // Mark text size cache as invalid
-        this.__P_525_1 = true;
+        this.__P_526_1 = true;
 
         // Update layout
         qx.ui.core.queue.Layout.add(this);
@@ -490,7 +490,7 @@
           }
 
           // Mark text size cache as invalid
-          this.__P_525_1 = true;
+          this.__P_526_1 = true;
 
           // Update layout
           qx.ui.core.queue.Layout.add(this);
@@ -499,7 +499,7 @@
           this.getContentElement().setValue(value);
 
           // Mark text size cache as invalid
-          this.__P_525_1 = true;
+          this.__P_526_1 = true;
 
           // Update layout
           qx.ui.core.queue.Layout.add(this);
@@ -515,13 +515,13 @@
       {
         qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
       }
-      if (this.__P_525_0 && this.__P_525_3) {
-        this.__P_525_0.removeListenerById(this.__P_525_3);
+      if (this.__P_526_0 && this.__P_526_3) {
+        this.__P_526_0.removeListenerById(this.__P_526_3);
       }
-      this.__P_525_0 = null;
+      this.__P_526_0 = null;
     }
   });
   qx.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1731948133237
+//# sourceMappingURL=Label.js.map?dt=1735222442601

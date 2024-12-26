@@ -39,7 +39,7 @@
   qx.Class.define("qx.test.ui.form.BooleanFormat", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_392_0: function __P_392_0(widget, initValue) {
+      __P_393_0: function __P_393_0(widget, initValue) {
         // check if the interface is implemented
         this.assertTrue(qx.Class.hasInterface(widget.constructor, qx.ui.form.IBooleanForm), "Interface is not implemented.");
 
@@ -65,29 +65,29 @@
         widget.destroy();
       },
       testCheckBox: function testCheckBox() {
-        this.__P_392_0(new qx.ui.form.CheckBox(), false);
+        this.__P_393_0(new qx.ui.form.CheckBox(), false);
       },
       testToggleButton: function testToggleButton() {
-        this.__P_392_0(new qx.ui.form.ToggleButton(), false);
+        this.__P_393_0(new qx.ui.form.ToggleButton(), false);
       },
       testMenuCheckBox: function testMenuCheckBox() {
-        this.__P_392_0(new qx.ui.menu.CheckBox(), false);
+        this.__P_393_0(new qx.ui.menu.CheckBox(), false);
       },
       testRadioButton: function testRadioButton() {
-        this.__P_392_0(new qx.ui.form.RadioButton(), false);
+        this.__P_393_0(new qx.ui.form.RadioButton(), false);
       },
       testMenuRadioButton: function testMenuRadioButton() {
-        this.__P_392_0(new qx.ui.menu.RadioButton(), false);
+        this.__P_393_0(new qx.ui.menu.RadioButton(), false);
       },
       testRadioGroupBox: function testRadioGroupBox() {
-        this.__P_392_0(new qx.ui.groupbox.RadioGroupBox(), true);
+        this.__P_393_0(new qx.ui.groupbox.RadioGroupBox(), true);
       },
       testCheckGroupBox: function testCheckGroupBox() {
-        this.__P_392_0(new qx.ui.groupbox.CheckGroupBox(), true);
+        this.__P_393_0(new qx.ui.groupbox.CheckGroupBox(), true);
       }
     }
   });
   qx.test.ui.form.BooleanFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BooleanFormat.js.map?dt=1731948119697
+//# sourceMappingURL=BooleanFormat.js.map?dt=1735222431290

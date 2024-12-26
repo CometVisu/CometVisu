@@ -41,12 +41,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.Class.define("qx.test.compiler.ClassFile", {
     extend: qx.dev.unit.TestCase,
     construct: function construct() {
-      this.__P_323_0 = new qx.tool.compiler.app.Library();
-      this.__P_323_1 = new qx.tool.compiler.Analyser();
-      this.__P_323_1.setOutputDir("tmp/unittest");
-      this.__P_323_0.setRootDir(".");
-      this.__P_323_0.setSourcePath("unittest/compiler");
-      this.__P_323_0.getSourceFileExtension = function () {
+      this.__P_324_0 = new qx.tool.compiler.app.Library();
+      this.__P_324_1 = new qx.tool.compiler.Analyser();
+      this.__P_324_1.setOutputDir("tmp/unittest");
+      this.__P_324_0.setRootDir(".");
+      this.__P_324_0.setSourcePath("unittest/compiler");
+      this.__P_324_0.getSourceFileExtension = function () {
         return ".js";
       };
     },
@@ -58,7 +58,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                classFile = new qx.tool.compiler.ClassFile(_this.__P_323_1, "classIssue10591", _this.__P_323_0);
+                classFile = new qx.tool.compiler.ClassFile(_this.__P_324_1, "classIssue10591", _this.__P_324_0);
                 _context.next = 3;
                 return qx.tool.utils.Promisify.call(function (cb) {
                   return classFile.load(cb);
@@ -81,7 +81,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                classFile = new qx.tool.compiler.ClassFile(_this2.__P_323_1, "classIssue633", _this2.__P_323_0);
+                classFile = new qx.tool.compiler.ClassFile(_this2.__P_324_1, "classIssue633", _this2.__P_324_0);
                 _context2.next = 3;
                 return qx.tool.utils.Promisify.call(function (cb) {
                   return classFile.load(cb);
@@ -104,7 +104,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
-                classFile = new qx.tool.compiler.ClassFile(_this3.__P_323_1, "classIssue519", _this3.__P_323_0);
+                classFile = new qx.tool.compiler.ClassFile(_this3.__P_324_1, "classIssue519", _this3.__P_324_0);
                 _context3.next = 3;
                 return qx.tool.utils.Promisify.call(function (cb) {
                   return classFile.load(cb);
@@ -127,7 +127,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
-                classFile = new qx.tool.compiler.ClassFile(_this4.__P_323_1, "classIssue524", _this4.__P_323_0);
+                classFile = new qx.tool.compiler.ClassFile(_this4.__P_324_1, "classIssue524", _this4.__P_324_0);
                 _context4.next = 3;
                 return qx.tool.utils.Promisify.call(function (cb) {
                   return classFile.load(cb);
@@ -150,7 +150,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
-                classFile = new qx.tool.compiler.ClassFile(_this5.__P_323_1, "classIssue726", _this5.__P_323_0);
+                classFile = new qx.tool.compiler.ClassFile(_this5.__P_324_1, "classIssue726", _this5.__P_324_0);
                 _context5.next = 3;
                 return qx.tool.utils.Promisify.call(function (cb) {
                   return classFile.load(cb);
@@ -166,11 +166,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee5);
         }))();
       },
-      __P_323_0: null,
-      __P_323_1: null
+      __P_324_0: null,
+      __P_324_1: null
     }
   });
   qx.test.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1731948113530
+//# sourceMappingURL=ClassFile.js.map?dt=1735222426293

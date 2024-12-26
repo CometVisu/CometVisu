@@ -63,42 +63,42 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         init: 3,
         event: 'changeRows',
         apply: '_invalidateLayout',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       columns: {
         check: 'Number',
         init: 3,
         event: 'changeColumns',
         apply: '_invalidateLayout',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       outerPadding: {
         check: 'Number',
         event: 'changeOuterPadding',
         init: 4,
         apply: '_invalidateLayout',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       spacing: {
         check: 'Number',
         init: 8,
         event: 'changeSpacing',
         apply: '_invalidateLayout',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       cellWidth: {
         check: 'Number',
         init: 56,
         apply: '_invalidateLayout',
         event: 'changeSize',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       cellHeight: {
         check: 'Number',
         init: 56,
         apply: '_invalidateLayout',
         event: 'changeSize',
-        transform: "__P_90_0"
+        transform: "__P_91_0"
       },
       viewBox: {
         check: 'String',
@@ -114,7 +114,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     members: {
       _cells: null,
       _isLayoutValid: null,
-      __P_90_0: function __P_90_0(value) {
+      __P_91_0: function __P_91_0(value) {
         if (typeof value === 'string') {
           return parseInt(value);
         }
@@ -230,4 +230,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.structure.tile.components.svg.MSvgGrid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSvgGrid.js.map?dt=1731948097660
+//# sourceMappingURL=MSvgGrid.js.map?dt=1735222412864

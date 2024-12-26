@@ -565,7 +565,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
           var _this2;
           _classCallCheck(this, LineCountingTransform);
           _this2 = _callSuper(this, LineCountingTransform, [options]);
-          _this2.__P_515_0 = 1;
+          _this2.__P_516_0 = 1;
           return _this2;
         }
         _inherits(LineCountingTransform, _Transform);
@@ -575,7 +575,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
             var str = chunk.toString();
             for (var i = 0; i < str.length; i++) {
               if (str[i] == "\n") {
-                this.__P_515_0++;
+                this.__P_516_0++;
               }
             }
             this.push(str);
@@ -584,7 +584,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
         }, {
           key: "getLineNumber",
           value: function getLineNumber() {
-            return this.__P_515_0;
+            return this.__P_516_0;
           }
         }]);
       }(Transform);
@@ -596,20 +596,20 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
           var _this3;
           _classCallCheck(this, StripSourceMapTransform);
           _this3 = _callSuper(this, StripSourceMapTransform, [options]);
-          _this3.__P_515_1 = "";
+          _this3.__P_516_1 = "";
           return _this3;
         }
         _inherits(StripSourceMapTransform, _Transform2);
         return _createClass(StripSourceMapTransform, [{
           key: "_transform",
           value: function _transform(chunk, encoding, callback) {
-            var str = this.__P_515_1 + chunk.toString();
+            var str = this.__P_516_1 + chunk.toString();
             var pos = str.lastIndexOf("\n");
             if (pos > -1) {
-              this.__P_515_1 = str.substring(pos);
+              this.__P_516_1 = str.substring(pos);
               str = str.substring(0, pos);
             } else {
-              this.__P_515_1 = str;
+              this.__P_516_1 = str;
               str = "";
             }
             str = str.replace(/\n\/\/\#\s*sourceMappingURL=.*$/m, "");
@@ -619,8 +619,8 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
         }, {
           key: "_flush",
           value: function _flush(callback) {
-            var str = this.__P_515_1;
-            this.__P_515_1 = null;
+            var str = this.__P_516_1;
+            this.__P_516_1 = null;
             str = str.replace(/\n\/\/\#\s*sourceMappingURL=.*$/m, "");
             this.push(str);
             callback();
@@ -635,17 +635,17 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
           var _this4;
           _classCallCheck(this, ToStringWriteStream);
           _this4 = _callSuper(this, ToStringWriteStream, [options]);
-          _this4.__P_515_2 = dest;
-          _this4.__P_515_3 = "";
+          _this4.__P_516_2 = dest;
+          _this4.__P_516_3 = "";
           return _this4;
         }
         _inherits(ToStringWriteStream, _Writable);
         return _createClass(ToStringWriteStream, [{
           key: "_write",
           value: function _write(chunk, encoding, callback) {
-            this.__P_515_3 += chunk.toString();
-            if (this.__P_515_2) {
-              this.__P_515_2.write(chunk, encoding, callback);
+            this.__P_516_3 += chunk.toString();
+            if (this.__P_516_2) {
+              this.__P_516_2.write(chunk, encoding, callback);
             } else if (callback) {
               callback();
             }
@@ -653,7 +653,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
         }, {
           key: "toString",
           value: function toString() {
-            return this.__P_515_3;
+            return this.__P_516_3;
           }
         }]);
       }(Writable);
@@ -663,4 +663,4 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
   qx.tool.utils.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1731948132540
+//# sourceMappingURL=Utils.js.map?dt=1735222442023

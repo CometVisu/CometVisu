@@ -35,53 +35,53 @@
   qx.Class.define("qx.test.ui.form.MenuButton", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_403_0: null,
-      __P_403_1: null,
+      __P_404_0: null,
+      __P_404_1: null,
       setUp: function setUp() {
         qx.test.ui.form.MenuButton.superclass.prototype.setUp.call(this);
-        this.__P_403_0 = new qx.ui.menu.Menu();
-        this.__P_403_0.add(new qx.ui.menu.Button("Undo"));
-        this.__P_403_0.add(new qx.ui.menu.Button("Redo"));
-        this.__P_403_0.add(new qx.ui.menu.Button("Cut"));
-        this.__P_403_1 = new qx.ui.form.MenuButton("Menu Button", null, this.__P_403_0);
-        this.getRoot().add(this.__P_403_1);
+        this.__P_404_0 = new qx.ui.menu.Menu();
+        this.__P_404_0.add(new qx.ui.menu.Button("Undo"));
+        this.__P_404_0.add(new qx.ui.menu.Button("Redo"));
+        this.__P_404_0.add(new qx.ui.menu.Button("Cut"));
+        this.__P_404_1 = new qx.ui.form.MenuButton("Menu Button", null, this.__P_404_0);
+        this.getRoot().add(this.__P_404_1);
         this.flush();
       },
       tearDown: function tearDown() {
         qx.test.ui.form.MenuButton.superclass.prototype.tearDown.call(this);
-        var buttons = this.__P_403_0.getChildren();
+        var buttons = this.__P_404_0.getChildren();
         for (var i = 0; i < buttons.length; i++) {
           buttons[i].dispose();
         }
-        this.__P_403_0.dispose();
-        this.__P_403_1.dispose();
+        this.__P_404_0.dispose();
+        this.__P_404_1.dispose();
         this.flush();
       },
       testOpen: function testOpen() {
-        this.__P_403_1.open();
-        this.assertTrue(this.__P_403_0.isVisible());
-        this.assertNull(this.__P_403_0.getSelectedButton());
+        this.__P_404_1.open();
+        this.assertTrue(this.__P_404_0.isVisible());
+        this.assertNull(this.__P_404_0.getSelectedButton());
         qx.ui.menu.Manager.getInstance().hideAll();
-        this.assertFalse(this.__P_403_0.isVisible());
+        this.assertFalse(this.__P_404_0.isVisible());
       },
       testOpenSelectFirst: function testOpenSelectFirst() {
-        this.__P_403_1.open(true);
-        this.assertTrue(this.__P_403_0.isVisible());
-        this.assertEquals(this.__P_403_0.getChildren()[0], this.__P_403_0.getSelectedButton());
+        this.__P_404_1.open(true);
+        this.assertTrue(this.__P_404_0.isVisible());
+        this.assertEquals(this.__P_404_0.getChildren()[0], this.__P_404_0.getSelectedButton());
         qx.ui.menu.Manager.getInstance().hideAll();
-        this.assertFalse(this.__P_403_0.isVisible());
+        this.assertFalse(this.__P_404_0.isVisible());
       },
       testOpenSelectFirstWithDisabledElement: function testOpenSelectFirstWithDisabledElement() {
-        this.__P_403_0.getChildren()[0].setEnabled(false);
-        this.__P_403_1.open(true);
-        this.assertTrue(this.__P_403_0.isVisible());
-        this.assertEquals(this.__P_403_0.getChildren()[1], this.__P_403_0.getSelectedButton());
+        this.__P_404_0.getChildren()[0].setEnabled(false);
+        this.__P_404_1.open(true);
+        this.assertTrue(this.__P_404_0.isVisible());
+        this.assertEquals(this.__P_404_0.getChildren()[1], this.__P_404_0.getSelectedButton());
         qx.ui.menu.Manager.getInstance().hideAll();
-        this.assertFalse(this.__P_403_0.isVisible());
+        this.assertFalse(this.__P_404_0.isVisible());
       }
     }
   });
   qx.test.ui.form.MenuButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MenuButton.js.map?dt=1731948120075
+//# sourceMappingURL=MenuButton.js.map?dt=1735222431604

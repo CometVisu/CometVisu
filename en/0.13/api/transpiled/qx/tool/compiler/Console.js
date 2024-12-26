@@ -251,15 +251,15 @@
       }, "warning");
     },
     statics: {
-      __P_479_0: null,
+      __P_480_0: null,
       /**
        * Returns the singleton instance
        */
       getInstance: function getInstance() {
-        if (!this.__P_479_0) {
-          this.__P_479_0 = new qx.tool.compiler.Console();
+        if (!this.__P_480_0) {
+          this.__P_480_0 = new qx.tool.compiler.Console();
         }
-        return this.__P_479_0;
+        return this.__P_480_0;
       },
       /**
        * Prints the message
@@ -389,4 +389,4 @@
   qx.tool.compiler.Console.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Console.js.map?dt=1731948128394
+//# sourceMappingURL=Console.js.map?dt=1735222438516

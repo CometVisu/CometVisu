@@ -95,11 +95,11 @@
     */
     construct: function construct() {
       qx.ui.core.scroll.AbstractScrollArea.constructor.call(this);
-      this.__P_688_0 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
+      this.__P_689_0 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
         allowShrinkY: false,
         allowGrowX: true
       });
-      this.getChildControl("pane").add(this.__P_688_0);
+      this.getChildControl("pane").add(this.__P_689_0);
       this.initOpenMode();
       this.initRootOpenClose();
       this.addListener("changeSelection", this._onChangeSelection, this);
@@ -192,7 +192,7 @@
     */
 
     members: {
-      __P_688_0: null,
+      __P_689_0: null,
       /** @type {Class} Pointer to the selection manager to use */
       SELECTION_MANAGER: qx.ui.tree.selection.SelectionManager,
       /*
@@ -207,7 +207,7 @@
        * @return {qx.ui.core.Widget} the children container
        */
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_688_0;
+        return this.__P_689_0;
       },
       // property apply
       _applyRoot: function _applyRoot(value, old) {
@@ -250,7 +250,7 @@
        * @return {qx.ui.core.Widget} The content padding target.
        */
       _getContentPaddingTarget: function _getContentPaddingTarget() {
-        return this.__P_688_0;
+        return this.__P_689_0;
       },
       /*
       ---------------------------------------------------------------------------
@@ -505,10 +505,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_688_0");
+      this._disposeObjects("__P_689_0");
     }
   });
   qx.ui.tree.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1731948141886
+//# sourceMappingURL=Tree.js.map?dt=1735222449615

@@ -76,4 +76,4 @@
   cv.ui.structure.tile.components.energy.MEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEntity.js.map?dt=1731948097491
+//# sourceMappingURL=MEntity.js.map?dt=1735222412730

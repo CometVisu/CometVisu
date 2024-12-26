@@ -86,15 +86,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(dbFilename) {
       qx.core.Object.constructor.call(this);
-      this.__P_477_0 = dbFilename || "db.json";
-      this.__P_477_1 = [];
-      this.__P_477_2 = {};
-      this.__P_477_3 = new qx.tool.utils.IndexedArray();
-      this.__P_477_4 = {};
-      this.__P_477_5 = {};
-      this.__P_477_6 = {};
-      this.__P_477_7 = {};
-      this.__P_477_8 = {};
+      this.__P_478_0 = dbFilename || "db.json";
+      this.__P_478_1 = [];
+      this.__P_478_2 = {};
+      this.__P_478_3 = new qx.tool.utils.IndexedArray();
+      this.__P_478_4 = {};
+      this.__P_478_5 = {};
+      this.__P_478_6 = {};
+      this.__P_478_7 = {};
+      this.__P_478_8 = {};
     },
     properties: {
       /** Output directory for the compiled application */
@@ -201,25 +201,25 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       saveDatabase: "qx.event.type.Data"
     },
     members: {
-      __P_477_9: false,
-      __P_477_10: null,
-      __P_477_0: null,
-      __P_477_11: null,
+      __P_478_9: false,
+      __P_478_10: null,
+      __P_478_0: null,
+      __P_478_11: null,
       /** {Library[]} All libraries */
-      __P_477_1: null,
+      __P_478_1: null,
       /** {Map{String,Library}} Lookup of libraries, indexed by namespace */
-      __P_477_2: null,
-      __P_477_12: null,
-      __P_477_3: null,
-      __P_477_4: null,
-      __P_477_5: null,
+      __P_478_2: null,
+      __P_478_12: null,
+      __P_478_3: null,
+      __P_478_4: null,
+      __P_478_5: null,
       /** @type{qx.tool.compiler.app.ManifestFont[]} list of fonts in provides.fonts */
-      __P_477_8: null,
-      __P_477_6: null,
-      __P_477_7: null,
-      __P_477_13: false,
-      __P_477_14: null,
-      __P_477_15: null,
+      __P_478_8: null,
+      __P_478_6: null,
+      __P_478_7: null,
+      __P_478_13: false,
+      __P_478_14: null,
+      __P_478_15: null,
       /**
        * Opens the analyser, loads database etc
        *
@@ -227,13 +227,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       open: function open() {
         var p;
-        if (!this.__P_477_9) {
-          this.__P_477_9 = true;
+        if (!this.__P_478_9) {
+          this.__P_478_9 = true;
           var resManager = null;
           if (this.isProcessResources()) {
             resManager = new qx.tool.compiler.resources.Manager(this);
           }
-          this.__P_477_10 = resManager;
+          this.__P_478_10 = resManager;
           p = Promise.all([this.loadDatabase(), resManager && resManager.loadDatabase()]);
         } else {
           p = Promise.resolve();
@@ -248,24 +248,24 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       initialScan: function initialScan(cb) {
         var t = this;
-        if (!this.__P_477_11) {
-          this.__P_477_11 = {};
+        if (!this.__P_478_11) {
+          this.__P_478_11 = {};
         }
         log.debug("Scanning source code");
         async.parallel([
         // Load Resources
         function (cb) {
-          if (!t.__P_477_10) {
+          if (!t.__P_478_10) {
             cb(null);
             return;
           }
-          t.__P_477_10.findAllResources().then(function () {
+          t.__P_478_10.findAllResources().then(function () {
             return cb();
           })["catch"](cb);
         },
         // Find all classes
         function (cb) {
-          async.each(t.__P_477_1, function (library, cb) {
+          async.each(t.__P_478_1, function (library, cb) {
             library.scanForClasses(function (err) {
               log.debug("Finished scanning for " + library.getNamespace());
               cb(err);
@@ -298,7 +298,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context.t0 = {};
               case 5:
-                _this.__P_477_11 = _context.t0;
+                _this.__P_478_11 = _context.t0;
               case 6:
               case "end":
                 return _context.stop();
@@ -312,12 +312,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise}
        */
       resetDatabase: function resetDatabase() {
-        this.__P_477_11 = null;
-        if (this.__P_477_10) {
-          this.__P_477_10.dispose();
-          this.__P_477_10 = null;
+        this.__P_478_11 = null;
+        if (this.__P_478_10) {
+          this.__P_478_10.dispose();
+          this.__P_478_10 = null;
         }
-        this.__P_477_9 = false;
+        this.__P_478_9 = false;
         return this.open();
       },
       /**
@@ -331,11 +331,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 log.debug("saving generator database");
                 _context2.next = 3;
-                return _this2.fireDataEventAsync("saveDatabase", _this2.__P_477_11);
+                return _this2.fireDataEventAsync("saveDatabase", _this2.__P_478_11);
               case 3:
                 _context2.next = 5;
-                return qx.tool.utils.Json.saveJsonAsync(_this2.getDbFilename(), _this2.__P_477_11).then(function () {
-                  return _this2.__P_477_10 && _this2.__P_477_10.saveDatabase();
+                return qx.tool.utils.Json.saveJsonAsync(_this2.getDbFilename(), _this2.__P_478_11).then(function () {
+                  return _this2.__P_478_10 && _this2.__P_478_10.saveDatabase();
                 });
               case 5:
               case "end":
@@ -350,7 +350,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns
        */
       getDatabase: function getDatabase() {
-        return this.__P_477_11;
+        return this.__P_478_11;
       },
       /**
        * Parses all the source files recursively until all classes and all
@@ -365,7 +365,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 getIndirectLoadDependencies = function _getIndirectLoadDepen(className) {
                   var deps = [];
-                  var info = t.__P_477_11.classInfo[className];
+                  var info = t.__P_478_11.classInfo[className];
                   if (info && info.dependsOn) {
                     for (var depName in info.dependsOn) {
                       if (info.dependsOn[depName].load) {
@@ -379,7 +379,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 };
                 getConstructDependencies = function _getConstructDependen(className) {
                   var deps = [];
-                  var info = t.__P_477_11.classInfo[className];
+                  var info = t.__P_478_11.classInfo[className];
                   if (info.dependsOn) {
                     for (var depName in info.dependsOn) {
                       if (info.dependsOn[depName].construct) {
@@ -390,10 +390,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   return deps;
                 };
                 t = _this3;
-                if (!_this3.__P_477_11) {
-                  _this3.__P_477_11 = {};
+                if (!_this3.__P_478_11) {
+                  _this3.__P_478_11 = {};
                 }
-                db = _this3.__P_477_11;
+                db = _this3.__P_478_11;
                 metaWrittenLog = {};
                 compiledClasses = {};
                 metaFixupDescendants = {};
@@ -432,7 +432,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 //  Babel plugins MUST be synchronous (ie cannot afford an async lookup of files on disk
                 //  in mid parse)
                 _context4.next = 11;
-                return qx.tool.utils.Promisify.map(_this3.__P_477_1, /*#__PURE__*/function () {
+                return qx.tool.utils.Promisify.map(_this3.__P_478_1, /*#__PURE__*/function () {
                   var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(library) {
                     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                       while (1) switch (_context3.prev = _context3.next) {
@@ -451,7 +451,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   };
                 }());
               case 11:
-                classes = t.__P_477_12 = t.__P_477_3.toArray();
+                classes = t.__P_478_12 = t.__P_478_3.toArray();
                 classIndex = 0;
               case 13:
                 if (!(classIndex < classes.length)) {
@@ -491,7 +491,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 break;
               case 31:
                 classes.forEach(function (className) {
-                  var info = t.__P_477_11.classInfo[className];
+                  var info = t.__P_478_11.classInfo[className];
                   var deps = getIndirectLoadDependencies(className);
                   deps.forEach(function (depName) {
                     if (!info.dependsOn) {
@@ -521,13 +521,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
         // __classes will be null if analyseClasses has not formally been called; this would be if the
         //  analyser is only called externally for getClass()
-        if (!t.__P_477_12) {
-          t.__P_477_12 = [];
+        if (!t.__P_478_12) {
+          t.__P_478_12 = [];
         }
 
         // Add it
-        if (t.__P_477_12.indexOf(className) == -1) {
-          t.__P_477_12.push(className);
+        if (t.__P_478_12.indexOf(className) == -1) {
+          t.__P_478_12.push(className);
         }
       },
       /**
@@ -535,14 +535,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {null}
        */
       getDependentClasses: function getDependentClasses() {
-        return this.__P_477_12;
+        return this.__P_478_12;
       },
       /**
        * Returns cached class info - returns null if not loaded or not in the database
        * @returb DbClassInfo
        */
       getCachedClassInfo: function getCachedClassInfo(className) {
-        return this.__P_477_11 ? this.__P_477_11.classInfo[className] : null;
+        return this.__P_478_11 ? this.__P_478_11.classInfo[className] : null;
       },
       /**
        * Loads a class
@@ -552,10 +552,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getClassInfo: function getClassInfo(className, forceScan, cb) {
         var t = this;
-        if (!this.__P_477_11) {
-          this.__P_477_11 = {};
+        if (!this.__P_478_11) {
+          this.__P_478_11 = {};
         }
-        var db = this.__P_477_11;
+        var db = this.__P_478_11;
         if (typeof forceScan == "function") {
           cb = forceScan;
           forceScan = false;
@@ -708,7 +708,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context6.prev = _context6.next) {
               case 0:
                 t = _this4;
-                cldr = _this4.__P_477_4[locale];
+                cldr = _this4.__P_478_4[locale];
                 if (!cldr) {
                   _context6.next = 4;
                   break;
@@ -716,7 +716,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context6.abrupt("return", cldr);
               case 4:
                 return _context6.abrupt("return", qx.tool.compiler.app.Cldr.loadCLDR(locale).then(function (cldr) {
-                  return t.__P_477_4[locale] = cldr;
+                  return t.__P_478_4[locale] = cldr;
                 }));
               case 5:
               case "end":
@@ -740,12 +740,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 0:
                 t = _this5;
                 id = locale + ":" + library.getNamespace();
-                translation = t.__P_477_5[id];
+                translation = t.__P_478_5[id];
                 if (translation) {
                   _context7.next = 8;
                   break;
                 }
-                translation = t.__P_477_5[id] = new qx.tool.compiler.app.Translation(library, locale);
+                translation = t.__P_478_5[id] = new qx.tool.compiler.app.Translation(library, locale);
                 translation.setWriteLineNumbers(_this5.isWritePoLineNumbers());
                 _context7.next = 8;
                 return translation.checkRead();
@@ -818,7 +818,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             unusedEntries[msgid] = true;
                           }
                           _context10.next = 11;
-                          return qx.Promise.all(_this6.__P_477_12.map(/*#__PURE__*/function () {
+                          return qx.Promise.all(_this6.__P_478_12.map(/*#__PURE__*/function () {
                             var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9(classname) {
                               var isAppClass, classLibrary, dbClassInfo, isEmpty;
                               return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -962,7 +962,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Finds the library with a name(space)
        */
       findLibrary: function findLibrary(name) {
-        var lib = this.__P_477_2[name];
+        var lib = this.__P_478_2[name];
         return lib;
       },
       /**
@@ -970,7 +970,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {null}
        */
       getLibraries: function getLibraries() {
-        return this.__P_477_1;
+        return this.__P_478_1;
       },
       /**
        * Adds a library definition
@@ -978,12 +978,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param library
        */
       addLibrary: function addLibrary(library) {
-        var existingLibrary = this.__P_477_2[library.getNamespace()];
+        var existingLibrary = this.__P_478_2[library.getNamespace()];
         if (existingLibrary) {
           throw new Error("Multiple libraries with namespace " + library.getNamespace() + " found " + library.getRootDir() + " and " + existingLibrary.getRootDir());
         }
-        this.__P_477_1.push(library);
-        this.__P_477_2[library.getNamespace()] = library;
+        this.__P_478_1.push(library);
+        this.__P_478_2[library.getNamespace()] = library;
       },
       /**
        * Returns a font by name
@@ -993,9 +993,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {qx.tool.compiler.app.ManifestFont?} null if it does not exist and `create` is falsey
        */
       getFont: function getFont(name, create) {
-        var font = this.__P_477_8[name] || null;
+        var font = this.__P_478_8[name] || null;
         if (!font && create) {
-          font = this.__P_477_8[name] = new qx.tool.compiler.app.ManifestFont(name);
+          font = this.__P_478_8[name] = new qx.tool.compiler.app.ManifestFont(name);
         }
         return font;
       },
@@ -1008,8 +1008,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       isFontAsset: function isFontAsset(filename) {
         var isFont = false;
         if (filename.endsWith("svg")) {
-          for (var fontName in this.__P_477_8) {
-            var font = this.__P_477_8[fontName];
+          for (var fontName in this.__P_478_8) {
+            var font = this.__P_478_8[fontName];
             var sources = font.getSources() || [];
             isFont = sources.find(function (source) {
               return source == filename;
@@ -1024,7 +1024,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {Map<String, qx.tool.compiler.app.ManifestFont>}
        */
       getFonts: function getFonts() {
-        return this.__P_477_8;
+        return this.__P_478_8;
       },
       /**
        * Adds a required class to be analysed by analyseClasses()
@@ -1032,14 +1032,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param classname
        */
       addClass: function addClass(classname) {
-        this.__P_477_3.push(classname);
+        this.__P_478_3.push(classname);
       },
       /**
        * Removes a class from the list of required classes to analyse
        * @param classname {String}
        */
       removeClass: function removeClass(classname) {
-        this.__P_477_3.remove(classname);
+        this.__P_478_3.remove(classname);
       },
       /**
        * Detects the symbol type, ie class, package, member, etc
@@ -1048,8 +1048,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getSymbolType: function getSymbolType(name) {
         var t = this;
-        for (var j = 0; j < t.__P_477_1.length; j++) {
-          var library = t.__P_477_1[j];
+        for (var j = 0; j < t.__P_478_1.length; j++) {
+          var library = t.__P_478_1[j];
           var info = library.getSymbolType(name);
           if (info) {
             return info;
@@ -1064,12 +1064,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getLibraryFromClassname: function getLibraryFromClassname(className) {
         var t = this;
-        var info = this.__P_477_6[className];
+        var info = this.__P_478_6[className];
         if (info) {
           return info.library;
         }
-        for (var j = 0; j < t.__P_477_1.length; j++) {
-          var library = t.__P_477_1[j];
+        for (var j = 0; j < t.__P_478_1.length; j++) {
+          var library = t.__P_478_1[j];
           info = library.getSymbolType(className);
           if (info && (info.symbolType == "class" || info.symbolType == "member")) {
             return library;
@@ -1100,12 +1100,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (_typeof(key) == "object") {
           var map = key;
           for (key in map) {
-            this.__P_477_7[key] = map[key];
+            this.__P_478_7[key] = map[key];
           }
         } else if (value === undefined) {
-          delete this.__P_477_7[key];
+          delete this.__P_478_7[key];
         } else {
-          this.__P_477_7[key] = value;
+          this.__P_478_7[key] = value;
         }
       },
       /**
@@ -1115,43 +1115,43 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns
        */
       getEnvironmentCheck: function getEnvironmentCheck(key) {
-        return this.__P_477_7[key];
+        return this.__P_478_7[key];
       },
       /**
        * Returns the resource manager
        */
       getResourceManager: function getResourceManager() {
-        return this.__P_477_10;
+        return this.__P_478_10;
       },
       /**
        * Returns the version of Qooxdoo
        * @returns {String}
        */
       getQooxdooVersion: function getQooxdooVersion() {
-        if (this.__P_477_14) {
-          return this.__P_477_14;
+        if (this.__P_478_14) {
+          return this.__P_478_14;
         }
-        if (!this.__P_477_14) {
+        if (!this.__P_478_14) {
           var lib = this.findLibrary("qx");
           if (lib) {
-            this.__P_477_14 = lib.getVersion();
+            this.__P_478_14 = lib.getVersion();
           }
         }
-        return this.__P_477_14;
+        return this.__P_478_14;
       },
       /**
        * Returns the database filename
        * @returns {null}
        */
       getDbFilename: function getDbFilename() {
-        return this.__P_477_0;
+        return this.__P_478_0;
       },
       /**
        * Returns the resource database filename
        * @returns {null}
        */
       getResDbFilename: function getResDbFilename() {
-        var m = this.__P_477_0.match(/(^.*)\/([^/]+)$/);
+        var m = this.__P_478_0.match(/(^.*)\/([^/]+)$/);
         var resDb;
         if (m && m.length == 3) {
           resDb = m[1] + "/resource-db.json";
@@ -1163,7 +1163,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       // property apply
       _applyEnvironment: function _applyEnvironment(value) {
         // Cache the hash because we will need it later
-        this.__P_477_15 = hash(value);
+        this.__P_478_15 = hash(value);
       },
       /**
        * Whether the compilation context has changed since last analysis
@@ -1178,7 +1178,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         // If the environment hash is null, environment variables have
         // not been loaded yet. In that case don't consider the environment
         // changed
-        if (this.__P_477_15 && this.__P_477_15 !== db.environmentHash) {
+        if (this.__P_478_15 && this.__P_478_15 !== db.environmentHash) {
           return true;
         }
 
@@ -1203,7 +1203,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }, {});
         var db = this.getDatabase();
         db.libraries = libraries;
-        db.environmentHash = this.__P_477_15;
+        db.environmentHash = this.__P_478_15;
         db.compilerVersion = qx.tool.config.Utils.getCompilerVersion();
       }
     }
@@ -1211,4 +1211,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.Analyser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Analyser.js.map?dt=1731948128042
+//# sourceMappingURL=Analyser.js.map?dt=1735222438223

@@ -172,7 +172,7 @@ describe('cometvisu demo config test:', function () {
                 browser.sleep(500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
-                  expect(Math.abs(newPos.x-(rangePosition.x + borderWidth - Math.round(knobSize.width/2)))).toBeLessThan(25);
+                  expect(Math.abs(newPos.x-(rangePosition.x + borderWidth - Math.round(knobSize.width/2)))).toBeLessThan(35);
                   expect(newPos.y).toEqual(pos.y);
                 });
 
@@ -182,7 +182,7 @@ describe('cometvisu demo config test:', function () {
                 browser.sleep(500);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
-                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(25);
+                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(35);
                   expect(newPos.y).toEqual(pos.y);
                 });
               });

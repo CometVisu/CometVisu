@@ -732,9 +732,9 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
-                qx.event.Registration.addListener(window, 'unload', function () {
+                window.addEventListener('pagehide', function () {
                   cv.io.Client.stopAll();
-                }, _this4);
+                });
                 qx.bom.Lifecycle.onReady(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                   var configLoader;
                   return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -1186,4 +1186,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1731948088880
+//# sourceMappingURL=Application.js.map?dt=1735222405266

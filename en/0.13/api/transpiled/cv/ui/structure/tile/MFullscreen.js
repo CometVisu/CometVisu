@@ -48,7 +48,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       fullscreen: {
         check: 'Boolean',
         init: false,
-        apply: "__P_73_0",
+        apply: "__P_74_0",
         event: 'changeFullscreen'
       }
     },
@@ -58,30 +58,30 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_73_1: null,
-      __P_73_2: null,
-      __P_73_3: null,
+      __P_74_1: null,
+      __P_74_2: null,
+      __P_74_3: null,
       getUuid: function getUuid() {
-        if (!this.__P_73_1) {
-          this.__P_73_1 = qx.util.Uuid.createUuidV4();
+        if (!this.__P_74_1) {
+          this.__P_74_1 = qx.util.Uuid.createUuidV4();
         }
-        return this.__P_73_1;
+        return this.__P_74_1;
       },
       getPopupAddress: function getPopupAddress() {
-        if (!this.__P_73_2) {
-          this.__P_73_2 = "state:".concat(this.getUuid(), "-popup");
+        if (!this.__P_74_2) {
+          this.__P_74_2 = "state:".concat(this.getUuid(), "-popup");
         }
-        return this.__P_73_2;
+        return this.__P_74_2;
       },
-      __P_73_0: function __P_73_0(value) {
+      __P_74_0: function __P_74_0(value) {
         var sendValue = value ? '1' : '0';
-        this.__P_73_3.setAttribute('data-value', sendValue);
+        this.__P_74_3.setAttribute('data-value', sendValue);
         cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
       },
       _initFullscreenSwitch: function _initFullscreenSwitch() {
         var _this = this;
         // add fullscreen button + address
-        var button = this.__P_73_3 = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
+        var button = this.__P_74_3 = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
         button.setAttribute('data-value', '0');
         button.addEventListener('click', function () {
           return _this.toggleFullscreen();
@@ -134,10 +134,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_73_3 = null;
+      this.__P_74_3 = null;
     }
   });
   cv.ui.structure.tile.MFullscreen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFullscreen.js.map?dt=1731948095976
+//# sourceMappingURL=MFullscreen.js.map?dt=1735222411468

@@ -93,7 +93,7 @@
     members: {
       _model: null,
       _listController: null,
-      __P_33_0: 0,
+      __P_34_0: 0,
       _initClient: function _initClient() {
         this._client = cv.io.rest.Client.getConfigClient();
         this._client.addListener('getSuccess', this._onModelValueChange, this);
@@ -148,7 +148,7 @@
       _applyContent: function _applyContent(value) {
         var model = this._listController.getModel();
         model.removeAll();
-        this.__P_33_0 = Object.keys(value).length;
+        this.__P_34_0 = Object.keys(value).length;
         Object.keys(value).forEach(function (sectionName) {
           var section = new cv.ui.manager.model.config.Section(sectionName);
           Object.keys(value[sectionName]).forEach(function (optionKey) {
@@ -156,7 +156,7 @@
           }, this);
           model.push(section);
         }, this);
-        this.__P_33_1();
+        this.__P_34_1();
       },
       // overridden
       getCurrentContent: function getCurrentContent() {
@@ -167,13 +167,13 @@
           var section = ev.getData();
           var model = this._listController.getModel();
           model.remove(section);
-          this.__P_33_1();
+          this.__P_34_1();
         }
       },
       // compare current controller model with the loaded config content
-      __P_33_1: function __P_33_1() {
+      __P_34_1: function __P_34_1() {
         var file = this.getFile();
-        if (this.__P_33_0 !== this._listController.getModel().length) {
+        if (this.__P_34_0 !== this._listController.getModel().length) {
           file.setModified(true);
           return;
         }
@@ -247,7 +247,7 @@
               },
               configureItem: function (item) {
                 item.addListener('delete', this._onDeleteSection, this);
-                item.addListener('changeModified', this.__P_33_1, this);
+                item.addListener('changeModified', this.__P_34_1, this);
               }.bind(this),
               bindItem: function (controller, item, index) {
                 controller.bindProperty('', 'model', null, item, index);
@@ -270,7 +270,7 @@
             control = new qx.ui.form.Button(this.tr('Add section'));
             control.addListener('execute', function () {
               _this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
-              _this.__P_33_1();
+              _this.__P_34_1();
             });
             this.bind('file.writeable', control, 'visibility', {
               converter: function converter(value) {
@@ -295,4 +295,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1731948092338
+//# sourceMappingURL=Config.js.map?dt=1735222408359

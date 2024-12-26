@@ -56,12 +56,12 @@
       this.initType();
       var args = qx.lang.Array.fromArguments(arguments);
       var t = this;
-      this.__P_484_0 = [];
+      this.__P_485_0 = [];
       args.forEach(function (arg) {
         if (qx.lang.Type.isArray(arg)) {
-          qx.lang.Array.append(t.__P_484_0, arg);
+          qx.lang.Array.append(t.__P_485_0, arg);
         } else {
-          t.__P_484_0.push(arg);
+          t.__P_485_0.push(arg);
         }
       });
       this.set({
@@ -181,7 +181,7 @@
       include: {
         nullable: false,
         check: "Array",
-        transform: "__P_484_1"
+        transform: "__P_485_1"
       },
       /**
        * Classes to exclude when building
@@ -189,7 +189,7 @@
       exclude: {
         nullable: false,
         check: "Array",
-        transform: "__P_484_1"
+        transform: "__P_485_1"
       },
       /**
        * Classes to bundle together for delivery to the client
@@ -198,7 +198,7 @@
         init: null,
         nullable: true,
         check: "Array",
-        transform: "__P_484_1"
+        transform: "__P_485_1"
       },
       /**
        * Classes to exclude from bundling together for delivery to client
@@ -207,7 +207,7 @@
         init: null,
         nullable: true,
         check: "Array",
-        transform: "__P_484_1"
+        transform: "__P_485_1"
       },
       /**
        * Template file used to create index.js; note that this is changed when the `type` property
@@ -239,12 +239,12 @@
       }
     },
     members: {
-      __P_484_2: null,
-      __P_484_3: null,
-      __P_484_4: null,
-      __P_484_5: null,
-      __P_484_0: null,
-      __P_484_6: null,
+      __P_485_2: null,
+      __P_485_3: null,
+      __P_485_4: null,
+      __P_485_5: null,
+      __P_485_0: null,
+      __P_485_6: null,
       /**
        * Checks if the application is for browser
        *
@@ -264,14 +264,14 @@
         var allDeps = new qx.tool.utils.IndexedArray();
         var exclude = {};
         var fatalCompileErrors = [];
-        this.__P_484_2 = null;
+        this.__P_485_2 = null;
         var partsByName = {};
         var parts = [];
         var bootPart = null;
         var classDataByClassname = {};
-        if (this.__P_484_3 && this.__P_484_3.length) {
+        if (this.__P_485_3 && this.__P_485_3.length) {
           parts = [];
-          t.__P_484_3.forEach(function (part) {
+          t.__P_485_3.forEach(function (part) {
             if (partsByName[part.getName()]) {
               throw new Error(Console.decode("qx.tool.compiler.application.duplicatePartNames", part.getName()));
             }
@@ -478,7 +478,7 @@
           addDepDepth--;
         }
         exclude = {};
-        t.__P_484_7(t.getExclude()).forEach(function (name) {
+        t.__P_485_7(t.getExclude()).forEach(function (name) {
           return exclude[name] = true;
         });
 
@@ -547,9 +547,9 @@
          * Done
          */
 
-        this.__P_484_2 = allDeps.toArray();
+        this.__P_485_2 = allDeps.toArray();
         var requiredLibs = {};
-        this.__P_484_2.forEach(function (classname) {
+        this.__P_485_2.forEach(function (classname) {
           var classInfo = db.classInfo[classname];
           if (classInfo.assets) {
             classInfo.assets.forEach(function (asset) {
@@ -564,16 +564,16 @@
           }
           requiredLibs[classInfo.libraryName] = true;
         });
-        this.__P_484_4 = [];
+        this.__P_485_4 = [];
         for (var ns in requiredLibs) {
           if (analyser.findLibrary(ns)) {
-            this.__P_484_4.push(ns);
+            this.__P_485_4.push(ns);
           } else {
             Console.print("qx.tool.compiler.application.missingRequiredLibrary", ns);
           }
         }
-        this.__P_484_6 = parts;
-        this.__P_484_5 = fatalCompileErrors.length ? fatalCompileErrors : null;
+        this.__P_485_6 = parts;
+        this.__P_485_5 = fatalCompileErrors.length ? fatalCompileErrors : null;
       },
       /**
        * Gets a list of class names that this Application requires which have fatal compile errors
@@ -581,7 +581,7 @@
        * @return {String[]}
        */
       getFatalCompileErrors: function getFatalCompileErrors() {
-        return this.__P_484_5;
+        return this.__P_485_5;
       },
       /**
        * Gets a list of URIs for classes that are required, in load order
@@ -595,7 +595,7 @@
           var def = db.classInfo[classname];
           uris.push(def.libraryName + ":" + classname.replace(/\./g, "/") + ".js");
         }
-        this.__P_484_2.forEach(add);
+        this.__P_485_2.forEach(add);
         return uris;
       },
       /**
@@ -604,7 +604,7 @@
        * @returns {String[]}
        */
       getDependencies: function getDependencies() {
-        return this.__P_484_2;
+        return this.__P_485_2;
       },
       /**
        * Gets the parts dependencies structures
@@ -612,7 +612,7 @@
        * @returns {Object[]}
        */
       getPartsDependencies: function getPartsDependencies() {
-        return this.__P_484_6;
+        return this.__P_485_6;
       },
       /**
        * Returns a list of library names which are required by the application
@@ -620,7 +620,7 @@
        * @returns {String[]}
        */
       getRequiredLibraries: function getRequiredLibraries() {
-        return this.__P_484_4;
+        return this.__P_485_4;
       },
       /**
        * Returns a list of all of the assets required by all classes
@@ -659,7 +659,7 @@
         var libraryLookup = {};
 
         // Check all the classes
-        var classNames = this.__P_484_2.slice();
+        var classNames = this.__P_485_2.slice();
         for (var i = 0; i < classNames.length; i++) {
           var classname = classNames[i];
           var classInfo = db.classInfo[classname];
@@ -761,7 +761,7 @@
         var fonts = {};
         var analyser = this.getAnalyser();
         var db = analyser.getDatabase();
-        this.__P_484_2.forEach(function (classname) {
+        this.__P_485_2.forEach(function (classname) {
           var classInfo = db.classInfo[classname];
           if (classInfo.fonts) {
             classInfo.fonts.forEach(function (fontName) {
@@ -776,7 +776,7 @@
        * @returns {String}
        */
       getClassName: function getClassName() {
-        return this.__P_484_0[0];
+        return this.__P_485_0[0];
       },
       /**
        * Returns the classes required for the application
@@ -784,13 +784,13 @@
        */
       getRequiredClasses: function getRequiredClasses() {
         var result = {};
-        this.__P_484_0.forEach(function (name) {
+        this.__P_485_0.forEach(function (name) {
           return result[name] = true;
         });
-        this.__P_484_7(this.getInclude()).forEach(function (name) {
+        this.__P_485_7(this.getInclude()).forEach(function (name) {
           return result[name] = true;
         });
-        this.__P_484_7(this.getExclude()).forEach(function (name) {
+        this.__P_485_7(this.getExclude()).forEach(function (name) {
           return delete result[name];
         });
 
@@ -804,17 +804,17 @@
        * @param part {Part} the part to add
        */
       addPart: function addPart(part) {
-        if (!this.__P_484_3) {
-          this.__P_484_3 = [];
+        if (!this.__P_485_3) {
+          this.__P_485_3 = [];
         }
-        this.__P_484_3.push(part);
+        this.__P_485_3.push(part);
       },
       /**
        * Returns the parts, or null if there are none defined
        * @return {Part[]}
        */
       getParts: function getParts() {
-        return this.__P_484_3 || [];
+        return this.__P_485_3 || [];
       },
       /**
        * Returns a dynamically calculated version of the application environment, which
@@ -835,7 +835,7 @@
        * @param names {String[]}
        * @return String[]
        */
-      __P_484_7: function __P_484_7(names) {
+      __P_485_7: function __P_485_7(names) {
         var t = this;
         var result = {};
         names.forEach(function (name) {
@@ -879,7 +879,7 @@
       /**
        * Transforms values to make sure that they are an array (and never null)
        */
-      __P_484_1: function __P_484_1(value) {
+      __P_485_1: function __P_485_1(value) {
         if (!value) {
           return null;
         }
@@ -935,4 +935,4 @@
   qx.tool.compiler.app.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1731948128822
+//# sourceMappingURL=Application.js.map?dt=1735222438884

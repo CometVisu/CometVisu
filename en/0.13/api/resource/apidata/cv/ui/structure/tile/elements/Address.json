@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857579,
-  "lastModifiedIso": "2024-11-18T16:37:37.579Z",
+  "lastModified": 1735222205782,
+  "lastModifiedIso": "2024-12-26T14:10:05.782Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/elements/Address.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 937
     },
     "end": {
-      "line": 223,
+      "line": 228,
       "column": 3,
-      "index": 8108
+      "index": 8245
     }
   },
   "className": "cv.ui.structure.tile.elements.Address",
@@ -127,9 +127,9 @@
           "index": 1358
         },
         "end": {
-          "line": 134,
+          "line": 139,
           "column": 5,
-          "index": 5073
+          "index": 5210
         }
       },
       "type": "function",
@@ -174,14 +174,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 141,
+          "line": 146,
           "column": 4,
-          "index": 5290
+          "index": 5427
         },
         "end": {
-          "line": 190,
+          "line": 195,
           "column": 5,
-          "index": 7495
+          "index": 7632
         }
       },
       "type": "function",
@@ -223,14 +223,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 196,
+          "line": 201,
           "column": 4,
-          "index": 7581
+          "index": 7718
         },
         "end": {
-          "line": 198,
+          "line": 203,
           "column": 5,
-          "index": 7658
+          "index": 7795
         }
       },
       "type": "function",
@@ -266,14 +266,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 204,
+          "line": 209,
           "column": 4,
-          "index": 7745
+          "index": 7882
         },
         "end": {
-          "line": 206,
+          "line": 211,
           "column": 5,
-          "index": 7822
+          "index": 7959
         }
       },
       "type": "function",
@@ -288,14 +288,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 208,
+          "line": 213,
           "column": 4,
-          "index": 7829
+          "index": 7966
         },
         "end": {
-          "line": 210,
+          "line": 215,
           "column": 5,
-          "index": 7885
+          "index": 8022
         }
       },
       "type": "function",

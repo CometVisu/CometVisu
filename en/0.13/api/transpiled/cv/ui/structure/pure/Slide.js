@@ -65,17 +65,17 @@
     construct: function construct(props) {
       var _this = this;
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-      this.__P_66_0 = new cv.util.LimitedRateUpdateAnimator(this.__P_66_1, this);
-      this.__P_66_2 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
+      this.__P_67_0 = new cv.util.LimitedRateUpdateAnimator(this.__P_67_1, this);
+      this.__P_67_2 = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', function () {
         // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
         // make sure that the `__invalidateScreensize` is delayed so that
         // reading the available spaces is valid.
         // Just to be sure, wait for two frames
         window.requestAnimationFrame(function () {
-          window.requestAnimationFrame(_this.__P_66_3.bind(_this));
+          window.requestAnimationFrame(_this.__P_67_3.bind(_this));
         });
       });
-      this.__P_66_4 = {};
+      this.__P_67_4 = {};
     },
     /*
     ***********************************************
@@ -83,9 +83,9 @@
     ***********************************************
     */
     destruct: function destruct() {
-      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_66_2);
-      this.__P_66_2 = null;
-      this.__P_66_5 = null;
+      cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__P_67_2);
+      this.__P_67_2 = null;
+      this.__P_67_5 = null;
     },
     /*
     ******************************************************
@@ -120,18 +120,18 @@
     ******************************************************
     */
     members: {
-      __P_66_4: null,
-      __P_66_0: null,
-      __P_66_5: undefined,
+      __P_67_4: null,
+      __P_67_0: null,
+      __P_67_5: undefined,
       // cache for DOM element
-      __P_66_6: undefined,
+      __P_67_6: undefined,
       // cache for DOM element
-      __P_66_7: undefined,
-      __P_66_8: undefined,
-      __P_66_2: undefined,
-      __P_66_9: false,
+      __P_67_7: undefined,
+      __P_67_8: undefined,
+      __P_67_2: undefined,
+      __P_67_9: false,
       // is the handle currently dragged?
-      __P_66_10: undefined,
+      __P_67_10: undefined,
       // minimal screen coordinate of slider
       // overridden
       _getInnerDomString: function _getInnerDomString() {
@@ -141,24 +141,24 @@
       // overridden
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.Slide.superclass.prototype._onDomReady.call(this);
-        this.__P_66_11 = cv.util.Function.throttle(this.__P_66_12, 250, {
+        this.__P_67_11 = cv.util.Function.throttle(this.__P_67_12, 250, {
           trailing: true
         }, this);
         this.getActor().addEventListener('pointerdown', this);
       },
       _update: function _update(address, data) {
         var transform = this.getAddress()[address].transform;
-        if (this.__P_66_9 || this.__P_66_4[transform] === data) {
+        if (this.__P_67_9 || this.__P_67_4[transform] === data) {
           // slider in use -> ignore value from bus
           // internal state unchanged -> also do nothing
           return;
         }
-        this.__P_66_4 = {}; // forget all other transforms as they might not be valid anymore
-        this.__P_66_4[transform] = data;
+        this.__P_67_4 = {}; // forget all other transforms as they might not be valid anymore
+        this.__P_67_4[transform] = data;
         var value = cv.Transform.decode(this.getAddress()[address], data);
 
         // animate when visible, otherwise jump to the target value
-        this.__P_66_13(value, !this.isVisible());
+        this.__P_67_13(value, !this.isVisible());
       },
       /**
        * The the internal slider state and its handle and displayed value
@@ -169,7 +169,7 @@
        * @returns {Number} The real value that is respecting the configured restraints
        * @private
        */
-      __P_66_13: function __P_66_13(value, instant) {
+      __P_67_13: function __P_67_13(value, instant) {
         var relaxDisplay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
         var min = this.getMin();
         var max = this.getMax();
@@ -212,82 +212,82 @@
           button.replaceChildren(); // delete anything inside
           this.defaultValue2DOM(displayValue, button);
         }
-        this.__P_66_0.setTo(ratio, instant);
+        this.__P_67_0.setTo(ratio, instant);
         return realValue;
       },
-      __P_66_1: function __P_66_1(ratio) {
-        if (this.__P_66_5 === undefined) {
+      __P_67_1: function __P_67_1(ratio) {
+        if (this.__P_67_5 === undefined) {
           var element = this.getDomElement();
-          this.__P_66_5 = element.querySelector('button');
-          this.__P_66_6 = element.querySelector('.ui-slider-range');
+          this.__P_67_5 = element.querySelector('button');
+          this.__P_67_6 = element.querySelector('.ui-slider-range');
         }
-        if (this.__P_66_5 === null) {
+        if (this.__P_67_5 === null) {
           // most likely reason: the widget / DOM tree was deleted (e.g. due to
           // browsing to a new page or during unit tests)
-          this._disposeObjects("__P_66_0");
+          this._disposeObjects("__P_67_0");
           return;
         }
-        var actorWidth = this.__P_66_14();
+        var actorWidth = this.__P_67_14();
         var length = actorWidth >= 1e10 ? 0 : ratio * actorWidth;
-        this.__P_66_5.style.transform = 'translate3d(' + (length - this.__P_66_8 / 2) + 'px, 0px, 0px)';
-        this.__P_66_6.style.width = length + 'px';
+        this.__P_67_5.style.transform = 'translate3d(' + (length - this.__P_67_8 / 2) + 'px, 0px, 0px)';
+        this.__P_67_6.style.width = length + 'px';
       },
-      __P_66_3: function __P_66_3() {
+      __P_67_3: function __P_67_3() {
         var min = this.getMin();
         var max = this.getMax();
-        this.__P_66_7 = undefined; // invalidate cached values
-        this.__P_66_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
+        this.__P_67_7 = undefined; // invalidate cached values
+        this.__P_67_0.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
       },
       handleEvent: function handleEvent(event) {
         var newRatio = 0;
         switch (event.type) {
           case 'pointerdown':
             {
-              this.__P_66_9 = true;
+              this.__P_67_9 = true;
               document.addEventListener('pointermove', this);
               document.addEventListener('pointerup', this);
               var boundingRect = event.currentTarget.getBoundingClientRect();
               var computedStyle = window.getComputedStyle(event.currentTarget);
-              this.__P_66_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
-              newRatio = (event.clientX - this.__P_66_10) / this.__P_66_14();
+              this.__P_67_10 = boundingRect.left + parseFloat(computedStyle.paddingLeft);
+              newRatio = (event.clientX - this.__P_67_10) / this.__P_67_14();
               break;
             }
           case 'pointermove':
-            if (!this.__P_66_9) {
+            if (!this.__P_67_9) {
               return;
             }
-            newRatio = (event.clientX - this.__P_66_10) / this.__P_66_14();
+            newRatio = (event.clientX - this.__P_67_10) / this.__P_67_14();
             break;
           case 'pointerup':
-            this.__P_66_9 = false;
+            this.__P_67_9 = false;
             document.removeEventListener('pointermove', this);
             document.removeEventListener('pointerup', this);
-            newRatio = (event.clientX - this.__P_66_10) / this.__P_66_14();
+            newRatio = (event.clientX - this.__P_67_10) / this.__P_67_14();
             break;
         }
         newRatio = Math.min(Math.max(newRatio, 0.0), 1.0); // limit to 0..1
         var newValue = this.getMin() + newRatio * (this.getMax() - this.getMin());
-        var realValue = this.__P_66_13(newValue, this.__P_66_9, this.__P_66_9);
+        var realValue = this.__P_67_13(newValue, this.__P_67_9, this.__P_67_9);
         if (!this.getSendOnFinish() || event.type === 'pointerup') {
-          this.__P_66_11.call(realValue);
+          this.__P_67_11.call(realValue);
         }
       },
-      __P_66_12: function __P_66_12(value) {
-        this.__P_66_4 = this.sendToBackend(value, false, this.__P_66_4);
+      __P_67_12: function __P_67_12(value) {
+        this.__P_67_4 = this.sendToBackend(value, false, this.__P_67_4);
       },
-      __P_66_14: function __P_66_14() {
-        if (this.__P_66_7 === undefined || this.__P_66_8 === undefined) {
+      __P_67_14: function __P_67_14() {
+        if (this.__P_67_7 === undefined || this.__P_67_8 === undefined) {
           if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
             return 1e10; // a no valid value that doesn't break other calculations
           }
           var actor = this.getDomElement().querySelector('.actor');
           var actorStyles = window.getComputedStyle(actor);
-          this.__P_66_7 = parseFloat(actorStyles.getPropertyValue('width'));
-          this.__P_66_8 = parseFloat(window.getComputedStyle(this.__P_66_5).getPropertyValue('width'));
-          this.__P_66_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
-          this.__P_66_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
+          this.__P_67_7 = parseFloat(actorStyles.getPropertyValue('width'));
+          this.__P_67_8 = parseFloat(window.getComputedStyle(this.__P_67_5).getPropertyValue('width'));
+          this.__P_67_6.style.marginLeft = '-' + actorStyles.getPropertyValue('padding-left');
+          this.__P_67_6.style.borderRadius = actorStyles.getPropertyValue('border-radius');
         }
-        return this.__P_66_7;
+        return this.__P_67_7;
       }
     },
     defer: function defer(statics) {
@@ -297,4 +297,4 @@
   cv.ui.structure.pure.Slide.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slide.js.map?dt=1731948095372
+//# sourceMappingURL=Slide.js.map?dt=1735222410941

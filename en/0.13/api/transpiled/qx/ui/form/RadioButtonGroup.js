@@ -90,10 +90,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       this.getContentElement().setAttribute("role", "radiogroup");
 
       // create the radio group
-      this.__P_580_0 = new qx.ui.form.RadioGroup();
+      this.__P_581_0 = new qx.ui.form.RadioGroup();
 
       // attach the listener
-      this.__P_580_0.addListener("changeSelection", this._onChangeSelection, this);
+      this.__P_581_0.addListener("changeSelection", this._onChangeSelection, this);
     },
     properties: {
       /**
@@ -142,7 +142,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       changeSelection: "qx.event.type.Data"
     },
     members: {
-      __P_580_0: null,
+      __P_581_0: null,
       /*
       ---------------------------------------------------------------------------
         APPLY ROUTINES
@@ -173,7 +173,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {qx.ui.form.RadioGroup} Returns the used RadioGroup instance.
        */
       getRadioGroup: function getRadioGroup() {
-        return this.__P_580_0;
+        return this.__P_581_0;
       },
       /**
        * Returns the children list
@@ -194,7 +194,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param options {Map?null} Optional layout data for widget.
        */
       add: function add(child, options) {
-        this.__P_580_0.add(child);
+        this.__P_581_0.add(child);
         this._add(child, options);
       },
       /**
@@ -203,7 +203,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param child {qx.ui.core.LayoutItem} the widget to remove
        */
       remove: function remove(child) {
-        this.__P_580_0.remove(child);
+        this.__P_581_0.remove(child);
         this._remove(child);
       },
       /**
@@ -213,9 +213,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       removeAll: function removeAll() {
         // remove all children from the radio group
-        var radioItems = this.__P_580_0.getItems();
+        var radioItems = this.__P_581_0.getItems();
         for (var i = radioItems.length - 1; i >= 0; i--) {
-          this.__P_580_0.remove(radioItems[i]);
+          this.__P_581_0.remove(radioItems[i]);
         }
         return this._removeAll();
       },
@@ -233,7 +233,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {qx.ui.core.Widget[]} List of items.
        */
       getSelection: function getSelection() {
-        return this.__P_580_0.getSelection();
+        return this.__P_581_0.getSelection();
       },
       /**
        * Replaces current selection with the given items.
@@ -242,13 +242,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @throws {Error} if the item is not a child element.
        */
       setSelection: function setSelection(items) {
-        this.__P_580_0.setSelection(items);
+        this.__P_581_0.setSelection(items);
       },
       /**
        * Clears the whole selection at once.
        */
       resetSelection: function resetSelection() {
-        this.__P_580_0.resetSelection();
+        this.__P_581_0.resetSelection();
       },
       /**
        * Detects whether the given item is currently selected.
@@ -258,7 +258,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @throws {Error} if the item is not a child element.
        */
       isSelected: function isSelected(item) {
-        return this.__P_580_0.isSelected(item);
+        return this.__P_581_0.isSelected(item);
       },
       /**
        * Whether the selection is empty.
@@ -266,7 +266,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Boolean} Whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_580_0.isSelectionEmpty();
+        return this.__P_581_0.isSelectionEmpty();
       },
       /**
        * Returns all elements which are selectable.
@@ -276,7 +276,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {qx.ui.core.Widget[]} The contained items.
        */
       getSelectables: function getSelectables(all) {
-        return this.__P_580_0.getSelectables(all);
+        return this.__P_581_0.getSelectables(all);
       },
       /**
        * Select given value.
@@ -286,7 +286,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       setValue: function setValue(item) {
         if (item && "object" === _typeof(item) && item instanceof qx.ui.form.IRadioItem) {
-          return this.__P_580_0.setValue(item);
+          return this.__P_581_0.setValue(item);
         } else {
           return new Error("can not select radio item from value");
         }
@@ -295,13 +295,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {null|var} Returns the selected value.
        */
       getValue: function getValue() {
-        return this.__P_580_0.getValue();
+        return this.__P_581_0.getValue();
       },
       /**
        * Reset radio item selection.
        */
       resetValue: function resetValue() {
-        this.__P_580_0.resetValue();
+        this.__P_581_0.resetValue();
       },
       /**
        * Called on {@link qx.ui.form.RadioGroup} selection change event.
@@ -314,11 +314,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       }
     },
     destruct: function destruct() {
-      this.__P_580_0.removeListener("changeSelection", this._onChangeSelection, this);
-      this._disposeObjects("__P_580_0");
+      this.__P_581_0.removeListener("changeSelection", this._onChangeSelection, this);
+      this._disposeObjects("__P_581_0");
     }
   });
   qx.ui.form.RadioButtonGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioButtonGroup.js.map?dt=1731948135940
+//# sourceMappingURL=RadioButtonGroup.js.map?dt=1735222444848

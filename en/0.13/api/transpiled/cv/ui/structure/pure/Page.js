@@ -34,8 +34,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "qx.util.ResourceManager": {},
       "cv.Config": {},
       "cv.Application": {},
-      "cv.data.Model": {},
       "cv.io.BackendConnections": {},
+      "cv.data.Model": {},
       "cv.Transform": {}
     }
   };
@@ -75,21 +75,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct(props) {
       var _this = this;
-      this.__P_64_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
+      this.__P_65_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.addListener('changeVisible', this._onChangeVisible, this);
 
       // prevent listening to the first message to the GA in the first second
       // as it might be of the trigger type and still be in the knxd cache
-      this.__P_64_1 = setTimeout(function () {
-        _this.__P_64_1 = null;
+      this.__P_65_1 = setTimeout(function () {
+        _this.__P_65_1 = null;
       }, 1000);
 
       // break out of the constructor
       new qx.util.DeferredCall(function () {
         var parentPage = this.getParentPage();
         if (!parentPage) {
-          this.__P_64_0 = [];
+          this.__P_65_0 = [];
         } else {
           this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
         }
@@ -213,17 +213,17 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      ******************************************************
      */
     members: {
-      __P_64_0: null,
-      __P_64_2: null,
-      __P_64_3: null,
-      __P_64_1: null,
+      __P_65_0: null,
+      __P_65_2: null,
+      __P_65_3: null,
+      __P_65_1: null,
       _applyNavbarVisibility: function _applyNavbarVisibility(value, old, name) {
         if (value !== null) {
-          var i_name = this.__P_64_0.indexOf(name);
+          var i_name = this.__P_65_0.indexOf(name);
           if (i_name !== -1) {
-            this.__P_64_0.splice(i_name, 1);
+            this.__P_65_0.splice(i_name, 1);
           }
-          if (this.__P_64_0.length === 0) {
+          if (this.__P_65_0.length === 0) {
             this.setInitialized(true);
           }
         }
@@ -234,7 +234,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       _onChangeVisible: function _onChangeVisible(ev) {
         if (ev.getData()) {
-          if (this.__P_64_2 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
+          if (this.__P_65_2 !== cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS) {
             this.applyColumnWidths();
           }
           if (this.getBackdrop()) {
@@ -247,7 +247,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       applyColumnWidths: function applyColumnWidths() {
         cv.ui.structure.pure.layout.Manager.applyColumnWidths('#' + this.getPath(), false);
-        this.__P_64_2 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
+        this.__P_65_2 = cv.ui.structure.pure.layout.Manager.COLSPAN_CLASS;
       },
       // overridden
       getDomString: function getDomString() {
@@ -345,10 +345,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         //
         //   default:
 
-        if (this.__P_64_1 !== null) {
+        if (this.__P_65_1 !== null) {
           // ignore first bus message during this timeout
-          clearTimeout(this.__P_64_1);
-          this.__P_64_1 = null;
+          clearTimeout(this.__P_65_1);
+          this.__P_65_1 = null;
           return;
         }
         var value = this.applyTransform(address, data);
@@ -398,8 +398,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           for (var id in list) {
             if (Object.prototype.hasOwnProperty.call(list, id)) {
               var address = list[id];
-              if (cv.data.Model.isWriteAddress(address)) {
-                cv.io.BackendConnections.getClient(address.backendType).write(id, cv.Transform.encode(address, value));
+              var client = cv.io.BackendConnections.getClient(address.backendType);
+              if (cv.data.Model.isWriteAddress(address) && client) {
+                client.write(id, cv.Transform.encode(address, value));
               }
             }
           }
@@ -413,4 +414,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1731948095149
+//# sourceMappingURL=Page.js.map?dt=1735222410745

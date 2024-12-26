@@ -59,12 +59,12 @@
 
       // We don't want to recursively call ourself based on our resetting of
       // column sizes.  Track when we're resizing.
-      this.__P_671_0 = false;
+      this.__P_672_0 = false;
 
       // Track when the table has appeared.  We want to ignore resize events
       // until then since we won't be able to determine the available width
       // anyway.
-      this.__P_671_1 = false;
+      this.__P_672_1 = false;
     },
     /*
     *****************************************************************************
@@ -95,9 +95,9 @@
     */
 
     members: {
-      __P_671_1: null,
-      __P_671_0: null,
-      __P_671_2: null,
+      __P_672_1: null,
+      __P_672_0: null,
+      __P_672_2: null,
       // Behavior modifier
       _applyBehavior: function _applyBehavior(value, old) {
         if (old != null) {
@@ -120,8 +120,8 @@
       init: function init(numColumns, table) {
         // Call our superclass
         qx.ui.table.columnmodel.Resize.superclass.prototype.init.call(this, numColumns, table);
-        if (this.__P_671_2 == null) {
-          this.__P_671_2 = table;
+        if (this.__P_672_2 == null) {
+          this.__P_672_2 = table;
           // We'll do our column resizing when the table appears, ...
           table.addListener("appear", this._onappear, this);
 
@@ -155,7 +155,7 @@
        * @return {qx.ui.table.Table} the table widget
        */
       getTable: function getTable() {
-        return this.__P_671_2;
+        return this.__P_672_2;
       },
       /**
        * Reset the column widths to their "onappear" defaults.
@@ -192,17 +192,17 @@
        */
       _onappear: function _onappear(event) {
         // Is this a recursive call?
-        if (this.__P_671_0) {
+        if (this.__P_672_0) {
           // Yup.  Ignore it.
           return;
         }
-        this.__P_671_0 = true;
+        this.__P_672_0 = true;
         // this handler is also called by the "execute" event of the menu button
         this.getBehavior().onAppear(event, event.getType() !== "appear");
-        this.__P_671_2._updateScrollerWidths();
-        this.__P_671_2._updateScrollBarVisibility();
-        this.__P_671_0 = false;
-        this.__P_671_1 = true;
+        this.__P_672_2._updateScrollerWidths();
+        this.__P_672_2._updateScrollBarVisibility();
+        this.__P_672_0 = false;
+        this.__P_672_1 = true;
       },
       /**
        * Event handler for the "tableWidthChanged" event.
@@ -213,13 +213,13 @@
        */
       _onTableWidthChanged: function _onTableWidthChanged(event) {
         // Is this a recursive call or has the table not yet been rendered?
-        if (this.__P_671_0 || !this.__P_671_1) {
+        if (this.__P_672_0 || !this.__P_672_1) {
           // Yup.  Ignore it.
           return;
         }
-        this.__P_671_0 = true;
+        this.__P_672_0 = true;
         this.getBehavior().onTableWidthChanged(event);
-        this.__P_671_0 = false;
+        this.__P_672_0 = false;
       },
       /**
        * Event handler for the "verticalScrollBarChanged" event.
@@ -231,19 +231,19 @@
        */
       _onverticalscrollbarchanged: function _onverticalscrollbarchanged(event) {
         // Is this a recursive call or has the table not yet been rendered?
-        if (this.__P_671_0 || !this.__P_671_1) {
+        if (this.__P_672_0 || !this.__P_672_1) {
           // Yup.  Ignore it.
           return;
         }
-        this.__P_671_0 = true;
+        this.__P_672_0 = true;
         this.getBehavior().onVerticalScrollBarChanged(event);
         qx.event.Timer.once(function () {
-          if (this.__P_671_2 && !this.__P_671_2.isDisposed()) {
-            this.__P_671_2._updateScrollerWidths();
-            this.__P_671_2._updateScrollBarVisibility();
+          if (this.__P_672_2 && !this.__P_672_2.isDisposed()) {
+            this.__P_672_2._updateScrollerWidths();
+            this.__P_672_2._updateScrollBarVisibility();
           }
         }, this, 0);
-        this.__P_671_0 = false;
+        this.__P_672_0 = false;
       },
       /**
        * Event handler for the "widthChanged" event.
@@ -254,13 +254,13 @@
        */
       _oncolumnwidthchanged: function _oncolumnwidthchanged(event) {
         // Is this a recursive call or has the table not yet been rendered?
-        if (this.__P_671_0 || !this.__P_671_1) {
+        if (this.__P_672_0 || !this.__P_672_1) {
           // Yup.  Ignore it.
           return;
         }
-        this.__P_671_0 = true;
+        this.__P_672_0 = true;
         this.getBehavior().onColumnWidthChanged(event);
-        this.__P_671_0 = false;
+        this.__P_672_0 = false;
       },
       /**
        * Event handler for the "visibilityChanged" event.
@@ -271,13 +271,13 @@
        */
       _onvisibilitychanged: function _onvisibilitychanged(event) {
         // Is this a recursive call or has the table not yet been rendered?
-        if (this.__P_671_0 || !this.__P_671_1) {
+        if (this.__P_672_0 || !this.__P_672_1) {
           // Yup.  Ignore it.
           return;
         }
-        this.__P_671_0 = true;
+        this.__P_672_0 = true;
         this.getBehavior().onVisibilityChanged(event);
-        this.__P_671_0 = false;
+        this.__P_672_0 = false;
       }
     },
     /*
@@ -290,10 +290,10 @@
       if (behavior) {
         behavior.dispose();
       }
-      this.__P_671_2 = null;
+      this.__P_672_2 = null;
     }
   });
   qx.ui.table.columnmodel.Resize.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resize.js.map?dt=1731948140814
+//# sourceMappingURL=Resize.js.map?dt=1735222448759

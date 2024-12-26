@@ -58,8 +58,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *    The qooxdoo class implementing the transport
        */
       registerTransport: function registerTransport(uriRegExp, transportClass) {
-        if (!this.constructor.__P_272_0) {
-          this.constructor.__P_272_0 = [];
+        if (!this.constructor.__P_273_0) {
+          this.constructor.__P_273_0 = [];
         }
         if (!qx.lang.Type.isRegExp(uriRegExp)) {
           throw new Error("First argument must be a regular expression!");
@@ -67,7 +67,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (!qx.Interface.classImplements(transportClass, qx.io.transport.ITransport)) {
           throw new Error("Transport class must implement qx.io.transport.ITransport");
         }
-        this.constructor.__P_272_0.push({
+        this.constructor.__P_273_0.push({
           uriRegExp: uriRegExp,
           transport: transportClass
         });
@@ -93,11 +93,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var transport;
         var uri;
         if (qx.lang.Type.isString(transportOrUri)) {
-          if (!this.constructor.__P_272_0) {
+          if (!this.constructor.__P_273_0) {
             throw new Error("No transport has been registered. Put @use(qx.io.transport.X) in the doc block of your class, X being the transport class of your choice (such as qx.io.transport.Xhr for http transport).");
           }
           uri = transportOrUri;
-          var _iterator = _createForOfIteratorHelper(this.constructor.__P_272_0.reverse()),
+          var _iterator = _createForOfIteratorHelper(this.constructor.__P_273_0.reverse()),
             _step;
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -128,4 +128,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.io.transport.AbstractClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractClient.js.map?dt=1731948109752
+//# sourceMappingURL=AbstractClient.js.map?dt=1735222423291

@@ -59,9 +59,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
       this.__filename = filename;
       this.setStructure(filename.endsWith('visu_config_tile.xsd') ? 'tile' : 'pure');
-      this.__P_45_0 = {};
-      this.__P_45_1 = {};
-      this.__P_45_2 = {};
+      this.__P_46_0 = {};
+      this.__P_46_1 = {};
+      this.__P_46_2 = {};
       this._cacheXSD();
     },
     /*
@@ -70,7 +70,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     statics: {
-      __P_45_3: {},
+      __P_46_3: {},
       getInstance: function getInstance(schemaFile) {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -78,11 +78,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                if (Object.prototype.hasOwnProperty.call(_this.__P_45_3, schemaFile)) {
+                if (Object.prototype.hasOwnProperty.call(_this.__P_46_3, schemaFile)) {
                   _context.next = 4;
                   break;
                 }
-                schema = _this.__P_45_3[schemaFile] = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri(schemaFile));
+                schema = _this.__P_46_3[schemaFile] = new cv.ui.manager.model.Schema(qx.util.ResourceManager.getInstance().toUri(schemaFile));
                 if (schema.isLoaded()) {
                   _context.next = 4;
                   break;
@@ -97,7 +97,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                 }));
               case 4:
-                return _context.abrupt("return", _this.__P_45_3[schemaFile]);
+                return _context.abrupt("return", _this.__P_46_3[schemaFile]);
               case 5:
               case "end":
                 return _context.stop();
@@ -133,32 +133,32 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * object of the schema/xsd
        * @var object
        */
-      __P_45_4: null,
+      __P_46_4: null,
       /**
        * object of allowed root-level elements
        * @var object
        */
-      __P_45_0: null,
+      __P_46_0: null,
       /**
        * cache for referenced nods
        * @var object
        */
-      __P_45_1: null,
+      __P_46_1: null,
       /**
        * cache for getTypeNode
        * @var object
        */
-      __P_45_2: null,
+      __P_46_2: null,
       /**
        * cache for #text-SchemaElement
        * @var object
        */
-      __P_45_5: null,
+      __P_46_5: null,
       /**
        * cache for #comment-SchemaElement
        * @var object
        */
-      __P_45_6: null,
+      __P_46_6: null,
       /**
        * @var {Array<String>}
        */
@@ -166,23 +166,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * @var {String}
        */
-      __P_45_7: null,
+      __P_46_7: null,
       /**
        * @var {String}
        */
-      __P_45_8: null,
+      __P_46_8: null,
       /**
        * @var {String}
        */
-      __P_45_9: null,
+      __P_46_9: null,
       _applyStructure: function _applyStructure(structure) {
         if (structure === 'tile') {
-          this.__P_45_7 = 'config';
-          this.__P_45_8 = 'main';
-          this.__P_45_9 = 'cv-page';
+          this.__P_46_7 = 'config';
+          this.__P_46_8 = 'main';
+          this.__P_46_9 = 'cv-page';
         } else {
-          this.__P_45_7 = 'pages';
-          this.__P_45_9 = 'page';
+          this.__P_46_7 = 'pages';
+          this.__P_46_9 = 'page';
         }
       },
       onLoaded: function onLoaded(callback, context) {
@@ -254,7 +254,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _iterator.f();
                   return _context2.finish(22);
                 case 25:
-                  _this2.__P_45_4 = xml;
+                  _this2.__P_46_4 = xml;
 
                   // parse the data, to have at least a list of root-level-elements
                   _this2._parseXSD();
@@ -308,15 +308,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _parseXSD: function _parseXSD() {
         var _this3 = this;
         // make a list of root-level elements
-        this.__P_45_4.querySelectorAll('schema > element').forEach(function (element) {
+        this.__P_46_4.querySelectorAll('schema > element').forEach(function (element) {
           var name = element.getAttribute('name');
-          _this3.__P_45_0[name] = new cv.ui.manager.model.schema.Element(element, _this3);
+          _this3.__P_46_0[name] = new cv.ui.manager.model.schema.Element(element, _this3);
         });
         this.setLoaded(true);
       },
       getElementNode: function getElementNode(name) {
-        if (Object.prototype.hasOwnProperty.call(this.__P_45_0, name)) {
-          return this.__P_45_0[name];
+        if (Object.prototype.hasOwnProperty.call(this.__P_46_0, name)) {
+          return this.__P_46_0[name];
         }
         throw new Error('schema/xsd appears to be invalid, element ' + name + ' not allowed on root level');
       },
@@ -331,17 +331,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return  object          jQuery-object of the ref'ed element
        */
       getReferencedNode: function getReferencedNode(type, refName, noFallback) {
-        if (Object.prototype.hasOwnProperty.call(this.__P_45_1, type) && Object.prototype.hasOwnProperty.call(this.__P_45_1[type], refName)) {
-          return this.__P_45_1[type][refName];
+        if (Object.prototype.hasOwnProperty.call(this.__P_46_1, type) && Object.prototype.hasOwnProperty.call(this.__P_46_1[type], refName)) {
+          return this.__P_46_1[type][refName];
         }
         var fallbackType = type === 'simpleType' ? 'complexType' : 'simpleType';
         if (!noFallback) {
-          if (Object.prototype.hasOwnProperty.call(this.__P_45_1, fallbackType) && Object.prototype.hasOwnProperty.call(this.__P_45_1[fallbackType], refName)) {
-            return this.__P_45_1[fallbackType][refName];
+          if (Object.prototype.hasOwnProperty.call(this.__P_46_1, fallbackType) && Object.prototype.hasOwnProperty.call(this.__P_46_1[fallbackType], refName)) {
+            return this.__P_46_1[fallbackType][refName];
           }
         }
         var selector = 'schema > ' + type + '[name="' + refName + '"]';
-        var ref = this.__P_45_4.querySelector(selector);
+        var ref = this.__P_46_4.querySelector(selector);
         if (!ref && !noFallback) {
           try {
             ref = this.getReferencedNode(fallbackType, refName, true);
@@ -354,12 +354,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           // do it recursively, if necessary
           ref = this.getReferencedNode(type, ref.getAttribute('ref'));
         }
-        if (!Object.prototype.hasOwnProperty.call(this.__P_45_1, type)) {
-          this.__P_45_1[type] = {};
+        if (!Object.prototype.hasOwnProperty.call(this.__P_46_1, type)) {
+          this.__P_46_1[type] = {};
         }
 
         // fill the cache
-        this.__P_45_1[type][refName] = ref;
+        this.__P_46_1[type][refName] = ref;
         return ref;
       },
       /**
@@ -369,19 +369,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param   name    string  Name of the type to find
        */
       getTypeNode: function getTypeNode(type, name) {
-        if (Object.prototype.hasOwnProperty.call(this.__P_45_2, type) && Object.prototype.hasOwnProperty.call(this.__P_45_2[type], name)) {
-          return this.__P_45_2[type][name];
+        if (Object.prototype.hasOwnProperty.call(this.__P_46_2, type) && Object.prototype.hasOwnProperty.call(this.__P_46_2[type], name)) {
+          return this.__P_46_2[type][name];
         }
-        var typeNode = this.__P_45_4.querySelector(type + 'Type[name="' + name + '"]');
+        var typeNode = this.__P_46_4.querySelector(type + 'Type[name="' + name + '"]');
         if (!typeNode) {
           throw new Error('schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found');
         }
-        if (typeof this.__P_45_2[type] == 'undefined') {
-          this.__P_45_2[type] = {};
+        if (typeof this.__P_46_2[type] == 'undefined') {
+          this.__P_46_2[type] = {};
         }
 
         // fill the cache
-        this.__P_45_2[type][name] = typeNode;
+        this.__P_46_2[type][name] = typeNode;
         return typeNode;
       },
       /**
@@ -390,14 +390,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return  object  SchemaElement for #text-node
        */
       getTextNodeSchemaElement: function getTextNodeSchemaElement() {
-        if (this.__P_45_5 === null) {
+        if (this.__P_46_5 === null) {
           // text-content is always a simple string
-          var tmpXML = this.__P_45_4.createElement('element');
+          var tmpXML = this.__P_46_4.createElement('element');
           tmpXML.setAttribute('name', '#text');
           tmpXML.setAttribute('type', 'xsd:string');
-          this.__P_45_5 = new cv.ui.manager.model.schema.Element(tmpXML, this);
+          this.__P_46_5 = new cv.ui.manager.model.schema.Element(tmpXML, this);
         }
-        return this.__P_45_5;
+        return this.__P_46_5;
       },
       /**
        * get a SchemaElement for a #comment-node
@@ -405,16 +405,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return  object  SchemaElement for #comment-node
        */
       getCommentNodeSchemaElement: function getCommentNodeSchemaElement() {
-        if (this.__P_45_6 === null) {
+        if (this.__P_46_6 === null) {
           // text-content is always a simple string
-          var tmpXML = this.__P_45_4.createElement('element');
+          var tmpXML = this.__P_46_4.createElement('element');
           tmpXML.setAttribute('name', '#comment');
           tmpXML.setAttribute('type', 'xsd:string');
           tmpXML.setAttribute('minOccurs', '0');
           tmpXML.setAttribute('maxOccurs', 'unbounded');
-          this.__P_45_6 = new cv.ui.manager.model.schema.Element(tmpXML, this);
+          this.__P_46_6 = new cv.ui.manager.model.schema.Element(tmpXML, this);
         }
-        return this.__P_45_6;
+        return this.__P_46_6;
       },
       /**
        * get the DOM for this Schema
@@ -422,7 +422,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return  object  DOM
        */
       getSchemaDOM: function getSchemaDOM() {
-        return this.__P_45_4;
+        return this.__P_46_4;
       },
       /**
        * A CometVisu-Schema specific helper function that returns an array of all widget names.
@@ -430,12 +430,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getWidgetNames: function getWidgetNames() {
         if (!this._widgetNames) {
-          var root = this.getElementNode(this.__P_45_7);
+          var root = this.getElementNode(this.__P_46_7);
           var pageParent = root;
-          if (this.__P_45_8) {
-            pageParent = root.getSchemaElementForElementName(this.__P_45_8);
+          if (this.__P_46_8) {
+            pageParent = root.getSchemaElementForElementName(this.__P_46_8);
           }
-          var page = pageParent.getSchemaElementForElementName(this.__P_45_9);
+          var page = pageParent.getSchemaElementForElementName(this.__P_46_9);
           this._widgetNames = Object.keys(page.getAllowedElements()).filter(function (name) {
             return !name.startsWith('#') && name !== 'layout';
           });
@@ -443,10 +443,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return this._widgetNames;
       },
       isRoot: function isRoot(name) {
-        return name === this.__P_45_7;
+        return name === this.__P_46_7;
       },
       isPage: function isPage(name) {
-        return name = this.__P_45_9;
+        return name = this.__P_46_9;
       }
     },
     /*
@@ -455,15 +455,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_45_4 = null;
-      this._disposeObjects("__P_45_6", "__P_45_5");
-      this._disposeMap("__P_45_0");
-      this.__P_45_1 = null;
-      this.__P_45_2 = null;
+      this.__P_46_4 = null;
+      this._disposeObjects("__P_46_6", "__P_46_5");
+      this._disposeMap("__P_46_0");
+      this.__P_46_1 = null;
+      this.__P_46_2 = null;
       this._widgetNames = null;
     }
   });
   cv.ui.manager.model.Schema.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Schema.js.map?dt=1731948093701
+//# sourceMappingURL=Schema.js.map?dt=1735222409520

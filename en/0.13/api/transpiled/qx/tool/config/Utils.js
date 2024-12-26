@@ -58,7 +58,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     type: "static",
     statics: {
       /** @type{Promise<String} promise for cache of getQxPath() */
-      __P_511_0: null,
+      __P_512_0: null,
       /**
        * Returns data on the project in the currect working directory.
        * If a qooxdoo.json file exists, the data is taken from there.
@@ -254,12 +254,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
               case 0:
-                if (!_this3.__P_511_0) {
+                if (!_this3.__P_512_0) {
                   _context6.next = 4;
                   break;
                 }
                 _context6.next = 3;
-                return _this3.__P_511_0;
+                return _this3.__P_512_0;
               case 3:
                 return _context6.abrupt("return", _context6.sent);
               case 4:
@@ -372,9 +372,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     return _ref2.apply(this, arguments);
                   };
                 }();
-                _this3.__P_511_0 = getQxPathImpl();
+                _this3.__P_512_0 = getQxPathImpl();
                 _context6.next = 9;
-                return _this3.__P_511_0;
+                return _this3.__P_512_0;
               case 9:
                 return _context6.abrupt("return", _context6.sent);
               case 10:
@@ -645,4 +645,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.config.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1731948131640
+//# sourceMappingURL=Utils.js.map?dt=1735222441256

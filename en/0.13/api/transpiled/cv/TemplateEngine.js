@@ -31,12 +31,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       "qx.event.message.Bus": {},
       "cv.io.BackendConnections": {},
       "cv.util.ScriptLoader": {},
+      "qx.locale.Manager": {},
       "cv.Application": {},
       "qx.event.Timer": {},
       "qx.event.Registration": {},
       "qx.dom.Element": {},
       "qx.data.store.Json": {},
-      "qx.util.ResourceManager": {}
+      "qx.util.ResourceManager": {},
+      "cv.core.notifications.Router": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -69,12 +71,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       var _this = this;
       // this.base(arguments);
       this.lazyPlugins = ['plugin-openhab'];
-      this.__P_754_0 = new qx.data.Array();
+      this.__P_755_0 = new qx.data.Array();
       this._domFinishedQueue = [];
-      this.__P_754_0.addListener('changeLength', function (ev) {
+      this.__P_755_0.addListener('changeLength', function (ev) {
         _this.setPartsLoaded(ev.getData() === 0);
       });
-      this.__P_754_1 = {};
+      this.__P_755_1 = {};
       this.defaults = {
         widget: {},
         plugin: {}
@@ -164,7 +166,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       defaults: null,
       pluginsToLoadCount: 0,
-      __P_754_0: null,
+      __P_755_0: null,
       _domFinishedQueue: null,
       // plugins that do not need to be loaded to proceed with the initial setup
       lazyPlugins: null,
@@ -181,6 +183,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param parts {String[]|String} parts to load
        */
       loadParts: function loadParts(parts) {
+        var continueWhenSuccessful = true;
         if (!Array.isArray(parts)) {
           parts = [parts];
         }
@@ -192,23 +195,25 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return !loadLazyParts.includes(p);
           });
         }
-        this.__P_754_0.append(parts);
+        this.__P_755_0.append(parts);
         var waitingFor = new qx.data.Array(parts);
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
               this.debug('successfully loaded part ' + part);
-              this.__P_754_0.remove(part);
-              if (part.startsWith('structure-') && !this.__P_754_0.some(function (p) {
+              this.__P_755_0.remove(part);
+              if (part.startsWith('structure-') && !this.__P_755_0.some(function (p) {
                 return p.startsWith('structure-');
               })) {
                 if (!cv.Config.loadedStructure) {
                   cv.Config.loadedStructure = part.substring(10);
                 }
-                this.debug('successfully loaded all structures');
-                qx.core.Init.getApplication().setStructureLoaded(true);
+                this.debug('successfully loaded all structures. Continue:', continueWhenSuccessful);
+                if (continueWhenSuccessful) {
+                  qx.core.Init.getApplication().setStructureLoaded(true);
+                }
               }
-              this.__P_754_0.remove(part);
+              this.__P_755_0.remove(part);
               waitingFor.remove(part);
             } else {
               this.error('error loading part ' + part);
@@ -229,8 +234,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }, this);
         return new Promise(function (resolve, reject) {
           var timer = setTimeout(function () {
-            return reject(new Error('timeout loading parts'));
-          }, 2000);
+            continueWhenSuccessful = false;
+            reject('Timeout');
+          }, cv.Config.timeoutStructureLoad);
           if (waitingFor.getLength() === 0) {
             clearTimeout(timer);
             resolve();
@@ -358,20 +364,33 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   loader.addListenerOnce('stylesLoaded', _this2.generateManifest, _this2);
                 }
                 // load structure-part
-                _context.next = 19;
+                _context.prev = 17;
+                _context.next = 20;
                 return _this2.loadParts([cv.Config.getStructure()]);
-              case 19:
+              case 20:
+                _context.next = 26;
+                break;
+              case 22:
+                _context.prev = 22;
+                _context.t1 = _context["catch"](17);
+                // Note: the timeout can be changed by the not published URL parameter
+                // timeoutStructureLoad for debugging reasons. Usually, the server
+                // must be quick enough so that the client doesn't run into any issues
+                // here.
+                _this2.__P_755_2("".concat(qx.locale.Manager.tr('loadParts "Structure" failed'), ": ").concat(_context.t1));
+                throw new Error('loadParts "Structure" failed');
+              case 26:
                 if (cv.Application.structureController.parseBackendSettings(xml) || cv.Config.testMode) {
                   cv.io.BackendConnections.initBackendClients();
                 }
                 cv.Application.structureController.parseSettings(xml);
-                _context.next = 23;
+                _context.next = 30;
                 return cv.Application.structureController.preParse(xml);
-              case 23:
+              case 30:
               case "end":
                 return _context.stop();
             }
-          }, _callee);
+          }, _callee, null, [[17, 22]]);
         }))();
       },
       generateManifest: function generateManifest() {
@@ -524,6 +543,23 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             });
           });
         });
+      },
+      /**
+       * Display a message when the setup goes wrong and can't be recovered by
+       * the CometVisu itself.
+       * @param message {string}
+       * @private
+       */
+      __P_755_2: function __P_755_2(message) {
+        var notification = {
+          topic: 'cv.error',
+          title: qx.locale.Manager.tr('CometVisu startup error'),
+          message: message,
+          severity: 'urgent',
+          unique: true,
+          deletable: false
+        };
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       }
     },
     /*
@@ -538,4 +574,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1731948145604
+//# sourceMappingURL=TemplateEngine.js.map?dt=1735222452681

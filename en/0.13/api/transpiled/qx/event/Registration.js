@@ -76,7 +76,7 @@
        * Static list of all instantiated event managers. The key is the qooxdoo
        * hash value of the corresponding window
        */
-      __P_211_0: {},
+      __P_212_0: {},
       /**
        * Get an instance of the event manager, which can handle events for the
        * given target.
@@ -93,10 +93,10 @@
           target = window;
         }
         var hash = target.$$hash || qx.core.ObjectRegistry.toHashCode(target);
-        var manager = this.__P_211_0[hash];
+        var manager = this.__P_212_0[hash];
         if (!manager) {
           manager = new qx.event.Manager(target, this);
-          this.__P_211_0[hash] = manager;
+          this.__P_212_0[hash] = manager;
         }
         return manager;
       },
@@ -110,7 +110,7 @@
        */
       removeManager: function removeManager(mgr) {
         var id = mgr.getWindowId();
-        delete this.__P_211_0[id];
+        delete this.__P_212_0[id];
       },
       /**
        * Add an event listener to a DOM target. The event listener is passed an
@@ -268,7 +268,7 @@
        * @return {Event} the event
        * @see #createEvent
        */
-      __P_211_1: function __P_211_1(target, type, clazz, args) {
+      __P_212_1: function __P_212_1(target, type, clazz, args) {
         var evt = this.createEvent(type, clazz || null, args);
         this.getManager(target).dispatchEvent(target, evt);
         return evt;
@@ -336,7 +336,7 @@
        * @return {Event} the event
        * @see #createEvent
        */
-      __P_211_2: function __P_211_2(target, type, clazz, args) {
+      __P_212_2: function __P_212_2(target, type, clazz, args) {
         var mgr = this.getManager(target);
         if (!mgr.hasListener(target, type, false)) {
           return null;
@@ -360,7 +360,7 @@
        * @see #createEvent
        */
       fireNonBubblingEvent: function fireNonBubblingEvent(target, type, clazz, args) {
-        var evt = this.__P_211_2.apply(this, arguments);
+        var evt = this.__P_212_2.apply(this, arguments);
         if (evt === null) {
           return true;
         }
@@ -382,7 +382,7 @@
        */
       fireNonBubblingEventAsync: qx.core.Environment.select("qx.promise", {
         "true": function _true(target, type, clazz, args) {
-          var evt = this.__P_211_2.apply(this, arguments);
+          var evt = this.__P_212_2.apply(this, arguments);
           if (evt === null) {
             return qx.Promise.resolve(true);
           }
@@ -411,7 +411,7 @@
       */
 
       /** @type {Array} Contains all known event handlers */
-      __P_211_3: [],
+      __P_212_3: [],
       /**
        * Register an event handler.
        *
@@ -420,10 +420,10 @@
        */
       addHandler: function addHandler(handler) {
         // Append to list
-        this.__P_211_3.push(handler);
+        this.__P_212_3.push(handler);
 
         // Re-sort list
-        this.__P_211_3.sort(function (a, b) {
+        this.__P_212_3.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -433,7 +433,7 @@
        * @return {qx.event.IEventHandler[]} registered event handlers
        */
       getHandlers: function getHandlers() {
-        return this.__P_211_3;
+        return this.__P_212_3;
       },
       /*
       ---------------------------------------------------------------------------
@@ -442,7 +442,7 @@
       */
 
       /** @type {Array} Contains all known event dispatchers */
-      __P_211_4: [],
+      __P_212_4: [],
       /**
        * Register an event dispatcher.
        *
@@ -455,10 +455,10 @@
        */
       addDispatcher: function addDispatcher(dispatcher, priority) {
         // Append to list
-        this.__P_211_4.push(dispatcher);
+        this.__P_212_4.push(dispatcher);
 
         // Re-sort list
-        this.__P_211_4.sort(function (a, b) {
+        this.__P_212_4.sort(function (a, b) {
           return a.PRIORITY - b.PRIORITY;
         });
       },
@@ -468,11 +468,11 @@
        * @return {qx.event.IEventDispatcher[]} all registered event dispatcher
        */
       getDispatchers: function getDispatchers() {
-        return this.__P_211_4;
+        return this.__P_212_4;
       }
     }
   });
   qx.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1731948106710
+//# sourceMappingURL=Registration.js.map?dt=1735222420816

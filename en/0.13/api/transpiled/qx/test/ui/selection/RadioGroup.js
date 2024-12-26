@@ -34,11 +34,11 @@
   qx.Class.define("qx.test.ui.selection.RadioGroup", {
     extend: qx.test.ui.selection.AbstractSingleSelectonTest,
     members: {
-      __P_428_0: null,
+      __P_429_0: null,
       setUp: function setUp() {
         var length = 10;
         this._mode = "one";
-        this.__P_428_0 = [];
+        this.__P_429_0 = [];
         this._notInSelection = [];
         this._widget = new qx.ui.form.RadioGroup();
         var root = this.getRoot();
@@ -48,7 +48,7 @@
             top: 20 * i
           });
           this._widget.add(item);
-          this.__P_428_0.push(item);
+          this.__P_429_0.push(item);
           if (i == 5) {
             this._widget.setSelection([item]);
             this._selection = [item];
@@ -60,10 +60,10 @@
       },
       tearDown: function tearDown() {
         qx.test.ui.selection.RadioGroup.superclass.prototype.tearDown.call(this);
-        for (var i = 0; i < this.__P_428_0.length; i++) {
-          this.__P_428_0[i].destroy();
+        for (var i = 0; i < this.__P_429_0.length; i++) {
+          this.__P_429_0[i].destroy();
         }
-        this.__P_428_0 = null;
+        this.__P_429_0 = null;
         this._widget.dispose();
         this._widget = null;
         this._selection = null;
@@ -124,4 +124,4 @@
   qx.test.ui.selection.RadioGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RadioGroup.js.map?dt=1731948121035
+//# sourceMappingURL=RadioGroup.js.map?dt=1735222432396

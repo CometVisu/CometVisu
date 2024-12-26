@@ -150,8 +150,8 @@
        */
       hasCustomChartsDataProcessor: function hasCustomChartsDataProcessor() {},
       /**
-       * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
-       * @param data {var}
+       * For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle
+       * @param data {any}
        * @param config {{scaling: number, offset: number}}
        */
       processChartsData: function processChartsData(data, config) {},
@@ -202,4 +202,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1731948148073
+//# sourceMappingURL=IClient.js.map?dt=1735222454636

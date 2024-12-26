@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857563,
-  "lastModifiedIso": "2024-11-18T16:37:37.563Z",
+  "lastModified": 1735222205770,
+  "lastModifiedIso": "2024-12-26T14:10:05.770Z",
   "classFilename": "../../source/class/cv/plugins/RssLog.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 895
     },
     "end": {
-      "line": 596,
+      "line": 599,
       "column": 3,
-      "index": 17818
+      "index": 17901
     }
   },
   "className": "cv.plugins.RssLog",
@@ -872,9 +872,9 @@
           "index": 6376
         },
         "end": {
-          "line": 326,
+          "line": 329,
           "column": 5,
-          "index": 8631
+          "index": 8714
         }
       },
       "type": "function",
@@ -886,14 +886,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 328,
+          "line": 331,
           "column": 4,
-          "index": 8638
+          "index": 8721
         },
         "end": {
-          "line": 353,
+          "line": 356,
           "column": 5,
-          "index": 9368
+          "index": 9451
         }
       },
       "type": "function",
@@ -921,14 +921,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 358,
+          "line": 361,
           "column": 4,
-          "index": 9433
+          "index": 9516
         },
         "end": {
-          "line": 383,
+          "line": 386,
           "column": 5,
-          "index": 10299
+          "index": 10382
         }
       },
       "type": "function",
@@ -940,14 +940,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 385,
+          "line": 388,
           "column": 4,
-          "index": 10306
+          "index": 10389
         },
         "end": {
-          "line": 411,
+          "line": 414,
           "column": 5,
-          "index": 11537
+          "index": 11620
         }
       },
       "type": "function",
@@ -966,14 +966,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 413,
+          "line": 416,
           "column": 4,
-          "index": 11544
+          "index": 11627
         },
         "end": {
-          "line": 423,
+          "line": 426,
           "column": 5,
-          "index": 11910
+          "index": 11993
         }
       },
       "type": "function",
@@ -989,14 +989,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 425,
+          "line": 428,
           "column": 4,
-          "index": 11917
+          "index": 12000
         },
         "end": {
-          "line": 528,
+          "line": 531,
           "column": 5,
-          "index": 15506
+          "index": 15589
         }
       },
       "type": "function",
@@ -1012,14 +1012,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 530,
+          "line": 533,
           "column": 4,
-          "index": 15513
+          "index": 15596
         },
         "end": {
-          "line": 560,
+          "line": 563,
           "column": 5,
-          "index": 16687
+          "index": 16770
         }
       },
       "type": "function",
@@ -1038,14 +1038,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 562,
+          "line": 565,
           "column": 4,
-          "index": 16694
+          "index": 16777
         },
         "end": {
-          "line": 587,
+          "line": 590,
           "column": 5,
-          "index": 17538
+          "index": 17621
         }
       },
       "type": "function",
@@ -1565,14 +1565,14 @@
           "*",
           "     * Send the given value to all writeable addresses known to this widget",
           "     *",
-          "     * @param value {var} value to send",
+          "     * @param value {any} value to send",
           "     * @param filter {Function} optional filter function for addresses",
           "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
           "     *          that were sent on the bus. When the encoding of the new value",
           "     *          to send is equal to the currentBusValues a transmission will",
           "     *          be suppressed. The object is a hash with the encoding as a key",
           "     *          for the encoded value",
-          "     * @return the object/hash of encoded values that were sent last time",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
           "     "
         ],
         "@description": [
@@ -1584,7 +1584,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {var} value to send"
+            "body": "value {any} value to send"
           },
           {
             "name": "@param",
@@ -1598,7 +1598,7 @@
         "@return": [
           {
             "name": "@return",
-            "body": "the object/hash of encoded values that were sent last time"
+            "body": "{Object} the object/hash of encoded values that were sent last time"
           }
         ]
       },
@@ -1607,12 +1607,12 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2594
+          "index": 2603
         },
         "end": {
-          "line": 116,
+          "line": 113,
           "column": 5,
-          "index": 4221
+          "index": 4060
         }
       },
       "type": "function",

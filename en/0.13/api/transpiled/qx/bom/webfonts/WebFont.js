@@ -55,7 +55,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         init: false,
         check: "Boolean",
         event: "changeValid",
-        apply: "__P_161_0"
+        apply: "__P_162_0"
       }
     },
     /*
@@ -79,8 +79,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
 
     members: {
-      __P_161_1: null,
-      __P_161_2: null,
+      __P_162_1: null,
+      __P_162_2: null,
       toString: function toString() {
         var fontWeight = this.isBold() ? "bold" : "normal";
         if (this.getWeight() !== null) {
@@ -116,7 +116,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } finally {
           _iterator.f();
         }
-        this.__P_161_2 = qx.Promise.all(promises).then(function (results) {
+        this.__P_162_2 = qx.Promise.all(promises).then(function (results) {
           if (results.length == 0 || results.indexOf(true) > -1) {
             _this.setValid(true);
           } else {
@@ -131,7 +131,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             while (1) switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this2.__P_161_2;
+                return _this2.__P_162_2;
               case 2:
               case "end":
                 return _context.stop();
@@ -139,7 +139,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }, _callee);
         }))();
       },
-      __P_161_0: function __P_161_0(value) {
+      __P_162_0: function __P_162_0(value) {
         this.fireDataEvent("changeStatus", {
           family: this.getFamily(),
           valid: value
@@ -156,4 +156,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.bom.webfonts.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1731948102224
+//# sourceMappingURL=WebFont.js.map?dt=1735222416736

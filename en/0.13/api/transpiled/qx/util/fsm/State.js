@@ -184,10 +184,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         // If we find one of our properties, call its setter.
         switch (field) {
           case "onentry":
-            this.setOnentry(this.__P_744_0(stateInfo[field], context));
+            this.setOnentry(this.__P_745_0(stateInfo[field], context));
             break;
           case "onexit":
-            this.setOnexit(this.__P_744_0(stateInfo[field], context));
+            this.setOnexit(this.__P_745_0(stateInfo[field], context));
             break;
           case "autoActionsBeforeOnentry":
             this.setAutoActionsBeforeOnentry(stateInfo[field]);
@@ -427,7 +427,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * list in a State.
        */
       name: {
-        transform: "__P_744_1",
+        transform: "__P_745_1",
         nullable: true
       },
       /**
@@ -437,7 +437,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * to change this dynamically.
        */
       onentry: {
-        transform: "__P_744_2",
+        transform: "__P_745_2",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -448,7 +448,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * to change this dynamically.
        */
       onexit: {
-        transform: "__P_744_3",
+        transform: "__P_745_3",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -481,7 +481,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *     </pre>
        */
       autoActionsBeforeOnentry: {
-        transform: "__P_744_4",
+        transform: "__P_745_4",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -515,7 +515,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *     </pre>
        */
       autoActionsAfterOnentry: {
-        transform: "__P_744_5",
+        transform: "__P_745_5",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -548,7 +548,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *     </pre>
        */
       autoActionsBeforeOnexit: {
-        transform: "__P_744_6",
+        transform: "__P_745_6",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -582,7 +582,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *     </pre>
        */
       autoActionsAfterOnexit: {
-        transform: "__P_744_7",
+        transform: "__P_745_7",
         nullable: true,
         init: function init(fsm, event) {}
       },
@@ -593,7 +593,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * (but highly NOT recommended) to change this dynamically.
        */
       events: {
-        transform: "__P_744_8",
+        transform: "__P_745_8",
         nullable: true
       }
     },
@@ -605,7 +605,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_744_1: function __P_744_1(value) {
+      __P_745_1: function __P_745_1(value) {
         // Ensure that we got a valid state name
         if (typeof value != "string" || value.length < 1) {
           throw new Error("Invalid state name");
@@ -619,7 +619,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_744_2: function __P_744_2(value) {
+      __P_745_2: function __P_745_2(value) {
         // Validate the onentry function
         switch (_typeof(value)) {
           case "undefined":
@@ -639,7 +639,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_744_3: function __P_744_3(value) {
+      __P_745_3: function __P_745_3(value) {
         // Validate the onexit function
         switch (_typeof(value)) {
           case "undefined":
@@ -659,7 +659,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {var} the final value
        * @throws {Error} when an invalid value is detected
        */
-      __P_744_8: function __P_744_8(value) {
+      __P_745_8: function __P_745_8(value) {
         // Validate that events is an object
         if (_typeof(value) != "object") {
           throw new Error("events must be an object");
@@ -704,7 +704,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_744_4: function __P_744_4(value) {
+      __P_745_4: function __P_745_4(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnentry", value, this.getUserData("context"));
       },
       /**
@@ -713,7 +713,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_744_5: function __P_744_5(value) {
+      __P_745_5: function __P_745_5(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnentry", value, this.getUserData("context"));
       },
       /**
@@ -722,7 +722,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_744_6: function __P_744_6(value) {
+      __P_745_6: function __P_745_6(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsBeforeOnexit", value, this.getUserData("context"));
       },
       /**
@@ -731,7 +731,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param value {var} Current value
        * @return {var} the final value
        */
-      __P_744_7: function __P_744_7(value) {
+      __P_745_7: function __P_745_7(value) {
         return qx.util.fsm.State._commonTransformAutoActions("autoActionsAfterOnexit", value, this.getUserData("context"));
       },
       /**
@@ -748,7 +748,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *   be called in the specified context. Otherwise, f is returned
        *   unaltered.
        */
-      __P_744_0: function __P_744_0(f, context) {
+      __P_745_0: function __P_745_0(f, context) {
         // Is the first parameter a function?
         if (typeof f == "function") {
           // Yup. Bind it to the specified context.
@@ -779,4 +779,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.util.fsm.State.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=State.js.map?dt=1731948144928
+//# sourceMappingURL=State.js.map?dt=1735222452110

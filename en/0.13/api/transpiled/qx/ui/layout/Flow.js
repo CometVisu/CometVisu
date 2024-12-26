@@ -252,7 +252,7 @@
         var lineTop = padding.top;
         while (lineCalculator.hasMoreLines()) {
           var line = lineCalculator.computeNextLine(availWidth);
-          this.__P_597_0(line, lineTop, availWidth, padding);
+          this.__P_598_0(line, lineTop, availWidth, padding);
           lineTop += line.height + this.getSpacingY();
         }
       },
@@ -266,7 +266,7 @@
        * @param padding {Map} Map containing the padding values. Keys:
        * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>
        */
-      __P_597_0: function __P_597_0(line, lineTop, availWidth, padding) {
+      __P_598_0: function __P_598_0(line, lineTop, availWidth, padding) {
         var util = qx.ui.layout.Util;
         var left = padding.left;
         if (this.getAlignX() != "left") {
@@ -291,7 +291,7 @@
       },
       // overridden
       _computeSizeHint: function _computeSizeHint() {
-        return this.__P_597_1(Infinity);
+        return this.__P_598_1(Infinity);
       },
       // overridden
       hasHeightForWidth: function hasHeightForWidth() {
@@ -299,7 +299,7 @@
       },
       // overridden
       getHeightForWidth: function getHeightForWidth(width) {
-        return this.__P_597_1(width).height;
+        return this.__P_598_1(width).height;
       },
       /**
        * Returns the list of children fitting in the last row of the given width.
@@ -320,7 +320,7 @@
        * @param availWidth {Integer} The available width
        * @return {Map} Map containing the preferred height and width of the layout
        */
-      __P_597_1: function __P_597_1(availWidth) {
+      __P_598_1: function __P_598_1(availWidth) {
         var lineCalculator = new qx.ui.layout.LineSizeIterator(this._getLayoutChildren(), this.getSpacingX());
         var height = 0;
         var width = 0;
@@ -341,4 +341,4 @@
   qx.ui.layout.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1731948136950
+//# sourceMappingURL=Flow.js.map?dt=1735222445684

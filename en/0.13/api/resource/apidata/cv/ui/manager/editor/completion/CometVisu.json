@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857571,
-  "lastModifiedIso": "2024-11-18T16:37:37.571Z",
+  "lastModified": 1735222205774,
+  "lastModifiedIso": "2024-12-26T14:10:05.774Z",
   "classFilename": "../../source/class/cv/ui/manager/editor/completion/CometVisu.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 827
     },
     "end": {
-      "line": 219,
+      "line": 253,
       "column": 3,
-      "index": 9276
+      "index": 10542
     }
   },
   "className": "cv.ui.manager.editor.completion.CometVisu",
@@ -75,9 +75,9 @@
           "index": 1239
         },
         "end": {
-          "line": 205,
+          "line": 239,
           "column": 5,
-          "index": 8947
+          "index": 10213
         }
       },
       "type": "function",
@@ -89,14 +89,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 241,
           "column": 4,
-          "index": 8954
+          "index": 10220
         },
         "end": {
-          "line": 217,
+          "line": 251,
           "column": 5,
-          "index": 9268
+          "index": 10534
         }
       },
       "type": "function",

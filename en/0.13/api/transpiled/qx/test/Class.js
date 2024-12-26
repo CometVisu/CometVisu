@@ -304,7 +304,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       testPatchWithConstructor: function testPatchWithConstructor() {
         qx.Mixin.define("qx.MyMixin", {
           construct: function construct() {
-            this.__P_299_0 = "p";
+            this.__P_300_0 = "p";
           },
           properties: {
             property: {
@@ -313,7 +313,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           },
           members: {
             getP: function getP() {
-              return this.__P_299_0;
+              return this.__P_300_0;
             }
           }
         });
@@ -363,7 +363,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       testIncludeWithConstructor: function testIncludeWithConstructor() {
         qx.Mixin.define("qx.MyMixin", {
           construct: function construct() {
-            this.__P_299_0 = "p";
+            this.__P_300_0 = "p";
           },
           properties: {
             property: {
@@ -372,7 +372,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           },
           members: {
             getP: function getP() {
-              return this.__P_299_0;
+              return this.__P_300_0;
             }
           }
         });
@@ -441,4 +441,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.test.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1731948111793
+//# sourceMappingURL=Class.js.map?dt=1735222424945

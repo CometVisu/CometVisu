@@ -127,9 +127,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      */
     construct: function construct(tagName, styles, attributes) {
       qx.html.Node.constructor.call(this, tagName || "div");
-      this.__P_244_0 = styles || null;
-      this.__P_244_1 = attributes || null;
-      this.__P_244_2 = new Map();
+      this.__P_245_0 = styles || null;
+      this.__P_245_1 = attributes || null;
+      this.__P_245_2 = new Map();
       if (attributes) {
         for (var key in attributes) {
           if (!key) {
@@ -174,9 +174,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       /** @type {Array} List of post actions for elements. The key is the action name. The value the {@link qx.html.Element}. */
       _actions: [],
       /**  @type {Map} List of all selections. */
-      __P_244_3: {},
-      __P_244_4: null,
-      __P_244_5: null,
+      __P_245_3: {},
+      __P_245_4: null,
+      __P_245_5: null,
       /*
       ---------------------------------------------------------------------------
         PUBLIC ELEMENT FLUSH
@@ -189,7 +189,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param job {String} The job descriptor. Should always be <code>"element"</code>.
        */
       _scheduleFlush: function _scheduleFlush(job) {
-        qx.html.Element.__P_244_6.schedule();
+        qx.html.Element.__P_245_6.schedule();
       },
       /**
        * Flush the global modified list
@@ -198,21 +198,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var obj;
         {
           // blur elements, which will be removed
-          var focusHandler = this.__P_244_7();
+          var focusHandler = this.__P_245_7();
           var focusedDomElement = focusHandler.getFocus();
-          if (focusedDomElement && this.__P_244_8(focusedDomElement)) {
+          if (focusedDomElement && this.__P_245_8(focusedDomElement)) {
             focusHandler.blur(focusedDomElement);
           }
 
           // deactivate elements, which will be removed
           var activeDomElement = focusHandler.getActive();
-          if (activeDomElement && this.__P_244_8(activeDomElement)) {
+          if (activeDomElement && this.__P_245_8(activeDomElement)) {
             qx.bom.Element.deactivate(activeDomElement);
           }
 
           // release capture for elements, which will be removed
-          var captureDomElement = this.__P_244_9();
-          if (captureDomElement && this.__P_244_8(captureDomElement)) {
+          var captureDomElement = this.__P_245_9();
+          if (captureDomElement && this.__P_245_8(captureDomElement)) {
             qx.bom.Element.releaseCapture(captureDomElement);
           }
         }
@@ -274,36 +274,36 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var done = true;
 
               // ScrollToX
-              if (obj.__P_244_10 != null) {
-                obj._domNode.scrollLeft = obj.__P_244_10;
-                delete obj.__P_244_10;
+              if (obj.__P_245_10 != null) {
+                obj._domNode.scrollLeft = obj.__P_245_10;
+                delete obj.__P_245_10;
               }
 
               // ScrollToY
-              if (obj.__P_244_11 != null) {
-                obj._domNode.scrollTop = obj.__P_244_11;
-                delete obj.__P_244_11;
+              if (obj.__P_245_11 != null) {
+                obj._domNode.scrollTop = obj.__P_245_11;
+                delete obj.__P_245_11;
               }
 
               // ScrollIntoViewX
-              var intoViewX = obj.__P_244_12;
+              var intoViewX = obj.__P_245_12;
               if (intoViewX != null) {
                 var child = intoViewX.element.getDomElement();
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewX(child, elem, intoViewX.align);
-                  delete obj.__P_244_12;
+                  delete obj.__P_245_12;
                 } else {
                   done = false;
                 }
               }
 
               // ScrollIntoViewY
-              var intoViewY = obj.__P_244_13;
+              var intoViewY = obj.__P_245_13;
               if (intoViewY != null) {
                 var child = intoViewY.element.getDomElement();
                 if (child && child.offsetWidth) {
                   qx.bom.element.Scroll.intoViewY(child, elem, intoViewY.align);
-                  delete obj.__P_244_13;
+                  delete obj.__P_245_13;
                 } else {
                   done = false;
                 }
@@ -337,12 +337,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
 
         // Process selection
-        for (var hc in this.__P_244_3) {
-          var selection = this.__P_244_3[hc];
+        for (var hc in this.__P_245_3) {
+          var selection = this.__P_245_3[hc];
           var elem = selection.element._domNode;
           if (elem) {
             qx.bom.Selection.set(elem, selection.start, selection.end);
-            delete this.__P_244_3[hc];
+            delete this.__P_245_3[hc];
           }
         }
 
@@ -354,13 +354,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *
        * @return {qx.event.handler.Focus} The focus handler
        */
-      __P_244_7: function __P_244_7() {
+      __P_245_7: function __P_245_7() {
         {
-          if (!this.__P_244_4) {
+          if (!this.__P_245_4) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__P_244_4 = eventManager.getHandler(qx.event.handler.Focus);
+            this.__P_245_4 = eventManager.getHandler(qx.event.handler.Focus);
           }
-          return this.__P_244_4;
+          return this.__P_245_4;
         }
       },
       /**
@@ -368,13 +368,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *
        * @return {Element} The mouse capture DOM element
        */
-      __P_244_9: function __P_244_9() {
+      __P_245_9: function __P_245_9() {
         {
-          if (!this.__P_244_5) {
+          if (!this.__P_245_5) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__P_244_5 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
+            this.__P_245_5 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
           }
-          return this.__P_244_5.getCaptureElement();
+          return this.__P_245_5.getCaptureElement();
         }
       },
       /**
@@ -383,7 +383,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param domElement {Element} The DOM element to check
        * @return {Boolean} Whether the element will become invisible
        */
-      __P_244_8: function __P_244_8(domElement) {
+      __P_245_8: function __P_245_8(domElement) {
         var element = this.fromDomElement(domElement);
         return element && !element._willBeSeeable();
       },
@@ -463,21 +463,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       */
 
       /** @type {Boolean} Marker for always visible root nodes (often the body node) */
-      __P_244_14: false,
-      __P_244_12: null,
-      __P_244_13: null,
-      __P_244_10: null,
-      __P_244_11: null,
-      __P_244_15: null,
-      __P_244_16: null,
-      __P_244_0: null,
-      __P_244_1: null,
+      __P_245_14: false,
+      __P_245_12: null,
+      __P_245_13: null,
+      __P_245_10: null,
+      __P_245_11: null,
+      __P_245_15: null,
+      __P_245_16: null,
+      __P_245_0: null,
+      __P_245_1: null,
       /**
        * This is a {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map | Map},
        * not a POJO
        * @type {Map<string, qx.html.Slot>}
        */
-      __P_244_2: null,
+      __P_245_2: null,
       /*
        * @Override
        */
@@ -492,9 +492,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         serializer.pushQxObject(this);
 
         // Copy attributes
-        if (this.__P_244_1) {
-          for (var key in this.__P_244_1) {
-            var result = qx.bom.element.Attribute.serialize(key, this.__P_244_1[key]);
+        if (this.__P_245_1) {
+          for (var key in this.__P_245_1) {
+            var result = qx.bom.element.Attribute.serialize(key, this.__P_245_1[key]);
             for (var _key in result) {
               if (_key != "data-qx-object-id") {
                 serializer.setAttribute(_key, result[_key]);
@@ -508,7 +508,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
 
         // Copy styles
-        var data = this.__P_244_0 || {};
+        var data = this.__P_245_0 || {};
         if (!this.isVisible()) {
           data = qx.lang.Object.clone(data);
           data.display = "none";
@@ -572,7 +572,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           throw new Error("Cannot add children to Custom Elements! (use ".concat(this.classname, ".inject and <slot> tags instead)"));
         }
         qx.html.Element.superclass.prototype._addChildImpl.call(this, child);
-        this.__P_244_17 = true;
+        this.__P_245_17 = true;
       },
       /*
        * @Override
@@ -582,7 +582,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           throw new Error("Cannot remove children from Custom Elements!");
         }
         qx.html.Element.superclass.prototype._removeChildImpl.call(this, child);
-        this.__P_244_17 = true;
+        this.__P_245_17 = true;
       },
       /**
        * Works out the object ID to use on an actual DOM node
@@ -613,7 +613,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (!this.getIsCustomElement()) {
           return null;
         }
-        return new Map(this.__P_244_2);
+        return new Map(this.__P_245_2);
       },
       /**
        * Returns whether the element has slot(s) matching the given projection.
@@ -629,13 +629,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       hasSlots: function hasSlots(projection) {
         if (projection === null || projection === undefined) {
-          return this.__P_244_2.size > 0;
+          return this.__P_245_2.size > 0;
         }
         if (projection === true || projection === qx.html.Slot.DEFAULT) {
-          return this.__P_244_2.has(qx.html.Slot.DEFAULT);
+          return this.__P_245_2.has(qx.html.Slot.DEFAULT);
         }
         if (typeof projection === "string") {
-          return this.__P_244_2.has(projection);
+          return this.__P_245_2.has(projection);
         }
         throw new Error("Cannot lookup slot for projection: ".concat(JSON.stringify(projection), " ! (expected: string, true, or null/undefined)"));
       },
@@ -643,7 +643,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * Provides devtime debugging assistance for invalid slot usage.
        * @return {Boolean} `false` if no such slot, `true` otherwise
        */
-      __P_244_18: function __P_244_18(slotName) {
+      __P_245_18: function __P_245_18(slotName) {
         if (!this.hasSlots(slotName)) {
           return false;
         }
@@ -673,15 +673,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       inject: function inject(childNode, slotNameOverride) {
         var _ref, _childNode$getAttribu, _childNode$getAttribu2;
         var slotName = (_ref = (_childNode$getAttribu = (_childNode$getAttribu2 = childNode.getAttribute) === null || _childNode$getAttribu2 === void 0 ? void 0 : _childNode$getAttribu2.call(childNode, "slot")) !== null && _childNode$getAttribu !== void 0 ? _childNode$getAttribu : slotNameOverride) !== null && _ref !== void 0 ? _ref : qx.html.Slot.DEFAULT;
-        if (!this.__P_244_18(slotName)) {
+        if (!this.__P_245_18(slotName)) {
           return;
         }
-        this.__P_244_2.get(slotName).add(childNode);
+        this.__P_245_2.get(slotName).add(childNode);
 
         // Chaining support
         return this;
       },
-      __P_244_19: function __P_244_19(element) {
+      __P_245_19: function __P_245_19(element) {
         var _element$getIsCustomE,
           _element$getChildren,
           _this = this;
@@ -694,17 +694,17 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           slots.push(element);
         }
         (_element$getChildren = element.getChildren()) === null || _element$getChildren === void 0 || _element$getChildren.forEach(function (child) {
-          return slots.push.apply(slots, _toConsumableArray(_this.__P_244_19(child)));
+          return slots.push.apply(slots, _toConsumableArray(_this.__P_245_19(child)));
         });
         return slots;
       },
       _slotScanAdd: function _slotScanAdd(element) {
-        var _iterator = _createForOfIteratorHelper(this.__P_244_19(element)),
+        var _iterator = _createForOfIteratorHelper(this.__P_245_19(element)),
           _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var slot = _step.value;
-            this.__P_244_2.set(slot.getName(), slot);
+            this.__P_245_2.set(slot.getName(), slot);
           }
         } catch (err) {
           _iterator.e(err);
@@ -713,12 +713,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       _slotScanRemove: function _slotScanRemove(child) {
-        var _iterator2 = _createForOfIteratorHelper(this.__P_244_19(child)),
+        var _iterator2 = _createForOfIteratorHelper(this.__P_245_19(child)),
           _step2;
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
             var slot = _step2.value;
-            this.__P_244_2["delete"](slot.getName());
+            this.__P_245_2["delete"](slot.getName());
           }
         } catch (err) {
           _iterator2.e(err);
@@ -744,7 +744,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var elem = this._domNode;
 
         // Copy attributes
-        var data = this.__P_244_1;
+        var data = this.__P_245_1;
         var Attribute = qx.bom.element.Attribute;
         if (data) {
           if (fromMarkup) {
@@ -782,7 +782,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         Attribute.set(elem, "data-qx-object-id", this._getApplicableQxObjectId());
 
         // Copy styles
-        var data = this.__P_244_0;
+        var data = this.__P_245_0;
         if (data) {
           var Style = qx.bom.element.Style;
           if (fromMarkup) {
@@ -820,9 +820,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var Style = qx.bom.element.Style;
 
         // Sync attributes
-        var jobs = this.__P_244_16;
+        var jobs = this.__P_245_16;
         if (jobs) {
-          var data = this.__P_244_1;
+          var data = this.__P_245_1;
           if (data) {
             var value;
             for (var key in jobs) {
@@ -834,13 +834,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
             }
           }
-          this.__P_244_16 = null;
+          this.__P_245_16 = null;
         }
 
         // Sync styles
-        var jobs = this.__P_244_15;
+        var jobs = this.__P_245_15;
         if (jobs) {
-          var data = this.__P_244_0;
+          var data = this.__P_245_0;
           if (data) {
             var styles = {};
             for (var key in jobs) {
@@ -848,7 +848,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             }
             Style.setStyles(elem, styles);
           }
-          this.__P_244_15 = null;
+          this.__P_245_15 = null;
         }
       },
       /*
@@ -862,18 +862,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param root {Boolean} The root flag.
        */
       setRoot: function setRoot(root) {
-        if (root && !this.__P_244_14) {
+        if (root && !this.__P_245_14) {
           qx.html.Element._hasRoots++;
-        } else if (!root && this.__P_244_14) {
+        } else if (!root && this.__P_245_14) {
           qx.html.Element._hasRoots--;
         }
-        this.__P_244_14 = root;
+        this.__P_245_14 = root;
       },
       /*
        * @Override
        */
       isRoot: function isRoot() {
-        return this.__P_244_14;
+        return this.__P_245_14;
       },
       /**
        * Uses existing markup for this element. This is mainly used
@@ -1066,14 +1066,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewX(childEl, thisEl, align);
         } else {
-          this.__P_244_12 = {
+          this.__P_245_12 = {
             element: elem,
             align: align
           };
           qx.html.Element._scroll[this.toHashCode()] = this;
           qx.html.Element._scheduleFlush("element");
         }
-        delete this.__P_244_10;
+        delete this.__P_245_10;
       },
       /**
        * Scrolls the given child element into view. Only scrolls children.
@@ -1096,14 +1096,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (direct !== false && thisEl && thisEl.offsetWidth && childEl && childEl.offsetWidth) {
           qx.bom.element.Scroll.intoViewY(childEl, thisEl, align);
         } else {
-          this.__P_244_13 = {
+          this.__P_245_13 = {
             element: elem,
             align: align
           };
           qx.html.Element._scroll[this.toHashCode()] = this;
           qx.html.Element._scheduleFlush("element");
         }
-        delete this.__P_244_11;
+        delete this.__P_245_11;
       },
       /**
        * Scrolls the element to the given left position.
@@ -1116,13 +1116,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var thisEl = this._domNode;
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollLeft = x;
-          delete this.__P_244_10;
+          delete this.__P_245_10;
         } else {
-          this.__P_244_10 = x;
+          this.__P_245_10 = x;
           qx.html.Element._scroll[this.toHashCode()] = this;
           qx.html.Element._scheduleFlush("element");
         }
-        delete this.__P_244_12;
+        delete this.__P_245_12;
       },
       /**
        * Get the horizontal scroll position.
@@ -1134,7 +1134,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (thisEl) {
           return thisEl.scrollLeft;
         }
-        return this.__P_244_10 || 0;
+        return this.__P_245_10 || 0;
       },
       /**
        * Scrolls the element to the given top position.
@@ -1147,13 +1147,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var thisEl = this._domNode;
         if (lazy !== true && thisEl && thisEl.offsetWidth) {
           thisEl.scrollTop = y;
-          delete this.__P_244_11;
+          delete this.__P_245_11;
         } else {
-          this.__P_244_11 = y;
+          this.__P_245_11 = y;
           qx.html.Element._scroll[this.toHashCode()] = this;
           qx.html.Element._scheduleFlush("element");
         }
-        delete this.__P_244_13;
+        delete this.__P_245_13;
       },
       /**
        * Get the vertical scroll position.
@@ -1165,7 +1165,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (thisEl) {
           return thisEl.scrollTop;
         }
-        return this.__P_244_11 || 0;
+        return this.__P_245_11 || 0;
       },
       /**
        * Disables browser-native scrolling
@@ -1174,26 +1174,26 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         this.enableScrolling();
         this.scrollToX(0);
         this.scrollToY(0);
-        this.addListener("scroll", this.__P_244_20, this);
+        this.addListener("scroll", this.__P_245_20, this);
       },
       /**
        * Re-enables browser-native scrolling
        */
       enableScrolling: function enableScrolling() {
-        this.removeListener("scroll", this.__P_244_20, this);
+        this.removeListener("scroll", this.__P_245_20, this);
       },
-      __P_244_21: null,
+      __P_245_21: null,
       /**
        * Handler for the scroll-event
        *
        * @param e {qx.event.type.Native} scroll-event
        */
-      __P_244_20: function __P_244_20(e) {
-        if (!this.__P_244_21) {
-          this.__P_244_21 = true;
+      __P_245_20: function __P_245_20(e) {
+        if (!this.__P_245_21) {
+          this.__P_245_21 = true;
           this._domNode.scrollTop = 0;
           this._domNode.scrollLeft = 0;
-          delete this.__P_244_21;
+          delete this.__P_245_21;
         }
       },
       /*
@@ -1314,7 +1314,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
 
         // if element not created, save the selection for flushing
-        qx.html.Element.__P_244_3[this.toHashCode()] = {
+        qx.html.Element.__P_245_3[this.toHashCode()] = {
           element: this,
           start: start,
           end: end
@@ -1332,7 +1332,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (el) {
           qx.bom.Selection.clear(el);
         }
-        delete qx.html.Element.__P_244_3[this.toHashCode()];
+        delete qx.html.Element.__P_245_3[this.toHashCode()];
       },
       /*
       ---------------------------------------------------------------------------
@@ -1350,7 +1350,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param action {String} action to queue
        * @param args {Array} optional list of arguments for the action
        */
-      __P_244_22: function __P_244_22(action, args) {
+      __P_245_22: function __P_245_22(action, args) {
         {
           var actions = qx.html.Element._actions;
           actions.push({
@@ -1371,7 +1371,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       focus: function focus() {
         {
-          this.__P_244_22("focus");
+          this.__P_245_22("focus");
         }
       },
       /**
@@ -1382,7 +1382,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       blur: function blur() {
         {
-          this.__P_244_22("blur");
+          this.__P_245_22("blur");
         }
       },
       /**
@@ -1393,7 +1393,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       activate: function activate() {
         {
-          this.__P_244_22("activate");
+          this.__P_245_22("activate");
         }
       },
       /**
@@ -1404,7 +1404,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       deactivate: function deactivate() {
         {
-          this.__P_244_22("deactivate");
+          this.__P_245_22("deactivate");
         }
       },
       /**
@@ -1418,7 +1418,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       capture: function capture(containerCapture) {
         {
-          this.__P_244_22("capture", [containerCapture !== false]);
+          this.__P_245_22("capture", [containerCapture !== false]);
         }
       },
       /**
@@ -1428,7 +1428,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       releaseCapture: function releaseCapture() {
         {
-          this.__P_244_22("releaseCapture");
+          this.__P_245_22("releaseCapture");
         }
       },
       /*
@@ -1446,17 +1446,17 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {qx.html.Element} this object (for chaining support)
        */
       setStyle: function setStyle(key, value, direct) {
-        if (!this.__P_244_0) {
-          this.__P_244_0 = {};
+        if (!this.__P_245_0) {
+          this.__P_245_0 = {};
         }
-        if (this.__P_244_0[key] == value) {
+        if (this.__P_245_0[key] == value) {
           return this;
         }
-        this._applyStyle(key, value, this.__P_244_0[key]);
+        this._applyStyle(key, value, this.__P_245_0[key]);
         if (value == null) {
-          delete this.__P_244_0[key];
+          delete this.__P_245_0[key];
         } else {
-          this.__P_244_0[key] = value;
+          this.__P_245_0[key] = value;
         }
 
         // Uncreated elements simply copy all data
@@ -1470,12 +1470,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
 
           // Dynamically create if needed
-          if (!this.__P_244_15) {
-            this.__P_244_15 = {};
+          if (!this.__P_245_15) {
+            this.__P_245_15 = {};
           }
 
           // Store job info
-          this.__P_244_15[key] = true;
+          this.__P_245_15[key] = true;
 
           // Register modification
           qx.html.Element._modified[this.toHashCode()] = this;
@@ -1508,24 +1508,24 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         // inline calls to "set" because this method is very
         // performance critical!
         var Style = qx.bom.element.Style;
-        if (!this.__P_244_0) {
-          this.__P_244_0 = {};
+        if (!this.__P_245_0) {
+          this.__P_245_0 = {};
         }
         if (this._domNode) {
           // Dynamically create if needed
-          if (!this.__P_244_15) {
-            this.__P_244_15 = {};
+          if (!this.__P_245_15) {
+            this.__P_245_15 = {};
           }
           for (var key in map) {
             var value = map[key];
-            if (this.__P_244_0[key] == value) {
+            if (this.__P_245_0[key] == value) {
               continue;
             }
-            this._applyStyle(key, value, this.__P_244_0[key]);
+            this._applyStyle(key, value, this.__P_245_0[key]);
             if (value == null) {
-              delete this.__P_244_0[key];
+              delete this.__P_245_0[key];
             } else {
-              this.__P_244_0[key] = value;
+              this.__P_245_0[key] = value;
             }
 
             // Omit queuing in direct mode
@@ -1535,7 +1535,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             }
 
             // Store job info
-            this.__P_244_15[key] = true;
+            this.__P_245_15[key] = true;
           }
 
           // Register modification
@@ -1544,14 +1544,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } else {
           for (var key in map) {
             var value = map[key];
-            if (this.__P_244_0[key] == value) {
+            if (this.__P_245_0[key] == value) {
               continue;
             }
-            this._applyStyle(key, value, this.__P_244_0[key]);
+            this._applyStyle(key, value, this.__P_245_0[key]);
             if (value == null) {
-              delete this.__P_244_0[key];
+              delete this.__P_245_0[key];
             } else {
-              this.__P_244_0[key] = value;
+              this.__P_245_0[key] = value;
             }
           }
         }
@@ -1576,7 +1576,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {var} the value of the style attribute
        */
       getStyle: function getStyle(key) {
-        return this.__P_244_0 ? this.__P_244_0[key] : null;
+        return this.__P_245_0 ? this.__P_245_0[key] : null;
       },
       /**
        * Returns a map of all styles. Do not modify the result map!
@@ -1584,14 +1584,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Map} All styles or <code>null</code> when none are configured.
        */
       getAllStyles: function getAllStyles() {
-        return this.__P_244_0 || null;
+        return this.__P_245_0 || null;
       },
       /*
       ---------------------------------------------------------------------------
         CSS CLASS SUPPORT
       ---------------------------------------------------------------------------
       */
-      __P_244_23: function __P_244_23() {
+      __P_245_23: function __P_245_23() {
         var map = {};
         (this.getAttribute("class") || "").split(" ").forEach(function (name) {
           if (name) {
@@ -1600,7 +1600,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         });
         return map;
       },
-      __P_244_24: function __P_244_24(map) {
+      __P_245_24: function __P_245_24(map) {
         var primaryClass = this.getCssClass();
         var arr = [];
         if (primaryClass) {
@@ -1618,7 +1618,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       addClass: function addClass(name) {
         var _this2 = this;
-        var classes = this.__P_244_23();
+        var classes = this.__P_245_23();
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
@@ -1627,7 +1627,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           classes[nameLower] = name;
         });
-        this.setAttribute("class", this.__P_244_24(classes));
+        this.setAttribute("class", this.__P_245_24(classes));
         return this;
       },
       /**
@@ -1638,7 +1638,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       removeClass: function removeClass(name) {
         var _this3 = this;
-        var classes = this.__P_244_23();
+        var classes = this.__P_245_23();
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
@@ -1647,7 +1647,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           delete classes[nameLower];
         });
-        this.setAttribute("class", this.__P_244_24(classes));
+        this.setAttribute("class", this.__P_245_24(classes));
         return this;
       },
       /**
@@ -1661,7 +1661,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * Apply method for cssClass
        */
       _applyCssClass: function _applyCssClass(value, oldValue) {
-        var classes = this.__P_244_23();
+        var classes = this.__P_245_23();
         if (oldValue) {
           oldValue.split(" ").forEach(function (name) {
             return delete classes[name.toLowerCase()];
@@ -1672,7 +1672,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             return classes[name.toLowerCase()] = name;
           });
         }
-        this.setAttribute("class", this.__P_244_24(classes));
+        this.setAttribute("class", this.__P_245_24(classes));
       },
       _applyIsCustomElement: function _applyIsCustomElement(value, oldValue) {
         var _this$getChildren,
@@ -1762,16 +1762,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {qx.html.Element} this object (for chaining support)
        */
       setAttribute: function setAttribute(key, value, direct) {
-        if (!this.__P_244_1) {
-          this.__P_244_1 = {};
+        if (!this.__P_245_1) {
+          this.__P_245_1 = {};
         }
-        if (this.__P_244_1[key] == value) {
+        if (this.__P_245_1[key] == value) {
           return this;
         }
         if (value == null) {
-          delete this.__P_244_1[key];
+          delete this.__P_245_1[key];
         } else {
-          this.__P_244_1[key] = value;
+          this.__P_245_1[key] = value;
         }
         if (key == "data-qx-object-id") {
           throw new Error("Cannot set the data-qx-object-id attribute directly");
@@ -1788,12 +1788,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
 
           // Dynamically create if needed
-          if (!this.__P_244_16) {
-            this.__P_244_16 = {};
+          if (!this.__P_245_16) {
+            this.__P_245_16 = {};
           }
 
           // Store job info
-          this.__P_244_16[key] = true;
+          this.__P_245_16[key] = true;
 
           // Register modification
           qx.html.Element._modified[this.toHashCode()] = this;
@@ -1834,7 +1834,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {var} the value of the attribute
        */
       getAttribute: function getAttribute(key) {
-        return this.__P_244_1 ? this.__P_244_1[key] : null;
+        return this.__P_245_1 ? this.__P_245_1[key] : null;
       }
     },
     /*
@@ -1843,7 +1843,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      *****************************************************************************
      */
     defer: function defer(statics) {
-      statics.__P_244_6 = new qx.util.DeferredCall(statics.flush, statics);
+      statics.__P_245_6 = new qx.util.DeferredCall(statics.flush, statics);
     },
     /*
     *****************************************************************************
@@ -1857,10 +1857,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         delete qx.html.Element._scroll[hash];
       }
       this.setRoot(false);
-      this.__P_244_1 = this.__P_244_0 = this.__P_244_16 = this.__P_244_15 = this.__P_244_12 = this.__P_244_13 = null;
+      this.__P_245_1 = this.__P_245_0 = this.__P_245_16 = this.__P_245_15 = this.__P_245_12 = this.__P_245_13 = null;
     }
   });
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1731948108385
+//# sourceMappingURL=Element.js.map?dt=1735222422163

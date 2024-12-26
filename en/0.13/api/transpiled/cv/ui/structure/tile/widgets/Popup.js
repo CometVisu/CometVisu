@@ -86,8 +86,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           icon.classList.add('ri-close-line');
           this._closeButton.appendChild(icon);
           popup.insertBefore(this._closeButton, popup.firstChild);
-          this._closeButton.addEventListener('click', function () {
-            return _this.close();
+          this._closeButton.addEventListener('click', function (ev) {
+            ev.stopPropagation();
+            _this.close();
           });
         }
         popup.addEventListener('close', function (ev) {
@@ -208,4 +209,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1731948098174
+//# sourceMappingURL=Popup.js.map?dt=1735222413300

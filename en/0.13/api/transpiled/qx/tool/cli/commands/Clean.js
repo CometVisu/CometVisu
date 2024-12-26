@@ -90,14 +90,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 target = _step.value;
                 _context.next = 11;
-                return _this.__P_464_0(path.join(_process.cwd(), target.outputPath));
+                return _this.__P_465_0(path.join(_process.cwd(), target.outputPath));
               case 11:
                 if (!target.deployPath) {
                   _context.next = 14;
                   break;
                 }
                 _context.next = 14;
-                return _this.__P_464_0(path.join(_process.cwd(), target.deployPath));
+                return _this.__P_465_0(path.join(_process.cwd(), target.deployPath));
               case 14:
                 _context.next = 7;
                 break;
@@ -114,7 +114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context.finish(21);
               case 24:
                 _context.next = 26;
-                return _this.__P_464_0(path.join(_process.cwd(), qx.tool.cli.commands.Package.cache_dir));
+                return _this.__P_465_0(path.join(_process.cwd(), qx.tool.cli.commands.Package.cache_dir));
               case 26:
                 _context.next = 28;
                 return _this.checkMigrations();
@@ -125,7 +125,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[5, 18, 21, 24]]);
         }))();
       },
-      __P_464_0: function __P_464_0(pathToRemove) {
+      __P_465_0: function __P_465_0(pathToRemove) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -163,4 +163,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Clean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Clean.js.map?dt=1731948125016
+//# sourceMappingURL=Clean.js.map?dt=1735222435626

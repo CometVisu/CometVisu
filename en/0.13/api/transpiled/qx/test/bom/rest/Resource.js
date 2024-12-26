@@ -68,8 +68,8 @@
         this.injectStub(qx.bom.request, "SimpleXhr", req);
 
         // Remember request for later disposal
-        this.__P_321_0 = this.__P_321_0 || [];
-        this.__P_321_0.push(this.req);
+        this.__P_322_0 = this.__P_322_0 || [];
+        this.__P_322_0.push(this.req);
         return req;
       },
       setUpResource: function setUpResource() {
@@ -83,7 +83,7 @@
       tearDown: function tearDown() {
         this.getSandbox().restore();
         this.res.dispose();
-        this.__P_321_0.forEach(function (req) {
+        this.__P_322_0.forEach(function (req) {
           req.dispose();
         });
       },
@@ -941,4 +941,4 @@
   qx.test.bom.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1731948113379
+//# sourceMappingURL=Resource.js.map?dt=1735222426168

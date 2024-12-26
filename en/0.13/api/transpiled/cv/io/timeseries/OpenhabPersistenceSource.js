@@ -113,7 +113,7 @@
         this.error('invalid chart data response');
         return [];
       },
-      __P_777_0: function __P_777_0(time) {
+      __P_8_0: function __P_8_0(time) {
         if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -128,4 +128,4 @@
   cv.io.timeseries.OpenhabPersistenceSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1731948147701
+//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1735222406190

@@ -127,7 +127,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     construct: function construct(filename) {
       qx.core.Object.constructor.call(this);
       this.__filename = filename;
-      this.__P_480_0 = ["addListener", "addListenerOnce"];
+      this.__P_481_0 = ["addListener", "addListenerOnce"];
     },
     properties: {
       /** Whether to convert functions to arrow functions; careful means only on things like addListener callbacks */
@@ -151,7 +151,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /** @type{String} the filename to work on */
       __filename: null,
       /** @type{} */
-      __P_480_0: null,
+      __P_481_0: null,
       /**
        * Transforms the named file
        */
@@ -169,14 +169,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 babelConfig = {};
                 options = qx.lang.Object.clone(babelConfig.options || {}, true);
                 options.modules = false;
-                plugins = [require("@babel/plugin-syntax-jsx"), _this.__P_480_1()];
+                plugins = [require("@babel/plugin-syntax-jsx"), _this.__P_481_1()];
                 if (_this.getArrowFunctions() != "never") {
-                  plugins.push(_this.__P_480_2());
+                  plugins.push(_this.__P_481_2());
                 }
-                plugins.push(_this.__P_480_3());
-                plugins.push(_this.__P_480_4());
+                plugins.push(_this.__P_481_3());
+                plugins.push(_this.__P_481_4());
                 if (_this.getSingleLineBlocks()) {
-                  plugins.push(_this.__P_480_5());
+                  plugins.push(_this.__P_481_5());
                 }
                 config = {
                   ast: true,
@@ -262,7 +262,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * ```
        * @returns
        */
-      __P_480_1: function __P_480_1() {
+      __P_481_1: function __P_481_1() {
         return {
           visitor: {
             ObjectExpression: function ObjectExpression(path) {
@@ -292,7 +292,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {Babel.Node} argNode
        * @returns
        */
-      __P_480_6: function __P_480_6(argNode) {
+      __P_481_6: function __P_481_6(argNode) {
         var body = argNode.body;
         if (body.body.length == 1 && body.body[0].type == "ReturnStatement") {
           body = body.body[0].argument;
@@ -309,7 +309,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *
        * @returns
        */
-      __P_480_5: function __P_480_5() {
+      __P_481_5: function __P_481_5() {
         function loopStatement(path) {
           if (path.node.body.type == "BlockStatement") {
             return;
@@ -336,11 +336,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Tries to convert functions into arrow functions
        * @returns
        */
-      __P_480_2: function __P_480_2() {
+      __P_481_2: function __P_481_2() {
         var t = this;
         var isTest = this.__filename.indexOf("/test/") > -1;
         var arrowFunctions = this.getArrowFunctions();
-        var knownApiFunctions = this.__P_480_0;
+        var knownApiFunctions = this.__P_481_0;
         return {
           visitor: {
             CallExpression: function CallExpression(path) {
@@ -366,7 +366,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               for (var i = 0; i < path.node.arguments.length; i++) {
                 var argNode = path.node.arguments[i];
                 if (argNode.type == "FunctionExpression") {
-                  path.node.arguments[i] = t.__P_480_6(argNode);
+                  path.node.arguments[i] = t.__P_481_6(argNode);
                 }
               }
             }
@@ -378,8 +378,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * and can be removed
        * @returns
        */
-      __P_480_3: function __P_480_3() {
-        var knownApiFunctions = this.__P_480_0;
+      __P_481_3: function __P_481_3() {
+        var knownApiFunctions = this.__P_481_0;
         return {
           visitor: {
             CallExpression: function CallExpression(path) {
@@ -394,7 +394,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Translates `this.base(arguments...)` into `super`
        * @returns
        */
-      __P_480_4: function __P_480_4() {
+      __P_481_4: function __P_481_4() {
         var methodNameStack = [];
         function peekMethodName() {
           for (var i = methodNameStack.length - 1; i >= 0; i--) {
@@ -438,4 +438,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.Es6ify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Es6ify.js.map?dt=1731948128481
+//# sourceMappingURL=Es6ify.js.map?dt=1735222438584

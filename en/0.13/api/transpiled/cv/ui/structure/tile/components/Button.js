@@ -66,7 +66,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     */
     construct: function construct(element) {
       cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
-      this.__P_76_0 = new Map();
+      this.__P_77_0 = new Map();
     },
     /*
     ***********************************************
@@ -123,12 +123,12 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     */
     members: {
       _writeAddresses: null,
-      __P_76_1: null,
-      __P_76_2: null,
+      __P_77_1: null,
+      __P_77_2: null,
       /**
        * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
        */
-      __P_76_0: null,
+      __P_77_0: null,
       _triggerOnValue: null,
       _parseInt: function _parseInt(val) {
         var intVal = parseInt(val);
@@ -265,7 +265,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       },
       _initProgress: function _initProgress() {
         var element = this._element;
-        this.__P_76_2 = 100 * Math.PI;
+        this.__P_77_2 = 100 * Math.PI;
         var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', '0 0 100 100');
         svg.setAttribute('type', 'circle');
@@ -275,8 +275,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         circle.setAttribute('cx', '50');
         circle.setAttribute('cy', '50');
         circle.setAttribute('stroke-width', '2');
-        circle.setAttribute('stroke-dasharray', this.__P_76_2 + ' ' + this.__P_76_2);
-        circle.setAttribute('stroke-dashoffset', '' + this.__P_76_2);
+        circle.setAttribute('stroke-dasharray', this.__P_77_2 + ' ' + this.__P_77_2);
+        circle.setAttribute('stroke-dashoffset', '' + this.__P_77_2);
         svg.appendChild(circle);
         element.appendChild(svg);
         // make sure that we do not override the progress bar by state appearance
@@ -297,7 +297,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           this._element.setAttribute('value', value || '');
           var mappedValue = value;
           if (this._element.hasAttribute('mapping')) {
-            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__P_76_0);
+            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__P_77_0);
           }
           var target = this._element.querySelector('.value');
           if (target && target.tagName.toLowerCase() === 'cv-icon') {
@@ -311,7 +311,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           }
           var styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
           if (this._element.hasAttribute('styling')) {
-            styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_76_0);
+            styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_77_0);
           }
           this.setStyleClass(styleClass);
         }
@@ -324,9 +324,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
         if (valueElement) {
           if (this._element.hasAttribute('progress-mapping')) {
-            value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__P_76_0);
+            value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__P_77_0);
           }
-          valueElement.setAttribute('stroke-dashoffset', '' + (this.__P_76_2 - value / 100 * this.__P_76_2));
+          valueElement.setAttribute('stroke-dashoffset', '' + (this.__P_77_2 - value / 100 * this.__P_77_2));
         }
       },
       _applyStyleClass: function _applyStyleClass(value, oldValue) {
@@ -339,12 +339,12 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       _applyName: function _applyName(value) {
-        if (!this.__P_76_1) {
-          this.__P_76_1 = document.createElement('label');
-          this.__P_76_1.classList.add('button-label');
-          this._element.appendChild(this.__P_76_1);
+        if (!this.__P_77_1) {
+          this.__P_77_1 = document.createElement('label');
+          this.__P_77_1.classList.add('button-label');
+          this._element.appendChild(this.__P_77_1);
         }
-        this.__P_76_1.textContent = value;
+        this.__P_77_1.textContent = value;
       },
       updateValue: function updateValue(value) {
         var elem = this._element.querySelector('span.value');
@@ -374,10 +374,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         } else if (target === 'progress') {
           this.setProgress(ev.detail.state);
         } else if (target.startsWith('store:')) {
-          this.__P_76_0.set(target.substring(6), ev.detail.state);
+          this.__P_77_0.set(target.substring(6), ev.detail.state);
         } else if (target === 'store') {
           // use targetConfig as store key if available, address as fallback
-          this.__P_76_0.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
+          this.__P_77_0.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
         }
       },
       onClicked: function onClicked(event) {
@@ -495,4 +495,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1731948096213
+//# sourceMappingURL=Button.js.map?dt=1735222411661

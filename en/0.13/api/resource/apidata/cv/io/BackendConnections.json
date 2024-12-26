@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857563,
-  "lastModifiedIso": "2024-11-18T16:37:37.563Z",
+  "lastModified": 1735222205766,
+  "lastModifiedIso": "2024-12-26T14:10:05.766Z",
   "classFilename": "../../source/class/cv/io/BackendConnections.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 876
     },
     "end": {
-      "line": 465,
+      "line": 474,
       "column": 3,
-      "index": 15634
+      "index": 15871
     }
   },
   "className": "cv.io.BackendConnections",
@@ -232,13 +232,13 @@
         "raw": [
           "*",
           "     * Initialize all {@link cv.io.IClient} clients for backend communication,",
-          "     * return the default one (for backwards compability)",
+          "     * return the default one (for backwards compatibility)",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compability)</p>"
+            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compatibility)</p>"
           }
         ]
       },
@@ -247,12 +247,12 @@
         "start": {
           "line": 68,
           "column": 4,
-          "index": 2080
+          "index": 2082
         },
         "end": {
           "line": 139,
           "column": 5,
-          "index": 4662
+          "index": 4666
         }
       },
       "type": "function",
@@ -260,35 +260,95 @@
       "appearsIn": []
     },
     "addBackendClient": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *  Add a backend client.",
+          "     * @param name {string}",
+          "     * @param type {string}",
+          "     * @param backendUrl {string}",
+          "     * @param source {string?}",
+          "     * @return {cv.io.IClient}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a backend client.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {string}",
+            "paramName": "name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "type {string}",
+            "paramName": "type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "backendUrl {string}",
+            "paramName": "backendUrl",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {string?}",
+            "paramName": "source",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.IClient}",
+            "type": "cv.io.IClient",
+            "description": ""
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 141,
+          "line": 149,
           "column": 4,
-          "index": 4669
+          "index": 4871
         },
         "end": {
-          "line": 202,
+          "line": 211,
           "column": 5,
-          "index": 6944
+          "index": 7181
         }
       },
       "type": "function",
       "params": [
         {
-          "name": "name"
+          "name": "name",
+          "type": "string"
         },
         {
-          "name": "type"
+          "name": "type",
+          "type": "string"
         },
         {
-          "name": "backendUrl"
+          "name": "backendUrl",
+          "type": "string"
         },
         {
-          "name": "source"
+          "name": "source",
+          "type": "string",
+          "optional": true
         }
       ],
+      "returnType": {
+        "type": "cv.io.IClient"
+      },
       "appearsIn": []
     },
     "removeClient": {
@@ -296,14 +356,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 204,
+          "line": 213,
           "column": 4,
-          "index": 6951
+          "index": 7188
         },
         "end": {
-          "line": 211,
+          "line": 220,
           "column": 5,
-          "index": 7141
+          "index": 7378
         }
       },
       "type": "function",
@@ -350,14 +410,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 218,
+          "line": 227,
           "column": 4,
-          "index": 7299
+          "index": 7536
         },
         "end": {
-          "line": 220,
+          "line": 229,
           "column": 5,
-          "index": 7395
+          "index": 7632
         }
       },
       "type": "function",
@@ -401,14 +461,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 227,
+          "line": 236,
           "column": 4,
-          "index": 7640
+          "index": 7877
         },
         "end": {
-          "line": 246,
+          "line": 255,
           "column": 5,
-          "index": 8331
+          "index": 8568
         }
       },
       "type": "function",
@@ -426,14 +486,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 257,
           "column": 4,
-          "index": 8338
+          "index": 8575
         },
         "end": {
-          "line": 263,
+          "line": 272,
           "column": 5,
-          "index": 8752
+          "index": 8989
         }
       },
       "type": "function",
@@ -449,14 +509,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 265,
+          "line": 274,
           "column": 4,
-          "index": 8759
+          "index": 8996
         },
         "end": {
-          "line": 267,
+          "line": 276,
           "column": 5,
-          "index": 8808
+          "index": 9045
         }
       },
       "type": "function",
@@ -468,14 +528,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 269,
+          "line": 278,
           "column": 4,
-          "index": 8815
+          "index": 9052
         },
         "end": {
-          "line": 279,
+          "line": 288,
           "column": 5,
-          "index": 9226
+          "index": 9463
         }
       },
       "type": "function",
@@ -499,14 +559,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 284,
+          "line": 293,
           "column": 4,
-          "index": 9291
+          "index": 9528
         },
         "end": {
-          "line": 288,
+          "line": 297,
           "column": 5,
-          "index": 9438
+          "index": 9675
         }
       },
       "type": "function",
@@ -518,14 +578,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 290,
+          "line": 299,
           "column": 4,
-          "index": 9445
+          "index": 9682
         },
         "end": {
-          "line": 300,
+          "line": 309,
           "column": 5,
-          "index": 9898
+          "index": 10135
         }
       },
       "type": "function",
@@ -541,14 +601,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 302,
+          "line": 311,
           "column": 4,
-          "index": 9905
+          "index": 10142
         },
         "end": {
-          "line": 352,
+          "line": 361,
           "column": 5,
-          "index": 11824
+          "index": 12061
         }
       },
       "type": "function",
@@ -560,14 +620,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 354,
+          "line": 363,
           "column": 4,
-          "index": 11831
+          "index": 12068
         },
         "end": {
-          "line": 392,
+          "line": 401,
           "column": 5,
-          "index": 13093
+          "index": 13330
         }
       },
       "type": "function",
@@ -583,14 +643,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 394,
+          "line": 403,
           "column": 4,
-          "index": 13100
+          "index": 13337
         },
         "end": {
-          "line": 400,
+          "line": 409,
           "column": 5,
-          "index": 13310
+          "index": 13547
         }
       },
       "type": "function",
@@ -606,14 +666,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 402,
+          "line": 411,
           "column": 4,
-          "index": 13317
+          "index": 13554
         },
         "end": {
-          "line": 463,
+          "line": 472,
           "column": 5,
-          "index": 15626
+          "index": 15863
         }
       },
       "type": "function",

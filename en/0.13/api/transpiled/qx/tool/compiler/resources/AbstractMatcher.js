@@ -59,7 +59,7 @@
             }
             return elem;
           });
-          this.__P_493_0 = function (filename) {
+          this.__P_494_0 = function (filename) {
             return match.some(function (elem) {
               return filename.endsWith(elem);
             });
@@ -68,18 +68,18 @@
           if (match[0] != ".") {
             match = "." + match;
           }
-          this.__P_493_0 = function (filename) {
+          this.__P_494_0 = function (filename) {
             return filename.endsWith(match);
           };
         } else {
-          this.__P_493_0 = function (filename) {
+          this.__P_494_0 = function (filename) {
             return match.test(filename);
           };
         }
       }
     },
     members: {
-      __P_493_0: null,
+      __P_494_0: null,
       /**
        * Called to determine whether this handler is appropriate for the given filename;
        * default implementation is to check the RegEx passed to the constructor
@@ -88,11 +88,11 @@
        * @param library {qx.tool.compiler.app.Library} the library its in
        */
       matches: function matches(filename, library) {
-        return this.__P_493_0 !== null && this.__P_493_0(filename);
+        return this.__P_494_0 !== null && this.__P_494_0(filename);
       }
     }
   });
   qx.tool.compiler.resources.AbstractMatcher.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractMatcher.js.map?dt=1731948129521
+//# sourceMappingURL=AbstractMatcher.js.map?dt=1735222439554

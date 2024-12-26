@@ -99,14 +99,14 @@
       qx.ui.website.Widget.constructor.call(this, selector, context);
     },
     members: {
-      __P_716_0: null,
-      __P_716_1: null,
-      __P_716_2: null,
-      __P_716_3: null,
-      __P_716_4: null,
-      __P_716_5: null,
+      __P_717_0: null,
+      __P_717_1: null,
+      __P_717_2: null,
+      __P_717_3: null,
+      __P_717_4: null,
+      __P_717_5: null,
       _ie9: false,
-      __P_716_6: false,
+      __P_717_6: false,
       // overridden
       init: function init() {
         if (!qx.ui.website.Carousel.superclass.prototype.init.call(this)) {
@@ -120,13 +120,13 @@
         }
         qxWeb(window).on("resize", this._onResize, this);
         var prefix = this.getCssPrefix();
-        this.__P_716_2 = qxWeb.create("<div>").addClass(prefix + "-container").appendTo(this);
-        this.__P_716_1 = qxWeb.create("<div>").addClass("qx-hbox").setStyle("height", "100%").appendTo(this.__P_716_2);
-        this.__P_716_3 = [];
-        this.__P_716_5 = qxWeb.create("<div>").addClasses([prefix + "-pagination", "qx-hbox", "qx-flex1"]).setStyle("visibility", "excluded").appendTo(this);
+        this.__P_717_2 = qxWeb.create("<div>").addClass(prefix + "-container").appendTo(this);
+        this.__P_717_1 = qxWeb.create("<div>").addClass("qx-hbox").setStyle("height", "100%").appendTo(this.__P_717_2);
+        this.__P_717_3 = [];
+        this.__P_717_5 = qxWeb.create("<div>").addClasses([prefix + "-pagination", "qx-hbox", "qx-flex1"]).setStyle("visibility", "excluded").appendTo(this);
         if (this._ie9) {
-          this.__P_716_1.setStyle("display", "table");
-          this.__P_716_5.setStyle("textAlign", "center");
+          this.__P_717_1.setStyle("display", "table");
+          this.__P_717_5.setStyle("textAlign", "center");
         } else {
           this.on("trackstart", this._onTrackStart, this).on("track", this._onTrack, this).on("trackend", this._onTrackEnd, this);
         }
@@ -151,8 +151,8 @@
        * @param page {qxWeb} The page to be activated
        */
       setActive: function setActive(page) {
-        var old = this.__P_716_0;
-        this.__P_716_0 = page;
+        var old = this.__P_717_0;
+        this.__P_717_0 = page;
         this._update();
         var data = {
           value: page,
@@ -166,7 +166,7 @@
        * @return {qxWeb} The active page
        */
       getActive: function getActive() {
-        return this.__P_716_0;
+        return this.__P_717_0;
       },
       /**
        * Scrolls the carousel to the next page.
@@ -218,11 +218,11 @@
        * @param child {qxWeb} The added child.
        */
       addPage: function addPage(child) {
-        child.addClasses(["qx-flex1", this.getCssPrefix() + "-page"]).appendTo(this.__P_716_1);
-        if (this.find("." + this.getCssPrefix() + "-page").length > this.__P_716_3.length) {
+        child.addClasses(["qx-flex1", this.getCssPrefix() + "-page"]).appendTo(this.__P_717_1);
+        if (this.find("." + this.getCssPrefix() + "-page").length > this.__P_717_3.length) {
           var paginationLabel = this._createPaginationLabel();
-          this.__P_716_3.push(paginationLabel);
-          this.__P_716_5.append(paginationLabel);
+          this.__P_717_3.push(paginationLabel);
+          this.__P_717_5.append(paginationLabel);
         }
         this._updateWidth();
         if (!this.getActive()) {
@@ -237,7 +237,7 @@
 
         // scroll as soon as we have the third page added
         if (this._getPages().length === 3 && !this._ie9) {
-          this.__P_716_2.translate([-this.getWidth() + "px", 0, 0]);
+          this.__P_717_2.translate([-this.getWidth() + "px", 0, 0]);
         }
         this._updatePagination();
       },
@@ -251,8 +251,8 @@
 
         // reset the active page if we don't have any page at all
         if (this._getPages().length == 0) {
-          this.__P_716_5.empty();
-          this.__P_716_3 = [];
+          this.__P_717_5.empty();
+          this.__P_717_3 = [];
           this.setActive(null);
           return;
         }
@@ -265,9 +265,9 @@
           // remove all order properties
           this._setOrder(this._getPages(), 0);
         }
-        this.__P_716_3.splice(child.priorPosition, 1)[0].remove();
-        for (var i = 0; i < this.__P_716_3.length; i++) {
-          this.__P_716_3[i].getChildren(".label").setHtml(i + 1 + "");
+        this.__P_717_3.splice(child.priorPosition, 1)[0].remove();
+        for (var i = 0; i < this.__P_717_3.length; i++) {
+          this.__P_717_3[i].getChildren(".label").setHtml(i + 1 + "");
         }
         this._updatePagination();
       },
@@ -295,9 +295,9 @@
         if (!this._ie9) {
           var direction = this._updateOrder();
           if (direction == "right") {
-            left = this._getPositionLeft() - this.__P_716_2.getWidth();
+            left = this._getPositionLeft() - this.__P_717_2.getWidth();
           } else if (direction == "left") {
-            left = this._getPositionLeft() + this.__P_716_2.getWidth();
+            left = this._getPositionLeft() + this.__P_717_2.getWidth();
           } else if (this._getPages().length >= 3) {
             // back snapping if the order has not changed
             this._translateTo(this.getWidth());
@@ -308,7 +308,7 @@
           }
           if (left !== undefined) {
             // first, translate the old page into view
-            this.__P_716_2.translate([-left + "px", 0, 0]);
+            this.__P_717_2.translate([-left + "px", 0, 0]);
             // animate to the new page
             this._translateTo(this.getWidth());
           }
@@ -377,12 +377,12 @@
 
         // set the initial transition on first appear
         if (this._getPositionLeft() === 0 && this._getPages().length > 2 && !this._ie9) {
-          this.__P_716_2.translate([-this.getWidth() + "px", 0, 0]);
+          this.__P_717_2.translate([-this.getWidth() + "px", 0, 0]);
         }
 
         // set the container width to total width of all pages
         var containerWidth = this.getWidth() * this._getPages().length;
-        this.__P_716_1.setStyle("width", containerWidth + "px");
+        this.__P_717_1.setStyle("width", containerWidth + "px");
         // set the width of all pages to the carousel width
         this._getPages().setStyle("width", this.getWidth() + "px");
         this.setStyle("visibility", "visible");
@@ -392,44 +392,44 @@
        * cancels any running animation.
        */
       _onTrackStart: function _onTrackStart() {
-        if (this.__P_716_6) {
+        if (this.__P_717_6) {
           return;
         }
-        this.__P_716_4 = this._getPositionLeft();
-        this.__P_716_2
+        this.__P_717_4 = this._getPositionLeft();
+        this.__P_717_2
         // stop the current scroll animation
         .stop()
         // correct the scroll position as the stopped animation
         // resets to its initial value
-        .translate([-Math.round(this.__P_716_4) + "px", 0, 0]);
+        .translate([-Math.round(this.__P_717_4) + "px", 0, 0]);
       },
       /**
        * Track handler which updates the scroll position.
        * @param e {Event} The track event.
        */
       _onTrack: function _onTrack(e) {
-        if (this.__P_716_6) {
+        if (this.__P_717_6) {
           return;
         }
         if (e.delta.axis == "x" && this._getPages().length > 2) {
-          this.__P_716_2.translate([-(this.__P_716_4 - e.delta.x) + "px", 0, 0]);
+          this.__P_717_2.translate([-(this.__P_717_4 - e.delta.x) + "px", 0, 0]);
         }
       },
       /**
        * TrackEnd handler for enabling the scroll events.
        */
       _onTrackEnd: function _onTrackEnd() {
-        if (this.__P_716_4 == null || this.__P_716_6) {
+        if (this.__P_717_4 == null || this.__P_717_6) {
           // don't end if we didn't start
           return;
         }
 
         // make sure the trackend handling is done after the swipe handling
         window.setTimeout(function () {
-          if (this._getPages().length < 3 || this.__P_716_2.isPlaying()) {
+          if (this._getPages().length < 3 || this.__P_717_2.isPlaying()) {
             return;
           }
-          this.__P_716_4 = null;
+          this.__P_717_4 = null;
           var width = this.getWidth();
           var pages = this._getPages();
           var oldActive = this.getActive();
@@ -460,7 +460,7 @@
        * @param e {Event} The swipe event.
        */
       _onSwipe: function _onSwipe(e) {
-        if (this.__P_716_6) {
+        if (this.__P_717_6) {
           return;
         }
         var velocity = Math.abs(e.getVelocity());
@@ -485,7 +485,7 @@
        * @param e {Event} The tap event.
        */
       _onPaginationLabelTap: function _onPaginationLabelTap(e) {
-        this.__P_716_3.forEach(function (label, index) {
+        this.__P_717_3.forEach(function (label, index) {
           if (label[0] === e.currentTarget) {
             var pages = this._getPages();
 
@@ -500,14 +500,14 @@
             // set the order to deault dom order
             this._setOrder(pages, 0);
             // get the active page into view
-            this.__P_716_2.translate([-activeIndex * this.getWidth() + "px", 0, 0]);
-            this.__P_716_6 = true;
+            this.__P_717_2.translate([-activeIndex * this.getWidth() + "px", 0, 0]);
+            this.__P_717_6 = true;
             // animate to the desired page
             this._translateTo((activeIndex + distance) * this.getWidth());
-            this.__P_716_2.once("animationEnd", function (page) {
-              this.__P_716_6 = false;
+            this.__P_717_2.once("animationEnd", function (page) {
+              this.__P_717_6 = false;
               // set the viewport back to the default position
-              this.__P_716_2.translate([-this.getWidth() + "px", 0, 0]);
+              this.__P_717_2.translate([-this.getWidth() + "px", 0, 0]);
               this.setActive(page); // this also updates the order
               this._updatePagination();
             }.bind(this, pages.eq(index)));
@@ -521,10 +521,10 @@
        */
       _updatePagination: function _updatePagination() {
         // hide the pagination for one page
-        this._getPages().length < 2 ? this.__P_716_5.setStyle("visibility", "excluded") : this.__P_716_5.setStyle("visibility", "visible");
-        this.__P_716_5.find("." + this.getCssPrefix() + "-pagination-label").removeClass("active");
+        this._getPages().length < 2 ? this.__P_717_5.setStyle("visibility", "excluded") : this.__P_717_5.setStyle("visibility", "visible");
+        this.__P_717_5.find("." + this.getCssPrefix() + "-pagination-label").removeClass("active");
         var pages = this._getPages();
-        this.__P_716_3[pages.indexOf(this.getActive())].addClass("active");
+        this.__P_717_3[pages.indexOf(this.getActive())].addClass("active");
       },
       /**
        * Resize handler. It updates the sizes, snap points and scroll position.
@@ -532,7 +532,7 @@
       _onResize: function _onResize() {
         this._updateWidth();
         if (this._getPages().length > 2) {
-          this.__P_716_2.translate([-this.getWidth() + "px", 0, 0]);
+          this.__P_717_2.translate([-this.getWidth() + "px", 0, 0]);
         }
       },
       /**
@@ -540,7 +540,7 @@
        * @param left {Number} The new left position
        */
       _translateTo: function _translateTo(left) {
-        this.__P_716_2.animate({
+        this.__P_717_2.animate({
           duration: this.getConfig("pageSwitchDuration"),
           keep: 100,
           timing: "ease",
@@ -580,14 +580,14 @@
        * @return {qxWeb} All pages.
        */
       _getPages: function _getPages() {
-        return this.__P_716_1.find("." + this.getCssPrefix() + "-page");
+        return this.__P_717_1.find("." + this.getCssPrefix() + "-page");
       },
       /**
        * Returns the current left position.
        * @return {Number} The position in px.
        */
       _getPositionLeft: function _getPositionLeft() {
-        var containerRect = this.__P_716_2[0].getBoundingClientRect();
+        var containerRect = this.__P_717_2[0].getBoundingClientRect();
         var parentRect = this[0].getBoundingClientRect();
         return -(containerRect.left - parentRect.left);
       },
@@ -607,4 +607,4 @@
   qx.ui.website.Carousel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Carousel.js.map?dt=1731948143489
+//# sourceMappingURL=Carousel.js.map?dt=1735222450922

@@ -74,9 +74,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
     statics: {
       /** @type {RegExp} Regular expressions to split class names */
-      __P_144_0: /\s+/g,
+      __P_145_0: /\s+/g,
       /** @type {RegExp} String trim regular expression. */
-      __P_144_1: /^\s+|\s+$/g,
+      __P_145_1: /^\s+|\s+$/g,
       /**
        * Adds a className to the given element
        * If successfully added the given className will be returned
@@ -122,7 +122,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           var result;
           var old = element.className;
           if (old) {
-            result = old.split(this.__P_144_0);
+            result = old.split(this.__P_145_0);
             for (var i = 0, l = result.length; i < l; i++) {
               keys[result[i]] = true;
             }
@@ -212,7 +212,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         },
         "default": function _default(element, classes) {
           var reg = new RegExp("\\b" + classes.join("\\b|\\b") + "\\b", "g");
-          return element.className = element.className.replace(reg, "").replace(this.__P_144_1, "").replace(this.__P_144_0, " ");
+          return element.className = element.className.replace(reg, "").replace(this.__P_145_1, "").replace(this.__P_145_0, " ");
         }
       }[qx.core.Environment.get("html.classlist") ? "native" : "default"],
       /**
@@ -262,4 +262,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.bom.element.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1731948101378
+//# sourceMappingURL=Class.js.map?dt=1735222416000

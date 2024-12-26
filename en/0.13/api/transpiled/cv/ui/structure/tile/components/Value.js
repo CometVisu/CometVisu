@@ -130,7 +130,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             switch (tagName) {
               case 'cv-icon':
                 if (_this._element.hasAttribute('styling')) {
-                  styleClass = cv.Application.structureController.styleValue(_this._element.getAttribute('styling'), value, _this.__P_87_0);
+                  styleClass = cv.Application.structureController.styleValue(_this._element.getAttribute('styling'), value, _this.__P_88_0);
                 }
                 if (target._instance) {
                   target._instance.setId('' + mappedValue);
@@ -189,4 +189,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1731948097396
+//# sourceMappingURL=Value.js.map?dt=1735222412652

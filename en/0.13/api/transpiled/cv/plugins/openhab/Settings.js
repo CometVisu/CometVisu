@@ -80,8 +80,8 @@
       } else {
         this.getContentElement().setStyle('text-shadow', 'none');
       }
-      this.__P_23_0 = 'org.openhab.cometvisu';
-      this.__P_23_1 = 'ui:cometvisu';
+      this.__P_24_0 = 'org.openhab.cometvisu';
+      this.__P_24_1 = 'ui:cometvisu';
       this._initConfigRestClient();
     },
     /*
@@ -102,14 +102,14 @@
     *****************************************************************************
     */
     members: {
-      __P_23_0: null,
-      __P_23_1: null,
-      __P_23_2: null,
-      __P_23_3: null,
-      __P_23_4: null,
-      __P_23_5: false,
+      __P_24_0: null,
+      __P_24_1: null,
+      __P_24_2: null,
+      __P_24_3: null,
+      __P_24_4: null,
+      __P_24_5: false,
       _store: null,
-      __P_23_6: null,
+      __P_24_6: null,
       _initStore: function _initStore(pid) {
         var _this2 = this;
         var serviceDesc = {
@@ -126,7 +126,7 @@
             url: '/rest/services/' + pid + '/config'
           }
         };
-        var service = this.__P_23_3 = new qx.io.rest.Resource(serviceDesc);
+        var service = this.__P_24_3 = new qx.io.rest.Resource(serviceDesc);
         var client = cv.io.BackendConnections.getClientByType('openhab');
         this._store = new qx.data.store.Rest(service, 'get', {
           configureRequest: function configureRequest(req) {
@@ -151,25 +151,25 @@
         // load data
         service.get();
         this._store.addListenerOnce('changeModel', function () {
-          _this2.__P_23_6 = JSON.parse(qx.util.Serializer.toJson(_this2._store.getModel()));
+          _this2.__P_24_6 = JSON.parse(qx.util.Serializer.toJson(_this2._store.getModel()));
         });
       },
       _saveConfig: function _saveConfig() {
         var data = qx.util.Serializer.toJson(this._store.getModel());
         data = data.replace(/icons_mapping_/g, 'icons.mapping>');
         data = JSON.parse(data.replace('icons_enableMapping', 'icons>enableMapping'));
-        this.__P_23_3.put(null, data);
-        this.__P_23_3.addListenerOnce('putSuccess', this.close, this);
+        this.__P_24_3.put(null, data);
+        this.__P_24_3.addListenerOnce('putSuccess', this.close, this);
       },
       _initConfigRestClient: function _initConfigRestClient() {
         var _this3 = this;
         var description = {
           get: {
             method: 'GET',
-            url: '/rest/config-descriptions/' + this.__P_23_1
+            url: '/rest/config-descriptions/' + this.__P_24_1
           }
         };
-        var config = this.__P_23_2 = new qx.io.rest.Resource(description);
+        var config = this.__P_24_2 = new qx.io.rest.Resource(description);
         var client = cv.io.BackendConnections.getClientByType('openhab');
         config.addListener('getSuccess', function (ev) {
           _this3._createForm(ev.getRequest().getResponse());
@@ -181,7 +181,7 @@
           }
         });
         config.get();
-        this._initStore(this.__P_23_0);
+        this._initStore(this.__P_24_0);
       },
       _createForm: function _createForm(config) {
         if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
@@ -233,8 +233,8 @@
         var items = this.getChildControl('form').getItems();
         Object.getOwnPropertyNames(items).some(function (name) {
           // noinspection EqualityComparisonWithCoercionJS
-          if (this.__P_23_6[name] != items[name].getValue()) {
-            this.debug(name + ' has changed from ' + this.__P_23_6[name] + ' to ' + items[name].getValue());
+          if (this.__P_24_6[name] != items[name].getValue()) {
+            this.debug(name + ' has changed from ' + this.__P_24_6[name] + ' to ' + items[name].getValue());
             modified = true;
             return true;
           }
@@ -281,10 +281,10 @@
     ******************************************************
     */
     destruct: function destruct() {
-      this._disposeObjects("__P_23_2", "__P_23_3", '__root', '_store', '_window');
+      this._disposeObjects("__P_24_2", "__P_24_3", '__root', '_store', '_window');
     }
   });
   cv.plugins.openhab.Settings.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Settings.js.map?dt=1731948091288
+//# sourceMappingURL=Settings.js.map?dt=1735222407456

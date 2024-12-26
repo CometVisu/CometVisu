@@ -45,10 +45,10 @@
     */
     construct: function construct(node, schema) {
       cv.ui.manager.model.schema.Base.constructor.call(this, node, schema);
-      this.__P_50_0 = [];
-      this.__P_50_1 = [];
-      this.__P_50_2 = {};
-      this.__P_50_3 = [];
+      this.__P_51_0 = [];
+      this.__P_51_1 = [];
+      this.__P_51_2 = {};
+      this.__P_51_3 = [];
       this.parse();
     },
     /*
@@ -80,21 +80,21 @@
     ***********************************************
     */
     members: {
-      __P_50_1: null,
-      __P_50_0: null,
-      __P_50_3: null,
-      __P_50_2: null,
+      __P_51_1: null,
+      __P_51_0: null,
+      __P_51_3: null,
+      __P_51_2: null,
       parse: function parse() {
         var node = this.getNode();
         this.setOptional(node.getAttribute('use') === 'required');
-        this.__P_50_4(node);
+        this.__P_51_4(node);
       },
       /**
        * parse a node, find it's data (restrictions, extensions, bases ... whatever)
        *
        * @param   node    DOMNode the node to parse
        */
-      __P_50_4: function __P_50_4(node) {
+      __P_51_4: function __P_51_4(node) {
         var _this = this;
         var schema = this.getSchema();
         if (node.hasAttribute('ref')) {
@@ -111,7 +111,7 @@
           if (!baseType.match(/^xsd:/)) {
             // if it's not an xsd-default-basetype, we need to find out what it is
             var subnode = schema.getReferencedNode('simpleType', baseType);
-            this.__P_50_4(subnode);
+            this.__P_51_4(subnode);
           } else {
             this.setBaseType(baseType);
           }
@@ -125,21 +125,21 @@
           if (!baseType.match(/^xsd:/)) {
             // don't dive in for default-types, they simply can not be found
             var _subnode = schema.getReferencedNode('simpleType', baseType);
-            _this.__P_50_4(_subnode);
+            _this.__P_51_4(_subnode);
           } else {
             _this.setBaseType(baseType);
           }
           Array.from(subNode.querySelectorAll(':scope > pattern')).forEach(function (patternNode) {
-            _this.__P_50_1.push(patternNode.getAttribute('value'));
+            _this.__P_51_1.push(patternNode.getAttribute('value'));
           });
           Array.from(subNode.querySelectorAll(':scope > enumeration')).forEach(function (enumerationNode) {
-            _this.__P_50_0.push(enumerationNode.getAttribute('value'));
+            _this.__P_51_0.push(enumerationNode.getAttribute('value'));
           });
         });
         if (!this.getBaseType()) {
           this.setBaseType('xsd:anyType');
         }
-        this.__P_50_3.push(this.getBaseType());
+        this.__P_51_3.push(this.getBaseType());
       },
       /**
        * check if a given value is valid for this type
@@ -208,18 +208,18 @@
         }
 
         // check if the value is in our list of valid values, if there is such a list
-        if (this.__P_50_0.length > 0) {
-          if (!this.__P_50_0.includes(value)) {
+        if (this.__P_51_0.length > 0) {
+          if (!this.__P_51_0.includes(value)) {
             return false;
           }
         }
 
         // check if the value matches any given pattern
-        if (this.__P_50_1.length > 0) {
+        if (this.__P_51_1.length > 0) {
           // start with assuming it's valid
           var boolValid = true;
-          this.__P_50_1.forEach(function (item) {
-            if (!Object.prototype.hasOwnProperty.call(_this2.__P_50_2, item)) {
+          this.__P_51_1.forEach(function (item) {
+            if (!Object.prototype.hasOwnProperty.call(_this2.__P_51_2, item)) {
               // create a regex from the pattern; mind ^ an $ - XSD has them implicitly (XSD Datatypes, Appendix G)
               // so for our purpose, we need to add them for every branch (that is not inside [])
               var branchIndices = [];
@@ -255,9 +255,9 @@
               var branches = branchIndices.map(function (entry) {
                 return "^".concat(item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2'), "$");
               });
-              _this2.__P_50_2[item] = _this2.regexFromString(branches.join('|'));
+              _this2.__P_51_2[item] = _this2.regexFromString(branches.join('|'));
             }
-            if (_this2.__P_50_2[item].test(value) === false) {
+            if (_this2.__P_51_2[item].test(value) === false) {
               // regular expression did not match
               // bad bad value!
               boolValid = false;
@@ -283,7 +283,7 @@
           // special handling for boolean, as we KNOW it to be an enumeration
           return ['true', 'false'];
         }
-        return this.__P_50_0;
+        return this.__P_51_0;
       }
     },
     /*
@@ -292,10 +292,10 @@
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_50_2 = null;
+      this.__P_51_2 = null;
     }
   });
   cv.ui.manager.model.schema.SimpleType.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleType.js.map?dt=1731948094204
+//# sourceMappingURL=SimpleType.js.map?dt=1735222409953

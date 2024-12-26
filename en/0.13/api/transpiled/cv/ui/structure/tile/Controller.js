@@ -131,7 +131,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_72_0 = '';
+      this.__P_73_0 = '';
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/tile-globals.scss').replace('.scss', '.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
       qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
     },
@@ -143,20 +143,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     statics: {
       // prefix for all custom components uses/provided by this structure
       PREFIX: 'cv-',
-      __P_72_1: {},
-      __P_72_2: {},
+      __P_73_1: {},
+      __P_73_2: {},
       MAPPING_PARAM_REGEX: /^(.+)\(([^)]+)\)$/,
       register: function register(webComponentName, qxClass) {
-        this.__P_72_1[webComponentName] = qxClass;
+        this.__P_73_1[webComponentName] = qxClass;
       },
       onComponentCreated: function onComponentCreated(element) {
         var name = element.tagName.toLowerCase();
         if (Object.prototype.hasOwnProperty.call(this, name)) {
-          var QxClass = this.__P_72_1[name];
+          var QxClass = this.__P_73_1[name];
           if (!Object.prototype.hasOwnProperty.call(this, name)) {
-            this.__P_72_2[name] = [];
+            this.__P_73_2[name] = [];
           }
-          this.__P_72_2[name].push(new QxClass(element));
+          this.__P_73_2[name].push(new QxClass(element));
         } else {
           qx.log.Logger.error(this, 'no QxClass registered for custom element ' + name);
         }
@@ -194,18 +194,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      __P_72_0: null,
-      __P_72_3: null,
-      __P_72_4: null,
+      __P_73_0: null,
+      __P_73_3: null,
+      __P_73_4: null,
       _templateWidgets: null,
       getHtmlStructure: function getHtmlStructure() {
-        return this.__P_72_0;
+        return this.__P_73_0;
       },
       supports: function supports(feature, subfeature) {
         return false;
       },
       initLayout: function initLayout() {},
-      __P_72_5: function __P_72_5() {
+      __P_73_5: function __P_73_5() {
         // open first page
         if (!document.location.hash) {
           this.scrollToPage(this.getInitialPageId());
@@ -327,7 +327,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             _this.observeVisibility();
             qx.event.message.Bus.dispatchByName('setup.dom.append');
             _this.debug('pages created');
-            _this.__P_72_5();
+            _this.__P_73_5();
             _this.debug('setup.dom.finished');
             qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
             cv.TemplateEngine.getInstance().setDomFinished(true);
@@ -578,14 +578,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param mapping {cv.ui.structure.tile.elements.Mapping}
        */
       addMapping: function addMapping(name, mapping) {
-        if (!this.__P_72_3) {
-          this.__P_72_3 = {};
+        if (!this.__P_73_3) {
+          this.__P_73_3 = {};
         }
-        this.__P_72_3[name] = mapping;
+        this.__P_73_3[name] = mapping;
       },
       removeMapping: function removeMapping(name) {
-        if (this.__P_72_3) {
-          delete this.__P_72_3[name];
+        if (this.__P_73_3) {
+          delete this.__P_73_3[name];
         }
       },
       mapValue: function mapValue(mappingName, value, store) {
@@ -600,8 +600,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           mappingName = match[1];
         }
-        if (this.__P_72_3 && Object.prototype.hasOwnProperty.call(this.__P_72_3, mappingName)) {
-          return this.__P_72_3[mappingName].mapValue(value, store, params);
+        if (this.__P_73_3 && Object.prototype.hasOwnProperty.call(this.__P_73_3, mappingName)) {
+          return this.__P_73_3[mappingName].mapValue(value, store, params);
         }
         return value;
       },
@@ -610,19 +610,19 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param styling {cv.ui.structure.tile.elements.Styling}
        */
       addStyling: function addStyling(name, styling) {
-        if (!this.__P_72_4) {
-          this.__P_72_4 = {};
+        if (!this.__P_73_4) {
+          this.__P_73_4 = {};
         }
-        this.__P_72_4[name] = styling;
+        this.__P_73_4[name] = styling;
       },
       removeStyling: function removeStyling(name) {
-        if (this.__P_72_4) {
-          delete this.__P_72_4[name];
+        if (this.__P_73_4) {
+          delete this.__P_73_4[name];
         }
       },
       styleValue: function styleValue(stylingName, value, store) {
-        if (this.__P_72_4 && Object.prototype.hasOwnProperty.call(this.__P_72_4, stylingName)) {
-          return this.__P_72_4[stylingName].mapValue(value, store);
+        if (this.__P_73_4 && Object.prototype.hasOwnProperty.call(this.__P_73_4, stylingName)) {
+          return this.__P_73_4[stylingName].mapValue(value, store);
         }
         return '';
       },
@@ -1038,4 +1038,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1731948095901
+//# sourceMappingURL=Controller.js.map?dt=1735222411446

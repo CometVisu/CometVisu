@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857323,
-  "lastModifiedIso": "2024-11-18T16:37:37.323Z",
+  "lastModified": 1735222205526,
+  "lastModifiedIso": "2024-12-26T14:10:05.526Z",
   "classFilename": "../../client/source/class/cv/io/IClient.js",
   "type": "interface",
   "location": {
@@ -11,7 +11,7 @@
       "index": 58
     },
     "end": {
-      "line": 216,
+      "line": 217,
       "column": 3,
       "index": 6144
     }
@@ -983,23 +983,23 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle",
-          "     * @param data {var}",
+          "     * For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle",
+          "     * @param data {any}",
           "     * @param config {{scaling: number, offset: number}}",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle</p>"
+            "body": "<p>For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "data {var}",
+            "body": "data {any}",
             "paramName": "data",
-            "type": "var"
+            "type": "any"
           },
           {
             "name": "@param",
@@ -1015,19 +1015,19 @@
         "start": {
           "line": 166,
           "column": 4,
-          "index": 4744
+          "index": 4743
         },
         "end": {
           "line": 166,
           "column": 38,
-          "index": 4778
+          "index": 4777
         }
       },
       "type": "function",
       "params": [
         {
           "name": "data",
-          "type": "var"
+          "type": "any"
         },
         {
           "name": "config",
@@ -1082,12 +1082,12 @@
         "start": {
           "line": 175,
           "column": 4,
-          "index": 5016
+          "index": 5015
         },
         "end": {
           "line": 175,
           "column": 37,
-          "index": 5049
+          "index": 5048
         }
       },
       "type": "function",
@@ -1136,12 +1136,12 @@
         "start": {
           "line": 182,
           "column": 4,
-          "index": 5229
+          "index": 5228
         },
         "end": {
           "line": 182,
           "column": 21,
-          "index": 5246
+          "index": 5245
         }
       },
       "type": "function",
@@ -1179,12 +1179,12 @@
         "start": {
           "line": 188,
           "column": 4,
-          "index": 5318
+          "index": 5317
         },
         "end": {
           "line": 188,
           "column": 20,
-          "index": 5334
+          "index": 5333
         }
       },
       "type": "function",
@@ -1214,12 +1214,12 @@
         "start": {
           "line": 193,
           "column": 4,
-          "index": 5448
+          "index": 5447
         },
         "end": {
           "line": 193,
           "column": 18,
-          "index": 5462
+          "index": 5461
         }
       },
       "type": "function",
@@ -1253,12 +1253,12 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 199,
+          "line": 200,
           "column": 4,
           "index": 5653
         },
         "end": {
-          "line": 199,
+          "line": 200,
           "column": 19,
           "index": 5668
         }
@@ -1306,12 +1306,12 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 206,
+          "line": 207,
           "column": 4,
           "index": 5855
         },
         "end": {
-          "line": 206,
+          "line": 207,
           "column": 25,
           "index": 5876
         }
@@ -1371,12 +1371,12 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 214,
+          "line": 215,
           "column": 4,
           "index": 6103
         },
         "end": {
-          "line": 214,
+          "line": 215,
           "column": 37,
           "index": 6136
         }

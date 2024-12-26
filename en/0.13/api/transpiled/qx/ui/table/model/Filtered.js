@@ -92,7 +92,7 @@
     extend: qx.ui.table.model.Simple,
     construct: function construct() {
       qx.ui.table.model.Simple.constructor.call(this);
-      this.__P_674_0 = {
+      this.__P_675_0 = {
         "==": "numeric",
         "!=": "numeric",
         ">": "numeric",
@@ -102,19 +102,19 @@
         between: "between",
         "!between": "between"
       };
-      this.__P_674_1 = false;
+      this.__P_675_1 = false;
       this.Filters = [];
     },
     members: {
-      __P_674_2: null,
-      __P_674_1: null,
-      __P_674_0: null,
+      __P_675_2: null,
+      __P_675_1: null,
+      __P_675_0: null,
       /**
        * Function to get the full array of the filtered model
        * @return {Array} the full array of model (with no changes)
        */
       getFullArray: function getFullArray() {
-        return this.__P_674_2;
+        return this.__P_675_2;
       },
       /**
        * Whether the given string (needle) is in the array (haystack)
@@ -154,7 +154,7 @@
        * is null.
        */
       addBetweenFilter: function addBetweenFilter(filter, value1, value2, target) {
-        if (this.__P_674_0[filter] === "between" && target != null) {
+        if (this.__P_675_0[filter] === "between" && target != null) {
           if (value1 != null && value2 != null) {
             var temp = [filter, value1, value2, target];
           }
@@ -184,7 +184,7 @@
        */
       addNumericFilter: function addNumericFilter(filter, value1, target) {
         var temp = null;
-        if (this.__P_674_0[filter] === "numeric" && target != null) {
+        if (this.__P_675_0[filter] === "numeric" && target != null) {
           if (value1 != null) {
             temp = [filter, value1, target];
           }
@@ -272,7 +272,7 @@
         for (var row = 0; row < rowLength; row++) {
           filter_test = false;
           for (i in this.Filters) {
-            if (this.__P_674_0[this.Filters[i][0]] === "numeric") {
+            if (this.__P_675_0[this.Filters[i][0]] === "numeric") {
               compareValue = this.getValueById(this.Filters[i][2], row);
               switch (this.Filters[i][0]) {
                 case "==":
@@ -306,7 +306,7 @@
                   }
                   break;
               }
-            } else if (this.__P_674_0[this.Filters[i][0]] === "between") {
+            } else if (this.__P_675_0[this.Filters[i][0]] === "between") {
               compareValue = this.getValueById(this.Filters[i][3], row);
               switch (this.Filters[i][0]) {
                 case "between":
@@ -339,9 +339,9 @@
             rowsToHide.push(row);
           }
         }
-        if (!this.__P_674_1) {
-          this.__P_674_2 = rowArr.slice(0);
-          this.__P_674_1 = true;
+        if (!this.__P_675_1) {
+          this.__P_675_2 = rowArr.slice(0);
+          this.__P_675_1 = true;
         }
         rowArr = rowArr.filter(function (row, index) {
           return !rowsToHide.includes(index);
@@ -373,9 +373,9 @@
       hideRows: function hideRows(rowNum, numOfRows, dispatchEvent) {
         var rowArr = this.getData();
         dispatchEvent = dispatchEvent != null ? dispatchEvent : true;
-        if (!this.__P_674_1) {
-          this.__P_674_2 = rowArr.slice(0);
-          this.__P_674_1 = true;
+        if (!this.__P_675_1) {
+          this.__P_675_2 = rowArr.slice(0);
+          this.__P_675_1 = true;
         }
         if (numOfRows == null || numOfRows < 1) {
           numOfRows = 1;
@@ -402,25 +402,25 @@
        *
        */
       resetHiddenRows: function resetHiddenRows() {
-        if (!this.__P_674_2) {
+        if (!this.__P_675_2) {
           // nothing to reset
           return;
         }
         this.Filters = [];
-        this.setData(qx.lang.Array.clone(this.__P_674_2));
+        this.setData(qx.lang.Array.clone(this.__P_675_2));
       },
       // overridden
       setData: function setData(rowArr, clearSorting) {
-        this.__P_674_2 = qx.lang.Array.clone(rowArr);
+        this.__P_675_2 = qx.lang.Array.clone(rowArr);
         this.Filters = [];
         qx.ui.table.model.Filtered.superclass.prototype.setData.call(this, rowArr, clearSorting);
       }
     },
     destruct: function destruct() {
-      this.__P_674_2 = this.__P_674_0 = this.Filters = null;
+      this.__P_675_2 = this.__P_675_0 = this.Filters = null;
     }
   });
   qx.ui.table.model.Filtered.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Filtered.js.map?dt=1731948140973
+//# sourceMappingURL=Filtered.js.map?dt=1735222448885

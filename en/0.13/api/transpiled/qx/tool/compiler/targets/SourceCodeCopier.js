@@ -63,37 +63,37 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       qx.core.Object.constructor.call(this);
       var pos = outputFilename.lastIndexOf(".");
       var basename = outputFilename.substring(0, pos);
-      this.__P_498_0 = basename + "-tmp.js";
-      this.__P_498_1 = basename + ".js";
-      this.__P_498_2 = basename + ".js.map";
-      this.__P_498_3 = fs.createWriteStream(this.__P_498_0);
-      this.__P_498_4 = crypto.createHash("sha256");
-      this.__P_498_4.setEncoding("hex");
-      this.__P_498_5 = new sourceMap.SourceMapGenerator({
-        file: this.__P_498_2
+      this.__P_499_0 = basename + "-tmp.js";
+      this.__P_499_1 = basename + ".js";
+      this.__P_499_2 = basename + ".js.map";
+      this.__P_499_3 = fs.createWriteStream(this.__P_499_0);
+      this.__P_499_4 = crypto.createHash("sha256");
+      this.__P_499_4.setEncoding("hex");
+      this.__P_499_5 = new sourceMap.SourceMapGenerator({
+        file: this.__P_499_2
       });
-      this.__P_498_6 = 0;
+      this.__P_499_6 = 0;
     },
     members: {
       /** {String} Output filename for combined javascript */
-      __P_498_1: null,
+      __P_499_1: null,
       /** {String} output filename for temporary code */
-      __P_498_0: null,
+      __P_499_0: null,
       /** {String} output filename for the combined sourcemap */
-      __P_498_2: null,
+      __P_499_2: null,
       /** {String} write stream for javascript */
-      __P_498_3: null,
+      __P_499_3: null,
       /** {crypto.createHash} hash accumulator for combined javascript */
-      __P_498_4: null,
+      __P_499_4: null,
       /** {String} hash value for existing combined javascript */
-      __P_498_7: null,
-      __P_498_5: null,
-      __P_498_6: null,
+      __P_499_7: null,
+      __P_499_5: null,
+      __P_499_6: null,
       /**
        * Returns the file the code is copied to
        */
       getOutputFilename: function getOutputFilename() {
-        return this.__P_498_1;
+        return this.__P_499_1;
       },
       /**
        * Opens the output
@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             while (1) switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return qx.tool.utils.files.Utils.safeStat(_this.__P_498_1);
+                return qx.tool.utils.files.Utils.safeStat(_this.__P_499_1);
               case 2:
                 stat = _context.sent;
                 if (!stat) {
@@ -116,11 +116,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 hash = crypto.createHash("sha256");
                 hash.setEncoding("hex");
                 _context.next = 8;
-                return fs.readFileAsync(_this.__P_498_1, "utf8");
+                return fs.readFileAsync(_this.__P_499_1, "utf8");
               case 8:
                 data = _context.sent;
                 hash.write(data);
-                _this.__P_498_7 = _this.__P_498_4.read();
+                _this.__P_499_7 = _this.__P_499_4.read();
               case 11:
               case "end":
                 return _context.stop();
@@ -132,9 +132,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Helper method to write output
        * @param str {String} data to write
        */
-      __P_498_8: function __P_498_8(str) {
-        this.__P_498_4.write(str);
-        this.__P_498_3.write(str);
+      __P_499_8: function __P_499_8(str) {
+        this.__P_499_4.write(str);
+        this.__P_499_3.write(str);
       },
       /**
        * Adds a source file to the output
@@ -157,7 +157,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 data = _context2.sent;
                 data = data.replace(/\/\/[@#]\ssourceMappingURL[^\r\n]*/g, "//");
                 data += "\n";
-                _this2.__P_498_8(data);
+                _this2.__P_499_8(data);
                 for (i = 0; i < data.length; i++) {
                   if (data[i] === "\n") {
                     numLines++;
@@ -180,7 +180,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 map.eachMapping(function (mapping) {
                   mapping = {
                     generated: {
-                      line: mapping.generatedLine + _this2.__P_498_6,
+                      line: mapping.generatedLine + _this2.__P_499_6,
                       column: mapping.generatedColumn
                     },
                     original: {
@@ -189,13 +189,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     },
                     source: source
                   };
-                  _this2.__P_498_5.addMapping(mapping);
+                  _this2.__P_499_5.addMapping(mapping);
                 });
                 map.sources.forEach(function (origSource) {
-                  return _this2.__P_498_5.setSourceContent(source, map.sourceContentFor(origSource));
+                  return _this2.__P_499_5.setSourceContent(source, map.sourceContentFor(origSource));
                 });
               case 20:
-                _this2.__P_498_6 += numLines;
+                _this2.__P_499_6 += numLines;
               case 21:
               case "end":
                 return _context2.stop();
@@ -213,24 +213,24 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.__P_498_8("\n//# sourceMappingURL=" + path.basename(_this3.__P_498_2) + "\n");
-                _this3.__P_498_3.end();
-                _this3.__P_498_4.end();
-                hashValue = _this3.__P_498_4.read();
-                if (!(!_this3.__P_498_7 || hashValue !== _this3.__P_498_7)) {
+                _this3.__P_499_8("\n//# sourceMappingURL=" + path.basename(_this3.__P_499_2) + "\n");
+                _this3.__P_499_3.end();
+                _this3.__P_499_4.end();
+                hashValue = _this3.__P_499_4.read();
+                if (!(!_this3.__P_499_7 || hashValue !== _this3.__P_499_7)) {
                   _context3.next = 10;
                   break;
                 }
                 _context3.next = 7;
-                return fs.renameAsync(_this3.__P_498_0, _this3.__P_498_1);
+                return fs.renameAsync(_this3.__P_499_0, _this3.__P_499_1);
               case 7:
                 _context3.next = 9;
-                return fs.writeFileAsync(_this3.__P_498_2, JSON.stringify(JSON.parse(_this3.__P_498_5.toString()), null, 2), "utf8");
+                return fs.writeFileAsync(_this3.__P_499_2, JSON.stringify(JSON.parse(_this3.__P_499_5.toString()), null, 2), "utf8");
               case 9:
                 return _context3.abrupt("return", true);
               case 10:
                 _context3.next = 12;
-                return fs.unlinkAsync(_this3.__P_498_0);
+                return fs.unlinkAsync(_this3.__P_499_0);
               case 12:
                 return _context3.abrupt("return", false);
               case 13:
@@ -245,4 +245,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.SourceCodeCopier.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SourceCodeCopier.js.map?dt=1731948130352
+//# sourceMappingURL=SourceCodeCopier.js.map?dt=1735222440170

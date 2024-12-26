@@ -261,7 +261,7 @@
         this._handleLabel();
         this._handleIcon();
       },
-      __P_523_0: function __P_523_0(value, propertyName) {
+      __P_524_0: function __P_524_0(value, propertyName) {
         var layout = this._getLayout();
         var propertySetter = "set".concat(qx.lang.String.firstUp(propertyName));
         if (layout[propertySetter]) {
@@ -270,15 +270,15 @@
       },
       // property apply
       _applyGap: function _applyGap(value) {
-        this.__P_523_0(value, "gap");
+        this.__P_524_0(value, "gap");
       },
       // property apply
       _applyIconPosition: function _applyIconPosition(value) {
-        this.__P_523_0(value, "iconPosition");
+        this.__P_524_0(value, "iconPosition");
       },
       // property apply
       _applyCenter: function _applyCenter(value) {
-        this.__P_523_0(value, "center");
+        this.__P_524_0(value, "center");
       },
       // overridden
       _applySelectable: function _applySelectable(value, old) {
@@ -293,4 +293,4 @@
   qx.ui.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1731948133087
+//# sourceMappingURL=Atom.js.map?dt=1735222442481

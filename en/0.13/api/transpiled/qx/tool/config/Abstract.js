@@ -175,7 +175,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       /**
        * The json-schema object
        */
-      __P_510_0: null,
+      __P_511_0: null,
       /**
        * Validates the given data against the schema that the model has been
        * initialized with. Throws if not valid.
@@ -186,11 +186,11 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         if (!this.isValidate() || this.getVersion() === null) {
           return;
         }
-        if (!this.__P_510_0) {
+        if (!this.__P_511_0) {
           throw new Error("Cannot validate - no schema available! Please load the model first.");
         }
         try {
-          qx.tool.utils.Json.validate(data, this.__P_510_0);
+          qx.tool.utils.Json.validate(data, this.__P_511_0);
         } catch (e) {
           var msg = "Error validating data for ".concat(this.getRelativeDataPath(), ": ").concat(e.message);
           if (this.isWarnOnly()) {
@@ -244,7 +244,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @return {Object}
        */
       getSchema: function getSchema() {
-        return this.__P_510_0;
+        return this.__P_511_0;
       },
       /**
        * Returns true if the config file exists, false if not
@@ -383,7 +383,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                   }
                 }
                 // load schema
-                if (_this2.__P_510_0) {
+                if (_this2.__P_511_0) {
                   _context2.next = 49;
                   break;
                 }
@@ -400,7 +400,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
                 _context2.next = 48;
                 return qx.tool.utils.Json.loadJsonAsync(s);
               case 48:
-                _this2.__P_510_0 = _context2.sent;
+                _this2.__P_511_0 = _context2.sent;
               case 49:
                 // validate and save
                 _this2.setData(data);
@@ -554,4 +554,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.tool.config.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1731948131471
+//# sourceMappingURL=Abstract.js.map?dt=1735222441113

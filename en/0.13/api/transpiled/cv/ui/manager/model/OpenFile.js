@@ -104,12 +104,12 @@
     ***********************************************
     */
     members: {
-      __P_44_0: null,
+      __P_45_0: null,
       _applyFile: function _applyFile(value, old) {
         if (old) {
           old.removeListener('changeModified', this._maintainPermanent, this);
           old.removeRelatedBindings(this);
-          this.__P_44_0 = null;
+          this.__P_45_0 = null;
         }
         if (value) {
           value.addListener('changeModified', this._maintainPermanent, this);
@@ -123,12 +123,12 @@
           var handlerClass = qx.Class.getByName(this.getHandlerId());
           if (handlerClass && handlerClass.ICON) {
             this.setIcon(handlerClass.ICON);
-            if (this.__P_44_0) {
-              file.removeBinding(this.__P_44_0);
-              this.__P_44_0 = null;
+            if (this.__P_45_0) {
+              file.removeBinding(this.__P_45_0);
+              this.__P_45_0 = null;
             }
           } else {
-            this.__P_44_0 = file.bind('icon', this, 'icon');
+            this.__P_45_0 = file.bind('icon', this, 'icon');
           }
         } else {
           this.resetIcon();
@@ -160,4 +160,4 @@
   cv.ui.manager.model.OpenFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenFile.js.map?dt=1731948093577
+//# sourceMappingURL=OpenFile.js.map?dt=1735222409426

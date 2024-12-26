@@ -37,39 +37,39 @@
     extend: qx.dev.unit.TestCase,
     construct: function construct() {
       qx.dev.unit.TestCase.constructor.call(this);
-      this.__P_450_0 = qx.util.LibraryManager.getInstance();
+      this.__P_451_0 = qx.util.LibraryManager.getInstance();
       this.libKeys = ["sourceUri", "resourceUri"];
-      this.__P_450_1 = {};
+      this.__P_451_1 = {};
       for (var key in qx.$$libraries.qx) {
         if (qx.$$libraries.qx.hasOwnProperty(key)) {
-          this.__P_450_1[key] = qx.$$libraries.qx[key];
+          this.__P_451_1[key] = qx.$$libraries.qx[key];
         }
       }
     },
     members: {
-      __P_450_0: null,
-      __P_450_1: null,
+      __P_451_0: null,
+      __P_451_1: null,
       libKeys: null,
       testHas: function testHas() {
-        this.assert(this.__P_450_0.has("qx"));
-        this.assertFalse(this.__P_450_0.has("foo"));
+        this.assert(this.__P_451_0.has("qx"));
+        this.assertFalse(this.__P_451_0.has("foo"));
       },
       testGet: function testGet() {
         for (var i = 0, l = this.libKeys.length; i < l; i++) {
           var key = this.libKeys[i];
-          this.assertEquals(qx.$$libraries.qx[key], this.__P_450_0.get("qx", key));
+          this.assertEquals(qx.$$libraries.qx[key], this.__P_451_0.get("qx", key));
         }
       },
       testSet: function testSet() {
         for (var i = 0, l = this.libKeys.length; i < l; i++) {
           var key = this.libKeys[i];
-          this.__P_450_0.set("qx", key, "foo");
+          this.__P_451_0.set("qx", key, "foo");
           this.assertEquals("foo", qx.$$libraries.qx[key]);
         }
       },
       tearDownTestSet: function tearDownTestSet() {
-        for (var key in this.__P_450_1) {
-          qx.$$libraries.qx[key] = this.__P_450_1[key];
+        for (var key in this.__P_451_1) {
+          qx.$$libraries.qx[key] = this.__P_451_1[key];
         }
       }
     }
@@ -77,4 +77,4 @@
   qx.test.util.LibraryManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LibraryManager.js.map?dt=1731948122839
+//# sourceMappingURL=LibraryManager.js.map?dt=1735222433854

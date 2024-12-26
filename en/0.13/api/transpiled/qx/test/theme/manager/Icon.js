@@ -45,24 +45,24 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   qx.Class.define("qx.test.theme.manager.Icon", {
     extend: qx.dev.unit.TestCase,
     members: {
-      __P_371_0: null,
-      __P_371_1: null,
+      __P_372_0: null,
+      __P_372_1: null,
       setUp: function setUp() {
         this.manager = qx.theme.manager.Icon.getInstance();
-        this.__P_371_0 = this.manager.getTheme();
+        this.__P_372_0 = this.manager.getTheme();
         var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
         var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        this.__P_371_1 = _objectSpread({}, listener[hash]);
+        this.__P_372_1 = _objectSpread({}, listener[hash]);
         delete listener[hash];
       },
       tearDown: function tearDown() {
         qx.test.Theme.themes = null;
-        this.manager.setTheme(this.__P_371_0);
-        this.__P_371_0 = null;
+        this.manager.setTheme(this.__P_372_0);
+        this.__P_372_0 = null;
         var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
         var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        listener[hash] = this.__P_371_1;
-        this.__P_371_1 = null;
+        listener[hash] = this.__P_372_1;
+        this.__P_372_1 = null;
         qx.ui.core.queue.Manager.flush();
       },
       testAlias: function testAlias() {
@@ -134,4 +134,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   qx.test.theme.manager.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1731948118534
+//# sourceMappingURL=Icon.js.map?dt=1735222430346

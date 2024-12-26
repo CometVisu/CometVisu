@@ -104,13 +104,13 @@
     */
     members: {
       _editor: null,
-      __P_42_0: null,
-      __P_42_1: null,
+      __P_43_0: null,
+      __P_43_1: null,
       _hasBeenEdited: false,
       _applyType: function _applyType(value) {
-        if (value && this.__P_42_0) {
-          this.setValue(this.__P_42_0);
-          this.__P_42_0 = null;
+        if (value && this.__P_43_0) {
+          this.setValue(this.__P_43_0);
+          this.__P_43_0 = null;
         }
       },
       _autoSize: function _autoSize() {
@@ -129,7 +129,7 @@
           if (this._editor && this.getType()) {
             this._editor.setValue(value);
           } else {
-            this.__P_42_0 = value;
+            this.__P_43_0 = value;
           }
         }
         this._autoSize();
@@ -150,8 +150,8 @@
       getValue: function getValue() {
         if (this._editor) {
           return this._editor.getValue();
-        } else if (this.__P_42_0) {
-          return this.__P_42_0;
+        } else if (this.__P_43_0) {
+          return this.__P_43_0;
         }
         return '';
       },
@@ -185,9 +185,9 @@
               var uri = monaco.Uri.parse('cv://SourceCode.' + this.getType());
               var newModel = window.monaco.editor.getModel(uri);
               if (!newModel) {
-                newModel = window.monaco.editor.createModel(this.__P_42_0, this.getType(), uri);
+                newModel = window.monaco.editor.createModel(this.__P_43_0, this.getType(), uri);
               } else {
-                newModel.setValue(this.__P_42_0);
+                newModel.setValue(this.__P_43_0);
               }
               if (model !== newModel) {
                 newModel.updateOptions({
@@ -199,8 +199,8 @@
                 this._autoSize();
               }
             }
-            if (this.__P_42_0) {
-              this.__P_42_0 = null;
+            if (this.__P_43_0) {
+              this.__P_43_0 = null;
             }
             this._editor.onDidChangeModelContent(this._onContentChange.bind(this));
           }
@@ -220,8 +220,8 @@
         return null;
       },
       _setAreaHeight: function _setAreaHeight(height) {
-        if (this.__P_42_1 !== height) {
-          this.__P_42_1 = height;
+        if (this.__P_43_1 !== height) {
+          this.__P_43_1 = height;
           qx.ui.core.queue.Layout.add(this);
           qx.ui.core.queue.Manager.flush();
           if (this._editor) {
@@ -233,7 +233,7 @@
       _getContentHint: function _getContentHint() {
         var hint = cv.ui.manager.form.SourceCodeField.superclass.prototype._getContentHint.call(this);
         if (this.isAutoSize()) {
-          hint.height = this.__P_42_1 || hint.height;
+          hint.height = this.__P_43_1 || hint.height;
         }
         return hint;
       }
@@ -254,4 +254,4 @@
   cv.ui.manager.form.SourceCodeField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SourceCodeField.js.map?dt=1731948093424
+//# sourceMappingURL=SourceCodeField.js.map?dt=1735222409301

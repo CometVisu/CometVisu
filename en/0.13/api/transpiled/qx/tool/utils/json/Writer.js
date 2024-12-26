@@ -42,9 +42,9 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       this.buffer = "";
-      this.__P_519_0 = 0;
-      this.__P_519_1 = "";
-      this.__P_519_2 = 0;
+      this.__P_520_0 = 0;
+      this.__P_520_1 = "";
+      this.__P_520_2 = 0;
     },
     members: {
       /**
@@ -69,8 +69,8 @@
           var pos = str.indexOf("\n", startPos);
           if (pos > -1) {
             this.buffer += str.substring(startPos, pos + 1);
-            this.__P_519_2 = this.buffer.length;
-            this.buffer += this.__P_519_1;
+            this.__P_520_2 = this.buffer.length;
+            this.buffer += this.__P_520_1;
             startPos = pos + 1;
           } else {
             this.buffer += str.substring(startPos);
@@ -96,11 +96,11 @@
        * @param count {Number} number to increase/decrease by
        */
       indent: function indent(count) {
-        if (this.__P_519_0 + count < 0) {
+        if (this.__P_520_0 + count < 0) {
           throw new Error("Unbalanced indent");
         }
-        this.__P_519_0 += count;
-        var indentStr = this.__P_519_1;
+        this.__P_520_0 += count;
+        var indentStr = this.__P_520_1;
         if (count > 0) {
           var str = "";
           for (var i = 0; i < count; i++) {
@@ -110,11 +110,11 @@
         } else {
           indentStr = indentStr.substring(0, indentStr.length + count * 2);
         }
-        var line = this.buffer.substring(this.__P_519_2);
+        var line = this.buffer.substring(this.__P_520_2);
         if (!line.match(/[^\s]/)) {
-          this.buffer = this.buffer.substring(0, this.__P_519_2) + indentStr;
+          this.buffer = this.buffer.substring(0, this.__P_520_2) + indentStr;
         }
-        this.__P_519_1 = indentStr;
+        this.__P_520_1 = indentStr;
         return this;
       },
       /**
@@ -130,11 +130,11 @@
        * @return {Object} previous indentation
        */
       matchIndent: function matchIndent() {
-        var line = this.buffer.substring(this.__P_519_2);
+        var line = this.buffer.substring(this.__P_520_2);
         var m = line.match(/^([\s]*)/);
         var indent = m[0];
-        var oldIndent = this.__P_519_1;
-        this.__P_519_1 = indent;
+        var oldIndent = this.__P_520_1;
+        this.__P_520_1 = indent;
         return oldIndent;
       },
       /**
@@ -143,11 +143,11 @@
        * @param indent {Object} previous indentation settings
        */
       resetIndent: function resetIndent(indent) {
-        this.__P_519_1 = indent;
+        this.__P_520_1 = indent;
       }
     }
   });
   qx.tool.utils.json.Writer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Writer.js.map?dt=1731948132985
+//# sourceMappingURL=Writer.js.map?dt=1735222442397

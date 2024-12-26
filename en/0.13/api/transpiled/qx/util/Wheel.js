@@ -73,7 +73,7 @@
             // use deltaY as default for firefox
             delta = domEvent.deltaY;
           }
-          return this.__P_741_0(delta);
+          return this.__P_742_0(delta);
         }
 
         // get the x scroll delta
@@ -81,13 +81,13 @@
           var x = 0;
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaX !== undefined) {
-              x = domEvent.wheelDeltaX ? this.__P_741_0(-domEvent.wheelDeltaX) : 0;
+              x = domEvent.wheelDeltaX ? this.__P_742_0(-domEvent.wheelDeltaX) : 0;
             }
           } else {
             if (domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS && domEvent.detail !== undefined && domEvent.detail > 0) {
-              x = this.__P_741_0(domEvent.detail);
+              x = this.__P_742_0(domEvent.detail);
             } else if (domEvent.deltaX !== undefined) {
-              x = this.__P_741_0(domEvent.deltaX);
+              x = this.__P_742_0(domEvent.deltaX);
             }
           }
           return x;
@@ -98,15 +98,15 @@
           var y = 0;
           if (domEvent.wheelDelta !== undefined) {
             if (domEvent.wheelDeltaY !== undefined) {
-              y = domEvent.wheelDeltaY ? this.__P_741_0(-domEvent.wheelDeltaY) : 0;
+              y = domEvent.wheelDeltaY ? this.__P_742_0(-domEvent.wheelDeltaY) : 0;
             } else {
-              y = this.__P_741_0(-domEvent.wheelDelta);
+              y = this.__P_742_0(-domEvent.wheelDelta);
             }
           } else {
             if (!(domEvent.axis && domEvent.axis == domEvent.HORIZONTAL_AXIS) && domEvent.detail !== undefined && domEvent.detail > 0) {
-              y = this.__P_741_0(domEvent.detail);
+              y = this.__P_742_0(domEvent.detail);
             } else if (domEvent.deltaY !== undefined) {
-              y = this.__P_741_0(domEvent.deltaY);
+              y = this.__P_742_0(domEvent.deltaY);
             }
           }
           return y;
@@ -120,7 +120,7 @@
        * @param delta {Number} The mouse delta.
        * @return {Number} The normalized delta value
        */
-      __P_741_0: function __P_741_0(delta) {
+      __P_742_0: function __P_742_0(delta) {
         if (qx.util.Wheel.IS_TOUCHPAD) {
           // Reset normalization values that may be re-computed once a real mouse is plugged.
           qx.util.Wheel.MINSCROLL = null;
@@ -136,13 +136,13 @@
         // store the min value
         if (qx.util.Wheel.MINSCROLL == null || qx.util.Wheel.MINSCROLL > absDelta) {
           qx.util.Wheel.MINSCROLL = absDelta;
-          this.__P_741_1();
+          this.__P_742_1();
         }
 
         // store the max value
         if (qx.util.Wheel.MAXSCROLL == null || qx.util.Wheel.MAXSCROLL < absDelta) {
           qx.util.Wheel.MAXSCROLL = absDelta;
-          this.__P_741_1();
+          this.__P_742_1();
         }
 
         // special case for systems not speeding up
@@ -158,7 +158,7 @@
       /**
        * Recalculates the factor with which the calculated delta is normalized.
        */
-      __P_741_1: function __P_741_1() {
+      __P_742_1: function __P_742_1() {
         var max = qx.util.Wheel.MAXSCROLL || 0;
         var min = qx.util.Wheel.MINSCROLL || max;
         if (max <= min) {
@@ -176,4 +176,4 @@
   qx.util.Wheel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Wheel.js.map?dt=1731948144617
+//# sourceMappingURL=Wheel.js.map?dt=1735222451867

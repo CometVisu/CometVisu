@@ -72,7 +72,7 @@
     construct: function construct(props) {
       var _this = this;
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-      this.__P_24_0 = {};
+      this.__P_25_0 = {};
       this.addListenerOnce('domReady', function () {
         _this.refreshCalllist('initial');
       });
@@ -278,15 +278,15 @@
     ******************************************************
     */
     members: {
-      __P_24_1: '',
-      __P_24_2: undefined,
-      __P_24_3: false,
+      __P_25_1: '',
+      __P_25_2: undefined,
+      __P_25_3: false,
       /**
        * Prevent warning "Reference values are shared across all instances"
        * as the keys are unique a share doesn't matter:
        * @lint ignoreReferenceField(__TAMeventAttached)
        */
-      __P_24_0: null,
+      __P_25_0: null,
       _getInnerDomString: function _getInnerDomString() {
         return '<div class="actor"><table class="TR064_calllist"><tr><td>Loading TR-064...</td></tr></table></div>';
       },
@@ -294,21 +294,21 @@
         var _this2 = this;
         this._timer = new qx.event.Timer(this.getRefresh());
         this._timer.addListener('interval', function () {
-          if (!_this2.__P_24_3) {
+          if (!_this2.__P_25_3) {
             _this2.refreshCalllist('timer');
           }
         });
         this._timer.start();
       },
       _update: function _update(address, value) {
-        if (!this.__P_24_3) {
+        if (!this.__P_25_3) {
           this.refreshCalllist('update');
         }
       },
       _displayCalllist: function _displayCalllist() {
         var self = this;
         var clLi = this.getDomElement().getElementsByClassName('TR064_calllist')[0];
-        var sid = this.__P_24_1 ? this.__P_24_1.replace(/.*sid=/, '') : '';
+        var sid = this.__P_25_1 ? this.__P_25_1.replace(/.*sid=/, '') : '';
         var html = '';
         var types = {
           0: {
@@ -340,7 +340,7 @@
             color: this.getTypeActiveOutgoingColor()
           }
         };
-        this.__P_24_2.forEach(function (cl) {
+        this.__P_25_2.forEach(function (cl) {
           var audio = '';
           var type = cl.Type in types ? types[cl.Type] : types[0];
           if (cl.Path) {
@@ -379,7 +379,7 @@
         var tamList = clLi.getElementsByClassName('tam');
         for (var i = 0; i < tamList.length; i++) {
           tamList[i].addEventListener('click', function () {
-            self.__P_24_4(this);
+            self.__P_25_4(this);
           });
         }
       },
@@ -401,11 +401,11 @@
             severity: 'urgent',
             message: qx.locale.Manager.tr('Reading URL "%1" failed with status "%2": "%2"', response.url, response.status, response.statusText)
           });
-          self.__P_24_1 = '<fail>';
+          self.__P_25_1 = '<fail>';
           return null;
         }).then(function (data) {
           if (typeof data === 'string') {
-            self.__P_24_1 = data;
+            self.__P_25_1 = data;
             self.refreshCalllist('getCallListURI');
           } else {
             cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
@@ -413,21 +413,21 @@
               severity: 'urgent',
               message: qx.locale.Manager.tr('Reading URL "%1" failed with content: "%2"', url, JSON.stringify(data))
             });
-            self.__P_24_1 = '<fail>';
+            self.__P_25_1 = '<fail>';
           }
         });
       },
       refreshCalllist: function refreshCalllist(source) {
-        this.__P_24_3 = true;
-        if (this.__P_24_1 === '<fail>') {
+        this.__P_25_3 = true;
+        if (this.__P_25_1 === '<fail>') {
           return; // this problem won't fix anymore during this instance
         }
-        if (this.__P_24_1 === '') {
+        if (this.__P_25_1 === '') {
           this._getCallListURI();
           return;
         }
         var self = this;
-        var url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__P_24_1 + '%26max=' + this.getMax();
+        var url = 'resource/plugins/tr064/proxy.php?device=' + this.getDevice() + '&uri=' + this.__P_25_1 + '%26max=' + this.getMax();
         window.fetch(url).then(function (response) {
           if (response.ok) {
             return response.text();
@@ -442,7 +442,7 @@
         }).then(function (str) {
           return new window.DOMParser().parseFromString(str, 'text/xml');
         }).then(function (data) {
-          self.__P_24_2 = [];
+          self.__P_25_2 = [];
           var itemList = data.getElementsByTagName('Call');
           for (var i = 0; i < itemList.length; i++) {
             var childrenList = itemList[i].children;
@@ -450,10 +450,10 @@
             for (var ii = 0; ii < childrenList.length; ii++) {
               entry[childrenList[ii].nodeName] = childrenList[ii].textContent;
             }
-            self.__P_24_2.push(entry);
+            self.__P_25_2.push(entry);
           }
           self._displayCalllist();
-          self.__P_24_3 = false;
+          self.__P_25_3 = false;
           self.fireEvent('tr064ListRefreshed');
         })["catch"](function (error) {
           cv.core.notifications.Router.dispatchMessage('cv.tr064.error', {
@@ -468,24 +468,24 @@
        * The EventListener for click on the TAM button.
        * @param element
        */
-      __P_24_4: function __P_24_4(element) {
+      __P_25_4: function __P_25_4(element) {
         var self = this;
         var audio = element.previousElementSibling;
-        if (!this.__P_24_0[audio]) {
+        if (!this.__P_25_0[audio]) {
           audio.addEventListener('ended', function () {
-            self.__P_24_5(element);
+            self.__P_25_5(element);
           });
-          this.__P_24_0[audio] = true;
+          this.__P_25_0[audio] = true;
         }
         if (audio.readyState < 4) {
           // not ready yet
-          this.__P_24_6(element);
+          this.__P_25_6(element);
         }
         if (audio.paused) {
           var playPromise = audio.play();
           if (playPromise !== undefined) {
             playPromise.then(function () {
-              self.__P_24_7(element);
+              self.__P_25_7(element);
             })["catch"](function () {
               /*NOP*/
             });
@@ -493,16 +493,16 @@
         } else {
           audio.pause();
           audio.currentTime = 0;
-          this.__P_24_5(element);
+          this.__P_25_5(element);
         }
       },
-      __P_24_6: function __P_24_6(element) {
+      __P_25_6: function __P_25_6(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMwait(), '*', '*', this.getTAMwaitColor(), '', '', true);
       },
-      __P_24_7: function __P_24_7(element) {
+      __P_25_7: function __P_25_7(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMplay(), '*', '*', this.getTAMplayColor(), '', '', true);
       },
-      __P_24_5: function __P_24_5(element) {
+      __P_25_5: function __P_25_5(element) {
         element.innerHTML = cv.IconHandler.getInstance().getIconElement(this.getTAMstop(), '*', '*', this.getTAMstopColor(), '', '', true);
       }
     },
@@ -516,4 +516,4 @@
   cv.plugins.tr064.CallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CallList.js.map?dt=1731948091366
+//# sourceMappingURL=CallList.js.map?dt=1735222407519

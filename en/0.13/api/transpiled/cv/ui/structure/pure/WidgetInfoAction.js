@@ -79,4 +79,4 @@
   cv.ui.structure.pure.WidgetInfoAction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetInfoAction.js.map?dt=1731948095512
+//# sourceMappingURL=WidgetInfoAction.js.map?dt=1735222411054

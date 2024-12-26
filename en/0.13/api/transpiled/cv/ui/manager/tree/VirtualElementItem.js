@@ -142,7 +142,7 @@
         selected: true,
         touch: true
       },
-      __P_52_0: false,
+      __P_53_0: false,
       _applyName: function _applyName(value) {
         this.getContentElement().setAttribute('data-nodename', value);
       },
@@ -241,7 +241,7 @@
       // overridden
       addLabel: function addLabel(text) {
         var label = this.getChildControl('label');
-        if (this.__P_52_0) {
+        if (this.__P_53_0) {
           this._remove(label);
         }
         if (text) {
@@ -255,11 +255,11 @@
         });
         var buttons = this.getChildControl('buttons');
         this._add(buttons);
-        this.__P_52_0 = true;
+        this.__P_53_0 = true;
       }
     }
   });
   cv.ui.manager.tree.VirtualElementItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualElementItem.js.map?dt=1731948094306
+//# sourceMappingURL=VirtualElementItem.js.map?dt=1735222410037

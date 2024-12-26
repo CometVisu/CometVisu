@@ -60,7 +60,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     extend: qx.core.Object,
     construct: function construct(library) {
       qx.core.Object.constructor.call(this);
-      this.__P_488_0 = library;
+      this.__P_489_0 = library;
     },
     properties: {
       /** The name of the webfont */
@@ -100,8 +100,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }
     },
     members: {
-      __P_488_0: null,
-      __P_488_1: null,
+      __P_489_0: null,
+      __P_489_1: null,
       /**
        * Helper which triggers a local font analyze run.
        *
@@ -115,9 +115,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                fontpath = path.join(_this.__P_488_0.getRootDir(), path.join(_this.__P_488_0.getResourcePath(), filename));
+                fontpath = path.join(_this.__P_489_0.getRootDir(), path.join(_this.__P_489_0.getResourcePath(), filename));
                 _context.next = 3;
-                return _this.__P_488_2(fontpath);
+                return _this.__P_489_2(fontpath);
               case 3:
                 return _context.abrupt("return", _context.sent);
               case 4:
@@ -145,7 +145,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 2:
                 tmpFilename = _context2.sent;
                 _context2.next = 5;
-                return _this2.__P_488_2(tmpFilename);
+                return _this2.__P_489_2(tmpFilename);
               case 5:
                 result = _context2.sent;
                 fs.unlink(tmpFilename);
@@ -164,7 +164,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param filename {String} Path to font file
        * @return {Map<String,String>} mapping of glyphs to codepoints
        */
-      __P_488_2: function __P_488_2(filename) {
+      __P_489_2: function __P_489_2(filename) {
         var _this3 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var _font$GSUB;
@@ -182,7 +182,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context3.next = 19;
                   break;
                 }
-                mapPath = path.join(_this3.__P_488_0.getRootDir(), path.join(_this3.__P_488_0.getResourcePath(), _this3.getMapping()));
+                mapPath = path.join(_this3.__P_489_0.getRootDir(), path.join(_this3.__P_489_0.getResourcePath(), _this3.getMapping()));
                 _context3.prev = 6;
                 _context3.next = 9;
                 return fs.promises.readFile(mapPath, {
@@ -329,8 +329,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       generateForTarget: function generateForTarget(target) {
         var _this4 = this;
-        if (this.__P_488_3) {
-          return this.__P_488_3;
+        if (this.__P_489_3) {
+          return this.__P_489_3;
         }
         var generate = /*#__PURE__*/function () {
           var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
@@ -362,16 +362,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   _context4.next = 11;
                   return _this4._loadRemoteFont(resource);
                 case 11:
-                  _this4.__P_488_1 = _context4.sent;
+                  _this4.__P_489_1 = _context4.sent;
                   _context4.next = 17;
                   break;
                 case 14:
                   _context4.next = 16;
                   return _this4._loadLocalFont(resource);
                 case 16:
-                  _this4.__P_488_1 = _context4.sent;
+                  _this4.__P_489_1 = _context4.sent;
                 case 17:
-                  return _context4.abrupt("return", _this4.__P_488_1);
+                  return _context4.abrupt("return", _this4.__P_489_1);
                 case 18:
                   _context4.next = 3;
                   break;
@@ -398,8 +398,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return _ref.apply(this, arguments);
           };
         }();
-        this.__P_488_3 = generate();
-        return this.__P_488_3;
+        this.__P_489_3 = generate();
+        return this.__P_489_3;
       },
       /**
        * Called by Target to add fonts to an application
@@ -414,7 +414,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this5.__P_488_1 || null);
+                return _context5.abrupt("return", _this5.__P_489_1 || null);
               case 1:
               case "end":
                 return _context5.stop();
@@ -439,4 +439,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1731948129238
+//# sourceMappingURL=WebFont.js.map?dt=1735222439319

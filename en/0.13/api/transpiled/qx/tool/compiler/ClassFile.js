@@ -212,48 +212,48 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     construct: function construct(analyser, className, library) {
       var _this = this;
       qx.core.Object.constructor.call(this);
-      this.__P_478_0 = analyser;
-      this.__P_478_1 = className;
-      this.__P_478_2 = [];
-      this.__P_478_3 = {};
-      this.__P_478_4 = library;
-      this.__P_478_5 = analyser.getClassSourcePath(library, className);
-      this.__P_478_6 = {};
-      this.__P_478_7 = {
+      this.__P_479_0 = analyser;
+      this.__P_479_1 = className;
+      this.__P_479_2 = [];
+      this.__P_479_3 = {};
+      this.__P_479_4 = library;
+      this.__P_479_5 = analyser.getClassSourcePath(library, className);
+      this.__P_479_6 = {};
+      this.__P_479_7 = {
         provided: {},
         required: {}
       };
-      this.__P_478_8 = [];
-      this.__P_478_9 = {};
-      this.__P_478_10 = [];
-      this.__P_478_11 = [];
-      this.__P_478_12 = {};
-      this.__P_478_13 = {
+      this.__P_479_8 = [];
+      this.__P_479_9 = {};
+      this.__P_479_10 = [];
+      this.__P_479_11 = [];
+      this.__P_479_12 = {};
+      this.__P_479_13 = {
         parent: null,
         vars: {},
         unresolved: {}
       };
-      this.__P_478_14 = [];
-      this.__P_478_15 = {};
-      this.__P_478_16 = [];
-      this.__P_478_17 = async.queue(function (task, cb) {
+      this.__P_479_14 = [];
+      this.__P_479_15 = {};
+      this.__P_479_16 = [];
+      this.__P_479_17 = async.queue(function (task, cb) {
         task(cb);
       });
-      this.__P_478_17.drain = this._onTaskQueueDrain;
-      this.__P_478_17.error = function (err) {
+      this.__P_479_17.drain = this._onTaskQueueDrain;
+      this.__P_479_17.error = function (err) {
         qx.tool.compiler.Console.error(err.stack || err);
       };
       analyser.getIgnores().forEach(function (s) {
         return _this.addIgnore(s);
       });
-      this.__P_478_18 = {};
-      this.__P_478_19 = {};
-      this.__P_478_20 = {};
-      this.__P_478_21 = analyser.getManglePrivates();
+      this.__P_479_18 = {};
+      this.__P_479_19 = {};
+      this.__P_479_20 = {};
+      this.__P_479_21 = analyser.getManglePrivates();
       var CF = qx.tool.compiler.ClassFile;
       var addSymbols = function addSymbols(arr) {
         return arr.forEach(function (s) {
-          return _this.__P_478_18[s] = true;
+          return _this.__P_479_18[s] = true;
         });
       };
       if (analyser.getGlobalSymbols().length) {
@@ -265,68 +265,68 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       }
     },
     members: {
-      __P_478_0: null,
-      __P_478_1: null,
-      __P_478_22: 0,
-      __P_478_4: null,
-      __P_478_6: null,
-      __P_478_7: null,
-      __P_478_8: null,
+      __P_479_0: null,
+      __P_479_1: null,
+      __P_479_22: 0,
+      __P_479_4: null,
+      __P_479_6: null,
+      __P_479_7: null,
+      __P_479_8: null,
       /** @type{Map<String,Object>} list of fonts indexed by name; the value is an object with `name` and `loc` */
-      __P_478_9: null,
-      __P_478_23: null,
-      __P_478_13: null,
-      __P_478_24: false,
-      __P_478_25: false,
-      __P_478_17: null,
-      __P_478_16: null,
-      __P_478_11: null,
-      __P_478_12: null,
-      __P_478_26: null,
-      __P_478_2: null,
-      __P_478_3: null,
-      __P_478_27: false,
-      __P_478_10: null,
-      __P_478_28: null,
-      __P_478_29: null,
-      __P_478_30: null,
-      __P_478_5: null,
-      __P_478_31: null,
-      __P_478_18: null,
-      __P_478_19: null,
-      __P_478_20: null,
-      __P_478_14: null,
-      __P_478_15: null,
+      __P_479_9: null,
+      __P_479_23: null,
+      __P_479_13: null,
+      __P_479_24: false,
+      __P_479_25: false,
+      __P_479_17: null,
+      __P_479_16: null,
+      __P_479_11: null,
+      __P_479_12: null,
+      __P_479_26: null,
+      __P_479_2: null,
+      __P_479_3: null,
+      __P_479_27: false,
+      __P_479_10: null,
+      __P_479_28: null,
+      __P_479_29: null,
+      __P_479_30: null,
+      __P_479_5: null,
+      __P_479_31: null,
+      __P_479_18: null,
+      __P_479_19: null,
+      __P_479_20: null,
+      __P_479_14: null,
+      __P_479_15: null,
       _onTaskQueueDrain: function _onTaskQueueDrain() {
-        var cbs = this.__P_478_31;
-        this.__P_478_31 = [];
+        var cbs = this.__P_479_31;
+        this.__P_479_31 = [];
         cbs.forEach(function (cb) {
           cb();
         });
       },
       _waitForTaskQueueDrain: function _waitForTaskQueueDrain(cb) {
-        if (this.__P_478_17.length() == 0) {
+        if (this.__P_479_17.length() == 0) {
           cb();
         } else {
-          this.__P_478_16.push(cb);
+          this.__P_479_16.push(cb);
         }
       },
       _queueTask: function _queueTask(cb) {
-        this.__P_478_17.push(cb);
+        this.__P_479_17.push(cb);
       },
       /**
        * Returns the absolute path to the class file
        * @returns {string}
        */
       getSourcePath: function getSourcePath() {
-        return this.__P_478_5;
+        return this.__P_479_5;
       },
       /**
        * Returns the path to the rewritten class file
        * @returns {string}
        */
       getOutputPath: function getOutputPath() {
-        return this.__P_478_0.getClassOutputPath(this.__P_478_1);
+        return this.__P_479_0.getClassOutputPath(this.__P_479_1);
       },
       /**
        * Loads the source, transpiles and analyses the code, storing the result in outputPath
@@ -336,9 +336,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       load: function load(callback) {
         var t = this;
-        var className = this.__P_478_1;
-        t.__P_478_27 = false;
-        t.__P_478_22 = 0;
+        var className = this.__P_479_1;
+        t.__P_479_27 = false;
+        t.__P_479_22 = 0;
         fs.readFile(this.getSourcePath(), {
           encoding: "utf-8"
         }, function (err, src) {
@@ -348,7 +348,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
           var result;
           try {
-            var babelConfig = t.__P_478_0.getBabelConfig() || {};
+            var babelConfig = t.__P_479_0.getBabelConfig() || {};
             var options = qx.lang.Object.clone(babelConfig.options || {}, true);
             options.modules = false;
             var extraPreset = [{
@@ -386,27 +386,27 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             if (extraPreset[0].plugins.length) {
               config.presets.push(extraPreset);
             }
-            if (this.__P_478_21 == "unreadable") {
+            if (this.__P_479_21 == "unreadable") {
               config.blacklist = ["spec.functionName"];
             }
             result = babelCore.transform(src, config);
           } catch (ex) {
             qx.tool.compiler.Console.log(ex);
             t.addMarker("compiler.syntaxError", ex.loc, ex.message);
-            t.__P_478_27 = true;
+            t.__P_479_27 = true;
             t._compileDbClassInfo();
             callback();
             return;
           }
-          if (!t.__P_478_22) {
+          if (!t.__P_479_22) {
             t.addMarker("compiler.missingClassDef");
-            t.__P_478_27 = true;
+            t.__P_479_27 = true;
             t._compileDbClassInfo();
             callback();
             return;
           }
-          if (!t.__P_478_3[className]) {
-            t.addMarker("compiler.wrongClassName", null, className, Object.keys(t.__P_478_3).join(", "));
+          if (!t.__P_479_3[className]) {
+            t.addMarker("compiler.wrongClassName", null, className, Object.keys(t.__P_479_3).join(", "));
             t._compileDbClassInfo();
           }
           var pos = className.lastIndexOf(".");
@@ -418,7 +418,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               return;
             }
             var mappingUrl = name + ".js.map";
-            if (qx.lang.Array.contains(t.__P_478_0.getApplicationTypes(), "browser")) {
+            if (qx.lang.Array.contains(t.__P_479_0.getApplicationTypes(), "browser")) {
               mappingUrl += "?dt=" + new Date().getTime();
             }
             fs.writeFile(outputPath, result.code + "\n\n//# sourceMappingURL=" + mappingUrl, {
@@ -456,8 +456,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         delete dbClassInfo.markers;
         delete dbClassInfo.fatalCompileError;
         delete dbClassInfo.commonjsModules;
-        for (var key in this.__P_478_28) {
-          dbClassInfo[key] = this.__P_478_28[key];
+        for (var key in this.__P_479_28) {
+          dbClassInfo[key] = this.__P_479_28[key];
         }
       },
       /**
@@ -465,11 +465,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * */
       _compileDbClassInfo: function _compileDbClassInfo() {
         var t = this;
-        var dbClassInfo = this.__P_478_28 = {};
+        var dbClassInfo = this.__P_479_28 = {};
 
         // Collect the dependencies on other classes
         var deps = this.getRequiredClasses();
-        if (t.__P_478_32) {
+        if (t.__P_479_32) {
           var JSX = qx.tool.compiler.ClassFile.JSX_OPTIONS;
           var classname = JSX.pragma;
           var pos = classname.lastIndexOf(".");
@@ -533,16 +533,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
 
         // Environment Checks
-        if (Object.keys(this.__P_478_7.provided).length || Object.keys(this.__P_478_7.required).length) {
+        if (Object.keys(this.__P_479_7.provided).length || Object.keys(this.__P_479_7.required).length) {
           dbClassInfo.environment = {
             provided: [],
             required: {}
           };
-          for (var key in this.__P_478_7.provided) {
+          for (var key in this.__P_479_7.provided) {
             dbClassInfo.environment.provided.push(key);
           }
-          for (var _key in this.__P_478_7.required) {
-            dbClassInfo.environment.required[_key] = this.__P_478_7.required[_key];
+          for (var _key in this.__P_479_7.required) {
+            dbClassInfo.environment.required[_key] = this.__P_479_7.required[_key];
           }
         }
 
@@ -551,17 +551,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
         // Unresolved symbols
         dbClassInfo.unresolved = [];
-        for (var _name in this.__P_478_13.unresolved) {
-          var item = this.__P_478_13.unresolved[_name];
+        for (var _name in this.__P_479_13.unresolved) {
+          var item = this.__P_479_13.unresolved[_name];
           // item is undefined if it has already been removed from the list
           if (item === undefined) {
             continue;
           }
           // One of multiple classes defined in this file
-          if (this.__P_478_3[_name]) {
+          if (this.__P_479_3[_name]) {
             continue;
           }
-          var info = t.__P_478_0.getSymbolType(_name);
+          var info = t.__P_479_0.getSymbolType(_name);
           if (info && info.className) {
             t._requireClass(info.className, {
               load: item.load,
@@ -587,12 +587,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
 
         // Fonts
-        var fontNames = Object.keys(this.__P_478_9);
+        var fontNames = Object.keys(this.__P_479_9);
         if (fontNames.length) {
           dbClassInfo.fonts = fontNames;
-          for (var fontName in this.__P_478_9) {
-            if (!this.__P_478_0.getFont(fontName)) {
-              t.addMarker("fonts.unresolved#" + fontName, this.__P_478_9[fontName].loc.start, fontName);
+          for (var fontName in this.__P_479_9) {
+            if (!this.__P_479_0.getFont(fontName)) {
+              t.addMarker("fonts.unresolved#" + fontName, this.__P_479_9[fontName].loc.start, fontName);
             }
           }
         }
@@ -610,30 +610,30 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             }
           }
         }
-        if (this.__P_478_14.length) {
-          dbClassInfo.externals = this.__P_478_14;
+        if (this.__P_479_14.length) {
+          dbClassInfo.externals = this.__P_479_14;
         }
 
         // Translation
-        if (this.__P_478_10.length) {
-          dbClassInfo.translations = this.__P_478_10.slice(0);
+        if (this.__P_479_10.length) {
+          dbClassInfo.translations = this.__P_479_10.slice(0);
         }
 
         // Markers
-        if (this.__P_478_11.length) {
-          dbClassInfo.markers = qx.lang.Array.clone(this.__P_478_11);
+        if (this.__P_479_11.length) {
+          dbClassInfo.markers = qx.lang.Array.clone(this.__P_479_11);
         }
 
         // Errors
-        if (this.__P_478_27) {
+        if (this.__P_479_27) {
           dbClassInfo.fatalCompileError = true;
         }
 
         // CommonJS modules
-        if (Object.keys(this.__P_478_15).length > 0) {
+        if (Object.keys(this.__P_479_15).length > 0) {
           dbClassInfo.commonjsModules = {};
-          for (var moduleName in this.__P_478_15) {
-            dbClassInfo.commonjsModules[moduleName] = _toConsumableArray(this.__P_478_15[moduleName]);
+          for (var moduleName in this.__P_479_15) {
+            dbClassInfo.commonjsModules[moduleName] = _toConsumableArray(this.__P_479_15[moduleName]);
           }
         }
         return dbClassInfo;
@@ -642,7 +642,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * Returns the loaded meta data
        */
       getOuterClassMeta: function getOuterClassMeta() {
-        var src = this.__P_478_3[this.__P_478_1] || null;
+        var src = this.__P_479_3[this.__P_479_1] || null;
         if (!src) {
           return src;
         }
@@ -724,7 +724,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           var _node$key;
           node = node || path.node;
           idNode = idNode || node.id || null;
-          var isClassMember = t.__P_478_26 && t.__P_478_26._topLevel && t.__P_478_26._topLevel.keyName == "members" && path.parentPath.parentPath.parentPath == t.__P_478_26._topLevel.path;
+          var isClassMember = t.__P_479_26 && t.__P_479_26._topLevel && t.__P_479_26._topLevel.keyName == "members" && path.parentPath.parentPath.parentPath == t.__P_479_26._topLevel.path;
           if (idNode) {
             t.addDeclaration(idNode.name);
           }
@@ -752,15 +752,15 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             addDecl(param);
           });
           checkNodeJsDocDirectives(node);
-          if (((_node$key = node.key) === null || _node$key === void 0 ? void 0 : _node$key.name) === "_createQxObjectImpl" && t.__P_478_26.type !== "interface") {
-            var _t$__P_478_26$classNa;
-            if (t.__P_478_26.type === "mixin") {
-              if (t.__P_478_26.className === "qx.core.MObjectId") {
+          if (((_node$key = node.key) === null || _node$key === void 0 ? void 0 : _node$key.name) === "_createQxObjectImpl" && t.__P_479_26.type !== "interface") {
+            var _t$__P_479_26$classNa;
+            if (t.__P_479_26.type === "mixin") {
+              if (t.__P_479_26.className === "qx.core.MObjectId") {
                 return;
               }
-              qx.tool.compiler.Console.print("qx.tool.compiler.compiler.mixinQxObjectImpl", t.__P_478_26.className);
+              qx.tool.compiler.Console.print("qx.tool.compiler.compiler.mixinQxObjectImpl", t.__P_479_26.className);
             }
-            var injectCode = "{\n            let object = qx.core.MObjectId.handleObjects(".concat((_t$__P_478_26$classNa = t.__P_478_26.className) !== null && _t$__P_478_26$classNa !== void 0 ? _t$__P_478_26$classNa : "this.constructor", ", this, ...arguments);\n            if (object !== undefined) {\n              return object;\n            }\n          }");
+            var injectCode = "{\n            let object = qx.core.MObjectId.handleObjects(".concat((_t$__P_479_26$classNa = t.__P_479_26.className) !== null && _t$__P_479_26$classNa !== void 0 ? _t$__P_479_26$classNa : "this.constructor", ", this, ...arguments);\n            if (object !== undefined) {\n              return object;\n            }\n          }");
             var injectBlockAst = babylon.parse(injectCode, {
               errorRecovery: true
             }).program.body[0];
@@ -805,18 +805,18 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         function makeMeta(sectionName, functionName, node) {
           var meta;
           if (functionName) {
-            var section = t.__P_478_26[sectionName];
+            var section = t.__P_479_26[sectionName];
             if (section === undefined) {
-              section = t.__P_478_26[sectionName] = {};
+              section = t.__P_479_26[sectionName] = {};
             }
             meta = section[functionName];
             if (meta === undefined) {
               meta = section[functionName] = {};
             }
           } else {
-            meta = t.__P_478_26[sectionName];
+            meta = t.__P_479_26[sectionName];
             if (meta === undefined) {
-              meta = t.__P_478_26[sectionName] = {};
+              meta = t.__P_479_26[sectionName] = {};
             }
           }
           meta.location = node.loc;
@@ -854,7 +854,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             t._requireClass(str, {
               location: path.node.loc
             });
-            var info = t.__P_478_0.getSymbolType(str);
+            var info = t.__P_479_0.getSymbolType(str);
             if (info && info.symbolType == "class") {
               self.collectedClasses.push(str);
             }
@@ -873,7 +873,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             var name = collapseMemberExpression(path.node.callee);
             if ((name === "qx.core.Environment.select" || name === "qx.core.Environment.get") && types.isLiteral(path.node.arguments[0])) {
               var arg = path.node.arguments[0];
-              var env = t.__P_478_0.getEnvironment();
+              var env = t.__P_479_0.getEnvironment();
               var envValue = env[arg.value];
               if (envValue !== undefined) {
                 if (name === "qx.core.Environment.get") {
@@ -1033,7 +1033,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           } else if (node.type == "NewExpression" || node.type == "BinaryExpression") {
             result = "[[ " + node.type + " ]]";
           } else {
-            t.warn("Cannot interpret AST " + node.type + " at " + t.__P_478_1 + (node.loc ? " [" + node.loc.start.line + "," + node.loc.start.column + "]" : ""));
+            t.warn("Cannot interpret AST " + node.type + " at " + t.__P_479_1 + (node.loc ? " [" + node.loc.start.line + "," + node.loc.start.column + "]" : ""));
             result = null;
           }
           return result;
@@ -1145,7 +1145,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           if (prop.value.type == "MemberExpression" || prop.value.type == "Identifier" || prop.value.type == "NullLiteral") {
             return true;
           }
-          if (t.__P_478_26.type === "class") {
+          if (t.__P_479_26.type === "class") {
             return false;
           }
           if (prop.value.type == "ArrayExpression") {
@@ -1174,7 +1174,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             return it.key.name;
           });
           if (!memberNames) {
-            t.addMarker("compiler.membersNotAnObject", membersPropertyPath.loc, t.__P_478_26.type);
+            t.addMarker("compiler.membersNotAnObject", membersPropertyPath.loc, t.__P_479_26.type);
             return;
           }
           if (memberNames.includes("_createQxObjectImpl")) {
@@ -1189,21 +1189,21 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         function checkValidTopLevel(path) {
           var prop = path.node;
           var keyName = getKeyName(prop.key);
-          var allowedKeys = ALLOWED_KEYS[t.__P_478_26.type];
-          if (t.__P_478_26.type === "class") {
-            allowedKeys = allowedKeys[t.__P_478_26.isStatic ? "static" : "normal"];
+          var allowedKeys = ALLOWED_KEYS[t.__P_479_26.type];
+          if (t.__P_479_26.type === "class") {
+            allowedKeys = allowedKeys[t.__P_479_26.isStatic ? "static" : "normal"];
           }
           if (allowedKeys[keyName] === undefined) {
-            t.addMarker("compiler.invalidClassDefinitionEntry", prop.loc, t.__P_478_26.type, keyName);
+            t.addMarker("compiler.invalidClassDefinitionEntry", prop.loc, t.__P_479_26.type, keyName);
           }
         }
         function handleTopLevelMethods(path, keyName, functionNode) {
           if (keyName == "defer") {
-            t.__P_478_29 = true;
-            t.__P_478_24 = true;
+            t.__P_479_29 = true;
+            t.__P_479_24 = true;
           }
           var isSpecialFunctionName = Object.keys(FUNCTION_NAMES).includes(keyName);
-          t.__P_478_26.functionName = isSpecialFunctionName ? FUNCTION_NAMES[keyName] : keyName;
+          t.__P_479_26.functionName = isSpecialFunctionName ? FUNCTION_NAMES[keyName] : keyName;
           if (isSpecialFunctionName) {
             makeMeta(keyName, null, functionNode);
           }
@@ -1211,7 +1211,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           path.traverse(VISITOR);
           exitFunction(path, functionNode);
           path.skip();
-          t.__P_478_26.functionName = null;
+          t.__P_479_26.functionName = null;
         }
         var CLASS_DEF_VISITOR = {
           ClassBody: {
@@ -1254,39 +1254,39 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             if (keyName == "extend") {
               if (!isValidExtendClause(prop)) {
                 t.addMarker("compiler.invalidExtendClause", prop.value.loc);
-                t.__P_478_27 = true;
+                t.__P_479_27 = true;
               } else {
-                t.__P_478_26.superClass = collapseMemberExpression(prop.value);
-                t._requireClass(t.__P_478_26.superClass, {
+                t.__P_479_26.superClass = collapseMemberExpression(prop.value);
+                t._requireClass(t.__P_479_26.superClass, {
                   location: path.node.loc
                 });
               }
             } else if (keyName == "type") {
               var type = prop.value.value;
-              t.__P_478_26.isAbstract = type === "abstract";
-              t.__P_478_26.isStatic = type === "static";
-              t.__P_478_26.isSingleton = type === "singleton";
+              t.__P_479_26.isAbstract = type === "abstract";
+              t.__P_479_26.isStatic = type === "static";
+              t.__P_479_26.isSingleton = type === "singleton";
             } else if (keyName == "implement") {
               path.skip();
               path.traverse(COLLECT_CLASS_NAMES_VISITOR, {
-                collectedClasses: t.__P_478_26.interfaces
+                collectedClasses: t.__P_479_26.interfaces
               });
             } else if (keyName == "include" || keyName == "patch") {
               path.skip();
               path.traverse(COLLECT_CLASS_NAMES_VISITOR, {
-                collectedClasses: t.__P_478_26.mixins
+                collectedClasses: t.__P_479_26.mixins
               });
             } else if (keyName == "members" || keyName == "statics" || keyName == "objects" || keyName == "@") {
-              t.__P_478_26._topLevel = {
+              t.__P_479_26._topLevel = {
                 path: path,
                 keyName: keyName
               };
               path.skip();
-              if (keyName === "members" && t.__P_478_26.type === "class") {
+              if (keyName === "members" && t.__P_479_26.type === "class") {
                 ensureCreateQxObjectImpl(path);
               }
               path.traverse(VISITOR);
-              t.__P_478_26._topLevel = null;
+              t.__P_479_26._topLevel = null;
             } else if (keyName == "properties") {
               path.skip();
               if (!prop.value.properties) {
@@ -1314,7 +1314,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                     }
                     checks.forEach(function (check) {
                       if (!qx.tool.compiler.ClassFile.SYSTEM_CHECKS[check]) {
-                        var symbolData = t.__P_478_0.getSymbolType(check);
+                        var symbolData = t.__P_479_0.getSymbolType(check);
                         if ((symbolData === null || symbolData === void 0 ? void 0 : symbolData.symbolType) == "class") {
                           t._requireClass(check, {
                             load: false,
@@ -1389,9 +1389,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               });
             },
             exit: function exit(path) {
-              if (t.__P_478_0.isAddCreatedAt()) {
+              if (t.__P_479_0.isAddCreatedAt()) {
                 var fn = types.memberExpression(types.identifier("qx"), types.identifier("$$createdAt"));
-                var tmp = types.callExpression(fn, [path.node, types.stringLiteral(t.__P_478_1.replace(/\./g, "/") + ".js"), types.numericLiteral(path.node.loc ? path.node.loc.start.line : 0), types.numericLiteral(path.node.loc ? path.node.loc.start.column : 0), types.booleanLiteral(t.__P_478_0.isVerboseCreatedAt())]);
+                var tmp = types.callExpression(fn, [path.node, types.stringLiteral(t.__P_479_1.replace(/\./g, "/") + ".js"), types.numericLiteral(path.node.loc ? path.node.loc.start.line : 0), types.numericLiteral(path.node.loc ? path.node.loc.start.column : 0), types.booleanLiteral(t.__P_479_0.isVerboseCreatedAt())]);
                 path.replaceWith(tmp);
                 path.skip();
               }
@@ -1409,7 +1409,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             checkNodeJsDocDirectives(path.node);
           },
           JSXElement: function JSXElement(path) {
-            t.__P_478_32 = true;
+            t.__P_479_32 = true;
           },
           Program: {
             exit: function exit(path) {
@@ -1448,7 +1448,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               path.node.body.forEach(function (node) {
                 return inject.push(node);
               });
-              tmp = babylon.parse(t.__P_478_1 + ".$$dbClassInfo = $$dbClassInfo;").program.body;
+              tmp = babylon.parse(t.__P_479_1 + ".$$dbClassInfo = $$dbClassInfo;").program.body;
               inject.push(tmp[0]);
               var block = types.blockStatement(inject);
               var rootFn = types.expressionStatement(types.callExpression(types.functionExpression(null, [], block), []));
@@ -1566,7 +1566,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               }
               function addTranslation(entry) {
                 var lineNo = path.node.loc ? path.node.loc.start.line : 0;
-                var cur = t.__P_478_10[entry.msgid];
+                var cur = t.__P_479_10[entry.msgid];
                 if (cur) {
                   if (!qx.lang.Type.isArray(cur.lineNo)) {
                     cur.lineNo = [cur.lineNo];
@@ -1574,7 +1574,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   cur.lineNo.push(lineNo);
                 } else {
                   entry.lineNo = lineNo;
-                  t.__P_478_10.push(entry);
+                  t.__P_479_10.push(entry);
                 }
               }
 
@@ -1584,11 +1584,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               // module to the list of modules that must be browserified
               // if the application is destined for the browser.
               var scope;
-              var applicationTypes = t.__P_478_0.getApplicationTypes();
+              var applicationTypes = t.__P_479_0.getApplicationTypes();
               if (path.node.callee.type == "Identifier" && ((_path$node = path.node) === null || _path$node === void 0 || (_path$node = _path$node.callee) === null || _path$node === void 0 ? void 0 : _path$node.name) == "require" && ((_path$node$arguments = path.node.arguments) === null || _path$node$arguments === void 0 ? void 0 : _path$node$arguments.length) == 1 && applicationTypes.includes("browser")) {
                 // See if this is a reference to global `require` or
                 // something in the scope chain
-                for (scope = t.__P_478_13; scope; scope = scope.parent) {
+                for (scope = t.__P_479_13; scope; scope = scope.parent) {
                   if (scope.vars["require"]) {
                     // It's in the scope chain. Ignore it.
                     break;
@@ -1603,9 +1603,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                       t.addMarker("compiler.requireLiteralArguments", path.node.loc, arg.value);
                     } else {
                       if (qx.tool.compiler.Console.getInstance().getVerbose()) {
-                        qx.tool.compiler.Console.log("".concat(t.__P_478_1, ":").concat(path.node.loc.start.line, ":") + " automatically detected 'require(".concat(arg.value, ")`"));
+                        qx.tool.compiler.Console.log("".concat(t.__P_479_1, ":").concat(path.node.loc.start.line, ":") + " automatically detected 'require(".concat(arg.value, ")`"));
                       }
-                      t.addCommonjsModule(arg.value, t.__P_478_1, path.node.loc.start.line);
+                      t.addCommonjsModule(arg.value, t.__P_479_1, path.node.loc.start.line);
 
                       // Don't show "unresolved" error for `require` since the
                       // browserified code defines it as a global
@@ -1630,7 +1630,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   var originalAlias = path.node.callee.object.name;
                   var alias = originalAlias;
                   var aliasIsThis = false;
-                  for (var _scope = t.__P_478_13; _scope; _scope = _scope.parent) {
+                  for (var _scope = t.__P_479_13; _scope; _scope = _scope.parent) {
                     while (!aliasIsThis) {
                       var tmp = _scope.vars[alias];
                       if (tmp === "this") {
@@ -1655,7 +1655,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
                 // Class definition?  EG `qx.Class.define(...`
                 if (TYPE[name]) {
-                  t.__P_478_30 = name.match(/\.([a-zA-Z]+)\./)[1];
+                  t.__P_479_30 = name.match(/\.([a-zA-Z]+)\./)[1];
                   var node = path.node;
                   var className = node.arguments[0].value;
                   var classDef = node.arguments[1];
@@ -1666,7 +1666,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   }
 
                   // Create new meta
-                  t.__P_478_33(className);
+                  t.__P_479_33(className);
                   if (needsQxCoreEnvironment) {
                     t._requireClass("qx.core.Environment", {
                       location: needsQxCoreEnvironment,
@@ -1674,13 +1674,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                     });
                   }
                   var meta = makeMeta("clazz", null, path.parent);
-                  t.__P_478_26.type = TYPE[name];
-                  if (t.__P_478_30 == "Class" || t.__P_478_30 == "Bootstrap") {
+                  t.__P_479_26.type = TYPE[name];
+                  if (t.__P_479_30 == "Class" || t.__P_479_30 == "Bootstrap") {
                     var typeProp = classDef.properties.find(function (prop) {
                       return prop.key.type == "Identifier" && prop.key.value == "type";
                     });
                     if (typeProp) {
-                      t.__P_478_26.isStatic == typeProp.value.type == "Literal" && typeProp.value.value === "static";
+                      t.__P_479_26.isStatic == typeProp.value.type == "Literal" && typeProp.value.value === "static";
                     }
                   }
                   checkJsDocDirectives(meta.jsdoc, path.node.loc);
@@ -1705,16 +1705,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   path.traverse(CLASS_DEF_VISITOR, {
                     classDefPath: path
                   });
-                  t.__P_478_34(className);
+                  t.__P_479_34(className);
                 } else if (name == "qx.core.Environment.add") {
                   var _arg = path.node.arguments[0];
                   if (types.isLiteral(_arg)) {
                     if (typeof _arg.value != "string") {
                       log.error("Invalid argument to qx.core.Environment.add: " + _arg.value);
                     } else {
-                      t.__P_478_7.provided[_arg.value] = true;
-                      if (!_arg.value.startsWith(t.__P_478_1) && !Object.prototype.hasOwnProperty.call(qx.tool.compiler.ClassFile.ENVIRONMENT_CONSTANTS, _arg.value)) {
-                        var symbol = t.__P_478_4.getSymbolType(_arg.value);
+                      t.__P_479_7.provided[_arg.value] = true;
+                      if (!_arg.value.startsWith(t.__P_479_1) && !Object.prototype.hasOwnProperty.call(qx.tool.compiler.ClassFile.ENVIRONMENT_CONSTANTS, _arg.value)) {
+                        var symbol = t.__P_479_4.getSymbolType(_arg.value);
                         if (!symbol || symbol.symbolType != "environment") {
                           t.addMarker("environment.unreachable", path.node.loc, _arg.value);
                         }
@@ -1761,15 +1761,15 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   // For mixins, there is never a valid time to call this.base() in the constructor; but it is
                   //  OK in methods - but we have to refer to superclass.methodName directly.  For ordinary
                   //  classes, we need to use constructor.methodName.base.
-                  if (t.__P_478_30 == "Mixin") {
-                    expr = types.callExpression(expandMemberExpression("qx.Mixin.baseClassMethod"), [expandMemberExpression("this.constructor"), types.identifier(t.__P_478_26.className), types.stringLiteral(t.__P_478_26.functionName)]);
+                  if (t.__P_479_30 == "Mixin") {
+                    expr = types.callExpression(expandMemberExpression("qx.Mixin.baseClassMethod"), [expandMemberExpression("this.constructor"), types.identifier(t.__P_479_26.className), types.stringLiteral(t.__P_479_26.functionName)]);
                     expr = types.memberExpression(expr, types.identifier("call"));
-                  } else if (t.__P_478_26.functionName == "$$constructor") {
-                    expr = expandMemberExpression(t.__P_478_26.superClass + ".constructor.call");
-                  } else if (t.__P_478_26.className) {
-                    expr = expandMemberExpression(t.__P_478_26.className + ".superclass" + ".prototype." + t.__P_478_26.functionName + ".call");
+                  } else if (t.__P_479_26.functionName == "$$constructor") {
+                    expr = expandMemberExpression(t.__P_479_26.superClass + ".constructor.call");
+                  } else if (t.__P_479_26.className) {
+                    expr = expandMemberExpression(t.__P_479_26.className + ".superclass" + ".prototype." + t.__P_479_26.functionName + ".call");
                   } else {
-                    expr = expandMemberExpression(t.__P_478_26.superClass + ".prototype." + t.__P_478_26.functionName + ".call");
+                    expr = expandMemberExpression(t.__P_479_26.superClass + ".prototype." + t.__P_479_26.functionName + ".call");
                   }
                   var thisArgument = thisAlias ? types.identifier(thisAlias) : types.thisExpression();
                   if (name.startsWith("super")) {
@@ -1782,12 +1782,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 } else if (name == "this.base.apply" || name == "this.base.call") {
                   var methodName = name == "this.base.apply" ? "apply" : "call";
                   var _expr;
-                  if (t.__P_478_30 == "Mixin") {
-                    _expr = expandMemberExpression("this.constructor.superclass.prototype." + t.__P_478_26.functionName + ".call");
-                  } else if (t.__P_478_26.functionName == "$$constructor") {
-                    _expr = expandMemberExpression(t.__P_478_26.superClass + ".constructor." + methodName);
+                  if (t.__P_479_30 == "Mixin") {
+                    _expr = expandMemberExpression("this.constructor.superclass.prototype." + t.__P_479_26.functionName + ".call");
+                  } else if (t.__P_479_26.functionName == "$$constructor") {
+                    _expr = expandMemberExpression(t.__P_479_26.superClass + ".constructor." + methodName);
                   } else {
-                    _expr = expandMemberExpression(t.__P_478_1 + ".prototype." + t.__P_478_26.functionName + ".base." + methodName);
+                    _expr = expandMemberExpression(t.__P_479_1 + ".prototype." + t.__P_479_26.functionName + ".base." + methodName);
                   }
 
                   // Original call to this.base.apply would have included arguments in the first element of the array
@@ -1799,7 +1799,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   var _callExpr = types.callExpression(_expr, [path.node.arguments[0], exprUnshift]);
                   path.replaceWith(_callExpr);
                 } else if (name == "this.self") {
-                  var _expr2 = expandMemberExpression(t.__P_478_26.className);
+                  var _expr2 = expandMemberExpression(t.__P_479_26.className);
                   path.replaceWith(_expr2);
                 } else if (name == "this.tr" || name == "this.marktr" || name == "qx.locale.Manager.tr" || name == "qx.locale.Manager.marktr") {
                   var arg0 = getStringArg(0);
@@ -1889,7 +1889,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               }
 
               // Global variable or a local variable?
-              if (t.__P_478_18[members[0]] || t.hasDeclaration(members[0])) {
+              if (t.__P_479_18[members[0]] || t.hasDeclaration(members[0])) {
                 return;
               }
               var info = t._requireClass(name, {
@@ -1909,7 +1909,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           },
           ObjectProperty: {
             exit: function exit(path) {
-              if (this.__P_478_21 == "readable") {
+              if (this.__P_479_21 == "readable") {
                 if (path.node.value.type == "FunctionExpression" && path.node.value.id === null) {
                   var functionName = typeof path.node.key.value == "string" ? path.node.key.value : path.node.key.name;
                   if (!qx.tool.compiler.ClassFile.RESERVED_WORDS[functionName]) {
@@ -1920,12 +1920,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             }
           },
           Property: function Property(path) {
-            if (t.__P_478_26 && t.__P_478_26._topLevel && t.__P_478_26._topLevel.path == path.parentPath.parentPath) {
-              t.__P_478_26.functionName = getKeyName(path.node.key);
-              makeMeta(t.__P_478_26._topLevel.keyName, t.__P_478_26.functionName, path.node);
+            if (t.__P_479_26 && t.__P_479_26._topLevel && t.__P_479_26._topLevel.path == path.parentPath.parentPath) {
+              t.__P_479_26.functionName = getKeyName(path.node.key);
+              makeMeta(t.__P_479_26._topLevel.keyName, t.__P_479_26.functionName, path.node);
               path.skip();
               var functionId = null;
-              if (this.__P_478_21 == "readable") {
+              if (this.__P_479_21 == "readable") {
                 if (path.node.value.type == "FunctionExpression" && path.node.value.id === null) {
                   var functionName = typeof path.node.key.value == "string" ? path.node.key.value : path.node.key.name;
                   if (!qx.tool.compiler.ClassFile.RESERVED_WORDS[functionName]) {
@@ -1937,19 +1937,19 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               if (functionId) {
                 path.node.value.id = functionId;
               }
-              t.__P_478_26.functionName = null;
+              t.__P_479_26.functionName = null;
             }
           },
           ObjectMethod: function ObjectMethod(path) {
             // Methods within a top level object (ie "members" or "statics"), record the method name and meta data
-            if (t.__P_478_26 && t.__P_478_26._topLevel && t.__P_478_26._topLevel.path == path.parentPath.parentPath) {
-              t.__P_478_26.functionName = t.__P_478_26._topLevel.keyName == "objects" ? "_createQxObjectImpl" : getKeyName(path.node.key);
-              makeMeta(t.__P_478_26._topLevel.keyName, t.__P_478_26.functionName, path.node);
+            if (t.__P_479_26 && t.__P_479_26._topLevel && t.__P_479_26._topLevel.path == path.parentPath.parentPath) {
+              t.__P_479_26.functionName = t.__P_479_26._topLevel.keyName == "objects" ? "_createQxObjectImpl" : getKeyName(path.node.key);
+              makeMeta(t.__P_479_26._topLevel.keyName, t.__P_479_26.functionName, path.node);
               path.skip();
               enterFunction(path);
               path.traverse(VISITOR);
               exitFunction(path);
-              t.__P_478_26.functionName = null;
+              t.__P_479_26.functionName = null;
 
               // Otherwise traverse method as normal
             } else {
@@ -2045,7 +2045,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *
        * @param className {String} name of the class being defined
        */
-      __P_478_33: function __P_478_33(className) {
+      __P_479_33: function __P_479_33(className) {
         var pos = (className || "").lastIndexOf(".");
         var meta = {
           className: className,
@@ -2056,33 +2056,33 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           mixins: [],
           functionName: null
         };
-        this.__P_478_2.push(meta);
-        this.__P_478_26 = meta;
-        this.__P_478_3[className] = meta;
-        this.__P_478_22++;
+        this.__P_479_2.push(meta);
+        this.__P_479_26 = meta;
+        this.__P_479_3[className] = meta;
+        this.__P_479_22++;
       },
       /**
        * Pops the current meta off the stack, optionally checking that the classname is correct
        */
-      __P_478_34: function __P_478_34(className) {
-        if (!this.__P_478_2.length) {
+      __P_479_34: function __P_479_34(className) {
+        if (!this.__P_479_2.length) {
           throw new Error("No __metaStack entries to pop");
         }
-        var meta = this.__P_478_2[this.__P_478_2.length - 1];
+        var meta = this.__P_479_2[this.__P_479_2.length - 1];
         if (className && meta.className != className) {
           throw new Error("Wrong __metaStack entries to pop, expected " + className + " found " + meta.className);
         }
-        this.__P_478_2.pop();
-        meta = this.__P_478_2[this.__P_478_2.length - 1] || null;
-        this.__P_478_26 = meta;
+        this.__P_479_2.pop();
+        meta = this.__P_479_2[this.__P_479_2.length - 1] || null;
+        this.__P_479_26 = meta;
       },
       /**
        * Pushes a new scope on the stack
        */
       pushScope: function pushScope(functionName, node, isClassMember) {
-        this.__P_478_13 = {
+        this.__P_479_13 = {
           functionName: functionName,
-          parent: this.__P_478_13,
+          parent: this.__P_479_13,
           loc: node.loc,
           vars: {},
           unresolved: {},
@@ -2093,8 +2093,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * Pops a scope from the stack
        */
       popScope: function popScope(node) {
-        var old = this.__P_478_13;
-        var scope = this.__P_478_13 = this.__P_478_13.parent;
+        var old = this.__P_479_13;
+        var scope = this.__P_479_13 = this.__P_479_13.parent;
         var unresolved = scope.unresolved;
         for (var name in old.unresolved) {
           if (scope.vars[name]) {
@@ -2116,7 +2116,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns {Boolean}
        */
       isLoadScope: function isLoadScope() {
-        return !this.__P_478_13.parent;
+        return !this.__P_479_13.parent;
       },
       /**
        * Tests whether this class has a defer method
@@ -2124,7 +2124,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns {Boolean}
        */
       hasDefer: function hasDefer() {
-        return this.__P_478_29;
+        return this.__P_479_29;
       },
       /**
        * Adds a variable declaration to the current scope; if the symbol was
@@ -2134,9 +2134,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param valueName {String} the value to assign to the variable
        */
       addDeclaration: function addDeclaration(name, valueName) {
-        if (this.__P_478_13.vars[name] === undefined) {
-          this.__P_478_13.vars[name] = valueName || true;
-          var unresolved = this.__P_478_13.unresolved;
+        if (this.__P_479_13.vars[name] === undefined) {
+          this.__P_479_13.vars[name] = valueName || true;
+          var unresolved = this.__P_479_13.unresolved;
           delete unresolved[name];
           var re = new RegExp(name + "\\.");
           for (var tmp in unresolved) {
@@ -2158,7 +2158,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (pos > -1) {
           name = name.substring(0, pos);
         }
-        for (var tmp = this.__P_478_13; tmp; tmp = tmp.parent) {
+        for (var tmp = this.__P_479_13; tmp; tmp = tmp.parent) {
           if (tmp.vars[name] !== undefined) {
             return true;
           }
@@ -2174,13 +2174,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (!qx.lang.Type.isArray(name)) {
           name = name.split(".");
         }
-        var scope = this.__P_478_13;
+        var scope = this.__P_479_13;
         if (scope.vars[name[0]] !== undefined) {
           return;
         }
 
         // Global variable or a local variable?
-        if (name[0] === "this" || name[0] === "[]" || this.__P_478_18[name[0]] || this.hasDeclaration(name[0])) {
+        if (name[0] === "this" || name[0] === "[]" || this.__P_479_18[name[0]] || this.hasDeclaration(name[0])) {
           return;
         }
         var str = "";
@@ -2189,12 +2189,12 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             str += ".";
           }
           str += name[i];
-          if (this.__P_478_18[str] || this.isIgnored(str)) {
+          if (this.__P_479_18[str] || this.isIgnored(str)) {
             return;
           }
         }
         name = str;
-        if (name == this.__P_478_1 || name.startsWith(this.__P_478_1 + ".") || name.startsWith("(")) {
+        if (name == this.__P_479_1 || name.startsWith(this.__P_479_1 + ".") || name.startsWith("(")) {
           return;
         }
         if (!scope.unresolved[name]) {
@@ -2202,7 +2202,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             name: name,
             locations: loc ? [loc] : [],
             load: this.isLoadScope(),
-            defer: this.__P_478_24
+            defer: this.__P_479_24
           };
         } else if (loc) {
           scope.unresolved[name].locations.push(loc);
@@ -2223,26 +2223,26 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           __dirname: 1,
           __filename: 1
         };
-        if (DO_NOT_ENCODE[name] || this.__P_478_21 == "off" || !name.startsWith("__") || !name.match(/^[0-9a-z_$]+$/i)) {
+        if (DO_NOT_ENCODE[name] || this.__P_479_21 == "off" || !name.startsWith("__") || !name.match(/^[0-9a-z_$]+$/i)) {
           return name;
         }
         if (name.indexOf("__P_") > -1) {
           return name;
         }
-        var coded = this.__P_478_19[name];
+        var coded = this.__P_479_19[name];
         if (!coded) {
           // Strings have to be handled differently - we need to mangle them, but only if we
           //  know for sure that they are private members; to do this, we need to see a symbol
           //  (identifier) first, to know that the string needs to be mangled
           if (!isIdentifier) {
-            this.__P_478_20[name] = true;
+            this.__P_479_20[name] = true;
             return name;
           }
-          if (this.__P_478_20[name]) {
+          if (this.__P_479_20[name]) {
             this.addMarker("class.blockedMangle", location, name);
             return name;
           }
-          var db = this.__P_478_0.getDatabase();
+          var db = this.__P_479_0.getDatabase();
           if (!db.manglePrefixes) {
             db.manglePrefixes = {
               nextPrefix: 1,
@@ -2250,15 +2250,15 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             };
           }
           var prefixes = db.manglePrefixes;
-          var prefix = prefixes.classPrefixes[this.__P_478_1];
+          var prefix = prefixes.classPrefixes[this.__P_479_1];
           if (!prefix) {
             prefix = "__P_" + ++prefixes.nextPrefix + "_";
-            prefixes.classPrefixes[this.__P_478_1] = prefix;
+            prefixes.classPrefixes[this.__P_479_1] = prefix;
           }
-          if (this.__P_478_21 == "readable") {
-            coded = this.__P_478_19[name] = name + prefix + Object.keys(this.__P_478_19).length;
+          if (this.__P_479_21 == "readable") {
+            coded = this.__P_479_19[name] = name + prefix + Object.keys(this.__P_479_19).length;
           } else {
-            coded = this.__P_478_19[name] = prefix + Object.keys(this.__P_478_19).length;
+            coded = this.__P_479_19[name] = prefix + Object.keys(this.__P_479_19).length;
           }
         }
         return coded;
@@ -2268,11 +2268,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name
        */
       deleteReference: function deleteReference(name) {
-        delete this.__P_478_13.unresolved[name];
+        delete this.__P_479_13.unresolved[name];
         var stub = name + ".";
-        for (var id in this.__P_478_13.unresolved) {
+        for (var id in this.__P_479_13.unresolved) {
           if (id.startsWith(stub)) {
-            delete this.__P_478_13.unresolved[id];
+            delete this.__P_479_13.unresolved[id];
           }
         }
       },
@@ -2282,8 +2282,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name {String} name of the symbol
        */
       addExternal: function addExternal(name) {
-        if (this.__P_478_14.indexOf(name) < 0) {
-          this.__P_478_14.push(name);
+        if (this.__P_479_14.indexOf(name) < 0) {
+          this.__P_479_14.push(name);
         }
       },
       /**
@@ -2292,17 +2292,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name {String} name of the module
        */
       addCommonjsModule: function addCommonjsModule(moduleName, className, linenum) {
-        if (!this.__P_478_15[moduleName]) {
-          this.__P_478_15[moduleName] = new Set();
+        if (!this.__P_479_15[moduleName]) {
+          this.__P_479_15[moduleName] = new Set();
         }
-        this.__P_478_15[moduleName].add("".concat(className, ":").concat(linenum));
+        this.__P_479_15[moduleName].add("".concat(className, ":").concat(linenum));
       },
       /**
        * Adds an ignored symbol
        * @param name {String} name of the symbol
        */
       addIgnore: function addIgnore(name) {
-        var scope = this.__P_478_13;
+        var scope = this.__P_479_13;
         if (!scope.ignore) {
           scope.ignore = {};
         }
@@ -2326,7 +2326,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Boolean} true if ignored
        */
       isIgnored: function isIgnored(name) {
-        for (var tmp = this.__P_478_13; tmp; tmp = tmp.parent) {
+        for (var tmp = this.__P_479_13; tmp; tmp = tmp.parent) {
           if (tmp.ignore) {
             if (tmp.ignore[name]) {
               return true;
@@ -2347,7 +2347,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name {String} name of the symbol
        */
       removeIgnore: function removeIgnore(name) {
-        var scope = this.__P_478_13;
+        var scope = this.__P_479_13;
         if (!scope) {
           return;
         }
@@ -2366,13 +2366,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var t = this;
         var requiredOpts = {
           load: t.isLoadScope(),
-          defer: t.__P_478_24,
-          construct: t.__P_478_26 && t.__P_478_26.functionName == "$$constructor",
+          defer: t.__P_479_24,
+          construct: t.__P_479_26 && t.__P_479_26.functionName == "$$constructor",
           location: location
         };
-        var dest = t.__P_478_7.required[name];
+        var dest = t.__P_479_7.required[name];
         if (!dest) {
-          dest = t.__P_478_7.required[name] = {};
+          dest = t.__P_479_7.required[name] = {};
         }
         if (requiredOpts.load) {
           dest.load = true;
@@ -2386,7 +2386,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         t._requireClass("qx.core.Environment", {
           location: location
         });
-        var info = t.__P_478_0.getSymbolType(name);
+        var info = t.__P_479_0.getSymbolType(name);
         if (!Object.prototype.hasOwnProperty.call(qx.tool.compiler.ClassFile.ENVIRONMENT_CONSTANTS, name)) {
           // Generally speaking, we try to have as few load dependencies as possible, and this
           // means that in a class' `.defer()` we will still allow for runtime loading.  However,
@@ -2434,10 +2434,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             }
           }
         }
-        if (this.__P_478_12[key]) {
+        if (this.__P_479_12[key]) {
           return;
         }
-        this.__P_478_12[key] = true;
+        this.__P_479_12[key] = true;
         var marker = {
           msgId: msgId
         };
@@ -2474,7 +2474,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (args.length) {
           marker.args = args;
         }
-        this.__P_478_11.push(marker);
+        this.__P_479_11.push(marker);
       },
       /**
        * Adds a required class
@@ -2496,7 +2496,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           return null;
         }
         var t = this;
-        if (name == this.__P_478_1) {
+        if (name == this.__P_479_1) {
           return null;
         }
         if (!name) {
@@ -2507,25 +2507,25 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
         var requireOpts = {
           load: t.isLoadScope(),
-          defer: t.__P_478_24,
-          construct: t.__P_478_26 && t.__P_478_26.functionName == "$$constructor"
+          defer: t.__P_479_24,
+          construct: t.__P_479_26 && t.__P_479_26.functionName == "$$constructor"
         };
         if (opts) {
           for (var key in opts) {
             requireOpts[key] = opts[key];
           }
         }
-        var info = t.__P_478_0.getSymbolType(name);
+        var info = t.__P_479_0.getSymbolType(name);
         var symbolType = info ? info.symbolType : null;
         var className = info ? info.className : null;
-        if (symbolType != "package" && className && className != t.__P_478_1) {
+        if (symbolType != "package" && className && className != t.__P_479_1) {
           // Re-check the class name as ignored if this is a member
           if (symbolType == "member" && t.isIgnored(className)) {
             return null;
           }
-          var data = t.__P_478_6[className];
+          var data = t.__P_479_6[className];
           if (!data) {
-            data = t.__P_478_6[className] = {};
+            data = t.__P_479_6[className] = {};
           }
           if (requireOpts.where !== undefined) {
             if (requireOpts.where == "ignore") {
@@ -2552,7 +2552,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             } else if (data.defer !== "load") {
               data.defer = "runtime";
             }
-            if (!name.startsWith(t.__P_478_1)) {
+            if (!name.startsWith(t.__P_479_1)) {
               if (!qx.tool.compiler.ClassFile.DEFER_SAFE_SYMBOLS.some(function (symbol) {
                 return name.startsWith(symbol);
               })) {
@@ -2576,8 +2576,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (path.indexOf("/") < 0 && path.indexOf(".") > -1) {
           path = path.replace(/\./g, "/");
         }
-        if (!qx.lang.Array.contains(this.__P_478_8, path)) {
-          this.__P_478_8.push(path);
+        if (!qx.lang.Array.contains(this.__P_479_8, path)) {
+          this.__P_479_8.push(path);
         }
       },
       /**
@@ -2585,7 +2585,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns
        */
       getAssets: function getAssets() {
-        return this.__P_478_8;
+        return this.__P_479_8;
       },
       /**
        * Adds a required font
@@ -2593,7 +2593,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param {Location} the Babel location
        */
       _requireFont: function _requireFont(name, loc) {
-        this.__P_478_9[name] = {
+        this.__P_479_9[name] = {
           name: name,
           loc: loc
         };
@@ -2606,7 +2606,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name
        * @returns
        */
-      __P_478_35: function __P_478_35(props, name) {
+      __P_479_35: function __P_479_35(props, name) {
         for (var i = 0; i < props.length; i++) {
           var prop = props[i];
           if (prop.type == "Property") {
@@ -2626,7 +2626,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns
        */
       getRequiredClasses: function getRequiredClasses() {
-        return this.__P_478_6;
+        return this.__P_479_6;
       },
       /**
        * Returns a list of unresolved symbols
@@ -2634,14 +2634,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @returns
        */
       getUnresolvedSymbols: function getUnresolvedSymbols() {
-        return this.__P_478_13.unresolved;
+        return this.__P_479_13.unresolved;
       },
       /**
        * Returns the name of the class being compiled
        * @returns {null}
        */
       getClassName: function getClassName() {
-        return this.__P_478_1;
+        return this.__P_479_1;
       }
     },
     defer: function defer(statics) {
@@ -2739,4 +2739,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.tool.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1731948128345
+//# sourceMappingURL=ClassFile.js.map?dt=1735222438471

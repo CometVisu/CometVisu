@@ -53,7 +53,7 @@
      */
     construct: function construct(size, family) {
       qx.core.Object.constructor.call(this);
-      this.__P_109_0 = {
+      this.__P_110_0 = {
         fontFamily: "",
         fontSize: null,
         fontWeight: null,
@@ -129,7 +129,7 @@
         return font;
       },
       /** @type {Map} Default (empty) CSS styles */
-      __P_109_1: {
+      __P_110_1: {
         fontFamily: "",
         fontSize: "",
         fontWeight: "",
@@ -149,7 +149,7 @@
        * @return {Map} Default styles
        */
       getDefaultStyles: function getDefaultStyles() {
-        return this.__P_109_1;
+        return this.__P_110_1;
       }
     },
     /*
@@ -268,7 +268,7 @@
     */
 
     members: {
-      __P_109_0: null,
+      __P_110_0: null,
       /**
        * Called by the theme manager when all the properties to be set, have been set
        */
@@ -277,10 +277,10 @@
       },
       // property apply
       _applySize: function _applySize(value, old) {
-        this.__P_109_0.fontSize = value === null ? null : value + "px";
+        this.__P_110_0.fontSize = value === null ? null : value + "px";
       },
       _applyLineHeight: function _applyLineHeight(value, old) {
-        this.__P_109_0.lineHeight = value === null ? null : value;
+        this.__P_110_0.lineHeight = value === null ? null : value;
       },
       // property apply
       _applyFamily: function _applyFamily(value, old) {
@@ -301,7 +301,7 @@
         // font family is a special case. In order to render the labels correctly
         // we have to return a font family - even if it's an empty string to prevent
         // the browser from applying the element style
-        this.__P_109_0.fontFamily = family;
+        this.__P_110_0.fontFamily = family;
       },
       // property apply
       _applyFontName: function _applyFontName(value) {
@@ -322,34 +322,34 @@
       },
       // property apply
       _applyBold: function _applyBold(value, old) {
-        this.__P_109_0.fontWeight = value == null ? null : value ? "bold" : "normal";
+        this.__P_110_0.fontWeight = value == null ? null : value ? "bold" : "normal";
       },
       // property apply
       _applyItalic: function _applyItalic(value, old) {
-        this.__P_109_0.fontStyle = value == null ? null : value ? "italic" : "normal";
+        this.__P_110_0.fontStyle = value == null ? null : value ? "italic" : "normal";
       },
       // property apply
       _applyDecoration: function _applyDecoration(value, old) {
-        this.__P_109_0.textDecoration = value == null ? null : value;
+        this.__P_110_0.textDecoration = value == null ? null : value;
       },
       // property apply
       _applyColor: function _applyColor(value, old) {
-        this.__P_109_0.color = null;
+        this.__P_110_0.color = null;
         if (value) {
-          this.__P_109_0.color = qx.theme.manager.Color.getInstance().resolve(value);
+          this.__P_110_0.color = qx.theme.manager.Color.getInstance().resolve(value);
         }
       },
       // property apply
       _applyWeight: function _applyWeight(value, old) {
-        this.__P_109_0.fontWeight = value;
+        this.__P_110_0.fontWeight = value;
       },
       // property apply
       _applyTextShadow: function _applyTextShadow(value, old) {
-        this.__P_109_0.textShadow = value == null ? null : value;
+        this.__P_110_0.textShadow = value == null ? null : value;
       },
       // property apply
       _applyLetterSpacing: function _applyLetterSpacing(value, old) {
-        this.__P_109_0.letterSpacing = value === null ? null : value + "px";
+        this.__P_110_0.letterSpacing = value === null ? null : value + "px";
       },
       /**
        * Get a map of all CSS styles, which will be applied to the widget. Only
@@ -360,11 +360,11 @@
        * widget.
        */
       getStyles: function getStyles() {
-        return this.__P_109_0;
+        return this.__P_110_0;
       }
     }
   });
   qx.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1731948099648
+//# sourceMappingURL=Font.js.map?dt=1735222414549

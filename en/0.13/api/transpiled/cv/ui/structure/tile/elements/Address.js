@@ -24,8 +24,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       "cv.data.Model": {},
       "cv.ui.structure.tile.components.Button": {},
       "cv.Transform": {},
-      "qx.event.Timer": {},
       "cv.io.BackendConnections": {},
+      "qx.event.Timer": {},
       "cv.Application": {},
       "cv.util.String": {},
       "cv.ui.structure.tile.Controller": {
@@ -67,8 +67,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_92_0: null,
-      __P_92_1: null,
+      __P_93_0: null,
+      __P_93_1: null,
       _stateUpdateTarget: null,
       getAddress: function getAddress() {
         return this._element.textContent.trim();
@@ -121,20 +121,24 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
                   variantInfo: _this._element.getAttribute('variant'),
                   qos: (_this._element.getAttribute('qos') || 0) | 0
                 }, value);
-
+                var client = cv.io.BackendConnections.getClient(backendName);
+                if (!client) {
+                  _this.error('no client found for backend', backendName);
+                  return;
+                }
                 // noinspection EqualityComparisonWithCoercionJS
                 if (allowDuplicates || !Object.prototype.hasOwnProperty.call(element, 'lastSentValue') || encodedValue.raw !== element.lastSentValue) {
                   if (element.hasAttribute('delay')) {
                     var delay = parseInt(element.getAttribute('delay'));
                     _this.debug("send with delay of ".concat(delay, "ms"));
                     qx.event.Timer.once(function () {
-                      cv.io.BackendConnections.getClient(backendName).write(address, encodedValue.bus, element);
+                      client.write(address, encodedValue.bus, element);
                       if (!allowDuplicates) {
                         element.lastSentValue = encodedValue.raw;
                       }
                     }, _this, delay);
                   } else {
-                    cv.io.BackendConnections.getClient(backendName).write(address, encodedValue.bus, element);
+                    client.write(address, encodedValue.bus, element);
                     if (!allowDuplicates) {
                       element.lastSentValue = encodedValue.raw;
                     }
@@ -151,7 +155,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
        * @param state {variant} state to send
        */
       fireStateUpdate: function fireStateUpdate(address, state) {
-        if (this.__P_92_0 !== state || this._element.getAttribute('send-mode') === 'always') {
+        if (this.__P_93_0 !== state || this._element.getAttribute('send-mode') === 'always') {
           var transform = this._element.getAttribute('transform') || 'raw';
           var transformedState = cv.Transform.decode({
             transform: transform,
@@ -185,10 +189,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
               variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
             }
           });
-          this.__P_92_1 = transformedState;
+          this.__P_93_1 = transformedState;
           //console.log(ev.detail);
           this._stateUpdateTarget.dispatchEvent(ev);
-          this.__P_92_0 = state;
+          this.__P_93_0 = state;
           // reset lastSentValue
           if (state !== this._element.lastSentValue) {
             this._element.lastSentValue = null;
@@ -210,7 +214,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         return this._element.getAttribute('mode') !== 'read';
       },
       getValue: function getValue() {
-        return this.__P_92_1;
+        return this.__P_93_1;
       }
     },
     defer: function defer(Clazz) {
@@ -229,4 +233,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1731948097826
+//# sourceMappingURL=Address.js.map?dt=1735222413003

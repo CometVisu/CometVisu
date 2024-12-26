@@ -67,15 +67,15 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.dev.unit.MRequirements, qx.dev.unit.MMock],
     members: {
-      __P_339_0: null,
+      __P_340_0: null,
       setUp: function setUp() {
         this.require(["php"]);
-        this.__P_339_0 = new qx.data.store.Jsonp();
+        this.__P_340_0 = new qx.data.store.Jsonp();
         this.url = qx.util.ResourceManager.getInstance().toUri("qx/test/jsonp_primitive.php");
       },
       tearDown: function tearDown() {
         this.getSandbox().restore();
-        this.__P_339_0.dispose();
+        this.__P_340_0.dispose();
         if (this.request) {
           // From prototype
           delete this.request.dispose;
@@ -118,9 +118,9 @@
       },
       testWholePrimitive: function testWholePrimitive() {
         var _this = this;
-        this.__P_339_0.addListener("loaded", function () {
+        this.__P_340_0.addListener("loaded", function () {
           _this.resume(function () {
-            var model = this.__P_339_0.getModel();
+            var model = this.__P_340_0.getModel();
             this.assertEquals("String", model.getString(), "The model is not created how it should!");
             this.assertEquals(12, model.getNumber(), "The model is not created how it should!");
             this.assertEquals(true, model.getBoolean(), "The model is not created how it should!");
@@ -128,7 +128,7 @@
           }, _this);
         });
         var url = this.url;
-        this.__P_339_0.setUrl(url);
+        this.__P_340_0.setUrl(url);
         this.wait();
       },
       testManipulatePrimitive: function testManipulatePrimitive() {
@@ -181,23 +181,23 @@
         var _this4 = this;
         this.setUpFakeRequest();
         var url = this.url;
-        this.__P_339_0.addListener("loaded", function () {
+        this.__P_340_0.addListener("loaded", function () {
           _this4.resume(function () {
-            this.__P_339_0.dispose();
+            this.__P_340_0.dispose();
             this.assertCalled(this.request.dispose);
           }, _this4);
         });
-        this.__P_339_0.setUrl(url);
+        this.__P_340_0.setUrl(url);
       },
       testErrorEvent: function testErrorEvent() {
         var _this5 = this;
         // do not test that for IE and Opera because of the missing
         // error handler for script tags
         if (!(qx.core.Environment.get("browser.name") == "ie") && !(qx.core.Environment.get("browser.name") == "opera")) {
-          this.__P_339_0.addListener("error", function () {
+          this.__P_340_0.addListener("error", function () {
             _this5.resume(function () {}, _this5);
           });
-          this.__P_339_0.setUrl("affe");
+          this.__P_340_0.setUrl("affe");
           this.wait();
         }
       }
@@ -206,4 +206,4 @@
   qx.test.data.store.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1731948115276
+//# sourceMappingURL=Jsonp.js.map?dt=1735222427667

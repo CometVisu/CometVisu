@@ -45,15 +45,15 @@
       tearDown: function tearDown() {
         qx.test.ui.virtual.layer.WidgetCellSpan.superclass.prototype.tearDown.call(this);
         this._disposeArray("_pool");
-        this.__P_444_0.dispose();
-        this.__P_444_1.dispose();
-        this.__P_444_2.dispose();
+        this.__P_445_0.dispose();
+        this.__P_445_1.dispose();
+        this.__P_445_2.dispose();
       },
       _createLayer: function _createLayer() {
-        this.__P_444_0 = new qx.ui.virtual.cell.Cell();
-        this.__P_444_1 = new qx.ui.virtual.core.Axis(10, 100);
-        this.__P_444_2 = new qx.ui.virtual.core.Axis(20, 100);
-        return new qx.ui.virtual.layer.WidgetCellSpan(this, this.__P_444_1, this.__P_444_2);
+        this.__P_445_0 = new qx.ui.virtual.cell.Cell();
+        this.__P_445_1 = new qx.ui.virtual.core.Axis(10, 100);
+        this.__P_445_2 = new qx.ui.virtual.core.Axis(20, 100);
+        return new qx.ui.virtual.layer.WidgetCellSpan(this, this.__P_445_1, this.__P_445_2);
       },
       getCellWidget: function getCellWidget(row, column) {
         var widget = this._pool.pop() || new qx.ui.core.Widget();
@@ -125,10 +125,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_444_0 = null;
+      this.__P_445_0 = null;
     }
   });
   qx.test.ui.virtual.layer.WidgetCellSpan.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCellSpan.js.map?dt=1731948122329
+//# sourceMappingURL=WidgetCellSpan.js.map?dt=1735222433459

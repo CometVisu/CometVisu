@@ -53,52 +53,52 @@
   qx.Class.define("qx.test.ui.embed.Iframe", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_389_0: null,
+      __P_390_0: null,
       setUp: function setUp() {
-        this.__P_389_0 = new qx.ui.embed.Iframe();
-        this.__P_389_0.set({
+        this.__P_390_0 = new qx.ui.embed.Iframe();
+        this.__P_390_0.set({
           width: 200,
           height: 500
         });
       },
       tearDown: function tearDown() {
-        this.__P_389_0.destroy();
+        this.__P_390_0.destroy();
       },
       testHiddenSetSourceInitial: function testHiddenSetSourceInitial() {
-        this.__P_389_0.set({
+        this.__P_390_0.set({
           visibility: "hidden"
         });
-        this.getRoot().add(this.__P_389_0);
+        this.getRoot().add(this.__P_390_0);
         qx.ui.core.queue.Manager.flush();
-        this.assertNotNull(this.__P_389_0.getContentElement().getDomElement());
+        this.assertNotNull(this.__P_390_0.getContentElement().getDomElement());
       },
       testHiddenSetSource: function testHiddenSetSource() {
         var _this = this;
-        this.getRoot().add(this.__P_389_0);
+        this.getRoot().add(this.__P_390_0);
         qx.ui.core.queue.Manager.flush();
-        this.__P_389_0.hide();
+        this.__P_390_0.hide();
         qx.ui.core.queue.Manager.flush();
         var src = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html");
         src = qx.util.Uri.getAbsolute(src);
-        this.__P_389_0.setSource(src);
+        this.__P_390_0.setSource(src);
         qx.ui.core.queue.Manager.flush();
-        this.__P_389_0.addListenerOnce("load", function () {
+        this.__P_390_0.addListenerOnce("load", function () {
           _this.resume(function () {
-            this.assertEquals(this.__P_389_0.getSource(), this.__P_389_0.getWindow().location.href);
+            this.assertEquals(this.__P_390_0.getSource(), this.__P_390_0.getWindow().location.href);
           });
         });
         this.wait(10000);
       },
       testGetWindow: function testGetWindow() {
         var _this2 = this;
-        this.getRoot().add(this.__P_389_0);
-        this.__P_389_0.addListener("load", function () {
+        this.getRoot().add(this.__P_390_0);
+        this.__P_390_0.addListener("load", function () {
           _this2.resume(function () {
-            this.assertNotNull(this.__P_389_0.getWindow());
+            this.assertNotNull(this.__P_390_0.getWindow());
           }, _this2);
         });
         var src = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html");
-        this.__P_389_0.setSource(src);
+        this.__P_390_0.setSource(src);
         this.wait(10000);
       },
       /** @ignore(require) */testSyncSourceAfterDOMMove: function testSyncSourceAfterDOMMove() {
@@ -121,7 +121,7 @@
         var src1 = rm.toUri("qx/static/blank.html"); // <body></body>
         var src2 = rm.toUri("qx/test/hello.html"); // <body>Hello World!</body>
 
-        var iframe = this.__P_389_0;
+        var iframe = this.__P_390_0;
         var container0 = new qx.ui.container.Composite(new qx.ui.layout.VBox());
         var container1 = new qx.ui.container.Composite(new qx.ui.layout.VBox());
         var container2 = new qx.ui.container.Composite(new qx.ui.layout.VBox());
@@ -165,4 +165,4 @@
   qx.test.ui.embed.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1731948119653
+//# sourceMappingURL=Iframe.js.map?dt=1735222431249

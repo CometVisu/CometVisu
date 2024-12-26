@@ -132,20 +132,20 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     members: {
       _i: null,
       _values: null,
-      __P_93_0: null,
+      __P_94_0: null,
       setValue: function setValue(val) {
-        if (this.__P_93_0 !== val) {
-          var oldValue = this.__P_93_0;
-          this.__P_93_0 = val;
+        if (this.__P_94_0 !== val) {
+          var oldValue = this.__P_94_0;
+          this.__P_94_0 = val;
           this.fireDataEvent('changeValue', val, oldValue);
           this._applyValue(val);
         }
       },
       getValue: function getValue() {
-        return this.__P_93_0;
+        return this.__P_94_0;
       },
       resetValue: function resetValue() {
-        this.__P_93_0 = null;
+        this.__P_94_0 = null;
       },
       getAddress: function getAddress() {
         return this._element.getAttribute('id');
@@ -250,4 +250,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.tile.elements.AddressGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AddressGroup.js.map?dt=1731948097866
+//# sourceMappingURL=AddressGroup.js.map?dt=1735222413032

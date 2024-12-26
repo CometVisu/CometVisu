@@ -55,24 +55,24 @@
     construct: function construct(label, icon) {
       qx.ui.tabview.Page.constructor.call(this, label, icon);
       this._setLayout(new qx.ui.layout.Grow());
-      this.__P_683_0 = new qx.ui.container.Composite();
-      var scroll = new qx.ui.container.Scroll(this.__P_683_0);
+      this.__P_684_0 = new qx.ui.container.Composite();
+      var scroll = new qx.ui.container.Scroll(this.__P_684_0);
       this._add(scroll);
     },
     members: {
       /** @type{qx.ui.core.Widget} the container that the user's children are added to */
-      __P_683_0: null,
+      __P_684_0: null,
       /**
        * Make sure that children are added to the scrolling container
        *
        * @return {qx.ui.core.Widget} the widget to add to
        */
       getChildrenContainer: function getChildrenContainer() {
-        return this.__P_683_0;
+        return this.__P_684_0;
       }
     }
   });
   qx.ui.tabview.ScrollingPage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollingPage.js.map?dt=1731948141549
+//# sourceMappingURL=ScrollingPage.js.map?dt=1735222449351

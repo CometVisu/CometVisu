@@ -44,25 +44,25 @@
      * @param loaded {Boolean?false} Whether the package is already loaded
      */
     construct: function construct(urls, id, loaded) {
-      this.__P_258_0 = loaded ? "complete" : "initialized";
-      this.__P_258_1 = urls;
-      this.__P_258_2 = id;
+      this.__P_259_0 = loaded ? "complete" : "initialized";
+      this.__P_259_1 = urls;
+      this.__P_259_2 = id;
     },
     members: {
-      __P_258_0: null,
-      __P_258_1: null,
-      __P_258_2: null,
-      __P_258_3: null,
-      __P_258_4: null,
-      __P_258_5: null,
-      __P_258_6: null,
+      __P_259_0: null,
+      __P_259_1: null,
+      __P_259_2: null,
+      __P_259_3: null,
+      __P_259_4: null,
+      __P_259_5: null,
+      __P_259_6: null,
       /**
        * Get the package ID.
        *
        * @return {String} The package id
        */
       getId: function getId() {
-        return this.__P_258_2;
+        return this.__P_259_2;
       },
       /**
        * Get the ready state of the package. The value is one of
@@ -80,7 +80,7 @@
        * @return {String} The ready state.
        */
       getReadyState: function getReadyState() {
-        return this.__P_258_0;
+        return this.__P_259_0;
       },
       /**
        * Returns the urlsstored stored in the package.
@@ -89,7 +89,7 @@
        * @return {String[]} An array of urls of this package.
        */
       getUrls: function getUrls() {
-        return this.__P_258_1;
+        return this.__P_259_1;
       },
       /**
        * Method for storing the closure for this package. This is only relevant
@@ -98,16 +98,16 @@
        * @param closure {Function} The code of this package wrapped in a closure.
        */
       saveClosure: function saveClosure(closure) {
-        if (this.__P_258_0 == "error") {
+        if (this.__P_259_0 == "error") {
           return;
         }
-        this.__P_258_3 = closure;
-        if (!this.__P_258_4) {
+        this.__P_259_3 = closure;
+        if (!this.__P_259_4) {
           this.execute();
         } else {
-          clearTimeout(this.__P_258_5);
-          this.__P_258_0 = "cached";
-          this.__P_258_6(this);
+          clearTimeout(this.__P_259_5);
+          this.__P_259_0 = "cached";
+          this.__P_259_6(this);
         }
       },
       /**
@@ -115,15 +115,15 @@
        * {@link qx.io.part.ClosurePart} is used.
        */
       execute: function execute() {
-        if (this.__P_258_3) {
-          this.__P_258_3();
-          delete this.__P_258_3;
+        if (this.__P_259_3) {
+          this.__P_259_3();
+          delete this.__P_259_3;
         }
-        if (qx.$$packageData[this.__P_258_2]) {
-          this.__P_258_7(qx.$$packageData[this.__P_258_2]);
-          delete qx.$$packageData[this.__P_258_2];
+        if (qx.$$packageData[this.__P_259_2]) {
+          this.__P_259_7(qx.$$packageData[this.__P_259_2]);
+          delete qx.$$packageData[this.__P_259_2];
         }
-        this.__P_258_0 = "complete";
+        this.__P_259_0 = "complete";
       },
       /**
        * Load method if the package loads a closure. This is only relevant if a
@@ -134,19 +134,19 @@
        * @param self {Object?} The context of the callback.
        */
       loadClosure: function loadClosure(notifyPackageResult, self) {
-        if (this.__P_258_0 !== "initialized") {
+        if (this.__P_259_0 !== "initialized") {
           return;
         }
-        this.__P_258_4 = true;
-        this.__P_258_0 = "loading";
-        this.__P_258_6 = qx.Bootstrap.bind(notifyPackageResult, self);
-        this.__P_258_8(this.__P_258_1, function () {}, function () {
-          this.__P_258_0 = "error";
+        this.__P_259_4 = true;
+        this.__P_259_0 = "loading";
+        this.__P_259_6 = qx.Bootstrap.bind(notifyPackageResult, self);
+        this.__P_259_8(this.__P_259_1, function () {}, function () {
+          this.__P_259_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
         var pkg = this;
-        this.__P_258_5 = setTimeout(function () {
-          pkg.__P_258_0 = "error";
+        this.__P_259_5 = setTimeout(function () {
+          pkg.__P_259_0 = "error";
           notifyPackageResult.call(self, pkg);
         }, qx.Part.TIMEOUT);
       },
@@ -158,17 +158,17 @@
        * @param self {Object?} The context of the callback.
        */
       load: function load(notifyPackageResult, self) {
-        if (this.__P_258_0 !== "initialized") {
+        if (this.__P_259_0 !== "initialized") {
           return;
         }
-        this.__P_258_4 = false;
-        this.__P_258_0 = "loading";
-        this.__P_258_8(this.__P_258_1, function () {
-          this.__P_258_0 = "complete";
+        this.__P_259_4 = false;
+        this.__P_259_0 = "loading";
+        this.__P_259_8(this.__P_259_1, function () {
+          this.__P_259_0 = "complete";
           this.execute();
           notifyPackageResult.call(self, this);
         }, function () {
-          this.__P_258_0 = "error";
+          this.__P_259_0 = "error";
           notifyPackageResult.call(self, this);
         }, this);
       },
@@ -180,7 +180,7 @@
        * @param errBack {Function} Function to execute on error
        * @param self {Object?window} Context to execute the given function in
        */
-      __P_258_8: function __P_258_8(urlList, callback, errBack, self) {
+      __P_259_8: function __P_259_8(urlList, callback, errBack, self) {
         if (urlList.length == 0) {
           callback.call(self);
           return;
@@ -212,8 +212,8 @@
             }
           };
           loader.onerror = function () {
-            if (self.__P_258_0 == "loading") {
-              clearTimeout(self.__P_258_5);
+            if (self.__P_259_0 == "loading") {
+              clearTimeout(self.__P_259_5);
               loader.dispose();
               return errBack.call(self);
             }
@@ -233,10 +233,10 @@
        * @signature function(packageData)
        * @param packageData {Map} Map of package data categories ("resources",...)
        */
-      __P_258_7: qx.$$loader.importPackageData
+      __P_259_7: qx.$$loader.importPackageData
     }
   });
   qx.io.part.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1731948109155
+//# sourceMappingURL=Package.js.map?dt=1735222422784

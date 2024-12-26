@@ -46,7 +46,7 @@
      */
     construct: function construct(widget) {
       qx.ui.core.selection.Abstract.constructor.call(this);
-      this.__P_558_0 = widget;
+      this.__P_559_0 = widget;
     },
     /*
     *****************************************************************************
@@ -55,7 +55,7 @@
     */
 
     members: {
-      __P_558_0: null,
+      __P_559_0: null,
       /*
       ---------------------------------------------------------------------------
         BASIC SUPPORT
@@ -63,7 +63,7 @@
       */
       // overridden
       _isSelectable: function _isSelectable(item) {
-        return this._isItemSelectable(item) && item.getLayoutParent() === this.__P_558_0;
+        return this._isItemSelectable(item) && item.getLayoutParent() === this.__P_559_0;
       },
       // overridden
       _selectableToHashCode: function _selectableToHashCode(item) {
@@ -75,11 +75,11 @@
       },
       // overridden
       _capture: function _capture() {
-        this.__P_558_0.capture();
+        this.__P_559_0.capture();
       },
       // overridden
       _releaseCapture: function _releaseCapture() {
-        this.__P_558_0.releaseCapture();
+        this.__P_559_0.releaseCapture();
       },
       /**
        * Helper to return the selectability of the item concerning the
@@ -100,7 +100,7 @@
        * @return {qx.ui.core.Widget} The widget
        */
       _getWidget: function _getWidget() {
-        return this.__P_558_0;
+        return this.__P_559_0;
       },
       /*
       ---------------------------------------------------------------------------
@@ -109,12 +109,12 @@
       */
       // overridden
       _getLocation: function _getLocation() {
-        var elem = this.__P_558_0.getContentElement().getDomElement();
+        var elem = this.__P_559_0.getContentElement().getDomElement();
         return elem ? qx.bom.element.Location.get(elem) : null;
       },
       // overridden
       _getDimension: function _getDimension() {
-        return this.__P_558_0.getInnerSize();
+        return this.__P_559_0.getInnerSize();
       },
       // overridden
       _getSelectableLocationX: function _getSelectableLocationX(item) {
@@ -154,7 +154,7 @@
       },
       // overridden
       _scrollItemIntoView: function _scrollItemIntoView(item) {
-        this.__P_558_0.scrollChildIntoView(item);
+        this.__P_559_0.scrollChildIntoView(item);
       },
       /*
       ---------------------------------------------------------------------------
@@ -169,7 +169,7 @@
           oldUserInteraction = this._userInteraction;
           this._userInteraction = true;
         }
-        var children = this.__P_558_0.getChildren();
+        var children = this.__P_559_0.getChildren();
         var result = [];
         var child;
         for (var i = 0, l = children.length; i < l; i++) {
@@ -192,7 +192,7 @@
 
         // Iterate over children and collect all items
         // between the given two (including them)
-        var children = this.__P_558_0.getChildren();
+        var children = this.__P_559_0.getChildren();
         var result = [];
         var active = false;
         var child;
@@ -214,7 +214,7 @@
       },
       // overridden
       _getFirstSelectable: function _getFirstSelectable() {
-        var children = this.__P_558_0.getChildren();
+        var children = this.__P_559_0.getChildren();
         for (var i = 0, l = children.length; i < l; i++) {
           if (this._isItemSelectable(children[i])) {
             return children[i];
@@ -224,7 +224,7 @@
       },
       // overridden
       _getLastSelectable: function _getLastSelectable() {
-        var children = this.__P_558_0.getChildren();
+        var children = this.__P_559_0.getChildren();
         for (var i = children.length - 1; i > 0; i--) {
           if (this._isItemSelectable(children[i])) {
             return children[i];
@@ -242,8 +242,8 @@
       },
       // overridden
       _getRelatedSelectable: function _getRelatedSelectable(item, relation) {
-        var vertical = this.__P_558_0.getOrientation() === "vertical";
-        var children = this.__P_558_0.getChildren();
+        var vertical = this.__P_559_0.getOrientation() === "vertical";
+        var children = this.__P_559_0.getChildren();
         var index = children.indexOf(item);
         var sibling;
         if (vertical && relation === "above" || !vertical && relation === "left") {
@@ -278,10 +278,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_558_0 = null;
+      this.__P_559_0 = null;
     }
   });
   qx.ui.core.selection.Widget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widget.js.map?dt=1731948134865
+//# sourceMappingURL=Widget.js.map?dt=1735222443951

@@ -59,27 +59,27 @@
         page.destroy();
       },
       testInitialize: function testInitialize() {
-        this.__P_361_0("initialize");
+        this.__P_362_0("initialize");
       },
       testStart: function testStart() {
-        this.__P_361_1("start");
+        this.__P_362_1("start");
       },
       testStop: function testStop() {
-        this.__P_361_1("stop", function (page) {
+        this.__P_362_1("stop", function (page) {
           page.initialize();
         });
       },
       testPause: function testPause() {
-        this.__P_361_0("pause");
+        this.__P_362_0("pause");
       },
       testResume: function testResume() {
-        this.__P_361_0("resume");
+        this.__P_362_0("resume");
       },
       testWait: function testWait() {
-        this.__P_361_0("wait");
+        this.__P_362_0("wait");
       },
       testBack: function testBack() {
-        this.__P_361_1("back");
+        this.__P_362_1("back");
       },
       testPreventBack: function testPreventBack() {
         var page = new qx.ui.mobile.page.Page();
@@ -101,9 +101,9 @@
         page.destroy();
       },
       testMenu: function testMenu() {
-        this.__P_361_0("menu");
+        this.__P_362_0("menu");
       },
-      __P_361_0: function __P_361_0(name) {
+      __P_362_0: function __P_362_0(name) {
         var page = new qx.ui.mobile.page.Page();
         this.getRoot().add(page);
         var isEventFired = false;
@@ -114,7 +114,7 @@
         this.assertTrue(isEventFired, "The '" + name + "' event is not fired!");
         page.destroy();
       },
-      __P_361_1: function __P_361_1(name, beforeCallback) {
+      __P_362_1: function __P_362_1(name, beforeCallback) {
         var page = new qx.ui.mobile.page.Page();
         this.getRoot().add(page);
         var eventFiredOnApplication = false;
@@ -140,4 +140,4 @@
   qx.test.mobile.page.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1731948118036
+//# sourceMappingURL=Page.js.map?dt=1735222429963

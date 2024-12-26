@@ -180,7 +180,7 @@
         this.traceLog('debug     : ' + this.isTraceFlag());
         this.traceLog('playerIp  : ' + playerIp);
         this.traceLog('playerPort: ' + playerPort);
-        this.__P_19_0('status', {}, function (ev) {
+        this.__P_20_0('status', {}, function (ev) {
           var data = ev.getTarget().getResponse();
           try {
             if (typeof data === 'string') {
@@ -190,13 +190,13 @@
             this.traceLog('reltime         : ' + data.reltimeResponse);
             this.traceLog('durationResponse: ' + data.durationResponse);
             this.traceLog('title           : ' + data.title);
-            this.__P_19_1(data.volume, data.muteState, data.transportState, data.title, data.reltimeResponse, data.durationResponse, data.artist, data.album);
+            this.__P_20_1(data.volume, data.muteState, data.transportState, data.title, data.reltimeResponse, data.durationResponse, data.artist, data.album);
           } catch (e) {
             this.error(e);
           }
         });
       },
-      __P_19_1: function __P_19_1(volume, mute, playMode, title, reltime, duration, artist, album) {
+      __P_20_1: function __P_20_1(volume, mute, playMode, title, reltime, duration, artist, album) {
         var id = this.upnpcontroller_uid;
         if (mute === 0) {
           document.querySelector('#' + id + '_muteButton').classList.replace('switchPressed', 'switchUnpressed');
@@ -225,7 +225,7 @@
        * @param data {Map|null} additional data to send to the backend
        * @param callback {Function} callback that should be called in success
        */
-      __P_19_0: function __P_19_0(type, data, callback) {
+      __P_20_0: function __P_20_0(type, data, callback) {
         var req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/upnpcontroller/' + type + '.php'));
         if (!data) {
           data = {};
@@ -263,7 +263,7 @@
         var playerPort = this.getPlayerPort();
         this.traceLog('currentValue: ' + currentValue);
         this.traceLog('playerPort  : ' + playerPort);
-        this.__P_19_0('playlists', {}, function (ev) {
+        this.__P_20_0('playlists', {}, function (ev) {
           var data = ev.getTarget().getResponse();
           try {
             if (typeof data === 'string') {
@@ -298,7 +298,7 @@
         var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
         this.traceLog('currentVolume: ' + currentVolume);
         var volume = Number(currentVolume) - 5;
-        this.__P_19_0('volume', {
+        this.__P_20_0('volume', {
           volume: volume
         }, function (data) {
           this.traceLog('data: ' + data);
@@ -309,7 +309,7 @@
         var currentVolume = document.querySelector('#' + this.upnpcontroller_uid + '_volume div.value').innerText;
         this.traceLog('currentVolume: ' + currentVolume);
         var volume = Number(currentVolume) + 5;
-        this.__P_19_0('volume', {
+        this.__P_20_0('volume', {
           volume: volume
         }, function (data) {
           this.traceLog('data: ' + data);
@@ -317,13 +317,13 @@
       },
       callNext: function callNext() {
         this.traceLog('click next');
-        this.__P_19_0('next', {}, function (data) {
+        this.__P_20_0('next', {}, function (data) {
           this.traceLog('data: ' + data);
         });
       },
       callPrev: function callPrev() {
         this.traceLog('click prev');
-        this.__P_19_0('prev', {}, function (data) {
+        this.__P_20_0('prev', {}, function (data) {
           this.traceLog('data: ' + data);
         });
       },
@@ -339,7 +339,7 @@
           muteValue = 0;
           muteButton.classList.replace('switchPressed', 'switchUnpressed');
         }
-        this.__P_19_0('mute', {
+        this.__P_20_0('mute', {
           mute: muteValue
         }, function (data) {
           this.traceLog('data: ' + data);
@@ -359,7 +359,7 @@
           cmd = 'play';
           playButton.classList.replace('switchPressed', 'switchUnpressed');
         }
-        this.__P_19_0(cmd, {}, function (ev) {
+        this.__P_20_0(cmd, {}, function (ev) {
           this.traceLog('data: ' + ev.getTarget().getResponse());
         });
         this.refreshUpnpcontroller();
@@ -380,4 +380,4 @@
   cv.plugins.UpnpController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UpnpController.js.map?dt=1731948091099
+//# sourceMappingURL=UpnpController.js.map?dt=1735222407290

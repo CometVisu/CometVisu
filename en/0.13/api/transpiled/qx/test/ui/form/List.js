@@ -35,9 +35,9 @@
   qx.Class.define("qx.test.ui.form.List", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_402_0: null,
+      __P_403_0: null,
       setUp: function setUp() {
-        var list = this.__P_402_0 = new qx.ui.form.List();
+        var list = this.__P_403_0 = new qx.ui.form.List();
         var items = ["AAA", "BBB", "CCC"];
         items.forEach(function (item) {
           item = new qx.ui.form.ListItem(item);
@@ -47,12 +47,12 @@
         this.flush();
       },
       "test: find regular item": function test_find_regular_item() {
-        var list = this.__P_402_0;
+        var list = this.__P_403_0;
         var found = list.findItem("AAA");
         this.assertInstance(found, qx.ui.form.ListItem, "Item not found");
       },
       "test: find rich-text item": function test_find_richText_item() {
-        var list = this.__P_402_0;
+        var list = this.__P_403_0;
         var item = new qx.ui.form.ListItem("<b>Bold</b>").set({
           rich: true
         });
@@ -62,17 +62,17 @@
         this.assertInstance(found, qx.ui.form.ListItem, "Item not found");
       },
       "test: get container for list items": function test_get_container_for_list_items() {
-        var container = this.__P_402_0._createListItemContainer();
+        var container = this.__P_403_0._createListItemContainer();
         this.assertInstance(container, qx.ui.container.Composite, "Wrong return value of '_createListItemContainer'");
         container.dispose();
       },
       tearDown: function tearDown() {
         qx.test.ui.form.List.superclass.prototype.tearDown.call(this);
-        this.__P_402_0.destroy();
+        this.__P_403_0.destroy();
       }
     }
   });
   qx.test.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1731948120056
+//# sourceMappingURL=List.js.map?dt=1735222431589

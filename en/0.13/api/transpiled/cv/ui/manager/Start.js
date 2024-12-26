@@ -326,7 +326,7 @@
               showTextFilter: false,
               disableScrolling: true
             });
-            this.__P_27_0(control);
+            this.__P_28_0(control);
             this.getChildControl('content').add(control, {
               flex: 1
             });
@@ -334,11 +334,11 @@
         }
         return control || cv.ui.manager.Start.superclass.prototype._createChildControlImpl.call(this, id);
       },
-      __P_27_0: function __P_27_0(folderWidget) {
+      __P_28_0: function __P_28_0(folderWidget) {
         var _this = this;
         if (!cv.ui.manager.model.FileItem.ROOT.isLoaded()) {
           cv.ui.manager.model.FileItem.ROOT.addListenerOnce('changeLoaded', function () {
-            _this.__P_27_0(folderWidget);
+            _this.__P_28_0(folderWidget);
           });
           return;
         }
@@ -381,4 +381,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1731948091796
+//# sourceMappingURL=Start.js.map?dt=1735222407900

@@ -110,10 +110,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context.next = 19;
-                return _this.__P_475_0(elem.uri);
+                return _this.__P_476_0(elem.uri);
               case 19:
                 _context.next = 21;
-                return _this.__P_475_1(elem.uri);
+                return _this.__P_476_1(elem.uri);
               case 21:
                 c = elem.path.split(/\//).length;
                 _p = elem.path;
@@ -172,7 +172,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[12, 32, 35, 38]]);
         }))();
       },
-      __P_475_1: function __P_475_1(uri) {
+      __P_476_1: function __P_476_1(uri) {
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var manifest;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
@@ -202,7 +202,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        * @private
        */
-      __P_475_0: function __P_475_0(uri) {
+      __P_476_0: function __P_476_0(uri) {
         var _this2 = this;
         return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var pkgData, libraryData, manifest, compileData, manifestApp, app, idx;
@@ -269,4 +269,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Remove.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Remove.js.map?dt=1731948127593
+//# sourceMappingURL=Remove.js.map?dt=1735222437840

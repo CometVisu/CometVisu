@@ -38,15 +38,15 @@
 
     members: {
       getLayer: function getLayer() {
-        this.__P_445_0 = new qx.ui.virtual.cell.Cell();
+        this.__P_446_0 = new qx.ui.virtual.cell.Cell();
         return new qx.ui.virtual.layer.HtmlCell(this);
       },
       getCellProperties: function getCellProperties(row, column) {
-        return this.__P_445_0.getCellProperties(row + " / " + column, {});
+        return this.__P_446_0.getCellProperties(row + " / " + column, {});
       }
     }
   });
   qx.test.ui.virtual.performance.HtmlDivCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlDivCell.js.map?dt=1731948122384
+//# sourceMappingURL=HtmlDivCell.js.map?dt=1735222433500

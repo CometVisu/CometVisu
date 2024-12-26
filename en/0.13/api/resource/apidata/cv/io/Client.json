@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1731947857323,
-  "lastModifiedIso": "2024-11-18T16:37:37.323Z",
+  "lastModified": 1735222205526,
+  "lastModifiedIso": "2024-12-26T14:10:05.526Z",
   "classFilename": "../../client/source/class/cv/io/Client.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 33,
+      "line": 34,
       "column": 0,
-      "index": 1227
+      "index": 1241
     },
     "end": {
-      "line": 747,
+      "line": 757,
       "column": 3,
-      "index": 21040
+      "index": 21260
     }
   },
   "className": "cv.io.Client",
@@ -78,14 +78,14 @@
     ],
     "location": {
       "start": {
-        "line": 46,
+        "line": 47,
         "column": 2,
-        "index": 1588
+        "index": 1602
       },
       "end": {
-        "line": 95,
+        "line": 97,
         "column": 3,
-        "index": 3007
+        "index": 3050
       }
     }
   },
@@ -95,14 +95,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 103,
+          "line": 105,
           "column": 4,
-          "index": 3165
+          "index": 3208
         },
         "end": {
-          "line": 103,
+          "line": 105,
           "column": 15,
-          "index": 3176
+          "index": 3219
         }
       },
       "appearsIn": []
@@ -112,14 +112,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 106,
           "column": 4,
-          "index": 3182
+          "index": 3225
         },
         "end": {
-          "line": 104,
+          "line": 106,
           "column": 20,
-          "index": 3198
+          "index": 3241
         }
       },
       "appearsIn": []
@@ -129,14 +129,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 4,
-          "index": 3204
+          "index": 3247
         },
         "end": {
-          "line": 110,
+          "line": 112,
           "column": 5,
-          "index": 3374
+          "index": 3417
         }
       },
       "appearsIn": []
@@ -158,14 +158,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 117,
           "column": 4,
-          "index": 3429
+          "index": 3472
         },
         "end": {
-          "line": 119,
+          "line": 121,
           "column": 5,
-          "index": 3526
+          "index": 3569
         }
       },
       "type": "function",
@@ -181,14 +181,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 124,
           "column": 4,
-          "index": 3571
+          "index": 3614
         },
         "end": {
-          "line": 127,
+          "line": 129,
           "column": 5,
-          "index": 3691
+          "index": 3734
         }
       },
       "appearsIn": []
@@ -202,14 +202,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 133,
           "column": 4,
-          "index": 3856
+          "index": 3899
         },
         "end": {
-          "line": 156,
+          "line": 158,
           "column": 5,
-          "index": 4628
+          "index": 4675
         }
       },
       "appearsIn": []
@@ -219,14 +219,14 @@
     "running": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 170,
           "column": 4,
-          "index": 4863
+          "index": 4910
         },
         "end": {
-          "line": 172,
+          "line": 174,
           "column": 5,
-          "index": 4951
+          "index": 4998
         }
       },
       "json": {
@@ -252,14 +252,14 @@
     "connected": {
       "location": {
         "start": {
-          "line": 177,
+          "line": 179,
           "column": 4,
-          "index": 5033
+          "index": 5080
         },
         "end": {
-          "line": 182,
+          "line": 184,
           "column": 5,
-          "index": 5157
+          "index": 5204
         }
       },
       "json": {
@@ -288,14 +288,14 @@
     "dataReceived": {
       "location": {
         "start": {
-          "line": 187,
+          "line": 189,
           "column": 4,
-          "index": 5282
+          "index": 5329
         },
         "end": {
-          "line": 190,
+          "line": 192,
           "column": 5,
-          "index": 5345
+          "index": 5392
         }
       },
       "json": {
@@ -322,14 +322,14 @@
     "currentTransport": {
       "location": {
         "start": {
-          "line": 195,
+          "line": 197,
           "column": 4,
-          "index": 5410
+          "index": 5457
         },
         "end": {
-          "line": 197,
+          "line": 199,
           "column": 5,
-          "index": 5452
+          "index": 5499
         }
       },
       "json": {},
@@ -351,14 +351,14 @@
     "server": {
       "location": {
         "start": {
-          "line": 202,
+          "line": 204,
           "column": 4,
-          "index": 5553
+          "index": 5600
         },
         "end": {
-          "line": 206,
+          "line": 208,
           "column": 5,
-          "index": 5642
+          "index": 5689
         }
       },
       "json": {
@@ -386,14 +386,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 208,
+          "line": 210,
           "column": 4,
-          "index": 5649
+          "index": 5696
         },
         "end": {
-          "line": 211,
+          "line": 213,
           "column": 5,
-          "index": 5706
+          "index": 5753
         }
       },
       "json": {
@@ -412,14 +412,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 220,
+          "line": 222,
           "column": 4,
-          "index": 5868
+          "index": 5915
         },
         "end": {
-          "line": 220,
+          "line": 222,
           "column": 17,
-          "index": 5881
+          "index": 5928
         }
       },
       "appearsIn": []
@@ -429,14 +429,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 221,
+          "line": 223,
           "column": 4,
-          "index": 5887
+          "index": 5934
         },
         "end": {
-          "line": 221,
+          "line": 223,
           "column": 21,
-          "index": 5904
+          "index": 5951
         }
       },
       "appearsIn": []
@@ -446,14 +446,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 222,
+          "line": 224,
           "column": 4,
-          "index": 5910
+          "index": 5957
         },
         "end": {
-          "line": 222,
+          "line": 224,
           "column": 15,
-          "index": 5921
+          "index": 5968
         }
       },
       "appearsIn": []
@@ -463,14 +463,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 223,
+          "line": 225,
           "column": 4,
-          "index": 5927
+          "index": 5974
         },
         "end": {
-          "line": 223,
+          "line": 225,
           "column": 25,
-          "index": 5948
+          "index": 5995
         }
       },
       "appearsIn": []
@@ -480,14 +480,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 224,
+          "line": 226,
           "column": 4,
-          "index": 5954
+          "index": 6001
         },
         "end": {
-          "line": 224,
+          "line": 226,
           "column": 19,
-          "index": 5969
+          "index": 6016
         }
       },
       "appearsIn": []
@@ -501,14 +501,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 225,
+          "line": 227,
           "column": 4,
-          "index": 6003
+          "index": 6050
         },
         "end": {
-          "line": 225,
+          "line": 227,
           "column": 26,
-          "index": 6025
+          "index": 6072
         }
       },
       "appearsIn": []
@@ -522,14 +522,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 226,
+          "line": 228,
           "column": 4,
-          "index": 6103
+          "index": 6150
         },
         "end": {
-          "line": 226,
+          "line": 228,
           "column": 17,
-          "index": 6116
+          "index": 6163
         }
       },
       "appearsIn": []
@@ -543,14 +543,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 227,
+          "line": 229,
           "column": 4,
-          "index": 6148
+          "index": 6195
         },
         "end": {
-          "line": 227,
+          "line": 229,
           "column": 14,
-          "index": 6158
+          "index": 6205
         }
       },
       "appearsIn": []
@@ -564,14 +564,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 228,
+          "line": 230,
           "column": 4,
-          "index": 6184
+          "index": 6231
         },
         "end": {
-          "line": 228,
+          "line": 230,
           "column": 14,
-          "index": 6194
+          "index": 6241
         }
       },
       "appearsIn": []
@@ -585,14 +585,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 229,
+          "line": 231,
           "column": 4,
-          "index": 6224
+          "index": 6271
         },
         "end": {
-          "line": 229,
+          "line": 231,
           "column": 16,
-          "index": 6236
+          "index": 6283
         }
       },
       "appearsIn": []
@@ -606,14 +606,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 230,
+          "line": 232,
           "column": 4,
-          "index": 6267
+          "index": 6314
         },
         "end": {
-          "line": 230,
+          "line": 232,
           "column": 17,
-          "index": 6280
+          "index": 6327
         }
       },
       "appearsIn": []
@@ -627,14 +627,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 232,
+          "line": 234,
           "column": 4,
-          "index": 6309
+          "index": 6356
         },
         "end": {
-          "line": 232,
+          "line": 234,
           "column": 23,
-          "index": 6328
+          "index": 6375
         }
       },
       "appearsIn": []
@@ -644,14 +644,31 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 235,
           "column": 4,
-          "index": 6334
+          "index": 6381
         },
         "end": {
-          "line": 233,
+          "line": 235,
           "column": 17,
-          "index": 6347
+          "index": 6394
+        }
+      },
+      "appearsIn": []
+    },
+    "resendHeaders": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 6400
+        },
+        "end": {
+          "line": 236,
+          "column": 23,
+          "index": 6419
         }
       },
       "appearsIn": []
@@ -661,14 +678,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 234,
+          "line": 237,
           "column": 4,
-          "index": 6353
+          "index": 6425
         },
         "end": {
-          "line": 234,
+          "line": 237,
           "column": 21,
-          "index": 6370
+          "index": 6442
         }
       },
       "appearsIn": []
@@ -678,14 +695,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 236,
+          "line": 239,
           "column": 4,
-          "index": 6377
+          "index": 6449
         },
         "end": {
-          "line": 238,
+          "line": 241,
           "column": 5,
-          "index": 6419
+          "index": 6491
         }
       },
       "type": "function",
@@ -697,26 +714,51 @@
     "_applyConnected": {
       "jsdoc": {
         "raw": [
-          " property apply"
+          "*",
+          "     * Method to call when the `connected` property is set",
+          "     * @param value {boolean}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to call when the <code>connected</code> property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {boolean}",
+            "paramName": "value",
+            "type": "boolean"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
         ]
       },
       "access": "protected",
       "location": {
         "start": {
-          "line": 241,
+          "line": 248,
           "column": 4,
-          "index": 6448
+          "index": 6619
         },
         "end": {
-          "line": 246,
+          "line": 253,
           "column": 5,
-          "index": 6586
+          "index": 6757
         }
       },
       "type": "function",
       "params": [
         {
-          "name": "value"
+          "name": "value",
+          "type": "boolean"
         }
       ],
       "appearsIn": []
@@ -726,14 +768,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 255,
           "column": 4,
-          "index": 6593
+          "index": 6764
         },
         "end": {
-          "line": 250,
+          "line": 257,
           "column": 5,
-          "index": 6672
+          "index": 6843
         }
       },
       "type": "function",
@@ -751,14 +793,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 252,
+          "line": 259,
           "column": 4,
-          "index": 6679
+          "index": 6850
         },
         "end": {
-          "line": 294,
+          "line": 301,
           "column": 5,
-          "index": 8235
+          "index": 8409
         }
       },
       "type": "function",
@@ -774,14 +816,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 296,
+          "line": 303,
           "column": 4,
-          "index": 8242
+          "index": 8416
         },
         "end": {
-          "line": 298,
+          "line": 305,
           "column": 5,
-          "index": 8289
+          "index": 8463
         }
       },
       "type": "function",
@@ -794,14 +836,14 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * manipulates the header of the current ajax query before it is been send to the server",
+          "     * manipulates the header of the current ajax query before it will be sent to the server",
           "     * @param xhr",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>manipulates the header of the current ajax query before it is been send to the server</p>"
+            "body": "<p>manipulates the header of the current ajax query before it will be sent to the server</p>"
           }
         ],
         "@param": [
@@ -816,14 +858,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 304,
+          "line": 311,
           "column": 4,
-          "index": 8423
+          "index": 8597
         },
         "end": {
-          "line": 315,
+          "line": 322,
           "column": 5,
-          "index": 8834
+          "index": 9016
         }
       },
       "type": "function",
@@ -839,14 +881,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 317,
+          "line": 324,
           "column": 4,
-          "index": 8841
+          "index": 9023
         },
         "end": {
-          "line": 321,
+          "line": 328,
           "column": 5,
-          "index": 9033
+          "index": 9215
         }
       },
       "type": "function",
@@ -867,14 +909,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 323,
+          "line": 330,
           "column": 4,
-          "index": 9040
+          "index": 9222
         },
         "end": {
-          "line": 325,
+          "line": 332,
           "column": 5,
-          "index": 9118
+          "index": 9300
         }
       },
       "type": "function",
@@ -895,14 +937,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 327,
+          "line": 334,
           "column": 4,
-          "index": 9125
+          "index": 9307
         },
         "end": {
-          "line": 329,
+          "line": 336,
           "column": 5,
-          "index": 9183
+          "index": 9365
         }
       },
       "type": "function",
@@ -916,14 +958,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 330,
+          "line": 337,
           "column": 4,
-          "index": 9189
+          "index": 9371
         },
         "end": {
-          "line": 332,
+          "line": 339,
           "column": 5,
-          "index": 9239
+          "index": 9421
         }
       },
       "type": "function",
@@ -976,14 +1018,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 342,
+          "line": 349,
           "column": 4,
-          "index": 9475
+          "index": 9657
         },
         "end": {
-          "line": 360,
+          "line": 366,
           "column": 5,
-          "index": 10094
+          "index": 10247
         }
       },
       "type": "function",
@@ -1008,14 +1050,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 362,
+          "line": 368,
           "column": 4,
-          "index": 10101
+          "index": 10254
         },
         "end": {
-          "line": 369,
+          "line": 375,
           "column": 5,
-          "index": 10296
+          "index": 10449
         }
       },
       "type": "function",
@@ -1037,9 +1079,9 @@
           "     *",
           "     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription",
           "     *                            to addresses (default: false)",
-          "     * @param credentials {Map?} not used in this client",
-          "     * @param callback {Function} call this function when login is done",
-          "     * @param context {Object} context for the callback (this)",
+          "     * @param credentials {Object?} not used in this client",
+          "     * @param callback {Function?} call this function when login is done",
+          "     * @param context {Object?} context for the callback (this)",
           "     *",
           "     "
         ],
@@ -1059,39 +1101,41 @@
           },
           {
             "name": "@param",
-            "body": "credentials {Map?} not used in this client",
+            "body": "credentials {Object?} not used in this client",
             "paramName": "credentials",
             "description": " not used in this client",
             "optional": true,
-            "type": "Map"
+            "type": "Object"
           },
           {
             "name": "@param",
-            "body": "callback {Function} call this function when login is done",
+            "body": "callback {Function?} call this function when login is done",
             "paramName": "callback",
             "description": " call this function when login is done",
-            "type": "((...args: any[]) => any)"
+            "optional": true,
+            "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} context for the callback (this)",
+            "body": "context {Object?} context for the callback (this)",
             "paramName": "context",
             "description": " context for the callback (this)",
-            "type": "Record<any, any>"
+            "optional": true,
+            "type": "Object"
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 382,
+          "line": 388,
           "column": 4,
-          "index": 10794
+          "index": 10952
         },
         "end": {
-          "line": 410,
+          "line": 416,
           "column": 5,
-          "index": 11802
+          "index": 11940
         }
       },
       "type": "function",
@@ -1102,16 +1146,18 @@
         },
         {
           "name": "credentials",
-          "type": "Map",
+          "type": "Object",
           "optional": true
         },
         {
           "name": "callback",
-          "type": "((...args: any[]) => any)"
+          "type": "Function",
+          "optional": true
         },
         {
           "name": "context",
-          "type": "Record<any, any>"
+          "type": "Object",
+          "optional": true
         }
       ],
       "appearsIn": [
@@ -1135,14 +1181,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 415,
+          "line": 421,
           "column": 4,
-          "index": 11910
+          "index": 12048
         },
         "end": {
-          "line": 438,
+          "line": 448,
           "column": 6,
-          "index": 12480
+          "index": 12694
         }
       },
       "appearsIn": []
@@ -1152,14 +1198,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 440,
+          "line": 450,
           "column": 4,
-          "index": 12487
+          "index": 12701
         },
         "end": {
-          "line": 450,
+          "line": 460,
           "column": 6,
-          "index": 12783
+          "index": 12997
         }
       },
       "appearsIn": []
@@ -1169,14 +1215,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 452,
+          "line": 462,
           "column": 4,
-          "index": 12790
+          "index": 13004
         },
         "end": {
-          "line": 472,
+          "line": 482,
           "column": 5,
-          "index": 13490
+          "index": 13704
         }
       },
       "type": "function",
@@ -1191,19 +1237,19 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * Creates an XHR request. The request type depends von the \"cv.xhr\" environment setting",
+          "     * Creates an XHR request. The request type depends on the \"cv.xhr\" environment setting",
           "     * (currently \"qx\" and \"jquery\" are supported)",
           "     * @param url {String} URI",
-          "     * @param data {Map} request data",
+          "     * @param data {Object} request data",
           "     * @param callback {Function} success callback",
-          "     * @param context {Object} context fot the callback",
+          "     * @param context {Object} context for the callback",
           "     * @return {qx.io.request.Xhr|jQuery}",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Creates an XHR request. The request type depends von the \"cv.xhr\" environment setting\n (currently \"qx\" and \"jquery\" are supported)</p>"
+            "body": "<p>Creates an XHR request. The request type depends on the \"cv.xhr\" environment setting\n (currently \"qx\" and \"jquery\" are supported)</p>"
           }
         ],
         "@param": [
@@ -1216,10 +1262,10 @@
           },
           {
             "name": "@param",
-            "body": "data {Map} request data",
+            "body": "data {Object} request data",
             "paramName": "data",
             "description": " request data",
-            "type": "Map<any, any>"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1230,9 +1276,9 @@
           },
           {
             "name": "@param",
-            "body": "context {Object} context fot the callback",
+            "body": "context {Object} context for the callback",
             "paramName": "context",
-            "description": " context fot the callback",
+            "description": " context for the callback",
             "type": "Record<any, any>"
           }
         ],
@@ -1248,14 +1294,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 483,
+          "line": 493,
           "column": 4,
-          "index": 13875
+          "index": 14091
         },
         "end": {
-          "line": 546,
+          "line": 556,
           "column": 6,
-          "index": 15824
+          "index": 16046
         }
       },
       "returnType": {
@@ -1289,14 +1335,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 552,
+          "line": 562,
           "column": 4,
-          "index": 15919
+          "index": 16141
         },
         "end": {
-          "line": 567,
+          "line": 577,
           "column": 5,
-          "index": 16344
+          "index": 16568
         }
       },
       "type": "function",
@@ -1335,14 +1381,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 574,
+          "line": 584,
           "column": 4,
-          "index": 16524
+          "index": 16748
         },
         "end": {
-          "line": 576,
+          "line": 586,
           "column": 5,
-          "index": 16577
+          "index": 16801
         }
       },
       "type": "function",
@@ -1359,10 +1405,10 @@
         "raw": [
           "*",
           "     * Handles login response, applies backend configuration if send by",
-          "     * backend and forwards to the configurated transport handleSession",
+          "     * backend and forwards to the configured transport handleSession",
           "     * function",
           "     *",
-          "     * Parameter vary dependent from the XHR type used",
+          "     * Parameter varies depending on the XHR type used",
           "     * qx (Qooxdoo):",
           "     *   ev {Event} the 'success' event from the XHR request",
           "     *",
@@ -1375,21 +1421,21 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Handles login response, applies backend configuration if send by\n backend and forwards to the configurated transport handleSession\n function\n Parameter vary dependent from the XHR type used\n qx (Qooxdoo):\n   ev {Event} the 'success' event from the XHR request\n jQuery:\n   data {Object} The JSON data returned from the server\n   textStatus {String} a string describing the status\n   request {Object} the jqXHR object</p>"
+            "body": "<p>Handles login response, applies backend configuration if send by\n backend and forwards to the configured transport handleSession\n function\n Parameter varies depending on the XHR type used\n qx (Qooxdoo):\n   ev {Event} the 'success' event from the XHR request\n jQuery:\n   data {Object} The JSON data returned from the server\n   textStatus {String} a string describing the status\n   request {Object} the jqXHR object</p>"
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 592,
+          "line": 602,
           "column": 4,
-          "index": 17091
+          "index": 17313
         },
         "end": {
-          "line": 615,
+          "line": 625,
           "column": 5,
-          "index": 18002
+          "index": 18228
         }
       },
       "type": "function",
@@ -1414,14 +1460,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 621,
+          "line": 631,
           "column": 4,
-          "index": 18081
+          "index": 18307
         },
         "end": {
-          "line": 627,
+          "line": 637,
           "column": 5,
-          "index": 18266
+          "index": 18492
         }
       },
       "type": "function",
@@ -1433,9 +1479,9 @@
         "raw": [
           "*",
           "     * Build the URL part that contains the addresses and filters",
-          "     * @param addresses {Array}",
-          "     * @param asString",
-          "     * @return {Map}",
+          "     * @param addresses {Array?}",
+          "     * @param asString {boolean?}",
+          "     * @return {Object}",
           "     "
         ],
         "@description": [
@@ -1447,22 +1493,24 @@
         "@param": [
           {
             "name": "@param",
-            "body": "addresses {Array}",
+            "body": "addresses {Array?}",
             "paramName": "addresses",
-            "type": "Array<any>"
+            "optional": true,
+            "type": "Array"
           },
           {
             "name": "@param",
-            "body": "asString",
+            "body": "asString {boolean?}",
             "paramName": "asString",
-            "type": ""
+            "optional": true,
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Map}",
-            "type": "Map<any, any>",
+            "body": "{Object}",
+            "type": "Record<any, any>",
             "description": ""
           }
         ]
@@ -1470,28 +1518,31 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 635,
+          "line": 645,
           "column": 4,
-          "index": 18431
+          "index": 18672
         },
         "end": {
-          "line": 658,
+          "line": 668,
           "column": 5,
-          "index": 19072
+          "index": 19290
         }
       },
       "type": "function",
       "params": [
         {
           "name": "addresses",
-          "type": "Array<any>"
+          "type": "Array",
+          "optional": true
         },
         {
-          "name": "asString"
+          "name": "asString",
+          "type": "boolean",
+          "optional": true
         }
       ],
       "returnType": {
-        "type": "Map<any, any>"
+        "type": "Record<any, any>"
       },
       "appearsIn": []
     },
@@ -1531,14 +1582,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 666,
+          "line": 676,
           "column": 4,
-          "index": 19240
+          "index": 19458
         },
         "end": {
-          "line": 687,
+          "line": 697,
           "column": 5,
-          "index": 19777
+          "index": 19997
         }
       },
       "type": "function",
@@ -1565,14 +1616,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 690,
+          "line": 700,
           "column": 4,
-          "index": 19839
+          "index": 20059
         },
         "end": {
-          "line": 690,
+          "line": 700,
           "column": 21,
-          "index": 19856
+          "index": 20076
         }
       },
       "type": "function",
@@ -1590,14 +1641,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 692,
+          "line": 702,
           "column": 4,
-          "index": 19863
+          "index": 20083
         },
         "end": {
-          "line": 694,
+          "line": 704,
           "column": 5,
-          "index": 19905
+          "index": 20125
         }
       },
       "type": "function",
@@ -1632,14 +1683,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 700,
+          "line": 710,
           "column": 4,
-          "index": 19977
+          "index": 20197
         },
         "end": {
-          "line": 702,
+          "line": 712,
           "column": 5,
-          "index": 20046
+          "index": 20266
         }
       },
       "type": "function",
@@ -1657,14 +1708,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 704,
+          "line": 714,
           "column": 4,
-          "index": 20053
+          "index": 20273
         },
         "end": {
-          "line": 706,
+          "line": 716,
           "column": 5,
-          "index": 20114
+          "index": 20334
         }
       },
       "type": "function",
@@ -1678,14 +1729,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 708,
+          "line": 718,
           "column": 4,
-          "index": 20121
+          "index": 20341
         },
         "end": {
-          "line": 708,
+          "line": 718,
           "column": 19,
-          "index": 20136
+          "index": 20356
         }
       },
       "type": "function",
@@ -1733,14 +1784,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 715,
+          "line": 725,
           "column": 4,
-          "index": 20323
+          "index": 20543
         },
         "end": {
-          "line": 715,
+          "line": 725,
           "column": 25,
-          "index": 20344
+          "index": 20564
         }
       },
       "type": "function",
@@ -1800,14 +1851,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 723,
+          "line": 733,
           "column": 4,
-          "index": 20571
+          "index": 20791
         },
         "end": {
-          "line": 723,
+          "line": 733,
           "column": 37,
-          "index": 20604
+          "index": 20824
         }
       },
       "type": "function",
@@ -1833,14 +1884,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 725,
+          "line": 735,
           "column": 4,
-          "index": 20611
+          "index": 20831
         },
         "end": {
-          "line": 727,
+          "line": 737,
           "column": 5,
-          "index": 20656
+          "index": 20876
         }
       },
       "type": "function",
@@ -1858,14 +1909,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 728,
+          "line": 738,
           "column": 4,
-          "index": 20662
+          "index": 20882
         },
         "end": {
-          "line": 730,
+          "line": 740,
           "column": 5,
-          "index": 20709
+          "index": 20929
         }
       },
       "type": "function",
@@ -1883,14 +1934,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 731,
+          "line": 741,
           "column": 4,
-          "index": 20715
+          "index": 20935
         },
         "end": {
-          "line": 733,
+          "line": 743,
           "column": 5,
-          "index": 20782
+          "index": 21002
         }
       },
       "type": "function",
@@ -1911,14 +1962,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 734,
+          "line": 744,
           "column": 4,
-          "index": 20788
+          "index": 21008
         },
         "end": {
-          "line": 736,
+          "line": 746,
           "column": 5,
-          "index": 20855
+          "index": 21075
         }
       },
       "type": "function",
@@ -1940,14 +1991,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 744,
+        "line": 754,
         "column": 2,
-        "index": 21003
+        "index": 21223
       },
       "end": {
-        "line": 746,
+        "line": 756,
         "column": 3,
-        "index": 21036
+        "index": 21256
       }
     }
   }
