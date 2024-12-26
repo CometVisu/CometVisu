@@ -30,8 +30,9 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(resource) {
+  construct(resource, chart) {
     super();
+    this._chart = chart;
     this.initConfig(resource);
     this.init();
   },
@@ -42,7 +43,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   statics: {
-    urlRegex: /^(flux|openhab|rrd|demo):\/\/((\w+)@)?([^\/]+)(\/[^?]*)?\??(.*)/
+    urlRegex: /^(flux|openhab|rrd|demo|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?#]+)(\/[^?]*)?\??([^#]*)#?(.*)/
   },
 
   /*
@@ -64,6 +65,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   members: {
+    _chart: null,
     _initialized: null,
     _url: null,
 
@@ -80,14 +82,16 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
       if (match) {
         return {
           type: match[1],
-          authority: match[3],
-          name: match[4],
-          path: match[5],
-          params: match[6] ? match[6].split('&').reduce((map, entry) => {
+          subType: match[2],
+          authority: match[4],
+          name: match[5],
+          path: match[6],
+          params: match[7] ? match[7].split('&').reduce((map, entry) => {
             const [key, value] = entry.split('=');
             map[key] = value;
             return map;
-          }, {}) : {}
+          }, {}) : {},
+          anchor: match[8]
         };
       }
       this.error('invalid url '+ url + ' this source will not be usable!');

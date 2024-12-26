@@ -143,4 +143,6 @@ def setup(app):
     app.connect('build-finished', on_finish)
     app.connect('source-read', source_read)
 
+    config.set("DEFAULT", "language", app.config.language)
+
     return {'version': '0.1'}

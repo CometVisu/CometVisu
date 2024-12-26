@@ -10,7 +10,7 @@ as well as media files (for example backdrops).
 
 .. hint::
     The manager can be opened by pressing the keys "Ctrl+M" together in a running CometVisu
-    or by adding the url parameter `manager=1` to the CometVisu URL.
+    or by adding the url parameter ``manager=1`` to the CometVisu URL.
 
 .. figure:: _static/manager.png
 
@@ -65,7 +65,7 @@ Replace
 
 Check
   Checks the validity of the configuration, i.e. whether the syntax of the
-  :ref:`XML file <xml-format>`is valid.
+  :ref:`XML file <xml-format>` is valid.
 
 
 Available media files

@@ -150,6 +150,9 @@ class WidgetExampleParser:
             "screenshotDir": self.screenshot_dir,
             "fixtures": []
         }
+        # avoid writing default language to the cache file, all hashes would change and every screenshot would be regenerated
+        if config.get("DEFAULT", "language") != "de":
+            settings['language'] = config.get("DEFAULT", "language")
         design = "metal"
         structure = "pure"
 

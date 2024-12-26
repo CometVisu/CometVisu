@@ -1132,6 +1132,7 @@ body {
             left: 0;
             right: 0;
             bottom: 0;
+            z-index: 1;
         }
 
         p.grid {
@@ -1936,6 +1937,14 @@ body {
                 &:first-child {
                     align-items: flex-end;
                 }
+            }
+        }
+    }
+
+    cv-status-chart {
+        cv-tile {
+            > cv-row {
+                z-index: 2; /* content above cv-chart with background=true, which has z-index: 1 */
             }
         }
     }

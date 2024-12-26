@@ -53,6 +53,7 @@ qx.Class.define('cv.io.openhab.Rest', {
     __groups: null,
     __memberLookup: null,
     __subscribedAddresses: null,
+    __retries: 0,
 
     getBackend() {
       return {};
@@ -307,10 +308,22 @@ qx.Class.define('cv.io.openhab.Rest', {
           this.eventSource.onerror = function () {
             this.error('connection lost');
             this.setConnected(false);
+            let retryIn = 5000;
+            if (this.__retries > 10) {
+              retryIn = 60000;
+            }
+            this.__retries++;
+            this.debug(`retrying connection in ${retryIn/1000} seconds`);
+            setTimeout(function () {
+              this.eventSource.close();
+              this.eventSource = null;
+              this.subscribe(this.__subscribedAddresses);
+            }.bind(this), retryIn);
           }.bind(this);
           this.eventSource.onopen = function () {
             this.debug('connection established');
             this.setConnected(true);
+            this.__retries = 0;
           }.bind(this);
         }
       }

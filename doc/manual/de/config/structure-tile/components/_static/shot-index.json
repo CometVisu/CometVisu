@@ -68,5 +68,7 @@
     "cv-energy-entity-battery-in": "068bcc88d936a4e585f2a37d9f3a6b7a",
     "cv-energy-entity-battery-out": "ce58fcaf24171683da77766461d427fc",
     "cv-energy-entity-grid-in": "eea4835b6d546a66a907b957c8b11015",
-    "cv-energy-entity-grid-out": "3a341732448c2dfe60c9d7d39bcc9d82"
+    "cv-energy-entity-grid-out": "3a341732448c2dfe60c9d7d39bcc9d82",
+    "cv-chart-pv-h-lines": "7d9d4c16d36549f63382b71da8a152fd",
+    "cv-chart-pv-v-lines": "af6da0433286c4e2b3c279f5a1a92dd8"
 }

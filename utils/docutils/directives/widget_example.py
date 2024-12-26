@@ -21,7 +21,6 @@ from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
-from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path
 from lxml import etree
 import math

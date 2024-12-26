@@ -117,7 +117,10 @@ qx.Class.define('cv.ui.structure.pure.Web', {
         const iframe = this.getDomElement().querySelector('iframe');
         this.refreshAction(iframe, iframe.getAttribute('src'));
         // reset the value
-        cv.io.BackendConnections.getClient(addr.backendType).write(address, cv.Transform.encode(addr, 0));
+        const client = cv.io.BackendConnections.getClient(addr.backendType);
+        if (client) {
+          client.write(address, cv.Transform.encode(addr, 0));
+        }
       }
     }
   }

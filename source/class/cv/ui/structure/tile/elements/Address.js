@@ -95,6 +95,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                 qos: (this._element.getAttribute('qos') || 0) | 0
               }, value);
 
+              const client = cv.io.BackendConnections.getClient(backendName);
+              if (!client) {
+                this.error('no client found for backend', backendName);
+                return;
+              }
               // noinspection EqualityComparisonWithCoercionJS
               if (
                 allowDuplicates ||
@@ -106,7 +111,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                   this.debug(`send with delay of ${delay}ms`);
                   qx.event.Timer.once(
                     () => {
-                      cv.io.BackendConnections.getClient(backendName).write(
+                      client.write(
                         address,
                         encodedValue.bus,
                         element
@@ -120,7 +125,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                     delay
                   );
                 } else {
-                  cv.io.BackendConnections.getClient(backendName).write(address, encodedValue.bus, element);
+                  client.write(address, encodedValue.bus, element);
 
                   if (!allowDuplicates) {
                     element.lastSentValue = encodedValue.raw;

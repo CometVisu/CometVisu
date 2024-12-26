@@ -424,14 +424,32 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           this.setEnabled(ev.detail.state === 1);
           ev.stopPropagation();
           return true;
+
         case 'show-exclude':
           this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
           ev.stopPropagation();
           return true;
+
         case 'show-hide':
           this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
           ev.stopPropagation();
           return true;
+
+        case 'styling': {
+          let styling = '';
+          if (ev.detail.targetConfig) {
+            // use address styling if available
+            styling = ev.detail.targetConfig[0];
+          } else if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
+            // fallback to element styling
+            styling = this._element.getAttribute('styling');
+          }
+          const styleClass = cv.Application.structureController.styleValue(styling, ev.detail.state);
+          this.setStyleClass(styleClass);
+          ev.stopPropagation();
+          return true;
+        }
+
         case '':
           this.setValue(ev.detail.state);
           ev.stopPropagation();

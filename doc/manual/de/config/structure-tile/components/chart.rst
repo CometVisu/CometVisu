@@ -97,6 +97,11 @@ weglassen (dieses wird automatisch passend zu ausgewählten Zeitserie gewählt).
     Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query
     in der UI der InfluxDB zusammenzustellen und den funktionieren Code dann zu kopieren.
 
+.. hint::
+
+    Wenn mehrere Inline-Queries in einem Chart verwendet werden, muss der Wert des ``src``-Attributs innerhalb dieses Charts eindeutig sein.
+    Dazu kann man einfach eine fortlaufende Nummer anhängen, z.B. ``flux://openhab@inline#1`` und ``flux://openhab@inline#2``.
+
 Die URI des InfluxDB-Servers und ein Token für die Authentifizierung der Anfragen müssen in der :ref:`Versteckten Konfigurationen <hidden-config>`
 unter der Sektion "influx" angegeben werden. In dieser Sektion sind folgende Schlüssel-Wert Einträge erforderlich.
 
@@ -124,6 +129,21 @@ Zusätzlich können als Query-Parameter hinzugefügt werden:
 
 Beispiel: ``rrd://<dateiname-ohne-rrd>?ds=AVERAGE&resolution=3600``
 
+
+Hinzufügen weiterer Quellen mittels Plugins
+###########################################
+
+Da die CometVisu nicht alle Datenquellen direkt unterstützt, können weitere Datenquellen über Plugins hinzugefügt werden.
+Dazu muss ein Plugin erstellt werden, welches die Datenquelle abfragt und die Daten an das Chart-Element weitergibt.
+Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:
+
+1. Javascript-Datei im config/media-Verzeichnis erstellen.
+2. Darin eine Klasse anlegen mit folgendem Code als Basis erweitert um die gewünschte Funktionalität:
+   https://github.com/CometVisu/CometVisu/blob/develop/source/resource/demo/templates/ChartSourcePlugin.js
+3. Laden dieser Datei in der CometVisu-Konfiguration, dazu im ``<cv-meta>``-Element folgendes hinzufügen:
+   ``<cv-loader type="js" src="resource/config/media/<Dateiname>.js"/>`` und Namen der neuen Datei eintragen.
+
+Weitere Erklärungen finden sich im Source-Code der Dateivorlage.
 
 Weitere Beispiele
 #################
@@ -202,6 +222,84 @@ füllen, oder einfach mit ``all`` for alle.
         </cv-tile>
     </cv-widget>
 
+
+Einfache Linien
+###############
+
+Um bestimmte Stellen im Chart hervorzuheben / zu markieren können horizontale und vertikale Linien eingefügt werden.
+Mit einer vertikalen Linie kann eine bestimmte Zeit markiert werden (z.B. die aktuelle Zeit oder Mitternacht).
+Mit einer horizontalen Linie kann ein bestimmter Wert markiert werden (z.B. ein Schwellwert), oder auch ein Durchschnitts-,
+Höchst- oder Tiefstwert.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-h-lines">
+            <caption>Chart mit horizontalen Linien.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FF0000" value="max" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FFFF00" value="min" format="%.1f"/>
+                <h-line color="#FFFFFF" value="5" />
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
+Dazu wird eine ``<h-line>`` mit der selben Datenquelle wie die Linie erstellt und der Wert ``avg`` für den Durchschnitt
+in ``value`` angegeben. Der Durchschnittswert wird dann als horizontale Linie im Chart dargestellt.
+Mit ``show-value="true"`` wird festgelegt, dass der Wert neben der Linie angezeigt wird.
+Weitere Werte für ``value`` sind ``min``, ``max`` oder ein fixer Wert.
+
+Auch Inline-Queries können auf diesem Weg wieder verwendet werden:
+
+.. code-block:: xml
+
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://inline#1" title="Netzbezug" color="#FF0000" show-area="false">
+                    ...
+                <dataset>
+                <dataset src="openhab://inline#2" title="Einspeisung" color="#00FF00" show-area="false">
+                    ...
+                <dataset>
+                <h-line src="openhab://inline#1" show-value="true" color="#FF0000" value="avg" format="%.1f"/>
+                <h-line src="openhab://inline#2" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
+
+**Vertikale Linien**
+
+Bei den vertikalen Linien können momentan nur fixe Werte angegeben werden.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-v-lines">
+            <caption>Chart mit vertikaler Linie.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
 
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^

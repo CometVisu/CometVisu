@@ -375,8 +375,9 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         for (let id in list) {
           if (Object.prototype.hasOwnProperty.call(list, id)) {
             const address = list[id];
-            if (cv.data.Model.isWriteAddress(address)) {
-              cv.io.BackendConnections.getClient(address.backendType).write(id, cv.Transform.encode(address, value));
+            const client = cv.io.BackendConnections.getClient(address.backendType);
+            if (cv.data.Model.isWriteAddress(address) && client) {
+              client.write(id, cv.Transform.encode(address, value));
             }
           }
         }

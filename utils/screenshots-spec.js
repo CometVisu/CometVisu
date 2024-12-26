@@ -551,7 +551,7 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.sleep(sleepTime);
             }
             //console.log("  - creating screenshot '" + setting.name + "'");
-            const locales = setting.locales ? setting.locales : [settings.locale || ''];
+            const locales = setting.locales ? setting.locales : [settings.language || ''];
             for (const locale of locales) {
               const screenshotDir = settings.baseDir
                 ? path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name))
@@ -561,7 +561,7 @@ describe('generation screenshots from jsdoc examples', function () {
               }
               runResult.shotIndexFiles.push([path.join(screenshotDir, 'shot-index.json'), screenshotDir]);
               if (locale) {
-                mockup.setLocale(locale);
+                await mockup.setLocale(locale);
               }
               const data = await browser.takeScreenshot();
               let base64Data = data.replace(/^data:image\/png;base64,/, '');
@@ -593,6 +593,7 @@ describe('generation screenshots from jsdoc examples', function () {
         } catch (e) {
           const name = currentScreenshot.name || settings.screenshots.map(e => e.name).join(',');
           console.error('>>> error creating screenshot(s)', name, 'from file', filePath);
+          console.error(e.message);
           stats.error++;
           stats.total++;
           runResult.failed = true;

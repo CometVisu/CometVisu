@@ -145,6 +145,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __resizeTimeout: null,
     __startTs: null,
     __endTs: null,
+    __srcToHash: null,
 
     /**
     * @type {d3.Selection}
@@ -172,6 +173,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._checkEnvironment();
 
       this._initializing = true;
+      this.__srcToHash = {};
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
@@ -413,6 +415,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this._initializing = false;
       this.__updateTitle();
+      qx.locale.Manager.getInstance().addListener('changeLocale', this._onLocaleChanged, this);
 
       // check if we have a read address for live updates
       const datasetSources = Array.from(this._element.querySelectorAll(':scope > dataset')).map(elem => elem.getAttribute('src'));
@@ -423,6 +426,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           // cancel event here
           ev.stopPropagation();
         });
+      }
+    },
+
+    _onLocaleChanged() {
+      this.__updateTitle();
+      const popup = this._headerFooterParent.querySelector('div.popup.series');
+      if (popup) {
+        for (const option of popup.querySelectorAll('cv-option')) {
+          option.textContent = this._seriesToShort(option.getAttribute('key'));
+        }
       }
     },
 
@@ -588,16 +601,23 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         return;
       }
       let url;
-      const dataSets = this._element.querySelectorAll(':scope > dataset');
+      const dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
+      const datasetSources = dataSets.map(elem => elem.getAttribute('src'));
+      for (const line of this._element.querySelectorAll(':scope > h-line, v-line')) {
+        if (line.hasAttribute('src') && !datasetSources.includes(line.getAttribute('src'))) {
+          dataSets.push(line);
+        }
+      }
 
       const promises = [];
       if (!this._dataSetConfigs) {
         this._dataSetConfigs = {};
         for (let dataSet of dataSets) {
           let ts = {
-            showArea: true,
+            showArea: dataSet.localName === 'dataset',
             color: '#FF9900',
             chartType: 'line',
+            element: dataSet,
             title: '',
             curve: 'linear',
             aggregationInterval: 0
@@ -628,29 +648,42 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             }
             ts[name] = value;
           }
-          const type = ts.src.split('://')[0].toLowerCase();
+          let type = ts.src.split('://')[0].toLowerCase();
+          if (type.startsWith('plugin+')) {
+            ts.subType = type.substring(7);
+            type = type.substring(0, 6);
+          }
           ts.type = type;
           let key = ts.src;
           switch (type) {
             case 'flux':
-              ts.source = new cv.io.timeseries.FluxSource(ts.src);
+              ts.source = new cv.io.timeseries.FluxSource(ts.src, this);
               if (ts.source.isInline()) {
                 const fluxQuery = dataSet.textContent.trim();
                 key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                if (!this.__srcToHash[ts.src]) {
+                  this.__srcToHash[ts.src] = key;
+                } else {
+                  this.error(`duplicate flux inline source, you must append an unique anchor ID like ${ts.src}#12345`, ts.src);
+                }
                 ts.source.setQueryTemplate(fluxQuery);
               }
               break;
 
             case 'openhab':
-              ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src);
+              ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src, this);
               break;
 
             case 'rrd':
-              ts.source = new cv.io.timeseries.RRDSource(ts.src);
+              ts.source = new cv.io.timeseries.RRDSource(ts.src, this);
               break;
 
             case 'demo':
-              ts.source = new cv.io.timeseries.DemoSource(ts.src);
+              ts.source = new cv.io.timeseries.DemoSource(ts.src, this);
+              break;
+
+            case 'plugin':
+              ts.source = new cv.io.timeseries.Plugin(ts.src, this);
               break;
 
             default:
@@ -662,8 +695,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      for (const src in this._dataSetConfigs) {
-        const ts = this._dataSetConfigs[src];
+      for (const key in this._dataSetConfigs) {
+        const ts = this._dataSetConfigs[key];
         let proxy = false;
         let options = {ttl: this.getRefresh()};
         if (ts.source) {
@@ -676,6 +709,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           url = config.url;
           proxy = config.proxy;
           options = Object.assign(options, config.options);
+
+          if (config.fetch === false) {
+            // data retrieval is handled by the source itself
+            promises.push(ts.source.fetchData(this.getStartTime(), this.getEndTime(), this.getCurrentSeries(), this.getCurrentPeriod())
+              .then(data => {
+                this.debug('data successfully loaded by source');
+                if (ts.source) {
+                  data = ts.source.processResponse(data);
+                }
+                if (!this._lastRefresh) {
+                  this._lastRefresh = Date.now();
+                }
+                return {
+                  data: data || [],
+                  ts: ts
+                };
+              })
+              .catch(err => {
+                this._onStatusError(ts, url, err);
+                return {
+                  data: [],
+                  ts: ts
+                };
+              })
+            );
+          }
         }
 
         if (!url) {
@@ -1216,7 +1275,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this._chartConf.lineContainer) {
         this._chartConf.lineContainer
           .selectAll('path')
-          .data(this._chartConf.lineGroups)
+          .data(new Map([...this._chartConf.lineGroups].filter(([k, v]) => {
+            const config = this._dataSetConfigs[k];
+            // do not use h-/v-line here, only datasets
+            return config.element.localName === 'dataset';
+          })))
           .join(
             enter => enter.append('path')
               .style('mix-blend-mode', config.mixBlendMode)
@@ -1278,99 +1341,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       // add fixed/calculated lines
-      for (const [i, line] of this._element.querySelectorAll(':scope > h-line').entries()) {
-        const src = line.getAttribute('src');
-        let targetContainer = null;
-        let data = null;
-        let yValue = NaN;
-        if (src) {
-          if (this._chartConf.lineGroups.get(src)) {
-            targetContainer = this._chartConf.lineContainer;
-            data = this._chartConf.lineGroups.get(src);
-          } else if (this._chartConf.areaGroups.get(src)) {
-            targetContainer = this._chartConf.areaContainer;
-            data = this._chartConf.areaGroups.get(src);
-          } else if (this._chartConf.barGroups.get(src)) {
-            targetContainer = this._chartConf.barContainer;
-            data = this._chartConf.barGroups.get(src);
-          }
-          if (!data) {
-            this.error('no data found for src ' + src);
-            continue;
-          }
-          switch (line.getAttribute('value')) {
-            case 'avg': {
-              let sum = 0.0;
-              for (const di of data) {
-                sum += Y[di];
-              }
-              yValue = sum / data.length;
-              break;
-            }
-
-            case 'max':
-              yValue = d3.max(Y.filter((v, i) => data.includes(i), d => d));
-              break;
-
-            case 'min':
-              yValue = d3.min(Y.filter((v, i) => data.includes(i), d => d));
-              break;
-
-            default:
-              this.error('unknown value calculation: ' + line.getAttribute('value'));
-              break;
-          }
-        } else {
-          targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-          yValue = parseFloat(line.getAttribute('value'));
-          data = [0, X.length-1];
-        }
-        if (!targetContainer) {
-          continue;
-        }
-
-        let lineElem = targetContainer.select('.line-' + i);
-        if (isNaN(yValue) && !lineElem.empty()) {
-          // remove line
-          lineElem.remove();
-          if (line.getAttribute('show-value') === 'true') {
-            targetContainer.select('.line-value-' + i).remove();
-          }
-        } else if (!isNaN(yValue)) {
-          const color = line.getAttribute('color') || 'currentColor';
-          if (lineElem.empty()) {
-            lineElem = targetContainer.append('line')
-              .attr('class', 'line-' + i)
-              .attr('stroke', color);
-          }
-          const x1 = this._chartConf.x(X[data[0]]);
-          const x2 = this._chartConf.x(X[X.length -1]); // always draw until end of chart (not until end of src dataset)
-          const y = this._chartConf.y(yValue);
-          lineElem
-            .attr('x1', x1)
-            .attr('x2', x2)
-            .attr('y1', y)
-            .attr('y2', y);
-
-          if (line.getAttribute('show-value') === 'true') {
-            const format = line.hasAttribute('format') ? line.getAttribute('format')
-              : (this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s');
-            let valueElem = targetContainer.select('.line-value-' + i);
-            if (valueElem.empty()) {
-              valueElem = targetContainer.append('text')
-                .attr('class', 'line-value-' + i)
-                .attr('fill', line.getAttribute('value-color') || color)
-                .attr('font-size', '10')
-                .attr('text-anchor', 'start');
-            }
-            // show value on right side of the chart
-            valueElem
-              .attr('x', x2 + 2)
-              .attr('y', y + 5)
-              .text(cv.util.String.sprintf(format, yValue));
-          }
-        }
-      }
+      this.__addLines(X, Y);
 
       // dot must be added last
       const dot = svg.select('g.dot');
@@ -1383,6 +1354,141 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .attr('r', 2.5);
       }
       this._dot = svg.select('g.dot');
+    },
+
+    __addLines(X, Y) {
+      for (const [i, line] of this._element.querySelectorAll(':scope > h-line, v-line').entries()) {
+        let key = line.getAttribute('src');
+        if (this.__srcToHash[key]) {
+          key = this.__srcToHash[key];
+        }
+        const name = line.localName;
+        let targetContainer = null;
+        let data = null;
+        let value = NaN;
+        if (key) {
+          if (this._chartConf.lineGroups.get(key)) {
+            targetContainer = this._chartConf.lineContainer;
+            data = this._chartConf.lineGroups.get(key);
+          } else if (this._chartConf.areaGroups.get(key)) {
+            targetContainer = this._chartConf.areaContainer;
+            data = this._chartConf.areaGroups.get(key);
+          } else if (this._chartConf.barGroups.get(key)) {
+            targetContainer = this._chartConf.barContainer;
+            data = this._chartConf.barGroups.get(key);
+          }
+          if (!data) {
+            this.error('no data found for key ' + key);
+            continue;
+          }
+          if (name === 'h-line') {
+            // we can only do calculations for values on the Y-Axis for horizontal lines
+            switch (line.getAttribute('value')) {
+              case 'avg': {
+                let sum = 0.0;
+                for (const di of data) {
+                  sum += Y[di];
+                }
+                value = sum / data.length;
+                break;
+              }
+
+              case 'max':
+                value = d3.max(Y.filter((v, i) => data.includes(i), d => d));
+                break;
+
+              case 'min':
+                value = d3.min(Y.filter((v, i) => data.includes(i), d => d));
+                break;
+
+              default:
+                this.error('unknown value calculation: ' + line.getAttribute('value'));
+                break;
+            }
+          } else {
+            value = X[data[0]];
+          }
+        } else {
+          targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
+          if (name === 'h-line') {
+            value = parseFloat(line.getAttribute('value'));
+          } else {
+            value = new Date(line.getAttribute('value')).getTime();
+          }
+          data = [0, X.length-1];
+        }
+        if (!targetContainer) {
+          continue;
+        }
+
+        let lineElem = targetContainer.select(`.${name}-${i}`);
+        if (isNaN(value) && !lineElem.empty()) {
+          // remove line
+          lineElem.remove();
+          if (line.getAttribute('show-value') === 'true') {
+            targetContainer.select(`.${name}-value-${i}`).remove();
+          }
+        } else if (!isNaN(value)) {
+          const color = line.getAttribute('color') || 'currentColor';
+          if (lineElem.empty()) {
+            lineElem = targetContainer.append('line')
+              .attr('class', `${name}-${i}`)
+              .attr('stroke', color);
+          }
+          let formatAttribute = 'y-format';
+          let x1;
+          let x2;
+          let y1;
+          let y2 = 0;
+          if (name === 'h-line') {
+            const [xMin, xMax] = this._chartConf.x.domain();
+            x1 = this._chartConf.x(xMin);
+            x2 = this._chartConf.x(xMax); // always draw until end of chart (not until end of src dataset)
+            y1 = this._chartConf.y(value);
+            y2 = y1;
+          } else {
+            const [yMin, yMax] = this._chartConf.y.domain();
+            y1 = this._chartConf.y(yMin);
+            y2 = this._chartConf.y(yMax);
+            x1 = this._chartConf.x(value);
+            x2 = x1;
+
+            formatAttribute = 'x-format';
+          }
+
+          lineElem
+            .attr('x1', x1)
+            .attr('x2', x2)
+            .attr('y1', y1)
+            .attr('y2', y2);
+
+          if (line.getAttribute('show-value') === 'true') {
+            const format = line.hasAttribute('format') ? line.getAttribute('format')
+              : (this._element.hasAttribute(formatAttribute) ? this._element.getAttribute(formatAttribute) : '%s');
+            let valueElem = targetContainer.select(`.${name}-value-${i}`);
+            if (valueElem.empty()) {
+              valueElem = targetContainer.append('text')
+                .attr('class', `${name}-value-${i}`)
+                .attr('fill', line.getAttribute('value-color') || color)
+                .attr('font-size', '10')
+                .attr('text-anchor', 'start');
+            }
+            if (name === 'h-line') {
+              // show value on right side of the chart
+              valueElem
+                .attr('x', x2 + 2)
+                .attr('y', y1 + 5)
+                .text(cv.util.String.sprintf(format, value));
+            } else {
+              // show value on top of the chart
+              valueElem
+                .attr('x', x1 + 2)
+                .attr('y', y2)
+                .text(d3.timeFormat(format)(value));
+            }
+          }
+        }
+      }
     },
 
     _onPointerEntered(ev) {
@@ -1591,6 +1697,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   destruct() {
     this._chartConf = null;
     this._helpers = null;
+    qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
   },
 
   defer(QxClass) {
