@@ -256,7 +256,9 @@ qx.Class.define('cv.util.ScriptLoader', {
         loader.removeListener('loaded', this._onLoaded, this);
         loader.removeListener('failed', this._onFailed, this);
       });
-      loader.start();
+      loader.start(); // NOTE: Actually we'd need a `.catch()` here when the
+      // loading of a plugin is failing. But then no error message at all is
+      // shown. Why?!? FIXME!
       return loader;
     },
 
