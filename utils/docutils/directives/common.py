@@ -65,7 +65,7 @@ class BaseXsdDirective(BaseDirective):
         return 0, 0, self.content_offset, statemachine.StringList(content.splitlines())
 
     def normalize_values(self, values):
-        values = ["\*" if x == "*" else x for x in values]
+        values = [r"\*" if x == "*" else x for x in values]
         if len(values) <= 1:
             res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
@@ -109,7 +109,7 @@ class BaseXsdDirective(BaseDirective):
                 if len(description) == 0:
                     description = schema.get_node_documentation(attr, self.locale)
                     if description is not None:
-                        description = re.sub("\n\s+", " ", description.text).strip()
+                        description = re.sub(r"\n\s+", " ", description.text).strip()
                     elif enums is not None:
                         description = self.get_description(enums, schema)
                     else:
@@ -199,7 +199,7 @@ class BaseXsdDirective(BaseDirective):
                     if len(description) == 0:
                         description = schema.get_node_documentation(attr, self.locale)
                         if description is not None:
-                            description = re.sub("\n\s+", " ", description.text).strip()
+                            description = re.sub(r"\n\s+", " ", description.text).strip()
                         elif enums is not None:
                             description = self.get_description(enums, schema)
                         else:
