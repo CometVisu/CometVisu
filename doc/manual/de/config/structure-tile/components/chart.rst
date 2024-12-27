@@ -224,7 +224,7 @@ füllen, oder einfach mit ``all`` for alle.
 
 **Weitere Darstellungsmöglichkeiten**
 
-Man hat diverse Möglichkeiten die Darstellung des Charts zu beeinflussen. So kann man z.B. die Linien im Hintegrund
+Man hat diverse Möglichkeiten die Darstellung des Charts zu beeinflussen. So kann man z.B. die Linien im Hintergrund
 ausblenden (``show-grid="false"``), den Bereich unterhalb der Linie mit einem Gradienten ausblenden lassen (``gradient="true"``)
 oder auch die Linienfarbe ändern (``line-color="#FFFF00"``).
 
