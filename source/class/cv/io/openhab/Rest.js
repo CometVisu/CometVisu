@@ -394,10 +394,17 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     write(address, value) {
-      const req = this.createAuthorizedRequest('items/' + address, 'POST');
-      req.setRequestHeader('Content-Type', 'text/plain');
-      req.setRequestData('' + value);
-      req.send();
+      if (address.startsWith('scene:')) {
+        const sceneId = address.substring(6);
+        const req = this.createAuthorizedRequest('rules/' + sceneId + '/runnow', 'POST');
+        req.setRequestHeader('Content-Type', 'text/plain');
+        req.send();
+      } else {
+        const req = this.createAuthorizedRequest('items/' + address, 'POST');
+        req.setRequestHeader('Content-Type', 'text/plain');
+        req.setRequestData('' + value);
+        req.send();
+      }
     },
 
     handleError(error) {

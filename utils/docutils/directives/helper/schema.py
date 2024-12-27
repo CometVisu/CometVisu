@@ -78,15 +78,15 @@ class Schema:
             # get attributes from extension
             res += ext.findall(".//xs:attribute".replace("xs:", SCHEMA_SPACE))
 
-
         return res
 
     def get_attribute_groups(self, query):
+        attrs = []
         for group in self.findall(query):
             if "ref" in group.attrib:
                 name = group.get('ref')
-                return self.get_group_attributes(name)
-        return []
+                attrs += self.get_group_attributes(name)
+        return attrs
 
     def get_attribute(self, widget_name):
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
@@ -100,8 +100,9 @@ class Schema:
         if ctype is None:
             return []
         elems = ctype.findall(".//xs:element".replace("xs:", SCHEMA_SPACE))
-        simple_ext = ctype.find(".//xs:simpleContent/xs:extension".replace("xs:", SCHEMA_SPACE))
-        complex_ext = ctype.find(".//xs:complexContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        simple_ext = ctype.find("./xs:simpleContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        complex_ext = ctype.find("./xs:complexContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        elem_names = [x.get('name') for x in elems]
 
         # find extended elements
         for elem in elems:
@@ -109,7 +110,11 @@ class Schema:
                 sub_type = elem.find("./xs:complexType".replace("xs:", SCHEMA_SPACE))
                 if sub_type is not None:
                     for sub_elem in self.get_widget_elements(elem.get('name'), ctype=sub_type, sub_type=True):
-                        elems.append(sub_elem)
+                         name = elem.get('name') if not isinstance(sub_elem, tuple) else sub_elem[0]
+                         if name not in elem_names:
+                             elems.append(sub_elem)
+                             elem_names.append(name)
+
         if simple_ext is not None and simple_ext.get("base") is not None:
             # should we really hardcode this?
             ref = self.find("xs:simpleType[@name='%s']" % simple_ext.get("base"))
@@ -120,7 +125,12 @@ class Schema:
             elems.append(("#text", "string", doc))
 
         if complex_ext is not None and complex_ext.get("base") is not None:
-            elems += self.get_widget_elements(complex_ext.get("base"), locale)
+            for e in self.get_widget_elements(complex_ext.get("base"), locale):
+                name = e.get('name') if not isinstance(e, tuple) else e[0]
+                if name not in elem_names:
+                    elems.append(e)
+                    elem_names.append(name)
+
         return elems
 
     def get_elements_of_attribute(self, attribute):
@@ -150,7 +160,7 @@ class Schema:
             values = [enum.get('value') for enum in enums]
             a_type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
         if description is not None:
-            description = re.sub("\n\s+", " ", description.text).strip()
+            description = re.sub(r"\n\s+", " ", description.text).strip()
             return a_type, values, enums, description
         return a_type, values, enums, ''
 

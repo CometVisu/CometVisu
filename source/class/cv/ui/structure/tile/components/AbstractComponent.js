@@ -419,19 +419,21 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
      * @return {Boolean} true of the update has been handled
      */
     onStateUpdate(ev) {
+      // noinspection EqualityComparisonWithCoercionJS
+      const active = ev.detail.addressValue === null ? !!ev.detail.state : ev.detail.addressValue == ev.detail.state;
       switch (ev.detail.target) {
         case 'enabled':
-          this.setEnabled(ev.detail.state === 1);
+          this.setEnabled(active);
           ev.stopPropagation();
           return true;
 
         case 'show-exclude':
-          this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
+          this.setVisibility(active ? 'visible' : 'excluded');
           ev.stopPropagation();
           return true;
 
         case 'show-hide':
-          this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
+          this.setVisibility(active ? 'visible' : 'hidden');
           ev.stopPropagation();
           return true;
 

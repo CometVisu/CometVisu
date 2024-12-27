@@ -75,6 +75,15 @@ The following entry must then be used to connect to openHAB.
 
     <cv-backend type="openhab" username="<access-token>" uri="/rest/" />
 
+.. HINT::
+
+    In openHAB created scenes (or rules) can also be started via the openHAB backend.
+    To do this, an address must be used with the following syntax: ``<cv-address mode="write" value="1">scene:123456abcd</cv-address>``.
+    Scenes / rules have no status, so the value is always set to 1 and only the mode ``write`` can be used.
+    It is important here to use the prefix ``scene:`` followed by the ID of the scene / rule.
+    The value of ``value`` is irrelevant here, since it is not sent to the backend when activating the scene/rule, it is only used
+    to give a small visual feedback in the UI when the scene is clicked.
+
 
 Connection to an MQTT-Broker
 ----------------------------

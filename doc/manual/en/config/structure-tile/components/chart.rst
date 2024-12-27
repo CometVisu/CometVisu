@@ -218,6 +218,27 @@ the ``selection`` attribute. This can be filled with a comma-separated list of a
         </cv-tile>
     </cv-widget>
 
+**Further display options**
+
+There are various options to influence the display of the chart. For example, you can hide the lines in the background
+(``show-grid="false"``), hide the area below the line with a gradient (``gradient="true"``) or change the line color (``line-color="#FFFF00"``).
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/temp-chart.json" target-path="/rest/persistence/items/Temperature_FF_Living" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-temp-alt"/>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Living room" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3" show-grid="false">
+                <dataset chart-type="line" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
+            </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
 Simple lines
 ############
 

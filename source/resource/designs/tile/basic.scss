@@ -560,7 +560,7 @@ body {
             margin-bottom: var(--spacing);
         }
 
-        > cv-group[open] {
+        > cv-group[open], > cv-dynamic > cv-ref > cv-group[open] {
             margin-bottom: var(--spacing);
         }
 
@@ -883,6 +883,10 @@ body {
 
             &.has-list {
                 overflow-y: auto;
+            }
+
+            &[href] {
+                cursor: pointer;
             }
         }
 
@@ -2227,6 +2231,18 @@ body {
             left: 0;
             bottom: 0;
             right: 0;
+        }
+    }
+
+    cv-dynamic {
+        display: contents;
+
+        > cv-ref {
+            display: none;
+
+            &[active] {
+                display: contents;
+            }
         }
     }
 }

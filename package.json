@@ -20,7 +20,8 @@
     "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
-    "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate"
+    "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate",
+    "selenium": "CV_BROWSER=chrome CV_VERSION=stable utils/ci/browser-setup.sh"
   },
   "license": "GPL-3.0",
   "authors": [

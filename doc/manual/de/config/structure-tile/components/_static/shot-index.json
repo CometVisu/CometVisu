@@ -70,5 +70,6 @@
     "cv-energy-entity-grid-in": "eea4835b6d546a66a907b957c8b11015",
     "cv-energy-entity-grid-out": "3a341732448c2dfe60c9d7d39bcc9d82",
     "cv-chart-pv-h-lines": "7d9d4c16d36549f63382b71da8a152fd",
-    "cv-chart-pv-v-lines": "af6da0433286c4e2b3c279f5a1a92dd8"
+    "cv-chart-pv-v-lines": "af6da0433286c4e2b3c279f5a1a92dd8",
+    "cv-chart-temp-alt": "faaf90bcb3d46becf59ada119d63a4a2"
 }

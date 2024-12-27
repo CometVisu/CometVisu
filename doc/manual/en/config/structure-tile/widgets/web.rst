@@ -1,7 +1,7 @@
 .. _tile-web:
 
-Web
-===
+The web widget
+==============
 
 .. api-doc:: cv.ui.structure.tile.widgets.Web
 

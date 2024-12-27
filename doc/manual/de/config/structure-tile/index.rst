@@ -266,6 +266,15 @@ oder die Bedienung einer Rolllade (Shutter).
     | .. image:: widgets/_static/cv-energy-full.png            | :ref:`tile-energy`                                        |
     |    :width: 150                                           | Zeigt Energieflüsse innerhalb eines Hauses an             |
     +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-link.png                   | :ref:`tile-link`                                          |
+    |    :width: 150                                           | Öffnet eine Webseite                                      |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    |                                                          | :ref:`tile-web`                                           |
+    |                                                          | Zeigt eine eingebettete Webseite an                       |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    |                                                          | :ref:`tile-dynamic`                                       |
+    |                                                          | Blendet Inhalte der Visualisierung dynamisch ein          |
+    +----------------------------------------------------------+-----------------------------------------------------------+
 
 .. toctree::
     :maxdepth: 1
@@ -282,7 +291,9 @@ oder die Bedienung einer Rolllade (Shutter).
     Media Player <widgets/media-player>
     Widget-pair <widgets/widget-pair>
     Energy <widgets/energy>
+    Link <widgets/link>
     Web <widgets/web>
+    Dynamic <widgets/dynamic>
 
 Eigene Widgets definieren
 =========================

@@ -16,7 +16,7 @@ in which the chart is displayed in full size with the axes.
 
     <settings design="tile" selector="cv-status-chart">
         <fixtures>
-            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-status-chart">
             <caption>Status with background chart.</caption>
@@ -27,7 +27,7 @@ in which the chart is displayed in full size with the axes.
         <cv-address slot="address" transform="DPT:7.001" mode="read">1/4/0</cv-address>
         <span slot="title">Current power consumption</span>
         <span slot="unit">W</span>
-        <dataset slot="dataset" src="Meter_Energy_Grid_Import_Today" title="grid withdrawal" color="#FF0000" show-area="true" curve="step"/>
+        <dataset slot="dataset" src="openhab://Meter_Energy_Grid_Import_Today" title="grid withdrawal" color="#FF0000" show-area="true" curve="step"/>
     </cv-status-chart>
 
 
