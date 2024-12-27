@@ -263,6 +263,15 @@ or operating a roller shutter.
     | .. image:: widgets/_static/cv-energy-full.png            | :ref:`tile-energy`                                        |
     |    :width: 150                                           | Visualizes energy flow inside a house                     |
     +----------------------------------------------------------+-----------------------------------------------------------+
+    | .. image:: widgets/_static/cv-link.png                   | :ref:`tile-link`                                          |
+    |    :width: 150                                           | Opens a website                                           |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    |                                                          | :ref:`tile-web`                                           |
+    |                                                          | Show an embedded website                                  |
+    +----------------------------------------------------------+-----------------------------------------------------------+
+    |                                                          | :ref:`tile-dynamic`                                       |
+    |                                                          | Shows content of the visualisation dynamically            |
+    +----------------------------------------------------------+-----------------------------------------------------------+
 
 .. toctree::
     :maxdepth: 1
@@ -279,7 +288,9 @@ or operating a roller shutter.
     Media Player <widgets/media-player>
     Widget-pair <widgets/widget-pair>
     Energy <widgets/energy>
+    Link <widgets/link>
     Web <widgets/web>
+    Dynamic <widgets/dynamic>
 
 Define own widgets
 ==================
