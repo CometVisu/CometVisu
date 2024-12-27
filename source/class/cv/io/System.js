@@ -39,9 +39,13 @@ qx.Class.define('cv.io.System', {
     super();
     this.addresses = [];
     this.__persistedTargets = {
-      theme: '_applyTheme'
+      theme: '_applyTheme',
+      'client:id': '_applyCid'
     };
     qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+
+    // set client id
+    this.setCid(cv.Config.clientID);
   },
 
   /*
@@ -54,6 +58,11 @@ qx.Class.define('cv.io.System', {
     connected: {
       refine: true,
       init: true
+    },
+    cid: {
+      check: 'String',
+      nullable: true,
+      apply: '_applyCid'
     }
   },
 
@@ -72,6 +81,12 @@ qx.Class.define('cv.io.System', {
       const page = ev.getData();
       const data = {};
       data['nav:current-page'] = page.getAttribute('id');
+      cv.data.Model.getInstance().updateFrom('system', data);
+    },
+
+    _applyCid(value) {
+      const data = {};
+      data['client:id'] = value;
       cv.data.Model.getInstance().updateFrom('system', data);
     },
 
