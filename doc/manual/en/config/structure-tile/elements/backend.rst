@@ -77,7 +77,7 @@ The following entry must then be used to connect to openHAB.
 
 .. HINT::
 
-    In openHAB created scenes (or rules) can also be startet via the openHAB backend.
+    In openHAB created scenes (or rules) can also be started via the openHAB backend.
     To do this, an address must be used with the following syntax: ``<cv-address mode="write" value="1">scene:123456abcd</cv-address>``.
     Scenes / rules have no status, so the value is always set to 1 and only the mode ``write`` can be used.
     It is important here to use the prefix ``scene:`` followed by the ID of the scene / rule.
