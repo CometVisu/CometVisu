@@ -572,6 +572,7 @@
       </xsd:choice>
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attributeGroup ref="link-attributes" />
     <xsd:attribute name="background-image" type="xsd:anyURI">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Background image for this tile.</xsd:documentation>
@@ -608,6 +609,7 @@
       <xsd:element name="cv-energy" type="cv-energy"/>
       <xsd:element name="cv-web" type="cv-web" />
       <xsd:element name="cv-dynamic" type="cv-dynamic" />
+      <xsd:element name="cv-link" type="cv-link" />
     </xsd:choice>
   </xsd:group>
 
@@ -762,23 +764,6 @@
     </xsd:sequence>
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:string"/>
-    <xsd:attribute ref="refresh" />
-    <xsd:attributeGroup ref="proxy-attributes"/>
-  </xsd:complexType>
-
-  <xsd:complexType name="cv-web">
-    <xsd:sequence>
-      <xsd:choice minOccurs="0" maxOccurs="unbounded">
-        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
-      </xsd:choice>
-    </xsd:sequence>
-    <xsd:attributeGroup ref="appearance-attributes" />
-    <xsd:attribute name="src" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">URL of the page to be shown.</xsd:documentation>
-        <xsd:documentation xml:lang="de">URL der anzuzeigenden Seite.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
   </xsd:complexType>
@@ -2016,6 +2001,63 @@
     </xsd:complexContent>
   </xsd:complexType>
 
+  <xsd:complexType name="cv-web">
+    <xsd:sequence>
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attribute name="src" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">URL of the page to be shown.</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL der anzuzeigenden Seite.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="refresh" />
+    <xsd:attributeGroup ref="proxy-attributes"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-link">
+    <xsd:sequence>
+      <xsd:choice>
+        <xsd:element name="cv-image">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="cv-image">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="icon" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="cv-icon">
+          <xsd:complexType>
+            <xsd:simpleContent>
+              <xsd:extension base="cv-icon">
+                <xsd:attribute name="slot" use="required">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:enumeration value="icon" />
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:attribute>
+              </xsd:extension>
+            </xsd:simpleContent>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="span" type="slot-span"/>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="appearance-attributes" />
+    <xsd:attributeGroup ref="link-attributes" />
+  </xsd:complexType>
+
   <!--
   #####################################################################################################################
   # END: template based type (of templates that the structure has build in)
@@ -2950,7 +2992,6 @@
     </xsd:simpleType>
   </xsd:attribute>
 
-
   <xsd:attributeGroup name="appearance-attributes">
     <xsd:attribute ref="visible-on"/>
     <xsd:attribute ref="class"/>
@@ -2998,6 +3039,28 @@
         <xsd:documentation xml:lang="en">Number of columns this element spans</xsd:documentation>
         <xsd:documentation xml:lang="de">Anzahl der Spalten die dieses Element belegt</xsd:documentation>
       </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+
+
+  <xsd:attributeGroup name="link-attributes">
+    <xsd:attribute name="href" type="xsd:anyURI">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Opens a link.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Öffnet einen Link.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="target">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Controls where the link should be opened. '_blank': in a new window, '_self': in the same window (default: _blank)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Steuer wo der Link geöffnet werden soll). '_blank': In neuem Fenster, '_self': im selben Fenster (default: _blank).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="_blank"/>
+        <xsd:enumeration value="_self"/>
+        </xsd:restriction>
+      </xsd:simpleType>
     </xsd:attribute>
   </xsd:attributeGroup>
 

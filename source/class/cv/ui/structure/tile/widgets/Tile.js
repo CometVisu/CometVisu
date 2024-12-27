@@ -117,6 +117,13 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         }
         this._hideTimer.stop();
       });
+
+      if (this._element.hasAttribute('href')) {
+        this._element.addEventListener('click', (ev) => {
+          window.open(this._element.getAttribute('href'), this._element.getAttribute('target') ?? '_blank');
+          ev.stopPropagation();
+        });
+      }
     },
 
     _applyBackgroundImage(value) {
