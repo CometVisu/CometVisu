@@ -64,14 +64,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Dynamic', {
         old.removeAttribute('active');
       }
       if (ref) {
-        let remote;
+        let remotes = [];
         try {
-          remote = document.body.querySelector(ref.getAttribute('selector'));
+          remotes = document.body.querySelectorAll(ref.getAttribute('selector'));
         } catch (e) {
           this.error(e);
           return;
         }
-        if (remote) {
+        for (const remote of remotes) {
           const clonedNode = remote.cloneNode(true);
           ref.append(clonedNode);
           if (ref.hasAttribute('modify-attribute')) {
