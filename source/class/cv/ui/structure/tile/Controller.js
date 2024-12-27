@@ -676,7 +676,6 @@ class QxConnector extends HTMLElement {
 window.QxConnector = QxConnector;
 
 class TemplatedElement extends QxConnector {
-
   constructor(templateId, QxClass) {
     super(QxClass);
     const renderAttributeName = 'data-cv-rendered';

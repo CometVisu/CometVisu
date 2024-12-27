@@ -1310,29 +1310,26 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
                   const gradId = `${color.replaceAll(/\W/g, '')}Grad`;
                   let lg = svg.select('#' + gradId);
                   if (lg.empty()) {
-                    const lg = svg.append("defs").append("linearGradient")
-                      .attr("id", gradId)
-                      .attr("x1", "0%")
-                      .attr("x2", "0%")
-                      .attr("y1", "0%")
-                      .attr("y2", "100%");
-                    ;
-                    lg.append("stop")
-                      .attr("offset", "0%")
-                      .style("stop-color", color)
-                      .style("stop-opacity", 0.7);
+                    const lg = svg.append('defs').append('linearGradient')
+                      .attr('id', gradId)
+                      .attr('x1', '0%')
+                      .attr('x2', '0%')
+                      .attr('y1', '0%')
+                      .attr('y2', '100%');
+                    
+                    lg.append('stop')
+                      .attr('offset', '0%')
+                      .style('stop-color', color)
+                      .style('stop-opacity', 0.7);
 
-                    lg.append("stop")
-                      .attr("offset", "100%")
-                      .style("stop-color", color)
-                      .style("stop-opacity", 0);
-
+                    lg.append('stop')
+                      .attr('offset', '100%')
+                      .style('stop-color', color)
+                      .style('stop-opacity', 0);
                   }
                   return 'url(#' + gradId + ')';
-                } else {
+                } 
                   return this.__opacifyColor(color, '30');
-                }
-
               }: null)
           )
           .transition(t)
