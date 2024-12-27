@@ -1,7 +1,7 @@
 .. _tile-link:
 
-Link
-====
+Das Link Widget
+===============
 
 .. api-doc:: cv.ui.structure.tile.Controller
 
