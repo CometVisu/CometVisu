@@ -486,4 +486,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.Translation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Translation.js.map?dt=1735222439233
+//# sourceMappingURL=Translation.js.map?dt=1735341789079

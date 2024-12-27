@@ -297,6 +297,21 @@ the <code class="docutils literal notranslate"><span class="pre">selection</span
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
 </div>
+<p><strong>Further display options</strong></p>
+<p>There are various options to influence the display of the chart. For example, you can hide the lines in the background
+(<code class="docutils literal notranslate"><span class="pre">show-grid=&quot;false&quot;</span></code>), hide the area below the line with a gradient (<code class="docutils literal notranslate"><span class="pre">gradient=&quot;true&quot;</span></code>) or change the line color (<code class="docutils literal notranslate"><span class="pre">line-color=&quot;#FFFF00&quot;</span></code>).</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-chart-temp-alt.png" src="../../../_images/cv-chart-temp-alt.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Living room&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">show-grid=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">gradient=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
 </section>
 <section id="simple-lines">
 <h3>Simple lines<a class="headerlink" href="#simple-lines" title="Link to this heading"></a></h3>
@@ -375,7 +390,7 @@ Other values for <code class="docutils literal notranslate"><span class="pre">va
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="16"><p>cv-chart</p></td>
+<tr class="row-odd"><td rowspan="20"><p>cv-chart</p></td>
 <td><p>title</p></td>
 <td><p>string</p></td>
 <td><p>Title of the chart.</p></td>
@@ -440,6 +455,22 @@ Other values for <code class="docutils literal notranslate"><span class="pre">va
 <td><p>string</p></td>
 <td><p>Custom CSS style rules for this widget.</p></td>
 </tr>
+<tr class="row-odd"><td><p>row</p></td>
+<td><p><em>1</em>, <em>2</em>, <em>3</em>, <em>first</em>, <em>middle</em> or <em>last</em></p></td>
+<td><p>Row number or position (first, middle, last)</p></td>
+</tr>
+<tr class="row-even"><td><p>column</p></td>
+<td><p><em>1</em>, <em>2</em>, <em>3</em>, <em>first</em>, <em>middle</em> or <em>last</em></p></td>
+<td><p>Column number or position (first, middle, last)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rowspan</p></td>
+<td><p>integer</p></td>
+<td><p>Number of rows this element spans</p></td>
+</tr>
+<tr class="row-even"><td><p>colspan</p></td>
+<td><p>integer</p></td>
+<td><p>Number of columns this element spans</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -457,7 +488,7 @@ Other values for <code class="docutils literal notranslate"><span class="pre">va
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<tr class="row-odd"><td rowspan="7"><dl class="simple">
 <dt>cv-chart</dt><dd><ul class="simple">
 <li><p>dataset</p></li>
 </ul>
@@ -486,9 +517,13 @@ Other values for <code class="docutils literal notranslate"><span class="pre">va
 </tr>
 <tr class="row-even"><td><p>show-area</p></td>
 <td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Fill the area below a line diagram.</p></td>
+<td><p>Fill the area below a line diagram (default=true).</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
+<tr class="row-odd"><td><p>gradient</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Fill the area below a line diagram with a linear gradient (show-area must not be “false”).</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
 <dt>cv-chart</dt><dd><ul class="simple">
 <li><p>dataset</p>
 <ul>

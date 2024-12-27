@@ -69,7 +69,9 @@
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Widget-pair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link.html">Link</a></li>
 <li class="toctree-l4"><a class="reference internal" href="web.html">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamic.html">Dynamic</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -192,7 +194,7 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-tile</p></li>
 </ul>
@@ -214,6 +216,14 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <tr class="row-even"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>href</p></td>
+<td><p>anyURI</p></td>
+<td><p>URL des Links.</p></td>
+</tr>
+<tr class="row-even"><td><p>target</p></td>
+<td><p><em>_blank</em> oder <em>_self</em></p></td>
+<td><p>Steuert wo der Link geöffnet werden soll). <code class="docutils literal notranslate"><span class="pre">_blank</span></code>: In neuem Fenster, <code class="docutils literal notranslate"><span class="pre">_self</span></code>: im selben Fenster (default: _blank).</p></td>
 </tr>
 </tbody>
 </table>
@@ -277,51 +287,6 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-switch</p>
 <ul>
@@ -400,51 +365,6 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
@@ -491,51 +411,6 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-status</p>
 <ul>
@@ -642,54 +517,50 @@ benutzen oder sich ein eigenes definieren innerhalb eines <code class="docutils 
 <td><p>Text</p></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-link</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>href</p></td>
+<td><p>anyURI</p></td>
+<td><p>URL des Links.</p></td>
+</tr>
+<tr class="row-even"><td><p>target</p></td>
+<td><p><em>_blank</em> oder <em>_self</em></p></td>
+<td><p>Steuert wo der Link geöffnet werden soll). <code class="docutils literal notranslate"><span class="pre">_blank</span></code>: In neuem Fenster, <code class="docutils literal notranslate"><span class="pre">_self</span></code>: im selben Fenster (default: _blank).</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
 <tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>Text</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
+<li><p>cv-link</p>
 <ul>
 <li><p>#text</p></li>
 </ul>

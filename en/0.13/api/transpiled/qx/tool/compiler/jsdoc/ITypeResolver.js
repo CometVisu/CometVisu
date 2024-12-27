@@ -26,4 +26,4 @@
   qx.tool.compiler.jsdoc.ITypeResolver.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ITypeResolver.js.map?dt=1735222439346
+//# sourceMappingURL=ITypeResolver.js.map?dt=1735341789196

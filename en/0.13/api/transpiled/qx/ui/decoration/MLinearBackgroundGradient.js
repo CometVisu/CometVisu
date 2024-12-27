@@ -389,4 +389,4 @@
   qx.ui.decoration.MLinearBackgroundGradient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1735222444137
+//# sourceMappingURL=MLinearBackgroundGradient.js.map?dt=1735341794079

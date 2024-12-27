@@ -145,6 +145,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
           _this._hideTimer.stop();
         });
+        if (this._element.hasAttribute('href')) {
+          this._element.addEventListener('click', function (ev) {
+            var _this$_element$getAtt;
+            window.open(_this._element.getAttribute('href'), (_this$_element$getAtt = _this._element.getAttribute('target')) !== null && _this$_element$getAtt !== void 0 ? _this$_element$getAtt : '_blank');
+            ev.stopPropagation();
+          });
+        }
       },
       _applyBackgroundImage: function _applyBackgroundImage(value) {
         if (value) {
@@ -365,4 +372,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1735222413358
+//# sourceMappingURL=Tile.js.map?dt=1735341762903

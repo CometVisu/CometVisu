@@ -69,7 +69,9 @@
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
 <li class="toctree-l4"><a class="reference internal" href="widget-pair.html">Widget-pair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link.html">Link</a></li>
 <li class="toctree-l4"><a class="reference internal" href="web.html">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamic.html">Dynamic</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#eigene-widgets-definieren">Eigene Widgets definieren</a></li>
@@ -137,7 +139,7 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Aktueller<span class="w"> </span>Stromverbrauch<span class="nt">&lt;/span&gt;</span>
 <span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;unit&quot;</span><span class="nt">&gt;</span>W<span class="nt">&lt;/span&gt;</span>
-<span class="w">    </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;dataset&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">curve=</span><span class="s">&quot;step&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;dataset&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">curve=</span><span class="s">&quot;step&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-status-chart&gt;</span>
 </pre></div>
 </div>
@@ -343,7 +345,7 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<tr class="row-odd"><td rowspan="7"><dl class="simple">
 <dt>cv-status-chart</dt><dd><ul class="simple">
 <li><p>dataset</p></li>
 </ul>
@@ -372,9 +374,13 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 </tr>
 <tr class="row-even"><td><p>show-area</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Bereich unterhalb eines Liniendiagramms ausfüllen.</p></td>
+<td><p>Bereich unterhalb eines Liniendiagramms ausfüllen (Default=true).</p></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
+<tr class="row-odd"><td><p>gradient</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Bereich unterhalb eines Liniendiagramms mit einem linearen Gradienten ausfüllen (show-area darf nicht „false“ sein).</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
 <dt>cv-status-chart</dt><dd><ul class="simple">
 <li><p>dataset</p>
 <ul>

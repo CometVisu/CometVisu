@@ -149,4 +149,4 @@
   qx.ui.table.pane.FocusIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FocusIndicator.js.map?dt=1735222449015
+//# sourceMappingURL=FocusIndicator.js.map?dt=1735341799048

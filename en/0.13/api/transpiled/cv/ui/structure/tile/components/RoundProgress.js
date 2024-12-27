@@ -323,4 +323,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1735222412523
+//# sourceMappingURL=RoundProgress.js.map?dt=1735341762056

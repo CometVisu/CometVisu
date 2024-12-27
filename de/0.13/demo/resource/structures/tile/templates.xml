@@ -419,4 +419,16 @@
         </cv-tile>
         <footer><slot name="footer"/></footer>
     </template>
+    <template id="link">
+        <cv-tile slot-href="" slot-target="_blank">
+            <cv-row colspan="3" row="2">
+                <slot name="icon">NEEDS ICON</slot>
+            </cv-row>
+            <cv-row colspan="3" row="last">
+                <label class="primary">
+                    <slot name="label" parent-scope="2">LABEL</slot>
+                </label>
+            </cv-row>
+        </cv-tile>
+    </template>
 </templates>

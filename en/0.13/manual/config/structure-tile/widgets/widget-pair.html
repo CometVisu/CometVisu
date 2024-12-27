@@ -69,7 +69,9 @@
 <li class="toctree-l4"><a class="reference internal" href="media-player.html">Media Player</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Widget-pair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="energy.html">Energy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="link.html">Link</a></li>
 <li class="toctree-l4"><a class="reference internal" href="web.html">Web</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamic.html">Dynamic</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#define-own-widgets">Define own widgets</a></li>
@@ -191,7 +193,7 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="4"><dl class="simple">
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-tile</p></li>
 </ul>
@@ -213,6 +215,14 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 <tr class="row-even"><td><p>style</p></td>
 <td><p>string</p></td>
 <td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>href</p></td>
+<td><p>anyURI</p></td>
+<td><p>URL of the link.</p></td>
+</tr>
+<tr class="row-even"><td><p>target</p></td>
+<td><p><em>_blank</em> or <em>_self</em></p></td>
+<td><p>Controls where the link should be opened. <code class="docutils literal notranslate"><span class="pre">_blank</span></code>: in a new window, <code class="docutils literal notranslate"><span class="pre">_self</span></code>: in the same window (default: _blank)</p></td>
 </tr>
 </tbody>
 </table>
@@ -276,51 +286,6 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 <td><p>Custom CSS style rules for this widget.</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-switch</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-switch</p>
 <ul>
@@ -399,51 +364,6 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 <td><p>string</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-info</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <table class="schema-table docutils align-default">
@@ -490,51 +410,6 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 <td><p>Custom CSS style rules for this widget.</p></td>
 </tr>
 <tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
 <li><p>cv-status</p>
 <ul>
@@ -641,54 +516,50 @@ with the reduced space. Currently, you can only use the <a class="reference inte
 <td><p>string</p></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-widget-pair</dt><dd><ul class="simple">
+<li><p>cv-link</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>href</p></td>
+<td><p>anyURI</p></td>
+<td><p>URL of the link.</p></td>
+</tr>
+<tr class="row-even"><td><p>target</p></td>
+<td><p><em>_blank</em> or <em>_self</em></p></td>
+<td><p>Controls where the link should be opened. <code class="docutils literal notranslate"><span class="pre">_blank</span></code>: in a new window, <code class="docutils literal notranslate"><span class="pre">_self</span></code>: in the same window (default: _blank)</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
 <tr class="row-even"><td><dl class="simple">
 <dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-widget-pair</dt><dd><ul class="simple">
-<li><p>cv-status-chart</p>
+<li><p>cv-link</p>
 <ul>
 <li><p>#text</p></li>
 </ul>

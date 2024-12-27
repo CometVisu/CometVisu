@@ -214,7 +214,7 @@ The direction then represents the flow of energy, e.g. from the PV module to the
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="22"><p>cv-power-entity</p></td>
+<tr class="row-odd"><td rowspan="25"><p>cv-power-entity</p></td>
 <td><p>id</p></td>
 <td><p>string</p></td>
 <td><p>ID of this element.</p></td>
@@ -287,19 +287,31 @@ The direction then represents the flow of energy, e.g. from the PV module to the
 <td><p>decimal</p></td>
 <td><p>Number of columns this element spans</p></td>
 </tr>
-<tr class="row-odd"><td><p>type</p></td>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
 <td><p><em>pv</em>, <em>battery</em>, <em>grid</em>, <em>consumer</em>, <em>charger</em>, <em>heatpump</em> or <em>house</em></p></td>
 <td><p>Type of this entity.</p></td>
 </tr>
-<tr class="row-even"><td><p>connect-to</p></td>
+<tr class="row-odd"><td><p>connect-to</p></td>
 <td><p>string</p></td>
 <td><p>Connect to another cv-power-entity.</p></td>
 </tr>
-<tr class="row-odd"><td><p>connect-from</p></td>
+<tr class="row-even"><td><p>connect-from</p></td>
 <td><p>string</p></td>
 <td><p>Connect from another cv-power-entity.</p></td>
 </tr>
-<tr class="row-even"><td><p>connection-points</p></td>
+<tr class="row-odd"><td><p>connection-points</p></td>
 <td><p>string</p></td>
 <td><p>Define where the connection line should start and end.</p></td>
 </tr>

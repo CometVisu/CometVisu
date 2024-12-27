@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735222205766,
-  "lastModifiedIso": "2024-12-26T14:10:05.766Z",
+  "lastModified": 1735341547551,
+  "lastModifiedIso": "2024-12-27T23:19:07.551Z",
   "classFilename": "../../source/class/cv/io/mqtt/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 836
     },
     "end": {
-      "line": 340,
+      "line": 339,
       "column": 3,
-      "index": 9305
+      "index": 9353
     }
   },
   "className": "cv.io.mqtt.Client",
@@ -552,10 +552,9 @@
           "     *",
           "     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription",
           "     *                            to addresses (default: false)",
-          "     * @param credentials {Map} map with \"username\" and \"password\" (optional)",
-          "     * @param callback {Function} call this function when login is done",
-          "     * @param context {Object} context for the callback (this)",
-          "     *",
+          "     * @param credentials {{username: string?, password: string?}?} map with \"username\" and \"password\" (optional)",
+          "     * @param callback {Function?} call this function when login is done",
+          "     * @param context {Object?} context for the callback (this)",
           "     "
         ],
         "@description": [
@@ -574,38 +573,42 @@
           },
           {
             "name": "@param",
-            "body": "credentials {Map} map with \"username\" and \"password\" (optional)",
+            "body": "credentials {{username: string?, password: string?}?} map with \"username\" and \"password\" (optional)",
             "paramName": "credentials",
-            "description": " map with \"username\" and \"password\" (optional)",
-            "type": "Map<any, any>"
+            "description": "?} map with \"username\" and \"password\" (optional)",
+            "optional": true,
+            "defaultValue": ", password: string?",
+            "type": "{username: string"
           },
           {
             "name": "@param",
-            "body": "callback {Function} call this function when login is done",
+            "body": "callback {Function?} call this function when login is done",
             "paramName": "callback",
             "description": " call this function when login is done",
-            "type": "((...args: any[]) => any)"
+            "optional": true,
+            "type": "Function"
           },
           {
             "name": "@param",
-            "body": "context {Object} context for the callback (this)",
+            "body": "context {Object?} context for the callback (this)",
             "paramName": "context",
             "description": " context for the callback (this)",
-            "type": "Record<any, any>"
+            "optional": true,
+            "type": "Object"
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 137,
+          "line": 136,
           "column": 4,
-          "index": 3901
+          "index": 3932
         },
         "end": {
-          "line": 217,
+          "line": 216,
           "column": 5,
-          "index": 6050
+          "index": 6098
         }
       },
       "type": "function",
@@ -616,15 +619,19 @@
         },
         {
           "name": "credentials",
-          "type": "Map<any, any>"
+          "type": "{username: string",
+          "optional": true,
+          "defaultValue": ", password: string?"
         },
         {
           "name": "callback",
-          "type": "((...args: any[]) => any)"
+          "type": "Function",
+          "optional": true
         },
         {
           "name": "context",
-          "type": "Record<any, any>"
+          "type": "Object",
+          "optional": true
         }
       ],
       "appearsIn": [
@@ -648,14 +655,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 222,
+          "line": 221,
           "column": 4,
-          "index": 6107
+          "index": 6155
         },
         "end": {
-          "line": 233,
+          "line": 232,
           "column": 5,
-          "index": 6436
+          "index": 6484
         }
       },
       "type": "function",
@@ -688,14 +695,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 239,
+          "line": 238,
           "column": 4,
-          "index": 6557
+          "index": 6605
         },
         "end": {
-          "line": 239,
+          "line": 238,
           "column": 21,
-          "index": 6574
+          "index": 6622
         }
       },
       "type": "function",
@@ -714,14 +721,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 240,
+          "line": 239,
           "column": 4,
-          "index": 6580
+          "index": 6628
         },
         "end": {
-          "line": 242,
+          "line": 241,
           "column": 5,
-          "index": 6622
+          "index": 6670
         }
       },
       "type": "function",
@@ -776,14 +783,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 251,
+          "line": 250,
           "column": 4,
-          "index": 7010
+          "index": 7058
         },
         "end": {
-          "line": 251,
+          "line": 250,
           "column": 36,
-          "index": 7042
+          "index": 7090
         }
       },
       "type": "function",
@@ -831,14 +838,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 257,
+          "line": 256,
           "column": 4,
-          "index": 7151
+          "index": 7199
         },
         "end": {
-          "line": 257,
+          "line": 256,
           "column": 37,
-          "index": 7184
+          "index": 7232
         }
       },
       "type": "function",
@@ -876,14 +883,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 263,
+          "line": 262,
           "column": 4,
-          "index": 7351
+          "index": 7399
         },
         "end": {
-          "line": 263,
+          "line": 262,
           "column": 30,
-          "index": 7377
+          "index": 7425
         }
       },
       "type": "function",
@@ -941,14 +948,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 272,
+          "line": 271,
           "column": 4,
-          "index": 7615
+          "index": 7663
         },
         "end": {
-          "line": 284,
+          "line": 283,
           "column": 5,
-          "index": 8022
+          "index": 8070
         }
       },
       "type": "function",
@@ -997,14 +1004,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 291,
+          "line": 290,
           "column": 4,
-          "index": 8202
+          "index": 8250
         },
         "end": {
-          "line": 291,
+          "line": 290,
           "column": 21,
-          "index": 8219
+          "index": 8267
         }
       },
       "type": "function",
@@ -1042,14 +1049,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 297,
+          "line": 296,
           "column": 4,
-          "index": 8291
+          "index": 8339
         },
         "end": {
-          "line": 300,
+          "line": 299,
           "column": 5,
-          "index": 8360
+          "index": 8408
         }
       },
       "type": "function",
@@ -1089,14 +1096,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 307,
+          "line": 306,
           "column": 4,
-          "index": 8552
+          "index": 8600
         },
         "end": {
-          "line": 307,
+          "line": 306,
           "column": 19,
-          "index": 8567
+          "index": 8615
         }
       },
       "type": "function",
@@ -1144,14 +1151,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 314,
+          "line": 313,
           "column": 4,
-          "index": 8754
+          "index": 8802
         },
         "end": {
-          "line": 314,
+          "line": 313,
           "column": 25,
-          "index": 8775
+          "index": 8823
         }
       },
       "type": "function",
@@ -1211,14 +1218,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 321,
           "column": 4,
-          "index": 9002
+          "index": 9050
         },
         "end": {
-          "line": 322,
+          "line": 321,
           "column": 37,
-          "index": 9035
+          "index": 9083
         }
       },
       "type": "function",
@@ -1244,14 +1251,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 324,
+          "line": 323,
           "column": 4,
-          "index": 9042
+          "index": 9090
         },
         "end": {
-          "line": 328,
+          "line": 327,
           "column": 5,
-          "index": 9136
+          "index": 9184
         }
       },
       "type": "function",
@@ -1277,14 +1284,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 333,
+          "line": 332,
           "column": 4,
-          "index": 9177
+          "index": 9225
         },
         "end": {
-          "line": 338,
+          "line": 337,
           "column": 5,
-          "index": 9297
+          "index": 9345
         }
       },
       "type": "function",

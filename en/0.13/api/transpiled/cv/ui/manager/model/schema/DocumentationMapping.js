@@ -132,6 +132,7 @@
         'tile-component-value': '/develop/manual/config/structure-tile/components/value.html#tile-component-value',
         'tile-components': '/develop/manual/config/structure-tile/index.html#tile-components',
         'tile-dimmer': '/develop/manual/config/structure-tile/widgets/dimmer.html#tile-dimmer',
+        'tile-dynamic': '/develop/manual/config/structure-tile/widgets/dynamic.html#tile-dynamic',
         'tile-element-address': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address',
         'tile-element-address-group': '/develop/manual/config/structure-tile/elements/address-group.html#tile-element-address-group',
         'tile-element-address-target': '/develop/manual/config/structure-tile/elements/address.html#tile-element-address-target',
@@ -145,6 +146,7 @@
         'tile-energy-flow': '/develop/manual/config/structure-tile/widgets/energy.html#tile-energy-flow',
         'tile-info': '/develop/manual/config/structure-tile/widgets/info.html#tile-info',
         'tile-item-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-item-menu',
+        'tile-link': '/develop/manual/config/structure-tile/widgets/link.html#tile-link',
         'tile-media-player': '/develop/manual/config/structure-tile/widgets/media-player.html#tile-media-player',
         'tile-nav-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-nav-menu',
         'tile-rtc': '/develop/manual/config/structure-tile/widgets/rtc.html#tile-rtc',
@@ -187,4 +189,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1735222409787
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1735341759242

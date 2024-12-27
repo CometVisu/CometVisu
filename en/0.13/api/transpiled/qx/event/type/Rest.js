@@ -107,4 +107,4 @@
   qx.event.type.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1735222421880
+//# sourceMappingURL=Rest.js.map?dt=1735341771505

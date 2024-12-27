@@ -352,4 +352,4 @@ function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1735222454668
+//# sourceMappingURL=LongPolling.js.map?dt=1735341804804

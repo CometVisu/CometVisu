@@ -46,4 +46,4 @@
   qxl.dialog.formElement.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1735222455427
+//# sourceMappingURL=Label.js.map?dt=1735341805566

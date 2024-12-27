@@ -1021,4 +1021,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.ui.treevirtual.SimpleTreeDataModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1735222450070
+//# sourceMappingURL=SimpleTreeDataModel.js.map?dt=1735341800120

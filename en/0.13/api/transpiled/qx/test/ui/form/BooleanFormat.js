@@ -90,4 +90,4 @@
   qx.test.ui.form.BooleanFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BooleanFormat.js.map?dt=1735222431290
+//# sourceMappingURL=BooleanFormat.js.map?dt=1735341781002

@@ -5,7 +5,7 @@
  * @since (0.12.0) 2022
  */
 
-var CACHE = "2f4c2454eca29635e1f6b1c51be6fd81fd29d99a";
+var CACHE = "f358f5297f23c8ab9dd241a2b81a52c8e62510e9";
 var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg(#.*)?|ttf|woff|eot|css|png|html|json)$/i;
 var config = {};
 var updateQueue = [];

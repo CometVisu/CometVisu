@@ -57,4 +57,4 @@
   qx.tool.compiler.jsdoc.ReturnParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ReturnParser.js.map?dt=1735222439387
+//# sourceMappingURL=ReturnParser.js.map?dt=1735341789237

@@ -69,4 +69,4 @@
   qx.test.ui.form.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1735222431300
+//# sourceMappingURL=Color.js.map?dt=1735341781011

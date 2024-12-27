@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735222205766,
-  "lastModifiedIso": "2024-12-26T14:10:05.766Z",
+  "lastModified": 1735341547551,
+  "lastModifiedIso": "2024-12-27T23:19:07.551Z",
   "classFilename": "../../source/class/cv/data/Model.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1044
     },
     "end": {
-      "line": 383,
+      "line": 391,
       "column": 3,
-      "index": 11712
+      "index": 12074
     }
   },
   "className": "cv.data.Model",
@@ -524,9 +524,9 @@
           "index": 4599
         },
         "end": {
-          "line": 167,
+          "line": 175,
           "column": 5,
-          "index": 5124
+          "index": 5486
         }
       },
       "type": "function",
@@ -587,14 +587,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 176,
+          "line": 184,
           "column": 4,
-          "index": 5337
+          "index": 5699
         },
         "end": {
-          "line": 183,
+          "line": 191,
           "column": 5,
-          "index": 5606
+          "index": 5968
         }
       },
       "type": "function",
@@ -665,14 +665,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 193,
+          "line": 201,
           "column": 4,
-          "index": 5962
+          "index": 6324
         },
         "end": {
-          "line": 210,
+          "line": 218,
           "column": 5,
-          "index": 6628
+          "index": 6990
         }
       },
       "type": "function",
@@ -748,14 +748,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 220,
+          "line": 228,
           "column": 4,
-          "index": 6913
+          "index": 7275
         },
         "end": {
-          "line": 242,
+          "line": 250,
           "column": 5,
-          "index": 7803
+          "index": 8165
         }
       },
       "type": "function",
@@ -823,14 +823,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 250,
+          "line": 258,
           "column": 4,
-          "index": 8062
+          "index": 8424
         },
         "end": {
-          "line": 265,
+          "line": 273,
           "column": 5,
-          "index": 8551
+          "index": 8913
         }
       },
       "type": "function",
@@ -888,14 +888,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 272,
+          "line": 280,
           "column": 4,
-          "index": 8733
+          "index": 9095
         },
         "end": {
-          "line": 279,
+          "line": 287,
           "column": 5,
-          "index": 9004
+          "index": 9366
         }
       },
       "type": "function",
@@ -947,14 +947,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 286,
+          "line": 294,
           "column": 4,
-          "index": 9184
+          "index": 9546
         },
         "end": {
-          "line": 288,
+          "line": 296,
           "column": 5,
-          "index": 9305
+          "index": 9667
         }
       },
       "type": "function",
@@ -1008,14 +1008,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 303,
           "column": 4,
-          "index": 9484
+          "index": 9846
         },
         "end": {
-          "line": 297,
+          "line": 305,
           "column": 5,
-          "index": 9597
+          "index": 9959
         }
       },
       "type": "function",
@@ -1066,14 +1066,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 304,
+          "line": 312,
           "column": 4,
-          "index": 9752
+          "index": 10114
         },
         "end": {
-          "line": 306,
+          "line": 314,
           "column": 5,
-          "index": 9865
+          "index": 10227
         }
       },
       "type": "function",
@@ -1122,14 +1122,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 313,
+          "line": 321,
           "column": 4,
-          "index": 10021
+          "index": 10383
         },
         "end": {
-          "line": 315,
+          "line": 323,
           "column": 5,
-          "index": 10120
+          "index": 10482
         }
       },
       "type": "function",
@@ -1180,14 +1180,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 330,
           "column": 4,
-          "index": 10307
+          "index": 10669
         },
         "end": {
-          "line": 330,
+          "line": 338,
           "column": 5,
-          "index": 10564
+          "index": 10926
         }
       },
       "type": "function",
@@ -1247,14 +1247,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 339,
+          "line": 347,
           "column": 4,
-          "index": 10771
+          "index": 11133
         },
         "end": {
-          "line": 346,
+          "line": 354,
           "column": 5,
-          "index": 10992
+          "index": 11354
         }
       },
       "type": "function",
@@ -1300,14 +1300,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 352,
+          "line": 360,
           "column": 4,
-          "index": 11101
+          "index": 11463
         },
         "end": {
-          "line": 354,
+          "line": 362,
           "column": 5,
-          "index": 11167
+          "index": 11529
         }
       },
       "type": "function",
@@ -1345,14 +1345,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 360,
+          "line": 368,
           "column": 4,
-          "index": 11271
+          "index": 11633
         },
         "end": {
-          "line": 362,
+          "line": 370,
           "column": 5,
-          "index": 11331
+          "index": 11693
         }
       },
       "type": "function",
@@ -1386,14 +1386,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 368,
+          "line": 376,
           "column": 4,
-          "index": 11407
+          "index": 11769
         },
         "end": {
-          "line": 370,
+          "line": 378,
           "column": 5,
-          "index": 11467
+          "index": 11829
         }
       },
       "type": "function",
@@ -1424,14 +1424,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 376,
+          "line": 384,
           "column": 4,
-          "index": 11568
+          "index": 11930
         },
         "end": {
-          "line": 381,
+          "line": 389,
           "column": 5,
-          "index": 11704
+          "index": 12066
         }
       },
       "type": "function",

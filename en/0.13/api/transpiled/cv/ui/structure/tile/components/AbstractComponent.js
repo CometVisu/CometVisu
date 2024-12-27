@@ -436,17 +436,19 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {Boolean} true of the update has been handled
        */
       onStateUpdate: function onStateUpdate(ev) {
+        // noinspection EqualityComparisonWithCoercionJS
+        var active = ev.detail.addressValue === null ? !!ev.detail.state : ev.detail.addressValue == ev.detail.state;
         switch (ev.detail.target) {
           case 'enabled':
-            this.setEnabled(ev.detail.state === 1);
+            this.setEnabled(active);
             ev.stopPropagation();
             return true;
           case 'show-exclude':
-            this.setVisibility(ev.detail.state ? 'visible' : 'excluded');
+            this.setVisibility(active ? 'visible' : 'excluded');
             ev.stopPropagation();
             return true;
           case 'show-hide':
-            this.setVisibility(ev.detail.state ? 'visible' : 'hidden');
+            this.setVisibility(active ? 'visible' : 'hidden');
             ev.stopPropagation();
             return true;
           case 'styling':
@@ -486,4 +488,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1735222411583
+//# sourceMappingURL=AbstractComponent.js.map?dt=1735341761077

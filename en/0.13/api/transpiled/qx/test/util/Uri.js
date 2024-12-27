@@ -167,4 +167,4 @@
   qx.test.util.Uri.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uri.js.map?dt=1735222434045
+//# sourceMappingURL=Uri.js.map?dt=1735341783832

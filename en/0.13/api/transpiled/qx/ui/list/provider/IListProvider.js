@@ -116,4 +116,4 @@
   qx.ui.list.provider.IListProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListProvider.js.map?dt=1735222446083
+//# sourceMappingURL=IListProvider.js.map?dt=1735341796068

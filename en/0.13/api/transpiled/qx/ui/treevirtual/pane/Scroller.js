@@ -84,4 +84,4 @@
   qx.ui.treevirtual.pane.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1735222450158
+//# sourceMappingURL=Scroller.js.map?dt=1735341800206

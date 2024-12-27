@@ -295,4 +295,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Serve.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serve.js.map?dt=1735222436789
+//# sourceMappingURL=Serve.js.map?dt=1735341786610

@@ -198,6 +198,15 @@ Konfigurationsdatei eingetragen werden:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;&lt;access-token&gt;&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>In openHAB angelegte Szenen (oder Regeln) können ebenfalls über das openHAB-Backend gestartet werden.
+Dazu muss eine Adresse mit folgender Syntax benutzt werden: <code class="docutils literal notranslate"><span class="pre">&lt;cv-address</span> <span class="pre">mode=&quot;write&quot;</span> <span class="pre">value=&quot;1&quot;&gt;scene:123456abcd&lt;/cv-address&gt;</span></code>.
+Szenen / Regeln haben keinen Status, daher wird der Wert immer auf 1 gesetzt und es kann nur der Modus <code class="docutils literal notranslate"><span class="pre">write</span></code> benutzt werden.
+Wichtig ist hier das Präfix <code class="docutils literal notranslate"><span class="pre">scene:</span></code> gefolgt von der ID der Szene / Regel.
+Der Wert von <code class="docutils literal notranslate"><span class="pre">value</span></code> ist hierbei irrelevant, da er beim Aktivieren der Szene / Regel nicht gesendet, er dient lediglich dazu
+in der UI eine kleine visuelle Rückmeldung zu geben, wenn die Szene geklickt wird.</p>
+</div>
 </section>
 <section id="verbindung-zu-einem-mqtt-broker">
 <h2>Verbindung zu einem MQTT-Broker<a class="headerlink" href="#verbindung-zu-einem-mqtt-broker" title="Link to this heading"></a></h2>

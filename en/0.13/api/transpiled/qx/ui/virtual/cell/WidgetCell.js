@@ -101,4 +101,4 @@
   qx.ui.virtual.cell.WidgetCell.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetCell.js.map?dt=1735222450346
+//# sourceMappingURL=WidgetCell.js.map?dt=1735341800400

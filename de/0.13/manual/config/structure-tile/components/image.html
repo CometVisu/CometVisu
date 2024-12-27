@@ -161,7 +161,7 @@ und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck einget
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="5"><p>cv-image</p></td>
+<tr class="row-odd"><td rowspan="11"><p>cv-image</p></td>
 <td><p>src</p></td>
 <td><p>Text</p></td>
 <td></td>
@@ -181,6 +181,30 @@ und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck einget
 <tr class="row-odd"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Proxy im Backend benutzen, um Ladefehler zu vermeiden oder Zugangsdaten aus den versteckten Konfiguration zu nutzen.</p></td>
+</tr>
+<tr class="row-odd"><td><p>auth-type</p></td>
+<td><p><em>basic</em> oder <em>bearer</em></p></td>
+<td><p>Art der Authentifizierung, falls erforderlich.</p></td>
+</tr>
+<tr class="row-even"><td><p>config-section</p></td>
+<td><p>Text</p></td>
+<td><p>Uri und Zugangsdaten aus dieser Sektion der versteckten Konfiguration verwenden.</p></td>
+</tr>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>Text</p></td>
+<td><p>Benutzername für die Authentifizierung (oder token für auth-type=bearer).</p></td>
+</tr>
+<tr class="row-even"><td><p>password</p></td>
+<td><p>Text</p></td>
+<td><p>Passwort für die Authentifizierung.</p></td>
+</tr>
+<tr class="row-odd"><td><p>self-signed</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Zertifikatsprüfung deaktivieren, um Seiten mit selbst-signierten Zertifikaten laden zu können..</p></td>
 </tr>
 </tbody>
 </table>

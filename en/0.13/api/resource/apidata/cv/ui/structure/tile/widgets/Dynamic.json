@@ -1,0 +1,156 @@
+{
+  "version": 0.3,
+  "lastModified": 1735341547571,
+  "lastModifiedIso": "2024-12-27T23:19:07.571Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Dynamic.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 1109
+    },
+    "end": {
+      "line": 105,
+      "column": 3,
+      "index": 3191
+    }
+  },
+  "className": "cv.ui.structure.tile.widgets.Dynamic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows content of other widgets based on the current state.",
+      " * This allows to dynamically show parts of the config on other places, dependent",
+      " * on an address state. E.g. you can show the config part of the room you are currently",
+      " * in on your dashboard.",
+      " *",
+      " * @since 2025",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows content of other widgets based on the current state.\n This allows to dynamically show parts of the config on other places, dependent\n on an address state. E.g. you can show the config part of the room you are currently\n in on your dashboard.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2025"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "properties": {
+    "ref": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1374
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1457
+        }
+      },
+      "json": {
+        "check": "Element",
+        "nullable": true,
+        "apply": "_applyRef"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1603
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1639
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_updateValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1646
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1781
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mappedValue"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "_applyRef": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1788
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2964
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ref"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

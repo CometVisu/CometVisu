@@ -153,15 +153,23 @@
         if (!data) {
           return;
         }
-        var addressList = this.__P_760_2[backendName];
-        if (addressList) {
-          Object.getOwnPropertyNames(data).forEach(function (address) {
-            if (Object.prototype.hasOwnProperty.call(addressList, address)) {
-              this.onUpdate(address, data[address], backendName);
-            }
-          }, this);
+        if (backendName === 'system') {
+          // system backend updates might happen before the system backend is initialized
+          // so we add all updates without checking if the address is registered yet.
+          for (var address in data) {
+            this.onUpdate(address, data[address], backendName);
+          }
         } else {
-          this.debug('no addresses registered for backend "' + backendName + '", skipping update');
+          var addressList = this.__P_760_2[backendName];
+          if (addressList) {
+            Object.getOwnPropertyNames(data).forEach(function (address) {
+              if (Object.prototype.hasOwnProperty.call(addressList, address)) {
+                this.onUpdate(address, data[address], backendName);
+              }
+            }, this);
+          } else {
+            this.debug('no addresses registered for backend "' + backendName + '", skipping update');
+          }
         }
       },
       /**
@@ -360,4 +368,4 @@
   cv.data.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1735222452882
+//# sourceMappingURL=Model.js.map?dt=1735341802979

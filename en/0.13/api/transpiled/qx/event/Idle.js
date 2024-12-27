@@ -160,4 +160,4 @@
   qx.event.Idle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Idle.js.map?dt=1735222420635
+//# sourceMappingURL=Idle.js.map?dt=1735341770270

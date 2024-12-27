@@ -37,4 +37,4 @@
   qx.test.performance.widget.WidgetWithDecorator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetWithDecorator.js.map?dt=1735222430174
+//# sourceMappingURL=WidgetWithDecorator.js.map?dt=1735341779893

@@ -158,7 +158,7 @@ and as a value either the complete URL or a regular expression is entered which 
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="5"><p>cv-image</p></td>
+<tr class="row-odd"><td rowspan="11"><p>cv-image</p></td>
 <td><p>src</p></td>
 <td><p>string</p></td>
 <td></td>
@@ -178,6 +178,30 @@ and as a value either the complete URL or a regular expression is entered which 
 <tr class="row-odd"><td><p>style</p></td>
 <td><p>string</p></td>
 <td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>proxy</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Use a proxy to avoid loading errors or credentials from the hidden config.</p></td>
+</tr>
+<tr class="row-odd"><td><p>auth-type</p></td>
+<td><p><em>basic</em> or <em>bearer</em></p></td>
+<td><p>Type of authentication, if needed.</p></td>
+</tr>
+<tr class="row-even"><td><p>config-section</p></td>
+<td><p>string</p></td>
+<td><p>Use uri and credentials from this section of the hidden config.</p></td>
+</tr>
+<tr class="row-odd"><td><p>username</p></td>
+<td><p>string</p></td>
+<td><p>Username for authentication (or token for auth-type=bearer).</p></td>
+</tr>
+<tr class="row-even"><td><p>password</p></td>
+<td><p>string</p></td>
+<td><p>Password for authentication.</p></td>
+</tr>
+<tr class="row-odd"><td><p>self-signed</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Disable certificate validation to allow loading pages with self-signed certificates.</p></td>
 </tr>
 </tbody>
 </table>

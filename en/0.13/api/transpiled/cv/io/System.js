@@ -19,6 +19,9 @@
       "qx.event.message.Bus": {
         "construct": true
       },
+      "cv.Config": {
+        "construct": true
+      },
       "cv.data.Model": {},
       "qx.bom.client.Html": {
         "require": true
@@ -78,9 +81,13 @@
       cv.io.AbstractClient.constructor.call(this);
       this.addresses = [];
       this.__P_790_0 = {
-        theme: '_applyTheme'
+        theme: '_applyTheme',
+        'client:id': '_applyCid'
       };
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
+
+      // set client id
+      this.setCid(cv.Config.clientID);
     },
     /*
     ***********************************************
@@ -92,6 +99,11 @@
       connected: {
         refine: true,
         init: true
+      },
+      cid: {
+        check: 'String',
+        nullable: true,
+        apply: '_applyCid'
       }
     },
     /*
@@ -108,6 +120,11 @@
         var page = ev.getData();
         var data = {};
         data['nav:current-page'] = page.getAttribute('id');
+        cv.data.Model.getInstance().updateFrom('system', data);
+      },
+      _applyCid: function _applyCid(value) {
+        var data = {};
+        data['client:id'] = value;
         cv.data.Model.getInstance().updateFrom('system', data);
       },
       getType: function getType() {
@@ -269,4 +286,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1735222454912
+//# sourceMappingURL=System.js.map?dt=1735341805052

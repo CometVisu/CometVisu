@@ -216,7 +216,7 @@ Die Richtung stellt dann den Energiefluss dar, z.B. vom PV-Modul ins Haus.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="22"><p>cv-power-entity</p></td>
+<tr class="row-odd"><td rowspan="25"><p>cv-power-entity</p></td>
 <td><p>id</p></td>
 <td><p>Text</p></td>
 <td><p>ID dieses Elements.</p></td>
@@ -289,19 +289,31 @@ Die Richtung stellt dann den Energiefluss dar, z.B. vom PV-Modul ins Haus.</p>
 <td><p>Zahl</p></td>
 <td><p>Anzahl der Spalten die dieses Element belegt</p></td>
 </tr>
-<tr class="row-odd"><td><p>type</p></td>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> oder <em>desktop</em></p></td>
+<td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>Text</p></td>
+<td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>Text</p></td>
+<td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
 <td><p><em>pv</em>, <em>battery</em>, <em>grid</em>, <em>consumer</em>, <em>charger</em>, <em>heatpump</em> oder <em>house</em></p></td>
 <td><p>Typ dieser Entität.</p></td>
 </tr>
-<tr class="row-even"><td><p>connect-to</p></td>
+<tr class="row-odd"><td><p>connect-to</p></td>
 <td><p>Text</p></td>
 <td><p>Verbindung zu anderer cv-power-entity herstellen.</p></td>
 </tr>
-<tr class="row-odd"><td><p>connect-from</p></td>
+<tr class="row-even"><td><p>connect-from</p></td>
 <td><p>Text</p></td>
 <td><p>Verbindung von anderer cv-power-entity herstellen.</p></td>
 </tr>
-<tr class="row-even"><td><p>connection-points</p></td>
+<tr class="row-odd"><td><p>connection-points</p></td>
 <td><p>Text</p></td>
 <td><p>Legt fest wo die Verbindungslinie starten und enden soll</p></td>
 </tr>

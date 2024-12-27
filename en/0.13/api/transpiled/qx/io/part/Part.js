@@ -216,4 +216,4 @@
   qx.io.part.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1735222422802
+//# sourceMappingURL=Part.js.map?dt=1735341772462

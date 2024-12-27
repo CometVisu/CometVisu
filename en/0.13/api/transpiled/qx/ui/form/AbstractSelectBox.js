@@ -360,4 +360,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1735222444375
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1735341794325

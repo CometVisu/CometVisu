@@ -509,6 +509,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     return _this2._dataSetConfigs[d].showArea;
                   },
                   // show area below the line,
+                  gradient: function gradient(d) {
+                    return _this2._dataSetConfigs[d].gradient;
+                  },
+                  // use gradient for area
                   showXAxis: !_this2._element.hasAttribute('show-x-axis') || _this2._element.getAttribute('show-x-axis') === 'true',
                   showYAxis: !_this2._element.hasAttribute('show-y-axis') || _this2._element.getAttribute('show-y-axis') === 'true',
                   xPadding: 0.1 // amount of x-range to reserve to separate bars
@@ -1433,7 +1437,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (this._chartConf.areaContainer) {
           this._chartConf.areaContainer.selectAll('path').data(this._chartConf.areaGroups).join(function (enter) {
             return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('fill', typeof config.color === 'function' ? function (p) {
-              return _this6.__P_78_11(config.color(p[0]), '30');
+              var color = config.color(p[0]);
+              var gradient = typeof config.gradient === 'function' ? config.gradient(p[0]) : false;
+              if (gradient) {
+                var gradId = "".concat(color.replaceAll(/\W/g, ''), "Grad");
+                var lg = svg.select('#' + gradId);
+                if (lg.empty()) {
+                  var _lg = svg.append('defs').append('linearGradient').attr('id', gradId).attr('x1', '0%').attr('x2', '0%').attr('y1', '0%').attr('y2', '100%');
+                  _lg.append('stop').attr('offset', '0%').style('stop-color', color).style('stop-opacity', 0.7);
+                  _lg.append('stop').attr('offset', '100%').style('stop-color', color).style('stop-opacity', 0);
+                }
+                return 'url(#' + gradId + ')';
+              }
+              return _this6.__P_78_11(color, '30');
             } : null);
           }).transition(t).attr('d', function (d) {
             var curveName = _this6._dataSetConfigs[d[0]].curve || 'linear';
@@ -1847,4 +1863,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1735222411964
+//# sourceMappingURL=Chart.js.map?dt=1735341761484

@@ -14,6 +14,7 @@
       },
       "cv.core.notifications.Router": {},
       "qx.locale.Manager": {},
+      "cv.Config": {},
       "cv.report.Record": {}
     }
   };
@@ -139,12 +140,12 @@
        *
        * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
        *                            to addresses (default: false)
-       * @param credentials {Map} map with "username" and "password" (optional)
-       * @param callback {Function} call this function when login is done
-       * @param context {Object} context for the callback (this)
-       *
+       * @param credentials {{username: string?, password: string?}?} map with "username" and "password" (optional)
+       * @param callback {Function?} call this function when login is done
+       * @param context {Object?} context for the callback (this)
        */
       login: function login(loginOnly, credentials, callback, context) {
+        var _credentials$username, _credentials$password;
         var self = this;
 
         /**
@@ -180,17 +181,18 @@
         if (this._backendUrl.username !== '') {
           options.userName = this._backendUrl.username;
         }
-        if (credentials && credentials.username !== '') {
+        if (((_credentials$username = credentials === null || credentials === void 0 ? void 0 : credentials.username) !== null && _credentials$username !== void 0 ? _credentials$username : '') !== '') {
           options.userName = credentials.username;
         }
         if (this._backendUrl.password !== '') {
           options.password = this._backendUrl.password;
         }
-        if (credentials && credentials.password !== '') {
+        if (((_credentials$password = credentials === null || credentials === void 0 ? void 0 : credentials.password) !== null && _credentials$password !== void 0 ? _credentials$password : '') !== '') {
           options.password = credentials.password;
         }
         try {
-          this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + Math.random().toString(16).substr(2, 8));
+          var _cv$Config$clientID;
+          this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + ((_cv$Config$clientID = cv.Config.clientID) !== null && _cv$Config$clientID !== void 0 ? _cv$Config$clientID : '') + Math.random().toString(16).slice(2, 10));
         } catch (e) {
           self.error('MQTT Client error:', e);
           self.setConnected(false);
@@ -322,4 +324,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1735222452472
+//# sourceMappingURL=Client.js.map?dt=1735341802558

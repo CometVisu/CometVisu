@@ -62,4 +62,4 @@
   qx.io.request.authentication.Bearer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bearer.js.map?dt=1735222423229
+//# sourceMappingURL=Bearer.js.map?dt=1735341772884

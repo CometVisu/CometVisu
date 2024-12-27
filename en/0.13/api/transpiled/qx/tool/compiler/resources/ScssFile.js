@@ -318,4 +318,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ScssFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScssFile.js.map?dt=1735222440027
+//# sourceMappingURL=ScssFile.js.map?dt=1735341789895

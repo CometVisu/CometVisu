@@ -122,4 +122,4 @@
   cv.ui.manager.viewer.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1735222410134
+//# sourceMappingURL=AbstractViewer.js.map?dt=1735341759589

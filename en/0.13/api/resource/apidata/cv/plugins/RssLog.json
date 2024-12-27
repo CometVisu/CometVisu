@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735222205770,
-  "lastModifiedIso": "2024-12-26T14:10:05.770Z",
+  "lastModified": 1735341547555,
+  "lastModifiedIso": "2024-12-27T23:19:07.555Z",
   "classFilename": "../../source/class/cv/plugins/RssLog.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 599,
       "column": 3,
-      "index": 17901
+      "index": 17896
     }
   },
   "className": "cv.plugins.RssLog",
@@ -996,7 +996,7 @@
         "end": {
           "line": 531,
           "column": 5,
-          "index": 15589
+          "index": 15584
         }
       },
       "type": "function",
@@ -1014,12 +1014,12 @@
         "start": {
           "line": 533,
           "column": 4,
-          "index": 15596
+          "index": 15591
         },
         "end": {
           "line": 563,
           "column": 5,
-          "index": 16770
+          "index": 16765
         }
       },
       "type": "function",
@@ -1040,12 +1040,12 @@
         "start": {
           "line": 565,
           "column": 4,
-          "index": 16777
+          "index": 16772
         },
         "end": {
           "line": 590,
           "column": 5,
-          "index": 17621
+          "index": 17616
         }
       },
       "type": "function",

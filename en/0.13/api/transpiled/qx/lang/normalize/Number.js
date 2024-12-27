@@ -64,4 +64,4 @@
   qx.lang.normalize.Number.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Number.js.map?dt=1735222423835
+//# sourceMappingURL=Number.js.map?dt=1735341773490

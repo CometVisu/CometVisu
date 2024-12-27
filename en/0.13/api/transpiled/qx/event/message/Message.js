@@ -90,4 +90,4 @@
   qx.event.message.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1735222421665
+//# sourceMappingURL=Message.js.map?dt=1735341771295

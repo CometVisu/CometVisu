@@ -148,4 +148,4 @@
   qx.bom.client.Device.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Device.js.map?dt=1735222415404
+//# sourceMappingURL=Device.js.map?dt=1735341765020

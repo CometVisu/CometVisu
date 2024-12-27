@@ -123,4 +123,4 @@
   qx.ui.layout.LineSizeIterator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LineSizeIterator.js.map?dt=1735222445843
+//# sourceMappingURL=LineSizeIterator.js.map?dt=1735341795904

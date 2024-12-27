@@ -801,6 +801,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       var _this5;
       _classCallCheck(this, TemplatedElement);
       _this5 = _callSuper(this, TemplatedElement, [QxClass]);
+      var renderAttributeName = 'data-cv-rendered';
+      if (_this5.getAttribute(renderAttributeName) === 'true') {
+        // do not render the template twice
+        return _possibleConstructorReturn(_this5);
+      }
       var controller = cv.ui.structure.tile.Controller.getInstance();
       var template = document.getElementById(templateId);
       if (template) {
@@ -1027,6 +1032,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         _this5.innerHTML = '';
         _this5.appendChild(content);
         _this5.classList.add('cv-widget');
+        _this5.setAttribute(renderAttributeName, 'true');
       } else {
         qx.log.Logger.error(controller, '[' + templateId + '] no template found for id', templateId);
       }
@@ -1038,4 +1044,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1735222411446
+//# sourceMappingURL=Controller.js.map?dt=1735341760941

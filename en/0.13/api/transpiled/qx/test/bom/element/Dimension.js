@@ -109,4 +109,4 @@
   qx.test.bom.element.Dimension.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dimension.js.map?dt=1735222425791
+//# sourceMappingURL=Dimension.js.map?dt=1735341775464

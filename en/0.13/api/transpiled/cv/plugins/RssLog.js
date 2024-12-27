@@ -479,7 +479,7 @@
                 return x.trim();
               });
               if (tags.length > 0) {
-                tmp.classList.add.apply(tmp.classList, item.tags);
+                tmp.classList.add.apply(tmp.classList, tags);
               }
             } else {
               tmp.classList.add(item.tags.trim());
@@ -554,4 +554,4 @@
   cv.plugins.RssLog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RssLog.js.map?dt=1735222407168
+//# sourceMappingURL=RssLog.js.map?dt=1735341756559

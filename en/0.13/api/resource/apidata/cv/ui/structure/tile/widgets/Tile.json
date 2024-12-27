@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735222205782,
-  "lastModifiedIso": "2024-12-26T14:10:05.782Z",
+  "lastModified": 1735341547571,
+  "lastModifiedIso": "2024-12-27T23:19:07.571Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Tile.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 835
     },
     "end": {
-      "line": 344,
+      "line": 351,
       "column": 3,
-      "index": 11265
+      "index": 11531
     }
   },
   "className": "cv.ui.structure.tile.widgets.Tile",
@@ -306,9 +306,9 @@
           "index": 2443
         },
         "end": {
-          "line": 120,
+          "line": 127,
           "column": 5,
-          "index": 3382
+          "index": 3648
         }
       },
       "type": "function",
@@ -324,14 +324,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 122,
+          "line": 129,
           "column": 4,
-          "index": 3389
+          "index": 3655
         },
         "end": {
-          "line": 136,
+          "line": 143,
           "column": 5,
-          "index": 3966
+          "index": 4232
         }
       },
       "type": "function",
@@ -347,14 +347,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 138,
+          "line": 145,
           "column": 4,
-          "index": 3973
+          "index": 4239
         },
         "end": {
-          "line": 178,
+          "line": 185,
           "column": 5,
-          "index": 5632
+          "index": 5898
         }
       },
       "type": "function",
@@ -370,14 +370,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 180,
+          "line": 187,
           "column": 4,
-          "index": 5639
+          "index": 5905
         },
         "end": {
-          "line": 186,
+          "line": 193,
           "column": 5,
-          "index": 5874
+          "index": 6140
         }
       },
       "type": "function",
@@ -393,14 +393,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 188,
+          "line": 195,
           "column": 4,
-          "index": 5881
+          "index": 6147
         },
         "end": {
-          "line": 196,
+          "line": 203,
           "column": 5,
-          "index": 6218
+          "index": 6484
         }
       },
       "type": "function",
@@ -416,14 +416,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 198,
+          "line": 205,
           "column": 4,
-          "index": 6225
+          "index": 6491
         },
         "end": {
-          "line": 215,
+          "line": 222,
           "column": 5,
-          "index": 7075
+          "index": 7341
         }
       },
       "type": "function",
@@ -435,14 +435,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 217,
+          "line": 224,
           "column": 4,
-          "index": 7082
+          "index": 7348
         },
         "end": {
-          "line": 240,
+          "line": 247,
           "column": 5,
-          "index": 8003
+          "index": 8269
         }
       },
       "type": "function",
@@ -454,14 +454,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 242,
+          "line": 249,
           "column": 4,
-          "index": 8010
+          "index": 8276
         },
         "end": {
-          "line": 264,
+          "line": 271,
           "column": 5,
-          "index": 8764
+          "index": 9030
         }
       },
       "type": "function",
@@ -477,14 +477,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 266,
+          "line": 273,
           "column": 4,
-          "index": 8771
+          "index": 9037
         },
         "end": {
-          "line": 272,
+          "line": 279,
           "column": 5,
-          "index": 8886
+          "index": 9152
         }
       },
       "type": "function",
@@ -523,14 +523,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 279,
+          "line": 286,
           "column": 4,
-          "index": 9065
+          "index": 9331
         },
         "end": {
-          "line": 318,
+          "line": 325,
           "column": 5,
-          "index": 10670
+          "index": 10936
         }
       },
       "type": "function",
@@ -558,14 +558,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 325,
+          "line": 332,
           "column": 4,
-          "index": 10812
+          "index": 11078
         },
         "end": {
-          "line": 331,
+          "line": 338,
           "column": 5,
-          "index": 11041
+          "index": 11307
         }
       },
       "type": "function",

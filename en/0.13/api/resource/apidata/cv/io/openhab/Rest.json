@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735222205766,
-  "lastModifiedIso": "2024-12-26T14:10:05.766Z",
+  "lastModified": 1735341547551,
+  "lastModifiedIso": "2024-12-27T23:19:07.551Z",
   "classFilename": "../../source/class/cv/io/openhab/Rest.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 977
     },
     "end": {
-      "line": 513,
+      "line": 520,
       "column": 3,
-      "index": 16337
+      "index": 16626
     }
   },
   "className": "cv.io.openhab.Rest",
@@ -674,9 +674,9 @@
           "index": 12908
         },
         "end": {
-          "line": 401,
+          "line": 408,
           "column": 5,
-          "index": 13127
+          "index": 13416
         }
       },
       "type": "function",
@@ -697,14 +697,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 403,
+          "line": 410,
           "column": 4,
-          "index": 13134
+          "index": 13423
         },
         "end": {
-          "line": 405,
+          "line": 412,
           "column": 5,
-          "index": 13185
+          "index": 13474
         }
       },
       "type": "function",
@@ -720,14 +720,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 407,
+          "line": 414,
           "column": 4,
-          "index": 13192
+          "index": 13481
         },
         "end": {
-          "line": 424,
+          "line": 431,
           "column": 5,
-          "index": 13868
+          "index": 14157
         }
       },
       "type": "function",
@@ -754,14 +754,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 426,
+          "line": 433,
           "column": 4,
-          "index": 13875
+          "index": 14164
         },
         "end": {
-          "line": 428,
+          "line": 435,
           "column": 5,
-          "index": 13928
+          "index": 14217
         }
       },
       "type": "function",
@@ -775,14 +775,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 429,
+          "line": 436,
           "column": 4,
-          "index": 13934
+          "index": 14223
         },
         "end": {
-          "line": 438,
+          "line": 445,
           "column": 5,
-          "index": 14223
+          "index": 14512
         }
       },
       "type": "function",
@@ -800,14 +800,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 440,
+          "line": 447,
           "column": 4,
-          "index": 14230
+          "index": 14519
         },
         "end": {
-          "line": 440,
+          "line": 447,
           "column": 19,
-          "index": 14245
+          "index": 14534
         }
       },
       "type": "function",
@@ -825,14 +825,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 441,
+          "line": 448,
           "column": 4,
-          "index": 14251
+          "index": 14540
         },
         "end": {
-          "line": 441,
+          "line": 448,
           "column": 25,
-          "index": 14272
+          "index": 14561
         }
       },
       "type": "function",
@@ -853,14 +853,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 442,
+          "line": 449,
           "column": 4,
-          "index": 14278
+          "index": 14567
         },
         "end": {
-          "line": 442,
+          "line": 449,
           "column": 37,
-          "index": 14311
+          "index": 14600
         }
       },
       "type": "function",
@@ -884,14 +884,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 444,
+          "line": 451,
           "column": 4,
-          "index": 14318
+          "index": 14607
         },
         "end": {
-          "line": 446,
+          "line": 453,
           "column": 5,
-          "index": 14385
+          "index": 14674
         }
       },
       "type": "function",
@@ -912,14 +912,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 448,
+          "line": 455,
           "column": 4,
-          "index": 14392
+          "index": 14681
         },
         "end": {
-          "line": 450,
+          "line": 457,
           "column": 5,
-          "index": 14467
+          "index": 14756
         }
       },
       "type": "function",
@@ -937,14 +937,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 451,
+          "line": 458,
           "column": 4,
-          "index": 14473
+          "index": 14762
         },
         "end": {
-          "line": 460,
+          "line": 467,
           "column": 5,
-          "index": 14742
+          "index": 15031
         }
       },
       "type": "function",
@@ -962,14 +962,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 461,
+          "line": 468,
           "column": 4,
-          "index": 14748
+          "index": 15037
         },
         "end": {
-          "line": 511,
+          "line": 518,
           "column": 5,
-          "index": 16329
+          "index": 16618
         }
       },
       "type": "function",

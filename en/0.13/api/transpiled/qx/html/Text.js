@@ -160,4 +160,4 @@
   qx.html.Text.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Text.js.map?dt=1735222422462
+//# sourceMappingURL=Text.js.map?dt=1735341772114

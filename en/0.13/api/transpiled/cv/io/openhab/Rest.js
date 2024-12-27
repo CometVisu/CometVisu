@@ -391,10 +391,17 @@
         }
       },
       write: function write(address, value) {
-        var req = this.createAuthorizedRequest('items/' + address, 'POST');
-        req.setRequestHeader('Content-Type', 'text/plain');
-        req.setRequestData('' + value);
-        req.send();
+        if (address.startsWith('scene:')) {
+          var sceneId = address.substring(6);
+          var req = this.createAuthorizedRequest('rules/' + sceneId + '/runnow', 'POST');
+          req.setRequestHeader('Content-Type', 'text/plain');
+          req.send();
+        } else {
+          var _req = this.createAuthorizedRequest('items/' + address, 'POST');
+          _req.setRequestHeader('Content-Type', 'text/plain');
+          _req.setRequestData('' + value);
+          _req.send();
+        }
       },
       handleError: function handleError(error) {
         this.error(error);
@@ -511,4 +518,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1735222452446
+//# sourceMappingURL=Rest.js.map?dt=1735341802533
