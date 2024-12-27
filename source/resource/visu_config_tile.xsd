@@ -2023,7 +2023,7 @@
       <xsd:choice>
         <xsd:element name="cv-image">
           <xsd:complexType>
-            <xsd:simpleContent>
+            <xsd:complexContent>
               <xsd:extension base="cv-image">
                 <xsd:attribute name="slot" use="required">
                   <xsd:simpleType>
@@ -2033,7 +2033,7 @@
                   </xsd:simpleType>
                 </xsd:attribute>
               </xsd:extension>
-            </xsd:simpleContent>
+            </xsd:complexContent>
           </xsd:complexType>
         </xsd:element>
         <xsd:element name="cv-icon">
@@ -2054,8 +2054,9 @@
       </xsd:choice>
       <xsd:element name="span" type="slot-span"/>
     </xsd:sequence>
-    <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attributeGroup ref="link-attributes" />
+    <xsd:attribute name="size" type="tile-size" />
+    <xsd:attributeGroup ref="appearance-attributes" />
   </xsd:complexType>
 
   <!--
@@ -3042,18 +3043,17 @@
     </xsd:attribute>
   </xsd:attributeGroup>
 
-
   <xsd:attributeGroup name="link-attributes">
     <xsd:attribute name="href" type="xsd:anyURI">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Opens a link.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Öffnet einen Link.</xsd:documentation>
+        <xsd:documentation xml:lang="en">URL of the link.</xsd:documentation>
+        <xsd:documentation xml:lang="de">URL des Links.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="target">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Controls where the link should be opened. '_blank': in a new window, '_self': in the same window (default: _blank)</xsd:documentation>
-        <xsd:documentation xml:lang="de">Steuer wo der Link geöffnet werden soll). '_blank': In neuem Fenster, '_self': im selben Fenster (default: _blank).</xsd:documentation>
+        <xsd:documentation xml:lang="en">Controls where the link should be opened. ``_blank``: in a new window, ``_self``: in the same window (default: _blank)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Steuert wo der Link geöffnet werden soll). ``_blank``: In neuem Fenster, ``_self``: im selben Fenster (default: _blank).</xsd:documentation>
       </xsd:annotation>
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
