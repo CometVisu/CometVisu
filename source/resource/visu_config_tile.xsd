@@ -1804,6 +1804,7 @@
         <xsd:element name="cv-info" type="cv-info" />
         <xsd:element name="cv-status" type="cv-status" />
         <xsd:element name="cv-status-chart" type="cv-status-chart" />
+        <xsd:element name="cv-link" type="cv-link" />
       </xsd:choice>
       <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
