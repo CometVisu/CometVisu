@@ -560,7 +560,7 @@ body {
             margin-bottom: var(--spacing);
         }
 
-        > cv-group[open] {
+        > cv-group[open], > cv-dynamic > cv-ref > cv-group[open] {
             margin-bottom: var(--spacing);
         }
 
@@ -2231,14 +2231,13 @@ body {
     }
 
     cv-dynamic {
-        display: block;
-        width: 100%;
+        display: contents;
 
         > cv-ref {
             display: none;
 
             &[active] {
-                display: inline;
+                display: contents;
             }
         }
     }
