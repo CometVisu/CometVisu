@@ -631,6 +631,9 @@ button.ui-slider-handle {
   z-index: 100001;
   background: transparent;
   font-family: Arial, sans-serif;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow-y: auto;
 }
 
 .popup_close {
@@ -656,7 +659,7 @@ button.ui-slider-handle {
 
 .popup div {
   margin: 4px;
-  max-height: 80vh;
+  max-height: 60vh;
 }
 
 .popup div.head {
@@ -706,7 +709,12 @@ button.ui-slider-handle {
 }
 
 .popup .reload,
-.popup .actions { text-align: center; white-space: nowrap; clear: both; }
+.popup .actions {
+  text-align: center;
+  white-space: nowrap;
+  clear: both;
+  text-wrap: auto;
+}
 .popup .actions button {
   padding: 0.3em 1em;
   font-size: 0.9em;
