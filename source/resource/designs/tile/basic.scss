@@ -884,6 +884,10 @@ body {
             &.has-list {
                 overflow-y: auto;
             }
+
+            &[href] {
+                cursor: pointer;
+            }
         }
 
         > footer {
