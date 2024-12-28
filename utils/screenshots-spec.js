@@ -554,7 +554,9 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.sleep(sleepTime);
             }
             const locales = setting.locales ? setting.locales : [settings.language || 'de'];
-            console.log("  - creating screenshot '" + setting.name + "', locales: " + locales.join(', '));
+            if (browser.verbose) {
+              console.log("  - creating screenshot '" + setting.name + "', locales: " + locales.join(', '));
+            }
             for (const locale of locales) {
               const screenshotDir = settings.baseDir
                 ? path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name))
