@@ -15,14 +15,16 @@ exports.config = {
   },
   capabilities: {
     browserName: 'chrome',
-    'chromeOptions': {
+    chromeOptions: {
       binary: process.env.CHROME_BIN || process.env.BROWSER_PATH,
       args: [
-        // '--no-sandbox',
+        '--lang=' + process.env.CHROME_LANG || 'en',
+        '--accept-lang=' + process.env.CHROME_LANG || 'en',
         '--headless',
         '--disable-gpu',
         '--window-size=1300,800',
-        '--verbose'
+        '--verbose',
+        '--user-data-dir=/tmp/chrome'
       ]
     }
   },
@@ -47,6 +49,9 @@ exports.config = {
         }
         if (config.params.hasOwnProperty("verbose")) {
           browser.verbose = true;
+        }
+        if (config.params.language) {
+          browser.language = config.params.language;
         }
         if (config.params.screenshots) {
           browser.screenshots = config.params.screenshots;

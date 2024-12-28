@@ -357,7 +357,8 @@ module.exports = function(grunt) {
               target: grunt.option('target'),
               targetDir: grunt.option('targetDir'),
               forced: grunt.option('forced'),
-              verbose: grunt.option('verbose')
+              verbose: grunt.option('verbose'),
+              language: grunt.option('lang')
             },
             chromeDriver: process.env.WEBDRIVER_PATH,
             capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
