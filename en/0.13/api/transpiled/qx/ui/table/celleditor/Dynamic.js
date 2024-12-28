@@ -137,4 +137,4 @@
   qx.ui.table.celleditor.Dynamic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dynamic.js.map?dt=1735341798502
+//# sourceMappingURL=Dynamic.js.map?dt=1735383881614

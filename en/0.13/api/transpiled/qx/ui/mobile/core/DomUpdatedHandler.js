@@ -177,4 +177,4 @@
   qx.ui.mobile.core.DomUpdatedHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DomUpdatedHandler.js.map?dt=1735341796692
+//# sourceMappingURL=DomUpdatedHandler.js.map?dt=1735383879664

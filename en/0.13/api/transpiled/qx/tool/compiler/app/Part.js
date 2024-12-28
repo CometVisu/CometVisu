@@ -77,4 +77,4 @@
   qx.tool.compiler.app.Part.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Part.js.map?dt=1735341789003
+//# sourceMappingURL=Part.js.map?dt=1735383872067

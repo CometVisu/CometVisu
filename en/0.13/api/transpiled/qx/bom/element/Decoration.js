@@ -553,4 +553,4 @@
   qx.bom.element.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1735341765740
+//# sourceMappingURL=Decoration.js.map?dt=1735383848749

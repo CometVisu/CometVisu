@@ -103,4 +103,4 @@
   qx.ui.core.scroll.IScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IScrollBar.js.map?dt=1735341793640
+//# sourceMappingURL=IScrollBar.js.map?dt=1735383876744

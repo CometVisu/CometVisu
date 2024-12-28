@@ -242,7 +242,7 @@ class BasePage {
   setLocale(locale) {
     return browser.executeAsyncScript(function (locale, callback) {
       qx.locale.Manager.getInstance().setLocale(locale);
-      callback();
+      callback(`Currently used locales: Navigator=${navigator.language}, DateTimeFormat=${Intl.DateTimeFormat().resolvedOptions().locale}, Qooxdoo: ${qx.locale.Manager.getInstance().getLocale()}`);
     }, locale);
   }
 

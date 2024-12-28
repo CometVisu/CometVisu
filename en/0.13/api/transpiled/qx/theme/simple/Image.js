@@ -107,4 +107,4 @@
   qx.theme.simple.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1735341784684
+//# sourceMappingURL=Image.js.map?dt=1735383867818

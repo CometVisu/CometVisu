@@ -78,4 +78,4 @@
   qx.ui.treevirtual.SimpleTreeDataRowRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1735341800134
+//# sourceMappingURL=SimpleTreeDataRowRenderer.js.map?dt=1735383883281

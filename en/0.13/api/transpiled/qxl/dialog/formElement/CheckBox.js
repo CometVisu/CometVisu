@@ -48,4 +48,4 @@
   qxl.dialog.formElement.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1735341805532
+//# sourceMappingURL=CheckBox.js.map?dt=1735383888860

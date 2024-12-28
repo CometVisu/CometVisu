@@ -470,4 +470,4 @@
   qx.ui.progressive.renderer.table.Row.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Row.js.map?dt=1735341797898
+//# sourceMappingURL=Row.js.map?dt=1735383880998

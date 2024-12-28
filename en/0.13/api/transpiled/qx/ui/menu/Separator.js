@@ -63,4 +63,4 @@
   qx.ui.menu.Separator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Separator.js.map?dt=1735341796309
+//# sourceMappingURL=Separator.js.map?dt=1735383879272

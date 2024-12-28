@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735341601943,
-  "lastModifiedIso": "2024-12-27T23:20:01.943Z",
+  "lastModified": 1735383687809,
+  "lastModifiedIso": "2024-12-28T11:01:27.809Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/marshal/IMarshalerDelegate.js",
   "type": "interface",
   "location": {

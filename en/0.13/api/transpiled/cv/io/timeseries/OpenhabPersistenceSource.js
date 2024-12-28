@@ -128,4 +128,4 @@
   cv.io.timeseries.OpenhabPersistenceSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1735341755558
+//# sourceMappingURL=OpenhabPersistenceSource.js.map?dt=1735383838212
