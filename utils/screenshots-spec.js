@@ -245,6 +245,9 @@ describe('generation screenshots from jsdoc examples', function () {
           if (fileName.split('.').pop() !== 'json') {
             return;
           }
+          if (browser.language && !fileName.startsWith(browser.language + '_')) {
+            return;
+          }
           let filePath = path.join(subDir, fileName);
           files.push(filePath);
         });
@@ -550,8 +553,10 @@ describe('generation screenshots from jsdoc examples', function () {
             if (!isNaN(sleepTime) && sleepTime > 0) {
               browser.sleep(sleepTime);
             }
-            //console.log("  - creating screenshot '" + setting.name + "'");
-            const locales = setting.locales ? setting.locales : [settings.language || ''];
+            const locales = setting.locales ? setting.locales : [settings.language || 'de'];
+            if (browser.verbose) {
+              console.log("  - creating screenshot '" + setting.name + "', locales: " + locales.join(', '));
+            }
             for (const locale of locales) {
               const screenshotDir = settings.baseDir
                 ? path.join(...[settings.baseDir, locale, settings.screenshotDir].filter(name => !!name))
@@ -561,7 +566,10 @@ describe('generation screenshots from jsdoc examples', function () {
               }
               runResult.shotIndexFiles.push([path.join(screenshotDir, 'shot-index.json'), screenshotDir]);
               if (locale) {
-                await mockup.setLocale(locale);
+                const usedLocales = await mockup.setLocale(locale);
+                if (browser.verbose) {
+                  console.log(usedLocales);
+                }
               }
               const data = await browser.takeScreenshot();
               let base64Data = data.replace(/^data:image\/png;base64,/, '');

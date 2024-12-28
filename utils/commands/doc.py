@@ -178,7 +178,8 @@ class DocGenerator(Command):
              force=False,
              screenshot_build="source",
              target_version=None,
-             spelling=False
+             spelling=False,
+             verbose=False
              ):
 
         sphinx_build = sh.Command("sphinx-build")
@@ -250,9 +251,14 @@ class DocGenerator(Command):
                 config = dotenv_values(".protractor-env")
                 new_env.update(config)
 
+            new_env["CHROME_LANG"] = language
+            new_env["LANGUAGE"] = language
+
             # generate the screenshots
             grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
                   "--target=%s" % screenshot_build,
+                  "--lang=%s" % language,
+                  "%s" % "--verbose" if verbose else "",
                   _out=self.process_output,
                   _err=self.process_output,
                   _env=new_env)
@@ -639,6 +645,7 @@ class DocGenerator(Command):
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
         parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
+        parser.add_argument("--verbose", "-v", dest="verbose", action="store_true", help="verbose output")
 
         options = parser.parse_args(args)
 
@@ -692,7 +699,8 @@ class DocGenerator(Command):
             self._run(options.language, options.target, options.browser, force=options.force,
                       skip_screenshots=not options.complete, screenshot_build=options.screenshot_build,
                       target_version=options.target_version,
-                      spelling=options.spelling
+                      spelling=options.spelling,
+                      verbose=options.verbose
                       )
             sys.exit(0)
 
