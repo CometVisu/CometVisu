@@ -289,7 +289,7 @@ item looks like this:
             <data address="Sunrise_Time">2016-08-21T03:57:50</data>
          </screenshot>
         </settings>
-        <info format="%s Uhr">
+        <info format="%s">
             <address transform="OH:datetime">Sunrise_Time</address>
         </info>
 
@@ -310,7 +310,7 @@ do this with the following mapping:
           </mapping>
          </mappings>
         </meta>
-        <info format="%s o'Clock" class="value_right" mapping="HourMinute">
+        <info format="%s o'clock" class="value_right" mapping="HourMinute">
             <address transform="OH:datetime">Sunrise_Time</address>
         </info>
 
