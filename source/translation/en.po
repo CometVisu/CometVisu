@@ -1380,3 +1380,11 @@ msgstr ""
 #: cv/TemplateEngine.js
 msgid "CometVisu startup error"
 msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Bad MIME type. Expected \"application/json\", got \"%1\"."
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Data is not in an array."
+msgstr ""
