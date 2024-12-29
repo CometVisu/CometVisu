@@ -352,7 +352,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
     _onSuccess(ts, key, ev, forceNowDatapoint) {
       if (ev.getTarget().getResponseContentType() !== 'application/json') {
-        return this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Bad MIME type. Expected "application/json", got "%1".', ev.getTarget().getResponseContentType()));
+        this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Bad MIME type. Expected "application/json", got "%1".', ev.getTarget().getResponseContentType()));
+        return;
       }
 
       let tsdata = ev.getTarget().getResponse();
@@ -368,8 +369,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           // calculate timestamp offset and scaling
           const millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
           tsdata = ts.tsType === 'rrd'
-            ? tsdata.map((x) => [x[0] + millisOffset, parseFloat(x[1][ts.dsIndex]) * ts.scaling])
-            : tsdata.map((x) => [x[0] + millisOffset, parseFloat(x[1]) * ts.scaling]);
+            ? tsdata.map(x => [x[0] + millisOffset, parseFloat(x[1][ts.dsIndex]) * ts.scaling])
+            : tsdata.map(x => [x[0] + millisOffset, parseFloat(x[1]) * ts.scaling]);
         }
         let now = Date.now();
 
