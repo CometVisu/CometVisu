@@ -353,7 +353,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     _onSuccess(ts, key, ev, forceNowDatapoint) {
       if (ev.getTarget().getResponseContentType() !== 'application/json') {
         this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Bad MIME type. Expected "application/json", got "%1".', ev.getTarget().getResponseContentType()));
-        return;
+        return; // early exit
       }
 
       let tsdata = ev.getTarget().getResponse();
@@ -364,7 +364,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           tsdata = client.processChartsData(tsdata, ts);
         } else {
           if (!(Array.isArray(tsdata))) {
-            return this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Data is not in an array.'));
+            this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Data is not in an array.'));
+            return; // early exit
           }
           // calculate timestamp offset and scaling
           const millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
