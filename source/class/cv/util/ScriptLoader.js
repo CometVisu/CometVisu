@@ -256,7 +256,12 @@ qx.Class.define('cv.util.ScriptLoader', {
         loader.removeListener('loaded', this._onLoaded, this);
         loader.removeListener('failed', this._onFailed, this);
       });
-      loader.start();
+      loader.start().catch((e) => {
+        // showing this error on the console is enough as the user gets
+        // the real error message through the `_onFailed()` handler.
+        this.error('Message:', e.message);
+        this.error('Stack:', e.stack);
+      });
       return loader;
     },
 
