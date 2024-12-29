@@ -102,12 +102,6 @@ qx.Class.define('cv.Application', {
     _relResourcePath: null,
     _fullResourcePath: null,
 
-    /**
-     * Get the path to the resources.
-     * As it is a directory, it will end with a '/'.
-     * @param fullPath {boolean?} Get the full path when true
-     * @return {string}
-     */
     getRelativeResourcePath(fullPath) {
       if (!this._relResourcePath) {
         const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
@@ -977,7 +971,7 @@ qx.Class.define('cv.Application', {
             standalonePlugins.push(plugin);
           } else {
             standalonePlugins.push(
-              path + 'plugins/' + plugin.replace('plugin-', '') + '/index.js'
+              path + '/plugins/' + plugin.replace('plugin-', '') + '/index.js'
             );
           }
         });
