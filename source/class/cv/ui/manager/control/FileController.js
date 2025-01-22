@@ -284,7 +284,7 @@ qx.Class.define('cv.ui.manager.control.FileController', {
               message = qx.locale.Manager.tr('Trash has been cleared');
             } else if (file.isInTrash()) {
               message =
-                this.getType() === 'file'
+                file.getType() === 'file'
                   ? qx.locale.Manager.tr('File "%1" has been removed from trash', file.getDisplayName())
                   : qx.locale.Manager.tr('Folder "%1" has been removed from trash', file.getDisplayName());
             } else {
