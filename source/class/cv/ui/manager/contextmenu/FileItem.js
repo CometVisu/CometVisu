@@ -199,11 +199,12 @@ qx.Class.define('cv.ui.manager.contextmenu.FileItem', {
           this.getChildControl('replace-button').exclude();
         }
         // buttons that need write access
-        ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
+        ['replace-button', 'rename-button'].forEach(function (controlName) {
           this.getChildControl(controlName).setEnabled(
-            !file.isFake() && file.isWriteable() && (!isBackup || controlName === 'delete-button')
+            !file.isFake() && file.isWriteable() && !isBackup && !file.isTrash()
           );
         }, this);
+        this.getChildControl('delete-button').setEnabled(!file.isFake() && file.isWriteable());
         this.getChildControl('download-button').setEnabled(!file.isFake() && file.getType() === 'file');
 
         this.getChildControl('restore-button').setVisibility(file.isInTrash() || isBackup ? 'visible' : 'excluded');
