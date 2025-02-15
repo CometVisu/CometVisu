@@ -403,9 +403,8 @@ qx.Class.define('cv.ui.manager.Main', {
       } else if (data.action === 'restored') {
         this._tree.reload();
         return;
-      } else {
-        this.warn('unhandled file event', data.action);
       }
+      this.warn('unhandled file event', data.action);
       this._tree.refresh();
     },
 

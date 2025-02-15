@@ -52,6 +52,7 @@ qx.Class.define('cv.io.listmodel.Registry', {
         }
         return clazz;
       }
+      return null;
     }
   }
 });
