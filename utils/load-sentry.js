@@ -48,12 +48,9 @@ for (const depName in pkg.dependencies) {
       break;
   }
 }
-
-console.log('loading bundle.tracing', version);
-load('bundle.tracing.min.js', version);
-load('bundle.tracing.min.js.map', version);
-
-// load rewrite manually
-console.log('loading rewriteframes', version);
-load('rewriteframes.min.js', version);
-load('rewriteframes.min.js.map', version);
+const bundles = ['bundle.tracing', 'rewriteframes'];
+for (const bundle of bundles) {
+  console.log(`loading ${bundle}`, version);
+  load(`${bundle}.min.js`, version);
+  load(`${bundle}.min.js.map`, version);
+}

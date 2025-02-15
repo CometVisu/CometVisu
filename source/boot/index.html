@@ -81,7 +81,10 @@
 
 
       // load sentry and wait for it
-      loadJS('${resourcePath}sentry/bundle.tracing.min.js', '${resourcePath}sentry/rewriteframes.min.js', function () {
+      loadJS(
+        '${resourcePath}sentry/bundle.tracing.min.js',
+        '${resourcePath}sentry/rewriteframes.min.js',
+        function () {
         Sentry.init({
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
@@ -91,20 +94,32 @@
             Sentry.rewriteFramesIntegration({root: basePath})
           ],
           tracesSampleRate: 1.0,
-          beforeSend(data) {
-            let stacktrace = data.exception && data.exception.values[0].stacktrace;
+          beforeSend(event, hint) {
+            let stacktrace = event.exception && event.exception.values[0].stacktrace;
 
             if (stacktrace) {
               // Show report dialog (only in "de" or "en" language)
               Sentry.showReportDialog({
-                eventId: data.event_id,
+                eventId: event.event_id,
                 lang: qx.locale.Manager.getInstance().getLanguage() === "de" ? qx.locale.Manager.getInstance().getLanguage() : "en"
               });
             }
             // overwrite release by the now known value
-            data.release = cv.Version.REV;
-            data.environment = cv.Version.VERSION;
-            return data;
+            event.release = cv.Version.REV;
+            event.environment = cv.Version.VERSION;
+
+            // check if we can attach a recording
+            if (enableReporting) {
+              const logData = cv.report.Record.getData();
+              if (logData) {
+                hint.attachments = [{
+                  filename: cv.report.Record.getFileName() || 'CometVisu-replay.json',
+                  data: JSON.stringify(logData),
+                  contentType: 'application/json',
+                }];
+              }
+            }
+            return event;
           },
           beforeBreadcrumb(data) {
             // do not add debug messages from reporting
@@ -114,39 +129,6 @@
             return data;
           }
         });
-
-        if (enableReporting) {
-          Sentry.addEventProcessor((event) => {
-            try {
-              const client = Sentry.getCurrentHub().getClient();
-              const endpoint = attachmentUrlFromDsn(
-                      client.getDsn(),
-                      event.event_id
-              );
-              const logData = cv.report.Record.getData();
-              if (logData) {
-                const formData = new FormData();
-                formData.append(
-                        'log-file',
-                        new Blob([JSON.stringify(logData)], {
-                          type: 'application/json',
-                        }),
-                        cv.report.Record.getFileName() || 'CometVisu-replay.json'
-                );
-                fetch(endpoint, {
-                  method: 'POST',
-                  body: formData,
-                }).catch((ex) => {
-                  // we have to catch this otherwise it throws an infinite loop in Sentry
-                  console.error(ex);
-                });
-              }
-              return event;
-            } catch (ex) {
-              console.error(ex);
-            }
-          });
-        }
       })
     }
     ${preBootJs}
