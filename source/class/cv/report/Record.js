@@ -463,7 +463,7 @@ qx.Class.define('cv.report.Record', {
         el = el.parentElement;
       }
 
-      const sel = stack.slice(1).join('>'); // removes the html element
+      const sel = stack.length > 1 ? stack.slice(1).join('>') : stack[0]; // removes the html element
       if (document.querySelector(sel) !== origEl) {
         this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
         return '';
