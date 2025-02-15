@@ -37,7 +37,10 @@ qx.Class.define('cv.io.Fetch', {
       const cache = cv.io.Fetch.__cache;
       if (Object.prototype.hasOwnProperty.call(cache, resource)) {
         const entry = cache[resource];
-        const ttl = options.ttl || cv.io.Fetch.DEFAULT_CACHE_TTL;
+        let ttl = cv.io.Fetch.DEFAULT_CACHE_TTL;
+        if (Object.prototype.hasOwnProperty.call(options, 'ttl') && typeof options.ttl === 'number') {
+          ttl = options.ttl;
+        }
         // check age
         if (entry.time === 0) {
           // request is still running, return the promise
