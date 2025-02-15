@@ -62,6 +62,16 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
 
   /*
   ***********************************************
+    CONSTRUCTOR
+  ***********************************************
+  */
+  construct(element) {
+    super(element);
+    this.setDebouncedRefresh(500);
+  },
+
+  /*
+  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -168,8 +178,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
               options[proxyParam] = model.getAttribute(proxyParam);
             }
           }
-          const res = await cv.io.Fetch.cachedFetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
-          return res;
+          return await cv.io.Fetch.cachedFetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
         };
       } else if (model.hasAttribute('class')) {
         // initialize internal class instance that implements cv.io.listmodel.IListModel
@@ -298,7 +307,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _applyValue() {
       // reset last refresh, because with new data its obsolete
       this._lastRefresh = 0;
-      this.refresh();
+      this.debouncedRefresh();
     },
 
     async refresh() {
