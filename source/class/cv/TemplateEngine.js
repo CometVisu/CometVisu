@@ -213,7 +213,7 @@ qx.Class.define('cv.TemplateEngine', {
       return new Promise((resolve, reject) => {
         const timer = setTimeout(() => {
           continueWhenSuccessful = false;
-          reject('Timeout');
+          reject(new Error('Timeout'));
         }, cv.Config.timeoutStructureLoad);
         if (waitingFor.getLength() === 0) {
           clearTimeout(timer);

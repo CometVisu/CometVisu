@@ -18,12 +18,12 @@
  */
 
 /**
- * Unit tests for <cv-styling> component
+ * Unit tests for <cv-styling> element
  *
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-styling> component of the tile structure', () => {
+describe('testing the <cv-styling> element of the tile structure', () => {
   let oldController;
 
   beforeEach(() => {

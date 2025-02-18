@@ -18,12 +18,12 @@
  */
 
 /**
- * Unit tests for <cv-icon> component
+ * Unit tests for <cv-icon> element
  *
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-icon> component of the tile structure', () => {
+describe('testing the <cv-icon> element of the tile structure', () => {
   let oldController;
 
   beforeEach(() => {

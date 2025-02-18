@@ -315,6 +315,7 @@ beforeAll(function (done) {
 
   try {
     cv.Config.enableCache = false;
+    cv.Config.timeoutStructureLoad = 5000;
     // always test in 'en' locale
     qx.locale.Manager.getInstance().setLocale('en');
     const client = cv.io.BackendConnections.initBackendClients();

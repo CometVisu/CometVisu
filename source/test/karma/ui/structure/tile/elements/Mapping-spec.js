@@ -18,12 +18,12 @@
  */
 
 /**
- * Unit tests for <cv-mapping> component
+ * Unit tests for <cv-mapping> element
  *
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-mapping> component of the tile structure', () => {
+describe('testing the <cv-mapping> element of the tile structure', () => {
   let oldController;
 
   beforeEach(() => {
