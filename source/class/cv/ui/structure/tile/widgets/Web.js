@@ -28,16 +28,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Web', {
 
   /*
   ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(element) {
-    super(element);
-    this.addListener('changeVisible', this._loadContent, this);
-  },
-
-  /*
-  ***********************************************
     MEMBERS
   ***********************************************
   */
