@@ -331,6 +331,21 @@ beforeAll(function (done) {
   } catch (e) {
     console.error(e);
   }
+
+  this.createHTMLElement = (name, attributes, content, append) => {
+    const template = document.createElement('template');
+    let attributesHTML = '';
+    for (const key in attributes) {
+      attributesHTML += `${key}="${attributes[key]}" `;
+    }
+    template.innerHTML = `<${name} ${attributesHTML}>${content}</${name}>`;
+    const elem = template.content.firstChild;
+    if (append === true) {
+      document.body.appendChild(elem);
+    }
+    return elem;
+  };
+  console.log(this);
 });
 
 beforeEach(function () {

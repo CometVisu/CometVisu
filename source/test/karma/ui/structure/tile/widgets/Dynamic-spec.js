@@ -28,9 +28,33 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
   let element;
   let contentElements = [];
 
-  beforeEach(() => {
+
+  function createElement(refs) {
+    let content = ``;
+    for (const ref of refs) {
+      let attributesHTML = '';
+      for (const key in ref) {
+        attributesHTML += `${key}="${ref[key]}" `;
+      }
+      content += `<cv-ref ${attributesHTML}"></cv-ref>`;
+    }
+    content +='<cv-address transform="raw">content</cv-address>';
+    element = this.createHTMLElement('cv-dynamic', {}, content);
+    document.body.appendChild(element);
+
+    for (let i = 1; i <=2; i++) {
+      const f1 = document.createElement('div');
+      f1.id = 'content'+i;
+      f1.innerHTML = `<label>Content ${i}</label>`;
+      document.body.appendChild(f1);
+      contentElements.push(f1);
+    }
+  }
+
+  beforeEach(function()  {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
+    this.createElement = createElement.bind(this);
   });
 
   afterEach(() => {
@@ -43,33 +67,8 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
     }
   });
 
-  function createElement(refs) {
-    const template = document.createElement('template');
-
-    let html = `<cv-dynamic>`;
-    for (const ref of refs) {
-      let attributesHTML = '';
-      for (const key in ref) {
-        attributesHTML += `${key}="${ref[key]}" `;
-      }
-      html += `<cv-ref ${attributesHTML}"></cv-ref>`;
-    }
-    html +=' <cv-address transform="raw">content</cv-address></cv-dynamic>';
-    template.innerHTML = html;
-    element = template.content.firstChild;
-    document.body.appendChild(element);
-
-    for (let i = 1; i <=2; i++) {
-      const f1 = document.createElement('div');
-      f1.id = 'content'+i;
-      f1.innerHTML = `<label>Content ${i}</label>`;
-      document.body.appendChild(f1);
-      contentElements.push(f1);
-    }
-  }
-
-  it('should support basic selection of refs', () => {
-    createElement([
+  it('should support basic selection of refs', function() {
+    this.createElement([
       { selector: '#content1', when: 'first' },
       { selector: '#content2', when: 'second' }
     ]);
@@ -94,8 +93,8 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
     expect(secondRef.children[0].id).toEqual('content2');
   });
 
-  it('should support basic modification of cloned refs', () => {
-    createElement([
+  it('should support basic modification of cloned refs', function() {
+    this.createElement([
       { selector: '#content1', when: 'first', "modify-selector": "label", "modify-attribute": "class:changed" },
       { selector: '#content2', when: 'second', "modify-attribute": "class:changed" },
       { selector: '#content2', when: 'third', "modify-selector": "wrong selector", "modify-attribute": "class:changed" },
@@ -120,8 +119,8 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
     expect(thirdRef.children[0].querySelector('label').hasAttribute('class')).toBeFalsy();
   });
 
-  it('should handle an missing selector', () => {
-    createElement([
+  it('should handle an missing selector', function() {
+    this.createElement([
       { selector: '', when: 'first' }
     ]);
 

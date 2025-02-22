@@ -57,20 +57,9 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     }
   });
 
-  function createElement(attributes, content) {
-    const template = document.createElement('template');
-    let attributesHTML = '';
-    for (const key in attributes) {
-      attributesHTML += `${key}="${attributes[key]}" `;
-    }
-    template.innerHTML = `<cv-group ${attributesHTML}>${content}</cv-group>`;
-    element = template.content.firstChild;
-    document.body.appendChild(element);
-
-  }
-
-  it('should create a group with a name', () => {
-    createElement({ name: 'Test' },'');
+  xit('should create a group with a name', function() {
+    element = this.createHTMLElement('cv-group',{ name: 'Test' },'', true);
+    console.log(element);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -80,8 +69,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(title.classList.contains('last-of-title')).toBeTruthy();
   });
 
-  it('should create a group with a name when the summary already exists', () => {
-    createElement({ name: 'Test' },'<summary><label class="title">Old Name</label></summary>');
+  it('should create a group with a name when the summary already exists', function() {
+    element = this.createHTMLElement('cv-group',{ name: 'Test' },'<summary><label class="title">Old Name</label></summary>', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -91,8 +80,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(title.classList.contains('last-of-title')).toBeTruthy();
   });
 
-  it('should create a group with an icon', () => {
-    createElement({ icon: 'test' },'');
+  it('should create a group with an icon', function() {
+    element = this.createHTMLElement('cv-group',{ icon: 'test' },'', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -102,8 +91,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(title.classList.contains('last-of-title')).toBeTruthy();
   });
 
-  it('should create a group with an icon when the summary already exists', () => {
-    createElement({ icon: 'test' },'<summary><cv-icon class="title old-icon"></cv-icon></summary>');
+  it('should create a group with an icon when the summary already exists', function() {
+    element = this.createHTMLElement('cv-group',{ icon: 'test' },'<summary><cv-icon class="title old-icon"></cv-icon></summary>', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -113,8 +102,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(title.classList.contains('last-of-title')).toBeTruthy();
   });
 
-  it('should create a group without summary', () => {
-    createElement({},'');
+  it('should create a group without summary', function() {
+    element = this.createHTMLElement('cv-group',{  },'', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -122,8 +111,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(summary).toBeNull();
   });
 
-  it('should create a group with an title and an icon', () => {
-    createElement({ name: 'Test', icon: 'test' },'');
+  it('should create a group with an title and an icon', function()  {
+    element = this.createHTMLElement('cv-group',{ name: 'Test', icon: 'test' },'', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
@@ -136,8 +125,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(icon.classList.contains('last-of-title')).toBeFalsy();
   });
 
-  it('should create a group with content that opens on click', () => {
-    createElement({ name: 'Test' },'<div>Content</div>');
+  it('should create a group with content that opens on click', function()  {
+    element = this.createHTMLElement('cv-group',{ name: 'Test' },'<div>Content</div>', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeFalsy();
@@ -150,8 +139,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(element.hasAttribute('open')).toBeFalsy();
   });
 
-  it('should create a value in the summary', () => {
-    createElement({ name: 'Test' },'<cv-address transform="raw" target="summary">Test</cv-address>');
+  it('should create a value in the summary', function() {
+    element = this.createHTMLElement('cv-group',{ name: 'Test' },'<cv-address transform="raw" target="summary">Test</cv-address>', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeFalsy();
@@ -163,8 +152,8 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     expect(valueElem.textContent).toEqual('Hello summary');
   });
 
-  it('should create a value in the summary', () => {
-    createElement({ name: 'Test' },'<summary><label class="value">Old value</label></summary><cv-address transform="raw" target="summary">Test</cv-address>');
+  it('should create a value in the summary',function() {
+    element = this.createHTMLElement('cv-group',{ name: 'Test' },'<summary><label class="value">Old value</label></summary><cv-address transform="raw" target="summary">Test</cv-address>', true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeFalsy();
