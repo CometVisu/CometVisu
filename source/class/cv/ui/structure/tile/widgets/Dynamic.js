@@ -48,9 +48,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Dynamic', {
   ***********************************************
   */
   members: {
-    _init() {
-      super._init();
-    },
 
     _updateValue(mappedValue, value) {
       this.setRef(this._element.querySelector(':scope > cv-ref[when="' + mappedValue + '"]'));
@@ -76,7 +73,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Dynamic', {
           ref.append(clonedNode);
           if (ref.hasAttribute('modify-attribute')) {
             let modifyTarget = clonedNode;
-            if (ref.hasAttribute('modify-attribute-target')) {
+            if (ref.hasAttribute('modify-selector')) {
               modifyTarget = clonedNode.querySelector(ref.getAttribute('modify-selector'));
               if (!modifyTarget) {
                 this.error('modify-selector not found: ' + ref.getAttribute('modify-selector'));
