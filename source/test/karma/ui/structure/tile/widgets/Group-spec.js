@@ -57,9 +57,9 @@ describe('testing the <cv-group> widget of the tile structure', () => {
     }
   });
 
-  xit('should create a group with a name', function() {
+  it('should create a group with a name', function() {
     element = this.createHTMLElement('cv-group',{ name: 'Test' },'', true);
-    console.log(element);
+    expect(element._instance instanceof cv.ui.structure.tile.widgets.Group).toBe(true);
 
     expect(element.tagName).toBe('CV-GROUP');
     expect(element.classList.contains('empty')).toBeTruthy();
