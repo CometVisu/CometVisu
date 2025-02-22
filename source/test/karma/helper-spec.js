@@ -345,7 +345,6 @@ beforeAll(function (done) {
     }
     return elem;
   };
-  console.log(this);
 });
 
 beforeEach(function () {
