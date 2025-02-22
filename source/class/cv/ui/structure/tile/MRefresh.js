@@ -99,6 +99,19 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
       } else {
         this.error('refresh method must be implemented!');
       }
+    },
+
+    /**
+     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.
+     * The refresh method must be implemented by the class including this mixin.
+     *
+     * The debounced refresh can then be called with this.debouncedRefresh();
+     * @param delay {number} delay in milliseconds
+     */
+    setDebouncedRefresh(delay) {
+      if (typeof this.refresh === 'function') {
+        this.debouncedRefresh = qx.util.Function.debounce(this.refresh.bind(this), delay);
+      }
     }
   },
 

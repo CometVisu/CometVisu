@@ -167,7 +167,7 @@ class FsApi extends AbstractFsApi
                 try {
                     FileHandler::deleteFolder(
                         $fsPath,
-                        Helper::getQueryParam($request, "force")
+                        Helper::getQueryParam($request, "force", "false") === "true"
                     );
                   return $response->withStatus(200);
                 } catch (Exception $e) {
@@ -182,7 +182,7 @@ class FsApi extends AbstractFsApi
                 try {
                     FileHandler::deleteFile(
                         $fsPath,
-                        Helper::getQueryParam($request, "force")
+                        Helper::getQueryParam($request, "force", "false") === "true"
                     );
                   return $response->withStatus(200);
                 } catch (Exception $e) {

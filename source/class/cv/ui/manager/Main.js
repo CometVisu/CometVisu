@@ -398,9 +398,13 @@ qx.Class.define('cv.ui.manager.Main', {
         if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
           this.resetCurrentFolder();
         }
-      } else {
-        this.warn('unhandled file event', data.action);
+        this._tree.reload();
+        return;
+      } else if (data.action === 'restored') {
+        this._tree.reload();
+        return;
       }
+      this.warn('unhandled file event', data.action);
       this._tree.refresh();
     },
 

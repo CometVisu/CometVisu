@@ -36,12 +36,14 @@ qx.Class.define('cv.io.listmodel.Registry', {
             switch (check) {
               case 'php':
                 if (!qx.core.Init.getApplication().getServerHasPhpSupport()) {
+                  qx.log.Logger.warn(this, `${clazz.classname} requires PHP support`);
                   return null;
                 }
                 break;
 
               case 'openhab':
                 if (!cv.io.BackendConnections.getClientByType('openhab')) {
+                  qx.log.Logger.warn(this, `${clazz.classname} requires openHAB backend`);
                   return null;
                 }
                 break;

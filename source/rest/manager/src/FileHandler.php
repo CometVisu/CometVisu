@@ -121,7 +121,7 @@ class FileHandler
     /**
      * Delete a file from filesystem by either moving it to the trash folder or deleting it directly.
      * @param $file {String} absolute path to file that should be deleted
-     * @param $force {Boolean} if true delete directly, no mosing to trash
+     * @param $force {Boolean} if true delete directly, no moving to trash
      */
     public static function deleteFile($file, $force)
     {
@@ -130,7 +130,7 @@ class FileHandler
             try {
                 if (
                     !$force &&
-                    !FileHandler::startsWith($file, $apiConfig->trashFolder)
+                    !str_starts_with($file, $apiConfig->trashFolder)
                 ) {
                     $relDir = substr(
                         dirname($file),
@@ -167,7 +167,7 @@ class FileHandler
             try {
                 if (
                     !$force &&
-                    !FileHandler::startsWith($folder, $apiConfig->trashFolder)
+                    !str_starts_with($folder, $apiConfig->trashFolder)
                 ) {
                     $relDir = substr($folder, strlen($apiConfig->tconfigDir));
                     if (!file_exists($apiConfig->trashFolder)) {
@@ -203,11 +203,6 @@ class FileHandler
     public static function isEmptyDir($path)
     {
         return count(scandir($path)) <= 2;
-    }
-
-    public static function startsWith($str, $cmp)
-    {
-        return substr($str, 0, strlen($cmp) === $cmp);
     }
 
     public static function getMimeTypeFromSuffix($fsPath)

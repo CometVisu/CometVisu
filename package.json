@@ -56,7 +56,6 @@
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "glob": "^10.3.10",
     "grunt": "^1.6.1",
     "grunt-bump": "^0.8.0",
     "grunt-chmod": "^1.0.3",
@@ -87,8 +86,8 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.7.2",
-    "@sentry/browser": "^8.34.0",
+    "@qooxdoo/framework": "^7.8.0",
+    "@sentry/browser": "^9.1.0",
     "crc-32": "^1.2.2",
     "monaco-editor": "^0.52.0",
     "oauth-pkce": "^0.0.7"

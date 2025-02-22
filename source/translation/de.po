@@ -400,7 +400,7 @@ msgstr "Ordner \"%1\" wurde wieder hergestellt"
 
 #: cv/ui/manager/control/FileController.js
 msgid "Do you really want to clear the trash?"
-msgstr "Mächten Sie den Papirtkorb wirklich leeren?"
+msgstr "Möchten Sie den Papierkorb wirklich leeren?"
 
 #: cv/ui/manager/control/FileController.js
 msgid "Do you really want to delete file \"%1\" from the trash?"

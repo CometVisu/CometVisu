@@ -36,6 +36,7 @@ use Slim\Exception\HttpNotImplementedException;
  */
 abstract class AbstractRequestproxyApi
 {
+
     /**
      * @var ContainerInterface|null Slim app container instance
      */
@@ -51,6 +52,7 @@ abstract class AbstractRequestproxyApi
         $this->container = $container;
     }
 
+
     /**
      * DELETE deleteProxied
      * Output-Formats: [application/_*, image/_*]
@@ -65,12 +67,11 @@ abstract class AbstractRequestproxyApi
     public function deleteProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $queryParams = $request->getQueryParams();
-        $url = key_exists('url', $queryParams) ? $queryParams['url'] : null;
-        $authType = key_exists('auth-type', $queryParams) ? $queryParams['auth-type'] : null;
-        $configSection = key_exists('config-section', $queryParams) ? $queryParams['config-section'] : null;
-        $selfSigned = key_exists('self-signed', $queryParams) ? $queryParams['self-signed'] : null;
-        $message =
-            'How about implementing deleteProxied as a DELETE method in OpenAPIServer\Api\RequestproxyApi class?';
+        $url = (key_exists('url', $queryParams)) ? $queryParams['url'] : null;
+        $authType = (key_exists('auth-type', $queryParams)) ? $queryParams['auth-type'] : null;
+        $configSection = (key_exists('config-section', $queryParams)) ? $queryParams['config-section'] : null;
+        $selfSigned = (key_exists('self-signed', $queryParams)) ? $queryParams['self-signed'] : null;
+        $message = "How about implementing deleteProxied as a DELETE method in OpenAPIServer\Api\RequestproxyApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -88,11 +89,11 @@ abstract class AbstractRequestproxyApi
     public function getProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $queryParams = $request->getQueryParams();
-        $url = key_exists('url', $queryParams) ? $queryParams['url'] : null;
-        $authType = key_exists('auth-type', $queryParams) ? $queryParams['auth-type'] : null;
-        $configSection = key_exists('config-section', $queryParams) ? $queryParams['config-section'] : null;
-        $selfSigned = key_exists('self-signed', $queryParams) ? $queryParams['self-signed'] : null;
-        $message = 'How about implementing getProxied as a GET method in OpenAPIServer\Api\RequestproxyApi class?';
+        $url = (key_exists('url', $queryParams)) ? $queryParams['url'] : null;
+        $authType = (key_exists('auth-type', $queryParams)) ? $queryParams['auth-type'] : null;
+        $configSection = (key_exists('config-section', $queryParams)) ? $queryParams['config-section'] : null;
+        $selfSigned = (key_exists('self-signed', $queryParams)) ? $queryParams['self-signed'] : null;
+        $message = "How about implementing getProxied as a GET method in OpenAPIServer\Api\RequestproxyApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -110,11 +111,11 @@ abstract class AbstractRequestproxyApi
     public function postProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $queryParams = $request->getQueryParams();
-        $url = key_exists('url', $queryParams) ? $queryParams['url'] : null;
-        $authType = key_exists('auth-type', $queryParams) ? $queryParams['auth-type'] : null;
-        $configSection = key_exists('config-section', $queryParams) ? $queryParams['config-section'] : null;
-        $selfSigned = key_exists('self-signed', $queryParams) ? $queryParams['self-signed'] : null;
-        $message = 'How about implementing postProxied as a POST method in OpenAPIServer\Api\RequestproxyApi class?';
+        $url = (key_exists('url', $queryParams)) ? $queryParams['url'] : null;
+        $authType = (key_exists('auth-type', $queryParams)) ? $queryParams['auth-type'] : null;
+        $configSection = (key_exists('config-section', $queryParams)) ? $queryParams['config-section'] : null;
+        $selfSigned = (key_exists('self-signed', $queryParams)) ? $queryParams['self-signed'] : null;
+        $message = "How about implementing postProxied as a POST method in OpenAPIServer\Api\RequestproxyApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -132,11 +133,11 @@ abstract class AbstractRequestproxyApi
     public function putProxied(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $queryParams = $request->getQueryParams();
-        $url = key_exists('url', $queryParams) ? $queryParams['url'] : null;
-        $authType = key_exists('auth-type', $queryParams) ? $queryParams['auth-type'] : null;
-        $configSection = key_exists('config-section', $queryParams) ? $queryParams['config-section'] : null;
-        $selfSigned = key_exists('self-signed', $queryParams) ? $queryParams['self-signed'] : null;
-        $message = 'How about implementing putProxied as a PUT method in OpenAPIServer\Api\RequestproxyApi class?';
+        $url = (key_exists('url', $queryParams)) ? $queryParams['url'] : null;
+        $authType = (key_exists('auth-type', $queryParams)) ? $queryParams['auth-type'] : null;
+        $configSection = (key_exists('config-section', $queryParams)) ? $queryParams['config-section'] : null;
+        $selfSigned = (key_exists('self-signed', $queryParams)) ? $queryParams['self-signed'] : null;
+        $message = "How about implementing putProxied as a PUT method in OpenAPIServer\Api\RequestproxyApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }
