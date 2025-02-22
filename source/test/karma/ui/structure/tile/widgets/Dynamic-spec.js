@@ -95,9 +95,9 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
 
   it('should support basic modification of cloned refs', function() {
     this.createElement([
-      { selector: '#content1', when: 'first', "modify-selector": "label", "modify-attribute": "class:changed" },
-      { selector: '#content2', when: 'second', "modify-attribute": "class:changed" },
-      { selector: '#content2', when: 'third', "modify-selector": "wrong selector", "modify-attribute": "class:changed" },
+      { selector: '#content1', when: 'first', 'modify-selector': 'label', 'modify-attribute': 'class:changed' },
+      { selector: '#content2', when: 'second', 'modify-attribute': 'class:changed' },
+      { selector: '#content2', when: 'third', 'modify-selector': 'wrong selector', 'modify-attribute': 'class:changed' }
     ]);
 
     // modify descendant of cloned node

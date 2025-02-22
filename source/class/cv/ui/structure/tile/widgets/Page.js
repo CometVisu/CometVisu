@@ -50,9 +50,9 @@ qx.Class.define('cv.ui.structure.tile.widgets.Page', {
 
     _init() {
       const browserEngine = qx.core.Environment.get('browser.name');
-      const version = parseInt(qx.core.Environment.get('browser.version').split(".")[0]);
-      if ((browserEngine.includes('firefox') && version < 125)
-        || (browserEngine.includes('safari') && version < 18)) {
+      const version = parseInt(qx.core.Environment.get('browser.version').split('.')[0]);
+      if ((browserEngine.includes('firefox') && version < 125) ||
+        (browserEngine.includes('safari') && version < 18)) {
         // firefox/safari do not support content-visibility CSS property in these versions
         // see: https://caniuse.com/css-content-visibility
         this._element.classList.add('no-content-visibility');
