@@ -56,7 +56,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'source/transpiled/cv/{*.js,!(report)/**/*.js}': ['coverage'],
+      'source/transpiled/cv/{*.js,!(report)/**/!(Simulation).js}': ['coverage'],
       'source/test/fixtures/karma/*.xml': ['html2js']
     },
 
