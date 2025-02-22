@@ -51,12 +51,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       apply: '_applyOutdated'
     },
 
-    checkOutdated: {
-      check: 'Boolean',
-      init: false,
-      apply: '_applyCheckOutdated'
-    },
-
     outdatedMessage: {
       check: 'String',
       nullable: true,
@@ -81,7 +75,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
   members: {
     _fullScreenMode: null,
     _dateFormat: null,
-    _checkOutdatedTimerId: null,
     _lastUpdate: null,
     _maxAge: null,
     _hideTimer: null,
@@ -189,16 +182,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
       let valueElem = this._element.querySelector(':scope > .outdated-value');
       if (valueElem) {
         valueElem.textContent = value;
-      }
-    },
-
-    _applyCheckOutdated(value) {
-      const timer = qx.util.TimerManager.getInstance();
-      if (value) {
-        this._checkOutdatedTimerId = timer.start(this.checkOutdated, 5000, this);
-      } else if (this._checkOutdatedTimerId) {
-        timer.stop(this._checkOutdatedTimerId);
-        this._checkOutdatedTimerId = null;
       }
     },
 
@@ -331,10 +314,6 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     */
     destruct() {
       this._disposeObjects('_dateFormat');
-      if (this._checkOutdatedTimerId) {
-        qx.util.TimerManager.getInstance().stop(this._checkOutdatedTimerId);
-        this._checkOutdatedTimerId = null;
-      }
     }
   },
 
