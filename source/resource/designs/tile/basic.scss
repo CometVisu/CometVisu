@@ -1868,7 +1868,7 @@ body {
         background-color: var(--blockerColor);
     }
 
-    cv-media-player {
+    cv-media-player, .cv-media-player {
         cv-tile {
             cv-row[row="first"] {
                 justify-content: center;
@@ -1902,7 +1902,7 @@ body {
         }
     }
 
-    cv-dimmer {
+    cv-dimmer, .cv-dimmer {
         cv-tile {
             cv-row[colspan="2"][rowspan="2"] {
                 cv-button {
@@ -1917,7 +1917,7 @@ body {
         }
     }
 
-    cv-rtc {
+    cv-rtc, .cv-rtc {
         cv-tile {
             *[row="2"] {
                 width: 100%;
@@ -1927,7 +1927,7 @@ body {
         }
     }
 
-    cv-status {
+    cv-status, .cv-status {
         cv-tile {
             box-sizing: border-box;
             padding-left: calc(var(--spacing)*2);
@@ -1945,7 +1945,7 @@ body {
         }
     }
 
-    cv-status-chart {
+    cv-status-chart, .cv-status-chart {
         cv-tile {
             > cv-row {
                 z-index: 2; /* content above cv-chart with background=true, which has z-index: 1 */
@@ -1953,7 +1953,7 @@ body {
         }
     }
 
-    cv-switch, cv-shutter, cv-dimmer {
+    cv-switch, cv-shutter, cv-dimmer, .cv-switch, .cv-shutter, .cv-dimmer {
         cv-tile {
             cv-row[row="last"] {
                 flex-direction: column;
@@ -2148,7 +2148,7 @@ body {
         }
     }
 
-    cv-energy {
+    cv-energy, .cv-energy {
         @include tile-common;
         width: calc(var(--tileCellWidth) * #{$tileColumns});
         height: calc(var(--tileCellHeight) * #{$tileRows});
