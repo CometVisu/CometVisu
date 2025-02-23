@@ -157,25 +157,26 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           let parent = element.parentElement;
           let level = 0;
           while (level <= 2) {
-            parent = parent.parentElement;
-            level++;
             if (parent.tagName.toLowerCase() === 'cv-tile') {
               eventSource = parent;
               eventSource.classList.add('clickable');
+              break;
             }
+            parent = parent.parentElement;
+            level++;
           }
         }
         writeAddresses.forEach(addr => {
           let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
           switch (event) {
             case 'click':
-              events.click = this.onClicked.bind(this);
+              events.click = ev => this.onClicked(ev);
               break;
             case 'up':
-              events.pointerup = this.onPointerUp.bind(this);
+              events.pointerup = ev => this.onPointerUp(ev);
               break;
             case 'down':
-              events.pointerdown = this.onPointerDown.bind(this);
+              events.pointerdown = ev => this.onPointerDown(ev);
               break;
           }
         });
