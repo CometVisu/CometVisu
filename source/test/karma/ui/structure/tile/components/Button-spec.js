@@ -45,6 +45,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
     expect(element.tagName).toBe('CV-BUTTON');
     expect(element.textContent).toBe('');
     expect(element._instance.getType()).toBe('button');
+    expect(element._instance instanceof cv.ui.structure.tile.components.Button).toBe(true);
   });
 
   it('should create a button with a name', function() {
