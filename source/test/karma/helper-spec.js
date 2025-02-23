@@ -332,19 +332,38 @@ beforeAll(function (done) {
     console.error(e);
   }
 
+  /**
+   *
+   * @param name {string} HTML element tag-name
+   * @param attributes {object} HTML element attributes
+   * @param content {string} HTML element content
+   * @param append {boolean|string} append to body, or 'code' to return the HTML code
+   * @returns {ChildNode|string}
+   */
   this.createHTMLElement = (name, attributes, content, append) => {
-    const template = document.createElement('template');
+
     let attributesHTML = '';
     for (const key in attributes) {
       attributesHTML += `${key}="${attributes[key]}" `;
     }
-    template.innerHTML = `<${name} ${attributesHTML}>${content}</${name}>`;
+    const html = `<${name} ${attributesHTML}>${content}</${name}>`;
+    if (append === 'code') {
+      return html;
+    }
+    const template = document.createElement('template');
+    template.innerHTML = html;
     const elem = template.content.firstChild;
     if (append === true) {
       document.body.appendChild(elem);
     }
     return elem;
   };
+
+  this.createTileWidgetWithComponent = (name, attributes, content) => {
+    const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
+    this.container = this.createHTMLElement('cv-widget', {}, `<cv-tile>${componentHtml}</cv-tile>`, true);
+    return this.container.querySelector('cv-widget > cv-tile > ' + name);
+  }
 });
 
 beforeEach(function () {
