@@ -24,7 +24,11 @@
  */
 qx.Class.define('cv.ui.structure.tile.widgets.Web', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
+  include: [
+    cv.ui.structure.tile.MVisibility,
+    cv.ui.structure.tile.MRefresh,
+    cv.ui.structure.tile.MFullscreen
+  ],
 
   /*
   ***********************************************
@@ -38,7 +42,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Web', {
     _url: null,
 
     _init() {
-      const element = this._element;
+      const element = this._headerFooterParent = this._element;
       let iframe = element.querySelector(':scope > iframe');
       if (!iframe) {
         iframe = document.createElement('iframe');
@@ -71,6 +75,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Web', {
           this._url.searchParams.set('auth-type', element.getAttribute('auth-type').toLowerCase());
         }
       }
+
+      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+        this._initFullscreenSwitch();
+      }
     },
 
     _loadContent() {
@@ -86,6 +94,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Web', {
         this._url.searchParams.set('r', '' + Math.random());
         this._loadContent();
       }
+    },
+
+    _applyFullscreen(full) {
+      this._element.setAttribute('fullscreen', full ? 'true' : 'false');
     }
   },
 

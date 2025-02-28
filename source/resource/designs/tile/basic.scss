@@ -2225,12 +2225,32 @@ body {
     cv-web {
         position: relative;
 
+        &[fullscreen="true"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            > iframe {
+                height: calc(100% - 32px);
+            }
+        }
+
+        > header {
+            @include common-header;
+            height: 32px;
+        }
+
         iframe {
             position: absolute;
             top: 0;
             left: 0;
             bottom: 0;
             right: 0;
+        }
+
+        &[allow-fullscreen="true"] > iframe {
+            top: 32px;
         }
     }
 

@@ -2017,6 +2017,12 @@
     </xsd:attribute>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the website in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung der Webseite auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-link">

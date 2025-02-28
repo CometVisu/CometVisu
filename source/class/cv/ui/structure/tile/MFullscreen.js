@@ -61,9 +61,14 @@ qx.Mixin.define('cv.ui.structure.tile.MFullscreen', {
     },
 
     __applyFullscreen(value) {
-      const sendValue = value ? '1' : '0';
-      this.__button.setAttribute('data-value', sendValue);
-      cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
+      if (typeof this._applyFullscreen === 'function') {
+        // call the original apply function
+        this._applyFullscreen(value);
+      } else {
+        const sendValue = value ? '1' : '0';
+        this.__button.setAttribute('data-value', sendValue);
+        cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
+      }
     },
 
     _initFullscreenSwitch() {
@@ -73,16 +78,18 @@ qx.Mixin.define('cv.ui.structure.tile.MFullscreen', {
       button.addEventListener('click', () => this.toggleFullscreen());
       this.appendToHeader(button, 'right');
 
-      // address
-      const tileAddress = document.createElement('cv-address');
-      tileAddress.setAttribute('mode', 'read');
-      tileAddress.setAttribute('target', 'fullscreen-popup');
-      tileAddress.setAttribute('backend', 'system');
-      tileAddress.setAttribute('send-mode', 'always');
-      tileAddress.textContent = this.getPopupAddress();
-      this._element.parentElement.appendChild(tileAddress);
+      if (typeof this._applyFullscreen === 'undefined') {
+        // address
+        const tileAddress = document.createElement('cv-address');
+        tileAddress.setAttribute('mode', 'read');
+        tileAddress.setAttribute('target', 'fullscreen-popup');
+        tileAddress.setAttribute('backend', 'system');
+        tileAddress.setAttribute('send-mode', 'always');
+        tileAddress.textContent = this.getPopupAddress();
+        this._element.parentElement.appendChild(tileAddress);
+      }
 
-      // listen to parent tile of popup is opened or not
+      // listen to parent tile if popup is opened or not
       let parent = this._element;
       while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
         parent = parent.parentElement;
