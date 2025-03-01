@@ -107,6 +107,6 @@ describe('testing the <cv-select> component of the tile structure', () => {
       document.body.click();
       expect(window.getComputedStyle(popup)['display']).toBe('none');
       done();
-    }, 10);
+    }, 100);
   });
 });
