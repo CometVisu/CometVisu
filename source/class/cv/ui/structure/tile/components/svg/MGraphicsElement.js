@@ -18,7 +18,7 @@
  */
 
 qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
-  include: cv.ui.structure.tile.MStringTransforms,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************

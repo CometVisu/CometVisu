@@ -32,7 +32,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
   include: [
     cv.ui.structure.tile.components.svg.MSvgGrid,
     cv.ui.structure.tile.MResize,
-    cv.ui.structure.tile.MStringTransforms,
+    cv.util.MStringTransforms,
     cv.ui.structure.tile.MFullscreen
   ],
 

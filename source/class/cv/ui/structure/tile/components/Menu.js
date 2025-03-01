@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Menu', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MStringTransforms],
+  include: [cv.util.MStringTransforms],
 
   /*
   ***********************************************

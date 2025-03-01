@@ -24,7 +24,7 @@
  * @since 2023
  * @author Tobias Bräutigam
  */
-qx.Mixin.define('cv.ui.structure.tile.MStringTransforms', {
+qx.Mixin.define('cv.util.MStringTransforms', {
 
   /*
   ***********************************************
@@ -34,16 +34,24 @@ qx.Mixin.define('cv.ui.structure.tile.MStringTransforms', {
   members: {
     _parseInt(val) {
       if (typeof val === 'string') {
-        return parseInt(val, 10);
+        const intVal = parseInt(val, 10);
+        return Number.isNaN(intVal) ? 0 : intVal;
       }
-      return val;
+      if (typeof val === 'number') {
+        return Math.round(val);
+      }
+      return Number.NaN;
     },
 
     _parseFloat(val) {
       if (typeof val === 'string') {
-        return parseFloat(val);
+        const floatVal = parseFloat(val);
+        return Number.isNaN(floatVal) ? 0.0 : floatVal;
       }
-      return val;
+      if (typeof val === 'number') {
+        return val;
+      }
+      return Number.NaN;
     },
 
     _parseBoolean(val) {

@@ -26,7 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
   extend: cv.ui.structure.tile.elements.Address,
-  include: cv.ui.structure.tile.MStringTransforms,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************

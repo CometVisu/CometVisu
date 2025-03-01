@@ -24,6 +24,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Button', {
   extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************
@@ -106,11 +107,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
      */
     __store: null,
     _triggerOnValue: null,
-
-    _parseInt(val) {
-      const intVal = parseInt(val);
-      return Number.isNaN(intVal) ? 0 : intVal;
-    },
 
     _init() {
       const element = this._element;

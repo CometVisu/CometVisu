@@ -4,6 +4,7 @@
 qx.Class.define('cv.io.listmodel.FritzCallList', {
   extend: qx.core.Object,
   implement: cv.io.listmodel.IListModel,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************
@@ -65,13 +66,6 @@ qx.Class.define('cv.io.listmodel.FritzCallList', {
   */
   members: {
     __calllistUri: null,
-
-    _parseInt(value) {
-      if (typeof value === 'string') {
-        return parseInt(value);
-      }
-      return value;
-    },
 
     _applyDevice() {
       // reset calllistUrl when device has changed
