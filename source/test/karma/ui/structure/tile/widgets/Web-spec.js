@@ -39,7 +39,7 @@ describe('testing the <cv-web> widget of the tile structure', () => {
     }
   });
 
-  function createElement(src, proxy, refresh) {
+  function createElement(src, proxy, refresh, fullScreen) {
     element = document.createElement('cv-web');
     element.setAttribute('src', src);
     if (proxy !== undefined) {
@@ -47,6 +47,9 @@ describe('testing the <cv-web> widget of the tile structure', () => {
     }
     if (refresh !== undefined) {
       element.setAttribute('refresh', refresh);
+    }
+    if (fullScreen === true) {
+      element.setAttribute('allow-fullscreen', 'true');
     }
     document.body.appendChild(element);
 
@@ -105,6 +108,17 @@ describe('testing the <cv-web> widget of the tile structure', () => {
     const iframe = element.querySelector(':scope > iframe');
     expect(iframe).not.toBeNull();
     expect(iframe.getAttribute('src').startsWith(proxyUrl.toString())).toBeTruthy();
+  });
+
+  it('should create an iframe with option to span it to full screen', () => {
+    createElement('https://www.cometvisu.org', false, undefined, true);
+    expect(element.hasAttribute('allow-fullscreen')).toBeTruthy();
+    const fsButton = element.querySelector(':scope > header button.fullscreen');
+    expect(element.hasAttribute('fullscreen')).toBeFalsy();
+    fsButton.click();
+    expect(element.getAttribute('fullscreen')).toBe('true');
+    fsButton.click();
+    expect(element.getAttribute('fullscreen')).toBe('false');
   });
 
 });
