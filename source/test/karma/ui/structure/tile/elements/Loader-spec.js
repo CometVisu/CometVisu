@@ -71,7 +71,7 @@ describe('testing the <cv-loader> element of the tile structure', () => {
   it('should load template files', done => {
     qx.dev.FakeServer.getInstance().configure([
       {
-        method: 'get',
+        method: 'GET',
         url: 'test.xml',
         response: request => {
           request.respond(
@@ -95,7 +95,7 @@ describe('testing the <cv-loader> element of the tile structure', () => {
     spyOn(cv.core.notifications.Router, 'dispatchMessage');
     qx.dev.FakeServer.getInstance().configure([
       {
-        method: 'get',
+        method: 'GET',
         url: 'test.xml',
         response: request => {
           request.respond(
