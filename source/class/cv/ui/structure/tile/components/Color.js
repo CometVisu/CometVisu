@@ -28,19 +28,6 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
 
   /*
   ***********************************************
-    PROPERTIES
-  ***********************************************
-  */
-  properties: {
-    throttleInterval: {
-      check: 'Number',
-      init: 250,
-      apply: '_applyThrottleInterval'
-    }
-  },
-
-  /*
-  ***********************************************
     STATICS
   ***********************************************
   */
@@ -58,9 +45,6 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
 
     _init() {
       const element = this._element;
-      if (element.hasAttribute('throttle-interval')) {
-        this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
-      }
 
       // init components
       const mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'popup';
@@ -100,6 +84,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
           }
           cv.ui.structure.tile.components.Color.CC_COUNTER++;
           const path = 'id_0_'+cv.ui.structure.tile.components.Color.CC_COUNTER;
+
           const props = {
             path: path,
             $$type: 'colorchooser',
@@ -108,8 +93,7 @@ qx.Class.define('cv.ui.structure.tile.components.Color', {
               colspan: 1
             },
             controls: element.hasAttribute('controls') ? element.getAttribute('controls') : 'triangle',
-            address: addresses,
-            throttleInterval: this.getThrottleInterval()
+            address: addresses
           };
           cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
           this.__colorChooser = new cv.ui.structure.pure.ColorChooser(props);
