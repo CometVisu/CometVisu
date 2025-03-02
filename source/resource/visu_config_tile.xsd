@@ -1013,7 +1013,6 @@
         <xsd:documentation xml:lang="de">Titel des Popups</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="throttle-interval" />
     <xsd:attribute name="controls" type="xsd:string" default="triangle">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
