@@ -40,14 +40,13 @@ describe('testing the <cv-breadcrumbs> component of the tile structure', () => {
   
     it('should create a default list-item', function() {
       const element = this.createTileWidgetWithComponent('cv-breadcrumbs', {}, '');
-      expect(element).toBeDefined();
+      expect(element).not.toBeNull();
       expect(element.tagName).toBe('CV-BREADCRUMBS');
       expect(element._instance instanceof cv.ui.structure.tile.components.Breadcrumbs).toBe(true);
       
       qx.event.message.Bus.dispatchByName('cv.ui.structure.tile.currentPage');
-      expect(element.querySelector('ul')).toBeDefined();
-      expect(element.querySelector('ul > li.start')).toBeDefined();
+      expect(element.querySelector('ul')).not.toBeNull();
+      expect(element.querySelector('ul > li.start')).not.toBeNull();
       expect(element.querySelectorAll('ul > li').length).toBe(2);
     });
   });
-  

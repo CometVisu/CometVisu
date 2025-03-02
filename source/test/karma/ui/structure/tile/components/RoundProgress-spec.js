@@ -43,13 +43,13 @@ describe('testing the <cv-round-progress> component of the tile structure', () =
       const element = this.createTileWidgetWithComponent('cv-round-progress', {
         type: type
       }, '');
-      expect(element).toBeDefined();
+      expect(element).not.toBeNull();
       expect(element.tagName).toBe('CV-ROUND-PROGRESS');
       expect(element._instance instanceof cv.ui.structure.tile.components.RoundProgress).toBe(true);
 
       // check content
-      expect(element.querySelector(`svg[type="${type}"]`)).toBeDefined();
-      expect(element.querySelector(`label`)).toBeDefined();
+      expect(element.querySelector(`svg[type="${type}"]`)).not.toBeNull();
+      expect(element.querySelector(`label`)).not.toBeNull();
     });
 
     it('should create a '+type+' round-progress with back- and foreground color', function() {

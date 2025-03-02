@@ -41,15 +41,15 @@ describe('testing the <cv-spinner> component of the tile structure', () => {
 
   it('should create a default spinner', function() {
     const element = this.createTileWidgetWithComponent('cv-spinner', {}, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-SPINNER');
     expect(element.textContent).toBe('');
     expect(element._instance instanceof cv.ui.structure.tile.components.Spinner).toBe(true);
 
     // check content
-    expect(element.querySelector('div.left.clickable')).toBeDefined();
-    expect(element.querySelector('label.value')).toBeDefined();
-    expect(element.querySelector('div.right.clickable')).toBeDefined();
+    expect(element.querySelector('div.left.clickable')).not.toBeNull();
+    expect(element.querySelector('label.value')).not.toBeNull();
+    expect(element.querySelector('div.right.clickable')).not.toBeNull();
   });
 
   it('should use given step-width in absolute mode', function() {

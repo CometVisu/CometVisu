@@ -40,14 +40,14 @@ describe('testing the <cv-slider> component of the tile structure', () => {
 
   it('should create a default slider', function() {
     const element = this.createTileWidgetWithComponent('cv-slider', {}, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-SLIDER');
     expect(element.textContent).toBe('');
     expect(element._instance instanceof cv.ui.structure.tile.components.Slider).toBe(true);
 
     // check content
-    expect(element.querySelector('input.slider')).toBeDefined();
-    expect(element.querySelector('label.value')).toBeDefined();
+    expect(element.querySelector('input.slider')).not.toBeNull();
+    expect(element.querySelector('label.value')).not.toBeNull();
   });
 
   it('should create a slider with increase/decrease icons and limits', function() {
@@ -65,8 +65,8 @@ describe('testing the <cv-slider> component of the tile structure', () => {
     // check content
     const dec = element.querySelector('.decrease');
     const inc = element.querySelector('.increase');
-    expect(dec).toBeDefined();
-    expect(inc).toBeDefined();
+    expect(dec).not.toBeNull();
+    expect(inc).not.toBeNull();
 
     const address = element.querySelector('cv-address');
     spyOn(address, 'dispatchEvent');

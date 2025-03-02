@@ -40,7 +40,7 @@ describe('testing the <cv-icon> component of the tile structure', () => {
   
     it('should create an icon from textContent', function() {
       const element = this.createTileWidgetWithComponent('cv-icon', {}, 'test-icon');
-      expect(element).toBeDefined();
+      expect(element).not.toBeNull();
       expect(element.tagName).toBe('CV-ICON');
       expect(element._instance instanceof cv.ui.structure.tile.components.Icon).toBe(true);
       expect(element.textContent).toBe('');
@@ -72,4 +72,3 @@ describe('testing the <cv-icon> component of the tile structure', () => {
       expect(element.classList.contains('red')).toBe(false);
     });
   });
-  

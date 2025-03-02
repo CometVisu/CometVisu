@@ -40,7 +40,7 @@ describe('testing the <cv-menu-item> component of the tile structure', () => {
 
   it('should create a default menu-item', function() {
     const element = this.createTileWidgetWithComponent('cv-menu-item', {}, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-MENU-ITEM');
     expect(element._instance instanceof cv.ui.structure.tile.components.MenuItem).toBe(true);
   });

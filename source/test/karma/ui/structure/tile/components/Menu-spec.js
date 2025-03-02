@@ -40,7 +40,7 @@ describe('testing the <cv-menu> component of the tile structure', () => {
 
   it('should create a dock menu', function() {
     const element = this.createTileWidgetWithComponent('cv-menu', { appearance: 'dock' }, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-MENU');
     expect(element._instance instanceof cv.ui.structure.tile.components.Menu).toBe(true);
 
@@ -59,7 +59,7 @@ describe('testing the <cv-menu> component of the tile structure', () => {
 
     // open menu on click
     const ham = element.querySelector(':scope > a.menu');
-    expect(ham).toBeDefined();
+    expect(ham).not.toBeNull();
     ham.click();
     expect(element.classList.contains('responsive')).toBe(true);
 
@@ -121,18 +121,19 @@ describe('testing the <cv-menu> component of the tile structure', () => {
 
     const element = this.createTileWidgetWithComponent('cv-menu', {model: 'pages'}, '');
     qx.event.message.Bus.dispatchByName('setup.dom.append');
+    console.log(element)
 
-    expect(element.querySelector(':scope > ul li > a[data-page-id="p1_1"]')).toBeDefined();
+    expect(element.querySelector(':scope > ul li a[data-page-id="p1_1"]')).not.toBeNull();
     // 1_2 should not be in the menu
-    expect(element.querySelector(':scope > ul li> a[data-page-id="p1_2"]')).toBeNull();
-    expect(element.querySelector(':scope > ul li> a[data-page-id="p1_3"]')).toBeDefined();
-    expect(element.querySelector(':scope > ul li> a[data-page-id="p1_3_1"]')).toBeDefined();
+    expect(element.querySelector(':scope > ul li a[data-page-id="p1_2"]')).toBeNull();
+    expect(element.querySelector(':scope > ul li a[data-page-id="p1_3"]')).not.toBeNull();
+    expect(element.querySelector(':scope > ul li a[data-page-id="p1_3_1"]')).not.toBeNull();
 
     // check active states
     let currentPage = 'p1_1';
     cv.Application.structureController.scrollToPage(currentPage, true);
-    expect(element.querySelector(':scope > ul li.active')).toBeDefined();
-    expect(element.querySelector(':scope > ul li.active > a').getAttribute('data-page-id')).toBe(currentPage);
+    expect(element.querySelector(':scope > ul li.active')).not.toBeNull();
+    expect(element.querySelector(':scope > ul li.active a').getAttribute('data-page-id')).toBe(currentPage);
     expect(element.querySelectorAll(':scope > ul li.sub-active').length).toBe(1);
     expect(element.querySelector(':scope > ul li:first-child').classList.contains('sub-active')).toBe(true);
 
@@ -140,8 +141,8 @@ describe('testing the <cv-menu> component of the tile structure', () => {
     cv.Application.structureController.scrollToPage(currentPage, true);
     expect(element.querySelector(':scope > ul li.active > a').getAttribute('data-page-id')).toBe(currentPage);
     expect(element.querySelectorAll(':scope > ul li.sub-active').length).toBe(2);
-    expect(element.querySelector(':scope > ul li.sub-active a[data-page-id="p1"]')).toBeDefined();
-    expect(element.querySelector(':scope > ul li.sub-active a[data-page-id="p1_3"]')).toBeDefined();
+    expect(element.querySelector(':scope > ul li.sub-active a[data-page-id="p1"]')).not.toBeNull();
+    expect(element.querySelector(':scope > ul li.sub-active a[data-page-id="p1_3"]')).not.toBeNull();
 
     // open page from menu item
     currentPage = 'p1';

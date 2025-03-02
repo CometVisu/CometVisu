@@ -40,7 +40,7 @@ describe('testing the <cv-listitem> component of the tile structure', () => {
   
     it('should create a default list-item', function() {
       const element = this.createTileWidgetWithComponent('cv-listitem', {}, '');
-      expect(element).toBeDefined();
+      expect(element).not.toBeNull();
       expect(element.tagName).toBe('CV-LISTITEM');
       expect(element._instance instanceof cv.ui.structure.tile.components.ListItem).toBe(true);
       spyOn(element, 'dispatchEvent');
@@ -53,4 +53,3 @@ describe('testing the <cv-listitem> component of the tile structure', () => {
       });
     });
   });
-  

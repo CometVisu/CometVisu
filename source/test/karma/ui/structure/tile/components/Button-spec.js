@@ -40,7 +40,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
       { },
       ''
     );
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.querySelector('label.button-label')).toBeNull();
     expect(element.tagName).toBe('CV-BUTTON');
     expect(element.textContent).toBe('');
@@ -63,7 +63,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
       ''
     );
     const bar = element.querySelector('svg > circle.bar');
-    expect(bar).toBeDefined();
+    expect(bar).not.toBeNull();
     expect(element._instance.getProgress()).toBe(50);
     expect(Math.round(parseInt(bar.getAttribute('stroke-dashoffset')))).toEqual(157);
   });

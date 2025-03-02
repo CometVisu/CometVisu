@@ -44,14 +44,14 @@ describe('testing the <cv-plugin> component of the tile structure', () => {
     const engine = cv.TemplateEngine.getInstance();
     const lid = engine.addListener('changeDomFinished', () => {
       if (engine.isDomFinished()) {
-        expect(cv.plugins['Link']).toBeDefined();
-        expect(element.querySelector('.widget_container > a')).toBeDefined();
+        expect(cv.plugins['Link']).not.toBeNull();
+        expect(element.querySelector('.widget_container > .widget > a')).not.toBeNull();
         engine.removeListenerById(lid);
         done();
       }
     });
     const element = this.createTileWidgetWithComponent('cv-plugin', {}, '<link></link>');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-PLUGIN');
     expect(element._instance instanceof cv.ui.structure.tile.components.Plugin).toBe(true);
   });
@@ -60,14 +60,14 @@ describe('testing the <cv-plugin> component of the tile structure', () => {
     const engine = cv.TemplateEngine.getInstance();
     const lid = engine.addListener('changeDomFinished', () => {
       if (engine.isDomFinished()) {
-        expect(cv.plugins['Link']).toBeDefined();
-        expect(element.querySelector('.widget_container > a')).toBeDefined();
+        expect(cv.plugins['Link']).not.toBeNull();
+        expect(element.querySelector('.widget_container > .widget > a')).not.toBeNull();
         engine.removeListenerById(lid);
         done();
       }
     });
     const element = this.createTileWidgetWithComponent('cv-plugin', {name: 'link'}, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-PLUGIN');
     expect(element._instance instanceof cv.ui.structure.tile.components.Plugin).toBe(true);
   });
@@ -77,8 +77,8 @@ describe('testing the <cv-plugin> component of the tile structure', () => {
     const engine = cv.TemplateEngine.getInstance();
     const lid = engine.addListener('changeDomFinished', () => {
       if (engine.isDomFinished()) {
-        expect(cv.plugins['OpenweatherMap']).toBeDefined();
-        expect(element.querySelector('.widget_container .openweathermap_value')).toBeDefined();
+        expect(cv.plugins['OpenweatherMap']).not.toBeNull();
+        expect(element.querySelector('.widget_container .openweathermap_value')).not.toBeNull();
         engine.removeListenerById(lid);
         done();
       }

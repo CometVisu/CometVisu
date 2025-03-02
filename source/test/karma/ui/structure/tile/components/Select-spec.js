@@ -40,14 +40,14 @@ describe('testing the <cv-select> component of the tile structure', () => {
 
   it('should create a default select', function() {
     const element = this.createTileWidgetWithComponent('cv-select', {}, '<cv-option>o1</cv-option><cv-option>o2</cv-option>');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-SELECT');
     expect(element._instance instanceof cv.ui.structure.tile.components.Select).toBe(true);
 
     // check content
-    expect(element.querySelector('.popup')).toBeDefined();
-    expect(element.querySelector('.value')).toBeDefined();
-    expect(element.querySelector('.dropdown')).toBeDefined();
+    expect(element.querySelector('.popup')).not.toBeNull();
+    expect(element.querySelector('.value')).not.toBeNull();
+    expect(element.querySelector('.dropdown')).not.toBeNull();
 
     // check that options got a key
     const options = element.querySelectorAll('cv-option');

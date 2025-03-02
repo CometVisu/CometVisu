@@ -40,7 +40,7 @@ describe('testing the <cv-value> component of the tile structure', () => {
 
   it('should create a default value', function() {
     const element = this.createTileWidgetWithComponent('cv-value',{},'');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-VALUE');
     expect(element.textContent).toBe('');
     expect(element._instance instanceof cv.ui.structure.tile.components.Value).toBe(true);

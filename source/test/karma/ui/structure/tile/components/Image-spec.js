@@ -53,7 +53,7 @@ describe('testing the <cv-image> component of the tile structure', () => {
 
   it('should create a default image', function() {
     const element = this.createTileWidgetWithComponent('cv-image', {src: 'Test.svg'}, '');
-    expect(element).toBeDefined();
+    expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-IMAGE');
     expect(element._instance instanceof cv.ui.structure.tile.components.Image).toBe(true);
     const baseUrl = window.location.origin + '/';
