@@ -370,6 +370,7 @@ beforeEach(function () {
   cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
   cv.Config.loadedStructure = 'pure';
   qx.core.Init.getApplication().setStructureLoaded(true);
+  cv.Config.unitTesting = true;
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
