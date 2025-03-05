@@ -128,7 +128,7 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
             cancelable: ev.cancelable,
             detail: ev.detail
           });
-          for (let a of element.querySelectorAll(':scope > cv-address')) {
+          for (let a of writeAddresses) {
             a.dispatchEvent(evCopy);
           }
         });
