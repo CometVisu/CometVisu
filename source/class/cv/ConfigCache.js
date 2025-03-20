@@ -92,7 +92,8 @@ qx.Class.define('cv.ConfigCache', {
         addresses: model.getAddressList(),
         configSettings: JSON.stringify(cv.Config.configSettings),
         config: cv.Config.configSuffix === null ? 'NULL' : cv.Config.configSuffix,
-        body: document.querySelector('body').innerHTML
+        body: document.querySelector('body').innerHTML,
+        defaultBackendName: cv.data.Model.getInstance().getDefaultBackendName()
       });
     },
 
@@ -182,6 +183,7 @@ qx.Class.define('cv.ConfigCache', {
           }, this);
         }
         model.setWidgetDataModel(cache.data);
+        model.setDefaultBackendName(cache.defaultBackendName);
         model.setAddressList(cache.addresses);
         const widgetsToInitialize = Object.keys(cache.data).filter(function (widgetId) {
           return cache.data[widgetId].$$initOnCacheLoad === true;
