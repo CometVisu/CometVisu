@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     pan: {
       check: 'Boolean',
       init: false,
-      transform: '_stringToBool',
+      transform: '_parseBoolean',
       apply: '_applyPan'
     },
 
@@ -623,15 +623,6 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           this._updateViewBox();
         });
       }
-    },
-
-    _stringToBool(value) {
-      if (typeof value === 'string') {
-        return value === 'true';
-      } else if (value === null || value === undefined) {
-        return false;
-      }
-      return value;
     }
   },
 

@@ -58,7 +58,10 @@ qx.Mixin.define('cv.util.MStringTransforms', {
       if (typeof val === 'string') {
         return val === 'true';
       }
-      return val;
+      if (typeof val === 'boolean') {
+        return val;
+      }
+      return false;
     }
   }
 });
