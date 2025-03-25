@@ -359,10 +359,10 @@ beforeAll(function (done) {
     return elem;
   };
 
-  this.createTileWidgetWithComponent = (name, attributes, content) => {
+  this.createTileWidgetWithComponent = (name, attributes = {}, content = '', widgetName = 'cv-widget', widgetAttributes = {}) => {
     const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
-    this.container = this.createHTMLElement('cv-widget', {}, `<cv-tile>${componentHtml}</cv-tile>`, true);
-    return this.container.querySelector('cv-widget > cv-tile > ' + name);
+    this.container = this.createHTMLElement(widgetName, widgetAttributes, `<cv-tile>${componentHtml}</cv-tile>`, true);
+    return this.container.querySelector(`${widgetName} > cv-tile > ${name}`);
   }
 });
 

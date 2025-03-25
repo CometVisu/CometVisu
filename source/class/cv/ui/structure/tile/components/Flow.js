@@ -167,12 +167,29 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
     _applyCenterX(value) {
       if (value) {
+        // save old values
+        for (const colElement of this._element.querySelectorAll(`:scope > *[column]`)) {
+          if (!colElement.hasAttribute('data-column')) {
+            colElement.setAttribute('data-column', colElement.getAttribute('column'));
+          }
+          if (!colElement.hasAttribute('data-row')) {
+            colElement.setAttribute('data-row', colElement.getAttribute('row'));
+          }
+        }
         this.__applyCenter('row', this.getRows());
       }
     },
 
     _applyCenterY(value) {
       if (value) {
+        for (const rowElement of this._element.querySelectorAll(`:scope > *[row]`)) {
+          if (!rowElement.hasAttribute('data-column')) {
+            rowElement.setAttribute('data-column', rowElement.getAttribute('column'));
+          }
+          if (!rowElement.hasAttribute('data-row')) {
+            rowElement.setAttribute('data-row', rowElement.getAttribute('row'));
+          }
+        }
         this.__applyCenter('column', this.getColumns());
       }
     },
@@ -191,9 +208,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       for (let i = 0; i < total; i++) {
         if (!skip.includes(i)) {
           if (selector === 'row') {
-            this.__adjustRow(this._element.querySelectorAll(`:scope > *[row="${i}"]`));
+            this.__adjustRow(this._element.querySelectorAll(`:scope > *[data-row="${i}"]`));
           } else {
-            this.__adjustColumn(this._element.querySelectorAll(`:scope > *[column="${i}"]`));
+            this.__adjustColumn(this._element.querySelectorAll(`:scope > *[data-column="${i}"]`));
           }
         }
       }
@@ -204,7 +221,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         rowElements[0].setAttribute('column', '1');
       } else if (rowElements.length === 2) {
         const sorted = Array.from(rowElements);
-        sorted.sort((a, b) => parseFloat(a.getAttribute('column')) - parseFloat(b.getAttribute('column')));
+        sorted.sort((a, b) => parseFloat(a.getAttribute('data-column')) - parseFloat(b.getAttribute('data-column')));
         sorted[0].setAttribute('column', '0.5');
         sorted[1].setAttribute('column', '1.5');
       }
@@ -215,7 +232,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         columnElements[0].setAttribute('row', '1');
       } else if (columnElements.length === 2) {
         const sorted = Array.from(columnElements);
-        sorted.sort((a, b) => parseFloat(a.getAttribute('row')) - parseFloat(b.getAttribute('row')));
+        sorted.sort((a, b) => parseFloat(a.getAttribute('data-row')) - parseFloat(b.getAttribute('data-row')));
         sorted[0].setAttribute('row', '0.5');
         sorted[1].setAttribute('row', '1.5');
       }
@@ -379,7 +396,11 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _updatePaginationButtons() {
-      let [column, row, width, height] = this.getViewBox().split(' ').map(v => parseInt(v));
+      const viewBox = this.getViewBox();
+      if (!viewBox) {
+        return;
+      }
+      let [column, row, width, height] = viewBox.split(' ').map(v => parseInt(v));
       for (const dir of ['top', 'bottom', 'left', 'right']) {
         const button = this._element.querySelector(`div.pagination.${dir}`);
         if (!button) {
