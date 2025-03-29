@@ -365,7 +365,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       if (this.isConnected()) {
         this._element.setAttribute('value', value || '');
         let mappedValue = this._mapValue(value);
-        mappedValue = this._formatValue(value);
+        mappedValue = this._formatValue(mappedValue);
         this._updateValue(mappedValue, value);
         const styleClass = this._getStyleClass(value);
         this.setStyleClass(styleClass);
