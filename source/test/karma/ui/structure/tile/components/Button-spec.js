@@ -110,7 +110,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
     }
   ]
   for (const mapping of typeMapping) {
-    it('should auto-detect a button with type ' + mapping.type + 'by defined addresses', function() {
+    it('should auto-detect a button with type ' + mapping.type + ' by defined addresses', function() {
       const element = this.createTileWidgetWithComponent('cv-button',
         mapping.attributes,
         mapping.content
