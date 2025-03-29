@@ -28,16 +28,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
 
   /*
   ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(element) {
-    super(element);
-    this.__store = new Map();
-  },
-
-  /*
-  ***********************************************
     PROPERTIES
   ***********************************************
   */
@@ -96,10 +86,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     _writeAddresses: null,
     __textLabel: null,
     __circumference: null,
-    /**
-     * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
-     */
-    __store: null,
     _triggerOnValue: null,
 
     _init() {
@@ -249,31 +235,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (this.isConnected()) {
         let value = this.isOn() ? this.getOnValue() : this.getOffValue();
         this._element.setAttribute('value', value || '');
-        let mappedValue = value;
-        if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(
-            this._element.getAttribute('mapping'),
-            value,
-            this.__store
-          );
-        }
-        const target = this._element.querySelector('.value');
-        if (target && target.tagName.toLowerCase() === 'cv-icon') {
-          if (target._instance) {
-            target._instance.setId(mappedValue);
-          } else {
-            target.textContent = mappedValue;
-          }
-        } else {
-          this.updateValue(mappedValue);
-        }
+        let mappedValue = this._mapValue(value);
+        this._updateValue(mappedValue, value);
+
         let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
         if (this._element.hasAttribute('styling')) {
-          styleClass = cv.Application.structureController.styleValue(
-            this._element.getAttribute('styling'),
-            value,
-            this.__store
-          );
+          styleClass = this._getStyleClass(value);
         }
         this.setStyleClass(styleClass);
       }
@@ -291,23 +258,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           value = cv.Application.structureController.mapValue(
             this._element.getAttribute('progress-mapping'),
             value,
-            this.__store
+            this._store
           );
         }
         valueElement.setAttribute(
           'stroke-dashoffset',
           '' + (this.__circumference - (value / 100) * this.__circumference)
         );
-      }
-    },
-
-    _applyStyleClass(value, oldValue) {
-      const classes = this._element.classList;
-      if (oldValue && classes.contains(oldValue)) {
-        classes.remove(oldValue);
-      }
-      if (value) {
-        classes.add(value);
       }
     },
 
@@ -320,10 +277,19 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       this.__textLabel.textContent = value;
     },
 
-    updateValue(value) {
-      const elem = this._element.querySelector('span.value');
-      if (elem) {
-        elem.innerHTML = value;
+    _updateValue(mappedValue, value) {
+      const target = this._element.querySelector('.value');
+      if (target && target.tagName.toLowerCase() === 'cv-icon') {
+        if (target._instance) {
+          target._instance.setId(mappedValue);
+        } else {
+          target.textContent = mappedValue;
+        }
+      } else {
+        const elem = this._element.querySelector('span.value');
+        if (elem) {
+          elem.innerHTML = mappedValue;
+        }
       }
     },
 
@@ -350,15 +316,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         return true;
       } else if (target === 'progress') {
         this.setProgress(ev.detail.state);
-        ev.stopPropagation();
-        return true;
-      } else if (target.startsWith('store:')) {
-        this.__store.set(target.substring(6), ev.detail.state);
-        ev.stopPropagation();
-        return true;
-      } else if (target === 'store') {
-        // use targetConfig as store key if available, address as fallback
-        this.__store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
         ev.stopPropagation();
         return true;
       } else {

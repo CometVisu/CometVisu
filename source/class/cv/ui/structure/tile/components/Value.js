@@ -85,11 +85,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
         switch (tagName) {
           case 'cv-icon':
             if (this._element.hasAttribute('styling')) {
-              styleClass = cv.Application.structureController.styleValue(
-                this._element.getAttribute('styling'),
-                value,
-                this.__store
-              );
+              styleClass = this._getStyleClass(value);
             }
             if (target._instance) {
               target._instance.setId('' + mappedValue);
