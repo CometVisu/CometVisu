@@ -202,11 +202,11 @@ describe('testing the <cv-button> component of the tile structure', () => {
       '<cv-address mode="read">state</cv-address><cv-address mode="read" target="progress">progress</cv-address><cv-address mode="read" target="store">store</cv-address><cv-address mode="read" target="store:test">test-store</cv-address>'
     );
 
-    const currentStore = element._store;
     spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value) => {
       return value === 'ON' ? 100 : 0;
     });
     const button = element._instance;
+    const currentStore = button._store;
     const model = cv.data.Model.getInstance();
     model.onUpdate('state', '1');
     expect(button.isOn()).toBeTruthy();
