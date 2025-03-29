@@ -457,7 +457,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
         case 'styling': {
           let styling = '';
-          if (ev.detail.targetConfig) {
+          if (ev.detail.targetConfig && ev.detail.targetConfig.length > 0) {
             // use address styling if available
             styling = ev.detail.targetConfig[0];
           } else if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
@@ -473,11 +473,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         case 'store':
           // use targetConfig as store key if available, address as fallback
           this._store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
-          ev.stopPropagation();
-          return true;
-
-        case ev.detail.target.startsWith('store:') ? ev.detail.target : false:
-          this._store.set(ev.detail.target.substring(6), ev.detail.state);
           ev.stopPropagation();
           return true;
 
