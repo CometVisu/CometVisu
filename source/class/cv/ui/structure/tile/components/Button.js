@@ -23,7 +23,7 @@
  * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.Button', {
-  extend: cv.ui.structure.tile.elements.AbstractCustomElement,
+  extend: cv.ui.structure.tile.components.AbstractComponent,
   include: cv.util.MStringTransforms,
 
   /*
@@ -73,12 +73,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       init: '0'
     },
 
-    styleClass: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyStyleClass'
-    },
-
     name: {
       check: 'String',
       init: '',
@@ -109,6 +103,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     _triggerOnValue: null,
 
     _init() {
+      super._init();
       const element = this._element;
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
@@ -125,28 +120,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (element.hasAttribute('off-value')) {
         this.setOffValue(element.getAttribute('off-value'));
       }
-      let hasReadAddress = false;
-      let writeAddresses = [];
-      Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
-        const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
-        switch (mode) {
-          case 'readwrite':
-            hasReadAddress = true;
-            writeAddresses.push(address);
-            break;
-          case 'read':
-            hasReadAddress = true;
-            break;
-          case 'write':
-            writeAddresses.push(address);
-            break;
-        }
-      });
-
-      this._writeAddresses = writeAddresses;
 
       const events = {};
-      if (writeAddresses.length > 0) {
+      if (this._writeAddresses.length > 0) {
         let eventSource = element;
         if (element.getAttribute('whole-tile') === 'true') {
           // find parent tile and use it as event source
@@ -162,7 +138,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
             level++;
           }
         }
-        writeAddresses.forEach(addr => {
+        this._writeAddresses.forEach(addr => {
           let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
           switch (event) {
             case 'click':
@@ -188,22 +164,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         });
       }
       let triggerAddresses = [];
-      if (hasReadAddress) {
-        element.addEventListener('stateUpdate', ev => {
-          this.onStateUpdate(ev);
-          // cancel event here
-          ev.stopPropagation();
-        });
-      } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
+      if (this._readAddresses.length === 0 && (element.hasAttribute('mapping') || element.hasAttribute('styling'))) {
         // apply the trigger state
-        triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
+        triggerAddresses = this._writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
       }
 
       // detect button type
-      if (
-        !hasReadAddress &&
-        triggerAddresses.length === 1
-      ) {
+      if (triggerAddresses.length === 1) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
 
@@ -229,7 +196,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       } else {
         let hasDown = false;
         let hasUp = false;
-        writeAddresses.some(addr => {
+        this._writeAddresses.some(addr => {
           if (addr.hasAttribute('value') && addr.hasAttribute('on')) {
             if (!hasDown) {
               hasDown = addr.getAttribute('on') === 'down';
@@ -379,13 +346,23 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
       if (target === 'default') {
         this.setOn(value);
+        ev.stopPropagation();
+        return true;
       } else if (target === 'progress') {
         this.setProgress(ev.detail.state);
+        ev.stopPropagation();
+        return true;
       } else if (target.startsWith('store:')) {
         this.__store.set(target.substring(6), ev.detail.state);
+        ev.stopPropagation();
+        return true;
       } else if (target === 'store') {
         // use targetConfig as store key if available, address as fallback
         this.__store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
+        ev.stopPropagation();
+        return true;
+      } else {
+        return super.onStateUpdate(ev);
       }
     },
 

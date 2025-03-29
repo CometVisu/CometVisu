@@ -100,6 +100,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   members: {
     _writeAddresses: null,
+    _readAddresses: null,
     _headerFooterParent: null,
     _preMappingHooks: null,
     _tileElement: null,
@@ -146,29 +147,31 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this._checkEnvironment();
 
       const element = this._element;
-      let hasReadAddress = false;
       const writeAddresses = [];
+      const readAddresses = [];
       Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
         const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
         switch (mode) {
           case 'readwrite':
-            hasReadAddress = true;
+            readAddresses.push(address);
             writeAddresses.push(address);
             break;
           case 'read':
-            hasReadAddress = true;
+            readAddresses.push(address);
             break;
           case 'write':
             writeAddresses.push(address);
             break;
         }
       });
+      let hasReadAddress = readAddresses.length > 0;
       if (!hasReadAddress) {
         // address groups are read-only
         hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
       }
 
       this._writeAddresses = writeAddresses;
+      this._readAddresses = readAddresses;
 
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
@@ -213,10 +216,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       for (const entry of this.__mobileReplacements) {
         entry.target.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
       }
-    },
-
-    getElement() {
-      return this._element;
     },
 
     /**
