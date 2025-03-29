@@ -202,10 +202,8 @@ describe('testing the <cv-button> component of the tile structure', () => {
       '<cv-address mode="read">state</cv-address><cv-address mode="read" target="progress">progress</cv-address><cv-address mode="read" target="store">store</cv-address><cv-address mode="read" target="store:test">test-store</cv-address>'
     );
 
-    // we mis-use the mapping to get access to the private this.__store property of the button
-    let currentStore = new Map();
-    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value, store) => {
-      currentStore = store;
+    const currentStore = element._store;
+    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value) => {
       return value === 'ON' ? 100 : 0;
     });
     const button = element._instance;
