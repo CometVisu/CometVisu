@@ -117,8 +117,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
      * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeConnection(other) {
-      if (this._connections.includes(other)) {
-        this._connections.remove(other);
+      const index = this._connections.indexOf(other);
+      if (index > -1) {
+        this._connections.splice(index, 1);
         if (this.getUseConnectionSum()) {
           other.removeListener('changeValue', this._updateConnectionsSum, this);
         }
@@ -130,8 +131,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
      * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeInverseConnection(other) {
-      if (this._inverseConnections.includes(other)) {
-        this._inverseConnections.remove(other);
+      const index = this._inverseConnections.indexOf(other);
+      if (index > -1) {
+        this._inverseConnections.splice(index, 1);
         if (this.getUseConnectionSum()) {
           other.removeListener('changeValue', this._updateConnectionsSum, this);
         }
