@@ -135,7 +135,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.EnergyEntity', {
     _applyDirection(direction) {
       if (direction === 'none') {
         this.resetColor();
-        let arrow = this._target ? this._target.querySelector('path.direction') : null;
+        let arrow = this._target ? this._target.querySelector('path.energy-direction') : null;
         if (arrow) {
           arrow.remove();
         }
