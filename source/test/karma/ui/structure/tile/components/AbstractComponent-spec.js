@@ -166,6 +166,18 @@ for (const config of matrix) {
         cv.data.Model.getInstance().onUpdate('T', '2025-01-01T12:34:56');
         expect(instance._updateValue).toHaveBeenCalledOnceWith('12:34:56', jasmine.any(Date));
       });
+
+      it('should format a mapped value', function() {
+        const element = this.createTileWidgetWithComponent(config.name,
+          { format: '%d %%', mapping: 'test' },
+          '<cv-address transform="OH:date" mode="read">T</cv-address>'
+        );
+        const instance = element._instance;
+        spyOn(instance, '_updateValue');
+        spyOn(cv.Application.structureController, 'mapValue').and.returnValue(99);
+        cv.data.Model.getInstance().onUpdate('T', 80);
+        expect(instance._updateValue).toHaveBeenCalledOnceWith('99 %', 80)
+      });
     }
   });
 }
