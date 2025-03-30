@@ -48,6 +48,7 @@ describe('testing the <cv-power-entity> component of the tile structure', () => 
   });
 
   it('should create a pv power-entity', function() {
+    spyOn(window, 'setTimeout').and.callFake((fn) => fn());
     const element = this.createTileWidgetWithComponent('cv-power-entity', { type: 'pv'}, '');
     expect(element.getAttribute('icon')).toBe('knxuf-weather_sun');
     expect(element.getAttribute('styling')).toBe('tile-pv-power');
@@ -138,6 +139,40 @@ describe('testing the <cv-power-entity> component of the tile structure', () => 
       expect(progress).not.toBeNull();
       expect(progress.getAttribute('stroke-dasharray')).toBe('50 50');
       expect(svg.querySelector('title').textContent).toBe('50%');
+
+      pv.setAttribute('foreground-color', 'red');
+      expect(progress.style.stroke).toBe('red');
+
+      done();
+    });
+  });
+
+  it('should sum up all connection values', function(done) {
+    spyOn(window, 'setTimeout').and.callFake((fn) => fn());
+    const element = this.createTileWidgetWithComponent('cv-flow', {
+    }, '<cv-power-entity type="pv" id="pv1" connect-to="house"><cv-address transform="OH:number" mode="read">V1</cv-address></cv-power-entity>' +
+      '<cv-power-entity type="pv" id="pv2" connect-to="house"><cv-address transform="OH:number" mode="read">V2</cv-address></cv-power-entity>' +
+      '<cv-power-entity type="house" id="house"></cv-power-entity>');
+
+    const model = cv.data.Model.getInstance();
+    const send = (v1, v2) => {
+      model.onUpdate('V1', v1);
+      model.onUpdate('V2', v2);
+    };
+
+    window.requestAnimationFrame(function() {
+      send(50, 25);
+      const house = element.querySelector('#house');
+      const c1 = element.querySelector('svg > path#pv1-house');
+      const c2 = element.querySelector('svg > path#pv2-house');
+      expect(house._instance.getUseConnectionSum()).toBeTrue();
+      expect(house._instance.getValue()).toBe(75);
+      expect(c1._instance.getShowDirection()).toBe('target');
+      expect(c2._instance.getShowDirection()).toBe('target');
+      send(0, -25);
+      expect(house._instance.getValue()).toBe(-25);
+      expect(c1._instance.getShowDirection()).toBe('none');
+      expect(c2._instance.getShowDirection()).toBe('source');
       done();
     });
   });
