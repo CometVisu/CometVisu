@@ -51,23 +51,39 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
       const element = this._element;
       this.__options = new Map();
 
-      const popup = (this.__popup = document.createElement('div'));
-      popup.classList.add('popup');
-      element.querySelectorAll(':scope > cv-option').forEach((option, i) => {
-        popup.appendChild(option);
-        if (!option.hasAttribute('key')) {
-          option.setAttribute('key', '' + i);
-        }
-        this.__options.set(option.getAttribute('key'), option);
-      });
-      const value = (this.__value = document.createElement('span'));
-      value.classList.add('value');
-      element.appendChild(value);
+      let popup = element.querySelector(':scope > .popup');
+      if (!popup) {
+        popup = (this.__popup = document.createElement('div'));
+        popup.classList.add('popup');
+        element.querySelectorAll(':scope > cv-option').forEach((option, i) => {
+          popup.appendChild(option);
+          if (!option.hasAttribute('key')) {
+            option.setAttribute('key', '' + i);
+          }
+          this.__options.set(option.getAttribute('key'), option);
+        });
+      } else {
+        // restore from existing popup
+        this.__popup = popup;
+        element.querySelectorAll(':scope > cv-option').forEach((option, i) => {
+          this.__options.set(option.getAttribute('key'), option);
+        });
+      }
+      let value = element.querySelector(':scope > .value');
+      if (!value) {
+        value = document.createElement('span');
+        value.classList.add('value');
+        element.appendChild(value);
+      }
       element.appendChild(popup);
-      const handle = document.createElement('cv-icon');
-      handle.classList.add('dropdown');
-      handle.classList.add('ri-arrow-down-s-line');
-      element.appendChild(handle);
+      this.__value = value;
+      let handle = element.querySelector(':scope > .dropdown');
+      if (!handle) {
+        handle = document.createElement('cv-icon');
+        handle.classList.add('dropdown');
+        handle.classList.add('ri-arrow-down-s-line');
+        element.appendChild(handle);
+      }
 
       if (this._writeAddresses.length > 0) {
         element.addEventListener('click', ev => this.onClicked(ev));

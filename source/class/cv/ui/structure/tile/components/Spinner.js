@@ -64,23 +64,29 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
         element.appendChild(valueElement);
       }
       // add increase / decrease buttons
-      const decrease = document.createElement('div');
-      decrease.classList.add('clickable');
-      decrease.classList.add('left');
-      const decreaseIcon = document.createElement('cv-icon');
-      decreaseIcon.classList.add('ri-arrow-down-s-line');
+      let decrease = element.querySelector(':scope > div.left.clickable');
+      if (!decrease) {
+        decrease = document.createElement('div');
+        decrease.classList.add('clickable');
+        decrease.classList.add('left');
+        const decreaseIcon = document.createElement('cv-icon');
+        decreaseIcon.classList.add('ri-arrow-down-s-line');
+        decrease.appendChild(decreaseIcon);
+        element.insertBefore(decrease, valueElement);
+      }
       decrease.addEventListener('click', ev => this.onDecrease(ev));
-      decrease.appendChild(decreaseIcon);
-      element.insertBefore(decrease, valueElement);
 
-      const increase = document.createElement('div');
-      increase.classList.add('clickable');
-      increase.classList.add('right');
-      const increaseIcon = document.createElement('cv-icon');
-      increaseIcon.classList.add('ri-arrow-up-s-line');
-      increase.appendChild(increaseIcon);
+      let increase = element.querySelector(':scope > div.right.clickable');
+      if (!increase) {
+        increase = document.createElement('div');
+        increase.classList.add('clickable');
+        increase.classList.add('right');
+        const increaseIcon = document.createElement('cv-icon');
+        increaseIcon.classList.add('ri-arrow-up-s-line');
+        increase.appendChild(increaseIcon);
+        element.appendChild(increase);
+      }
       increase.addEventListener('click', ev => this.onIncrease(ev));
-      element.appendChild(increase);
     },
 
     onDecrease(ev) {
