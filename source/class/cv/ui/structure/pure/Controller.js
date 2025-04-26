@@ -471,6 +471,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       } else {
         this.pagePartsHandler.fadeNavbar('Left', 'in', 0);
       }
+      cv.ui.structure.pure.layout.Manager.updateNavbarVisibility();
     },
 
     /**

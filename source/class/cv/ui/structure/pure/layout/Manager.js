@@ -75,6 +75,26 @@ qx.Class.define('cv.ui.structure.pure.layout.Manager', {
       return oldClass !== newClass;
     },
 
+    updateNavbarVisibility() {
+      const navbarVisibility = this.getCurrentPageNavbarVisibility();
+      const left = document.querySelector('#navbarLeft');
+      const right = document.querySelector('#navbarRight');
+      const top = document.querySelector('#navbarTop');
+      const bottom = document.querySelector('#navbarBotton');
+      if (left) {
+        left.style.display = navbarVisibility.left ? 'block' : 'none';
+      }
+      if (right) {
+        right.style.display = navbarVisibility.right ? 'block' : 'none';
+      }
+      if (top) {
+        top.style.display = navbarVisibility.top ? 'block' : 'none';
+      }
+      if (bottom) {
+        bottom.style.display = navbarVisibility.bottom ? 'block' : 'none';
+      }
+    },
+
     /**
      * return the available width for a the currently visible page
      * the available width is calculated by subtracting the following elements widths (if they are visible) from the body width
