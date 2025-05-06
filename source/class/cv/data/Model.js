@@ -278,6 +278,19 @@ qx.Class.define('cv.data.Model', {
      * @return {Array<String>} list of addresses
      */
     getAddresses(backendName) {
+      if (backendName && backendName === this.getDefaultBackendName() && backendName !== 'main' && !cv.io.BackendConnections.hasClient('main')) {
+        // We have a default name !== 'main', during initialization addresses might have been registered for 'main'
+        // because the default name was not set yet. When we do not have a backend called 'main', we return those addresses too
+        const addresses = Object.prototype.hasOwnProperty.call(this.__addressList, backendName)
+          ? Object.keys(this.__addressList[backendName])
+          : [];
+
+        const mainAddresses = Object.prototype.hasOwnProperty.call(this.__addressList, 'main')
+          ? Object.keys(this.__addressList['main'])
+          : [];
+
+        return addresses.concat(mainAddresses);
+      }
       if (!backendName) {
         backendName = this.getDefaultBackendName();
       }
