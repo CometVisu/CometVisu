@@ -26,6 +26,9 @@
 describe('testing the <cv-chart> component of the tile structure', () => {
   let oldController;
 
+  // Helper to wait for async DOM updates, making tests cleaner
+  const wait = (ms = 100) => new Promise(resolve => setTimeout(resolve, ms));
+
   beforeEach(function() {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
@@ -45,28 +48,30 @@ describe('testing the <cv-chart> component of the tile structure', () => {
     expect(element._instance instanceof cv.ui.structure.tile.components.Chart).toBe(true);
   });
 
-  it('should create a chart with title', function(done) {
+  it('should create a chart with title', async function() {
     const element = this.createTileWidgetWithComponent('cv-chart', {title: 'Test'}, '');
     const widget = element.parentElement.parentElement;
-    // charts has a sync init function
-    setTimeout(() => {
-      expect(widget.querySelector(':scope > header > label.title')).not.toBeNull();
-      done();
-    }, 100);
+    // The component init might schedule async DOM updates
+    await wait();
+    const titleElement = widget.querySelector(':scope > header > label.title');
+    expect(titleElement).not.toBeNull();
+    expect(titleElement.textContent.trim()).toBe('Test');
   });
 
-  const matrix = [
-    {selection: 'none', series: 'day', expected: []},
-    {selection: 'all', series: 'day', expected: ['hour', 'day', 'week', 'month', 'year']},
-    {selection: 'hour,day', series: 'week', expected: ['hour', 'day', 'week']}
-  ];
+  describe('testing series and selection attributes', () => {
+    const matrix = [
+      {selection: 'none', series: 'day', expected: []},
+      {selection: 'all', series: 'day', expected: ['hour', 'day', 'week', 'month', 'year']},
+      {selection: 'hour,day', series: 'week', expected: ['hour', 'day', 'week']}
+    ];
 
-  for (const {selection, series, expected} of matrix) {
-    it(`should create a chart with ${selection} selection and ${series} series`, function(done) {
-      const element = this.createTileWidgetWithComponent('cv-chart', { selection, series }, '');
-      const widget = element.parentElement.parentElement;
+    for (const {selection, series, expected} of matrix) {
+      it(`should create a chart with ${selection} selection and ${series} series`, async function() {
+        const element = this.createTileWidgetWithComponent('cv-chart', { selection, series }, '');
+        const widget = element.parentElement.parentElement;
 
-      setTimeout(() => {
+        await wait();
+
         expect(element._instance.getCurrentSeries()).toBe(series);
         expect(widget.querySelectorAll(':scope > header > label.title > .popup.series > cv-option').length).toBe(expected.length);
         if (expected.length > 0) {
@@ -79,8 +84,7 @@ describe('testing the <cv-chart> component of the tile structure', () => {
         for (const option of expected) {
           expect(widget.querySelector(`:scope > header > label.title > .popup.series > cv-option[key="${option}"]`)).not.toBeNull();
         }
-        done();
-      }, 100);
-    });
-  }
+      });
+    }
+  });
 });
