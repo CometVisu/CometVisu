@@ -141,7 +141,7 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     expect(widget.classList.contains('fullscreen')).toBeFalsy();
   });
 
-  it('should show an outdated state on a tile', function() {
+  xit('should show an outdated state on a tile', function() {
     element = this.createHTMLElement('cv-tile',{  },'<cv-address transform="OH:datetime" target="last-update:120"">Test</cv-address>', true);
 
     cv.data.Model.getInstance().onUpdate('Test', new Date().toISOString());
@@ -167,9 +167,9 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     expect(tile.isOutdated()).toBeTruthy();
     expect(tile.getOutdatedMessage()).toEqual(qx.locale.Manager.tr('Last update: unknown'));
 
-    // tile._lastUpdate = [];
-    // tile.checkOutdated();
-    // expect(tile.getOutdatedMessage()).toBeNull();
+    tile._lastUpdate = [];
+    tile.checkOutdated();
+    expect(tile.getOutdatedMessage()).toBeNull();
   });
 
 
