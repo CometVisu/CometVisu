@@ -186,6 +186,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     },
 
     checkOutdated() {
+      // eslint-disable-next-line no-console
       console.log('###', this._lastUpdate);
       if (this._lastUpdate instanceof Date) {
         if (isNaN(this._lastUpdate.getTime())) {
