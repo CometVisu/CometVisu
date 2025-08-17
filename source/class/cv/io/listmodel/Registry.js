@@ -24,7 +24,7 @@ qx.Class.define('cv.io.listmodel.Registry', {
     },
 
     unregister(modelClass) {
-      delete this._REG[modelClass.basename.toLowerCase()];;
+      delete this._REG[modelClass.basename.toLowerCase()];
     },
 
     /**

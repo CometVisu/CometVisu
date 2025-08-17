@@ -318,9 +318,8 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         this.setProgress(ev.detail.state);
         ev.stopPropagation();
         return true;
-      } else {
+      } 
         return super.onStateUpdate(ev);
-      }
     },
 
     onClicked(event) {

@@ -350,7 +350,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             value instanceof Date ? value.toLocaleString() : value);
         }
       }
-      return value
+      return value;
     },
 
     _getStyleClass(value) {

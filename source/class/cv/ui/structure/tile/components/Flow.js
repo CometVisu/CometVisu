@@ -168,7 +168,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _applyCenterX(value) {
       if (value) {
         // save old values
-        for (const colElement of this._element.querySelectorAll(`:scope > *[column]`)) {
+        for (const colElement of this._element.querySelectorAll(':scope > *[column]')) {
           if (!colElement.hasAttribute('data-column')) {
             colElement.setAttribute('data-column', colElement.getAttribute('column'));
           }
@@ -182,7 +182,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
     _applyCenterY(value) {
       if (value) {
-        for (const rowElement of this._element.querySelectorAll(`:scope > *[row]`)) {
+        for (const rowElement of this._element.querySelectorAll(':scope > *[row]')) {
           if (!rowElement.hasAttribute('data-column')) {
             rowElement.setAttribute('data-column', rowElement.getAttribute('column'));
           }
