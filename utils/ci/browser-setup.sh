@@ -27,6 +27,9 @@ else
   ln -s -f ${BROWSER_PATH} chrome
   echo WEBDRIVER_PATH=${DRIVER_PATH} | tee .protractor-env
   echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
+  if [ -z "${CHROME_BIN}" ]; then
+    echo CHROME_BIN=${BROWSER_PATH} | tee -a .protractor-env
+  fi
   mkdir -p ./node_modules/protractor/node_modules/webdriver-manager/selenium/
   cp ${DRIVER_PATH} ./node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_${CHROME_FULL_VERSION}
   $SELENIUM_MANAGER --browser=chrome --browser-version=$CV_VERSION --debug
