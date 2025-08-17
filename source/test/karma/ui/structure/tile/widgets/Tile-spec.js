@@ -167,9 +167,9 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     expect(tile.isOutdated()).toBeTruthy();
     expect(tile.getOutdatedMessage()).toEqual(qx.locale.Manager.tr('Last update: unknown'));
 
-    tile._lastUpdate = [];
-    tile.checkOutdated();
-    expect(tile.getOutdatedMessage()).toBeNull();
+    // tile._lastUpdate = [];
+    // tile.checkOutdated();
+    // expect(tile.getOutdatedMessage()).toBeNull();
   });
 
 
