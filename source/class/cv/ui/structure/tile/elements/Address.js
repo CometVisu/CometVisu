@@ -215,6 +215,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     }
   },
 
+  destruct() {
+      cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
+  },
+
   defer(Clazz) {
     customElements.define(
       cv.ui.structure.tile.Controller.PREFIX + 'address',

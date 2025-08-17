@@ -50,6 +50,7 @@ describe('testing the <cv-address-group> element of the tile structure', () => {
     cv.ui.structure.tile.elements.AddressGroup.C = 0;
     if (groupElement) {
       groupElement.remove();
+      groupElement = null;
     }
   });
 

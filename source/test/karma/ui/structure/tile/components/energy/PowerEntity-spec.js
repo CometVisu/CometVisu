@@ -37,6 +37,7 @@ describe('testing the <cv-power-entity> component of the tile structure', () => 
   afterEach(() => {
     cv.Application.structureController = oldController;
     document.body.classList.add('loading');
+    cv.ui.structure.tile.elements.AddressGroup.C = 0;
     cv.ui.structure.tile.elements.AddressGroup.DEBOUNCE_TIME = 10;
   });
 
