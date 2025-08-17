@@ -36,3 +36,4 @@ settings/keys/deploy_key
 qx_packages/
 source/REV
 cv-compile.json
+.protractor-env
