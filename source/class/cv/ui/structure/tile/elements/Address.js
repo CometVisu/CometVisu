@@ -165,8 +165,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
             transformedState instanceof Date ? transformedState.toLocaleString() : transformedState
           );
         }
-        let targetConfig = this._element.hasAttribute('target') ? this._element.getAttribute('target').split(':') : [];
-        const target = targetConfig.length > 0 ? targetConfig.shift() : '';
+        let target = this._element.hasAttribute('target') ? this._element.getAttribute('target') : '';
+        let targetConfig = [];
+
+        // do not split URLs
+        if (!target.includes('://')) {
+          targetConfig = target.split(/:(?!\/\/)/);
+          if (targetConfig.length > 0) {
+            target = targetConfig.shift();
+          }
+        }
         const ev = new CustomEvent('stateUpdate', {
           bubbles: true,
           cancelable: true,
