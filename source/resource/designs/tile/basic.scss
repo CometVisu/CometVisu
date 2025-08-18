@@ -948,7 +948,7 @@ body {
              font-size: 14px;
              font-weight: bold;
              color: #FFFFFF;
-             z-index: 100;
+             z-index: 10;
 
              &:before {
                  display: block;
@@ -1734,7 +1734,7 @@ body {
             max-height: 100%;
             max-width: 100%;
 
-            .grid {
+            .grid, .axis .tick line {
                 color: var(--chart-grid-color);
             }
         }

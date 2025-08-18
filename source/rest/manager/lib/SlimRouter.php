@@ -770,7 +770,7 @@ class SlimRouter
      *
      * @return array Merged array
      */
-    private function getTokenAuthenticationOptions(array $staticOptions, array $userOptions = null)
+    private function getTokenAuthenticationOptions(array $staticOptions, ?array $userOptions = null)
     {
         if (is_array($userOptions) === false) {
             return $staticOptions;

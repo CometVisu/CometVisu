@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/Main.js
+#: cv/ui/manager/MenuBar.js
 msgid "About"
 msgstr ""
 
@@ -1052,7 +1052,7 @@ msgstr ""
 msgid "Diagram communication error"
 msgstr ""
 
-#: cv/ui/structure/tile/components/Chart.js
+#: cv/ui/structure/tile/components/chart/Dataset.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr ""
 
@@ -1220,7 +1220,7 @@ msgstr ""
 msgid "Config error"
 msgstr ""
 
-#: cv/ui/structure/tile/components/Chart.js
+#: cv/ui/structure/tile/components/chart/Dataset.js
 msgid "Communication error"
 msgstr ""
 
@@ -1387,4 +1387,44 @@ msgstr ""
 
 #: cv/plugins/diagram/AbstractDiagram.js
 msgid "Data is not in an array."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Please provide an openHAB API token. It can be generated in openHABs main UI."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Provide API token"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ".%L"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ":%S"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I:%M"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I %p"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%a %d"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b %d"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%B"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%Y"
 msgstr ""

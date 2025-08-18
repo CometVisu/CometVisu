@@ -48,6 +48,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
             org: config.authority
           }
         };
+        const additional = {};
         // for inline bucket the query template is defined in the config and is provided externally
         if (bucket !== 'inline') {
           const parts = config.path.substring(1).split('/');
@@ -58,7 +59,6 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
             '|> range($$RANGE$$)',
             `|> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "${field}")`
           ];
-          const additional = {};
           const allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
           for (const key in config.params) {
             if (key.startsWith('ag-')) {
@@ -84,7 +84,7 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
               }
               queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
             } else {
-              this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.');
+              this.debug('aggregateWindow is missing "every" parameter -> not added to fixed template.');
             }
           }
 
@@ -95,13 +95,15 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         this._baseRequestConfig = {
           url: this._url,
           proxy: true,
-          options: options
+          options: options,
+          additional
         };
       } else {
         this._baseRequestConfig = {
           url: '',
           proxy: false,
-          options: {}
+          options: {},
+          additional: {}
         };
       }
     },
@@ -117,7 +119,6 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         case 'day':
           return '1h';
         case 'week':
-          return '6h';
         case 'month':
           return '1d';
         case 'year':
@@ -135,11 +136,17 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
         range = `start: ${timeRange.start.toISOString().split('.')[0]+'Z'}, stop: ${timeRange.end.toISOString().split('.')[0]+'Z'}`;
       }
       // add time range to the resource url to make the request cache work
-      config.url += `&range=${encodeURIComponent(range)}`;
+      if (!config.url.includes('?')) {
+        config.url += `?range=${encodeURIComponent(range)}`;
+      } else {
+        config.url += `&range=${encodeURIComponent(range)}`;
+      }
       config.options.requestData = this._queryTemplate.replace('$$RANGE$$', range);
       if (!config.options.requestData.includes('aggregateWindow')) {
         // get aggregation from series
-        config.options.requestData += `\n  |> aggregateWindow(every: ${this._getAgWindowEveryForSeries(series)}, fn: mean)`;
+        config.options.requestData += `\n  |> aggregateWindow(every: ${this._getAgWindowEveryForSeries(series)}, fn: ${config.additional.aggregateWindow?.fn || 'mean'})`;
+      } else {
+         config.options.requestData = config.options.requestData.replace('$$AG-EVERY$$', this._getAgWindowEveryForSeries(series));
       }
       config.url += `&h=${cv.ConfigCache.hashCode(config.options.requestData)}`;
       return config;
