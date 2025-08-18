@@ -153,8 +153,8 @@
             </cv-small-status>
             <cv-small-status value-format="%d°" styling="">
                 <label slot="value" style="font-size: 32px"/>
-                <cv-address slot="address" transform="DPT:9.001" mode="read">1/1/0</cv-address>
                 <label slot="label" class="secondary" tr="true">Outside</label>
+                <cv-address slot="address" transform="DPT:9.001" mode="read">1/1/0</cv-address>                
                 <cv-popup slot="popup" modal="true">
                     <cv-plugin>
                         <openweathermap detailItems="1" forecast24hItems="6" forecastDailyItems="3" showSunrise="false" lang="de" q="Stuttgart,de" refresh="360" appid="fake-app-id"/>
