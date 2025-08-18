@@ -312,9 +312,10 @@ module.exports = function(grunt) {
       },
       debug: {
         configFile: 'source/test/karma/karma.conf.js',
-        singleRun: !grunt.option('no-single'),
+        singleRun: !grunt.option('no-single') && !grunt.option('auto-watch'),
+        autoWatch: grunt.option('auto-watch'),
         browsers: [grunt.option('browser') || 'Chrome_ci'],
-        reporters: ['spec']
+        reporters: grunt.option('coverage') ? ['spec', 'coverage'] : ['spec']
       }
     },
 

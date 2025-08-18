@@ -141,4 +141,19 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     backend.remove();
     second.remove();
   });
+
+  it('should load custom backend classes', function() {
+    const backend = document.createElement('cv-backend');
+    backend.setAttribute('name', 'main');
+    backend.setAttribute('type', 'class:my.CustomBackend');
+    document.body.appendChild(backend);
+    spyOn(backend._instance, '_init').and.callThrough();
+    expect(backend._instance._init).not.toHaveBeenCalled();
+
+    class CustomBackend {}
+
+    cv.io.BackendConnections.registerClientClass('my.CustomBackend', CustomBackend);
+    expect(backend._instance._init).toHaveBeenCalled();
+  });
+
 });

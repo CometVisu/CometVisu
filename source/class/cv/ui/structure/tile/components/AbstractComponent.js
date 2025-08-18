@@ -32,6 +32,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   construct(element) {
     super(element);
     this._preMappingHooks = [];
+    this._store = new Map();
   },
 
   /*
@@ -100,10 +101,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   members: {
     _writeAddresses: null,
+    _readAddresses: null,
     _headerFooterParent: null,
     _preMappingHooks: null,
     _tileElement: null,
     __mobileReplacements: null,
+    /**
+     * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
+     */
+    _store: null,
 
     _checkEnvironment() {
       let inPopup = false;
@@ -146,29 +152,31 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this._checkEnvironment();
 
       const element = this._element;
-      let hasReadAddress = false;
       const writeAddresses = [];
+      const readAddresses = [];
       Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
         const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
         switch (mode) {
           case 'readwrite':
-            hasReadAddress = true;
+            readAddresses.push(address);
             writeAddresses.push(address);
             break;
           case 'read':
-            hasReadAddress = true;
+            readAddresses.push(address);
             break;
           case 'write':
             writeAddresses.push(address);
             break;
         }
       });
+      let hasReadAddress = readAddresses.length > 0;
       if (!hasReadAddress) {
         // address groups are read-only
         hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
       }
 
       this._writeAddresses = writeAddresses;
+      this._readAddresses = readAddresses;
 
       if (hasReadAddress) {
         element.addEventListener('stateUpdate', ev => {
@@ -213,10 +221,6 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       for (const entry of this.__mobileReplacements) {
         entry.target.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
       }
-    },
-
-    getElement() {
-      return this._element;
     },
 
     /**
@@ -320,37 +324,51 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this._preMappingHooks = this._preMappingHooks.filter(e => e[0] !== callback);
     },
 
+    _mapValue(value) {
+      for (const hookEntry of this._preMappingHooks) {
+        value = hookEntry[0].call(hookEntry[1], value);
+      }
+      if (value !== null) {
+        if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
+          value = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this._store);
+        }
+      }
+      return value;
+    },
+
+    _formatValue(value) {
+      if (value !== null && this._element.hasAttribute('format') && this._element.getAttribute('format')) {
+        const format = this._element.getAttribute('format');
+        if (value instanceof Date && !format.includes('%')) {
+          if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
+            cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
+          }
+          value = cv.ui.structure.tile.components.AbstractComponent[format].format(value);
+        } else {
+          value = cv.util.String.sprintf(
+            format,
+            value instanceof Date ? value.toLocaleString() : value);
+        }
+      }
+      return value;
+    },
+
+    _getStyleClass(value) {
+      if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
+        return cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this._store);
+      }
+      return '';
+    },
+
     // property apply
     _applyValue(value) {
       if (this.isConnected()) {
         this._element.setAttribute('value', value || '');
-        let mappedValue = value;
-        for (const hookEntry of this._preMappingHooks) {
-          mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
-        }
-        if (mappedValue !== null) {
-          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
-          }
-          if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-            const format = this._element.getAttribute('format');
-            if (mappedValue instanceof Date && !format.includes('%')) {
-              if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
-                cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
-              }
-              mappedValue = cv.ui.structure.tile.components.AbstractComponent[format].format(mappedValue);
-            } else {
-              mappedValue = cv.util.String.sprintf(
-                format,
-                mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
-            }
-          }
-        }
+        let mappedValue = this._mapValue(value);
+        mappedValue = this._formatValue(mappedValue);
         this._updateValue(mappedValue, value);
-        if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
-          let styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
-          this.setStyleClass(styleClass);
-        }
+        const styleClass = this._getStyleClass(value);
+        this.setStyleClass(styleClass);
       }
     },
 
@@ -439,7 +457,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
         case 'styling': {
           let styling = '';
-          if (ev.detail.targetConfig) {
+          if (ev.detail.targetConfig && ev.detail.targetConfig.length > 0) {
             // use address styling if available
             styling = ev.detail.targetConfig[0];
           } else if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
@@ -451,6 +469,12 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
           return true;
         }
+
+        case 'store':
+          // use targetConfig as store key if available, address as fallback
+          this._store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
+          ev.stopPropagation();
+          return true;
 
         case '':
           this.setValue(ev.detail.state);
@@ -469,7 +493,9 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
   */
   destruct() {
     this._writeAddresses = null;
+    this._readAddresses = null;
     this._headerFooterParent = null;
+    this._store.clear();
     qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
   }
 });

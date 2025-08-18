@@ -352,6 +352,14 @@ qx.Class.define('cv.core.notifications.Router', {
           entry.handler.handleMessage(message, entry.config);
         }, this);
       }
+      if (cv.Config.unitTesting === true) {
+        // log all errors in unit test
+        if (message.severity === 'high' || topic.endsWith('.error')) {
+          qx.log.Logger.error(this, 'message: ' + message.message);
+        } else {
+          qx.log.Logger.info(this, 'message: ' + message.message);
+        }
+      }
     },
 
     clear() {

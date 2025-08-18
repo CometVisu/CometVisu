@@ -26,7 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
   extend: cv.ui.structure.tile.elements.Address,
-  include: cv.ui.structure.tile.MStringTransforms,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************
@@ -38,7 +38,11 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
     if (!element.hasAttribute('id')) {
       element.setAttribute('id', `address-group_${cv.ui.structure.tile.elements.AddressGroup.C++}`);
     }
-    this.debouncedCalc = qx.util.Function.debounce(this._updateCalculation.bind(this), 10);
+    if (cv.ui.structure.tile.elements.AddressGroup.DEBOUNCE_TIME) {
+      this.debouncedCalc = qx.util.Function.debounce(this._updateCalculation.bind(this), cv.ui.structure.tile.elements.AddressGroup.DEBOUNCE_TIME);
+    } else {
+      this.debouncedCalc = this._updateCalculation;
+    }
   },
 
   /*
@@ -47,7 +51,8 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
   ***********************************************
   */
   statics: {
-    C: 0
+    C: 0,
+    DEBOUNCE_TIME: 10
   },
 
   /*
@@ -169,7 +174,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
               break;
 
             case '*':
-              val = this._values.reduce((accumulator, currentValue) => accumulator * currentValue, val);
+              val = this._values.reduce((accumulator, currentValue) => accumulator * currentValue, 1);
               break;
 
             case '/':

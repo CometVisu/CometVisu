@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Menu', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
-  include: [cv.ui.structure.tile.MStringTransforms],
+  include: [cv.util.MStringTransforms],
 
   /*
   ***********************************************
@@ -122,6 +122,8 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
           icon.classList.add('ri-menu-line');
         } else if (model === 'menuItems') {
+          // we do not habe to wait for dom ready for this model
+          this.setDomReady(true);
           // add hamburger menu
           const icon = document.createElement('i');
           icon.classList.add('ri-more-2-fill');
@@ -187,6 +189,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
                 li.appendChild(text);
               }
               li.addEventListener('click', event => {
+                event.stopPropagation();
                 item.getInstance().onClick(event);
               });
               rootList.appendChild(li);
@@ -227,7 +230,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         (target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu')
       ) {
         // clicked in hamburger menu, do nothing
-      } else if (target.tagName.toLowerCase() !== '.summary' && target.tagName.toLowerCase() !== 'p') {
+      } else if (!target.classList.contains('summary') && target.tagName.toLowerCase() !== 'p') {
         // defer closing because it would prevent the link clicks and page selection
         qx.event.Timer.once(this._closeAll, this, 500);
       } else {

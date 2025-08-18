@@ -23,17 +23,8 @@
  * @since 2022
  */
 qx.Class.define('cv.ui.structure.tile.components.Button', {
-  extend: cv.ui.structure.tile.elements.AbstractCustomElement,
-
-  /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(element) {
-    super(element);
-    this.__store = new Map();
-  },
+  extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.util.MStringTransforms,
 
   /*
   ***********************************************
@@ -72,12 +63,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       init: '0'
     },
 
-    styleClass: {
-      check: 'String',
-      nullable: true,
-      apply: '_applyStyleClass'
-    },
-
     name: {
       check: 'String',
       init: '',
@@ -101,18 +86,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     _writeAddresses: null,
     __textLabel: null,
     __circumference: null,
-    /**
-     * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
-     */
-    __store: null,
     _triggerOnValue: null,
 
-    _parseInt(val) {
-      const intVal = parseInt(val);
-      return Number.isNaN(intVal) ? 0 : intVal;
-    },
-
     _init() {
+      super._init();
       const element = this._element;
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
@@ -129,53 +106,35 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (element.hasAttribute('off-value')) {
         this.setOffValue(element.getAttribute('off-value'));
       }
-      let hasReadAddress = false;
-      let writeAddresses = [];
-      Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), address => {
-        const mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
-        switch (mode) {
-          case 'readwrite':
-            hasReadAddress = true;
-            writeAddresses.push(address);
-            break;
-          case 'read':
-            hasReadAddress = true;
-            break;
-          case 'write':
-            writeAddresses.push(address);
-            break;
-        }
-      });
-
-      this._writeAddresses = writeAddresses;
 
       const events = {};
-      if (writeAddresses.length > 0) {
+      if (this._writeAddresses.length > 0) {
         let eventSource = element;
         if (element.getAttribute('whole-tile') === 'true') {
           // find parent tile and use it as event source
           let parent = element.parentElement;
           let level = 0;
           while (level <= 2) {
-            parent = parent.parentElement;
-            level++;
             if (parent.tagName.toLowerCase() === 'cv-tile') {
               eventSource = parent;
               eventSource.classList.add('clickable');
+              break;
             }
+            parent = parent.parentElement;
+            level++;
           }
         }
-        writeAddresses.forEach(addr => {
+        this._writeAddresses.forEach(addr => {
           let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
           switch (event) {
             case 'click':
-              events.click = this.onClicked.bind(this);
+              events.click = ev => this.onClicked(ev);
               break;
             case 'up':
-              events.pointerup = this.onPointerUp.bind(this);
+              events.pointerup = ev => this.onPointerUp(ev);
               break;
             case 'down':
-              events.pointerdown = this.onPointerDown.bind(this);
+              events.pointerdown = ev => this.onPointerDown(ev);
               break;
           }
         });
@@ -191,22 +150,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         });
       }
       let triggerAddresses = [];
-      if (hasReadAddress) {
-        element.addEventListener('stateUpdate', ev => {
-          this.onStateUpdate(ev);
-          // cancel event here
-          ev.stopPropagation();
-        });
-      } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
+      if (this._readAddresses.length === 0 && (element.hasAttribute('mapping') || element.hasAttribute('styling'))) {
         // apply the trigger state
-        triggerAddresses = writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
+        triggerAddresses = this._writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
       }
 
       // detect button type
-      if (
-        !hasReadAddress &&
-        triggerAddresses.length === 1
-      ) {
+      if (triggerAddresses.length === 1) {
         // only one write address with a fixed value and no special event => simple trigger
         this.setType('trigger');
 
@@ -232,7 +182,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       } else {
         let hasDown = false;
         let hasUp = false;
-        writeAddresses.some(addr => {
+        this._writeAddresses.some(addr => {
           if (addr.hasAttribute('value') && addr.hasAttribute('on')) {
             if (!hasDown) {
               hasDown = addr.getAttribute('on') === 'down';
@@ -285,31 +235,12 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (this.isConnected()) {
         let value = this.isOn() ? this.getOnValue() : this.getOffValue();
         this._element.setAttribute('value', value || '');
-        let mappedValue = value;
-        if (this._element.hasAttribute('mapping')) {
-          mappedValue = cv.Application.structureController.mapValue(
-            this._element.getAttribute('mapping'),
-            value,
-            this.__store
-          );
-        }
-        const target = this._element.querySelector('.value');
-        if (target && target.tagName.toLowerCase() === 'cv-icon') {
-          if (target._instance) {
-            target._instance.setId(mappedValue);
-          } else {
-            target.textContent = mappedValue;
-          }
-        } else {
-          this.updateValue(mappedValue);
-        }
+        let mappedValue = this._mapValue(value);
+        this._updateValue(mappedValue, value);
+
         let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
         if (this._element.hasAttribute('styling')) {
-          styleClass = cv.Application.structureController.styleValue(
-            this._element.getAttribute('styling'),
-            value,
-            this.__store
-          );
+          styleClass = this._getStyleClass(value);
         }
         this.setStyleClass(styleClass);
       }
@@ -327,23 +258,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           value = cv.Application.structureController.mapValue(
             this._element.getAttribute('progress-mapping'),
             value,
-            this.__store
+            this._store
           );
         }
         valueElement.setAttribute(
           'stroke-dashoffset',
           '' + (this.__circumference - (value / 100) * this.__circumference)
         );
-      }
-    },
-
-    _applyStyleClass(value, oldValue) {
-      const classes = this._element.classList;
-      if (oldValue && classes.contains(oldValue)) {
-        classes.remove(oldValue);
-      }
-      if (value) {
-        classes.add(value);
       }
     },
 
@@ -356,10 +277,19 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       this.__textLabel.textContent = value;
     },
 
-    updateValue(value) {
-      const elem = this._element.querySelector('span.value');
-      if (elem) {
-        elem.innerHTML = value;
+    _updateValue(mappedValue, value) {
+      const target = this._element.querySelector('.value');
+      if (target && target.tagName.toLowerCase() === 'cv-icon') {
+        if (target._instance) {
+          target._instance.setId(mappedValue);
+        } else {
+          target.textContent = mappedValue;
+        }
+      } else {
+        const elem = this._element.querySelector('span.value');
+        if (elem) {
+          elem.innerHTML = mappedValue;
+        }
       }
     },
 
@@ -382,14 +312,14 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       }
       if (target === 'default') {
         this.setOn(value);
+        ev.stopPropagation();
+        return true;
       } else if (target === 'progress') {
         this.setProgress(ev.detail.state);
-      } else if (target.startsWith('store:')) {
-        this.__store.set(target.substring(6), ev.detail.state);
-      } else if (target === 'store') {
-        // use targetConfig as store key if available, address as fallback
-        this.__store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
-      }
+        ev.stopPropagation();
+        return true;
+      } 
+        return super.onStateUpdate(ev);
     },
 
     onClicked(event) {

@@ -16,7 +16,8 @@
       "theme": "cv.theme.Dark",
       "type": "browser",
       "environment": {
-        "qx.command.bindEnabled": true
+        "qx.command.bindEnabled": true,
+        "qx.promise.useNativePromises": true
       },
       "default": true,
       "include": [
@@ -162,7 +163,8 @@
         "qxl.apiviewer.applicationName": "cv",
         "qxl.apiviewer.exclude": ["qxl.apiviewer.*", "q.*", "qx.test.*", "q", "qxWeb"],
         "qxl.versionlabel.name": "CometVisu",
-        "qxl.versionlabel.version": "dev"
+        "qxl.versionlabel.version": "dev",
+        "qx.promise.useNativePromises": true
       },
       "include": [
         "qx.*"

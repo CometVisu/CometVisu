@@ -18,12 +18,12 @@
  */
 
 /**
- * Unit tests for <cv-address> component
+ * Unit tests for <cv-address> element
  *
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-address> component of the tile structure', () => {
+describe('testing the <cv-address> element of the tile structure', () => {
   let oldController;
   let clientMock;
 
@@ -59,6 +59,9 @@ describe('testing the <cv-address> component of the tile structure', () => {
     expect(addr).toBeInstanceOf(cv.ui.structure.tile.elements.Address);
     expect(addr.getConnected()).toBeTruthy();
 
+    expect(addr.isRead()).toBeTruthy();
+    expect(addr.isWrite()).toBeTruthy();
+
     // test if the address has been registered
     const addresses = model.getAddresses('main');
 
@@ -88,6 +91,9 @@ describe('testing the <cv-address> component of the tile structure', () => {
     expect(addr).toBeInstanceOf(cv.ui.structure.tile.elements.Address);
     expect(addr.getConnected()).toBeTruthy();
 
+    expect(addr.isRead()).toBeTruthy();
+    expect(addr.isWrite()).toBeFalsy();
+
     // test if the address has been registered
     const addresses = model.getAddresses('main');
 
@@ -116,6 +122,9 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     expect(addr).toBeInstanceOf(cv.ui.structure.tile.elements.Address);
     expect(addr.getConnected()).toBeTruthy();
+
+    expect(addr.isWrite()).toBeTruthy();
+    expect(addr.isRead()).toBeFalsy();
 
     // test if the address has been registered
     const addresses = model.getAddresses('main');
@@ -239,6 +248,53 @@ describe('testing the <cv-address> component of the tile structure', () => {
     }));
 
     expect(client.write).toHaveBeenCalledOnceWith('Test', 'ON', address);
+
+    // test is delay is working
+    address.setAttribute('delay', '1000');
+    spyOn(qx.event.Timer, 'once').and.callFake(callBack => callBack());
+    address.dispatchEvent(new CustomEvent('sendState', {
+      bubbles: true,
+      cancelable: true,
+      detail: {
+        value: '0'
+      }
+    }));
+    expect(qx.event.Timer.once).toHaveBeenCalledOnceWith(jasmine.any(Function), addr, 1000);
+    expect(client.write).toHaveBeenCalledTimes(2);
+
+    address.remove();
+
+    expect(addr.getConnected()).toBeFalsy();
+  });
+
+  it('should apply the format to the current state', () => {
+    const model = cv.data.Model.getInstance();
+    spyOn(model, 'getState').and.returnValue('ON');
+
+    const address = document.createElement('cv-address');
+    address.setAttribute('backend', 'test-backend');
+    address.setAttribute('format', '%s fmt');
+    spyOn(address, 'dispatchEvent');
+    address.textContent = 'Test';
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    expect(model.getState).toHaveBeenCalledOnceWith('Test', 'test-backend');
+
+    // as this is a read address it must NOT have been added as listener to the stateEvent
+    const ev = address.dispatchEvent.calls.mostRecent().args[0];
+
+    expect(ev.detail).toEqual({
+      address: 'Test',
+      state: 'ON fmt',
+      raw: 'ON',
+      mapping: '',
+      target: '',
+      targetConfig: [],
+      source: addr,
+      addressValue: null,
+      variant: null
+    });
 
     address.remove();
 
@@ -420,5 +476,33 @@ describe('testing the <cv-address> component of the tile structure', () => {
 
     expect(client.write).toHaveBeenCalledTimes(2);
     address.remove();
+  });
+
+  it('should fire an empty state for last-update', () => {
+    const address = document.createElement('cv-address');
+    address.setAttribute('target', 'last-update');
+    spyOn(address, 'dispatchEvent');
+    address.textContent = 'Test';
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    // as this is a read address it must NOT have been added as listener to the stateEvent
+    const ev = address.dispatchEvent.calls.mostRecent().args[0];
+
+    expect(ev.detail).toEqual({
+      address: 'Test',
+      state: '-',
+      raw: '-',
+      mapping: '',
+      target: 'last-update',
+      targetConfig: [],
+      source: addr,
+      addressValue: null,
+      variant: null
+    });
+
+    address.remove();
+
+    expect(addr.getConnected()).toBeFalsy();
   });
 });

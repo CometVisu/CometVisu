@@ -315,6 +315,7 @@ beforeAll(function (done) {
 
   try {
     cv.Config.enableCache = false;
+    cv.Config.timeoutStructureLoad = 5000;
     // always test in 'en' locale
     qx.locale.Manager.getInstance().setLocale('en');
     const client = cv.io.BackendConnections.initBackendClients();
@@ -330,12 +331,46 @@ beforeAll(function (done) {
   } catch (e) {
     console.error(e);
   }
+
+  /**
+   *
+   * @param name {string} HTML element tag-name
+   * @param attributes {object} HTML element attributes
+   * @param content {string} HTML element content
+   * @param append {boolean|string} append to body, or 'code' to return the HTML code
+   * @returns {ChildNode|string}
+   */
+  this.createHTMLElement = (name, attributes, content, append) => {
+
+    let attributesHTML = '';
+    for (const key in attributes) {
+      attributesHTML += `${key}="${attributes[key]}" `;
+    }
+    const html = `<${name} ${attributesHTML}>${content}</${name}>`;
+    if (append === 'code') {
+      return html;
+    }
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    const elem = template.content.firstChild;
+    if (append === true) {
+      document.body.appendChild(elem);
+    }
+    return elem;
+  };
+
+  this.createTileWidgetWithComponent = (name, attributes = {}, content = '', widgetName = 'cv-widget', widgetAttributes = {}) => {
+    const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
+    this.container = this.createHTMLElement(widgetName, widgetAttributes, `<cv-tile>${componentHtml}</cv-tile>`, true);
+    return this.container.querySelector(`${widgetName} > cv-tile > ${name}`);
+  }
 });
 
 beforeEach(function () {
   cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
   cv.Config.loadedStructure = 'pure';
   qx.core.Init.getApplication().setStructureLoaded(true);
+  cv.Config.unitTesting = true;
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;

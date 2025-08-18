@@ -42,7 +42,6 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   ***********************************************
   */
   members: {
-    _queuedOverflowDetection: null,
     _debouncedDetectOverflow: null,
 
     _init() {
@@ -59,9 +58,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
 
     _applyVisible(ev) {
       if (ev.getData()) {
-        if (this._queuedOverflowDetection) {
-          this._debouncedDetectOverflow();
-        }
+        this._debouncedDetectOverflow();
       } else {
         const target = this._element.querySelector('.value');
         if (target && target.classList.contains('scroll')) {
@@ -72,15 +69,12 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
 
     _detectOverflow() {
       const target = this._element.querySelector('.value');
-      if (this.isVisible()) {
-        this._queuedOverflowDetection = false;
+      if (this.isVisible() && target) {
         if (target.clientWidth > target.parentElement.clientWidth) {
           target.classList.add('scroll');
         } else {
           target.classList.remove('scroll');
         }
-      } else {
-        this._queuedOverflowDetection = true;
       }
     },
 
@@ -91,11 +85,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
         switch (tagName) {
           case 'cv-icon':
             if (this._element.hasAttribute('styling')) {
-              styleClass = cv.Application.structureController.styleValue(
-                this._element.getAttribute('styling'),
-                value,
-                this.__store
-              );
+              styleClass = this._getStyleClass(value);
             }
             if (target._instance) {
               target._instance.setId('' + mappedValue);

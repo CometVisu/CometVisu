@@ -76,10 +76,13 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       super._init();
       const element = this._element;
       this._findParentGridLayout();
-      const parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
       this._iconSize = 24 * this.getScale();
-      this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
-      this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
+      let parent = element;
+      if (this._parentGridLayout) {
+        parent = this._parentGridLayout.getSvg();
+        this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
+        this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
+      }
 
       const ns = 'http://www.w3.org/2000/svg';
 

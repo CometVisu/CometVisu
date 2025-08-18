@@ -38,6 +38,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
     _request: null,
 
     _init() {
+      super._init();
       const element = this._element;
       let img = element.querySelector(':scope > img');
       if (!img) {
@@ -55,7 +56,6 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
       const useProxy = element.hasAttribute('proxy') && element.getAttribute('proxy') === 'true';
       if (useProxy) {
         this._url = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
-
         this._url.searchParams.set('url', element.getAttribute('src'));
       }
       this._headers = {};
@@ -104,6 +104,10 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         request.send(null);
       } else {
         img.src = this._url.toString();
+      }
+      if (!this._lastRefresh) {
+        // set this to avoid another refresh triggered by the refresh feature when this image gets visible
+        this._lastRefresh = Date.now();
       }
     },
 

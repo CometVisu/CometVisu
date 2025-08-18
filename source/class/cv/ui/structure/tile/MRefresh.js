@@ -59,6 +59,7 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
       if (value === 0) {
         if (this._refreshTimer) {
           this._refreshTimer.stop();
+          this._refreshTimer = null;
         }
       } else if (!this._refreshTimer) {
         this._refreshTimer = new qx.event.Timer(value * 1000);

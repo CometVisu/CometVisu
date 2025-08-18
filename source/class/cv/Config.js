@@ -234,6 +234,11 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
+     * Only set in unit tests
+     */
+    unitTesting: false,
+
+    /**
      * If the CometVisu can use service workers
      */
     useServiceWorker: false,

@@ -18,9 +18,9 @@
  */
 
 /**
- * Represents an action that should be executed when the related menu item has been clicked.
+ * Represents an item in a list
  */
-qx.Class.define('cv.ui.structure.tile.components.MenuAction', {
+qx.Class.define('cv.ui.structure.tile.components.MenuItem', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
   /*

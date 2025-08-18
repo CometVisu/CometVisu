@@ -510,6 +510,7 @@
         <xsd:element name="cv-address" type="address"/>
         <xsd:element name="iframe" type="iframe"/>
         <xsd:group ref="HTMLTextElements"/>
+        <xsd:element name="flex-break" type="flex-break"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="icon" type="xsd:string">
@@ -1013,7 +1014,6 @@
         <xsd:documentation xml:lang="de">Titel des Popups</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute ref="throttle-interval" />
     <xsd:attribute name="controls" type="xsd:string" default="triangle">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
@@ -2017,6 +2017,12 @@
     </xsd:attribute>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the website in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung der Webseite auf volle Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-link">
@@ -3345,6 +3351,14 @@
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="src" type="xsd:anyURI"/>
     <xsd:attribute name="data-src" type="xsd:anyURI"/>
+  </xsd:complexType>
+
+  <!-- no real HTML element, just a CSS-helper element -->
+  <xsd:complexType name="flex-break">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Adds a line break.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Fügt einen Zeilenumbruch hinzu.</xsd:documentation>
+    </xsd:annotation>
   </xsd:complexType>
 
   <!--
