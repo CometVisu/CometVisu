@@ -32,9 +32,18 @@ qx.Class.define('cv.io.timeseries.Plugin', {
   */
   statics: {
     _registry: {},
+    _waitingForType: {},
 
     registerPlugin(type, clazz) {
       this._registry[type] = clazz;
+      if (cv.io.timeseries.Plugin._waitingForType[type]) {
+        for (const entry of cv.io.timeseries.Plugin._waitingForType[type]) {
+          const instance = entry.instance;
+          clearTimeout(entry.timeout);
+          instance.init();
+        }
+        delete cv.io.timeseries.Plugin._waitingForType[type];
+      }
     }
   },
 
@@ -46,11 +55,27 @@ qx.Class.define('cv.io.timeseries.Plugin', {
   members: {
     _plugin: null,
 
+    init() {
+      if (!this._initialized) {
+        this._init();
+      }
+    },
+
     _init() {
       const config = this.getConfig();
       if (!Object.prototype.hasOwnProperty.call(cv.io.timeseries.Plugin._registry, config.subType)) {
-        throw new Error('Unknown plugin type: ' + config.subType);
+        if (!cv.io.timeseries.Plugin._waitingForType[config.subType]) {
+          cv.io.timeseries.Plugin._waitingForType[config.subType] = [];
+        }
+        cv.io.timeseries.Plugin._waitingForType[config.subType].push({
+          instance: this,
+          timeout: setTimeout(() => {
+            throw new Error('Unknown plugin type: ' + config.subType);
+          }, 1000)
+        });
+        return;
       }
+      this._initialized = true;
       this._plugin = new cv.io.timeseries.Plugin._registry[config.subType](config, this._chart);
     },
 
