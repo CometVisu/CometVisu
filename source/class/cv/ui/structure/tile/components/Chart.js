@@ -90,9 +90,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         });
       } else {
         cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
-          dateTime: "%x, %X",
-          date: "%-m/%-d/%Y",
-          time: "%-I:%M:%S %p",
+          dateTime: '%x, %X',
+          date: '%-m/%-d/%Y',
+          time: '%-I:%M:%S %p',
           periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
           days: qx.locale.Date.getDayNames('wide', null, 'format').map(t => t.translate().toString()),
           shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(t => t.translate().toString()),
