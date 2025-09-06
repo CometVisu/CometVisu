@@ -136,7 +136,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Data', {
               value: 0
             })));
             this.titles.splice(i, 0, ...gapTimes.map(() => this.titles[i - 1]));
-            this.indices.splice(i, 0, ...gapTimes.map((_,k) => i+k));
+            this.indices.splice(i, 0, ...gapTimes.map((_, k) => i+k));
           }
         }
         lastTime = time;

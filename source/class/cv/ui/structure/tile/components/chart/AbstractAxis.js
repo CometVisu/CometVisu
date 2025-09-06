@@ -8,6 +8,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractAxis', {
   /**
    * 
    * @param {cv.ui.structure.tile.components.Chart} chart 
+   * @param type
    */
   construct(chart, type) {
     this._chart = chart;

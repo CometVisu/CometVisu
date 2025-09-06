@@ -7,6 +7,8 @@ qx.Class.define('cv.ui.structure.tile.components.chart.YAxis', {
     /**
      * 
      * @param {cv.ui.structure.tile.components.Chart} chart 
+     * @param type
+     * @param right
      */
     construct(chart, type = 'axis', right = false) {
         super(chart, type);
@@ -26,9 +28,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.YAxis', {
         this._updateRange();
 
         this._chart.bind('height', this, 'ticks', {
-            converter: (height) => {
-                return Math.round(height / 60);
-            }
+            converter: height => Math.round(height / 60)
         });
 
         this._axis = this._right ? d3.axisRight(this.getScale()) : d3.axisLeft(this.getScale());

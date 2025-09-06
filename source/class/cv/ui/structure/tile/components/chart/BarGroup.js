@@ -76,23 +76,18 @@ qx.Class.define('cv.ui.structure.tile.components.chart.BarGroup', {
       } 
       this._xzScale.range([0, this._xBarScale.bandwidth()]);
 
-      const xLabelOffset = 0;// (this._chartConf.xz.bandwidth() - config.xPadding)/2;
       this._element
         .selectAll('g')
         .data(this.getData())
         .join('g')
         .attr('fill', p => cv.util.Color.opacify(this._datasets.get(p[0]).getColor(), this._chart.getDatasetOpacity()))
         .selectAll('rect')
-        .data(d => {
-          return d[1].map(val => {
-            return {
+        .data(d => d[1].map(val => ({
               key: d[0],
               index: val
-            };
-          });
-        })
+            })))
         .join('rect')
-        .attr('x', (d) => {
+        .attr('x', d => {
           const x = this._chart.getXPos(d.index);
           const xz = this._xzScale(d.key);
           return x + xz;

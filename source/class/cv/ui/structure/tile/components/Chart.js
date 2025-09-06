@@ -579,7 +579,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             this.setMaxX(maxX);
           }
         }
-
       } else {
         // fallback mode when no special axis element is there, to still support old configs
         if (this._element.hasAttribute('x-format')) {
@@ -618,7 +617,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             this.setMaxY(maxY);
           }
         }
-
       } else {
         // fallback mode when no special axis element is there, to still support old configs
         if (this._element.hasAttribute('y-format')) {
@@ -641,7 +639,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     _initChartContent() {
       const chartElements = [];
-      let line, area, bar, stackedBar = null;
+      let line = null; 
+      let area = null;
+      let bar = null; 
+      let stackedBar = null;
       for (const key in this._datasets) {
         const ds = this._datasets[key];
         switch (ds.getChartType()) {
@@ -941,14 +942,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     multiTimeFormat() {
       const de = cv.ui.structure.tile.components.Chart.TF;
-      const formatMillisecond = de.format(qx.locale.Manager.tr('.%L')),
-        formatSecond = de.format(qx.locale.Manager.tr(':%S')),
-        formatMinute = de.format(qx.locale.Manager.tr('%I:%M')),
-        formatHour = de.format(qx.locale.Manager.tr('%I %p')),
-        formatDay = de.format(qx.locale.Manager.tr('%a %d')),
-        formatWeek = de.format(qx.locale.Manager.tr('%b %d')),
-        formatMonth = de.format(qx.locale.Manager.tr('%b')),
-        formatYear = de.format(qx.locale.Manager.tr('%Y'));
+      const formatMillisecond = de.format(qx.locale.Manager.tr('.%L'));
+        const formatSecond = de.format(qx.locale.Manager.tr(':%S'));
+        const formatMinute = de.format(qx.locale.Manager.tr('%I:%M'));
+        const formatHour = de.format(qx.locale.Manager.tr('%I %p'));
+        const formatDay = de.format(qx.locale.Manager.tr('%a %d'));
+        const formatWeek = de.format(qx.locale.Manager.tr('%b %d'));
+        const formatMonth = de.format(qx.locale.Manager.tr('%b'));
+        const formatYear = de.format(qx.locale.Manager.tr('%Y'));
       /**
        * @param date
        */
@@ -1306,7 +1307,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         const timeString = this._tooltipTimeFormat ? this._tooltipTimeFormat(new Date(time)) : this.getXAxis().getTickFormat()(new Date(time));
         const valueStrings = [];
         // collect all y values for this time
-        const otherYIndices = this.data.values.map((_, index) => index).filter((index) => this.data.times[index] === time);
+        const otherYIndices = this.data.values.map((_, index) => index).filter(index => this.data.times[index] === time);
         for (const v of otherYIndices) {
           const k = this.data.keys[v];
           const ds = this._datasets[k];
@@ -1454,7 +1455,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   destruct() {
-    this._disposeMap('_datasets')
+    this._disposeMap('_datasets');
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
   },
 

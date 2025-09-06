@@ -8,6 +8,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractGroup', {
 
   /**
    * @param {cv.ui.structure.tile.components.Chart} chart 
+   * @param type
    */
   construct(chart, type) {
     super();
@@ -71,7 +72,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractGroup', {
     mixBlendMode: {
       check: ['normal', 'multiply', 'screen', 'overlay'],
       init: 'normal'
-    },
+    }
   },
 
   members: {
@@ -104,7 +105,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractGroup', {
       const data = new Map();
       for (const ds of this._datasets.values()) {
         const key = ds.getKey();
-        data.set(key, this._chart.data.getIndicesForKey(key))
+        data.set(key, this._chart.data.getIndicesForKey(key));
       }
       return data;
     },
@@ -153,7 +154,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractGroup', {
     },
 
     _applyDataset(dataset, oldDs) {
-    },
+    }
 
   },
 

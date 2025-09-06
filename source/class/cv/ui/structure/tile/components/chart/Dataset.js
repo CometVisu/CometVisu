@@ -95,12 +95,12 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Dataset', {
      * @param series {'hour'|'day'|'week'|'month'|'year'}
      * @param offset {Number} series offset
      * @param {*} options 
-     * @returns 
+     * @returns {Promise<Array>}
      */
     async fetch(start, end, series, offset, options) {
       const source = this.getSource();
       if (!source) {
-        return null;
+        return [];
       }
       const config = source.getRequestConfig(start, end, series, offset);
       let url = config.url;
@@ -140,6 +140,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Dataset', {
             return [];
           });
       }
+      return [];
     },
 
     _init() {

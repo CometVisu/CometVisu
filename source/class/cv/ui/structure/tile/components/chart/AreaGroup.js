@@ -6,7 +6,6 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AreaGroup', {
   extend: cv.ui.structure.tile.components.chart.AbstractGroup,
 
   /**
-   * @param {cv.ui.structure.tile.components.chart.Dataset} ds
    * @param {cv.ui.structure.tile.components.Chart} chart 
    */
   construct(chart) {

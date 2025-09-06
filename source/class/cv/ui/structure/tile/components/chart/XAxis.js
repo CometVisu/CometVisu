@@ -6,6 +6,8 @@ qx.Class.define('cv.ui.structure.tile.components.chart.XAxis', {
 
     /**
      * @param {cv.ui.structure.tile.components.Chart} chart 
+     * @param type
+     * @param top
      */
     construct(chart, type ='axis', top = false) {
         super(chart, type);
@@ -25,9 +27,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.XAxis', {
         this._updateRange();
 
         this._chart.bind('width', this, 'ticks', {
-            converter: (width) => {
-                return Math.round(width / 80);
-            }
+            converter: width => Math.round(width / 80)
         });
         this._axis = this._top ? d3.axisTop(this.getScale()) : d3.axisBottom(this.getScale());
         this._axis.ticks(this.getTicks(), this.getTickFormat());
