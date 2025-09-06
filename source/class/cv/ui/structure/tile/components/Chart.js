@@ -88,6 +88,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           months: qx.locale.Date.getMonthNames('wide').map(t => t.translate().toString()),
           shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
         });
+      } else {
+        cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
+          dateTime: "%x, %X",
+          date: "%-m/%-d/%Y",
+          time: "%-I:%M:%S %p",
+          periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
+          days: qx.locale.Date.getDayNames('wide', null, 'format').map(t => t.translate().toString()),
+          shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(t => t.translate().toString()),
+          months: qx.locale.Date.getMonthNames('wide').map(t => t.translate().toString()),
+          shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
+        });
       }
     }),
 
@@ -941,15 +952,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     multiTimeFormat() {
-      const de = cv.ui.structure.tile.components.Chart.TF;
-      const formatMillisecond = de.format(qx.locale.Manager.tr('.%L'));
-        const formatSecond = de.format(qx.locale.Manager.tr(':%S'));
-        const formatMinute = de.format(qx.locale.Manager.tr('%I:%M'));
-        const formatHour = de.format(qx.locale.Manager.tr('%I %p'));
-        const formatDay = de.format(qx.locale.Manager.tr('%a %d'));
-        const formatWeek = de.format(qx.locale.Manager.tr('%b %d'));
-        const formatMonth = de.format(qx.locale.Manager.tr('%b'));
-        const formatYear = de.format(qx.locale.Manager.tr('%Y'));
+      let locale = cv.ui.structure.tile.components.Chart.TF;
+
+      const formatMillisecond = locale.format(qx.locale.Manager.tr('.%L'));
+        const formatSecond = locale.format(qx.locale.Manager.tr(':%S'));
+        const formatMinute = locale.format(qx.locale.Manager.tr('%I:%M'));
+        const formatHour = locale.format(qx.locale.Manager.tr('%I %p'));
+        const formatDay = locale.format(qx.locale.Manager.tr('%a %d'));
+        const formatWeek = locale.format(qx.locale.Manager.tr('%b %d'));
+        const formatMonth = locale.format(qx.locale.Manager.tr('%b'));
+        const formatYear = locale.format(qx.locale.Manager.tr('%Y'));
       /**
        * @param date
        */
