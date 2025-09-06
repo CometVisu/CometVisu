@@ -1029,3 +1029,5 @@ attribute
 attributName
 section
 system
+opacity
+aggregation

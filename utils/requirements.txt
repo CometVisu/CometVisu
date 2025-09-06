@@ -14,4 +14,4 @@ semver
 requests
 Pillow
 python-dotenv
-enchant
+pyenchant
