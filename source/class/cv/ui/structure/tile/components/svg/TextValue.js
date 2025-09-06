@@ -105,11 +105,12 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       }
 
       const value = document.createElementNS(ns, 'text');
-      value.setAttribute('x', '0');
+      value.setAttribute('x', this.getWidth() / 2);
       value.setAttribute('y', '32');
       value.setAttribute('alignment-baseline', 'central');
       value.setAttribute('class', 'value');
       value.setAttribute('fill', this.getColor());
+      value.style.textAnchor = 'middle';
       this._target.appendChild(value);
 
       this.addListener('heightChanged', this._centerY, this);
@@ -154,7 +155,14 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
     },
 
     _centerX() {
-      this.setOffsetX(this.getWidth() / 2 - this._svg.getBBox().width / 2);
+      let text = this._target.querySelector('text.value');
+      if (text) {
+        text.setAttribute('x', '' + (this.getWidth() / 2));
+      }
+      text = this._target.querySelector('text.title');
+      if (text) {
+        text.setAttribute('x', '' + (this.getWidth() / 2));
+      }
     },
 
     _applyOffsetY(value) {
@@ -164,7 +172,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       }
       let text = this._target.querySelector('text.value');
       if (text) {
-        text.setAttribute('y', '' + (value + 32));
+        text.setAttribute('y', '' + (value + this._iconSize + 12));
       }
       text = this._target.querySelector('text.title');
       if (text) {
@@ -172,7 +180,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       }
     },
 
-    _applyOffsetX() {
+    _applyOffsetX() {      
     },
 
     _applyTitleOverride(title) {
@@ -181,10 +189,11 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
           let text = this._target.querySelector('text.title');
           if (!text) {
             text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('x', '0');
+            text.setAttribute('x', this.getWidth() / 2);
             text.setAttribute('y', '16');
             text.setAttribute('alignment-baseline',  'central');
             text.classList.add('title');
+            text.style.textAnchor = 'middle';
             this._target.appendChild(text);
           }
           text.textContent = title;
@@ -224,8 +233,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
         if (!icon) {
           const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
           fo.setAttribute('class', 'icon-container');
-          fo.setAttribute('width', this._iconSize + 'px');
-          fo.setAttribute('height', this._iconSize + 'px');
+          fo.setAttribute('width', '100%');
+          fo.setAttribute('height', '' + this._iconSize);
           fo.style.textAlign = 'center';
 
           icon = document.createElement('cv-icon');

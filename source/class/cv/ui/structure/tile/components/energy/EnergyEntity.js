@@ -178,7 +178,7 @@ qx.Class.define('cv.ui.structure.tile.components.energy.EnergyEntity', {
     __updateDirectionPosition() {
       let arrow = this._target.querySelector('path.energy-direction');
       if (arrow) {
-        arrow.setAttribute('transform', `translate(28, ${this.getOffsetY() + 8}) rotate(${this.getDirection() === 'incoming' ? '90' : '-90'}, 3, 4)`);
+        arrow.setAttribute('transform', `translate(${this.getWidth() / 2 + this._iconSize / 2 + 4}, ${this.getOffsetY() + 8}) rotate(${this.getDirection() === 'incoming' ? '90' : '-90'}, 3, 4)`);
       }
     }
   },

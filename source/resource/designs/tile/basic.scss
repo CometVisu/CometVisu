@@ -698,12 +698,14 @@ body {
 
         &[size="1x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         &[size="0.5x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
             width: calc(var(--tileCellWidth) * #{$tileRows} * 0.5 - var(--spacing)/2);
             > cv-tile {
                 grid-template-rows: 0.5fr 1fr 0.5fr;
+                grid-template-columns: 0.5fr 1fr 0.5fr;
                 align-items: center;
             }
         }
@@ -719,25 +721,34 @@ body {
         }
         &[size="2x1"] {
             width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
+            > cv-tile {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                align-items: center;
+            }
         }
         &[size="2x1.5"] {
             width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 1.5 + var(--spacing));
+            grid-template-columns: repeat(6, minmax(0, 1fr));
         }
         &[size="2x2"] {
             width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+            grid-template-columns: repeat(6, minmax(0, 1fr));
         }
         &[size="1x2"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         &[size="2x4"] {
             width: min(calc(100vw - var(--spacing)*3), calc(var(--tileCellWidth) * #{$tileColumns} * 2 + var(--spacing)));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 4 + var(--spacing) * 3);
+            grid-template-columns: repeat(6, minmax(0, 1fr));
         }
         &[size="4x2"] {
             width: min(calc(100vw - var(--spacing)*3), min(100vw, calc(var(--tileCellWidth) * #{$tileColumns} * 4 + var(--spacing))));
             height: calc(var(--tileCellHeight) * #{$tileRows} * 2 + var(--spacing) * 3);
+            grid-template-columns: repeat(12, minmax(0, 1fr));
         }
     }
 
@@ -1025,7 +1036,7 @@ body {
             width: 100%;
         }
 
-        @for $i from 2 through $tileColumns {
+        @for $i from 2 through $tileColumns*2 {
             > .colspan-#{$i} {
                 grid-column: 1 / span #{$i};
             }
@@ -1034,9 +1045,11 @@ body {
                 grid-column: #{$i};
             }
 
-            @if 2*$i - 1 <= $tileColumns {
-                > .colspan-#{$i}[column='#{$i}'] {
-                    grid-column: #{$i} / span #{$i};
+            @if 2*$i - 1 <= $tileColumns*2 {
+                @for $j from 2 through $i {
+                    > .colspan-#{$j}[column='#{$i}'] {
+                        grid-column: #{$i} / span #{$j};
+                    }
                 }
             }
         }
@@ -1470,6 +1483,13 @@ body {
         meter, progress {
             width: calc(var(--tileCellWidth) * #{$tileColumns} - var(--spacing)*2);
             border: 0;
+        }
+
+        &.colspan-2 meter, &.colspan-2 progress {
+            width: calc(var(--tileCellWidth) * 2 - var(--spacing));
+        }
+        &.colspan-3 meter, &.colspan-3 progress {
+            width: calc(var(--tileCellWidth) * 3 - var(--spacing)*2);
         }
         progress[value]::-webkit-progress-bar, meter[value]::-webkit-meter-bar {
             background-color: var(--borderColor);
@@ -2091,7 +2111,7 @@ body {
         }
 
         .text-value {
-            font-size: 12px;
+            font-size: 12px;            
 
             text.title {
                 font-size: 14px;
