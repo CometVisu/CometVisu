@@ -41,9 +41,7 @@ init_hooks=ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/docker;
 init_hooks=echo "alias serve=\"systemctl --user start apache2.service\"" >> /etc/profile.d/aliases.sh;
 # install python dependencies
 init_hooks=sudo pip install -r /home/cv/utils/requirements.txt;
-init_hooks=sudo pip uninstall enchant; # we need pyenchant without system enchant support
+init_hooks=cd /home/cv && npm run selenium;
 
-# Hints:
-# Prepare test runs: 
-# * npm run selenium (only needed once)
-# * source .protractor-env (needed to run tests)
+# this needs to be run by the user manually after starting the container, it does not work within an init_hook
+#init_hooks=. /home/cv/.protractor-env;
