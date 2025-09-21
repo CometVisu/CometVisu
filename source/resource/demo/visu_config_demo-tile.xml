@@ -256,21 +256,26 @@
                 </cv-info>
                 <cv-widget size="2x1">
                     <cv-tile>
-                        <cv-chart title="tr('Power')" allow-fullscreen="true" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart title="tr('Power')" allow-fullscreen="true" series="month" refresh="300" colspan="6" rowspan="3" >
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
                             <dataset src="demo://pv-chart.json" color="#FF9900" title="tr('Production')" />
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
                 <cv-widget-pair allow-column-layout="true">
-                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" y-format="%.2f m³" x-format="%d. %b" series="month" refresh="300" >
+                    <cv-status-chart format="%d" style="color: rgb(255, 203, 125);" series="month" refresh="300" >
+                        <y-axis format="%.2f m³"/>
+                        <x-axis format="%d. %b"/>
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/29</cv-address>
                         <span slot="title" tr="true">Gas meter reading</span>
                         <span slot="popup-title" tr="true">Gas consumption</span>
                         <span slot="unit">m³</span>
                         <dataset slot="dataset" src="demo://grid-import-chart.json" color="rgb(255, 203, 125)" show-area="true" curve="step"/>
                     </cv-status-chart>
-                    <cv-status-chart format="%d" style="color: #719aff" y-format="%.1f m³" series="month" refresh="300">
+                    <cv-status-chart format="%d" style="color: #719aff" series="month" refresh="300">
+                        <y-axis format="%.1f m³"/>
                         <cv-address slot="address" transform="DPT:12.001" mode="read">1/4/30</cv-address>
                         <span slot="title" tr="true">Water meter reading</span>
                         <span slot="popup-title" tr="true">Water consumption</span>
@@ -764,7 +769,9 @@
                         <label class="title" tr="true">Line-Chart</label>
                     </header>
                     <cv-tile>
-                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart series="month" refresh="300" colspan="6" rowspan="3" >
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
                         </cv-chart>
                     </cv-tile>
@@ -774,7 +781,9 @@
                         <label class="title" tr="true">Line-Chart with area</label>
                     </header>
                     <cv-tile>
-                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart series="month" refresh="300" colspan="6" rowspan="3" >
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
                         </cv-chart>
                     </cv-tile>
@@ -784,7 +793,9 @@
                         <label class="title" tr="true">Bar-Chart</label>
                     </header>
                     <cv-tile>
-                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart series="month" refresh="300" colspan="6" rowspan="3">
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
                         </cv-chart>
                     </cv-tile>
@@ -802,7 +813,9 @@
                         <label class="title" tr="true">Multiple line-chart</label>
                     </header>
                     <cv-tile>
-                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart series="month" refresh="300" colspan="6" rowspan="3" >
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
                             <dataset src="demo://pv-chart.json" title="tr('PV production')" color="#719aff" show-area="false" />
                         </cv-chart>
@@ -813,7 +826,9 @@
                         <label class="title" tr="true">Multiple bar-chart</label>
                     </header>
                     <cv-tile>
-                        <cv-chart y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b" >
+                        <cv-chart series="month" refresh="300" colspan="6" rowspan="3" >
+                            <x-axis format="%d. %b"/>
+                            <y-axis format="%.1f kWh"/>
                             <dataset src="demo://grid-import-chart.json" chart-type="bar" title="tr('From grid')" color="#F2495C" />
                             <dataset src="demo://pv-chart.json" chart-type="bar" title="tr('PV production')" color="#719aff" />
                         </cv-chart>
