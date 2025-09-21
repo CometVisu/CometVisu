@@ -54,6 +54,14 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AreaGroup', {
         case 'natural':
           curveFunction = d3.curveNatural;
           break;
+
+        case 'basis':
+          curveFunction = d3.curveBasis;
+          break;
+
+        case 'linear':
+          curveFunction = d3.curveLinear;
+          break;
       }
 
       if (curveFunction) {

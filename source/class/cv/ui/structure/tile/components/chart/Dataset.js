@@ -53,7 +53,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Dataset', {
       init: ''
     },
     curve: {
-      check: ['linear', 'step', 'basis'],
+      check: ['linear', 'step', 'basis', 'natural'],
       init: 'linear'
     },
     aggregationInterval: {
