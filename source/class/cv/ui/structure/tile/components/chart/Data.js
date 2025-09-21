@@ -61,6 +61,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Data', {
         } else {
           hasLineData = true; 
         }
+        data[i].time = Math.floor(Number(data[i].time) / 1000) * 1000; // round ms to full seconds, they are not needed and create problems bar charts
       }
       this.indices = d3.range(data.length).filter(i => chartKeys.has(data[i].key));
       this.data = data.filter(d => chartKeys.has(d.key));
@@ -125,6 +126,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Data', {
         const key = this.keys[i];
         if (lastTime > 0 && lastKey === key) {
           const gapTimes = intervalFunction.every(1).range(new Date(lastTime), new Date(time));
+          gapTimes.pop(); // remove last one as its our current time
           if (gapTimes.length > 1) {
             this.times.splice(i, 0, ...gapTimes.map(t => t.getTime()));
             this.values.splice(i, 0, ...gapTimes.map(() => 0));
