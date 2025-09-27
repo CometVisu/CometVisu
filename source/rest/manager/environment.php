@@ -30,8 +30,8 @@ if (!defined('PHP_VERSION_ID')) {
   define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
 }
 $retval['PHP_VERSION_ID'] = PHP_VERSION_ID;
-$retval['SERVER_SIGNATURE'] = $_SERVER['SERVER_SIGNATURE'];
-$retval['SERVER_SOFTWARE'] = $_SERVER['SERVER_SOFTWARE'];
+$retval['SERVER_SIGNATURE'] = array_key_exists('SERVER_SIGNATURE', $_SERVER) ? $_SERVER['SERVER_SIGNATURE'] : null;
+$retval['SERVER_SOFTWARE'] = array_key_exists('SERVER_SOFTWARE', $_SERVER) ? $_SERVER['SERVER_SOFTWARE'] : null;
 
 $composer_file = file_get_contents("composer.json");
 $composer = json_decode($composer_file, true);
@@ -41,7 +41,7 @@ $retval['required_php_version'] = $composer['require']['php'];
 // We use a caching mechanism here, so that non-timberwolf systems aren't
 // affected by that test too often. For that /dev/shm/ must exist, so that
 // it is ensured that the cache is cleaned during reboot
-$SERVER_ADDR = explode('.', $_SERVER['SERVER_ADDR']);
+$SERVER_ADDR = explode('.', array_key_exists('SERVER_ADDR', $_SERVER) ? $_SERVER['SERVER_ADDR'] : '');
 if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses subnet 172.17.0.0/16
   $environmentInfoFile = '/dev/shm/CometVisuEnvironmentInfo.json';
   if (!is_dir('/dev/shm') || !file_exists($environmentInfoFile) || isset($_GET['force'])) {

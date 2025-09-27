@@ -198,7 +198,7 @@ msgstr "Datei hochladen"
 msgid "Save as..."
 msgstr "Speichern unter..."
 
-#: cv/ui/manager/contextmenu/ConfigElement.js
+#: cv/ui/manager/contextmenu/FileItem.js
 msgid "Delete"
 msgstr "Löschen"
 
@@ -968,7 +968,7 @@ msgstr "Elementinhalt bearbeiten"
 msgid "Edit text content"
 msgstr "Textinhalt bearbeiten"
 
-#: cv/ui/manager/Main.js
+#: cv/ui/manager/MenuBar.js
 msgid "About"
 msgstr "Über"
 
@@ -992,7 +992,7 @@ msgstr "Textinhalt ist ungültig"
 msgid "Child element '%1' not allowed."
 msgstr "Kind-Element '%1' ist nicht erlaubt."
 
-#: cv/ui/manager/editor/Diff.js
+#: cv/ui/manager/editor/Source.js
 msgid "\"%1\" is not writable. Upgrading not possible."
 msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
 
@@ -1000,7 +1000,7 @@ msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
 msgid "Diagram communication error"
 msgstr "Diagram Kommunikations-Fehler"
 
-#: cv/ui/structure/tile/components/Chart.js
+#: cv/ui/structure/tile/components/chart/Dataset.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr "URL: %1<br/><br/>Antwort:</br>%2"
 
@@ -1128,7 +1128,7 @@ msgstr "Diese Konfigurationsdatei enthält keine Pure-Struktur, das Wurzelelemen
 msgid "Config error"
 msgstr "Konfigurationsfehler"
 
-#: cv/ui/structure/tile/components/Chart.js
+#: cv/ui/structure/tile/components/chart/Dataset.js
 msgid "Communication error"
 msgstr "Kommunikationsfehler"
 
@@ -1268,3 +1268,47 @@ msgstr "Falscher MIME-Typ. Erwartet \"application/json\", erhalten \"%1\"."
 #: cv/plugins/diagram/AbstractDiagram.js
 msgid "Data is not in an array."
 msgstr "Die Daten sind nicht in einem Array."
+
+#: cv/ui/manager/Main.js
+msgid "Please provide an openHAB API token. It can be generated in openHABs main UI."
+msgstr "Bitte geben Sie einen openHAB-API-Token an. Dieser kann in der Hauptoberfläche von openHAB generiert werden."
+
+#: cv/ui/manager/Main.js
+msgid "Provide API token"
+msgstr "API-Token bereitstellen"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ".%L"
+msgstr ".%L"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ":%S"
+msgstr ":%S"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I:%M"
+msgstr "%H:%M"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I %p"
+msgstr "%H"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%a %d"
+msgstr "%d. %b"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b %d"
+msgstr "%d. %b"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%B"
+msgstr "%B"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b"
+msgstr "%b"
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%Y"
+msgstr "%Y"

@@ -41,6 +41,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   statics: {
     ChartCounter: 0,
     DEFAULT_ASPECT_RATIO: 392/192,
+    TF: null,
 
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
@@ -76,13 +77,24 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           currency: ['€', '']
         });
 
-        d3.timeFormatDefaultLocale({
+        cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
           dateTime: '%A, der %e. %B %Y, %X',
           date: '%d.%m.%Y',
           time: '%H:%M:%S',
           periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
           days: qx.locale.Date.getDayNames('wide', null, 'format').map(t => t.translate().toString()),
 
+          shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(t => t.translate().toString()),
+          months: qx.locale.Date.getMonthNames('wide').map(t => t.translate().toString()),
+          shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
+        });
+      } else {
+        cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
+          dateTime: '%x, %X',
+          date: '%-m/%-d/%Y',
+          time: '%-I:%M:%S %p',
+          periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
+          days: qx.locale.Date.getDayNames('wide', null, 'format').map(t => t.translate().toString()),
           shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(t => t.translate().toString()),
           months: qx.locale.Date.getMonthNames('wide').map(t => t.translate().toString()),
           shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
@@ -119,6 +131,96 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     endTime: {
       check: 'Number',
       init: 0
+    },
+    minY: {
+      check: 'Number',
+      nullable: true,
+      apply: '__updateYRange',
+      event: 'changeMinY'
+    },
+    maxY: {
+      check: 'Number',
+      nullable: true,
+      apply: '__updateYRange',
+      event: 'changeMaxY'
+    },
+
+    /** Margin of the widget (top) */
+    marginTop: {
+      check: 'Integer',
+      init: 12,
+      apply: '_applyMargin',
+      event: 'changeMarginTop'
+    },
+
+    /** Margin of the widget (right) */
+    marginRight: {
+      check: 'Integer',
+      init: 24,
+      apply: '_applyMargin',
+      event: 'changeMarginRight'
+    },
+
+    /** Margin of the widget (bottom) */
+    marginBottom: {
+      check: 'Integer',
+      init: 20,
+      apply: '_applyMargin',
+      event: 'changeMarginBottom'
+    },
+
+    /** Margin of the widget (left) */
+    marginLeft: {
+      check: 'Integer',
+      init: 24,
+      apply: '_applyMargin',
+      event: 'changeMarginLeft'
+    },
+
+    /**
+     * The 'margin' property is a shorthand property for setting 'marginTop',
+     * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.
+     *
+     * If four values are specified they apply to top, right, bottom and left respectively.
+     * If there is only one value, it applies to all sides, if there are two or three,
+     * the missing values are taken from the opposite side.
+     */
+    margin: {
+      group: ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'],
+      mode: 'shorthand'
+    },
+
+    width: {
+      check: 'Number',
+      init: 392,
+      apply: '_applySize',
+      event: 'changeWidth'
+    },
+
+    height: {
+      check: 'Number',
+      init: 192,
+      apply: '_applySize',
+      event: 'changeHeight'
+    },
+
+    aspectRatio: {
+      check: 'Number',
+      init: 392 / 192
+    },
+
+    inBackground: {
+      check: 'Boolean',
+      init: false
+    },
+
+    xAxis: {
+      check: 'cv.ui.structure.tile.components.chart.XAxis',
+      event: 'changeXAxis'
+    },
+    yAxis: {
+      check: 'cv.ui.structure.tile.components.chart.YAxis',
+      event: 'changeYAxis'
     }
   },
 
@@ -133,10 +235,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     _url: null,
     _headers: null,
     _request: null,
-    _width: null,
-    _height: null,
     _loaded: null,
-    _dataSetConfigs: null,
+    _datasets: null,
     _initializing: null,
     _navigationEnabled: null,
     __toolTipTimer: null,
@@ -145,12 +245,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __resizeTimeout: null,
     __startTs: null,
     __endTs: null,
-    __srcToHash: null,
+    _yFormat: null,
 
     /**
     * @type {d3.Selection}
     */
-    _dot: null,
+    _tooltipIndicator: null,
     /**
      * @type {d3.Selection}
      */
@@ -163,23 +263,29 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
      * @type {String}
      */
     _titleString: null,
-
-    __helpers: null,
-    __config: null,
-    // all chart properties
-    _chartConf: null,
+    /**
+     * @type {cv.ui.structure.tile.components.chart.Data}
+     */
+    data: null,
 
     async _init() {
       this._checkEnvironment();
 
       this._initializing = true;
-      this.__srcToHash = {};
+
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
+      
+      this.setXAxis(new cv.ui.structure.tile.components.chart.XAxis(this));
+      this.setYAxis(new cv.ui.structure.tile.components.chart.YAxis(this));
+      this.data = new cv.ui.structure.tile.components.chart.Data(this);
+      this.bind('minY', this.data, 'minY');
+      this.bind('maxY', this.data, 'maxY');
 
       element.setAttribute('data-chart-id', this._id.toString());
       const inBackground = this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true';
+      this.setInBackground(inBackground);
 
       let title = this.getHeader('label.title');
       if (!inBackground && element.hasAttribute('title') && !title) {
@@ -280,17 +386,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this._initFullscreenSwitch();
 
         // only on mobile we need this, because of height: auto
-        if (document.body.classList.contains('mobile')) {
+        //if (document.body.classList.contains('mobile')) {
           this.addListener('changeFullscreen', () => this._onRendered());
-        }
+        //}
       }
 
       if (element.hasAttribute('refresh')) {
         this.setRefresh(parseInt(element.getAttribute('refresh')));
       }
 
-      // create needed elements
+      if (element.hasAttribute('min')) {
+        const minY = parseFloat(element.getAttribute('min'));
+        if (!isNaN(minY)) {
+          this.setMinY(minY);
+        }
+      }
+      if (element.hasAttribute('max')) {
+        const maxY = parseFloat(element.getAttribute('max'));
+        if (!isNaN(maxY)) {
+          this.setMaxY(maxY);
+        }
+      }
+      if (element.hasAttribute('tooltip-time-format')) {
+        this._tooltipTimeFormat = cv.ui.structure.tile.components.Chart.TF.format(element.getAttribute('tooltip-time-format'));
+      }
 
+      // create needed elements
       const svg = d3.select(this._element)
         .append('svg');
 
@@ -324,102 +445,63 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         { passive: false }
       );
 
-      // init some fixed settings
-      const format = this._element.hasAttribute('y-format') ? this._element.getAttribute('y-format') : '%s';
-      let timeFormat = null;
-      if (this._element.hasAttribute('x-format')) {
-        const formatString = this._element.getAttribute('x-format');
-        timeFormat = date => d3.timeFormat(formatString)(date);
-      } else {
-        // format auto-detection
-        timeFormat = this.multiTimeFormat([
-          [
-            '%H:%M:%S',
-            function (d) {
-              return d.getSeconds();
-            }
-          ],
+      this._datasets = {};
+      this._chartElements = [];
+      const dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
+      const datasetSources = dataSets.map(elem => elem.getAttribute('src'));
 
-          [
-            '%H:%M',
-            function (d) {
-              return d.getMinutes();
-            }
-          ],
-
-          [
-            '%H',
-            function (d) {
-              return d.getHours();
-            }
-          ],
-
-          [
-            '%a %d',
-            function (d) {
-              return d.getDay() && d.getDate() !== 1;
-            }
-          ],
-
-          [
-            '%b %d',
-            function (d) {
-              return d.getDate() !== 1;
-            }
-          ],
-
-          [
-            '%B',
-            function (d) {
-              return d.getMonth();
-            }
-          ],
-
-          [
-            '%Y',
-            function () {
-              return true;
-            }
-          ]
-        ]);
+      for (let dataSetElement of dataSets) {
+        const dataSet = new cv.ui.structure.tile.components.chart.Dataset(dataSetElement, this);
+        this._datasets[dataSet.getKey()] = dataSet;
       }
-      this.__config = {
-        x: d => d.time, // given d in data, returns the (temporal) x-value
-        y: d => +d.value, // given d in data, returns the (quantitative) y-value
-        z: d => d.key, // given d in data, returns the (categorical) z-value
-        color: d => d && this._dataSetConfigs[d].color, // stroke color of line, as a constant or a function of *z*
-        title: d => cv.util.String.sprintf(format, d.value), // given d in data, returns the title text
-        curve: d3.curveLinear, // method of interpolation between points
-        marginTop: 12, // top margin, in pixels
-        marginRight: 24, // right margin, in pixels
-        marginBottom: 20, // bottom margin, in pixels
-        marginLeft: 24, // left margin, in pixels
-        width: 392, // outer width, in pixels
-        height: 192, // outer height, in pixels
-        aspectRatio: 392/192,
-        xType: d3.scaleTime, // type of x-scale
-        xFormat: timeFormat, // a format specifier string for the x-axis
-        yType: d3.scaleLinear, // type of y-scale
-        yFormat: undefined, // a format specifier string for the y-axis
-        yLabel: undefined, // a label for the y-axis
-        strokeLinecap: undefined, // stroke line cap of line
-        strokeLinejoin: undefined, // stroke line join of line
-        strokeWidth: 1.5, // stroke width of line
-        strokeOpacity: undefined, // stroke opacity of line
-        mixBlendMode: 'normal', // blend mode of lines
-        showArea: d => this._dataSetConfigs[d].showArea, // show area below the line,
-        gradient: d => this._dataSetConfigs[d].gradient, // use gradient for area
-        showXAxis: !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true',
-        showYAxis: !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true',
-        xPadding: 0.1 // amount of x-range to reserve to separate bars
-      };
+
+      let i = 0;
+      for (const line of this._element.querySelectorAll(':scope > h-line, v-line')) {        
+        if (line.hasAttribute('src')) {
+          const sourceKey = line.getAttribute('src');
+          const otherDataset = this._datasets[sourceKey];
+          const dataSet = new cv.ui.structure.tile.components.chart.LineDataset(line, this);
+          dataSet.setChartType(line.localName);
+          dataSet.setIndex(i);
+          if (!otherDataset) {
+            this._datasets[dataSet.getKey()] = dataSet;
+          } else {
+            // this line gets its data from another dataset            
+            dataSet.setSourceSet(otherDataset);
+            this._datasets['derived-' + i] = dataSet;
+          }
+        } else {
+          // lines with fixed values
+          const dataSet = new cv.ui.structure.tile.components.chart.LineDataset(line, this);
+          dataSet.setChartType(line.localName);
+          dataSet.setIndex(i);
+          this._datasets['fixed-' + i] = dataSet;
+        }
+        i++;
+      }
+
+      if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
+        // no margins
+        this.setMargin(this.getMarginTop(), 0, 0, 0);
+
+        // because we have no margins we need to cut the overflow on the tile
+        let tile = this._element.parentElement;
+        while (tile && tile.localName !== 'cv-tile') {
+          tile = tile.parentElement;
+        }
+        if (tile && tile.localName === 'cv-tile') {
+          tile.style.overflow = 'hidden';
+        }
+      }
+
+      this._initAxes();
+      this._initChartContent();
 
       this._initializing = false;
       this.__updateTitle();
       qx.locale.Manager.getInstance().addListener('changeLocale', this._onLocaleChanged, this);
 
       // check if we have a read address for live updates
-      const datasetSources = Array.from(this._element.querySelectorAll(':scope > dataset')).map(elem => elem.getAttribute('src'));
       const readAddresses = Array.from(element.querySelectorAll(':scope > cv-address:not([mode="write"])')).filter(elem => datasetSources.includes(elem.getAttribute('target')));
       if (readAddresses.length > 0) {
         element.addEventListener('stateUpdate', ev => {
@@ -428,6 +510,197 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           ev.stopPropagation();
         });
       }
+    },
+
+    getXPos(i, isValue = false) {
+      const scale = this.overrideXScale || this.getXAxis().getScale();
+      if (isValue) {
+        return scale(i);
+      }
+      return scale(this.data.times[i]);
+    },
+
+    getYPos(i, isValue = false) {
+      if (isValue) {
+        return this.getYAxis().getScale()(i);
+      }
+      return this.getYAxis().getScale()(this.data.values[i]);
+    },
+
+    getMinYPos() {
+      return this.getYAxis().getRange()[0];
+    },
+
+    _applySize() {
+      this.setAspectRatio(this.getWidth() / this.getHeight());
+      d3.select(this._element).select('svg')
+          .attr('viewBox', `0, 0, ${this.getWidth()}, ${this.getHeight()}`);
+    },
+
+    _applyMargin() {},
+
+    __updateYRange(value, oldValue, name) {
+      if (!this.isPropertyInitialized('yAxis')) {
+        return;
+      }
+      if (name === 'maxY') {
+        const minY = this.getMinY();
+        if (minY !== null) {
+          this.getYAxis().setDomain([minY, value]);
+        }
+      } else if (name === 'minY') {
+        const maxY = this.getMaxY();
+        if (maxY !== null) {
+          this.getYAxis().setDomain([value, maxY]);
+        }
+      }
+    },
+
+    _initAxes() {
+      const xAxis = this.getXAxis();
+      const yAxis = this.getYAxis();
+
+      // init some fixed settings
+      let timeFormatString = '';
+      let yFormat = '';
+
+      const xSettings = {};
+      const ySettings = {};
+
+      const xAxisElement = this._element.querySelector(':scope > x-axis');
+      if (xAxisElement) {
+        if (xAxisElement.hasAttribute('format')) {
+          timeFormatString = xAxisElement.getAttribute('format');
+        }
+        xSettings.show = true;
+        xSettings.showLine = xAxisElement.hasAttribute('show-line') && xAxisElement.getAttribute('show-line') === 'true';
+        if (xAxisElement.hasAttribute('tick-size')) {
+          xSettings.tickSize = parseInt(xAxisElement.getAttribute('tick-size'));
+        }
+
+        if (xAxisElement.hasAttribute('min')) {
+          const minX = parseFloat(xAxisElement.getAttribute('min'));
+          if (!isNaN(minX)) {
+            this.setMinX(minX);
+          }
+        }
+        if (xAxisElement.hasAttribute('max')) {
+          const maxX = parseFloat(xAxisElement.getAttribute('max'));
+          if (!isNaN(maxX)) {
+            this.setMaxX(maxX);
+          }
+        }
+      } else {
+        // fallback mode when no special axis element is there, to still support old configs
+        if (this._element.hasAttribute('x-format')) {
+          timeFormatString = this._element.getAttribute('x-format');
+        }
+        xSettings.show = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
+      }
+
+      if (timeFormatString) {
+        xSettings.tickFormat = date => cv.ui.structure.tile.components.Chart.TF.format(qx.locale.Manager['tr'](timeFormatString))(date);
+      } else {
+        // format auto-detection
+        xSettings.tickFormat = this.multiTimeFormat();
+      }
+
+      const yAxisElement = this._element.querySelector(':scope > y-axis');
+      if (yAxisElement) {
+        if (yAxisElement.hasAttribute('format')) {
+          yFormat = yAxisElement.getAttribute('format');
+        }
+        if (yAxisElement.hasAttribute('tick-size')) {
+          ySettings.tickSize = parseInt(yAxisElement.getAttribute('tick-size'));
+        }
+        ySettings.show = true;
+        ySettings.showLine = yAxisElement.hasAttribute('show-line') && yAxisElement.getAttribute('show-line') === 'true';
+
+        if (yAxisElement.hasAttribute('min')) {
+          const minY = parseFloat(yAxisElement.getAttribute('min'));
+          if (!isNaN(minY)) {
+            this.setMinY(minY);
+          }
+        }
+        if (yAxisElement.hasAttribute('max')) {
+          const maxY = parseFloat(yAxisElement.getAttribute('max'));
+          if (!isNaN(maxY)) {
+            this.setMaxY(maxY);
+          }
+        }
+      } else {
+        // fallback mode when no special axis element is there, to still support old configs
+        if (this._element.hasAttribute('y-format')) {
+          yFormat = this._element.getAttribute('y-format');
+        }
+        ySettings.show = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
+      }
+
+      this._yFormat = yFormat;
+      const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
+      xSettings.showGrid = showGrid.includes('x');
+      ySettings.showGrid = showGrid.includes('y');
+
+      xAxis.set(xSettings);      
+      yAxis.set(ySettings);
+
+      xAxis.render();
+      yAxis.render();
+    },
+
+    _initChartContent() {
+      const chartElements = [];
+      let line = null; 
+      let area = null;
+      let bar = null; 
+      let stackedBar = null;
+      for (const key in this._datasets) {
+        const ds = this._datasets[key];
+        switch (ds.getChartType()) {
+          case 'line': {
+            if (!line) {
+              line = new cv.ui.structure.tile.components.chart.LineGroup(this);
+              chartElements.push(line);
+            }
+            line.addDataset(ds);
+            if (ds.isShowArea()) {
+              if (!area) {
+                area = new cv.ui.structure.tile.components.chart.AreaGroup(this);
+                chartElements.push(area);
+              }
+              area.addDataset(ds);
+            }
+            break;
+          }
+
+          case 'area': {
+            if (!area) {
+                area = new cv.ui.structure.tile.components.chart.AreaGroup(this);
+                chartElements.push(area);
+              }
+              area.addDataset(ds);
+            break;
+          }
+
+          case 'bar':
+            //barGroups.set(key, I.filter(i => this.data.keys[i] === key));
+            if (!bar) {
+              bar = new cv.ui.structure.tile.components.chart.BarGroup(this);
+              chartElements.push(bar);
+            }
+            bar.addDataset(ds);
+            break;
+
+          case 'stacked-bar':
+            if (!stackedBar) {
+              stackedBar = new cv.ui.structure.tile.components.chart.StackedBarGroup(this);
+              chartElements.push(stackedBar);
+            }
+            stackedBar.addDataset(ds);
+            break;
+        }
+      }
+      this._chartElements = chartElements;
     },
 
     _onLocaleChanged() {
@@ -441,16 +714,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     onStateUpdate(ev) {
-      const targetDataset = this._element.querySelector(':scope > dataset[src="'+ev.detail.target+'"]');
-      const config = this._dataSetConfigs ? this._dataSetConfigs[ev.detail.target] : null;
+      const targetDataset = this._element.querySelector(':scope > dataset[src="' + ev.detail.target + '"]');
+      const config = this._datasets ? this._datasets[ev.detail.target] : null;
       if (targetDataset && config) {
         let ts = Date.now();
-        if (config.aggregationInterval) {
-          const mins = config.aggregationInterval * 60 * 1000;
+        if (config.getAggregationInterval()) {
+          const mins = config.getAggregationInterval() * 60 * 1000;
           ts = Math.round(ts / mins) * mins;
         }
         this._renderChart({
           src: ev.detail.target,
+          key: ev.detail.target,
           time: ts,
           value: ev.detail.state
         }, true);
@@ -468,7 +742,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.resetCurrentPeriod();
         this._initializing = false;
         // reset configuration, we need a new one
-        this._chartConf = null;
         this.setCurrentSeries(select);
       }
     },
@@ -515,13 +788,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
       if (!alreadySelected) {
-        const newSelection = this.getHeader(`.popup.series > cv-option[key="${series}"]`);
+        const newSelection = this.getHeader(`.popup.series > cv-option[key='${series}']`);
         if (newSelection) {
           newSelection.setAttribute('selected', 'selected');
         }
       }
       this.__updateTimeRange();
     },
+    
 
     __updateTimeRange() {
       const series = this.getCurrentSeries();
@@ -533,46 +807,37 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       switch (series) {
         case 'hour':
           interval = 60 * 60;
-          periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
-          end.setHours(periodStart.getHours() + 1, 0, 0, 0);
+          periodStart = d3.timeHour.floor(periodStart);
+          periodStart = d3.timeHour.offset(periodStart, -currentPeriod);
+          end = d3.timeHour.offset(periodStart, 1);
           break;
 
         case 'day':
           interval = 24 * 60 * 60;
-          periodStart.setDate(periodStart.getDate() - currentPeriod);
-          periodStart.setHours(0, 0, 0, 0);
-          end.setTime(periodStart.getTime());
-          end.setDate(periodStart.getDate() + 1);
-          end.setHours(0, 0, 0, 0);
+          periodStart = d3.timeDay.floor(periodStart);
+          periodStart = d3.timeDay.offset(periodStart, -currentPeriod);
+          end = d3.timeDay.offset(periodStart, 1);
           break;
 
         case 'week':
           interval = 7 * 24 * 60 * 60;
-          periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
-          periodStart.setHours(0, 0, 0, 0);
-          end.setTime(periodStart.getTime());
-          end.setDate(periodStart.getDate() + 7);
-          end.setHours(0, 0, 0, 0);
+          periodStart = d3.timeMonday.floor(periodStart);
+          periodStart = d3.timeMonday.offset(periodStart, -currentPeriod);
+          end = d3.timeMonday.offset(periodStart, 1);
           break;
 
         case 'month':
           interval = 30 * 24 * 60 * 60;
-          periodStart.setMonth(periodStart.getMonth() - currentPeriod);
-          periodStart.setDate(1);
-          periodStart.setHours(0, 0, 0, 0);
-          end.setTime(periodStart.getTime());
-          end.setMonth(periodStart.getMonth() + 1, 1);
-          end.setHours(0, 0, 0, 0);
+          periodStart = d3.timeMonth.floor(periodStart);
+          periodStart = d3.timeMonth.offset(periodStart, -currentPeriod);
+          end = d3.timeMonth.offset(periodStart, 1);
           break;
 
         case 'year':
           interval = 365 * 24 * 60 * 60;
-          periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
-          periodStart.setMonth(0, 1);
-          periodStart.setHours(0, 0, 0, 0);
-          end.setFullYear(periodStart.getFullYear() + 1);
-          end.setMonth(periodStart.getMonth() + 1, 1);
-          end.setHours(0, 0, 0, 0);
+          periodStart = d3.timeYear.floor(periodStart);
+          periodStart = d3.timeYear.offset(periodStart, -currentPeriod);
+          end = d3.timeYear.offset(periodStart, 1);
           break;
       }
       let startTs = Math.round(periodStart.getTime()/1000);
@@ -601,221 +866,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         });
         return;
       }
-      let url;
-      const dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
-      const datasetSources = dataSets.map(elem => elem.getAttribute('src'));
-      for (const line of this._element.querySelectorAll(':scope > h-line, v-line')) {
-        if (line.hasAttribute('src') && !datasetSources.includes(line.getAttribute('src'))) {
-          dataSets.push(line);
-        }
-      }
 
       const promises = [];
-      if (!this._dataSetConfigs) {
-        this._dataSetConfigs = {};
-        for (let dataSet of dataSets) {
-          let ts = {
-            showArea: dataSet.localName === 'dataset',
-            color: '#FF9900',
-            chartType: 'line',
-            element: dataSet,
-            title: '',
-            curve: 'linear',
-            aggregationInterval: 0
-          };
-
-          let attr;
-          let name;
-          let value;
-          for (let i = 0; i < dataSet.attributes.length; i++) {
-            attr = dataSet.attributes.item(i);
-            // CamelCase attribute names
-            name = attr.name
-              .split('-')
-              .map((part, i) => {
-                if (i > 0) {
-                  return `${part.substring(0, 1).toUpperCase()}${part.substring(1)}`;
-                }
-                return part;
-              })
-              .join('');
-            value = attr.value;
-            if (value === 'true' || value === 'false') {
-              value = value === 'true';
-            } else if (/^\d+$/.test(value)) {
-              value = parseInt(value);
-            } else if (/^[\d.]+$/.test(value)) {
-              value = parseFloat(value);
-            }
-            ts[name] = value;
-          }
-          let type = ts.src.split('://')[0].toLowerCase();
-          if (type.startsWith('plugin+')) {
-            ts.subType = type.substring(7);
-            type = type.substring(0, 6);
-          }
-          ts.type = type;
-          let key = ts.src;
-          switch (type) {
-            case 'flux':
-              ts.source = new cv.io.timeseries.FluxSource(ts.src, this);
-              if (ts.source.isInline()) {
-                const fluxQuery = dataSet.textContent.trim();
-                key = cv.ConfigCache.hashCode(fluxQuery).toString();
-                if (!this.__srcToHash[ts.src]) {
-                  this.__srcToHash[ts.src] = key;
-                } else {
-                  this.error(`duplicate flux inline source, you must append an unique anchor ID like ${ts.src}#12345`, ts.src);
-                }
-                ts.source.setQueryTemplate(fluxQuery);
-              }
-              break;
-
-            case 'openhab':
-              ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src, this);
-              break;
-
-            case 'rrd':
-              ts.source = new cv.io.timeseries.RRDSource(ts.src, this);
-              break;
-
-            case 'demo':
-              ts.source = new cv.io.timeseries.DemoSource(ts.src, this);
-              break;
-
-            case 'plugin':
-              ts.source = new cv.io.timeseries.Plugin(ts.src, this);
-              break;
-
-            default:
-              this.error('unknown chart data source type ' + type);
-              break;
-          }
-          ts.key = key;
-          this._dataSetConfigs[key] = ts;
-        }
-      }
-
-      for (const key in this._dataSetConfigs) {
-        const ts = this._dataSetConfigs[key];
-        let proxy = false;
-        let options = {ttl: this.getRefresh()};
-        if (ts.source) {
-          const config = ts.source.getRequestConfig(
-            this.getStartTime(),
-            this.getEndTime(),
-            this.getCurrentSeries(),
-            this.getCurrentPeriod()
-          );
-          url = config.url;
-          proxy = config.proxy;
-          options = Object.assign(options, config.options);
-
-          if (config.fetch === false) {
-            // data retrieval is handled by the source itself
-            promises.push(ts.source.fetchData(this.getStartTime(), this.getEndTime(), this.getCurrentSeries(), this.getCurrentPeriod())
-              .then(data => {
-                this.debug('data successfully loaded by source');
-                if (ts.source) {
-                  data = ts.source.processResponse(data);
-                }
-                if (!this._lastRefresh) {
-                  this._lastRefresh = Date.now();
-                }
-                return {
-                  data: data || [],
-                  ts: ts
-                };
-              })
-              .catch(err => {
-                this._onStatusError(ts, url, err);
-                return {
-                  data: [],
-                  ts: ts
-                };
-              })
-            );
-          }
-        }
-
-        if (!url) {
-          continue;
-        }
-
-        this.debug('loading', url);
-        promises.push(
-          cv.io.Fetch.cachedFetch(url, options, proxy, client)
-            .then(data => {
-              this.debug('successfully loaded', url);
-              if (ts.source) {
-                data = ts.source.processResponse(data);
-              }
-              if (!this._lastRefresh) {
-                this._lastRefresh = Date.now();
-              }
-              return {
-                data: data || [],
-                ts: ts
-              };
-            })
-            .catch(err => {
-              this._onStatusError(ts, url, err);
-              return {
-                data: [],
-                ts: ts
-              };
-            })
+      let options = {ttl: this.getRefresh()};
+      for (const key in this._datasets) {
+        const ts = this._datasets[key];
+        const p = ts.fetch(
+          this.getStartTime(),
+          this.getEndTime(),
+          this.getCurrentSeries(),
+          this.getCurrentPeriod(),
+          options
         );
+        promises.push(p);
       }
+
       Promise.all(promises).then(responses => {
-        this._onSuccess(responses);
+        this._onSuccess(responses.filter(r => r !== null));
       });
     },
 
-    _onSuccess(data) {
-      let chartData = [];
-
-      for (let entry of data) {
-        let tsdata = entry.data;
-        if (tsdata !== null) {
-          // TODO: stacked bar times (entry.ts.chartType === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
-          const mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
-          for (let [time, value] of tsdata) {
-            chartData.push({
-              key: entry.ts.key,
-              src: entry.ts.src,
-              time: mins > 0
-                ? Math.round(time / mins) * mins : time,
-              value
-            });
-          }
-        }
-      }
-
-      if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
-        // no margins
-        this.__config = Object.assign(this.__config, {
-          marginRight: 0,
-          marginBottom: 0,
-          marginLeft: 0
-        });
-
-        // because we have no margins we need to cut the overflow on the tile
-        let tile = this._element.parentElement;
-        while (tile && tile.localName !== 'cv-tile') {
-          tile = tile.parentElement;
-        }
-        if (tile && tile.localName === 'cv-tile') {
-          tile.style.overflow = 'hidden';
-        }
-      }
-
+    _onSuccess(chartData) {
       // wait some time to let the element size settle
-      window.requestAnimationFrame(() => {
-        setTimeout(() => {
-          this._onRendered(chartData);
-        }, 100);
-      });
+      setTimeout(() => {
+        // append all dataset fetched data to a single flat array
+        this._onRendered(chartData.flat());
+      }, 100);
     },
 
     _onRendered(chartData, retries) {
@@ -836,20 +912,20 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           return;
         }
 
-        this.__config.width = width;
-        this.__config.height = height;
-        d3.select(this._element).select('svg')
-          .attr('viewBox', `0, 0, ${width}, ${height}`);
+        this.setWidth(width);
+        this.setHeight(height);
         if (chartData) {
           this._renderChart(chartData);
           this._loaded = Date.now();
+        } else {
+          this._render();
         }
       }
     },
 
     _getSize() {
       const parent = this._element.parentElement;
-      let padding = this._element.getAttribute('background') === 'true' ? 0 : 8;
+      let padding = this.isInBackground() ? 0 : 8;
       let containerWidth = this._element.offsetWidth - padding;
       let containerHeight = this._element.offsetHeight - padding;
       let factor = 1;
@@ -870,39 +946,35 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         (this._element.getAttribute('allow-fullscreen') === 'true' &&
           parent.parentElement.classList.contains('fullscreen')))) {
         // the parent container has height: auto, so we need to have one
-        this._element.style.height = (height + this.__config.marginTop + this.__config.marginBottom) + 'px';
+        this._element.style.height = (height + this.getMarginTop() + this.getMarginBottom()) + 'px';
       }
       return [width, height];
     },
 
-    multiTimeFormat(formatsArray) {
+    multiTimeFormat() {
+      let locale = cv.ui.structure.tile.components.Chart.TF;
+
+      const formatMillisecond = locale.format(qx.locale.Manager.tr('.%L'));
+        const formatSecond = locale.format(qx.locale.Manager.tr(':%S'));
+        const formatMinute = locale.format(qx.locale.Manager.tr('%I:%M'));
+        const formatHour = locale.format(qx.locale.Manager.tr('%I %p'));
+        const formatDay = locale.format(qx.locale.Manager.tr('%a %d'));
+        const formatWeek = locale.format(qx.locale.Manager.tr('%b %d'));
+        const formatMonth = locale.format(qx.locale.Manager.tr('%b'));
+        const formatYear = locale.format(qx.locale.Manager.tr('%Y'));
       /**
        * @param date
        */
       function multiFormat(date) {
-        let i = 0;
-        let found = false;
-        let fmt = '%c';
-        while (!found && i < formatsArray.length) {
-          found = formatsArray[i][1](date);
-          if (found) {
-            fmt = formatsArray[i][0];
-          }
-          i++;
-        }
-        return fmt;
+         return (d3.timeSecond(date) < date ? formatMillisecond
+            : d3.timeMinute(date) < date ? formatSecond
+            : d3.timeHour(date) < date ? formatMinute
+            : d3.timeDay(date) < date ? formatHour
+            : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? formatDay : formatWeek)
+            : d3.timeYear(date) < date ? formatMonth
+            : formatYear)(date);
       }
       return date => d3.timeFormat(multiFormat(date))(date);
-    },
-
-    _onStatusError(ts, key, err) {
-      cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
-        title: qx.locale.Manager.tr('Communication error'),
-        severity: 'urgent',
-        message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), JSON.stringify(err))
-      });
-
-      this.error('Chart _onStatusError', ts, key, err);
     },
 
     /**
@@ -926,330 +998,80 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       return elem;
     },
 
+    getSvgElement(nodeName, classes, attributes) {
+      return this._getSvgElement(d3.select(this._element).select('svg'), nodeName, classes, attributes);
+    },
+
+    getDataset(key) {
+      return this._datasets[key];
+    },
+
+    _render() {
+      // Render the chart elements without new data
+      this.getXAxis().render();
+      this.getYAxis().render();      
+      for (const series of this._chartElements) {
+        series.render();
+      }
+
+      let zero = d3.select(this._element).select('svg').select('.zero-line');
+      if (zero) {
+        const [x1, x2] = this.getXAxis().getRange();
+        const y = this.getYPos(0.0, true);
+        zero
+          .attr('x1', x1)
+          .attr('x2', x2)
+          .attr('y1', y)
+          .attr('y2', y);
+      }
+      this.__addLines();
+    },
+
     /**
-     * Copyright 2021 Observable, Inc.
-     * Released under the ISC license.
-     * https://observablehq.com/@d3/multi-line-chart
-     *
      * @param data
-     * @param single
+     * @param {Boolean} single Add a single data point to the chart
      * @private
      */
     _renderChart(data, single) {
-      const config = this.__config;
+      const xAxis = this.getXAxis();
+      const yAxis = this.getYAxis();
       const svg = d3.select(this._element).select('svg');
 
-      // Compute values.
-      let X;
-      let Y;
-      let Z;
-      let O;
-      let T;
       if (single) {
-        if (!this._helpers) {
+        if (!this.data.append(data)) {
           return;
         }
-        X = this._helpers.X;
-        Y = this._helpers.Y;
-        Z = this._helpers.Z;
-        O = this._helpers.O;
-        T = this._helpers.T;
-        if (X[X.length-1] === data.time) {
-          // replace last value instead of adding one
-          Y[Y.length-1] = data.value;
-        } else {
-          X.push(data.time);
-          Y.push(data.value);
-          Z.push(data.key);
-          O.push(data);
-          T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
-
-          // cleanup
-          X.shift();
-          Y.shift();
-          Z.shift();
-          O.shift();
-          T.shift();
-        }
       } else {
-        X = d3.map(data, config.x);
-        Y = d3.map(data, config.y);
-        Z = d3.map(data, config.z);
-        O = d3.map(data, d => d);
-        // Compute titles.
-        T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
+        this.data.setData(data);        
       }
+
+      const hasStackedBar = this._chartElements.some(group => group.getType() === 'stacked-bar');
+      const hasBar = this._chartElements.some(group => group.getType() === 'bar');
 
       // Compute default domains, and unique the z-domain.
-      let xDomain = d3.extent(X);
-      let minVal = 0;
-      let maxVal = 0;
-      if (this._element.hasAttribute('min')) {
-        const min = parseFloat(this._element.getAttribute('min'));
-        if (!isNaN(min)) {
-          minVal = min;
-        }
-      } else {
-        minVal = d3.min(Y);
-        if (minVal > 1.0) {
-          minVal -= 1;
-        }
+      if (hasBar || hasStackedBar) {
+        this.data.interpolate(this.getCurrentSeries());
       }
-      if (this._element.hasAttribute('max')) {
-        const max = parseFloat(this._element.getAttribute('max'));
-        if (!isNaN(max)) {
-          maxVal = max;
-        }
-      } else {
-        maxVal = d3.max(Y);
-        if (maxVal > 1.0) {
-          // add some inner chart padding
-          maxVal += 1;
-        } else {
-          maxVal += 0.1;
-        }
+      xAxis.setDomain(this.data.getTimesDomain());
+      if (this.overrideXScale) {
+        this.overrideXScale.domain(this.data.getTimesDomain());
       }
-      const yDomain = [minVal, maxVal];
-      const zDomain = new d3.InternSet(Z);
-      // Omit any data not present in the z-domain.
-      const I = d3.range(X.length).filter(i => zDomain.has(Z[i]));
-
-      if (config.showYAxis) {
-        const maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed(maxVal < 1 ? 2 : 1);
-        // check if we need more space for the y-axis
-        if (maxValue.length >= 2) {
-          config.marginLeft = maxValue.length * 8;
-        }
+      if (!this.getMinY() && !this.getMaxY() && !hasStackedBar) {
+        yAxis.setDomain(this.data.getValuesDomain());
       }
 
-      const xTicks = config.width / 80;
-      const yTicks = config.height / 60;
-      const additionalXRangePadding = this._element.getAttribute('background') === 'true' ? 0 : 2;
+      this._tooltipIndicator = svg.select('g.tooltip-indicator');
 
-      const xRange = [config.marginLeft + additionalXRangePadding, config.width - config.marginRight - additionalXRangePadding]; // [left, right]
-      if (!this._chartConf) {
-        const yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
-
-        // initialize everything once
-        this._chartConf = {
-          // x/y scales
-          x: config.xType().range(xRange),
-          y: config.yType().range(yRange)
-        };
-        this._chartConf.xAxis = config.showXAxis
-          ? d3.axisBottom(this._chartConf.x)
-            .ticks(xTicks)
-            .tickSizeOuter(0)
-            .tickFormat(config.xFormat)
-          : undefined;
-        this._chartConf.yAxis = config.showYAxis
-          ? d3.axisLeft(this._chartConf.y).ticks(yTicks, config.yFormat)
-          : undefined;
-
-
-        // add elements
-        const showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
-        if (showGrid.includes('x')) {
-          this._chartConf.xGrid = d3.axisBottom(this._chartConf.x).ticks(xTicks)
-            .tickSize(-config.height + config.marginBottom + config.marginTop)
-            .tickFormat('');
-          this._getSvgElement(svg, 'g', ['grid', 'x'], {
-            transform: `translate(0,${config.height - config.marginBottom})`
-          })
-            .call(this._chartConf.xGrid);
-        }
-        if (showGrid.includes('y')) {
-          this._chartConf.yGrid = d3.axisLeft(this._chartConf.y).ticks(yTicks)
-            .tickSize(-config.width + config.marginRight + config.marginLeft)
-            .tickFormat('');
-
-          this._getSvgElement(svg, 'g', ['grid', 'y'], {
-            transform: `translate(${config.marginLeft},0)`
-          })
-            .call(this._chartConf.yGrid);
-        }
-
-        if (config.showXAxis) {
-          this._getSvgElement(svg, 'g', ['axis', 'x'])
-            .attr('transform', `translate(0,${config.height - config.marginBottom})`)
-            .call(this._chartConf.xAxis);
-        }
-
-        if (config.showYAxis) {
-          let yAxisElement = this._getSvgElement(svg, 'g', ['axis', 'y'])
-            .attr('transform', `translate(${config.marginLeft},0)`);
-
-          if (config.label && yAxisElement.select('text').empty()) {
-            yAxisElement.append('text')
-              .attr('x', -config.marginLeft)
-              .attr('y', 10)
-              .attr('fill', 'currentColor')
-              .attr('text-anchor', 'start')
-              .text(config.yLabel);
-          }
-
-          yAxisElement
-            .call(this._chartConf.yAxis)
-            .call(g => g.select('.domain').remove());
-        }
-
-        // find chart types
-        const lineGroups = new Map();
-        const areaGroups = new Map();
-        const barGroups = new Map();
-        const stackedBarGroups = new Map();
-        const lineFunctions = {};
-        const areaFunctions = {};
-        let xBar;
-        let xzScale;
-
-        for (const key in this._dataSetConfigs) {
-          switch (this._dataSetConfigs[key].chartType) {
-            case 'line': {
-              const idx = I.filter(i => Z[i] === key);
-              lineGroups.set(key, idx);
-              const curveName = this._dataSetConfigs[key].curve || 'linear';
-              if (!Object.prototype.hasOwnProperty.call(lineFunctions, curveName)) {
-                let curveFunction;
-                switch (curveName) {
-                  case 'linear':
-                    curveFunction = d3.curveLinear;
-                    break;
-
-                  case 'step':
-                    curveFunction = d3.curveStep;
-                    break;
-
-                  case 'natural':
-                    curveFunction = d3.curveNatural;
-                    break;
-                }
-
-                if (curveFunction) {
-                  // Construct a line generator.
-                  lineFunctions[curveName] = d3
-                    .line()
-                    .curve(curveFunction)
-                    .x(i => this._chartConf.x(this._helpers.X[i]))
-                    .y(i => this._chartConf.y(this._helpers.Y[i]));
-                }
-
-                if (this._dataSetConfigs[key].chartType === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
-                  areaGroups.set(key, idx);
-                  if (curveFunction) {
-                    // Construct a line generator.
-                    const minY = this._chartConf.y.range()[0];
-                    areaFunctions[curveName] = d3
-                      .area()
-                      .curve(curveFunction)
-                      .x(i => this._chartConf.x(this._helpers.X[i]))
-                      .y0(() => minY)
-                      .y1(i => this._chartConf.y(this._helpers.Y[i]));
-                  }
-                }
-              }
-              break;
-            }
-
-            case 'bar':
-              barGroups.set(key, I.filter(i => Z[i] === key));
-              if (!xBar) {
-                xBar = d3.scaleBand().range(this._chartConf.x.range()).padding(config.xPadding);
-              }
-              if (!xzScale) {
-                xzScale = d3.scaleBand().padding(0.05);
-              }
-              break;
-
-            case 'stacked-bar':
-              stackedBarGroups.set(key, I.filter(i => Z[i] === key));
-              break;
-          }
-        }
-
-        this._chartConf.lineGroups = lineGroups;
-        this._chartConf.areaGroups = areaGroups;
-        this._chartConf.barGroups = barGroups;
-        this._chartConf.stackedBarGroups = stackedBarGroups;
-        this._chartConf.lineFunctions = lineFunctions;
-        this._chartConf.areaFunctions = areaFunctions;
-        this._chartConf.xBar = xBar;
-        if (xzScale) {
-          this._chartConf.xz = xzScale;
-        }
-
-        // prepare elements for chart elements
-        if (this._chartConf.lineGroups.size > 0) {
-          this._chartConf.lineContainer = this._getSvgElement(svg, 'g', ['line'], {
-            fill: 'none',
-            stroke: typeof config.color === 'string' ? config.color : null,
-            'stroke-linecap': config.strokeLinecap,
-            'stroke-linejoin': config.strokeLinejoin,
-            'stroke-width': config.strokeWidth,
-            'stroke-opacity': config.strokeOpacity
-          });
-        }
-        if (this._chartConf.areaGroups.size > 0) {
-          this._chartConf.areaContainer = this._getSvgElement(svg, 'g', ['area'], {
-            stroke: 'none',
-            fill: typeof config.color === 'string' ? this.__opacifyColor(config.color, '30') : null
-          });
-        }
-        if (this._chartConf.barGroups.size > 0) {
-          this._chartConf.barContainer = this._getSvgElement(svg, 'g', ['bars']);
-        }
+      const defaultTransition = d3.transition()
+        .duration(500)
+        .ease(d3.easeLinear);
+      for (const series of this._chartElements) {
+        series.render(single ? undefined : defaultTransition);
       }
 
-      // apply domains to scales
-      this._chartConf.x.domain(xDomain);
-      this._chartConf.y.domain(yDomain);
-
-      this._helpers = { X, Y, I, T, Z, O };
-
-      if (this._chartConf.xAxis) {
-        this._getSvgElement(svg, 'g', ['axis', 'x'])
-          .call(this._chartConf.xAxis);
-      }
-
-      if (this._chartConf.yAxis) {
-        this._getSvgElement(svg, 'g', ['axis', 'y'])
-          .call(this._chartConf.yAxis);
-      }
-      if (this._chartConf.xBar) {
-        this._chartConf.xBar.domain(new d3.InternSet(X));
-      }
-      if (this._chartConf.xz) {
-        this._chartConf.xz.domain(zDomain);
-        this._chartConf.x.range([xRange[0], xRange[1] - this._chartConf.xBar.bandwidth()]);
-        this._chartConf.xz.range([0, this._chartConf.xBar.bandwidth()]);
-      }
-
-      // update groups
-      for (const key of this._chartConf.lineGroups.keys()) {
-        const idx = I.filter(i => Z[i] === key);
-        this._chartConf.lineGroups.set(key, idx);
-      }
-      for (const key of this._chartConf.areaGroups.keys()) {
-        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
-        this._chartConf.areaGroups.set(key, idx);
-      }
-      for (const key of this._chartConf.barGroups.keys()) {
-        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
-        this._chartConf.barGroups.set(key, idx);
-      }
-      for (const key of this._chartConf.stackedBarGroups.keys()) {
-        const idx = I.filter(i => Z[i] === key && Y[i] !== undefined);
-        this._chartConf.stackedBarGroups.set(key, idx);
-      }
-
-      this.__config = config;
-      this._dot = svg.select('g.dot');
-
-      // show zero line in grid for non-zero based charts
-      if (minVal !== 0) {
-        let targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-        let yValue = 0.0;
-        let data = [0, X.length-1];
+       // show zero line in grid for non-zero based charts
+      if (this.data.getValuesDomain()[0] !== 0) {
+        let targetContainer = this._chartElements.length > 0 ? this._chartElements[0].getContainer() : svg;
         let lineElem = targetContainer.select('.zero-line');
         if (lineElem.empty()) {
           lineElem = targetContainer.append('line')
@@ -1257,262 +1079,166 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             .attr('stroke', 'currentColor')
             .attr('stroke-opacity', '15%');
         }
-        if (X.length > 0) {
-          const x1 = this._chartConf.x(X[data[0]]);
-          const x2 = this._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
-          const y = this._chartConf.y(yValue);
-          lineElem
-            .attr('x1', x1)
-            .attr('x2', x2)
-            .attr('y1', y)
-            .attr('y2', y);
-        }
-      }
-
-      const t = d3.transition()
-        .duration(single ? 0 : 500)
-        .ease(d3.easeLinear);
-
-      if (this._chartConf.lineContainer) {
-        this._chartConf.lineContainer
-          .selectAll('path')
-          .data(new Map([...this._chartConf.lineGroups].filter(([k, v]) => {
-            const config = this._dataSetConfigs[k];
-            // do not use h-/v-line here, only datasets
-            return config.element.localName === 'dataset';
-          })))
-          .join(
-            enter => enter.append('path')
-              .style('mix-blend-mode', config.mixBlendMode)
-              .attr('stroke', typeof config.color === 'function' ? p => config.color(p[0]) : null)
-          )
-          .transition(t)
-          .attr('d', d => {
-            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
-            const func = this._chartConf.lineFunctions[curveName] || this._chartConf.lineFunctions.linear;
-            const val = func(d[1]);
-            return val;
-          });
-      }
-
-      // Add the area
-      if (this._chartConf.areaContainer) {
-        this._chartConf.areaContainer
-          .selectAll('path')
-          .data(this._chartConf.areaGroups)
-          .join(
-            enter => enter.append('path')
-              .style('mix-blend-mode', config.mixBlendMode)
-              .attr('fill', typeof config.color === 'function' ? p => {
-                const color = config.color(p[0]);
-                const gradient = typeof config.gradient === 'function' ? config.gradient(p[0]) : false;
-                if (gradient) {
-                  const gradId = `${color.replaceAll(/\W/g, '')}Grad`;
-                  let lg = svg.select('#' + gradId);
-                  if (lg.empty()) {
-                    const lg = svg.append('defs').append('linearGradient')
-                      .attr('id', gradId)
-                      .attr('x1', '0%')
-                      .attr('x2', '0%')
-                      .attr('y1', '0%')
-                      .attr('y2', '100%');
-                    
-                    lg.append('stop')
-                      .attr('offset', '0%')
-                      .style('stop-color', color)
-                      .style('stop-opacity', 0.7);
-
-                    lg.append('stop')
-                      .attr('offset', '100%')
-                      .style('stop-color', color)
-                      .style('stop-opacity', 0);
-                  }
-                  return 'url(#' + gradId + ')';
-                } 
-                  return this.__opacifyColor(color, '30');
-              }: null)
-          )
-          .transition(t)
-          .attr('d', d => {
-            const curveName = this._dataSetConfigs[d[0]].curve || 'linear';
-            const func = this._chartConf.areaFunctions[curveName] || this._chartConf.areaFunctions.linear;
-            return func(d[1]);
-          });
-      }
-
-      if (this._chartConf.barContainer) {
-        const yMin = this._chartConf.y.range()[0];
-        this._chartConf.barContainer
-          .selectAll('g')
-          .data(this._chartConf.barGroups)
-          .join('g')
-          .attr('fill', typeof config.color === 'function' ? d => config.color(d[0]) : null)
-          .selectAll('rect')
-          .data(d => {
-            return d[1].map(val => {
-              return {
-                key: d[0],
-                value: val
-              };
-            });
-          })
-          .join('rect')
-          .attr('x', d => {
-            const x = this._chartConf.x(X[d.value]);
-            const xz =  this._chartConf.xz(d.key);
-            return x + xz;
-          })
-          .attr('y', d => this._chartConf.y(Y[d.value]))
-          .attr('width', this._chartConf.xz.bandwidth())
-          .transition(t)
-          .attr('height', d => yMin - this._chartConf.y(Y[d.value]));
+        const [x1, x2] = this.getXAxis().getRange();
+        const y = this.getYPos(0.0, true);
+        lineElem
+          .attr('x1', x1)
+          .attr('x2', x2)
+          .attr('y1', y)
+          .attr('y2', y);
       }
 
       // add fixed/calculated lines
-      this.__addLines(X, Y);
+      this.__addLines();
 
-      // dot must be added last
-      const dot = svg.select('g.dot');
-      if (dot.empty()) {
+      // tooltipIndicator must be added last
+      const tti = svg.select('g.tooltip-indicator');
+      if (tti.empty()) {
+        const [y1, y2] = this.getYAxis().getRange();
         svg.append('g')
-          .attr('class', 'dot')
+          .attr('class', 'tooltip-indicator')
           .attr('display', 'none')
-          .attr('fill', 'currentColor')
-          .append('circle')
-          .attr('r', 2.5);
+          .attr('stroke', 'currentColor')
+          .append('line')
+          .attr('x1', 0)
+          .attr('x2', 0)
+          .attr('y1', y1)
+          .attr('y2', y2);
+        this._tooltipIndicator = svg.select('g.tooltip-indicator');
       }
-      this._dot = svg.select('g.dot');
     },
 
-    __addLines(X, Y) {
-      for (const [i, line] of this._element.querySelectorAll(':scope > h-line, v-line').entries()) {
-        let key = line.getAttribute('src');
-        if (this.__srcToHash[key]) {
-          key = this.__srcToHash[key];
-        }
-        const name = line.localName;
-        let targetContainer = null;
-        let data = null;
-        let value = NaN;
-        if (key) {
-          if (this._chartConf.lineGroups.get(key)) {
-            targetContainer = this._chartConf.lineContainer;
-            data = this._chartConf.lineGroups.get(key);
-          } else if (this._chartConf.areaGroups.get(key)) {
-            targetContainer = this._chartConf.areaContainer;
-            data = this._chartConf.areaGroups.get(key);
-          } else if (this._chartConf.barGroups.get(key)) {
-            targetContainer = this._chartConf.barContainer;
-            data = this._chartConf.barGroups.get(key);
+    __addLines() {
+      for (const key in this._datasets) {
+        const ds = this._datasets[key];
+        if (ds instanceof cv.ui.structure.tile.components.chart.LineDataset) {
+          let targetContainer;
+          let value = NaN;
+          // handle line dataset
+          const name = ds.getChartType();
+          if (key.startsWith('fixed-')) {
+            targetContainer = this._chartElements.length > 0 ? this._chartElements[0].getContainer() : null;
+            if (name === 'h-line') {
+              value = parseFloat(ds.getValue());
+            } else {
+              value = new Date(ds.getValue()).getTime();
+            }
+          } else {
+            let targetGroup;
+            let srcKey = key;
+            let isLineKey = false;
+            if (key.startsWith('derived-')) {
+              const derivedFrom = ds.getSourceSet();
+              srcKey = derivedFrom.getKey();              
+            } else {
+              isLineKey = !this.data.keys.includes(key);
+            }
+            targetGroup = this._chartElements.find(group => group.hasDataset(srcKey));
+            targetContainer = targetGroup ? targetGroup.getContainer() : (this._chartElements.length > 0 ? this._chartElements[0].getContainer() : null);
+
+            let indices = isLineKey ? this.data.getLineIndicesForKey(srcKey) : this.data.getIndicesForKey(srcKey);
+            if (targetContainer) {
+              if (!indices) {
+                this.error('no data found for key ' + srcKey);
+                continue;
+              }
+              if (name === 'h-line') {
+                const values = isLineKey ? this.data.lineValues : this.data.values;
+                // we can only do calculations for values on the Y-Axis for horizontal lines
+                switch (ds.getValue()) {
+                  case 'avg': {
+                    let sum = 0.0;
+                    for (const di of indices) {
+                      sum += values[di];
+                    }
+                    value = sum / indices.length;
+                    break;
+                  }
+
+                  case 'max':
+                    value = d3.max(values.filter((v, i) => indices.includes(i), d => d));
+                    break;
+
+                  case 'min':
+                    value = d3.min(values.filter((v, i) => indices.includes(i), d => d));
+                    break;
+
+                  default:
+                    this.error('unknown value calculation: ' + ds.getValue());
+                    break;
+                }
+              } else {
+                value = isLineKey ? this.data.lineTimes[indices[0]] : this.data.times[indices[0]];
+              }
+            }
           }
-          if (!data) {
-            this.error('no data found for key ' + key);
+          if (!targetContainer) {
             continue;
           }
-          if (name === 'h-line') {
-            // we can only do calculations for values on the Y-Axis for horizontal lines
-            switch (line.getAttribute('value')) {
-              case 'avg': {
-                let sum = 0.0;
-                for (const di of data) {
-                  sum += Y[di];
-                }
-                value = sum / data.length;
-                break;
-              }
 
-              case 'max':
-                value = d3.max(Y.filter((v, i) => data.includes(i), d => d));
-                break;
-
-              case 'min':
-                value = d3.min(Y.filter((v, i) => data.includes(i), d => d));
-                break;
-
-              default:
-                this.error('unknown value calculation: ' + line.getAttribute('value'));
-                break;
+          let lineElem = targetContainer.select(`.${name}-${ds.getIndex()}`);
+          if (isNaN(value) && !lineElem.empty()) {
+            // remove line
+            lineElem.remove();
+            if (ds.getShowValue()) {
+              targetContainer.select(`.${name}-value-${ds.getIndex()}`).remove();
             }
-          } else {
-            value = X[data[0]];
-          }
-        } else {
-          targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-          if (name === 'h-line') {
-            value = parseFloat(line.getAttribute('value'));
-          } else {
-            value = new Date(line.getAttribute('value')).getTime();
-          }
-          data = [0, X.length-1];
-        }
-        if (!targetContainer) {
-          continue;
-        }
-
-        let lineElem = targetContainer.select(`.${name}-${i}`);
-        if (isNaN(value) && !lineElem.empty()) {
-          // remove line
-          lineElem.remove();
-          if (line.getAttribute('show-value') === 'true') {
-            targetContainer.select(`.${name}-value-${i}`).remove();
-          }
-        } else if (!isNaN(value)) {
-          const color = line.getAttribute('color') || 'currentColor';
-          if (lineElem.empty()) {
-            lineElem = targetContainer.append('line')
-              .attr('class', `${name}-${i}`)
-              .attr('stroke', color);
-          }
-          let formatAttribute = 'y-format';
-          let x1;
-          let x2;
-          let y1;
-          let y2 = 0;
-          if (name === 'h-line') {
-            const [xMin, xMax] = this._chartConf.x.domain();
-            x1 = this._chartConf.x(xMin);
-            x2 = this._chartConf.x(xMax); // always draw until end of chart (not until end of src dataset)
-            y1 = this._chartConf.y(value);
-            y2 = y1;
-          } else {
-            const [yMin, yMax] = this._chartConf.y.domain();
-            y1 = this._chartConf.y(yMin);
-            y2 = this._chartConf.y(yMax);
-            x1 = this._chartConf.x(value);
-            x2 = x1;
-
-            formatAttribute = 'x-format';
-          }
-
-          lineElem
-            .attr('x1', x1)
-            .attr('x2', x2)
-            .attr('y1', y1)
-            .attr('y2', y2);
-
-          if (line.getAttribute('show-value') === 'true') {
-            const format = line.hasAttribute('format') ? line.getAttribute('format')
-              : (this._element.hasAttribute(formatAttribute) ? this._element.getAttribute(formatAttribute) : '%s');
-            let valueElem = targetContainer.select(`.${name}-value-${i}`);
-            if (valueElem.empty()) {
-              valueElem = targetContainer.append('text')
-                .attr('class', `${name}-value-${i}`)
-                .attr('fill', line.getAttribute('value-color') || color)
-                .attr('font-size', '10')
-                .attr('text-anchor', 'start');
+          } else if (!isNaN(value)) {
+            const color = ds.getValueColor();
+            if (lineElem.empty()) {
+              lineElem = targetContainer.append('line')
+                .attr('class', `${name}-${ds.getIndex()}`)
+                .attr('stroke', color);
             }
+            let formatAttribute = 'y-format';
+            let x1;
+            let x2;
+            let y1;
+            let y2 = 0;
+            const xScale = this.overrideXScale || this.getXAxis().getScale();
+            const yScale = this.getYAxis().getScale();
             if (name === 'h-line') {
-              // show value on right side of the chart
-              valueElem
-                .attr('x', x2 + 2)
-                .attr('y', y1 + 5)
-                .text(cv.util.String.sprintf(format, value));
+              [x1, x2] = this.getXAxis().getRange();
+              y1 = yScale(value);
+              y2 = y1;
             } else {
-              // show value on top of the chart
-              valueElem
-                .attr('x', x1 + 2)
-                .attr('y', y2)
-                .text(d3.timeFormat(format)(value));
+              [y1, y2] = this.getYAxis().getRange();
+              x1 = xScale(value);
+              x2 = x1;
+
+              formatAttribute = 'x-format';
+            }
+
+            lineElem
+              .attr('x1', x1)
+              .attr('x2', x2)
+              .attr('y1', y1)
+              .attr('y2', y2);
+
+            if (ds.getShowValue()) {
+              const format = ds.getFormat() ||
+                 (this._element.hasAttribute(formatAttribute) ? this._element.getAttribute(formatAttribute) : '%s');
+              let valueElem = targetContainer.select(`.${name}-value-${ds.getIndex()}`);
+              if (valueElem.empty()) {
+                valueElem = targetContainer.append('text')
+                  .attr('class', `${name}-value-${ds.getIndex()}`)
+                  .attr('fill', color)
+                  .attr('font-size', '10')
+                  .attr('text-anchor', 'start');
+              }
+              if (name === 'h-line') {
+                // show value on right side of the chart
+                valueElem
+                  .attr('x', x2 + 2)
+                  .attr('y', y1 + 5)
+                  .text(cv.util.String.sprintf(format, value));
+              } else {
+                // show value on top of the chart
+                valueElem
+                  .attr('x', x1 + 2)
+                  .attr('y', y2)
+                  .text(cv.ui.structure.tile.components.Chart.TF.format(qx.locale.Manager['tr'](format))(value));
+              }
             }
           }
         }
@@ -1543,17 +1269,17 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __activateTooltip(val, ev) {
       this.__showTooltip = val;
       if (val) {
-        if (this._dot) {
-          this._dot.attr('display', null);
-          this._dot.raise();
+        if (this._tooltipIndicator) {
+          this._tooltipIndicator.attr('display', null);
+          this._tooltipIndicator.raise();
         }
         this._tooltip.style.display = 'block';
-        this._onPointerMoved(null, true);
+        this._onPointerMoved(ev, true);
       } else {
-        if (this._dot) {
-          this._dot.attr('display', 'none');
+        if (this._tooltipIndicator) {
+          this._tooltipIndicator.attr('display', 'none');
         }
-        const svg = d3.select(this._element).select('svg');
+        const svg = this.getSvg();
         svg.node().value = null;
         svg.dispatch('input', {bubbles: true});
         this._tooltip.style.display = 'none';
@@ -1567,44 +1293,81 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         if (event) {
           [xm, ym] = d3.pointer(event);
         } else if (center) {
-          xm = this.__config.width/2;
-          ym = this.__config.height/2;
+          xm = this.getWidth()/2;
+          ym = this.getHeight()/2;
         } else {
           return;
         }
-        const {X, Y, I, T, Z, O} = this._helpers;
-        const {x, y, xz} = this._chartConf;
-        const i = d3.least(I, i => Math.hypot(x(X[i]) - xm, y(Y[i]) - ym));
-        const scaleFactorX = this._element.offsetWidth / this.__config.width;
-        const scaleFactorY = this._element.offsetHeight / this.__config.height;
-        // closest point
-        const xOffset = xz ? (xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0)) : 0;
-        this._dot.attr('transform', `translate(${x(X[i]) + xOffset},${y(Y[i])})`);
-        if (T) {
-          const cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
-          const timeString = this.__config.xFormat(new Date(X[i]));
-          let top = ym * scaleFactorY - this._tooltip.offsetHeight;
-          if (top < 0) {
-            top += cursorOffset + this._tooltip.offsetHeight;
-          } else {
-            top -= cursorOffset;
-          }
 
-          let left = xm * scaleFactorX;
-          if (left > this._element.offsetWidth / 2) {
-            left -= this._tooltip.offsetWidth + cursorOffset;
-          } else {
-            left += cursorOffset;
+        // closest point on x-axis
+        const i = d3.least(this.data.indices, i => Math.abs(this.getXPos(i) - xm));
+        const scaleFactorX = this._element.offsetWidth / this.getWidth();
+        const scaleFactorY = this._element.offsetHeight / this.getHeight();
+        let xOffset = 0;
+        const key = this.data.keys[i];
+        const time = this.data.times[i];
+        const dataset = this._datasets[key];
+        if (dataset) {
+          if (dataset.getChartType() === 'bar' || dataset.getChartType() === 'stacked-bar') {
+            // find the bar group for this dataset
+            const barGroup = this._chartElements.find(group => group.hasDataset(key));
+            xOffset = barGroup ? (barGroup.getBandWidth() / 2) : 0;
           }
-
-          const key = Z[i];
-          const lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
-          this._tooltip.innerHTML = `${timeString}<br/>${lineTitle}${T[i]}`;
-          this._tooltip.style.left = left + 'px';
-          this._tooltip.style.top = top + 'px';
         }
-        d3.select(this._element).select('svg').property('value', O[i]).dispatch('input', {bubbles: true});
+        this._tooltipIndicator.attr('transform', `translate(${this.getXPos(i) + xOffset},0)`);
+        const cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
+        const timeString = this._tooltipTimeFormat ? this._tooltipTimeFormat(new Date(time)) : this.getXAxis().getTickFormat()(new Date(time));
+        const valueStrings = [];
+        // collect all y values for this time
+        const otherYIndices = this.data.values.map((_, index) => index).filter(index => this.data.times[index] === time);
+        for (const v of otherYIndices) {
+          const k = this.data.keys[v];
+          const ds = this._datasets[k];
+          const lt = ds && ds.getTitle() ? `<span style='color: ${ds.getColor()}; font-weight: bold;'>| </span><i>${ds.getTitle()}:</i> ` : '';
+          valueStrings.push(lt + cv.util.String.sprintf(this._yFormat, this.data.values[v]));
+        }
+        let top = ym * scaleFactorY - this._tooltip.offsetHeight;
+        if (top < 0) {
+          top += cursorOffset + this._tooltip.offsetHeight;
+        } else {
+          top -= cursorOffset;
+        }
+
+        let left = xm * scaleFactorX;
+        if (left > this._element.offsetWidth / 2) {
+          left -= this._tooltip.offsetWidth + cursorOffset;
+        } else {
+          left += cursorOffset;
+        }
+
+        this._tooltip.innerHTML = `<strong>${timeString}</strong><br/>${valueStrings.join('<br/>')}`;
+        this._tooltip.style.left = left + 'px';
+        this._tooltip.style.top = top + 'px';
+        
+        d3.select(this._element).select('svg').property('value', this.data.data[i]).dispatch('input', {bubbles: true});
       }
+    },
+
+    getSvg() {
+      return d3.select(this._element).select('svg');
+    },
+
+    /**
+     * Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.
+     * The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.
+     * Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.
+     * Returns null if the attribute is not present or the value is invalid.
+     *
+     * @returns {string|null} The opacity as a hexadecimal string, or null if not set or invalid.
+     */
+    getDatasetOpacity() {
+      if (this._element.hasAttribute('dataset-opacity')) {
+        const parsedOpacity = parseInt(this._element.getAttribute('dataset-opacity'));
+        if (!isNaN(parsedOpacity) && parsedOpacity >= 0 && parsedOpacity <= 100) {
+          return Math.round(255/100 * parsedOpacity).toString(16);
+        }
+      }
+      return null;
     },
 
     __updateTitle() {
@@ -1687,7 +1450,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       return '';
     },
 
-   getWeekNumber(d) {
+    getWeekNumber(d) {
       d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
       // Set to the nearest Thursday: current date + 4 - current day number
       d.setDate(d.getDate() + 4 - (d.getDay() || 7));
@@ -1695,25 +1458,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const yearStart = new Date(d.getFullYear(), 0, 1);
       // Calculate full weeks to the nearest Thursday
       return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    },
-
-    /**
-     * add opacity to color
-     * @param color
-     * @param opacity {string} hex number 0 - 255
-     * @return {string|*}
-     * @private
-     */
-    __opacifyColor(color, opacity) {
-      if (color.startsWith('var(')) {
-        color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length-1));
-      }
-      if (color.startsWith('rgb(')) {
-        return 'rgba(' + color.substring(4, color.length-1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
-      } else if (color.startsWith('#') && color.length === 7) {
-        return color + opacity;
-      }
-      return color;
     }
   },
 
@@ -1723,8 +1467,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   ***********************************************
   */
   destruct() {
-    this._chartConf = null;
-    this._helpers = null;
+    this._disposeMap('_datasets');
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
   },
 

@@ -148,7 +148,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MGraphicsElement', {
 
     _applySize(value, oldValue, name) {
       if (this._svg) {
-        this._svg.setAttribute(name, `${value}`);
+        this._svg.setAttribute(name, `${value}px`);
       }
     },
 

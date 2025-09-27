@@ -258,6 +258,28 @@ qx.Class.define('cv.util.Color', {
       }
       let ratio = (normalized - curve[lower]) / (curve[higher] - curve[lower]);
       return Math.min((lower + ratio) / (curve.length - 1), 1);
+    },
+
+    /**
+     * add opacity to color
+     * @param {string} color color in rgb(x,y,z), hex string or CSS variable
+     * @param {number} opacity % (0-100)
+     * @return {string|*}
+     * @private
+     */
+    opacify(color, opacity) {
+      if (!opacity && opacity !== 0) {
+        return color;
+      }
+      if (color.startsWith('var(')) {
+        color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length-1));
+      }
+      if (color.startsWith('rgb(')) {
+        return 'rgba(' + color.substring(4, color.length-1) + ', ' + (opacity / 100).toFixed(2) + ')';
+      } else if (color.startsWith('#')) {
+        return color.substring(0, 7) + Math.round(255/100 *opacity).toString(16).padStart(2, '0');
+      }
+      return color;
     }
   },
 

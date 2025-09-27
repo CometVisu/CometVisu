@@ -287,6 +287,10 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (!targetDir) {
       targetDir = this._getTargetDir();
     }
+    
+    if (targetDir && !targetDir.startsWith('/')) {
+    targetDir = path.join(currentDir, targetDir);
+    }
     const command = this._compilerApi.getCommand();
     this._watchList = {};
     const promises = [];
@@ -296,12 +300,7 @@ class CvCompileHandler extends AbstractCompileHandler {
         : filesToCopy;
       fileList.forEach(file => {
         const source = path.join(currentDir, 'source', file);
-        let target = '';
-        if (targetDir.startsWith('/')) {
-          target = path.join(targetDir, (file.startsWith('../') ? file.substring(3) : file));
-        } else {
-          target = path.join(currentDir, targetDir, (file.startsWith('../') ? file.substring(3) : file));
-        }
+        let target = path.join(targetDir, (file.startsWith('../') ? file.substring(3) : file));
         const stats = fs.statSync(source);
         const dirname = stats.isDirectory() ? target : path.dirname(target);
         fse.ensureDirSync(dirname);
@@ -315,7 +314,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       });
 
       // make everything in resource/config writeable
-      const configFolder = path.join(currentDir, targetDir, 'resource', 'config');
+      const configFolder = path.join(targetDir, 'resource', 'config');
 
       // create config/media folder
       const configFolders =[
@@ -350,7 +349,7 @@ class CvCompileHandler extends AbstractCompileHandler {
     }
 
     // copy IconConfig.js to make it available for resource/icons/iconlist.html
-    const classTargetDir = path.join(currentDir, targetDir, 'class', 'cv');
+    const classTargetDir = path.join(targetDir, 'class', 'cv');
     fse.ensureDirSync(classTargetDir);
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'));
 
