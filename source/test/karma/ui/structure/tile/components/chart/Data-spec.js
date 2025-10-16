@@ -77,7 +77,10 @@ describe('testing the Data chart component', () => {
   it('should filter out LineDataset entries', () => {
     data = new cv.ui.structure.tile.components.chart.Data(chart);
     
-    const lineDataset = new cv.ui.structure.tile.components.chart.LineDataset(null, chart);
+    const mockElement = document.createElement('div');
+    mockElement.setAttribute('src', 'test-source');
+    mockElement.setAttribute('key', 'line1');
+    const lineDataset = new cv.ui.structure.tile.components.chart.LineDataset(mockElement, chart);
     chart.getDataset = jasmine.createSpy('getDataset').and.callFake((key) => {
       if (key === 'line1') {
         return lineDataset;
@@ -109,7 +112,7 @@ describe('testing the Data chart component', () => {
     expect(data.times[0]).toBe(1000000);
   });
 
-  it('should get domain for a specific key', () => {
+  it('should get values domain', () => {
     data = new cv.ui.structure.tile.components.chart.Data(chart);
     const testData = [
       { key: 'series1', time: 1000000, value: 10, src: 'source1' },
@@ -119,10 +122,40 @@ describe('testing the Data chart component', () => {
     
     data.setData(testData);
     
-    const domain = data.getDomain('series1');
+    const domain = data.getValuesDomain();
     expect(domain).toBeDefined();
-    expect(domain[0]).toBe(10);
-    expect(domain[1]).toBe(30);
+    expect(domain.length).toBe(2);
+    expect(domain[0]).toBeLessThanOrEqual(10);
+    expect(domain[1]).toBeGreaterThanOrEqual(50);
+  });
+
+  it('should get times domain', () => {
+    data = new cv.ui.structure.tile.components.chart.Data(chart);
+    const testData = [
+      { key: 'series1', time: 1000000, value: 10, src: 'source1' },
+      { key: 'series1', time: 2000000, value: 30, src: 'source1' }
+    ];
+    
+    data.setData(testData);
+    
+    const domain = data.getTimesDomain();
+    expect(domain).toBeDefined();
+    expect(domain.length).toBe(2);
+    expect(domain[0]).toBe(1000000);
+    expect(domain[1]).toBe(2000000);
+  });
+
+  it('should get keys domain', () => {
+    data = new cv.ui.structure.tile.components.chart.Data(chart);
+    const testData = [
+      { key: 'series1', time: 1000000, value: 10, src: 'source1' },
+      { key: 'series2', time: 1000000, value: 15, src: 'source2' }
+    ];
+    
+    data.setData(testData);
+    
+    const domain = data.getKeysDomain();
+    expect(domain).toBeDefined();
   });
 
   it('should get indices for a specific key', () => {
