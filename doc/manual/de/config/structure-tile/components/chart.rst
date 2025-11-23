@@ -25,7 +25,7 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
         <cv-tile>
             <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="6" rowspan="3">
                 <y-axis format="%.1f °C"/>
-                <dataset chart-type="line" src="openhab://Temperature_FF_Living"/>
+                <dataset chart-type="line" show-area="true" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -247,7 +247,7 @@ oder auch die Linienfarbe ändern (``line-color="#FFFF00"``).
         <cv-tile>
             <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="6" rowspan="3" show-grid="false">
                 <y-axis format="%.1f °C"/>
-                <dataset chart-type="line" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
+                <dataset chart-type="line" show-area="true" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
         </cv-tile>
     </cv-widget>
