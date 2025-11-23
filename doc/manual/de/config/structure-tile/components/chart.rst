@@ -331,7 +331,7 @@ Bei den vertikalen Linien können momentan nur fixe Werte angegeben werden.
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
-                <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
+                <v-line color="#FFFFFF" value="2025-11-20T12:00:00" />
               </cv-chart>
         </cv-tile>
     </cv-widget>
