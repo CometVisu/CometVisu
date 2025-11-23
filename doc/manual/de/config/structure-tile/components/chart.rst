@@ -23,7 +23,7 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="6" rowspan="3">
                 <y-axis format="%.1f °C"/>
                 <dataset chart-type="line" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
@@ -33,7 +33,7 @@ Für jedes ``<dataset>`` wird in dem Chart z.B. eine Linie eingezeichnet.
 Das Beispiel zeigt den Temperaturverlauf der letzten 24 Stunden, der exakte, formatierte Temperaturwert für
 einen Zeitpunkt im Chart wird als Tooltip angezeigt, wenn man mit dem Mauszeiger über den Chart fährt.
 Damit der Chart eine gewisse Größe erreicht wird hier eine Kachel mit doppelter Breite ``<cv-tile size="2x1">`` benutzt
-und der Chart selbst soll die gesamte Kachel ausfüllen ``<cv-chart ... colspan="3" rowspan="3">``.
+und der Chart selbst soll die gesamte Kachel ausfüllen ``<cv-chart ... colspan="6" rowspan="3">``.
 
 Konfiguration der Datenquelle
 #############################
@@ -167,7 +167,7 @@ Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farbli
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" series="month" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" series="month" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
@@ -193,7 +193,7 @@ Das Chart-Element bietet auch die Möglichkeit ein Balkendiagramm darzustellen:
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" series="month" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" series="month" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false" chart-type="bar"/>
@@ -221,7 +221,7 @@ füllen, oder einfach mit ``all`` for alle.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="week,month,year" series="month" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" selection="week,month,year" series="month" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
@@ -245,7 +245,7 @@ oder auch die Linienfarbe ändern (``line-color="#FFFF00"``).
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="3" rowspan="3" show-grid="false">
+            <cv-chart title="Wohnzimmer" series="day" refresh="300" colspan="6" rowspan="3" show-grid="false">
                 <y-axis format="%.1f °C"/>
                 <dataset chart-type="line" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
@@ -272,7 +272,7 @@ Höchst- oder Tiefstwert.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="month" series="month" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" selection="month" series="month" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
@@ -295,7 +295,7 @@ Auch Inline-Queries können auf diesem Weg wieder verwendet werden:
 
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="month" series="month" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" selection="month" series="month" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://inline#1" title="Netzbezug" color="#FF0000" show-area="false">
@@ -327,7 +327,7 @@ Bei den vertikalen Linien können momentan nur fixe Werte angegeben werden.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="day" series="day" refresh="300" colspan="3" rowspan="3">
+            <cv-chart title="Strom" selection="day" series="day" refresh="300" colspan="6" rowspan="3">
                 <x-axis format="%d. %b"/>
                 <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>

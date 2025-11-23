@@ -1184,11 +1184,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               targetContainer.select(`.${name}-value-${ds.getIndex()}`).remove();
             }
           } else if (!isNaN(value)) {
-            const color = ds.getValueColor();
+            const valuecolor = ds.getValueColor();
+            const lineColor =  cv.util.Color.opacify(ds.getColor(), this.getDatasetOpacity());
             if (lineElem.empty()) {
               lineElem = targetContainer.append('line')
                 .attr('class', `${name}-${ds.getIndex()}`)
-                .attr('stroke', color);
+                .attr('stroke', lineColor);
             }
             let formatAttribute = 'y-format';
             let x1;
@@ -1222,7 +1223,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               if (valueElem.empty()) {
                 valueElem = targetContainer.append('text')
                   .attr('class', `${name}-value-${ds.getIndex()}`)
-                  .attr('fill', color)
+                  .attr('fill', valuecolor !== 'currentColor' ? valuecolor : lineColor)
                   .attr('font-size', '10')
                   .attr('text-anchor', 'start');
               }

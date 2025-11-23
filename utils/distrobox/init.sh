@@ -26,6 +26,7 @@ if [ ! -f /root/.first_run_complete ]; then
     sudo systemctl enable knxd    
 
     ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/docker
+    ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/kde-open
     # install python dependencies
     sudo pip install -r /home/cv/utils/requirements.txt --break-system-packages
     cd /home/cv && npm run selenium
