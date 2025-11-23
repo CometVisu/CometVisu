@@ -10,7 +10,7 @@ volume="${PWD}/compiled:/var/www/html ${PWD}/.serve/logs:/var/log/apache2 ${PWD}
 # Basic utilities + server stuff
 additional_packages="git vim vim-python-jedi curl gpg systemd libpam-systemd"
 # Python
-additional_packages="libxml2-dev libxslt-dev python3 python3-pip python-is-python3 python3-venv python3-enchant hunspell-de-de-frami hunspell-en-gb hunspell-en-us"
+additional_packages="libxml2-dev libxslt-dev plantuml python3 python3-pip python-is-python3 python3-venv python3-enchant hunspell-de-de-frami hunspell-en-gb hunspell-en-us"
 # For selenium (karma) support
 additional_packages="libnspr4 libnss3 libatk-bridge2.0-0 libxkbcommon0 libasound2"
 # Node
