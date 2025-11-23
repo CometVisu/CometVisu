@@ -19,7 +19,8 @@
 from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper
-from docutils.parsers.rst import directives, Directive
+from docutils.parsers.rst import directives
+from sphinx.util.docutils import SphinxDirective
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path
 from lxml import etree
@@ -39,7 +40,7 @@ def editor(argument):
     return directives.choice(argument, align_values)
 
 
-class WidgetExampleDirective(Directive):
+class WidgetExampleDirective(SphinxDirective):
     """
     reStructuredText directive for widget examples. Extracts the example code, validates it against the
     XSD-File provided by CometVisu and creates an file with the relevant content the screenshot generation tool needs
