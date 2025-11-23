@@ -97,35 +97,33 @@ mit: ::
 
 Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:
 
-.. glossary::
+``-d``
+    Hierdurch wird der Container im Hintergrund gestartet.
 
-    ``-d``
-        Hierdurch wird der Container im Hintergrund gestartet.
+``--name``
+    Der Name unter dem der Container gemanagt wird.
 
-    ``--name``
-        Der Name unter dem der Container gemanagt wird.
+``-p``
+    Durch ``1880:1880`` wird der Port 1880 im Container auf den Port 1880 des
+    Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
+    Web-Server im Container von außen (über den Port 1880) zugegriffen werden.
 
-    ``-p``
-        Durch ``1880:1880`` wird der Port 1880 im Container auf den Port 1880 des
-        Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
-        Web-Server im Container von außen (über den Port 1880) zugegriffen werden.
+``-v``
+    Mit ``node_red_data:/data`` wird das vorhin angelegte Volume
+    ``node_red_data`` auf den Pfad ``/data`` im Container gemappt.
 
-    ``-v``
-        Mit ``node_red_data:/data`` wird das vorhin angelegte Volume
-        ``node_red_data`` auf den Pfad ``/data`` im Container gemappt.
+``-e``
+    Über diesen Parameter wird eine `Environment`-Variable übergeben. Mit
+    ``TZ=Europe/Berlin`` wird die Zeitzone für Node-RED auf `Berlin`
+    festgelegt.
 
-    ``-e``
-        Über diesen Parameter wird eine `Environment`-Variable übergeben. Mit
-        ``TZ=Europe/Berlin`` wird die Zeitzone für Node-RED auf `Berlin`
-        festgelegt.
+``--restart``
+    Mit ``unless-stopped`` wird der Container auch bei Fehlern wieder
+    automatisch gestartet - so lange er nicht per Befehl explizit beendet
+    wurde.
 
-    ``--restart``
-        Mit ``unless-stopped`` wird der Container auch bei Fehlern wieder
-        automatisch gestartet - so lange er nicht per Befehl explizit beendet
-        wurde.
-
-    ``nodered/node-red:latest``
-        Als letztes wird das Image angegeben, dass ausgeführt werden soll.
+``nodered/node-red:latest``
+    Als letztes wird das Image angegeben, dass ausgeführt werden soll.
 
 Node-RED kann nun auf dem Raspberry Pi auf dem Port ``1880`` mit dem Browser
 geöffnet werden.
