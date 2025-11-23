@@ -313,8 +313,8 @@ class DocGenerator(Command):
             return
         root, dirs, files = list(os.walk(path))[0]
         source_files = []
-        cleanr = re.compile('</?h.*?>')
-        clean_tags = re.compile('</?.*?>')
+        cleanr = re.compile(r'</?h.*?>')
+        clean_tags = re.compile(r'</?.*?>')
         if plugin:
             for file in files:
                 if file.split(os.path.sep)[0] in dirs and file.startswith("Abstract"):

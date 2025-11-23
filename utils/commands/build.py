@@ -40,8 +40,8 @@ class BuildHelper(Command):
         if not os.path.exists(build_dir):
             print("Please run generate the build first")
             return
-        p = re.compile("^qx.\$\$packageData\['\d+'\]=(.+);")
-        scripts_reg = re.compile("[\w]+\.addScripts\(\[?([^\]\)]+)\]?,?(\[[^\]]\]+)?\)")
+        p = re.compile(r"^qx.\$\$packageData\['\d+'\]=(.+);")
+        scripts_reg = re.compile(r"[\w]+\.addScripts\(\[?([^\]\)]+)\]?,?(\[[^\]]\]+)?\)")
         for subdir, dirs, files in os.walk(os.path.join(build_dir, "cv")):
             for file in files:
                 if file[-3:] != ".js":
