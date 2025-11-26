@@ -84,7 +84,7 @@ Hinzufügen des CometVisu Containers
 
 Im Formular ist ein passender `Name`, hier ``CometVisu``, für den neuen
 Container zu wählen und das Image auszuwählen. Das Image
-``cometvisu/cometvisu:latest-arm`` wird hier direkt
+``cometvisu/cometvisu:latest`` wird hier direkt
 vom offiziellen `Docker Hub <https://hub.docker.com/r/cometvisu/cometvisu>`_
 geladen.
 
@@ -171,7 +171,7 @@ Hinzufügen des CometVisu Containers
 
 Der `offizielle CometVisu Container <https://hub.docker.com/r/cometvisu/cometvisu>`_
 für den Raspberry Pi ist, in der jeweils neuesten Version,
-``cometvisu/cometvisu:latest-arm``.
+``cometvisu/cometvisu:latest``.
 
 .. note::
 
@@ -181,11 +181,11 @@ für den Raspberry Pi ist, in der jeweils neuesten Version,
 
 Installiert wird dieser mit: ::
 
-    docker pull cometvisu/cometvisu:latest-arm
+    docker pull cometvisu/cometvisu:latest
 
 Zum ersten mal wird der CometVisu-Server nun gestartet mit: ::
 
-    docker run --name CometVisu -e KNX_INTERFACE='iptn:192.168.0.35:3700' --restart unless-stopped -d -p 80:80 -v CometVisuConfig:/var/www/html/resource/config cometvisu/cometvisu:latest-arm
+    docker run --name CometVisu -e KNX_INTERFACE='iptn:192.168.0.35:3700' --restart unless-stopped -d -p 80:80 -v CometVisuConfig:/var/www/html/resource/config cometvisu/cometvisu:latest
 
 Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:
 
@@ -216,7 +216,7 @@ Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:
     angelegte Volume ``CometVisuConfig`` auf den Pfad
     ``/var/www/html/resource/config`` im Container gemappt.
 
-``cometvisu/cometvisu:latest-arm``
+``cometvisu/cometvisu:latest``
     Als letztes wird das Image angegeben, dass ausgeführt werden soll.
 
 .. important::
