@@ -31,7 +31,6 @@ CometVisu is a real-time web-based visualization for building automation (smart 
 ### Configuration System
 - XML-based configuration files (`visu_config.xml`, `visu_config_tile.xml`)
 - Schema-validated against XSD files (`source/resource/visu_config.xsd`)
-- Supports templating via `cv.TemplateEngine` (singleton)
 - Parser classes convert XML to widget instances
 
 ## Development Workflow
@@ -55,11 +54,12 @@ npm run source
 ### Testing
 ```bash
 # Run all tests (Karma + Jasmine)
-grunt karma:debug
+grunt karma:ci
 
 # Filter specific tests
-grunt karma:debug --grep=<test-name>
+grunt karma:ci --grep=<test-name>
 ```
+Coverage reports in `coverage/`
 
 Test files:
 - Unit tests: `source/test/karma/**/*-spec.js`
