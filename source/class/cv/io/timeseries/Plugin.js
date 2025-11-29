@@ -47,13 +47,11 @@ qx.Class.define('cv.io.timeseries.Plugin', {
     },
 
     clearWaiting() {
-      for (const type in cv.io.timeseries.Plugin._registry) {
-        if (cv.io.timeseries.Plugin._waitingForType[type]) {
-          for (const entry of cv.io.timeseries.Plugin._waitingForType[type]) {
-            clearTimeout(entry.timeout);
-          }
-          delete cv.io.timeseries.Plugin._waitingForType[type];
+      for (const type in cv.io.timeseries.Plugin._waitingForType) {
+        for (const entry of cv.io.timeseries.Plugin._waitingForType[type]) {
+          clearTimeout(entry.timeout);
         }
+        delete cv.io.timeseries.Plugin._waitingForType[type];
       }
     }
   },
