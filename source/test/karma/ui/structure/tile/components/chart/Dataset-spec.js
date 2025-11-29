@@ -40,6 +40,7 @@ describe('testing cv.ui.structure.tile.components.chart.Dataset', function () {
   afterEach(function() {
     mockChart = null;
     mockElement = null;
+    cv.io.timeseries.Plugin.clearWaiting();
   });
 
   function createDatasetElement(attributes = {}) {
@@ -199,23 +200,34 @@ describe('testing cv.ui.structure.tile.components.chart.Dataset', function () {
       dataset.dispose();
     });
 
-    it('should detect plugin type from src', function() {
-      const element = createDatasetElement({ src: 'plugin://myplugin' });
-      const dataset = new cv.ui.structure.tile.components.chart.Dataset(element, mockChart);
+    describe('plugin+subtype detection', function() {
+      beforeAll(function() {
+        qx.Class.define('cv.io.timeseries.plugins.CustomPlugin', {
+          extend: qx.core.Object,
+          construct(config, chart) {
+            qx.core.Object.constructor.call(this);
+          }
+        });
 
-      expect(dataset.getType()).toBe('plugin');
+        cv.io.timeseries.Plugin.registerPlugin('custom', cv.io.timeseries.plugins.CustomPlugin);
+      });
 
-      dataset.dispose();
-    });
+      afterAll(function() {
+        // Clean up registered plugin
+        delete cv.io.timeseries.Plugin._registry['custom'];
+        qx.Class.undefine('cv.io.timeseries.plugins.CustomPlugin');
+      });
 
-    it('should detect plugin+subtype from src', function() {
-      const element = createDatasetElement({ src: 'plugin+custom://mydata' });
-      const dataset = new cv.ui.structure.tile.components.chart.Dataset(element, mockChart);
+      it('should detect plugin+subtype from src', function() {
+        cv.io.timeseries.Plugin.registerPlugin('custom', cv.io.timeseries.plugins.CustomPlugin);
+        const element = createDatasetElement({ src: 'plugin+custom://mydata' });
+        const dataset = new cv.ui.structure.tile.components.chart.Dataset(element, mockChart);
 
-      expect(dataset.getType()).toBe('plugin');
-      expect(dataset.getSubType()).toBe('custom');
+        expect(dataset.getType()).toBe('plugin');
+        expect(dataset.getSubType()).toBe('custom');
 
-      dataset.dispose();
+        dataset.dispose();
+      });
     });
 
     it('should handle empty src', function() {

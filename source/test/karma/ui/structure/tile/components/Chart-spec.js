@@ -759,6 +759,7 @@ describe('testing the <cv-chart> component of the tile structure', () => {
 
       expect(instance._tooltipTimeFormat).toBeDefined();
       expect(typeof instance._tooltipTimeFormat).toBe('function');
+      expect(instance._tooltipTimeFormat(new Date(2024, 0, 1, 14, 30))).toBe('14:30');
     });
   });
 

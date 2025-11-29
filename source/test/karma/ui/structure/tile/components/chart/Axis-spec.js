@@ -23,6 +23,10 @@
 describe('testing chart axis components in cv.ui.structure.tile.components.chart', function () {
   const wait = (ms = 50) => new Promise(resolve => setTimeout(resolve, ms));
 
+  afterEach(function() {
+    cv.io.timeseries.Plugin.clearWaiting();
+  });
+
   describe('XAxis tests', function() {
     it('should create XAxis with chart component', async function() {
       const element = this.createTileWidgetWithComponent('cv-chart', {}, '');
