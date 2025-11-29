@@ -90,6 +90,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _lastBBox: null,
     _additionalViewBoxUpdate: null,
     _ready: null,
+    _timeouts: null,
 
     getSvg() {
       if (!this.SVG) {
@@ -102,6 +103,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     _init() {
       super._init();
       this.getSvg();
+      this._timeouts = {};
 
       this.setResizeTarget(this._element);
       this._observer.observe(this.SVG);
@@ -159,7 +161,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       }
 
       // make sure that the initial setup viewBox changes are not animated
-      setTimeout(() => {
+      this._timeouts['_center'] = setTimeout(() => {
         this._ready = true;
         this._center();
       }, 2000);
@@ -537,10 +539,10 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
             svg.transition()
               .duration(500)
               .attr('viewBox', `${x} ${y} ${width} ${height}`);
-            setTimeout(() => this._center(), 510);
+            this._timeouts['_center'] = setTimeout(() => this._center(), 510);
           } else {
             this.SVG.setAttribute('viewBox', `${x} ${y} ${width} ${height}`);
-            setTimeout(() => this._center(), 10);
+            this._timeouts['_center'] = setTimeout(() => this._center(), 10);
           }
         }
       } else {
@@ -549,6 +551,10 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _center(width, height) {
+      if ('_center' in this._timeouts) {
+        clearTimeout(this._timeouts['_center']);
+        delete this._timeouts['_center'];
+      }
       if (this.SVG && this._ready) {
         const bbox = this.SVG.getBBox();
         if (this._lastBBox && (this._lastBBox.width === bbox.width &&
@@ -644,6 +650,25 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           this._updateViewBox();
         });
       }
+    },
+
+    /*
+    ******************************************************
+      DESTRUCTOR
+    ******************************************************
+    */
+    destruct() {
+      for (const key in this._timeouts) {
+        clearTimeout(this._timeouts[key]);
+      }
+      this._timeouts = null;
+      this.SVG = null;
+      this._dragPoint = null;
+      this._startPoint = null;
+      this._viewBoxBinding = null;
+      this._lastBBox = null;
+      this._additionalViewBoxUpdate = null;
+      this._ready = null;
     }
   },
 

@@ -23,18 +23,7 @@
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
-  /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(props) {
-    props.value = new Date();
-    props.value.setHours(0, 0, 0, 0);
-    this.__timeToShow = [0, 0, 0];
-    this.__Elements = [];
-    super(props);
-  },
+
 
   /*
   ******************************************************
@@ -262,6 +251,14 @@ qx.Class.define('cv.plugins.Clock', {
      *  to handle legacy mode, when a time string is used and not a `Date` object
      */
     __valueIsString: false,
+
+    _beforePropsApplied(props) {
+      props.value = new Date();
+      props.value.setHours(0, 0, 0, 0);
+      this.__timeToShow = [0, 0, 0];
+      this.__Elements = [];
+      return props;
+    },
 
     _getInnerDomString() {
       return '<div class="actor" style="width:100%;height:100%"></div>';

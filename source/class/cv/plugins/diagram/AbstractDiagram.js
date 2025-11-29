@@ -526,7 +526,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   ******************************************************
   */
   members: {
-    _init: null,
+    _init: false,
     popupplot: null,
     plot: null,
     plotted: null,

@@ -29,20 +29,6 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
   include: [cv.ui.common.HasChildren, cv.ui.common.HasAnimatedButton],
 
   /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(props) {
-    if (!props.name) {
-      // when there is no name the widget has no actor as clickable subelement, so we need
-      // to bind the click events to the whole widget
-      props.bindClickToWidget = true;
-    }
-    super(props);
-  },
-
-  /*
   ******************************************************
     PROPERTIES
   ******************************************************
@@ -136,6 +122,13 @@ qx.Class.define('cv.ui.structure.pure.PageJump', {
   ******************************************************
   */
   members: {
+    _beforePropsApplied(props) {
+      if (!props.name) {
+        props.bindClickToWidget = true;
+      }
+      return props;
+    },
+
     // overridden
     _getInnerDomString() {
       let actor = '<div class="actor switchUnpressed';

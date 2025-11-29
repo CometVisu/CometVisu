@@ -37,24 +37,6 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct(props) {
-    const classes = props.classes.trim().split(' ');
-    const i_right = classes.indexOf('right');
-
-    if (i_right !== -1) {
-      // do not align, but float the container instead
-      this.setContainerClass('float-right');
-      classes.splice(i_right, 1);
-      props.classes = classes.join(' ');
-    }
-    super(props);
-  },
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -78,6 +60,19 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
    */
   members: {
     __badgeElement: null,
+
+    _beforePropsApplied(props) {
+      const classes = props.classes.trim().split(' ');
+      const i_right = classes.indexOf('right');
+
+      if (i_right !== -1) {
+        // do not align, but float the container instead
+        this.setContainerClass('float-right');
+        classes.splice(i_right, 1);
+        props.classes = classes.join(' ');
+      }
+      return props;
+    },
 
     _onDomReady() {
       super._onDomReady();

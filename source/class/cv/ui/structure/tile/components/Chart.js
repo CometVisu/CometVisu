@@ -888,7 +888,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     _onSuccess(chartData) {
       // wait some time to let the element size settle
-      setTimeout(() => {
+      this.__resizeTimeout = setTimeout(() => {
         // append all dataset fetched data to a single flat array
         this._onRendered(chartData.flat());
       }, 100);
@@ -1472,6 +1472,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   destruct() {
     this._disposeMap('_datasets');
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
+    if (this.__resizeTimeout) {
+      clearTimeout(this.__resizeTimeout);
+      this.__resizeTimeout = null;
+    }
+    if (this.__toolTipTimer) {
+      clearTimeout(this.__toolTipTimer);
+      this.__toolTipTimer = null;
+    }
   },
 
   defer(QxClass) {

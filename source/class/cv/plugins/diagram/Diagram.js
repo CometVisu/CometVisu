@@ -22,16 +22,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
   /*
    ******************************************************
-   CONSTRUCTOR
-   ******************************************************
-   */
-  construct(props) {
-    this._init = true;
-    super(props);
-  },
-
-  /*
-   ******************************************************
    PROPERTIES
    ******************************************************
    */
@@ -95,6 +85,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    ******************************************************
    */
   members: {
+    _init: true,
     __vlid1: null,
 
     _onDomReady() {

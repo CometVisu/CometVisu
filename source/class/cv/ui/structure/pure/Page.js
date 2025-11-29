@@ -34,8 +34,6 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   construct(props) {
-    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
-
     super(props);
 
     this.addListener('changeVisible', this._onChangeVisible, this);
@@ -183,7 +181,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
    ******************************************************
    */
   members: {
-    __waitForProperties: null,
+    __waitForProperties: ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'],
     __colspanClass: null,
     __normalizedDomId: null,
     __inhibitGA4Startup: null,
