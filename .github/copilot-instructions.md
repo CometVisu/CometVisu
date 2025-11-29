@@ -52,6 +52,24 @@ npm run source
 ```
 
 ### Testing
+Test framework: **Karma** with **Jasmine** needs a chrome browser installed.
+The tests need some environment variables in a .protractor-env file. This file needs to be sourced
+before running the tests.
+If that file not exist, run the following commands to create it and set up the browser for testing:
+
+```bash
+# Install test dependencies
+npm run selenium
+utils/ci/browser-setup.sh
+```
+
+Changes to test files require a recompile of the test sources:
+
+```bash
+# compile source code and test code
+npx qx compile
+``` 
+
 ```bash
 # Run all tests (Karma + Jasmine)
 grunt karma:ci
