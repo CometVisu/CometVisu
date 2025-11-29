@@ -302,7 +302,12 @@ module.exports = function(grunt) {
     // karma unit testing
     karma: {
       unit: {
-        configFile: 'source/test/karma/karma.conf.js'
+        configFile: 'source/test/karma/karma.conf.js',
+        reporters: ['dots'],
+        browsers: ['Chrome_ci'],
+        client: {
+          captureConsole: false
+        },
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       ci: {
@@ -315,7 +320,7 @@ module.exports = function(grunt) {
         singleRun: !grunt.option('no-single') && !grunt.option('auto-watch'),
         autoWatch: grunt.option('auto-watch'),
         browsers: [grunt.option('browser') || 'Chrome_ci'],
-        reporters: grunt.option('coverage') ? ['spec', 'coverage'] : ['spec']
+        reporters: grunt.option('coverage') ? ['dots', 'coverage'] : ['dots']        
       }
     },
 
