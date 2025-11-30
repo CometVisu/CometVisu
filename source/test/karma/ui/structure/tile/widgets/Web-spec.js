@@ -84,7 +84,6 @@ describe('testing the <cv-web> widget of the tile structure', () => {
     expect(iframe).not.toBeNull();
     const proxyUrl = new URL(cv.io.rest.Client.getBaseUrl() + '/proxy', window.location.origin);
     proxyUrl.searchParams.set('url', 'mydir/test.html');
-    console.log(iframe.getAttribute('src'));
     expect(iframe.getAttribute('src').startsWith(proxyUrl.toString())).toBeTruthy();
   });
 

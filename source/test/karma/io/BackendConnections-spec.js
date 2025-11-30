@@ -27,6 +27,7 @@ describe('testing cv.io.BackendConnections', () => {
   let savedTestMode;
   let testCounter = 0;
   let createdClients = [];
+  let oldDefaultBackendName;
 
   function getUniqueClientName(prefix) {
     testCounter++;
@@ -43,6 +44,7 @@ describe('testing cv.io.BackendConnections', () => {
     savedTestMode = cv.Config.testMode;
     cv.Config.testMode = true;
     createdClients = [];
+    oldDefaultBackendName = cv.data.Model.getInstance().getDefaultBackendName();
   });
 
   afterEach(() => {
@@ -62,6 +64,7 @@ describe('testing cv.io.BackendConnections', () => {
       }
     });
     createdClients = [];
+    cv.data.Model.getInstance().setDefaultBackendName(oldDefaultBackendName);
   });
 
   describe('class definition', () => {
