@@ -17,6 +17,3 @@ additional_packages="libnspr4 libnss3 libatk-bridge2.0-0 libxkbcommon0 libasound
 additional_packages="nodejs npm"
 
 init_hooks=/home/cv/utils/distrobox/init.sh;
-
-# this needs to be run by the user manually after starting the container, it does not work within an init_hook
-#. /home/cv/.protractor-env;
