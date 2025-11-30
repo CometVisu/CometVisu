@@ -831,6 +831,12 @@
         <xsd:documentation xml:lang="de">Definiert die Opazität aller Datensatzes im Chart (Wert in %).</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="tooltip-time-format" type="d3-time-format">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the time format for tooltips in the chart.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert das Zeitformat für Tooltips im Chart.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cv-list">
@@ -1791,6 +1797,7 @@
   <xsd:complexType name="cv-widget-pair">
     <xsd:sequence>
       <xsd:choice minOccurs="2" maxOccurs="2">
+        <xsd:element name="cv-widget" type="cv-widget" />
         <xsd:element name="cv-tile" type="cv-tile" />
         <xsd:element name="cv-switch" type="cv-switch" />
         <xsd:element name="cv-info" type="cv-info" />
@@ -1927,71 +1934,64 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-energy">
-    <xsd:complexContent>
-      <xsd:extension base="cv-flow">
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
-            <xsd:complexType>
-              <xsd:simpleContent>
-                <xsd:extension base="address">
-                  <xsd:attribute name="slot" use="required">
-                    <xsd:simpleType>
-                      <xsd:restriction base="xsd:string">
-                        <xsd:enumeration value="pv-power" />
-                        <xsd:enumeration value="grid-power" />
-                        <xsd:enumeration value="battery-power" />
-                        <xsd:enumeration value="battery-other" />
-                        <xsd:enumeration value="charger-power" />
-                        <xsd:enumeration value="heatpump-power" />
-                        <xsd:enumeration value="consumer-power" />
-                        <xsd:enumeration value="house-power" />
-                        <xsd:enumeration value="tileAddress" />
-                      </xsd:restriction>
-                    </xsd:simpleType>
-                  </xsd:attribute>
-                </xsd:extension>
-              </xsd:simpleContent>
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded"/>
-          <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0" maxOccurs="unbounded" />
-          <!--
-          we have to repeat these two elements here because the libxml schema validator used in the worker
-          cannot handle complexContent->extension correctly and would mark this as an error.
-          The python lxml library >= 5.0.0 marks this as not deterministic, so we need to use a version < 5.0 there
-          /-->
-          <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
-          <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />    
-        </xsd:choice>
-        <xsd:attribute name="house-row" type="xsd:decimal">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Row of the position of the house (default=1).</xsd:documentation>
-            <xsd:documentation xml:lang="de">Zeile in der das Haus positioniert werden soll (default=1)</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attribute name="house-column" type="xsd:decimal">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Column of the position of the house (default=1).</xsd:documentation>
-            <xsd:documentation xml:lang="de">Spalte in der das Haus positioniert werden soll (default=1)</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attribute name="title" type="xsd:string">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Title of the widget.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Titel des Widgets.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
-          <xsd:annotation>
-            <xsd:documentation xml:lang="en">Allows showing the widget in fullscreen size.</xsd:documentation>
-            <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</xsd:documentation>
-          </xsd:annotation>
-        </xsd:attribute>
-        <xsd:attributeGroup ref="widget-header-attributes" />
-        <xsd:attribute name="center-x" type="xsd:boolean" default="true"/>
-        <xsd:attribute name="center-y" type="xsd:boolean" default="false"/>
-      </xsd:extension>
-    </xsd:complexContent>
+    <xsd:choice maxOccurs="unbounded">
+      <xsd:group ref="cv-flow-elements" />
+      <xsd:element name="cv-address" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="address">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="pv-power" />
+                    <xsd:enumeration value="grid-power" />
+                    <xsd:enumeration value="battery-power" />
+                    <xsd:enumeration value="battery-other" />
+                    <xsd:enumeration value="charger-power" />
+                    <xsd:enumeration value="heatpump-power" />
+                    <xsd:enumeration value="consumer-power" />
+                    <xsd:enumeration value="house-power" />
+                    <xsd:enumeration value="tileAddress" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:simpleContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cv-power-entity" type="cv-power-entity" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="cv-energy-entity" type="cv-energy-entity" minOccurs="0"
+        maxOccurs="unbounded" />
+    </xsd:choice>
+    <xsd:attributeGroup ref="cv-flow-attributes" />
+    <xsd:attribute name="house-row" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Row of the position of the house (default=1).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeile in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="house-column" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Column of the position of the house (default=1).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Spalte in der das Haus positioniert werden soll (default=1)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Title of the widget.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Titel des Widgets.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="allow-fullscreen" type="xsd:boolean">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Allows showing the widget in fullscreen size.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erlaubt die Vergrößerung des Widgets auf volle
+          Bildschirmgröße.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="widget-header-attributes" />
+    <xsd:attribute name="center-x" type="xsd:boolean" default="true" />
+    <xsd:attribute name="center-y" type="xsd:boolean" default="false" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-web">
@@ -2146,7 +2146,7 @@
         </xsd:annotation>
         <xsd:simpleType>
           <xsd:restriction base="xsd:token">
-            <!-- allow everything except the reserved 'system' -->
+              <!-- allow everything except the reserved 'system' -->
             <xsd:pattern value="auto|(top|right|bottom|left|auto)-(top|right|bottom|left|auto)"/>
           </xsd:restriction>
         </xsd:simpleType>
@@ -2155,11 +2155,14 @@
     </xsd:complexContent>
   </xsd:complexType>
 
-  <xsd:complexType name="cv-flow">
+  <xsd:group name="cv-flow-elements">
     <xsd:choice>
       <xsd:element name="cv-svg-round-value" type="cv-svg-round-value" minOccurs="0" maxOccurs="unbounded" />
       <xsd:element name="cv-svg-text-value" type="cv-svg-text-value" minOccurs="0" maxOccurs="unbounded" />
     </xsd:choice>
+  </xsd:group>
+
+  <xsd:attributeGroup name="cv-flow-attributes">
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute name="mobile-size" type="tile-size" />
     <xsd:attributeGroup ref="appearance-attributes" />
@@ -2241,6 +2244,13 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+  </xsd:attributeGroup>
+
+  <xsd:complexType name="cv-flow">
+    <xsd:choice>
+      <xsd:group ref="cv-flow-elements"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="cv-flow-attributes" />
   </xsd:complexType>
 
   <!--
@@ -2256,7 +2266,7 @@
   # -->
 
   <xsd:complexType name="cv-svg-text-value">
-    <xsd:choice>
+    <xsd:choice minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:choice>
@@ -2285,10 +2295,12 @@
   </xsd:complexType>
 
   <xsd:complexType name="cv-svg-round-value">
-    <xsd:choice>
-      <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
-    </xsd:choice>
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="cv-address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="cv-address-group" type="cv-address-group" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
     <xsd:attribute name="id" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">ID of this element.</xsd:documentation>
@@ -2339,7 +2351,6 @@
     <xsd:attribute ref="mapping"/>
     <xsd:attribute ref="format"/>
   </xsd:complexType>
-
 
 
   <!--
@@ -2851,6 +2862,12 @@
         <xsd:documentation xml:lang="de">Achsenlinie anzeigen</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="tick-size" type="xsd:integer" default="6">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show tick marks.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Tick-Marken anzeigen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="x-axis">
@@ -3216,7 +3233,7 @@
     <xsd:simpleType>
       <xsd:restriction base="xsd:integer">
         <xsd:minInclusive value="1"/>
-        <xsd:maxInclusive value="3"/>
+        <xsd:maxInclusive value="6"/>
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -3549,7 +3566,7 @@
     </xsd:attribute>
     <xsd:attribute ref="class" />
   </xsd:complexType>
-  
+
   <!--
   #####################################################################################################################
   # END: Plugins

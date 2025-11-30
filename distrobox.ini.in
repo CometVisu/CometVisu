@@ -1,5 +1,5 @@
 [cv]
-image=docker.io/cometvisu/cometvisuabstractbase:latest
+image=docker.io/cometvisu/cometvisuabstractbase:testing
 pull=true
 init=true
 root=false
@@ -10,38 +10,13 @@ volume="${PWD}/compiled:/var/www/html ${PWD}/.serve/logs:/var/log/apache2 ${PWD}
 # Basic utilities + server stuff
 additional_packages="git vim vim-python-jedi curl gpg systemd libpam-systemd"
 # Python
-additional_packages="libxml2-dev libxslt-dev python3 python3-pip python-is-python3 python3-venv python3-enchant hunspell-de-de-frami hunspell-en-gb hunspell-en-us"
+additional_packages="libxml2-dev libxslt-dev plantuml python3 python3-pip python-is-python3 python3-venv python3-enchant hunspell-de-de-frami hunspell-en-gb hunspell-en-us"
 # For selenium (karma) support
-additional_packages="libnspr4 libnss3 libatk-bridge2.0-0 libxkbcommon0 libasound2"
+additional_packages="libnspr4 libnss3 libatk-bridge2.0-0 libxkbcommon0 libasound2 imagemagick"
+# Node
+additional_packages="nodejs npm"
 
-# newer nodejs version
-init_hooks=mkdir -p /etc/apt/keyrings;
-init_hooks=[ ! -f "/etc/apt/keyrings/nodesource.gpg" ] && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --batch --dearmor -o /etc/apt/keyrings/nodesource.gpg;
-init_hooks=[ ! -f "/etc/apt/sources.list.d/nodesource.list" ] && sudo echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list;
-init_hooks=[ ! $(dpkg -s nodejs) ] && sudo apt update && sudo apt install -y nodejs && npm install -g grunt grunt-cli;
-
-init_hooks=curl -sS https://starship.rs/install.sh | sh -s -- --yes;
-
-# Apache setup
-# prepare systemd service for user
-init_hooks=cp /lib/systemd/system/apache2.service ${HOME}/.config/systemd/user/;
-init_hooks=sed -i "s/^WantedBy=multi-user.target/WantedBy=default.target/" ${HOME}/.config/systemd/user/apache2.service;
-init_hooks=sudo systemctl disable apache2;    
-# clean up old files to avoid permission issues
-init_hooks=sudo rm /var/log/apache2/* || true; # remove old logs to avoid permission issues
-init_hooks=sudo rm /var/run/apache2/* || true; # remove old pid files to avoid issues
-# apply customizations for cometvisu
-init_hooks=sudo -E /usr/local/bin/cometvisu-entrypoint || true;
-# change apache to listen on 8080 instead of 80 to avoid conflicts with host system
-init_hooks=sudo sed -i "s/^Listen 80$/Listen 8080/" /etc/apache2/ports.conf;
-init_hooks=sudo sed -i "s/^<VirtualHost \*:80>$/<VirtualHost *:8080>/" /etc/apache2/sites-enabled/000-default.conf;
-# enable apache for user
-init_hooks=systemctl --user enable apache2;
-init_hooks=ln -sf /usr/bin/distrobox-host-exec /usr/local/bin/docker;
-init_hooks=echo "alias serve=\"systemctl --user start apache2.service\"" >> /etc/profile.d/aliases.sh;
-# install python dependencies
-init_hooks=sudo pip install -r /home/cv/utils/requirements.txt;
-init_hooks=cd /home/cv && npm run selenium;
+init_hooks=/home/cv/utils/distrobox/init.sh;
 
 # this needs to be run by the user manually after starting the container, it does not work within an init_hook
-#init_hooks=. /home/cv/.protractor-env;
+#. /home/cv/.protractor-env;

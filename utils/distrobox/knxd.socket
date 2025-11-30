@@ -1,0 +1,10 @@
+[Unit]
+Description=KNX Daemon (socket)
+
+[Socket]
+ListenStream=/run/knx
+ListenStream=6720
+SocketMode=0777
+
+[Install]
+WantedBy=sockets.target

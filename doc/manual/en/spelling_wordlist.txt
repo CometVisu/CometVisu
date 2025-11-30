@@ -388,3 +388,4 @@ ul
 auth
 attributeName
 dataset
+tooltips

@@ -1031,3 +1031,7 @@ section
 system
 opacity
 aggregation
+Tooltips
+tick
+tick-size
+header

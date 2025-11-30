@@ -25,6 +25,10 @@ qx.Class.define('cv.ui.structure.tile.components.chart.LineDataset', {
     index: {
         check: 'Number',
         init: 0
+    },
+    showValue: {
+      refine: true,
+      init: false
     }
   },
 

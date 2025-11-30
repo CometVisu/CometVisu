@@ -2,7 +2,7 @@
 #   https://github.com/CometVisu/Docker/tree/master/CometVisuBase
 # and available in the DockerHub at
 #   https://hub.docker.com/r/cometvisu/cometvisuabstractbase/
-ARG CONTAINER_FROM=cometvisu/cometvisuabstractbase:latest
+ARG CONTAINER_FROM=cometvisu/cometvisuabstractbase:testing
 FROM $CONTAINER_FROM
 
 # Not required but makes the debugging work a bit more easy (might be removed in future):

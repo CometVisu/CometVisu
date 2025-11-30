@@ -26,12 +26,6 @@ BACKEND_PROXY_TARGET=http://192.168.178.5:8080/rest
 After that run `./create-distrobox` once and the box will be created and directly entered. This has to be done only once.
 You can leave the distrobox with `exit` and enter it again with `distrobox enter cv`.
 
-If the builtin webserver is not started automatically when you entered your container for the first time after is has been started, you 
-can just run `serve` to start it (its an alias for `systemctl --user start apache2`).
-
-After each re-creation of the distrobox you have to run:
-`sudo pip install -r utils/requirements.txt` after you entered the new box for the first time.
-
 Use VS-Code in distrobox
 ########################
 

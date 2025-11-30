@@ -34,7 +34,7 @@ reference_prefix = config.get("references", "prefix").replace("<version>", Versi
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
 
-default_ref = re.compile("^index-[0-9]+$")
+default_ref = re.compile(r"^index-[0-9]+$")
 redirect_map = {}
 if os.path.exists(redirect_file):
     with open(redirect_file, "r") as f:

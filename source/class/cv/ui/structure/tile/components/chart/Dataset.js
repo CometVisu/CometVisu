@@ -174,7 +174,11 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Dataset', {
         this.setSubType(type.substring(7));
         type = type.substring(0, 6);
       }
-      this.setType(type);
+      if (type !== '') {
+        this.setType(type);
+      } else {
+        this.resetType();
+      }
     },
 
     _applyType(type) {
