@@ -178,6 +178,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             }
             parentElement = parentElement.parentElement;
           }
+          if (window.self !== window.top) {
+            // no history management in iframes
+            skipHistory = true;
+          }
 
           if (skipHistory === undefined) {
             const headline = page.getAttribute('name');
