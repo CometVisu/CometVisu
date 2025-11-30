@@ -56,6 +56,11 @@ $tileColumns: 3;
     --waterColor: #719aff;
 
     --powerProductionColor: #ff9900;
+
+    --appBackground: #121212;
+    --tileBackground: #1e1e1e;      
+    --primaryText: #e2e8f0;
+    --borderColor: #393939;
 }
 
 [data-theme="light"] {
@@ -693,8 +698,26 @@ body {
         background-position: center center;
         background-repeat: no-repeat;
         border-radius: $borderRadius;
-        box-shadow: 2px 4px 4px var(--shadowColor);
+        box-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.1),
+            0 4px 8px rgba(0, 0, 0, 0.1),
+            0 8px 16px var(--shadowColor);
         position: relative;
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.12),
+                0 16px 32px var(--shadowColor);
+        }
+
+        &:active {
+            transform: scale(0.98);
+            transition-duration: 0.1s;
+        }
 
         &[size="1x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
@@ -1335,6 +1358,23 @@ body {
         align-self: center;
         cursor: pointer;
         display: block;
+        transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                    color 0.15s ease;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 2px 0 currentColor inset, 0 0 8px 0 currentColor;
+        }
+
+        &:active {
+            transform: scale(0.95);
+            transition-duration: 0.08s;
+        }
+
+        &:hover cv-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
 
         .progress {
             border: 1px solid var(--secondaryColor);
@@ -1351,6 +1391,7 @@ body {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         cv-icon {
@@ -1407,6 +1448,8 @@ body {
 
         &.active:not(.progress) {
             color: var(--primaryColor);
+            box-shadow: 0 0 2px 0 var(--primaryColor) inset, 
+                        0 0 12px 2px rgba(255, 153, 0, 0.3);
         }
         &.active.progress > * {
             color: var(--primaryColor);
