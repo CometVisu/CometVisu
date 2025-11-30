@@ -108,8 +108,8 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
 
         if (model === 'pages') {
           // add hamburger menu
-          const ham = document.createElement('a');
-          ham.href = '#';
+          const ham = document.createElement('div');
+          ham.classList.add('link'); 
           ham.classList.add('menu');
           ham.onclick = event => this._onHamburgerMenu(event);
           const icon = document.createElement('i');
@@ -242,7 +242,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     _onSwipe(ev) {
       if (ev.getDirection() === 'left') {
         // goto next if there is one
-        const next = this._element.querySelector('li.active + li > a');
+        const next = this._element.querySelector('li.active + li > .link');
         if (next) {
           next.click();
         }
@@ -253,7 +253,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           current.previousElementSibling &&
           current.previousElementSibling.tagName.toLowerCase() === 'li'
         ) {
-          const prev = current.previousElementSibling.querySelector(':scope > a');
+          const prev = current.previousElementSibling.querySelector(':scope > .link');
           if (prev) {
             prev.click();
           }
@@ -317,9 +317,14 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         const pageName = page.getAttribute('name') || '';
         const pageIcon = page.getAttribute('icon') || '';
         const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.setAttribute('href', '#' + pageId);
+        const a = document.createElement('div');
+        a.classList.add('link');
         a.setAttribute('data-page-id', pageId);
+        a.addEventListener('click', ev => {
+          cv.Application.structureController.scrollToPage(pageId);
+          ev.stopPropagation();
+          ev.preventDefault();
+        });
         if (pageIcon) {
           const i = document.createElement('i');
           i.classList.add(pageIcon);
@@ -343,14 +348,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           details.classList.add('details');
           const summary = document.createElement('div');
           summary.classList.add('summary');
-          a.setAttribute('href', '#');
-
-          a.addEventListener('click', ev => {
-            cv.Application.structureController.scrollToPage(pageId);
-            ev.stopPropagation();
-            ev.preventDefault();
-          });
-
+          
           const pageIcon = page.getAttribute('icon') || '';
           if (page.querySelector(':scope > *:not(cv-page)')) {
             // only add this as link, when this page has real content
@@ -406,7 +404,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         link.classList.remove('sub-active');
       }
       // find link to current page
-      for (let link of this._element.querySelectorAll(`a[data-page-id="${pageElement.id}"]`)) {
+      for (let link of this._element.querySelectorAll(`.link[data-page-id="${pageElement.id}"]`)) {
         // activate all parents
         let parent = link.parentElement;
         let activeName = 'active';

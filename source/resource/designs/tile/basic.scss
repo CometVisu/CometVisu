@@ -418,14 +418,14 @@ body {
                         }
                     }
 
-                    a, p {
+                    a, p, .link {
                         display: inline-block;
                     }
-                    > a, > p {
+                    > a, > p, > .link {
                         padding: var(--spacing) calc(var(--spacing) * 2);
                     }
 
-                    a {
+                    a, .link {
                         i {
                             vertical-align: text-top;
 
@@ -443,7 +443,7 @@ body {
                         background-color: var(--secondaryColor);
                     }*/
                     &.active {
-                        > a, > .details > .summary, > .details > .summary > a {
+                        > a, > .details > .summary, > .details > .summary > a, > .link {
                             color: var(--primaryColor);
                         }
                     }
@@ -456,7 +456,7 @@ body {
                 }
             }
 
-            a, p {
+            a, p, .link {
                 color: var(--primaryText);
                 text-align: center;
                 text-decoration: none;
@@ -471,8 +471,9 @@ body {
             &[appearance="icons"], &[appearance="dock"] {
                 /* change appearance of the first menu level */
                 > ul > li > .details > .summary > a,
+                > ul > li > .details > .summary > .link,
                 > ul > li > .details > .summary > p,
-                > ul > li > a {
+                > ul > li > a, > ul > li > .link {
                     font-size: 14px;
                     text-align: center;
 
@@ -495,7 +496,8 @@ body {
                     }
                 }
 
-                > ul > li:first-child > .details > .summary > a {
+                > ul > li:first-child > .details > .summary > a,
+                > ul > li:first-child > .details > .summary > .link {
                     padding-left: var(--spacing);
                 }
 
