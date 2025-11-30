@@ -121,7 +121,7 @@
         </cv-translations>
     </cv-meta>
     <header>
-        <cv-group open="true" wrap="false" hide-on-scroll="true" style="height: min(var(--tileCellWidth), var(--tileCellHeight)); padding-bottom: 0">
+        <cv-group open="true" wrap="false" hide-on-scroll="true" style="height: min(var(--tileCellWidth), var(--tileCellHeight));">
             <cv-small-status format="tr('%d on')">
                 <cv-icon slot="icon">ri-lightbulb-line</cv-icon>
                 <cv-address slot="address" transform="DPT:5.001" mode="read">1/4/0</cv-address>
@@ -218,9 +218,7 @@
                     </cv-list>
                 </cv-popup>
             </cv-small-status>
-            <h2 visible-on="desktop" style="align-self: center; margin-left: auto; margin-right: calc(var(--spacing)*2);">CometVisu - Tile demo</h2>
         </cv-group>
-        <cv-breadcrumbs />
     </header>
     <main>
         <cv-page id="start" name="tr('Dashboard')" icon="ri-dashboard-line">
