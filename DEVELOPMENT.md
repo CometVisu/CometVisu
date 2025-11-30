@@ -137,6 +137,73 @@ Filter tests to run (by the content of the describe/it phrase of the tests):
 
 `grunt karma:debug --grep=contains-this`
 
+Generating Screenshots
+----------------------
+
+The documentation uses screenshots generated from widget examples. The screenshot system uses 
+[Playwright](https://playwright.dev/) for browser automation.
+
+### Setup
+
+After running `npm install`, you need to install the Playwright browser:
+
+```bash
+npx playwright install chromium --with-deps
+```
+
+### Generating Screenshots
+
+Generate all screenshots (requires a compiled source):
+
+```bash
+# First compile the source
+npx qx compile
+
+# Generate screenshots using Playwright
+grunt screenshots-pw
+```
+
+### Options
+
+The screenshot generation supports several options:
+
+- `--source=<path>` - Path to the widget examples directory (default: `cache/widget_examples`)
+- `--subDir=<dir>` - Only process a specific subdirectory (e.g., `manual`, `build`)
+- `--files=<file>` - Only process a specific JSON file
+- `--target=<target>` - Target folder (`source` or `build`, default: `source`)
+- `--forced` - Force regeneration of all screenshots (ignore hash check)
+- `--verbose` - Show verbose output
+- `--lang=<language>` - Only process a specific language (e.g., `de`, `en`)
+
+### Examples
+
+```bash
+# Generate all screenshots
+grunt screenshots-pw
+
+# Generate screenshots for a specific widget
+grunt screenshots-pw --files=de_config_structure-tile_components_button_0.json
+
+# Force regeneration with verbose output
+grunt screenshots-pw --forced --verbose
+
+# Generate only German screenshots
+grunt screenshots-pw --lang=de
+
+# Generate static screenshots from doc folder
+grunt screenshots-pw --source=doc/manual/_screenshots/
+```
+
+### Legacy Protractor System
+
+The original Protractor-based screenshot system is still available:
+
+```bash
+grunt screenshots
+```
+
+Note: Protractor is deprecated and the Playwright version should be preferred for new development.
+
 Running in docker container
 ---------------------------
 
