@@ -14,6 +14,20 @@ const CometVisuMockup = require('../source/test/playwright/pages/Mock');
 const CometVisuEditorMockup = require('../source/test/playwright/pages/EditorMock');
 const CometVisuDemo = require('../source/test/playwright/pages/Demo');
 
+/**
+ * Log to stdout (visible in Playwright output)
+ */
+function log(...args) {
+  process.stdout.write(args.join(' ') + '\n');
+}
+
+/**
+ * Log error to stderr (visible in Playwright output)
+ */
+function logError(...args) {
+  process.stderr.write(args.join(' ') + '\n');
+}
+
 // Configuration from environment/command line
 const config = {
   source: process.env.CV_SOURCE || null,
@@ -38,6 +52,8 @@ const stats = {
 
 const shotIndexFiles = [];
 const shotIndex = {};
+// Track screenshots created in this session to avoid duplicates
+const createdScreenshots = new Set();
 
 /**
  * Calculate a hash code for a string
@@ -93,7 +109,7 @@ async function cropImage(srcFile, size, location, targetWidth, targetHeight) {
     await pipeline.toFile(srcFile + '.tmp');
     fs.renameSync(srcFile + '.tmp', srcFile);
   } catch (error) {
-    console.error('Error cropping image:', error.message);
+    logError('Error cropping image:', error.message);
   }
 }
 
@@ -108,15 +124,17 @@ function prepareScreenshotDir(screenshotDir) {
     try {
       const indexData = fs.readFileSync(indexFile, 'utf-8');
       shotIndex[screenshotDir] = JSON.parse(indexData);
-      if (!shotIndexFiles.includes(indexFile)) {
-        shotIndexFiles.push(indexFile);
-      }
     } catch (e) {
-      console.error('Error parsing screenshot index:', indexFile, e.message);
+      logError('Error parsing screenshot index:', indexFile, e.message);
       shotIndex[screenshotDir] = {};
     }
   } else {
     shotIndex[screenshotDir] = {};
+  }
+  
+  // Always register the index file for saving
+  if (!shotIndexFiles.includes(indexFile)) {
+    shotIndexFiles.push(indexFile);
   }
   
   return indexFile;
@@ -126,6 +144,9 @@ function prepareScreenshotDir(screenshotDir) {
  * Save shot index files
  */
 function saveShotIndex() {
+  if (config.verbose) {
+    log(`Saving ${shotIndexFiles.length} shot index file(s)...`);
+  }
   for (const indexFile of shotIndexFiles) {
     try {
       const dir = path.dirname(indexFile);
@@ -142,9 +163,12 @@ function saveShotIndex() {
         }
         
         fs.writeFileSync(indexFile, JSON.stringify(shotIndex[dir], null, 4));
+        if (config.verbose) {
+          log(`Saved shot index: ${indexFile}`);
+        }
       }
     } catch (e) {
-      console.error('Error saving shot index:', indexFile, e.message);
+      logError('Error saving shot index:', indexFile, e.message);
     }
   }
 }
@@ -153,12 +177,141 @@ function saveShotIndex() {
 const examplesDir = config.source || path.join('cache', 'widget_examples');
 const subDirsMode = !config.source;
 
+/**
+ * Check if a screenshot file needs any screenshots to be generated.
+ * This is used for pre-filtering before test registration to avoid
+ * starting tests that will be entirely skipped.
+ */
+function needsScreenshots(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return false;
+  }
+  
+  try {
+    const rawData = fs.readFileSync(filePath, 'utf-8');
+    const settings = JSON.parse(rawData);
+    
+    // Determine language
+    if (!settings.language) {
+      const fileName = path.basename(filePath);
+      const langMatch = fileName.match(/^([a-z]{2})_/);
+      settings.language = langMatch ? langMatch[1] : 'de';
+    }
+    
+    // Calculate settings hash for screenshots without individual hash
+    const settingsHash = hashCode(JSON.stringify(settings));
+    
+    for (const setting of settings.screenshots) {
+      const hash = setting.hash || settingsHash;
+      
+      if (setting.locales) {
+        for (const locale of setting.locales) {
+          const screenshotDir = path.join(
+            ...[settings.baseDir, locale, settings.screenshotDir].filter(Boolean)
+          );
+          if (needsScreenshot(setting.name, hash, screenshotDir)) {
+            return true;
+          }
+        }
+      } else {
+        if (needsScreenshot(setting.name, hash, settings.screenshotDir)) {
+          return true;
+        }
+      }
+    }
+    
+    // All screenshots exist and are up-to-date
+    return false;
+  } catch (e) {
+    // On error, assume we need to process this file
+    return true;
+  }
+}
+
+/**
+ * Check if a single screenshot needs to be created.
+ * A screenshot needs to be created if:
+ * - The file doesn't exist, OR
+ * - Forced regeneration is enabled
+ * 
+ * Note: Hash mismatches are ignored for pre-filtering because multiple
+ * source files may produce the same screenshot with different hashes.
+ * The screenshot only needs to exist.
+ */
+function needsScreenshot(name, hash, screenshotDir) {
+  const imgPath = path.join(screenshotDir, name + '.png');
+  
+  // File doesn't exist
+  if (!fs.existsSync(imgPath)) {
+    return true;
+  }
+  
+  // Forced regeneration
+  if (config.forced) {
+    return true;
+  }
+  
+  // Screenshot exists - no need to recreate
+  // (Hash mismatches between multiple source files are handled at runtime)
+  return false;
+}
+
+/**
+ * Check for duplicate screenshot definitions across all files.
+ * Returns an object mapping "screenshotDir/name" to array of source files.
+ */
+function findDuplicates(allFiles) {
+  const screenshotSources = {}; // Map: "dir/name" -> [sourceFile1, sourceFile2, ...]
+  
+  for (const filePath of allFiles) {
+    if (!fs.existsSync(filePath)) continue;
+    
+    try {
+      const rawData = fs.readFileSync(filePath, 'utf-8');
+      const settings = JSON.parse(rawData);
+      
+      for (const setting of settings.screenshots) {
+        if (setting.locales) {
+          for (const locale of setting.locales) {
+            const screenshotDir = path.join(
+              ...[settings.baseDir, locale, settings.screenshotDir].filter(Boolean)
+            );
+            const key = `${screenshotDir}/${setting.name}`;
+            if (!screenshotSources[key]) {
+              screenshotSources[key] = [];
+            }
+            screenshotSources[key].push(filePath);
+          }
+        } else {
+          const key = `${settings.screenshotDir}/${setting.name}`;
+          if (!screenshotSources[key]) {
+            screenshotSources[key] = [];
+          }
+          screenshotSources[key].push(filePath);
+        }
+      }
+    } catch (e) {
+      // Skip files with parse errors
+    }
+  }
+  
+  // Find duplicates (more than one source file for the same screenshot)
+  const duplicates = {};
+  for (const [key, sources] of Object.entries(screenshotSources)) {
+    if (sources.length > 1) {
+      duplicates[key] = sources;
+    }
+  }
+  
+  return duplicates;
+}
+
 // Collect all screenshot definition files
 function collectFiles() {
   const files = [];
   
   if (!fs.existsSync(examplesDir)) {
-    console.error('Examples directory not found:', examplesDir);
+    logError('Examples directory not found:', examplesDir);
     return files;
   }
   
@@ -181,7 +334,12 @@ function collectFiles() {
           if (config.language && !subFileName.startsWith(config.language + '_')) {
             return;
           }
-          files.push(path.join(subDir, subFileName));
+          const fullPath = path.join(subDir, subFileName);
+          if (needsScreenshots(fullPath)) {
+            files.push(fullPath);
+          } else {
+            skippedFiles.push(fullPath);
+          }
         });
       }
     } else {
@@ -191,32 +349,67 @@ function collectFiles() {
       if (!fileName.endsWith('.json')) {
         return;
       }
-      files.push(subDir);
+      if (needsScreenshots(subDir)) {
+        files.push(subDir);
+      } else {
+        skippedFiles.push(subDir);
+      }
     }
   });
   
   return files;
 }
 
+const skippedFiles = [];
 const files = collectFiles();
+
+// Check for duplicate screenshot definitions
+const allFilesToCheck = [...files, ...skippedFiles];
+const duplicates = findDuplicates(allFilesToCheck);
+
+if (Object.keys(duplicates).length > 0) {
+  logError('\n\x1b[31m========== DUPLICATE SCREENSHOT DEFINITIONS FOUND ==========\x1b[0m');
+  for (const [screenshot, sources] of Object.entries(duplicates)) {
+    logError(`\n\x1b[31mDuplicate:\x1b[0m ${screenshot}`);
+    logError('  Defined in:');
+    for (const source of sources) {
+      logError(`    - ${source}`);
+    }
+  }
+  logError('\n\x1b[31mPlease fix the duplicate definitions before continuing.\x1b[0m\n');
+  process.exit(1);
+}
+
+// Log pre-filtered files count
+if (config.verbose && skippedFiles.length > 0) {
+  log(`Pre-filtered ${skippedFiles.length} file(s) with up-to-date screenshots`);
+}
 
 // Generate tests for each screenshot file
 test.describe('Screenshot Generation', () => {
   test.afterAll(() => {
     // Print summary
     const color = stats.error > 0 ? '\x1b[31m' : '\x1b[32m';
-    const result = `${stats.success}/${stats.total} screenshots created. ${stats.skipped} skipped. ${stats.error} failed`;
+    const filesInfo = skippedFiles.length > 0 ? ` (${skippedFiles.length} files pre-filtered)` : '';
+    const result = `${stats.success}/${stats.total} screenshots created. ${stats.skipped} skipped. ${stats.error} failed${filesInfo}`;
     const separator = '#'.repeat(result.length + 8);
     
-    console.log(color);
-    console.log('\n' + separator);
-    console.log('#  ', result, '  #');
-    console.log(separator);
-    console.log('\x1b[0m');
+    log(color);
+    log('\n' + separator);
+    log('#  ', result, '  #');
+    log(separator);
+    log('\x1b[0m');
     
     // Save shot index files
     saveShotIndex();
   });
+
+  // Add a placeholder test when all files are pre-filtered to avoid "no tests found" error
+  if (files.length === 0) {
+    test('All screenshots up-to-date', () => {
+      // Nothing to do - all screenshots were pre-filtered as up-to-date
+    });
+  }
 
   for (const filePath of files) {
     test(`Generate screenshots from ${path.basename(filePath)}`, async ({ browser }) => {
@@ -230,7 +423,7 @@ test.describe('Screenshot Generation', () => {
       try {
         settings = JSON.parse(rawData);
       } catch (e) {
-        console.error('Error parsing settings:', filePath, e.message);
+        logError('Error parsing settings:', filePath, e.message);
         stats.error++;
         stats.total++;
         return;
@@ -272,8 +465,21 @@ test.describe('Screenshot Generation', () => {
               );
               runIndexFiles.push([prepareScreenshotDir(dir), dir]);
             }
+          } else {
+            // Also prepare for settings without locales
+            const dir = path.join(
+              ...[settings.baseDir, settings.language, settings.screenshotDir].filter(Boolean)
+            );
+            if (!runIndexFiles.some(([_, d]) => d === dir)) {
+              runIndexFiles.push([prepareScreenshotDir(dir), dir]);
+            }
           }
         }
+      }
+      
+      // Also ensure the default screenshotDir is prepared
+      if (!runIndexFiles.some(([_, d]) => d === settings.screenshotDir)) {
+        prepareScreenshotDir(settings.screenshotDir);
       }
 
       // Check which screenshots need to be created
@@ -283,10 +489,22 @@ test.describe('Screenshot Generation', () => {
 
       const checkExists = (setting, screenshotDir) => {
         const imgPath = path.join(screenshotDir, setting.name + '.png');
+        const cacheKey = `${screenshotDir}/${setting.name}`;
+        
+        // Check if already created in this session
+        if (createdScreenshots.has(cacheKey)) {
+          if (config.verbose) {
+            log('Already created in this session, skipping:', imgPath);
+          }
+          stats.skipped++;
+          stats.total++;
+          skippedScreenshots.push(screenshotDir + setting.name);
+          return;
+        }
         
         if (!fs.existsSync(imgPath)) {
           if (config.verbose) {
-            console.log('File not found, creating screenshot:', imgPath);
+            log('File not found, creating screenshot:', imgPath);
           }
           screenshots.push(setting.name);
           allSkipped = false;
@@ -297,7 +515,7 @@ test.describe('Screenshot Generation', () => {
             skippedScreenshots.push(screenshotDir + setting.name);
           } else {
             if (config.verbose) {
-              console.log('Hash mismatch, creating screenshot:', imgPath);
+              log('Hash mismatch, creating screenshot:', imgPath);
             }
             screenshots.push(setting.name);
             allSkipped = false;
@@ -361,7 +579,7 @@ test.describe('Screenshot Generation', () => {
         for (const fixture of settings.fixtures) {
           await mockup.mockupFixture(fixture);
           if (config.verbose) {
-            console.log('Mocked fixture:', fixture.targetPath);
+            log('Mocked fixture:', fixture.targetPath);
           }
         }
       }
@@ -460,7 +678,7 @@ test.describe('Screenshot Generation', () => {
                 try {
                   value = JSON.parse(value);
                 } catch (e) {
-                  console.error('Error parsing JSON data:', e.message);
+                  logError('Error parsing JSON data:', e.message);
                 }
               } else if (data.type === 'time') {
                 const date = new Date();
@@ -558,7 +776,7 @@ test.describe('Screenshot Generation', () => {
             if (locale) {
               const result = await mockup.setLocale(locale);
               if (config.verbose) {
-                console.log(result);
+                log(result);
               }
             }
 
@@ -566,7 +784,7 @@ test.describe('Screenshot Generation', () => {
             const imgFile = path.join(screenshotDir, setting.name + '.png');
             
             if (config.verbose) {
-              console.log(`Creating screenshot: ${setting.name} (${locale})`);
+              log(`Creating screenshot: ${setting.name} (${locale})`);
             }
 
             // Take full page screenshot
@@ -593,12 +811,15 @@ test.describe('Screenshot Generation', () => {
               const indexFile = path.join(screenshotDir, 'shot-index.json');
               fs.writeFileSync(indexFile, JSON.stringify(shotIndex[screenshotDir], null, 4));
             }
+            
+            // Mark as created in this session to prevent duplicates
+            createdScreenshots.add(`${screenshotDir}/${setting.name}`);
 
             stats.success++;
             stats.total++;
           }
         } catch (error) {
-          console.error(`Error creating screenshot ${setting.name}:`, error.message);
+          logError(`Error creating screenshot ${setting.name}:`, error.message);
           stats.error++;
           stats.total++;
         }

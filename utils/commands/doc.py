@@ -235,6 +235,12 @@ class DocGenerator(Command):
             print("deleting old content in '%s'" % target_dir)
             shutil.rmtree(target_dir)
 
+            # delete old screenshot control files
+            shot_control_dir = os.path.join(self.root_dir, "cache", "widget_examples", screenshot_build)
+            if os.path.exists(shot_control_dir):
+                print("deleting old screenshot control files in '%s'" % shot_control_dir)
+                shutil.rmtree(shot_control_dir)
+
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
 
@@ -247,18 +253,15 @@ class DocGenerator(Command):
         if not skip_screenshots:
             grunt = sh.Command("grunt")
             new_env = os.environ.copy()
-            if os.path.isfile(".protractor-env"):
-                config = dotenv_values(".protractor-env")
-                new_env.update(config)
 
-            new_env["CHROME_LANG"] = language
-            new_env["LANGUAGE"] = language
-
-            # generate the screenshots
-            grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
+            # generate the screenshots using Playwright
+            grunt_args = ["--force", "screenshots-pw", "--subDir=manual",
                   "--target=%s" % screenshot_build,
-                  "--lang=%s" % language,
-                  "%s" % "--verbose" if verbose else "",
+                  "--lang=%s" % language]
+            if verbose:
+                grunt_args.append("--verbose")
+            
+            grunt(*grunt_args,
                   _out=self.process_output,
                   _err=self.process_output,
                   _env=new_env)
@@ -630,7 +633,7 @@ class DocGenerator(Command):
                             help="Target dir for generation")
 
         parser.add_argument("--browser", "-b", dest="browser", default="chrome",
-                            help="Browser used for screenshot generation")
+                            help="[DEPRECATED] Browser option is ignored. Playwright uses Chromium.")
 
         parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                             type=str, help='type of documentation to generate (manual, source)', nargs='?')

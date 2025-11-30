@@ -47,11 +47,11 @@ module.exports = defineConfig({
     ignoreHTTPSErrors: true,
   },
 
-  // Reporter configuration
-  reporter: [
-    ['list'],
-    ['html', { open: 'never' }]
-  ],
+  // Reporter configuration - 'line' shows progress and stdout/stderr
+  // Empty array shows only stdout/stderr without progress
+  reporter: process.env.CV_VERBOSE === 'true' 
+    ? [['line']] 
+    : [['dot']],
 
   // Projects for different browsers (we only need chromium)
   projects: [
