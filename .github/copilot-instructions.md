@@ -72,7 +72,6 @@ Coverage reports in `coverage/`
 
 Test files:
 - Unit tests: `source/test/karma/**/*-spec.js`
-- E2E/Screenshot tests: `source/test/playwright/` (Playwright-based)
 
 ### Screenshot Generation
 Screenshot generation for documentation uses **Playwright**:
