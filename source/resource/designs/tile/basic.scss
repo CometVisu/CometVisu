@@ -703,21 +703,6 @@ body {
             0 4px 8px rgba(0, 0, 0, 0.1),
             0 8px 16px var(--shadowColor);
         position: relative;
-        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 4px 8px rgba(0, 0, 0, 0.12),
-                0 8px 16px rgba(0, 0, 0, 0.12),
-                0 16px 32px var(--shadowColor);
-        }
-
-        &:active {
-            transform: scale(0.98);
-            transition-duration: 0.1s;
-        }
 
         &[size="1x0.5"] {
             height: calc(var(--tileCellHeight) * #{$tileRows} * 0.5 - var(--spacing)/2);
