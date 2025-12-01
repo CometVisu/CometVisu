@@ -1,4 +1,41 @@
 {% extends "sphinx_rtd_theme/layout.html" %}
+
+{# Determine if we're German or English based on language config #}
+{% set is_de = language == 'de' %}
+{# Calculate base path: docs are in /docs/de/ or /docs/en/, website root is ../../ #}
+{% set docs_root = pathto('', 1) %}
+
+{% block extrabody %}
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="{{ docs_root }}../.." class="cv-nav-logo">
+            <img src="{{ pathto('_static/comet_webapp_icon_android_48.png', 1) }}" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="{{ docs_root }}../../{% if is_de %}de/{% endif %}#features">Features</a></li>
+            <li><a href="{{ docs_root }}../../{% if is_de %}de/{% endif %}#customization">{% if is_de %}Anpassung{% else %}Customization{% endif %}</a></li>
+            <li><a href="{{ docs_root }}" class="cv-nav-active">{% if is_de %}Dokumentation{% else %}Documentation{% endif %}</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                {% if is_de %}
+                <a href="{{ docs_root }}../en/" class="cv-lang-switch">EN</a>
+                {% else %}
+                <a href="{{ docs_root }}../de/" class="cv-lang-switch">DE</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
+{{ super() }}
+{% endblock %}
+
 {% block footer %}
   {{ super() }}
   <!--
