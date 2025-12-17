@@ -63,8 +63,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
     expect(addr.isWrite()).toBeTruthy();
 
     // test if the address has been registered
-    const addresses = model.getAddresses('main');
-
+    const addresses = model.getAddresses();
     expect(addresses).toHaveSize(1);
     expect(addresses).toContain('Test');
 
@@ -95,7 +94,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
     expect(addr.isWrite()).toBeFalsy();
 
     // test if the address has been registered
-    const addresses = model.getAddresses('main');
+    const addresses = model.getAddresses();
 
     expect(addresses).toHaveSize(1);
     expect(addresses).toContain('Test');
@@ -127,7 +126,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
     expect(addr.isRead()).toBeFalsy();
 
     // test if the address has been registered
-    const addresses = model.getAddresses('main');
+    const addresses = model.getAddresses();
 
     expect(addresses).toHaveSize(1);
     expect(addresses).toContain('Test');

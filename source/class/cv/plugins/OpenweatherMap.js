@@ -39,8 +39,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {
-    props.refresh *= 60;
+  construct(props) {    
     super(props);
     this.__options = {};
     Object.keys(props).forEach(function (key) {
@@ -198,6 +197,11 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   */
   members: {
     __options: null,
+
+    _beforePropsApplied(props) {
+      props.refresh *= 60;
+      return props;
+    },
 
     _getInnerDomString() {
       let classes = 'widget clearfix text openweathermap';

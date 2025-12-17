@@ -39,3 +39,5 @@ cv-compile.json
 .protractor-env
 distrobox.ini
 .env
+playwright-report/
+test-results/

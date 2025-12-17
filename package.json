@@ -20,6 +20,7 @@
     "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
+    "screenshots-pw": "grunt screenshots-pw",
     "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate",
     "selenium": "CV_BROWSER=chrome CV_VERSION=stable utils/ci/browser-setup.sh"
   },
@@ -42,6 +43,7 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.7.0",
+    "@playwright/test": "^1.57.0",
     "@prettier/plugin-php": "^0.24.0",
     "@qooxdoo/eslint-config-qx": "^3.0.1",
     "@types/d3": "^7.4.3",
@@ -86,13 +88,14 @@
     "protractor": "^7.0.0",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.16.0",
+    "sharp": "^0.33.5",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
     "@qooxdoo/framework": "^7.9.0",
     "@sentry/browser": "^10.0.0",
     "crc-32": "^1.2.2",
-    "monaco-editor": "^0.52.0",
+    "monaco-editor": "^0.54.0",
     "oauth-pkce": "^0.0.7"
   },
   "eslintConfig": {
@@ -184,6 +187,20 @@
           "jasmine/no-disabled-tests": "off",
           "protractor/no-shadowing": "warn",
           "protractor/no-promise-in-if": "warn"
+        }
+      },
+      {
+        "files": [
+          "source/test/playwright/**/*.js",
+          "utils/screenshots.playwright.js"
+        ],
+        "env": {
+          "node": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off"
         }
       },
       {

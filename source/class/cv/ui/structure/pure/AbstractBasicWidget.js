@@ -30,6 +30,8 @@ qx.Class.define('cv.ui.structure.pure.AbstractBasicWidget', {
   ******************************************************
   */
   construct(props) {
+    super();
+    props = this._beforePropsApplied(props) || props;
     for (let prop in props) {
       if (this['set' + qx.Bootstrap.firstUp(prop)] !== undefined) {
         this.set(prop, props[prop]);
@@ -74,6 +76,15 @@ qx.Class.define('cv.ui.structure.pure.AbstractBasicWidget', {
   members: {
     __parentWidget: null,
     _domElement: null,
+
+    /**
+     * Can be overridden to modify props before they are applied in the constructor
+     * @param {object} props 
+     * @returns {object}
+     */
+    _beforePropsApplied(props) {
+      return props;
+    },
 
     /**
      * Override DomElement

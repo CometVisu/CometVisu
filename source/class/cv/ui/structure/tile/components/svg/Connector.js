@@ -113,6 +113,8 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
   */
   members: {
     _path: null,
+    _updatePositionTimeout: null,
+
     /**
      * @type {MutationObserver}
      */
@@ -201,7 +203,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
           root.insertBefore(path, root.firstChild);
         }
         this._path = path;
-        setTimeout(() => {
+        this._updatePositionTimeout = setTimeout(() => {
           this.__updatePosition();
         }, 1000);
       }
@@ -216,6 +218,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     },
 
     __updatePosition(retried = false) {
+      if (this._updatePositionTimeout) {
+        clearTimeout(this._updatePositionTimeout);
+        this._updatePositionTimeout = null;
+      }
       const sourceEntity = this.getSource();
       const targetEntity = this.getTarget();
 
@@ -238,7 +244,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
           const l = Math.sqrt(dx**2 + dy**2);
           if (l === 0) {
             if (!retried) {
-              setTimeout(() => {
+              this._updatePositionTimeout = setTimeout(() => {
                 this._updatePosition(true);
               }, 1000);
             }
@@ -483,5 +489,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.Connector', {
     this._sourceObserver = null;
     this._targetObserver.disconnect();
     this._targetObserver = null;
+    if (this._updatePositionTimeout) {
+      clearTimeout(this._updatePositionTimeout);
+      this._updatePositionTimeout = null;
+    }
   }
 });

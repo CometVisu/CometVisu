@@ -31,7 +31,6 @@ CometVisu is a real-time web-based visualization for building automation (smart 
 ### Configuration System
 - XML-based configuration files (`visu_config.xml`, `visu_config_tile.xml`)
 - Schema-validated against XSD files (`source/resource/visu_config.xsd`)
-- Supports templating via `cv.TemplateEngine` (singleton)
 - Parser classes convert XML to widget instances
 
 ## Development Workflow
@@ -53,17 +52,58 @@ npm run source
 ```
 
 ### Testing
+Test framework: **Karma** with **Jasmine** needs a chrome browser installed.
+
+Changes to test files require a recompile of the test sources:
+
+```bash
+# compile source code and test code
+npx qx compile
+``` 
+
 ```bash
 # Run all tests (Karma + Jasmine)
-grunt karma:debug
+grunt karma:ci
 
 # Filter specific tests
-grunt karma:debug --grep=<test-name>
+grunt karma:ci --grep=<test-name>
 ```
+Coverage reports in `coverage/`
 
 Test files:
 - Unit tests: `source/test/karma/**/*-spec.js`
-- E2E tests: `source/test/protractor/specs/**/*-spec.js`
+
+### Screenshot Generation
+Screenshot generation for documentation uses **Playwright**:
+
+```bash
+# Generate all screenshots
+grunt screenshots-pw
+
+# Generate screenshots for specific source directory
+grunt screenshots-pw --source=cache/widget_examples/manual
+
+# Generate specific screenshot file(s)
+grunt screenshots-pw --source=cache/widget_examples/manual --files=de_config_widgets_switch_0.json
+
+# Force regeneration (ignore cache)
+grunt screenshots-pw --forced
+
+# Verbose output
+grunt screenshots-pw --verbose
+```
+
+Screenshot control files are JSON files in `cache/widget_examples/` that define:
+- Widget configuration (XML)
+- Screenshot name and target directory
+- Fixtures for mocking backend data
+- Hash for change detection (caching)
+
+The screenshot system includes:
+- **Pre-filtering**: Files with up-to-date screenshots are skipped before browser launch
+- **Duplicate detection**: Fails if multiple files define the same screenshot
+- **Hash-based caching**: Screenshots are only regenerated when source changes
+- **Locale support**: Browser locale matches screenshot language (de, en, etc.)
 
 ### Environment
 - Use `./create-distrobox` for containerized dev environment (includes webserver, all tools)

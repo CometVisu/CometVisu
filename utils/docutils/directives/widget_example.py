@@ -121,10 +121,26 @@ class WidgetExampleDirective(SphinxDirective):
         editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
-        source_path = self.state_machine.document.settings._source.split("%s%s" % (path.join("doc", "manual"), path.sep), 1)[1]
+        
+        # Use get_source_info() to get the actual source file of the directive,
+        # not the document it might be included into. This prevents duplicate
+        # screenshot control files when a file is included by another.
+        directive_source, _ = self.get_source_info()
+        
+        # Extract relative path from the directive's source file
+        manual_prefix = path.join("doc", "manual") + path.sep
+        # when the directive source is not the same as the document source, we are in an include and do not want
+        # to generate duplicate screenshot control files^
+        save_screenshot_control_files = directive_source == self.state_machine.document.settings._source
+        if manual_prefix in directive_source:
+            source_path = directive_source.split(manual_prefix, 1)[1]
+        else:
+            # Fallback to document source if directive source doesn't contain the expected path
+            source_path = self.state_machine.document.settings._source.split(manual_prefix, 1)[1]
+        
         screenshot_dir = path.join("doc", "manual", path.sep.join(source_path.split(path.sep)[0:-1]), "_static")
         parser.set_screenshot_dir(screenshot_dir)
-        name = source_path[:-4].replace("/", "_")
+        name = source_path[:-4].replace("/", "_").replace(path.sep, "_")
         if 'hide' in self.options and self.options['hide'] == "true":
             hide = True
         if 'hide-screenshots' in self.options and self.options['hide-screenshots'] == "true":
@@ -152,11 +168,11 @@ class WidgetExampleDirective(SphinxDirective):
             })
             hide_source = True
 
-        try:
-            parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
-        except etree.XMLSyntaxError as e:
-            raise self.error(str(e))
-
+        if save_screenshot_control_files:
+            try:
+                parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
+            except etree.XMLSyntaxError as e:
+                raise self.error(str(e))
         # set up lexical analyzer
         try:
             tokens = Lexer(parse_result['display_content'], 'xml', self.state.document.settings.syntax_highlight)

@@ -302,7 +302,12 @@ module.exports = function(grunt) {
     // karma unit testing
     karma: {
       unit: {
-        configFile: 'source/test/karma/karma.conf.js'
+        configFile: 'source/test/karma/karma.conf.js',
+        reporters: ['dots'],
+        browsers: ['Chrome_ci'],
+        client: {
+          captureConsole: false
+        },
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       ci: {
@@ -315,7 +320,7 @@ module.exports = function(grunt) {
         singleRun: !grunt.option('no-single') && !grunt.option('auto-watch'),
         autoWatch: grunt.option('auto-watch'),
         browsers: [grunt.option('browser') || 'Chrome_ci'],
-        reporters: grunt.option('coverage') ? ['spec', 'coverage'] : ['spec']
+        reporters: grunt.option('coverage') ? ['dots', 'coverage'] : ['dots']        
       }
     },
 
@@ -400,6 +405,32 @@ module.exports = function(grunt) {
       composerInstallRest: {
         command: 'composer install --prefer-dist --no-dev',
         cwd: 'source/rest/manager'
+      },
+      playwrightScreenshots: {
+        command: function() {
+          const source = grunt.option('source');
+          const subDir = grunt.option('subDir');
+          const screenshots = grunt.option('files');
+          const target = grunt.option('target');
+          const targetDir = grunt.option('targetDir');
+          const forced = grunt.option('forced');
+          const verbose = grunt.option('verbose');
+          const lang = grunt.option('lang');
+          
+          // Pass options as environment variables
+          const env = [];
+          if (source) env.push(`CV_SOURCE=${source}`);
+          if (subDir) env.push(`CV_SUBDIR=${subDir}`);
+          if (screenshots) env.push(`CV_SCREENSHOTS=${screenshots}`);
+          if (target) env.push(`CV_TARGET=${target}`);
+          if (targetDir) env.push(`CV_TARGET_DIR=${targetDir}`);
+          if (forced) env.push('CV_FORCED=true');
+          if (verbose) env.push('CV_VERBOSE=true');
+          if (lang) env.push(`CV_LANGUAGE=${lang}`);
+          
+          const cmd = 'npx playwright test --config=utils/playwright.config.js';
+          return env.length > 0 ? env.join(' ') + ' ' + cmd : cmd;
+        }
       }
     },
 
@@ -491,6 +522,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
+  grunt.registerTask('screenshots-pw', ['connect', 'shell:playwrightScreenshots']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons', 'update-kuf-iconconfig']);

@@ -37,16 +37,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {
-    if (!props.name1) {
-      props.name1 = props.singlePhase === true ? 'L' : 'L1';
-    }
-    if (!props.name2) {
-      props.name2 = 'L2';
-    }
-    if (!props.name3) {
-      props.name3 = 'L3';
-    }
+  construct(props) {    
     super(props);
 
     // some initializations
@@ -317,6 +308,19 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
   members: {
     __plot: null,
     __plotCurve: null,
+
+    _beforePropsApplied(props) {
+      if (!props.name1) {
+        props.name1 = props.singlePhase === true ? 'L' : 'L1';
+      }
+      if (!props.name2) {
+        props.name2 = 'L2';
+      }
+      if (!props.name3) {
+        props.name3 = 'L3';
+      }
+      return props;
+    },
 
     _getInnerDomString() {
       // create the actor

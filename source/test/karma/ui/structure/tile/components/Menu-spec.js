@@ -121,7 +121,6 @@ describe('testing the <cv-menu> component of the tile structure', () => {
 
     const element = this.createTileWidgetWithComponent('cv-menu', {model: 'pages'}, '');
     qx.event.message.Bus.dispatchByName('setup.dom.append');
-    console.log(element)
 
     expect(element.querySelector(':scope > ul li a[data-page-id="p1_1"]')).not.toBeNull();
     // 1_2 should not be in the menu

@@ -888,7 +888,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     _onSuccess(chartData) {
       // wait some time to let the element size settle
-      setTimeout(() => {
+      this.__resizeTimeout = setTimeout(() => {
         // append all dataset fetched data to a single flat array
         this._onRendered(chartData.flat());
       }, 100);
@@ -1301,7 +1301,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
 
         // closest point on x-axis
-        const i = d3.least(this.data.indices, i => Math.abs(this.getXPos(i) - xm));
+        const i = d3.least(this.data.lineIndices, i => Math.abs(this.getXPos(i) - xm));
         const scaleFactorX = this._element.offsetWidth / this.getWidth();
         const scaleFactorY = this._element.offsetHeight / this.getHeight();
         let xOffset = 0;
@@ -1315,7 +1315,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
             xOffset = barGroup ? (barGroup.getBandWidth() / 2) : 0;
           }
         }
-        this._tooltipIndicator.attr('transform', `translate(${this.getXPos(i) + xOffset},0)`);
+        if (this._tooltipIndicator) {
+          this._tooltipIndicator.attr('transform', `translate(${this.getXPos(i) + xOffset},0)`);
+        }
         const cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
         const timeString = this._tooltipTimeFormat ? this._tooltipTimeFormat(new Date(time)) : this.getXAxis().getTickFormat()(new Date(time));
         const valueStrings = [];
@@ -1470,6 +1472,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   destruct() {
     this._disposeMap('_datasets');
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
+    if (this.__resizeTimeout) {
+      clearTimeout(this.__resizeTimeout);
+      this.__resizeTimeout = null;
+    }
+    if (this.__toolTipTimer) {
+      clearTimeout(this.__toolTipTimer);
+      this.__toolTipTimer = null;
+    }
   },
 
   defer(QxClass) {

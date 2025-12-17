@@ -29,7 +29,6 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   construct() {
-    this._disableFileEvents = true;
     super(true);
   },
 
@@ -50,6 +49,8 @@ qx.Class.define('cv.ui.manager.viewer.Icons', {
   ***********************************************
   */
   members: {
+    _disableFileEvents: true,
+
     _getDelegate() {
       return {
         createItem() {

@@ -33,7 +33,7 @@ Das folgende Beispiel:
     .. widget-example::
 
         <settings>
-            <screenshot name="switch_complete">
+            <screenshot name="switch_complete_example">
                 <caption>Switch mit mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
@@ -63,7 +63,7 @@ erzeugt diesen Eintrag in der Dokumentation:
 .. widget-example::
 
         <settings>
-            <screenshot name="switch_complete">
+            <screenshot name="switch_complete_example">
                 <caption>Switch mit mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
