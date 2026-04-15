@@ -30,6 +30,11 @@ if [ ! -f /root/.first_run_complete ]; then
     # install python dependencies
     sudo pip install -r /home/cv/utils/requirements.txt --break-system-packages
     cd /home/cv && npm run selenium
+
+    # install composer manually, because php version is pinned in the container and composer might not be compatible with it
+    curl -sS https://getcomposer.org/installer | php
+    sudo mv composer.phar /usr/local/bin/composer
+
     touch /root/.first_run_complete
     echo "First run setup completed."
 else

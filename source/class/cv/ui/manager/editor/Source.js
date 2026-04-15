@@ -19,6 +19,8 @@
 
 /**
  * Monaco Texteditor integration
+ * @asset(monaco/*)
+ * @ignore(fetch)
  */
 qx.Class.define('cv.ui.manager.editor.Source', {
   extend: cv.ui.manager.editor.AbstractEditor,
@@ -74,6 +76,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
     DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
     ICON: cv.theme.dark.Images.getIcon('text', 18),
+    __loadCallbacks: null,
 
     getExtensionRegex() {
       if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
@@ -99,44 +102,65 @@ qx.Class.define('cv.ui.manager.editor.Source', {
     },
 
     load(callback, context) {
-      const version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      let resourceUri = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
-      if (!resourceUri.endsWith('/')) {
-        resourceUri += '/';
+      // Guard against multiple concurrent loads
+      if (cv.ui.manager.editor.Source.__loadCallbacks) {
+        cv.ui.manager.editor.Source.__loadCallbacks.push({ fn: callback, ctx: context });
+        return;
       }
-      const sourcePath = qx.util.Uri.getAbsolute(resourceUri + '..');
+      cv.ui.manager.editor.Source.__loadCallbacks = [{ fn: callback, ctx: context }];
 
-      const loader = new qx.util.DynamicScriptLoader([
-        sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
-        'manager/xml.js'
-      ]);
+      const toUri = function (res) {
+        return qx.util.Uri.getAbsolute(qx.util.ResourceManager.getInstance().toUri(res));
+      };
 
-      loader.addListener('ready', () => {
-        window.require.config({
-          paths: {
-            vs: sourcePath + 'node_modules/monaco-editor/' + version + '/vs'
+      // Configure ESM workers
+      window.MonacoEnvironment = {
+        globalAPI: true,
+        getWorker: function (workerId, label) {
+          let workerFile;
+          switch (label) {
+            case 'json':
+              workerFile = 'json.worker.js';
+              break;
+            case 'css':
+            case 'scss':
+            case 'less':
+              workerFile = 'css.worker.js';
+              break;
+            case 'html':
+            case 'handlebars':
+            case 'razor':
+              workerFile = 'html.worker.js';
+              break;
+            case 'typescript':
+            case 'javascript':
+              workerFile = 'ts.worker.js';
+              break;
+            default:
+              workerFile = 'editor.worker.js';
+              break;
           }
-        });
+          const workerUrl = toUri('monaco/' + workerFile);
+          const blob = new Blob(
+            ['import \'' + workerUrl + '\';'],
+            { type: 'text/javascript' }
+          );
+          return new Worker(URL.createObjectURL(blob), { type: 'module' });
+        }
+      };
 
-        window.require.config({
-          'vs/nls': {
-            availableLanguages: {
-              '*':
-                qx.locale.Manager.getInstance().getLanguage() !== 'en'
-                  ? qx.locale.Manager.getInstance().getLanguage()
-                  : ''
-            }
-          }
-        });
+      // Load Monaco CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = toUri('monaco/editor.main.css');
+      document.head.appendChild(link);
 
-        window.require(
-          [
-            'xml!*./resource/manager/completion-libs/qooxdoo.d.ts', // the xml loader can load any file by adding * before the path,
-            'vs/editor/editor.main'
-          ],
-
-          function (qxLib) {
-            callback.apply(context);
+      // Listen for Monaco ESM loaded event
+      const qxLibUri = qx.util.ResourceManager.getInstance().toUri('manager/completion-libs/qooxdoo.d.ts');
+      document.addEventListener('cv-monaco-loaded', function () {
+        fetch(qxLibUri)
+          .then(function (r) { return r.text(); })
+          .then(function (qxLib) {
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
 
             const completionProvider = new cv.ui.manager.editor.completion.Config();
@@ -144,13 +168,32 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
 
             window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
-          }
-        );
-      });
-      loader.addListener('failed', ev => {
-        qx.log.Logger.error(this, ev.getData());
-      });
-      loader.start();
+
+            // Notify all pending callers
+            const cbs = cv.ui.manager.editor.Source.__loadCallbacks;
+            cv.ui.manager.editor.Source.__loadCallbacks = null;
+            cbs.forEach(function (entry) {
+              entry.fn.apply(entry.ctx);
+            });
+          });
+      }, { once: true });
+
+      // Load NLS and Monaco ESM via inline module script
+      const lang = qx.locale.Manager.getInstance().getLanguage();
+      let code = '';
+      if (lang !== 'en') {
+        code += 'await import(\'' + toUri('monaco/nls.messages.' + lang + '.js') + '\').catch(function(){});\n';
+      }
+      code += 'await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+      code += 'document.dispatchEvent(new CustomEvent(\'cv-monaco-loaded\'));\n';
+
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.textContent = code;
+      script.onerror = function (err) {
+        qx.log.Logger.error(this, 'Failed to load Monaco editor: ' + err);
+      };
+      document.head.appendChild(script);
     }
   },
 

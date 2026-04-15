@@ -7,6 +7,7 @@
     "url": "https://github.com/cometvisu/cometvisu.git"
   },
   "scripts": {
+    "bundle-monaco": "node utils/compile/bundle-monaco.js",
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
@@ -52,6 +53,7 @@
     "chmodr": "^1.2.0",
     "deasync": "^0.1.30",
     "easyimage": "^3.1.1",
+    "esbuild": "^0.28.0",
     "eslint": "^9.6.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-custom-elements": "^0.0.8",
@@ -95,7 +97,7 @@
     "@qooxdoo/framework": "^7.9.0",
     "@sentry/browser": "^10.0.0",
     "crc-32": "^1.2.2",
-    "monaco-editor": "^0.54.0",
+    "monaco-editor": "^0.55.1",
     "oauth-pkce": "^0.0.7"
   },
   "eslintConfig": {
