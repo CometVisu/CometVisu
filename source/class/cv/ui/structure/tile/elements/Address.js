@@ -192,6 +192,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         });
 
         this.__transformedValue = transformedState;
+        this._element.setAttribute('data-value', transformedState);
         //console.log(ev.detail);
         this._stateUpdateTarget.dispatchEvent(ev);
         this.__lastValue = state;
