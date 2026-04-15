@@ -1301,7 +1301,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
 
         // closest point on x-axis
-        const i = d3.least(this.data.lineIndices, i => Math.abs(this.getXPos(i) - xm));
+        const indices = this.data.lineIndices.length > 0 ? this.data.lineIndices : this.data.indices;
+        const i = d3.least(indices, i => {
+          const pos = this.getXPos(i);
+          if (pos === undefined) {
+            return Number.MAX_VALUE;
+          }
+          return Math.abs(pos - xm);
+        });
         const scaleFactorX = this._element.offsetWidth / this.getWidth();
         const scaleFactorY = this._element.offsetHeight / this.getHeight();
         let xOffset = 0;
