@@ -173,7 +173,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
       if (file.startsWith('../')) {
         file = file.substring(3);
       }
-      if (!Object.prototype.hasOwnProperty.call(this, file)) {
+      if (!Object.prototype.hasOwnProperty.call(this._schemas, file)) {
         this._schemas[file] = await cv.ui.manager.model.Schema.getInstance(file);
       }
       return new Promise((resolve, reject) => {
@@ -1878,6 +1878,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
 
         if (element.isTextNode()) {
           let type = '';
+          let language = '';
           const parent = element.getParent();
           let convertToCData = false;
           switch (parent.getName()) {
@@ -1891,10 +1892,17 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
               convertToCData = true;
               break;
 
+            case 'formula':
+              type = 'js';
+              language = 'javascript';
+              convertToCData = true;
+              break;
+
             case 'dataset':
               if (parent.getAttribute('src').startsWith('flux://')) {
                 type = 'flux';
               }
+              convertToCData = true;
               break;
           }
           if (convertToCData && element.getNode().nodeType === Node.TEXT_NODE) {
@@ -1908,7 +1916,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
           // special handling for status content: check of source editor supports the type and use it instead of a plain TextArea
           if (type && cv.ui.manager.editor.Source.SUPPORTED_FILES('test.' + type)) { // eslint-disable-line new-cap
             formData[nodeName].type = 'SourceEditor';
-            formData[nodeName].language = type;
+            formData[nodeName].language = language || type;
             formData[nodeName].width = Math.min(qx.bom.Viewport.getWidth(), 800);
             delete formData[nodeName].placeholder;
           }
@@ -2237,7 +2245,7 @@ qx.Class.define('cv.ui.manager.editor.Tree', {
         }
         if (errors) {
           errors.forEach(error => {
-            if (error.path && error.path.startsWith('/pages')) {
+            if (error.path && (error.path.startsWith('/pages') || error.path.startsWith('/config'))) {
               let current = rootNode;
               let parts = error.path.substr(1).split('/');
               while (parts.length > 0) {
