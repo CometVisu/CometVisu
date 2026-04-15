@@ -1206,6 +1206,12 @@
         <xsd:documentation xml:lang="de">Ergebnis mit diesem Wert multiplizieren.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="target" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Target in the parent widget the value if this address should be use for. The possible values depend on the parent widget.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Ziel innerhalb der Eltern-Widgets für das die Werte dieser Adresse benutzt werden sollen. Die möglichen Werte hängen vom Eltern-Widget ab.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <!--
   #####################################################################################################################
