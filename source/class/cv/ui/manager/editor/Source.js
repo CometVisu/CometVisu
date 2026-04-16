@@ -157,10 +157,10 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
       // Listen for Monaco ESM loaded event
       const qxLibUri = qx.util.ResourceManager.getInstance().toUri('manager/completion-libs/qooxdoo.d.ts');
-      document.addEventListener('cv-monaco-loaded', function () {
+      document.addEventListener('cv-monaco-loaded', () => {
         fetch(qxLibUri)
-          .then(function (r) { return r.text(); })
-          .then(function (qxLib) {
+          .then(r => r.text())
+          .then(qxLib => {
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
 
             const completionProvider = new cv.ui.manager.editor.completion.Config();
@@ -172,7 +172,7 @@ qx.Class.define('cv.ui.manager.editor.Source', {
             // Notify all pending callers
             const cbs = cv.ui.manager.editor.Source.__loadCallbacks;
             cv.ui.manager.editor.Source.__loadCallbacks = null;
-            cbs.forEach(function (entry) {
+            cbs.forEach(entry => {
               entry.fn.apply(entry.ctx);
             });
           });
