@@ -38,6 +38,12 @@ describe('testing the <cv-chart> component of the tile structure', () => {
   });
 
   afterEach(() => {
+    // Dispose chart instances to cancel pending async operations (timeouts, promises)
+    document.querySelectorAll('cv-chart').forEach(el => {
+      if (el._instance && !el._instance.isDisposed()) {
+        el._instance.dispose();
+      }
+    });
     cv.Application.structureController = oldController;
     document.body.classList.add('loading');
   });

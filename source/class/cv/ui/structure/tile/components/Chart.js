@@ -275,6 +275,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
+      if (this.isDisposed()) {
+        return;
+      }
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
       
       this.setXAxis(new cv.ui.structure.tile.components.chart.XAxis(this));
@@ -798,6 +801,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     
 
     __updateTimeRange() {
+      if (this.isDisposed() || !this._element) {
+        return;
+      }
       const series = this.getCurrentSeries();
 
       const currentPeriod = this.getCurrentPeriod();
@@ -882,15 +888,19 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       Promise.all(promises).then(responses => {
-        this._onSuccess(responses.filter(r => r !== null));
+        if (!this.isDisposed()) {
+          this._onSuccess(responses.filter(r => r !== null));
+        }
       });
     },
 
     _onSuccess(chartData) {
       // wait some time to let the element size settle
       this.__resizeTimeout = setTimeout(() => {
-        // append all dataset fetched data to a single flat array
-        this._onRendered(chartData.flat());
+        if (!this.isDisposed()) {
+          // append all dataset fetched data to a single flat array
+          this._onRendered(chartData.flat());
+        }
       }, 100);
     },
 
@@ -898,6 +908,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this.__resizeTimeout) {
         clearTimeout(this.__resizeTimeout);
         this.__resizeTimeout = null;
+      }
+      if (this.isDisposed()) {
+        return;
       }
       if (this.isVisible()) {
         const [width, height] = this._getSize();
