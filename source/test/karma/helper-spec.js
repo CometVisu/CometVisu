@@ -405,6 +405,7 @@ afterEach(function () {
   // stale template references causing 'Cannot read innerHTML of null'
   [cv.ui.NotificationCenter, cv.ui.ToastManager].forEach(function(Clazz) {
     var instance = Clazz.getInstance();
+    instance.clearMessages();
     if (instance._list) {
       instance._list.setModel(null);
       instance._list.dispose();

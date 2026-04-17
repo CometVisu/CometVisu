@@ -112,6 +112,13 @@ qx.Mixin.define('cv.ui.MHandleMessage', {
       return this._severities;
     },
 
+    clearMessages() {
+      this._messages.removeAll();
+      this._idCounter = 0;
+      this.setCounter(0);
+      this.resetGlobalSeverity();
+    },
+
     _updateHighestSeverity() {
       // get the highest severity
       let severityRank = -1;
