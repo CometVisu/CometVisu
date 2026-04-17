@@ -406,6 +406,7 @@ afterEach(function () {
   [cv.ui.NotificationCenter, cv.ui.ToastManager].forEach(function(Clazz) {
     var instance = Clazz.getInstance();
     if (instance._list) {
+      instance._list.setModel(null);
       instance._list.dispose();
       instance._list = null;
     }
