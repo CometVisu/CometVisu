@@ -61,9 +61,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           if (check()) {
             resolve(true);
           } else if (counter > 5) {
+            timer.stop();
+            qx.log.Logger.error(this, 'Error loading D3: D3 did not load within expected time');
             reject(new Error('Error loading d3 library'));
           }
         });
+        timer.start();
       } else {
         resolve(true);
       }
@@ -100,9 +103,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
         });
       }
-    }).catch(() => {
-      console.error('Error loading d3 library, charts will not work');
-    }),
+    }).catch(() => {}),
 
     CONFIG: null
   },
