@@ -408,6 +408,6 @@ qx.Class.define('cv.ui.NotificationCenter', {
 
     qx.event.Registration.removeListener(this.__messagesContainer, 'tap', this._onListTap, this);
 
-    this._disposeObjects('__blocker', '__messagesContainer', '_openCommand', '_list ');
+    this._disposeObjects('__blocker', '__messagesContainer', '_openCommand', '_list');
   }
 });
