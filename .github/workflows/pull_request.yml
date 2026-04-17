@@ -56,6 +56,19 @@ jobs:
         uses: ./.github/actions/build-cv
         with:
           target: source
+      - name: Inject CI diagnostics into Property.js
+        run: |
+          node -e "
+            const fs = require('fs');
+            const f = 'compiled/source/transpiled/qx/core/Property.js';
+            let code = fs.readFileSync(f, 'utf8');
+            code = code.replace(
+              'throw new Error(\"Malformed generated code to unwrap method: \" + this.\$\$method[variant][name] + \"\\\\n\" + code.join(\"\"));',
+              'throw new Error(\"Malformed generated code to unwrap method: \" + this.\$\$method[variant][name] + \"\\\\n\" + code.join(\"\") + \"\\\\n[class=\" + clazz.classname + \", prop=\" + name + \", variant=\" + variant + \", storeRuntime=\" + JSON.stringify(Object.keys(this.\$\$store.runtime).slice(0,20)) + \", delayDefer=\" + (qx.\$\$loader && qx.\$\$loader.delayDefer) + \"]\");'
+            );
+            fs.writeFileSync(f, code);
+            console.log('CI diagnostics injected');
+          "
       - name: Install browser
         run: ./utils/ci/browser-setup.sh
         shell: bash
