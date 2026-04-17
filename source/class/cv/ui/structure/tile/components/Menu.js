@@ -267,6 +267,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      * @private
      */
     _closeAll(except) {
+      if (this.isDisposed()) {
+        return;
+      }
       if (this._element.classList.contains('open')) {
         this._element.classList.remove('open');
       } else if (this._element.classList.contains('responsive')) {
