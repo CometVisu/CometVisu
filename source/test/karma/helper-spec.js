@@ -314,29 +314,6 @@ beforeAll(function (done) {
   }
 
   try {
-    // CI diagnostic: check Qooxdoo property system integrity before tests
-    const _propStore = qx.core.Property.$$store;
-    const _modelClass = qx.Bootstrap.getByName('cv.data.Model');
-    console.log('[CI-DIAG] qx.core.Property.$$store.runtime keys:', Object.keys(_propStore.runtime).length);
-    console.log('[CI-DIAG] cv.data.Model resolved:', !!_modelClass);
-    if (_modelClass) {
-      console.log('[CI-DIAG] cv.data.Model.$$properties:', JSON.stringify(_modelClass.$$properties ? Object.keys(_modelClass.$$properties) : 'MISSING'));
-      console.log('[CI-DIAG] cv.data.Model.$$pendingDefer:', typeof _modelClass.$$pendingDefer);
-      console.log('[CI-DIAG] cv.data.Model.$$deferComplete:', !!_modelClass.$$deferComplete);
-      console.log('[CI-DIAG] $$store has defaultBackendName:', !!_propStore.runtime['defaultBackendName']);
-      // check if getDefaultBackendName exists on prototype
-      if (_modelClass.prototype) {
-        const getter = _modelClass.prototype['getDefaultBackendName'];
-        console.log('[CI-DIAG] getDefaultBackendName exists:', !!getter);
-        console.log('[CI-DIAG] getDefaultBackendName has $$install:', !!(getter && getter.$$install));
-      }
-    } else {
-      console.error('[CI-DIAG] cv.data.Model NOT FOUND in registry! Available cv.data.* classes:',
-        Object.keys(qx.Bootstrap.$$registry).filter(k => k.startsWith('cv.data.')));
-    }
-    console.log('[CI-DIAG] qx.$$loader.delayDefer:', qx.$$loader && qx.$$loader.delayDefer);
-    console.log('[CI-DIAG] qx.$$loader.scriptLoaded:', qx.$$loader && qx.$$loader.scriptLoaded);
-
     cv.Config.enableCache = false;
     cv.Config.timeoutStructureLoad = 5000;
     // always test in 'en' locale

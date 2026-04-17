@@ -100,6 +100,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
         });
       }
+    }).catch(() => {
+      console.error('Error loading d3 library, charts will not work');
     }),
 
     CONFIG: null

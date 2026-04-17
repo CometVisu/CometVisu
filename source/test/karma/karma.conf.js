@@ -38,6 +38,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
       { pattern: 'source/cv/polyfill.js', included: true },
+      { pattern: 'source/test/karma/qx-karma-boot.js', included: true },
       { pattern: 'source/test/karma/*-spec.js' },
       { pattern: 'source/test/karma/**/*-spec.js' },
       { pattern: 'source/test/fixtures/*', included: false, served: true },
@@ -57,7 +58,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'source/transpiled/cv/{*.js,!(report)/**/!(Simulation).js}': ['coverage'],
-      'source/test/fixtures/karma/*.xml': ['html2js']
+      'source/test/fixtures/karma/*.xml': ['html2js'],
+      'source/cv/index.js': ['qxBootFix']
     },
 
     // test results reporter to use
@@ -125,6 +127,9 @@ module.exports = function(config) {
       '/source/cv': '/base/source/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',
+      '/plugins/': '/base/source/resource/plugins/',
+      '/designs/': '/base/source/resource/designs/',
+      '/libs/': '/base/source/resource/libs/',
       '/cgi-bin': '/base/source/resource/test',
       '/rest/manager': '/base/source/rest/manager',
       '/version': '/base/version'
@@ -181,6 +186,43 @@ module.exports = function(config) {
       codePath: 'source/',
       scriptFile: 'cv/index.js',
       dbFile: 'db.json'
-    }
+    },
+
+    plugins: [
+      'karma-*',
+      // Preprocessor that prevents the Qooxdoo loader from dynamically loading scripts.
+      // In karma, all scripts are already included as static <script> tags by karma-qooxdoo.
+      // Without this fix, qx.$$loader.init() at the end of index.js starts dynamic script
+      // loading via loadScript(), which races with karma's static script loading and causes
+      // sporadic "Malformed generated code" errors due to incomplete class definitions.
+      {
+        'preprocessor:qxBootFix': ['factory', function() {
+          return function(content, file, done) {
+            // Replace the init() call at the end with importPackageData() only.
+            // The original init() dynamically loads scripts (already loaded by karma)
+            // and calls signalStartup() which also starts the application.
+            // Class finalization (executePendingDefers) is done in qx-karma-boot.js
+            // after all transpiled files have been loaded.
+            const replacement = [
+              '// [karma-qxBootFix] Replaced dynamic loader init.',
+              '// Import package data so resources/translations are available during script loading.',
+              '// Class finalization (executePendingDefers) is deferred to qx-karma-boot.js.',
+              '(function() {',
+              '  var l = qx.$$loader;',
+              '  l.parts[l.boot].forEach(function(pkg) {',
+              '    l.importPackageData(qx.$$packageData[pkg] || {});',
+              '  });',
+              '})();'
+            ].join('\n');
+            // Use a function replacement to avoid $$ being interpreted as regex special chars
+            const fixed = content.replace(
+              /qx\.\$\$loader\.init\(\);/,
+              function() { return replacement; }
+            );
+            done(fixed);
+          };
+        }]
+      }
+    ]
   });
 };
