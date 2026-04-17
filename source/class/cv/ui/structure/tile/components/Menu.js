@@ -267,6 +267,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
      * @private
      */
     _closeAll(except) {
+      if (this.isDisposed()) {
+        return;
+      }
       if (this._element.classList.contains('open')) {
         this._element.classList.remove('open');
       } else if (this._element.classList.contains('responsive')) {
@@ -280,7 +283,10 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
       if (this._element.querySelectorAll('.details[open]').length === 0) {
         qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
-        qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        const main = document.body.querySelector(':scope > main');
+        if (main) {
+          qx.event.Registration.removeListener(main, 'scroll', this._closeAll, this);
+        }
       }
     },
 

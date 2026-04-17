@@ -61,9 +61,12 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           if (check()) {
             resolve(true);
           } else if (counter > 5) {
+            timer.stop();
+            qx.log.Logger.error(this, 'Error loading D3: D3 did not load within expected time');
             reject(new Error('Error loading d3 library'));
           }
         });
+        timer.start();
       } else {
         resolve(true);
       }
@@ -100,7 +103,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(t => t.translate().toString())
         });
       }
-    }),
+    }).catch(() => {}),
 
     CONFIG: null
   },
@@ -275,6 +278,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
+      if (this.isDisposed()) {
+        return;
+      }
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
       
       this.setXAxis(new cv.ui.structure.tile.components.chart.XAxis(this));
@@ -798,6 +804,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     
 
     __updateTimeRange() {
+      if (this.isDisposed() || !this._element) {
+        return;
+      }
       const series = this.getCurrentSeries();
 
       const currentPeriod = this.getCurrentPeriod();
@@ -882,15 +891,19 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
 
       Promise.all(promises).then(responses => {
-        this._onSuccess(responses.filter(r => r !== null));
+        if (!this.isDisposed()) {
+          this._onSuccess(responses.filter(r => r !== null));
+        }
       });
     },
 
     _onSuccess(chartData) {
       // wait some time to let the element size settle
       this.__resizeTimeout = setTimeout(() => {
-        // append all dataset fetched data to a single flat array
-        this._onRendered(chartData.flat());
+        if (!this.isDisposed()) {
+          // append all dataset fetched data to a single flat array
+          this._onRendered(chartData.flat());
+        }
       }, 100);
     },
 
@@ -898,6 +911,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       if (this.__resizeTimeout) {
         clearTimeout(this.__resizeTimeout);
         this.__resizeTimeout = null;
+      }
+      if (this.isDisposed()) {
+        return;
       }
       if (this.isVisible()) {
         const [width, height] = this._getSize();
@@ -1301,7 +1317,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
 
         // closest point on x-axis
-        const i = d3.least(this.data.lineIndices, i => Math.abs(this.getXPos(i) - xm));
+        const indices = this.data.lineIndices.length > 0 ? this.data.lineIndices : this.data.indices;
+        const i = d3.least(indices, i => {
+          const pos = this.getXPos(i);
+          if (pos === undefined) {
+            return Number.MAX_VALUE;
+          }
+          return Math.abs(pos - xm);
+        });
         const scaleFactorX = this._element.offsetWidth / this.getWidth();
         const scaleFactorY = this._element.offsetHeight / this.getHeight();
         let xOffset = 0;

@@ -36,14 +36,14 @@ qx.Class.define('cv.ui.manager.dialog.ValidationError', {
    * @param properties {Map?}
    */
   construct(file, content, errors, properties) {
+    this._file = file;
+    this._content = content.split('\n');
+    this._errors = errors;
     super(
       Object.assign(properties || {}, {
         useBlocker: true
       })
     );
-    this._file = file;
-    this._content = content.split('\n');
-    this._errors = errors;
 
     this.addListener('appear', () => {
       if (!window.monaco) {

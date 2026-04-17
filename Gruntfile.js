@@ -402,6 +402,9 @@ module.exports = function(grunt) {
       build: {
         command: 'npm run make-cv'
       },
+      bundleMonaco: {
+        command: 'npm run bundle-monaco'
+      },
       composerInstallRest: {
         command: 'composer install --prefer-dist --no-dev',
         cwd: 'source/rest/manager'
@@ -515,7 +518,7 @@ module.exports = function(grunt) {
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'shell:composerInstallRest', 'shell:build',
+    'updateicons', 'clean', 'file-creator', 'shell:buildicons', 'shell:composerInstallRest', 'shell:bundleMonaco', 'shell:build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);

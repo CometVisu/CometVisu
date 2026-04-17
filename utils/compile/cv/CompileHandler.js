@@ -25,7 +25,6 @@ const additionalResources = [
 const filesToCopy = [
   '../package.json',
   'version',
-  '../node_modules/monaco-editor',
   '../node_modules/oauth-pkce/dist/oauth-pkce.min.js',
   'rest/manager',
   'rest/openapi.yaml',
@@ -38,10 +37,6 @@ const filesToCopy = [
 
 // directories to exclude from copying
 const excludeFromCopy = {
-  build: [
-    '../node_modules/monaco-editor/dev',
-    '../node_modules/monaco-editor/esm'
-  ]
 };
 
 const deleteBefore = [
