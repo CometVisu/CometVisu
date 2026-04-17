@@ -268,7 +268,9 @@ qx.Class.define('cv.ui.NotificationCenter', {
       qx.event.Registration.addListener(this.__badge, 'tap', this.toggleVisibility, this);
 
       // add HTML template for messages to header
-
+      if (this._list) {
+        this._list.dispose();
+      }
       this._list = new qx.data.controller.website.List(this._messages, this.__messagesContainer, 'MessageTemplate');
 
       qx.event.Registration.addListener(this.__messagesContainer, 'tap', this._onListTap, this);

@@ -401,6 +401,16 @@ afterEach(function () {
   });
   cv.ui.structure.pure.layout.ResizeHandler.reset();
 
+  // dispose notification list controllers before clearing DOM to prevent
+  // stale template references causing 'Cannot read innerHTML of null'
+  [cv.ui.NotificationCenter, cv.ui.ToastManager].forEach(function(Clazz) {
+    var instance = Clazz.getInstance();
+    if (instance._list) {
+      instance._list.dispose();
+      instance._list = null;
+    }
+  });
+
   if (this.container) {
     try {
       this.container.remove();
