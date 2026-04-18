@@ -246,5 +246,14 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Dataset', {
     elementName() {
       return this._element.localName;
     }
+  },
+
+  destruct() {
+    const source = this.getSource();
+    if (source && source.dispose && (!source.isDisposed || !source.isDisposed())) {
+      source.dispose();
+    }
+    this._chart = null;
+    this._element = null;
   }
 });

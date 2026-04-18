@@ -54,6 +54,7 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
   beforeEach(function()  {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
+    contentElements = [];
     this.createElement = createElement.bind(this);
   });
 
@@ -65,6 +66,7 @@ describe('testing the <cv-dynamic> widget of the tile structure', () => {
     for (const elem of contentElements) {
       elem.remove();
     }
+    contentElements = [];
   });
 
   it('should support basic selection of refs', function() {

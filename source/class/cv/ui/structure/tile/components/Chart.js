@@ -248,6 +248,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __resizeTimeout: null,
     __startTs: null,
     __endTs: null,
+    __autoHeightForFullscreen: false,
+    __fullscreenRenderFrame: null,
     _yFormat: null,
 
     /**
@@ -390,11 +392,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
         this._initFullscreenSwitch();
-
-        // only on mobile we need this, because of height: auto
-        //if (document.body.classList.contains('mobile')) {
-          this.addListener('changeFullscreen', () => this._onRendered());
-        //}
+        this.addListener('changeFullscreen', ev => this.__handleFullscreenChange(ev.getData()));
       }
 
       if (element.hasAttribute('refresh')) {
@@ -939,6 +937,32 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
     },
 
+    __handleFullscreenChange(isFullscreen) {
+      if (this.__fullscreenRenderFrame) {
+        window.cancelAnimationFrame(this.__fullscreenRenderFrame);
+        this.__fullscreenRenderFrame = null;
+      }
+
+      if (!isFullscreen && this.__autoHeightForFullscreen) {
+        this._element.style.height = '';
+        this.__autoHeightForFullscreen = false;
+      }
+
+      if (isFullscreen) {
+        this._onRendered();
+        return;
+      }
+
+      this.__fullscreenRenderFrame = window.requestAnimationFrame(() => {
+        this.__fullscreenRenderFrame = window.requestAnimationFrame(() => {
+          this.__fullscreenRenderFrame = null;
+          if (!this.isDisposed()) {
+            this._onRendered();
+          }
+        });
+      });
+    },
+
     _getSize() {
       const parent = this._element.parentElement;
       let padding = this.isInBackground() ? 0 : 8;
@@ -958,11 +982,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         width = Math.round(containerWidth / factor);
         height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
       }
-      if (!this._element.style.height && (parent.localName === 'cv-popup' && (parent.getAttribute('fullscreen') === 'true') ||
-        (this._element.getAttribute('allow-fullscreen') === 'true' &&
-          parent.parentElement.classList.contains('fullscreen')))) {
+      const isFullscreenContainer = parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' ||
+        this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen');
+      if (isFullscreenContainer && (!this._element.style.height || this.__autoHeightForFullscreen)) {
         // the parent container has height: auto, so we need to have one
         this._element.style.height = (height + this.getMarginTop() + this.getMarginBottom()) + 'px';
+        this.__autoHeightForFullscreen = true;
+      } else if (!isFullscreenContainer && this.__autoHeightForFullscreen) {
+        this._element.style.height = '';
+        this.__autoHeightForFullscreen = false;
       }
       return [width, height];
     },
@@ -1484,7 +1512,28 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const yearStart = new Date(d.getFullYear(), 0, 1);
       // Calculate full weeks to the nearest Thursday
       return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    }
+    },
+    
+    _disconnected() {
+      super._disconnected();
+      qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
+      if (this.__resizeTimeout) {
+        clearTimeout(this.__resizeTimeout);
+        this.__resizeTimeout = null;
+      }
+      if (this.__fullscreenRenderFrame) {
+        window.cancelAnimationFrame(this.__fullscreenRenderFrame);
+        this.__fullscreenRenderFrame = null;
+      }
+      if (this.__toolTipTimer) {
+        clearTimeout(this.__toolTipTimer);
+        this.__toolTipTimer = null;
+      }
+      if (cv.Config.unitTesting && this._datasets) {
+        this._disposeMap('_datasets');
+        this._datasets = {};
+      }
+    },
   },
 
   /*
@@ -1498,6 +1547,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     if (this.__resizeTimeout) {
       clearTimeout(this.__resizeTimeout);
       this.__resizeTimeout = null;
+    }
+    if (this.__fullscreenRenderFrame) {
+      window.cancelAnimationFrame(this.__fullscreenRenderFrame);
+      this.__fullscreenRenderFrame = null;
     }
     if (this.__toolTipTimer) {
       clearTimeout(this.__toolTipTimer);

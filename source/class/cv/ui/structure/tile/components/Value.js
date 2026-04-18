@@ -42,23 +42,52 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
   ***********************************************
   */
   members: {
-    _debouncedDetectOverflow: null,
+    __overflowTimerId: null,
+    __iconUpdateFrame: null,
 
     _init() {
       super._init();
-      this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
 
       const target = this._element.querySelector('.value');
       if (target && target.tagName.toLowerCase() === 'label') {
         // check for overflowing text, when labels parent gets resized
         this.setResizeTarget(this._element);
-        this.addListener('resized', this._debouncedDetectOverflow, this);
+        this.addListener('resized', this._scheduleDetectOverflow, this);
       }
+    },
+
+    _disconnected() {
+      this.__cleanupAsyncHandles();
+      super._disconnected();
+    },
+
+    __cleanupAsyncHandles() {
+      if (this.__overflowTimerId !== null) {
+        window.clearTimeout(this.__overflowTimerId);
+        this.__overflowTimerId = null;
+      }
+      this.removeListener('resized', this._scheduleDetectOverflow, this);
+      if (this.__iconUpdateFrame !== null) {
+        window.cancelAnimationFrame(this.__iconUpdateFrame);
+        this.__iconUpdateFrame = null;
+      }
+    },
+
+    _scheduleDetectOverflow() {
+      if (this.__overflowTimerId !== null) {
+        window.clearTimeout(this.__overflowTimerId);
+      }
+      this.__overflowTimerId = window.setTimeout(() => {
+        this.__overflowTimerId = null;
+        if (!this.isDisposed() && this.isConnected()) {
+          this._detectOverflow();
+        }
+      }, 20);
     },
 
     _applyVisible(ev) {
       if (ev.getData()) {
-        this._debouncedDetectOverflow();
+        this._scheduleDetectOverflow();
       } else {
         const target = this._element.querySelector('.value');
         if (target && target.classList.contains('scroll')) {
@@ -92,7 +121,11 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
               target._instance.setStyleClass(styleClass);
             } else {
               // try again in next frame
-              window.requestAnimationFrame(() => {
+              this.__iconUpdateFrame = window.requestAnimationFrame(() => {
+                this.__iconUpdateFrame = null;
+                if (!this.isConnected() || !target.isConnected) {
+                  return;
+                }
                 if (target._instance) {
                   target._instance.setId('' + mappedValue);
                   target._instance.setStyleClass(styleClass);
@@ -114,11 +147,15 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             break;
           case 'label':
             target.innerHTML = mappedValue;
-            this._debouncedDetectOverflow();
+            this._scheduleDetectOverflow();
             break;
         }
       }
     }
+  },
+
+  destruct() {
+    this.__cleanupAsyncHandles();
   },
 
   defer(QxClass) {

@@ -117,6 +117,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
      * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeConnection(other) {
+      if (!this._connections) {
+        return;
+      }
       const index = this._connections.indexOf(other);
       if (index > -1) {
         this._connections.splice(index, 1);
@@ -131,6 +134,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
      * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
      */
     removeInverseConnection(other) {
+      if (!this._inverseConnections) {
+        return;
+      }
       const index = this._inverseConnections.indexOf(other);
       if (index > -1) {
         this._inverseConnections.splice(index, 1);
@@ -278,8 +284,8 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
   ***********************************************
   */
   destruct() {
-    const source = this.getSource();
-    const target = this.getTarget();
+    const source = this._connectorFrom && this._connectorFrom.getSource ? this._connectorFrom.getSource() : null;
+    const target = this._connectorTo && this._connectorTo.getTarget ? this._connectorTo.getTarget() : null;
     if (target) {
       target.removeConnection(this);
     }
@@ -287,8 +293,17 @@ qx.Mixin.define('cv.ui.structure.tile.components.energy.MConnectable', {
       source.removeInverseConnection(this);
     }
 
+    if (this.getUseConnectionSum()) {
+      for (const other of this._connections) {
+        other.removeListener('changeValue', this._updateConnectionsSum, this);
+      }
+      for (const other of this._inverseConnections) {
+        other.removeListener('changeValue', this._updateConnectionsSum, this);
+      }
+    }
+
     this._disposeObjects('_connectorTo', '_connectorFrom');
-    this._connections.clear();
-    this._inverseConnections.clear();
+    this._connections = [];
+    this._inverseConnections = [];
   }
 });

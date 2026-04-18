@@ -66,7 +66,7 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     },'', true);
 
     spyOn(window, 'open');
-    element.click();
+    element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
     expect(window.open).toHaveBeenCalledWith('https://example.com', '_blank');
   });
 
@@ -77,7 +77,7 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     },'', true);
 
     spyOn(window, 'open');
-    element.click();
+    element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
     expect(window.open).toHaveBeenCalledWith('https://example.com', '_self');
   });
 
