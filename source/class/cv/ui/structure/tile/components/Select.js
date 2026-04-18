@@ -45,11 +45,16 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
     __options: null,
     __value: null,
     __popup: null,
+    __bodyClickListener: null,
+    __bodyClickFrame: null,
 
     _init() {
       super._init();
       const element = this._element;
       this.__options = new Map();
+      if (!this.__bodyClickListener) {
+        this.__bodyClickListener = ev => this.handleEvent(ev);
+      }
 
       let popup = element.querySelector(':scope > .popup');
       if (!popup) {
@@ -95,15 +100,24 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
       const style = getComputedStyle(this.__popup);
       if (style.getPropertyValue('display') === 'none' && !close) {
         this.__popup.style.display = 'block';
-        window.requestAnimationFrame(() => {
+        if (this.__bodyClickFrame !== null) {
+          window.cancelAnimationFrame(this.__bodyClickFrame);
+        }
+        this.__bodyClickFrame = window.requestAnimationFrame(() => {
+          this.__bodyClickFrame = null;
+          if (!this.isConnected()) {
+            return;
+          }
           // delay adding this listener, otherwise it would fire immediately
-          // also the native addEventListener does not allow the listener to be re-added once removed, so we use the qx way here
-          // which works fine
-          qx.event.Registration.addListener(document.body, 'click', this.handleEvent, this, true);
+          document.body.addEventListener('click', this.__bodyClickListener, true);
         });
       } else {
         this.__popup.style.display = 'none';
-        qx.event.Registration.removeListener(document.body, 'click', this.handleEvent, this, true);
+        if (this.__bodyClickFrame !== null) {
+          window.cancelAnimationFrame(this.__bodyClickFrame);
+          this.__bodyClickFrame = null;
+        }
+        document.body.removeEventListener('click', this.__bodyClickListener, true);
       }
     },
 
@@ -169,6 +183,20 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
             this.__value.innerHTML = current.innerHTML;
             break;
         }
+      }
+    },
+
+    _disconnected() {
+      if (this.__bodyClickFrame !== null) {
+        window.cancelAnimationFrame(this.__bodyClickFrame);
+        this.__bodyClickFrame = null;
+      }
+      super._disconnected();
+      if (this.__bodyClickListener) {
+        document.body.removeEventListener('click', this.__bodyClickListener, true);
+      }
+      if (this.__popup) {
+        this.__popup.style.display = 'none';
       }
     },
 

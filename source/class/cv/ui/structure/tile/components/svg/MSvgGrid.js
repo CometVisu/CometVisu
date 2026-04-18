@@ -32,7 +32,9 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
   construct() {
     this._cells = {};
     this._isLayoutValid = true;
-    this.debouncedLayoutAll = qx.module.util.Function.debounce(this._layoutAll.bind(this), 100);
+    this.debouncedLayoutAll = cv.Config && cv.Config.unitTesting
+      ? this._layoutAll.bind(this)
+      : qx.module.util.Function.debounce(this._layoutAll.bind(this), 100);
   },
 
   /*
