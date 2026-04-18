@@ -1533,7 +1533,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this._disposeMap('_datasets');
         this._datasets = {};
       }
-    },
+    }
   },
 
   /*
