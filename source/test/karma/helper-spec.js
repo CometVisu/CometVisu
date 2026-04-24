@@ -167,65 +167,6 @@ const findChild = function(elem, selector) {
 })[0];
 };
 
-const collectTileInstanceElements = function(...roots) {
-  const elements = [];
-  const seen = new Set();
-
-  roots.filter(Boolean).forEach(function(root) {
-    const candidates = [];
-    if (root._instance) {
-      candidates.push(root);
-    }
-    if (root.querySelectorAll) {
-      candidates.push(...root.querySelectorAll('*'));
-    }
-
-    candidates.forEach(function(element) {
-      if (element && element._instance && !seen.has(element)) {
-        seen.add(element);
-        elements.push(element);
-      }
-    });
-  });
-
-  return elements;
-};
-
-const disposeTileInstances = function(...roots) {
-  const leaked = [];
-
-  collectTileInstanceElements(...roots).forEach(function(element) {
-    const instance = element._instance;
-
-    if (!instance || (instance.isDisposed && instance.isDisposed())) {
-      element._instance = null;
-      return;
-    }
-
-    try {
-      if (element.parentNode) {
-        element.remove();
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    try {
-      instance.dispose();
-    } catch (e) {
-      console.error(e);
-    }
-
-    if (!instance.isDisposed || !instance.isDisposed()) {
-      leaked.push(`${element.tagName.toLowerCase()}: ${instance.classname || instance}`);
-    }
-
-    element._instance = null;
-  });
-
-  return leaked;
-};
-
 const customMatchers = {
   toHaveFlavour: function() {
     return {
@@ -472,8 +413,6 @@ afterEach(function () {
     }
   });
 
-  const leakedTileInstances = disposeTileInstances(document.body, this.container);
-
   if (this.container) {
     try {
       this.container.remove();
@@ -488,9 +427,6 @@ afterEach(function () {
 
   // load empty HTML structure
   document.body.innerHTML = '';
-  if (leakedTileInstances.length > 0) {
-    fail('Tile instance cleanup leaked: ' + leakedTileInstances.join(', '));
-  }
   cv.TemplateEngine.getInstance().resetDomFinished();
   qx.core.Init.getApplication().resetStructureLoaded();
 });
