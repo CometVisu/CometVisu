@@ -73,7 +73,7 @@ This includes connections to the :ref:`backends <tile-element-backend>`, :ref:`m
     Styling <elements/styling>
     Loader <elements/loader>
     CSS-Style <elements/style>
-    Status-Benachrichtigung <elements/state-notification>
+    Status notification <elements/state-notification>
 
 
 Navigation / Page structure
@@ -84,6 +84,9 @@ you are currently on. There are header and footer areas and a left and right sid
 the individual pages with their respective content (tiles) between which you can navigate back and forth.
 The fixed areas are all optional and can be used or omitted as required. You can use them, for example, for navigation
 bars or widgets that show global status, such as the number of open windows or the number of lights on.
+
+For compact mobile layouts, navigation elements in these fixed areas can be configured with ``hide-on-scroll="true"``.
+Then they fade out while the content in ``<main>`` is scrolled and reappear again at the top of the page.
 
 .. widget-example::
 
@@ -170,7 +173,7 @@ A :ref:`navigation menu <tile-component-menu>` is automatically created from thi
             </cv-page>
         </main>
 
-In the ``<header>/<footer>`` sections, a breadcrumb menu can also be added with ``<cv-breadcrumbs/>``.
+In the ``<header>/<footer>`` sections, a  :ref:`breadcrumb menu <tile-component-breadcrumbs>` can also be added with ``<cv-breadcrumbs/>``.
 This allows you to quickly jump back to higher-level pages.
 
 .. code-block:: xml
@@ -206,11 +209,15 @@ This allows you to quickly jump back to higher-level pages.
             </cv-page>
         </main>
 
+On touch devices, the tile structure also supports pull-to-refresh.
+If the content in ``<main>`` is already at the top, pulling down reloads the current page.
+
 .. toctree::
     :maxdepth: 1
     :hidden:
 
     Menu <components/menu>
+    Breadcrumbs <components/breadcrumbs>
     Page <components/page>
     Group <components/group>
     Popup <components/popup>
@@ -347,9 +354,8 @@ and a text is displayed.
     </cv-widget>
 
 This tile configuration must now be transferred to a template. To do this you first have to create a template file.
-The best way to do this is to use the :ref:`Manager <Manager>` by creating a file called “my-templates.xml” in the “media” folder.
-generated. To load these templates, add a :ref:`Loader <tile-element-loader>` to the configuration file in the meta area
-added.
+The best way to do this is to use the :ref:`Manager <Manager>` by creating a file called "my-templates.xml" in the "media" folder.
+To load these templates, add a :ref:`Loader <tile-element-loader>` to the configuration file in the meta area.
 
 .. code-block:: xml
 
@@ -514,5 +520,6 @@ Other elements that are not independent components but can be used within them.
     :maxdepth: 1
 
     Icon <components/icon>
+    Plugin <components/plugin>
     Address <elements/address>
     Address-Group <elements/address-group>

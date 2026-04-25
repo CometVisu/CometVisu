@@ -83,11 +83,11 @@ This widget can be connected to a popup to display additional details when click
 
     <cv-small-status value-format="%d°" styling="">
         <label slot="value" style="font-size: 32px"/>
-        <label slot="label" class="secondary">Außen</label>
+        <label slot="label" class="secondary">Outside</label>
         <cv-address slot="address" transform="DPT:5.010" mode="read">1/4/2</cv-address>
         <cv-popup slot="popup" modal="true">
             <cv-plugin>
-                <openweathermap q="Irgendwo" owID="12345677" appid="123456789" lang="de"/>
+                <openweathermap q="Somewhere" owID="12345677" appid="123456789" lang="en"/>
             </cv-plugin>
         </cv-popup>
     </cv-small-status>
