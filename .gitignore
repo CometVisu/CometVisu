@@ -43,3 +43,5 @@ distrobox.ini
 playwright-report/
 test-results/
 .eslintcache
+*Todos.md
+*.log
