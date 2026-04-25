@@ -106,6 +106,8 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
     _preMappingHooks: null,
     _tileElement: null,
     __mobileReplacements: null,
+    __stateUpdateHandler: null,
+
     /**
      * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
      */
@@ -179,11 +181,8 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this._readAddresses = readAddresses;
 
       if (hasReadAddress) {
-        element.addEventListener('stateUpdate', ev => {
-          this.onStateUpdate(ev);
-          // cancel event here
-          ev.stopPropagation();
-        });
+        this.__stateUpdateHandler = ev => { this.onStateUpdate(ev); ev.stopPropagation(); };
+        element.addEventListener('stateUpdate', this.__stateUpdateHandler);
       }
 
       // has mobile attributes
@@ -225,6 +224,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
     _disconnected() {
       qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
+      if (this.__stateUpdateHandler) {
+        this._element.removeEventListener('stateUpdate', this.__stateUpdateHandler);
+        this.__stateUpdateHandler = null;
+      }
     },
 
     /**
@@ -345,9 +348,9 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         const format = this._element.getAttribute('format');
         if (value instanceof Date && !format.includes('%')) {
           if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
-            cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
+            cv.ui.structure.tile.components.AbstractComponent.dateFormats[format] = new qx.util.format.DateFormat(format);
           }
-          value = cv.ui.structure.tile.components.AbstractComponent[format].format(value);
+          value = cv.ui.structure.tile.components.AbstractComponent.dateFormats[format].format(value);
         } else {
           value = cv.util.String.sprintf(
             format,

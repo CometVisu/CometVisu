@@ -24,6 +24,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.Data', {
   extend: qx.core.Object,
 
   construct(chart) {
+    super();
     this.data = [];
     this.times = [];
     this.values = [];

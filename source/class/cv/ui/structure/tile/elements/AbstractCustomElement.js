@@ -30,6 +30,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   ***********************************************
   */
   construct(element) {
+    super();
     this._element = element;
   },
 
@@ -59,14 +60,34 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
     _element: null,
 
     _initialized: false,
+    __deferredInitHandler: null,
 
     _applyConnected(value) {
       if (value && !this._initialized) {
-        this._init();
-        this._initialized = true;
-      } else {
+        const page = this._element.closest('cv-page');
+        if (page && !page.classList.contains('active') && !page.classList.contains('sub-active')) {
+          // Defer init until this page (or a sub-page of it) becomes active
+          this.__deferredInitHandler = msg => {
+            const activePage = msg.getData();
+            if (page === activePage || page.contains(activePage)) {
+              qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
+              this.__deferredInitHandler = null;
+              this._init();
+              this._initialized = true;
+            }
+          };
+          qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
+        } else {
+          this._init();
+          this._initialized = true;
+        }
+      } else if (!value && this._initialized) {
         this._disconnected();
         this._initialized = false;
+      } else if (!value && !this._initialized && this.__deferredInitHandler) {
+        // Disconnected before deferred init could run — clean up subscription
+        qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
+        this.__deferredInitHandler = null;
       }
     },
     _init() {},
@@ -84,6 +105,10 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   ***********************************************
   */
   destruct() {
+    if (this.__deferredInitHandler) {
+      qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
+      this.__deferredInitHandler = null;
+    }
     this._element = null;
   }
 });

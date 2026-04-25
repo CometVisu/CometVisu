@@ -126,18 +126,21 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     },
 
     _applyMin(value) {
-      const input = this._element.querySelector(':scope > input');
-      input.setAttribute('min', '' + value);
+      if (this.__input) {
+        this.__input.setAttribute('min', '' + value);
+      }
     },
 
     _applyMax(value) {
-      const input = this._element.querySelector(':scope > input');
-      input.setAttribute('max', '' + value);
+      if (this.__input) {
+        this.__input.setAttribute('max', '' + value);
+      }
     },
 
     _applyStepWidth(value) {
-      const input = this._element.querySelector(':scope > input');
-      input.setAttribute('step', '' + value);
+      if (this.__input) {
+        this.__input.setAttribute('step', '' + value);
+      }
     },
 
     _applyShowValue(value) {
@@ -153,9 +156,8 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
     },
 
     _updateValue(mappedValue, value) {
-      const target = this._element.querySelector(':scope > input');
-      if (target) {
-        target.value = value;
+      if (this.__input) {
+        this.__input.value = value;
       }
       if (this.isShowValue()) {
         let valueLabel = this._element.querySelector(':scope > label.value');

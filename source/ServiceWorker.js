@@ -5,8 +5,9 @@
  * @since (0.12.0) 2022
  */
 
-var CACHE = "cv-cache-v2";
-var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg(#.*)?|ttf|woff|eot|css|png|html|json)$/i;
+var CACHE = 'cv-cache-v2';
+var CACHE_TEST = /.+\.(js|jpg|gif|webp|svg(#.*)?|ttf|woff|eot|css|png|html|json|xml)$/i;
+var NO_CACHE = /visu_config.*\.xml$/i;
 var config = {};
 var updateQueue = [];
 var queueTid = null;
@@ -16,11 +17,13 @@ const logStyling = 'color: #0044b2;';
 
 const logger = {
   log: function () {
+    // eslint-disable-next-line no-console
     console.log.apply(console, this._generateArgs(arguments));
   },
 
   debug: function () {
     if (config.debug === true) {
+      // eslint-disable-next-line no-console
       console.debug.apply(console, this._generateArgs(arguments));
     }
   },
@@ -50,6 +53,11 @@ const logger = {
   }
 };
 
+/**
+ *
+ * @param request
+ * @param timeout
+ */
 function fromNetwork(request, timeout) {
   return new Promise(function (resolve, reject) {
     if (timeout) {
@@ -80,6 +88,9 @@ function update(request) {
   }).catch((err => logger.log('error opening cache:', err)));
 }
 
+/**
+ *
+ */
 function processQueue() {
   while (updateQueue.length) {
     var request = updateQueue.shift();
@@ -119,7 +130,7 @@ function fetchAndUpdate(request) {
 self.addEventListener('message', function (event) {
   var data = event.data;
 
-  if (data.command === "configure") {
+  if (data.command === 'configure') {
     config = data.message;
     logger.debug('Configuration:', config);
   }
@@ -128,19 +139,19 @@ self.addEventListener('message', function (event) {
 self.addEventListener('install', function () {
   startTime = Date.now();
   // take over right now
-  logger.log("CometVisu service worker installed");
+  logger.log('CometVisu service worker installed');
 });
 
 // delete old caches after activation
 self.addEventListener('activate', function (event) {
-  logger.log("CometVisu service worker activated");
+  logger.log('CometVisu service worker activated');
   var cacheWhitelist = [CACHE];
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
+        cacheNames.forEach(function(cacheName) {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+            caches.delete(cacheName);
           }
         })
       );
@@ -150,16 +161,17 @@ self.addEventListener('activate', function (event) {
 
 self.addEventListener('fetch', function(ev) {
   if (config.disableCache === true ||
-      ev.request.method.toLowerCase() !== "get" ||
+      ev.request.method.toLowerCase() !== 'get' ||
       !ev.request.url.startsWith(this.registration.scope) ||
-      !CACHE_TEST.test(ev.request.url)
+      !CACHE_TEST.test(ev.request.url) ||
+      NO_CACHE.test(ev.request.url)
   ) {
     // fallback to "normal" behaviour without serviceWorker -> sends HTTP request
-    logger.debug("ignore cache for " +ev.request.method + " " + ev.request.url);
+    logger.debug('ignore cache for ' +ev.request.method + ' ' + ev.request.url);
     return;
   }
 
-  ev.respondWith(fromCache(ev.request).then(function(response){
+  ev.respondWith(fromCache(ev.request).then(function(response) {
     logger.debug('load from cache ' + ev.request.url);
     if (config.forceReload === true) {
       update(ev.request);
@@ -174,7 +186,7 @@ self.addEventListener('fetch', function(ev) {
     return response;
   }).catch(function () {
     // not cached -> do now
-    logger.debug("caching " + ev.request.url);
+    logger.debug('caching ' + ev.request.url);
     return fetchAndUpdate(ev.request);
   }));
 });

@@ -196,6 +196,10 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           this.setType('push');
         }
       }
+      if (this.getType() !== 'trigger') {
+        // delay this because we need the mappings to be ready
+        this.__scheduleOnce(() => this._applyOn(), 1000);
+      }
     },
 
     _initProgress() {
@@ -218,16 +222,6 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       element.appendChild(svg);
       // make sure that we do not override the progress bar by state appearance
       element.classList.add('progress');
-    },
-
-    _applyConnected(value) {
-      super._applyConnected(value);
-      if (value) {
-        if (this.getType() !== 'trigger') {
-          // delay this because we need the mappings to be ready
-          this.__scheduleOnce(() => this._applyOn(), 1000);
-        }
-      }
     },
 
     _disconnected() {

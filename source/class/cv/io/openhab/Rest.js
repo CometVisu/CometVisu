@@ -68,7 +68,9 @@ qx.Class.define('cv.io.openhab.Rest', {
     },
 
     // not used / needed in this client
-    setInitialAddresses(addresses) {},
+    setInitialAddresses(addresses) {
+      this.initialAddresses = addresses;
+    },
 
     getResourcePath(name, map) {
       if (name === 'charts' && map && map.src) {

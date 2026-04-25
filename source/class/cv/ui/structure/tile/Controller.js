@@ -58,6 +58,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         (cv.Config.forceReload === true ? '?' + Date.now() : '')
     );
     qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
+    this.__templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
+    const prefetchLink = document.createElement('link');
+    prefetchLink.rel = 'prefetch';
+    prefetchLink.href = this.__templates;
+    document.head.appendChild(prefetchLink);
   },
 
   /*
@@ -130,6 +135,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     __mappings: null,
     __stylings: null,
     _templateWidgets: null,
+    __templates: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -196,14 +202,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     // not needed, backend parse/init themselves
     parseBackendSettings(xml) {
-/*      if (xml.querySelectorAll('cv-backend').length === 0) {
-        // no backends defined, use the default one;
-        const client = cv.io.BackendConnections.initBackendClient();
-        client.login(true, cv.Config.configSettings.credentials, () => {
-          this.debug('logged in');
-          cv.io.BackendConnections.startInitialRequests();
-        });
-      }*/
       return false;
     },
 
@@ -219,9 +217,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       this.translate(config, true);
 
       if (!cv.Config.cacheUsed) {
-        const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
 
-        const ajaxRequest = new qx.io.request.Xhr(templates);
+        const ajaxRequest = new qx.io.request.Xhr(this.__templates);
         ajaxRequest.set({
           accept: 'application/xml',
           cache: !cv.Config.forceReload
@@ -306,7 +303,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;
           if (!qx.util.Request.isSuccessful(status)) {
-            this.error('filenotfound', templates);
+            this.error('filenotfound', this.__templates);
           }
           document.body.classList.remove('loading-structure');
         });
@@ -449,8 +446,28 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     /**
      * Return the addresses needed to update all states on the initially loaded page
      */
-    getInitialAddresses() {
-      return [];
+    getInitialAddresses(backendName) {
+      const hash = document.location.hash;
+      const pageId = hash ? hash.substring(1) : this.getInitialPageId();
+      const page = document.querySelector('cv-page#' + pageId);
+      if (!page) {
+        return [];
+      }
+      const addresses = [];
+      const defaultBackend = cv.data.Model.getInstance().getDefaultBackendName();
+      for (const addr of page.querySelectorAll('cv-address')) {
+        const mode = addr.getAttribute('mode') ?? 'readwrite';
+        if (mode !== 'write') {
+          const addrBackend = addr.getAttribute('backend') ?? defaultBackend;
+          if (!backendName || addrBackend === backendName) {
+            const addressText = addr.textContent.trim();
+            if (addressText) {
+              addresses.push(addressText);
+            }
+          }
+        }
+      }
+      return addresses;
     },
 
     /**

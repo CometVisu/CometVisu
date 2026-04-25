@@ -59,6 +59,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         timer.addListener('interval', () => {
           counter++;
           if (check()) {
+            timer.stop();
             resolve(true);
           } else if (counter > 5) {
             timer.stop();

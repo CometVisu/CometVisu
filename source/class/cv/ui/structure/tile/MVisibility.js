@@ -37,15 +37,7 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
   ***********************************************
   */
   statics: {
-    observer: new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.target._instance) {
-          entry.target._instance.setVisible(entry.isIntersecting);
-        }
-      }, {
-        root: document.querySelector('body > main')
-      });
-    })
+    observer: null
   },
 
   /*
@@ -69,10 +61,30 @@ qx.Mixin.define('cv.ui.structure.tile.MVisibility', {
   members: {
     _observeVisibility() {
       if (this._element) {
+        if (!cv.ui.structure.tile.MVisibility.observer) {
+          cv.ui.structure.tile.MVisibility.observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.target._instance) {
+                entry.target._instance.setVisible(entry.isIntersecting);
+              }
+            });
+          }, {
+            root: document.querySelector('body > main')
+          });
+        }
         cv.ui.structure.tile.MVisibility.observer.observe(this._element);
       } else {
         this.warn('no element to observe defined');
       }
+    },
+    _unobserveVisibility() {
+      if (this._element) {
+        cv.ui.structure.tile.MVisibility.observer.unobserve(this._element);
+      }
     }
+  },
+
+  destruct() {
+    this._unobserveVisibility();
   }
 });

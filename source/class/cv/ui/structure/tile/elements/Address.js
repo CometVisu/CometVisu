@@ -35,6 +35,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     __lastValue: null,
     __transformedValue: null,
     _stateUpdateTarget: null,
+    __sendStateHandler: null,
 
     getAddress() {
       return this._element.textContent.trim();
@@ -69,7 +70,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         }
         if (mode !== 'read') {
           // listen for sendState events
-          element.addEventListener('sendState', ev => {
+          this.__sendStateHandler = ev => {
             let value = null;
             if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
               value = ev.detail.value;
@@ -133,8 +134,16 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                 }
               }
             }
-          });
+          };
+          element.addEventListener('sendState', this.__sendStateHandler);
         }
+      }
+    },
+
+    _disconnected() {
+      if (this.__sendStateHandler) {
+        this._element.removeEventListener('sendState', this.__sendStateHandler);
+        this.__sendStateHandler = null;
       }
     },
 
@@ -225,7 +234,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   },
 
   destruct() {
-      cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
+    if (this.__sendStateHandler && this._element) {
+      this._element.removeEventListener('sendState', this.__sendStateHandler);
+      this.__sendStateHandler = null;
+    }
+    cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
   },
 
   defer(Clazz) {
