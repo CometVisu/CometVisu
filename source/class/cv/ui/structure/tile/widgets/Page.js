@@ -27,6 +27,11 @@
 qx.Class.define('cv.ui.structure.tile.widgets.Page', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
 
+  construct(element) {
+    super(element);
+    this._deferInit = false;
+  },
+
   /*
   ***********************************************
     PROPERTIES

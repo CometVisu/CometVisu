@@ -32,6 +32,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   construct(element) {
     super();
     this._element = element;
+    this._deferInit = true; // activate deferred init handling by default; subclasses can set this to false if they do not support it
   },
 
   /*
@@ -59,12 +60,17 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
      */
     _element: null,
 
+    /** 
+     * @var {boolean} Whether this element supports deferring initialization until its page becomes active (true), does not support it (false)
+     */
+    _deferInit: null,
+
     _initialized: false,
     __deferredInitHandler: null,
 
     _applyConnected(value) {
       if (value && !this._initialized) {
-        const page = this._element.closest('cv-page');
+        const page = this._deferInit && !cv.Config.testMode ? this._element.closest('cv-page') : null;
         if (page && !page.classList.contains('active') && !page.classList.contains('sub-active')) {
           // Defer init until this page (or a sub-page of it) becomes active
           this.__deferredInitHandler = msg => {
