@@ -651,6 +651,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();
+    this.templateElement = false;
     if (QxClass) {
       if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
         this._instance = new QxClass(this);
@@ -671,13 +672,13 @@ class QxConnector extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this._instance) {
+    if (this._instance && this.templateElement === false) {
       this._instance.setConnected(true);
     }
   }
 
   disconnectedCallback() {
-    if (this._instance) {
+    if (this._instance && this.templateElement === false) {
       this._instance.setConnected(false);
     }
   }
@@ -695,6 +696,7 @@ window.QxConnector = QxConnector;
 class TemplatedElement extends QxConnector {
   constructor(templateId, QxClass) {
     super(QxClass);
+    this.templateElement = true;
     const renderAttributeName = 'data-cv-rendered';
     if (this.getAttribute(renderAttributeName) === 'true') {
       // do not render the template twice
@@ -854,6 +856,7 @@ class TemplatedElement extends QxConnector {
 
       // clear content
       this.innerHTML = '';
+      this.templateElement = false;
       this.appendChild(content);
       this.classList.add('cv-widget');
       this.setAttribute(renderAttributeName, 'true');

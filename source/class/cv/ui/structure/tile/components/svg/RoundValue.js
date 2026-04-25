@@ -434,6 +434,9 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         title.textContent = percent + '%';
 
         const valueElement = this._target.querySelector('circle.bar');
+        if (!valueElement) {
+          return;
+        }
         valueElement.setAttribute('stroke-dasharray', `${percent} ${100 - percent}`);
       }
     },

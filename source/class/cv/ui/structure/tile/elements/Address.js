@@ -41,6 +41,19 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
       return this._element.textContent.trim();
     },
 
+    // Override to pre-register the address in the model before page-active deferral,
+    // so the backend's initial full-state fetch stores the state for non-start-page elements.
+    _applyConnected(value) {
+      if (value) {
+        const address = this.getAddress();
+        if (address) {
+          const model = cv.data.Model.getInstance();
+          const backendName = this._element.getAttribute('backend');
+          model.addAddress(address, this._element.getAttribute('id'), backendName);
+        }
+      }
+      super._applyConnected(value);
+    },
 
     _init() {
       const element = this._element;

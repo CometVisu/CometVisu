@@ -759,6 +759,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     refresh() {
+      if (!this._datasets) {
+        // not yet initialized, skip
+        return;
+      }
       this._loaded = false;
       this.__updateTimeRange();
       this._loadData();

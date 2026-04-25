@@ -70,8 +70,10 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
           this.__deferredInitHandler = msg => {
             const activePage = msg.getData();
             if (page === activePage || page.contains(activePage)) {
-              qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
-              this.__deferredInitHandler = null;
+              if (this.__deferredInitHandler) {
+                qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
+                this.__deferredInitHandler = null;
+              }
               this._init();
               this._initialized = true;
             }
