@@ -141,6 +141,43 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     expect(widget.classList.contains('fullscreen')).toBeFalsy();
   });
 
+  it('should emit fullscreenChanged with false when a fullscreen popup closes', function() {
+    const tileElement = this.createHTMLElement('cv-tile', {}, '<cv-address transform="OH:switch" target="fullscreen-popup">Test</cv-address>', false);
+    const widget = document.createElement('cv-widget');
+    const fullscreenStates = [];
+    widget.appendChild(tileElement);
+    document.body.appendChild(widget);
+    element = widget;
+
+    tileElement._instance.addListener('fullscreenChanged', ev => fullscreenStates.push(ev.getData()));
+
+    cv.data.Model.getInstance().onUpdate('Test', 'ON');
+    cv.data.Model.getInstance().onUpdate('Test', 'OFF');
+
+    expect(fullscreenStates).toEqual([true, false]);
+  });
+
+  it('should not forward unrelated state updates twice from fullscreen-enabled child components', function() {
+    const tileElement = this.createHTMLElement(
+      'cv-tile',
+      {},
+      '<cv-address transform="OH:switch" target="popup">Test</cv-address><cv-web src="test.html" allow-fullscreen="true"></cv-web>',
+      false
+    );
+    const widget = document.createElement('cv-widget');
+    widget.appendChild(tileElement);
+    document.body.appendChild(widget);
+    element = widget;
+
+    const tileInstance = tileElement._instance;
+    spyOn(tileInstance, 'onStateUpdate').and.callThrough();
+
+    cv.data.Model.getInstance().onUpdate('Test', 'ON');
+
+    expect(tileInstance.onStateUpdate).toHaveBeenCalledTimes(1);
+    expect(widget.classList.contains('popup')).toBeTruthy();
+  });
+
   xit('should show an outdated state on a tile', function() {
     element = this.createHTMLElement('cv-tile',{  },'<cv-address transform="OH:datetime" target="last-update:120"">Test</cv-address>', true);
 

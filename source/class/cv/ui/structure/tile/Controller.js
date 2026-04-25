@@ -136,6 +136,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     __stylings: null,
     _templateWidgets: null,
     __templates: null,
+    __mainScrollElement: null,
+    __mainScrollHandler: null,
+    __themeMediaQuery: null,
+    __themeChangeHandler: null,
+    __visibilityObserver: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -260,10 +265,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           }
 
           const main = document.body.querySelector(':scope > main');
+          this.__detachMainScrollListener();
           if (main) {
             let shrinkHeight = -1;
             let canAnimate = false;
-            main.addEventListener('scroll', () => {
+            this.__mainScrollElement = main;
+            this.__mainScrollHandler = () => {
               // we need to know the space that we gain in height, when the shrinked elements are not shown
               // and must not start the effect before we reach that threshold, otherwise
               // main.scrollTop would go back to 0 because we have more height available and do not have to scroll+
@@ -294,7 +301,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
                 this.setScrolled(false);
                 shrinkHeight = -1;
               }
-            });
+            };
+            main.addEventListener('scroll', this.__mainScrollHandler);
           }
 
           this.enablePullToRefresh();
@@ -328,21 +336,29 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     async preParse(xml) {
+      this.__detachThemeChangeListener();
       if (xml.documentElement.hasAttribute('theme')) {
         let theme = xml.documentElement.getAttribute('theme');
         const data = {};
         if (theme === 'system') {
           if (window.matchMedia) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            theme = mediaQuery.matches ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
             data['theme'] = theme;
             cv.data.Model.getInstance().updateFrom('system', data);
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            this.__themeMediaQuery = mediaQuery;
+            this.__themeChangeHandler = e => {
               document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
 
               data['theme'] = e.matches ? 'dark' : 'light';
               cv.data.Model.getInstance().updateFrom('system', data);
-            });
+            };
+            if (typeof mediaQuery.addEventListener === 'function') {
+              mediaQuery.addEventListener('change', this.__themeChangeHandler);
+            } else if (typeof mediaQuery.addListener === 'function') {
+              mediaQuery.addListener(this.__themeChangeHandler);
+            }
           } else {
             this.error('system theme detection not possible in this browser');
           }
@@ -363,6 +379,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     observeVisibility() {
+      this.__disconnectVisibilityObserver();
       // find all pages with an iframe with attribute "data-src" and observe its parent page
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -371,12 +388,40 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             entry.target.removeAttribute('data-src');
             observer.unobserve(entry.target);
           }
-        }, {
-          root: document.querySelector('body > main')
         });
+      }, {
+        root: document.querySelector('body > main')
       });
+      this.__visibilityObserver = observer;
       for (const iframe of document.querySelectorAll('iframe[data-src], img[data-src]')) {
         observer.observe(iframe);
+      }
+    },
+
+    __detachMainScrollListener() {
+      if (this.__mainScrollElement && this.__mainScrollHandler) {
+        this.__mainScrollElement.removeEventListener('scroll', this.__mainScrollHandler);
+      }
+      this.__mainScrollElement = null;
+      this.__mainScrollHandler = null;
+    },
+
+    __detachThemeChangeListener() {
+      if (this.__themeMediaQuery && this.__themeChangeHandler) {
+        if (typeof this.__themeMediaQuery.removeEventListener === 'function') {
+          this.__themeMediaQuery.removeEventListener('change', this.__themeChangeHandler);
+        } else if (typeof this.__themeMediaQuery.removeListener === 'function') {
+          this.__themeMediaQuery.removeListener(this.__themeChangeHandler);
+        }
+      }
+      this.__themeMediaQuery = null;
+      this.__themeChangeHandler = null;
+    },
+
+    __disconnectVisibilityObserver() {
+      if (this.__visibilityObserver) {
+        this.__visibilityObserver.disconnect();
+        this.__visibilityObserver = null;
       }
     },
 
@@ -443,10 +488,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     /**
-     * R/**
      * Return the addresses needed to update all states on the initially loaded page
-     * @param backendName
-     */ialAddresses(backendName) {
+     * @param backendName {String} name of the backend
+     * @return {Array<String>} list of addresses
+     */
+    getInitialAddresses(backendName) {
       const hash = document.location.hash;
       const pageId = hash ? hash.substring(1) : this.getInitialPageId();
       const page = document.querySelector('cv-page#' + pageId);
@@ -643,6 +689,9 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   */
   destruct() {
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onChangeLocale, this);
+    this.__detachMainScrollListener();
+    this.__detachThemeChangeListener();
+    this.__disconnectVisibilityObserver();
   }
 });
 

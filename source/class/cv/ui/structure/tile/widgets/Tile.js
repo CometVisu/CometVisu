@@ -239,7 +239,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         this._headerFooterParent.classList.remove('popup');
         if (this._fullScreenMode) {
           this._headerFooterParent.classList.remove('fullscreen');
-          this.fireDataEvent('fullscreenChanged', true);
+          this.fireDataEvent('fullscreenChanged', false);
         }
         let closeButton = this._headerFooterParent.querySelector(':scope > button.close');
         if (closeButton) {
