@@ -45,7 +45,6 @@ qx.Class.define('cv.io.Reflection', {
         let thisEntry = widgetTree;
         if (id.shift() === 'id') {
           let thisNumber;
-          // eslint-disable-next-line no-cond-assign
           while ((thisNumber = id.shift())) {
             if (!(thisNumber in thisEntry)) {
               thisEntry[thisNumber] = {};

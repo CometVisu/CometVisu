@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // requires
 var path = require('path');
 var fs = require('fs');
@@ -5,6 +6,9 @@ var fs = require('fs');
 
 var mocks = [];
 
+/**
+ *
+ */
 function setMimeType() {
   return function(req, res, next) {
     const url = req.url.split('?')[0];
@@ -24,8 +28,12 @@ function setMimeType() {
       res.setHeader('Content-Type', 'text/html');
     }
     next();
-  }
+  };
 }
+/**
+ *
+ * @param verbose
+ */
 function captureMock(verbose) {
   return function (req, res, next) {
     // match on POST requests starting with /mock
@@ -35,7 +43,7 @@ function captureMock(verbose) {
       var path = decodeURIComponent(req.url.substring(5, startQS > 5 ? startQS : undefined));
       const queryString = {};
       if (startQS>=0) {
-        req.url.substr(startQS+1).split('&').map(part => {
+        req.url.substr(startQS+1).split('&').forEach(part => {
           const splitted = part.split('=');
           queryString[splitted[0]] = decodeURIComponent(splitted[1]);
         });
@@ -46,7 +54,6 @@ function captureMock(verbose) {
           body += data;
         });
         req.on('end', function () {
-
           mocks[path] = Object.assign({content: body}, queryString);
           if (verbose) {
             console.log('\u001b[33;1mRegister ' + Object.keys(mocks).length + '. mock for "' + path + '" with parameters:\u001b[0m',  queryString);
@@ -54,7 +61,7 @@ function captureMock(verbose) {
           res.writeHead(200);
           res.end();
         });
-        if (mocks.hasOwnProperty(path)) {
+        if (Object.prototype.hasOwnProperty.call(mocks, path)) {
           delete mocks[path];
         }
         if (verbose) {
@@ -62,7 +69,7 @@ function captureMock(verbose) {
         }
       }
       if (req.method === 'DELETE') {
-        if (mocks.hasOwnProperty(path)) {
+        if (Object.prototype.hasOwnProperty.call(mocks, path)) {
           delete mocks[path];
         }
         if (verbose) {
@@ -77,12 +84,16 @@ function captureMock(verbose) {
   };
 }
 
+/**
+ *
+ * @param verbose
+ */
 function mock(verbose) {
   return function (req, res, next) {
     var url = req.url;
     var found = url.match(/(\?(_|nocache)=[0-9]+)$/);
     if (found) {
-      url = url.replace(found[1],"");
+      url = url.replace(found[1], '');
     }
     let mockedResponse;
     if (req.method === 'GET') {
@@ -94,12 +105,12 @@ function mock(verbose) {
         mockedResponse = mocks[url];
       }
     }
-    if (!mockedResponse && url.endsWith('.php') && url !== "/designs/get_designs.php" && url.indexOf('/rest/manager/index.php/') < 0) {
+    if (!mockedResponse && url.endsWith('.php') && url !== '/designs/get_designs.php' && url.indexOf('/rest/manager/index.php/') < 0) {
       console.log('\u001b[31;1mWARNING: PHP file without mock detected! Most likely you need to provide a fixture! Requested URL: "' + req.url + '"\u001b[0m');
     }
     if (mockedResponse) {
       let mimeType = 'text/plain';
-      if (mockedResponse.hasOwnProperty('mimeType')) {
+      if (Object.prototype.hasOwnProperty.call(mockedResponse, 'mimeType')) {
         mimeType = mockedResponse.mimeType;
       } else if (url.endsWith('.xml')) {
         mimeType = 'text/xml;charset=UTF-8';
@@ -114,9 +125,9 @@ function mock(verbose) {
       }
       res.write(mockedResponse.content);
       res.end();
-    } else if (url === "/designs/get_designs.php") {
+    } else if (url === '/designs/get_designs.php') {
       // untested
-      var dir = path.join("source", "resource", "designs");
+      var dir = path.join('source', 'resource', 'designs');
       var designs = [];
       fs.readdirSync(dir).forEach(function (designDir) {
         var filePath = path.join(dir, designDir);
@@ -127,17 +138,17 @@ function mock(verbose) {
       });
       res.write(JSON.stringify(designs));
       res.end();
-    } else if (url === "/cgi-bin/l") {
+    } else if (url === '/cgi-bin/l') {
       res.writeHead(200, {'Content-Type': 'application/json'});
       res.write(JSON.stringify({
-        v:"0.0.1",
-        s:"0"
+        v:'0.0.1',
+        s:'0'
       }));
       res.end();
     } else if (url.indexOf('/rest/manager/index.php/') >= 0) {
       const relPath = url.substr(url.indexOf('/rest/manager/index.php/') + '/rest/manager/index.php/'.length);
       if (req.method === 'GET') {
-        const index = JSON.parse(fs.readFileSync(path.join("source", "test", "fixtures", "rest", "manager", "index.php", "index.json")));
+        const index = JSON.parse(fs.readFileSync(path.join('source', 'test', 'fixtures', 'rest', 'manager', 'index.php', 'index.json')));
         if (index[relPath]) {
           const data = index[relPath].data;
           res.writeHead(200, {'Content-Type': index[relPath].mimeType || 'application/json'});
@@ -155,7 +166,7 @@ function mock(verbose) {
             body += data;
           });
           req.on('end', function () {
-            fs.writeFileSync(path.join("compiled", "source", "resource", "config", "visu_config_previewtemp.xml"), body);
+            fs.writeFileSync(path.join('compiled', 'source', 'resource', 'config', 'visu_config_previewtemp.xml'), body);
             res.writeHead(200);
             res.end();
           });
@@ -167,46 +178,44 @@ function mock(verbose) {
   };
 }
 
+/**
+ *
+ * @param packageVersion
+ */
 function getBuildSuffix(packageVersion) {
   let suffix = packageVersion;
   if (process.env.DEPLOY_NIGHTLY) {
-    if (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith("refs/tags/")) {
-      suffix = process.env.GITHUB_REF.split("/").pop();
+    if (process.env.GITHUB_REF && process.env.GITHUB_REF.startsWith('refs/tags/')) {
+      suffix = process.env.GITHUB_REF.split('/').pop();
     } else {
-      suffix += "-" + (new Date()).toISOString().split(".")[0].replace(/[\D]/g, "");
+      suffix += '-' + (new Date()).toISOString().split('.')[0].replace(/[\D]/g, '');
     }
     return suffix;
   }
+  return suffix;
 }
 
 // grunt
 module.exports = function(grunt) {
-  var
-    pkg = grunt.file.readJSON('package.json') || {},
-    isDirectoryRegEx = /\/$/,
-    filesToCompress = [ {
-      expand: true,
-      cwd: '.',
-      src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
-        'release/**'
-      ],
-      dest: 'cometvisu/',
-      mode: function( filename ){
-        var isConfig = filename.indexOf( 'release/resource/config' ) > -1;
-
-        if( isDirectoryRegEx.test( filename ) ) {
-          return isConfig ? 0777 : 0755;
-        }
-        return isConfig ? 0666 : 0644;
-      }
-    } ],
-    sourceFiles = [
-      'source/class/**/*.js',
-      'source/resource/designs/*/design_setup.js',
-      'source/resource/plugins/*/*.js'
+  var pkg = grunt.file.readJSON('package.json') || {};
+  var isDirectoryRegEx = /\/$/;
+  var filesToCompress = [ {
+    expand: true,
+    cwd: '.',
+    src: [
+      'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md', 'update.py',
+      'release/**'
     ],
-    branch = grunt.option('branch');
+    dest: 'cometvisu/',
+    mode: function(filename) {
+      var isConfig = filename.indexOf('release/resource/config') > -1;
+
+      if (isDirectoryRegEx.test(filename)) {
+        return isConfig ? 0o777 : 0o755;
+      }
+      return isConfig ? 0o666 : 0o644;
+    }
+  } ];
 
   var config = {
     // make a zipfile
@@ -218,7 +227,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/qx-CometVisuClient/boot.js',
-          dest: "client/build/deploy/qxCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
+          dest: 'client/build/deploy/qxCometVisuClient-' + getBuildSuffix(pkg.version) + '.js.gz'
         }]
       },
       jqClient: {
@@ -228,7 +237,7 @@ module.exports = function(grunt) {
         },
         files: [{
           src: 'client/compiled/build/jQuery-CometVisuClient/boot.js',
-          dest: "client/build/deploy/jQueryCometVisuClient-" + getBuildSuffix(pkg.version) + ".js.gz"
+          dest: 'client/build/deploy/jQueryCometVisuClient-' + getBuildSuffix(pkg.version) + '.js.gz'
         }]
       },
       tar: {
@@ -236,7 +245,7 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            return "CometVisu-"+getBuildSuffix(pkg.version)+".tar.gz";
+            return 'CometVisu-'+getBuildSuffix(pkg.version)+'.tar.gz';
           }
         },
         files: filesToCompress
@@ -246,7 +255,7 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            return "CometVisu-"+getBuildSuffix(pkg.version)+".zip";
+            return 'CometVisu-'+getBuildSuffix(pkg.version)+'.zip';
           }
         },
         files: filesToCompress
@@ -260,9 +269,9 @@ module.exports = function(grunt) {
       apiDoc: ['doc/api']
     },
 
-    "file-creator": {
+    'file-creator': {
       version: {
-        "source/version": function(fs, fd, done) {
+        'source/version': function(fs, fd, done) {
           fs.writeSync(fd, pkg.version);
           done();
         }
@@ -283,7 +292,7 @@ module.exports = function(grunt) {
         pushTo: 'upstream',
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
         globalReplace: false,
-        prereleaseName: "RC",
+        prereleaseName: 'RC',
         metadata: '',
         regExp: false
       }
@@ -307,7 +316,7 @@ module.exports = function(grunt) {
         browsers: ['Chrome_ci'],
         client: {
           captureConsole: false
-        },
+        }
       },
       //continuous integration mode: run tests once in PhantomJS browser.
       ci: {
@@ -346,7 +355,7 @@ module.exports = function(grunt) {
     protractor: {
       all: {
         options: {
-          configFile: "source/test/protractor/conf.js", // Default config file,
+          configFile: 'source/test/protractor/conf.js', // Default config file,
           args: {
             chromeDriver: process.env.WEBDRIVER_PATH
           }
@@ -354,7 +363,7 @@ module.exports = function(grunt) {
       },
       screenshots: {
         options: {
-          configFile: "utils/protractor.conf.js",
+          configFile: 'utils/protractor.conf.js',
           args: {
             params: {
               source: grunt.option('source'),
@@ -422,14 +431,30 @@ module.exports = function(grunt) {
           
           // Pass options as environment variables
           const env = [];
-          if (source) env.push(`CV_SOURCE=${source}`);
-          if (subDir) env.push(`CV_SUBDIR=${subDir}`);
-          if (screenshots) env.push(`CV_SCREENSHOTS=${screenshots}`);
-          if (target) env.push(`CV_TARGET=${target}`);
-          if (targetDir) env.push(`CV_TARGET_DIR=${targetDir}`);
-          if (forced) env.push('CV_FORCED=true');
-          if (verbose) env.push('CV_VERBOSE=true');
-          if (lang) env.push(`CV_LANGUAGE=${lang}`);
+          if (source) {
+ env.push(`CV_SOURCE=${source}`); 
+}
+          if (subDir) {
+ env.push(`CV_SUBDIR=${subDir}`); 
+}
+          if (screenshots) {
+ env.push(`CV_SCREENSHOTS=${screenshots}`); 
+}
+          if (target) {
+ env.push(`CV_TARGET=${target}`); 
+}
+          if (targetDir) {
+ env.push(`CV_TARGET_DIR=${targetDir}`); 
+}
+          if (forced) {
+ env.push('CV_FORCED=true'); 
+}
+          if (verbose) {
+ env.push('CV_VERBOSE=true'); 
+}
+          if (lang) {
+ env.push(`CV_LANGUAGE=${lang}`); 
+}
           
           const cmd = 'npx playwright test --config=utils/playwright.config.js';
           return env.length > 0 ? env.join(' ') + ' ' + cmd : cmd;
@@ -446,15 +471,15 @@ module.exports = function(grunt) {
             message: 'Widget name:'
           }],
           filter: function (result) {
-            result.testFileName = result.widgetName.substr(0,1).toUpperCase() + result.widgetName.substr(1);
+            result.testFileName = result.widgetName.substr(0, 1).toUpperCase() + result.widgetName.substr(1);
             return result;
           },
           template: {
-            "skeletons/widget-test.js": "source/class/test/structure/pure/{{testFileName}}-spec.js"
+            'skeletons/widget-test.js': 'source/class/test/structure/pure/{{testFileName}}-spec.js'
           },
           after: function(result) {
-            var filename = "source/class/test/structure/pure/"+result.testFileName+"-spec.js";
-            var test = grunt.file.read(filename, { encoding: "utf8" }).toString();
+            var filename = 'source/class/test/structure/pure/'+result.testFileName+'-spec.js';
+            var test = grunt.file.read(filename, { encoding: 'utf8' }).toString();
             grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
           }
         }
@@ -471,12 +496,12 @@ module.exports = function(grunt) {
       baseDir + '/resource/demo/visu_config_2d3d.xml',
       baseDir + '/resource/demo/visu_config_demo_testmode.xml'
     ].forEach(function (filename) {
-      const config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+      const config = grunt.file.read(filename, { encoding: 'utf8' }).toString();
       grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
     });
 
     const filename = baseDir + '/index.html';
-    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    config = grunt.file.read(filename, { encoding: 'utf8' }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
@@ -484,22 +509,22 @@ module.exports = function(grunt) {
   grunt.registerTask('update-kuf-iconconfig', function() {
     const iconConfigFile = 'source/class/cv/IconConfig.js';
     const cssFile = 'source/resource/icons/fonts/knx-uf-iconset.css';
-    const cssSource = grunt.file.read(cssFile, { encoding: "utf8" }).toString();
+    const cssSource = grunt.file.read(cssFile, { encoding: 'utf8' }).toString();
     const nameRegEx = /\.knxuf-(.*?):before/g;
     let kufIcons = '';
     let icon;
-    while( (icon = nameRegEx.exec( cssSource )) !== null ) {
+    while ((icon = nameRegEx.exec(cssSource)) !== null) {
       // icon id = icon[1]
-      if( kufIcons !== '' ) {
-        kufIcons += ",\n";
+      if (kufIcons !== '') {
+        kufIcons += ',\n';
       }
-      kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
+      kufIcons += '      \'' + icon[1] + '\': { \'*\' : { \'white\' : \'*/white\', \'ws\' : \'*/white\', \'antimony\' : \'*/blue\', \'boron\' : \'*/green\', \'lithium\' : \'*/red\', \'potassium\' : \'*/purple\', \'sodium\' : \'*/orange\', \'*\': { \'*\' : cv.util.IconTools.svgKUF(\'' + icon[1] + '\') } } }';
     }
     var start = '// Do not remove this line: Dynamic Icons Start';
     var end   = '// Do not remove this line: Dynamic Icons End';
-    var iconConfig = grunt.file.read(iconConfigFile, { encoding: "utf8" }).toString();
+    var iconConfig = grunt.file.read(iconConfigFile, { encoding: 'utf8' }).toString();
     grunt.file.write(iconConfigFile, iconConfig
-      .replace( new RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
+      .replace(new RegExp(start + '[\\s\\S]*' + end, 'm'), start + '\n\n' + kufIcons + '\n\n      ' + end)
     );
   });
 

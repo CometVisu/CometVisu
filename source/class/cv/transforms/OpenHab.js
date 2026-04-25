@@ -97,7 +97,6 @@ qx.Class.define('cv.transforms.OpenHab', {
           }
           // noinspection EqualityComparisonWithCoercionJS
           if (phy == 0) {
-            // eslint-disable-line no-lonely-if
             return 'UP';
           }
           return phy;

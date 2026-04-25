@@ -229,7 +229,6 @@ qx.Class.define('cv.util.IconTools', {
         const thisIconColors = cv.util.IconTools.iconCache[url].colors;
         let thisFillColor;
         while ((thisFillColor = toFill.pop())) {
-          // eslint-disable-line no-cond-assign
           cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
         }
       };

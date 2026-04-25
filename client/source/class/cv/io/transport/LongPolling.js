@@ -201,7 +201,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // request
         // addresses-startPageAddresses
         const diffAddresses = [];
-        for (const i = 0; i < this.client.addresses.length; i++) {
+        for (let i = 0; i < this.client.addresses.length; i++) {
           if (!this.client.initialAddresses.includes(this.client.addresses[i])) {
             diffAddresses.push(this.client.addresses[i]);
           }

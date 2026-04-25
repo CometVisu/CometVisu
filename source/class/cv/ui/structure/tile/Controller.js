@@ -217,7 +217,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       this.translate(config, true);
 
       if (!cv.Config.cacheUsed) {
-
         const ajaxRequest = new qx.io.request.Xhr(this.__templates);
         ajaxRequest.set({
           accept: 'application/xml',
@@ -444,9 +443,10 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     /**
+     * R/**
      * Return the addresses needed to update all states on the initially loaded page
-     */
-    getInitialAddresses(backendName) {
+     * @param backendName
+     */ialAddresses(backendName) {
       const hash = document.location.hash;
       const pageId = hash ? hash.substring(1) : this.getInitialPageId();
       const page = document.querySelector('cv-page#' + pageId);
@@ -646,8 +646,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   }
 });
 
-
-/* eslint-disable-next-line no-redeclare */
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();

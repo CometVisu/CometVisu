@@ -109,7 +109,6 @@ qx.Class.define('cv.data.Simulation', {
       sinon.sandbox = sinon;
 
       // override sinons filter handling to be able to manipulate the target URL from the filter
-      // eslint-disable-next-line consistent-return
       sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
         this.method = method;
         this.url = url;

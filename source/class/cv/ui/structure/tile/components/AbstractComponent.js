@@ -181,7 +181,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       this._readAddresses = readAddresses;
 
       if (hasReadAddress) {
-        this.__stateUpdateHandler = ev => { this.onStateUpdate(ev); ev.stopPropagation(); };
+        this.__stateUpdateHandler = ev => { 
+          this.onStateUpdate(ev); 
+          ev.stopPropagation(); 
+        };
         element.addEventListener('stateUpdate', this.__stateUpdateHandler);
       }
 

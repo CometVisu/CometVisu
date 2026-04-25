@@ -54,26 +54,6 @@ const logger = {
 };
 
 /**
- *
- * @param request
- * @param timeout
- */
-function fromNetwork(request, timeout) {
-  return new Promise(function (resolve, reject) {
-    if (timeout) {
-      var timeoutId = setTimeout(reject, timeout);
-    }
-
-    fetch(request).then(function (response) {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      resolve(response);
-    }, reject);
-  });
-}
-
-/**
  * Fetch request from network and update the cache
  * @param request {Request}
  * @return {Promise}
@@ -107,7 +87,7 @@ function fromCache(request) {
   return caches.open(CACHE).then(function (cache) {
     return cache.match(request).then(function (matching) {
       return matching || Promise.reject('no-match');
-    }).catch(err => Promise.reject('no-match'));
+    }).catch(() => Promise.reject('no-match'));
   });
 }
 

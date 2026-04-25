@@ -47,7 +47,9 @@ describe('testing cv.io.listmodel.Registry', () => {
       },
       members: {
         async refresh() {},
-        handleEvent() { return false; }
+        handleEvent() {
+          return false;
+        }
       }
     });
 
