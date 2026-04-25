@@ -68,6 +68,11 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
   members: {
     __throttled: null,
     __input: null,
+    __decreaseElement: null,
+    __increaseElement: null,
+    __inputHandler: null,
+    __decreaseClickHandler: null,
+    __increaseClickHandler: null,
 
     _init() {
       super._init();
@@ -85,8 +90,11 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
         input.classList.add('slider');
         input.setAttribute('type', 'range');
         element.insertBefore(input, element.querySelector(':scope > .up'));
-        input.oninput = () => this.__throttled.call();
       }
+      if (!this.__inputHandler) {
+        this.__inputHandler = () => this.__throttled.call();
+      }
+      input.oninput = this.__inputHandler;
       this.__input = input;
       if (element.hasAttribute('step-width')) {
         this.setStepWidth(parseInt(element.getAttribute('step-width')));
@@ -105,12 +113,38 @@ qx.Class.define('cv.ui.structure.tile.components.Slider', {
 
       const decreaseElement = element.querySelector(':scope > .decrease');
       if (decreaseElement) {
-        decreaseElement.addEventListener('click', ev => this.onDecrease());
+        if (!this.__decreaseClickHandler) {
+          this.__decreaseClickHandler = () => this.onDecrease();
+        }
+        decreaseElement.removeEventListener('click', this.__decreaseClickHandler);
+        decreaseElement.addEventListener('click', this.__decreaseClickHandler);
       }
+      this.__decreaseElement = decreaseElement;
       const increaseElement = element.querySelector(':scope > .increase');
       if (increaseElement) {
-        increaseElement.addEventListener('click', ev => this.onIncrease());
+        if (!this.__increaseClickHandler) {
+          this.__increaseClickHandler = () => this.onIncrease();
+        }
+        increaseElement.removeEventListener('click', this.__increaseClickHandler);
+        increaseElement.addEventListener('click', this.__increaseClickHandler);
       }
+      this.__increaseElement = increaseElement;
+    },
+
+    _disconnected() {
+      if (this.__input) {
+        this.__input.oninput = null;
+      }
+      if (this.__decreaseElement && this.__decreaseClickHandler) {
+        this.__decreaseElement.removeEventListener('click', this.__decreaseClickHandler);
+      }
+      if (this.__increaseElement && this.__increaseClickHandler) {
+        this.__increaseElement.removeEventListener('click', this.__increaseClickHandler);
+      }
+      if (this.__throttled) {
+        this.__throttled.abort();
+      }
+      super._disconnected();
     },
 
     _applyThrottleInterval(value) {

@@ -214,6 +214,8 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         // add some general listeners to close
         qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
         qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+      } else {
+        this._closeAll();
       }
     },
 
@@ -272,13 +274,13 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
       }
       if (this._element.classList.contains('open')) {
         this._element.classList.remove('open');
-      } else if (this._element.classList.contains('responsive')) {
+      }
+      if (this._element.classList.contains('responsive')) {
         this._element.classList.remove('responsive');
-      } else {
-        for (let detail of this._element.querySelectorAll('.details[open]')) {
-          if (!except || detail !== except) {
-            detail.removeAttribute('open');
-          }
+      }
+      for (let detail of this._element.querySelectorAll('.details[open]')) {
+        if (!except || detail !== except) {
+          detail.removeAttribute('open');
         }
       }
       if (this._element.querySelectorAll('.details[open]').length === 0) {
@@ -425,6 +427,11 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           parent = parent.parentElement;
         }
       }
+    },
+
+    _disconnected() {
+      this._closeAll();
+      super._disconnected();
     }
   },
 

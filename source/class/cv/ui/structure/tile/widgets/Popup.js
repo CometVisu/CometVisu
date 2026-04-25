@@ -43,46 +43,76 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    */
   members: {
     _closeButton: null,
+    __closeButtonClickHandler: null,
+    __closeEventHandler: null,
 
     _init() {
       super._init();
       const popup = this._element;
       const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
       if (closeable) {
-        this._closeButton = document.createElement('button');
-        this._closeButton.classList.add('close');
-        const icon = document.createElement('i');
-        icon.classList.add('ri-close-line');
-        this._closeButton.appendChild(icon);
-        popup.insertBefore(this._closeButton, popup.firstChild);
-        this._closeButton.addEventListener('click', ev => {
-          ev.stopPropagation();
-          this.close();
-        });
+        this._closeButton = popup.querySelector(':scope > button.close');
+        if (!this._closeButton) {
+          this._closeButton = document.createElement('button');
+          this._closeButton.classList.add('close');
+          const icon = document.createElement('i');
+          icon.classList.add('ri-close-line');
+          this._closeButton.appendChild(icon);
+          popup.insertBefore(this._closeButton, popup.firstChild);
+        }
+        if (!this.__closeButtonClickHandler) {
+          this.__closeButtonClickHandler = ev => {
+            ev.stopPropagation();
+            this.close();
+          };
+        }
+        this._closeButton.removeEventListener('click', this.__closeButtonClickHandler);
+        this._closeButton.addEventListener('click', this.__closeButtonClickHandler);
       }
-      popup.addEventListener('close', ev => {
-        this.close();
-      });
+      if (!this.__closeEventHandler) {
+        this.__closeEventHandler = () => {
+          this.close();
+        };
+      }
+      popup.removeEventListener('close', this.__closeEventHandler);
+      popup.addEventListener('close', this.__closeEventHandler);
       if (popup.hasAttribute('title')) {
-        const header = document.createElement('header');
-        popup.insertBefore(header, popup.firstChild);
-        const title = document.createElement('h2');
+        let header = popup.querySelector(':scope > header');
+        if (!header) {
+          header = document.createElement('header');
+          popup.insertBefore(header, popup.firstChild);
+        }
+        let title = header.querySelector(':scope > h2');
+        if (!title) {
+          title = document.createElement('h2');
+          header.appendChild(title);
+        }
         title.textContent = popup.getAttribute('title');
-        header.appendChild(title);
       }
       if (popup.hasAttribute('auto-close-timeout')) {
         const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
 
-        if (!isNaN(timeoutSeconds)) {
+        if (!isNaN(timeoutSeconds) && !this._autoCloseTimer) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
           this._autoCloseTimer.addListener('interval', () => {
             this._autoCloseTimer.stop();
             this.close();
           });
-        } else {
+        } else if (isNaN(timeoutSeconds)) {
           this.error('invalid auto-close-timeout value:', popup.getAttribute('auto-close-timeout'));
         }
       }
+    },
+
+    _disconnected() {
+      if (this._closeButton && this.__closeButtonClickHandler) {
+        this._closeButton.removeEventListener('click', this.__closeButtonClickHandler);
+      }
+      this._element.removeEventListener('close', this.__closeEventHandler);
+      if (this._autoCloseTimer) {
+        this._autoCloseTimer.stop();
+      }
+      super._disconnected();
     },
 
     open() {

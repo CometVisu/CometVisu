@@ -223,5 +223,35 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     tile.close();
     expect(popup.hasAttribute('open')).toBeFalsy();
   });
+
+  it('should not duplicate the href click handler after reconnect', function() {
+    element = this.createHTMLElement('cv-tile', {
+      href: 'https://example.com'
+    }, '', true);
+
+    spyOn(window, 'open');
+
+    element.remove();
+    document.body.appendChild(element);
+
+    element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+
+    expect(window.open).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not duplicate the child popup close handler after reconnect', function() {
+    element = this.createHTMLElement('cv-tile', {}, '<cv-popup></cv-popup>', true);
+    const tile = element._instance;
+    const popup = element.querySelector('cv-popup');
+
+    spyOn(tile, 'resetPopup').and.callThrough();
+
+    element.remove();
+    document.body.appendChild(element);
+
+    popup.dispatchEvent(new CustomEvent('closed'));
+
+    expect(tile.resetPopup).toHaveBeenCalledTimes(1);
+  });
 });
 

@@ -132,5 +132,23 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
     expect(element.hasAttribute('open')).toBeFalsy();
   });
 
+  it('should not duplicate popup chrome after reconnect', function() {
+    element = this.createHTMLElement('cv-popup', {title: 'Test'}, '', true);
+    const popup = element._instance;
+
+    element.remove();
+    document.body.appendChild(element);
+
+    expect(element.querySelectorAll(':scope > header').length).toBe(1);
+    expect(element.querySelectorAll(':scope > button.close').length).toBe(1);
+
+    spyOn(popup, 'close').and.callThrough();
+
+    popup.open();
+    element.querySelector('button.close').click();
+
+    expect(popup.close).toHaveBeenCalledTimes(1);
+  });
+
 });
 

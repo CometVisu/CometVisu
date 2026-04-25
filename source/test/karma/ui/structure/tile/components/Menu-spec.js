@@ -75,6 +75,26 @@ describe('testing the <cv-menu> component of the tile structure', () => {
     expect(element.classList.contains('responsive')).toBe(false);
   });
 
+  it('should remove global close listeners when the hamburger menu is toggled closed', function() {
+    const element = this.createTileWidgetWithComponent('cv-menu', {model: 'pages'}, '');
+    qx.event.message.Bus.dispatchByName('setup.dom.append');
+
+    const ham = element.querySelector(':scope > a.menu');
+    ham.click();
+    expect(element.classList.contains('responsive')).toBe(true);
+
+    ham.click();
+    expect(element.classList.contains('responsive')).toBe(false);
+
+    spyOn(qx.event.Timer, 'once');
+    document.body.dispatchEvent(new PointerEvent('pointerdown', {
+      bubbles: true,
+      target: document.body
+    }));
+
+    expect(qx.event.Timer.once).not.toHaveBeenCalled();
+  });
+
   it('should create a menu with menu-item model, icons-only', function() {
     const element = this.createTileWidgetWithComponent('cv-menu', {
       model: 'menuItems',
