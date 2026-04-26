@@ -583,7 +583,15 @@ body {
         display: flex;
         flex-flow: row wrap;
         gap: var(--spacing);
-        border-top: 1px solid var(--borderColor);
+        margin-top: calc(var(--spacing) * 0.75);
+        position: relative;
+        padding-left: var(--spacing);
+        padding-right: var(--spacing);
+        box-sizing: border-box;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
 
         cv-group {
             padding-left: calc(var(--spacing)*2);
@@ -610,12 +618,56 @@ body {
         > summary {
             flex-basis: 100%;
             display: flex;
-            /*padding: calc(var(--spacing) * 2) var(--spacing);*/
             cursor: pointer;
             font-size: 18px;
-            height: var(--tileCellHeight);
+            min-height: calc(var(--tileCellHeight) * 0.92);
+            height: calc(var(--tileCellHeight) * 0.92);
             align-items: center;
             gap: var(--spacing);
+
+            /* undo group padding */
+            margin-left: calc(var(--spacing) * -1);
+            margin-right: calc(var(--spacing) * -1);
+          
+            padding: 0 calc(var(--spacing) * 1.35);
+            border: 1px solid var(--borderColor);
+            border-radius: calc(var(--tileCellHeight) / 2);
+            background: var(--tileBackground);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+
+            &:hover {
+                border-color: rgba(181, 216, 230, 0.14);
+                background: rgba(255, 255, 255, 0.045);
+                transform: translateY(-1px);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+
+            > cv-icon.title {
+                padding: 0.38rem;
+                border-radius: 999px;
+                background: rgba(138, 173, 186, 0.08);
+                color: #d7e7ee;
+                font-size: 1rem;
+            }
+
+            // > label.title {
+            //     overflow: hidden;
+            //     text-overflow: ellipsis;
+            //     white-space: nowrap;
+            //     font-size: 0.98em;
+            //     letter-spacing: 0.01em;
+
+            //     &::after {
+            //         opacity: 0.55;
+            //     }
+            // }
+
+            > cv-value,
+            > cv-button,
+            > label.value {
+                opacity: 0.86;
+            }
 
             > .title {
                 text-align: left;
@@ -631,6 +683,14 @@ body {
                 -webkit-font-smoothing: antialiased;
                 content: "\EA6E";
                 vertical-align: text-bottom;
+                display: inline-grid;
+                place-items: center;
+                width: 1.7rem;
+                height: 1.7rem;
+                border-radius: 999px;
+                background: rgba(138, 173, 186, 0.12);
+                color: #d7e7ee;
+                flex-shrink: 0;
             }
 
             > label.title:after {
@@ -662,25 +722,48 @@ body {
             height: 0;
         }
 
-        &:first-of-type {
-            border-top: none;
-
-            &[name] {
-                margin-top: 0;
-            }
-        }
-
-        &:not([name]) {
-            /* add some top space for groups that do not show a label */
-            margin-top: calc(var(--spacing)*2);
-        }
-
         &[open] > summary:before {
             content: "\EA4E";
         }
 
         &[open] > summary > label.title:after {
             content: "";
+        }
+
+        &[open]:not(.empty):not([wrap="false"]):has(summary)::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: calc(var(--spacing) * -1);
+            border-radius: calc(var(--tileCellHeight) / 2);
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            border: 1px solid rgba(181, 216, 230, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        &[open] > *:not(summary) {
+            position: relative;
+            z-index: 1;
+        }
+
+        &[open] > summary {
+            position: relative;
+            z-index: 2;
+            margin-bottom: calc(var(--spacing) * 0.15);
+            border-color: rgba(181, 216, 230, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 6px 14px rgba(0, 0, 0, 0.12);
+
+            &::before,
+            > cv-icon.title {
+                background: rgba(181, 216, 230, 0.18);
+            }
         }
     }
 
