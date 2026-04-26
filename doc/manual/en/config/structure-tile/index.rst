@@ -213,7 +213,6 @@ On touch devices, the tile structure also supports pull-to-refresh.
 If the content in ``<main>`` is already at the top, pulling down reloads the current page.
 
 .. toctree::
-    :maxdepth: 1
     :hidden:
 
     Menu <components/menu>

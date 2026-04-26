@@ -216,7 +216,6 @@ Wenn der Inhalt im ``<main>``-Bereich bereits am Anfang ist, lädt das Ziehen na
 
 .. toctree::
     :maxdepth: 1
-    :hidden:
 
     Menu <components/menu>
     Breadcrumbs <components/breadcrumbs>
