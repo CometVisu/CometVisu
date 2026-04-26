@@ -367,7 +367,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
         return cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this._store);
       }
-      return '';
+      return undefined;
     },
 
     // property apply
@@ -378,7 +378,9 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
         mappedValue = this._formatValue(mappedValue);
         this._updateValue(mappedValue, value);
         const styleClass = this._getStyleClass(value);
-        this.setStyleClass(styleClass);
+        if (styleClass !== undefined) {
+          this.setStyleClass(styleClass);
+        }
       }
     },
 
