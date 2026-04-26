@@ -1,0 +1,4 @@
+{
+  "compilerOptions": {},
+  "exclude": ["resource/libs", "test", "../node_modules", "../out", "../compiled"]
+}
