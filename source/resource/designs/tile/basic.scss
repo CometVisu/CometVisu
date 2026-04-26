@@ -150,6 +150,10 @@ body {
     padding: 0;
     margin: 0;
 
+    .blue {
+        color: #8e8eff;
+    }
+
     .clickable, *[data-action] {
         cursor: pointer;
     }
