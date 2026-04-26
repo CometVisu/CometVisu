@@ -82,12 +82,14 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
               }
               this._init();
               this._initialized = true;
+              this._postInit();
             }
           };
           qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
         } else {
           this._init();
           this._initialized = true;
+          this._postInit();
         }
       } else if (!value && this._initialized) {
         this._disconnected();
@@ -99,6 +101,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
       }
     },
     _init() {},
+    _postInit() {},
 
     _disconnected() {},
 

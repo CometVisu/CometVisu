@@ -73,6 +73,8 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
       } else if (summary) {
         qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
       }
+
+      this.__syncSummaryValue();
     },
 
     _toggleOpen() {
@@ -91,17 +93,38 @@ qx.Class.define('cv.ui.structure.tile.widgets.Group', {
     onStateUpdate(ev) {
       if (!super.onStateUpdate(ev)) {
         if (ev.detail.target === 'summary') {
-          let target = this._element.querySelector(':scope > summary > label.value');
-
-          if (!target) {
-            target = document.createElement('label');
-            target.classList.add('value');
-            const summary = this._element.querySelector(':scope > summary');
-            summary.appendChild(target);
-          }
-          target.textContent = ev.detail.state;
+          this.__setSummaryValue(ev.detail.state);
         } else {
           this.debug('unhandled address target', ev.detail.target);
+        }
+      }
+    },
+
+    __setSummaryValue(state) {
+      let target = this._element.querySelector(':scope > summary > label.value');
+
+      if (!target) {
+        const summary = this._element.querySelector(':scope > summary');
+        if (!summary) {
+          return;
+        }
+        target = document.createElement('label');
+        target.classList.add('value');
+        summary.appendChild(target);
+      }
+      target.textContent = state;
+    },
+
+    __syncSummaryValue() {
+      for (const address of this._element.querySelectorAll(':scope > cv-address[target="summary"], :scope > cv-address-group[target="summary"]')) {
+        let state;
+        if (address.hasAttribute('data-value')) {
+          state = address.getAttribute('data-value');
+        } else if (address.getInstance && address.getInstance() && typeof address.getInstance().getValue === 'function') {
+          state = address.getInstance().getValue();
+        }
+        if (state !== undefined && state !== null) {
+          this.__setSummaryValue(state);
         }
       }
     }

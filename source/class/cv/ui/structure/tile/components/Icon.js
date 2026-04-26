@@ -63,6 +63,12 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     __initialized: false,
     _idRegex: null,
 
+    __clearIconClasses(value) {
+      Array.from(this._element.classList)
+        .filter(name => (name.startsWith('ri-') || name.startsWith('knxuf-')) && name !== value)
+        .forEach(name => this._element.classList.remove(name));
+    },
+
     _transformId(value) {
       if (this._idRegex.test(value)) {
         return value;
@@ -74,8 +80,12 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
     _init() {
       super._init();
       const element = this._element;
-      if (element.textContent.trim()) {
-        this.__initialized = true;
+      const currentId = this.getId();
+
+      this.__initialized = true;
+      if (currentId) {
+        this._applyId(currentId, null);
+      } else if (element.textContent.trim()) {
         this.setId(element.textContent.trim());
       } else {
         const it = element.classList.values();
@@ -86,7 +96,6 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
           }
         }
       }
-      this.__initialized = true;
     },
 
     _applyId(value, oldValue) {
@@ -95,6 +104,7 @@ qx.Class.define('cv.ui.structure.tile.components.Icon', {
         if (oldValue) {
           element.classList.remove(oldValue);
         }
+        this.__clearIconClasses(value);
         if (value) {
           // default is an icon font that uses CSS classes
           element.classList.add(value);

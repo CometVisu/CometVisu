@@ -45,6 +45,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     // so the backend's initial full-state fetch stores the state for non-start-page elements.
     _applyConnected(value) {
       if (value) {
+        this._stateUpdateTarget = this._element;
         const address = this.getAddress();
         if (address) {
           const model = cv.data.Model.getInstance();
@@ -57,7 +58,6 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
 
     _init() {
       const element = this._element;
-      this._stateUpdateTarget = element;
       const address = this.getAddress();
       if (address) {
         const model = cv.data.Model.getInstance();
@@ -160,13 +160,26 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
       }
     },
 
+    resend() {
+      const address = this.getAddress();
+      if (address) {
+        const model = cv.data.Model.getInstance();
+        const backendName = this._element.getAttribute('backend');
+        const state = model.getState(address, backendName);
+        if (state !== undefined) {
+          this.fireStateUpdate(address, state, true);
+        }
+      }
+    },
+
     /**
      * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.
      * @param address {String} address
      * @param state {variant} state to send
+     * @param force {boolean} if true, the event is fired even if the state has not changed since the last update
      */
-    fireStateUpdate(address, state) {
-      if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
+    fireStateUpdate(address, state, force) {
+      if (force || this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
         let transformedState = cv.Transform.decode({
           transform: transform,

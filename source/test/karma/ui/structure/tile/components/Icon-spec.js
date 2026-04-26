@@ -40,6 +40,7 @@ describe('testing the <cv-icon> component of the tile structure', () => {
   
     it('should create an icon from textContent', function() {
       const element = this.createTileWidgetWithComponent('cv-icon', {}, 'test-icon');
+
       expect(element).not.toBeNull();
       expect(element.tagName).toBe('CV-ICON');
       expect(element._instance instanceof cv.ui.structure.tile.components.Icon).toBe(true);
@@ -50,24 +51,51 @@ describe('testing the <cv-icon> component of the tile structure', () => {
 
     it('should create an icon from class', function() {
       const element = this.createTileWidgetWithComponent('cv-icon', {class: 'knxuf-test'}, '');
+
       expect(element._instance.getId()).toBe('knxuf-test');
+    });
+
+    it('should apply a preset id during initialization', function() {
+      const element = document.createElement('cv-icon');
+
+      element._instance.setId('knxuf-test');
+      document.body.appendChild(element);
+
+      expect(element._instance.getId()).toBe('knxuf-test');
+      expect(element.classList.contains('knxuf-test')).toBe(true);
+    });
+
+    it('should replace a fallback icon class during initialization', function() {
+      const element = document.createElement('cv-icon');
+
+      element.classList.add('ri-question-mark');
+      element._instance.setId('ri-lightbulb-line');
+      document.body.appendChild(element);
+
+      expect(element._instance.getId()).toBe('ri-lightbulb-line');
+      expect(element.classList.contains('ri-lightbulb-line')).toBe(true);
+      expect(element.classList.contains('ri-question-mark')).toBe(false);
     });
 
     it('should not use invalid icon id', function() {
       const element = this.createTileWidgetWithComponent('cv-icon', {class: 'unknown-test'}, '');
+
       expect(element._instance.getId()).toBeNull();
 
       // spaces are not allowed
       element._instance.setId('test icon');
+
       expect(element._instance.getId()).toBeNull();
     });
 
     it('should change icon color', function() {
       const element = this.createTileWidgetWithComponent('cv-icon', {class: 'knxuf-test'}, '');
       element._instance.setColor('red');
+
       expect(element.classList.contains('red')).toBe(true);
 
       element._instance.setColor('#000000');
+
       expect(element.style.color).toBe('rgb(0, 0, 0)');
       expect(element.classList.contains('red')).toBe(false);
     });

@@ -218,6 +218,17 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       }
     },
 
+    _postInit() {
+      if (this._initialized && this._readAddresses) {
+          // trigger initial state update for all read addresses
+          for (const address of this._readAddresses) {
+            if (address.getInstance && address.getInstance()) {
+              address.getInstance().resend();
+            }
+          }
+        }
+      },
+
     __updateAttributes() {
       const isMobile = document.body.classList.contains('mobile');
       for (const entry of this.__mobileReplacements) {

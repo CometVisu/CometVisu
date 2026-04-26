@@ -107,6 +107,33 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
       }
     },
 
+    __applyIconValue(target, mappedValue, styleClass, attempt = 0) {
+      if (target._instance && !target.textContent.trim()) {
+        target._instance.setId('' + mappedValue);
+        target._instance.setStyleClass(styleClass);
+        return;
+      }
+
+      if (this.__iconUpdateFrame !== null) {
+        window.cancelAnimationFrame(this.__iconUpdateFrame);
+      }
+
+      this.__iconUpdateFrame = window.requestAnimationFrame(() => {
+        this.__iconUpdateFrame = null;
+        if (!this.isConnected() || !target.isConnected) {
+          return;
+        }
+        if (attempt < 5) {
+          this.__applyIconValue(target, mappedValue, styleClass, attempt + 1);
+        } else if (target._instance) {
+          target._instance.setId('' + mappedValue);
+          target._instance.setStyleClass(styleClass);
+        } else {
+          this.error('id and styleClass could not be applied, custom element not initialized yet!');
+        }
+      });
+    },
+
     _updateValue(mappedValue, value) {
       let styleClass = '';
       for (const target of this._element.querySelectorAll('.value')) {
@@ -116,24 +143,7 @@ qx.Class.define('cv.ui.structure.tile.components.Value', {
             if (this._element.hasAttribute('styling')) {
               styleClass = this._getStyleClass(value);
             }
-            if (target._instance) {
-              target._instance.setId('' + mappedValue);
-              target._instance.setStyleClass(styleClass);
-            } else {
-              // try again in next frame
-              this.__iconUpdateFrame = window.requestAnimationFrame(() => {
-                this.__iconUpdateFrame = null;
-                if (!this.isConnected() || !target.isConnected) {
-                  return;
-                }
-                if (target._instance) {
-                  target._instance.setId('' + mappedValue);
-                  target._instance.setStyleClass(styleClass);
-                } else {
-                  this.error('id and styleClass could not be applied, custom element not initialized yet!');
-                }
-              });
-            }
+            this.__applyIconValue(target, mappedValue, styleClass);
             break;
           case 'meter':
             target.setAttribute('value', value);

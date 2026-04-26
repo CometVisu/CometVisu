@@ -40,6 +40,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
       { },
       ''
     );
+
     expect(element).not.toBeNull();
     expect(element.querySelector('label.button-label')).toBeNull();
     expect(element.tagName).toBe('CV-BUTTON');
@@ -54,6 +55,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
       ''
     );
     const label = element.querySelector('label.button-label');
+
     expect(label.textContent).toBe('test');
   });
 
@@ -63,6 +65,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
       ''
     );
     const bar = element.querySelector('svg > circle.bar');
+
     expect(bar).not.toBeNull();
     expect(element._instance.getProgress()).toBe(50);
     expect(Math.round(parseInt(bar.getAttribute('stroke-dashoffset')))).toEqual(157);
@@ -76,17 +79,19 @@ describe('testing the <cv-button> component of the tile structure', () => {
     spyOn(cv.Application.structureController, 'mapValue').and.returnValue(50);
     element._instance.setProgress(100);
     const bar = element.querySelector('svg > circle.bar');
+
     expect(cv.Application.structureController.mapValue).toHaveBeenCalledOnceWith('test', 100, jasmine.any(Map));
     expect(Math.round(parseInt(bar.getAttribute('stroke-dashoffset')))).toEqual(157);
   });
 
   // test different types
-  ['button', 'trigger', 'push'].forEach((type) => {
+  ['button', 'trigger', 'push'].forEach(type => {
     it('should create a button with type ' + type, function() {
       const element = this.createTileWidgetWithComponent('cv-button',
         { type: type},
         ''
       );
+
       expect(element._instance.getType()).toBe(type);
     });
   });
@@ -108,13 +113,14 @@ describe('testing the <cv-button> component of the tile structure', () => {
       content: '<cv-address mode="readwrite" value="1">a1</cv-address>',
       attributes: {mapping: 'test'}
     }
-  ]
+  ];
   for (const mapping of typeMapping) {
     it('should auto-detect a button with type ' + mapping.type + ' by defined addresses', function() {
       const element = this.createTileWidgetWithComponent('cv-button',
         mapping.attributes,
         mapping.content
       );
+
       expect(element._instance.getType()).toBe(mapping.type);
     });
   }
@@ -131,8 +137,10 @@ describe('testing the <cv-button> component of the tile structure', () => {
     spyOn(address, 'dispatchEvent');
 
     const tile = element.parentElement;
+
     expect(tile.classList.contains('clickable')).toBe(true);
     tile.click();
+
     expect(button.onClicked).toHaveBeenCalledOnceWith(jasmine.anything());
     expect(address.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
   });
@@ -145,10 +153,12 @@ describe('testing the <cv-button> component of the tile structure', () => {
     const button = element._instance;
     const valueElement = element.querySelector('span.value');
     button.setOn(true);
+
     expect(element.getAttribute('value')).toBe('1');
     expect(valueElement.textContent).toEqual('1');
 
     button.setOn(false);
+
     expect(element.getAttribute('value')).toBe('0');
     expect(valueElement.textContent).toEqual('0');
   });
@@ -161,12 +171,31 @@ describe('testing the <cv-button> component of the tile structure', () => {
     const button = element._instance;
     const valueElement = element.querySelector('cv-icon.value');
     button.setOn(true);
+
     expect(element.getAttribute('value')).toBe('1');
     expect(valueElement._instance.getId()).toEqual('1');
 
     button.setOn(false);
+
     expect(element.getAttribute('value')).toBe('0');
     expect(valueElement._instance.getId()).toEqual('0');
+  });
+
+  it('should refresh an icon when the current off state is resent', function() {
+    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value) =>
+      value === '1' ? 'on-icon' : 'off-icon'
+    );
+    const element = this.createTileWidgetWithComponent('cv-button',
+      { mapping: 'test-mapping' },
+      '<cv-address mode="read">a1</cv-address><cv-icon class="value"></cv-icon>'
+    );
+    const valueElement = element.querySelector('cv-icon.value');
+
+    valueElement._instance.setId('ri-question-line');
+    cv.data.Model.getInstance().onUpdate('a1', '0');
+
+    expect(valueElement._instance.getId()).toEqual('off-icon');
+    expect(valueElement.classList.contains('off-icon')).toBe(true);
   });
 
 
@@ -175,22 +204,20 @@ describe('testing the <cv-button> component of the tile structure', () => {
       { mapping: 'test-mapping', styling: 'test-styling', 'on-value': 'ON', 'off-value': 'OFF' },
       '<cv-address mode="read">a1</cv-address><span class="value"></span>'
     );
-    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value, store) => {
-      return value === 'ON' ? 100 : 0;
-    });
-    spyOn(cv.Application.structureController, 'styleValue').and.callFake((styling, value, store) => {
-      return value === 'ON' ? 'style-class' : '';
-    });
+    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value, store) => value === 'ON' ? 100 : 0);
+    spyOn(cv.Application.structureController, 'styleValue').and.callFake((styling, value, store) => value === 'ON' ? 'style-class' : '');
 
     expect(element.classList.contains('style-class')).toBe(false);
     const button = element._instance;
     const valueElement = element.querySelector('span.value');
     button.setOn(true);
+
     expect(element.getAttribute('value')).toBe('ON'); // this is the unmapped value
     expect(valueElement.textContent).toEqual('100');
     expect(element.classList.contains('style-class')).toBe(true);
 
     button.setOn(false);
+
     expect(element.getAttribute('value')).toBe('OFF'); // this is the unmapped value
     expect(valueElement.textContent).toEqual('0');
     expect(element.classList.contains('style-class')).toBe(false);
@@ -202,27 +229,30 @@ describe('testing the <cv-button> component of the tile structure', () => {
       '<cv-address mode="read">state</cv-address><cv-address mode="read" target="progress">progress</cv-address><cv-address mode="read" target="store">store</cv-address><cv-address mode="read" target="store:test">test-store</cv-address>'
     );
 
-    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value) => {
-      return value === 'ON' ? 100 : 0;
-    });
+    spyOn(cv.Application.structureController, 'mapValue').and.callFake((mapping, value) => value === 'ON' ? 100 : 0);
     const button = element._instance;
     const currentStore = button._store;
     const model = cv.data.Model.getInstance();
     model.onUpdate('state', '1');
+
     expect(button.isOn()).toBeTruthy();
     model.onUpdate('state', '0');
+
     expect(button.isOn()).toBeFalsy();
 
     model.onUpdate('progress', '50');
+
     expect(button.getProgress()).toBe(50);
 
     expect(currentStore.has('store')).toBeFalsy();
     expect(currentStore.has('test')).toBeFalsy();
 
     model.onUpdate('store', '50');
+
     expect(currentStore.get('store')).toBe('50');
 
     model.onUpdate('test-store', '50');
+
     expect(currentStore.get('test')).toBe('50');
   });
 
@@ -238,23 +268,27 @@ describe('testing the <cv-button> component of the tile structure', () => {
     spyOn(clickAddress, 'dispatchEvent');
     spyOn(downAddress, 'dispatchEvent');
     spyOn(upAddress, 'dispatchEvent');
+
     expect(clickAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(downAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(upAddress.dispatchEvent).not.toHaveBeenCalled();
 
     element.click();
+
     expect(clickAddress.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
     expect(downAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(upAddress.dispatchEvent).not.toHaveBeenCalled();
     clickAddress.dispatchEvent.calls.reset();
 
     element.dispatchEvent(new PointerEvent('pointerdown'));
+
     expect(clickAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(downAddress.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
     expect(upAddress.dispatchEvent).not.toHaveBeenCalled();
     downAddress.dispatchEvent.calls.reset();
 
     element.dispatchEvent(new PointerEvent('pointerup'));
+
     expect(clickAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(downAddress.dispatchEvent).not.toHaveBeenCalled();
     expect(upAddress.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
@@ -267,8 +301,10 @@ describe('testing the <cv-button> component of the tile structure', () => {
     );
     spyOn(window, 'open');
     element.click();
+
     expect(window.open).toHaveBeenCalled();
     const url = window.open.calls.argsFor(0)[0];
+
     expect(url.startsWith('https://www.cometvisu.org/CometVisu/')).toBeTruthy();
     expect(url.endsWith('/manual/test')).toBeTruthy();
   });
@@ -281,11 +317,13 @@ describe('testing the <cv-button> component of the tile structure', () => {
     spyOn(qx.event.Timer, 'once').and.callFake((callback, timeout) => {
       setTimeout(() => {
         callback();
+
         expect(element._instance.isOn()).toBeFalse();
         done();
       }, 50);
     });
     element.click();
+
     expect(element._instance.isOn()).toBeTruthy();
   });
 });

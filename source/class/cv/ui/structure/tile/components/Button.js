@@ -333,7 +333,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
       }
       if (target === 'default') {
-        this.setOn(value);
+        if (this.isOn() === value) {
+          this._applyOn();
+        } else {
+          this.setOn(value);
+        }
         ev.stopPropagation();
         return true;
       } else if (target === 'progress') {
