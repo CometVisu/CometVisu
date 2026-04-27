@@ -195,6 +195,11 @@ body {
             transition: transform 0.2s, height 0.5s;
             overflow: hidden;
 
+            &.popup-open {
+                position: relative;
+                overflow: visible;
+            }
+
             &.scrolled {
                 transform: translateY(-100%);
                 height: 0 !important;

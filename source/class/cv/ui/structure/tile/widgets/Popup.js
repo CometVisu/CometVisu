@@ -45,6 +45,47 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     _closeButton: null,
     __closeButtonClickHandler: null,
     __closeEventHandler: null,
+    __portalParent: null,
+    __portalPlaceholder: null,
+    __portalNextSibling: null,
+
+    __setHeaderPopupOpenState(isOpen) {
+      const clippingParent = this._element.closest('[hide-on-scroll="true"]');
+      if (clippingParent) {
+        clippingParent.classList.toggle('popup-open', isOpen);
+      }
+    },
+
+    __shouldPortalToBody() {
+      return this._element.getAttribute('modal') === 'true';
+    },
+
+    __portalToBody() {
+      if (!this.__shouldPortalToBody() || this.__portalPlaceholder || this._element.parentElement === document.body) {
+        return;
+      }
+
+      this.__portalParent = this._element.parentElement;
+      this.__portalNextSibling = this._element.nextSibling;
+      this.__portalPlaceholder = document.createComment('cv-popup-placeholder');
+      this.__portalParent.insertBefore(this.__portalPlaceholder, this._element);
+      document.body.appendChild(this._element);
+    },
+
+    __restoreFromBody() {
+      if (!this.__portalPlaceholder || !this.__portalParent) {
+        return;
+      }
+
+      if (this.__portalPlaceholder.parentNode === this.__portalParent) {
+        this.__portalParent.insertBefore(this._element, this.__portalPlaceholder);
+        this.__portalPlaceholder.remove();
+      }
+
+      this.__portalPlaceholder = null;
+      this.__portalParent = null;
+      this.__portalNextSibling = null;
+    },
 
     _init() {
       super._init();
@@ -105,6 +146,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     },
 
     _disconnected() {
+      this.__setHeaderPopupOpenState(false);
       if (this._closeButton && this.__closeButtonClickHandler) {
         this._closeButton.removeEventListener('click', this.__closeButtonClickHandler);
       }
@@ -118,7 +160,11 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
     open() {
       const popup = this._element;
       if (!popup.hasAttribute('open')) {
+        this.__portalToBody();
         popup.setAttribute('open', '');
+        if (!this.__portalPlaceholder) {
+          this.__setHeaderPopupOpenState(true);
+        }
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.registerModalPopup();
         }
@@ -132,12 +178,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (popup) {
         popup.removeAttribute('open');
+        this.__setHeaderPopupOpenState(false);
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
+        this.__restoreFromBody();
         popup.dispatchEvent(new CustomEvent('closed'));
       }
     },
