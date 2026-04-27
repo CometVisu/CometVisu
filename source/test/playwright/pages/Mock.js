@@ -30,9 +30,11 @@ class CometVisuMockup extends BasePage {
   /**
    * @param {import('@playwright/test').Page} page - Playwright page object
    * @param {string} target - 'source' or 'build'
+   * @param tile
    */
-  constructor(page, target = 'source') {
+  constructor(page, target = 'source', tile = false) {
     super(page, 'pure', target);
+    this.tile = tile;
     this.url = this.baseUrl + '/' + this.target + '/index.html?config=mockup&testMode=true&enableCache=false';
   }
 
@@ -68,7 +70,7 @@ class CometVisuMockup extends BasePage {
    */
   async at() {
     try {
-      await this.page.waitForSelector('#id_', { 
+      await this.page.waitForSelector(this.tile ? 'cv-page.active' : '#id_', { 
         state: 'visible', 
         timeout: this.timeout.xl 
       });
@@ -84,11 +86,32 @@ class CometVisuMockup extends BasePage {
    * @param {string} urlModification - Optional URL modification
    */
   async to(urlModification = '') {
-    await this.page.goto(this.url + urlModification, {
-      waitUntil: 'domcontentloaded',
-      timeout: this.timeout.xl
-    });
-    return this.at();
+    let lastError = null;
+
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        await this.page.goto(this.url + urlModification, {
+          waitUntil: 'domcontentloaded',
+          timeout: this.timeout.xl
+        });
+
+        if (await this.at()) {
+          return true;
+        }
+      } catch (error) {
+        lastError = error;
+      }
+
+      if (attempt < 2) {
+        await this.page.waitForTimeout(this.timeout.s);
+      }
+    }
+
+    if (lastError) {
+      throw lastError;
+    }
+
+    throw new Error('Page did not load after 3 attempts');
   }
 }
 

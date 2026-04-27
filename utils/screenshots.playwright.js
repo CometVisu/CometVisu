@@ -16,6 +16,7 @@ const CometVisuDemo = require('../source/test/playwright/pages/Demo');
 
 /**
  * Log to stdout (visible in Playwright output)
+ * @param {...any} args
  */
 function log(...args) {
   process.stdout.write(args.join(' ') + '\n');
@@ -23,6 +24,7 @@ function log(...args) {
 
 /**
  * Log error to stderr (visible in Playwright output)
+ * @param {...any} args
  */
 function logError(...args) {
   process.stderr.write(args.join(' ') + '\n');
@@ -57,6 +59,7 @@ const createdScreenshots = new Set();
 
 /**
  * Calculate a hash code for a string
+ * @param s
  */
 function hashCode(s) {
   return s.split('').reduce((a, b) => {
@@ -67,6 +70,7 @@ function hashCode(s) {
 
 /**
  * Create directory recursively if it doesn't exist
+ * @param dir
  */
 function createDir(dir) {
   if (dir.endsWith('/')) {
@@ -79,6 +83,11 @@ function createDir(dir) {
 
 /**
  * Crop and optionally resize an image
+ * @param srcFile
+ * @param size
+ * @param location
+ * @param targetWidth
+ * @param targetHeight
  */
 async function cropImage(srcFile, size, location, targetWidth, targetHeight) {
   try {
@@ -115,6 +124,7 @@ async function cropImage(srcFile, size, location, targetWidth, targetHeight) {
 
 /**
  * Prepare screenshot directory and index
+ * @param screenshotDir
  */
 function prepareScreenshotDir(screenshotDir) {
   createDir(screenshotDir);
@@ -181,6 +191,7 @@ const subDirsMode = !config.source;
  * Check if a screenshot file needs any screenshots to be generated.
  * This is used for pre-filtering before test registration to avoid
  * starting tests that will be entirely skipped.
+ * @param filePath
  */
 function needsScreenshots(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -213,10 +224,8 @@ function needsScreenshots(filePath) {
             return true;
           }
         }
-      } else {
-        if (needsScreenshot(setting.name, hash, settings.screenshotDir)) {
-          return true;
-        }
+      } else if (needsScreenshot(setting.name, hash, settings.screenshotDir)) {
+        return true;
       }
     }
     
@@ -237,6 +246,9 @@ function needsScreenshots(filePath) {
  * Note: Hash mismatches are ignored for pre-filtering because multiple
  * source files may produce the same screenshot with different hashes.
  * The screenshot only needs to exist.
+ * @param name
+ * @param hash
+ * @param screenshotDir
  */
 function needsScreenshot(name, hash, screenshotDir) {
   const imgPath = path.join(screenshotDir, name + '.png');
@@ -259,12 +271,15 @@ function needsScreenshot(name, hash, screenshotDir) {
 /**
  * Check for duplicate screenshot definitions across all files.
  * Returns an object mapping "screenshotDir/name" to array of source files.
+ * @param allFiles
  */
 function findDuplicates(allFiles) {
   const screenshotSources = {}; // Map: "dir/name" -> [sourceFile1, sourceFile2, ...]
   
   for (const filePath of allFiles) {
-    if (!fs.existsSync(filePath)) continue;
+    if (!fs.existsSync(filePath)) {
+      continue;
+    }
     
     try {
       const rawData = fs.readFileSync(filePath, 'utf-8');
@@ -307,6 +322,9 @@ function findDuplicates(allFiles) {
 }
 
 // Collect all screenshot definition files
+/**
+ *
+ */
 function collectFiles() {
   const files = [];
   
@@ -554,7 +572,7 @@ test.describe('Screenshot Generation', () => {
       // Determine mockup type and create page object
       let mockup;
       let selectorPrefix = settings.structure === 'tile' ? '' : '.activePage ';
-      const loadManager = settings.mode === 'editor' || settings.mode === 'manager';
+      const loadManager = settings.mode === 'editor' || settings.mode === 'manager' || settings.editor;
 
       if (settings.mode === 'real') {
         mockup = new CometVisuDemo(page, settings.config, settings.pageLoaded, config.target);
@@ -562,12 +580,14 @@ test.describe('Screenshot Generation', () => {
         mockup = new CometVisuEditorMockup(page, config.target);
         selectorPrefix = '';
       } else {
-        mockup = new CometVisuMockup(page, config.target);
+        mockup = new CometVisuMockup(page, config.target, settings.structure === 'tile');
       }
 
       if (settings.selector.includes('.activePage') || settings.selector.includes('#')) {
         selectorPrefix = '';
       }
+
+      const uiWaitTimeout = loadManager ? mockup.timeout.xl : mockup.timeout.l;
 
       // Mock the configuration
       if (settings.mode !== 'real') {
@@ -596,7 +616,7 @@ test.describe('Screenshot Generation', () => {
 
       // Handle editor/manager specific setup
       if (loadManager) {
-        await page.waitForSelector('#manager', { state: 'visible', timeout: 2000 });
+        await page.waitForSelector('#manager', { state: 'visible', timeout: uiWaitTimeout });
 
         if (settings.mode === 'editor' || settings.editor) {
           const editorMockup = mockup;
@@ -607,7 +627,7 @@ test.describe('Screenshot Generation', () => {
 
           await page.waitForSelector(
             'div[qxclass="qx.ui.tree.VirtualTree"] div[qxclass="cv.ui.manager.tree.VirtualElementItem"]',
-            { state: 'visible', timeout: 2000 }
+            { state: 'visible', timeout: uiWaitTimeout }
           );
 
           if (settings.complex) {
@@ -636,7 +656,7 @@ test.describe('Screenshot Generation', () => {
           }
           await page.waitForSelector(settings.openFile.waitFor, {
             state: 'visible',
-            timeout: 2000
+            timeout: uiWaitTimeout
           });
         }
 
@@ -648,11 +668,13 @@ test.describe('Screenshot Generation', () => {
       }
 
       // Wait for rendering
-      await page.waitForTimeout(settings.sleep || 1000);
+      const initialSleep = Number.parseInt(settings.sleep, 10);
+      await page.waitForTimeout(Number.isNaN(initialSleep) ? 1000 : initialSleep);
 
-      // Wait for the target widget
+      // Wait until the base widget exists. Some examples only become visible
+      // after data updates or screenshot-specific interactions.
       const widget = page.locator(selectorPrefix + settings.selector).first();
-      await widget.waitFor({ state: 'visible', timeout: 2000 });
+      await widget.waitFor({ state: 'attached', timeout: uiWaitTimeout });
 
       // Process each screenshot
       for (const setting of settings.screenshots) {
@@ -700,7 +722,7 @@ test.describe('Screenshot Generation', () => {
             const actor = page.locator(setting.clickPath).first();
             await actor.click();
             const waitFor = setting.waitFor || selectorPrefix + settings.selector;
-            await page.waitForSelector(waitFor, { state: 'visible', timeout: 1000 });
+            await page.waitForSelector(waitFor, { state: 'visible', timeout: uiWaitTimeout });
           }
 
           // Handle page navigation
@@ -717,14 +739,15 @@ test.describe('Screenshot Generation', () => {
 
           // Wait for specific element
           if (setting.waitFor) {
-            await page.waitForSelector(setting.waitFor, { state: 'visible', timeout: 1000 });
+            await page.waitForSelector(setting.waitFor, { state: 'visible', timeout: uiWaitTimeout });
           }
 
           // Select different widget for screenshot
           if (setting.selector) {
             shotWidget = page.locator(selectorPrefix + setting.selector).first();
-            await shotWidget.waitFor({ state: 'visible', timeout: 2000 });
           }
+
+          await shotWidget.waitFor({ state: 'visible', timeout: uiWaitTimeout });
 
           // Get element dimensions
           let size = setting.size || await shotWidget.boundingBox();
@@ -791,7 +814,8 @@ test.describe('Screenshot Generation', () => {
             await page.screenshot({ path: imgFile, fullPage: false });
 
             // Crop to element
-            let scaledWidth, scaledHeight;
+            let scaledWidth; 
+            let scaledHeight;
             if (settings.scale) {
               const scale = parseInt(settings.scale) / 100;
               scaledWidth = Math.round(size.width * scale);
