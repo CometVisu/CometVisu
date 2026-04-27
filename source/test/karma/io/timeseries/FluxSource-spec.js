@@ -44,6 +44,7 @@ describe('testing cv.io.timeseries.FluxSource', () => {
 
     it('should extend AbstractTimeSeriesSource', () => {
       instance = new cv.io.timeseries.FluxSource('flux://org@bucket/measurement/field', mockChart);
+
       expect(instance instanceof cv.io.timeseries.AbstractTimeSeriesSource).toBe(true);
     });
   });
@@ -94,11 +95,12 @@ describe('testing cv.io.timeseries.FluxSource', () => {
       expect(instance._queryTemplate).not.toContain('invalid');
     });
 
-    it('should not add aggregateWindow when "every" is missing', () => {
+    it('should add aggregateWindow placeholder when "every" is missing', () => {
       instance = new cv.io.timeseries.FluxSource('flux://org@bucket/measurement?ag-fn=max', mockChart);
       
-      // aggregateWindow requires 'every' parameter
-      expect(instance._queryTemplate).not.toContain('aggregateWindow');
+      expect(instance._queryTemplate).toContain('aggregateWindow');
+      expect(instance._queryTemplate).toContain('every: $$AG-EVERY$$');
+      expect(instance._queryTemplate).toContain('fn: max');
     });
 
     it('should handle invalid URL gracefully', () => {
@@ -112,11 +114,13 @@ describe('testing cv.io.timeseries.FluxSource', () => {
   describe('isInline', () => {
     it('should return true for inline bucket', () => {
       instance = new cv.io.timeseries.FluxSource('flux://org@inline/test', mockChart);
+
       expect(instance.isInline()).toBe(true);
     });
 
     it('should return false for regular bucket', () => {
       instance = new cv.io.timeseries.FluxSource('flux://org@bucket/measurement', mockChart);
+
       expect(instance.isInline()).toBeFalsy();
     });
   });
