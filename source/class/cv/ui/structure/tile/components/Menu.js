@@ -229,7 +229,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
         target.classList.contains('menu') ||
         (target.parentElement && target.parentElement.classList.contains('menu')) ||
         target.nodeName.toLowerCase() === 'cv-menu' ||
-        (target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu')
+        (target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu' && target.parentElement === this._element)
       ) {
         // clicked in hamburger menu, do nothing
       } else if (!target.classList.contains('summary') && target.tagName.toLowerCase() !== 'p') {
