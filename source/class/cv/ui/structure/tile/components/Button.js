@@ -87,9 +87,11 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
     __textLabel: null,
     __circumference: null,
     _triggerOnValue: null,
+    __pendingTimers: null,
 
     _init() {
       super._init();
+      this.__pendingTimers = [];
       const element = this._element;
       if (element.hasAttribute('type')) {
         this.setType(element.getAttribute('type'));
@@ -168,17 +170,13 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
         }
 
         const value = triggerAddresses[0].getAttribute('value');
-        qx.event.Timer.once(
-          () => {
-            // set it to the opposite of what is being sent when clicked to make the feedback simulation work
-            // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
-            // using == comparisons to make sure that e.g. 1 equals "1"
-            // noinspection EqualityComparisonWithCoercionJS
-            this.setOn(value != this._triggerOnValue);
-          },
-          this,
-          1000
-        );
+        this.__scheduleOnce(() => {
+          // set it to the opposite of what is being sent when clicked to make the feedback simulation work
+          // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
+          // using == comparisons to make sure that e.g. 1 equals "1"
+          // noinspection EqualityComparisonWithCoercionJS
+          this.setOn(value != this._triggerOnValue);
+        }, 1000);
       } else {
         let hasDown = false;
         let hasUp = false;
@@ -227,10 +225,40 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
       if (value) {
         if (this.getType() !== 'trigger') {
           // delay this because we need the mappings to be ready
-          qx.event.Timer.once(this._applyOn, this, 1000);
+          this.__scheduleOnce(() => this._applyOn(), 1000);
         }
       }
     },
+
+    _disconnected() {
+      this.__clearPendingTimers();
+      super._disconnected();
+    },
+
+    __scheduleOnce(callback, delay) {
+      const timer = qx.event.Timer.once(() => {
+        this.__pendingTimers = this.__pendingTimers.filter(entry => entry !== timer);
+        if (!this.__isActive()) {
+          return;
+        }
+        callback();
+      }, null, delay);
+      this.__pendingTimers.push(timer);
+      return timer;
+    },
+
+    __clearPendingTimers() {
+      if (!this.__pendingTimers) {
+        return;
+      }
+      this.__pendingTimers.forEach(timer => timer.stop());
+      this.__pendingTimers = [];
+    },
+
+    __isActive() {
+      return !this.isDisposed() && this.isConnected();
+    },
+
     _applyOn() {
       if (this.isConnected()) {
         let value = this.isOn() ? this.getOnValue() : this.getOffValue();
@@ -358,13 +386,9 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           // noinspection EqualityComparisonWithCoercionJS
           const simulatedValue = wa[0].getAttribute('value') == this._triggerOnValue;
           this.setOn(simulatedValue);
-          qx.event.Timer.once(
-            () => {
-              this.setOn(!simulatedValue);
-            },
-            null,
-            500
-          );
+          this.__scheduleOnce(() => {
+            this.setOn(!simulatedValue);
+          }, 500);
         }
         wa.forEach(address => address.dispatchEvent(ev));
         event.stopPropagation();

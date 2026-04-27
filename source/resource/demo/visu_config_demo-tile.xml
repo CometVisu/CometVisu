@@ -36,6 +36,34 @@
             <entry range-min="25" range-max="28">purple</entry>
             <entry range-min="28" range-max="100">red</entry>
         </cv-styling>
+        <cv-mapping name="DoorContact">
+            <entry value="0">knxuf-fts_door</entry>
+            <entry range-min="1">knxuf-fts_door_open</entry>
+        </cv-mapping>
+        <cv-styling name="DoorOpen">
+            <entry range-min="1">red</entry>
+        </cv-styling>
+        <cv-mapping name="MotionDetected">
+            <entry value="0">ri-radar-line</entry>
+            <entry range-min="1">ri-alarm-warning-line</entry>
+        </cv-mapping>
+        <cv-styling name="MotionAlert">
+            <entry range-min="1">orange</entry>
+        </cv-styling>
+        <cv-mapping name="SmokeDetector">
+            <entry value="0">ri-checkbox-circle-line</entry>
+            <entry range-min="1">ri-alarm-warning-line</entry>
+        </cv-mapping>
+        <cv-styling name="SmokeAlert">
+            <entry range-min="1">red</entry>
+        </cv-styling>
+        <cv-mapping name="AlarmState">
+            <entry value="0">ri-shield-check-line</entry>
+            <entry range-min="1">ri-lock-line</entry>
+        </cv-mapping>
+        <cv-styling name="AlarmGood">
+            <entry value="0">green</entry>
+        </cv-styling>
         <cv-translations>
             <language name="de">
                 <tr key="Dashboard">Dashboard</tr>
@@ -117,6 +145,32 @@
                 <tr key="Calls">Anrufe</tr>
                 <tr key="Outside">Außen</tr>
                 <tr key="Energy">Energie</tr>
+                <tr key="Security">Sicherheit</tr>
+                <tr key="Alarm">Alarm</tr>
+                <tr key="Doors &amp; Windows">Türen &amp; Fenster</tr>
+                <tr key="Motion &amp; Smoke">Bewegung &amp; Rauch</tr>
+                <tr key="Front door">Haustür</tr>
+                <tr key="Back door">Hintertür</tr>
+                <tr key="Garage">Garage</tr>
+                <tr key="Garden">Garten</tr>
+                <tr key="Driveway">Einfahrt</tr>
+                <tr key="Smoke detector kitchen">Rauchmelder Küche</tr>
+                <tr key="Smoke detector hallway">Rauchmelder Flur</tr>
+                <tr key="Disarmed">Deaktiviert</tr>
+                <tr key="Climate">Klima</tr>
+                <tr key="Temperatures">Temperaturen</tr>
+                <tr key="Humidity">Luftfeuchtigkeit</tr>
+                <tr key="Color">Farbe</tr>
+                <tr key="Color light">Farblicht</tr>
+                <tr key="Living room light">Wohnzimmer Licht</tr>
+                <tr key="Bedroom light">Schlafzimmer Licht</tr>
+                <tr key="Input widgets">Eingabe-Widgets</tr>
+                <tr key="Slider">Schieberegler</tr>
+                <tr key="Spinner">Eingabefeld</tr>
+                <tr key="Select">Auswahl</tr>
+                <tr key="Target temperature">Solltemperatur</tr>
+                <tr key="Brightness">Helligkeit</tr>
+                <tr key="Mode">Modus</tr>
             </language>
         </cv-translations>
     </cv-meta>
@@ -256,11 +310,11 @@
                 </cv-info>
                 <cv-widget size="2x1">
                     <cv-tile>
-                        <cv-chart title="tr('Power')" allow-fullscreen="true" series="month" refresh="300" colspan="6" rowspan="3" >
-                            <x-axis format="%d. %b"/>
-                            <y-axis format="%.1f kWh"/>
-                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="false"/>
-                            <dataset src="demo://pv-chart.json" color="#FF9900" title="tr('Production')" />
+                        <cv-chart title="tr('Power')" allow-fullscreen="true" series="month" refresh="300" colspan="6" rowspan="3" show-grid="false" >
+                            <x-axis format="%d. %b" show-line="false"/>
+                            <y-axis format="%.1f kWh" show-line="false"/>
+                            <dataset src="demo://grid-import-chart.json" title="tr('From grid')" color="#F2495C" show-area="true"/>
+                            <dataset src="demo://pv-chart.json" color="#FF9900" title="tr('Production')" show-area="true"/>
                         </cv-chart>
                     </cv-tile>
                 </cv-widget>
@@ -289,6 +343,16 @@
                     <cv-address slot="address" backend="system" value="floorplan">nav:current-page</cv-address>
                     <cv-icon slot="icon">ri-settings-3-line</cv-icon>
                     <span slot="primaryLabel" tr="true">Rooms</span>
+                </cv-switch>
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="security">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-shield-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Security</span>
+                </cv-switch>
+                <cv-switch>
+                    <cv-address slot="address" backend="system" value="climate">nav:current-page</cv-address>
+                    <cv-icon slot="icon">ri-thermometer-line</cv-icon>
+                    <span slot="primaryLabel" tr="true">Climate</span>
                 </cv-switch>
                 <cv-switch on-value="light" off-value="dark" mapping="" styling="LightTheme">
                     <cv-address slot="address" backend="system">theme</cv-address>
@@ -411,6 +475,26 @@
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">4/4/2</cv-address>
                     <span slot="label" tr="true">RTC</span>
                 </cv-rtc>
+                <cv-info format="%d %%">
+                    <cv-address slot="address" mode="read" transform="DPT:5.001">4/4/5</cv-address>
+                    <cv-round-progress slot="value-component" type="semiCircle"/>
+                    <span slot="label" tr="true">Humidity</span>
+                </cv-info>
+                <cv-widget>
+                    <cv-tile>
+                        <cv-row colspan="3" row="2">
+                            <cv-color controls="triangle" title="tr('Living room light')">
+                                <cv-address transform="DPT:5.001" variant="RGB-r">4/4/6</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-g">4/4/7</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-b">4/4/8</cv-address>
+                                <cv-icon class="value">ri-lightbulb-line</cv-icon>
+                            </cv-color>
+                        </cv-row>
+                        <cv-row colspan="3" row="last">
+                            <label class="primary" tr="true">Living room light</label>
+                        </cv-row>
+                    </cv-tile>
+                </cv-widget>
                 <cv-widget>
                     <cv-tile style="grid-template-rows: 1fr 1fr auto;">
                         <cv-button name="tr('TV')" class="round-button" styling="tile-button" row="1" column="1" size="small">
@@ -547,9 +631,185 @@
                     <cv-address slot="temperatureAddress" transform="DPT:9.001">4/6/2</cv-address>
                     <span slot="label" tr="true">RTC</span>
                 </cv-rtc>
+                <cv-info format="%d %%">
+                    <cv-address slot="address" mode="read" transform="DPT:5.001">4/6/5</cv-address>
+                    <cv-round-progress slot="value-component" type="semiCircle"/>
+                    <span slot="label" tr="true">Humidity</span>
+                </cv-info>
+                <cv-widget>
+                    <cv-tile>
+                        <cv-row colspan="3" row="2">
+                            <cv-color controls="triangle" title="tr('Bedroom light')">
+                                <cv-address transform="DPT:5.001" variant="RGB-r">4/6/6</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-g">4/6/7</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-b">4/6/8</cv-address>
+                                <cv-icon class="value">ri-lightbulb-line</cv-icon>
+                            </cv-color>
+                        </cv-row>
+                        <cv-row colspan="3" row="last">
+                            <label class="primary" tr="true">Bedroom light</label>
+                        </cv-row>
+                    </cv-tile>
+                </cv-widget>
             </cv-group>
         </cv-page>
         <!--<cv-page id="categories" name="tr('Categories')" icon="knxuf-control_3dot_hor_f"></cv-page>-->
+        <cv-page id="security" name="tr('Security')" icon="ri-shield-line">
+            <cv-group name="tr('Alarm')" open="true">
+                <cv-info mapping="AlarmState" styling="AlarmGood">
+                    <cv-address slot="address" transform="DPT:5.010" mode="read">5/0/0</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Disarmed</span>
+                </cv-info>
+            </cv-group>
+            <cv-group name="tr('Doors &amp; Windows')" open="true">
+                <cv-info mapping="DoorContact" styling="DoorOpen">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/1/0</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Front door</span>
+                </cv-info>
+                <cv-info mapping="DoorContact" styling="DoorOpen">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/1/1</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Back door</span>
+                </cv-info>
+                <cv-info mapping="DoorContact" styling="DoorOpen">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/1/2</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Garage</span>
+                </cv-info>
+            </cv-group>
+            <cv-group name="tr('Motion &amp; Smoke')" open="true">
+                <cv-info mapping="MotionDetected" styling="MotionAlert">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/2/0</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Garden</span>
+                </cv-info>
+                <cv-info mapping="MotionDetected" styling="MotionAlert">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/2/1</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Driveway</span>
+                </cv-info>
+                <cv-info mapping="SmokeDetector" styling="SmokeAlert">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/3/0</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Smoke detector kitchen</span>
+                </cv-info>
+                <cv-info mapping="SmokeDetector" styling="SmokeAlert">
+                    <cv-address slot="address" mode="read" transform="DPT:1.001">5/3/1</cv-address>
+                    <cv-icon slot="value-component" size="xxx-large"/>
+                    <span slot="label" tr="true">Smoke detector hallway</span>
+                </cv-info>
+            </cv-group>
+        </cv-page>
+        <cv-page id="climate" name="tr('Climate')" icon="ri-thermometer-line">
+            <cv-group name="tr('Temperatures')" open="true">
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/3/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Dining room</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/3/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/4/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Living room</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/4/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/2/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Kitchen</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/2/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/1/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Bathroom</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/1/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/5/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Office</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/5/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+                <cv-widget-pair>
+                    <cv-info format="%.1f °C" styling="Temperature">
+                        <cv-address slot="address" mode="read" transform="DPT:9.001">4/6/3</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle" min="15" max="30"/>
+                        <span slot="label" tr="true">Bedroom</span>
+                    </cv-info>
+                    <cv-info format="%d %%">
+                        <cv-address slot="address" mode="read" transform="DPT:5.001">4/6/5</cv-address>
+                        <cv-round-progress slot="value-component" type="semiCircle"/>
+                        <span slot="label" tr="true">Humidity</span>
+                    </cv-info>
+                </cv-widget-pair>
+            </cv-group>
+            <cv-group name="tr('Room temperature controllers')" open="true">
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/3/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/3/2</cv-address>
+                    <span slot="label" tr="true">Dining room</span>
+                </cv-rtc>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/4/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/4/2</cv-address>
+                    <span slot="label" tr="true">Living room</span>
+                </cv-rtc>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/2/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/2/2</cv-address>
+                    <span slot="label" tr="true">Kitchen</span>
+                </cv-rtc>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/1/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/1/2</cv-address>
+                    <span slot="label" tr="true">Bathroom</span>
+                </cv-rtc>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/5/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/5/2</cv-address>
+                    <span slot="label" tr="true">Office</span>
+                </cv-rtc>
+                <cv-rtc>
+                    <cv-address slot="hvacAddress" transform="DPT:20.102">4/6/1</cv-address>
+                    <cv-address slot="temperatureAddress" transform="DPT:9.001">4/6/2</cv-address>
+                    <span slot="label" tr="true">Bedroom</span>
+                </cv-rtc>
+            </cv-group>
+        </cv-page>
         <cv-page id="widgets" name="tr('Widgets')" icon="ri-slideshow-line">
             <cv-group name="tr('Switches')">
                 <summary>
@@ -757,6 +1017,74 @@
                         <span slot="secondaryLabel" tr="true">Light 2</span>
                     </cv-switch>
                 </cv-widget-pair>
+            </cv-group>
+            <cv-group name="tr('Color')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/components/color.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
+                <cv-widget>
+                    <cv-tile>
+                        <cv-row colspan="3" row="2">
+                            <cv-color controls="triangle" title="tr('Color light')">
+                                <cv-address transform="DPT:5.001" variant="RGB-r">2/1/1</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-g">2/1/2</cv-address>
+                                <cv-address transform="DPT:5.001" variant="RGB-b">2/1/3</cv-address>
+                                <cv-icon class="value">ri-lightbulb-line</cv-icon>
+                            </cv-color>
+                        </cv-row>
+                        <cv-row colspan="3" row="last">
+                            <label class="primary" tr="true">Color light</label>
+                        </cv-row>
+                    </cv-tile>
+                </cv-widget>
+            </cv-group>
+            <cv-group name="tr('Input widgets')">
+                <summary>
+                    <cv-button class="round-button" doc-link="config/structure-tile/components/slider.html">
+                        <cv-icon>ri-question-line</cv-icon>
+                    </cv-button>
+                </summary>
+                <cv-widget-pair>
+                    <cv-widget>
+                        <cv-tile>
+                            <cv-slider rowspan="3" colspan="3" min="0" max="100" format="%d %%">
+                                <cv-address transform="DPT:5.001">1/4/31</cv-address>
+                                <cv-icon class="decrease">ri-subtract-line</cv-icon>
+                                <cv-icon class="increase">ri-add-line</cv-icon>
+                            </cv-slider>
+                        </cv-tile>
+                        <footer>
+                            <label class="title" tr="true">Brightness</label>
+                        </footer>
+                    </cv-widget>
+                    <cv-widget>
+                        <cv-tile>
+                            <cv-spinner rowspan="3" colspan="3" format="%.1f °C" min="15" max="25" step-width="0.5">
+                                <cv-address transform="DPT:9.001">1/4/32</cv-address>
+                                <label class="value primary"/>
+                            </cv-spinner>
+                        </cv-tile>
+                        <footer>
+                            <label class="title" tr="true">Target temperature</label>
+                        </footer>
+                    </cv-widget>
+                </cv-widget-pair>
+                <cv-widget size="1x0.5">
+                    <cv-tile>
+                        <cv-select rowspan="3" colspan="3" show="both">
+                            <cv-address transform="DPT:5.010">1/4/33</cv-address>
+                            <cv-option key="1"><cv-icon>ri-sun-rise-line</cv-icon>Morgen</cv-option>
+                            <cv-option key="2"><cv-icon>ri-sun-line</cv-icon>Tag</cv-option>
+                            <cv-option key="3"><cv-icon>ri-sun-foggy-line</cv-icon>Abend</cv-option>
+                            <cv-option key="4"><cv-icon>ri-moon-line</cv-icon>Nacht</cv-option>
+                        </cv-select>
+                    </cv-tile>
+                    <footer>
+                        <label class="title" tr="true">Mode</label>
+                    </footer>
+                </cv-widget>
             </cv-group>
             <cv-group name="tr('Charts')">
                 <summary>

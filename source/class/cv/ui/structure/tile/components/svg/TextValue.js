@@ -165,7 +165,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.TextValue', {
       if (this._target) {
         const target = this._target.querySelector('.value');
         target.textContent = mappedValue;
-        this._debouncedDetectOverflow();
+        this._scheduleDetectOverflow();
       }
     },
 

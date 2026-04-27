@@ -94,6 +94,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
     _iconSize: null,
     _iconOffset: null,
     _fixedRadius: null,
+    __updateRadiusTimerId: null,
+    __amountBindingFrame: null,
+    __amountBindingTarget: null,
+    __amountBindingId: null,
 
     getSvg() {
       return this._svg;
@@ -111,8 +115,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       const strokeWidth = this.getStroke();
       this._findParentGridLayout();
       if (this._parentGridLayout && !this._fixedRadius) {
-        this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
-        this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
+        this._parentGridLayout.addListener('changeSize', this.__scheduleUpdateRadius, this);
       }
       const parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
 
@@ -190,11 +193,17 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       let sumGroup = element.querySelector(':scope > cv-address-group[operator="+"]');
       if (sumGroup) {
         if (!sumGroup._instance) {
-          window.requestAnimationFrame(() => {
-            sumGroup._instance.bind('nonZeroValues', this, 'amount');
+          this.__amountBindingFrame = window.requestAnimationFrame(() => {
+            this.__amountBindingFrame = null;
+            if (!this.isConnected() || !sumGroup.isConnected || !sumGroup._instance) {
+              return;
+            }
+            this.__amountBindingTarget = sumGroup._instance;
+            this.__amountBindingId = sumGroup._instance.bind('nonZeroValues', this, 'amount');
           });
         } else {
-          sumGroup._instance.bind('nonZeroValues', this, 'amount');
+          this.__amountBindingTarget = sumGroup._instance;
+          this.__amountBindingId = sumGroup._instance.bind('nonZeroValues', this, 'amount');
         }
       } else {
         this.setAmount(element.querySelectorAll(':scope > cv-address:not([target])').length);
@@ -202,6 +211,42 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
 
       this._applyPosition();
       this._applyTitle(this.getTitle());
+    },
+
+    _disconnected() {
+      this.__cleanupAsyncHandles();
+      super._disconnected();
+    },
+
+    __cleanupAsyncHandles() {
+      if (this._parentGridLayout) {
+        this._parentGridLayout.removeListener('changeSize', this.__scheduleUpdateRadius, this);
+      }
+      if (this.__updateRadiusTimerId !== null) {
+        window.clearTimeout(this.__updateRadiusTimerId);
+        this.__updateRadiusTimerId = null;
+      }
+      if (this.__amountBindingFrame !== null) {
+        window.cancelAnimationFrame(this.__amountBindingFrame);
+        this.__amountBindingFrame = null;
+      }
+      if (this.__amountBindingTarget && this.__amountBindingId !== null) {
+        this.__amountBindingTarget.removeBinding(this.__amountBindingId);
+      }
+      this.__amountBindingTarget = null;
+      this.__amountBindingId = null;
+    },
+
+    __scheduleUpdateRadius() {
+      if (this.__updateRadiusTimerId !== null) {
+        window.clearTimeout(this.__updateRadiusTimerId);
+      }
+      this.__updateRadiusTimerId = window.setTimeout(() => {
+        this.__updateRadiusTimerId = null;
+        if (!this.isDisposed() && this.isConnected()) {
+          this._updateRadius();
+        }
+      }, 10);
     },
 
     _updateRadius() {
@@ -322,7 +367,7 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
         const target = this._target.querySelector('.value');
         if (target) {
           target.textContent = mappedValue;
-          this._debouncedDetectOverflow();
+          this._scheduleDetectOverflow();
         }
       }
     },
@@ -426,6 +471,10 @@ qx.Class.define('cv.ui.structure.tile.components.svg.RoundValue', {
       }
       return super.onStateUpdate(ev);
     }
+  },
+
+  destruct() {
+    this.__cleanupAsyncHandles();
   },
 
   defer(QxClass) {

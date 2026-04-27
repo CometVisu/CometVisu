@@ -223,6 +223,10 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
       }
     },
 
+    _disconnected() {
+      qx.core.Init.getApplication().removeListener('changeMobile', this.__updateAttributes, this);
+    },
+
     /**
      * Append the given element to a header inside the widget this component is a direct child of.
      * If the header does not exist yet, it will be created.

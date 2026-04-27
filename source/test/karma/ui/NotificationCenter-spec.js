@@ -50,13 +50,13 @@ describe('test the NotificationCenter', function () {
 
     expect(element).not.toBeUndefined();
 
-    expect(window.getComputedStyle(element)['transform']).toEqual('none');
+    expect(element.style.transform).toEqual('');
     center.show();
     setTimeout(function() {
-      expect(window.getComputedStyle(element)['transform']).toEqual('matrix(1, 0, 0, 1, -300, 0)');
+      expect(element.style.transform).toEqual('translate(-300px)');
       center.hide();
       setTimeout(function() {
-        expect(window.getComputedStyle(element)['transform']).toEqual('matrix(1, 0, 0, 1, 0, 0)');
+        expect(element.style.transform).toEqual('translate(0px)');
         done();
       }, 10);
     }, 10);

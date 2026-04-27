@@ -95,15 +95,16 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         });
         request.onreadystatechange = e => {
           if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-            img.src = URL.createObjectURL(request.response);
+            const url = URL.createObjectURL(request.response);
+            img.setAttribute('src', url);
             img.onload = () => {
-              URL.revokeObjectURL(img.src);
+              URL.revokeObjectURL(url);
             };
           }
         };
         request.send(null);
       } else {
-        img.src = this._url.toString();
+        img.setAttribute('src', this._url.toString());
       }
       if (!this._lastRefresh) {
         // set this to avoid another refresh triggered by the refresh feature when this image gets visible

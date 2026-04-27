@@ -240,7 +240,14 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
       }
     },
 
+    __isActive() {
+      return !!this._element && !!this.SVG && this.isConnected() && !(this.isDisposed && this.isDisposed());
+    },
+
     _drag(ev) {
+      if (!this.__isActive()) {
+        return;
+      }
       ev.preventDefault();
       ev.stopImmediatePropagation();
       const CTM = this.SVG.getScreenCTM().inverse();
@@ -257,6 +264,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _startDrag(ev) {
+      if (!this.__isActive()) {
+        return;
+      }
       if (typeof this.drag !== 'function') {
         this.drag = this._drag.bind(this);
       }
@@ -270,6 +280,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _endDrag(ev) {
+      if (!this._element) {
+        return;
+      }
       if (this.drag) {
         this._element.removeEventListener('pointermove', this.drag);
       }
@@ -295,7 +308,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _applyPan(draggable) {
-      if (this.SVG) {
+      if (this.SVG && this._element) {
         if (draggable) {
           this._dragPoint = this.SVG.createSVGPoint();
 
@@ -394,6 +407,32 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
           button.classList.remove('clickable');
         }
         qx.event.Registration.removeListener(button, 'tap', callback, this);
+      }
+    },
+
+    _disconnected() {
+      super._disconnected();
+      this._ready = false;
+
+      if (this.getPan()) {
+        this._applyPan(false);
+      }
+
+      if (this._timeouts) {
+        for (const key in this._timeouts) {
+          clearTimeout(this._timeouts[key]);
+        }
+        this._timeouts = {};
+      }
+
+      if (this._viewBoxBinding) {
+        this.removeBinding(this._viewBoxBinding);
+        this._viewBoxBinding = null;
+      }
+
+      this.setResizeTarget(null);
+      if (this._observer) {
+        this._observer.disconnect();
       }
     },
 
@@ -523,6 +562,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _updateViewBox() {
+      if (!this.__isActive()) {
+        return;
+      }
       const viewBox = this.getViewBox();
       if (viewBox) {
         const parts = viewBox.split(' ').map(v => parseInt(v));
@@ -551,6 +593,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _center(width, height) {
+      if (!this.__isActive()) {
+        return;
+      }
       if ('_center' in this._timeouts) {
         clearTimeout(this._timeouts['_center']);
         delete this._timeouts['_center'];
@@ -626,6 +671,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
     },
 
     _updateCellSize() {
+      if (!this._element || !this.SVG || !this.isConnected() || (this.isDisposed && this.isDisposed())) {
+        return;
+      }
       if (this._element.clientWidth === 0 || this._element.clientHeight === 0) {
         return;
       }

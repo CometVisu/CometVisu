@@ -70,6 +70,8 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
   ***********************************************
   */
   members: {
+    __connectFrame: null,
+
     _applyType(value) {
       const settings = cv.ui.structure.tile.components.energy.PowerEntity.typeSettings[value];
       if (settings) {
@@ -101,13 +103,33 @@ qx.Class.define('cv.ui.structure.tile.components.energy.PowerEntity', {
           icon.style.fontSize = this._iconSize + 'px';
         }
       }
-      window.requestAnimationFrame(() => {
+      this.__connectFrame = window.requestAnimationFrame(() => {
+        this.__connectFrame = null;
+        if (!this.isConnected()) {
+          return;
+        }
         this._applyConnectTo(this.getConnectTo());
         this._applyConnectFrom(this.getConnectFrom());
       });
 
       this.addListener('changeValue', this._updateDirection, this);
+    },
+
+    _disconnected() {
+      this.__cleanupConnectFrame();
+      super._disconnected();
+    },
+
+    __cleanupConnectFrame() {
+      if (this.__connectFrame !== null) {
+        window.cancelAnimationFrame(this.__connectFrame);
+        this.__connectFrame = null;
+      }
     }
+  },
+
+  destruct() {
+    this.__cleanupConnectFrame();
   },
 
   defer(QxClass) {

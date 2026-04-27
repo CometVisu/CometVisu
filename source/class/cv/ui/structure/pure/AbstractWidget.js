@@ -45,7 +45,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
 
     // this.debug(props.$$type+" INIT ["+props.path+"]");
     // bind visibility to parent page
-    new qx.util.DeferredCall(function () {
+    this.__deferredParentInit = new qx.util.DeferredCall(function () {
       if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
         // initialize the ancestors
         const parentData = cv.util.Tree.getParentData(props.path);
@@ -61,7 +61,9 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
       if (parentPage) {
         parentPage.bind('visible', this, 'visible');
       }
-    }, this).schedule();
+      this.__deferredParentInit = null;
+    }, this);
+    this.__deferredParentInit.schedule();
   },
 
   /*
@@ -122,6 +124,7 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
     _skipNextEvent: null,
     __longPressTimer: null,
     __pointerDownPoint: null,
+    __deferredParentInit: null,
 
     // property apply
     _applyVisible(value, old) {},
@@ -436,6 +439,11 @@ qx.Class.define('cv.ui.structure.pure.AbstractWidget', {
   ******************************************************
   */
   destruct() {
+    if (this.__deferredParentInit) {
+      this.__deferredParentInit.cancel();
+      this.__deferredParentInit.dispose();
+      this.__deferredParentInit = null;
+    }
     qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
   }
 });

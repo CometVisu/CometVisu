@@ -383,13 +383,13 @@ qx.Class.define('cv.ui.NotificationCenter', {
           anim.on(
             'end',
             function () {
-              this.__element.style.transform = 'translate(-0px)';
+              this.__element.style.transform = 'translate(0px)';
               this.__blocker.unblock();
             },
             this
           );
         } else {
-          this.__element.style.transform = 'translate(-0px)';
+          this.__element.style.transform = 'translate(0px)';
           this.__blocker.unblock();
         }
       }
