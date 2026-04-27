@@ -15,7 +15,7 @@ und aktualisiert sich automatisch, sobald sich die aktuelle Seite ändert.
 
 Um auf kleineren Bildschirmen vertikalen Platz zu sparen, unterstützen Breadcrumbs das Attribut ``hide-on-scroll="true"``.
 Dadurch wird die Breadcrumb-Leiste während des Scrollens im ``<main>``-Bereich ausgeblendet und erscheint wieder,
-wenn die Scrollposition an den Anfang zurückkehrt.
+wenn die Scroll-Position an den Anfang zurückkehrt.
 
 .. code-block:: xml
 
