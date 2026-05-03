@@ -46,6 +46,11 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
   ***********************************************
   */
   members: {
+    __decreaseElement: null,
+    __increaseElement: null,
+    __decreaseClickHandler: null,
+    __increaseClickHandler: null,
+
     _init() {
       super._init();
       const element = this._element;
@@ -74,7 +79,12 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
         decrease.appendChild(decreaseIcon);
         element.insertBefore(decrease, valueElement);
       }
-      decrease.addEventListener('click', ev => this.onDecrease(ev));
+      if (!this.__decreaseClickHandler) {
+        this.__decreaseClickHandler = ev => this.onDecrease(ev);
+      }
+      decrease.removeEventListener('click', this.__decreaseClickHandler);
+      decrease.addEventListener('click', this.__decreaseClickHandler);
+      this.__decreaseElement = decrease;
 
       let increase = element.querySelector(':scope > div.right.clickable');
       if (!increase) {
@@ -86,7 +96,22 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
         increase.appendChild(increaseIcon);
         element.appendChild(increase);
       }
-      increase.addEventListener('click', ev => this.onIncrease(ev));
+      if (!this.__increaseClickHandler) {
+        this.__increaseClickHandler = ev => this.onIncrease(ev);
+      }
+      increase.removeEventListener('click', this.__increaseClickHandler);
+      increase.addEventListener('click', this.__increaseClickHandler);
+      this.__increaseElement = increase;
+    },
+
+    _disconnected() {
+      if (this.__decreaseElement && this.__decreaseClickHandler) {
+        this.__decreaseElement.removeEventListener('click', this.__decreaseClickHandler);
+      }
+      if (this.__increaseElement && this.__increaseClickHandler) {
+        this.__increaseElement.removeEventListener('click', this.__increaseClickHandler);
+      }
+      super._disconnected();
     },
 
     onDecrease(ev) {

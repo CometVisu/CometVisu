@@ -93,4 +93,21 @@ describe('testing the <cv-slider> component of the tile structure', () => {
     expect(element._instance.getThrottleInterval()).toBe(100);
   });
 
+  it('should not duplicate click handlers after reconnect', function() {
+    const element = this.createTileWidgetWithComponent('cv-slider', {
+      'step-width': 10
+    }, '<cv-address mode="write">test</cv-address><cv-icon class="decrease">ri-subtract-line</cv-icon><cv-icon class="increase">ri-add-line</cv-icon>');
+    const address = element.querySelector('cv-address');
+    const widget = element.closest('cv-widget');
+
+    spyOn(address, 'dispatchEvent');
+
+    widget.remove();
+    document.body.appendChild(widget);
+
+    element.querySelector('.increase').click();
+
+    expect(address.dispatchEvent).toHaveBeenCalledTimes(1);
+  });
+
 });

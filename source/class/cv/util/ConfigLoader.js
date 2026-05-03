@@ -107,6 +107,9 @@ qx.Class.define('cv.util.ConfigLoader', {
           xml.querySelectorAll('include').forEach(this.loadInclude, this);
           this.__loadQueue.remove(ajaxRequest.getUrl());
 
+          const lastModified = req.getResponseHeader('Last-Modified') ?? req.getResponseHeader('ETag') ?? '';
+          cv.Config.configETag = lastModified;
+
           const systemLibVersion = isTileStructure ? cv.Version.LIBRARY_VERSION_TILE : cv.Version.LIBRARY_VERSION_PURE;
           // check the library version
           let xmlLibVersion = isTileStructure

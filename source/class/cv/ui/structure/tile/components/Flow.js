@@ -571,8 +571,8 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         if (parts.length === 4) {
           this._updatePaginationButtons();
           const totalOuterPadding = this.getOuterPadding() * 2;
-          const x = this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0]-1) * this.getSpacing() : 0);
-          const y = this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1]-1) * this.getSpacing() : 0);
+          const x = parts[0] * (this.getCellWidth() + this.getSpacing());
+          const y = parts[1] * (this.getCellHeight() + this.getSpacing());
           const width = totalOuterPadding + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2]-1) * this.getSpacing() : 0);
           const height = totalOuterPadding + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3]-1) * this.getSpacing() : 0);
 
@@ -630,8 +630,8 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         let lastRow = 2;
         if (gridViewBox) {
           const gridParts = gridViewBox.split(' ').map(s => parseInt(s));
-          visibleColumns = gridParts[2] - gridParts[0];
-          visibleRows = gridParts[3] - gridParts[1];
+          visibleColumns = gridParts[2];
+          visibleRows = gridParts[3];
           firstColumn = gridParts[0];
           lastColumn = firstColumn + gridParts[2] - 1;
           firstRow = gridParts[1];
@@ -649,7 +649,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         }
         for (const elem of this._element.querySelectorAll('*[row]')) {
           row = parseInt(elem.getAttribute('row')) + 1;
-          if (firstRow <= col && lastRow > row && row > usedRows) {
+          if (firstRow <= row && lastRow > row && row > usedRows) {
             usedRows = row;
           }
         }

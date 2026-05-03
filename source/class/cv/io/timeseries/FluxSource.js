@@ -60,32 +60,49 @@ qx.Class.define('cv.io.timeseries.FluxSource', {
             `|> filter(fn: (r) => r._measurement == "${measurement}" and r._field == "${field}")`
           ];
           const allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
+          const allowedTs = ['duration'];
           for (const key in config.params) {
             if (key.startsWith('ag-')) {
               if (allowedAg.includes(key.substring(3))) {
                 if (!Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
                   additional.aggregateWindow = {};
                 }
-                additional.aggregateWindow[key.substring(3)] = config.params[key];
+                additional.aggregateWindow[key.substring(3)] = config.params[key];          
               } else {
                 this.error(`skipping invalid aggregationWindow parameter ${key.substring(3)}`);
+              }
+            } else if (key.startsWith('ts-')) {
+              if (allowedTs.includes(key.substring(3))) {
+                if (!Object.prototype.hasOwnProperty.call(additional, 'timeShift')) {
+                  additional.timeShift = {};
+                }
+                additional.timeShift[key.substring(3)] = config.params[key];
+              } else {
+                this.error(`skipping invalid timeShift parameter ${key.substring(3)}`);
               }
             }
           }
           if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-            if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
-              let parts = [];
-              for (const key in additional.aggregateWindow) {
-                parts.push(`${key}: ${additional.aggregateWindow[key]}`);
-              }
-              // use default
-              if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
-                parts.push('fn: mean');
-              }
-              queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
-            } else {
-              this.debug('aggregateWindow is missing "every" parameter -> not added to fixed template.');
+            let parts = [];
+            if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
+                parts.push('every: $$AG-EVERY$$');
             }
+            for (const key in additional.aggregateWindow) {
+              parts.push(`${key}: ${additional.aggregateWindow[key]}`);
+            }
+            // use default
+            if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
+              parts.push('fn: mean');
+            }
+            queryParts.push(`|> aggregateWindow(${parts.join(', ')})`);
+          }
+          if (Object.prototype.hasOwnProperty.call(additional, 'timeShift')) {
+            let parts = [];
+            for (const key in additional.timeShift) {
+              parts.push(`${key}: ${additional.timeShift[key]}`);
+            }
+            parts.push('columns: ["_time"]');
+            queryParts.push(`|> timeShift(${parts.join(', ')})`);
           }
 
           this._queryTemplate = queryParts.join('\n  ');

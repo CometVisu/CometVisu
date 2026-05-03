@@ -309,6 +309,10 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     },
 
     async refresh() {
+      if (this._model === null) {
+        // not yet initialized, skip
+        return;
+      }
       const element = this._element;
       const template = element.querySelector(':scope > template:not([when])');
       let newModel = [];

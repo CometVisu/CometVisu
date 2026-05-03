@@ -235,7 +235,7 @@ qx.Class.define('cv.parser.pure.MetaParser', {
         let linkMatch;
         const linkRegex = /href="([^"]+)"/gm;
         const matches = [];
-        // eslint-disable-next-line no-cond-assign
+         
         while ((linkMatch = linkRegex.exec(text))) {
           matches.push(linkMatch);
         }

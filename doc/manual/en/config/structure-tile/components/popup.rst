@@ -27,21 +27,21 @@ is used.
             {
                 "type": "switch",
                 "state": "OFF",
-                "label": "Wohnzimmer",
+                "label": "Living room",
                 "name": "Light_FF_Living",
                 "active": true
             },
             {
                 "type": "switch",
                 "state": "OFF",
-                "label": "Bad",
+                "label": "Bathroom",
                 "name": "Light_FF_Toilet",
                 "active": true
             },
             {
                 "type": "switch",
                 "state": "OFF",
-                "label": "Küche",
+                "label": "Kitchen",
                 "name": "Light_FF_Kitchen",
                 "active": true
             }]

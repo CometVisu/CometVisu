@@ -216,6 +216,11 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
           this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
         });
       }
+      // Apply any progress value that was set before _init() created the SVG
+      this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
+      if (this.isPropertyInitialized('text')) {
+        this._applyText(this.getText());
+      }
     },
 
     __convert(angle) {
@@ -236,7 +241,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
         switch (this.getType()) {
           case 'circle':
             valueElement = this._element.querySelector(':scope > svg > circle.bar');
-
+            if (!valueElement) {
+              return;
+            }
             valueElement.setAttribute(
               'stroke-dashoffset',
               '' + this.__circumference - (percent / 100) * this.__circumference
@@ -246,7 +253,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
 
           case 'semiCircle':
             valueElement = this._element.querySelector(':scope > svg > path.bar');
-
+            if (!valueElement) {
+              return;
+            }
             end = this.__convert((180 / 100) * percent);
             valueElement.setAttribute(
               'd',
@@ -305,6 +314,9 @@ qx.Class.define('cv.ui.structure.tile.components.RoundProgress', {
       if (this.isConnected()) {
         if (!this.__label) {
           this.__label = this._element.querySelector(':scope > label');
+        }
+        if (!this.__label) {
+          return;
         }
         this.__label.textContent = value;
         if (!value) {

@@ -163,4 +163,18 @@ describe('testing the <cv-image> component of the tile structure', () => {
     expect(element.querySelector(':scope > img').getAttribute('src')).toBe(url.toString());
 
   });
+
+  it('should not duplicate the refresh click handler after reconnect', function() {
+    const element = this.createTileWidgetWithComponent('cv-image', {src: 'Test.svg'}, '');
+    const widget = element.closest('cv-widget');
+
+    widget.remove();
+    document.body.appendChild(widget);
+
+    spyOn(element._instance, 'refresh').and.callThrough();
+
+    element.click();
+
+    expect(element._instance.refresh).toHaveBeenCalledTimes(1);
+  });
 });

@@ -125,32 +125,27 @@ class CometVisuEditorMockup extends BasePage {
    * @param {boolean} edit - Whether to open in edit mode
    */
   async openWidgetElement(selector, edit = false) {
-    return this.page.evaluate(({ selector, edit }) => {
-      return new Promise((resolve) => {
-        function open(editor, sel, editMode) {
+    return this.page.evaluate(({ selector, edit, timeout }) => new Promise(resolve => {
+        const deadline = Date.now() + timeout;
+
+        const tryOpen = () => {
+          const editor = cv.ui.manager.control.ActionDispatcher.getInstance().getFocusedWidget();
           if (editor instanceof cv.ui.manager.editor.Tree) {
-            editor.openByQuerySelector(sel, editMode);
+            editor.openByQuerySelector(selector, edit);
             resolve(true);
-          } else {
-            resolve(false);
+            return;
           }
-        }
-        
-        let editor = cv.ui.manager.control.ActionDispatcher.getInstance().getFocusedWidget();
-        if (!editor) {
-          setTimeout(() => {
-            editor = cv.ui.manager.control.ActionDispatcher.getInstance().getFocusedWidget();
-            if (editor) {
-              open(editor, selector, edit);
-            } else {
-              resolve(false);
-            }
-          }, 2000);
-        } else {
-          open(editor, selector, edit);
-        }
-      });
-    }, { selector, edit });
+
+          if (Date.now() >= deadline) {
+            resolve(false);
+            return;
+          }
+
+          setTimeout(tryOpen, 100);
+        };
+
+        tryOpen();
+      }), { selector, edit, timeout: this.timeout.xl });
   }
 }
 

@@ -195,7 +195,7 @@ qx.Mixin.define('cv.ui.structure.tile.components.svg.MSvgGrid', {
         for (let c = 0; c < this.getColumns(); c++) {
           cellId = row + '-' + c;
           if (!this._cells[cellId]) {
-            return [row, column];
+            return [row, c];
           }
         }
       } else {

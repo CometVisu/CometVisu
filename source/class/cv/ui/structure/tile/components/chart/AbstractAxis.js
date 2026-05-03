@@ -30,6 +30,7 @@ qx.Class.define('cv.ui.structure.tile.components.chart.AbstractAxis', {
    * @param type
    */
   construct(chart, type) {
+    super();
     this._chart = chart;
     this.initType(type);
   },

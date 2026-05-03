@@ -29,7 +29,7 @@ visible). By clicking on the title, the state can be toggled between these state
             <entry value="0">inactive</entry>
         </cv-styling>
     </cv-meta>
-    <cv-group name="Lampen">
+    <cv-group name="Lights">
         <cv-switch mapping="light" styling="button">
             <cv-address slot="address" transform="DPT:1.001">1/4/0</cv-address>
             <span slot="primaryLabel">Living room</span>

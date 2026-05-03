@@ -64,6 +64,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
 
     // test if the address has been registered
     const addresses = model.getAddresses();
+
     expect(addresses).toHaveSize(1);
     expect(addresses).toContain('Test');
 
@@ -258,6 +259,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
         value: '0'
       }
     }));
+
     expect(qx.event.Timer.once).toHaveBeenCalledOnceWith(jasmine.any(Function), addr, 1000);
     expect(client.write).toHaveBeenCalledTimes(2);
 
@@ -459,6 +461,7 @@ describe('testing the <cv-address> element of the tile structure', () => {
         value: '1'
       }
     }));
+
     expect(addr.getValue()).toBe('1');
 
     expect(client.write).toHaveBeenCalledOnceWith('Test', '1', address);
@@ -474,6 +477,31 @@ describe('testing the <cv-address> element of the tile structure', () => {
     }));
 
     expect(client.write).toHaveBeenCalledTimes(2);
+    address.remove();
+  });
+
+  it('should resend the same current value again', () => {
+    const model = cv.data.Model.getInstance();
+    const address = document.createElement('cv-address');
+    address.setAttribute('transform', 'raw');
+    address.textContent = 'Test';
+    spyOn(address, 'dispatchEvent').and.callThrough();
+    document.body.appendChild(address);
+    const addr = address._instance;
+
+    model.onUpdate('Test', '1');
+
+    expect(address.dispatchEvent).toHaveBeenCalledTimes(1);
+
+    addr.resend();
+
+    expect(address.dispatchEvent).toHaveBeenCalledTimes(2);
+
+    const ev = address.dispatchEvent.calls.mostRecent().args[0];
+
+    expect(ev.detail.state).toBe('1');
+    expect(ev.detail.raw).toBe('1');
+
     address.remove();
   });
 

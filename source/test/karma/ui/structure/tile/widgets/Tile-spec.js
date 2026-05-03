@@ -141,6 +141,43 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
     expect(widget.classList.contains('fullscreen')).toBeFalsy();
   });
 
+  it('should emit fullscreenChanged with false when a fullscreen popup closes', function() {
+    const tileElement = this.createHTMLElement('cv-tile', {}, '<cv-address transform="OH:switch" target="fullscreen-popup">Test</cv-address>', false);
+    const widget = document.createElement('cv-widget');
+    const fullscreenStates = [];
+    widget.appendChild(tileElement);
+    document.body.appendChild(widget);
+    element = widget;
+
+    tileElement._instance.addListener('fullscreenChanged', ev => fullscreenStates.push(ev.getData()));
+
+    cv.data.Model.getInstance().onUpdate('Test', 'ON');
+    cv.data.Model.getInstance().onUpdate('Test', 'OFF');
+
+    expect(fullscreenStates).toEqual([true, false]);
+  });
+
+  it('should not forward unrelated state updates twice from fullscreen-enabled child components', function() {
+    const tileElement = this.createHTMLElement(
+      'cv-tile',
+      {},
+      '<cv-address transform="OH:switch" target="popup">Test</cv-address><cv-web src="test.html" allow-fullscreen="true"></cv-web>',
+      false
+    );
+    const widget = document.createElement('cv-widget');
+    widget.appendChild(tileElement);
+    document.body.appendChild(widget);
+    element = widget;
+
+    const tileInstance = tileElement._instance;
+    spyOn(tileInstance, 'onStateUpdate').and.callThrough();
+
+    cv.data.Model.getInstance().onUpdate('Test', 'ON');
+
+    expect(tileInstance.onStateUpdate).toHaveBeenCalledTimes(1);
+    expect(widget.classList.contains('popup')).toBeTruthy();
+  });
+
   xit('should show an outdated state on a tile', function() {
     element = this.createHTMLElement('cv-tile',{  },'<cv-address transform="OH:datetime" target="last-update:120"">Test</cv-address>', true);
 
@@ -185,6 +222,36 @@ describe('testing the <cv-tile> widget of the tile structure', () => {
 
     tile.close();
     expect(popup.hasAttribute('open')).toBeFalsy();
+  });
+
+  it('should not duplicate the href click handler after reconnect', function() {
+    element = this.createHTMLElement('cv-tile', {
+      href: 'https://example.com'
+    }, '', true);
+
+    spyOn(window, 'open');
+
+    element.remove();
+    document.body.appendChild(element);
+
+    element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+
+    expect(window.open).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not duplicate the child popup close handler after reconnect', function() {
+    element = this.createHTMLElement('cv-tile', {}, '<cv-popup></cv-popup>', true);
+    const tile = element._instance;
+    const popup = element.querySelector('cv-popup');
+
+    spyOn(tile, 'resetPopup').and.callThrough();
+
+    element.remove();
+    document.body.appendChild(element);
+
+    popup.dispatchEvent(new CustomEvent('closed'));
+
+    expect(tile.resetPopup).toHaveBeenCalledTimes(1);
   });
 });
 

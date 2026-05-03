@@ -322,7 +322,7 @@ beforeAll(function (done) {
     const templateEngine = cv.TemplateEngine.getInstance();
     const model = cv.data.Model.getInstance();
     client.update = model.update.bind(model); // override clients update function
-    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch((e) => {
+    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch(e => {
       console.error('error loading parts:', e);
     }).then(() => {
       resetApplication();
@@ -341,7 +341,6 @@ beforeAll(function (done) {
    * @returns {ChildNode|string}
    */
   this.createHTMLElement = (name, attributes, content, append) => {
-
     let attributesHTML = '';
     for (const key in attributes) {
       attributesHTML += `${key}="${attributes[key]}" `;
@@ -363,7 +362,7 @@ beforeAll(function (done) {
     const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
     this.container = this.createHTMLElement(widgetName, widgetAttributes, `<cv-tile>${componentHtml}</cv-tile>`, true);
     return this.container.querySelector(`${widgetName} > cv-tile > ${name}`);
-  }
+  };
 });
 
 beforeEach(function () {

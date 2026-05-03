@@ -1,4 +1,5 @@
 {
+    "cv-info-outdated": "76d0d8c0d23df0ef50401cefecbdf872",
     "cv-value-nomapping-off": "a699e69d0b694c26f7ad33941ed41190",
     "cv-value-nomapping-on": "662a15cbfa063753d3fdbbc300821a62",
     "cv-value-mapping-off": "1bdc256b8e6e737662bf9689d1c97e69",
@@ -12,6 +13,5 @@
     "mapping-sensor-alarm-ok": "1e17a1bc85e78ea353092d0b0d90ddb1",
     "mapping-sensor-alarm-notok": "48c1fa3a9f241c29eccb20acb4b935e7",
     "mapping-oh-datetime": "7b41070e8b7706f1aee0951838c44b69",
-    "mapping_oh_time": "1bde7f1836415b114342752ca86224bb",
-    "cv-info-outdated": "76d0d8c0d23df0ef50401cefecbdf872"
+    "mapping_oh_time": "1bde7f1836415b114342752ca86224bb"
 }

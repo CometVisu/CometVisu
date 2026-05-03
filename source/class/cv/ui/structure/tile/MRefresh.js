@@ -111,7 +111,12 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
      */
     setDebouncedRefresh(delay) {
       if (typeof this.refresh === 'function') {
-        this.debouncedRefresh = qx.util.Function.debounce(this.refresh.bind(this), delay);
+        this.debouncedRefresh = qx.util.Function.debounce(() => {
+          if ((typeof this.isConnected === 'function' && !this.isConnected()) || this.isDisposed()) { 
+            return;
+          }
+          this.refresh();
+        }, delay);
       }
     }
   },

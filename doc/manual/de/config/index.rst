@@ -300,6 +300,7 @@ nicht in HTML-Code umgewandelt sondern direkt in den Browser geladen.
 * Navigationsmenüs werden automatisch erstellt.
 * Spezielle Widgets für Smarthome typische Aufgaben (Schalter, Dimmer, Rollladen, Raumtemperaturregler, Media-Player, Charts).
 * Einfaches Erstellen eigener, wiederverwendbarer Widgets ohne Programmierkenntnisse.
+* Mobile Funktionen wie Pull-to-Refresh und automatisch ausblendbare Navigationselemente sparen Platz auf kleinen Bildschirmen.
 * Entworfen nach dem "mobile-first" Ansatz, d.h. die gute Darstellung & Bedienbarkeit auf Handy-Bildschirmen hat oberste Priorität
 
 .. figure:: _static/tile-demo.png

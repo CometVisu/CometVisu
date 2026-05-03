@@ -150,6 +150,10 @@ body {
     padding: 0;
     margin: 0;
 
+    .blue {
+        color: #8e8eff;
+    }
+
     .clickable, *[data-action] {
         cursor: pointer;
     }
@@ -190,6 +194,11 @@ body {
         > [hide-on-scroll="true"] {
             transition: transform 0.2s, height 0.5s;
             overflow: hidden;
+
+            &.popup-open {
+                position: relative;
+                overflow: visible;
+            }
 
             &.scrolled {
                 transform: translateY(-100%);
@@ -579,7 +588,15 @@ body {
         display: flex;
         flex-flow: row wrap;
         gap: var(--spacing);
-        border-top: 1px solid var(--borderColor);
+        margin-top: calc(var(--spacing) * 0.75);
+        position: relative;
+        padding-left: var(--spacing);
+        padding-right: var(--spacing);
+        box-sizing: border-box;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
 
         cv-group {
             padding-left: calc(var(--spacing)*2);
@@ -592,6 +609,7 @@ body {
             }
             &:before {
                 opacity: 0;
+                width: 0;
             }
         }
 
@@ -606,12 +624,56 @@ body {
         > summary {
             flex-basis: 100%;
             display: flex;
-            /*padding: calc(var(--spacing) * 2) var(--spacing);*/
             cursor: pointer;
             font-size: 18px;
-            height: var(--tileCellHeight);
+            min-height: calc(var(--tileCellHeight) * 0.92);
+            height: calc(var(--tileCellHeight) * 0.92);
             align-items: center;
             gap: var(--spacing);
+
+            /* undo group padding */
+            margin-left: calc(var(--spacing) * -1);
+            margin-right: calc(var(--spacing) * -1);
+          
+            padding: 0 calc(var(--spacing) * 1.35);
+            border: 1px solid var(--borderColor);
+            border-radius: calc(var(--tileCellHeight) / 2);
+            background: var(--tileBackground);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+
+            &:hover {
+                border-color: rgba(181, 216, 230, 0.14);
+                background: rgba(255, 255, 255, 0.045);
+                transform: translateY(-1px);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 12px rgba(0, 0, 0, 0.12);
+            }
+
+            > cv-icon.title {
+                padding: 0.38rem;
+                border-radius: 999px;
+                background: rgba(138, 173, 186, 0.08);
+                color: #d7e7ee;
+                font-size: 1rem;
+            }
+
+            // > label.title {
+            //     overflow: hidden;
+            //     text-overflow: ellipsis;
+            //     white-space: nowrap;
+            //     font-size: 0.98em;
+            //     letter-spacing: 0.01em;
+
+            //     &::after {
+            //         opacity: 0.55;
+            //     }
+            // }
+
+            > cv-value,
+            > cv-button,
+            > label.value {
+                opacity: 0.86;
+            }
 
             > .title {
                 text-align: left;
@@ -627,6 +689,14 @@ body {
                 -webkit-font-smoothing: antialiased;
                 content: "\EA6E";
                 vertical-align: text-bottom;
+                display: inline-grid;
+                place-items: center;
+                width: 1.7rem;
+                height: 1.7rem;
+                border-radius: 999px;
+                background: rgba(138, 173, 186, 0.12);
+                color: #d7e7ee;
+                flex-shrink: 0;
             }
 
             > label.title:after {
@@ -658,25 +728,48 @@ body {
             height: 0;
         }
 
-        &:first-of-type {
-            border-top: none;
-
-            &[name] {
-                margin-top: 0;
-            }
-        }
-
-        &:not([name]) {
-            /* add some top space for groups that do not show a label */
-            margin-top: calc(var(--spacing)*2);
-        }
-
         &[open] > summary:before {
             content: "\EA4E";
         }
 
         &[open] > summary > label.title:after {
             content: "";
+        }
+
+        &[open]:not(.empty):not([wrap="false"]):has(summary)::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: calc(var(--spacing) * -1);
+            border-radius: calc(var(--tileCellHeight) / 2);
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            border: 1px solid rgba(181, 216, 230, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        &[open] > *:not(summary) {
+            position: relative;
+            z-index: 1;
+        }
+
+        &[open] > summary {
+            position: relative;
+            z-index: 2;
+            margin-bottom: calc(var(--spacing) * 0.15);
+            border-color: rgba(181, 216, 230, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 6px 14px rgba(0, 0, 0, 0.12);
+
+            &::before,
+            > cv-icon.title {
+                background: rgba(181, 216, 230, 0.18);
+            }
         }
     }
 
@@ -858,6 +951,11 @@ body {
 
         > header {
             @include common-header;
+        }
+
+        /* this is a "non cv-popup" popup, e.g. the cv-option list in cv-select */
+        &:has(div.popup.open), &:has(cv-menu.open) {
+            z-index: 10000;
         }
 
         &[header="auto-hide"]:not(.popup) {
@@ -1595,30 +1693,73 @@ body {
         width: 100%;
         height: 100%;
 
+        &:has(.popup.open) {
+            z-index: 5;
+        }
+
         .value {
             margin: 0;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            max-width: calc(100% - var(--spacing) * 5);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .popup {
             display: none;
             position: absolute;
-            background-color: var(--buttonBackground);
-            top: var(--tileCellHeight);
-            width: 100%;
+            top: calc(var(--tileCellHeight) - var(--spacing) / 2);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            min-width: 100%;
+            width: max-content;
+            max-width: min(320px, calc(100vw - var(--spacing) * 2));
+            padding: calc(var(--spacing) / 2);
+            background: linear-gradient(180deg, var(--buttonBackground) 0%, var(--tileBackground) 100%);
+            border: 1px solid var(--borderColor);
+            border-radius: calc(var(--spacing) * 1.5);
+            box-sizing: border-box;
+            box-shadow:
+                0 10px 24px var(--shadowColor),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.16s ease, transform 0.16s ease;
+
+            &.open {
+                display: block;
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateX(-50%) translateY(0);
+            }
 
             cv-option {
-                display: block;
-                padding: calc(var(--spacing)/2) var(--spacing);
-                vertical-align: middle;
+                display: flex;
+                align-items: center;
+                gap: calc(var(--spacing) / 2);
+                min-height: calc(var(--spacing) * 5);
+                padding: calc(var(--spacing) * 0.75) calc(var(--spacing) * 1.25);
+                border-radius: var(--spacing);
                 font-size: 18px;
+                line-height: 1.2;
                 cursor: pointer;
+                transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
 
                 &:hover {
+                    background-color: rgba(var(--primaryColor-r), var(--primaryColor-g), var(--primaryColor-b), 0.14);
                     color: var(--primaryColor);
+                    transform: translateX(2px);
+                }
+
+                + cv-option {
+                    margin-top: 2px;
                 }
             }
         }
@@ -1635,6 +1776,14 @@ body {
             top: 50%;
             right: $defaultSpace * 2;
             transform: translate(0, -50%);
+            transition: transform 0.16s ease, color 0.16s ease;
+        }
+
+        &:has(.popup.open) {
+            cv-icon.dropdown {
+                color: var(--primaryColor);
+                transform: translate(0, -50%) rotate(180deg);
+            }
         }
     }
 

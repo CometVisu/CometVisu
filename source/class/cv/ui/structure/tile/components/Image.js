@@ -36,6 +36,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
     _url: null,
     _headers: null,
     _request: null,
+    __clickHandler: null,
 
     _init() {
       super._init();
@@ -45,7 +46,11 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         img = document.createElement('img');
         element.appendChild(img);
       }
-      element.addEventListener('click', () => this.refresh());
+      if (!this.__clickHandler) {
+        this.__clickHandler = () => this.refresh();
+      }
+      element.removeEventListener('click', this.__clickHandler);
+      element.addEventListener('click', this.__clickHandler);
       let src = element.getAttribute('src');
       let base = window.location.origin;
       if (src.substring(0, 1) !== '/' && src.substring(0, 4) !== 'http') {
@@ -88,6 +93,7 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
       let img = this._element.querySelector(':scope > img');
       if (Object.keys(this._headers).length > 0) {
         let request = new XMLHttpRequest();
+        this._request = request;
         request.responseType = 'blob';
         request.open('get', this._url.toString(), true);
         Object.keys(this._headers).forEach(name => {
@@ -100,6 +106,9 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
             img.onload = () => {
               URL.revokeObjectURL(url);
             };
+            this._request = null;
+          } else if (request.readyState === XMLHttpRequest.DONE) {
+            this._request = null;
           }
         };
         request.send(null);
@@ -118,6 +127,15 @@ qx.Class.define('cv.ui.structure.tile.components.Image', {
         this._url.searchParams.set('r', '' + Math.random());
         this._loadImage();
       }
+    },
+
+    _disconnected() {
+      this._element.removeEventListener('click', this.__clickHandler);
+      if (this._request) {
+        this._request.abort();
+        this._request = null;
+      }
+      super._disconnected();
     },
 
     /**

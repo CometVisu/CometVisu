@@ -86,16 +86,15 @@ qx.Class.define('cv.util.Color', {
        * @param A22
        */
       function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
-        // eslint-disable-line
         return (
           A00 * A11 * A22 + A01 * A12 * A20 + A02 * A10 * A21 - A20 * A11 * A02 - A21 * A12 * A00 - A22 * A10 * A01
         );
       }
       const detInv = 1 / det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
       return [
-        det(y0, y1, y2, A01, A11, A21, A02, A12, A22) * detInv, // eslint-disable-line
-        det(A00, A10, A20, y0, y1, y2, A02, A12, A22) * detInv, // eslint-disable-line
-        det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv // eslint-disable-line
+        det(y0, y1, y2, A01, A11, A21, A02, A12, A22) * detInv,  
+        det(A00, A10, A20, y0, y1, y2, A02, A12, A22) * detInv,  
+        det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv  
       ];
     },
 
@@ -164,7 +163,7 @@ qx.Class.define('cv.util.Color', {
             ? ((-1.1063814 * x - 1.3481102) * x + 2.18555832) * x - 0.20219683
             : T <= 4000
             ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867
-            : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483 // eslint-disable-line space-in-parens
+            : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483  
       };
     },
 
@@ -519,11 +518,11 @@ qx.Class.define('cv.util.Color', {
       function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
         return [
           (B1 * C2 * D3 - B1 * C3 * D2 - B2 * C1 * D3 + B2 * C3 * D1 + B3 * C1 * D2 - B3 * C2 * D1) /
-            (-A1 * C2 * D3 + A1 * C3 * D2 + A2 * C1 * D3 - A2 * C3 * D1 - A3 * C1 * D2 + A3 * C2 * D1), // eslint-disable-line
+            (-A1 * C2 * D3 + A1 * C3 * D2 + A2 * C1 * D3 - A2 * C3 * D1 - A3 * C1 * D2 + A3 * C2 * D1),  
           (A1 * C2 * D3 - A1 * C3 * D2 - A2 * C1 * D3 + A2 * C3 * D1 + A3 * C1 * D2 - A3 * C2 * D1) /
-            (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1), // eslint-disable-line
+            (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1),  
           (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1) /
-            (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1) // eslint-disable-line
+            (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1)  
         ];
       }
 
@@ -769,40 +768,40 @@ qx.Class.define('cv.util.Color', {
       let g;
       let b;
       let u;
-      let d; // eslint-disable-line max-statements-per-line
+      let d;  
       if (this.__hsv.h < 1 / 6) {
         let u = (this.__hsv.h - 0 / 6) * 6;
         r = 1;
         g = u;
-        b = 0; // eslint-disable-line max-statements-per-line
+        b = 0;  
       } else if (this.__hsv.h < 2 / 6) {
         u = (this.__hsv.h - 1 / 6) * 6;
-        d = 1 - u; // eslint-disable-line max-statements-per-line
+        d = 1 - u;  
         r = d;
         g = 1;
-        b = 0; // eslint-disable-line max-statements-per-line
+        b = 0;  
       } else if (this.__hsv.h < 3 / 6) {
         let u = (this.__hsv.h - 2 / 6) * 6;
         r = 0;
         g = 1;
-        b = u; // eslint-disable-line max-statements-per-line
+        b = u;  
       } else if (this.__hsv.h < 4 / 6) {
         u = (this.__hsv.h - 3 / 6) * 6;
-        d = 1 - u; // eslint-disable-line max-statements-per-line
+        d = 1 - u;  
         r = 0;
         g = d;
-        b = 1; // eslint-disable-line max-statements-per-line
+        b = 1;  
       } else if (this.__hsv.h < 5 / 6) {
         u = (this.__hsv.h - 4 / 6) * 6;
         r = u;
         g = 0;
-        b = 1; // eslint-disable-line max-statements-per-line
+        b = 1;  
       } else {
         u = (this.__hsv.h - 5 / 6) * 6;
-        d = 1 - u; // eslint-disable-line max-statements-per-line
+        d = 1 - u;  
         r = 1;
         g = 0;
-        b = d; // eslint-disable-line max-statements-per-line
+        b = d;  
       }
 
       // second step: blend with white to take saturation into account and scale with brightness

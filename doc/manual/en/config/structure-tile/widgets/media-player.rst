@@ -86,8 +86,8 @@ The media player widget supports an optional :ref:`menu <tile-item-menu>` by add
 .. code-block:: xml
 
     <cv-media-player>
-       <cv-menu-item slot="menu" name="Favoriten" action="popup" icon="ri-star-line">...</cv-menu-item>
-       <cv-menu-item slot="menu" name="Stumm" action="toggleState" icon="ri-volume-mute-line">...</cv-menu-item>
+       <cv-menu-item slot="menu" name="Favorites" action="popup" icon="ri-star-line">...</cv-menu-item>
+       <cv-menu-item slot="menu" name="Mute" action="toggleState" icon="ri-volume-mute-line">...</cv-menu-item>
         ...
     </cv-media-player>
 

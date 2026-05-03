@@ -41,14 +41,17 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
 
   it('should create a default popup', function() {
     element = this.createHTMLElement('cv-popup', {}, '', true);
+
     expect(element.tagName).toBe('CV-POPUP');
     expect(element.querySelector('header')).toBeNull();
 
     element._instance.open();
+
     expect(element.hasAttribute('open')).toBeTruthy();
 
     const closeButton = element.querySelector('button.close');
     closeButton.click();
+
     expect(element.hasAttribute('open')).toBeFalsy();
   });
 
@@ -57,7 +60,7 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
       title: 'Test',
       modal: true,
       closeable: false,
-      "auto-close-timeout": 0.001
+      'auto-close-timeout': 0.001
     }, '', true);
 
     expect(element.querySelector('button.close')).toBeNull();
@@ -65,15 +68,18 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
     const popup = element._instance;
     spyOn(popup, 'registerModalPopup');
     spyOn(popup, 'unregisterModalPopup');
+
     expect(popup.registerModalPopup).not.toHaveBeenCalled();
     expect(popup.unregisterModalPopup).not.toHaveBeenCalled();
 
     // check title
     const header = element.querySelector('header > h2');
+
     expect(header).not.toBeNull();
     expect(header.textContent).toBe('Test');
 
     popup.open();
+
     expect(popup.registerModalPopup).toHaveBeenCalled();
     expect(element.hasAttribute('open')).toBeTruthy();
 
@@ -82,7 +88,6 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
       expect(element.hasAttribute('open')).toBeFalsy();
       done();
     }, 10);
-
   });
 
   it('should open/close via state update', function() {
@@ -90,9 +95,11 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
 
     const model = cv.data.Model.getInstance();
     model.onUpdate('popup', 'ON');
+
     expect(element.hasAttribute('open')).toBeTruthy();
 
     model.onUpdate('popup', 'OFF');
+
     expect(element.hasAttribute('open')).toBeFalsy();
   });
 
@@ -101,9 +108,11 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
 
     const model = cv.data.Model.getInstance();
     model.onUpdate('popup', 'OFF');
+
     expect(element.hasAttribute('open')).toBeFalsy();
 
     model.onUpdate('popup', 'ON');
+
     expect(element.hasAttribute('open')).toBeTruthy();
   });
 
@@ -112,9 +121,11 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
 
     const model = cv.data.Model.getInstance();
     model.onUpdate('popup', 'no');
+
     expect(element.hasAttribute('open')).toBeFalsy();
 
     model.onUpdate('popup', 'yes');
+
     expect(element.hasAttribute('open')).toBeTruthy();
   });
 
@@ -126,11 +137,67 @@ describe('testing the <cv-popup> widget of the tile structure', () => {
 
     // do not close when state is not transformed to false
     model.onUpdate('popup', 'ON');
+
     expect(element.hasAttribute('open')).toBeTruthy();
 
     model.onUpdate('popup', 'OFF');
+
     expect(element.hasAttribute('open')).toBeFalsy();
   });
 
+  it('should not duplicate popup chrome after reconnect', function() {
+    element = this.createHTMLElement('cv-popup', {title: 'Test'}, '', true);
+    const popup = element._instance;
+
+    element.remove();
+    document.body.appendChild(element);
+
+    expect(element.querySelectorAll(':scope > header').length).toBe(1);
+    expect(element.querySelectorAll(':scope > button.close').length).toBe(1);
+
+    spyOn(popup, 'close').and.callThrough();
+
+    popup.open();
+    element.querySelector('button.close').click();
+
+    expect(popup.close).toHaveBeenCalledTimes(1);
+  });
+
+  it('should mark hide-on-scroll containers while a popup is open', function() {
+    const headerGroup = document.createElement('div');
+    headerGroup.setAttribute('hide-on-scroll', 'true');
+    element = headerGroup;
+
+    const popupElement = this.createHTMLElement('cv-popup', {}, '', false);
+    headerGroup.appendChild(popupElement);
+    document.body.appendChild(headerGroup);
+
+    popupElement._instance.open();
+
+    expect(headerGroup.classList.contains('popup-open')).toBeTruthy();
+
+    popupElement._instance.close();
+
+    expect(headerGroup.classList.contains('popup-open')).toBeFalsy();
+  });
+
+  it('should portal modal header popups to the document body while open', function() {
+    const headerGroup = document.createElement('div');
+    headerGroup.setAttribute('hide-on-scroll', 'true');
+    element = headerGroup;
+
+    const popupElement = this.createHTMLElement('cv-popup', {modal: true}, '', false);
+    headerGroup.appendChild(popupElement);
+    document.body.appendChild(headerGroup);
+
+    popupElement._instance.open();
+
+    expect(popupElement.parentElement).toBe(document.body);
+    expect(headerGroup.classList.contains('popup-open')).toBeFalsy();
+
+    popupElement._instance.close();
+
+    expect(popupElement.parentElement).toBe(headerGroup);
+  });
 });
 

@@ -86,6 +86,7 @@ qx.Class.define('cv.ConfigCache', {
       const model = cv.data.Model.getInstance();
       this.save({
         hash: hash || this.toHash(xml),
+        etag: cv.Config.configETag || '',
         VERSION: cv.Version.VERSION,
         REV: cv.Version.REV,
         data: JSON.stringify(model.getWidgetDataModel()),
@@ -264,6 +265,10 @@ qx.Class.define('cv.ConfigCache', {
     },
 
     async isValid(xml, hash) {
+      if (cv.Config.configETag) {
+        const cachedETag = await this.getData('etag');
+        this._valid = cachedETag === cv.Config.configETag;
+      }
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
         const cachedHash = await this.getData('hash');

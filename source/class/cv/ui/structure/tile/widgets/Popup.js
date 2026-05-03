@@ -43,52 +43,128 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
    */
   members: {
     _closeButton: null,
+    __closeButtonClickHandler: null,
+    __closeEventHandler: null,
+    __portalParent: null,
+    __portalPlaceholder: null,
+    __portalNextSibling: null,
+
+    __setHeaderPopupOpenState(isOpen) {
+      const clippingParent = this._element.closest('[hide-on-scroll="true"]');
+      if (clippingParent) {
+        clippingParent.classList.toggle('popup-open', isOpen);
+      }
+    },
+
+    __shouldPortalToBody() {
+      return this._element.getAttribute('modal') === 'true';
+    },
+
+    __portalToBody() {
+      if (!this.__shouldPortalToBody() || this.__portalPlaceholder || this._element.parentElement === document.body) {
+        return;
+      }
+
+      this.__portalParent = this._element.parentElement;
+      this.__portalNextSibling = this._element.nextSibling;
+      this.__portalPlaceholder = document.createComment('cv-popup-placeholder');
+      this.__portalParent.insertBefore(this.__portalPlaceholder, this._element);
+      document.body.appendChild(this._element);
+    },
+
+    __restoreFromBody() {
+      if (!this.__portalPlaceholder || !this.__portalParent) {
+        return;
+      }
+
+      if (this.__portalPlaceholder.parentNode === this.__portalParent) {
+        this.__portalParent.insertBefore(this._element, this.__portalPlaceholder);
+        this.__portalPlaceholder.remove();
+      }
+
+      this.__portalPlaceholder = null;
+      this.__portalParent = null;
+      this.__portalNextSibling = null;
+    },
 
     _init() {
       super._init();
       const popup = this._element;
       const closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
       if (closeable) {
-        this._closeButton = document.createElement('button');
-        this._closeButton.classList.add('close');
-        const icon = document.createElement('i');
-        icon.classList.add('ri-close-line');
-        this._closeButton.appendChild(icon);
-        popup.insertBefore(this._closeButton, popup.firstChild);
-        this._closeButton.addEventListener('click', ev => {
-          ev.stopPropagation();
-          this.close();
-        });
+        this._closeButton = popup.querySelector(':scope > button.close');
+        if (!this._closeButton) {
+          this._closeButton = document.createElement('button');
+          this._closeButton.classList.add('close');
+          const icon = document.createElement('i');
+          icon.classList.add('ri-close-line');
+          this._closeButton.appendChild(icon);
+          popup.insertBefore(this._closeButton, popup.firstChild);
+        }
+        if (!this.__closeButtonClickHandler) {
+          this.__closeButtonClickHandler = ev => {
+            ev.stopPropagation();
+            this.close();
+          };
+        }
+        this._closeButton.removeEventListener('click', this.__closeButtonClickHandler);
+        this._closeButton.addEventListener('click', this.__closeButtonClickHandler);
       }
-      popup.addEventListener('close', ev => {
-        this.close();
-      });
+      if (!this.__closeEventHandler) {
+        this.__closeEventHandler = () => {
+          this.close();
+        };
+      }
+      popup.removeEventListener('close', this.__closeEventHandler);
+      popup.addEventListener('close', this.__closeEventHandler);
       if (popup.hasAttribute('title')) {
-        const header = document.createElement('header');
-        popup.insertBefore(header, popup.firstChild);
-        const title = document.createElement('h2');
+        let header = popup.querySelector(':scope > header');
+        if (!header) {
+          header = document.createElement('header');
+          popup.insertBefore(header, popup.firstChild);
+        }
+        let title = header.querySelector(':scope > h2');
+        if (!title) {
+          title = document.createElement('h2');
+          header.appendChild(title);
+        }
         title.textContent = popup.getAttribute('title');
-        header.appendChild(title);
       }
       if (popup.hasAttribute('auto-close-timeout')) {
         const timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
 
-        if (!isNaN(timeoutSeconds)) {
+        if (!isNaN(timeoutSeconds) && !this._autoCloseTimer) {
           this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
           this._autoCloseTimer.addListener('interval', () => {
             this._autoCloseTimer.stop();
             this.close();
           });
-        } else {
+        } else if (isNaN(timeoutSeconds)) {
           this.error('invalid auto-close-timeout value:', popup.getAttribute('auto-close-timeout'));
         }
       }
     },
 
+    _disconnected() {
+      this.__setHeaderPopupOpenState(false);
+      if (this._closeButton && this.__closeButtonClickHandler) {
+        this._closeButton.removeEventListener('click', this.__closeButtonClickHandler);
+      }
+      this._element.removeEventListener('close', this.__closeEventHandler);
+      if (this._autoCloseTimer) {
+        this._autoCloseTimer.stop();
+      }
+      super._disconnected();
+    },
+
     open() {
       const popup = this._element;
       if (!popup.hasAttribute('open')) {
+        this.__portalToBody();
         popup.setAttribute('open', '');
+        if (!this.__portalPlaceholder) {
+          this.__setHeaderPopupOpenState(true);
+        }
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.registerModalPopup();
         }
@@ -102,12 +178,14 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
       const popup = this._element;
       if (popup) {
         popup.removeAttribute('open');
+        this.__setHeaderPopupOpenState(false);
         if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
           this.unregisterModalPopup();
         }
         if (this._autoCloseTimer) {
           this._autoCloseTimer.stop();
         }
+        this.__restoreFromBody();
         popup.dispatchEvent(new CustomEvent('closed'));
       }
     },

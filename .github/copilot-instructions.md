@@ -109,6 +109,8 @@ The screenshot system includes:
 - Use `./create-distrobox` for containerized dev environment (includes webserver, all tools)
 - Distrobox provides Apache server with configurable backend proxies
 - Configuration via `.env` file (see `DEVELOPMENT.md` for examples)
+- When running in the distrobox, you can test you local builds in http://localhost:8080/<build-target>/
+
 
 ## Code Conventions
 
@@ -198,6 +200,13 @@ Declare external assets in class header:
 - Use `qx.log.Logger.debug/info/warn/error(this, 'message')`
 - Browser dev tools with `compiled/source/` served
 - Test mode: Set `cv.Config.testMode = true` for simulated backend
+
+## Repo-Specific Pitfalls
+
+- openHAB REST late subscriptions do not get a retained current value from EventSource alone; when pages activate later and add new listeners, trigger a debounced refresh or re-subscribe for the expanded address list.
+- Deferred tile initialization can let child `cv-address` elements replay cached values before the parent widget is fully attached; for widgets derived from child addresses, resync locally after `_init()` from child address elements instead of changing global address timing.
+- Tile custom elements are not fully disposed by DOM removal in Karma tests; clean up timers/listeners explicitly in `_disconnected()` and `destruct()`, and do not rely on `qx.util.Function.debounce` for cancelable test cleanup.
+- Tile screenshot definitions may contain hardcoded localized strings inside embedded XML `config`; changing those definitions also requires updating the screenshot `hash`. In Playwright screenshot flows, wait for the base selector to be attached first, then apply data/actions, then wait for the actual shot widget to be visible.
 
 ## External Dependencies
 - D3.js for charts/visualizations

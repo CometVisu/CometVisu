@@ -58,6 +58,11 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         (cv.Config.forceReload === true ? '?' + Date.now() : '')
     );
     qx.locale.Manager.getInstance().addListener('changeLocale', this._onChangeLocale, this);
+    this.__templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
+    const prefetchLink = document.createElement('link');
+    prefetchLink.rel = 'prefetch';
+    prefetchLink.href = this.__templates;
+    document.head.appendChild(prefetchLink);
   },
 
   /*
@@ -130,6 +135,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     __mappings: null,
     __stylings: null,
     _templateWidgets: null,
+    __templates: null,
+    __mainScrollElement: null,
+    __mainScrollHandler: null,
+    __themeMediaQuery: null,
+    __themeChangeHandler: null,
+    __visibilityObserver: null,
 
     getHtmlStructure() {
       return this.__HTML_STRUCT;
@@ -196,14 +207,6 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     // not needed, backend parse/init themselves
     parseBackendSettings(xml) {
-/*      if (xml.querySelectorAll('cv-backend').length === 0) {
-        // no backends defined, use the default one;
-        const client = cv.io.BackendConnections.initBackendClient();
-        client.login(true, cv.Config.configSettings.credentials, () => {
-          this.debug('logged in');
-          cv.io.BackendConnections.startInitialRequests();
-        });
-      }*/
       return false;
     },
 
@@ -219,9 +222,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
       this.translate(config, true);
 
       if (!cv.Config.cacheUsed) {
-        const templates = qx.util.ResourceManager.getInstance().toUri('structures/tile/templates.xml');
-
-        const ajaxRequest = new qx.io.request.Xhr(templates);
+        const ajaxRequest = new qx.io.request.Xhr(this.__templates);
         ajaxRequest.set({
           accept: 'application/xml',
           cache: !cv.Config.forceReload
@@ -264,10 +265,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
           }
 
           const main = document.body.querySelector(':scope > main');
+          this.__detachMainScrollListener();
           if (main) {
             let shrinkHeight = -1;
             let canAnimate = false;
-            main.addEventListener('scroll', () => {
+            this.__mainScrollElement = main;
+            this.__mainScrollHandler = () => {
               // we need to know the space that we gain in height, when the shrinked elements are not shown
               // and must not start the effect before we reach that threshold, otherwise
               // main.scrollTop would go back to 0 because we have more height available and do not have to scroll+
@@ -298,7 +301,8 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
                 this.setScrolled(false);
                 shrinkHeight = -1;
               }
-            });
+            };
+            main.addEventListener('scroll', this.__mainScrollHandler);
           }
 
           this.enablePullToRefresh();
@@ -306,7 +310,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         ajaxRequest.addListener('statusError', e => {
           const status = e.getTarget().getTransport().status;
           if (!qx.util.Request.isSuccessful(status)) {
-            this.error('filenotfound', templates);
+            this.error('filenotfound', this.__templates);
           }
           document.body.classList.remove('loading-structure');
         });
@@ -332,21 +336,29 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
      * @param xml {XMLDocument}
      */
     async preParse(xml) {
+      this.__detachThemeChangeListener();
       if (xml.documentElement.hasAttribute('theme')) {
         let theme = xml.documentElement.getAttribute('theme');
         const data = {};
         if (theme === 'system') {
           if (window.matchMedia) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            theme = mediaQuery.matches ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', theme);
             data['theme'] = theme;
             cv.data.Model.getInstance().updateFrom('system', data);
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            this.__themeMediaQuery = mediaQuery;
+            this.__themeChangeHandler = e => {
               document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
 
               data['theme'] = e.matches ? 'dark' : 'light';
               cv.data.Model.getInstance().updateFrom('system', data);
-            });
+            };
+            if (typeof mediaQuery.addEventListener === 'function') {
+              mediaQuery.addEventListener('change', this.__themeChangeHandler);
+            } else if (typeof mediaQuery.addListener === 'function') {
+              mediaQuery.addListener(this.__themeChangeHandler);
+            }
           } else {
             this.error('system theme detection not possible in this browser');
           }
@@ -367,6 +379,7 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
     },
 
     observeVisibility() {
+      this.__disconnectVisibilityObserver();
       // find all pages with an iframe with attribute "data-src" and observe its parent page
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -375,12 +388,40 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
             entry.target.removeAttribute('data-src');
             observer.unobserve(entry.target);
           }
-        }, {
-          root: document.querySelector('body > main')
         });
+      }, {
+        root: document.querySelector('body > main')
       });
+      this.__visibilityObserver = observer;
       for (const iframe of document.querySelectorAll('iframe[data-src], img[data-src]')) {
         observer.observe(iframe);
+      }
+    },
+
+    __detachMainScrollListener() {
+      if (this.__mainScrollElement && this.__mainScrollHandler) {
+        this.__mainScrollElement.removeEventListener('scroll', this.__mainScrollHandler);
+      }
+      this.__mainScrollElement = null;
+      this.__mainScrollHandler = null;
+    },
+
+    __detachThemeChangeListener() {
+      if (this.__themeMediaQuery && this.__themeChangeHandler) {
+        if (typeof this.__themeMediaQuery.removeEventListener === 'function') {
+          this.__themeMediaQuery.removeEventListener('change', this.__themeChangeHandler);
+        } else if (typeof this.__themeMediaQuery.removeListener === 'function') {
+          this.__themeMediaQuery.removeListener(this.__themeChangeHandler);
+        }
+      }
+      this.__themeMediaQuery = null;
+      this.__themeChangeHandler = null;
+    },
+
+    __disconnectVisibilityObserver() {
+      if (this.__visibilityObserver) {
+        this.__visibilityObserver.disconnect();
+        this.__visibilityObserver = null;
       }
     },
 
@@ -448,9 +489,31 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
 
     /**
      * Return the addresses needed to update all states on the initially loaded page
+     * @param backendName {String} name of the backend
+     * @return {Array<String>} list of addresses
      */
-    getInitialAddresses() {
-      return [];
+    getInitialAddresses(backendName) {
+      const hash = document.location.hash;
+      const pageId = hash ? hash.substring(1) : this.getInitialPageId();
+      const page = document.querySelector('cv-page#' + pageId);
+      if (!page) {
+        return [];
+      }
+      const addresses = [];
+      const defaultBackend = cv.data.Model.getInstance().getDefaultBackendName();
+      for (const addr of page.querySelectorAll('cv-address')) {
+        const mode = addr.getAttribute('mode') ?? 'readwrite';
+        if (mode !== 'write') {
+          const addrBackend = addr.getAttribute('backend') ?? defaultBackend;
+          if (!backendName || addrBackend === backendName) {
+            const addressText = addr.textContent.trim();
+            if (addressText) {
+              addresses.push(addressText);
+            }
+          }
+        }
+      }
+      return addresses;
     },
 
     /**
@@ -626,14 +689,16 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
   */
   destruct() {
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onChangeLocale, this);
+    this.__detachMainScrollListener();
+    this.__detachThemeChangeListener();
+    this.__disconnectVisibilityObserver();
   }
 });
 
-
-/* eslint-disable-next-line no-redeclare */
 class QxConnector extends HTMLElement {
   constructor(QxClass) {
     super();
+    this.templateElement = false;
     if (QxClass) {
       if (qx.Class.isSubClassOf(QxClass, cv.ui.structure.tile.elements.AbstractCustomElement)) {
         this._instance = new QxClass(this);
@@ -654,13 +719,13 @@ class QxConnector extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this._instance) {
+    if (this._instance && this.templateElement === false) {
       this._instance.setConnected(true);
     }
   }
 
   disconnectedCallback() {
-    if (this._instance) {
+    if (this._instance && this.templateElement === false) {
       this._instance.setConnected(false);
     }
   }
@@ -678,6 +743,7 @@ window.QxConnector = QxConnector;
 class TemplatedElement extends QxConnector {
   constructor(templateId, QxClass) {
     super(QxClass);
+    this.templateElement = true;
     const renderAttributeName = 'data-cv-rendered';
     if (this.getAttribute(renderAttributeName) === 'true') {
       // do not render the template twice
@@ -837,6 +903,7 @@ class TemplatedElement extends QxConnector {
 
       // clear content
       this.innerHTML = '';
+      this.templateElement = false;
       this.appendChild(content);
       this.classList.add('cv-widget');
       this.setAttribute(renderAttributeName, 'true');

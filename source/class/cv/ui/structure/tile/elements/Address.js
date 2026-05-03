@@ -35,15 +35,29 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
     __lastValue: null,
     __transformedValue: null,
     _stateUpdateTarget: null,
+    __sendStateHandler: null,
 
     getAddress() {
       return this._element.textContent.trim();
     },
 
+    // Override to pre-register the address in the model before page-active deferral,
+    // so the backend's initial full-state fetch stores the state for non-start-page elements.
+    _applyConnected(value) {
+      if (value) {
+        this._stateUpdateTarget = this._element;
+        const address = this.getAddress();
+        if (address) {
+          const model = cv.data.Model.getInstance();
+          const backendName = this._element.getAttribute('backend');
+          model.addAddress(address, this._element.getAttribute('id'), backendName);
+        }
+      }
+      super._applyConnected(value);
+    },
 
     _init() {
       const element = this._element;
-      this._stateUpdateTarget = element;
       const address = this.getAddress();
       if (address) {
         const model = cv.data.Model.getInstance();
@@ -69,7 +83,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         }
         if (mode !== 'read') {
           // listen for sendState events
-          element.addEventListener('sendState', ev => {
+          this.__sendStateHandler = ev => {
             let value = null;
             if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
               value = ev.detail.value;
@@ -133,7 +147,27 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                 }
               }
             }
-          });
+          };
+          element.addEventListener('sendState', this.__sendStateHandler);
+        }
+      }
+    },
+
+    _disconnected() {
+      if (this.__sendStateHandler) {
+        this._element.removeEventListener('sendState', this.__sendStateHandler);
+        this.__sendStateHandler = null;
+      }
+    },
+
+    resend() {
+      const address = this.getAddress();
+      if (address) {
+        const model = cv.data.Model.getInstance();
+        const backendName = this._element.getAttribute('backend');
+        const state = model.getState(address, backendName);
+        if (state !== undefined) {
+          this.fireStateUpdate(address, state, true);
         }
       }
     },
@@ -142,9 +176,10 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
      * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.
      * @param address {String} address
      * @param state {variant} state to send
+     * @param force {boolean} if true, the event is fired even if the state has not changed since the last update
      */
-    fireStateUpdate(address, state) {
-      if (this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
+    fireStateUpdate(address, state, force) {
+      if (force || this.__lastValue !== state || this._element.getAttribute('send-mode') === 'always') {
         let transform = this._element.getAttribute('transform') || 'raw';
         let transformedState = cv.Transform.decode({
           transform: transform,
@@ -225,7 +260,11 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
   },
 
   destruct() {
-      cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
+    if (this.__sendStateHandler && this._element) {
+      this._element.removeEventListener('sendState', this.__sendStateHandler);
+      this.__sendStateHandler = null;
+    }
+    cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
   },
 
   defer(Clazz) {

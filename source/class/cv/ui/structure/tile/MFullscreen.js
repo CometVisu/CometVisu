@@ -45,6 +45,10 @@ qx.Mixin.define('cv.ui.structure.tile.MFullscreen', {
     __uuid: null,
     __popupAddress: null,
     __button: null,
+    __tileAddress: null,
+    __tileAddressStateUpdateHandler: null,
+    __tileClosedHandler: null,
+    __tileWidget: null,
 
     getUuid() {
       if (!this.__uuid) {
@@ -72,39 +76,59 @@ qx.Mixin.define('cv.ui.structure.tile.MFullscreen', {
     },
 
     _initFullscreenSwitch() {
-      // add fullscreen button + address
-      const button= this.__button = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
-      button.setAttribute('data-value', '0');
-      button.addEventListener('click', () => this.toggleFullscreen());
-      this.appendToHeader(button, 'right');
+      this.__cleanupFullscreenBindings();
 
-      if (typeof this._applyFullscreen === 'undefined') {
-        // address
-        const tileAddress = document.createElement('cv-address');
-        tileAddress.setAttribute('mode', 'read');
-        tileAddress.setAttribute('target', 'fullscreen-popup');
-        tileAddress.setAttribute('backend', 'system');
-        tileAddress.setAttribute('send-mode', 'always');
-        tileAddress.textContent = this.getPopupAddress();
-        this._element.parentElement.appendChild(tileAddress);
+      // add fullscreen button + address
+      const button = this.__button && this.__button.isConnected ? this.__button : this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
+      this.__button = button;
+      button.setAttribute('data-value', '0');
+      if (!button.isConnected) {
+        button.addEventListener('click', () => this.toggleFullscreen());
+        this.appendToHeader(button, 'right');
       }
 
-      // listen to parent tile if popup is opened or not
       let parent = this._element;
       while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
         parent = parent.parentElement;
       }
       if (parent) {
-        const tileWidget = parent.getInstance();
-        tileWidget.addListener('closed', () => this.setFullscreen(false));
-
-        // because we added a read address to the tile after it has been initialized we need to init the listener here manually
-        parent.addEventListener('stateUpdate', ev => {
-          tileWidget.onStateUpdate(ev);
-          // cancel event here
-          ev.stopPropagation();
-        });
+        this.__tileWidget = parent.getInstance();
+        this.__tileClosedHandler = () => this.setFullscreen(false);
+        this.__tileWidget.addListener('closed', this.__tileClosedHandler, this);
       }
+
+      if (typeof this._applyFullscreen === 'undefined') {
+        if (!this.__tileAddress) {
+          this.__tileAddress = document.createElement('cv-address');
+          this.__tileAddress.setAttribute('mode', 'read');
+          this.__tileAddress.setAttribute('target', 'fullscreen-popup');
+          this.__tileAddress.setAttribute('backend', 'system');
+          this.__tileAddress.setAttribute('send-mode', 'always');
+          this.__tileAddress.textContent = this.getPopupAddress();
+        }
+        if (this.__tileAddress.parentElement !== this._element.parentElement) {
+          this._element.parentElement.appendChild(this.__tileAddress);
+        }
+        if (this.__tileWidget) {
+          this.__tileAddressStateUpdateHandler = ev => {
+            this.__tileWidget.onStateUpdate(ev);
+            ev.stopPropagation();
+          };
+          this.__tileAddress.addEventListener('stateUpdate', this.__tileAddressStateUpdateHandler);
+        }
+      }
+    },
+
+    __cleanupFullscreenBindings() {
+      if (this.__tileWidget && this.__tileClosedHandler) {
+        this.__tileWidget.removeListener('closed', this.__tileClosedHandler, this);
+      }
+      if (this.__tileAddress && this.__tileAddressStateUpdateHandler) {
+        this.__tileAddress.removeEventListener('stateUpdate', this.__tileAddressStateUpdateHandler);
+      }
+      this.__tileWidget = null;
+      this.__tileClosedHandler = null;
+      this.__tileAddressStateUpdateHandler = null;
     },
 
     _buttonFactory(icon, classes) {
@@ -125,6 +149,8 @@ qx.Mixin.define('cv.ui.structure.tile.MFullscreen', {
   ***********************************************
   */
   destruct() {
+    this.__cleanupFullscreenBindings();
     this.__button = null;
+    this.__tileAddress = null;
   }
 });

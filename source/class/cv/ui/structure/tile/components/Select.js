@@ -97,9 +97,8 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
 
     _toggleOptions(close) {
       // open popup
-      const style = getComputedStyle(this.__popup);
-      if (style.getPropertyValue('display') === 'none' && !close) {
-        this.__popup.style.display = 'block';
+      if (!this.__popup.classList.contains('open') && !close) {
+        this.__popup.classList.add('open');
         if (this.__bodyClickFrame !== null) {
           window.cancelAnimationFrame(this.__bodyClickFrame);
         }
@@ -112,7 +111,7 @@ qx.Class.define('cv.ui.structure.tile.components.Select', {
           document.body.addEventListener('click', this.__bodyClickListener, true);
         });
       } else {
-        this.__popup.style.display = 'none';
+        this.__popup.classList.remove('open');
         if (this.__bodyClickFrame !== null) {
           window.cancelAnimationFrame(this.__bodyClickFrame);
           this.__bodyClickFrame = null;

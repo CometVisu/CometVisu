@@ -40,6 +40,7 @@ describe('testing the <cv-select> component of the tile structure', () => {
 
   it('should create a default select', function() {
     const element = this.createTileWidgetWithComponent('cv-select', {}, '<cv-option>o1</cv-option><cv-option>o2</cv-option>');
+
     expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-SELECT');
     expect(element._instance instanceof cv.ui.structure.tile.components.Select).toBe(true);
@@ -51,6 +52,7 @@ describe('testing the <cv-select> component of the tile structure', () => {
 
     // check that options got a key
     const options = element.querySelectorAll('cv-option');
+
     expect(options.length).toBe(2);
     expect(options[0].getAttribute('key')).toBe('0');
     expect(options[1].getAttribute('key')).toBe('1');
@@ -64,18 +66,21 @@ describe('testing the <cv-select> component of the tile structure', () => {
 
     // check that options got a key
     const options = element.querySelectorAll('cv-option');
+
     expect(options.length).toBe(2);
     expect(options[0].getAttribute('key')).toBe('o1');
     expect(options[1].getAttribute('key')).toBe('o2');
 
     // open popup
-    element.click()
+    element.click();
     // select second option
     options[1].click();
+
     expect(address.dispatchEvent).toHaveBeenCalledWith(new CustomEvent('change', {detail: {value: 'o2', source: element._instance}}));
     expect(element._instance.getValue()).toBe('o2');
 
     cv.data.Model.getInstance().onUpdate('sa1', 'o1');
+
     expect(element._instance.getValue()).toBe('o1');
     expect(element.querySelector('.value').textContent).toBe('o1');
   });
@@ -89,8 +94,10 @@ describe('testing the <cv-select> component of the tile structure', () => {
 
     expect(value.innerHTML).toBe('<cv-icon></cv-icon>o1');
     select.setShow('icon');
+
     expect(value.innerHTML).toBe('<cv-icon></cv-icon>');
     select.setShow('label');
+
     expect(value.innerHTML).toBe('o1');
   });
 
@@ -98,14 +105,15 @@ describe('testing the <cv-select> component of the tile structure', () => {
     const element = this.createTileWidgetWithComponent('cv-select', {}, '<cv-address>sa1</cv-address><cv-option key="o1">o1</cv-option><cv-option key="o2">o2</cv-option>');
 
     const popup = element.querySelector('.popup');
-    popup.style.display = 'none'; // because the design css is not loaded, we set this manually here
 
     // open popup
     element.click();
-    expect(window.getComputedStyle(popup)['display']).toBe('block');
+
+    expect(popup.classList.contains('open')).toBeTruthy();
     setTimeout(() => {
       document.body.click();
-      expect(window.getComputedStyle(popup)['display']).toBe('none');
+
+      expect(popup.classList.contains('open')).toBeFalsy();
       done();
     }, 100);
   });

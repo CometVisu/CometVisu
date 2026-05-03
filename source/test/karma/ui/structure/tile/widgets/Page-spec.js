@@ -49,23 +49,27 @@ describe('testing the <cv-page> widget of the tile structure', () => {
 
     const page = element._instance;
     page.setVisibility('visible');
+
     expect(element.style.contentVisibility).toBe('visible');
     expect(element.style.display).toBe('');
     page.setVisibility('hidden');
+
     expect(element.style.contentVisibility).toBe('hidden');
     expect(element.style.display).toBe('');
     page.setVisibility('excluded');
+
     expect(element.style.contentVisibility).toBe('hidden');
     expect(element.style.display).toBe('');
   });
 
   it('should create a page and toggle its visibility for old browsers', () => {
-    spyOn(qx.core.Environment, 'get').and.callFake((key) => {
+    spyOn(qx.core.Environment, 'get').and.callFake(key => {
       if (key === 'browser.name') {
         return 'firefox';
       } else if (key === 'browser.version') {
         return '124.0';
       }
+      return '';
     });
 
     element = document.createElement('cv-page');
@@ -77,12 +81,15 @@ describe('testing the <cv-page> widget of the tile structure', () => {
 
     const page = element._instance;
     page.setVisibility('hidden');
+
     expect(element.style.contentVisibility).toBe('');
     expect(element.style.display).toBe('none');
     page.setVisibility('visible');
+
     expect(element.style.contentVisibility).toBe('');
     expect(element.style.display).toBe('inline');
     page.setVisibility('excluded');
+
     expect(element.style.contentVisibility).toBe('');
     expect(element.style.display).toBe('none');
   });
@@ -90,7 +97,7 @@ describe('testing the <cv-page> widget of the tile structure', () => {
   it('should create a cv-row', () => {
     element = document.createElement('cv-row');
     const template = document.createElement('template');
-    template.innerHTML = `<cv-row rowspan="3" colspan="3"></cv-row>`;
+    template.innerHTML = '<cv-row rowspan="3" colspan="3"></cv-row>';
     element = template.content.firstChild;
     document.body.appendChild(element);
 

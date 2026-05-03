@@ -78,6 +78,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     _lastUpdate: null,
     _maxAge: null,
     _hideTimer: null,
+    __childPopupClosedHandler: null,
+    __hrefClickHandler: null,
+    __hideTimerIntervalHandler: null,
+    __popupCloseButtonHandler: null,
 
     _checkEnvironment() {
       super._checkEnvironment();
@@ -89,34 +93,67 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     _init() {
       super._init();
       this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium') + ' ' + qx.locale.Date.getTimeFormat('medium'));
+      this._element.removeEventListener('click', this._openPopupChildBounded);
       this._initPopupChild();
       if (this._element.hasAttribute('background-image')) {
         this.setBackgroundImage(this._element.getAttribute('background-image'));
       }
       if (this._childPopup) {
-        this._childPopup.addEventListener('closed', () => {
-          this.resetPopup();
-        });
+        if (!this.__childPopupClosedHandler) {
+          this.__childPopupClosedHandler = () => {
+            this.resetPopup();
+          };
+        }
+        this._childPopup.removeEventListener('closed', this.__childPopupClosedHandler);
+        this._childPopup.addEventListener('closed', this.__childPopupClosedHandler);
       }
       if (this._element.querySelector(':scope > label.title')) {
         this._element.classList.add('has-title');
       }
 
-      this._hideTimer = new qx.event.Timer(5000);
-      this._hideTimer.addListener('interval', () => {
-        const elem = this._element.querySelector(':scope > .outdated-value');
-        if (elem.style.display !== 'none') {
-          elem.style.display = 'none';
-        }
-        this._hideTimer.stop();
-      });
+      if (!this._hideTimer) {
+        this._hideTimer = new qx.event.Timer(5000);
+        this.__hideTimerIntervalHandler = () => {
+          const elem = this._element.querySelector(':scope > .outdated-value');
+          if (elem && elem.style.display !== 'none') {
+            elem.style.display = 'none';
+          }
+          this._hideTimer.stop();
+        };
+        this._hideTimer.addListener('interval', this.__hideTimerIntervalHandler);
+      }
 
       if (this._element.hasAttribute('href')) {
-        this._element.addEventListener('click', ev => {
+        if (!this.__hrefClickHandler) {
+          this.__hrefClickHandler = ev => {
           window.open(this._element.getAttribute('href'), this._element.getAttribute('target') ?? '_blank');
           ev.stopPropagation();
-        });
+          };
+        }
+        this._element.removeEventListener('click', this.__hrefClickHandler);
+        this._element.addEventListener('click', this.__hrefClickHandler);
       }
+    },
+
+    _disconnected() {
+      this._element.removeEventListener('click', this._openPopupChildBounded);
+      this._element.removeEventListener('click', this.__hrefClickHandler);
+      if (this._childPopup && this.__childPopupClosedHandler) {
+        this._childPopup.removeEventListener('closed', this.__childPopupClosedHandler);
+      }
+      if (this._hideTimer) {
+        this._hideTimer.stop();
+      }
+      if (this._autoCloseTimer) {
+        this._autoCloseTimer.stop();
+      }
+      if (this.__popupCloseButtonHandler && this._headerFooterParent) {
+        const closeButton = this._headerFooterParent.querySelector(':scope > button.close');
+        if (closeButton) {
+          closeButton.removeEventListener('click', this.__popupCloseButtonHandler);
+        }
+      }
+      super._disconnected();
     },
 
     _applyBackgroundImage(value) {
@@ -217,8 +254,12 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
           icon.classList.add('ri-close-line');
           closeButton.appendChild(icon);
           target.appendChild(closeButton);
-          closeButton.addEventListener('click', () => this.setPopup(false));
         }
+        if (!this.__popupCloseButtonHandler) {
+          this.__popupCloseButtonHandler = () => this.setPopup(false);
+        }
+        closeButton.removeEventListener('click', this.__popupCloseButtonHandler);
+        closeButton.addEventListener('click', this.__popupCloseButtonHandler);
         closeButton.style.display = 'block';
         target.classList.add('popup');
         if (this._fullScreenMode) {
@@ -239,7 +280,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
         this._headerFooterParent.classList.remove('popup');
         if (this._fullScreenMode) {
           this._headerFooterParent.classList.remove('fullscreen');
-          this.fireDataEvent('fullscreenChanged', true);
+          this.fireDataEvent('fullscreenChanged', false);
         }
         let closeButton = this._headerFooterParent.querySelector(':scope > button.close');
         if (closeButton) {
@@ -313,7 +354,7 @@ qx.Class.define('cv.ui.structure.tile.widgets.Tile', {
     ***********************************************
     */
     destruct() {
-      this._disposeObjects('_dateFormat');
+      this._disposeObjects('_autoCloseTimer', '_dateFormat', '_hideTimer');
     }
   },
 

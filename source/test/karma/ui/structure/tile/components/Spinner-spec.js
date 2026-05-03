@@ -99,4 +99,20 @@ describe('testing the <cv-spinner> component of the tile structure', () => {
     cv.data.Model.getInstance().onUpdate('test', 10);
     expect(element.querySelector('.value').textContent).toBe('10');
   });
+
+  it('should not duplicate increase and decrease handlers after reconnect', function() {
+    const element = this.createTileWidgetWithComponent('cv-spinner', {'step-width': 10}, '<cv-address mode="write">test</cv-address>');
+    const address = element.querySelector('cv-address');
+    const widget = element.closest('cv-widget');
+
+    spyOn(address, 'dispatchEvent');
+
+    widget.remove();
+    document.body.appendChild(widget);
+
+    element.querySelector('div.right.clickable').click();
+    element.querySelector('div.left.clickable').click();
+
+    expect(address.dispatchEvent).toHaveBeenCalledTimes(2);
+  });
 });
