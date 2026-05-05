@@ -251,6 +251,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __endTs: null,
     __autoHeightForFullscreen: false,
     __fullscreenRenderFrame: null,
+    __pendingReconnectClient: null,
+    __pendingReconnectListener: null,
     _yFormat: null,
 
     /**
@@ -306,7 +308,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.appendToHeader(title);
       }
 
-      if (title) {
+      if (title && this._initCounter === 0) {
         // save base title for updating
         this._titleString = title.textContent.trim();
       }
@@ -331,11 +333,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       this._navigationEnabled = seriesSelection.length > 0;
       if (seriesSelection.length > 0) {
-        // back button
-        let button = this._buttonFactory('ri-arrow-left-s-line', ['prev']);
-        button.setAttribute('title', qx.locale.Manager.tr('previous'));
-        button.addEventListener('click', () => this._onSeriesPrev());
-
         if (!title) {
           title = document.createElement('label');
           title.classList.add('title');
@@ -344,52 +341,78 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           this.appendToHeader(title);
         }
 
-        title.parentElement.insertBefore(button, title);
-        const i = document.createElement('i');
-        i.classList.add('ri-arrow-down-s-fill');
-        title.appendChild(i);
-
-        // current selection
-        const popup = document.createElement('div');
-        popup.classList.add('popup', 'series');
-        let option;
-        for (const s of seriesSelection) {
-          option = document.createElement('cv-option');
-          option.setAttribute('key', s);
-          if (s === currentSeries) {
-            option.setAttribute('selected', 'selected');
-          }
-          option.textContent = this._seriesToShort(s);
-          option.addEventListener('click', ev => {
-            popup.style.display = 'none';
-            this._onSeriesChange(ev.target.getAttribute('key'));
+        // back button
+        let button = title.parentElement.querySelector(':scope > button.prev');
+        if (!button) {
+          button = this._buttonFactory('ri-arrow-left-s-line', ['prev']);
+          button.setAttribute('title', qx.locale.Manager.tr('previous'));
+          button.addEventListener('click', ev => {
+            this._onSeriesPrev();
             ev.stopPropagation();
             ev.preventDefault();
           });
-          popup.appendChild(option);
+          title.parentElement.insertBefore(button, title);
         }
-        title.appendChild(popup);
+
+        if (!title.querySelector(':scope > i.ri-arrow-down-s-fill')) {
+          const i = document.createElement('i');
+          i.classList.add('ri-arrow-down-s-fill');
+          title.appendChild(i);
+        }
+
+        // current selection
+        let popup = title.querySelector(':scope > .popup.series');  
+        if (popup) {
+          popup = document.createElement('div');
+          popup.classList.add('popup', 'series');
+          let option;
+          for (const s of seriesSelection) {
+            option = document.createElement('cv-option');
+            option.setAttribute('key', s);
+            if (s === currentSeries) {
+              option.setAttribute('selected', 'selected');
+            }
+            option.textContent = this._seriesToShort(s);
+            option.addEventListener('click', ev => {
+              popup.style.display = 'none';
+              this._onSeriesChange(ev.target.getAttribute('key'));
+              ev.stopPropagation();
+              ev.preventDefault();
+            });
+            popup.appendChild(option);
+          }
+          title.appendChild(popup);
+        }
 
         // make title clickable
-        title.classList.add('clickable');
-        title.addEventListener('click', ev => {
-          const style = getComputedStyle(popup);
-          if (style.getPropertyValue('display') === 'none') {
-            popup.style.display = 'flex';
-          } else {
-            popup.style.display = 'none';
-          }
-          ev.stopPropagation();
-          ev.preventDefault();
-        });
+        if (!title.classList.contains('clickable')) {
+          title.classList.add('clickable');
+          title.addEventListener('click', ev => {
+            const style = getComputedStyle(popup);
+            if (style.getPropertyValue('display') === 'none') {
+              popup.style.display = 'flex';
+            } else {
+              popup.style.display = 'none';
+            }
+            ev.stopPropagation();
+            ev.preventDefault();
+          });
+        }
 
         // forward button
-        button = this._buttonFactory('ri-arrow-right-s-line', ['next']);
-        button.setAttribute('title', qx.locale.Manager.tr('next'));
-        // initially we cannot go into the future
-        button.disabled = true;
-        button.addEventListener('click', () => this._onSeriesNext());
-        this.appendToHeader(button);
+        button = this.getHeader(':scope > button.next');
+        if (!button) {
+          button = this._buttonFactory('ri-arrow-right-s-line', ['next']);
+          button.setAttribute('title', qx.locale.Manager.tr('next'));
+          // initially we cannot go into the future
+          button.disabled = true;
+          button.addEventListener('click', ev => {
+            this._onSeriesNext();
+            ev.stopPropagation();
+            ev.preventDefault();
+          });
+          this.appendToHeader(button);
+        }
       }
       if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
         this._initFullscreenSwitch();
@@ -873,11 +896,22 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         return;
       }
       if (!client.isConnected()) {
-        client.addListenerOnce('changeConnected', () => {
-          this._loadData();
-        });
+        if (!this.__pendingReconnectListener || this.__pendingReconnectClient !== client) {
+          this.__cleanupReconnectListener();
+          this.__pendingReconnectClient = client;
+          this.__pendingReconnectListener = () => {
+            this.__pendingReconnectListener = null;
+            this.__pendingReconnectClient = null;
+            if (!this.isDisposed()) {
+              this._loadData();
+            }
+          };
+          client.addListenerOnce('changeConnected', this.__pendingReconnectListener, this);
+        }
         return;
       }
+
+      this.__cleanupReconnectListener();
 
       const promises = [];
       let options = {ttl: this.getRefresh()};
@@ -908,6 +942,14 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           this._onRendered(chartData.flat());
         }
       }, 100);
+    },
+
+    __cleanupReconnectListener() {
+      if (this.__pendingReconnectClient && this.__pendingReconnectListener) {
+        this.__pendingReconnectClient.removeListener('changeConnected', this.__pendingReconnectListener, this);
+      }
+      this.__pendingReconnectClient = null;
+      this.__pendingReconnectListener = null;
     },
 
     _onRendered(chartData, retries) {
@@ -1521,6 +1563,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     
     _disconnected() {
       super._disconnected();
+      this.__cleanupReconnectListener();
       qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
       if (this.__resizeTimeout) {
         clearTimeout(this.__resizeTimeout);
@@ -1548,6 +1591,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   */
   destruct() {
     this._disposeMap('_datasets');
+    this.__cleanupReconnectListener();
     qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
     if (this.__resizeTimeout) {
       clearTimeout(this.__resizeTimeout);

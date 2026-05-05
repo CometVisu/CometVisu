@@ -115,7 +115,9 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
     _checkEnvironment() {
       let inPopup = false;
-      if (this._element.parentElement.localName === 'cv-popup') {
+      if (this._element.localName === 'cv-popup') {
+        this._headerFooterParent = this._element;
+      } else if (this._element.parentElement.localName === 'cv-popup') {
         this._headerFooterParent = this._element.parentElement;
         inPopup = true;
       } else {

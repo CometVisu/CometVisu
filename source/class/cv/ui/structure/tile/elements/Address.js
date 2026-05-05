@@ -146,7 +146,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
                   }
                 }
               }
-            }
+            }                  
           };
           element.addEventListener('sendState', this.__sendStateHandler);
         }
@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
 
     resend() {
       const address = this.getAddress();
-      if (address) {
+      if (address && this._initialized) {
         const model = cv.data.Model.getInstance();
         const backendName = this._element.getAttribute('backend');
         const state = model.getState(address, backendName);
@@ -229,7 +229,12 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         this.__transformedValue = transformedState;
         this._element.setAttribute('data-value', transformedState);
         //console.log(ev.detail);
-        this._stateUpdateTarget.dispatchEvent(ev);
+        if (this._stateUpdateTarget) {
+          this._stateUpdateTarget.dispatchEvent(ev);
+        } else {
+          // fallback: should never happen, but at least we can dispatch the event to the element itself, so tiles can listen to it even if they forget to set the target
+          this._element.dispatchEvent(ev);
+        }
         this.__lastValue = state;
         // reset lastSentValue
         if (state !== this._element.lastSentValue) {
