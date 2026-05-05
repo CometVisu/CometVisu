@@ -87,6 +87,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
 
   it('should create an empty list', function() {
     const element = this.createTileWidgetWithComponent('cv-list', {}, '');
+
     expect(element).not.toBeNull();
     expect(element.tagName).toBe('CV-LIST');
     expect(element._instance instanceof cv.ui.structure.tile.components.List).toBe(true);
@@ -168,6 +169,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
         active: true
       }
     ]);
+
     expect(element.querySelectorAll('ul.content > li').length).toBe(2);
     expect(element.querySelector('ul.content > li[data-row="0"] > label').textContent).toBe('b Item 3');
     expect(element.querySelector('ul.content > li[data-row="1"] > label').textContent).toBe('z Item 1');
@@ -204,7 +206,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element.querySelector('ul.content > li[data-row="1"] > label').textContent).toBe('Item 2');
       expect(element.querySelector('ul.content > li[data-row="2"] > label').textContent).toBe('Item 1');
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should create a list from content', function(done) {
@@ -226,7 +228,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element.querySelector('ul.content > li[data-row="1"] > label').textContent).toBe('Item2');
       expect(element.querySelector('ul.content > li[data-row="2"] > label').textContent).toBe('Item3');
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should create a list from a class', function(done) {
@@ -248,7 +250,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element._instance._modelInstance.getP1()).toBe('valid');
       expect(element._instance._modelInstance.getP2()).toBe('something');
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should refresh on state update', function() {
@@ -266,8 +268,10 @@ describe('testing the <cv-list> component of the tile structure', () => {
     </template>`);
     element._instance.setVisible(true);
     spyOn(element._instance, 'refresh');
+
     expect(element._instance.refresh).not.toHaveBeenCalled();
     cv.data.Model.getInstance().onUpdate('test', '1');
+
     expect(element._instance.refresh).toHaveBeenCalled();
   });
 
@@ -285,7 +289,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
     element._instance.refresh().then(() => {
       expect(element.querySelector('ul.content > li').textContent).toBe('empty model');
       done();
-    })
+    }).catch(done.fail);
   });
 
   it('should remove template content by when condition', function(done) {
@@ -311,7 +315,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element.querySelector('ul.content > li[data-row="1"] > label').classList.contains('secondary')).toBe(true);
       expect(element.querySelector('ul.content > li[data-row="2"] > label').classList.contains('thirdy')).toBe(true);
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should create a list with more complex template parameters', function(done) {
@@ -361,7 +365,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element.querySelector('ul.content > li[data-row="0"] > div.json').textContent).toBe('here');
       expect(element.querySelector('ul.content > li[data-row="0"] > div.array').textContent).toBe('Three');
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should add the model directly to the element', function(done) {
@@ -378,7 +382,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
     element._instance.refresh().then(() => {
       expect(element.querySelectorAll(':scope > label[data-row="0"]').length).toBe(1);
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should add the model directly to the parent', function(done) {
@@ -396,7 +400,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
       expect(element.style.display).toBe('none');
       expect(element.parentElement.querySelectorAll(':scope > label[data-row="0"]').length).toBe(1);
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should handle clicks on elements', function(done) {
@@ -415,7 +419,7 @@ describe('testing the <cv-list> component of the tile structure', () => {
 
       expect(modelInstance.handleEvent).toHaveBeenCalledWith(jasmine.any(PointerEvent), { action: 'delete' }, {label: 'Item1'});
       done();
-    });
+    }).catch(done.fail);
   });
 
   it('should forward events to write addresses', function() {
@@ -446,5 +450,41 @@ describe('testing the <cv-list> component of the tile structure', () => {
     }));
 
     expect(address.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
+  });
+
+  it('should forward sendState events from list items without recursion', function(done) {
+    const writeSpy = jasmine.createSpy('write');
+    spyOn(cv.io.BackendConnections, 'getClient').and.returnValue({
+      write: writeSpy
+    });
+
+    const element = this.createTileWidgetWithComponent('cv-list', {refresh: 10},
+      `<model>
+        <cv-data name="Item1"></cv-data>
+      </model>
+      <cv-address mode="write">test</cv-address>
+      <template>
+         <li>
+            <button class="trigger">\${name}</button>
+         </li>
+      </template>`);
+    element._instance.setVisible(true);
+
+    element._instance.refresh().then(() => {
+      const item = element.querySelector('ul.content > li[data-row="0"] > button.trigger');
+
+      expect(() => {
+        item.dispatchEvent(new CustomEvent('sendState', {
+          bubbles: true,
+          cancelable: true,
+          detail: {
+            value: 1
+          }
+        }));
+      }).not.toThrow();
+
+      expect(writeSpy).toHaveBeenCalledOnceWith('test', 1, jasmine.any(HTMLElement));
+      done();
+    }).catch(done.fail);
   });
 });

@@ -98,191 +98,194 @@ qx.Class.define('cv.ui.structure.tile.components.List', {
     _modelInstance: null,
 
     _init() {
-      this._checkEnvironment();
-      const element = this._element;
-      this._model = [];
-      let refreshOnUpdate = false;
-      const model = element.querySelector('model');
-      if (element.parentElement) {
-        element.parentElement.classList.add('has-list');
-      }
-      if (!model) {
-        this.error('cv-list needs a model');
-        return;
-      }
-      if (model.hasAttribute('filter')) {
-        this._filterModel = new Function('item', 'index', '"use strict"; return ' + model.getAttribute('filter'));
-      }
-      if (model.hasAttribute('limit')) {
-        this._limit = parseInt(model.getAttribute('limit'));
-      }
-      const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
-
-      // if we have top level write addresses, we need to listen to sendState Events from the list items
-      const writeAddresses = element.querySelectorAll(':scope > cv-address:not([mode="read"])');
-      if (writeAddresses.length > 0) {
-        element.addEventListener('sendState', ev => {
-          // forward event copy (dispatching the same is not possible) to all write addresses
-          const evCopy = new CustomEvent('sendState', {
-            bubbles: ev.bubbles,
-            cancelable: ev.cancelable,
-            detail: ev.detail
-          });
-          for (let a of writeAddresses) {
-            a.dispatchEvent(evCopy);
-          }
-        });
-      }
-
-      if (model.hasAttribute('sort-by')) {
-        const sortBy = model.getAttribute('sort-by');
-        // reverse order in 'desc' sort mode
-        const sortModifier = model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
-        this._sortModel = (left, right) => {
-          const leftVal = left[sortBy];
-          const rightVal = right[sortBy];
-          if (leftVal === rightVal) {
-            return 0;
-          } else if (typeof leftVal === typeof rightVal) {
-            switch (typeof leftVal) {
-              case 'number':
-                return (leftVal - rightVal) * sortModifier;
-
-              case 'boolean':
-                return (leftVal ? -1 : 1) * sortModifier;
-
-              case 'string':
-                return leftVal.localeCompare(rightVal) * sortModifier;
-
-              default:
-                return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal)) * sortModifier;
-            }
-          } else if (leftVal === undefined || leftVal === null) {
-            return 1 * sortModifier;
-          } else if (rightVal === undefined || rightVal === null) {
-            return -1 * sortModifier;
-          }
-          return 0;
-        };
-      }
-      if (model.hasAttribute('src') || model.hasAttribute('config-section')) {
-        // fetch from url
-        this._getModel = async () => {
-          const options = {
-            ttl: this.getRefresh()
-          };
-          for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
-            if (model.hasAttribute(proxyParam)) {
-              options[proxyParam] = model.getAttribute(proxyParam);
-            }
-          }
-          return await cv.io.Fetch.cachedFetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
-        };
-      } else if (model.hasAttribute('class')) {
-        // initialize internal class instance that implements cv.io.listmodel.IListModel
-        const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
-        if (Clazz) {
-          const modelInstance = this._modelInstance = new Clazz();
-          modelInstance.addListener('refresh', () => this.refresh());
-          if (model.hasAttribute('parameters')) {
-            const props = {};
-            for (let entry of model.getAttribute('parameters').split(',')) {
-              const [name, value] = entry.split('=').map(n => n.trim());
-              props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value;
-            }
-            modelInstance.set(props);
-          }
-          this._getModel = async () => {
-            await modelInstance.refresh();
-            return modelInstance.getModel();
-          };
-        } else {
-          this.error(`clazz "cv.io.listmodel.${model.getAttribute('class')}" not found`);
+      if (this._initCounter === 0) {
+        this._checkEnvironment();
+        const element = this._element;
+        this._model = [];
+        let refreshOnUpdate = false;
+        const model = element.querySelector('model');
+        if (element.parentElement) {
+          element.parentElement.classList.add('has-list');
         }
-      } else {
-        const script = model.querySelector(':scope > script');
-        const data = model.querySelectorAll(':scope > cv-data');
-        if (script) {
-          this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
-
-          this._model = this._getModel();
-        } else if (readAddresses.length > 0) {
-          // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
-          this._getModel = this.getValue;
-          refreshOnUpdate = true;
-        } else if (data.length > 0) {
-          this._model = [];
-          this._getModel = () => this._model;
-          data.forEach((elem, i) => {
-            const d = {
-              index: i
-            };
-
-            for (const a of elem.attributes) {
-              d[a.name] = a.value;
-            }
-            this._model.push(d);
-          });
-        } else {
-          this.error(
-            'cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.'
-          );
-
+        if (!model) {
+          this.error('cv-list needs a model');
           return;
         }
-      }
-      if (readAddresses.length > 0) {
-        element.addEventListener('stateUpdate', ev => this.onStateUpdate(ev));
-      }
-      if (!refreshOnUpdate) {
-        if (this.isVisible()) {
-          // only load when visible
-          this.refresh();
+        if (model.hasAttribute('filter')) {
+          this._filterModel = new Function('item', 'index', '"use strict"; return ' + model.getAttribute('filter'));
         }
-        if (element.hasAttribute('refresh')) {
-          this.setRefresh(parseInt(element.getAttribute('refresh')));
+        if (model.hasAttribute('limit')) {
+          this._limit = parseInt(model.getAttribute('limit'));
         }
-      }
+        const readAddresses = model.querySelectorAll(':scope > cv-address:not([mode="write"])');
 
-      this._element.addEventListener('click', ev => {
-        let templateRoot = ev.target;
-        let data = {};
-        const collectData = elem => {
-          if (elem) {
-            for (let i = 0; i < elem.attributes.length; i++) {
-              let attrib = elem.attributes[i];
-              if (attrib.name.startsWith('data-')) {
-                data[attrib.name.substring(5)] = attrib.value;
+        // if we have top level write addresses, we need to listen to sendState Events from the list items
+        const writeAddresses = element.querySelectorAll(':scope > cv-address:not([mode="read"])');
+        if (writeAddresses.length > 0) {
+          element.addEventListener('sendState', ev => {
+            ev.stopPropagation();
+            for (let a of writeAddresses) {
+              a.dispatchEvent(
+                new CustomEvent('sendState', {
+                  bubbles: false,
+                  cancelable: true,
+                  detail: ev.detail
+                })
+              );
+            }
+          });
+        }
+
+        if (model.hasAttribute('sort-by')) {
+          const sortBy = model.getAttribute('sort-by');
+          // reverse order in 'desc' sort mode
+          const sortModifier = model.getAttribute('sort-mode') === 'desc' ? -1 : 1;
+          this._sortModel = (left, right) => {
+            const leftVal = left[sortBy];
+            const rightVal = right[sortBy];
+            if (leftVal === rightVal) {
+              return 0;
+            } else if (typeof leftVal === typeof rightVal) {
+              switch (typeof leftVal) {
+                case 'number':
+                  return (leftVal - rightVal) * sortModifier;
+
+                case 'boolean':
+                  return (leftVal ? -1 : 1) * sortModifier;
+
+                case 'string':
+                  return leftVal.localeCompare(rightVal) * sortModifier;
+
+                default:
+                  return JSON.stringify(leftVal).localeCompare(JSON.stringify(rightVal)) * sortModifier;
+              }
+            } else if (leftVal === undefined || leftVal === null) {
+              return 1 * sortModifier;
+            } else if (rightVal === undefined || rightVal === null) {
+              return -1 * sortModifier;
+            }
+            return 0;
+          };
+        }
+        if (model.hasAttribute('src') || model.hasAttribute('config-section')) {
+          // fetch from url
+          this._getModel = async () => {
+            const options = {
+              ttl: this.getRefresh()
+            };
+            for (const proxyParam of ['self-signed', 'config-section', 'auth-type']) {
+              if (model.hasAttribute(proxyParam)) {
+                options[proxyParam] = model.getAttribute(proxyParam);
               }
             }
-          }
-        };
-        collectData(templateRoot);
-        let level = 0;
-        let model = templateRoot.$$model;
-        while (templateRoot && (!model || !data.action) && level <= 5) {
-          templateRoot = templateRoot.parentElement;
-          if (templateRoot === this._element) {
-            break;
-          }
-          if (templateRoot) {
-            if (!model && templateRoot.$$model) {
-              model = templateRoot.$$model;
+            return await cv.io.Fetch.cachedFetch(model.getAttribute('src'), options, model.getAttribute('proxy') === 'true');
+          };
+        } else if (model.hasAttribute('class')) {
+          // initialize internal class instance that implements cv.io.listmodel.IListModel
+          const Clazz = cv.io.listmodel.Registry.get(model.getAttribute('class'));
+          if (Clazz) {
+            const modelInstance = this._modelInstance = new Clazz();
+            modelInstance.addListener('refresh', () => this.refresh());
+            if (model.hasAttribute('parameters')) {
+              const props = {};
+              for (let entry of model.getAttribute('parameters').split(',')) {
+                const [name, value] = entry.split('=').map(n => n.trim());
+                props[name] = value.startsWith('\'') ? value.substring(1, value.length-1) : value;
+              }
+              modelInstance.set(props);
             }
-            if (!data.action && templateRoot.hasAttribute('data-action')) {
-              collectData(templateRoot);
-            }
+            this._getModel = async () => {
+              await modelInstance.refresh();
+              return modelInstance.getModel();
+            };
+          } else {
+            this.error(`clazz "cv.io.listmodel.${model.getAttribute('class')}" not found`);
           }
-          level++;
+        } else {
+          const script = model.querySelector(':scope > script');
+          const data = model.querySelectorAll(':scope > cv-data');
+          if (script) {
+            this._getModel = new Function('"use strict";let model = []; ' + script.innerText.trim() + '; return model');
+
+            this._model = this._getModel();
+          } else if (readAddresses.length > 0) {
+            // model has an address that triggers a refresh on update, so we just have to read the model from the updated value
+            this._getModel = this.getValue;
+            refreshOnUpdate = true;
+          } else if (data.length > 0) {
+            this._model = [];
+            this._getModel = () => this._model;
+            data.forEach((elem, i) => {
+              const d = {
+                index: i
+              };
+
+              for (const a of elem.attributes) {
+                d[a.name] = a.value;
+              }
+              this._model.push(d);
+            });
+          } else {
+            this.error(
+              'cv-list > model must have at least one read address, src-attribute, cv-data child or a script that fills the model.'
+            );
+
+            return;
+          }
+        }
+        if (readAddresses.length > 0) {
+          element.addEventListener('stateUpdate', ev => this.onStateUpdate(ev));
+        }
+        if (!refreshOnUpdate) {
+          if (this.isVisible()) {
+            // only load when visible
+            this.refresh();
+          }
+          if (element.hasAttribute('refresh')) {
+            this.setRefresh(parseInt(element.getAttribute('refresh')));
+          }
         }
 
-        if (data.action && this._modelInstance && this._modelInstance.handleEvent(ev, data, model)) {
-          ev.stopPropagation();
-        }
-      });
+        this._element.addEventListener('click', ev => {
+          let templateRoot = ev.target;
+          let data = {};
+          const collectData = elem => {
+            if (elem) {
+              for (let i = 0; i < elem.attributes.length; i++) {
+                let attrib = elem.attributes[i];
+                if (attrib.name.startsWith('data-')) {
+                  data[attrib.name.substring(5)] = attrib.value;
+                }
+              }
+            }
+          };
+          collectData(templateRoot);
+          let level = 0;
+          let model = templateRoot.$$model;
+          while (templateRoot && (!model || !data.action) && level <= 5) {
+            templateRoot = templateRoot.parentElement;
+            if (templateRoot === this._element) {
+              break;
+            }
+            if (templateRoot) {
+              if (!model && templateRoot.$$model) {
+                model = templateRoot.$$model;
+              }
+              if (!data.action && templateRoot.hasAttribute('data-action')) {
+                collectData(templateRoot);
+              }
+            }
+            level++;
+          }
 
-      if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
-        this._initFullscreenSwitch();
+          if (data.action && this._modelInstance && this._modelInstance.handleEvent(ev, data, model)) {
+            ev.stopPropagation();
+          }
+        });
+
+        if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+          this._initFullscreenSwitch();
+        }
       }
     },
 

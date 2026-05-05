@@ -32,6 +32,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
   construct(element) {
     super();
     this._element = element;
+    this._initCounter = 0;
     this._deferInit = true; // activate deferred init handling by default; subclasses can set this to false if they do not support it
   },
 
@@ -67,6 +68,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
 
     _initialized: false,
     __deferredInitHandler: null,
+    _initCounter: null,
 
     _applyConnected(value) {
       if (value && !this._initialized) {
@@ -81,6 +83,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
                 this.__deferredInitHandler = null;
               }
               this._init();
+              this._initCounter++;
               this._initialized = true;
               this._postInit();
             }
@@ -88,6 +91,7 @@ qx.Class.define('cv.ui.structure.tile.elements.AbstractCustomElement', {
           qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this.__deferredInitHandler, this);
         } else {
           this._init();
+          this._initCounter++;
           this._initialized = true;
           this._postInit();
         }

@@ -28,6 +28,10 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
   ***********************************************
   */
   construct() {
+    this.__application = qx.core.Init.getApplication() || null;
+    if (this.__application) {
+      this.__application.addListener('changeActive', this.__onApplicationActiveChange, this);
+    }
     if (qx.Class.hasMixin(this.constructor, cv.ui.structure.tile.MVisibility)) {
       this.addListener('changeVisible', this.__onVisibilityChange, this);
     }
@@ -52,6 +56,7 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
   ***********************************************
   */
   members: {
+    __application: null,
     _refreshTimer: null,
     _lastRefresh: null,
 
@@ -64,13 +69,11 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
       } else if (!this._refreshTimer) {
         this._refreshTimer = new qx.event.Timer(value * 1000);
         this._refreshTimer.addListener('interval', this.__doRefresh, this);
-        if (typeof this.isVisible === 'function') {
-          if (this.isVisible()) {
-            this._refreshTimer.start();
-          }
-        } else {
+        if (this.__isRefreshAllowed()) {
           this._refreshTimer.start();
         }
+      } else if (!this.__isRefreshAllowed()) {
+        this._refreshTimer.stop();
       } else {
         this._refreshTimer.restartWith(value * 1000);
       }
@@ -78,17 +81,46 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
 
     __onVisibilityChange(ev) {
       if (ev.getData()) {
-        if (this._refreshTimer) {
-          this._refreshTimer.start();
-          if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
-            // last execution time too old, refresh now
-            this.__doRefresh();
-          }
-        } else if (!this._lastRefresh) {
-          // refresh once when the item becomes visible
+        this.__resumeRefresh();
+      } else {
+        this.__pauseRefresh();
+      }
+    },
+
+    __onApplicationActiveChange(ev) {
+      if (ev.getData()) {
+        this.__resumeRefresh();
+      } else {
+        this.__pauseRefresh();
+      }
+    },
+
+    __isRefreshAllowed() {
+      return this.__isAppActive() && (typeof this.isVisible !== 'function' || this.isVisible());
+    },
+
+    __isAppActive() {
+      return !this.__application || this.__application.isActive();
+    },
+
+    __resumeRefresh() {
+      if (!this.__isRefreshAllowed()) {
+        return;
+      }
+      if (this._refreshTimer) {
+        this._refreshTimer.start();
+        if (!this._lastRefresh || Date.now() - this._lastRefresh >= this._refreshTimer.getInterval()) {
+          // last execution time too old, refresh now
           this.__doRefresh();
         }
-      } else if (this._refreshTimer) {
+      } else if (!this._lastRefresh) {
+        // refresh once when the item becomes visible or the app becomes active again
+        this.__doRefresh();
+      }
+    },
+
+    __pauseRefresh() {
+      if (this._refreshTimer) {
         this._refreshTimer.stop();
       }
     },
@@ -127,6 +159,10 @@ qx.Mixin.define('cv.ui.structure.tile.MRefresh', {
   ***********************************************
   */
   destruct() {
+    if (this.__application) {
+      this.__application.removeListener('changeActive', this.__onApplicationActiveChange, this);
+      this.__application = null;
+    }
     this._disposeObjects('_refreshTimer');
   }
 });
