@@ -308,7 +308,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         this.appendToHeader(title);
       }
 
-      if (title && this._initCounter === 0) {
+      if (title && this._titleString === null) {
         // save base title for updating
         this._titleString = title.textContent.trim();
       }
@@ -362,7 +362,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
         // current selection
         let popup = title.querySelector(':scope > .popup.series');  
-        if (popup) {
+        if (!popup) {
           popup = document.createElement('div');
           popup.classList.add('popup', 'series');
           let option;
@@ -962,13 +962,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       }
       if (this.isVisible()) {
         const [width, height] = this._getSize();
-        if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
+        if ((width < 20 || height <= 10) && (!retries || retries <= 5)) {
           // this makes no sense
           this.__resizeTimeout = setTimeout(() => {
             this._onRendered(chartData, retries > 0 ? retries + 1 : 1);
           }, 150);
         }
-        if (width < 20 || height < 10) {
+        if (width < 20 || height <= 10) {
           // do nothing, these values are invalid
           return;
         }
