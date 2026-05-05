@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.structure.tile.elements.Address', {
         });
 
         this.__transformedValue = transformedState;
-        this._element.setAttribute('data-value', transformedState);
+        this._element.setAttribute('data-value', '' + transformedState);
         //console.log(ev.detail);
         if (this._stateUpdateTarget) {
           this._stateUpdateTarget.dispatchEvent(ev);
