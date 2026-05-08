@@ -33,8 +33,8 @@ fi
 
 
 # Save some useful information
-REPO=`git config remote.origin.url`
-PUSH_REPO="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+REPO="git@github.com:${GITHUB_REPOSITORY}.git"
+SOURCE_BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 SHA=`git rev-parse --verify HEAD`
 NO_API=0
 BUILD_CV=1
@@ -163,18 +163,19 @@ git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 
 # Now that we're all set up, we can push.
 echo "pushing changes to remote repository"
-git push "$PUSH_REPO" $TARGET_BRANCH
+git push "$REMOTE_NAME" $TARGET_BRANCH
 
 # Commit generated screenshots and shot-index files into this repo
 echo "committing changed screenshots and shot-index files"
 cd ..
 git config --local user.name "$COMMIT_AUTHOR_NAME"
 git config --local user.email "$COMMIT_AUTHOR_EMAIL"
+git remote set-url "$REMOTE_NAME" "$REPO"
 
 git add doc/**/*.json
 git add doc/**/*.png
 # only commit when there are changes
 if [ `git diff-index --cached HEAD | wc -l` -gt 0 ]; then
   git commit -q -m "[skip ci] Add generated files: ${SHA}"
-  git push
+  git push "$REMOTE_NAME" "HEAD:${SOURCE_BRANCH_NAME}"
 fi
