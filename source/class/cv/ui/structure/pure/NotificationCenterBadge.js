@@ -22,8 +22,8 @@
  *
  *
  * @widgetexample <settings>
- *   <caption>Configuration example of a centered text widget</caption>
- *   <screenshot name="text_example" />
+ *   <caption>Configuration example of a NotificationCenterBadge widget</caption>
+ *   <screenshot name="notification_center_badge" />
  * </settings>
  * <notificationcenterbadge>
  *  <layout colspan="0" />
