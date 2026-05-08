@@ -36,7 +36,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Image.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -71,17 +71,23 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       _url: null,
       _headers: null,
       _request: null,
+      __P_82_0: null,
       _init: function _init() {
         var _this = this;
+        cv.ui.structure.tile.components.Image.superclass.prototype._init.call(this);
         var element = this._element;
         var img = element.querySelector(':scope > img');
         if (!img) {
           img = document.createElement('img');
           element.appendChild(img);
         }
-        element.addEventListener('click', function () {
-          return _this.refresh();
-        });
+        if (!this.__P_82_0) {
+          this.__P_82_0 = function () {
+            return _this.refresh();
+          };
+        }
+        element.removeEventListener('click', this.__P_82_0);
+        element.addEventListener('click', this.__P_82_0);
         var src = element.getAttribute('src');
         var base = window.location.origin;
         if (src.substring(0, 1) !== '/' && src.substring(0, 4) !== 'http') {
@@ -122,6 +128,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var img = this._element.querySelector(':scope > img');
         if (Object.keys(this._headers).length > 0) {
           var request = new XMLHttpRequest();
+          this._request = request;
           request.responseType = 'blob';
           request.open('get', this._url.toString(), true);
           Object.keys(this._headers).forEach(function (name) {
@@ -129,15 +136,23 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           });
           request.onreadystatechange = function (e) {
             if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-              img.src = URL.createObjectURL(request.response);
+              var url = URL.createObjectURL(request.response);
+              img.setAttribute('src', url);
               img.onload = function () {
-                URL.revokeObjectURL(img.src);
+                URL.revokeObjectURL(url);
               };
+              _this2._request = null;
+            } else if (request.readyState === XMLHttpRequest.DONE) {
+              _this2._request = null;
             }
           };
           request.send(null);
         } else {
-          img.src = this._url.toString();
+          img.setAttribute('src', this._url.toString());
+        }
+        if (!this._lastRefresh) {
+          // set this to avoid another refresh triggered by the refresh feature when this image gets visible
+          this._lastRefresh = Date.now();
         }
       },
       refresh: function refresh() {
@@ -146,6 +161,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           this._url.searchParams.set('r', '' + Math.random());
           this._loadImage();
         }
+      },
+      _disconnected: function _disconnected() {
+        this._element.removeEventListener('click', this.__P_82_0);
+        if (this._request) {
+          this._request.abort();
+          this._request = null;
+        }
+        cv.ui.structure.tile.components.Image.superclass.prototype._disconnected.call(this);
       },
       /**
        * Handles the incoming data from the backend for this widget
@@ -180,4 +203,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1735383844765
+//# sourceMappingURL=Image.js.map?dt=1778272816378

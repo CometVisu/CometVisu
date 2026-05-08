@@ -1,6 +1,10 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -21,7 +25,14 @@
       "qx.io.request.authentication.Basic": {},
       "qx.util.Base64": {},
       "qx.type.BaseError": {},
-      "qx.event.Registration": {}
+      "qx.event.Registration": {},
+      "qx.Promise": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "qx.Promise.useNativePromise": {}
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -523,6 +534,9 @@
         this.wait(5000);
       },
       "test: canceled promise with abort() in finally does not reject other promises": function test_canceled_promise_with_abort_in_finally_does_not_reject_other_promises() {
+        if (qx.core.Environment.get("qx.Promise.useNativePromise")) {
+          this.skip("Skipping because qx.Promise.useNativePromise===true, meaning we can't cancel promises.");
+        }
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this);
@@ -553,6 +567,9 @@
         this.wait(5000);
       },
       "test: canceled promise path does not affect other listeners": function test_canceled_promise_path_does_not_affect_other_listeners() {
+        if (qx.core.Environment.get("qx.Promise.useNativePromise")) {
+          this.skip("Skipping because qx.Promise.useNativePromise===true, meaning we can't cancel promises.");
+        }
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this);
@@ -576,6 +593,9 @@
         this.wait(5000);
       },
       "test: canceled promise aborts pending request": function test_canceled_promise_aborts_pending_request() {
+        if (qx.core.Environment.get("qx.Promise.useNativePromise")) {
+          this.skip("Skipping because qx.Promise.useNativePromise===true, meaning we can't cancel promises.");
+        }
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -631,4 +651,4 @@
   qx.test.io.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1735383861752
+//# sourceMappingURL=Xhr.js.map?dt=1778272833705

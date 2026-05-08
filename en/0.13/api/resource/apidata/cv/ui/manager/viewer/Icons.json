@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576154,
+  "lastModifiedIso": "2026-05-08T20:36:16.154Z",
   "classFilename": "../../source/class/cv/ui/manager/viewer/Icons.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 850
     },
     "end": {
-      "line": 96,
+      "line": 97,
       "column": 3,
-      "index": 2954
+      "index": 2949
     }
   },
   "className": "cv.ui.manager.viewer.Icons",
@@ -41,9 +41,9 @@
         "index": 1066
       },
       "end": {
-        "line": 34,
+        "line": 33,
         "column": 3,
-        "index": 1136
+        "index": 1100
       }
     }
   },
@@ -53,14 +53,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 41,
           "column": 4,
-          "index": 1278
+          "index": 1242
         },
         "end": {
-          "line": 42,
+          "line": 41,
           "column": 41,
-          "index": 1315
+          "index": 1279
         }
       },
       "appearsIn": [
@@ -72,14 +72,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 42,
           "column": 4,
-          "index": 1321
+          "index": 1285
         },
         "end": {
-          "line": 43,
+          "line": 42,
           "column": 45,
-          "index": 1362
+          "index": 1326
         }
       },
       "appearsIn": [
@@ -92,14 +92,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 43,
           "column": 4,
-          "index": 1368
+          "index": 1332
         },
         "end": {
-          "line": 44,
+          "line": 43,
           "column": 51,
-          "index": 1415
+          "index": 1379
         }
       },
       "appearsIn": [
@@ -108,19 +108,40 @@
     }
   },
   "members": {
+    "_disableFileEvents": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1525
+        },
+        "end": {
+          "line": 52,
+          "column": 28,
+          "index": 1549
+        }
+      },
+      "overriddenFrom": "cv.ui.manager.viewer.Folder",
+      "appearsIn": [
+        "cv.ui.manager.viewer.Folder",
+        "cv.ui.manager.control.MFileEventHandler"
+      ]
+    },
     "_getDelegate": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 4,
-          "index": 1561
+          "index": 1556
         },
         "end": {
-          "line": 63,
+          "line": 64,
           "column": 5,
-          "index": 1815
+          "index": 1810
         }
       },
       "type": "function",
@@ -135,14 +156,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 65,
+          "line": 66,
           "column": 4,
-          "index": 1822
+          "index": 1817
         },
         "end": {
-          "line": 71,
+          "line": 72,
           "column": 5,
-          "index": 2077
+          "index": 2072
         }
       },
       "type": "function",
@@ -157,14 +178,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 73,
+          "line": 74,
           "column": 4,
-          "index": 2084
+          "index": 2079
         },
         "end": {
-          "line": 94,
+          "line": 95,
           "column": 5,
-          "index": 2946
+          "index": 2941
         }
       },
       "type": "function",

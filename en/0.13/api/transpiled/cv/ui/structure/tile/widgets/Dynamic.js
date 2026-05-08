@@ -35,7 +35,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2024, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2024-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -82,9 +82,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      _init: function _init() {
-        cv.ui.structure.tile.widgets.Dynamic.superclass.prototype._init.call(this);
-      },
       _updateValue: function _updateValue(mappedValue, value) {
         this.setRef(this._element.querySelector(':scope > cv-ref[when="' + mappedValue + '"]'));
       },
@@ -112,7 +109,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               ref.append(clonedNode);
               if (ref.hasAttribute('modify-attribute')) {
                 var modifyTarget = clonedNode;
-                if (ref.hasAttribute('modify-attribute-target')) {
+                if (ref.hasAttribute('modify-selector')) {
                   modifyTarget = clonedNode.querySelector(ref.getAttribute('modify-selector'));
                   if (!modifyTarget) {
                     this.error('modify-selector not found: ' + ref.getAttribute('modify-selector'));
@@ -151,4 +148,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.widgets.Dynamic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Dynamic.js.map?dt=1735383845848
+//# sourceMappingURL=Dynamic.js.map?dt=1778272817710

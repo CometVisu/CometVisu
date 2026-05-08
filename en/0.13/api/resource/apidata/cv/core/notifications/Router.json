@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576140,
+  "lastModifiedIso": "2026-05-08T20:36:16.140Z",
   "classFilename": "../../source/class/cv/core/notifications/Router.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1093
     },
     "end": {
-      "line": 372,
+      "line": 380,
       "column": 3,
-      "index": 12533
+      "index": 12857
     }
   },
   "className": "cv.core.notifications.Router",
@@ -765,9 +765,9 @@
           "index": 11605
         },
         "end": {
-          "line": 355,
+          "line": 363,
           "column": 5,
-          "index": 12203
+          "index": 12527
         }
       },
       "type": "function",
@@ -789,14 +789,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 357,
+          "line": 365,
           "column": 4,
-          "index": 12210
+          "index": 12534
         },
         "end": {
-          "line": 360,
+          "line": 368,
           "column": 5,
-          "index": 12289
+          "index": 12613
         }
       },
       "type": "function",
@@ -809,14 +809,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 368,
+        "line": 376,
         "column": 2,
-        "index": 12437
+        "index": 12761
       },
       "end": {
-        "line": 371,
+        "line": 379,
         "column": 3,
-        "index": 12529
+        "index": 12853
       }
     }
   },

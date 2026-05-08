@@ -30,17 +30,17 @@
   ************************************************************************ */
   qx.Class.define("qxl.apiviewer.ObjectRegistry", {
     statics: {
-      __P_811_0: {},
+      __P_827_0: {},
       register: function register(object) {
         var hash = qx.core.ObjectRegistry.toHashCode(object);
-        this.__P_811_0[hash] = object;
+        this.__P_827_0[hash] = object;
       },
       getObjectFromHashCode: function getObjectFromHashCode(hashCode) {
-        return this.__P_811_0[hashCode];
+        return this.__P_827_0[hashCode];
       }
     }
   });
   qxl.apiviewer.ObjectRegistry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ObjectRegistry.js.map?dt=1735383889556
+//# sourceMappingURL=ObjectRegistry.js.map?dt=1778272860087

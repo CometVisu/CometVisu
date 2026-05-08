@@ -14,7 +14,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* BodyBlocker.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -42,8 +42,8 @@
     */
     construct: function construct() {
       qx.bom.Blocker.constructor.call(this);
-      this.__P_789_0 = {};
-      this.__P_789_1 = [];
+      this.__P_805_0 = {};
+      this.__P_805_1 = [];
       this.setBlockerOpacity(0.5);
       this.setBlockerColor('#000000');
     },
@@ -53,19 +53,19 @@
     ******************************************************
     */
     members: {
-      __P_789_2: null,
-      __P_789_0: null,
-      __P_789_1: null,
+      __P_805_2: null,
+      __P_805_0: null,
+      __P_805_1: null,
       /**
        * @param topic {String} topic of the message related to this blocker
        * @param unique {Boolean} true if it is a unique message
        */
       block: function block(topic, unique) {
-        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_789_3());
-        if (!Object.prototype.hasOwnProperty.call(this.__P_789_0, topic)) {
-          this.__P_789_0[topic] = 1;
+        cv.ui.BodyBlocker.superclass.prototype.block.call(this, this.__P_805_3());
+        if (!Object.prototype.hasOwnProperty.call(this.__P_805_0, topic)) {
+          this.__P_805_0[topic] = 1;
         } else if (!unique) {
-          this.__P_789_0[topic]++;
+          this.__P_805_0[topic]++;
         }
         document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
           elem.classList.add('blurred');
@@ -73,11 +73,11 @@
       },
       unblock: function unblock(topic) {
         if (topic) {
-          if (Object.prototype.hasOwnProperty.call(this.__P_789_0, topic)) {
-            this.__P_789_0[topic]--;
-            if (this.__P_789_0[topic] === 0) {
-              delete this.__P_789_0[topic];
-              if (Object.keys(this.__P_789_0).length === 0) {
+          if (Object.prototype.hasOwnProperty.call(this.__P_805_0, topic)) {
+            this.__P_805_0[topic]--;
+            if (this.__P_805_0[topic] === 0) {
+              delete this.__P_805_0[topic];
+              if (Object.keys(this.__P_805_0).length === 0) {
                 cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
                 document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
                   elem.classList.remove('blurred');
@@ -87,22 +87,22 @@
           }
         } else {
           // not topic given unblock all
-          this.__P_789_0 = {};
+          this.__P_805_0 = {};
           cv.ui.BodyBlocker.superclass.prototype.unblock.call(this);
           document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
             elem.classList.remove('blurred');
           });
         }
       },
-      __P_789_3: function __P_789_3() {
-        if (!this.__P_789_2) {
-          this.__P_789_2 = document.querySelector('body');
+      __P_805_3: function __P_805_3() {
+        if (!this.__P_805_2) {
+          this.__P_805_2 = document.querySelector('body');
         }
-        return this.__P_789_2;
+        return this.__P_805_2;
       }
     }
   });
   cv.ui.BodyBlocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BodyBlocker.js.map?dt=1735383888343
+//# sourceMappingURL=BodyBlocker.js.map?dt=1778272858915

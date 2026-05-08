@@ -54,13 +54,13 @@
 
       // no base call needed
 
-      this.__P_523_0 = txt;
+      this.__P_533_0 = txt;
       this.length = txt.length;
     },
     members: {
       $$isString: true,
       length: 0,
-      __P_523_0: null,
+      __P_533_0: null,
       /**
        * Returns a string representing the specified object.
        *
@@ -72,7 +72,7 @@
        * @return {String} A new string containing the string value.
        */
       toString: function toString() {
-        return this.__P_523_0;
+        return this.__P_533_0;
       },
       /**
        *  Returns the specified character from a string.
@@ -355,4 +355,4 @@
   qx.type.BaseString.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseString.js.map?dt=1735383875512
+//# sourceMappingURL=BaseString.js.map?dt=1778272846074

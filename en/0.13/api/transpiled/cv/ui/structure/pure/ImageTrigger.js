@@ -31,7 +31,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* ImageTrigger.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -204,4 +204,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1735383843019
+//# sourceMappingURL=ImageTrigger.js.map?dt=1778272814749

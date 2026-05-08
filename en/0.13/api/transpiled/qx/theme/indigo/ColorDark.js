@@ -105,7 +105,7 @@
       // used in table code
       "table-header-cell": "#ebeadb",
       "table-row-background-focused-selected": "#666666",
-      "table-row-background-focused": "#666666",
+      "table-row-background-focused": "#444444",
       "table-row-background-selected": "#666666",
       "table-row-background-even": "#333333",
       "table-row-background-odd": "#333333",
@@ -127,4 +127,4 @@
   qx.theme.indigo.ColorDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorDark.js.map?dt=1735383867339
+//# sourceMappingURL=ColorDark.js.map?dt=1778272839473

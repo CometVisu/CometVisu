@@ -26,6 +26,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         "require": true
       },
       "cv.ui.structure.tile.components.AbstractComponent": {
+        "construct": true,
         "require": true
       },
       "qx.bom.client.Browser": {
@@ -40,6 +41,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       "required": {
         "browser.name": {
           "className": "qx.bom.client.Browser"
+        },
+        "browser.version": {
+          "className": "qx.bom.client.Browser"
         }
       }
     }
@@ -47,7 +51,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Page.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -73,6 +77,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
    */
   qx.Class.define('cv.ui.structure.tile.widgets.Page', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
+    construct: function construct(element) {
+      cv.ui.structure.tile.components.AbstractComponent.constructor.call(this, element);
+      this._deferInit = false;
+    },
     /*
     ***********************************************
       PROPERTIES
@@ -94,8 +102,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       _visibleDisplayMode: null,
       _init: function _init() {
         var browserEngine = qx.core.Environment.get('browser.name');
-        if (browserEngine.includes('firefox') || browserEngine.includes('safari')) {
-          // firefox/safari do not support content-visibility CSS property
+        var version = parseInt(qx.core.Environment.get('browser.version').split('.')[0]);
+        if (browserEngine.includes('firefox') && version < 125 || browserEngine.includes('safari') && version < 18) {
+          // firefox/safari do not support content-visibility CSS property in these versions
           // see: https://caniuse.com/css-content-visibility
           this._element.classList.add('no-content-visibility');
           this._supportsContentVisibility = false;
@@ -158,4 +167,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1735383845900
+//# sourceMappingURL=Page.js.map?dt=1778272817765

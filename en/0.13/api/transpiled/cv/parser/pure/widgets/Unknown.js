@@ -14,7 +14,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Unknown.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -63,4 +63,4 @@
   cv.parser.pure.widgets.Unknown.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Unknown.js.map?dt=1735383838898
+//# sourceMappingURL=Unknown.js.map?dt=1778272810971

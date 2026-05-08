@@ -22,8 +22,8 @@
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "qx.io.request.Xhr": {},
-      "cv.core.notifications.Router": {},
       "qx.locale.Manager": {},
+      "cv.core.notifications.Router": {},
       "qx.event.Timer": {},
       "qx.dom.Element": {},
       "cv.ui.PopupHandler": {},
@@ -36,7 +36,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* AbstractDiagram.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -357,6 +357,10 @@
         }
       },
       _onSuccess: function _onSuccess(ts, key, ev, forceNowDatapoint) {
+        if (ev.getTarget().getResponseContentType() !== 'application/json') {
+          this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Bad MIME type. Expected "application/json", got "%1".', ev.getTarget().getResponseContentType()));
+          return; // early exit
+        }
         var tsdata = ev.getTarget().getResponse();
         if (tsdata !== null) {
           var client = cv.io.BackendConnections.getClient();
@@ -364,19 +368,17 @@
           if (ts.tsType !== 'influx' && client.hasCustomChartsDataProcessor(tsdata)) {
             tsdata = client.processChartsData(tsdata, ts);
           } else {
+            if (!Array.isArray(tsdata)) {
+              this._onStatusError(ts, key, ev, qx.locale.Manager.tr('Data is not in an array.'));
+              return; // early exit
+            }
             // calculate timestamp offset and scaling
             var millisOffset = Number.isFinite(ts.offset) ? ts.offset * 1000 : 0;
-            var newRrd = new Array(tsdata.length);
-            var j = 0;
-            var l = tsdata.length;
-            for (; j < l; j++) {
-              if (ts.tsType === 'rrd') {
-                newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1][ts.dsIndex]) * ts.scaling];
-              } else {
-                newRrd[j] = [tsdata[j][0] + millisOffset, parseFloat(tsdata[j][1]) * ts.scaling];
-              }
-            }
-            tsdata = newRrd;
+            tsdata = ts.tsType === 'rrd' ? tsdata.map(function (x) {
+              return [x[0] + millisOffset, parseFloat(x[1][ts.dsIndex]) * ts.scaling];
+            }) : tsdata.map(function (x) {
+              return [x[0] + millisOffset, parseFloat(x[1]) * ts.scaling];
+            });
           }
           var now = Date.now();
           if (forceNowDatapoint && tsdata.length > 0) {
@@ -389,14 +391,19 @@
           this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
             waitingCallback[0](tsdata, waitingCallback[1]);
           }, this);
-          this.cache[key].waitingCallbacks.length = 0; // empty array)
+          this.cache[key].waitingCallbacks.length = 0; // empty array
         }
       },
       _onStatusError: function _onStatusError(ts, key, ev) {
+        var additionalErrorMessage = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+        if (additionalErrorMessage !== '') {
+          additionalErrorMessage += '<br/><br/>';
+        }
+        var responseText = ev._target._transport.responseText;
         cv.core.notifications.Router.dispatchMessage('cv.diagram.error', {
           title: qx.locale.Manager.tr('Diagram communication error'),
           severity: 'urgent',
-          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), ev._target._transport.responseText)
+          message: additionalErrorMessage + qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), (responseText.length > 500 ? responseText.slice(0, 499) + '…' : responseText).replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('\n', '<br/>'))
         });
         window.console.error('Diagram _onStatusError', ts, key, ev);
         var tsdata = [];
@@ -405,7 +412,7 @@
         this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
           waitingCallback[0](tsdata, waitingCallback[1]);
         }, this);
-        this.cache[key].waitingCallbacks.length = 0; // empty array)
+        this.cache[key].waitingCallbacks.length = 0; // empty array
       }
     },
     /*
@@ -494,7 +501,7 @@
     ******************************************************
     */
     members: {
-      _init: null,
+      _init: false,
       popupplot: null,
       plot: null,
       plotted: null,
@@ -904,4 +911,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1735383839479
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1778272811519

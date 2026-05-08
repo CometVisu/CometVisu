@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The info widget &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
 
   
@@ -16,7 +16,7 @@
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -349,7 +349,7 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<tr class="row-odd"><td rowspan="4"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-address-group</p></li>
 </ul>
@@ -368,7 +368,11 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 <td><p>float</p></td>
 <td><p>Multiply the result with this value.</p></td>
 </tr>
-<tr class="row-even"><td rowspan="8"><dl class="simple">
+<tr class="row-even"><td><p>target</p></td>
+<td><p>string</p></td>
+<td><p>Target in the parent widget the value if this address should be use for. The possible values depend on the parent widget.</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-address-group</p></li>
 <li><p>cv-address</p></li>
@@ -380,35 +384,35 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 <td><p>string</p></td>
 <td><p>Transformation of the bus system value to be shown.</p></td>
 </tr>
-<tr class="row-odd"><td><p>mode</p></td>
+<tr class="row-even"><td><p>mode</p></td>
 <td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
 <td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
 </tr>
-<tr class="row-even"><td><p>variant</p></td>
+<tr class="row-odd"><td><p>variant</p></td>
 <td><p>string</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>format-pos</p></td>
+<tr class="row-even"><td><p>format-pos</p></td>
 <td><p>decimal</p></td>
 <td><p>Position for format string when multiple addresses are used.</p></td>
 </tr>
-<tr class="row-even"><td><p>selector</p></td>
+<tr class="row-odd"><td><p>selector</p></td>
 <td><p>string</p></td>
 <td><p>Only MQTT: JSON selector</p></td>
 </tr>
-<tr class="row-odd"><td><p>qos</p></td>
+<tr class="row-even"><td><p>qos</p></td>
 <td><p>decimal</p></td>
 <td><p>Only MQTT: QoS</p></td>
 </tr>
-<tr class="row-even"><td><p>retain</p></td>
+<tr class="row-odd"><td><p>retain</p></td>
 <td><p><em>true</em> or <em>false</em></p></td>
 <td><p>Only MQTT: retain flag</p></td>
 </tr>
-<tr class="row-odd"><td><p>ignore-error</p></td>
+<tr class="row-even"><td><p>ignore-error</p></td>
 <td><p><em>true</em> or <em>false</em></p></td>
 <td><p>Only MQTT: ignore decode errors.</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
+<tr class="row-odd"><td><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-address-group</p></li>
 <li><p>cv-address</p>
@@ -629,7 +633,7 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="20"><dl class="simple">
+<tr class="row-odd"><td rowspan="16"><dl class="simple">
 <dt>cv-info</dt><dd><ul class="simple">
 <li><p>cv-chart</p></li>
 </ul>
@@ -639,14 +643,6 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 <td><p>title</p></td>
 <td><p>string</p></td>
 <td><p>Title of the chart.</p></td>
-</tr>
-<tr class="row-even"><td><p>y-format</p></td>
-<td><p>string</p></td>
-<td><p>Format the value on the y-axis. (printf syntax)</p></td>
-</tr>
-<tr class="row-odd"><td><p>x-format</p></td>
-<td><p>string</p></td>
-<td><p>Format of the date on the x-axis. (see: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>). If this value is not provided its automatically determined based on the currently shown ‘series’. Defining an explicit formatting overrides this.</p></td>
 </tr>
 <tr class="row-even"><td><p>series</p></td>
 <td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> or <em>year</em></p></td>
@@ -660,14 +656,6 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 <td><p><em>true</em> or <em>false</em></p></td>
 <td><p>Allows showing the chart in fullscreen size.</p></td>
 </tr>
-<tr class="row-odd"><td><p>show-x-axis</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Show x-axis scale (default = true).</p></td>
-</tr>
-<tr class="row-even"><td><p>show-y-axis</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Show y-axis scale (default = true).</p></td>
-</tr>
 <tr class="row-odd"><td><p>refresh</p></td>
 <td><p>decimal</p></td>
 <td><p>Time interval in seconds this widget is being refreshed.</p></td>
@@ -680,13 +668,13 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
 <td><p><em>true</em> or <em>false</em></p></td>
 <td><p>Show the chart in the background of a tile.</p></td>
 </tr>
-<tr class="row-even"><td><p>min</p></td>
+<tr class="row-even"><td><p>dataset-opacity</p></td>
 <td><p>decimal</p></td>
-<td><p>Minimum value.</p></td>
+<td><p>Defines the opacity of all dataset in the chart (value in %).</p></td>
 </tr>
-<tr class="row-odd"><td><p>max</p></td>
-<td><p>decimal</p></td>
-<td><p>Maximum value.</p></td>
+<tr class="row-odd"><td><p>tooltip-time-format</p></td>
+<td><p>string</p></td>
+<td><p>Defines the time format for tooltips in the chart.</p></td>
 </tr>
 <tr class="row-even"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> or <em>desktop</em></p></td>
@@ -854,7 +842,7 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -871,7 +859,7 @@ For displaying numbers, a progress bar is a good choice, for example.</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

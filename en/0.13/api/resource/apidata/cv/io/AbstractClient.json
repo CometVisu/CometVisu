@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576141,
+  "lastModifiedIso": "2026-05-08T20:36:16.141Z",
   "classFilename": "../../source/class/cv/io/AbstractClient.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 11
+      "index": 832
     },
     "end": {
-      "line": 71,
+      "line": 90,
       "column": 3,
-      "index": 1350
+      "index": 2171
     }
   },
   "className": "cv.io.AbstractClient",
@@ -38,14 +38,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 13,
+        "line": 32,
         "column": 2,
-        "index": 228
+        "index": 1049
       },
       "end": {
-        "line": 16,
+        "line": 35,
         "column": 3,
-        "index": 283
+        "index": 1104
       }
     }
   },
@@ -55,14 +55,14 @@
       "jsdoc": null,
       "location": {
         "start": {
-          "line": 24,
+          "line": 43,
           "column": 4,
-          "index": 423
+          "index": 1244
         },
         "end": {
-          "line": 24,
+          "line": 43,
           "column": 43,
-          "index": 462
+          "index": 1283
         }
       }
     }
@@ -71,14 +71,14 @@
     "connected": {
       "location": {
         "start": {
-          "line": 33,
+          "line": 52,
           "column": 4,
-          "index": 614
+          "index": 1435
         },
         "end": {
-          "line": 38,
+          "line": 57,
           "column": 5,
-          "index": 738
+          "index": 1559
         }
       },
       "json": {
@@ -93,14 +93,14 @@
     "dataReceived": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 58,
           "column": 4,
-          "index": 744
+          "index": 1565
         },
         "end": {
-          "line": 42,
+          "line": 61,
           "column": 5,
-          "index": 807
+          "index": 1628
         }
       },
       "json": {
@@ -113,14 +113,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 62,
           "column": 4,
-          "index": 813
+          "index": 1634
         },
         "end": {
-          "line": 46,
+          "line": 65,
           "column": 5,
-          "index": 870
+          "index": 1691
         }
       },
       "json": {
@@ -133,14 +133,14 @@
     "server": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 66,
           "column": 4,
-          "index": 876
+          "index": 1697
         },
         "end": {
-          "line": 51,
+          "line": 70,
           "column": 5,
-          "index": 965
+          "index": 1786
         }
       },
       "json": {
@@ -158,14 +158,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 60,
+          "line": 79,
           "column": 4,
-          "index": 1111
+          "index": 1932
         },
         "end": {
-          "line": 60,
+          "line": 79,
           "column": 20,
-          "index": 1127
+          "index": 1948
         }
       },
       "appearsIn": []
@@ -175,14 +175,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 81,
           "column": 4,
-          "index": 1134
+          "index": 1955
         },
         "end": {
-          "line": 65,
+          "line": 84,
           "column": 5,
-          "index": 1258
+          "index": 2079
         }
       },
       "type": "function",
@@ -201,14 +201,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 67,
+          "line": 86,
           "column": 4,
-          "index": 1265
+          "index": 2086
         },
         "end": {
-          "line": 69,
+          "line": 88,
           "column": 5,
-          "index": 1342
+          "index": 2163
         }
       },
       "type": "function",

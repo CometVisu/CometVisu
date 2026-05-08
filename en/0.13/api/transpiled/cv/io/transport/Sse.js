@@ -14,7 +14,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Sse.js
    *
-   * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -47,7 +47,7 @@
      */
     construct: function construct(client) {
       this.client = client;
-      this.__P_784_0 = {};
+      this.__P_800_0 = {};
     },
     /*
      ******************************************************
@@ -59,7 +59,7 @@
       sessionId: null,
       client: null,
       eventSource: null,
-      __P_784_0: null,
+      __P_800_0: null,
       /**
        * This function gets called once the communication is established
        * and session information is available
@@ -92,7 +92,7 @@
         this.eventSource.addEventListener('error', this.handleError.bind(this), false);
 
         // add additional listeners
-        Object.getOwnPropertyNames(this.__P_784_0).forEach(this.__P_784_1, this);
+        Object.getOwnPropertyNames(this.__P_800_0).forEach(this.__P_800_1, this);
         this.eventSource.onerror = function () {
           this.error('connection lost');
           this.client.setConnected(false);
@@ -115,8 +115,8 @@
       },
       dispatchTopicMessage: function dispatchTopicMessage(topic, message) {
         this.client.record(topic, message);
-        if (this.__P_784_0[topic]) {
-          this.__P_784_0[topic].forEach(function (entry) {
+        if (this.__P_800_0[topic]) {
+          this.__P_800_0[topic].forEach(function (entry) {
             entry[0].call(entry[1], message);
           });
         }
@@ -128,15 +128,15 @@
        * @param context {Object}
        */
       subscribe: function subscribe(topic, callback, context) {
-        if (!this.__P_784_0[topic]) {
-          this.__P_784_0[topic] = [];
+        if (!this.__P_800_0[topic]) {
+          this.__P_800_0[topic] = [];
         }
-        this.__P_784_0[topic].push([callback, context]);
+        this.__P_800_0[topic].push([callback, context]);
         if (this.isConnectionRunning()) {
-          this.__P_784_1(topic);
+          this.__P_800_1(topic);
         }
       },
-      __P_784_1: function __P_784_1(topic) {
+      __P_800_1: function __P_800_1(topic) {
         this.debug('subscribing to topic ' + topic);
         this.eventSource.addEventListener(topic, function (e) {
           this.dispatchTopicMessage(topic, e);
@@ -187,4 +187,4 @@
   cv.io.transport.Sse.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sse.js.map?dt=1735383888134
+//# sourceMappingURL=Sse.js.map?dt=1778272858702

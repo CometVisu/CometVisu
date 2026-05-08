@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383633800,
-  "lastModifiedIso": "2024-12-28T11:00:33.800Z",
+  "lastModified": 1778272575914,
+  "lastModifiedIso": "2026-05-08T20:36:15.914Z",
   "classFilename": "../../client/source/class/cv/io/transport/LongPolling.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 345,
       "column": 3,
-      "index": 11126
+      "index": 11124
     }
   },
   "className": "cv.io.transport.LongPolling",
@@ -394,7 +394,7 @@
         "end": {
           "line": 218,
           "column": 5,
-          "index": 7445
+          "index": 7443
         }
       },
       "type": "function",
@@ -431,12 +431,12 @@
         "start": {
           "line": 226,
           "column": 4,
-          "index": 7552
+          "index": 7550
         },
         "end": {
           "line": 275,
           "column": 6,
-          "index": 9346
+          "index": 9344
         }
       },
       "appearsIn": []
@@ -473,12 +473,12 @@
         "start": {
           "line": 284,
           "column": 4,
-          "index": 9532
+          "index": 9530
         },
         "end": {
           "line": 295,
           "column": 5,
-          "index": 9951
+          "index": 9949
         }
       },
       "type": "function",
@@ -510,12 +510,12 @@
         "start": {
           "line": 301,
           "column": 4,
-          "index": 10068
+          "index": 10066
         },
         "end": {
           "line": 305,
           "column": 5,
-          "index": 10242
+          "index": 10240
         }
       },
       "type": "function",
@@ -541,12 +541,12 @@
         "start": {
           "line": 310,
           "column": 4,
-          "index": 10314
+          "index": 10312
         },
         "end": {
           "line": 312,
           "column": 5,
-          "index": 10362
+          "index": 10360
         }
       },
       "type": "function",
@@ -583,12 +583,12 @@
         "start": {
           "line": 319,
           "column": 4,
-          "index": 10542
+          "index": 10540
         },
         "end": {
           "line": 327,
           "column": 5,
-          "index": 10768
+          "index": 10766
         }
       },
       "type": "function",
@@ -620,12 +620,12 @@
         "start": {
           "line": 333,
           "column": 4,
-          "index": 10837
+          "index": 10835
         },
         "end": {
           "line": 343,
           "column": 5,
-          "index": 11118
+          "index": 11116
         }
       },
       "type": "function",

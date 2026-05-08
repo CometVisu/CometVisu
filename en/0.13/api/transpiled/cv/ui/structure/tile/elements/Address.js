@@ -36,7 +36,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Address.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -67,16 +67,30 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_93_0: null,
-      __P_93_1: null,
+      __P_98_0: null,
+      __P_98_1: null,
       _stateUpdateTarget: null,
+      __P_98_2: null,
       getAddress: function getAddress() {
         return this._element.textContent.trim();
+      },
+      // Override to pre-register the address in the model before page-active deferral,
+      // so the backend's initial full-state fetch stores the state for non-start-page elements.
+      _applyConnected: function _applyConnected(value) {
+        if (value) {
+          this._stateUpdateTarget = this._element;
+          var address = this.getAddress();
+          if (address) {
+            var model = cv.data.Model.getInstance();
+            var backendName = this._element.getAttribute('backend');
+            model.addAddress(address, this._element.getAttribute('id'), backendName);
+          }
+        }
+        cv.ui.structure.tile.elements.Address.superclass.prototype._applyConnected.call(this, value);
       },
       _init: function _init() {
         var _this = this;
         var element = this._element;
-        this._stateUpdateTarget = element;
         var address = this.getAddress();
         if (address) {
           var model = cv.data.Model.getInstance();
@@ -101,7 +115,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           }
           if (mode !== 'read') {
             // listen for sendState events
-            element.addEventListener('sendState', function (ev) {
+            this.__P_98_2 = function (ev) {
               var value = null;
               if (Object.prototype.hasOwnProperty.call(ev.detail, 'value')) {
                 value = ev.detail.value;
@@ -145,7 +159,25 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
                   }
                 }
               }
-            });
+            };
+            element.addEventListener('sendState', this.__P_98_2);
+          }
+        }
+      },
+      _disconnected: function _disconnected() {
+        if (this.__P_98_2) {
+          this._element.removeEventListener('sendState', this.__P_98_2);
+          this.__P_98_2 = null;
+        }
+      },
+      resend: function resend() {
+        var address = this.getAddress();
+        if (address && this._initialized) {
+          var model = cv.data.Model.getInstance();
+          var backendName = this._element.getAttribute('backend');
+          var state = model.getState(address, backendName);
+          if (state !== undefined) {
+            this.fireStateUpdate(address, state, true);
           }
         }
       },
@@ -153,9 +185,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
        * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.
        * @param address {String} address
        * @param state {variant} state to send
+       * @param force {boolean} if true, the event is fired even if the state has not changed since the last update
        */
-      fireStateUpdate: function fireStateUpdate(address, state) {
-        if (this.__P_93_0 !== state || this._element.getAttribute('send-mode') === 'always') {
+      fireStateUpdate: function fireStateUpdate(address, state, force) {
+        if (force || this.__P_98_0 !== state || this._element.getAttribute('send-mode') === 'always') {
           var transform = this._element.getAttribute('transform') || 'raw';
           var transformedState = cv.Transform.decode({
             transform: transform,
@@ -172,8 +205,16 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           if (this._element.hasAttribute('format')) {
             transformedState = cv.util.String.sprintf(this._element.getAttribute('format'), transformedState instanceof Date ? transformedState.toLocaleString() : transformedState);
           }
-          var targetConfig = this._element.hasAttribute('target') ? this._element.getAttribute('target').split(':') : [];
-          var target = targetConfig.length > 0 ? targetConfig.shift() : '';
+          var target = this._element.hasAttribute('target') ? this._element.getAttribute('target') : '';
+          var targetConfig = [];
+
+          // do not split URLs
+          if (!target.includes('://')) {
+            targetConfig = target.split(/:(?!\/\/)/);
+            if (targetConfig.length > 0) {
+              target = targetConfig.shift();
+            }
+          }
           var ev = new CustomEvent('stateUpdate', {
             bubbles: true,
             cancelable: true,
@@ -189,10 +230,16 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
               variant: this._element.hasAttribute('variant') ? this._element.getAttribute('variant') : null
             }
           });
-          this.__P_93_1 = transformedState;
+          this.__P_98_1 = transformedState;
+          this._element.setAttribute('data-value', '' + transformedState);
           //console.log(ev.detail);
-          this._stateUpdateTarget.dispatchEvent(ev);
-          this.__P_93_0 = state;
+          if (this._stateUpdateTarget) {
+            this._stateUpdateTarget.dispatchEvent(ev);
+          } else {
+            // fallback: should never happen, but at least we can dispatch the event to the element itself, so tiles can listen to it even if they forget to set the target
+            this._element.dispatchEvent(ev);
+          }
+          this.__P_98_0 = state;
           // reset lastSentValue
           if (state !== this._element.lastSentValue) {
             this._element.lastSentValue = null;
@@ -214,8 +261,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         return this._element.getAttribute('mode') !== 'read';
       },
       getValue: function getValue() {
-        return this.__P_93_1;
+        return this.__P_98_1;
       }
+    },
+    destruct: function destruct() {
+      if (this.__P_98_2 && this._element) {
+        this._element.removeEventListener('sendState', this.__P_98_2);
+        this.__P_98_2 = null;
+      }
+      cv.data.Model.getInstance().removeUpdateListener(this.getAddress(), this.fireStateUpdate, this, this._element.getAttribute('backend'));
     },
     defer: function defer(Clazz) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'address', /*#__PURE__*/function (_QxConnector) {
@@ -233,4 +287,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.elements.Address.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Address.js.map?dt=1735383845633
+//# sourceMappingURL=Address.js.map?dt=1778272817494

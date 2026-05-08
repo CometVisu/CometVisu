@@ -50,10 +50,10 @@
         if (this.getFormatTimeAs() == "offset") {
           return this.formatOffset(entry.offset, 6);
         }
-        if (!qx.log.appender.Formatter.__P_285_0) {
-          qx.log.appender.Formatter.__P_285_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
+        if (!qx.log.appender.Formatter.__P_293_0) {
+          qx.log.appender.Formatter.__P_293_0 = new qx.util.format.DateFormat("YYYY-MM-dd HH:mm:ss");
         }
-        return qx.log.appender.Formatter.__P_285_0.format(entry.time);
+        return qx.log.appender.Formatter.__P_293_0.format(entry.time);
       },
       /**
        * Normalises the entry into an object with clazz, object, hash.
@@ -225,19 +225,19 @@
     },
     statics: {
       /** @type {qx.util.format.DateFormat} format for datetimes */
-      __P_285_0: null,
+      __P_293_0: null,
       /** @type {qx.log.appender.Formatter} the default instance */
-      __P_285_1: null,
+      __P_293_1: null,
       /**
        * Returns the default formatter
        *
        * @return {qx.log.appender.Formatter}
        */
       getFormatter: function getFormatter() {
-        if (!qx.log.appender.Formatter.__P_285_1) {
-          qx.log.appender.Formatter.__P_285_1 = new qx.log.appender.Formatter();
+        if (!qx.log.appender.Formatter.__P_293_1) {
+          qx.log.appender.Formatter.__P_293_1 = new qx.log.appender.Formatter();
         }
-        return qx.log.appender.Formatter.__P_285_1;
+        return qx.log.appender.Formatter.__P_293_1;
       },
       /**
        * Sets the default formatter
@@ -245,7 +245,7 @@
        * @param instance {qx.log.appender.Formatter}
        */
       setFormatter: function setFormatter(instance) {
-        qx.log.appender.Formatter.__P_285_1 = instance;
+        qx.log.appender.Formatter.__P_293_1 = instance;
       },
       /**
        * Escapes the HTML in the given value
@@ -255,7 +255,7 @@
        * @return {String} escaped value
        */
       escapeHTML: function escapeHTML(value) {
-        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_285_2);
+        return String(value).replace(/[<>&"']/g, qx.log.appender.Formatter.__P_293_2);
       },
       /**
        * Internal replacement helper for HTML escape.
@@ -264,7 +264,7 @@
        *          {String} Single item to replace.
        * @return {String} Replaced item
        */
-      __P_285_2: function __P_285_2(ch) {
+      __P_293_2: function __P_293_2(ch) {
         var map = {
           "<": "&lt;",
           ">": "&gt;",
@@ -279,4 +279,4 @@
   qx.log.appender.Formatter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Formatter.js.map?dt=1735383856922
+//# sourceMappingURL=Formatter.js.map?dt=1778272828017

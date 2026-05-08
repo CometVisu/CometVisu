@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raspberry Pi: CometVisu in Docker installieren &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=245627df"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/translations.js?v=70a09b52"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -181,7 +181,7 @@ werden.</p>
 <h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#hinzufugen-des-cometvisu-containers" title="Link to this heading"></a></h3>
 <p>Im Formular ist ein passender <cite>Name</cite>, hier <code class="docutils literal notranslate"><span class="pre">CometVisu</span></code>, für den neuen
 Container zu wählen und das Image auszuwählen. Das Image
-<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code> wird hier direkt
+<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> wird hier direkt
 vom offiziellen <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu">Docker Hub</a>
 geladen.</p>
 <div class="admonition note">
@@ -262,7 +262,7 @@ offiziellen <cite>Image</cite> erstellt.</p>
 <h3>Hinzufügen des CometVisu Containers<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>Der <a class="reference external" href="https://hub.docker.com/r/cometvisu/cometvisu">offizielle CometVisu Container</a>
 für den Raspberry Pi ist, in der jeweils neuesten Version,
-<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Wenn die CometVisu auf einem Docker-System installiert werden soll, das
@@ -270,37 +270,37 @@ auf normaler PC Technologie basiert (also mit der x86 bzw. x64 Architektur),
 dann wäre das Image <code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code> zu verwenden.</p>
 </div>
 <p>Installiert wird dieser mit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">arm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span>
 </pre></div>
 </div>
 <p>Zum ersten mal wird der CometVisu-Server nun gestartet mit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">CometVisu</span> <span class="o">-</span><span class="n">e</span> <span class="n">KNX_INTERFACE</span><span class="o">=</span><span class="s1">&#39;iptn:192.168.0.35:3700&#39;</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">v</span> <span class="n">CometVisuConfig</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">config</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span><span class="o">-</span><span class="n">arm</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">CometVisu</span> <span class="o">-</span><span class="n">e</span> <span class="n">KNX_INTERFACE</span><span class="o">=</span><span class="s1">&#39;iptn:192.168.0.35:3700&#39;</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">v</span> <span class="n">CometVisuConfig</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">config</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span>
 </pre></div>
 </div>
 <p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>
-<dl class="simple glossary">
-<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code><a class="headerlink" href="#term-name" title="Link to this term"></a></dt><dd><p>Der Name unter dem der Container gemanagt wird.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">--name</span></code></dt><dd><p>Der Name unter dem der Container gemanagt wird.</p>
 </dd>
-<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code><a class="headerlink" href="#term-e" title="Link to this term"></a></dt><dd><p>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
+<dt><code class="docutils literal notranslate"><span class="pre">-e</span></code></dt><dd><p>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
 <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE='iptn:192.168.0.35:3700'</span></code> wird der CometVisu-Server
 auf die KNX Bus-Schnittstelle mit einem IP-Tunnel an die Adresse
 <code class="docutils literal notranslate"><span class="pre">192.168.0.35</span></code> und den Port <code class="docutils literal notranslate"><span class="pre">3700</span></code> eingerichtet.</p>
 </dd>
-<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code><a class="headerlink" href="#term-restart" title="Link to this term"></a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
+<dt><code class="docutils literal notranslate"><span class="pre">--restart</span></code></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
 automatisch gestartet - so lange er nicht per Befehl explizit beendet
 wurde.</p>
 </dd>
-<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code><a class="headerlink" href="#term-d" title="Link to this term"></a></dt><dd><p>Hierdurch wird der Container im Hintergrund gestartet.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">-d</span></code></dt><dd><p>Hierdurch wird der Container im Hintergrund gestartet.</p>
 </dd>
-<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code><a class="headerlink" href="#term-p" title="Link to this term"></a></dt><dd><p>Durch <code class="docutils literal notranslate"><span class="pre">80:80</span></code> wird der Port 80 im Container auf den Port 80 des
+<dt><code class="docutils literal notranslate"><span class="pre">-p</span></code></dt><dd><p>Durch <code class="docutils literal notranslate"><span class="pre">80:80</span></code> wird der Port 80 im Container auf den Port 80 des
 Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
 Web-Server im Container von außen zugegriffen werden.</p>
 </dd>
-<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code><a class="headerlink" href="#term-v" title="Link to this term"></a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">CometVisuConfig:/var/www/html/resource/config</span></code> wird das vorhin
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">CometVisuConfig:/var/www/html/resource/config</span></code> wird das vorhin
 angelegte Volume <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> auf den Pfad
 <code class="docutils literal notranslate"><span class="pre">/var/www/html/resource/config</span></code> im Container gemappt.</p>
 </dd>
-<dt id="term-cometvisu-cometvisu-latest-arm"><code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest-arm</span></code><a class="headerlink" href="#term-cometvisu-cometvisu-latest-arm" title="Link to this term"></a></dt><dd><p>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">cometvisu/cometvisu:latest</span></code></dt><dd><p>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</p>
 </dd>
 </dl>
 <div class="admonition important">
@@ -342,7 +342,7 @@ daher nicht mehr in diesem Teil der Tutorial-Serie beschrieben.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -359,7 +359,7 @@ daher nicht mehr in diesem Teil der Tutorial-Serie beschrieben.</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

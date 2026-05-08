@@ -16,7 +16,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Web.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -112,4 +112,4 @@
   cv.parser.pure.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1735383838934
+//# sourceMappingURL=Web.js.map?dt=1778272811008

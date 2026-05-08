@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688453,
-  "lastModifiedIso": "2024-12-28T11:01:28.453Z",
+  "lastModified": 1778272635639,
+  "lastModifiedIso": "2026-05-08T20:37:15.639Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/api/Test.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 17,
       "column": 0,
-      "index": 56
+      "index": 452
     },
     "end": {
-      "line": 74,
+      "line": 96,
       "column": 3,
-      "index": 1278
+      "index": 1826
     }
   },
   "className": "qx.tool.cli.api.Test",
@@ -43,14 +43,14 @@
     ],
     "location": {
       "start": {
-        "line": 6,
+        "line": 19,
         "column": 2,
-        "index": 126
+        "index": 522
       },
       "end": {
-        "line": 12,
+        "line": 25,
         "column": 3,
-        "index": 270
+        "index": 666
       }
     }
   },
@@ -58,14 +58,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 17,
+          "line": 30,
           "column": 4,
-          "index": 335
+          "index": 731
         },
         "end": {
-          "line": 19,
+          "line": 32,
           "column": 5,
-          "index": 370
+          "index": 766
         }
       },
       "json": {
@@ -89,14 +89,14 @@
     "description": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 38,
           "column": 4,
-          "index": 460
+          "index": 856
         },
         "end": {
-          "line": 28,
+          "line": 41,
           "column": 5,
-          "index": 536
+          "index": 932
         }
       },
       "json": {
@@ -122,14 +122,14 @@
     "exitCode": {
       "location": {
         "start": {
-          "line": 34,
+          "line": 47,
           "column": 4,
-          "index": 600
+          "index": 996
         },
         "end": {
-          "line": 39,
+          "line": 52,
           "column": 5,
-          "index": 710
+          "index": 1106
         }
       },
       "json": {
@@ -156,14 +156,14 @@
     "needsServer": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 57,
           "column": 4,
-          "index": 788
+          "index": 1184
         },
         "end": {
-          "line": 48,
+          "line": 61,
           "column": 5,
-          "index": 872
+          "index": 1268
         }
       },
       "json": {
@@ -186,17 +186,50 @@
       },
       "appearsIn": []
     },
+    "failFast": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1338
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1420
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If this special test fails exit process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If this special test fails exit process</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
     "testFunction": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 76,
           "column": 4,
-          "index": 945
+          "index": 1493
         },
         "end": {
-          "line": 58,
+          "line": 80,
           "column": 5,
-          "index": 1035
+          "index": 1583
         }
       },
       "json": {
@@ -248,14 +281,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 69,
+          "line": 91,
           "column": 4,
-          "index": 1162
+          "index": 1710
         },
         "end": {
-          "line": 72,
+          "line": 94,
           "column": 5,
-          "index": 1270
+          "index": 1818
         }
       },
       "type": "function",

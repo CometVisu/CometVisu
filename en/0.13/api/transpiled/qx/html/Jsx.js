@@ -75,9 +75,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {qx.html.Element|qx.data.Array}
        */
       createElement: function createElement(tagname, attributes) {
-        var _attributes;
         var children = qx.lang.Array.fromArguments(arguments, 2);
-        (_attributes = attributes) !== null && _attributes !== void 0 ? _attributes : attributes = {};
+        attributes !== null && attributes !== void 0 ? attributes : attributes = {};
 
         // CSS CUSTOM PROPERTIES
         var cssCustomProperties = {};
@@ -115,7 +114,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 
         // CUSTOM ELEMENT
         if (typeof tagname === "function") {
-          var _attributes2;
+          var _attributes;
           // handle constructors and plain functions
           var _element = qx.Class.isClass(tagname) ? new tagname(attributes) : tagname(attributes);
           for (var _key in cssCustomProperties) {
@@ -147,7 +146,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             };
             _injectChildren(children);
           }
-          if ((_attributes2 = attributes) !== null && _attributes2 !== void 0 && _attributes2.slot) {
+          if ((_attributes = attributes) !== null && _attributes !== void 0 && _attributes.slot) {
             _element.setAttributes({
               slot: attributes.slot
             });
@@ -179,7 +178,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
             } else if (prop === "dangerouslySetInnerHTML") {
               // eslint-disable-next-line no-underscore-dangle
-              innerHtml = attributes[prop].__P_250_0;
+              innerHtml = attributes[prop].__P_258_0;
             } else if (qx.html.Jsx.SYNTHETIC_EVENTS[prop]) {
               var eventName = prop.replace(/^on/, "").toLowerCase();
               eventHandlers[eventName] = attributes[prop];
@@ -323,4 +322,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1735383855105
+//# sourceMappingURL=Jsx.js.map?dt=1778272826272

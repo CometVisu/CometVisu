@@ -1,0 +1,229 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576158,
+  "lastModifiedIso": "2026-05-08T20:36:16.158Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/chart/LineDataset.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 818
+    },
+    "end": {
+      "line": 62,
+      "column": 3,
+      "index": 1754
+    }
+  },
+  "className": "cv.ui.structure.tile.components.chart.LineDataset",
+  "jsdoc": {
+    "raw": [
+      " LineDataset.js",
+      " *",
+      " * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.chart.Dataset",
+  "properties": {
+    "chartType": {
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 4,
+          "index": 967
+        },
+        "end": {
+          "line": 27,
+          "column": 5,
+          "index": 1026
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "h-line"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.Dataset"
+      ]
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 1032
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 1154
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "valueColor": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1160
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1233
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "currentColor"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "sourceSet": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1239
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1344
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.tile.components.chart.Dataset",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "format": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1350
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1407
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "index": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1468
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showValue": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1474
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1530
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.Dataset"
+      ]
+    }
+  },
+  "members": {
+    "fetch": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1746
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        },
+        {
+          "name": "series"
+        },
+        {
+          "name": "offset"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.Dataset",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.Dataset"
+      ]
+    }
+  },
+  "statics": {}
+}

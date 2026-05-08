@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576141,
+  "lastModifiedIso": "2026-05-08T20:36:16.141Z",
   "classFilename": "../../source/class/cv/data/Model.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1044
     },
     "end": {
-      "line": 391,
+      "line": 404,
       "column": 3,
-      "index": 12074
+      "index": 12854
     }
   },
   "className": "cv.data.Model",
@@ -893,9 +893,9 @@
           "index": 9095
         },
         "end": {
-          "line": 287,
+          "line": 300,
           "column": 5,
-          "index": 9366
+          "index": 10146
         }
       },
       "type": "function",
@@ -947,14 +947,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 294,
+          "line": 307,
           "column": 4,
-          "index": 9546
+          "index": 10326
         },
         "end": {
-          "line": 296,
+          "line": 309,
           "column": 5,
-          "index": 9667
+          "index": 10447
         }
       },
       "type": "function",
@@ -1008,14 +1008,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 303,
+          "line": 316,
           "column": 4,
-          "index": 9846
+          "index": 10626
         },
         "end": {
-          "line": 305,
+          "line": 318,
           "column": 5,
-          "index": 9959
+          "index": 10739
         }
       },
       "type": "function",
@@ -1066,14 +1066,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 312,
+          "line": 325,
           "column": 4,
-          "index": 10114
+          "index": 10894
         },
         "end": {
-          "line": 314,
+          "line": 327,
           "column": 5,
-          "index": 10227
+          "index": 11007
         }
       },
       "type": "function",
@@ -1122,14 +1122,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 321,
+          "line": 334,
           "column": 4,
-          "index": 10383
+          "index": 11163
         },
         "end": {
-          "line": 323,
+          "line": 336,
           "column": 5,
-          "index": 10482
+          "index": 11262
         }
       },
       "type": "function",
@@ -1180,14 +1180,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 330,
+          "line": 343,
           "column": 4,
-          "index": 10669
+          "index": 11449
         },
         "end": {
-          "line": 338,
+          "line": 351,
           "column": 5,
-          "index": 10926
+          "index": 11706
         }
       },
       "type": "function",
@@ -1247,14 +1247,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 347,
+          "line": 360,
           "column": 4,
-          "index": 11133
+          "index": 11913
         },
         "end": {
-          "line": 354,
+          "line": 367,
           "column": 5,
-          "index": 11354
+          "index": 12134
         }
       },
       "type": "function",
@@ -1300,14 +1300,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 360,
+          "line": 373,
           "column": 4,
-          "index": 11463
+          "index": 12243
         },
         "end": {
-          "line": 362,
+          "line": 375,
           "column": 5,
-          "index": 11529
+          "index": 12309
         }
       },
       "type": "function",
@@ -1345,14 +1345,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 368,
+          "line": 381,
           "column": 4,
-          "index": 11633
+          "index": 12413
         },
         "end": {
-          "line": 370,
+          "line": 383,
           "column": 5,
-          "index": 11693
+          "index": 12473
         }
       },
       "type": "function",
@@ -1386,14 +1386,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 376,
+          "line": 389,
           "column": 4,
-          "index": 11769
+          "index": 12549
         },
         "end": {
-          "line": 378,
+          "line": 391,
           "column": 5,
-          "index": 11829
+          "index": 12609
         }
       },
       "type": "function",
@@ -1424,14 +1424,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 384,
+          "line": 397,
           "column": 4,
-          "index": 11930
+          "index": 12710
         },
         "end": {
-          "line": 389,
+          "line": 402,
           "column": 5,
-          "index": 12066
+          "index": 12846
         }
       },
       "type": "function",

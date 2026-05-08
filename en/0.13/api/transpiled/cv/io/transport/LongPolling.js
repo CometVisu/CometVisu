@@ -1,6 +1,6 @@
 /* LongPolling.js
  *
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,7 +18,6 @@
  */
 'use strict';
 
-function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -125,13 +124,12 @@ function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
           data = this.client.buildRequest();
           successCallback = this.handleRead;
         }
-        this.__P_783_0(data, successCallback);
+        this.__P_799_0(data, successCallback);
         this.watchdog.start(5);
       },
-      __P_783_0: function __P_783_0(data, callback) {
-        var _data, _callback;
-        (_data = data) !== null && _data !== void 0 ? _data : data = this.client.buildRequest();
-        (_callback = callback) !== null && _callback !== void 0 ? _callback : callback = this.handleRead;
+      __P_799_0: function __P_799_0(data, callback) {
+        data !== null && data !== void 0 ? data : data = this.client.buildRequest();
+        callback !== null && callback !== void 0 ? callback : callback = this.handleRead;
         data.t = 0;
         var options = {
           beforeSend: this.beforeSend.bind(this),
@@ -164,7 +162,7 @@ function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
               this.watchdog.start(5);
             }
             qx.event.Timer.once(function () {
-              this.__P_783_0();
+              this.__P_799_0();
               this.watchdog.ping(true);
             }, this, delay);
           }
@@ -220,7 +218,7 @@ function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
           // request
           // addresses-startPageAddresses
           var diffAddresses = [];
-          for (var i = 0; i < this.client.addresses.length; +i, _readOnlyError("i")) {
+          for (var i = 0; i < this.client.addresses.length; i++) {
             if (!this.client.initialAddresses.includes(this.client.addresses[i])) {
               diffAddresses.push(this.client.addresses[i]);
             }
@@ -352,4 +350,4 @@ function _readOnlyError(r) { throw new TypeError('"' + r + '" is read-only'); }
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1735383888113
+//# sourceMappingURL=LongPolling.js.map?dt=1778272858683

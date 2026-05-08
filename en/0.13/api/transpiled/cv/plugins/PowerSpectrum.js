@@ -28,7 +28,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* PowerSpectrum.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -65,15 +65,6 @@
     ******************************************************
     */
     construct: function construct(props) {
-      if (!props.name1) {
-        props.name1 = props.singlePhase === true ? 'L' : 'L1';
-      }
-      if (!props.name2) {
-        props.name2 = 'L2';
-      }
-      if (!props.name3) {
-        props.name3 = 'L3';
-      }
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
 
       // some initializations
@@ -248,6 +239,18 @@
     members: {
       __P_15_0: null,
       __P_15_1: null,
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        if (!props.name1) {
+          props.name1 = props.singlePhase === true ? 'L' : 'L1';
+        }
+        if (!props.name2) {
+          props.name2 = 'L2';
+        }
+        if (!props.name3) {
+          props.name3 = 'L3';
+        }
+        return props;
+      },
       _getInnerDomString: function _getInnerDomString() {
         // create the actor
         var actor = '<div class="actor clickable">';
@@ -487,4 +490,4 @@
   cv.plugins.PowerSpectrum.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerSpectrum.js.map?dt=1735383839168
+//# sourceMappingURL=PowerSpectrum.js.map?dt=1778272811222

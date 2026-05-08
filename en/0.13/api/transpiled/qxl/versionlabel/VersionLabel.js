@@ -61,10 +61,10 @@
           // revision or version number as fallback
           version = qx.core.Environment.get("qx.revision");
           if (!version) {
-            version = null;
+            version = "7.9.2";
           }
           if (!version) {
-            version = "7.7.2";
+            version = "7.9.2";
           }
         }
       }
@@ -87,4 +87,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1735383888671
+//# sourceMappingURL=VersionLabel.js.map?dt=1778272859242

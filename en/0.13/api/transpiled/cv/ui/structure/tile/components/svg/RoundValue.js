@@ -25,13 +25,31 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       "cv.ui.structure.tile.components.svg.MGraphicsElement": {
         "require": true
       },
-      "qx.util.Function": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* RoundValue.js
+   *
+   * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+   *
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * RoundValue shows an element that contains of an icon and a value-text inside
    * a colored circle. The circle can also show a progress value in another color.
@@ -95,11 +113,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     members: {
       _target: null,
       _svg: null,
-      __P_92_0: null,
+      __P_96_0: null,
       _radius: null,
       _iconSize: null,
       _iconOffset: null,
       _fixedRadius: null,
+      __P_96_1: null,
+      __P_96_2: null,
+      __P_96_3: null,
+      __P_96_4: null,
       getSvg: function getSvg() {
         return this._svg;
       },
@@ -115,8 +137,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         var strokeWidth = this.getStroke();
         this._findParentGridLayout();
         if (this._parentGridLayout && !this._fixedRadius) {
-          this._debouncedUpdateRadius = qx.util.Function.debounce(this._updateRadius.bind(this), 10);
-          this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRadius, this);
+          this._parentGridLayout.addListener('changeSize', this.__P_96_5, this);
         }
         var parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
         var ns = 'http://www.w3.org/2000/svg';
@@ -143,8 +164,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         if (!element.hasAttribute('no-background')) {
           var bg = document.createElementNS(ns, 'circle');
           bg.classList.add('bg');
-          if (this.__P_92_0) {
-            bg.setAttribute('r', '' + this.__P_92_0);
+          if (this.__P_96_0) {
+            bg.setAttribute('r', '' + this.__P_96_0);
           }
           bg.setAttribute('cx', '50%');
           bg.setAttribute('cy', '50%');
@@ -185,17 +206,57 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         var sumGroup = element.querySelector(':scope > cv-address-group[operator="+"]');
         if (sumGroup) {
           if (!sumGroup._instance) {
-            window.requestAnimationFrame(function () {
-              sumGroup._instance.bind('nonZeroValues', _this, 'amount');
+            this.__P_96_2 = window.requestAnimationFrame(function () {
+              _this.__P_96_2 = null;
+              if (!_this.isConnected() || !sumGroup.isConnected || !sumGroup._instance) {
+                return;
+              }
+              _this.__P_96_3 = sumGroup._instance;
+              _this.__P_96_4 = sumGroup._instance.bind('nonZeroValues', _this, 'amount');
             });
           } else {
-            sumGroup._instance.bind('nonZeroValues', this, 'amount');
+            this.__P_96_3 = sumGroup._instance;
+            this.__P_96_4 = sumGroup._instance.bind('nonZeroValues', this, 'amount');
           }
         } else {
           this.setAmount(element.querySelectorAll(':scope > cv-address:not([target])').length);
         }
         this._applyPosition();
         this._applyTitle(this.getTitle());
+      },
+      _disconnected: function _disconnected() {
+        this.__P_96_6();
+        cv.ui.structure.tile.components.svg.RoundValue.superclass.prototype._disconnected.call(this);
+      },
+      __P_96_6: function __P_96_6() {
+        if (this._parentGridLayout) {
+          this._parentGridLayout.removeListener('changeSize', this.__P_96_5, this);
+        }
+        if (this.__P_96_1 !== null) {
+          window.clearTimeout(this.__P_96_1);
+          this.__P_96_1 = null;
+        }
+        if (this.__P_96_2 !== null) {
+          window.cancelAnimationFrame(this.__P_96_2);
+          this.__P_96_2 = null;
+        }
+        if (this.__P_96_3 && this.__P_96_4 !== null) {
+          this.__P_96_3.removeBinding(this.__P_96_4);
+        }
+        this.__P_96_3 = null;
+        this.__P_96_4 = null;
+      },
+      __P_96_5: function __P_96_5() {
+        var _this2 = this;
+        if (this.__P_96_1 !== null) {
+          window.clearTimeout(this.__P_96_1);
+        }
+        this.__P_96_1 = window.setTimeout(function () {
+          _this2.__P_96_1 = null;
+          if (!_this2.isDisposed() && _this2.isConnected()) {
+            _this2._updateRadius();
+          }
+        }, 10);
       },
       _updateRadius: function _updateRadius() {
         if (this._parentGridLayout) {
@@ -218,7 +279,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             amount.classList.add('amount');
             amount.style.fontSize = "".concat(this._iconSize - 5, "px");
             this._target.appendChild(amount);
-            this.__P_92_1();
+            this.__P_96_7();
           }
           if (this._iconOffset !== 5) {
             this._iconOffset = 5;
@@ -233,10 +294,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           }
         }
         if (updateIconPosition) {
-          this.__P_92_2();
+          this.__P_96_8();
         }
       },
-      __P_92_1: function __P_92_1() {
+      __P_96_7: function __P_96_7() {
         var amount = this._target.querySelector('text.amount');
         if (amount) {
           var radius = this.getRadius();
@@ -247,7 +308,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           amount.setAttribute('y', "".concat(y));
         }
       },
-      __P_92_2: function __P_92_2() {
+      __P_96_8: function __P_96_8() {
         var icon = this._target.querySelector('cv-icon');
         if (icon) {
           icon.style.fontSize = this._iconSize + 'px';
@@ -268,12 +329,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         this._updateNormalizedRadius();
         this._iconSize = Math.round(radius / 2);
         if (this._target) {
-          this.__P_92_2();
+          this.__P_96_8();
           var value = this._target.querySelector('.value');
           if (value) {
             value.style.fontSize = "".concat(this._iconSize - 4, "px");
           }
-          this.__P_92_1();
+          this.__P_96_7();
         }
         if (this._svg) {
           this.setHeight(radius * 2);
@@ -289,15 +350,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _updateNormalizedRadius: function _updateNormalizedRadius() {
         if (this._target) {
           var newValue = this.getRadius() - this.getStroke() / 2;
-          if (this.__P_92_0 !== newValue) {
-            this.__P_92_0 = newValue;
+          if (this.__P_96_0 !== newValue) {
+            this.__P_96_0 = newValue;
             var bg = this._target.querySelector('circle.bg');
             if (bg) {
-              bg.setAttribute('r', '' + this.__P_92_0);
+              bg.setAttribute('r', '' + this.__P_96_0);
             }
             var bar = this._target.querySelector('circle.bar');
             if (bar) {
-              bar.setAttribute('r', '' + this.__P_92_0);
+              bar.setAttribute('r', '' + this.__P_96_0);
             }
           }
         }
@@ -307,7 +368,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           var target = this._target.querySelector('.value');
           if (target) {
             target.textContent = mappedValue;
-            this._debouncedDetectOverflow();
+            this._scheduleDetectOverflow();
           }
         }
       },
@@ -318,7 +379,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           if (!bar) {
             bar = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             bar.classList.add('bar');
-            bar.setAttribute('r', '' + this.__P_92_0);
+            bar.setAttribute('r', '' + this.__P_96_0);
             bar.setAttribute('cx', '50%');
             bar.setAttribute('cy', '50%');
             bar.setAttribute('pathLength', '100');
@@ -352,7 +413,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             icon.style.fontSize = this._iconSize + 'px';
             fo.appendChild(icon);
             this._target.appendChild(fo);
-            this.__P_92_2();
+            this.__P_96_8();
           }
         } else if (icon) {
           this._target.remove(icon);
@@ -369,6 +430,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           }
           title.textContent = percent + '%';
           var valueElement = this._target.querySelector('circle.bar');
+          if (!valueElement) {
+            return;
+          }
           valueElement.setAttribute('stroke-dasharray', "".concat(percent, " ").concat(100 - percent));
         }
       },
@@ -404,6 +468,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         return cv.ui.structure.tile.components.svg.RoundValue.superclass.prototype.onStateUpdate.call(this, ev);
       }
     },
+    destruct: function destruct() {
+      this.__P_96_6();
+    },
     defer: function defer(QxClass) {
       var _Class;
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'svg-round-value', (_Class = /*#__PURE__*/function (_QxConnector) {
@@ -421,4 +488,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.svg.RoundValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundValue.js.map?dt=1735383845548
+//# sourceMappingURL=RoundValue.js.map?dt=1778272817399

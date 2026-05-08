@@ -21,7 +21,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Base.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -310,4 +310,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.model.schema.Base.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Base.js.map?dt=1735383842120
+//# sourceMappingURL=Base.js.map?dt=1778272813914

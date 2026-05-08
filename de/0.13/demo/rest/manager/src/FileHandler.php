@@ -1,4 +1,23 @@
 <?php
+/* FileHandler.php
+ *
+ * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 
 namespace OpenAPIServer;
 
@@ -121,7 +140,7 @@ class FileHandler
     /**
      * Delete a file from filesystem by either moving it to the trash folder or deleting it directly.
      * @param $file {String} absolute path to file that should be deleted
-     * @param $force {Boolean} if true delete directly, no mosing to trash
+     * @param $force {Boolean} if true delete directly, no moving to trash
      */
     public static function deleteFile($file, $force)
     {
@@ -130,7 +149,7 @@ class FileHandler
             try {
                 if (
                     !$force &&
-                    !FileHandler::startsWith($file, $apiConfig->trashFolder)
+                    !str_starts_with($file, $apiConfig->trashFolder)
                 ) {
                     $relDir = substr(
                         dirname($file),
@@ -167,7 +186,7 @@ class FileHandler
             try {
                 if (
                     !$force &&
-                    !FileHandler::startsWith($folder, $apiConfig->trashFolder)
+                    !str_starts_with($folder, $apiConfig->trashFolder)
                 ) {
                     $relDir = substr($folder, strlen($apiConfig->tconfigDir));
                     if (!file_exists($apiConfig->trashFolder)) {
@@ -203,11 +222,6 @@ class FileHandler
     public static function isEmptyDir($path)
     {
         return count(scandir($path)) <= 2;
-    }
-
-    public static function startsWith($str, $cmp)
-    {
-        return substr($str, 0, strlen($cmp) === $cmp);
     }
 
     public static function getMimeTypeFromSuffix($fsPath)

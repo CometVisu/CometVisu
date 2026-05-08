@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576146,
+  "lastModifiedIso": "2026-05-08T20:36:16.146Z",
   "classFilename": "../../source/class/cv/plugins/diagram/Diagram.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 814
     },
     "end": {
-      "line": 179,
+      "line": 170,
       "column": 3,
-      "index": 5027
+      "index": 4834
     }
   },
   "className": "cv.plugins.diagram.Diagram",
@@ -21,7 +21,7 @@
     "raw": [
       " Diagram.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -40,38 +40,18 @@
     ]
   },
   "superClass": "cv.plugins.diagram.AbstractDiagram",
-  "construct": {
-    "type": "function",
-    "params": [
-      {
-        "name": "props"
-      }
-    ],
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 2,
-        "index": 1053
-      },
-      "end": {
-        "line": 31,
-        "column": 3,
-        "index": 1116
-      }
-    }
-  },
   "properties": {
     "width": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 29,
           "column": 4,
-          "index": 1280
+          "index": 1070
         },
         "end": {
-          "line": 42,
+          "line": 32,
           "column": 5,
-          "index": 1338
+          "index": 1128
         }
       },
       "json": {
@@ -84,14 +64,14 @@
     "height": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 34,
           "column": 4,
-          "index": 1345
+          "index": 1135
         },
         "end": {
-          "line": 47,
+          "line": 37,
           "column": 5,
-          "index": 1404
+          "index": 1194
         }
       },
       "json": {
@@ -156,14 +136,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 55,
           "column": 4,
-          "index": 1907
+          "index": 1697
         },
         "end": {
-          "line": 73,
+          "line": 63,
           "column": 5,
-          "index": 2122
+          "index": 1912
         }
       },
       "type": "function",
@@ -194,14 +174,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 65,
           "column": 4,
-          "index": 2129
+          "index": 1919
         },
         "end": {
-          "line": 89,
+          "line": 79,
           "column": 5,
-          "index": 2450
+          "index": 2240
         }
       },
       "type": "function",
@@ -212,19 +192,39 @@
     }
   },
   "members": {
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2402
+        },
+        "end": {
+          "line": 88,
+          "column": 15,
+          "index": 2413
+        }
+      },
+      "overriddenFrom": "cv.plugins.diagram.AbstractDiagram",
+      "appearsIn": [
+        "cv.plugins.diagram.AbstractDiagram"
+      ]
+    },
     "__vlid1": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 98,
+          "line": 89,
           "column": 4,
-          "index": 2612
+          "index": 2419
         },
         "end": {
-          "line": 98,
+          "line": 89,
           "column": 17,
-          "index": 2625
+          "index": 2432
         }
       },
       "appearsIn": []
@@ -234,14 +234,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 100,
+          "line": 91,
           "column": 4,
-          "index": 2632
+          "index": 2439
         },
         "end": {
-          "line": 155,
+          "line": 146,
           "column": 5,
-          "index": 4305
+          "index": 4112
         }
       },
       "type": "function",
@@ -256,14 +256,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 157,
+          "line": 148,
           "column": 4,
-          "index": 4312
+          "index": 4119
         },
         "end": {
-          "line": 171,
+          "line": 162,
           "column": 5,
-          "index": 4834
+          "index": 4641
         }
       },
       "type": "function",

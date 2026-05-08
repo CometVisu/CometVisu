@@ -44,7 +44,7 @@
       qx.ui.container.Composite.constructor.call(this, new qx.ui.layout.HBox());
     },
     members: {
-      __P_647_0: null,
+      __P_660_0: null,
       /**
        * Join this header/footer to a Progressive.  This makes the Progressive
        * object available to the header/footer through the _progressive member.
@@ -54,14 +54,14 @@
        *
        */
       join: function join(progressive) {
-        this.__P_647_0 = progressive;
+        this.__P_660_0 = progressive;
       }
     },
     destruct: function destruct() {
-      this.__P_647_0 = null;
+      this.__P_660_0 = null;
     }
   });
   qx.ui.progressive.headfoot.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1735383880880
+//# sourceMappingURL=Abstract.js.map?dt=1778272851638

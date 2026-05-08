@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576146,
+  "lastModifiedIso": "2026-05-08T20:36:16.146Z",
   "classFilename": "../../source/class/cv/plugins/diagram/Info.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 811
     },
     "end": {
-      "line": 80,
+      "line": 70,
       "column": 3,
-      "index": 2614
+      "index": 2403
     }
   },
   "className": "cv.plugins.diagram.Info",
@@ -21,7 +21,7 @@
     "raw": [
       " Info.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -43,26 +43,6 @@
   "mixins": [
     "cv.ui.common.Update"
   ],
-  "construct": {
-    "type": "function",
-    "params": [
-      {
-        "name": "props"
-      }
-    ],
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 2,
-        "index": 1081
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 1145
-      }
-    }
-  },
   "statics": {
     "parse": {
       "jsdoc": {
@@ -117,14 +97,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 39,
           "column": 4,
-          "index": 1642
+          "index": 1431
         },
         "end": {
-          "line": 55,
+          "line": 45,
           "column": 5,
-          "index": 1913
+          "index": 1702
         }
       },
       "type": "function",
@@ -157,14 +137,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 64,
+          "line": 54,
           "column": 4,
-          "index": 2075
+          "index": 1864
         },
         "end": {
-          "line": 66,
+          "line": 56,
           "column": 5,
-          "index": 2197
+          "index": 1986
         }
       },
       "type": "function",
@@ -179,14 +159,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 67,
+          "line": 57,
           "column": 4,
-          "index": 2203
+          "index": 1992
         },
         "end": {
-          "line": 72,
+          "line": 62,
           "column": 5,
-          "index": 2411
+          "index": 2200
         }
       },
       "type": "function",

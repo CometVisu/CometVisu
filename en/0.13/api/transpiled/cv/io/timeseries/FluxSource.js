@@ -17,7 +17,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -63,14 +63,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               org: config.authority
             }
           };
+          var additional = {};
           // for inline bucket the query template is defined in the config and is provided externally
           if (bucket !== 'inline') {
             var parts = config.path.substring(1).split('/');
             var measurement = parts.shift();
             var field = parts.shift() || 'value';
             var queryParts = ["from(bucket:\"".concat(bucket, "\")"), '|> range($$RANGE$$)', "|> filter(fn: (r) => r._measurement == \"".concat(measurement, "\" and r._field == \"").concat(field, "\")")];
-            var additional = {};
             var allowedAg = ['fn', 'every', 'column', 'createEmpty', 'location', 'offset', 'period', 'timeDst', 'timeSrc'];
+            var allowedTs = ['duration'];
             for (var key in config.params) {
               if (key.startsWith('ag-')) {
                 if (allowedAg.includes(key.substring(3))) {
@@ -81,22 +82,38 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 } else {
                   this.error("skipping invalid aggregationWindow parameter ".concat(key.substring(3)));
                 }
+              } else if (key.startsWith('ts-')) {
+                if (allowedTs.includes(key.substring(3))) {
+                  if (!Object.prototype.hasOwnProperty.call(additional, 'timeShift')) {
+                    additional.timeShift = {};
+                  }
+                  additional.timeShift[key.substring(3)] = config.params[key];
+                } else {
+                  this.error("skipping invalid timeShift parameter ".concat(key.substring(3)));
+                }
               }
             }
             if (Object.prototype.hasOwnProperty.call(additional, 'aggregateWindow')) {
-              if (Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
-                var _parts = [];
-                for (var _key in additional.aggregateWindow) {
-                  _parts.push("".concat(_key, ": ").concat(additional.aggregateWindow[_key]));
-                }
-                // use default
-                if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
-                  _parts.push('fn: mean');
-                }
-                queryParts.push("|> aggregateWindow(".concat(_parts.join(', '), ")"));
-              } else {
-                this.error('aggregateWindow is missing "every" and/or "fn" parameter -> skipped.');
+              var _parts = [];
+              if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'every')) {
+                _parts.push('every: $$AG-EVERY$$');
               }
+              for (var _key in additional.aggregateWindow) {
+                _parts.push("".concat(_key, ": ").concat(additional.aggregateWindow[_key]));
+              }
+              // use default
+              if (!Object.prototype.hasOwnProperty.call(additional.aggregateWindow, 'fn')) {
+                _parts.push('fn: mean');
+              }
+              queryParts.push("|> aggregateWindow(".concat(_parts.join(', '), ")"));
+            }
+            if (Object.prototype.hasOwnProperty.call(additional, 'timeShift')) {
+              var _parts2 = [];
+              for (var _key2 in additional.timeShift) {
+                _parts2.push("".concat(_key2, ": ").concat(additional.timeShift[_key2]));
+              }
+              _parts2.push('columns: ["_time"]');
+              queryParts.push("|> timeShift(".concat(_parts2.join(', '), ")"));
             }
             this._queryTemplate = queryParts.join('\n  ');
           } else {
@@ -105,13 +122,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this._baseRequestConfig = {
             url: this._url,
             proxy: true,
-            options: options
+            options: options,
+            additional: additional
           };
         } else {
           this._baseRequestConfig = {
             url: '',
             proxy: false,
-            options: {}
+            options: {},
+            additional: {}
           };
         }
       },
@@ -125,7 +144,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           case 'day':
             return '1h';
           case 'week':
-            return '6h';
           case 'month':
             return '1d';
           case 'year':
@@ -142,11 +160,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           range = "start: ".concat(timeRange.start.toISOString().split('.')[0] + 'Z', ", stop: ").concat(timeRange.end.toISOString().split('.')[0] + 'Z');
         }
         // add time range to the resource url to make the request cache work
-        config.url += "&range=".concat(encodeURIComponent(range));
+        if (!config.url.includes('?')) {
+          config.url += "?range=".concat(encodeURIComponent(range));
+        } else {
+          config.url += "&range=".concat(encodeURIComponent(range));
+        }
         config.options.requestData = this._queryTemplate.replace('$$RANGE$$', range);
         if (!config.options.requestData.includes('aggregateWindow')) {
+          var _config$additional$ag;
           // get aggregation from series
-          config.options.requestData += "\n  |> aggregateWindow(every: ".concat(this._getAgWindowEveryForSeries(series), ", fn: mean)");
+          config.options.requestData += "\n  |> aggregateWindow(every: ".concat(this._getAgWindowEveryForSeries(series), ", fn: ").concat(((_config$additional$ag = config.additional.aggregateWindow) === null || _config$additional$ag === void 0 ? void 0 : _config$additional$ag.fn) || 'mean', ")");
+        } else {
+          config.options.requestData = config.options.requestData.replace('$$AG-EVERY$$', this._getAgWindowEveryForSeries(series));
         }
         config.url += "&h=".concat(cv.ConfigCache.hashCode(config.options.requestData));
         return config;
@@ -196,4 +221,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.io.timeseries.FluxSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FluxSource.js.map?dt=1735383838155
+//# sourceMappingURL=FluxSource.js.map?dt=1778272810249

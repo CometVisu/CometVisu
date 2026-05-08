@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686701,
-  "lastModifiedIso": "2024-12-28T11:01:26.701Z",
+  "lastModified": 1778272634708,
+  "lastModifiedIso": "2026-05-08T20:37:14.708Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Boolean.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 602
     },
     "end": {
-      "line": 188,
+      "line": 186,
       "column": 3,
-      "index": 5111
+      "index": 5183
     }
   },
   "className": "qx.ui.progressive.renderer.table.cell.Boolean",
@@ -43,7 +43,7 @@
       "end": {
         "line": 41,
         "column": 3,
-        "index": 998
+        "index": 1040
       }
     }
   },
@@ -53,12 +53,12 @@
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1215
+          "index": 1257
         },
         "end": {
           "line": 52,
           "column": 5,
-          "index": 1277
+          "index": 1319
         }
       },
       "json": {
@@ -91,12 +91,12 @@
         "start": {
           "line": 56,
           "column": 4,
-          "index": 1301
+          "index": 1343
         },
         "end": {
           "line": 56,
           "column": 22,
-          "index": 1319
+          "index": 1361
         }
       },
       "appearsIn": []
@@ -108,12 +108,12 @@
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1325
+          "index": 1367
         },
         "end": {
           "line": 57,
           "column": 23,
-          "index": 1344
+          "index": 1386
         }
       },
       "appearsIn": []
@@ -137,12 +137,12 @@
         "start": {
           "line": 62,
           "column": 4,
-          "index": 1439
+          "index": 1481
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 1919
+          "index": 1961
         }
       },
       "type": "function",
@@ -156,12 +156,12 @@
         "start": {
           "line": 77,
           "column": 4,
-          "index": 1926
+          "index": 1968
         },
         "end": {
           "line": 82,
           "column": 5,
-          "index": 2036
+          "index": 2078
         }
       },
       "type": "function",
@@ -183,12 +183,12 @@
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2061
+          "index": 2103
         },
         "end": {
           "line": 167,
           "column": 5,
-          "index": 4684
+          "index": 4726
         }
       },
       "type": "function",
@@ -213,12 +213,12 @@
         "start": {
           "line": 170,
           "column": 4,
-          "index": 4709
+          "index": 4751
         },
         "end": {
           "line": 173,
           "column": 5,
-          "index": 4805
+          "index": 4847
         }
       },
       "type": "function",
@@ -241,12 +241,12 @@
       "start": {
         "line": 176,
         "column": 2,
-        "index": 4814
+        "index": 4856
       },
       "end": {
-        "line": 187,
+        "line": 185,
         "column": 3,
-        "index": 5107
+        "index": 5179
       }
     }
   },

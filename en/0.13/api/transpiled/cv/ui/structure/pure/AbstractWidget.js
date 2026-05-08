@@ -39,7 +39,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* AbstractWidget.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -83,7 +83,7 @@
 
       // this.debug(props.$$type+" INIT ["+props.path+"]");
       // bind visibility to parent page
-      new qx.util.DeferredCall(function () {
+      this.__P_58_0 = new qx.util.DeferredCall(function () {
         if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
           // initialize the ancestors
           var parentData = cv.util.Tree.getParentData(props.path);
@@ -97,7 +97,9 @@
         if (parentPage) {
           parentPage.bind('visible', this, 'visible');
         }
-      }, this).schedule();
+        this.__P_58_0 = null;
+      }, this);
+      this.__P_58_0.schedule();
     },
     /*
     ******************************************************
@@ -196,11 +198,12 @@
     */
     members: {
       $$domReady: null,
-      __P_58_0: null,
       __P_58_1: null,
-      _skipNextEvent: null,
       __P_58_2: null,
+      _skipNextEvent: null,
       __P_58_3: null,
+      __P_58_4: null,
+      __P_58_0: null,
       // property apply
       _applyVisible: function _applyVisible(value, old) {},
       getResponsiveLayout: function getResponsiveLayout(width) {
@@ -329,21 +332,21 @@
       },
       _onPointerDown: function _onPointerDown(ev) {
         // listen to pointerup globally
-        this.__P_58_0 = ev.getCurrentTarget();
-        this.__P_58_1 = Date.now();
-        if (this.__P_58_2) {
-          this.__P_58_2.stop();
-          this.__P_58_2 = null;
+        this.__P_58_1 = ev.getCurrentTarget();
+        this.__P_58_2 = Date.now();
+        if (this.__P_58_3) {
+          this.__P_58_3.stop();
+          this.__P_58_3 = null;
         }
         qx.event.Registration.addListener(document, 'pointerup', this._onPointerUp, this);
         if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && !this.isSendLongOnRelease() && this.getShortThreshold() > 0) {
           var clonedEv = ev.clone();
-          this.__P_58_2 = qx.event.Timer.once(function () {
+          this.__P_58_3 = qx.event.Timer.once(function () {
             this._onLongTap(clonedEv);
             this._skipNextEvent = 'tap';
-            this.__P_58_4();
+            this.__P_58_5();
           }, this, this.getShortThreshold());
-          this.__P_58_3 = {
+          this.__P_58_4 = {
             x: ev.getDocumentLeft(),
             y: ev.getDocumentTop()
           };
@@ -352,57 +355,57 @@
           qx.event.Registration.addListener(document, 'pointermove', this._onPointerMove, this);
         }
       },
-      __P_58_4: function __P_58_4() {
+      __P_58_5: function __P_58_5() {
         qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
         qx.event.Registration.removeListener(document, 'pointermove', this._onPointerMove, this);
-        this.__P_58_1 = null;
-        this.__P_58_3 = null;
-        if (this.__P_58_2) {
-          this.__P_58_2.stop();
-          this.__P_58_2 = null;
+        this.__P_58_2 = null;
+        this.__P_58_4 = null;
+        if (this.__P_58_3) {
+          this.__P_58_3.stop();
+          this.__P_58_3 = null;
         }
       },
       _onPointerMove: function _onPointerMove(ev) {
         var upElement = ev.getTarget();
-        var distance = Math.max(Math.abs(this.__P_58_3.x - ev.getDocumentLeft()), Math.abs(this.__P_58_3.y - ev.getDocumentTop()));
+        var distance = Math.max(Math.abs(this.__P_58_4.x - ev.getDocumentLeft()), Math.abs(this.__P_58_4.y - ev.getDocumentTop()));
         var abort = distance > 5;
         if (!abort) {
-          while (upElement && upElement !== this.__P_58_0) {
+          while (upElement && upElement !== this.__P_58_1) {
             upElement = upElement.parentNode;
             if (upElement === this.getDomElement()) {
               break;
             }
           }
-          abort = !upElement || upElement !== this.__P_58_0;
+          abort = !upElement || upElement !== this.__P_58_1;
         }
         if (abort) {
-          this.__P_58_4();
+          this.__P_58_5();
         }
       },
       _onPointerUp: function _onPointerUp(ev) {
-        if (this.__P_58_1 === null) {
+        if (this.__P_58_2 === null) {
           // ignore pointer ups when the pointerdown has not set a start time
           return;
         }
         var upElement = ev.getTarget();
-        while (upElement && upElement !== this.__P_58_0) {
+        while (upElement && upElement !== this.__P_58_1) {
           upElement = upElement.parentNode;
           if (upElement === this.getDomElement()) {
             break;
           }
         }
-        if (upElement && upElement === this.__P_58_0) {
+        if (upElement && upElement === this.__P_58_1) {
           this._skipNextEvent = 'tap';
           // both events happened on the same element
           ev.setCurrentTarget(upElement);
-          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_58_1 >= this.getShortThreshold()) {
+          if (this._onLongTap && qx.Class.hasMixin(this.constructor, cv.ui.common.HandleLongpress) && this.getShortThreshold() > 0 && Date.now() - this.__P_58_2 >= this.getShortThreshold()) {
             // this is a longpress
             this._onLongTap(ev);
           } else {
             this.action(ev);
           }
         }
-        this.__P_58_4();
+        this.__P_58_5();
       },
       /**
        * Add a listener to the widgets interaction element
@@ -461,10 +464,15 @@
     ******************************************************
     */
     destruct: function destruct() {
+      if (this.__P_58_0) {
+        this.__P_58_0.cancel();
+        this.__P_58_0.dispose();
+        this.__P_58_0 = null;
+      }
       qx.event.Registration.removeListener(document, 'pointerup', this._onPointerUp, this);
     }
   });
   cv.ui.structure.pure.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1735383842699
+//# sourceMappingURL=AbstractWidget.js.map?dt=1778272814466

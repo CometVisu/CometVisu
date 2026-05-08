@@ -13,7 +13,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* MFileEventHandler.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -65,4 +65,4 @@
   cv.ui.manager.control.MFileEventHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFileEventHandler.js.map?dt=1735383840421
+//# sourceMappingURL=MFileEventHandler.js.map?dt=1778272812400

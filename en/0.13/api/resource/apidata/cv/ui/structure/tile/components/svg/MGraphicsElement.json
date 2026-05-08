@@ -1,26 +1,26 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/svg/MGraphicsElement.js",
   "type": "mixin",
   "location": {
     "start": {
       "line": 20,
       "column": 0,
-      "index": 798
+      "index": 803
     },
     "end": {
       "line": 172,
       "column": 3,
-      "index": 4466
+      "index": 4460
     }
   },
   "className": "cv.ui.structure.tile.components.svg.MGraphicsElement",
   "jsdoc": {
     "raw": [
       "",
-      " * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.",
+      " * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -41,12 +41,12 @@
     "@description": [
       {
         "name": "@description",
-        "body": "<p>Copyright (c) 2023, Christian Mayer and the CometVisu contributors.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
+        "body": "<p>Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
       }
     ]
   },
   "mixins": [
-    "cv.ui.structure.tile.MStringTransforms"
+    "cv.util.MStringTransforms"
   ],
   "statics": {
     "DefaultSize": {
@@ -56,12 +56,12 @@
         "start": {
           "line": 29,
           "column": 4,
-          "index": 1063
+          "index": 1055
         },
         "end": {
           "line": 29,
           "column": 19,
-          "index": 1078
+          "index": 1070
         }
       },
       "appearsIn": []
@@ -73,12 +73,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1230
+          "index": 1222
         },
         "end": {
           "line": 43,
           "column": 5,
-          "index": 1342
+          "index": 1334
         }
       },
       "json": {
@@ -95,12 +95,12 @@
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1349
+          "index": 1341
         },
         "end": {
           "line": 50,
           "column": 5,
-          "index": 1464
+          "index": 1456
         }
       },
       "json": {
@@ -117,12 +117,12 @@
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1471
+          "index": 1463
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1553
+          "index": 1545
         }
       },
       "json": {
@@ -138,12 +138,12 @@
         "start": {
           "line": 58,
           "column": 4,
-          "index": 1560
+          "index": 1552
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 1642
+          "index": 1634
         }
       },
       "json": {
@@ -159,12 +159,12 @@
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1649
+          "index": 1641
         },
         "end": {
           "line": 69,
           "column": 5,
-          "index": 1764
+          "index": 1756
         }
       },
       "json": {
@@ -181,12 +181,12 @@
         "start": {
           "line": 71,
           "column": 4,
-          "index": 1771
+          "index": 1763
         },
         "end": {
           "line": 76,
           "column": 5,
-          "index": 1885
+          "index": 1877
         }
       },
       "json": {
@@ -203,12 +203,12 @@
         "start": {
           "line": 78,
           "column": 4,
-          "index": 1892
+          "index": 1884
         },
         "end": {
           "line": 83,
           "column": 5,
-          "index": 2001
+          "index": 1993
         }
       },
       "json": {
@@ -225,12 +225,12 @@
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2008
+          "index": 2000
         },
         "end": {
           "line": 90,
           "column": 5,
-          "index": 2115
+          "index": 2107
         }
       },
       "json": {
@@ -247,12 +247,12 @@
         "start": {
           "line": 92,
           "column": 4,
-          "index": 2122
+          "index": 2114
         },
         "end": {
           "line": 96,
           "column": 5,
-          "index": 2202
+          "index": 2194
         }
       },
       "json": {
@@ -272,12 +272,12 @@
         "start": {
           "line": 105,
           "column": 4,
-          "index": 2348
+          "index": 2340
         },
         "end": {
           "line": 105,
           "column": 27,
-          "index": 2371
+          "index": 2363
         }
       },
       "appearsIn": []
@@ -289,12 +289,12 @@
         "start": {
           "line": 107,
           "column": 4,
-          "index": 2378
+          "index": 2370
         },
         "end": {
           "line": 121,
           "column": 5,
-          "index": 2963
+          "index": 2955
         }
       },
       "type": "function",
@@ -308,12 +308,12 @@
         "start": {
           "line": 123,
           "column": 4,
-          "index": 2970
+          "index": 2962
         },
         "end": {
           "line": 127,
           "column": 5,
-          "index": 3082
+          "index": 3074
         }
       },
       "type": "function",
@@ -337,12 +337,12 @@
         "start": {
           "line": 129,
           "column": 4,
-          "index": 3089
+          "index": 3081
         },
         "end": {
           "line": 134,
           "column": 5,
-          "index": 3343
+          "index": 3335
         }
       },
       "type": "function",
@@ -356,12 +356,12 @@
         "start": {
           "line": 136,
           "column": 4,
-          "index": 3350
+          "index": 3342
         },
         "end": {
           "line": 141,
           "column": 5,
-          "index": 3609
+          "index": 3601
         }
       },
       "type": "function",
@@ -375,12 +375,12 @@
         "start": {
           "line": 143,
           "column": 4,
-          "index": 3616
+          "index": 3608
         },
         "end": {
           "line": 147,
           "column": 5,
-          "index": 3780
+          "index": 3772
         }
       },
       "type": "function",
@@ -394,12 +394,12 @@
         "start": {
           "line": 149,
           "column": 4,
-          "index": 3787
+          "index": 3779
         },
         "end": {
           "line": 153,
           "column": 5,
-          "index": 3909
+          "index": 3903
         }
       },
       "type": "function",
@@ -423,12 +423,12 @@
         "start": {
           "line": 155,
           "column": 4,
-          "index": 3916
+          "index": 3910
         },
         "end": {
           "line": 170,
           "column": 5,
-          "index": 4458
+          "index": 4452
         }
       },
       "type": "function",
@@ -449,12 +449,12 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 1161
+          "index": 1153
         },
         "end": {
-          "line": 40,
+          "line": 44,
           "column": 5,
-          "index": 1280
+          "index": 1414
         }
       },
       "type": "function",
@@ -463,24 +463,24 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     },
     "_parseFloat": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1287
+          "index": 1421
         },
         "end": {
-          "line": 47,
+          "line": 55,
           "column": 5,
-          "index": 1406
+          "index": 1678
         }
       },
       "type": "function",
@@ -489,24 +489,24 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     },
     "_parseBoolean": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 49,
+          "line": 57,
           "column": 4,
-          "index": 1413
+          "index": 1685
         },
         "end": {
-          "line": 54,
+          "line": 65,
           "column": 5,
-          "index": 1533
+          "index": 1873
         }
       },
       "type": "function",
@@ -515,10 +515,10 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     }
   }
 }

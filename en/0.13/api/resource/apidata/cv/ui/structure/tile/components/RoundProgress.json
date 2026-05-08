@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/RoundProgress.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1030
     },
     "end": {
-      "line": 341,
+      "line": 353,
       "column": 3,
-      "index": 11451
+      "index": 11911
     }
   },
   "className": "cv.ui.structure.tile.components.RoundProgress",
@@ -177,14 +177,14 @@
     "visible": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1705
+          "index": 1432
         },
         "end": {
-          "line": 61,
+          "line": 53,
           "column": 5,
-          "index": 1793
+          "index": 1520
         }
       },
       "json": {
@@ -380,9 +380,9 @@
           "index": 2325
         },
         "end": {
-          "line": 219,
+          "line": 224,
           "column": 5,
-          "index": 7913
+          "index": 8180
         }
       },
       "type": "function",
@@ -398,14 +398,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 221,
+          "line": 226,
           "column": 4,
-          "index": 7920
+          "index": 8187
         },
         "end": {
-          "line": 227,
+          "line": 232,
           "column": 5,
-          "index": 8163
+          "index": 8430
         }
       },
       "type": "function",
@@ -421,14 +421,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 229,
+          "line": 234,
           "column": 4,
-          "index": 8170
+          "index": 8437
         },
         "end": {
-          "line": 271,
+          "line": 280,
           "column": 5,
-          "index": 9380
+          "index": 9783
         }
       },
       "type": "function",
@@ -444,14 +444,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 273,
+          "line": 282,
           "column": 4,
-          "index": 9387
+          "index": 9790
         },
         "end": {
-          "line": 296,
+          "line": 305,
           "column": 5,
-          "index": 10446
+          "index": 10849
         }
       },
       "type": "function",
@@ -463,14 +463,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 298,
+          "line": 307,
           "column": 4,
-          "index": 10453
+          "index": 10856
         },
         "end": {
-          "line": 302,
+          "line": 311,
           "column": 5,
-          "index": 10560
+          "index": 10963
         }
       },
       "type": "function",
@@ -486,14 +486,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 304,
+          "line": 313,
           "column": 4,
-          "index": 10567
+          "index": 10970
         },
         "end": {
-          "line": 319,
+          "line": 331,
           "column": 5,
-          "index": 11046
+          "index": 11506
         }
       },
       "type": "function",
@@ -509,14 +509,36 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 70,
+          "line": 62,
           "column": 4,
-          "index": 1939
+          "index": 1666
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5,
-          "index": 2143
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
         }
       },
       "type": "function",
@@ -532,14 +554,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 327,
+        "line": 339,
         "column": 2,
-        "index": 11180
+        "index": 11640
       },
       "end": {
-        "line": 329,
+        "line": 341,
         "column": 3,
-        "index": 11221
+        "index": 11681
       }
     }
   },
@@ -554,9 +576,9 @@
           "index": 1266
         },
         "end": {
-          "line": 48,
-          "column": 6,
-          "index": 1553
+          "line": 40,
+          "column": 18,
+          "index": 1280
         }
       },
       "appearsIn": [

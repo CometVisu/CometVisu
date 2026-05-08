@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686717,
-  "lastModifiedIso": "2024-12-28T11:01:26.717Z",
+  "lastModified": 1778272634714,
+  "lastModifiedIso": "2026-05-08T20:37:14.714Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Browserify.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 703
     },
     "end": {
-      "line": 238,
+      "line": 244,
       "column": 3,
-      "index": 7705
+      "index": 7898
     }
   },
   "className": "qx.tool.compiler.targets.meta.Browserify",
@@ -199,9 +199,9 @@
           "index": 4818
         },
         "end": {
-          "line": 229,
+          "line": 235,
           "column": 5,
-          "index": 7610
+          "index": 7803
         }
       },
       "type": "function",
@@ -244,14 +244,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 240,
           "column": 4,
-          "index": 7650
+          "index": 7843
         },
         "end": {
-          "line": 236,
+          "line": 242,
           "column": 5,
-          "index": 7697
+          "index": 7890
         }
       },
       "type": "function",

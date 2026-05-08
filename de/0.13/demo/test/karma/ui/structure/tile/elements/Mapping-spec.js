@@ -1,6 +1,6 @@
 /* Mapping-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -18,12 +18,12 @@
  */
 
 /**
- * Unit tests for <cv-mapping> component
+ * Unit tests for <cv-mapping> element
  *
  * @author Tobias Bräutigam
  * @since 2022
  */
-describe('testing the <cv-mapping> component of the tile structure', () => {
+describe('testing the <cv-mapping> element of the tile structure', () => {
   let oldController;
 
   beforeEach(() => {

@@ -17,7 +17,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -61,6 +61,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       __P_74_1: null,
       __P_74_2: null,
       __P_74_3: null,
+      __P_74_4: null,
+      __P_74_5: null,
+      __P_74_6: null,
+      __P_74_7: null,
       getUuid: function getUuid() {
         if (!this.__P_74_1) {
           this.__P_74_1 = qx.util.Uuid.createUuidV4();
@@ -74,47 +78,71 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return this.__P_74_2;
       },
       __P_74_0: function __P_74_0(value) {
-        var sendValue = value ? '1' : '0';
-        this.__P_74_3.setAttribute('data-value', sendValue);
-        cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
+        if (typeof this._applyFullscreen === 'function') {
+          // call the original apply function
+          this._applyFullscreen(value);
+        } else {
+          var sendValue = value ? '1' : '0';
+          this.__P_74_3.setAttribute('data-value', sendValue);
+          cv.data.Model.getInstance().onUpdate(this.getPopupAddress(), sendValue, 'system');
+        }
       },
       _initFullscreenSwitch: function _initFullscreenSwitch() {
         var _this = this;
+        this.__P_74_8();
+
         // add fullscreen button + address
-        var button = this.__P_74_3 = this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
+        var button = this.__P_74_3 && this.__P_74_3.isConnected ? this.__P_74_3 : this._buttonFactory('ri-fullscreen-line', ['fullscreen']);
+        this.__P_74_3 = button;
         button.setAttribute('data-value', '0');
-        button.addEventListener('click', function () {
-          return _this.toggleFullscreen();
-        });
-        this.appendToHeader(button, 'right');
-
-        // address
-        var tileAddress = document.createElement('cv-address');
-        tileAddress.setAttribute('mode', 'read');
-        tileAddress.setAttribute('target', 'fullscreen-popup');
-        tileAddress.setAttribute('backend', 'system');
-        tileAddress.setAttribute('send-mode', 'always');
-        tileAddress.textContent = this.getPopupAddress();
-        this._element.parentElement.appendChild(tileAddress);
-
-        // listen to parent tile of popup is opened or not
+        if (!button.isConnected) {
+          button.addEventListener('click', function () {
+            return _this.toggleFullscreen();
+          });
+          this.appendToHeader(button, 'right');
+        }
         var parent = this._element;
         while (parent && parent.nodeName.toLowerCase() !== 'cv-tile') {
           parent = parent.parentElement;
         }
         if (parent) {
-          var tileWidget = parent.getInstance();
-          tileWidget.addListener('closed', function () {
+          this.__P_74_7 = parent.getInstance();
+          this.__P_74_6 = function () {
             return _this.setFullscreen(false);
-          });
-
-          // because we added a read address to the tile after it has been initialized we need to init the listener here manually
-          parent.addEventListener('stateUpdate', function (ev) {
-            tileWidget.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
+          };
+          this.__P_74_7.addListener('closed', this.__P_74_6, this);
         }
+        if (typeof this._applyFullscreen === 'undefined') {
+          if (!this.__P_74_4) {
+            this.__P_74_4 = document.createElement('cv-address');
+            this.__P_74_4.setAttribute('mode', 'read');
+            this.__P_74_4.setAttribute('target', 'fullscreen-popup');
+            this.__P_74_4.setAttribute('backend', 'system');
+            this.__P_74_4.setAttribute('send-mode', 'always');
+            this.__P_74_4.textContent = this.getPopupAddress();
+          }
+          if (this.__P_74_4.parentElement !== this._element.parentElement) {
+            this._element.parentElement.appendChild(this.__P_74_4);
+          }
+          if (this.__P_74_7) {
+            this.__P_74_5 = function (ev) {
+              _this.__P_74_7.onStateUpdate(ev);
+              ev.stopPropagation();
+            };
+            this.__P_74_4.addEventListener('stateUpdate', this.__P_74_5);
+          }
+        }
+      },
+      __P_74_8: function __P_74_8() {
+        if (this.__P_74_7 && this.__P_74_6) {
+          this.__P_74_7.removeListener('closed', this.__P_74_6, this);
+        }
+        if (this.__P_74_4 && this.__P_74_5) {
+          this.__P_74_4.removeEventListener('stateUpdate', this.__P_74_5);
+        }
+        this.__P_74_7 = null;
+        this.__P_74_6 = null;
+        this.__P_74_5 = null;
       },
       _buttonFactory: function _buttonFactory(icon, classes) {
         var _button$classList;
@@ -134,10 +162,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
+      this.__P_74_8();
       this.__P_74_3 = null;
+      this.__P_74_4 = null;
     }
   });
   cv.ui.structure.tile.MFullscreen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MFullscreen.js.map?dt=1735383843985
+//# sourceMappingURL=MFullscreen.js.map?dt=1778272815625

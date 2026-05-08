@@ -31,7 +31,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Mapping.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -62,7 +62,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     */
     construct: function construct(element) {
       cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
-      this.__P_96_0 = {};
+      this.__P_101_0 = {};
     },
     /*
     ***********************************************
@@ -70,7 +70,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_96_0: null,
+      __P_101_0: null,
       _applyConnected: function _applyConnected(value, oldValue, name) {
         cv.ui.structure.tile.elements.Mapping.superclass.prototype._applyConnected.call(this, value, oldValue, name);
         // avoid adding styling elements here as they inherit this method but call the super method too
@@ -93,15 +93,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       mapValue: function mapValue(val, store, params) {
         var _this = this;
         var emptyWhenNoMatch = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-        if (Object.prototype.hasOwnProperty.call(this.__P_96_0, val)) {
-          return this.__P_96_0[val];
+        if (Object.prototype.hasOwnProperty.call(this.__P_101_0, val)) {
+          return this.__P_101_0[val];
         }
         var mappedValue = emptyWhenNoMatch ? '' : '' + val;
         var exactMatch = this._element.querySelector(':scope > entry[value="' + val + '"]');
         var type = this._element.hasAttribute('type') ? this._element.getAttribute('type') : 'string';
         if (exactMatch) {
           mappedValue = this._convert(exactMatch.innerHTML.trim(), type);
-          this.__P_96_0[val] = mappedValue;
+          this.__P_101_0[val] = mappedValue;
           return mappedValue;
         }
         var formula = this._element.querySelector(':scope > formula');
@@ -144,7 +144,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         if (!mapped && defaultValue !== null) {
           mappedValue = this.mapValue(defaultValue);
         }
-        this.__P_96_0[val] = mappedValue;
+        this.__P_101_0[val] = mappedValue;
         return mappedValue;
       },
       _convert: function _convert(value, type) {
@@ -166,7 +166,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_96_0 = null;
+      this.__P_101_0 = null;
     },
     defer: function defer(Clazz) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'mapping', /*#__PURE__*/function (_QxConnector) {
@@ -184,4 +184,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.elements.Mapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mapping.js.map?dt=1735383845761
+//# sourceMappingURL=Mapping.js.map?dt=1778272817623

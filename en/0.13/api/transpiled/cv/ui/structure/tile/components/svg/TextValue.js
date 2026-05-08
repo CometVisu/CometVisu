@@ -32,6 +32,25 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* TextValue.js
+   *
+   * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+   *
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * TextValue shows an element that contains of an icon, an optional tile
    * and a value-text.
@@ -100,10 +119,13 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         cv.ui.structure.tile.components.svg.TextValue.superclass.prototype._init.call(this);
         var element = this._element;
         this._findParentGridLayout();
-        var parent = this._parentGridLayout ? this._parentGridLayout.getSvg() : element;
         this._iconSize = 24 * this.getScale();
-        this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
-        this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
+        var parent = element;
+        if (this._parentGridLayout) {
+          parent = this._parentGridLayout.getSvg();
+          this._debouncedUpdateRSize = qx.util.Function.debounce(this._updateSize.bind(this), 10);
+          this._parentGridLayout.addListener('changeSize', this._debouncedUpdateRSize, this);
+        }
         var ns = 'http://www.w3.org/2000/svg';
 
         // add surrounding svg node
@@ -123,11 +145,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           this._applyIcon(this.getIcon());
         }
         var value = document.createElementNS(ns, 'text');
-        value.setAttribute('x', '0');
+        value.setAttribute('x', this.getWidth() / 2);
         value.setAttribute('y', '32');
         value.setAttribute('alignment-baseline', 'central');
         value.setAttribute('class', 'value');
         value.setAttribute('fill', this.getColor());
+        value.style.textAnchor = 'middle';
         this._target.appendChild(value);
         this.addListener('heightChanged', this._centerY, this);
         this.addListener('widthChanged', this._centerX, this);
@@ -157,14 +180,21 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         if (this._target) {
           var target = this._target.querySelector('.value');
           target.textContent = mappedValue;
-          this._debouncedDetectOverflow();
+          this._scheduleDetectOverflow();
         }
       },
       _centerY: function _centerY() {
         this.setOffsetY(this.getHeight() / 2 - this._svg.getBBox().height / 2);
       },
       _centerX: function _centerX() {
-        this.setOffsetX(this.getWidth() / 2 - this._svg.getBBox().width / 2);
+        var text = this._target.querySelector('text.value');
+        if (text) {
+          text.setAttribute('x', '' + this.getWidth() / 2);
+        }
+        text = this._target.querySelector('text.title');
+        if (text) {
+          text.setAttribute('x', '' + this.getWidth() / 2);
+        }
       },
       _applyOffsetY: function _applyOffsetY(value) {
         var icon = this._target.querySelector('.icon-container');
@@ -173,7 +203,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         }
         var text = this._target.querySelector('text.value');
         if (text) {
-          text.setAttribute('y', '' + (value + 32));
+          text.setAttribute('y', '' + (value + this._iconSize + 12));
         }
         text = this._target.querySelector('text.title');
         if (text) {
@@ -187,10 +217,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             var text = this._target.querySelector('text.title');
             if (!text) {
               text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-              text.setAttribute('x', '0');
+              text.setAttribute('x', this.getWidth() / 2);
               text.setAttribute('y', '16');
               text.setAttribute('alignment-baseline', 'central');
               text.classList.add('title');
+              text.style.textAnchor = 'middle';
               this._target.appendChild(text);
             }
             text.textContent = title;
@@ -227,8 +258,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           if (!icon) {
             var fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
             fo.setAttribute('class', 'icon-container');
-            fo.setAttribute('width', this._iconSize + 'px');
-            fo.setAttribute('height', this._iconSize + 'px');
+            fo.setAttribute('width', '100%');
+            fo.setAttribute('height', '' + this._iconSize);
             fo.style.textAlign = 'center';
             icon = document.createElement('cv-icon');
             icon.classList.add(iconName);
@@ -296,4 +327,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.svg.TextValue.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextValue.js.map?dt=1735383845588
+//# sourceMappingURL=TextValue.js.map?dt=1778272817441

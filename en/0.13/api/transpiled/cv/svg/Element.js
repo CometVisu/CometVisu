@@ -14,7 +14,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Element.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -40,7 +40,7 @@
     */
     construct: function construct(tagName) {
       qx.html.Element.constructor.call(this);
-      this.__P_775_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+      this.__P_791_0 = document.createElementNS('http://www.w3.org/2000/svg', tagName);
     },
     /*
     ***********************************************
@@ -49,18 +49,18 @@
     */
     members: {
       _createDomElement: function _createDomElement() {
-        return this.__P_775_0;
+        return this.__P_791_0;
       },
       getDomElement: function getDomElement() {
-        return this.__P_775_0;
+        return this.__P_791_0;
       }
     },
     destruct: function destruct() {
-      this.__P_775_0.$$widget = null;
-      this.__P_775_0 = null;
+      this.__P_791_0.$$widget = null;
+      this.__P_791_0 = null;
     }
   });
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1735383887662
+//# sourceMappingURL=Element.js.map?dt=1778272858279

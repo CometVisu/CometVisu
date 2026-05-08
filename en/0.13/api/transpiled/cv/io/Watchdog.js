@@ -1,6 +1,6 @@
 /* Watchdog.js
  *
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -79,7 +79,7 @@
        * ID of the setInterval
        * @type {number|null}
        */
-      __P_802_0: null,
+      __P_818_0: null,
       /**
        * Check whether the watchdog was pinged recently enough.
        * If not, restart the connection. When the last data reading is older than
@@ -98,18 +98,18 @@
        * @param watchdogTimer {number} The interval in seconds.
        */
       start: function start(watchdogTimer) {
-        if (this.__P_802_0 !== null) {
+        if (this.__P_818_0 !== null) {
           this.stop();
         }
-        this.__P_802_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+        this.__P_818_0 = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
       },
       /**
        * Stop the watchdog.
        */
       stop: function stop() {
-        if (this.__P_802_0 !== null) {
-          clearInterval(this.__P_802_0);
-          this.__P_802_0 = null;
+        if (this.__P_818_0 !== null) {
+          clearInterval(this.__P_818_0);
+          this.__P_818_0 = null;
         }
       },
       /**
@@ -117,7 +117,7 @@
        * @return {boolean}
        */
       isActive: function isActive() {
-        return this.__P_802_0 !== null;
+        return this.__P_818_0 !== null;
       },
       /**
        * Ping the watchdog to tell it that the function is still running.
@@ -136,4 +136,4 @@
   cv.io.Watchdog.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watchdog.js.map?dt=1735383888842
+//# sourceMappingURL=Watchdog.js.map?dt=1778272859392

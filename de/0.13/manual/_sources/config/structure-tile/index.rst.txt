@@ -87,6 +87,9 @@ hin und her navigiert werden kann. Die feststehenden Bereiche sind alle optional
 weggelassen werden. Man kann sie z.B. für Navigationsleisten oder Widgets die einen globalen Status anzeigen, wie die Anzahl der
 offenen Fenster oder der eingeschalteten Lichter, nutzen.
 
+Für kompakte mobile Layouts können Navigationselemente in diesen festen Bereichen mit ``hide-on-scroll="true"`` konfiguriert werden.
+Dann werden sie während des Scrollens im ``<main>``-Bereich ausgeblendet und am oberen Rand der Seite wieder eingeblendet.
+
 .. widget-example::
 
         <settings design="tile" selector="body">
@@ -172,7 +175,7 @@ jedoch der Header oder Footer Bereich an).
             </cv-page>
         </main>
 
-In den ``<header>/<footer>``-Bereichen kann zusätzlich noch ein Breadcrumb-Menü hinzugefügt werden mit ``<cv-breadcrumbs/>``.
+In den ``<header>/<footer>``-Bereichen kann zusätzlich noch ein :ref:`Breadcrumb-Menü <tile-component-breadcrumbs>` hinzugefügt werden mit ``<cv-breadcrumbs/>``.
 Damit kann man schnell zurück zu übergeordneten Seiten springen.
 
 .. code-block:: xml
@@ -208,11 +211,14 @@ Damit kann man schnell zurück zu übergeordneten Seiten springen.
             </cv-page>
         </main>
 
+Auf Touch-Geräten unterstützt die Tile-Struktur zusätzlich Pull-to-Refresh. 
+Wenn der Inhalt im ``<main>``-Bereich bereits am Anfang ist, lädt das Ziehen nach unten die aktuelle Seite neu.
+
 .. toctree::
     :maxdepth: 1
-    :hidden:
 
     Menu <components/menu>
+    Breadcrumbs <components/breadcrumbs>
     Page <components/page>
     Group <components/group>
     Popup <components/popup>
@@ -350,8 +356,8 @@ und ein Text angezeigt wird.
     </cv-widget>
 
 Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
-anlegen. Das geht am besten über den :ref:`Manager <Manager>` indem man im Order "media" eine Datei mit Namen "my-templates.xml"
-erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen :ref:`Loader <tile-element-loader>`
+anlegen. Das geht am besten über den :ref:`Manager <Manager>`, indem man im Ordner "media" eine Datei mit Namen "my-templates.xml"
+erzeugt. Damit diese Templates geladen werden, fügt man in der Konfigurationsdatei im Meta-Bereich einen :ref:`Loader <tile-element-loader>`
 hinzu.
 
 .. code-block:: xml
@@ -407,7 +413,7 @@ Daraus ergibt sich folgender Code mit dem man das neu definierte Template-Widget
 Da selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
 muss man diese in ein ``<custom>...</custom>`` Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
 wird. Damit verliert man an dieser Stelle aber den Vorteil, dass dieser Teil der Konfigurationsdatei auf Gültigkeit
-geprüft werden kann. Sofern man darauf werden legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
+geprüft werden kann. Sofern man darauf Wert legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
 dem das eigene Widget eingetragen wird. Dazu muss die Datei "custom_visu_config.xsd" im "config/" Ordner vorhanden sein.
 Sofern sie nicht vorhanden ist, muss sie mit folgender Grundstruktur angelegt werden.
 
@@ -518,5 +524,6 @@ Weitere Elemente die keine eigenständige Komponenten sind aber in diesen benutz
     :maxdepth: 1
 
     Icon <components/icon>
+    Plugin <components/plugin>
     Address <elements/address>
     Address-Group <elements/address-group>

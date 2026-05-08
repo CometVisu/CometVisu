@@ -1,5 +1,5 @@
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -158,14 +158,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-          var argv, qxVersion, status, cfg, github, response, token, octokit, libraries, version, manifestModels, mainManifestModel, cwd, registryModel, _iterator, _step, library, manifestModel, old_version, new_version, tag, url, repo_name, _repo_name$split, _repo_name$split2, owner, repo, repoExists, result, topics, semver_range, doRelease, question, answer, _i, _manifestModels, _manifestModel, package_json_path, data, message, _question, _answer, run, release_data, topic;
-          return _regeneratorRuntime().wrap(function _callee$(_context) {
-            while (1) switch (_context.prev = _context.next) {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+          var argv, qxVersion, status, cfg, github, response, token, octokit, libraries, version, manifestModels, mainManifestModel, cwd, registryModel, _iterator, _step, library, manifestModel, old_version, new_version, tag, url, repo_name, _repo_name$split, _repo_name$split2, owner, repo, repoExists, result, topics, semver_range, doRelease, question, answer, _i, _manifestModels, _manifestModel, package_json_path, data, message, _question, _answer, run, release_data, topic, _t, _t2, _t3, _t4, _t5, _t6;
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.p = _context.n) {
               case 0:
-                _context.next = 2;
+                _context.n = 1;
                 return qx.tool.cli.commands["package"].Publish.superclass.prototype.process.call(_this);
-              case 2:
+              case 1:
                 // init
                 argv = _this.argv;
                 if (argv.dryrun) {
@@ -174,260 +174,260 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
 
                 // qooxdoo version
-                _context.next = 6;
+                _context.n = 2;
                 return _this.getQxVersion();
-              case 6:
-                qxVersion = _context.sent;
+              case 2:
+                qxVersion = _context.v;
                 if (!fs.existsSync("Manifest.json")) {
-                  _context.next = 11;
+                  _context.n = 4;
                   break;
                 }
-                _context.next = 10;
+                _context.n = 3;
                 return _this.getAppQxVersion();
-              case 10:
-                qxVersion = _context.sent;
-              case 11:
+              case 3:
+                qxVersion = _context.v;
+              case 4:
                 if (argv.verbose) {
                   _this.info("Using qooxdoo version:  ".concat(qxVersion));
                 }
 
                 // check git status
-                _context.prev = 12;
-                _context.next = 15;
+                _context.p = 5;
+                _context.n = 6;
                 return qx.tool.utils.Utils.exec("git status --porcelain");
-              case 15:
-                status = _context.sent;
-                _context.next = 21;
+              case 6:
+                status = _context.v;
+                _context.n = 8;
                 break;
-              case 18:
-                _context.prev = 18;
-                _context.t0 = _context["catch"](12);
+              case 7:
+                _context.p = 7;
+                _t = _context.v;
                 throw new qx.tool.utils.Utils.UserError("Cannot determine remote repository.");
-              case 21:
+              case 8:
                 _this.debug(status);
                 if (!(status.trim() !== "")) {
-                  _context.next = 24;
+                  _context.n = 9;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("Please commit or stash all remaining changes first.");
-              case 24:
-                _context.next = 26;
+              case 9:
+                _context.n = 10;
                 return qx.tool.utils.Utils.exec("git status --porcelain --branch");
-              case 26:
-                status = _context.sent;
+              case 10:
+                status = _context.v;
                 _this.debug(status);
                 if (!status.includes("ahead")) {
-                  _context.next = 30;
+                  _context.n = 11;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("Please push all local commits to GitHub first.");
-              case 30:
-                _context.next = 32;
+              case 11:
+                _context.n = 12;
                 return qx.tool.cli.ConfigDb.getInstance();
-              case 32:
-                cfg = _context.sent;
+              case 12:
+                cfg = _context.v;
                 github = cfg.db("github", {});
                 if (github.token) {
-                  _context.next = 43;
+                  _context.n = 15;
                   break;
                 }
-                _context.next = 37;
+                _context.n = 13;
                 return inquirer.prompt([{
                   type: "input",
                   name: "token",
                   message: "Publishing to GitHub requires an API token - visit https://github.com/settings/tokens to obtain one (you must assign permission to publish);\nWhat is your GitHub API Token ? "
                 }]);
-              case 37:
-                response = _context.sent;
+              case 13:
+                response = _context.v;
                 if (response.token) {
-                  _context.next = 41;
+                  _context.n = 14;
                   break;
                 }
                 qx.tool.compiler.Console.error("You have not provided a GitHub token.");
-                return _context.abrupt("return");
-              case 41:
+                return _context.a(2);
+              case 14:
                 github.token = response.token;
                 cfg.save();
-              case 43:
+              case 15:
                 token = github.token;
                 if (token) {
-                  _context.next = 46;
+                  _context.n = 16;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("GitHub access token required.");
-              case 46:
+              case 16:
                 octokit = new Octokit({
                   auth: token
                 }); // create index file first?
                 if (!argv.i) {
-                  _context.next = 50;
+                  _context.n = 17;
                   break;
                 }
-                _context.next = 50;
-                return _this.__P_475_0(argv);
-              case 50:
+                _context.n = 17;
+                return _this.__P_485_0(argv);
+              case 17:
                 manifestModels = [];
                 cwd = _process.cwd();
                 registryModel = qx.tool.config.Registry.getInstance();
-                _context.next = 55;
+                _context.n = 18;
                 return registryModel.exists();
-              case 55:
-                if (!_context.sent) {
-                  _context.next = 81;
+              case 18:
+                if (!_context.v) {
+                  _context.n = 28;
                   break;
                 }
-                _context.next = 58;
+                _context.n = 19;
                 return registryModel.load();
-              case 58:
+              case 19:
                 libraries = registryModel.getValue("libraries");
                 _iterator = _createForOfIteratorHelper(libraries);
-                _context.prev = 60;
+                _context.p = 20;
                 _iterator.s();
-              case 62:
+              case 21:
                 if ((_step = _iterator.n()).done) {
-                  _context.next = 71;
+                  _context.n = 24;
                   break;
                 }
                 library = _step.value;
-                _context.next = 66;
+                _context.n = 22;
                 return new qx.tool.config.Abstract(qx.tool.config.Manifest.config).set({
                   baseDir: path.join(cwd, library.path)
                 }).load();
-              case 66:
-                manifestModel = _context.sent;
+              case 22:
+                manifestModel = _context.v;
                 manifestModels.push(manifestModel);
                 // use the first manifest or the one with a truthy property "main" as reference
                 if (!version || library.main) {
                   version = manifestModel.getValue("info.version");
                   mainManifestModel = manifestModel;
                 }
-              case 69:
-                _context.next = 62;
+              case 23:
+                _context.n = 21;
                 break;
-              case 71:
-                _context.next = 76;
+              case 24:
+                _context.n = 26;
                 break;
-              case 73:
-                _context.prev = 73;
-                _context.t1 = _context["catch"](60);
-                _iterator.e(_context.t1);
-              case 76:
-                _context.prev = 76;
+              case 25:
+                _context.p = 25;
+                _t2 = _context.v;
+                _iterator.e(_t2);
+              case 26:
+                _context.p = 26;
                 _iterator.f();
-                return _context.finish(76);
-              case 79:
-                _context.next = 88;
+                return _context.f(26);
+              case 27:
+                _context.n = 31;
                 break;
-              case 81:
-                _context.next = 83;
+              case 28:
+                _context.n = 29;
                 return qx.tool.config.Manifest.getInstance().load();
-              case 83:
-                mainManifestModel = _context.sent;
+              case 29:
+                mainManifestModel = _context.v;
                 manifestModels.push(mainManifestModel);
                 // prevent accidental publication of demo manifest.
                 if (!(!argv.force && mainManifestModel.getValue("provides.namespace").includes(".demo"))) {
-                  _context.next = 87;
+                  _context.n = 30;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("This seems to be the library demo. Please go into the library root directory to publish the library.");
-              case 87:
+              case 30:
                 libraries = [{
                   path: "."
                 }];
-              case 88:
+              case 31:
                 // version
                 old_version = mainManifestModel.getValue("info.version");
                 if (!argv.useVersion) {
-                  _context.next = 96;
+                  _context.n = 33;
                   break;
                 }
                 // use user-supplied value
                 new_version = semver.coerce(argv.useVersion);
                 if (new_version) {
-                  _context.next = 93;
+                  _context.n = 32;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("".concat(argv.useVersion, " is not a valid version number."));
-              case 93:
+              case 32:
                 new_version = new_version.toString();
-                _context.next = 101;
+                _context.n = 35;
                 break;
-              case 96:
+              case 33:
                 if (semver.valid(old_version)) {
-                  _context.next = 98;
+                  _context.n = 34;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("Invalid version number in Manifest. Must be a valid semver version (x.y.z).");
-              case 98:
+              case 34:
                 if (!argv.type) {
                   argv.type = semver.prerelease(old_version) ? "prerelease" : "patch";
                 }
                 argv.prerelease = Boolean(argv.prerelease) || argv.type === "prerelease" || argv.type === "prepatch" || argv.type === "preminor" || argv.type === "premajor";
                 new_version = semver.inc(old_version, argv.type);
-              case 101:
+              case 35:
                 // tag and repo name
                 tag = "v".concat(new_version);
-                _context.prev = 102;
-                _context.next = 105;
+                _context.p = 36;
+                _context.n = 37;
                 return qx.tool.utils.Utils.exec("git config --get remote.origin.url");
-              case 105:
-                url = _context.sent.trim();
-                _context.next = 111;
+              case 37:
+                url = _context.v.trim();
+                _context.n = 39;
                 break;
-              case 108:
-                _context.prev = 108;
-                _context.t2 = _context["catch"](102);
+              case 38:
+                _context.p = 38;
+                _t3 = _context.v;
                 throw new qx.tool.utils.Utils.UserError("Cannot determine remote repository.");
-              case 111:
+              case 39:
                 repo_name = url.replace(/(https:\/\/github.com\/|git@github.com:)/, "").replace(/\.git/, "");
                 _repo_name$split = repo_name.split(/\//), _repo_name$split2 = _slicedToArray(_repo_name$split, 2), owner = _repo_name$split2[0], repo = _repo_name$split2[1];
                 if (argv.verbose) {
                   _this.debug(">>> Repository:  ".concat(repo_name));
                 }
                 repoExists = false;
-                _context.prev = 115;
-                _context.next = 118;
+                _context.p = 40;
+                _context.n = 41;
                 return octokit.repos.getReleaseByTag({
                   owner: owner,
                   repo: repo,
                   tag: tag
                 });
-              case 118:
+              case 41:
                 repoExists = true;
-                _context.next = 123;
+                _context.n = 43;
                 break;
-              case 121:
-                _context.prev = 121;
-                _context.t3 = _context["catch"](115);
-              case 123:
+              case 42:
+                _context.p = 42;
+                _t4 = _context.v;
+              case 43:
                 if (!repoExists) {
-                  _context.next = 125;
+                  _context.n = 44;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("A release with tag '".concat(tag, " already exists.'"));
-              case 125:
-                _context.prev = 125;
-                _context.next = 128;
+              case 44:
+                _context.p = 44;
+                _context.n = 45;
                 return octokit.repos.getAllTopics({
                   owner: owner,
                   repo: repo
                 });
-              case 128:
-                result = _context.sent;
+              case 45:
+                result = _context.v;
                 topics = result.data.names;
-                _context.next = 137;
+                _context.n = 48;
                 break;
-              case 132:
-                _context.prev = 132;
-                _context.t4 = _context["catch"](125);
-                if (!_context.t4.message.includes("Bad credentials")) {
-                  _context.next = 136;
+              case 46:
+                _context.p = 46;
+                _t5 = _context.v;
+                if (!_t5.message.includes("Bad credentials")) {
+                  _context.n = 47;
                   break;
                 }
                 throw new qx.tool.utils.Utils.UserError("Your token is invalid.");
-              case 136:
-                throw _context.t4;
-              case 137:
+              case 47:
+                throw _t5;
+              case 48:
                 // semver range of framework dependency
                 semver_range = _this.argv.qxVersionRange; // use CLI-supplied range
                 if (!semver_range) {
@@ -450,7 +450,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 // prompt user to confirm
                 doRelease = true;
                 if (argv.noninteractive) {
-                  _context.next = 146;
+                  _context.n = 50;
                   break;
                 }
                 question = {
@@ -459,12 +459,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   message: "This will ".concat(argv.version ? "set" : "increment", " the version from ").concat(old_version, " to ").concat(new_version, ", having a dependency on qooxdoo ").concat(semver_range, ", and create a release of the current master on GitHub. Do you want to proceed?"),
                   "default": "y"
                 };
-                _context.next = 144;
+                _context.n = 49;
                 return inquirer.prompt(question);
-              case 144:
-                answer = _context.sent;
+              case 49:
+                answer = _context.v;
                 doRelease = answer.doRelease;
-              case 146:
+              case 50:
                 if (!doRelease) {
                   _process.exit(0);
                 }
@@ -485,56 +485,56 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
                 // package.json, only supported in the root
                 package_json_path = path.join(_process.cwd(), "package.json");
-                _context.next = 151;
+                _context.n = 51;
                 return fs.existsAsync(package_json_path);
-              case 151:
-                if (!_context.sent) {
-                  _context.next = 163;
+              case 51:
+                if (!_context.v) {
+                  _context.n = 55;
                   break;
                 }
-                _context.next = 154;
+                _context.n = 52;
                 return qx.tool.utils.Json.loadJsonAsync(package_json_path);
-              case 154:
-                data = _context.sent;
+              case 52:
+                data = _context.v;
                 data.version = new_version;
                 if (!_this.argv.dryRun) {
-                  _context.next = 160;
+                  _context.n = 53;
                   break;
                 }
                 qx.tool.compiler.Console.info("Dry run: Not changing package.json version...");
-                _context.next = 163;
+                _context.n = 55;
                 break;
-              case 160:
-                _context.next = 162;
+              case 53:
+                _context.n = 54;
                 return qx.tool.utils.Json.saveJsonAsync(package_json_path, data);
-              case 162:
+              case 54:
                 if (!_this.argv.quiet) {
                   qx.tool.compiler.Console.info("Updated version in package.json.");
                 }
-              case 163:
-                _context.next = 165;
+              case 55:
+                _context.n = 56;
                 return _this.fireDataEventAsync("beforeCommit", {
                   version: new_version,
                   argv: _this.argv
                 });
-              case 165:
+              case 56:
                 if (!argv.dryRun) {
-                  _context.next = 168;
+                  _context.n = 57;
                   break;
                 }
                 qx.tool.compiler.Console.info("Dry run: not creating tag and release '".concat(tag, "' of ").concat(repo_name, "..."));
-                return _context.abrupt("return");
-              case 168:
+                return _context.a(2);
+              case 57:
                 if (!argv.message) {
-                  _context.next = 172;
+                  _context.n = 58;
                   break;
                 }
                 message = argv.message.replace(/"/g, '\\"');
-                _context.next = 178;
+                _context.n = 60;
                 break;
-              case 172:
+              case 58:
                 if (argv.noninteractive) {
-                  _context.next = 178;
+                  _context.n = 60;
                   break;
                 }
                 _question = {
@@ -542,12 +542,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   name: "message",
                   message: "Please enter a commit message:"
                 };
-                _context.next = 176;
+                _context.n = 59;
                 return inquirer.prompt([_question]);
-              case 176:
-                _answer = _context.sent;
+              case 59:
+                _answer = _context.v;
                 message = _answer.message;
-              case 178:
+              case 60:
                 if (!message) {
                   message = "Release v".concat(new_version);
                 }
@@ -557,16 +557,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
                 // commit and push
                 run = qx.tool.utils.Utils.run;
-                _context.prev = 181;
-                _context.next = 184;
+                _context.p = 61;
+                _context.n = 62;
                 return run("git", ["add", "--all"]);
-              case 184:
-                _context.next = 186;
+              case 62:
+                _context.n = 63;
                 return run("git", ["commit", "-m \"".concat(message, "\""), "--allow-empty"]);
-              case 186:
-                _context.next = 188;
+              case 63:
+                _context.n = 64;
                 return run("git", ["push"]);
-              case 188:
+              case 64:
                 release_data = {
                   owner: owner,
                   repo: repo,
@@ -577,65 +577,64 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   draft: false,
                   prerelease: argv.prerelease
                 };
-                _context.next = 191;
+                _context.n = 65;
                 return octokit.repos.createRelease(release_data);
-              case 191:
+              case 65:
                 if (!argv.quiet) {
                   qx.tool.compiler.Console.info("Published new version '".concat(tag, "'."));
                 }
-                _context.next = 197;
+                _context.n = 67;
                 break;
-              case 194:
-                _context.prev = 194;
-                _context.t5 = _context["catch"](181);
-                throw new qx.tool.utils.Utils.UserError(_context.t5.message);
-              case 197:
+              case 66:
+                _context.p = 66;
+                _t6 = _context.v;
+                throw new qx.tool.utils.Utils.UserError(_t6.message);
+              case 67:
                 // add GitHub topic
                 topic = "qooxdoo-package";
                 if (topics.includes(topic)) {
-                  _context.next = 203;
+                  _context.n = 69;
                   break;
                 }
                 topics.push(topic);
-                _context.next = 202;
+                _context.n = 68;
                 return octokit.repos.replaceAllTopics({
                   owner: owner,
                   repo: repo,
                   names: topics
                 });
-              case 202:
+              case 68:
                 if (!argv.quiet) {
                   qx.tool.compiler.Console.info("Added GitHub topic '".concat(topic, "'."));
                 }
-              case 203:
+              case 69:
                 run("git", ["pull"]);
-              case 204:
-              case "end":
-                return _context.stop();
+              case 70:
+                return _context.a(2);
             }
-          }, _callee, null, [[12, 18], [60, 73, 76, 79], [102, 108], [115, 121], [125, 132], [181, 194]]);
+          }, _callee, null, [[61, 66], [44, 46], [40, 42], [36, 38], [20, 25, 26, 27], [5, 7]]);
         }))();
       },
       /**
        * Creates a qooxdoo.json file with paths to Manifest.json files in this repository
        * @private
        */
-      __P_475_0: function () {
-        var _P_475_ = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(argv) {
-          return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-            while (1) switch (_context3.prev = _context3.next) {
+      __P_485_0: function () {
+        var _P_485_ = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(argv) {
+          return _regenerator().w(function (_context3) {
+            while (1) switch (_context3.n) {
               case 0:
-                return _context3.abrupt("return", new Promise(function (resolve, reject) {
+                return _context3.a(2, new Promise(function (resolve, reject) {
                   if (argv.verbose && !argv.quiet) {
                     qx.tool.compiler.Console.info("Creating index file...");
                   }
                   glob(qx.tool.config.Manifest.config.fileName, {
                     matchBase: true
                   }, /*#__PURE__*/function () {
-                    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(err, files) {
+                    var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(err, files) {
                       var mainpath, choices, answer, data, registryModel;
-                      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                        while (1) switch (_context2.prev = _context2.next) {
+                      return _regenerator().w(function (_context2) {
+                        while (1) switch (_context2.n) {
                           case 0:
                             if (err) {
                               reject(err);
@@ -644,7 +643,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                               reject(new qx.tool.utils.Utils.UserError("No Manifest.json files could be found"));
                             }
                             if (!(files.length > 1)) {
-                              _context2.next = 8;
+                              _context2.n = 2;
                               break;
                             }
                             choices = files.map(function (p) {
@@ -654,17 +653,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                                 value: p
                               };
                             });
-                            _context2.next = 6;
+                            _context2.n = 1;
                             return inquirer.prompt({
                               name: "mainpath",
                               message: "Please choose the main library",
                               type: "list",
                               choices: choices
                             });
-                          case 6:
-                            answer = _context2.sent;
+                          case 1:
+                            answer = _context2.v;
                             mainpath = answer.mainpath;
-                          case 8:
+                          case 2:
                             data = {
                               libraries: files.map(function (p) {
                                 return files.length > 1 && p === mainpath ? {
@@ -677,28 +676,27 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             }; // write index file
                             registryModel = qx.tool.config.Registry.getInstance();
                             if (!argv.dryRun) {
-                              _context2.next = 15;
+                              _context2.n = 3;
                               break;
                             }
                             qx.tool.compiler.Console.info("Dry run: not creating index file ".concat(registryModel.getRelativeDataPath(), " with the following content:"));
                             qx.tool.compiler.Console.info(data);
-                            _context2.next = 20;
+                            _context2.n = 6;
                             break;
-                          case 15:
-                            _context2.next = 17;
+                          case 3:
+                            _context2.n = 4;
                             return registryModel.load(data);
-                          case 17:
-                            _context2.next = 19;
+                          case 4:
+                            _context2.n = 5;
                             return registryModel.save();
-                          case 19:
+                          case 5:
                             if (!argv.quiet) {
                               qx.tool.compiler.Console.info("Created index file ".concat(registryModel.getRelativeDataPath(), "'."));
                             }
-                          case 20:
+                          case 6:
                             resolve();
-                          case 21:
-                          case "end":
-                            return _context2.stop();
+                          case 7:
+                            return _context2.a(2);
                         }
                       }, _callee2);
                     }));
@@ -707,20 +705,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     };
                   }());
                 }));
-              case 1:
-              case "end":
-                return _context3.stop();
             }
           }, _callee3);
         }));
-        function __P_475_0(_x) {
-          return _P_475_.apply(this, arguments);
+        function __P_485_0(_x) {
+          return _P_485_.apply(this, arguments);
         }
-        return __P_475_0;
+        return __P_485_0;
       }()
     }
   });
   qx.tool.cli.commands["package"].Publish.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Publish.js.map?dt=1735383870747
+//# sourceMappingURL=Publish.js.map?dt=1778272842314

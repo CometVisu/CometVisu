@@ -59,7 +59,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* ElementForm.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -757,4 +757,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.manager.form.ElementForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ElementForm.js.map?dt=1735383841406
+//# sourceMappingURL=ElementForm.js.map?dt=1778272813279

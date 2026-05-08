@@ -78,13 +78,13 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       var cr = qx.ui.table.cellrenderer.Abstract;
-      if (!cr.__P_665_0) {
-        cr.__P_665_0 = qx.ui.table.cellrenderer.Abstract;
+      if (!cr.__P_679_0) {
+        cr.__P_679_0 = qx.ui.table.cellrenderer.Abstract;
         this._createStyleSheet();
 
         // add dynamic theme listener
         {
-          qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
+          this.__P_679_1 = qx.theme.manager.Meta.getInstance().addListener("changeTheme", this._onChangeTheme, this);
         }
       }
     },
@@ -106,7 +106,7 @@
        */
       _onChangeTheme: qx.core.Environment.select("qx.dyntheme", {
         "true": function _true() {
-          qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_665_0.stylesheet);
+          qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_679_0.stylesheet);
           this._createStyleSheet();
         },
         "false": null
@@ -142,7 +142,7 @@
         if (qx.core.Environment.get("css.boxsizing")) {
           stylesheet += ".qooxdoo-table-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
         }
-        qx.ui.table.cellrenderer.Abstract.__P_665_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
+        qx.ui.table.cellrenderer.Abstract.__P_679_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
       },
       /**
        * Get a string of the cell element's HTML classes.
@@ -223,12 +223,12 @@
     },
     destruct: function destruct() {
       // remove dynamic theme listener
-      {
-        qx.theme.manager.Meta.getInstance().removeListener("changeTheme", this._onChangeTheme, this);
+      if (true && this.__P_679_1) {
+        qx.theme.manager.Meta.getInstance().removeListenerById(this.__P_679_1);
       }
     }
   });
   qx.ui.table.cellrenderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1735383881668
+//# sourceMappingURL=Abstract.js.map?dt=1778272852433

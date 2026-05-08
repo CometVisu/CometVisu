@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.ui.structure.pure.AbstractWidget": {
-        "construct": true,
         "require": true
       },
       "cv.ui.common.Update": {
@@ -19,7 +18,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Roundbar.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -56,15 +55,6 @@
   qx.Class.define('cv.ui.structure.pure.Roundbar', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: cv.ui.common.Update,
-    /*
-    ***********************************************
-      CONSTRUCTOR
-    ***********************************************
-    */
-    construct: function construct(props) {
-      this.__P_66_0 = [];
-      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-    },
     /*
     ******************************************************
       STATICS
@@ -324,9 +314,13 @@
     ******************************************************
     */
     members: {
-      __P_66_1: undefined,
-      __P_66_0: null,
+      __P_66_0: undefined,
+      __P_66_1: null,
       __P_66_2: undefined,
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        this.__P_66_1 = [];
+        return props;
+      },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         /**
@@ -544,9 +538,9 @@
           BBox = bboxAdd(BBox, thisBBox.l, thisBBox.u);
           BBox = bboxAdd(BBox, thisBBox.r, thisBBox.d);
         });
-        this.__P_66_1 = [];
+        this.__P_66_0 = [];
         this.getIndicators().forEach(function (indicator, number) {
-          self.__P_66_1.push(new cv.util.LimitedRateUpdateAnimator(self.__P_66_3, self, number));
+          self.__P_66_0.push(new cv.util.LimitedRateUpdateAnimator(self.__P_66_3, self, number));
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
           if (indicator.showValue) {
             cntValues++;
@@ -606,7 +600,7 @@
         var domElement = this.getDomElement();
         // only continue when the animators are already available, i.e. the
         // DOM is set up - otherwise just store it for later
-        if (this.__P_66_1 === undefined || !domElement) {
+        if (this.__P_66_0 === undefined || !domElement) {
           if (this.__P_66_2 === undefined) {
             this.__P_66_2 = [];
           }
@@ -626,7 +620,7 @@
             if (tspan[i] !== undefined) {
               tspan[i].textContent = valueFormat;
             }
-            self.__P_66_1[i].setTo(target[i][0], !self.isVisible());
+            self.__P_66_0[i].setTo(target[i][0], !self.isVisible());
           }
         });
         this.setTargetRatioValue(target);
@@ -642,9 +636,9 @@
        * @param indicatorNumber
        */
       __P_66_3: function __P_66_3(ratio, indicatorNumber) {
-        if (this.__P_66_0.length === 0) {
+        if (this.__P_66_1.length === 0) {
           // cache
-          this.__P_66_0 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
+          this.__P_66_1 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
         }
         var indicator = this.getIndicators()[indicatorNumber];
         var target = this.getTargetRatioValue()[indicatorNumber];
@@ -656,9 +650,9 @@
           targetAngle = endAngle > startAngle ? Math.max(startAngle, targetAngle - indicator.endarrow) : Math.min(startAngle, targetAngle - indicator.endarrow);
         }
         if (indicator.isBar) {
-          this.__P_66_0[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
+          this.__P_66_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createBarPath(startAngle, overflowarrow && !(target[1] && ratio < 0.01) ? 0 : indicator.startarrow, targetAngle, overflowarrow && !(target[2] && ratio > 0.99) ? 0 : indicator.endarrow, indicator.radius, indicator.width));
         } else {
-          this.__P_66_0[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
+          this.__P_66_1[indicatorNumber].setAttribute('d', cv.ui.structure.pure.Roundbar.createPointerPath(targetAngle, indicator));
         }
       }
     }
@@ -666,4 +660,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1735383843365
+//# sourceMappingURL=Roundbar.js.map?dt=1778272815064

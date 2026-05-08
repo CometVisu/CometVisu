@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576154,
+  "lastModifiedIso": "2026-05-08T20:36:16.154Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/NotificationCenterBadge.js",
   "type": "class",
   "location": {
     "start": {
       "line": 35,
       "column": 0,
-      "index": 1233
+      "index": 1256
     },
     "end": {
-      "line": 152,
+      "line": 147,
       "column": 3,
-      "index": 4587
+      "index": 4502
     }
   },
   "className": "cv.ui.structure.pure.NotificationCenterBadge",
@@ -24,8 +24,8 @@
       " *",
       " *",
       " * @widgetexample <settings>",
-      " *   <caption>Configuration example of a centered text widget</caption>",
-      " *   <screenshot name=\"text_example\" />",
+      " *   <caption>Configuration example of a NotificationCenterBadge widget</caption>",
+      " *   <screenshot name=\"notification_center_badge\" />",
       " * </settings>",
       " * <notificationcenterbadge>",
       " *  <layout colspan=\"0\" />",
@@ -44,7 +44,7 @@
     "@widgetexample": [
       {
         "name": "@widgetexample",
-        "body": "<settings>\n   <caption>Configuration example of a centered text widget</caption>\n   <screenshot name=\"text_example\" />\n </settings>\n <notificationcenterbadge>\n  <layout colspan=\"0\" />\n </notificationcenterbadge>"
+        "body": "<settings>\n   <caption>Configuration example of a NotificationCenterBadge widget</caption>\n   <screenshot name=\"notification_center_badge\" />\n </settings>\n <notificationcenterbadge>\n  <layout colspan=\"0\" />\n </notificationcenterbadge>"
       }
     ],
     "@author": [
@@ -61,38 +61,18 @@
     ]
   },
   "superClass": "cv.ui.structure.pure.AbstractWidget",
-  "construct": {
-    "type": "function",
-    "params": [
-      {
-        "name": "props"
-      }
-    ],
-    "location": {
-      "start": {
-        "line": 43,
-        "column": 2,
-        "index": 1489
-      },
-      "end": {
-        "line": 54,
-        "column": 3,
-        "index": 1836
-      }
-    }
-  },
   "properties": {
     "counter": {
       "location": {
         "start": {
-          "line": 62,
+          "line": 44,
           "column": 4,
-          "index": 1998
+          "index": 1529
         },
         "end": {
-          "line": 66,
+          "line": 48,
           "column": 5,
-          "index": 2081
+          "index": 1612
         }
       },
       "json": {
@@ -106,14 +86,14 @@
     "hideWhenEmpty": {
       "location": {
         "start": {
-          "line": 68,
+          "line": 50,
           "column": 4,
-          "index": 2088
+          "index": 1619
         },
         "end": {
-          "line": 71,
+          "line": 53,
           "column": 5,
-          "index": 2152
+          "index": 1683
         }
       },
       "json": {
@@ -130,31 +110,57 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 80,
+          "line": 62,
           "column": 4,
-          "index": 2314
+          "index": 1845
         },
         "end": {
-          "line": 80,
+          "line": 62,
           "column": 24,
-          "index": 2334
+          "index": 1865
         }
       },
       "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
     },
     "_onDomReady": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 82,
+          "line": 77,
           "column": 4,
-          "index": 2341
+          "index": 2256
         },
         "end": {
-          "line": 88,
+          "line": 83,
           "column": 5,
-          "index": 2653
+          "index": 2568
         }
       },
       "type": "function",
@@ -173,14 +179,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 91,
+          "line": 86,
           "column": 4,
-          "index": 2682
+          "index": 2597
         },
         "end": {
-          "line": 94,
+          "line": 89,
           "column": 5,
-          "index": 2841
+          "index": 2756
         }
       },
       "type": "function",
@@ -199,14 +205,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 91,
           "column": 4,
-          "index": 2848
+          "index": 2763
         },
         "end": {
-          "line": 102,
+          "line": 97,
           "column": 5,
-          "index": 3041
+          "index": 2956
         }
       },
       "type": "function",
@@ -225,14 +231,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 104,
+          "line": 99,
           "column": 4,
-          "index": 3048
+          "index": 2963
         },
         "end": {
-          "line": 109,
+          "line": 104,
           "column": 5,
-          "index": 3227
+          "index": 3142
         }
       },
       "type": "function",
@@ -244,14 +250,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 111,
+          "line": 106,
           "column": 4,
-          "index": 3234
+          "index": 3149
         },
         "end": {
-          "line": 118,
+          "line": 113,
           "column": 5,
-          "index": 3498
+          "index": 3413
         }
       },
       "type": "function",
@@ -267,14 +273,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 120,
+          "line": 115,
           "column": 4,
-          "index": 3505
+          "index": 3420
         },
         "end": {
-          "line": 126,
+          "line": 121,
           "column": 5,
-          "index": 3801
+          "index": 3716
         }
       },
       "type": "function",
@@ -290,14 +296,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 129,
+          "line": 124,
           "column": 4,
-          "index": 3826
+          "index": 3741
         },
         "end": {
-          "line": 135,
+          "line": 130,
           "column": 5,
-          "index": 4076
+          "index": 3991
         }
       },
       "type": "function",
@@ -313,14 +319,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 143,
+        "line": 138,
         "column": 2,
-        "index": 4224
+        "index": 4139
       },
       "end": {
-        "line": 147,
+        "line": 142,
         "column": 3,
-        "index": 4473
+        "index": 4388
       }
     }
   },

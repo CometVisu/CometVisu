@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576143,
+  "lastModifiedIso": "2026-05-08T20:36:16.143Z",
   "classFilename": "../../source/class/cv/io/timeseries/OpenhabPersistenceSource.js",
   "type": "class",
   "location": {
     "start": {
       "line": 22,
       "column": 0,
-      "index": 808
+      "index": 813
     },
     "end": {
       "line": 118,
       "column": 3,
-      "index": 3546
+      "index": 3551
     }
   },
   "className": "cv.io.timeseries.OpenhabPersistenceSource",
@@ -39,12 +39,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1064
+          "index": 1069
         },
         "end": {
           "line": 31,
           "column": 21,
-          "index": 1081
+          "index": 1086
         }
       },
       "appearsIn": []
@@ -56,12 +56,12 @@
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1087
+          "index": 1092
         },
         "end": {
           "line": 32,
           "column": 28,
-          "index": 1111
+          "index": 1116
         }
       },
       "appearsIn": []
@@ -73,12 +73,12 @@
         "start": {
           "line": 33,
           "column": 4,
-          "index": 1117
+          "index": 1122
         },
         "end": {
           "line": 33,
           "column": 15,
-          "index": 1128
+          "index": 1133
         }
       },
       "appearsIn": []
@@ -90,12 +90,12 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 1135
+          "index": 1140
         },
         "end": {
           "line": 77,
           "column": 5,
-          "index": 2517
+          "index": 2522
         }
       },
       "type": "function",
@@ -149,12 +149,12 @@
         "start": {
           "line": 84,
           "column": 4,
-          "index": 2663
+          "index": 2668
         },
         "end": {
           "line": 105,
           "column": 5,
-          "index": 3292
+          "index": 3297
         }
       },
       "type": "function",
@@ -178,12 +178,12 @@
         "start": {
           "line": 107,
           "column": 4,
-          "index": 3299
+          "index": 3304
         },
         "end": {
           "line": 116,
           "column": 5,
-          "index": 3538
+          "index": 3543
         }
       },
       "type": "function",

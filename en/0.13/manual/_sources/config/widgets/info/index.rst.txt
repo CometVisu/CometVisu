@@ -77,7 +77,7 @@ for the Info widget.
 .. code-block:: xml
 
     
-    <info format="%.1f &#xB0;C">
+    <info format="%.1f °C">
       <label>outside temperature</label>
       <address transform="DPT:9.001">0/0/0</address>
     </info>

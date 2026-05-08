@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The energy widget &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
 
   
@@ -16,7 +16,7 @@
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -380,8 +380,32 @@ you can also hide it. Then it will only be displayed when you move the mouse poi
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="22"><p>cv-energy</p></td>
-<td><p>size</p></td>
+<tr class="row-odd"><td rowspan="20"><p>cv-energy</p></td>
+<td><p>house-row</p></td>
+<td><p>decimal</p></td>
+<td><p>Row of the position of the house (default=1).</p></td>
+</tr>
+<tr class="row-even"><td><p>house-column</p></td>
+<td><p>decimal</p></td>
+<td><p>Column of the position of the house (default=1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>title</p></td>
+<td><p>string</p></td>
+<td><p>Title of the widget.</p></td>
+</tr>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Allows showing the widget in fullscreen size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>center-x</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>center-y</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
 <td><p><em>button</em>, <em>0.5x0.5</em>, <em>1x0.5</em>, <em>1x1</em>, <em>2x1</em>, <em>2x1.5</em>, <em>1x2</em>, <em>2x2</em>, <em>2x4</em> or <em>4x2</em></p></td>
 <td><p>Size of the tile in {columns}x{rows}, 1x1 is the default size.</p></td>
 </tr>
@@ -429,45 +453,13 @@ you can also hide it. Then it will only be displayed when you move the mouse poi
 <td><p><em>none</em>, <em>horizontal</em>, <em>vertical</em> or <em>both</em></p></td>
 <td><p>Activates pagination navigation by clicking on the edges of the element.</p></td>
 </tr>
-<tr class="row-odd"><td><p>visible-on</p></td>
-<td><p><em>mobile</em> or <em>desktop</em></p></td>
-<td><p>Controls this element’s visibility by screen size.</p></td>
+<tr class="row-odd"><td><p>header</p></td>
+<td><p><em>auto-hide</em> or <em>visible</em></p></td>
+<td><p>Defines the visibility of the widget header.</p></td>
 </tr>
-<tr class="row-even"><td><p>class</p></td>
-<td><p>string</p></td>
-<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
-</tr>
-<tr class="row-odd"><td><p>style</p></td>
-<td><p>string</p></td>
-<td><p>Custom CSS style rules for this widget.</p></td>
-</tr>
-<tr class="row-even"><td><p><abbr title="mandatory">slot</abbr></p></td>
-<td><p><em>pv-power</em>, <em>grid-power</em>, <em>battery-power</em>, <em>battery-other</em>, <em>charger-power</em>, <em>heatpump-power</em>, <em>consumer-power</em>, <em>house-power</em> or <em>tileAddress</em></p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>house-row</p></td>
-<td><p>decimal</p></td>
-<td><p>Row of the position of the house (default=1).</p></td>
-</tr>
-<tr class="row-even"><td><p>house-column</p></td>
-<td><p>decimal</p></td>
-<td><p>Column of the position of the house (default=1).</p></td>
-</tr>
-<tr class="row-odd"><td><p>title</p></td>
-<td><p>string</p></td>
-<td><p>Title of the widget.</p></td>
-</tr>
-<tr class="row-even"><td><p>allow-fullscreen</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Allows showing the widget in fullscreen size.</p></td>
-</tr>
-<tr class="row-odd"><td><p>center-x</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>center-y</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td></td>
+<tr class="row-even"><td><p>mobile-header</p></td>
+<td><p><em>auto-hide</em> or <em>visible</em></p></td>
+<td><p>Defines the visibility of the widget header.</p></td>
 </tr>
 </tbody>
 </table>
@@ -865,292 +857,6 @@ you can also hide it. Then it will only be displayed when you move the mouse poi
 </tr>
 </tbody>
 </table>
-<table class="schema-table docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Element</p></th>
-<th class="head" colspan="4"><p>Attribute</p></th>
-</tr>
-<tr class="row-even"><th class="head"><p>Structure</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>Content</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td rowspan="21"><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-round-value</p></li>
-</ul>
-</dd>
-</dl>
-</td>
-<td><p>id</p></td>
-<td><p>string</p></td>
-<td><p>ID of this element.</p></td>
-</tr>
-<tr class="row-even"><td><p>title</p></td>
-<td><p>string</p></td>
-<td><p>Title of this element.</p></td>
-</tr>
-<tr class="row-odd"><td><p>icon</p></td>
-<td><p>string</p></td>
-<td><p>Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</p></td>
-</tr>
-<tr class="row-even"><td><p>radius</p></td>
-<td><p>integer</p></td>
-<td><p>Radius of the circle.</p></td>
-</tr>
-<tr class="row-odd"><td><p>stroke</p></td>
-<td><p>integer</p></td>
-<td><p>Stroke width of the circle border.</p></td>
-</tr>
-<tr class="row-even"><td><p>min</p></td>
-<td><p>decimal</p></td>
-<td><p>Minimum value.</p></td>
-</tr>
-<tr class="row-odd"><td><p>max</p></td>
-<td><p>decimal</p></td>
-<td><p>Maximum value.</p></td>
-</tr>
-<tr class="row-even"><td><p>foreground-color</p></td>
-<td><p>string</p></td>
-<td><p>Color of the value bar.</p></td>
-</tr>
-<tr class="row-odd"><td><p>background-color</p></td>
-<td><p>string</p></td>
-<td><p>Color of the background bar.</p></td>
-</tr>
-<tr class="row-even"><td><p>styling</p></td>
-<td><p>string</p></td>
-<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">styling</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>mapping</p></td>
-<td><p>string</p></td>
-<td><p>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">mapping</span></a></p></td>
-</tr>
-<tr class="row-even"><td><p>format</p></td>
-<td><p>string</p></td>
-<td><p>Formatting of the value (printf syntax).</p></td>
-</tr>
-<tr class="row-odd"><td><p>x</p></td>
-<td><p>integer</p></td>
-<td><p>Position of this element on the x-axis.</p></td>
-</tr>
-<tr class="row-even"><td><p>y</p></td>
-<td><p>integer</p></td>
-<td><p>Position of this element on the y-axis.</p></td>
-</tr>
-<tr class="row-odd"><td><p>row</p></td>
-<td><p>decimal</p></td>
-<td><p>Row this element is placed in.</p></td>
-</tr>
-<tr class="row-even"><td><p>column</p></td>
-<td><p>decimal</p></td>
-<td><p>Column this element is placed in.</p></td>
-</tr>
-<tr class="row-odd"><td><p>rowspan</p></td>
-<td><p>decimal</p></td>
-<td><p>Number of rows this element spans</p></td>
-</tr>
-<tr class="row-even"><td><p>colspan</p></td>
-<td><p>decimal</p></td>
-<td><p>Number of columns this element spans</p></td>
-</tr>
-<tr class="row-odd"><td><p>visible-on</p></td>
-<td><p><em>mobile</em> or <em>desktop</em></p></td>
-<td><p>Controls this element’s visibility by screen size.</p></td>
-</tr>
-<tr class="row-even"><td><p>class</p></td>
-<td><p>string</p></td>
-<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
-</tr>
-<tr class="row-odd"><td><p>style</p></td>
-<td><p>string</p></td>
-<td><p>Custom CSS style rules for this widget.</p></td>
-</tr>
-<tr class="row-even"><td rowspan="8"><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-round-value</p></li>
-<li><p>cv-address</p></li>
-</ul>
-</dd>
-</dl>
-</td>
-<td><p><abbr title="mandatory">transform</abbr></p></td>
-<td><p>string</p></td>
-<td><p>Transformation of the bus system value to be shown.</p></td>
-</tr>
-<tr class="row-odd"><td><p>mode</p></td>
-<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
-<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
-</tr>
-<tr class="row-even"><td><p>variant</p></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>format-pos</p></td>
-<td><p>decimal</p></td>
-<td><p>Position for format string when multiple addresses are used.</p></td>
-</tr>
-<tr class="row-even"><td><p>selector</p></td>
-<td><p>string</p></td>
-<td><p>Only MQTT: JSON selector</p></td>
-</tr>
-<tr class="row-odd"><td><p>qos</p></td>
-<td><p>decimal</p></td>
-<td><p>Only MQTT: QoS</p></td>
-</tr>
-<tr class="row-even"><td><p>retain</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Only MQTT: retain flag</p></td>
-</tr>
-<tr class="row-odd"><td><p>ignore-error</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Only MQTT: ignore decode errors.</p></td>
-</tr>
-<tr class="row-even"><td><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-round-value</p></li>
-<li><p>cv-address</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
-</tr>
-</tbody>
-</table>
-<table class="schema-table docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Element</p></th>
-<th class="head" colspan="4"><p>Attribute</p></th>
-</tr>
-<tr class="row-even"><th class="head"><p>Structure</p></th>
-<th class="head"><p>Name</p></th>
-<th class="head"><p>Content</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td rowspan="12"><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-text-value</p></li>
-</ul>
-</dd>
-</dl>
-</td>
-<td><p>id</p></td>
-<td><p>string</p></td>
-<td><p>ID of this element.</p></td>
-</tr>
-<tr class="row-even"><td><p>title</p></td>
-<td><p>string</p></td>
-<td><p>Title of this element.</p></td>
-</tr>
-<tr class="row-odd"><td><p>icon</p></td>
-<td><p>string</p></td>
-<td><p>Defines the icon, usually the icon is pre-defined by the type, but can be overridden by this attribute.</p></td>
-</tr>
-<tr class="row-even"><td><p>styling</p></td>
-<td><p>string</p></td>
-<td><p>Change the color of the displayed value depending on its value. See also <a class="reference internal" href="../elements/styling.html#tile-element-styling"><span class="std std-ref">styling</span></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>mapping</p></td>
-<td><p>string</p></td>
-<td><p>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">mapping</span></a></p></td>
-</tr>
-<tr class="row-even"><td><p>format</p></td>
-<td><p>string</p></td>
-<td><p>Formatting of the value (printf syntax).</p></td>
-</tr>
-<tr class="row-odd"><td><p>x</p></td>
-<td><p>integer</p></td>
-<td><p>Position of this element on the x-axis.</p></td>
-</tr>
-<tr class="row-even"><td><p>y</p></td>
-<td><p>integer</p></td>
-<td><p>Position of this element on the y-axis.</p></td>
-</tr>
-<tr class="row-odd"><td><p>row</p></td>
-<td><p>decimal</p></td>
-<td><p>Row this element is placed in.</p></td>
-</tr>
-<tr class="row-even"><td><p>column</p></td>
-<td><p>decimal</p></td>
-<td><p>Column this element is placed in.</p></td>
-</tr>
-<tr class="row-odd"><td><p>rowspan</p></td>
-<td><p>decimal</p></td>
-<td><p>Number of rows this element spans</p></td>
-</tr>
-<tr class="row-even"><td><p>colspan</p></td>
-<td><p>decimal</p></td>
-<td><p>Number of columns this element spans</p></td>
-</tr>
-<tr class="row-odd"><td rowspan="8"><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-text-value</p></li>
-<li><p>cv-address</p></li>
-</ul>
-</dd>
-</dl>
-</td>
-<td><p><abbr title="mandatory">transform</abbr></p></td>
-<td><p>string</p></td>
-<td><p>Transformation of the bus system value to be shown.</p></td>
-</tr>
-<tr class="row-even"><td><p>mode</p></td>
-<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
-<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
-</tr>
-<tr class="row-odd"><td><p>variant</p></td>
-<td><p>string</p></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>format-pos</p></td>
-<td><p>decimal</p></td>
-<td><p>Position for format string when multiple addresses are used.</p></td>
-</tr>
-<tr class="row-odd"><td><p>selector</p></td>
-<td><p>string</p></td>
-<td><p>Only MQTT: JSON selector</p></td>
-</tr>
-<tr class="row-even"><td><p>qos</p></td>
-<td><p>decimal</p></td>
-<td><p>Only MQTT: QoS</p></td>
-</tr>
-<tr class="row-odd"><td><p>retain</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Only MQTT: retain flag</p></td>
-</tr>
-<tr class="row-even"><td><p>ignore-error</p></td>
-<td><p><em>true</em> or <em>false</em></p></td>
-<td><p>Only MQTT: ignore decode errors.</p></td>
-</tr>
-<tr class="row-odd"><td><dl class="simple">
-<dt>cv-energy</dt><dd><ul class="simple">
-<li><p>cv-svg-text-value</p></li>
-<li><p>cv-address</p>
-<ul>
-<li><p>#text</p></li>
-</ul>
-</li>
-</ul>
-</dd>
-</dl>
-</td>
-<td></td>
-<td><p>string</p></td>
-<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 </section>
 </section>
@@ -1166,7 +872,7 @@ you can also hide it. Then it will only be displayed when you move the mouse poi
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -1183,7 +889,7 @@ you can also hide it. Then it will only be displayed when you move the mouse poi
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

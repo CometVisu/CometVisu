@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576154,
+  "lastModifiedIso": "2026-05-08T20:36:16.154Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/Controller.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 817
     },
     "end": {
-      "line": 678,
+      "line": 679,
       "column": 3,
-      "index": 22903
+      "index": 22971
     }
   },
   "className": "cv.ui.structure.pure.Controller",
@@ -21,7 +21,7 @@
     "raw": [
       " Controller.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -787,9 +787,9 @@
           "index": 15572
         },
         "end": {
-          "line": 474,
+          "line": 475,
           "column": 5,
-          "index": 16018
+          "index": 16086
         }
       },
       "type": "function",
@@ -813,14 +813,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 479,
+          "line": 480,
           "column": 4,
-          "index": 16094
+          "index": 16162
         },
         "end": {
-          "line": 484,
+          "line": 485,
           "column": 5,
-          "index": 16381
+          "index": 16449
         }
       },
       "type": "function",
@@ -832,14 +832,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 486,
+          "line": 487,
           "column": 4,
-          "index": 16388
+          "index": 16456
         },
         "end": {
-          "line": 491,
+          "line": 492,
           "column": 5,
-          "index": 16542
+          "index": 16610
         }
       },
       "type": "function",
@@ -853,14 +853,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 493,
+          "line": 494,
           "column": 4,
-          "index": 16549
+          "index": 16617
         },
         "end": {
-          "line": 527,
+          "line": 528,
           "column": 5,
-          "index": 17907
+          "index": 17975
         }
       },
       "type": "function",
@@ -909,14 +909,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 535,
+          "line": 536,
           "column": 4,
-          "index": 18081
+          "index": 18149
         },
         "end": {
-          "line": 554,
+          "line": 555,
           "column": 5,
-          "index": 18663
+          "index": 18731
         }
       },
       "type": "function",
@@ -940,14 +940,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 556,
+          "line": 557,
           "column": 4,
-          "index": 18670
+          "index": 18738
         },
         "end": {
-          "line": 581,
+          "line": 582,
           "column": 5,
-          "index": 19618
+          "index": 19686
         }
       },
       "type": "function",
@@ -966,14 +966,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 583,
+          "line": 584,
           "column": 4,
-          "index": 19625
+          "index": 19693
         },
         "end": {
-          "line": 656,
+          "line": 657,
           "column": 5,
-          "index": 22363
+          "index": 22431
         }
       },
       "type": "function",
@@ -992,14 +992,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 658,
+          "line": 659,
           "column": 4,
-          "index": 22370
+          "index": 22438
         },
         "end": {
-          "line": 663,
+          "line": 664,
           "column": 5,
-          "index": 22565
+          "index": 22633
         }
       },
       "type": "function",
@@ -1014,14 +1014,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 671,
+        "line": 672,
         "column": 2,
-        "index": 22699
+        "index": 22767
       },
       "end": {
-        "line": 673,
+        "line": 674,
         "column": 3,
-        "index": 22810
+        "index": 22878
       }
     }
   },

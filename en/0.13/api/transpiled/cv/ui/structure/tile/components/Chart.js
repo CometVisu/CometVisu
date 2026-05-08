@@ -10,10 +10,6 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
 function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
-function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
-function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -21,7 +17,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -55,17 +52,20 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       "qx.locale.Manager": {},
       "qx.locale.Number": {},
       "qx.locale.Date": {},
-      "cv.util.String": {},
+      "cv.ui.structure.tile.components.chart.XAxis": {},
+      "cv.ui.structure.tile.components.chart.YAxis": {},
+      "cv.ui.structure.tile.components.chart.Data": {},
+      "cv.ui.structure.tile.components.chart.Dataset": {},
+      "cv.ui.structure.tile.components.chart.LineDataset": {},
+      "cv.ui.structure.tile.components.chart.LineGroup": {},
+      "cv.ui.structure.tile.components.chart.AreaGroup": {},
+      "cv.ui.structure.tile.components.chart.BarGroup": {},
+      "cv.ui.structure.tile.components.chart.StackedBarGroup": {},
       "cv.io.BackendConnections": {},
-      "cv.io.timeseries.FluxSource": {},
-      "cv.ConfigCache": {},
-      "cv.io.timeseries.OpenhabPersistenceSource": {},
-      "cv.io.timeseries.RRDSource": {},
-      "cv.io.timeseries.DemoSource": {},
-      "cv.io.timeseries.Plugin": {},
-      "cv.io.Fetch": {},
-      "cv.core.notifications.Router": {},
+      "cv.util.Color": {},
+      "cv.util.String": {},
       "qx.util.format.DateFormat": {},
+      "cv.Config": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -74,7 +74,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Chart.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -91,7 +91,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
    * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
    */
 
-  /* eslint-disable arrow-body-style */
   /**
    * Shows an chart.
    * @asset(libs/d3.min.js)
@@ -109,47 +108,51 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     statics: {
       ChartCounter: 0,
       DEFAULT_ASPECT_RATIO: 2.0416666666666665,
+      TF: null,
       JS_LOADED: new Promise(/*#__PURE__*/function () {
-        var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve, reject) {
-          var check, timer, counter;
-          return _regeneratorRuntime().wrap(function _callee$(_context) {
-            while (1) switch (_context.prev = _context.next) {
+        var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(resolve, reject) {
+          var check, timer, counter, _t;
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.p = _context.n) {
               case 0:
                 check = function check() {
                   return _typeof(window.d3) === 'object';
                 };
-                _context.prev = 1;
-                _context.next = 4;
+                _context.p = 1;
+                _context.n = 2;
                 return cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
-              case 4:
-                _context.next = 11;
+              case 2:
+                _context.n = 4;
                 break;
-              case 6:
-                _context.prev = 6;
-                _context.t0 = _context["catch"](1);
-                qx.log.Logger.error(_this, 'Error loading D3:', _context.t0);
+              case 3:
+                _context.p = 3;
+                _t = _context.v;
+                qx.log.Logger.error(_this, 'Error loading D3:', _t);
                 reject(new Error('Error loading d3 library'));
-                return _context.abrupt("return");
-              case 11:
+                return _context.a(2);
+              case 4:
                 if (!check()) {
                   timer = new qx.event.Timer(50);
                   counter = 0;
                   timer.addListener('interval', function () {
                     counter++;
                     if (check()) {
+                      timer.stop();
                       resolve(true);
                     } else if (counter > 5) {
+                      timer.stop();
+                      qx.log.Logger.error(_this, 'Error loading D3: D3 did not load within expected time');
                       reject(new Error('Error loading d3 library'));
                     }
                   });
+                  timer.start();
                 } else {
                   resolve(true);
                 }
-              case 12:
-              case "end":
-                return _context.stop();
+              case 5:
+                return _context.a(2);
             }
-          }, _callee, null, [[1, 6]]);
+          }, _callee, null, [[1, 3]]);
         }));
         return function (_x, _x2) {
           return _ref.apply(this, arguments);
@@ -163,7 +166,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             grouping: [3],
             currency: ['€', '']
           });
-          d3.timeFormatDefaultLocale({
+          cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
             dateTime: '%A, der %e. %B %Y, %X',
             date: '%d.%m.%Y',
             time: '%H:%M:%S',
@@ -181,8 +184,27 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               return t.translate().toString();
             })
           });
+        } else {
+          cv.ui.structure.tile.components.Chart.TF = d3.timeFormatDefaultLocale({
+            dateTime: '%x, %X',
+            date: '%-m/%-d/%Y',
+            time: '%-I:%M:%S %p',
+            periods: [qx.locale.Date.getAmMarker().translate().toString(), qx.locale.Date.getPmMarker().translate().toString()],
+            days: qx.locale.Date.getDayNames('wide', null, 'format').map(function (t) {
+              return t.translate().toString();
+            }),
+            shortDays: qx.locale.Date.getDayNames('narrow', null, 'stand-alone').map(function (t) {
+              return t.translate().toString();
+            }),
+            months: qx.locale.Date.getMonthNames('wide').map(function (t) {
+              return t.translate().toString();
+            }),
+            shortMonths: qx.locale.Date.getMonthNames('narrow', null, 'stand-alone').map(function (t) {
+              return t.translate().toString();
+            })
+          });
         }
-      }),
+      })["catch"](function () {}),
       CONFIG: null
     },
     /*
@@ -208,6 +230,86 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       endTime: {
         check: 'Number',
         init: 0
+      },
+      minY: {
+        check: 'Number',
+        nullable: true,
+        apply: "__P_78_1",
+        event: 'changeMinY'
+      },
+      maxY: {
+        check: 'Number',
+        nullable: true,
+        apply: "__P_78_1",
+        event: 'changeMaxY'
+      },
+      /** Margin of the widget (top) */
+      marginTop: {
+        check: 'Integer',
+        init: 12,
+        apply: '_applyMargin',
+        event: 'changeMarginTop'
+      },
+      /** Margin of the widget (right) */
+      marginRight: {
+        check: 'Integer',
+        init: 24,
+        apply: '_applyMargin',
+        event: 'changeMarginRight'
+      },
+      /** Margin of the widget (bottom) */
+      marginBottom: {
+        check: 'Integer',
+        init: 20,
+        apply: '_applyMargin',
+        event: 'changeMarginBottom'
+      },
+      /** Margin of the widget (left) */
+      marginLeft: {
+        check: 'Integer',
+        init: 24,
+        apply: '_applyMargin',
+        event: 'changeMarginLeft'
+      },
+      /**
+       * The 'margin' property is a shorthand property for setting 'marginTop',
+       * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.
+       *
+       * If four values are specified they apply to top, right, bottom and left respectively.
+       * If there is only one value, it applies to all sides, if there are two or three,
+       * the missing values are taken from the opposite side.
+       */
+      margin: {
+        group: ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'],
+        mode: 'shorthand'
+      },
+      width: {
+        check: 'Number',
+        init: 392,
+        apply: '_applySize',
+        event: 'changeWidth'
+      },
+      height: {
+        check: 'Number',
+        init: 192,
+        apply: '_applySize',
+        event: 'changeHeight'
+      },
+      aspectRatio: {
+        check: 'Number',
+        init: 2.0416666666666665
+      },
+      inBackground: {
+        check: 'Boolean',
+        init: false
+      },
+      xAxis: {
+        check: 'cv.ui.structure.tile.components.chart.XAxis',
+        event: 'changeXAxis'
+      },
+      yAxis: {
+        check: 'cv.ui.structure.tile.components.chart.YAxis',
+        event: 'changeYAxis'
       }
     },
     /*
@@ -221,23 +323,25 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _url: null,
       _headers: null,
       _request: null,
-      _width: null,
-      _height: null,
       _loaded: null,
-      _dataSetConfigs: null,
+      _datasets: null,
       _initializing: null,
       _navigationEnabled: null,
-      __P_78_1: null,
-      __P_78_2: false,
-      __P_78_3: null,
+      __P_78_2: null,
+      __P_78_3: false,
       __P_78_4: null,
       __P_78_5: null,
       __P_78_6: null,
       __P_78_7: null,
+      __P_78_8: false,
+      __P_78_9: null,
+      __P_78_10: null,
+      __P_78_11: null,
+      _yFormat: null,
       /**
       * @type {d3.Selection}
       */
-      _dot: null,
+      _tooltipIndicator: null,
       /**
        * @type {d3.Selection}
        */
@@ -250,27 +354,38 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @type {String}
        */
       _titleString: null,
-      __P_78_8: null,
-      __P_78_9: null,
-      // all chart properties
-      _chartConf: null,
+      /**
+       * @type {cv.ui.structure.tile.components.chart.Data}
+       */
+      data: null,
       _init: function _init() {
         var _this2 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-          var element, inBackground, title, span, seriesSelection, s, currentSeries, button, _span, i, popup, option, _iterator, _step, _s, svg, noToolTips, format, timeFormat, formatString, datasetSources, readAddresses;
-          return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-            while (1) switch (_context2.prev = _context2.next) {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+          var element, inBackground, title, span, seriesSelection, s, currentSeries, _span, button, _i, popup, option, _iterator, _step, _s, minY, maxY, svg, noToolTips, dataSets, datasetSources, _i2, _dataSets, dataSetElement, dataSet, i, _iterator2, _step2, line, sourceKey, otherDataset, _dataSet, _dataSet2, tile, readAddresses;
+          return _regenerator().w(function (_context2) {
+            while (1) switch (_context2.n) {
               case 0:
                 _this2._checkEnvironment();
                 _this2._initializing = true;
-                _this2.__P_78_7 = {};
                 element = _this2._element;
-                _context2.next = 6;
+                _context2.n = 1;
                 return cv.ui.structure.tile.components.Chart.JS_LOADED;
-              case 6:
+              case 1:
+                if (!_this2.isDisposed()) {
+                  _context2.n = 2;
+                  break;
+                }
+                return _context2.a(2);
+              case 2:
                 _this2._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
+                _this2.setXAxis(new cv.ui.structure.tile.components.chart.XAxis(_this2));
+                _this2.setYAxis(new cv.ui.structure.tile.components.chart.YAxis(_this2));
+                _this2.data = new cv.ui.structure.tile.components.chart.Data(_this2);
+                _this2.bind('minY', _this2.data, 'minY');
+                _this2.bind('maxY', _this2.data, 'maxY');
                 element.setAttribute('data-chart-id', _this2._id.toString());
                 inBackground = _this2._element.hasAttribute('background') && _this2._element.getAttribute('background') === 'true';
+                _this2.setInBackground(inBackground);
                 title = _this2.getHeader('label.title');
                 if (!inBackground && element.hasAttribute('title') && !title) {
                   title = document.createElement('label');
@@ -280,7 +395,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   span.textContent = element.getAttribute('title');
                   _this2.appendToHeader(title);
                 }
-                if (title) {
+                if (title && _this2._titleString === null) {
                   // save base title for updating
                   _this2._titleString = title.textContent.trim();
                 }
@@ -306,12 +421,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _this2._navigationEnabled = seriesSelection.length > 0;
                 if (seriesSelection.length > 0) {
-                  // back button
-                  button = _this2._buttonFactory('ri-arrow-left-s-line', ['prev']);
-                  button.setAttribute('title', qx.locale.Manager.tr('previous'));
-                  button.addEventListener('click', function () {
-                    return _this2._onSeriesPrev();
-                  });
                   if (!title) {
                     title = document.createElement('label');
                     title.classList.add('title');
@@ -319,74 +428,109 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     title.appendChild(_span);
                     _this2.appendToHeader(title);
                   }
-                  title.parentElement.insertBefore(button, title);
-                  i = document.createElement('i');
-                  i.classList.add('ri-arrow-down-s-fill');
-                  title.appendChild(i);
+
+                  // back button
+                  button = title.parentElement.querySelector(':scope > button.prev');
+                  if (!button) {
+                    button = _this2._buttonFactory('ri-arrow-left-s-line', ['prev']);
+                    button.setAttribute('title', qx.locale.Manager.tr('previous'));
+                    button.addEventListener('click', function (ev) {
+                      _this2._onSeriesPrev();
+                      ev.stopPropagation();
+                      ev.preventDefault();
+                    });
+                    title.parentElement.insertBefore(button, title);
+                  }
+                  if (!title.querySelector(':scope > i.ri-arrow-down-s-fill')) {
+                    _i = document.createElement('i');
+                    _i.classList.add('ri-arrow-down-s-fill');
+                    title.appendChild(_i);
+                  }
 
                   // current selection
-                  popup = document.createElement('div');
-                  popup.classList.add('popup', 'series');
-                  _iterator = _createForOfIteratorHelper(seriesSelection);
-                  try {
-                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                      _s = _step.value;
-                      option = document.createElement('cv-option');
-                      option.setAttribute('key', _s);
-                      if (_s === currentSeries) {
-                        option.setAttribute('selected', 'selected');
+                  popup = title.querySelector(':scope > .popup.series');
+                  if (!popup) {
+                    popup = document.createElement('div');
+                    popup.classList.add('popup', 'series');
+                    _iterator = _createForOfIteratorHelper(seriesSelection);
+                    try {
+                      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                        _s = _step.value;
+                        option = document.createElement('cv-option');
+                        option.setAttribute('key', _s);
+                        if (_s === currentSeries) {
+                          option.setAttribute('selected', 'selected');
+                        }
+                        option.textContent = _this2._seriesToShort(_s);
+                        option.addEventListener('click', function (ev) {
+                          popup.style.display = 'none';
+                          _this2._onSeriesChange(ev.target.getAttribute('key'));
+                          ev.stopPropagation();
+                          ev.preventDefault();
+                        });
+                        popup.appendChild(option);
                       }
-                      option.textContent = _this2._seriesToShort(_s);
-                      option.addEventListener('click', function (ev) {
-                        popup.style.display = 'none';
-                        _this2._onSeriesChange(ev.target.getAttribute('key'));
-                        ev.stopPropagation();
-                        ev.preventDefault();
-                      });
-                      popup.appendChild(option);
+                    } catch (err) {
+                      _iterator.e(err);
+                    } finally {
+                      _iterator.f();
                     }
-                  } catch (err) {
-                    _iterator.e(err);
-                  } finally {
-                    _iterator.f();
+                    title.appendChild(popup);
                   }
-                  title.appendChild(popup);
 
                   // make title clickable
-                  title.classList.add('clickable');
-                  title.addEventListener('click', function (ev) {
-                    var style = getComputedStyle(popup);
-                    if (style.getPropertyValue('display') === 'none') {
-                      popup.style.display = 'flex';
-                    } else {
-                      popup.style.display = 'none';
-                    }
-                    ev.stopPropagation();
-                    ev.preventDefault();
-                  });
+                  if (!title.classList.contains('clickable')) {
+                    title.classList.add('clickable');
+                    title.addEventListener('click', function (ev) {
+                      var style = getComputedStyle(popup);
+                      if (style.getPropertyValue('display') === 'none') {
+                        popup.style.display = 'flex';
+                      } else {
+                        popup.style.display = 'none';
+                      }
+                      ev.stopPropagation();
+                      ev.preventDefault();
+                    });
+                  }
 
                   // forward button
-                  button = _this2._buttonFactory('ri-arrow-right-s-line', ['next']);
-                  button.setAttribute('title', qx.locale.Manager.tr('next'));
-                  // initially we cannot go into the future
-                  button.disabled = true;
-                  button.addEventListener('click', function () {
-                    return _this2._onSeriesNext();
-                  });
-                  _this2.appendToHeader(button);
+                  button = _this2.getHeader(':scope > button.next');
+                  if (!button) {
+                    button = _this2._buttonFactory('ri-arrow-right-s-line', ['next']);
+                    button.setAttribute('title', qx.locale.Manager.tr('next'));
+                    // initially we cannot go into the future
+                    button.disabled = true;
+                    button.addEventListener('click', function (ev) {
+                      _this2._onSeriesNext();
+                      ev.stopPropagation();
+                      ev.preventDefault();
+                    });
+                    _this2.appendToHeader(button);
+                  }
                 }
                 if (!inBackground && element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
                   _this2._initFullscreenSwitch();
-
-                  // only on mobile we need this, because of height: auto
-                  if (document.body.classList.contains('mobile')) {
-                    _this2.addListener('changeFullscreen', function () {
-                      return _this2._onRendered();
-                    });
-                  }
+                  _this2.addListener('changeFullscreen', function (ev) {
+                    return _this2.__P_78_12(ev.getData());
+                  });
                 }
                 if (element.hasAttribute('refresh')) {
                   _this2.setRefresh(parseInt(element.getAttribute('refresh')));
+                }
+                if (element.hasAttribute('min')) {
+                  minY = parseFloat(element.getAttribute('min'));
+                  if (!isNaN(minY)) {
+                    _this2.setMinY(minY);
+                  }
+                }
+                if (element.hasAttribute('max')) {
+                  maxY = parseFloat(element.getAttribute('max'));
+                  if (!isNaN(maxY)) {
+                    _this2.setMaxY(maxY);
+                  }
+                }
+                if (element.hasAttribute('tooltip-time-format')) {
+                  _this2._tooltipTimeFormat = cv.ui.structure.tile.components.Chart.TF.format(element.getAttribute('tooltip-time-format'));
                 }
 
                 // create needed elements
@@ -422,109 +566,69 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }, {
                   passive: false
                 });
-
-                // init some fixed settings
-                format = _this2._element.hasAttribute('y-format') ? _this2._element.getAttribute('y-format') : '%s';
-                timeFormat = null;
-                if (_this2._element.hasAttribute('x-format')) {
-                  formatString = _this2._element.getAttribute('x-format');
-                  timeFormat = function timeFormat(date) {
-                    return d3.timeFormat(formatString)(date);
-                  };
-                } else {
-                  // format auto-detection
-                  timeFormat = _this2.multiTimeFormat([['%H:%M:%S', function (d) {
-                    return d.getSeconds();
-                  }], ['%H:%M', function (d) {
-                    return d.getMinutes();
-                  }], ['%H', function (d) {
-                    return d.getHours();
-                  }], ['%a %d', function (d) {
-                    return d.getDay() && d.getDate() !== 1;
-                  }], ['%b %d', function (d) {
-                    return d.getDate() !== 1;
-                  }], ['%B', function (d) {
-                    return d.getMonth();
-                  }], ['%Y', function () {
-                    return true;
-                  }]]);
+                _this2._datasets = {};
+                _this2._chartElements = [];
+                dataSets = Array.from(_this2._element.querySelectorAll(':scope > dataset'));
+                datasetSources = dataSets.map(function (elem) {
+                  return elem.getAttribute('src');
+                });
+                for (_i2 = 0, _dataSets = dataSets; _i2 < _dataSets.length; _i2++) {
+                  dataSetElement = _dataSets[_i2];
+                  dataSet = new cv.ui.structure.tile.components.chart.Dataset(dataSetElement, _this2);
+                  _this2._datasets[dataSet.getKey()] = dataSet;
                 }
-                _this2.__P_78_9 = {
-                  x: function x(d) {
-                    return d.time;
-                  },
-                  // given d in data, returns the (temporal) x-value
-                  y: function y(d) {
-                    return +d.value;
-                  },
-                  // given d in data, returns the (quantitative) y-value
-                  z: function z(d) {
-                    return d.key;
-                  },
-                  // given d in data, returns the (categorical) z-value
-                  color: function color(d) {
-                    return d && _this2._dataSetConfigs[d].color;
-                  },
-                  // stroke color of line, as a constant or a function of *z*
-                  title: function title(d) {
-                    return cv.util.String.sprintf(format, d.value);
-                  },
-                  // given d in data, returns the title text
-                  curve: d3.curveLinear,
-                  // method of interpolation between points
-                  marginTop: 12,
-                  // top margin, in pixels
-                  marginRight: 24,
-                  // right margin, in pixels
-                  marginBottom: 20,
-                  // bottom margin, in pixels
-                  marginLeft: 24,
-                  // left margin, in pixels
-                  width: 392,
-                  // outer width, in pixels
-                  height: 192,
-                  // outer height, in pixels
-                  aspectRatio: 2.0416666666666665,
-                  xType: d3.scaleTime,
-                  // type of x-scale
-                  xFormat: timeFormat,
-                  // a format specifier string for the x-axis
-                  yType: d3.scaleLinear,
-                  // type of y-scale
-                  yFormat: undefined,
-                  // a format specifier string for the y-axis
-                  yLabel: undefined,
-                  // a label for the y-axis
-                  strokeLinecap: undefined,
-                  // stroke line cap of line
-                  strokeLinejoin: undefined,
-                  // stroke line join of line
-                  strokeWidth: 1.5,
-                  // stroke width of line
-                  strokeOpacity: undefined,
-                  // stroke opacity of line
-                  mixBlendMode: 'normal',
-                  // blend mode of lines
-                  showArea: function showArea(d) {
-                    return _this2._dataSetConfigs[d].showArea;
-                  },
-                  // show area below the line,
-                  gradient: function gradient(d) {
-                    return _this2._dataSetConfigs[d].gradient;
-                  },
-                  // use gradient for area
-                  showXAxis: !_this2._element.hasAttribute('show-x-axis') || _this2._element.getAttribute('show-x-axis') === 'true',
-                  showYAxis: !_this2._element.hasAttribute('show-y-axis') || _this2._element.getAttribute('show-y-axis') === 'true',
-                  xPadding: 0.1 // amount of x-range to reserve to separate bars
-                };
+                i = 0;
+                _iterator2 = _createForOfIteratorHelper(_this2._element.querySelectorAll(':scope > h-line, v-line'));
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    line = _step2.value;
+                    if (line.hasAttribute('src')) {
+                      sourceKey = line.getAttribute('src');
+                      otherDataset = _this2._datasets[sourceKey];
+                      _dataSet = new cv.ui.structure.tile.components.chart.LineDataset(line, _this2);
+                      _dataSet.setChartType(line.localName);
+                      _dataSet.setIndex(i);
+                      if (!otherDataset) {
+                        _this2._datasets[_dataSet.getKey()] = _dataSet;
+                      } else {
+                        // this line gets its data from another dataset            
+                        _dataSet.setSourceSet(otherDataset);
+                        _this2._datasets['derived-' + i] = _dataSet;
+                      }
+                    } else {
+                      // lines with fixed values
+                      _dataSet2 = new cv.ui.structure.tile.components.chart.LineDataset(line, _this2);
+                      _dataSet2.setChartType(line.localName);
+                      _dataSet2.setIndex(i);
+                      _this2._datasets['fixed-' + i] = _dataSet2;
+                    }
+                    i++;
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+                if (_this2._element.hasAttribute('background') && _this2._element.getAttribute('background') === 'true') {
+                  // no margins
+                  _this2.setMargin(_this2.getMarginTop(), 0, 0, 0);
+
+                  // because we have no margins we need to cut the overflow on the tile
+                  tile = _this2._element.parentElement;
+                  while (tile && tile.localName !== 'cv-tile') {
+                    tile = tile.parentElement;
+                  }
+                  if (tile && tile.localName === 'cv-tile') {
+                    tile.style.overflow = 'hidden';
+                  }
+                }
+                _this2._initAxes();
+                _this2._initChartContent();
                 _this2._initializing = false;
-                _this2.__P_78_10();
+                _this2.__P_78_13();
                 qx.locale.Manager.getInstance().addListener('changeLocale', _this2._onLocaleChanged, _this2);
 
                 // check if we have a read address for live updates
-                datasetSources = Array.from(_this2._element.querySelectorAll(':scope > dataset')).map(function (elem) {
-                  return elem.getAttribute('src');
-                });
                 readAddresses = Array.from(element.querySelectorAll(':scope > cv-address:not([mode="write"])')).filter(function (elem) {
                   return datasetSources.includes(elem.getAttribute('target'));
                 });
@@ -535,42 +639,218 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     ev.stopPropagation();
                   });
                 }
-              case 36:
-              case "end":
-                return _context2.stop();
+              case 3:
+                return _context2.a(2);
             }
           }, _callee2);
         }))();
       },
+      getXPos: function getXPos(i) {
+        var isValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        var scale = this.overrideXScale || this.getXAxis().getScale();
+        if (isValue) {
+          return scale(i);
+        }
+        return scale(this.data.times[i]);
+      },
+      getYPos: function getYPos(i) {
+        var isValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+        if (isValue) {
+          return this.getYAxis().getScale()(i);
+        }
+        return this.getYAxis().getScale()(this.data.values[i]);
+      },
+      getMinYPos: function getMinYPos() {
+        return this.getYAxis().getRange()[0];
+      },
+      _applySize: function _applySize() {
+        this.setAspectRatio(this.getWidth() / this.getHeight());
+        d3.select(this._element).select('svg').attr('viewBox', "0, 0, ".concat(this.getWidth(), ", ").concat(this.getHeight()));
+      },
+      _applyMargin: function _applyMargin() {},
+      __P_78_1: function __P_78_1(value, oldValue, name) {
+        if (!this.isPropertyInitialized('yAxis')) {
+          return;
+        }
+        if (name === 'maxY') {
+          var minY = this.getMinY();
+          if (minY !== null) {
+            this.getYAxis().setDomain([minY, value]);
+          }
+        } else if (name === 'minY') {
+          var maxY = this.getMaxY();
+          if (maxY !== null) {
+            this.getYAxis().setDomain([value, maxY]);
+          }
+        }
+      },
+      _initAxes: function _initAxes() {
+        var xAxis = this.getXAxis();
+        var yAxis = this.getYAxis();
+
+        // init some fixed settings
+        var timeFormatString = '';
+        var yFormat = '';
+        var xSettings = {};
+        var ySettings = {};
+        var xAxisElement = this._element.querySelector(':scope > x-axis');
+        if (xAxisElement) {
+          if (xAxisElement.hasAttribute('format')) {
+            timeFormatString = xAxisElement.getAttribute('format');
+          }
+          xSettings.show = true;
+          xSettings.showLine = xAxisElement.hasAttribute('show-line') && xAxisElement.getAttribute('show-line') === 'true';
+          if (xAxisElement.hasAttribute('tick-size')) {
+            xSettings.tickSize = parseInt(xAxisElement.getAttribute('tick-size'));
+          }
+          if (xAxisElement.hasAttribute('min')) {
+            var minX = parseFloat(xAxisElement.getAttribute('min'));
+            if (!isNaN(minX)) {
+              this.setMinX(minX);
+            }
+          }
+          if (xAxisElement.hasAttribute('max')) {
+            var maxX = parseFloat(xAxisElement.getAttribute('max'));
+            if (!isNaN(maxX)) {
+              this.setMaxX(maxX);
+            }
+          }
+        } else {
+          // fallback mode when no special axis element is there, to still support old configs
+          if (this._element.hasAttribute('x-format')) {
+            timeFormatString = this._element.getAttribute('x-format');
+          }
+          xSettings.show = !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true';
+        }
+        if (timeFormatString) {
+          xSettings.tickFormat = function (date) {
+            return cv.ui.structure.tile.components.Chart.TF.format(qx.locale.Manager['tr'](timeFormatString))(date);
+          };
+        } else {
+          // format auto-detection
+          xSettings.tickFormat = this.multiTimeFormat();
+        }
+        var yAxisElement = this._element.querySelector(':scope > y-axis');
+        if (yAxisElement) {
+          if (yAxisElement.hasAttribute('format')) {
+            yFormat = yAxisElement.getAttribute('format');
+          }
+          if (yAxisElement.hasAttribute('tick-size')) {
+            ySettings.tickSize = parseInt(yAxisElement.getAttribute('tick-size'));
+          }
+          ySettings.show = true;
+          ySettings.showLine = yAxisElement.hasAttribute('show-line') && yAxisElement.getAttribute('show-line') === 'true';
+          if (yAxisElement.hasAttribute('min')) {
+            var minY = parseFloat(yAxisElement.getAttribute('min'));
+            if (!isNaN(minY)) {
+              this.setMinY(minY);
+            }
+          }
+          if (yAxisElement.hasAttribute('max')) {
+            var maxY = parseFloat(yAxisElement.getAttribute('max'));
+            if (!isNaN(maxY)) {
+              this.setMaxY(maxY);
+            }
+          }
+        } else {
+          // fallback mode when no special axis element is there, to still support old configs
+          if (this._element.hasAttribute('y-format')) {
+            yFormat = this._element.getAttribute('y-format');
+          }
+          ySettings.show = !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true';
+        }
+        this._yFormat = yFormat;
+        var showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
+        xSettings.showGrid = showGrid.includes('x');
+        ySettings.showGrid = showGrid.includes('y');
+        xAxis.set(xSettings);
+        yAxis.set(ySettings);
+        xAxis.render();
+        yAxis.render();
+      },
+      _initChartContent: function _initChartContent() {
+        var chartElements = [];
+        var line = null;
+        var area = null;
+        var bar = null;
+        var stackedBar = null;
+        for (var key in this._datasets) {
+          var ds = this._datasets[key];
+          switch (ds.getChartType()) {
+            case 'line':
+              {
+                if (!line) {
+                  line = new cv.ui.structure.tile.components.chart.LineGroup(this);
+                  chartElements.push(line);
+                }
+                line.addDataset(ds);
+                if (ds.isShowArea()) {
+                  if (!area) {
+                    area = new cv.ui.structure.tile.components.chart.AreaGroup(this);
+                    chartElements.push(area);
+                  }
+                  area.addDataset(ds);
+                }
+                break;
+              }
+            case 'area':
+              {
+                if (!area) {
+                  area = new cv.ui.structure.tile.components.chart.AreaGroup(this);
+                  chartElements.push(area);
+                }
+                area.addDataset(ds);
+                break;
+              }
+            case 'bar':
+              //barGroups.set(key, I.filter(i => this.data.keys[i] === key));
+              if (!bar) {
+                bar = new cv.ui.structure.tile.components.chart.BarGroup(this);
+                chartElements.push(bar);
+              }
+              bar.addDataset(ds);
+              break;
+            case 'stacked-bar':
+              if (!stackedBar) {
+                stackedBar = new cv.ui.structure.tile.components.chart.StackedBarGroup(this);
+                chartElements.push(stackedBar);
+              }
+              stackedBar.addDataset(ds);
+              break;
+          }
+        }
+        this._chartElements = chartElements;
+      },
       _onLocaleChanged: function _onLocaleChanged() {
-        this.__P_78_10();
+        this.__P_78_13();
         var popup = this._headerFooterParent.querySelector('div.popup.series');
         if (popup) {
-          var _iterator2 = _createForOfIteratorHelper(popup.querySelectorAll('cv-option')),
-            _step2;
+          var _iterator3 = _createForOfIteratorHelper(popup.querySelectorAll('cv-option')),
+            _step3;
           try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var option = _step2.value;
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var option = _step3.value;
               option.textContent = this._seriesToShort(option.getAttribute('key'));
             }
           } catch (err) {
-            _iterator2.e(err);
+            _iterator3.e(err);
           } finally {
-            _iterator2.f();
+            _iterator3.f();
           }
         }
       },
       onStateUpdate: function onStateUpdate(ev) {
         var targetDataset = this._element.querySelector(':scope > dataset[src="' + ev.detail.target + '"]');
-        var config = this._dataSetConfigs ? this._dataSetConfigs[ev.detail.target] : null;
+        var config = this._datasets ? this._datasets[ev.detail.target] : null;
         if (targetDataset && config) {
           var ts = Date.now();
-          if (config.aggregationInterval) {
-            var mins = config.aggregationInterval * 60 * 1000;
+          if (config.getAggregationInterval()) {
+            var mins = config.getAggregationInterval() * 60 * 1000;
             ts = Math.round(ts / mins) * mins;
           }
           this._renderChart({
             src: ev.detail.target,
+            key: ev.detail.target,
             time: ts,
             value: ev.detail.state
           }, true);
@@ -586,7 +866,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this.resetCurrentPeriod();
           this._initializing = false;
           // reset configuration, we need a new one
-          this._chartConf = null;
           this.setCurrentSeries(select);
         }
       },
@@ -597,6 +876,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
       },
       refresh: function refresh() {
+        if (!this._datasets) {
+          // not yet initialized, skip
+          return;
+        }
         this._loaded = false;
         this.__P_78_0();
         this._loadData();
@@ -615,7 +898,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this._loaded = false;
           this._loadData();
         }
-        this.__P_78_10();
+        this.__P_78_13();
       },
       _applyCurrentSeries: function _applyCurrentSeries(series) {
         var currentSelection = this.getHeader('.popup.series > cv-option[selected="selected"]');
@@ -628,7 +911,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
         }
         if (!alreadySelected) {
-          var newSelection = this.getHeader(".popup.series > cv-option[key=\"".concat(series, "\"]"));
+          var newSelection = this.getHeader(".popup.series > cv-option[key='".concat(series, "']"));
           if (newSelection) {
             newSelection.setAttribute('selected', 'selected');
           }
@@ -636,6 +919,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         this.__P_78_0();
       },
       __P_78_0: function __P_78_0() {
+        if (this.isDisposed() || !this._element) {
+          return;
+        }
         var series = this.getCurrentSeries();
         var currentPeriod = this.getCurrentPeriod();
         var end = new Date();
@@ -644,42 +930,33 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         switch (series) {
           case 'hour':
             interval = 3600;
-            periodStart.setHours(periodStart.getHours() - currentPeriod, 0, 0, 0);
-            end.setHours(periodStart.getHours() + 1, 0, 0, 0);
+            periodStart = d3.timeHour.floor(periodStart);
+            periodStart = d3.timeHour.offset(periodStart, -currentPeriod);
+            end = d3.timeHour.offset(periodStart, 1);
             break;
           case 'day':
             interval = 86400;
-            periodStart.setDate(periodStart.getDate() - currentPeriod);
-            periodStart.setHours(0, 0, 0, 0);
-            end.setTime(periodStart.getTime());
-            end.setDate(periodStart.getDate() + 1);
-            end.setHours(0, 0, 0, 0);
+            periodStart = d3.timeDay.floor(periodStart);
+            periodStart = d3.timeDay.offset(periodStart, -currentPeriod);
+            end = d3.timeDay.offset(periodStart, 1);
             break;
           case 'week':
             interval = 604800;
-            periodStart.setDate(periodStart.getDate() - (periodStart.getDay() || 7) + 1 - 7 * currentPeriod);
-            periodStart.setHours(0, 0, 0, 0);
-            end.setTime(periodStart.getTime());
-            end.setDate(periodStart.getDate() + 7);
-            end.setHours(0, 0, 0, 0);
+            periodStart = d3.timeMonday.floor(periodStart);
+            periodStart = d3.timeMonday.offset(periodStart, -currentPeriod);
+            end = d3.timeMonday.offset(periodStart, 1);
             break;
           case 'month':
             interval = 2592000;
-            periodStart.setMonth(periodStart.getMonth() - currentPeriod);
-            periodStart.setDate(1);
-            periodStart.setHours(0, 0, 0, 0);
-            end.setTime(periodStart.getTime());
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
+            periodStart = d3.timeMonth.floor(periodStart);
+            periodStart = d3.timeMonth.offset(periodStart, -currentPeriod);
+            end = d3.timeMonth.offset(periodStart, 1);
             break;
           case 'year':
             interval = 31536000;
-            periodStart.setFullYear(periodStart.getFullYear() - currentPeriod);
-            periodStart.setMonth(0, 1);
-            periodStart.setHours(0, 0, 0, 0);
-            end.setFullYear(periodStart.getFullYear() + 1);
-            end.setMonth(periodStart.getMonth() + 1, 1);
-            end.setHours(0, 0, 0, 0);
+            periodStart = d3.timeYear.floor(periodStart);
+            periodStart = d3.timeYear.offset(periodStart, -currentPeriod);
+            end = d3.timeYear.offset(periodStart, 1);
             break;
         }
         var startTs = Math.round(periodStart.getTime() / 1000);
@@ -703,276 +980,115 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return;
         }
         if (!client.isConnected()) {
-          client.addListenerOnce('changeConnected', function () {
-            _this3._loadData();
-          });
+          if (!this.__P_78_11 || this.__P_78_10 !== client) {
+            this.__P_78_14();
+            this.__P_78_10 = client;
+            this.__P_78_11 = function () {
+              _this3.__P_78_11 = null;
+              _this3.__P_78_10 = null;
+              if (!_this3.isDisposed()) {
+                _this3._loadData();
+              }
+            };
+            client.addListenerOnce('changeConnected', this.__P_78_11, this);
+          }
           return;
         }
-        var url;
-        var dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
-        var datasetSources = dataSets.map(function (elem) {
-          return elem.getAttribute('src');
-        });
-        var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > h-line, v-line')),
-          _step3;
-        try {
-          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-            var line = _step3.value;
-            if (line.hasAttribute('src') && !datasetSources.includes(line.getAttribute('src'))) {
-              dataSets.push(line);
-            }
-          }
-        } catch (err) {
-          _iterator3.e(err);
-        } finally {
-          _iterator3.f();
-        }
+        this.__P_78_14();
         var promises = [];
-        if (!this._dataSetConfigs) {
-          this._dataSetConfigs = {};
-          var _iterator4 = _createForOfIteratorHelper(dataSets),
-            _step4;
-          try {
-            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-              var dataSet = _step4.value;
-              var ts = {
-                showArea: dataSet.localName === 'dataset',
-                color: '#FF9900',
-                chartType: 'line',
-                element: dataSet,
-                title: '',
-                curve: 'linear',
-                aggregationInterval: 0
-              };
-              var attr = void 0;
-              var name = void 0;
-              var value = void 0;
-              for (var i = 0; i < dataSet.attributes.length; i++) {
-                attr = dataSet.attributes.item(i);
-                // CamelCase attribute names
-                name = attr.name.split('-').map(function (part, i) {
-                  if (i > 0) {
-                    return "".concat(part.substring(0, 1).toUpperCase()).concat(part.substring(1));
-                  }
-                  return part;
-                }).join('');
-                value = attr.value;
-                if (value === 'true' || value === 'false') {
-                  value = value === 'true';
-                } else if (/^\d+$/.test(value)) {
-                  value = parseInt(value);
-                } else if (/^[\d.]+$/.test(value)) {
-                  value = parseFloat(value);
-                }
-                ts[name] = value;
-              }
-              var type = ts.src.split('://')[0].toLowerCase();
-              if (type.startsWith('plugin+')) {
-                ts.subType = type.substring(7);
-                type = type.substring(0, 6);
-              }
-              ts.type = type;
-              var key = ts.src;
-              switch (type) {
-                case 'flux':
-                  ts.source = new cv.io.timeseries.FluxSource(ts.src, this);
-                  if (ts.source.isInline()) {
-                    var fluxQuery = dataSet.textContent.trim();
-                    key = cv.ConfigCache.hashCode(fluxQuery).toString();
-                    if (!this.__P_78_7[ts.src]) {
-                      this.__P_78_7[ts.src] = key;
-                    } else {
-                      this.error("duplicate flux inline source, you must append an unique anchor ID like ".concat(ts.src, "#12345"), ts.src);
-                    }
-                    ts.source.setQueryTemplate(fluxQuery);
-                  }
-                  break;
-                case 'openhab':
-                  ts.source = new cv.io.timeseries.OpenhabPersistenceSource(ts.src, this);
-                  break;
-                case 'rrd':
-                  ts.source = new cv.io.timeseries.RRDSource(ts.src, this);
-                  break;
-                case 'demo':
-                  ts.source = new cv.io.timeseries.DemoSource(ts.src, this);
-                  break;
-                case 'plugin':
-                  ts.source = new cv.io.timeseries.Plugin(ts.src, this);
-                  break;
-                default:
-                  this.error('unknown chart data source type ' + type);
-                  break;
-              }
-              ts.key = key;
-              this._dataSetConfigs[key] = ts;
-            }
-          } catch (err) {
-            _iterator4.e(err);
-          } finally {
-            _iterator4.f();
-          }
-        }
-        var _loop = function _loop() {
-          var ts = _this3._dataSetConfigs[_key];
-          var proxy = false;
-          var options = {
-            ttl: _this3.getRefresh()
-          };
-          if (ts.source) {
-            var config = ts.source.getRequestConfig(_this3.getStartTime(), _this3.getEndTime(), _this3.getCurrentSeries(), _this3.getCurrentPeriod());
-            url = config.url;
-            proxy = config.proxy;
-            options = Object.assign(options, config.options);
-            if (config.fetch === false) {
-              // data retrieval is handled by the source itself
-              promises.push(ts.source.fetchData(_this3.getStartTime(), _this3.getEndTime(), _this3.getCurrentSeries(), _this3.getCurrentPeriod()).then(function (data) {
-                _this3.debug('data successfully loaded by source');
-                if (ts.source) {
-                  data = ts.source.processResponse(data);
-                }
-                if (!_this3._lastRefresh) {
-                  _this3._lastRefresh = Date.now();
-                }
-                return {
-                  data: data || [],
-                  ts: ts
-                };
-              })["catch"](function (err) {
-                _this3._onStatusError(ts, url, err);
-                return {
-                  data: [],
-                  ts: ts
-                };
-              }));
-            }
-          }
-          if (!url) {
-            return 1; // continue
-          }
-          _this3.debug('loading', url);
-          promises.push(cv.io.Fetch.cachedFetch(url, options, proxy, client).then(function (data) {
-            _this3.debug('successfully loaded', url);
-            if (ts.source) {
-              data = ts.source.processResponse(data);
-            }
-            if (!_this3._lastRefresh) {
-              _this3._lastRefresh = Date.now();
-            }
-            return {
-              data: data || [],
-              ts: ts
-            };
-          })["catch"](function (err) {
-            _this3._onStatusError(ts, url, err);
-            return {
-              data: [],
-              ts: ts
-            };
-          }));
+        var options = {
+          ttl: this.getRefresh()
         };
-        for (var _key in this._dataSetConfigs) {
-          if (_loop()) continue;
+        for (var key in this._datasets) {
+          var ts = this._datasets[key];
+          var p = ts.fetch(this.getStartTime(), this.getEndTime(), this.getCurrentSeries(), this.getCurrentPeriod(), options);
+          promises.push(p);
         }
         Promise.all(promises).then(function (responses) {
-          _this3._onSuccess(responses);
+          if (!_this3.isDisposed()) {
+            _this3._onSuccess(responses.filter(function (r) {
+              return r !== null;
+            }));
+          }
         });
       },
-      _onSuccess: function _onSuccess(data) {
+      _onSuccess: function _onSuccess(chartData) {
         var _this4 = this;
-        var chartData = [];
-        var _iterator5 = _createForOfIteratorHelper(data),
-          _step5;
-        try {
-          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-            var entry = _step5.value;
-            var tsdata = entry.data;
-            if (tsdata !== null) {
-              // TODO: stacked bar times (entry.ts.chartType === 'stacked-bar') must be aggregated, they have to be at the same time index for stacking
-              var mins = entry.ts.aggregationInterval > 0 ? entry.ts.aggregationInterval * 60 * 1000 : 0;
-              var _iterator6 = _createForOfIteratorHelper(tsdata),
-                _step6;
-              try {
-                for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-                  var _step6$value = _slicedToArray(_step6.value, 2),
-                    time = _step6$value[0],
-                    value = _step6$value[1];
-                  chartData.push({
-                    key: entry.ts.key,
-                    src: entry.ts.src,
-                    time: mins > 0 ? Math.round(time / mins) * mins : time,
-                    value: value
-                  });
-                }
-              } catch (err) {
-                _iterator6.e(err);
-              } finally {
-                _iterator6.f();
-              }
-            }
-          }
-        } catch (err) {
-          _iterator5.e(err);
-        } finally {
-          _iterator5.f();
-        }
-        if (this._element.hasAttribute('background') && this._element.getAttribute('background') === 'true') {
-          // no margins
-          this.__P_78_9 = Object.assign(this.__P_78_9, {
-            marginRight: 0,
-            marginBottom: 0,
-            marginLeft: 0
-          });
-
-          // because we have no margins we need to cut the overflow on the tile
-          var tile = this._element.parentElement;
-          while (tile && tile.localName !== 'cv-tile') {
-            tile = tile.parentElement;
-          }
-          if (tile && tile.localName === 'cv-tile') {
-            tile.style.overflow = 'hidden';
-          }
-        }
-
         // wait some time to let the element size settle
-        window.requestAnimationFrame(function () {
-          setTimeout(function () {
-            _this4._onRendered(chartData);
-          }, 100);
-        });
+        this.__P_78_5 = setTimeout(function () {
+          if (!_this4.isDisposed()) {
+            // append all dataset fetched data to a single flat array
+            _this4._onRendered(chartData.flat());
+          }
+        }, 100);
+      },
+      __P_78_14: function __P_78_14() {
+        if (this.__P_78_10 && this.__P_78_11) {
+          this.__P_78_10.removeListener('changeConnected', this.__P_78_11, this);
+        }
+        this.__P_78_10 = null;
+        this.__P_78_11 = null;
       },
       _onRendered: function _onRendered(chartData, retries) {
         var _this5 = this;
-        if (this.__P_78_4) {
-          clearTimeout(this.__P_78_4);
-          this.__P_78_4 = null;
+        if (this.__P_78_5) {
+          clearTimeout(this.__P_78_5);
+          this.__P_78_5 = null;
+        }
+        if (this.isDisposed()) {
+          return;
         }
         if (this.isVisible()) {
           var _this$_getSize = this._getSize(),
             _this$_getSize2 = _slicedToArray(_this$_getSize, 2),
             width = _this$_getSize2[0],
             height = _this$_getSize2[1];
-          if ((width < 20 || height < 10) && (!retries || retries <= 5)) {
+          if ((width < 20 || height <= 10) && (!retries || retries <= 5)) {
             // this makes no sense
-            this.__P_78_4 = setTimeout(function () {
+            this.__P_78_5 = setTimeout(function () {
               _this5._onRendered(chartData, retries > 0 ? retries + 1 : 1);
             }, 150);
           }
-          if (width < 20 || height < 10) {
+          if (width < 20 || height <= 10) {
             // do nothing, these values are invalid
             return;
           }
-          this.__P_78_9.width = width;
-          this.__P_78_9.height = height;
-          d3.select(this._element).select('svg').attr('viewBox', "0, 0, ".concat(width, ", ").concat(height));
+          this.setWidth(width);
+          this.setHeight(height);
           if (chartData) {
             this._renderChart(chartData);
             this._loaded = Date.now();
+          } else {
+            this._render();
           }
         }
       },
+      __P_78_12: function __P_78_12(isFullscreen) {
+        var _this6 = this;
+        if (this.__P_78_9) {
+          window.cancelAnimationFrame(this.__P_78_9);
+          this.__P_78_9 = null;
+        }
+        if (!isFullscreen && this.__P_78_8) {
+          this._element.style.height = '';
+          this.__P_78_8 = false;
+        }
+        if (isFullscreen) {
+          this._onRendered();
+          return;
+        }
+        this.__P_78_9 = window.requestAnimationFrame(function () {
+          _this6.__P_78_9 = window.requestAnimationFrame(function () {
+            _this6.__P_78_9 = null;
+            if (!_this6.isDisposed()) {
+              _this6._onRendered();
+            }
+          });
+        });
+      },
       _getSize: function _getSize() {
         var parent = this._element.parentElement;
-        var padding = this._element.getAttribute('background') === 'true' ? 0 : 8;
+        var padding = this.isInBackground() ? 0 : 8;
         var containerWidth = this._element.offsetWidth - padding;
         var containerHeight = this._element.offsetHeight - padding;
         var factor = 1;
@@ -987,40 +1103,36 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           width = Math.round(containerWidth / factor);
           height = width / cv.ui.structure.tile.components.Chart.DEFAULT_ASPECT_RATIO;
         }
-        if (!this._element.style.height && (parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen'))) {
+        var isFullscreenContainer = parent.localName === 'cv-popup' && parent.getAttribute('fullscreen') === 'true' || this._element.getAttribute('allow-fullscreen') === 'true' && parent.parentElement.classList.contains('fullscreen');
+        if (isFullscreenContainer && (!this._element.style.height || this.__P_78_8)) {
           // the parent container has height: auto, so we need to have one
-          this._element.style.height = height + this.__P_78_9.marginTop + this.__P_78_9.marginBottom + 'px';
+          this._element.style.height = height + this.getMarginTop() + this.getMarginBottom() + 'px';
+          this.__P_78_8 = true;
+        } else if (!isFullscreenContainer && this.__P_78_8) {
+          this._element.style.height = '';
+          this.__P_78_8 = false;
         }
         return [width, height];
       },
-      multiTimeFormat: function multiTimeFormat(formatsArray) {
+      multiTimeFormat: function multiTimeFormat() {
+        var locale = cv.ui.structure.tile.components.Chart.TF;
+        var formatMillisecond = locale.format(qx.locale.Manager.tr('.%L'));
+        var formatSecond = locale.format(qx.locale.Manager.tr(':%S'));
+        var formatMinute = locale.format(qx.locale.Manager.tr('%I:%M'));
+        var formatHour = locale.format(qx.locale.Manager.tr('%I %p'));
+        var formatDay = locale.format(qx.locale.Manager.tr('%a %d'));
+        var formatWeek = locale.format(qx.locale.Manager.tr('%b %d'));
+        var formatMonth = locale.format(qx.locale.Manager.tr('%b'));
+        var formatYear = locale.format(qx.locale.Manager.tr('%Y'));
         /**
          * @param date
          */
         function multiFormat(date) {
-          var i = 0;
-          var found = false;
-          var fmt = '%c';
-          while (!found && i < formatsArray.length) {
-            found = formatsArray[i][1](date);
-            if (found) {
-              fmt = formatsArray[i][0];
-            }
-            i++;
-          }
-          return fmt;
+          return (d3.timeSecond(date) < date ? formatMillisecond : d3.timeMinute(date) < date ? formatSecond : d3.timeHour(date) < date ? formatMinute : d3.timeDay(date) < date ? formatHour : d3.timeMonth(date) < date ? d3.timeWeek(date) < date ? formatDay : formatWeek : d3.timeYear(date) < date ? formatMonth : formatYear)(date);
         }
         return function (date) {
           return d3.timeFormat(multiFormat(date))(date);
         };
-      },
-      _onStatusError: function _onStatusError(ts, key, err) {
-        cv.core.notifications.Router.dispatchMessage('cv.charts.error', {
-          title: qx.locale.Manager.tr('Communication error'),
-          severity: 'urgent',
-          message: qx.locale.Manager.tr('URL: %1<br/><br/>Response:</br>%2', JSON.stringify(key), JSON.stringify(err))
-        });
-        this.error('Chart _onStatusError', ts, key, err);
       },
       /**
        * Get svg element selection (create if not exists)
@@ -1042,637 +1154,294 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         return elem;
       },
+      getSvgElement: function getSvgElement(nodeName, classes, attributes) {
+        return this._getSvgElement(d3.select(this._element).select('svg'), nodeName, classes, attributes);
+      },
+      getDataset: function getDataset(key) {
+        return this._datasets[key];
+      },
+      _render: function _render() {
+        // Render the chart elements without new data
+        this.getXAxis().render();
+        this.getYAxis().render();
+        var _iterator4 = _createForOfIteratorHelper(this._chartElements),
+          _step4;
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var series = _step4.value;
+            series.render();
+          }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
+        var zero = d3.select(this._element).select('svg').select('.zero-line');
+        if (zero) {
+          var _this$getXAxis$getRan = this.getXAxis().getRange(),
+            _this$getXAxis$getRan2 = _slicedToArray(_this$getXAxis$getRan, 2),
+            x1 = _this$getXAxis$getRan2[0],
+            x2 = _this$getXAxis$getRan2[1];
+          var y = this.getYPos(0.0, true);
+          zero.attr('x1', x1).attr('x2', x2).attr('y1', y).attr('y2', y);
+        }
+        this.__P_78_15();
+      },
       /**
-       * Copyright 2021 Observable, Inc.
-       * Released under the ISC license.
-       * https://observablehq.com/@d3/multi-line-chart
-       *
        * @param data
-       * @param single
+       * @param {Boolean} single Add a single data point to the chart
        * @private
        */
       _renderChart: function _renderChart(data, single) {
-        var _this6 = this;
-        var config = this.__P_78_9;
+        var xAxis = this.getXAxis();
+        var yAxis = this.getYAxis();
         var svg = d3.select(this._element).select('svg');
-
-        // Compute values.
-        var X;
-        var Y;
-        var Z;
-        var O;
-        var T;
         if (single) {
-          if (!this._helpers) {
+          if (!this.data.append(data)) {
             return;
           }
-          X = this._helpers.X;
-          Y = this._helpers.Y;
-          Z = this._helpers.Z;
-          O = this._helpers.O;
-          T = this._helpers.T;
-          if (X[X.length - 1] === data.time) {
-            // replace last value instead of adding one
-            Y[Y.length - 1] = data.value;
-          } else {
-            X.push(data.time);
-            Y.push(data.value);
-            Z.push(data.key);
-            O.push(data);
-            T.push(config.title === undefined ? data.src : config.title === null ? null : config.title(data));
-
-            // cleanup
-            X.shift();
-            Y.shift();
-            Z.shift();
-            O.shift();
-            T.shift();
-          }
         } else {
-          X = d3.map(data, config.x);
-          Y = d3.map(data, config.y);
-          Z = d3.map(data, config.z);
-          O = d3.map(data, function (d) {
-            return d;
-          });
-          // Compute titles.
-          T = config.title === undefined ? Z : config.title === null ? null : d3.map(data, config.title);
+          this.data.setData(data);
         }
+        var hasStackedBar = this._chartElements.some(function (group) {
+          return group.getType() === 'stacked-bar';
+        });
+        var hasBar = this._chartElements.some(function (group) {
+          return group.getType() === 'bar';
+        });
 
         // Compute default domains, and unique the z-domain.
-        var xDomain = d3.extent(X);
-        var minVal = 0;
-        var maxVal = 0;
-        if (this._element.hasAttribute('min')) {
-          var min = parseFloat(this._element.getAttribute('min'));
-          if (!isNaN(min)) {
-            minVal = min;
-          }
-        } else {
-          minVal = d3.min(Y);
-          if (minVal > 1.0) {
-            minVal -= 1;
-          }
+        if (hasBar || hasStackedBar) {
+          this.data.interpolate(this.getCurrentSeries());
         }
-        if (this._element.hasAttribute('max')) {
-          var max = parseFloat(this._element.getAttribute('max'));
-          if (!isNaN(max)) {
-            maxVal = max;
-          }
-        } else {
-          maxVal = d3.max(Y);
-          if (maxVal > 1.0) {
-            // add some inner chart padding
-            maxVal += 1;
-          } else {
-            maxVal += 0.1;
-          }
+        xAxis.setDomain(this.data.getTimesDomain());
+        if (this.overrideXScale) {
+          this.overrideXScale.domain(this.data.getTimesDomain());
         }
-        var yDomain = [minVal, maxVal];
-        var zDomain = new d3.InternSet(Z);
-        // Omit any data not present in the z-domain.
-        var I = d3.range(X.length).filter(function (i) {
-          return zDomain.has(Z[i]);
-        });
-        if (config.showYAxis) {
-          var maxValue = config.yFormat ? config.yFormat(yDomain[1]) : yDomain[1].toFixed(maxVal < 1 ? 2 : 1);
-          // check if we need more space for the y-axis
-          if (maxValue.length >= 2) {
-            config.marginLeft = maxValue.length * 8;
-          }
+        if (!this.getMinY() && !this.getMaxY() && !hasStackedBar) {
+          yAxis.setDomain(this.data.getValuesDomain());
         }
-        var xTicks = config.width / 80;
-        var yTicks = config.height / 60;
-        var additionalXRangePadding = this._element.getAttribute('background') === 'true' ? 0 : 2;
-        var xRange = [config.marginLeft + additionalXRangePadding, config.width - config.marginRight - additionalXRangePadding]; // [left, right]
-        if (!this._chartConf) {
-          var yRange = [config.height - config.marginBottom, config.marginTop]; // [bottom, top]
-
-          // initialize everything once
-          this._chartConf = {
-            // x/y scales
-            x: config.xType().range(xRange),
-            y: config.yType().range(yRange)
-          };
-          this._chartConf.xAxis = config.showXAxis ? d3.axisBottom(this._chartConf.x).ticks(xTicks).tickSizeOuter(0).tickFormat(config.xFormat) : undefined;
-          this._chartConf.yAxis = config.showYAxis ? d3.axisLeft(this._chartConf.y).ticks(yTicks, config.yFormat) : undefined;
-
-          // add elements
-          var showGrid = this._element.hasAttribute('show-grid') ? this._element.getAttribute('show-grid') : 'xy';
-          if (showGrid.includes('x')) {
-            this._chartConf.xGrid = d3.axisBottom(this._chartConf.x).ticks(xTicks).tickSize(-config.height + config.marginBottom + config.marginTop).tickFormat('');
-            this._getSvgElement(svg, 'g', ['grid', 'x'], {
-              transform: "translate(0,".concat(config.height - config.marginBottom, ")")
-            }).call(this._chartConf.xGrid);
-          }
-          if (showGrid.includes('y')) {
-            this._chartConf.yGrid = d3.axisLeft(this._chartConf.y).ticks(yTicks).tickSize(-config.width + config.marginRight + config.marginLeft).tickFormat('');
-            this._getSvgElement(svg, 'g', ['grid', 'y'], {
-              transform: "translate(".concat(config.marginLeft, ",0)")
-            }).call(this._chartConf.yGrid);
-          }
-          if (config.showXAxis) {
-            this._getSvgElement(svg, 'g', ['axis', 'x']).attr('transform', "translate(0,".concat(config.height - config.marginBottom, ")")).call(this._chartConf.xAxis);
-          }
-          if (config.showYAxis) {
-            var yAxisElement = this._getSvgElement(svg, 'g', ['axis', 'y']).attr('transform', "translate(".concat(config.marginLeft, ",0)"));
-            if (config.label && yAxisElement.select('text').empty()) {
-              yAxisElement.append('text').attr('x', -config.marginLeft).attr('y', 10).attr('fill', 'currentColor').attr('text-anchor', 'start').text(config.yLabel);
-            }
-            yAxisElement.call(this._chartConf.yAxis).call(function (g) {
-              return g.select('.domain').remove();
-            });
-          }
-
-          // find chart types
-          var lineGroups = new Map();
-          var areaGroups = new Map();
-          var barGroups = new Map();
-          var stackedBarGroups = new Map();
-          var lineFunctions = {};
-          var areaFunctions = {};
-          var xBar;
-          var xzScale;
-          var _loop2 = function _loop2(key) {
-            switch (_this6._dataSetConfigs[key].chartType) {
-              case 'line':
-                {
-                  var idx = I.filter(function (i) {
-                    return Z[i] === key;
-                  });
-                  lineGroups.set(key, idx);
-                  var curveName = _this6._dataSetConfigs[key].curve || 'linear';
-                  if (!Object.prototype.hasOwnProperty.call(lineFunctions, curveName)) {
-                    var curveFunction;
-                    switch (curveName) {
-                      case 'linear':
-                        curveFunction = d3.curveLinear;
-                        break;
-                      case 'step':
-                        curveFunction = d3.curveStep;
-                        break;
-                      case 'natural':
-                        curveFunction = d3.curveNatural;
-                        break;
-                    }
-                    if (curveFunction) {
-                      // Construct a line generator.
-                      lineFunctions[curveName] = d3.line().curve(curveFunction).x(function (i) {
-                        return _this6._chartConf.x(_this6._helpers.X[i]);
-                      }).y(function (i) {
-                        return _this6._chartConf.y(_this6._helpers.Y[i]);
-                      });
-                    }
-                    if (_this6._dataSetConfigs[key].chartType === 'line' && typeof config.showArea === 'function' && config.showArea(key)) {
-                      areaGroups.set(key, idx);
-                      if (curveFunction) {
-                        // Construct a line generator.
-                        var minY = _this6._chartConf.y.range()[0];
-                        areaFunctions[curveName] = d3.area().curve(curveFunction).x(function (i) {
-                          return _this6._chartConf.x(_this6._helpers.X[i]);
-                        }).y0(function () {
-                          return minY;
-                        }).y1(function (i) {
-                          return _this6._chartConf.y(_this6._helpers.Y[i]);
-                        });
-                      }
-                    }
-                  }
-                  break;
-                }
-              case 'bar':
-                barGroups.set(key, I.filter(function (i) {
-                  return Z[i] === key;
-                }));
-                if (!xBar) {
-                  xBar = d3.scaleBand().range(_this6._chartConf.x.range()).padding(config.xPadding);
-                }
-                if (!xzScale) {
-                  xzScale = d3.scaleBand().padding(0.05);
-                }
-                break;
-              case 'stacked-bar':
-                stackedBarGroups.set(key, I.filter(function (i) {
-                  return Z[i] === key;
-                }));
-                break;
-            }
-          };
-          for (var key in this._dataSetConfigs) {
-            _loop2(key);
-          }
-          this._chartConf.lineGroups = lineGroups;
-          this._chartConf.areaGroups = areaGroups;
-          this._chartConf.barGroups = barGroups;
-          this._chartConf.stackedBarGroups = stackedBarGroups;
-          this._chartConf.lineFunctions = lineFunctions;
-          this._chartConf.areaFunctions = areaFunctions;
-          this._chartConf.xBar = xBar;
-          if (xzScale) {
-            this._chartConf.xz = xzScale;
-          }
-
-          // prepare elements for chart elements
-          if (this._chartConf.lineGroups.size > 0) {
-            this._chartConf.lineContainer = this._getSvgElement(svg, 'g', ['line'], {
-              fill: 'none',
-              stroke: typeof config.color === 'string' ? config.color : null,
-              'stroke-linecap': config.strokeLinecap,
-              'stroke-linejoin': config.strokeLinejoin,
-              'stroke-width': config.strokeWidth,
-              'stroke-opacity': config.strokeOpacity
-            });
-          }
-          if (this._chartConf.areaGroups.size > 0) {
-            this._chartConf.areaContainer = this._getSvgElement(svg, 'g', ['area'], {
-              stroke: 'none',
-              fill: typeof config.color === 'string' ? this.__P_78_11(config.color, '30') : null
-            });
-          }
-          if (this._chartConf.barGroups.size > 0) {
-            this._chartConf.barContainer = this._getSvgElement(svg, 'g', ['bars']);
-          }
-        }
-
-        // apply domains to scales
-        this._chartConf.x.domain(xDomain);
-        this._chartConf.y.domain(yDomain);
-        this._helpers = {
-          X: X,
-          Y: Y,
-          I: I,
-          T: T,
-          Z: Z,
-          O: O
-        };
-        if (this._chartConf.xAxis) {
-          this._getSvgElement(svg, 'g', ['axis', 'x']).call(this._chartConf.xAxis);
-        }
-        if (this._chartConf.yAxis) {
-          this._getSvgElement(svg, 'g', ['axis', 'y']).call(this._chartConf.yAxis);
-        }
-        if (this._chartConf.xBar) {
-          this._chartConf.xBar.domain(new d3.InternSet(X));
-        }
-        if (this._chartConf.xz) {
-          this._chartConf.xz.domain(zDomain);
-          this._chartConf.x.range([xRange[0], xRange[1] - this._chartConf.xBar.bandwidth()]);
-          this._chartConf.xz.range([0, this._chartConf.xBar.bandwidth()]);
-        }
-
-        // update groups
-        var _iterator7 = _createForOfIteratorHelper(this._chartConf.lineGroups.keys()),
-          _step7;
+        this._tooltipIndicator = svg.select('g.tooltip-indicator');
+        var defaultTransition = d3.transition().duration(500).ease(d3.easeLinear);
+        var _iterator5 = _createForOfIteratorHelper(this._chartElements),
+          _step5;
         try {
-          var _loop3 = function _loop3() {
-            var key = _step7.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key;
-            });
-            _this6._chartConf.lineGroups.set(key, idx);
-          };
-          for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-            _loop3();
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var series = _step5.value;
+            series.render(single ? undefined : defaultTransition);
           }
-        } catch (err) {
-          _iterator7.e(err);
-        } finally {
-          _iterator7.f();
-        }
-        var _iterator8 = _createForOfIteratorHelper(this._chartConf.areaGroups.keys()),
-          _step8;
-        try {
-          var _loop4 = function _loop4() {
-            var key = _step8.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key && Y[i] !== undefined;
-            });
-            _this6._chartConf.areaGroups.set(key, idx);
-          };
-          for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-            _loop4();
-          }
-        } catch (err) {
-          _iterator8.e(err);
-        } finally {
-          _iterator8.f();
-        }
-        var _iterator9 = _createForOfIteratorHelper(this._chartConf.barGroups.keys()),
-          _step9;
-        try {
-          var _loop5 = function _loop5() {
-            var key = _step9.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key && Y[i] !== undefined;
-            });
-            _this6._chartConf.barGroups.set(key, idx);
-          };
-          for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-            _loop5();
-          }
-        } catch (err) {
-          _iterator9.e(err);
-        } finally {
-          _iterator9.f();
-        }
-        var _iterator10 = _createForOfIteratorHelper(this._chartConf.stackedBarGroups.keys()),
-          _step10;
-        try {
-          var _loop6 = function _loop6() {
-            var key = _step10.value;
-            var idx = I.filter(function (i) {
-              return Z[i] === key && Y[i] !== undefined;
-            });
-            _this6._chartConf.stackedBarGroups.set(key, idx);
-          };
-          for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
-            _loop6();
-          }
-        } catch (err) {
-          _iterator10.e(err);
-        } finally {
-          _iterator10.f();
-        }
-        this.__P_78_9 = config;
-        this._dot = svg.select('g.dot');
 
-        // show zero line in grid for non-zero based charts
-        if (minVal !== 0) {
-          var targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-          var yValue = 0.0;
-          var _data = [0, X.length - 1];
+          // show zero line in grid for non-zero based charts
+        } catch (err) {
+          _iterator5.e(err);
+        } finally {
+          _iterator5.f();
+        }
+        if (this.data.getValuesDomain()[0] !== 0) {
+          var targetContainer = this._chartElements.length > 0 ? this._chartElements[0].getContainer() : svg;
           var lineElem = targetContainer.select('.zero-line');
           if (lineElem.empty()) {
             lineElem = targetContainer.append('line').attr('class', 'zero-line').attr('stroke', 'currentColor').attr('stroke-opacity', '15%');
           }
-          if (X.length > 0) {
-            var x1 = this._chartConf.x(X[_data[0]]);
-            var x2 = this._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
-            var y = this._chartConf.y(yValue);
-            lineElem.attr('x1', x1).attr('x2', x2).attr('y1', y).attr('y2', y);
-          }
-        }
-        var t = d3.transition().duration(single ? 0 : 500).ease(d3.easeLinear);
-        if (this._chartConf.lineContainer) {
-          this._chartConf.lineContainer.selectAll('path').data(new Map(_toConsumableArray(this._chartConf.lineGroups).filter(function (_ref2) {
-            var _ref3 = _slicedToArray(_ref2, 2),
-              k = _ref3[0],
-              v = _ref3[1];
-            var config = _this6._dataSetConfigs[k];
-            // do not use h-/v-line here, only datasets
-            return config.element.localName === 'dataset';
-          }))).join(function (enter) {
-            return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('stroke', typeof config.color === 'function' ? function (p) {
-              return config.color(p[0]);
-            } : null);
-          }).transition(t).attr('d', function (d) {
-            var curveName = _this6._dataSetConfigs[d[0]].curve || 'linear';
-            var func = _this6._chartConf.lineFunctions[curveName] || _this6._chartConf.lineFunctions.linear;
-            var val = func(d[1]);
-            return val;
-          });
-        }
-
-        // Add the area
-        if (this._chartConf.areaContainer) {
-          this._chartConf.areaContainer.selectAll('path').data(this._chartConf.areaGroups).join(function (enter) {
-            return enter.append('path').style('mix-blend-mode', config.mixBlendMode).attr('fill', typeof config.color === 'function' ? function (p) {
-              var color = config.color(p[0]);
-              var gradient = typeof config.gradient === 'function' ? config.gradient(p[0]) : false;
-              if (gradient) {
-                var gradId = "".concat(color.replaceAll(/\W/g, ''), "Grad");
-                var lg = svg.select('#' + gradId);
-                if (lg.empty()) {
-                  var _lg = svg.append('defs').append('linearGradient').attr('id', gradId).attr('x1', '0%').attr('x2', '0%').attr('y1', '0%').attr('y2', '100%');
-                  _lg.append('stop').attr('offset', '0%').style('stop-color', color).style('stop-opacity', 0.7);
-                  _lg.append('stop').attr('offset', '100%').style('stop-color', color).style('stop-opacity', 0);
-                }
-                return 'url(#' + gradId + ')';
-              }
-              return _this6.__P_78_11(color, '30');
-            } : null);
-          }).transition(t).attr('d', function (d) {
-            var curveName = _this6._dataSetConfigs[d[0]].curve || 'linear';
-            var func = _this6._chartConf.areaFunctions[curveName] || _this6._chartConf.areaFunctions.linear;
-            return func(d[1]);
-          });
-        }
-        if (this._chartConf.barContainer) {
-          var yMin = this._chartConf.y.range()[0];
-          this._chartConf.barContainer.selectAll('g').data(this._chartConf.barGroups).join('g').attr('fill', typeof config.color === 'function' ? function (d) {
-            return config.color(d[0]);
-          } : null).selectAll('rect').data(function (d) {
-            return d[1].map(function (val) {
-              return {
-                key: d[0],
-                value: val
-              };
-            });
-          }).join('rect').attr('x', function (d) {
-            var x = _this6._chartConf.x(X[d.value]);
-            var xz = _this6._chartConf.xz(d.key);
-            return x + xz;
-          }).attr('y', function (d) {
-            return _this6._chartConf.y(Y[d.value]);
-          }).attr('width', this._chartConf.xz.bandwidth()).transition(t).attr('height', function (d) {
-            return yMin - _this6._chartConf.y(Y[d.value]);
-          });
+          var _this$getXAxis$getRan3 = this.getXAxis().getRange(),
+            _this$getXAxis$getRan4 = _slicedToArray(_this$getXAxis$getRan3, 2),
+            x1 = _this$getXAxis$getRan4[0],
+            x2 = _this$getXAxis$getRan4[1];
+          var y = this.getYPos(0.0, true);
+          lineElem.attr('x1', x1).attr('x2', x2).attr('y1', y).attr('y2', y);
         }
 
         // add fixed/calculated lines
-        this.__P_78_12(X, Y);
+        this.__P_78_15();
 
-        // dot must be added last
-        var dot = svg.select('g.dot');
-        if (dot.empty()) {
-          svg.append('g').attr('class', 'dot').attr('display', 'none').attr('fill', 'currentColor').append('circle').attr('r', 2.5);
+        // tooltipIndicator must be added last
+        var tti = svg.select('g.tooltip-indicator');
+        if (tti.empty()) {
+          var _this$getYAxis$getRan = this.getYAxis().getRange(),
+            _this$getYAxis$getRan2 = _slicedToArray(_this$getYAxis$getRan, 2),
+            y1 = _this$getYAxis$getRan2[0],
+            y2 = _this$getYAxis$getRan2[1];
+          svg.append('g').attr('class', 'tooltip-indicator').attr('display', 'none').attr('stroke', 'currentColor').append('line').attr('x1', 0).attr('x2', 0).attr('y1', y1).attr('y2', y2);
+          this._tooltipIndicator = svg.select('g.tooltip-indicator');
         }
-        this._dot = svg.select('g.dot');
       },
-      __P_78_12: function __P_78_12(X, Y) {
+      __P_78_15: function __P_78_15() {
         var _this7 = this;
-        var _iterator11 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > h-line, v-line').entries()),
-          _step11;
-        try {
-          var _loop7 = function _loop7() {
-              var _step11$value = _slicedToArray(_step11.value, 2),
-                i = _step11$value[0],
-                line = _step11$value[1];
-              var key = line.getAttribute('src');
-              if (_this7.__P_78_7[key]) {
-                key = _this7.__P_78_7[key];
-              }
-              var name = line.localName;
-              var targetContainer = null;
-              var data = null;
+        var _loop = function _loop() {
+            var ds = _this7._datasets[key];
+            if (ds instanceof cv.ui.structure.tile.components.chart.LineDataset) {
+              var targetContainer;
               var value = NaN;
-              if (key) {
-                if (_this7._chartConf.lineGroups.get(key)) {
-                  targetContainer = _this7._chartConf.lineContainer;
-                  data = _this7._chartConf.lineGroups.get(key);
-                } else if (_this7._chartConf.areaGroups.get(key)) {
-                  targetContainer = _this7._chartConf.areaContainer;
-                  data = _this7._chartConf.areaGroups.get(key);
-                } else if (_this7._chartConf.barGroups.get(key)) {
-                  targetContainer = _this7._chartConf.barContainer;
-                  data = _this7._chartConf.barGroups.get(key);
-                }
-                if (!data) {
-                  _this7.error('no data found for key ' + key);
-                  return 0; // continue
-                }
+              // handle line dataset
+              var name = ds.getChartType();
+              if (key.startsWith('fixed-')) {
+                targetContainer = _this7._chartElements.length > 0 ? _this7._chartElements[0].getContainer() : null;
                 if (name === 'h-line') {
-                  // we can only do calculations for values on the Y-Axis for horizontal lines
-                  switch (line.getAttribute('value')) {
-                    case 'avg':
-                      {
-                        var sum = 0.0;
-                        var _iterator12 = _createForOfIteratorHelper(data),
-                          _step12;
-                        try {
-                          for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
-                            var di = _step12.value;
-                            sum += Y[di];
-                          }
-                        } catch (err) {
-                          _iterator12.e(err);
-                        } finally {
-                          _iterator12.f();
-                        }
-                        value = sum / data.length;
-                        break;
-                      }
-                    case 'max':
-                      value = d3.max(Y.filter(function (v, i) {
-                        return data.includes(i);
-                      }, function (d) {
-                        return d;
-                      }));
-                      break;
-                    case 'min':
-                      value = d3.min(Y.filter(function (v, i) {
-                        return data.includes(i);
-                      }, function (d) {
-                        return d;
-                      }));
-                      break;
-                    default:
-                      _this7.error('unknown value calculation: ' + line.getAttribute('value'));
-                      break;
-                  }
+                  value = parseFloat(ds.getValue());
                 } else {
-                  value = X[data[0]];
+                  value = new Date(ds.getValue()).getTime();
                 }
               } else {
-                targetContainer = _this7._chartConf.lineContainer || _this7._chartConf.areaContainer || _this7._chartConf.barContainer;
-                if (name === 'h-line') {
-                  value = parseFloat(line.getAttribute('value'));
+                var targetGroup;
+                var srcKey = key;
+                var isLineKey = false;
+                if (key.startsWith('derived-')) {
+                  var derivedFrom = ds.getSourceSet();
+                  srcKey = derivedFrom.getKey();
                 } else {
-                  value = new Date(line.getAttribute('value')).getTime();
+                  isLineKey = !_this7.data.keys.includes(key);
                 }
-                data = [0, X.length - 1];
+                targetGroup = _this7._chartElements.find(function (group) {
+                  return group.hasDataset(srcKey);
+                });
+                targetContainer = targetGroup ? targetGroup.getContainer() : _this7._chartElements.length > 0 ? _this7._chartElements[0].getContainer() : null;
+                var indices = isLineKey ? _this7.data.getLineIndicesForKey(srcKey) : _this7.data.getIndicesForKey(srcKey);
+                if (targetContainer) {
+                  if (!indices) {
+                    _this7.error('no data found for key ' + srcKey);
+                    return 0; // continue
+                  }
+                  if (name === 'h-line') {
+                    var values = isLineKey ? _this7.data.lineValues : _this7.data.values;
+                    // we can only do calculations for values on the Y-Axis for horizontal lines
+                    switch (ds.getValue()) {
+                      case 'avg':
+                        {
+                          var sum = 0.0;
+                          var _iterator6 = _createForOfIteratorHelper(indices),
+                            _step6;
+                          try {
+                            for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                              var di = _step6.value;
+                              sum += values[di];
+                            }
+                          } catch (err) {
+                            _iterator6.e(err);
+                          } finally {
+                            _iterator6.f();
+                          }
+                          value = sum / indices.length;
+                          break;
+                        }
+                      case 'max':
+                        value = d3.max(values.filter(function (v, i) {
+                          return indices.includes(i);
+                        }, function (d) {
+                          return d;
+                        }));
+                        break;
+                      case 'min':
+                        value = d3.min(values.filter(function (v, i) {
+                          return indices.includes(i);
+                        }, function (d) {
+                          return d;
+                        }));
+                        break;
+                      default:
+                        _this7.error('unknown value calculation: ' + ds.getValue());
+                        break;
+                    }
+                  } else {
+                    value = isLineKey ? _this7.data.lineTimes[indices[0]] : _this7.data.times[indices[0]];
+                  }
+                }
               }
               if (!targetContainer) {
                 return 0; // continue
               }
-              var lineElem = targetContainer.select(".".concat(name, "-").concat(i));
+              var lineElem = targetContainer.select(".".concat(name, "-").concat(ds.getIndex()));
               if (isNaN(value) && !lineElem.empty()) {
                 // remove line
                 lineElem.remove();
-                if (line.getAttribute('show-value') === 'true') {
-                  targetContainer.select(".".concat(name, "-value-").concat(i)).remove();
+                if (ds.getShowValue()) {
+                  targetContainer.select(".".concat(name, "-value-").concat(ds.getIndex())).remove();
                 }
               } else if (!isNaN(value)) {
-                var color = line.getAttribute('color') || 'currentColor';
+                var valuecolor = ds.getValueColor();
+                var lineColor = cv.util.Color.opacify(ds.getColor(), _this7.getDatasetOpacity());
                 if (lineElem.empty()) {
-                  lineElem = targetContainer.append('line').attr('class', "".concat(name, "-").concat(i)).attr('stroke', color);
+                  lineElem = targetContainer.append('line').attr('class', "".concat(name, "-").concat(ds.getIndex())).attr('stroke', lineColor);
                 }
                 var formatAttribute = 'y-format';
                 var x1;
                 var x2;
                 var y1;
                 var y2 = 0;
+                var xScale = _this7.overrideXScale || _this7.getXAxis().getScale();
+                var yScale = _this7.getYAxis().getScale();
                 if (name === 'h-line') {
-                  var _this7$_chartConf$x$d = _this7._chartConf.x.domain(),
-                    _this7$_chartConf$x$d2 = _slicedToArray(_this7$_chartConf$x$d, 2),
-                    xMin = _this7$_chartConf$x$d2[0],
-                    xMax = _this7$_chartConf$x$d2[1];
-                  x1 = _this7._chartConf.x(xMin);
-                  x2 = _this7._chartConf.x(xMax); // always draw until end of chart (not until end of src dataset)
-                  y1 = _this7._chartConf.y(value);
+                  var _this7$getXAxis$getRa = _this7.getXAxis().getRange();
+                  var _this7$getXAxis$getRa2 = _slicedToArray(_this7$getXAxis$getRa, 2);
+                  x1 = _this7$getXAxis$getRa2[0];
+                  x2 = _this7$getXAxis$getRa2[1];
+                  y1 = yScale(value);
                   y2 = y1;
                 } else {
-                  var _this7$_chartConf$y$d = _this7._chartConf.y.domain(),
-                    _this7$_chartConf$y$d2 = _slicedToArray(_this7$_chartConf$y$d, 2),
-                    yMin = _this7$_chartConf$y$d2[0],
-                    yMax = _this7$_chartConf$y$d2[1];
-                  y1 = _this7._chartConf.y(yMin);
-                  y2 = _this7._chartConf.y(yMax);
-                  x1 = _this7._chartConf.x(value);
+                  var _this7$getYAxis$getRa = _this7.getYAxis().getRange();
+                  var _this7$getYAxis$getRa2 = _slicedToArray(_this7$getYAxis$getRa, 2);
+                  y1 = _this7$getYAxis$getRa2[0];
+                  y2 = _this7$getYAxis$getRa2[1];
+                  x1 = xScale(value);
                   x2 = x1;
                   formatAttribute = 'x-format';
                 }
                 lineElem.attr('x1', x1).attr('x2', x2).attr('y1', y1).attr('y2', y2);
-                if (line.getAttribute('show-value') === 'true') {
-                  var format = line.hasAttribute('format') ? line.getAttribute('format') : _this7._element.hasAttribute(formatAttribute) ? _this7._element.getAttribute(formatAttribute) : '%s';
-                  var valueElem = targetContainer.select(".".concat(name, "-value-").concat(i));
+                if (ds.getShowValue()) {
+                  var format = ds.getFormat() || (_this7._element.hasAttribute(formatAttribute) ? _this7._element.getAttribute(formatAttribute) : '%s');
+                  var valueElem = targetContainer.select(".".concat(name, "-value-").concat(ds.getIndex()));
                   if (valueElem.empty()) {
-                    valueElem = targetContainer.append('text').attr('class', "".concat(name, "-value-").concat(i)).attr('fill', line.getAttribute('value-color') || color).attr('font-size', '10').attr('text-anchor', 'start');
+                    valueElem = targetContainer.append('text').attr('class', "".concat(name, "-value-").concat(ds.getIndex())).attr('fill', valuecolor !== 'currentColor' ? valuecolor : lineColor).attr('font-size', '10').attr('text-anchor', 'start');
                   }
                   if (name === 'h-line') {
                     // show value on right side of the chart
                     valueElem.attr('x', x2 + 2).attr('y', y1 + 5).text(cv.util.String.sprintf(format, value));
                   } else {
                     // show value on top of the chart
-                    valueElem.attr('x', x1 + 2).attr('y', y2).text(d3.timeFormat(format)(value));
+                    valueElem.attr('x', x1 + 2).attr('y', y2).text(cv.ui.structure.tile.components.Chart.TF.format(qx.locale.Manager['tr'](format))(value));
                   }
                 }
               }
-            },
-            _ret;
-          for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-            _ret = _loop7();
-            if (_ret === 0) continue;
-          }
-        } catch (err) {
-          _iterator11.e(err);
-        } finally {
-          _iterator11.f();
+            }
+          },
+          _ret;
+        for (var key in this._datasets) {
+          _ret = _loop();
+          if (_ret === 0) continue;
         }
       },
       _onPointerEntered: function _onPointerEntered(ev) {
         var _this8 = this;
         if (this._loaded) {
-          this.__P_78_1 = setTimeout(function () {
-            _this8.__P_78_13(true, ev);
-            _this8.__P_78_1 = null;
+          this.__P_78_2 = setTimeout(function () {
+            _this8.__P_78_16(true, ev);
+            _this8.__P_78_2 = null;
           }, 500);
         }
       },
       _onPointerLeft: function _onPointerLeft(ev) {
-        if (this.__P_78_1) {
-          clearTimeout(this.__P_78_1);
+        if (this.__P_78_2) {
+          clearTimeout(this.__P_78_2);
         }
         if (this._loaded) {
           if (ev.relatedTarget !== this._tooltip) {
-            this.__P_78_13(false);
+            this.__P_78_16(false);
           }
         }
       },
-      __P_78_13: function __P_78_13(val, ev) {
-        this.__P_78_2 = val;
+      __P_78_16: function __P_78_16(val, ev) {
+        this.__P_78_3 = val;
         if (val) {
-          if (this._dot) {
-            this._dot.attr('display', null);
-            this._dot.raise();
+          if (this._tooltipIndicator) {
+            this._tooltipIndicator.attr('display', null);
+            this._tooltipIndicator.raise();
           }
           this._tooltip.style.display = 'block';
-          this._onPointerMoved(null, true);
+          this._onPointerMoved(ev, true);
         } else {
-          if (this._dot) {
-            this._dot.attr('display', 'none');
+          if (this._tooltipIndicator) {
+            this._tooltipIndicator.attr('display', 'none');
           }
-          var svg = d3.select(this._element).select('svg');
+          var svg = this.getSvg();
           svg.node().value = null;
           svg.dispatch('input', {
             bubbles: true
@@ -1681,7 +1450,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
       },
       _onPointerMoved: function _onPointerMoved(event, center) {
-        if (this._loaded && this.__P_78_2) {
+        var _this9 = this;
+        if (this._loaded && this.__P_78_3) {
           var xm = 0;
           var ym = 0;
           if (event) {
@@ -1690,57 +1460,104 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             xm = _d3$pointer2[0];
             ym = _d3$pointer2[1];
           } else if (center) {
-            xm = this.__P_78_9.width / 2;
-            ym = this.__P_78_9.height / 2;
+            xm = this.getWidth() / 2;
+            ym = this.getHeight() / 2;
           } else {
             return;
           }
-          var _this$_helpers = this._helpers,
-            X = _this$_helpers.X,
-            Y = _this$_helpers.Y,
-            I = _this$_helpers.I,
-            T = _this$_helpers.T,
-            Z = _this$_helpers.Z,
-            O = _this$_helpers.O;
-          var _this$_chartConf = this._chartConf,
-            x = _this$_chartConf.x,
-            y = _this$_chartConf.y,
-            xz = _this$_chartConf.xz;
-          var i = d3.least(I, function (i) {
-            return Math.hypot(x(X[i]) - xm, y(Y[i]) - ym);
+
+          // closest point on x-axis
+          var indices = this.data.lineIndices.length > 0 ? this.data.lineIndices : this.data.indices;
+          var i = d3.least(indices, function (i) {
+            var pos = _this9.getXPos(i);
+            if (pos === undefined) {
+              return Number.MAX_VALUE;
+            }
+            return Math.abs(pos - xm);
           });
-          var scaleFactorX = this._element.offsetWidth / this.__P_78_9.width;
-          var scaleFactorY = this._element.offsetHeight / this.__P_78_9.height;
-          // closest point
-          var xOffset = xz ? xz(Z[i]) + (typeof xz.bandwidth === 'function' ? xz.bandwidth() / 2 : 0) : 0;
-          this._dot.attr('transform', "translate(".concat(x(X[i]) + xOffset, ",").concat(y(Y[i]), ")"));
-          if (T) {
-            var cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
-            var timeString = this.__P_78_9.xFormat(new Date(X[i]));
-            var top = ym * scaleFactorY - this._tooltip.offsetHeight;
-            if (top < 0) {
-              top += cursorOffset + this._tooltip.offsetHeight;
-            } else {
-              top -= cursorOffset;
+          var scaleFactorX = this._element.offsetWidth / this.getWidth();
+          var scaleFactorY = this._element.offsetHeight / this.getHeight();
+          var xOffset = 0;
+          var key = this.data.keys[i];
+          var time = this.data.times[i];
+          var dataset = this._datasets[key];
+          if (dataset) {
+            if (dataset.getChartType() === 'bar' || dataset.getChartType() === 'stacked-bar') {
+              // find the bar group for this dataset
+              var barGroup = this._chartElements.find(function (group) {
+                return group.hasDataset(key);
+              });
+              xOffset = barGroup ? barGroup.getBandWidth() / 2 : 0;
             }
-            var left = xm * scaleFactorX;
-            if (left > this._element.offsetWidth / 2) {
-              left -= this._tooltip.offsetWidth + cursorOffset;
-            } else {
-              left += cursorOffset;
-            }
-            var key = Z[i];
-            var lineTitle = this._dataSetConfigs[key] && this._dataSetConfigs[key].title ? this._dataSetConfigs[key].title + ': ' : '';
-            this._tooltip.innerHTML = "".concat(timeString, "<br/>").concat(lineTitle).concat(T[i]);
-            this._tooltip.style.left = left + 'px';
-            this._tooltip.style.top = top + 'px';
           }
-          d3.select(this._element).select('svg').property('value', O[i]).dispatch('input', {
+          if (this._tooltipIndicator) {
+            this._tooltipIndicator.attr('transform', "translate(".concat(this.getXPos(i) + xOffset, ",0)"));
+          }
+          var cursorOffset = event && event.pointerType === 'mouse' ? 16 : 40;
+          var timeString = this._tooltipTimeFormat ? this._tooltipTimeFormat(new Date(time)) : this.getXAxis().getTickFormat()(new Date(time));
+          var valueStrings = [];
+          // collect all y values for this time
+          var otherYIndices = this.data.values.map(function (_, index) {
+            return index;
+          }).filter(function (index) {
+            return _this9.data.times[index] === time;
+          });
+          var _iterator7 = _createForOfIteratorHelper(otherYIndices),
+            _step7;
+          try {
+            for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+              var v = _step7.value;
+              var k = this.data.keys[v];
+              var ds = this._datasets[k];
+              var lt = ds && ds.getTitle() ? "<span style='color: ".concat(ds.getColor(), "; font-weight: bold;'>| </span><i>").concat(ds.getTitle(), ":</i> ") : '';
+              valueStrings.push(lt + cv.util.String.sprintf(this._yFormat, this.data.values[v]));
+            }
+          } catch (err) {
+            _iterator7.e(err);
+          } finally {
+            _iterator7.f();
+          }
+          var top = ym * scaleFactorY - this._tooltip.offsetHeight;
+          if (top < 0) {
+            top += cursorOffset + this._tooltip.offsetHeight;
+          } else {
+            top -= cursorOffset;
+          }
+          var left = xm * scaleFactorX;
+          if (left > this._element.offsetWidth / 2) {
+            left -= this._tooltip.offsetWidth + cursorOffset;
+          } else {
+            left += cursorOffset;
+          }
+          this._tooltip.innerHTML = "<strong>".concat(timeString, "</strong><br/>").concat(valueStrings.join('<br/>'));
+          this._tooltip.style.left = left + 'px';
+          this._tooltip.style.top = top + 'px';
+          d3.select(this._element).select('svg').property('value', this.data.data[i]).dispatch('input', {
             bubbles: true
           });
         }
       },
-      __P_78_10: function __P_78_10() {
+      getSvg: function getSvg() {
+        return d3.select(this._element).select('svg');
+      },
+      /**
+       * Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.
+       * The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.
+       * Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.
+       * Returns null if the attribute is not present or the value is invalid.
+       *
+       * @returns {string|null} The opacity as a hexadecimal string, or null if not set or invalid.
+       */
+      getDatasetOpacity: function getDatasetOpacity() {
+        if (this._element.hasAttribute('dataset-opacity')) {
+          var parsedOpacity = parseInt(this._element.getAttribute('dataset-opacity'));
+          if (!isNaN(parsedOpacity) && parsedOpacity >= 0 && parsedOpacity <= 100) {
+            return Math.round(2.55 * parsedOpacity).toString(16);
+          }
+        }
+        return null;
+      },
+      __P_78_13: function __P_78_13() {
         if (this._navigationEnabled) {
           var title = this.getHeader('label.title span');
           if (title) {
@@ -1818,23 +1635,26 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         // Calculate full weeks to the nearest Thursday
         return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
       },
-      /**
-       * add opacity to color
-       * @param color
-       * @param opacity {string} hex number 0 - 255
-       * @return {string|*}
-       * @private
-       */
-      __P_78_11: function __P_78_11(color, opacity) {
-        if (color.startsWith('var(')) {
-          color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length - 1));
+      _disconnected: function _disconnected() {
+        cv.ui.structure.tile.components.Chart.superclass.prototype._disconnected.call(this);
+        this.__P_78_14();
+        qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
+        if (this.__P_78_5) {
+          clearTimeout(this.__P_78_5);
+          this.__P_78_5 = null;
         }
-        if (color.startsWith('rgb(')) {
-          return 'rgba(' + color.substring(4, color.length - 1) + ', ' + (parseInt(opacity, 16) / 255).toFixed(2) + ')';
-        } else if (color.startsWith('#') && color.length === 7) {
-          return color + opacity;
+        if (this.__P_78_9) {
+          window.cancelAnimationFrame(this.__P_78_9);
+          this.__P_78_9 = null;
         }
-        return color;
+        if (this.__P_78_2) {
+          clearTimeout(this.__P_78_2);
+          this.__P_78_2 = null;
+        }
+        if (cv.Config.unitTesting && this._datasets) {
+          this._disposeMap('_datasets');
+          this._datasets = {};
+        }
       }
     },
     /*
@@ -1843,9 +1663,21 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     ***********************************************
     */
     destruct: function destruct() {
-      this._chartConf = null;
-      this._helpers = null;
+      this._disposeMap('_datasets');
+      this.__P_78_14();
       qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
+      if (this.__P_78_5) {
+        clearTimeout(this.__P_78_5);
+        this.__P_78_5 = null;
+      }
+      if (this.__P_78_9) {
+        window.cancelAnimationFrame(this.__P_78_9);
+        this.__P_78_9 = null;
+      }
+      if (this.__P_78_2) {
+        clearTimeout(this.__P_78_2);
+        this.__P_78_2 = null;
+      }
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'chart', /*#__PURE__*/function (_QxConnector) {
@@ -1863,4 +1695,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1735383844547
+//# sourceMappingURL=Chart.js.map?dt=1778272816109

@@ -34,7 +34,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* RoundProgress.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -103,15 +103,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
-      __P_84_0: null,
-      __P_84_1: null,
-      __P_84_2: null,
-      __P_84_3: null,
-      __P_84_4: null,
-      __P_84_5: null,
-      __P_84_6: null,
-      __P_84_7: null,
-      __P_84_8: null,
+      __P_85_0: null,
+      __P_85_1: null,
+      __P_85_2: null,
+      __P_85_3: null,
+      __P_85_4: null,
+      __P_85_5: null,
+      __P_85_6: null,
+      __P_85_7: null,
+      __P_85_8: null,
       _queuedFitText: null,
       _init: function _init() {
         var _this = this;
@@ -119,10 +119,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var element = this._element;
         var style = document.querySelector(':root').style;
         var hasFixedRadius = element.hasAttribute('radius');
-        var radius = this.__P_84_4 = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
+        var radius = this.__P_85_4 = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
         var strokeWidth = element.getAttribute('stroke') || 8;
-        var normalizedRadius = this.__P_84_3 = radius - strokeWidth / 2;
-        this.__P_84_1 = normalizedRadius * 2 * Math.PI;
+        var normalizedRadius = this.__P_85_3 = radius - strokeWidth / 2;
+        this.__P_85_1 = normalizedRadius * 2 * Math.PI;
         if (element.hasAttribute('min')) {
           var min = parseInt(element.getAttribute('min'));
           if (!isNaN(min)) {
@@ -165,8 +165,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           bar.setAttribute('cx', '50%');
           bar.setAttribute('cy', '50%');
           bar.setAttribute('stroke-width', strokeWidth);
-          bar.setAttribute('stroke-dasharray', "".concat(this.__P_84_1, " ").concat(this.__P_84_1));
-          bar.setAttribute('stroke-dashoffset', this.__P_84_1);
+          bar.setAttribute('stroke-dasharray', "".concat(this.__P_85_1, " ").concat(this.__P_85_1));
+          bar.setAttribute('stroke-dashoffset', this.__P_85_1);
           if (element.hasAttribute('foreground-color')) {
             bar.style.stroke = element.getAttribute('foreground-color');
           }
@@ -183,7 +183,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             }
             svg.appendChild(_bg);
           }
-          this.__P_84_2 = {
+          this.__P_85_2 = {
             x: strokeWidth / 2,
             y: radius
           };
@@ -198,40 +198,45 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           svg.appendChild(_bar);
         }
         element.replaceChildren(svg, document.createElement('label'));
-        this.__P_84_7 = radius * 2 - strokeWidth * 2 - 24;
+        this.__P_85_7 = radius * 2 - strokeWidth * 2 - 24;
         if (!hasFixedRadius) {
           qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', function (ev) {
-            _this.__P_84_4 = ev.getData();
-            _this.__P_84_3 = _this.__P_84_4 - strokeWidth / 2;
-            _this.__P_84_1 = _this.__P_84_3 * 2 * Math.PI;
-            height = type === 'semiCircle' ? _this.__P_84_4 : _this.__P_84_4 * 2;
+            _this.__P_85_4 = ev.getData();
+            _this.__P_85_3 = _this.__P_85_4 - strokeWidth / 2;
+            _this.__P_85_1 = _this.__P_85_3 * 2 * Math.PI;
+            height = type === 'semiCircle' ? _this.__P_85_4 : _this.__P_85_4 * 2;
             var svg = element.querySelector(':scope > svg');
             svg.setAttribute('height', '' + height);
-            svg.setAttribute('width', '' + _this.__P_84_4 * 2);
+            svg.setAttribute('width', '' + _this.__P_85_4 * 2);
             if (type === 'circle') {
               _this._element.querySelectorAll(':scope > svg > circle').forEach(function (circle) {
-                circle.setAttribute('r', '' + _this.__P_84_3);
+                circle.setAttribute('r', '' + _this.__P_85_3);
                 if (circle.classList.contains('bar')) {
-                  circle.setAttribute('stroke-dasharray', _this.__P_84_1 + ' ' + _this.__P_84_1);
-                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_84_1);
+                  circle.setAttribute('stroke-dasharray', _this.__P_85_1 + ' ' + _this.__P_85_1);
+                  circle.setAttribute('stroke-dashoffset', '' + _this.__P_85_1);
                 }
               });
             } else if (type === 'semiCircle') {
-              _this.__P_84_2.y = _this.__P_84_4;
+              _this.__P_85_2.y = _this.__P_85_4;
               var _bg2 = _this._element.querySelector(':scope > svg > path.bg');
               if (_bg2) {
-                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_84_4, " A ").concat(_this.__P_84_3, " ").concat(_this.__P_84_3, " 0 0 1 ").concat(_this.__P_84_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_84_4));
+                _bg2.setAttribute('d', "M ".concat(strokeWidth / 2, " ").concat(_this.__P_85_4, " A ").concat(_this.__P_85_3, " ").concat(_this.__P_85_3, " 0 0 1 ").concat(_this.__P_85_4 * 2 - strokeWidth / 2, " ").concat(_this.__P_85_4));
               }
             }
             _this._applyProgress(_this.isPropertyInitialized('progress') ? _this.getProgress() : 0);
           });
         }
+        // Apply any progress value that was set before _init() created the SVG
+        this._applyProgress(this.isPropertyInitialized('progress') ? this.getProgress() : 0);
+        if (this.isPropertyInitialized('text')) {
+          this._applyText(this.getText());
+        }
       },
-      __P_84_9: function __P_84_9(angle) {
+      __P_85_9: function __P_85_9(angle) {
         var angleRad = angle * (Math.PI / 180.0);
         return {
-          x: this.__P_84_4 - this.__P_84_3 * Math.cos(angleRad),
-          y: this.__P_84_4 - this.__P_84_3 * Math.sin(angleRad)
+          x: this.__P_85_4 - this.__P_85_3 * Math.cos(angleRad),
+          y: this.__P_85_4 - this.__P_85_3 * Math.sin(angleRad)
         };
       },
       _applyProgress: function _applyProgress(value) {
@@ -243,33 +248,39 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           switch (this.getType()) {
             case 'circle':
               valueElement = this._element.querySelector(':scope > svg > circle.bar');
-              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_84_1 - percent / 100 * this.__P_84_1);
+              if (!valueElement) {
+                return;
+              }
+              valueElement.setAttribute('stroke-dashoffset', '' + this.__P_85_1 - percent / 100 * this.__P_85_1);
               break;
             case 'semiCircle':
               valueElement = this._element.querySelector(':scope > svg > path.bar');
-              end = this.__P_84_9(1.8 * percent);
-              valueElement.setAttribute('d', ['M', this.__P_84_2.x, this.__P_84_2.y, 'A', this.__P_84_3, this.__P_84_3, 0, 0, 1, end.x, end.y].join(' '));
+              if (!valueElement) {
+                return;
+              }
+              end = this.__P_85_9(1.8 * percent);
+              valueElement.setAttribute('d', ['M', this.__P_85_2.x, this.__P_85_2.y, 'A', this.__P_85_3, this.__P_85_3, 0, 0, 1, end.x, end.y].join(' '));
               break;
           }
         }
       },
       _fitText: function _fitText() {
-        if (this.__P_84_5 && this.__P_84_5.textContent) {
+        if (this.__P_85_5 && this.__P_85_5.textContent) {
           if (this.isVisible()) {
-            if (!this.__P_84_6) {
-              this.__P_84_6 = document.createElement('canvas');
-              this.__P_84_10 = this.__P_84_6.getContext('2d');
-              var compStyle = window.getComputedStyle(this.__P_84_5);
-              this.__P_84_10.font = compStyle.getPropertyValue('font');
-              this.__P_84_8 = compStyle.getPropertyValue('font-size');
+            if (!this.__P_85_6) {
+              this.__P_85_6 = document.createElement('canvas');
+              this.__P_85_10 = this.__P_85_6.getContext('2d');
+              var compStyle = window.getComputedStyle(this.__P_85_5);
+              this.__P_85_10.font = compStyle.getPropertyValue('font');
+              this.__P_85_8 = compStyle.getPropertyValue('font-size');
             }
-            var metrics = this.__P_84_10.measureText(this.__P_84_5.textContent);
-            if (metrics.width > this.__P_84_7) {
+            var metrics = this.__P_85_10.measureText(this.__P_85_5.textContent);
+            if (metrics.width > this.__P_85_7) {
               // adjust font-size
-              var factor = this.__P_84_7 / metrics.width;
-              this.__P_84_5.style.fontSize = Math.floor(parseInt(this.__P_84_8) * factor) + 'px';
+              var factor = this.__P_85_7 / metrics.width;
+              this.__P_85_5.style.fontSize = Math.floor(parseInt(this.__P_85_8) * factor) + 'px';
             } else {
-              this.__P_84_5.style.fontSize = this.__P_84_8;
+              this.__P_85_5.style.fontSize = this.__P_85_8;
             }
             this._queuedFitText = false;
           } else {
@@ -284,14 +295,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       },
       _applyText: function _applyText(value) {
         if (this.isConnected()) {
-          if (!this.__P_84_5) {
-            this.__P_84_5 = this._element.querySelector(':scope > label');
+          if (!this.__P_85_5) {
+            this.__P_85_5 = this._element.querySelector(':scope > label');
           }
-          this.__P_84_5.textContent = value;
+          if (!this.__P_85_5) {
+            return;
+          }
+          this.__P_85_5.textContent = value;
           if (!value) {
             // empty text, just reset to default font size
-            if (this.__P_84_8) {
-              this.__P_84_5.style.fontSize = this.__P_84_8;
+            if (this.__P_85_8) {
+              this.__P_85_5.style.fontSize = this.__P_85_8;
             }
           } else {
             this._fitText();
@@ -305,7 +319,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_84_5 = null;
+      this.__P_85_5 = null;
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'round-progress', /*#__PURE__*/function (_QxConnector) {
@@ -323,4 +337,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1735383845144
+//# sourceMappingURL=RoundProgress.js.map?dt=1778272816707

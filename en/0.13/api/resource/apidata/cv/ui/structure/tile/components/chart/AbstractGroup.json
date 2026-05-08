@@ -1,0 +1,696 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576158,
+  "lastModifiedIso": "2026-05-08T20:36:16.158Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/chart/AbstractGroup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 885
+    },
+    "end": {
+      "line": 184,
+      "column": 3,
+      "index": 4098
+    }
+  },
+  "className": "cv.ui.structure.tile.components.chart.AbstractGroup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all chart series types.",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all chart series types.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "chart"
+      },
+      {
+        "name": "type"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1095
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1235
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1258
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1319
+        }
+      },
+      "json": {
+        "check": "String",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "stroke": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1325
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1411
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "none",
+        "apply": "_applyStroke"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "strokeLinecap": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1459
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1579
+        }
+      },
+      "json": {
+        "check": [
+          "butt",
+          "round",
+          "square"
+        ],
+        "init": "round",
+        "apply": "_applyStrokeLinecap"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "    * Stroke linecap style",
+          "    "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stroke linecap style</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "strokeLinejoin": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1631
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1753
+        }
+      },
+      "json": {
+        "check": [
+          "miter",
+          "round",
+          "bevel"
+        ],
+        "init": "round",
+        "apply": "_applyStrokeLinejoin"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stroke linejoin style",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stroke linejoin style</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "strokeWidth": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1796
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1889
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1.5,
+        "apply": "_applyStrokeWidth"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stroke width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stroke width</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "strokeOpacity": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1934
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2029
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_applyStrokeOpacity"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stroke opacity",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stroke opacity</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "fill": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2036
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2118
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "none",
+        "apply": "_applyFill"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "mixBlendMode": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2124
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2224
+        }
+      },
+      "json": {
+        "check": [
+          "normal",
+          "multiply",
+          "screen",
+          "overlay"
+        ],
+        "init": "normal"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_chart": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2248
+        },
+        "end": {
+          "line": 98,
+          "column": 16,
+          "index": 2260
+        }
+      },
+      "appearsIn": []
+    },
+    "_element": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2266
+        },
+        "end": {
+          "line": 99,
+          "column": 18,
+          "index": 2280
+        }
+      },
+      "appearsIn": []
+    },
+    "_datasets": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2286
+        },
+        "end": {
+          "line": 100,
+          "column": 19,
+          "index": 2301
+        }
+      },
+      "appearsIn": []
+    },
+    "addDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2308
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2421
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dataset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2428
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2791
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "initDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2797
+        },
+        "end": {
+          "line": 117,
+          "column": 28,
+          "index": 2821
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dataset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 2828
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2889
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2896
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3116
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "render": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3123
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3149
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "transition"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getContainer": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3156
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3206
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyFill": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3321
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStroke": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3328
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 3440
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStrokeLinecap": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3447
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 3574
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStrokeLinejoin": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3581
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 3710
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStrokeWidth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 3717
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 3840
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStrokeOpacity": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 3847
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 3974
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDataset": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 3981
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4018
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dataset"
+        },
+        {
+          "name": "oldDs"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 180,
+        "column": 2,
+        "index": 4028
+      },
+      "end": {
+        "line": 183,
+        "column": 3,
+        "index": 4094
+      }
+    }
+  },
+  "statics": {}
+}

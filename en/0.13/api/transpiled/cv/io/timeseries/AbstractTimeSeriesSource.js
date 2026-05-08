@@ -19,7 +19,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -193,4 +193,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.io.timeseries.AbstractTimeSeriesSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1735383838086
+//# sourceMappingURL=AbstractTimeSeriesSource.js.map?dt=1778272810188

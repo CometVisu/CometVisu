@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576141,
+  "lastModifiedIso": "2026-05-08T20:36:16.141Z",
   "classFilename": "../../source/class/cv/io/listmodel/FritzCallList.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 117
+      "index": 937
     },
     "end": {
-      "line": 182,
+      "line": 195,
       "column": 3,
-      "index": 4727
+      "index": 5455
     }
   },
   "className": "cv.io.listmodel.FritzCallList",
@@ -34,19 +34,22 @@
   "interfaces": [
     "cv.io.listmodel.IListModel"
   ],
+  "mixins": [
+    "cv.util.MStringTransforms"
+  ],
   "construct": {
     "type": "function",
     "params": [],
     "location": {
       "start": {
-        "line": 13,
+        "line": 33,
         "column": 2,
-        "index": 364
+        "index": 1222
       },
       "end": {
-        "line": 16,
+        "line": 36,
         "column": 3,
-        "index": 435
+        "index": 1293
       }
     }
   },
@@ -60,14 +63,14 @@
       },
       "location": {
         "start": {
-          "line": 25,
+          "line": 45,
           "column": 4,
-          "index": 656
+          "index": 1514
         },
         "end": {
-          "line": 25,
+          "line": 45,
           "column": 34,
-          "index": 686
+          "index": 1544
         }
       }
     }
@@ -78,14 +81,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 34,
+          "line": 54,
           "column": 4,
-          "index": 832
+          "index": 1690
         },
         "end": {
-          "line": 34,
+          "line": 54,
           "column": 21,
-          "index": 849
+          "index": 1707
         }
       },
       "appearsIn": []
@@ -95,14 +98,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 43,
+          "line": 63,
           "column": 4,
-          "index": 1001
+          "index": 1859
         },
         "end": {
-          "line": 46,
+          "line": 66,
           "column": 5,
-          "index": 1070
+          "index": 1928
         }
       },
       "json": {
@@ -117,14 +120,14 @@
     "device": {
       "location": {
         "start": {
-          "line": 48,
+          "line": 68,
           "column": 4,
-          "index": 1077
+          "index": 1935
         },
         "end": {
-          "line": 52,
+          "line": 72,
           "column": 5,
-          "index": 1159
+          "index": 2017
         }
       },
       "json": {
@@ -138,14 +141,14 @@
     "max": {
       "location": {
         "start": {
-          "line": 54,
+          "line": 74,
           "column": 4,
-          "index": 1166
+          "index": 2024
         },
         "end": {
-          "line": 58,
+          "line": 78,
           "column": 5,
-          "index": 1245
+          "index": 2103
         }
       },
       "json": {
@@ -163,39 +166,16 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 67,
+          "line": 87,
           "column": 4,
-          "index": 1391
+          "index": 2249
         },
         "end": {
-          "line": 67,
+          "line": 87,
           "column": 23,
-          "index": 1410
+          "index": 2268
         }
       },
-      "appearsIn": []
-    },
-    "_parseInt": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1417
-        },
-        "end": {
-          "line": 74,
-          "column": 5,
-          "index": 1540
-        }
-      },
-      "type": "function",
-      "params": [
-        {
-          "name": "value"
-        }
-      ],
       "appearsIn": []
     },
     "_applyDevice": {
@@ -203,14 +183,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 76,
+          "line": 89,
           "column": 4,
-          "index": 1547
+          "index": 2275
         },
         "end": {
-          "line": 79,
+          "line": 92,
           "column": 5,
-          "index": 1653
+          "index": 2381
         }
       },
       "type": "function",
@@ -222,14 +202,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 81,
+          "line": 94,
           "column": 4,
-          "index": 1660
+          "index": 2388
         },
         "end": {
-          "line": 118,
+          "line": 131,
           "column": 5,
-          "index": 2970
+          "index": 3698
         }
       },
       "type": "function",
@@ -241,14 +221,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 133,
           "column": 4,
-          "index": 2977
+          "index": 3705
         },
         "end": {
-          "line": 172,
+          "line": 185,
           "column": 5,
-          "index": 4602
+          "index": 5330
         }
       },
       "type": "function",
@@ -262,20 +242,98 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 174,
+          "line": 187,
           "column": 4,
-          "index": 4609
+          "index": 5337
         },
         "end": {
-          "line": 176,
+          "line": 189,
           "column": 5,
-          "index": 4650
+          "index": 5378
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": [
         "cv.io.listmodel.IListModel"
+      ]
+    },
+    "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1153
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseFloat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1421
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseBoolean": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1685
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1873
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
       ]
     }
   }

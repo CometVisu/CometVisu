@@ -18,8 +18,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         "usage": "dynamic",
         "require": true
       },
-      "cv.ui.structure.tile.elements.AbstractCustomElement": {
-        "construct": true,
+      "cv.ui.structure.tile.components.AbstractComponent": {
+        "require": true
+      },
+      "cv.util.MStringTransforms": {
         "require": true
       },
       "qx.event.Timer": {},
@@ -35,7 +37,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Button.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -58,16 +60,8 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
    * @since 2022
    */
   qx.Class.define('cv.ui.structure.tile.components.Button', {
-    extend: cv.ui.structure.tile.elements.AbstractCustomElement,
-    /*
-    ***********************************************
-      CONSTRUCTOR
-    ***********************************************
-    */
-    construct: function construct(element) {
-      cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
-      this.__P_77_0 = new Map();
-    },
+    extend: cv.ui.structure.tile.components.AbstractComponent,
+    include: cv.util.MStringTransforms,
     /*
     ***********************************************
       PROPERTIES
@@ -99,11 +93,6 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         check: 'String',
         init: '0'
       },
-      styleClass: {
-        check: 'String',
-        nullable: true,
-        apply: '_applyStyleClass'
-      },
       name: {
         check: 'String',
         init: '',
@@ -123,19 +112,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     */
     members: {
       _writeAddresses: null,
-      __P_77_1: null,
-      __P_77_2: null,
-      /**
-       * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
-       */
       __P_77_0: null,
+      __P_77_1: null,
       _triggerOnValue: null,
-      _parseInt: function _parseInt(val) {
-        var intVal = parseInt(val);
-        return Number.isNaN(intVal) ? 0 : intVal;
-      },
+      __P_77_2: null,
       _init: function _init() {
         var _this = this;
+        cv.ui.structure.tile.components.Button.superclass.prototype._init.call(this);
+        this.__P_77_2 = [];
         var element = this._element;
         if (element.hasAttribute('type')) {
           this.setType(element.getAttribute('type'));
@@ -152,51 +136,40 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         if (element.hasAttribute('off-value')) {
           this.setOffValue(element.getAttribute('off-value'));
         }
-        var hasReadAddress = false;
-        var writeAddresses = [];
-        Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), function (address) {
-          var mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
-          switch (mode) {
-            case 'readwrite':
-              hasReadAddress = true;
-              writeAddresses.push(address);
-              break;
-            case 'read':
-              hasReadAddress = true;
-              break;
-            case 'write':
-              writeAddresses.push(address);
-              break;
-          }
-        });
-        this._writeAddresses = writeAddresses;
         var events = {};
-        if (writeAddresses.length > 0) {
+        if (this._writeAddresses.length > 0) {
           var eventSource = element;
           if (element.getAttribute('whole-tile') === 'true') {
             // find parent tile and use it as event source
             var parent = element.parentElement;
             var level = 0;
             while (level <= 2) {
-              parent = parent.parentElement;
-              level++;
               if (parent.tagName.toLowerCase() === 'cv-tile') {
                 eventSource = parent;
                 eventSource.classList.add('clickable');
+                break;
               }
+              parent = parent.parentElement;
+              level++;
             }
           }
-          writeAddresses.forEach(function (addr) {
+          this._writeAddresses.forEach(function (addr) {
             var event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
             switch (event) {
               case 'click':
-                events.click = _this.onClicked.bind(_this);
+                events.click = function (ev) {
+                  return _this.onClicked(ev);
+                };
                 break;
               case 'up':
-                events.pointerup = _this.onPointerUp.bind(_this);
+                events.pointerup = function (ev) {
+                  return _this.onPointerUp(ev);
+                };
                 break;
               case 'down':
-                events.pointerdown = _this.onPointerDown.bind(_this);
+                events.pointerdown = function (ev) {
+                  return _this.onPointerDown(ev);
+                };
                 break;
             }
           });
@@ -212,21 +185,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           });
         }
         var triggerAddresses = [];
-        if (hasReadAddress) {
-          element.addEventListener('stateUpdate', function (ev) {
-            _this.onStateUpdate(ev);
-            // cancel event here
-            ev.stopPropagation();
-          });
-        } else if (element.hasAttribute('mapping') || element.hasAttribute('styling')) {
+        if (this._readAddresses.length === 0 && (element.hasAttribute('mapping') || element.hasAttribute('styling'))) {
           // apply the trigger state
-          triggerAddresses = writeAddresses.filter(function (addr) {
+          triggerAddresses = this._writeAddresses.filter(function (addr) {
             return addr.hasAttribute('value') && !addr.hasAttribute('on');
           });
         }
 
         // detect button type
-        if (!hasReadAddress && triggerAddresses.length === 1) {
+        if (triggerAddresses.length === 1) {
           // only one write address with a fixed value and no special event => simple trigger
           this.setType('trigger');
           if (!element.hasAttribute('on-value')) {
@@ -236,17 +203,17 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             this._triggerOnValue = this.getOnValue();
           }
           var value = triggerAddresses[0].getAttribute('value');
-          qx.event.Timer.once(function () {
+          this.__P_77_3(function () {
             // set it to the opposite of what is being sent when clicked to make the feedback simulation work
             // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
             // using == comparisons to make sure that e.g. 1 equals "1"
             // noinspection EqualityComparisonWithCoercionJS
             _this.setOn(value != _this._triggerOnValue);
-          }, this, 1000);
+          }, 1000);
         } else {
           var hasDown = false;
           var hasUp = false;
-          writeAddresses.some(function (addr) {
+          this._writeAddresses.some(function (addr) {
             if (addr.hasAttribute('value') && addr.hasAttribute('on')) {
               if (!hasDown) {
                 hasDown = addr.getAttribute('on') === 'down';
@@ -262,10 +229,16 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             this.setType('push');
           }
         }
+        if (this.getType() !== 'trigger') {
+          // delay this because we need the mappings to be ready
+          this.__P_77_3(function () {
+            return _this._applyOn();
+          }, 1000);
+        }
       },
       _initProgress: function _initProgress() {
         var element = this._element;
-        this.__P_77_2 = 100 * Math.PI;
+        this.__P_77_1 = 100 * Math.PI;
         var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', '0 0 100 100');
         svg.setAttribute('type', 'circle');
@@ -275,43 +248,52 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         circle.setAttribute('cx', '50');
         circle.setAttribute('cy', '50');
         circle.setAttribute('stroke-width', '2');
-        circle.setAttribute('stroke-dasharray', this.__P_77_2 + ' ' + this.__P_77_2);
-        circle.setAttribute('stroke-dashoffset', '' + this.__P_77_2);
+        circle.setAttribute('stroke-dasharray', this.__P_77_1 + ' ' + this.__P_77_1);
+        circle.setAttribute('stroke-dashoffset', '' + this.__P_77_1);
         svg.appendChild(circle);
         element.appendChild(svg);
         // make sure that we do not override the progress bar by state appearance
         element.classList.add('progress');
       },
-      _applyConnected: function _applyConnected(value) {
-        cv.ui.structure.tile.components.Button.superclass.prototype._applyConnected.call(this, value);
-        if (value) {
-          if (this.getType() !== 'trigger') {
-            // delay this because we need the mappings to be ready
-            qx.event.Timer.once(this._applyOn, this, 1000);
+      _disconnected: function _disconnected() {
+        this.__P_77_4();
+        cv.ui.structure.tile.components.Button.superclass.prototype._disconnected.call(this);
+      },
+      __P_77_3: function __P_77_3(callback, delay) {
+        var _this2 = this;
+        var timer = qx.event.Timer.once(function () {
+          _this2.__P_77_2 = _this2.__P_77_2.filter(function (entry) {
+            return entry !== timer;
+          });
+          if (!_this2.__P_77_5()) {
+            return;
           }
+          callback();
+        }, null, delay);
+        this.__P_77_2.push(timer);
+        return timer;
+      },
+      __P_77_4: function __P_77_4() {
+        if (!this.__P_77_2) {
+          return;
         }
+        this.__P_77_2.forEach(function (timer) {
+          return timer.stop();
+        });
+        this.__P_77_2 = [];
+      },
+      __P_77_5: function __P_77_5() {
+        return !this.isDisposed() && this.isConnected();
       },
       _applyOn: function _applyOn() {
         if (this.isConnected()) {
           var value = this.isOn() ? this.getOnValue() : this.getOffValue();
           this._element.setAttribute('value', value || '');
-          var mappedValue = value;
-          if (this._element.hasAttribute('mapping')) {
-            mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this.__P_77_0);
-          }
-          var target = this._element.querySelector('.value');
-          if (target && target.tagName.toLowerCase() === 'cv-icon') {
-            if (target._instance) {
-              target._instance.setId(mappedValue);
-            } else {
-              target.textContent = mappedValue;
-            }
-          } else {
-            this.updateValue(mappedValue);
-          }
+          var mappedValue = this._mapValue(value);
+          this._updateValue(mappedValue, value);
           var styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
           if (this._element.hasAttribute('styling')) {
-            styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this.__P_77_0);
+            styleClass = this._getStyleClass(value);
           }
           this.setStyleClass(styleClass);
         }
@@ -324,32 +306,32 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
         if (valueElement) {
           if (this._element.hasAttribute('progress-mapping')) {
-            value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this.__P_77_0);
+            value = cv.Application.structureController.mapValue(this._element.getAttribute('progress-mapping'), value, this._store);
           }
-          valueElement.setAttribute('stroke-dashoffset', '' + (this.__P_77_2 - value / 100 * this.__P_77_2));
-        }
-      },
-      _applyStyleClass: function _applyStyleClass(value, oldValue) {
-        var classes = this._element.classList;
-        if (oldValue && classes.contains(oldValue)) {
-          classes.remove(oldValue);
-        }
-        if (value) {
-          classes.add(value);
+          valueElement.setAttribute('stroke-dashoffset', '' + (this.__P_77_1 - value / 100 * this.__P_77_1));
         }
       },
       _applyName: function _applyName(value) {
-        if (!this.__P_77_1) {
-          this.__P_77_1 = document.createElement('label');
-          this.__P_77_1.classList.add('button-label');
-          this._element.appendChild(this.__P_77_1);
+        if (!this.__P_77_0) {
+          this.__P_77_0 = document.createElement('label');
+          this.__P_77_0.classList.add('button-label');
+          this._element.appendChild(this.__P_77_0);
         }
-        this.__P_77_1.textContent = value;
+        this.__P_77_0.textContent = value;
       },
-      updateValue: function updateValue(value) {
-        var elem = this._element.querySelector('span.value');
-        if (elem) {
-          elem.innerHTML = value;
+      _updateValue: function _updateValue(mappedValue, value) {
+        var target = this._element.querySelector('.value');
+        if (target && target.tagName.toLowerCase() === 'cv-icon') {
+          if (target._instance) {
+            target._instance.setId(mappedValue);
+          } else {
+            target.textContent = mappedValue;
+          }
+        } else {
+          var elem = this._element.querySelector('span.value');
+          if (elem) {
+            elem.innerHTML = mappedValue;
+          }
         }
       },
       /**
@@ -370,18 +352,22 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           }
         }
         if (target === 'default') {
-          this.setOn(value);
+          if (this.isOn() === value) {
+            this._applyOn();
+          } else {
+            this.setOn(value);
+          }
+          ev.stopPropagation();
+          return true;
         } else if (target === 'progress') {
           this.setProgress(ev.detail.state);
-        } else if (target.startsWith('store:')) {
-          this.__P_77_0.set(target.substring(6), ev.detail.state);
-        } else if (target === 'store') {
-          // use targetConfig as store key if available, address as fallback
-          this.__P_77_0.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
+          ev.stopPropagation();
+          return true;
         }
+        return cv.ui.structure.tile.components.Button.superclass.prototype.onStateUpdate.call(this, ev);
       },
       onClicked: function onClicked(event) {
-        var _this2 = this;
+        var _this3 = this;
         this.createRipple(event);
         if (this._element.hasAttribute('doc-link')) {
           var relPath = this._element.getAttribute('doc-link');
@@ -415,9 +401,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             // noinspection EqualityComparisonWithCoercionJS
             var simulatedValue = wa[0].getAttribute('value') == this._triggerOnValue;
             this.setOn(simulatedValue);
-            qx.event.Timer.once(function () {
-              _this2.setOn(!simulatedValue);
-            }, null, 500);
+            this.__P_77_3(function () {
+              _this3.setOn(!simulatedValue);
+            }, 500);
           }
           wa.forEach(function (address) {
             return address.dispatchEvent(ev);
@@ -426,27 +412,27 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
       },
       onPointerDown: function onPointerDown() {
-        var _this3 = this;
+        var _this4 = this;
         this._writeAddresses.filter(function (addr) {
           return addr.getAttribute('on') === 'down' && addr.hasAttribute('value');
         }).forEach(function (address) {
           address.dispatchEvent(new CustomEvent('sendState', {
             detail: {
               value: address.getAttribute('value'),
-              source: _this3
+              source: _this4
             }
           }));
         });
       },
       onPointerUp: function onPointerUp() {
-        var _this4 = this;
+        var _this5 = this;
         this._writeAddresses.filter(function (addr) {
           return addr.getAttribute('on') === 'up' && addr.hasAttribute('value');
         }).forEach(function (address) {
           address.dispatchEvent(new CustomEvent('sendState', {
             detail: {
               value: address.getAttribute('value'),
-              source: _this4
+              source: _this5
             }
           }));
         });
@@ -495,4 +481,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1735383844200
+//# sourceMappingURL=Button.js.map?dt=1778272815825

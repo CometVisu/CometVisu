@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576142,
+  "lastModifiedIso": "2026-05-08T20:36:16.142Z",
   "classFilename": "../../source/class/cv/io/listmodel/IListModel.js",
   "type": "interface",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 44
+      "index": 861
     },
     "end": {
-      "line": 44,
+      "line": 63,
       "column": 3,
-      "index": 1096
+      "index": 1913
     }
   },
   "className": "cv.io.listmodel.IListModel",
@@ -34,14 +34,14 @@
     "model": {
       "location": {
         "start": {
-          "line": 11,
+          "line": 30,
           "column": 4,
-          "index": 241
+          "index": 1058
         },
         "end": {
-          "line": 14,
+          "line": 33,
           "column": 5,
-          "index": 310
+          "index": 1127
         }
       },
       "json": {
@@ -62,14 +62,14 @@
       },
       "location": {
         "start": {
-          "line": 24,
+          "line": 43,
           "column": 4,
-          "index": 535
+          "index": 1352
         },
         "end": {
-          "line": 24,
+          "line": 43,
           "column": 34,
-          "index": 565
+          "index": 1382
         }
       }
     }
@@ -80,14 +80,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 33,
+          "line": 52,
           "column": 4,
-          "index": 711
+          "index": 1528
         },
         "end": {
-          "line": 33,
+          "line": 52,
           "column": 22,
-          "index": 729
+          "index": 1546
         }
       },
       "type": "function",
@@ -145,14 +145,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 61,
           "column": 4,
-          "index": 1057
+          "index": 1874
         },
         "end": {
-          "line": 42,
+          "line": 61,
           "column": 35,
-          "index": 1088
+          "index": 1905
         }
       },
       "type": "function",

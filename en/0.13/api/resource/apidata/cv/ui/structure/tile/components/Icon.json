@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Icon.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 822
     },
     "end": {
-      "line": 137,
+      "line": 147,
       "column": 3,
-      "index": 3475
+      "index": 3832
     }
   },
   "className": "cv.ui.structure.tile.components.Icon",
@@ -131,9 +131,9 @@
       },
       "appearsIn": []
     },
-    "_transformId": {
+    "__clearIconClasses": {
       "jsdoc": null,
-      "access": "protected",
+      "access": "private",
       "location": {
         "start": {
           "line": 66,
@@ -141,9 +141,32 @@
           "index": 1772
         },
         "end": {
-          "line": 72,
+          "line": 70,
           "column": 5,
-          "index": 1932
+          "index": 2008
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_transformId": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2015
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2175
         }
       },
       "type": "function",
@@ -159,14 +182,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 74,
+          "line": 80,
           "column": 4,
-          "index": 1939
+          "index": 2182
         },
         "end": {
-          "line": 90,
+          "line": 99,
           "column": 5,
-          "index": 2409
+          "index": 2726
         }
       },
       "type": "function",
@@ -182,14 +205,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 92,
+          "line": 101,
           "column": 4,
-          "index": 2416
+          "index": 2733
         },
         "end": {
-          "line": 106,
+          "line": 116,
           "column": 5,
-          "index": 2823
+          "index": 3180
         }
       },
       "type": "function",
@@ -208,14 +231,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 108,
+          "line": 118,
           "column": 4,
-          "index": 2830
+          "index": 3187
         },
         "end": {
-          "line": 120,
+          "line": 130,
           "column": 5,
-          "index": 3174
+          "index": 3531
         }
       },
       "type": "function",

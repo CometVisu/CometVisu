@@ -183,6 +183,9 @@
         if (qx.core.Environment.get("browser.name") == "mobile chrome") {
           this.skip("HTML5 audio/video playback must be triggered by user interaction in Chrome on Android.");
         }
+        if (qx.core.Environment.get("browser.name") == "safari") {
+          this.skip("we can not detect headless mode in safari");
+        }
         this.assertTrue(this._media.isPaused());
         this._media.addListener("play", function (e) {
           _this2.resume(function () {
@@ -197,4 +200,4 @@
   qx.test.bom.media.MediaTestCase.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MediaTestCase.js.map?dt=1735383858732
+//# sourceMappingURL=MediaTestCase.js.map?dt=1778272830658

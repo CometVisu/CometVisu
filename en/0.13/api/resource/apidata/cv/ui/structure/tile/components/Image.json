@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Image.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 912
     },
     "end": {
-      "line": 146,
+      "line": 169,
       "column": 3,
-      "index": 4801
+      "index": 5641
     }
   },
   "className": "cv.ui.structure.tile.components.Image",
@@ -106,19 +106,36 @@
       },
       "appearsIn": []
     },
+    "__clickHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1334
+        },
+        "end": {
+          "line": 39,
+          "column": 24,
+          "index": 1354
+        }
+      },
+      "appearsIn": []
+    },
     "_init": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 40,
+          "line": 41,
           "column": 4,
-          "index": 1335
+          "index": 1361
         },
         "end": {
-          "line": 85,
+          "line": 90,
           "column": 5,
-          "index": 3110
+          "index": 3314
         }
       },
       "type": "function",
@@ -134,14 +151,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 87,
+          "line": 92,
           "column": 4,
-          "index": 3117
+          "index": 3321
         },
         "end": {
-          "line": 108,
+          "line": 122,
           "column": 5,
-          "index": 3914
+          "index": 4528
         }
       },
       "type": "function",
@@ -153,19 +170,42 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 124,
           "column": 4,
-          "index": 3921
+          "index": 4535
         },
         "end": {
-          "line": 116,
+          "line": 130,
           "column": 5,
-          "index": 4112
+          "index": 4726
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": []
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4733
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4952
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
     },
     "onStateUpdate": {
       "jsdoc": {
@@ -195,14 +235,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 146,
           "column": 4,
-          "index": 4291
+          "index": 5131
         },
         "end": {
-          "line": 133,
+          "line": 156,
           "column": 5,
-          "index": 4576
+          "index": 5416
         }
       },
       "type": "function",
@@ -222,14 +262,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 70,
+          "line": 62,
           "column": 4,
-          "index": 1939
+          "index": 1666
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5,
-          "index": 2143
+          "index": 2303
         }
       },
       "type": "function",
@@ -239,19 +279,61 @@
       ],
       "mixin": "cv.ui.structure.tile.MVisibility"
     },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "_refreshTimer": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 60,
           "column": 4,
-          "index": 1678
+          "index": 1897
         },
         "end": {
-          "line": 55,
+          "line": 60,
           "column": 23,
-          "index": 1697
+          "index": 1916
         }
       },
       "appearsIn": [
@@ -264,14 +346,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 56,
+          "line": 61,
           "column": 4,
-          "index": 1703
+          "index": 1922
         },
         "end": {
-          "line": 56,
+          "line": 61,
           "column": 22,
-          "index": 1721
+          "index": 1940
         }
       },
       "appearsIn": [
@@ -284,14 +366,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 58,
+          "line": 63,
           "column": 4,
-          "index": 1728
+          "index": 1947
         },
         "end": {
-          "line": 76,
+          "line": 80,
           "column": 5,
-          "index": 2321
+          "index": 2545
         }
       },
       "type": "function",
@@ -310,14 +392,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 78,
+          "line": 82,
           "column": 4,
-          "index": 2328
+          "index": 2552
         },
         "end": {
-          "line": 93,
+          "line": 88,
           "column": 5,
-          "index": 2883
+          "index": 2696
         }
       },
       "type": "function",
@@ -331,23 +413,189 @@
       ],
       "mixin": "cv.ui.structure.tile.MRefresh"
     },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "__doRefresh": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 128,
           "column": 4,
-          "index": 2890
+          "index": 3719
         },
         "end": {
-          "line": 102,
+          "line": 135,
           "column": 5,
-          "index": 3105
+          "index": 3934
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
       "appearsIn": [
         "cv.ui.structure.tile.MRefresh"
       ],
@@ -365,9 +613,9 @@
           "index": 1266
         },
         "end": {
-          "line": 48,
-          "column": 6,
-          "index": 1553
+          "line": 40,
+          "column": 18,
+          "index": 1280
         }
       },
       "appearsIn": [
@@ -380,14 +628,14 @@
     "visible": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1705
+          "index": 1432
         },
         "end": {
-          "line": 61,
+          "line": 53,
           "column": 5,
-          "index": 1793
+          "index": 1520
         }
       },
       "json": {
@@ -404,14 +652,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1449
+          "index": 1643
         },
         "end": {
-          "line": 46,
+          "line": 50,
           "column": 5,
-          "index": 1532
+          "index": 1726
         }
       },
       "json": {

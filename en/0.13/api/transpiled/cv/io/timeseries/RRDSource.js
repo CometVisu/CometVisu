@@ -13,7 +13,7 @@
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -94,4 +94,4 @@
   cv.io.timeseries.RRDSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RRDSource.js.map?dt=1735383838298
+//# sourceMappingURL=RRDSource.js.map?dt=1778272810342

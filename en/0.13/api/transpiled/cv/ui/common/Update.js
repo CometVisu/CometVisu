@@ -17,7 +17,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Update.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -48,9 +48,9 @@
     construct: function construct() {
       if (this.getAddress) {
         if (this._initOnCreate === true) {
-          this.__P_768_0();
+          this.__P_784_0();
         } else if (qx.Class.getEventType(this.constructor, 'domReady')) {
-          this.addListenerOnce('domReady', this.__P_768_0, this);
+          this.addListenerOnce('domReady', this.__P_784_0, this);
         }
       }
     },
@@ -61,7 +61,7 @@
     */
     members: {
       _initOnCreate: false,
-      __P_768_0: function __P_768_0() {
+      __P_784_0: function __P_784_0() {
         var model = cv.data.Model.getInstance();
         var addresses = this.getAddress();
         var addressSettings;
@@ -128,4 +128,4 @@
   cv.ui.common.Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1735383886571
+//# sourceMappingURL=Update.js.map?dt=1778272857366

@@ -36,6 +36,7 @@
   qx.Class.define("qx.io.exception.Transport", {
     extend: qx.io.exception.Exception,
     statics: {
+      FORWARDED: 0,
       TIMEOUT: 1,
       ABORTED: 2,
       NO_DATA: 3,
@@ -55,4 +56,4 @@
   qx.io.exception.Transport.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transport.js.map?dt=1735383855359
+//# sourceMappingURL=Transport.js.map?dt=1778272826536

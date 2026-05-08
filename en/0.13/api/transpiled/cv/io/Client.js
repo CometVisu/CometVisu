@@ -1,6 +1,6 @@
 /* Client.js
  *
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -266,7 +266,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       loginSettings: null,
       headers: null,
       resendHeaders: null,
-      __P_749_0: null,
+      __P_765_0: null,
       getType: function getType() {
         return this._type;
       },
@@ -277,7 +277,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        */
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_749_0 = null;
+          this.__P_765_0 = null;
         }
         this.record('connected', value);
       },
@@ -570,7 +570,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (req.serverErrorHandled) {
           return; // ignore error when already handled
         }
-        this.__P_749_0 = {
+        this.__P_765_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -586,7 +586,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_749_0;
+        return this.__P_765_0;
       },
       /**
        * Handles login response, applies backend configuration if send by
@@ -643,13 +643,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Object}
        */
       buildRequest: function buildRequest(addresses) {
-        var _addresses2;
         var asString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
         if (asString === true) {
-          var _addresses;
           // return as query string
           var qs = 's=' + this.session;
-          (_addresses = addresses) !== null && _addresses !== void 0 ? _addresses : addresses = this.addresses;
+          addresses !== null && addresses !== void 0 ? addresses : addresses = this.addresses;
           qs += '&a=' + addresses.join('&a=');
           if (this.filters.length) {
             qs += '&f=' + this.filters.join('&f=');
@@ -659,7 +657,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var data = {
           s: this.session
         };
-        (_addresses2 = addresses) !== null && _addresses2 !== void 0 ? _addresses2 : addresses = this.addresses;
+        addresses !== null && addresses !== void 0 ? addresses : addresses = this.addresses;
         if (addresses && addresses.length) {
           data.a = addresses;
         }
@@ -743,4 +741,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1735383885614
+//# sourceMappingURL=Client.js.map?dt=1778272856472

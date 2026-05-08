@@ -74,4 +74,4 @@
   qx.test.core.InheritanceDummy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=InheritanceDummy.js.map?dt=1735383859290
+//# sourceMappingURL=InheritanceDummy.js.map?dt=1778272831216

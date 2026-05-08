@@ -11,14 +11,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -35,7 +35,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       "cv.ui.structure.tile.MResize": {
         "require": true
       },
-      "cv.ui.structure.tile.MStringTransforms": {
+      "cv.util.MStringTransforms": {
         "require": true
       },
       "cv.ui.structure.tile.MFullscreen": {
@@ -49,7 +49,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -79,7 +79,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
    */
   qx.Class.define('cv.ui.structure.tile.components.Flow', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    include: [cv.ui.structure.tile.components.svg.MSvgGrid, cv.ui.structure.tile.MResize, cv.ui.structure.tile.MStringTransforms, cv.ui.structure.tile.MFullscreen],
+    include: [cv.ui.structure.tile.components.svg.MSvgGrid, cv.ui.structure.tile.MResize, cv.util.MStringTransforms, cv.ui.structure.tile.MFullscreen],
     /*
     ***********************************************
       PROPERTIES
@@ -89,7 +89,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       pan: {
         check: 'Boolean',
         init: false,
-        transform: '_stringToBool',
+        transform: '_parseBoolean',
         apply: '_applyPan'
       },
       pagination: {
@@ -129,6 +129,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       _lastBBox: null,
       _additionalViewBoxUpdate: null,
       _ready: null,
+      _timeouts: null,
       getSvg: function getSvg() {
         if (!this.SVG) {
           this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -140,6 +141,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         var _this = this;
         cv.ui.structure.tile.components.Flow.superclass.prototype._init.call(this);
         this.getSvg();
+        this._timeouts = {};
         this.setResizeTarget(this._element);
         this._observer.observe(this.SVG);
         this.addListener('resized', this._updateDimensions, this);
@@ -195,18 +197,53 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }
 
         // make sure that the initial setup viewBox changes are not animated
-        setTimeout(function () {
+        this._timeouts['_center'] = setTimeout(function () {
           _this._ready = true;
           _this._center();
         }, 2000);
       },
       _applyCenterX: function _applyCenterX(value) {
         if (value) {
+          // save old values
+          var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > *[column]')),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var colElement = _step.value;
+              if (!colElement.hasAttribute('data-column')) {
+                colElement.setAttribute('data-column', colElement.getAttribute('column'));
+              }
+              if (!colElement.hasAttribute('data-row')) {
+                colElement.setAttribute('data-row', colElement.getAttribute('row'));
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
           this.__P_80_0('row', this.getRows());
         }
       },
       _applyCenterY: function _applyCenterY(value) {
         if (value) {
+          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > *[row]')),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var rowElement = _step2.value;
+              if (!rowElement.hasAttribute('data-column')) {
+                rowElement.setAttribute('data-column', rowElement.getAttribute('column'));
+              }
+              if (!rowElement.hasAttribute('data-row')) {
+                rowElement.setAttribute('data-row', rowElement.getAttribute('row'));
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
           this.__P_80_0('column', this.getColumns());
         }
       },
@@ -224,9 +261,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         for (var i = 0; i < total; i++) {
           if (!skip.includes(i)) {
             if (selector === 'row') {
-              this.__P_80_1(this._element.querySelectorAll(":scope > *[row=\"".concat(i, "\"]")));
+              this.__P_80_1(this._element.querySelectorAll(":scope > *[data-row=\"".concat(i, "\"]")));
             } else {
-              this.__P_80_2(this._element.querySelectorAll(":scope > *[column=\"".concat(i, "\"]")));
+              this.__P_80_2(this._element.querySelectorAll(":scope > *[data-column=\"".concat(i, "\"]")));
             }
           }
         }
@@ -237,7 +274,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         } else if (rowElements.length === 2) {
           var sorted = Array.from(rowElements);
           sorted.sort(function (a, b) {
-            return parseFloat(a.getAttribute('column')) - parseFloat(b.getAttribute('column'));
+            return parseFloat(a.getAttribute('data-column')) - parseFloat(b.getAttribute('data-column'));
           });
           sorted[0].setAttribute('column', '0.5');
           sorted[1].setAttribute('column', '1.5');
@@ -249,13 +286,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         } else if (columnElements.length === 2) {
           var sorted = Array.from(columnElements);
           sorted.sort(function (a, b) {
-            return parseFloat(a.getAttribute('row')) - parseFloat(b.getAttribute('row'));
+            return parseFloat(a.getAttribute('data-row')) - parseFloat(b.getAttribute('data-row'));
           });
           sorted[0].setAttribute('row', '0.5');
           sorted[1].setAttribute('row', '1.5');
         }
       },
+      __P_80_3: function __P_80_3() {
+        return !!this._element && !!this.SVG && this.isConnected() && !(this.isDisposed && this.isDisposed());
+      },
       _drag: function _drag(ev) {
+        if (!this.__P_80_3()) {
+          return;
+        }
         ev.preventDefault();
         ev.stopImmediatePropagation();
         var CTM = this.SVG.getScreenCTM().inverse();
@@ -270,6 +313,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         ev.stopImmediatePropagation();
       },
       _startDrag: function _startDrag(ev) {
+        if (!this.__P_80_3()) {
+          return;
+        }
         if (typeof this.drag !== 'function') {
           this.drag = this._drag.bind(this);
         }
@@ -281,6 +327,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         this._startPoint = this._dragPoint.matrixTransform(CTM);
       },
       _endDrag: function _endDrag(ev) {
+        if (!this._element) {
+          return;
+        }
         if (this.drag) {
           this._element.removeEventListener('pointermove', this.drag);
         }
@@ -304,7 +353,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         ev.preventDefault();
       },
       _applyPan: function _applyPan(draggable) {
-        if (this.SVG) {
+        if (this.SVG && this._element) {
           if (draggable) {
             this._dragPoint = this.SVG.createSVGPoint();
             if (typeof this.startDrag !== 'function') {
@@ -398,15 +447,40 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           qx.event.Registration.removeListener(button, 'tap', callback, this);
         }
       },
+      _disconnected: function _disconnected() {
+        cv.ui.structure.tile.components.Flow.superclass.prototype._disconnected.call(this);
+        this._ready = false;
+        if (this.getPan()) {
+          this._applyPan(false);
+        }
+        if (this._timeouts) {
+          for (var key in this._timeouts) {
+            clearTimeout(this._timeouts[key]);
+          }
+          this._timeouts = {};
+        }
+        if (this._viewBoxBinding) {
+          this.removeBinding(this._viewBoxBinding);
+          this._viewBoxBinding = null;
+        }
+        this.setResizeTarget(null);
+        if (this._observer) {
+          this._observer.disconnect();
+        }
+      },
       _updatePaginationButtons: function _updatePaginationButtons() {
-        var _this$getViewBox$spli = this.getViewBox().split(' ').map(function (v) {
+        var viewBox = this.getViewBox();
+        if (!viewBox) {
+          return;
+        }
+        var _viewBox$split$map = viewBox.split(' ').map(function (v) {
             return parseInt(v);
           }),
-          _this$getViewBox$spli2 = _slicedToArray(_this$getViewBox$spli, 4),
-          column = _this$getViewBox$spli2[0],
-          row = _this$getViewBox$spli2[1],
-          width = _this$getViewBox$spli2[2],
-          height = _this$getViewBox$spli2[3];
+          _viewBox$split$map2 = _slicedToArray(_viewBox$split$map, 4),
+          column = _viewBox$split$map2[0],
+          row = _viewBox$split$map2[1],
+          width = _viewBox$split$map2[2],
+          height = _viewBox$split$map2[3];
         for (var _i4 = 0, _arr2 = ['top', 'bottom', 'left', 'right']; _i4 < _arr2.length; _i4++) {
           var dir = _arr2[_i4];
           var button = this._element.querySelector("div.pagination.".concat(dir));
@@ -442,14 +516,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         this._paginate('bottom');
       },
       _paginate: function _paginate(direction) {
-        var _this$getViewBox$spli3 = this.getViewBox().split(' ').map(function (v) {
+        var _this$getViewBox$spli = this.getViewBox().split(' ').map(function (v) {
             return parseInt(v);
           }),
-          _this$getViewBox$spli4 = _slicedToArray(_this$getViewBox$spli3, 4),
-          column = _this$getViewBox$spli4[0],
-          row = _this$getViewBox$spli4[1],
-          width = _this$getViewBox$spli4[2],
-          height = _this$getViewBox$spli4[3];
+          _this$getViewBox$spli2 = _slicedToArray(_this$getViewBox$spli, 4),
+          column = _this$getViewBox$spli2[0],
+          row = _this$getViewBox$spli2[1],
+          width = _this$getViewBox$spli2[2],
+          height = _this$getViewBox$spli2[3];
         switch (direction) {
           case 'left':
             if (column - width >= 0) {
@@ -526,6 +600,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       _updateViewBox: function _updateViewBox() {
         var _this3 = this;
+        if (!this.__P_80_3()) {
+          return;
+        }
         var viewBox = this.getViewBox();
         if (viewBox) {
           var parts = viewBox.split(' ').map(function (v) {
@@ -534,19 +611,19 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           if (parts.length === 4) {
             this._updatePaginationButtons();
             var totalOuterPadding = this.getOuterPadding() * 2;
-            var x = this.getCellWidth() * parts[0] + (parts[0] > 1 ? (parts[0] - 1) * this.getSpacing() : 0);
-            var y = this.getCellHeight() * parts[1] + (parts[1] > 1 ? (parts[1] - 1) * this.getSpacing() : 0);
+            var x = parts[0] * (this.getCellWidth() + this.getSpacing());
+            var y = parts[1] * (this.getCellHeight() + this.getSpacing());
             var width = totalOuterPadding + this.getCellWidth() * parts[2] + (parts[2] > 1 ? (parts[2] - 1) * this.getSpacing() : 0);
             var height = totalOuterPadding + this.getCellHeight() * parts[3] + (parts[3] > 1 ? (parts[3] - 1) * this.getSpacing() : 0);
             if (this._ready && _typeof(window.d3) === 'object') {
               var svg = d3.select(this._element).select('svg');
               svg.transition().duration(500).attr('viewBox', "".concat(x, " ").concat(y, " ").concat(width, " ").concat(height));
-              setTimeout(function () {
+              this._timeouts['_center'] = setTimeout(function () {
                 return _this3._center();
               }, 510);
             } else {
               this.SVG.setAttribute('viewBox', "".concat(x, " ").concat(y, " ").concat(width, " ").concat(height));
-              setTimeout(function () {
+              this._timeouts['_center'] = setTimeout(function () {
                 return _this3._center();
               }, 10);
             }
@@ -557,6 +634,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       _center: function _center(width, height) {
         var _this4 = this;
+        if (!this.__P_80_3()) {
+          return;
+        }
+        if ('_center' in this._timeouts) {
+          clearTimeout(this._timeouts['_center']);
+          delete this._timeouts['_center'];
+        }
         if (this.SVG && this._ready) {
           var bbox = this.SVG.getBBox();
           if (this._lastBBox && this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height && this._lastBBox.x === bbox.x && this._lastBBox.y === bbox.y) {
@@ -586,8 +670,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             var gridParts = gridViewBox.split(' ').map(function (s) {
               return parseInt(s);
             });
-            visibleColumns = gridParts[2] - gridParts[0];
-            visibleRows = gridParts[3] - gridParts[1];
+            visibleColumns = gridParts[2];
+            visibleRows = gridParts[3];
             firstColumn = gridParts[0];
             lastColumn = firstColumn + gridParts[2] - 1;
             firstRow = gridParts[1];
@@ -597,35 +681,35 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           var usedRows = 3;
           var col;
           var row;
-          var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll('*[column]')),
-            _step;
+          var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('*[column]')),
+            _step3;
           try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var elem = _step.value;
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var elem = _step3.value;
               col = parseInt(elem.getAttribute('column')) + 1;
               if (firstColumn <= col && lastColumn > col && col > usedColumns) {
                 usedColumns = col;
               }
             }
           } catch (err) {
-            _iterator.e(err);
+            _iterator3.e(err);
           } finally {
-            _iterator.f();
+            _iterator3.f();
           }
-          var _iterator2 = _createForOfIteratorHelper(this._element.querySelectorAll('*[row]')),
-            _step2;
+          var _iterator4 = _createForOfIteratorHelper(this._element.querySelectorAll('*[row]')),
+            _step4;
           try {
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              var _elem = _step2.value;
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+              var _elem = _step4.value;
               row = parseInt(_elem.getAttribute('row')) + 1;
-              if (firstRow <= col && lastRow > row && row > usedRows) {
+              if (firstRow <= row && lastRow > row && row > usedRows) {
                 usedRows = row;
               }
             }
           } catch (err) {
-            _iterator2.e(err);
+            _iterator4.e(err);
           } finally {
-            _iterator2.f();
+            _iterator4.f();
           }
           var visibleWidth = usedColumns > visibleColumns ? visibleColumns / this.getColumns() : 1.0;
           var visibleHeight = usedRows > visibleRows ? visibleRows / this.getRows() : 1.0;
@@ -644,6 +728,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       },
       _updateCellSize: function _updateCellSize() {
         var _this5 = this;
+        if (!this._element || !this.SVG || !this.isConnected() || this.isDisposed && this.isDisposed()) {
+          return;
+        }
         if (this._element.clientWidth === 0 || this._element.clientHeight === 0) {
           return;
         }
@@ -671,13 +758,23 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           });
         }
       },
-      _stringToBool: function _stringToBool(value) {
-        if (typeof value === 'string') {
-          return value === 'true';
-        } else if (value === null || value === undefined) {
-          return false;
+      /*
+      ******************************************************
+        DESTRUCTOR
+      ******************************************************
+      */
+      destruct: function destruct() {
+        for (var key in this._timeouts) {
+          clearTimeout(this._timeouts[key]);
         }
-        return value;
+        this._timeouts = null;
+        this.SVG = null;
+        this._dragPoint = null;
+        this._startPoint = null;
+        this._viewBoxBinding = null;
+        this._lastBBox = null;
+        this._additionalViewBoxUpdate = null;
+        this._ready = null;
       }
     },
     defer: function defer(QxClass) {
@@ -697,4 +794,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.structure.tile.components.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1735383844697
+//# sourceMappingURL=Flow.js.map?dt=1778272816313

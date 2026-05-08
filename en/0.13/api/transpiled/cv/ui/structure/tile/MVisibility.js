@@ -10,7 +10,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* MVisibility.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -46,15 +46,7 @@
     ***********************************************
     */
     statics: {
-      observer: new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-          if (entry.target._instance) {
-            entry.target._instance.setVisible(entry.isIntersecting);
-          }
-        }, {
-          root: document.querySelector('body > main')
-        });
-      })
+      observer: null
     },
     /*
     ***********************************************
@@ -76,14 +68,33 @@
     members: {
       _observeVisibility: function _observeVisibility() {
         if (this._element) {
+          if (!cv.ui.structure.tile.MVisibility.observer) {
+            cv.ui.structure.tile.MVisibility.observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.target._instance) {
+                  entry.target._instance.setVisible(entry.isIntersecting);
+                }
+              });
+            }, {
+              root: document.querySelector('body > main')
+            });
+          }
           cv.ui.structure.tile.MVisibility.observer.observe(this._element);
         } else {
           this.warn('no element to observe defined');
         }
+      },
+      _unobserveVisibility: function _unobserveVisibility() {
+        if (this._element) {
+          cv.ui.structure.tile.MVisibility.observer.unobserve(this._element);
+        }
       }
+    },
+    destruct: function destruct() {
+      this._unobserveVisibility();
     }
   });
   cv.ui.structure.tile.MVisibility.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MVisibility.js.map?dt=1735383844051
+//# sourceMappingURL=MVisibility.js.map?dt=1778272815689

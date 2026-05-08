@@ -165,7 +165,7 @@
               this.getContentElement().setAttribute("aria-owns", listId);
               control.addListener("addItem", this._onListAddItem, this);
               control.addListener("changeSelection", this._onListChangeSelection, this);
-              control.addListener("pointerdown", this.__P_570_0, this);
+              control.addListener("pointerdown", this.__P_580_0, this);
               control.getChildControl("pane").addListener("tap", this.close, this);
               break;
             }
@@ -329,7 +329,7 @@
       _onListChangeSelection: function _onListChangeSelection(e) {
         throw new Error("Abstract method: _onListChangeSelection()");
       },
-      __P_570_0: function __P_570_0(e) {
+      __P_580_0: function __P_580_0(e) {
         if (this.getReadOnly()) {
           return;
         }
@@ -360,4 +360,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1735383877405
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1778272848079

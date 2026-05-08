@@ -38,7 +38,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -104,6 +104,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
+      __P_93_0: null,
       _applyType: function _applyType(value) {
         var settings = cv.ui.structure.tile.components.energy.PowerEntity.typeSettings[value];
         if (settings) {
@@ -144,12 +145,29 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             icon.style.fontSize = this._iconSize + 'px';
           }
         }
-        window.requestAnimationFrame(function () {
+        this.__P_93_0 = window.requestAnimationFrame(function () {
+          _this.__P_93_0 = null;
+          if (!_this.isConnected()) {
+            return;
+          }
           _this._applyConnectTo(_this.getConnectTo());
           _this._applyConnectFrom(_this.getConnectFrom());
         });
         this.addListener('changeValue', this._updateDirection, this);
+      },
+      _disconnected: function _disconnected() {
+        this.__P_93_1();
+        cv.ui.structure.tile.components.energy.PowerEntity.superclass.prototype._disconnected.call(this);
+      },
+      __P_93_1: function __P_93_1() {
+        if (this.__P_93_0 !== null) {
+          window.cancelAnimationFrame(this.__P_93_0);
+          this.__P_93_0 = null;
+        }
       }
+    },
+    destruct: function destruct() {
+      this.__P_93_1();
     },
     defer: function defer(QxClass) {
       var _Class;
@@ -168,4 +186,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.energy.PowerEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PowerEntity.js.map?dt=1735383845394
+//# sourceMappingURL=PowerEntity.js.map?dt=1778272817250

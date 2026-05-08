@@ -73,7 +73,7 @@
 
     statics: {
       /** @type {Map} Internal data structures with all supported input types */
-      __P_116_0: {
+      __P_124_0: {
         textarea: true,
         select: true,
         button: true,
@@ -272,4 +272,4 @@
   qx.bom.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1735383847369
+//# sourceMappingURL=Input.js.map?dt=1778272818777

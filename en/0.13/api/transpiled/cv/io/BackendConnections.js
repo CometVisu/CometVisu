@@ -24,7 +24,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* BackendConnections.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -52,26 +52,26 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     statics: {
-      __P_761_0: {},
-      __P_761_1: null,
-      __P_761_2: null,
-      __P_761_3: false,
-      __P_761_4: null,
-      __P_761_5: {},
-      __P_761_6: {},
+      __P_777_0: {},
+      __P_777_1: null,
+      __P_777_2: null,
+      __P_777_3: false,
+      __P_777_4: null,
+      __P_777_5: {},
+      __P_777_6: {},
       addClassLoadedListener: function addClassLoadedListener(className, callback) {
-        if (!this.__P_761_5[className]) {
-          this.__P_761_5[className] = [];
+        if (!this.__P_777_5[className]) {
+          this.__P_777_5[className] = [];
         }
-        if (!this.__P_761_5[className].includes(callback)) {
-          this.__P_761_5[className].push(callback);
+        if (!this.__P_777_5[className].includes(callback)) {
+          this.__P_777_5[className].push(callback);
         }
       },
       registerClientClass: function registerClientClass(name, Clazz) {
-        if (!this.__P_761_6[name]) {
-          this.__P_761_6[name] = Clazz;
-          if (this.__P_761_5[name]) {
-            var _iterator = _createForOfIteratorHelper(this.__P_761_5[name]),
+        if (!this.__P_777_6[name]) {
+          this.__P_777_6[name] = Clazz;
+          if (this.__P_777_5[name]) {
+            var _iterator = _createForOfIteratorHelper(this.__P_777_5[name]),
               _step;
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -87,7 +87,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       isRegistered: function isRegistered(name) {
-        return !!this.__P_761_6[name];
+        return !!this.__P_777_6[name];
       },
       /**
        * Initialize all {@link cv.io.IClient} clients for backend communication,
@@ -164,17 +164,17 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         if (name === 'system') {
           throw Error('"system" is not allowed as a backend name');
         }
-        if (this.__P_761_0[name]) {
-          this.__P_761_0[name].dispose();
-          delete this.__P_761_0[name];
+        if (this.__P_777_0[name]) {
+          this.__P_777_0[name].dispose();
+          delete this.__P_777_0[name];
         }
-        var Clazz = this.__P_761_6[type];
+        var Clazz = this.__P_777_6[type];
         /** @type {cv.io.IClient} */
         var client = Clazz ? new Clazz(type, backendUrl) : cv.Application.createClient(type, backendUrl);
         if (source) {
           client.configuredIn = source;
         }
-        this.__P_761_0[name] = client;
+        this.__P_777_0[name] = client;
         client.setName(name);
         var model = cv.data.Model.getInstance();
         client.addListener('changeConnected', function (ev) {
@@ -210,10 +210,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             return _this._updateClientScope(name);
           });
         }
-        if (!this.__P_761_4) {
+        if (!this.__P_777_4) {
           var app = qx.core.Init.getApplication();
           if (app) {
-            this.__P_761_4 = app.addListener('changeActive', this._onActiveChanged, this);
+            this.__P_777_4 = app.addListener('changeActive', this._onActiveChanged, this);
           }
         }
 
@@ -224,9 +224,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return client;
       },
       removeClient: function removeClient(client) {
-        for (var name in this.__P_761_0) {
-          if (this.__P_761_0[name] === client) {
-            delete this.__P_761_0[name];
+        for (var name in this.__P_777_0) {
+          if (this.__P_777_0[name] === client) {
+            delete this.__P_777_0[name];
             break;
           }
         }
@@ -237,7 +237,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @return {boolean}
        */
       hasClient: function hasClient(name) {
-        return Object.prototype.hasOwnProperty.call(this.__P_761_0, name);
+        return Object.prototype.hasOwnProperty.call(this.__P_777_0, name);
       },
       /**
        * Get the backend client by name, if the name is not set the default backend is used.
@@ -247,14 +247,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       getClient: function getClient(backendName) {
         if (backendName === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_761_0.system = new cv.io.System();
+            this.__P_777_0.system = new cv.io.System();
           }
-          return this.__P_761_0.system;
+          return this.__P_777_0.system;
         }
         if (!backendName) {
           backendName = cv.data.Model.getInstance().getDefaultBackendName();
         }
-        if (!this.__P_761_0[backendName]) {
+        if (!this.__P_777_0[backendName]) {
           if (cv.Config.testMode) {
             // in testMode the client might not have been initialized yet
             return this.addBackendClient('simulated', 'simulated');
@@ -262,18 +262,18 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           // backendName might be a type
           return this.getClientByType(backendName);
         }
-        return this.__P_761_0[backendName];
+        return this.__P_777_0[backendName];
       },
       getClientByType: function getClientByType(type) {
         if (type === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_761_0.system = new cv.io.System();
+            this.__P_777_0.system = new cv.io.System();
           }
-          return this.__P_761_0.system;
+          return this.__P_777_0.system;
         }
         var client;
-        for (var name in this.__P_761_0) {
-          client = this.__P_761_0[name];
+        for (var name in this.__P_777_0) {
+          client = this.__P_777_0[name];
           if (client.getType() === type) {
             return client;
           }
@@ -281,14 +281,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return null;
       },
       getClients: function getClients() {
-        return this.__P_761_0;
+        return this.__P_777_0;
       },
       initSystemBackend: function initSystemBackend() {
         // make sure that we have a "system" backend
         if (!this.hasClient('system')) {
-          this.__P_761_0.system = new cv.io.System();
+          this.__P_777_0.system = new cv.io.System();
         }
-        var client = this.__P_761_0.system;
+        var client = this.__P_777_0.system;
         var addressesToSubscribe = cv.data.Model.getInstance().getAddresses('system');
         if (addressesToSubscribe.length !== 0) {
           client.subscribe(addressesToSubscribe);
@@ -299,7 +299,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       startInitialRequests: function startInitialRequests() {
         var _this2 = this;
-        Object.getOwnPropertyNames(this.__P_761_0).forEach(function (name) {
+        Object.getOwnPropertyNames(this.__P_777_0).forEach(function (name) {
           _this2.startInitialRequest(name);
         });
       },
@@ -318,13 +318,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this3 = this;
         var app = qx.core.Init.getApplication();
         if (app.isActive()) {
-          if (this.__P_761_2) {
-            this.__P_761_2.dispose();
-            this.__P_761_2 = null;
+          if (this.__P_777_2) {
+            this.__P_777_2.dispose();
+            this.__P_777_2 = null;
           }
-          Object.getOwnPropertyNames(this.__P_761_0).forEach(function (backendName) {
-            var client = _this3.__P_761_0[backendName];
-            if (!client.isConnected() && _this3.__P_761_3) {
+          Object.getOwnPropertyNames(this.__P_777_0).forEach(function (backendName) {
+            var client = _this3.__P_777_0[backendName];
+            if (!client.isConnected() && _this3.__P_777_3) {
               // reconnect
               qx.log.Logger.debug(_this3, "restarting ".concat(backendName, " backend connection"));
               client.restart(true);
@@ -332,37 +332,37 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           });
 
           // wait for 3 seconds before checking the backend connection
-          if (!this.__P_761_1) {
-            this.__P_761_1 = new qx.event.Timer(3000);
-            this.__P_761_1.addListener('interval', function () {
+          if (!this.__P_777_1) {
+            this.__P_777_1 = new qx.event.Timer(3000);
+            this.__P_777_1.addListener('interval', function () {
               if (app.isActive()) {
-                Object.getOwnPropertyNames(_this3.__P_761_0).forEach(_this3._checkBackendConnection, _this3);
+                Object.getOwnPropertyNames(_this3.__P_777_0).forEach(_this3._checkBackendConnection, _this3);
               }
-              _this3.__P_761_1.dispose();
-              _this3.__P_761_1 = null;
+              _this3.__P_777_1.dispose();
+              _this3.__P_777_1 = null;
             });
           }
-          this.__P_761_1.restart();
+          this.__P_777_1.restart();
         } else {
-          if (this.__P_761_1) {
-            this.__P_761_1.dispose();
-            this.__P_761_1 = null;
+          if (this.__P_777_1) {
+            this.__P_777_1.dispose();
+            this.__P_777_1 = null;
           }
-          if (!this.__P_761_2) {
+          if (!this.__P_777_2) {
             // disconnect after 60 secs
-            this.__P_761_2 = new qx.event.Timer(60000);
-            this.__P_761_2.addListener('interval', function () {
-              Object.getOwnPropertyNames(_this3.__P_761_0).forEach(function (name) {
+            this.__P_777_2 = new qx.event.Timer(60000);
+            this.__P_777_2.addListener('interval', function () {
+              Object.getOwnPropertyNames(_this3.__P_777_0).forEach(function (name) {
                 var client = _this3.getClient(name);
                 if (client.isConnected()) {
                   client.terminate();
                 }
               });
-              _this3.__P_761_2.dispose();
-              _this3.__P_761_2 = null;
+              _this3.__P_777_2.dispose();
+              _this3.__P_777_2 = null;
             });
           }
-          this.__P_761_2.restart();
+          this.__P_777_2.restart();
         }
       },
       _checkBackendConnection: function _checkBackendConnection(name) {
@@ -374,7 +374,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           severity: 'urgent',
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_761_3 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_777_3 && qx.core.Init.getApplication().isActive()
         };
         var lastError = client.getLastError();
         if (!connected) {
@@ -392,7 +392,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             }]
           };
         } else {
-          this.__P_761_3 = true;
+          this.__P_777_3 = true;
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       },
@@ -442,4 +442,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1735383886229
+//# sourceMappingURL=BackendConnections.js.map?dt=1778272857044

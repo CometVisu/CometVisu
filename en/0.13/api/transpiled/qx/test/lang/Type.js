@@ -1,3 +1,9 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -11,8 +17,9 @@
       "qx.lang.Type": {},
       "qx.locale.LocalizedString": {},
       "qx.type.BaseString": {},
-      "qx.type.BaseArray": {},
+      "qx.data.Array": {},
       "qx.core.Object": {},
+      "qx.type.BaseArray": {},
       "qx.Promise": {}
     }
   };
@@ -57,6 +64,153 @@
         // test IE issue with a null returned from DOM
         this.assertFalse(Type.isString(document.getElementById("ReturenedNull")));
       },
+      testIsPojo: function testIsPojo() {
+        var isPojo = qx.lang.Type.isPojo;
+
+        //Class Person extends Object
+        function Person() {
+          this.name = "Mary";
+          this.surname = "Berry";
+        }
+        Person.prototype.getFullName = function () {
+          return this.name + " " + this.surname;
+        };
+        Person.prototype.properties = function () {
+          return "Properties";
+        };
+
+        //Class Child extends Person
+        function Child() {
+          Person.call(this);
+        }
+        Child.prototype = Object.create(Person.prototype);
+        Child.prototype.constructor = Child;
+        Child.prototype.childMethod = function () {
+          return "Child method";
+        };
+
+        // Simple POJO, should return true
+        this.assertTrue(isPojo({
+          foo: 1
+        }));
+
+        //Arrays, strings, numbers, and booleans are not POJOs
+        this.assertFalse(isPojo([]));
+        this.assertFalse(isPojo(null));
+        this.assertFalse(isPojo(new qx.data.Array()));
+        this.assertFalse(isPojo("hello"));
+        this.assertFalse(isPojo(12));
+        this.assertFalse(isPojo(true));
+
+        //Class instance which does not inherit
+        var nonInheritance = new Person();
+        this.assertFalse(isPojo(nonInheritance));
+
+        //Class instance with class that inherits
+        var withInheritance = new Child();
+        this.assertFalse(isPojo(withInheritance));
+
+        //POJO with class prototype
+        var pojoWithClassPrototype = {
+          age: 22
+        };
+        Object.setPrototypeOf(pojoWithClassPrototype, Person.prototype);
+        this.assertFalse(isPojo(pojoWithClassPrototype));
+
+        //POJO with an object prototype
+        //Should return true
+        var pojoWithObjectPrototype = {
+          extraproperty: "Nuts"
+        };
+        var proto = {
+          protoMethod: function protoMethod() {
+            return "protomethod";
+          }
+        };
+        Object.setPrototypeOf(pojoWithObjectPrototype, proto);
+        this.assertTrue(isPojo(pojoWithObjectPrototype));
+
+        //Object which has a POJO prototype, which in turn has a class prototype
+        //Should return false
+        var prototypeIsObjectThenConstructor = {
+          extraproperty: "Nuts"
+        };
+        var proto = {
+          protoMethod: function protoMethod() {
+            return "protomethod";
+          }
+        };
+        Object.setPrototypeOf(prototypeIsObjectThenConstructor, proto);
+        Object.setPrototypeOf(proto, Person.prototype);
+        this.assertFalse(isPojo(prototypeIsObjectThenConstructor));
+
+        //Object which has a POJO prototype, which in turn has a POJO prototype
+        //Should return true
+        var obj = {
+          nuts: 345
+        };
+        var proto1 = {
+          myMethod: function myMethod() {
+            return "proto1.myMethod";
+          }
+        };
+        Object.setPrototypeOf(obj, proto1);
+        var proto2 = {
+          myMethod: function myMethod() {
+            return "proto2.myMethod";
+          },
+          method2: function method2() {
+            return "proto2.method2";
+          }
+        };
+        Object.setPrototypeOf(proto1, proto2);
+        this.assertEquals("proto1.myMethod", obj.myMethod());
+        this.assertEquals("proto2.method2", obj.method2());
+        this.assertTrue(isPojo(obj));
+
+        //Object which is instance of a class, where the class has a prototype which is not Object.prototype
+        //Must return false
+        function NonObjectPrototype() {
+          this.foo = "foo";
+        }
+        var proto = {
+          myMethod: function myMethod() {
+            return "proto.myMethod";
+          }
+        };
+        NonObjectPrototype.prototype = proto;
+        NonObjectPrototype.prototype.constructor = NonObjectPrototype;
+        NonObjectPrototype.prototype.extraMethod = function () {
+          return "extraMethod";
+        };
+        var obj = new NonObjectPrototype();
+        this.assertEquals("proto.myMethod", obj.myMethod());
+        this.assertEquals("extraMethod", obj.extraMethod());
+        this.assertEquals("foo", obj.foo);
+        this.assertFalse(isPojo(obj));
+
+        //Qooxdoo objects must not be POJOs
+        var obj = new qx.core.Object();
+        this.assertFalse(isPojo(obj));
+
+        //ES6 class must not be a POJO
+        var ES6Class = /*#__PURE__*/function () {
+          "use strict";
+
+          function ES6Class() {
+            _classCallCheck(this, ES6Class);
+            this.foo = "bar";
+          }
+          return _createClass(ES6Class, [{
+            key: "method",
+            value: function method() {
+              return "method: " + this.foo;
+            }
+          }]);
+        }();
+        var obj = new ES6Class();
+        this.assertFalse(isPojo(obj));
+      },
       testIsArray: function testIsArray() {
         var Type = qx.lang.Type;
         this.assertTrue(Type.isArray([]));
@@ -76,6 +230,7 @@
         this.assertFalse(Type.isArray(document.getElementById("ReturenedNull")));
       },
       testIsObject: function testIsObject() {
+        //note: old testIsObject
         var Type = qx.lang.Type;
         this.assertTrue(Type.isObject({}));
         /* eslint-disable-next-line no-new-object */
@@ -230,4 +385,4 @@
   qx.test.lang.Type.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Type.js.map?dt=1735383862122
+//# sourceMappingURL=Type.js.map?dt=1778272834068

@@ -31,8 +31,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "cv.ui.structure.tile.MResize": {
         "require": true
       },
-      "qx.util.Function": {},
-      "cv.Application": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
       }
@@ -41,7 +39,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Value.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -81,23 +79,47 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     members: {
-      _queuedOverflowDetection: null,
-      _debouncedDetectOverflow: null,
+      __P_89_0: null,
+      __P_89_1: null,
       _init: function _init() {
         cv.ui.structure.tile.components.Value.superclass.prototype._init.call(this);
-        this._debouncedDetectOverflow = qx.util.Function.debounce(this._detectOverflow, 20);
         var target = this._element.querySelector('.value');
         if (target && target.tagName.toLowerCase() === 'label') {
           // check for overflowing text, when labels parent gets resized
           this.setResizeTarget(this._element);
-          this.addListener('resized', this._debouncedDetectOverflow, this);
+          this.addListener('resized', this._scheduleDetectOverflow, this);
         }
+      },
+      _disconnected: function _disconnected() {
+        this.__P_89_2();
+        cv.ui.structure.tile.components.Value.superclass.prototype._disconnected.call(this);
+      },
+      __P_89_2: function __P_89_2() {
+        if (this.__P_89_0 !== null) {
+          window.clearTimeout(this.__P_89_0);
+          this.__P_89_0 = null;
+        }
+        this.removeListener('resized', this._scheduleDetectOverflow, this);
+        if (this.__P_89_1 !== null) {
+          window.cancelAnimationFrame(this.__P_89_1);
+          this.__P_89_1 = null;
+        }
+      },
+      _scheduleDetectOverflow: function _scheduleDetectOverflow() {
+        var _this = this;
+        if (this.__P_89_0 !== null) {
+          window.clearTimeout(this.__P_89_0);
+        }
+        this.__P_89_0 = window.setTimeout(function () {
+          _this.__P_89_0 = null;
+          if (!_this.isDisposed() && _this.isConnected()) {
+            _this._detectOverflow();
+          }
+        }, 20);
       },
       _applyVisible: function _applyVisible(ev) {
         if (ev.getData()) {
-          if (this._queuedOverflowDetection) {
-            this._debouncedDetectOverflow();
-          }
+          this._scheduleDetectOverflow();
         } else {
           var target = this._element.querySelector('.value');
           if (target && target.classList.contains('scroll')) {
@@ -107,45 +129,54 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _detectOverflow: function _detectOverflow() {
         var target = this._element.querySelector('.value');
-        if (this.isVisible()) {
-          this._queuedOverflowDetection = false;
+        if (this.isVisible() && target) {
           if (target.clientWidth > target.parentElement.clientWidth) {
             target.classList.add('scroll');
           } else {
             target.classList.remove('scroll');
           }
-        } else {
-          this._queuedOverflowDetection = true;
         }
       },
+      __P_89_3: function __P_89_3(target, mappedValue, styleClass) {
+        var _this2 = this;
+        var attempt = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+        if (target._instance && !target.textContent.trim()) {
+          target._instance.setId('' + mappedValue);
+          target._instance.setStyleClass(styleClass);
+          return;
+        }
+        if (this.__P_89_1 !== null) {
+          window.cancelAnimationFrame(this.__P_89_1);
+        }
+        this.__P_89_1 = window.requestAnimationFrame(function () {
+          _this2.__P_89_1 = null;
+          if (!_this2.isConnected() || !target.isConnected) {
+            return;
+          }
+          if (attempt < 5) {
+            _this2.__P_89_3(target, mappedValue, styleClass, attempt + 1);
+          } else if (target._instance) {
+            target._instance.setId('' + mappedValue);
+            target._instance.setStyleClass(styleClass);
+          } else {
+            _this2.error('id and styleClass could not be applied, custom element not initialized yet!');
+          }
+        });
+      },
       _updateValue: function _updateValue(mappedValue, value) {
-        var _this = this;
         var styleClass = '';
         var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll('.value')),
           _step;
         try {
-          var _loop = function _loop() {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var target = _step.value;
             var tagName = target.tagName.toLowerCase();
             switch (tagName) {
               case 'cv-icon':
-                if (_this._element.hasAttribute('styling')) {
-                  styleClass = cv.Application.structureController.styleValue(_this._element.getAttribute('styling'), value, _this.__P_88_0);
+                if (this._element.hasAttribute('styling')) {
+                  styleClass = this._getStyleClass(value);
                 }
-                if (target._instance) {
-                  target._instance.setId('' + mappedValue);
-                  target._instance.setStyleClass(styleClass);
-                } else {
-                  // try again in next frame
-                  window.requestAnimationFrame(function () {
-                    if (target._instance) {
-                      target._instance.setId('' + mappedValue);
-                      target._instance.setStyleClass(styleClass);
-                    } else {
-                      _this.error('id and styleClass could not be applied, custom element not initialized yet!');
-                    }
-                  });
-                }
+                this.__P_89_3(target, mappedValue, styleClass);
                 break;
               case 'meter':
                 target.setAttribute('value', value);
@@ -159,12 +190,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 break;
               case 'label':
                 target.innerHTML = mappedValue;
-                _this._debouncedDetectOverflow();
+                this._scheduleDetectOverflow();
                 break;
             }
-          };
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            _loop();
           }
         } catch (err) {
           _iterator.e(err);
@@ -172,6 +200,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           _iterator.f();
         }
       }
+    },
+    destruct: function destruct() {
+      this.__P_89_2();
     },
     defer: function defer(QxClass) {
       customElements.define(cv.ui.structure.tile.Controller.PREFIX + 'value', /*#__PURE__*/function (_QxConnector) {
@@ -189,4 +220,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Value.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Value.js.map?dt=1735383845274
+//# sourceMappingURL=Value.js.map?dt=1778272816845

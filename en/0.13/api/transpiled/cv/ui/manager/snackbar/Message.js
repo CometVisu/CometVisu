@@ -22,7 +22,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Message.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -177,4 +177,4 @@
   cv.ui.manager.snackbar.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1735383842371
+//# sourceMappingURL=Message.js.map?dt=1778272814152

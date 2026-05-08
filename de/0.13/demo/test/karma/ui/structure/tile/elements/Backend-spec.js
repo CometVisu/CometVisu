@@ -1,6 +1,6 @@
 /* Backend-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -141,4 +141,19 @@ describe('testing the <cv-backend> component of the tile structure', () => {
     backend.remove();
     second.remove();
   });
+
+  it('should load custom backend classes', function() {
+    const backend = document.createElement('cv-backend');
+    backend.setAttribute('name', 'main');
+    backend.setAttribute('type', 'class:my.CustomBackend');
+    document.body.appendChild(backend);
+    spyOn(backend._instance, '_init').and.callThrough();
+    expect(backend._instance._init).not.toHaveBeenCalled();
+
+    class CustomBackend {}
+
+    cv.io.BackendConnections.registerClientClass('my.CustomBackend', CustomBackend);
+    expect(backend._instance._init).toHaveBeenCalled();
+  });
+
 });

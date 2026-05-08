@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Select.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 898
     },
     "end": {
-      "line": 177,
+      "line": 220,
       "column": 3,
-      "index": 5662
+      "index": 6947
     }
   },
   "className": "cv.ui.structure.tile.components.Select",
@@ -110,19 +110,53 @@
       },
       "appearsIn": []
     },
+    "__bodyClickListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1469
+        },
+        "end": {
+          "line": 48,
+          "column": 29,
+          "index": 1494
+        }
+      },
+      "appearsIn": []
+    },
+    "__bodyClickFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1500
+        },
+        "end": {
+          "line": 49,
+          "column": 26,
+          "index": 1522
+        }
+      },
+      "appearsIn": []
+    },
     "_init": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 49,
+          "line": 51,
           "column": 4,
-          "index": 1470
+          "index": 1529
         },
         "end": {
-          "line": 75,
+          "line": 96,
           "column": 5,
-          "index": 2447
+          "index": 3152
         }
       },
       "type": "function",
@@ -138,14 +172,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 77,
+          "line": 98,
           "column": 4,
-          "index": 2454
+          "index": 3159
         },
         "end": {
-          "line": 92,
+          "line": 121,
           "column": 5,
-          "index": 3229
+          "index": 4096
         }
       },
       "type": "function",
@@ -161,14 +195,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 94,
+          "line": 123,
           "column": 4,
-          "index": 3236
+          "index": 4103
         },
         "end": {
-          "line": 98,
+          "line": 127,
           "column": 5,
-          "index": 3347
+          "index": 4214
         }
       },
       "type": "function",
@@ -184,14 +218,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 129,
           "column": 4,
-          "index": 3354
+          "index": 4221
         },
         "end": {
-          "line": 111,
+          "line": 140,
           "column": 5,
-          "index": 3798
+          "index": 4665
         }
       },
       "type": "function",
@@ -207,14 +241,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 113,
+          "line": 142,
           "column": 4,
-          "index": 3805
+          "index": 4672
         },
         "end": {
-          "line": 127,
+          "line": 156,
           "column": 5,
-          "index": 4217
+          "index": 5084
         }
       },
       "type": "function",
@@ -233,14 +267,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 129,
+          "line": 158,
           "column": 4,
-          "index": 4224
+          "index": 5091
         },
         "end": {
-          "line": 157,
+          "line": 186,
           "column": 5,
-          "index": 5278
+          "index": 6145
         }
       },
       "type": "function",
@@ -257,19 +291,42 @@
         "cv.ui.structure.tile.components.AbstractComponent"
       ]
     },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 6152
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 6563
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
     "_applyShow": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 159,
+          "line": 202,
           "column": 4,
-          "index": 5285
+          "index": 6570
         },
         "end": {
-          "line": 163,
+          "line": 206,
           "column": 5,
-          "index": 5390
+          "index": 6675
         }
       },
       "type": "function",

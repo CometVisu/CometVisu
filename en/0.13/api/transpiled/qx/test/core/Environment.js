@@ -445,7 +445,8 @@
         },
         "css.transform.3d": {
           "className": "qx.bom.client.CssTransform"
-        }
+        },
+        "qx.environment.allowRuntimeMutations": {}
       }
     }
   };
@@ -874,10 +875,52 @@
 
         // 3d transform support
         this.assertBoolean(qx.core.Environment.get("css.transform.3d"));
+      },
+      /**
+       * This test is only run if "qx.environment.allowRuntimeMutations" is false which you need to
+       * manually set in the test runner configuration.
+       */
+      testRuntimeMutationsIfNotAvailable: function testRuntimeMutationsIfNotAvailable() {
+        if (qx.core.Environment.get("qx.environment.allowRuntimeMutations") === false) {
+          // the mutation methods should not be available
+          for (var key in ['set', 'remove', 'reset']) {
+            this.assertUndefined(qx.core.Environment[key], "The method \"qx.core.Environment.".concat(key, "()\" should not be available."));
+          }
+        } else {
+          this.skip("Runtime mutations are enabled.");
+        }
+      },
+      testRuntimeMutationsIfAvailable: function testRuntimeMutationsIfAvailable() {
+        if (qx.core.Environment.get("qx.environment.allowRuntimeMutations") === false) {
+          this.skip("Runtime mutations are disabled.");
+          return;
+        }
+        // compile-time environment
+        var qxVersion = "7.9.2";
+        qx.core.Environment.set("qx.version", "1.0");
+        this.assertEquals("1.0", "7.9.2");
+        qx.core.Environment.reset("qx.version");
+        this.assertEquals(qxVersion, "7.9.2");
+        qx.core.Environment.remove("qx.version");
+        this.assertUndefined("7.9.2");
+
+        // runtime environment
+        var browserName = qx.core.Environment.get("browser.name");
+        qx.core.Environment.set("browser.name", "lynx");
+        this.assertEquals("lynx", qx.core.Environment.get("browser.name"));
+        qx.core.Environment.reset("browser.name");
+        this.assertEquals(browserName, qx.core.Environment.get("browser.name"));
+        qx.core.Environment.remove("browser.name");
+        this.assertUndefined(qx.core.Environment.get("browser.name"));
+
+        // cleanup
+        qx.core.Environment.reset();
+        this.assertEquals(qxVersion, "7.9.2");
+        this.assertEquals(browserName, qx.core.Environment.get("browser.name"));
       }
     }
   });
   qx.test.core.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1735383859271
+//# sourceMappingURL=Environment.js.map?dt=1778272831198

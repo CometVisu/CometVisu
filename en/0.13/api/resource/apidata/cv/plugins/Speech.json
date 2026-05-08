@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576145,
+  "lastModifiedIso": "2026-05-08T20:36:16.145Z",
   "classFilename": "../../source/class/cv/plugins/Speech.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 195,
       "column": 3,
-      "index": 6272
+      "index": 6266
     }
   },
   "className": "cv.plugins.Speech",
@@ -94,9 +94,9 @@
         "index": 2420
       },
       "end": {
-        "line": 71,
+        "line": 70,
         "column": 3,
-        "index": 2535
+        "index": 2504
       }
     }
   },
@@ -106,14 +106,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 78,
           "column": 4,
-          "index": 2693
+          "index": 2662
         },
         "end": {
-          "line": 98,
+          "line": 97,
           "column": 5,
-          "index": 3510
+          "index": 3479
         }
       },
       "type": "function",
@@ -132,14 +132,14 @@
     "path": {
       "location": {
         "start": {
-          "line": 107,
+          "line": 106,
           "column": 4,
-          "index": 3678
+          "index": 3647
         },
         "end": {
-          "line": 107,
+          "line": 106,
           "column": 29,
-          "index": 3703
+          "index": 3672
         }
       },
       "json": {
@@ -151,14 +151,14 @@
     "$$type": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 107,
           "column": 4,
-          "index": 3709
+          "index": 3678
         },
         "end": {
-          "line": 108,
+          "line": 107,
           "column": 31,
-          "index": 3736
+          "index": 3705
         }
       },
       "json": {
@@ -170,14 +170,14 @@
     "$$initOnCacheLoad": {
       "location": {
         "start": {
-          "line": 109,
+          "line": 108,
           "column": 4,
-          "index": 3742
+          "index": 3711
         },
         "end": {
-          "line": 109,
+          "line": 108,
           "column": 43,
-          "index": 3781
+          "index": 3750
         }
       },
       "json": {
@@ -189,14 +189,14 @@
     "language": {
       "location": {
         "start": {
-          "line": 110,
+          "line": 109,
           "column": 4,
-          "index": 3787
+          "index": 3756
         },
         "end": {
-          "line": 110,
+          "line": 109,
           "column": 33,
-          "index": 3816
+          "index": 3785
         }
       },
       "json": {
@@ -208,14 +208,14 @@
     "mapping": {
       "location": {
         "start": {
-          "line": 111,
+          "line": 110,
           "column": 4,
-          "index": 3822
+          "index": 3791
         },
         "end": {
-          "line": 111,
+          "line": 110,
           "column": 42,
-          "index": 3860
+          "index": 3829
         }
       },
       "json": {
@@ -228,14 +228,14 @@
     "repeatTimeout": {
       "location": {
         "start": {
-          "line": 112,
+          "line": 111,
           "column": 4,
-          "index": 3866
+          "index": 3835
         },
         "end": {
-          "line": 112,
+          "line": 111,
           "column": 48,
-          "index": 3910
+          "index": 3879
         }
       },
       "json": {
@@ -248,14 +248,14 @@
     "parentWidget": {
       "location": {
         "start": {
-          "line": 113,
+          "line": 112,
           "column": 4,
-          "index": 3916
+          "index": 3885
         },
         "end": {
-          "line": 116,
+          "line": 115,
           "column": 5,
-          "index": 4011
+          "index": 3980
         }
       },
       "json": {
@@ -271,87 +271,16 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 125,
+          "line": 124,
           "column": 4,
-          "index": 4173
+          "index": 4142
         },
         "end": {
-          "line": 125,
+          "line": 124,
           "column": 22,
-          "index": 4191
+          "index": 4160
         }
       },
-      "appearsIn": []
-    },
-    "getDomString": {
-      "jsdoc": null,
-      "access": "public",
-      "location": {
-        "start": {
-          "line": 127,
-          "column": 4,
-          "index": 4198
-        },
-        "end": {
-          "line": 129,
-          "column": 5,
-          "index": 4244
-        }
-      },
-      "type": "function",
-      "params": [],
-      "appearsIn": []
-    },
-    "_processIncomingValue": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 131,
-          "column": 4,
-          "index": 4251
-        },
-        "end": {
-          "line": 137,
-          "column": 5,
-          "index": 4502
-        }
-      },
-      "type": "function",
-      "params": [
-        {
-          "name": "address"
-        },
-        {
-          "name": "data"
-        }
-      ],
-      "appearsIn": []
-    },
-    "handleUpdate": {
-      "jsdoc": null,
-      "access": "public",
-      "location": {
-        "start": {
-          "line": 139,
-          "column": 4,
-          "index": 4509
-        },
-        "end": {
-          "line": 187,
-          "column": 5,
-          "index": 6071
-        }
-      },
-      "type": "function",
-      "params": [
-        {
-          "name": "text"
-        },
-        {
-          "name": "address"
-        }
-      ],
       "appearsIn": []
     },
     "_initOnCreate": {
@@ -373,6 +302,77 @@
       "appearsIn": [
         "cv.ui.common.Update"
       ]
+    },
+    "getDomString": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4192
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 4238
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_processIncomingValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 4245
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4496
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleUpdate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 4503
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 6065
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text"
+        },
+        {
+          "name": "address"
+        }
+      ],
+      "appearsIn": []
     },
     "__initUpdater": {
       "jsdoc": null,

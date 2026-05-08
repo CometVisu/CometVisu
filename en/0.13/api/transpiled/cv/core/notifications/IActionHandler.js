@@ -10,7 +10,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* IActionHandler.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -55,4 +55,4 @@
   cv.core.notifications.IActionHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IActionHandler.js.map?dt=1735383837378
+//# sourceMappingURL=IActionHandler.js.map?dt=1778272809616

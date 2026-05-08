@@ -186,7 +186,9 @@
     "de": "/de/develop/manual/config/widgets/infoaction/index.html"
     "en": "/en/develop/manual/config/widgets/infoaction/index.html"
   "name": "InfoAction"
-  "screenshot": "/de/develop/manual/_images/infoaction_lights.png"
+  "screenshot":
+    "de": "/de/develop/manual/_images/infoaction_lights.png"
+    "en": "/en/develop/manual/_images/infoaction_lights.png"
 - "description":
     "de": "Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. Z.B. für Multimediasteuerungen."
     "en": "Adds an element to the visu that contains two buttons and a value indication for feedback from the BUS. (E.g. for multimedia control."

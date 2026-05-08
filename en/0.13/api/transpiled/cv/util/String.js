@@ -11,7 +11,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* String.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -36,18 +36,18 @@
     ******************************************************
     */
     statics: {
-      __P_770_0: null,
+      __P_786_0: null,
       /**
        * Decode HTML entities like &amp; to &
        * @param str {String} string to decode
        * @return {String}
        */
       decodeHtmlEntities: function decodeHtmlEntities(str) {
-        if (!this.__P_770_0) {
-          this.__P_770_0 = document.createElement('span');
+        if (!this.__P_786_0) {
+          this.__P_786_0 = document.createElement('span');
         }
-        this.__P_770_0.innerHTML = str;
-        return this.__P_770_0.innerText;
+        this.__P_786_0.innerHTML = str;
+        return this.__P_786_0.innerText;
       },
       /**
        * Clean the string that contains HTML code and convert it to a DOM element
@@ -91,4 +91,4 @@
   cv.util.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1735383886649
+//# sourceMappingURL=String.js.map?dt=1778272857443

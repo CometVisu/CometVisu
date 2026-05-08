@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686701,
-  "lastModifiedIso": "2024-12-28T11:01:26.701Z",
+  "lastModified": 1778272634709,
+  "lastModifiedIso": "2026-05-08T20:37:14.709Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Boolean.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 557
     },
     "end": {
-      "line": 183,
+      "line": 181,
       "column": 3,
-      "index": 4428
+      "index": 4515
     }
   },
   "className": "qx.ui.table.cellrenderer.Boolean",
@@ -43,7 +43,7 @@
       "end": {
         "line": 48,
         "column": 3,
-        "index": 1211
+        "index": 1258
       }
     }
   },
@@ -53,12 +53,12 @@
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1488
+          "index": 1535
         },
         "end": {
           "line": 64,
           "column": 5,
-          "index": 1607
+          "index": 1654
         }
       },
       "json": {
@@ -86,12 +86,12 @@
         "start": {
           "line": 69,
           "column": 4,
-          "index": 1679
+          "index": 1726
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 1801
+          "index": 1848
         }
       },
       "json": {
@@ -123,12 +123,12 @@
         "start": {
           "line": 83,
           "column": 4,
-          "index": 2009
+          "index": 2056
         },
         "end": {
           "line": 83,
           "column": 23,
-          "index": 2028
+          "index": 2075
         }
       },
       "appearsIn": []
@@ -140,12 +140,12 @@
         "start": {
           "line": 84,
           "column": 4,
-          "index": 2034
+          "index": 2081
         },
         "end": {
           "line": 84,
           "column": 25,
-          "index": 2055
+          "index": 2102
         }
       },
       "appearsIn": []
@@ -157,12 +157,12 @@
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2061
+          "index": 2108
         },
         "end": {
           "line": 85,
           "column": 24,
-          "index": 2081
+          "index": 2128
         }
       },
       "appearsIn": []
@@ -193,12 +193,12 @@
         "start": {
           "line": 91,
           "column": 4,
-          "index": 2167
+          "index": 2214
         },
         "end": {
           "line": 97,
           "column": 6,
-          "index": 2375
+          "index": 2422
         }
       },
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
@@ -217,12 +217,12 @@
         "start": {
           "line": 100,
           "column": 4,
-          "index": 2404
+          "index": 2451
         },
         "end": {
           "line": 102,
           "column": 5,
-          "index": 2496
+          "index": 2543
         }
       },
       "type": "function",
@@ -244,12 +244,12 @@
         "start": {
           "line": 105,
           "column": 4,
-          "index": 2525
+          "index": 2572
         },
         "end": {
           "line": 107,
           "column": 5,
-          "index": 2619
+          "index": 2666
         }
       },
       "type": "function",
@@ -271,12 +271,12 @@
         "start": {
           "line": 110,
           "column": 4,
-          "index": 2644
+          "index": 2691
         },
         "end": {
           "line": 163,
           "column": 5,
-          "index": 3955
+          "index": 4002
         }
       },
       "type": "function",
@@ -298,12 +298,12 @@
       "start": {
         "line": 172,
         "column": 2,
-        "index": 4151
+        "index": 4198
       },
       "end": {
-        "line": 182,
+        "line": 180,
         "column": 3,
-        "index": 4424
+        "index": 4511
       }
     }
   },

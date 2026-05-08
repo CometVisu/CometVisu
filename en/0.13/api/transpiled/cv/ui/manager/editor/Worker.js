@@ -20,7 +20,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Worker.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -152,4 +152,4 @@
   cv.ui.manager.editor.Worker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Worker.js.map?dt=1735383841021
+//# sourceMappingURL=Worker.js.map?dt=1778272812945

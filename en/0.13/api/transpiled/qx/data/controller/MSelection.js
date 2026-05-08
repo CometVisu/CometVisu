@@ -56,8 +56,8 @@
 
       // create a default selection array
       if (this.getSelection() == null) {
-        this.__P_184_0 = new qx.data.Array();
-        this.setSelection(this.__P_184_0);
+        this.__P_192_0 = new qx.data.Array();
+        this.setSelection(this.__P_192_0);
       }
     },
     /*
@@ -77,6 +77,23 @@
         event: "changeSelection",
         apply: "_applySelection",
         init: null
+      },
+      /**
+       * If set to true, the selection property will be allowed to have items which are not in the model property.
+       * If the model property changes, this will not cause the selection property to be reset.
+       *
+       * If the selection property contains items which are not in the model property,
+       * the selection of the target widget (e.g. qx.ui.form.SelectBox) will only be the items that are both in this controller's model property
+       * and in this controller's selection property.
+       *
+       * This is useful when it is undesirable to reset the selection when the model changes,
+       * because if the selection is bound to a business object,
+       * data in the business object may be overwritten.
+       */
+      allowSelectionNotInModel: {
+        check: "Boolean",
+        init: false,
+        nullable: false
       }
     },
     events: {
@@ -102,9 +119,9 @@
       // private members //
       // set the semaphore-like variable for the selection change
       _modifingSelection: 0,
-      __P_184_1: null,
-      __P_184_2: null,
-      __P_184_0: null,
+      __P_192_1: null,
+      __P_192_2: null,
+      __P_192_0: null,
       /**
        * setValue implements part of the {@link qx.ui.form.IField} interface.
        *
@@ -133,6 +150,18 @@
       resetValue: function resetValue() {
         this.resetSelection();
       },
+      /**
+       * Removes any items from the selection property that are not in the model property.
+       */
+      syncSelectionWithModel: function syncSelectionWithModel() {
+        var _this = this;
+        //We will create a copy of my selection array and work on that to ensure there is only one change event being fired.
+        var mySelection = this.getSelection().copy();
+        mySelection = mySelection.filter(function (item) {
+          return _this.getModel().includes(item);
+        });
+        this.getSelection().replace(mySelection);
+      },
       /*
       ---------------------------------------------------------------------------
          APPLY METHODS
@@ -147,13 +176,13 @@
        */
       _applySelection: function _applySelection(value, old) {
         // remove the old listener if necessary
-        if (this.__P_184_2 != undefined && old != undefined) {
-          old.removeListenerById(this.__P_184_2);
-          this.__P_184_2 = null;
+        if (this.__P_192_2 != undefined && old != undefined) {
+          old.removeListenerById(this.__P_192_2);
+          this.__P_192_2 = null;
         }
         // add a new change listener to the changeArray
         if (value) {
-          this.__P_184_2 = value.addListener("change", this.__P_184_3, this);
+          this.__P_192_2 = value.addListener("change", this.__P_192_3, this);
         }
 
         // apply the new selection
@@ -169,7 +198,7 @@
        * If a change is in the selection array, the selection update will be
        * invoked.
        */
-      __P_184_3: function __P_184_3() {
+      __P_192_3: function __P_192_3() {
         this._updateSelection();
       },
       /**
@@ -184,7 +213,7 @@
         }
 
         // if a selection API is supported
-        if (!this.__P_184_4() && !this.__P_184_5()) {
+        if (!this.__P_192_4() && !this.__P_192_5()) {
           return;
         }
 
@@ -198,7 +227,7 @@
         var selection = this.getSelection();
         if (selection == null) {
           selection = new qx.data.Array();
-          this.__P_184_0 = selection;
+          this.__P_192_0 = selection;
           this.setSelection(selection);
         }
 
@@ -224,20 +253,22 @@
       /**
        * Helper method which should be called by the classes including this
        * Mixin when the target changes.
+       * Removes the 'changeSelection' listener from the old target
+       * and add a new one to the new target;
        *
        * @param value {qx.ui.core.Widget|null} The new target.
        * @param old {qx.ui.core.Widget|null} The old target.
        */
       _addChangeTargetListener: function _addChangeTargetListener(value, old) {
         // remove the old selection listener
-        if (this.__P_184_1 != undefined && old != undefined) {
-          old.removeListenerById(this.__P_184_1);
+        if (this.__P_192_1 != undefined && old != undefined) {
+          old.removeListenerById(this.__P_192_1);
         }
         if (value != null) {
           // if a selection API is supported
-          if (this.__P_184_4() || this.__P_184_5()) {
+          if (this.__P_192_4() || this.__P_192_5()) {
             // add a new selection listener
-            this.__P_184_1 = value.addListener("changeSelection", this._changeTargetSelection, this);
+            this.__P_192_1 = value.addListener("changeSelection", this._changeTargetSelection, this);
           }
         }
       },
@@ -255,13 +286,13 @@
         this._startSelectionModification();
 
         // if its a multi selection target
-        if (this.__P_184_4()) {
+        if (this.__P_192_4()) {
           var targetSelection = [];
-          // go through the selection array
+          // go through my selection array
           for (var i = 0; i < this.getSelection().length; i++) {
-            // store each item
+            // store each selectable item from target widget
             var model = this.getSelection().getItem(i);
-            var selectable = this.__P_184_6(model);
+            var selectable = this.__P_192_6(model);
             if (selectable != null) {
               targetSelection.push(selectable);
             }
@@ -270,28 +301,28 @@
 
           // get the selection of the target
           targetSelection = this.getTarget().getSelection();
-          // get all items selected in the list
-          var targetSelectionItems = [];
+          // get all models of items selected in the target
+          var targetSelectionModels = [];
           for (var i = 0; i < targetSelection.length; i++) {
-            targetSelectionItems[i] = targetSelection[i].getModel();
+            targetSelectionModels[i] = targetSelection[i].getModel();
           }
-
-          // go through the controller selection
-          for (var i = this.getSelection().length - 1; i >= 0; i--) {
-            // if the item in the controller selection is not selected in the list
-            if (!targetSelectionItems.includes(this.getSelection().getItem(i))) {
-              // remove the current element and get rid of the return array
-              this.getSelection().splice(i, 1).dispose();
+          if (!this.getAllowSelectionNotInModel()) {
+            // go through the controller selection
+            for (var i = this.getSelection().length - 1; i >= 0; i--) {
+              // if the item in the controller selection is not selected in the list
+              if (!targetSelectionModels.includes(this.getSelection().getItem(i))) {
+                // remove the current element and get rid of the return array
+                this.getSelection().splice(i, 1).dispose();
+              }
             }
           }
-
           // if its a single selection target
-        } else if (this.__P_184_5()) {
+        } else if (this.__P_192_5()) {
           // get the model which should be selected
           var item = this.getSelection().getItem(this.getSelection().length - 1);
           if (item !== undefined) {
             // select the last selected item (old selection will be removed anyway)
-            this.__P_184_7(item);
+            this.__P_192_7(item);
             // remove the other items from the selection data array and get
             // rid of the return array
             this.getSelection().splice(0, this.getSelection().getLength() - 1).dispose();
@@ -310,7 +341,7 @@
        * Helper-method returning true, if the target supports multi selection.
        * @return {Boolean} true, if the target supports multi selection.
        */
-      __P_184_4: function __P_184_4() {
+      __P_192_4: function __P_192_4() {
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.IMultiSelection);
       },
@@ -318,7 +349,7 @@
        * Helper-method returning true, if the target supports single selection.
        * @return {Boolean} true, if the target supports single selection.
        */
-      __P_184_5: function __P_184_5() {
+      __P_192_5: function __P_192_5() {
         var targetClass = this.getTarget().constructor;
         return qx.Class.implementsInterface(targetClass, qx.ui.core.ISingleSelection);
       },
@@ -328,18 +359,18 @@
        *
        * @param item {qx.core.Object} A model element.
        */
-      __P_184_7: function __P_184_7(item) {
-        var selectable = this.__P_184_6(item);
+      __P_192_7: function __P_192_7(item) {
+        var selectable = this.__P_192_6(item);
         // if no selectable could be found, just return
         if (selectable == null) {
           return;
         }
         // if the target is multi selection able
-        if (this.__P_184_4()) {
+        if (this.__P_192_4()) {
           // select the item in the target
           this.getTarget().addToSelection(selectable);
           // if the target is single selection able
-        } else if (this.__P_184_5()) {
+        } else if (this.__P_192_5()) {
           this.getTarget().setSelection([selectable]);
         }
       },
@@ -349,7 +380,7 @@
        * @param model {var} The representing model of a selectable.
        * @return {Object|null} List item or <code>null</code> if none was found
        */
-      __P_184_6: function __P_184_6(model) {
+      __P_192_6: function __P_192_6(model) {
         // get all list items
         var children = this.getTarget().getSelectables(true);
 
@@ -394,12 +425,12 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      if (this.__P_184_0) {
-        this.__P_184_0.dispose();
+      if (this.__P_192_0) {
+        this.__P_192_0.dispose();
       }
     }
   });
   qx.data.controller.MSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSelection.js.map?dt=1735383850688
+//# sourceMappingURL=MSelection.js.map?dt=1778272821765

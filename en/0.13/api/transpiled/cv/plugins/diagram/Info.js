@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.plugins.diagram.AbstractDiagram": {
-        "construct": true,
         "require": true
       },
       "cv.ui.common.Update": {
@@ -23,7 +22,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Info.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -43,15 +42,6 @@
   qx.Class.define('cv.plugins.diagram.Info', {
     extend: cv.plugins.diagram.AbstractDiagram,
     include: [cv.ui.common.Update],
-    /*
-     ******************************************************
-     CONSTRUCTOR
-     ******************************************************
-     */
-    construct: function construct(props) {
-      this._init = false;
-      cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
-    },
     /*
     ******************************************************
       STATICS
@@ -99,4 +89,4 @@
   cv.plugins.diagram.Info.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Info.js.map?dt=1735383839512
+//# sourceMappingURL=Info.js.map?dt=1778272811552

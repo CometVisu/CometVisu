@@ -21,7 +21,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Client.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -54,8 +54,8 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_752_0 = {};
-      this.__P_752_1 = {};
+      this.__P_768_0 = {};
+      this.__P_768_1 = {};
     },
     /*
     ***********************************************
@@ -209,12 +209,12 @@
           self.update(update);
         };
         this._clientOptions = options;
-        this.__P_752_2();
+        this.__P_768_2();
       },
       /**
        * Connect to the MQTT server
        */
-      __P_752_2: function __P_752_2() {
+      __P_768_2: function __P_768_2() {
         try {
           if (!cv.report.Record.REPLAYING) {
             this._client.connect(this._clientOptions);
@@ -284,7 +284,7 @@
        */
       restart: function restart(full) {
         this.terminate();
-        this.__P_752_2();
+        this.__P_768_2();
       },
       /**
        * Handle the incoming state updates. This method is not implemented by the client itself.
@@ -324,4 +324,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1735383885746
+//# sourceMappingURL=Client.js.map?dt=1778272856603

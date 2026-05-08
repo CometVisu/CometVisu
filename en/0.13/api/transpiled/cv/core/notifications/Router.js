@@ -27,13 +27,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "cv.Transform": {},
       "cv.ui.common.BasicUpdate": {},
       "qx.bom.Template": {},
-      "qx.data.Array": {}
+      "qx.data.Array": {},
+      "cv.Config": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Router.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -376,6 +377,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             entry.handler.handleMessage(message, entry.config);
           }, this);
         }
+        if (cv.Config.unitTesting === true) {
+          // log all errors in unit test
+          if (message.severity === 'high' || topic.endsWith('.error')) {
+            qx.log.Logger.error(this, 'message: ' + message.message);
+          } else {
+            qx.log.Logger.info(this, 'message: ' + message.message);
+          }
+        }
       },
       clear: function clear() {
         this.__P_4_0 = {};
@@ -395,4 +404,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.core.notifications.Router.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Router.js.map?dt=1735383837551
+//# sourceMappingURL=Router.js.map?dt=1778272809802

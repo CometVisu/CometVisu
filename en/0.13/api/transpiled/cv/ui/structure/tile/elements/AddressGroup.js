@@ -23,7 +23,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         "construct": true,
         "require": true
       },
-      "cv.ui.structure.tile.MStringTransforms": {
+      "cv.util.MStringTransforms": {
         "require": true
       },
       "qx.util.Function": {
@@ -36,7 +36,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -63,7 +63,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
    */
   qx.Class.define('cv.ui.structure.tile.elements.AddressGroup', {
     extend: cv.ui.structure.tile.elements.Address,
-    include: cv.ui.structure.tile.MStringTransforms,
+    include: cv.util.MStringTransforms,
     /*
     ***********************************************
       CONSTRUCTOR
@@ -74,7 +74,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       if (!element.hasAttribute('id')) {
         element.setAttribute('id', "address-group_".concat(cv.ui.structure.tile.elements.AddressGroup.C++));
       }
-      this.debouncedCalc = qx.util.Function.debounce(this._updateCalculation.bind(this), 10);
+      if (cv.ui.structure.tile.elements.AddressGroup.DEBOUNCE_TIME) {
+        this.debouncedCalc = qx.util.Function.debounce(this._updateCalculation.bind(this), cv.ui.structure.tile.elements.AddressGroup.DEBOUNCE_TIME);
+      } else {
+        this.debouncedCalc = this._updateCalculation;
+      }
     },
     /*
     ***********************************************
@@ -82,7 +86,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     ***********************************************
     */
     statics: {
-      C: 0
+      C: 0,
+      DEBOUNCE_TIME: 10
     },
     /*
     ***********************************************
@@ -132,20 +137,20 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     members: {
       _i: null,
       _values: null,
-      __P_94_0: null,
+      __P_99_0: null,
       setValue: function setValue(val) {
-        if (this.__P_94_0 !== val) {
-          var oldValue = this.__P_94_0;
-          this.__P_94_0 = val;
+        if (this.__P_99_0 !== val) {
+          var oldValue = this.__P_99_0;
+          this.__P_99_0 = val;
           this.fireDataEvent('changeValue', val, oldValue);
           this._applyValue(val);
         }
       },
       getValue: function getValue() {
-        return this.__P_94_0;
+        return this.__P_99_0;
       },
       resetValue: function resetValue() {
-        this.__P_94_0 = null;
+        this.__P_99_0 = null;
       },
       getAddress: function getAddress() {
         return this._element.getAttribute('id');
@@ -193,7 +198,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               case '*':
                 val = this._values.reduce(function (accumulator, currentValue) {
                   return accumulator * currentValue;
-                }, val);
+                }, 1);
                 break;
               case '/':
                 // divide all from first one
@@ -250,4 +255,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.tile.elements.AddressGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AddressGroup.js.map?dt=1735383845668
+//# sourceMappingURL=AddressGroup.js.map?dt=1778272817527

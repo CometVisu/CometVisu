@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Plugin.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 31
+      "index": 844
     },
     "end": {
-      "line": 97,
+      "line": 116,
       "column": 3,
-      "index": 3160
+      "index": 3973
     }
   },
   "className": "cv.ui.structure.tile.components.Plugin",
@@ -37,14 +37,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 13,
+          "line": 32,
           "column": 3,
-          "index": 293
+          "index": 1106
         },
         "end": {
-          "line": 13,
+          "line": 32,
           "column": 16,
-          "index": 306
+          "index": 1119
         }
       },
       "appearsIn": []
@@ -56,14 +56,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 22,
+          "line": 41,
           "column": 4,
-          "index": 452
+          "index": 1265
         },
         "end": {
-          "line": 22,
+          "line": 41,
           "column": 18,
-          "index": 466
+          "index": 1279
         }
       },
       "appearsIn": []
@@ -73,14 +73,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 24,
+          "line": 43,
           "column": 4,
-          "index": 473
+          "index": 1286
         },
         "end": {
-          "line": 73,
+          "line": 92,
           "column": 5,
-          "index": 2602
+          "index": 3415
         }
       },
       "type": "function",
@@ -95,14 +95,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 94,
           "column": 4,
-          "index": 2609
+          "index": 3422
         },
         "end": {
-          "line": 84,
+          "line": 103,
           "column": 5,
-          "index": 2934
+          "index": 3747
         }
       },
       "type": "function",

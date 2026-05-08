@@ -1,8 +1,10 @@
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorValues(e) { if (null != e) { var t = e["function" == typeof Symbol && Symbol.iterator || "@@iterator"], r = 0; if (t) return t.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) return { next: function next() { return e && r >= e.length && (e = void 0), { value: e && e[r++], done: !e }; } }; } throw new TypeError(_typeof(e) + " is not iterable"); }
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 (function () {
@@ -236,19 +238,18 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type {Map} maps filenames to uris */
-      __P_500_0: null,
+      __P_510_0: null,
       /** @type {qx.tool.compiler.targets.meta.ApplicationMeta} for the current application */
-      __P_500_1: null,
+      __P_510_1: null,
       /**
        * Initialises the target, creating directories etc
        */
       open: function open() {
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-          return _regeneratorRuntime().wrap(function _callee$(_context) {
-            while (1) switch (_context.prev = _context.next) {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.n) {
               case 0:
-              case "end":
-                return _context.stop();
+                return _context.a(2);
             }
           }, _callee);
         }))();
@@ -302,10 +303,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       addPathMapping: function addPathMapping(fromFile, toUri) {
         fromFile = path.resolve(fromFile);
-        if (this.__P_500_0 === null) {
-          this.__P_500_0 = {};
+        if (this.__P_510_0 === null) {
+          this.__P_510_0 = {};
         }
-        this.__P_500_0[fromFile] = toUri;
+        this.__P_510_0[fromFile] = toUri;
       },
       /**
        * Converts a filename to a URI, taking into account mappings added via `addMapping`.  If there is
@@ -315,13 +316,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String} the URI for the file, null if not found
        */
       getPathMapping: function getPathMapping(filename) {
-        if (this.__P_500_0) {
+        if (this.__P_510_0) {
           var absFilename = path.resolve(filename);
 
           // Search
-          for (var fromFile in this.__P_500_0) {
+          for (var fromFile in this.__P_510_0) {
             if (absFilename.startsWith(fromFile)) {
-              var toUri = this.__P_500_0[fromFile];
+              var toUri = this.__P_510_0[fromFile];
               filename = toUri + absFilename.substring(fromFile.length);
               return filename;
             }
@@ -356,15 +357,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       generateApplication: function generateApplication(application, environment) {
         var _this = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
           var t, analyser, rm, appMeta, targetUri, dir, appRootDir, mapTo, requiredLibs, externals, addExternal, name, bootJs, bootPackage, partsData, matchBundle, lastPackage, packages, assetUris, cldr, assets;
-          return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-            while (1) switch (_context2.prev = _context2.next) {
+          return _regenerator().w(function (_context2) {
+            while (1) switch (_context2.n) {
               case 0:
                 t = _this;
                 analyser = application.getAnalyser();
                 rm = analyser.getResourceManager();
-                appMeta = _this.__P_500_1 = new qx.tool.compiler.targets.meta.ApplicationMeta(_this, application);
+                appMeta = _this.__P_510_1 = new qx.tool.compiler.targets.meta.ApplicationMeta(_this, application);
                 appMeta.setAddTimestampsToUrls(_this.getAddTimestampsToUrls());
                 targetUri = "";
                 if (!_this.isPrivateArtifacts() || application.getType() != "browser") {
@@ -377,9 +378,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 mapTo = _this.getPathMapping(path.join(appRootDir, _this.getOutputDir(), "resource"));
                 appMeta.setResourceUri(mapTo ? mapTo : targetUri + "resource");
                 requiredLibs = application.getRequiredLibraries();
-                _context2.next = 15;
+                _context2.n = 1;
                 return qx.tool.utils.Utils.makeDirs(appRootDir);
-              case 15:
+              case 1:
                 appMeta.setEnvironment({
                   "qx.application": application.getClassName(),
                   "qx.revision": "",
@@ -424,12 +425,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 for (name in environment) {
                   appMeta.setEnvironmentValue(name, environment[name]);
                 }
-                _context2.next = 22;
+                _context2.n = 2;
                 return t.fireDataEventAsync("checkEnvironment", {
                   application: application,
                   environment: appMeta.getEnvironment()
                 });
-              case 22:
+              case 2:
                 /*
                  * Boot files
                  */
@@ -486,42 +487,41 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   });
                 });
                 assetUris = application.getAssetUris(t, rm, appMeta.getEnvironment()); // Save any changes that getAssets collected
-                _context2.next = 35;
+                _context2.n = 3;
                 return rm.saveDatabase();
-              case 35:
-                _context2.next = 37;
+              case 3:
+                _context2.n = 4;
                 return analyser.getCldr("en");
-              case 37:
-                cldr = _context2.sent;
-                _context2.next = 40;
+              case 4:
+                cldr = _context2.v;
+                _context2.n = 5;
                 return bootPackage.addLocale("C", cldr);
-              case 40:
-                _context2.next = 42;
+              case 5:
+                _context2.n = 6;
                 return _this._writeTranslations();
-              case 42:
+              case 6:
                 assets = {};
                 rm.getAssetsForPaths(assetUris).forEach(function (asset) {
                   bootPackage.addAsset(asset);
                   assets[asset.getFilename()] = asset.toString();
                 });
                 if (!(analyser.getApplicationTypes().indexOf("browser") > -1)) {
-                  _context2.next = 50;
+                  _context2.n = 8;
                   break;
                 }
                 appMeta.addPreBootCode("qx.$$fontBootstrap={};\n");
-                _context2.next = 48;
-                return _this.__P_500_2(application, appMeta, assets);
-              case 48:
-                _context2.next = 50;
-                return _this.__P_500_3(application, appMeta, assets, bootPackage);
-              case 50:
-                _context2.next = 52;
+                _context2.n = 7;
+                return _this.__P_510_2(application, appMeta, assets);
+              case 7:
+                _context2.n = 8;
+                return _this.__P_510_3(application, appMeta, assets, bootPackage);
+              case 8:
+                _context2.n = 9;
                 return _this._writeApplication();
-              case 52:
-                _this.__P_500_1 = null;
-              case 53:
-              case "end":
-                return _context2.stop();
+              case 9:
+                _this.__P_510_1 = null;
+              case 10:
+                return _context2.a(2);
             }
           }, _callee2);
         }))();
@@ -530,12 +530,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Writes the fonts defined in provides.webfonts
        * @deprecated
        */
-      __P_500_2: function __P_500_2(application, appMeta, assets) {
+      __P_510_2: function __P_510_2(application, appMeta, assets) {
         var _this2 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
           var analyser, requiredLibs, appLibrary, fontsToLoad, addLibraryFonts, loadFont, _i, _Object$keys, fontName, _fontsToLoad$fontName, font, library;
-          return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-            while (1) switch (_context4.prev = _context4.next) {
+          return _regenerator().w(function (_context4) {
+            while (1) switch (_context4.n) {
               case 0:
                 analyser = application.getAnalyser();
                 requiredLibs = application.getRequiredLibraries(); // Get a list of all fonts to load; use the font name as a unique identifier, and
@@ -564,38 +564,38 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   }
                 });
                 if (addLibraryFonts) {
-                  _context4.next = 8;
+                  _context4.n = 1;
                   break;
                 }
-                return _context4.abrupt("return");
-              case 8:
+                return _context4.a(2);
+              case 1:
                 addLibraryFonts(appLibrary);
                 loadFont = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(library, font) {
-                    var res, resources, key, code;
-                    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                      while (1) switch (_context3.prev = _context3.next) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(library, font) {
+                    var res, resources, key, code, _t;
+                    return _regenerator().w(function (_context3) {
+                      while (1) switch (_context3.p = _context3.n) {
                         case 0:
-                          _context3.prev = 0;
+                          _context3.p = 0;
                           // check if font is asset somewhere
                           res = font.getResources().filter(function (res) {
                             return assets[res];
                           });
                           if (!(res.length === 0)) {
-                            _context3.next = 5;
+                            _context3.n = 1;
                             break;
                           }
                           qx.tool.compiler.Console.print("qx.tool.compiler.webfonts.noResources", font.toString(), application.getName(), font.getResources().join(","));
-                          return _context3.abrupt("return");
-                        case 5:
+                          return _context3.a(2);
+                        case 1:
                           font.setResources(res);
-                          _context3.next = 8;
+                          _context3.n = 2;
                           return font.generateForTarget(_this2);
-                        case 8:
-                          _context3.next = 10;
+                        case 2:
+                          _context3.n = 3;
                           return font.generateForApplication(_this2, application);
-                        case 10:
-                          resources = _context3.sent;
+                        case 3:
+                          resources = _context3.v;
                           for (key in resources) {
                             appMeta.addResource(key, resources[key]);
                           }
@@ -603,39 +603,37 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           if (code) {
                             appMeta.addPreBootCode(code);
                           }
-                          _context3.next = 19;
+                          _context3.n = 5;
                           break;
-                        case 16:
-                          _context3.prev = 16;
-                          _context3.t0 = _context3["catch"](0);
-                          qx.tool.compiler.Console.print("qx.tool.compiler.webfonts.error", font.toString(), _context3.t0.toString());
-                        case 19:
-                        case "end":
-                          return _context3.stop();
+                        case 4:
+                          _context3.p = 4;
+                          _t = _context3.v;
+                          qx.tool.compiler.Console.print("qx.tool.compiler.webfonts.error", font.toString(), _t.toString());
+                        case 5:
+                          return _context3.a(2);
                       }
-                    }, _callee3, null, [[0, 16]]);
+                    }, _callee3, null, [[0, 4]]);
                   }));
                   return function loadFont(_x, _x2) {
                     return _ref.apply(this, arguments);
                   };
                 }();
                 _i = 0, _Object$keys = Object.keys(fontsToLoad);
-              case 11:
+              case 2:
                 if (!(_i < _Object$keys.length)) {
-                  _context4.next = 19;
+                  _context4.n = 4;
                   break;
                 }
                 fontName = _Object$keys[_i];
                 _fontsToLoad$fontName = fontsToLoad[fontName], font = _fontsToLoad$fontName.font, library = _fontsToLoad$fontName.library;
-                _context4.next = 16;
+                _context4.n = 3;
                 return loadFont(library, font);
-              case 16:
+              case 3:
                 _i++;
-                _context4.next = 11;
+                _context4.n = 2;
                 break;
-              case 19:
-              case "end":
-                return _context4.stop();
+              case 4:
+                return _context4.a(2);
             }
           }, _callee4);
         }))();
@@ -643,12 +641,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       /**
        * Writes the fonts defined in provides.fonts
        */
-      __P_500_3: function __P_500_3(application, appMeta, assets, bootPackage) {
+      __P_510_3: function __P_510_3(application, appMeta, assets, bootPackage) {
         var _this3 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-          var analyser, rm, addResourcesToBuild, fontNames, _iterator2, _step2, _loop, key, code, _ret;
-          return _regeneratorRuntime().wrap(function _callee5$(_context6) {
-            while (1) switch (_context6.prev = _context6.next) {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          var analyser, rm, addResourcesToBuild, fontNames, _iterator2, _step2, _loop, key, code, _ret, _t2;
+          return _regenerator().w(function (_context6) {
+            while (1) switch (_context6.p = _context6.n) {
               case 0:
                 analyser = application.getAnalyser();
                 rm = analyser.getResourceManager();
@@ -669,22 +667,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 };
                 fontNames = application.getFonts();
                 _iterator2 = _createForOfIteratorHelper(fontNames);
-                _context6.prev = 5;
-                _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop() {
+                _context6.p = 1;
+                _loop = /*#__PURE__*/_regenerator().m(function _loop() {
                   var fontName, font, resources, fontFaces, fontCss, cssUrls, cssResources, _iterator3, _step3, urlOrPath, types, hasLocalFontResources, hasUrlFontResources, _iterator4, _step4, fontFace, useLocalFonts, _iterator5, _step5, _fontFace;
-                  return _regeneratorRuntime().wrap(function _loop$(_context5) {
-                    while (1) switch (_context5.prev = _context5.next) {
+                  return _regenerator().w(function (_context5) {
+                    while (1) switch (_context5.n) {
                       case 0:
                         fontName = _step2.value;
                         font = analyser.getFont(fontName);
                         if (font) {
-                          _context5.next = 4;
+                          _context5.n = 1;
                           break;
                         }
-                        return _context5.abrupt("return", {
+                        return _context5.a(2, {
                           v: void 0
                         });
-                      case 4:
+                      case 1:
                         resources = font.getApplicationFontData();
                         for (key in resources) {
                           appMeta.addResource(key, resources[key]);
@@ -766,45 +764,43 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                         if (code) {
                           appMeta.addPreBootCode(code);
                         }
-                      case 21:
-                      case "end":
-                        return _context5.stop();
+                      case 2:
+                        return _context5.a(2);
                     }
                   }, _loop);
                 });
                 _iterator2.s();
-              case 8:
+              case 2:
                 if ((_step2 = _iterator2.n()).done) {
-                  _context6.next = 15;
+                  _context6.n = 5;
                   break;
                 }
-                return _context6.delegateYield(_loop(), "t0", 10);
-              case 10:
-                _ret = _context6.t0;
+                return _context6.d(_regeneratorValues(_loop()), 3);
+              case 3:
+                _ret = _context6.v;
                 if (!_ret) {
-                  _context6.next = 13;
+                  _context6.n = 4;
                   break;
                 }
-                return _context6.abrupt("return", _ret.v);
-              case 13:
-                _context6.next = 8;
+                return _context6.a(2, _ret.v);
+              case 4:
+                _context6.n = 2;
                 break;
-              case 15:
-                _context6.next = 20;
+              case 5:
+                _context6.n = 7;
                 break;
-              case 17:
-                _context6.prev = 17;
-                _context6.t1 = _context6["catch"](5);
-                _iterator2.e(_context6.t1);
-              case 20:
-                _context6.prev = 20;
+              case 6:
+                _context6.p = 6;
+                _t2 = _context6.v;
+                _iterator2.e(_t2);
+              case 7:
+                _context6.p = 7;
                 _iterator2.f();
-                return _context6.finish(20);
-              case 23:
-              case "end":
-                return _context6.stop();
+                return _context6.f(7);
+              case 8:
+                return _context6.a(2);
             }
-          }, _callee5, null, [[5, 17, 20, 23]]);
+          }, _callee5, null, [[1, 6, 7, 8]]);
         }))();
       },
       /**
@@ -812,49 +808,48 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeTranslations: function _writeTranslations() {
         var _this4 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
           var appMeta, analyser, policy;
-          return _regeneratorRuntime().wrap(function _callee6$(_context7) {
-            while (1) switch (_context7.prev = _context7.next) {
+          return _regenerator().w(function (_context7) {
+            while (1) switch (_context7.n) {
               case 0:
                 appMeta = _this4.getAppMeta();
                 analyser = appMeta.getAnalyser();
                 if (!_this4.isUpdatePoFiles()) {
-                  _context7.next = 11;
+                  _context7.n = 3;
                   break;
                 }
                 policy = _this4.getLibraryPoPolicy();
                 if (!(policy != "ignore")) {
-                  _context7.next = 9;
+                  _context7.n = 2;
                   break;
                 }
-                _context7.next = 7;
+                _context7.n = 1;
                 return analyser.updateTranslations(appMeta.getAppLibrary(), _this4.getLocales(), appMeta.getLibraries(), policy == "all");
-              case 7:
-                _context7.next = 11;
+              case 1:
+                _context7.n = 3;
                 break;
-              case 9:
-                _context7.next = 11;
+              case 2:
+                _context7.n = 3;
                 return analyser.updateTranslations(appMeta.getAppLibrary(), _this4.getLocales(), null, false);
-              case 11:
-                _context7.next = 13;
+              case 3:
+                _context7.n = 4;
                 return _this4._writeLocales();
-              case 13:
+              case 4:
                 if (!_this4.getWriteAllTranslations()) {
-                  _context7.next = 18;
+                  _context7.n = 6;
                   break;
                 }
-                _context7.next = 16;
+                _context7.n = 5;
                 return _this4._writeAllTranslations();
-              case 16:
-                _context7.next = 20;
+              case 5:
+                _context7.n = 7;
                 break;
-              case 18:
-                _context7.next = 20;
+              case 6:
+                _context7.n = 7;
                 return _this4._writeRequiredTranslations();
-              case 20:
-              case "end":
-                return _context7.stop();
+              case 7:
+                return _context7.a(2);
             }
           }, _callee6);
         }))();
@@ -889,10 +884,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeLocales: function _writeLocales() {
         var _this5 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
           var t, appMeta, analyser, bootPackage, loadLocaleData, promises;
-          return _regeneratorRuntime().wrap(function _callee8$(_context9) {
-            while (1) switch (_context9.prev = _context9.next) {
+          return _regenerator().w(function (_context9) {
+            while (1) switch (_context9.n) {
               case 0:
                 loadLocaleData = function _loadLocaleData(localeId) {
                   var combinedCldr = null;
@@ -922,20 +917,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 analyser = appMeta.getAnalyser();
                 bootPackage = appMeta.getPackages()[0];
                 promises = t.getLocales().map(/*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(localeId) {
+                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(localeId) {
                     var cldr, pkg;
-                    return _regeneratorRuntime().wrap(function _callee7$(_context8) {
-                      while (1) switch (_context8.prev = _context8.next) {
+                    return _regenerator().w(function (_context8) {
+                      while (1) switch (_context8.n) {
                         case 0:
-                          _context8.next = 2;
+                          _context8.n = 1;
                           return loadLocaleData(localeId);
-                        case 2:
-                          cldr = _context8.sent;
+                        case 1:
+                          cldr = _context8.v;
                           pkg = _this5.isI18nAsParts() ? appMeta.getLocalePackage(localeId) : bootPackage;
                           pkg.addLocale(localeId, cldr);
-                        case 5:
-                        case "end":
-                          return _context8.stop();
+                        case 2:
+                          return _context8.a(2);
                       }
                     }, _callee7);
                   }));
@@ -943,11 +937,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     return _ref2.apply(this, arguments);
                   };
                 }());
-                _context9.next = 8;
+                _context9.n = 1;
                 return qx.Promise.all(promises);
-              case 8:
-              case "end":
-                return _context9.stop();
+              case 1:
+                return _context9.a(2);
             }
           }, _callee8);
         }))();
@@ -957,10 +950,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeAllTranslations: function _writeAllTranslations() {
         var _this6 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
           var t, appMeta, analyser, bootPackage, translations, promises;
-          return _regeneratorRuntime().wrap(function _callee9$(_context10) {
-            while (1) switch (_context10.prev = _context10.next) {
+          return _regenerator().w(function (_context0) {
+            while (1) switch (_context0.n) {
               case 0:
                 t = _this6;
                 appMeta = _this6.getAppMeta();
@@ -989,11 +982,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   // translation from main app should overwrite package translations
                   promises.push(addTrans(appMeta.getAppLibrary(), localeId));
                 });
-                _context10.next = 9;
+                _context0.n = 1;
                 return qx.Promise.all(promises);
-              case 9:
-              case "end":
-                return _context10.stop();
+              case 1:
+                return _context0.a(2);
             }
           }, _callee9);
         }))();
@@ -1003,10 +995,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeRequiredTranslations: function _writeRequiredTranslations() {
         var _this7 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
           var t, appMeta, analyser, db, bootPackage, translations, promises;
-          return _regeneratorRuntime().wrap(function _callee10$(_context11) {
-            while (1) switch (_context11.prev = _context11.next) {
+          return _regenerator().w(function (_context1) {
+            while (1) switch (_context1.n) {
               case 0:
                 t = _this7;
                 appMeta = _this7.getAppMeta();
@@ -1028,9 +1020,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     }));
                   });
                 });
-                _context11.next = 10;
+                _context1.n = 1;
                 return qx.Promise.all(promises);
-              case 10:
+              case 1:
                 appMeta.getPackages().forEach(function (pkg) {
                   pkg.getClassnames().forEach(function (classname) {
                     var dbClassInfo = db.classInfo[classname];
@@ -1061,11 +1053,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     });
                   });
                 });
-              case 11:
-              case "end":
-                return _context11.stop();
+              case 2:
+                return _context1.a(2);
             }
-          }, _callee10);
+          }, _callee0);
         }))();
       },
       /**
@@ -1073,30 +1064,30 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeApplication: function _writeApplication() {
         var _this8 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1() {
           var t, appMeta, application, appRootDir, bootMeta, arr, i, pkg, bootPackage, appSummary;
-          return _regeneratorRuntime().wrap(function _callee11$(_context12) {
-            while (1) switch (_context12.prev = _context12.next) {
+          return _regenerator().w(function (_context10) {
+            while (1) switch (_context10.n) {
               case 0:
                 t = _this8;
-                _context12.next = 3;
+                _context10.n = 1;
                 return _this8.fireEventAsync("writingApplication");
-              case 3:
+              case 1:
                 appMeta = _this8.getAppMeta();
                 application = appMeta.getApplication();
                 appRootDir = appMeta.getApplicationRoot();
                 if (appMeta.getAppLibrary()) {
-                  _context12.next = 9;
+                  _context10.n = 2;
                   break;
                 }
                 qx.tool.compiler.Console.print("qx.tool.compiler.target.missingAppLibrary", application.getName());
-                return _context12.abrupt("return");
-              case 9:
+                return _context10.a(2);
+              case 2:
                 bootMeta = appMeta.getBootMetaJs();
                 arr = appMeta.getPackages(), i = 0;
-              case 11:
+              case 3:
                 if (!(i < arr.length)) {
-                  _context12.next = 19;
+                  _context10.n = 5;
                   break;
                 }
                 pkg = arr[i];
@@ -1104,28 +1095,28 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   pkg.setNeedsWriteToDisk(false);
                   bootMeta.addEmbeddedJs(pkg.getJavascript());
                 }
-                _context12.next = 16;
+                _context10.n = 4;
                 return pkg.getJavascript().unwrap().writeToDisk();
-              case 16:
+              case 4:
                 i++;
-                _context12.next = 11;
+                _context10.n = 3;
                 break;
-              case 19:
-                _context12.next = 21;
+              case 5:
+                _context10.n = 6;
                 return appMeta.getBootMetaJs().unwrap().writeToDisk();
-              case 21:
-                _context12.next = 23;
+              case 6:
+                _context10.n = 7;
                 return _this8._writeIndexHtml();
-              case 23:
+              case 7:
                 if (t.isWriteCompileInfo()) {
-                  _context12.next = 27;
+                  _context10.n = 9;
                   break;
                 }
-                _context12.next = 26;
+                _context10.n = 8;
                 return _this8.fireEventAsync("writtenApplication");
-              case 26:
-                return _context12.abrupt("return");
-              case 27:
+              case 8:
+                return _context10.a(2);
+              case 9:
                 bootPackage = appMeta.getPackages()[0];
                 appSummary = {
                   appClass: application.getClassName(),
@@ -1150,18 +1141,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     name: partData.name
                   });
                 });
-                _context12.next = 32;
+                _context10.n = 10;
                 return fs.writeFileAsync(appRootDir + "/compile-info.json", JSON.stringify(appSummary, null, 2) + "\n", {
                   encoding: "utf8"
                 });
-              case 32:
-                _context12.next = 34;
+              case 10:
+                _context10.n = 11;
                 return _this8.fireEventAsync("writtenApplication");
-              case 34:
-              case "end":
-                return _context12.stop();
+              case 11:
+                return _context10.a(2);
             }
-          }, _callee11);
+          }, _callee1);
         }))();
       },
       /**
@@ -1169,10 +1159,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeIndexHtml: function _writeIndexHtml() {
         var _this9 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee11() {
           var t, appMeta, application, resDir, timeStamp, pathToTarget, indexJsTimestamp, indexJsFilename, TEMPLATE_VARS, replaceVars, defaultIndexHtml, bootDir, indexHtml, stats;
-          return _regeneratorRuntime().wrap(function _callee13$(_context14) {
-            while (1) switch (_context14.prev = _context14.next) {
+          return _regenerator().w(function (_context12) {
+            while (1) switch (_context12.n) {
               case 0:
                 replaceVars = function _replaceVars(code) {
                   for (var varName in TEMPLATE_VARS) {
@@ -1184,17 +1174,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 appMeta = _this9.getAppMeta();
                 application = appMeta.getApplication();
                 if (application.isBrowserApp()) {
-                  _context14.next = 6;
+                  _context12.n = 1;
                   break;
                 }
-                return _context14.abrupt("return");
-              case 6:
+                return _context12.a(2);
+              case 1:
                 if (_this9.isGenerateIndexHtml()) {
-                  _context14.next = 8;
+                  _context12.n = 2;
                   break;
                 }
-                return _context14.abrupt("return");
-              case 8:
+                return _context12.a(2);
+              case 2:
                 resDir = _this9.getApplicationRoot(application);
                 timeStamp = new Date().getTime();
                 pathToTarget = path.relative(path.join(t.getOutputDir(), t.getProjectDir(application)), t.getOutputDir()) + "/";
@@ -1218,35 +1208,35 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 bootDir = application.getBootPath();
                 indexHtml = null;
                 if (!bootDir) {
-                  _context14.next = 25;
+                  _context12.n = 4;
                   break;
                 }
                 bootDir = path.join(appMeta.getAppLibrary().getRootDir(), application.getBootPath());
-                _context14.next = 21;
+                _context12.n = 3;
                 return qx.tool.utils.files.Utils.safeStat(bootDir);
-              case 21:
-                stats = _context14.sent;
+              case 3:
+                stats = _context12.v;
                 if (!(stats && stats.isDirectory())) {
-                  _context14.next = 25;
+                  _context12.n = 4;
                   break;
                 }
-                _context14.next = 25;
+                _context12.n = 4;
                 return qx.tool.utils.files.Utils.sync(bootDir, resDir, /*#__PURE__*/function () {
-                  var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12(from, to) {
+                  var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee10(from, to) {
                     var data;
-                    return _regeneratorRuntime().wrap(function _callee12$(_context13) {
-                      while (1) switch (_context13.prev = _context13.next) {
+                    return _regenerator().w(function (_context11) {
+                      while (1) switch (_context11.n) {
                         case 0:
                           if (from.endsWith(".html")) {
-                            _context13.next = 2;
+                            _context11.n = 1;
                             break;
                           }
-                          return _context13.abrupt("return", true);
-                        case 2:
-                          _context13.next = 4;
+                          return _context11.a(2, true);
+                        case 1:
+                          _context11.n = 2;
                           return fs.readFileAsync(from, "utf8");
-                        case 4:
-                          data = _context13.sent;
+                        case 2:
+                          data = _context11.v;
                           if (path.basename(from) == "index.html") {
                             if (!data.match(/\$\{\s*preBootJs\s*\}/)) {
                               /* eslint-disable no-template-curly-in-string */
@@ -1264,33 +1254,30 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             indexHtml = data;
                           }
                           data = replaceVars(data);
-                          _context13.next = 9;
+                          _context11.n = 3;
                           return fs.writeFileAsync(to, data, "utf8");
-                        case 9:
-                          return _context13.abrupt("return", false);
-                        case 10:
-                        case "end":
-                          return _context13.stop();
+                        case 3:
+                          return _context11.a(2, false);
                       }
-                    }, _callee12);
+                    }, _callee10);
                   }));
                   return function (_x4, _x5) {
                     return _ref3.apply(this, arguments);
                   };
                 }());
-              case 25:
+              case 4:
                 if (indexHtml) {
-                  _context14.next = 29;
+                  _context12.n = 5;
                   break;
                 }
                 indexHtml = defaultIndexHtml;
-                _context14.next = 29;
+                _context12.n = 5;
                 return fs.writeFileAsync(resDir + "index.html", replaceVars(indexHtml), {
                   encoding: "utf8"
                 });
-              case 29:
+              case 5:
                 if (!application.getWriteIndexHtmlToRoot()) {
-                  _context14.next = 34;
+                  _context12.n = 6;
                   break;
                 }
                 pathToTarget = "";
@@ -1303,23 +1290,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   timeStamp: timeStamp,
                   indexJsTimestamp: indexJsTimestamp
                 };
-                _context14.next = 34;
+                _context12.n = 6;
                 return fs.writeFileAsync(t.getOutputDir() + "index.html", replaceVars(indexHtml), {
                   encoding: "utf8"
                 });
-              case 34:
-              case "end":
-                return _context14.stop();
+              case 6:
+                return _context12.a(2);
             }
-          }, _callee13);
+          }, _callee11);
         }))();
       },
       getAppMeta: function getAppMeta() {
-        return this.__P_500_1;
+        return this.__P_510_1;
       }
     }
   });
   qx.tool.compiler.targets.Target.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Target.js.map?dt=1735383873444
+//# sourceMappingURL=Target.js.map?dt=1778272844413

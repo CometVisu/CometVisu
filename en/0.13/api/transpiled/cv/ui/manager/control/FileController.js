@@ -22,7 +22,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* FileController.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -242,7 +242,7 @@
             if (file.isTrash()) {
               message = qx.locale.Manager.tr('Trash has been cleared');
             } else if (file.isInTrash()) {
-              message = this.getType() === 'file' ? qx.locale.Manager.tr('File "%1" has been removed from trash', file.getDisplayName()) : qx.locale.Manager.tr('Folder "%1" has been removed from trash', file.getDisplayName());
+              message = file.getType() === 'file' ? qx.locale.Manager.tr('File "%1" has been removed from trash', file.getDisplayName()) : qx.locale.Manager.tr('Folder "%1" has been removed from trash', file.getDisplayName());
             } else {
               message = file.getType() === 'file' ? qx.locale.Manager.tr('File "%1" has been deleted', file.getDisplayName()) : qx.locale.Manager.tr('Folder "%1" has been deleted', file.getDisplayName());
             }
@@ -307,4 +307,4 @@
   cv.ui.manager.control.FileController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileController.js.map?dt=1735383840367
+//# sourceMappingURL=FileController.js.map?dt=1778272812351

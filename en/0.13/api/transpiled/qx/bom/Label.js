@@ -64,7 +64,7 @@
 
     statics: {
       /** @type {Map} Contains all supported styles */
-      __P_117_0: {
+      __P_125_0: {
         fontFamily: 1,
         fontSize: 1,
         fontWeight: 1,
@@ -73,13 +73,15 @@
         wordBreak: 1,
         letterSpacing: 1
       },
+      /** @type{Object<String,Object>} cache of label sizes */
+      __P_125_1: {},
       /**
        * Generates the helper DOM element for text measuring
        *
        * @return {Element} Helper DOM element
        */
-      __P_117_1: function __P_117_1() {
-        var el = this.__P_117_2(false);
+      __P_125_2: function __P_125_2() {
+        var el = this.__P_125_3(false);
         document.body.insertBefore(el, document.body.firstChild);
         return this._textElement = el;
       },
@@ -88,8 +90,8 @@
        *
        * @return {Element} Helper DOM element
        */
-      __P_117_3: function __P_117_3() {
-        var el = this.__P_117_2(true);
+      __P_125_4: function __P_125_4() {
+        var el = this.__P_125_3(true);
         document.body.insertBefore(el, document.body.firstChild);
         return this._htmlElement = el;
       },
@@ -99,7 +101,7 @@
        * @param html {Boolean?false} Whether HTML markup should be used.
        * @return {Element} The measure element
        */
-      __P_117_2: function __P_117_2(html) {
+      __P_125_3: function __P_125_3(html) {
         var el = qx.dom.Element.create("div");
         var style = el.style;
         style.width = style.height = "auto";
@@ -121,7 +123,7 @@
             style.padding = "0";
             style.margin = "0";
             style.width = "auto";
-            for (var key in this.__P_117_0) {
+            for (var key in this.__P_125_0) {
               style[key] = "inherit";
             }
             el.appendChild(inner);
@@ -136,7 +138,7 @@
        * @param html {Boolean?false} Whether HTML markup should be used.
        * @return {Map} Initial styles which should be applied to a label element.
        */
-      __P_117_4: function __P_117_4(html) {
+      __P_125_5: function __P_125_5(html) {
         var styles = {};
         styles.overflow = "hidden";
         if (html) {
@@ -190,13 +192,13 @@
 
           // Force style inheritance for font styles to omit usage of
           // CSS "label" selector, See bug #1349 for details.
-          for (var key in this.__P_117_0) {
+          for (var key in this.__P_125_0) {
             xulel.style[key] = "inherit";
           }
           xulel.setAttribute("crop", "end");
           el.appendChild(xulel);
         } else {
-          qx.bom.element.Style.setStyles(el, this.__P_117_4(html));
+          qx.bom.element.Style.setStyles(el, this.__P_125_5(html));
         }
         if (content) {
           this.setValue(el, content);
@@ -204,7 +206,7 @@
         return el;
       },
       /** Sanitizer function */
-      __P_117_5: null,
+      __P_125_6: null,
       /**
        * Sets a function to sanitize values. It will be used by {@link #setValue}.
        * The function to sanitize will get the <code>string</code> value and
@@ -214,7 +216,7 @@
        *  from given string parameter
        */
       setSanitizer: function setSanitizer(func) {
-        qx.bom.Label.__P_117_5 = func;
+        qx.bom.Label.__P_125_6 = func;
       },
       /**
        * Sets the content of the element.
@@ -228,8 +230,8 @@
       setValue: function setValue(element, value) {
         value = value || "";
         if (element.useHtml) {
-          if (qx.bom.Label.__P_117_5 && typeof qx.bom.Label.__P_117_5 === "function") {
-            value = qx.bom.Label.__P_117_5(value);
+          if (qx.bom.Label.__P_125_6 && typeof qx.bom.Label.__P_125_6 === "function") {
+            value = qx.bom.Label.__P_125_6(value);
           }
           element.innerHTML = value;
         } else if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
@@ -262,13 +264,20 @@
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
       getHtmlSize: function getHtmlSize(content, styles, width) {
-        var element = this._htmlElement || this.__P_117_3();
+        var cacheKey = this.__P_125_7(styles, width);
+        var size = this.__P_125_8(cacheKey, content);
+        if (size !== undefined) {
+          return size;
+        }
+        var element = this._htmlElement || this.__P_125_4();
 
         // apply width
         element.style.width = width != undefined ? width + "px" : "auto";
         // insert content
         element.innerHTML = content;
-        return this.__P_117_6(element, styles);
+        size = this.__P_125_9(element, styles);
+        this.__P_125_10(cacheKey, content, size);
+        return size;
       },
       /**
        * Returns the preferred dimensions of the given text.
@@ -278,13 +287,76 @@
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
       getTextSize: function getTextSize(text, styles) {
-        var element = this._textElement || this.__P_117_1();
+        var cacheKey = this.__P_125_7(styles);
+        var size = this.__P_125_8(cacheKey, text);
+        if (size !== undefined) {
+          return size;
+        }
+        var element = this._textElement || this.__P_125_2();
         if (!qx.core.Environment.get("css.textoverflow") && qx.core.Environment.get("html.xul")) {
           element.firstChild.setAttribute("value", text);
         } else {
           qx.bom.element.Attribute.set(element, "text", text);
         }
-        return this.__P_117_6(element, styles);
+        size = this.__P_125_9(element, styles);
+        this.__P_125_10(cacheKey, text, size);
+        return size;
+      },
+      /**
+       * Returns a key for a specific set of styles, used in the caching of size calculations
+       *
+       * @param {*} styles
+       * @param {Integer?} width optional width
+       * @returns
+       */
+      __P_125_7: function __P_125_7(styles, width) {
+        var cacheKey = [];
+        for (var key in styles) {
+          var value = styles[key];
+          if (value !== null) {
+            cacheKey.push(key + ":" + value);
+          }
+        }
+        if (width !== undefined) {
+          cacheKey.push("width:" + width);
+        }
+        return cacheKey.join(",");
+      },
+      /**
+       * Returns the cached size of the given text
+       *
+       * @param {String} cacheKey
+       * @param {String} text
+       * @returns {*} size object
+       */
+      __P_125_8: function __P_125_8(cacheKey, text) {
+        var cache = qx.bom.Label.__P_125_1[cacheKey];
+        return cache === null || cache === void 0 ? void 0 : cache.sizes[text];
+      },
+      /**
+       * Stores the size of the given text in the cache
+       *
+       * @param {String} cacheKey
+       * @param {String} text
+       * @param {*} size
+       */
+      __P_125_10: function __P_125_10(cacheKey, text, size) {
+        if (!size) {
+          return;
+        }
+        var cache = qx.bom.Label.__P_125_1[cacheKey];
+        if (cache === undefined) {
+          cache = qx.bom.Label.__P_125_1[cacheKey] = {
+            sizes: {}
+          };
+        }
+        cache.sizes[text] = size;
+      },
+      /**
+       * Flushes the size cache - use this when something changes, for example webfonts have been loaded
+       */
+      flushSizeCache: function flushSizeCache() {
+        qx.bom.Label.__P_125_1 = {};
       },
       /**
        * Measure the size of the given element
@@ -293,9 +365,9 @@
        * @param styles {Map?null} Optional styles to apply
        * @return {Map} A map with preferred <code>width</code> and <code>height</code>.
        */
-      __P_117_6: function __P_117_6(element, styles) {
+      __P_125_9: function __P_125_9(element, styles) {
         // sync styles
-        var keys = this.__P_117_0;
+        var keys = this.__P_125_0;
         if (!styles) {
           styles = {};
         }
@@ -315,4 +387,4 @@
   qx.bom.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1735383847398
+//# sourceMappingURL=Label.js.map?dt=1778272818812

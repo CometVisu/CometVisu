@@ -32,7 +32,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -158,7 +158,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _applyDirection: function _applyDirection(direction) {
         if (direction === 'none') {
           this.resetColor();
-          var arrow = this._target ? this._target.querySelector('path.direction') : null;
+          var arrow = this._target ? this._target.querySelector('path.energy-direction') : null;
           if (arrow) {
             arrow.remove();
           }
@@ -183,21 +183,21 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
             _arrow.setAttribute('fill', 'transparent');
             this._target.appendChild(_arrow);
           }
-          this.__P_89_0();
+          this.__P_92_0();
         }
       },
       _applyOffsetY: function _applyOffsetY(value) {
         cv.ui.structure.tile.components.energy.EnergyEntity.superclass.prototype._applyOffsetY.call(this, value);
-        this.__P_89_0();
+        this.__P_92_0();
       },
       _applyScale: function _applyScale(scale) {
         cv.ui.structure.tile.components.energy.EnergyEntity.superclass.prototype._applyScale.call(this, scale);
-        this.__P_89_0();
+        this.__P_92_0();
       },
-      __P_89_0: function __P_89_0() {
+      __P_92_0: function __P_92_0() {
         var arrow = this._target.querySelector('path.energy-direction');
         if (arrow) {
-          arrow.setAttribute('transform', "translate(28, ".concat(this.getOffsetY() + 8, ") rotate(").concat(this.getDirection() === 'incoming' ? '90' : '-90', ", 3, 4)"));
+          arrow.setAttribute('transform', "translate(".concat(this.getWidth() / 2 + this._iconSize / 2 + 4, ", ").concat(this.getOffsetY() + 8, ") rotate(").concat(this.getDirection() === 'incoming' ? '90' : '-90', ", 3, 4)"));
         }
       }
     },
@@ -218,4 +218,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.energy.EnergyEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EnergyEntity.js.map?dt=1735383845304
+//# sourceMappingURL=EnergyEntity.js.map?dt=1778272817168

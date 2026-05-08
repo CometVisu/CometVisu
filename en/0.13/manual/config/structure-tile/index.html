@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basic structure &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=d0aeeef9" />
 
   
@@ -16,7 +16,7 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -192,6 +192,8 @@ you are currently on. There are header and footer areas and a left and right sid
 the individual pages with their respective content (tiles) between which you can navigate back and forth.
 The fixed areas are all optional and can be used or omitted as required. You can use them, for example, for navigation
 bars or widgets that show global status, such as the number of open windows or the number of lights on.</p>
+<p>For compact mobile layouts, navigation elements in these fixed areas can be configured with <code class="docutils literal notranslate"><span class="pre">hide-on-scroll=&quot;true&quot;</span></code>.
+Then they fade out while the content in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> is scrolled and reappear again at the top of the page.</p>
 <figure class="align-default" id="id1">
 <img alt="Basic structure with all optional areas available" src="../../_images/tile-ui-structure.png" />
 <figcaption>
@@ -250,7 +252,7 @@ contains a page for each room on this floor.</p>
 <figure class="align-default">
 <img alt="../../_images/tile-nav-menu.png" src="../../_images/tile-nav-menu.png" />
 </figure>
-<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code> sections, a breadcrumb menu can also be added with <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code> sections, a  <a class="reference internal" href="components/breadcrumbs.html#tile-component-breadcrumbs"><span class="std std-ref">breadcrumb menu</span></a> can also be added with <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
 This allows you to quickly jump back to higher-level pages.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-breadcrumbs/&gt;</span>
@@ -260,6 +262,8 @@ This allows you to quickly jump back to higher-level pages.</p>
 <figure class="align-default">
 <img alt="../../_images/tile-nav-breadcrumb.png" src="../../_images/tile-nav-breadcrumb.png" />
 </figure>
+<p>On touch devices, the tile structure also supports pull-to-refresh.
+If the content in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> is already at the top, pulling down reloads the current page.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -275,64 +279,76 @@ or operating a roller shutter.</p>
 <col style="width: 70.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">The switch widget</span></a>
 simple switch, button or trigger</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">The dimmer widget</span></a>
 Switch with additional slider to set a percentage</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">The shutter widget</span></a>
 Button for up/down/stop to control a shutter</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">The info widget</span></a>
 Representation of a value in different ways</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">The status widget</span></a>
 Status display at half tile height</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">The small status widget</span></a>
 Status display in button size</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">The status-chart widget</span></a>
 Status widget with chart in the background</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">The RTC widget</span></a>
 Room temperature control with settings for HVAC and
 a set point temperature</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">The media-player widget</span></a>
 Control a media player with start/stop,
 next &amp; previous and a volume control</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">The widget-pair</span></a>
 Allows two tiles to be displayed at half height</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/energy.html#tile-energy"><span class="std std-ref">The energy widget</span></a>
 Visualizes energy flow inside a house</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.png"><img alt="../../_images/cv-link.png" src="../../_images/cv-link.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.png"><img alt="../../_images/cv-link.png" src="../../_images/cv-link.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/link.html#tile-link"><span class="std std-ref">The link widget</span></a>
 Opens a website</p></td>
@@ -384,8 +400,7 @@ and a text is displayed.</p>
 </div>
 <p>This tile configuration must now be transferred to a template. To do this you first have to create a template file.
 The best way to do this is to use the <a class="reference internal" href="../manager.html#manager"><span class="std std-ref">Manager</span></a> by creating a file called “my-templates.xml” in the “media” folder.
-generated. To load these templates, add a <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a> to the configuration file in the meta area
-added.</p>
+To load these templates, add a <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a> to the configuration file in the meta area.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
@@ -527,6 +542,7 @@ The widgets already presented combine one or multiple components in one tile.</p
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="components/icon.html">Icon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/plugin.html">Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/address.html">Address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/address-group.html">Address-Group</a></li>
 </ul>
@@ -545,7 +561,7 @@ The widgets already presented combine one or multiple components in one tile.</p
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -562,7 +578,7 @@ The widgets already presented combine one or multiple components in one tile.</p
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

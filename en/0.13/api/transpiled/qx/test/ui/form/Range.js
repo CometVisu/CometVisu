@@ -33,7 +33,7 @@
   qx.Class.define("qx.test.ui.form.Range", {
     extend: qx.test.ui.LayoutTestCase,
     members: {
-      __P_411_0: function __P_411_0(widget) {
+      __P_421_0: function __P_421_0(widget) {
         // min
         widget.setMinimum(10);
         this.assertEquals(10, widget.getMinimum(), "Set or get does not work. (min)");
@@ -68,14 +68,14 @@
         widget.destroy();
       },
       testSpinner: function testSpinner() {
-        this.__P_411_0(new qx.ui.form.Spinner());
+        this.__P_421_0(new qx.ui.form.Spinner());
       },
       testSlider: function testSlider() {
-        this.__P_411_0(new qx.ui.form.Slider());
+        this.__P_421_0(new qx.ui.form.Slider());
       }
     }
   });
   qx.test.ui.form.Range.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Range.js.map?dt=1735383864635
+//# sourceMappingURL=Range.js.map?dt=1778272836746

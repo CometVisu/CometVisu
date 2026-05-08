@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation mittels Docker-Container &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=245627df"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/translations.js?v=70a09b52"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -146,32 +146,32 @@ Zur Verfügung stehen:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>KNX_INTERFACE</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.1:3700</span></code></p></td>
-<td><p>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der
-<code class="docutils literal notranslate"><span class="pre">knxd</span></code> nicht geladen.</p></td>
+<td></td>
+<td><p>knxd-URL für die KNX Schnittstelle. Wenn leer, so wird der <code class="docutils literal notranslate"><span class="pre">knxd</span></code> nicht geladen.</p></td>
 </tr>
 <tr class="row-odd"><td><p>KNX_PA</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">1.1.238</span></code></p></td>
 <td><p>Physikalische Schnittstelle (PA) für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p>KNXD_PARAMETERS</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">-d/var/log/eibd.log</span> <span class="pre">-c</span></code></p></td>
-<td><p>Weitere Aufruf-Parameter für den <code class="docutils literal notranslate"><span class="pre">knxd</span></code>.</p></td>
+<tr class="row-even"><td><p>KNX_CLIENT_PAS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.1.239:10</span></code></p></td>
+<td><p>An Client-Verbindungen zu verteilender Adressbereich.</p></td>
 </tr>
-<tr class="row-odd"><td><p>CGI_URL_PATH</p></td>
+<tr class="row-odd"><td><p>KNX_INTERFACE_OPTIONS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-B</span> <span class="pre">single</span> <span class="pre">-A</span> <span class="pre">retry-delay=1</span></code></p></td>
+<td><p>Spezifische Aufruf-Parameter für die KNX Schnittstelle.</p></td>
+</tr>
+<tr class="row-even"><td><p>CGI_URL_PATH</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/cgi-bin/</span></code></p></td>
 <td><p>URL-Prefix um die <code class="docutils literal notranslate"><span class="pre">cgi-bin</span></code> Ressourcen zu lokalisieren.</p></td>
 </tr>
-<tr class="row-even"><td><p>BACKEND_PROXY_SOURCE</p></td>
+<tr class="row-odd"><td><p>BACKEND_PROXY_SOURCE</p></td>
 <td></td>
-<td><p>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> für das
-openHAB Backend.</p></td>
+<td><p>Proxy-Pfade beginnen mit diesem Wert, z.B. <code class="docutils literal notranslate"><span class="pre">/rest</span></code> für das openHAB Backend.</p></td>
 </tr>
-<tr class="row-odd"><td><p>BACKEND_PROXY_TARGET</p></td>
+<tr class="row-even"><td><p>BACKEND_PROXY_TARGET</p></td>
 <td></td>
-<td><p>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>,
-z.B. <code class="docutils literal notranslate"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das
-openHAB Backend.</p></td>
+<td><p>Ziel-URL für die Proxy-Anfragen an <code class="docutils literal notranslate"><span class="pre">BACKEND_PROXY_SOURCE</span></code>, z.B. <code class="docutils literal notranslate"><span class="pre">http://&lt;openhab-server-ip-address&gt;:8080/rest</span></code> für das openHAB Backend.</p></td>
 </tr>
 </tbody>
 </table>
@@ -236,7 +236,7 @@ gleichzeitig mit einbindet.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -253,7 +253,7 @@ gleichzeitig mit einbindet.</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

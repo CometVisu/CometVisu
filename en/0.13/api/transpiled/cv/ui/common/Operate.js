@@ -21,7 +21,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Operate.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -132,4 +132,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.common.Operate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Operate.js.map?dt=1735383886592
+//# sourceMappingURL=Operate.js.map?dt=1778272857386

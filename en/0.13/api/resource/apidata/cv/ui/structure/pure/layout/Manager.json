@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576155,
+  "lastModifiedIso": "2026-05-08T20:36:16.155Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/layout/Manager.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 822
     },
     "end": {
-      "line": 319,
+      "line": 339,
       "column": 3,
-      "index": 12919
+      "index": 13658
     }
   },
   "className": "cv.ui.structure.pure.layout.Manager",
@@ -214,6 +214,25 @@
       "params": [],
       "appearsIn": []
     },
+    "updateNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2504
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3236
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
     "getAvailableWidth": {
       "jsdoc": {
         "raw": [
@@ -234,14 +253,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 84,
+          "line": 104,
           "column": 4,
-          "index": 2758
+          "index": 3497
         },
         "end": {
-          "line": 128,
+          "line": 148,
           "column": 5,
-          "index": 5289
+          "index": 6028
         }
       },
       "type": "function",
@@ -273,14 +292,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 141,
+          "line": 161,
           "column": 4,
-          "index": 5826
+          "index": 6565
         },
         "end": {
-          "line": 186,
+          "line": 206,
           "column": 5,
-          "index": 8283
+          "index": 9022
         }
       },
       "type": "function",
@@ -292,14 +311,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 188,
+          "line": 208,
           "column": 4,
-          "index": 8290
+          "index": 9029
         },
         "end": {
-          "line": 191,
+          "line": 211,
           "column": 5,
-          "index": 8422
+          "index": 9161
         }
       },
       "type": "function",
@@ -315,14 +334,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 193,
+          "line": 213,
           "column": 4,
-          "index": 8429
+          "index": 9168
         },
         "end": {
-          "line": 204,
+          "line": 224,
           "column": 5,
-          "index": 8771
+          "index": 9510
         }
       },
       "type": "function",
@@ -341,14 +360,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 206,
+          "line": 226,
           "column": 4,
-          "index": 8778
+          "index": 9517
         },
         "end": {
-          "line": 214,
+          "line": 234,
           "column": 5,
-          "index": 9023
+          "index": 9762
         }
       },
       "type": "function",
@@ -397,14 +416,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 222,
+          "line": 242,
           "column": 4,
-          "index": 9310
+          "index": 10049
         },
         "end": {
-          "line": 295,
+          "line": 315,
           "column": 5,
-          "index": 12252
+          "index": 12991
         }
       },
       "type": "function",
@@ -427,14 +446,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 297,
+          "line": 317,
           "column": 4,
-          "index": 12259
+          "index": 12998
         },
         "end": {
-          "line": 317,
+          "line": 337,
           "column": 5,
-          "index": 12911
+          "index": 13650
         }
       },
       "type": "function",

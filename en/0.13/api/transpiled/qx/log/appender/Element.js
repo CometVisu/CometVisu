@@ -68,7 +68,7 @@
     */
 
     members: {
-      __P_284_0: null,
+      __P_292_0: null,
       /**
        * Configures the DOM element to use.
        *
@@ -84,14 +84,14 @@
         }
 
         // Link to element
-        this.__P_284_0 = element;
+        this.__P_292_0 = element;
       },
       /**
        * Clears the current output.
        *
        */
       clear: function clear() {
-        var elem = this.__P_284_0;
+        var elem = this.__P_292_0;
 
         // Remove all messages
         if (elem) {
@@ -105,7 +105,7 @@
        * @param entry {Map} The entry to process
        */
       process: function process(entry) {
-        var elem = this.__P_284_0;
+        var elem = this.__P_292_0;
         if (!elem) {
           return;
         }
@@ -122,4 +122,4 @@
   qx.log.appender.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1735383856894
+//# sourceMappingURL=Element.js.map?dt=1778272827987

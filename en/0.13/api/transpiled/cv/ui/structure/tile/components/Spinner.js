@@ -29,7 +29,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Spinner.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -72,6 +72,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
     ***********************************************
     */
     members: {
+      __P_88_0: null,
+      __P_88_1: null,
+      __P_88_2: null,
+      __P_88_3: null,
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.components.Spinner.superclass.prototype._init.call(this);
@@ -91,36 +95,61 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           element.appendChild(valueElement);
         }
         // add increase / decrease buttons
-        var decrease = document.createElement('div');
-        decrease.classList.add('clickable');
-        decrease.classList.add('left');
-        var decreaseIcon = document.createElement('cv-icon');
-        decreaseIcon.classList.add('ri-arrow-down-s-line');
-        decrease.addEventListener('click', function (ev) {
-          return _this.onDecrease(ev);
-        });
-        decrease.appendChild(decreaseIcon);
-        element.insertBefore(decrease, valueElement);
-        var increase = document.createElement('div');
-        increase.classList.add('clickable');
-        increase.classList.add('right');
-        var increaseIcon = document.createElement('cv-icon');
-        increaseIcon.classList.add('ri-arrow-up-s-line');
-        increase.appendChild(increaseIcon);
-        increase.addEventListener('click', function (ev) {
-          return _this.onIncrease(ev);
-        });
-        element.appendChild(increase);
+        var decrease = element.querySelector(':scope > div.left.clickable');
+        if (!decrease) {
+          decrease = document.createElement('div');
+          decrease.classList.add('clickable');
+          decrease.classList.add('left');
+          var decreaseIcon = document.createElement('cv-icon');
+          decreaseIcon.classList.add('ri-arrow-down-s-line');
+          decrease.appendChild(decreaseIcon);
+          element.insertBefore(decrease, valueElement);
+        }
+        if (!this.__P_88_2) {
+          this.__P_88_2 = function (ev) {
+            return _this.onDecrease(ev);
+          };
+        }
+        decrease.removeEventListener('click', this.__P_88_2);
+        decrease.addEventListener('click', this.__P_88_2);
+        this.__P_88_0 = decrease;
+        var increase = element.querySelector(':scope > div.right.clickable');
+        if (!increase) {
+          increase = document.createElement('div');
+          increase.classList.add('clickable');
+          increase.classList.add('right');
+          var increaseIcon = document.createElement('cv-icon');
+          increaseIcon.classList.add('ri-arrow-up-s-line');
+          increase.appendChild(increaseIcon);
+          element.appendChild(increase);
+        }
+        if (!this.__P_88_3) {
+          this.__P_88_3 = function (ev) {
+            return _this.onIncrease(ev);
+          };
+        }
+        increase.removeEventListener('click', this.__P_88_3);
+        increase.addEventListener('click', this.__P_88_3);
+        this.__P_88_1 = increase;
+      },
+      _disconnected: function _disconnected() {
+        if (this.__P_88_0 && this.__P_88_2) {
+          this.__P_88_0.removeEventListener('click', this.__P_88_2);
+        }
+        if (this.__P_88_1 && this.__P_88_3) {
+          this.__P_88_1.removeEventListener('click', this.__P_88_3);
+        }
+        cv.ui.structure.tile.components.Spinner.superclass.prototype._disconnected.call(this);
       },
       onDecrease: function onDecrease(ev) {
         var value = this.getMode() === 'absolute' ? this.getValue() - this.getStepWidth() : this.getStepWidth() * -1;
         ev.stopPropagation();
-        this.__P_87_0(value, 'decrease');
+        this.__P_88_4(value, 'decrease');
       },
       onIncrease: function onIncrease(ev) {
         var value = this.getMode() === 'absolute' ? this.getValue() + this.getStepWidth() : this.getStepWidth();
         ev.stopPropagation();
-        this.__P_87_0(value, 'increase');
+        this.__P_88_4(value, 'increase');
       },
       _updateValue: function _updateValue(mappedValue) {
         var target = this._element.querySelector('.value');
@@ -128,7 +157,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           target.innerHTML = mappedValue;
         }
       },
-      __P_87_0: function __P_87_0(value, on) {
+      __P_88_4: function __P_88_4(value, on) {
         var ev = new CustomEvent('sendState', {
           detail: {
             value: value,
@@ -158,4 +187,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Spinner.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Spinner.js.map?dt=1735383845241
+//# sourceMappingURL=Spinner.js.map?dt=1778272816812

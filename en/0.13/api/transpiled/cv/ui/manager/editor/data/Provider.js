@@ -34,7 +34,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Provider.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -649,4 +649,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.editor.data.Provider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Provider.js.map?dt=1735383841275
+//# sourceMappingURL=Provider.js.map?dt=1778272813165

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576143,
+  "lastModifiedIso": "2026-05-08T20:36:16.143Z",
   "classFilename": "../../source/class/cv/parser/pure/MetaParser.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 517,
       "column": 3,
-      "index": 17962
+      "index": 17921
     }
   },
   "className": "cv.parser.pure.MetaParser",
@@ -21,7 +21,7 @@
     "raw": [
       " MetaParser.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -168,7 +168,7 @@
         "end": {
           "line": 351,
           "column": 5,
-          "index": 11885
+          "index": 11844
         }
       },
       "type": "function",
@@ -186,12 +186,12 @@
         "start": {
           "line": 353,
           "column": 4,
-          "index": 11892
+          "index": 11851
         },
         "end": {
           "line": 362,
           "column": 5,
-          "index": 12191
+          "index": 12150
         }
       },
       "type": "function",
@@ -209,12 +209,12 @@
         "start": {
           "line": 364,
           "column": 4,
-          "index": 12198
+          "index": 12157
         },
         "end": {
           "line": 378,
           "column": 5,
-          "index": 12832
+          "index": 12791
         }
       },
       "type": "function",
@@ -232,12 +232,12 @@
         "start": {
           "line": 380,
           "column": 4,
-          "index": 12839
+          "index": 12798
         },
         "end": {
           "line": 443,
           "column": 5,
-          "index": 15306
+          "index": 15265
         }
       },
       "type": "function",
@@ -276,12 +276,12 @@
         "start": {
           "line": 449,
           "column": 4,
-          "index": 15434
+          "index": 15393
         },
         "end": {
           "line": 515,
           "column": 5,
-          "index": 17954
+          "index": 17913
         }
       },
       "type": "function",

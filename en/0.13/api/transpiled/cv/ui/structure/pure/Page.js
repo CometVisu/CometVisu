@@ -42,7 +42,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Page.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -75,21 +75,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct(props) {
       var _this = this;
-      this.__P_65_0 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.addListener('changeVisible', this._onChangeVisible, this);
 
       // prevent listening to the first message to the GA in the first second
       // as it might be of the trigger type and still be in the knxd cache
-      this.__P_65_1 = setTimeout(function () {
-        _this.__P_65_1 = null;
+      this.__P_65_0 = setTimeout(function () {
+        _this.__P_65_0 = null;
       }, 1000);
 
       // break out of the constructor
       new qx.util.DeferredCall(function () {
         var parentPage = this.getParentPage();
         if (!parentPage) {
-          this.__P_65_0 = [];
+          this.__P_65_1 = [];
         } else {
           this.debug('binding navbar visibility from ' + parentPage.getPath() + ' to ' + this.getPath());
         }
@@ -213,17 +212,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
      ******************************************************
      */
     members: {
-      __P_65_0: null,
+      __P_65_1: null,
       __P_65_2: null,
       __P_65_3: null,
-      __P_65_1: null,
+      __P_65_0: null,
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        this.__P_65_1 = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
+        return props;
+      },
       _applyNavbarVisibility: function _applyNavbarVisibility(value, old, name) {
         if (value !== null) {
-          var i_name = this.__P_65_0.indexOf(name);
+          var i_name = this.__P_65_1.indexOf(name);
           if (i_name !== -1) {
-            this.__P_65_0.splice(i_name, 1);
+            this.__P_65_1.splice(i_name, 1);
           }
-          if (this.__P_65_0.length === 0) {
+          if (this.__P_65_1.length === 0) {
             this.setInitialized(true);
           }
         }
@@ -345,10 +348,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         //
         //   default:
 
-        if (this.__P_65_1 !== null) {
+        if (this.__P_65_0 !== null) {
           // ignore first bus message during this timeout
-          clearTimeout(this.__P_65_1);
-          this.__P_65_1 = null;
+          clearTimeout(this.__P_65_0);
+          this.__P_65_0 = null;
           return;
         }
         var value = this.applyTransform(address, data);
@@ -414,4 +417,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1735383843197
+//# sourceMappingURL=Page.js.map?dt=1778272814901

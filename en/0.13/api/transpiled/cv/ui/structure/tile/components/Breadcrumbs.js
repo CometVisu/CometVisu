@@ -30,7 +30,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Menu.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -55,12 +55,6 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
    */
   qx.Class.define('cv.ui.structure.tile.components.Breadcrumbs', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    /*
-    ***********************************************
-      PROPERTIES
-    ***********************************************
-    */
-    properties: {},
     /*
     ***********************************************
       MEMBERS
@@ -139,4 +133,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Breadcrumbs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Breadcrumbs.js.map?dt=1735383844134
+//# sourceMappingURL=Breadcrumbs.js.map?dt=1778272815768

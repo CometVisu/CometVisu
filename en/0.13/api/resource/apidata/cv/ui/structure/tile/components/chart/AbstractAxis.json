@@ -1,0 +1,658 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/chart/AbstractAxis.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 842
+    },
+    "end": {
+      "line": 173,
+      "column": 3,
+      "index": 3674
+    }
+  },
+  "className": "cv.ui.structure.tile.components.chart.AbstractAxis",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "chart"
+      },
+      {
+        "name": "type"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1057
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1148
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1171
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1240
+        }
+      },
+      "json": {
+        "check": [
+          "axis",
+          "grid"
+        ],
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "scale": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1246
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1338
+        }
+      },
+      "json": {
+        "check": "Function",
+        "deferredInit": true,
+        "event": "changeScale"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "domain": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1344
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1461
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": [
+          0,
+          100
+        ],
+        "apply": "_applyDomain",
+        "event": "domainChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "range": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1467
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1581
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": [
+          0,
+          100
+        ],
+        "apply": "_applyRange",
+        "event": "rangeChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "rangeConverter": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1587
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1656
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1662
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1743
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShow"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "ticks": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1749
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1857
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 5,
+        "apply": "_applyTicks",
+        "event": "ticksChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "tickFormat": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1863
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1961
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true,
+        "apply": "_applyTickFormat"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1967
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2047
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyLabel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showLine": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2053
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2142
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowLine"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showGrid": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2148
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2238
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyShowGrid"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "tickSize": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2244
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2329
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyTickSize"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_axis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {d3.Axis}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{d3.Axis}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2392
+        },
+        "end": {
+          "line": 106,
+          "column": 15,
+          "index": 2403
+        }
+      },
+      "appearsIn": []
+    },
+    "_element": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {SVGElement}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{SVGElement}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2451
+        },
+        "end": {
+          "line": 110,
+          "column": 18,
+          "index": 2465
+        }
+      },
+      "appearsIn": []
+    },
+    "_rendered": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2510
+        },
+        "end": {
+          "line": 114,
+          "column": 19,
+          "index": 2525
+        }
+      },
+      "appearsIn": []
+    },
+    "render": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2532
+        },
+        "end": {
+          "line": 116,
+          "column": 16,
+          "index": 2544
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDomain": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2551
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 2755
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShowLine": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 2762
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 2910
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShowGrid": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 2917
+        },
+        "end": {
+          "line": 132,
+          "column": 28,
+          "index": 2941
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRange": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 2948
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3149
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTickFormat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3156
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3257
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTicks": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3264
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 3355
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTickSize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3362
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 3459
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShow": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 3468
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 3509
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 165,
+        "column": 2,
+        "index": 3518
+      },
+      "end": {
+        "line": 172,
+        "column": 3,
+        "index": 3670
+      }
+    }
+  },
+  "statics": {}
+}

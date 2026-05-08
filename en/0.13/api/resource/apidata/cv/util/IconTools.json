@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576161,
+  "lastModifiedIso": "2026-05-08T20:36:16.161Z",
   "classFilename": "../../source/class/cv/util/IconTools.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 866
     },
     "end": {
-      "line": 365,
+      "line": 364,
       "column": 3,
-      "index": 12961
+      "index": 12913
     }
   },
   "className": "cv.util.IconTools",
@@ -735,9 +735,9 @@
           "index": 7754
         },
         "end": {
-          "line": 289,
+          "line": 288,
           "column": 5,
-          "index": 10398
+          "index": 10350
         }
       },
       "type": "function",
@@ -783,14 +783,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 296,
+          "line": 295,
           "column": 4,
-          "index": 10603
+          "index": 10555
         },
         "end": {
-          "line": 310,
+          "line": 309,
           "column": 5,
-          "index": 11162
+          "index": 11114
         }
       },
       "type": "function",
@@ -840,14 +840,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 315,
           "column": 4,
-          "index": 11249
+          "index": 11201
         },
         "end": {
-          "line": 357,
+          "line": 356,
           "column": 5,
-          "index": 12788
+          "index": 12740
         }
       },
       "type": "function",

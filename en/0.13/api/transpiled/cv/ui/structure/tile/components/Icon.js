@@ -33,7 +33,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Icon.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -91,6 +91,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     members: {
       __P_81_0: false,
       _idRegex: null,
+      __P_81_1: function __P_81_1(value) {
+        var _this = this;
+        Array.from(this._element.classList).filter(function (name) {
+          return (name.startsWith('ri-') || name.startsWith('knxuf-')) && name !== value;
+        }).forEach(function (name) {
+          return _this._element.classList.remove(name);
+        });
+      },
       _transformId: function _transformId(value) {
         if (this._idRegex.test(value)) {
           return value;
@@ -101,8 +109,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _init: function _init() {
         cv.ui.structure.tile.components.Icon.superclass.prototype._init.call(this);
         var element = this._element;
-        if (element.textContent.trim()) {
-          this.__P_81_0 = true;
+        var currentId = this.getId();
+        this.__P_81_0 = true;
+        if (currentId) {
+          this._applyId(currentId, null);
+        } else if (element.textContent.trim()) {
           this.setId(element.textContent.trim());
         } else {
           var it = element.classList.values();
@@ -122,7 +133,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             _iterator.f();
           }
         }
-        this.__P_81_0 = true;
       },
       _applyId: function _applyId(value, oldValue) {
         var element = this._element;
@@ -130,6 +140,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (oldValue) {
             element.classList.remove(oldValue);
           }
+          this.__P_81_1(value);
           if (value) {
             // default is an icon font that uses CSS classes
             element.classList.add(value);
@@ -174,4 +185,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Icon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icon.js.map?dt=1735383844735
+//# sourceMappingURL=Icon.js.map?dt=1778272816346

@@ -11,6 +11,25 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* Jquery.js
+   *
+   * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+   *
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * JQuery Wrapper for AJAX request that allows re-sending the request
    *
@@ -29,7 +48,7 @@
     ******************************************************
     */
     construct: function construct(config) {
-      this.__P_785_0 = config;
+      this.__P_801_0 = config;
     },
     /*
     ******************************************************
@@ -49,23 +68,23 @@
     ******************************************************
     */
     members: {
-      __P_785_0: null,
-      __P_785_1: null,
+      __P_801_0: null,
+      __P_801_1: null,
       // property apply
       _applyRequestData: function _applyRequestData(value) {
-        if (!this.__P_785_0) {
-          this.__P_785_0['data'] = value;
+        if (!this.__P_801_0) {
+          this.__P_801_0['data'] = value;
         }
       },
       removeListener: function removeListener(eventName) {
-        delete this.__P_785_0[eventName];
+        delete this.__P_801_0[eventName];
       },
       addListener: function addListener(eventName, callback, context) {
-        this.__P_785_0[eventName] = callback.bind(context);
+        this.__P_801_0[eventName] = callback.bind(context);
       },
       send: function send() {
-        if (this.__P_785_0) {
-          $.ajax(this.__P_785_0);
+        if (this.__P_801_0) {
+          $.ajax(this.__P_801_0);
         } else {
           this.error('no request settings found, skipping');
         }
@@ -76,13 +95,13 @@
       ***********************************************************
       */
       abort: function abort() {
-        if (this.__P_785_1 && this.__P_785_1.abort) {
-          this.__P_785_1.abort();
+        if (this.__P_801_1 && this.__P_801_1.abort) {
+          this.__P_801_1.abort();
         }
       },
       getResponseHeader: function getResponseHeader(headerName) {
-        if (this.__P_785_1) {
-          return this.__P_785_1.getResponseHeader(headerName);
+        if (this.__P_801_1) {
+          return this.__P_801_1.getResponseHeader(headerName);
         }
         return null;
       }
@@ -91,4 +110,4 @@
   cv.io.request.Jquery.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jquery.js.map?dt=1735383888157
+//# sourceMappingURL=Jquery.js.map?dt=1778272858724

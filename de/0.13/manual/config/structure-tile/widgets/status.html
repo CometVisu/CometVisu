@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Status Widget &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=245627df"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../../_static/translations.js?v=70a09b52"></script>
+      <script src="../../../_static/translations.js?v=9bf55d28"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -686,7 +686,7 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="20"><dl class="simple">
+<tr class="row-odd"><td rowspan="16"><dl class="simple">
 <dt>cv-status</dt><dd><ul class="simple">
 <li><p>cv-chart</p></li>
 </ul>
@@ -696,14 +696,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p>title</p></td>
 <td><p>Text</p></td>
 <td><p>Titel des Charts.</p></td>
-</tr>
-<tr class="row-even"><td><p>y-format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Werts auf der y-Achse. (printf-Syntax)</p></td>
-</tr>
-<tr class="row-odd"><td><p>x-format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Datums auf der x-Achse. (siehe: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>). Wird keine Formatierung angegeben, wird diese automatisch bestimmt auf Basis der gerade angezeigten ‚series‘. Eine explizite Angabe der Formatierung deaktiviert die Automatik.</p></td>
 </tr>
 <tr class="row-even"><td><p>series</p></td>
 <td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> oder <em>year</em></p></td>
@@ -717,14 +709,6 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-odd"><td><p>show-x-axis</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>X-Achsen Skala anzeigen (default = true).</p></td>
-</tr>
-<tr class="row-even"><td><p>show-y-axis</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Y-Achsen Skala anzeigen (default = true).</p></td>
-</tr>
 <tr class="row-odd"><td><p>refresh</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
@@ -737,13 +721,13 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Zeigt den Chart im Hintergrund einer Kachel.</p></td>
 </tr>
-<tr class="row-even"><td><p>min</p></td>
+<tr class="row-even"><td><p>dataset-opacity</p></td>
 <td><p>Zahl</p></td>
-<td><p>Minimaler Wert.</p></td>
+<td><p>Definiert die Opazität aller Datensatzes im Chart (Wert in %).</p></td>
 </tr>
-<tr class="row-odd"><td><p>max</p></td>
-<td><p>Zahl</p></td>
-<td><p>Maximaler Wert.</p></td>
+<tr class="row-odd"><td><p>tooltip-time-format</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert das Zeitformat für Tooltips im Chart.</p></td>
 </tr>
 <tr class="row-even"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
@@ -790,7 +774,7 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -807,7 +791,7 @@ Beim Klick auf das Status-Widgets öffnet sich dann ein Popup mit weiteren Infor
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

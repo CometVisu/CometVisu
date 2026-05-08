@@ -41,7 +41,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* ColorChooser.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -799,4 +799,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.pure.ColorChooser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorChooser.js.map?dt=1735383842836
+//# sourceMappingURL=ColorChooser.js.map?dt=1778272814590

@@ -1,6 +1,10 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -8,9 +12,20 @@
       "qx.dev.unit.TestCase": {
         "require": true
       },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
       "qx.event.GlobalError": {},
       "qx.util.DeferredCall": {},
       "qx.core.AssertionError": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "browser.name": {
+          "className": "qx.bom.client.Browser"
+        }
+      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -39,6 +54,9 @@
         if (navigator.plugins.length == 0) {
           this.skip("test disabled on headless browsers");
         }
+        if (qx.core.Environment.get("browser.name") == "safari") {
+          this.skip("we can not detect headless mode in safari");
+        }
         var fail = function fail() {
           throw new Error("fail");
         };
@@ -60,4 +78,4 @@
   qx.test.util.DeferredCall.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DeferredCall.js.map?dt=1735383866697
+//# sourceMappingURL=DeferredCall.js.map?dt=1778272838796

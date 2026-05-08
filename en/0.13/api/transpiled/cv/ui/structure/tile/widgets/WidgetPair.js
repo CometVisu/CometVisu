@@ -29,7 +29,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Tile.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -67,4 +67,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.WidgetPair.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetPair.js.map?dt=1735383846022
+//# sourceMappingURL=WidgetPair.js.map?dt=1778272817892

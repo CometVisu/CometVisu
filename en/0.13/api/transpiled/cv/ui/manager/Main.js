@@ -89,7 +89,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Main.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -438,9 +438,13 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           if (this.getCurrentFolder() && this.getCurrentFolder().getFullPath() === data.path) {
             this.resetCurrentFolder();
           }
-        } else {
-          this.warn('unhandled file event', data.action);
+          this._tree.reload();
+          return;
+        } else if (data.action === 'restored') {
+          this._tree.reload();
+          return;
         }
+        this.warn('unhandled file event', data.action);
         this._tree.refresh();
       },
       _initAuth: function _initAuth() {
@@ -1184,4 +1188,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1735383839976
+//# sourceMappingURL=Main.js.map?dt=1778272811989

@@ -6,7 +6,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 (function () {
@@ -68,7 +69,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
      */
     construct: function construct(metaDb) {
       qx.core.Object.constructor.call(this);
-      this.__P_501_0 = metaDb;
+      this.__P_511_0 = metaDb;
     },
     properties: {
       outputTo: {
@@ -78,42 +79,41 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       /** @type {qx.tool.compiler.MetaDatabase} */
-      __P_501_0: null,
+      __P_511_0: null,
       /** @type {Stream} where to write the .d.ts */
-      __P_501_1: null,
-      __P_501_2: null,
+      __P_511_1: null,
+      __P_511_2: null,
       /** @type {qx.tool.compiler.MetaExtraction} */
-      __P_501_3: null,
+      __P_511_3: null,
       /** @type {object} */
-      __P_501_4: null,
+      __P_511_4: null,
       /** Current indent */
-      __P_501_5: "    ",
+      __P_511_5: "    ",
       /**
        * Opens the stream to write to
        */
       open: function open() {
         var _this = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
           var time, str, baseDeclaration;
-          return _regeneratorRuntime().wrap(function _callee$(_context) {
-            while (1) switch (_context.prev = _context.next) {
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.n) {
               case 0:
                 time = new Date();
-                _this.__P_501_1 = fs.createWriteStream(_this.getOutputTo());
-                _this.__P_501_2 = new qx.Promise();
-                _this.__P_501_1.on("close", function () {
-                  return _this.__P_501_2.resolve();
+                _this.__P_511_1 = fs.createWriteStream(_this.getOutputTo());
+                _this.__P_511_2 = new qx.Promise();
+                _this.__P_511_1.on("close", function () {
+                  return _this.__P_511_2.resolve();
                 });
                 _this.write("// Generated declaration file at ".concat(time, "\n"));
                 str = path.join(qx.tool.utils.Utils.getTemplateDir(), "TypeScriptWriter-base_declaration.d.ts");
-                _context.next = 8;
+                _context.n = 1;
                 return fs.promises.readFile(str, "utf8");
-              case 8:
-                baseDeclaration = _context.sent;
+              case 1:
+                baseDeclaration = _context.v;
                 _this.write(baseDeclaration + "\n");
-              case 10:
-              case "end":
-                return _context.stop();
+              case 2:
+                return _context.a(2);
             }
           }, _callee);
         }))();
@@ -123,28 +123,27 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       close: function close() {
         var _this2 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
           var globalFile;
-          return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-            while (1) switch (_context2.prev = _context2.next) {
+          return _regenerator().w(function (_context2) {
+            while (1) switch (_context2.n) {
               case 0:
-                _context2.next = 2;
-                return _this2.__P_501_1.end();
+                _context2.n = 1;
+                return _this2.__P_511_1.end();
+              case 1:
+                _this2.__P_511_1 = null;
+                _context2.n = 2;
+                return _this2.__P_511_2;
               case 2:
-                _this2.__P_501_1 = null;
-                _context2.next = 5;
-                return _this2.__P_501_2;
-              case 5:
-                _this2.__P_501_2 = null;
+                _this2.__P_511_2 = null;
 
                 // add global declaration file for tooling (eg, text editor) support
                 globalFile = path.join(process.cwd(), "source", "global.d.ts");
                 if (!fs.existsSync(globalFile)) {
                   fs.writeFileSync(globalFile, ["// the reference directive enables tooling to discover the generated type definitions", "/// <reference path=\"../".concat(_this2.getOutputTo(), "\" />"), "", "// add custom global declarations here"].join("\n"));
                 }
-              case 8:
-              case "end":
-                return _context2.stop();
+              case 3:
+                return _context2.a(2);
             }
           }, _callee2);
         }))();
@@ -155,28 +154,28 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this3 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-          var classnames, lastPackageName, declared, _iterator, _step, classname, metaData, pos, packageName;
-          return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-            while (1) switch (_context3.prev = _context3.next) {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+          var classnames, lastPackageName, declared, _iterator, _step, classname, metaData, pos, packageName, _t;
+          return _regenerator().w(function (_context3) {
+            while (1) switch (_context3.p = _context3.n) {
               case 0:
-                _context3.next = 2;
+                _context3.n = 1;
                 return _this3.open();
-              case 2:
-                classnames = _this3.__P_501_0.getClassnames();
+              case 1:
+                classnames = _this3.__P_511_0.getClassnames();
                 classnames.sort();
                 lastPackageName = null;
                 declared = false;
                 _iterator = _createForOfIteratorHelper(classnames);
-                _context3.prev = 7;
+                _context3.p = 2;
                 _iterator.s();
-              case 9:
+              case 3:
                 if ((_step = _iterator.n()).done) {
-                  _context3.next = 20;
+                  _context3.n = 5;
                   break;
                 }
                 classname = _step.value;
-                metaData = _this3.__P_501_0.getMetaData(classname);
+                metaData = _this3.__P_511_0.getMetaData(classname);
                 pos = classname.lastIndexOf(".");
                 packageName = "";
                 if (pos > -1) {
@@ -196,60 +195,59 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 } else {
                   _this3.write("\n");
                 }
-                _context3.next = 18;
+                _context3.n = 4;
                 return _this3.writeClass(metaData, declared);
-              case 18:
-                _context3.next = 9;
+              case 4:
+                _context3.n = 3;
                 break;
-              case 20:
-                _context3.next = 25;
+              case 5:
+                _context3.n = 7;
                 break;
-              case 22:
-                _context3.prev = 22;
-                _context3.t0 = _context3["catch"](7);
-                _iterator.e(_context3.t0);
-              case 25:
-                _context3.prev = 25;
+              case 6:
+                _context3.p = 6;
+                _t = _context3.v;
+                _iterator.e(_t);
+              case 7:
+                _context3.p = 7;
                 _iterator.f();
-                return _context3.finish(25);
-              case 28:
+                return _context3.f(7);
+              case 8:
                 if (lastPackageName) {
                   _this3.write("}\n");
                 }
-                _context3.next = 31;
+                _context3.n = 9;
                 return _this3.close();
-              case 31:
-              case "end":
-                return _context3.stop();
+              case 9:
+                return _context3.a(2);
             }
-          }, _callee3, null, [[7, 22, 25, 28]]);
+          }, _callee3, null, [[2, 6, 7, 8]]);
         }))();
       },
       /**
        * Write a piece of code to the declaration file
        */
       write: function write(msg) {
-        this.__P_501_1.write(msg);
+        this.__P_511_1.write(msg);
       },
       /**
        * Write the class or interface declaration
        */
       writeClass: function writeClass(meta, declared) {
         var _this4 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
           var _meta$jsdoc;
           var extendsClause, superTypes, superType, type, name, pos;
-          return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-            while (1) switch (_context4.prev = _context4.next) {
+          return _regenerator().w(function (_context4) {
+            while (1) switch (_context4.n) {
               case 0:
                 if (meta.className) {
-                  _context4.next = 2;
+                  _context4.n = 1;
                   break;
                 }
-                return _context4.abrupt("return");
-              case 2:
-                _this4.__P_501_3 = meta;
-                _this4.__P_501_4 = _this4.__P_501_0.getHierarchyFlat(meta);
+                return _context4.a(2);
+              case 1:
+                _this4.__P_511_3 = meta;
+                _this4.__P_511_4 = _this4.__P_511_0.getHierarchyFlat(meta);
                 // qx.tool.compiler.Console.info("Processing class " + meta.packageName + "." + meta.name);
                 extendsClause = "";
                 if (meta.superClass && meta.superClass !== "Object" && meta.superClass !== "Array" && meta.superClass !== "Error") {
@@ -279,7 +277,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 if (!declared) {
                   type = "declare " + type;
                 }
-                _this4.__P_501_6((_meta$jsdoc = meta.jsdoc) === null || _meta$jsdoc === void 0 ? void 0 : _meta$jsdoc.raw, meta.location);
+                _this4.__P_511_6((_meta$jsdoc = meta.jsdoc) === null || _meta$jsdoc === void 0 ? void 0 : _meta$jsdoc.raw, meta.location);
                 _this4.write("  // " + meta.className + "\n");
                 name = meta.className;
                 pos = name.lastIndexOf(".");
@@ -298,11 +296,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _this4.writeClassBody(meta);
                 _this4.write("\n  }\n");
-                _this4.__P_501_3 = null;
-                _this4.__P_501_4 = null;
-              case 22:
-              case "end":
-                return _context4.stop();
+                _this4.__P_511_3 = null;
+                _this4.__P_511_4 = null;
+              case 2:
+                return _context4.a(2);
             }
           }, _callee4);
         }))();
@@ -341,7 +338,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           var propertyMeta = meta.properties[propertyName];
           if ((_propertyMeta$appears = propertyMeta.appearsIn) !== null && _propertyMeta$appears !== void 0 && _propertyMeta$appears.length) {
             var superLikeName = propertyMeta.appearsIn.slice(-1)[0];
-            var superLikeMeta = this.__P_501_0.getMetaData(superLikeName);
+            var superLikeMeta = this.__P_511_0.getMetaData(superLikeName);
             var superLikeProperty = superLikeMeta.properties[propertyName];
             superLikeProperty.jsdoc = propertyMeta.jsdoc;
             propertyMeta = superLikeProperty;
@@ -360,7 +357,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           types.push(type);
           if (!((_propertyMeta$json2 = propertyMeta.json) !== null && _propertyMeta$json2 !== void 0 && _propertyMeta$json2.group)) {
-            this.__P_501_7("get" + upname, {
+            this.__P_511_7("get" + upname, {
               location: propertyMeta.location,
               returnType: type,
               jsdoc: {
@@ -369,7 +366,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               override: propertyMeta.override
             });
             if (typeof type === "string" && type.toLowerCase() === "boolean") {
-              this.__P_501_7("is" + upname, {
+              this.__P_511_7("is" + upname, {
                 location: propertyMeta.location,
                 returnType: type,
                 jsdoc: {
@@ -379,7 +376,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               });
             }
           }
-          this.__P_501_7("set" + upname, {
+          this.__P_511_7("set" + upname, {
             location: propertyMeta.location,
             parameters: [{
               name: "value",
@@ -391,7 +388,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             },
             override: propertyMeta.override
           });
-          this.__P_501_7("reset" + upname, {
+          this.__P_511_7("reset" + upname, {
             location: propertyMeta.location,
             jsdoc: {
               raw: ["Resets the ".concat(propertyName, " property")]
@@ -399,7 +396,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             override: propertyMeta.override
           });
           if ((_propertyMeta$json3 = propertyMeta.json) !== null && _propertyMeta$json3 !== void 0 && _propertyMeta$json3.async) {
-            this.__P_501_7("get" + upname + "Async", {
+            this.__P_511_7("get" + upname + "Async", {
               location: propertyMeta.location,
               returnType: "Promise<".concat(type, ">"),
               jsdoc: {
@@ -408,7 +405,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               override: propertyMeta.override
             });
             if (typeof type === "string" && type.toLowerCase() === "boolean") {
-              this.__P_501_7("is" + upname + "Async", {
+              this.__P_511_7("is" + upname + "Async", {
                 location: propertyMeta.location,
                 returnType: "Promise<".concat(type, ">"),
                 jsdoc: {
@@ -417,7 +414,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 override: propertyMeta.override
               });
             }
-            this.__P_501_7("set" + upname + "Async", {
+            this.__P_511_7("set" + upname + "Async", {
               location: propertyMeta.location,
               parameters: [{
                 name: "value",
@@ -434,14 +431,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (!names.length) {
           return;
         }
-        var override = this.__P_501_8(meta);
-        var superIsQxClass = !!this.__P_501_0.getMetaData(meta.superClass);
+        var override = this.__P_511_8(meta);
+        var superIsQxClass = !!this.__P_511_0.getMetaData(meta.superClass);
         var objType = "{";
         for (var i = 0; i < Math.min(names.length, types.length); i++) {
-          objType += "\n".concat(this.__P_501_5, "  ").concat(names[i], "?: ").concat(types[i], ";");
+          objType += "\n".concat(this.__P_511_5, "  ").concat(names[i], "?: ").concat(types[i], ";");
         }
-        objType += "\n".concat(this.__P_501_5, "}");
-        this.__P_501_7("set", {
+        objType += "\n".concat(this.__P_511_5, "}");
+        this.__P_511_7("set", {
           parameters: [{
             name: "data",
             type: objType + (superIsQxClass ? " & Parameters<globalThis.".concat(meta.superClass, "[\"set\"]>[0]") : "")
@@ -452,7 +449,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           },
           override: override
         });
-        this.__P_501_7("get", {
+        this.__P_511_7("get", {
           parameters: [{
             name: "prop",
             type: names.map(function (name) {
@@ -471,7 +468,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {qx.tool.compiler.MetaExtraction} meta
        * @returns {Boolean}
        */
-      __P_501_8: function __P_501_8(meta) {
+      __P_511_8: function __P_511_8(meta) {
         var _arguments$,
           _this5 = this;
         var firstpass = (_arguments$ = arguments[1]) !== null && _arguments$ !== void 0 ? _arguments$ : true;
@@ -482,14 +479,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           if (meta !== null && meta !== void 0 && meta.mixins) {
             return meta.mixins.some(function (mixin) {
-              var mixinMeta = _this5.__P_501_0.getMetaData(mixin);
-              return _this5.__P_501_8(mixinMeta, false);
+              var mixinMeta = _this5.__P_511_0.getMetaData(mixin);
+              return _this5.__P_511_8(mixinMeta, false);
             });
           }
         }
         if (meta !== null && meta !== void 0 && meta.superClass) {
-          var superClassMeta = this.__P_501_0.getMetaData(meta.superClass);
-          return this.__P_501_8(superClassMeta, false);
+          var superClassMeta = this.__P_511_0.getMetaData(meta.superClass);
+          return this.__P_511_8(superClassMeta, false);
         }
         return false;
       },
@@ -544,7 +541,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         typename = typename.replace(/\?.*$/, "");
 
         // handle global types
-        if (this.__P_501_0.getMetaData(typename) && typename.indexOf(".") != -1 || this.__P_501_0.getMetaData(typename.replace(/\[\]/g, "")) && typename.replace(/\[\]/g, "").indexOf(".") != -1) {
+        if (this.__P_511_0.getMetaData(typename) && typename.indexOf(".") != -1 || this.__P_511_0.getMetaData(typename.replace(/\[\]/g, "")) && typename.replace(/\[\]/g, "").indexOf(".") != -1) {
           return "globalThis." + typename;
         }
         typename = typename.replace("Promise<", "globalThis.Promise<");
@@ -561,7 +558,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Write a constructor
        */
       writeConstructor: function writeConstructor(methodMeta) {
-        this.write(this.__P_501_5 + "constructor (" + this.__P_501_9(methodMeta.params) + ");\n");
+        this.write(this.__P_511_5 + "constructor (" + this.__P_511_9(methodMeta.params) + ");\n");
       },
       /**
        * @typedef {Object} MemberConfig
@@ -578,7 +575,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {string} methodName
        * @param {MemberConfig} config
        */
-      __P_501_7: function __P_501_7(methodName, config) {
+      __P_511_7: function __P_511_7(methodName, config) {
         var _config$jsdoc;
         var declaration = "";
         if (config.access === "protected" || config.access === "public") {
@@ -595,9 +592,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (config.override) {
           declaration += "override ";
         }
-        declaration += this.__P_501_10(methodName) + "(";
+        declaration += this.__P_511_10(methodName) + "(";
         if (config.parameters) {
-          declaration += this.__P_501_9(config.parameters);
+          declaration += this.__P_511_9(config.parameters);
         }
         declaration += ")";
         var returnType = "void";
@@ -605,9 +602,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           returnType = this.getType(config.returnType);
         }
         declaration += ": " + returnType;
-        this.__P_501_6((_config$jsdoc = config.jsdoc) === null || _config$jsdoc === void 0 ? void 0 : _config$jsdoc.raw, config.location);
-        this.write(this.__P_501_5 + "// ".concat(this.__P_501_3.className).concat(config["static"] ? "#" : ".").concat(methodName, "\n"));
-        this.write(this.__P_501_5 + declaration + ";" + "\n");
+        this.__P_511_6((_config$jsdoc = config.jsdoc) === null || _config$jsdoc === void 0 ? void 0 : _config$jsdoc.raw, config.location);
+        this.write(this.__P_511_5 + "// ".concat(this.__P_511_3.className).concat(config["static"] ? "#" : ".").concat(methodName, "\n"));
+        this.write(this.__P_511_5 + declaration + ";" + "\n");
       },
       /**
        * @typedef {Object} FieldConfig
@@ -623,7 +620,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param {string} fieldName
        * @param {FieldConfig} config
        */
-      __P_501_11: function __P_501_11(fieldName, config) {
+      __P_511_11: function __P_511_11(fieldName, config) {
         var _config$jsdoc2;
         var declaration = "";
         if (config.access === "protected" || config.access === "public") {
@@ -640,23 +637,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         if (config.override) {
           declaration += "override ";
         }
-        declaration += this.__P_501_10(fieldName) + ": " + config.type;
-        this.__P_501_6((_config$jsdoc2 = config.jsdoc) === null || _config$jsdoc2 === void 0 ? void 0 : _config$jsdoc2.raw, config.location);
-        this.write(this.__P_501_5 + "// ".concat(this.__P_501_3.className).concat(config["static"] ? "#" : ".").concat(fieldName, "\n"));
-        this.write(this.__P_501_5 + declaration + ";" + "\n");
+        declaration += this.__P_511_10(fieldName) + ": " + config.type;
+        this.__P_511_6((_config$jsdoc2 = config.jsdoc) === null || _config$jsdoc2 === void 0 ? void 0 : _config$jsdoc2.raw, config.location);
+        this.write(this.__P_511_5 + "// ".concat(this.__P_511_3.className).concat(config["static"] ? "#" : ".").concat(fieldName, "\n"));
+        this.write(this.__P_511_5 + declaration + ";" + "\n");
       },
       /**
        * Writes the JSDoc content and adds a link to the source code
        * @param {string[]} jsdoc
        * @param {object} location
        */
-      __P_501_6: function __P_501_6(jsdoc, location) {
-        var _this7 = this,
-          _jsdoc;
+      __P_511_6: function __P_511_6(jsdoc, location) {
+        var _this7 = this;
         var fixup = function fixup(source) {
           source = source
           // to ensure that links work correctly, include the full class path
-          .replace(/\{@link #([^}]+)\}/g, "{@link ".concat(_this7.__P_501_3.className, ".$1}"));
+          .replace(/\{@link #([^}]+)\}/g, "{@link ".concat(_this7.__P_511_3.className, ".$1}"));
           if (source.match(/@param|@return/)) {
             var typeExpr = qx.tool.compiler.jsdoc.Parser.getTypeExpression(source);
             if (typeExpr) {
@@ -668,13 +664,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           return source.trim();
         };
-        jsdoc = ((_jsdoc = jsdoc) !== null && _jsdoc !== void 0 ? _jsdoc : []).map(fixup).filter(function (line) {
+        jsdoc = (jsdoc !== null && jsdoc !== void 0 ? jsdoc : []).map(fixup).filter(function (line) {
           return line.trim().length;
         });
         if (jsdoc.length) {
           jsdoc.push("*");
         }
-        var sourceCodePath = path.join(process.cwd(), this.__P_501_0.getRootDir(), this.__P_501_3.classFilename);
+        var sourceCodePath = path.join(process.cwd(), this.__P_511_0.getRootDir(), this.__P_511_3.classFilename);
 
         // currently, VSCode does not support the use of `%file:%line:%column` in
         // in-file links, though it supports them in all other contexts.
@@ -683,11 +679,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         //   ? `:${location.start.line}:${location.start.column}`
         //   : "";
 
-        this.write("".concat(this.__P_501_5, "/**\n") + [].concat(_toConsumableArray(jsdoc), ["* [source code](".concat(sourceCodePath).concat(locationSpecifier, ")"), "*/\n"]).map(function (line) {
-          return "".concat(_this7.__P_501_5, " ").concat(line);
+        this.write("".concat(this.__P_511_5, "/**\n") + [].concat(_toConsumableArray(jsdoc), ["* [source code](".concat(sourceCodePath).concat(locationSpecifier, ")"), "*/\n"]).map(function (line) {
+          return "".concat(_this7.__P_511_5, " ").concat(line);
         }).join("\n"));
       },
-      __P_501_9: function __P_501_9(params) {
+      __P_511_9: function __P_511_9(params) {
         var _this8 = this;
         var forceOptional = false;
         var arr = params.map(function (paramMeta) {
@@ -743,14 +739,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }
           if ((_memberMeta$appearsIn = memberMeta.appearsIn) !== null && _memberMeta$appearsIn !== void 0 && _memberMeta$appearsIn.length) {
             var superLikeName = memberMeta.appearsIn.slice(-1)[0];
-            var superLikeMeta = this.__P_501_0.getMetaData(superLikeName);
+            var superLikeMeta = this.__P_511_0.getMetaData(superLikeName);
             var superLikeMember = superLikeMeta[access][name];
             superLikeMember.jsdoc = memberMeta.jsdoc;
             memberMeta = superLikeMember;
           }
           if (memberMeta.type === "function") {
             var _memberMeta$jsdoc;
-            this.__P_501_7(name, {
+            this.__P_511_7(name, {
               location: memberMeta.location,
               access: classMeta.type !== "interface" && memberMeta.access,
               "abstract": classMeta.type !== "interface" && memberMeta["abstract"],
@@ -775,7 +771,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             } else if (!!((_memberMeta$jsdoc5 = memberMeta.jsdoc) !== null && _memberMeta$jsdoc5 !== void 0 && _memberMeta$jsdoc5["@type"])) {
               type = this.getType(memberMeta.jsdoc["@type"][0].type);
             }
-            this.__P_501_11(name, {
+            this.__P_511_11(name, {
               location: memberMeta.location,
               access: classMeta.type !== "interface" && memberMeta.access,
               "abstract": classMeta.type !== "interface" && memberMeta["abstract"],
@@ -794,7 +790,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *          {String} the name to escape
        * @return {String} the escaped (if necessary) name
        */
-      __P_501_10: function __P_501_10(name) {
+      __P_511_10: function __P_511_10(name) {
         if (!name.match(/^[$a-zA-Z_][$a-zA-Z0-9_]*$/)) {
           return '"' + name + '"';
         }
@@ -842,4 +838,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.TypeScriptWriter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TypeScriptWriter.js.map?dt=1735383873569
+//# sourceMappingURL=TypeScriptWriter.js.map?dt=1778272844521

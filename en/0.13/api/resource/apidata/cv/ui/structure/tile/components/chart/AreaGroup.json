@@ -1,0 +1,189 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576158,
+  "lastModifiedIso": "2026-05-08T20:36:16.158Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/chart/AreaGroup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 879
+    },
+    "end": {
+      "line": 143,
+      "column": 3,
+      "index": 4294
+    }
+  },
+  "className": "cv.ui.structure.tile.components.chart.AreaGroup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Area series component for CometVisu.",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Area series component for CometVisu.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.chart.AbstractGroup",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "chart"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1085
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 1133
+      }
+    }
+  },
+  "properties": {
+    "opacity": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1212
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1299
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 20
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opacity of the area series in %.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opacity of the area series in %.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_areaFunctions": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1323
+        },
+        "end": {
+          "line": 46,
+          "column": 24,
+          "index": 1343
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1350
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1864
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractGroup",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractGroup"
+      ]
+    },
+    "initDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1871
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dataset"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractGroup",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractGroup"
+      ]
+    },
+    "render": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2638
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 4286
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "transition"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractGroup",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractGroup"
+      ]
+    }
+  },
+  "statics": {}
+}

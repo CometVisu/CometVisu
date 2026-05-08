@@ -1,0 +1,151 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/MenuItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 855
+    },
+    "end": {
+      "line": 121,
+      "column": 3,
+      "index": 3924
+    }
+  },
+  "className": "cv.ui.structure.tile.components.MenuItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Represents an item in a list",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Represents an item in a list</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "members": {
+    "_currentState": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1118
+        },
+        "end": {
+          "line": 32,
+          "column": 23,
+          "index": 1137
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1144
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2146
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "onClick": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2153
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2948
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onStateUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the incoming data from the backend for this widget",
+          "     *",
+          "     * @param ev {CustomEvent} stateUpdate event fired from an cv-address component",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the incoming data from the backend for this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {CustomEvent} stateUpdate event fired from an cv-address component",
+            "paramName": "ev",
+            "description": " stateUpdate event fired from an cv-address component",
+            "type": "CustomEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3128
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 3695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "CustomEvent"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -55,4 +55,4 @@
   qx.test.bom.client.Device.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Device.js.map?dt=1735383858549
+//# sourceMappingURL=Device.js.map?dt=1778272830460

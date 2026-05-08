@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/MVisibility.js",
   "type": "mixin",
   "location": {
@@ -11,9 +11,9 @@
       "index": 894
     },
     "end": {
-      "line": 78,
+      "line": 90,
       "column": 3,
-      "index": 2151
+      "index": 2512
     }
   },
   "className": "cv.ui.structure.tile.MVisibility",
@@ -64,9 +64,9 @@
           "index": 1266
         },
         "end": {
-          "line": 48,
-          "column": 6,
-          "index": 1553
+          "line": 40,
+          "column": 18,
+          "index": 1280
         }
       },
       "appearsIn": []
@@ -76,14 +76,14 @@
     "visible": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1705
+          "index": 1432
         },
         "end": {
-          "line": 61,
+          "line": 53,
           "column": 5,
-          "index": 1793
+          "index": 1520
         }
       },
       "json": {
@@ -101,19 +101,54 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 70,
+          "line": 62,
           "column": 4,
-          "index": 1939
+          "index": 1666
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5,
-          "index": 2143
+          "index": 2303
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": []
+    },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 87,
+        "column": 2,
+        "index": 2459
+      },
+      "end": {
+        "line": 89,
+        "column": 3,
+        "index": 2508
+      }
     }
   }
 }

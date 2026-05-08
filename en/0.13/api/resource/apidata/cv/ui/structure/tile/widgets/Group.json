@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576160,
+  "lastModifiedIso": "2026-05-08T20:36:16.160Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Group.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 954
     },
     "end": {
-      "line": 120,
+      "line": 143,
       "column": 3,
-      "index": 4034
+      "index": 4771
     }
   },
   "className": "cv.ui.structure.tile.widgets.Group",
@@ -57,9 +57,9 @@
           "index": 1227
         },
         "end": {
-          "line": 76,
+          "line": 78,
           "column": 5,
-          "index": 2833
+          "index": 2867
         }
       },
       "type": "function",
@@ -75,14 +75,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 78,
+          "line": 80,
           "column": 4,
-          "index": 2840
+          "index": 2874
         },
         "end": {
-          "line": 84,
+          "line": 86,
           "column": 5,
-          "index": 3031
+          "index": 3065
         }
       },
       "type": "function",
@@ -117,14 +117,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 93,
           "column": 4,
-          "index": 3210
+          "index": 3244
         },
         "end": {
-          "line": 107,
+          "line": 101,
           "column": 5,
-          "index": 3809
+          "index": 3507
         }
       },
       "type": "function",
@@ -138,6 +138,48 @@
       "appearsIn": [
         "cv.ui.structure.tile.components.AbstractComponent"
       ]
+    },
+    "__setSummaryValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3514
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3943
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__syncSummaryValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3950
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4546
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
   "statics": {},

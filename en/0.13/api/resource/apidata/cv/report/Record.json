@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634056,
-  "lastModifiedIso": "2024-12-28T11:00:34.056Z",
+  "lastModified": 1778272576146,
+  "lastModifiedIso": "2026-05-08T20:36:16.146Z",
   "classFilename": "../../source/class/cv/report/Record.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 524,
       "column": 3,
-      "index": 16598
+      "index": 16628
     }
   },
   "className": "cv.report.Record",
@@ -862,7 +862,7 @@
         "end": {
           "line": 472,
           "column": 5,
-          "index": 15294
+          "index": 15324
         }
       },
       "type": "function",
@@ -889,12 +889,12 @@
         "start": {
           "line": 474,
           "column": 4,
-          "index": 15301
+          "index": 15331
         },
         "end": {
           "line": 486,
           "column": 5,
-          "index": 15594
+          "index": 15624
         }
       },
       "type": "function",
@@ -912,12 +912,12 @@
         "start": {
           "line": 488,
           "column": 4,
-          "index": 15601
+          "index": 15631
         },
         "end": {
           "line": 499,
           "column": 5,
-          "index": 15999
+          "index": 16029
         }
       },
       "type": "function",
@@ -943,12 +943,12 @@
         "start": {
           "line": 504,
           "column": 4,
-          "index": 16050
+          "index": 16080
         },
         "end": {
           "line": 522,
           "column": 5,
-          "index": 16590
+          "index": 16620
         }
       },
       "type": "function",

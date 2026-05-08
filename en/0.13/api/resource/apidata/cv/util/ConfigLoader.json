@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576161,
+  "lastModifiedIso": "2026-05-08T20:36:16.161Z",
   "classFilename": "../../source/class/cv/util/ConfigLoader.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1081
     },
     "end": {
-      "line": 353,
+      "line": 356,
       "column": 3,
-      "index": 12725
+      "index": 12883
     }
   },
   "className": "cv.util.ConfigLoader",
@@ -170,9 +170,9 @@
           "index": 1709
         },
         "end": {
-          "line": 192,
+          "line": 195,
           "column": 5,
-          "index": 7586
+          "index": 7744
         }
       },
       "type": "function",
@@ -212,14 +212,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 198,
+          "line": 201,
           "column": 4,
-          "index": 7714
+          "index": 7872
         },
         "end": {
-          "line": 227,
+          "line": 230,
           "column": 5,
-          "index": 8715
+          "index": 8873
         }
       },
       "type": "function",
@@ -255,14 +255,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 233,
+          "line": 236,
           "column": 4,
-          "index": 8826
+          "index": 8984
         },
         "end": {
-          "line": 238,
+          "line": 241,
           "column": 5,
-          "index": 8996
+          "index": 9154
         }
       },
       "type": "function",
@@ -304,14 +304,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 245,
+          "line": 248,
           "column": 4,
-          "index": 9189
+          "index": 9347
         },
         "end": {
-          "line": 339,
+          "line": 342,
           "column": 5,
-          "index": 12438
+          "index": 12596
         }
       },
       "type": "function",
@@ -333,14 +333,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 347,
+        "line": 350,
         "column": 2,
-        "index": 12586
+        "index": 12744
       },
       "end": {
-        "line": 352,
+        "line": 355,
         "column": 3,
-        "index": 12721
+        "index": 12879
       }
     }
   },

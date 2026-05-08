@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.plugins.diagram.AbstractDiagram": {
-        "construct": true,
         "require": true
       },
       "qx.event.message.Bus": {},
@@ -22,7 +21,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Diagram.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -41,15 +40,6 @@
 
   qx.Class.define('cv.plugins.diagram.Diagram', {
     extend: cv.plugins.diagram.AbstractDiagram,
-    /*
-     ******************************************************
-     CONSTRUCTOR
-     ******************************************************
-     */
-    construct: function construct(props) {
-      this._init = true;
-      cv.plugins.diagram.AbstractDiagram.constructor.call(this, props);
-    },
     /*
      ******************************************************
      PROPERTIES
@@ -104,6 +94,7 @@
      ******************************************************
      */
     members: {
+      _init: true,
       __P_22_0: null,
       _onDomReady: function _onDomReady() {
         var _this = this;
@@ -167,4 +158,4 @@
   cv.plugins.diagram.Diagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Diagram.js.map?dt=1735383839500
+//# sourceMappingURL=Diagram.js.map?dt=1778272811540

@@ -6,14 +6,17 @@
         "require": true
       },
       "qx.core.Object": {
+        "construct": true,
         "require": true
-      }
+      },
+      "cv.Config": {},
+      "qx.event.message.Bus": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* AbstractCustomElement.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -42,7 +45,10 @@
     ***********************************************
     */
     construct: function construct(element) {
+      qx.core.Object.constructor.call(this);
       this._element = element;
+      this._initCounter = 0;
+      this._deferInit = true; // activate deferred init handling by default; subclasses can set this to false if they do not support it
     },
     /*
     ***********************************************
@@ -67,17 +73,50 @@
        * @var {HTMLElement}
        */
       _element: null,
+      /** 
+       * @var {boolean} Whether this element supports deferring initialization until its page becomes active (true), does not support it (false)
+       */
+      _deferInit: null,
       _initialized: false,
+      __P_97_0: null,
+      _initCounter: null,
       _applyConnected: function _applyConnected(value) {
+        var _this = this;
         if (value && !this._initialized) {
-          this._init();
-          this._initialized = true;
-        } else {
+          var page = this._deferInit && !cv.Config.testMode ? this._element.closest('cv-page') : null;
+          if (page && !page.classList.contains('active') && !page.classList.contains('sub-active')) {
+            // Defer init until this page (or a sub-page of it) becomes active
+            this.__P_97_0 = function (msg) {
+              var activePage = msg.getData();
+              if (page === activePage || page.contains(activePage)) {
+                if (_this.__P_97_0) {
+                  qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', _this.__P_97_0, _this);
+                  _this.__P_97_0 = null;
+                }
+                _this._init();
+                _this._initCounter++;
+                _this._initialized = true;
+                _this._postInit();
+              }
+            };
+            qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this.__P_97_0, this);
+          } else {
+            this._init();
+            this._initCounter++;
+            this._initialized = true;
+            this._postInit();
+          }
+        } else if (!value && this._initialized) {
           this._disconnected();
           this._initialized = false;
+        } else if (!value && !this._initialized && this.__P_97_0) {
+          // Disconnected before deferred init could run — clean up subscription
+          qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__P_97_0, this);
+          this.__P_97_0 = null;
         }
       },
       _init: function _init() {},
+      _postInit: function _postInit() {},
       _disconnected: function _disconnected() {},
       getElement: function getElement() {
         return this._element;
@@ -89,10 +128,14 @@
     ***********************************************
     */
     destruct: function destruct() {
+      if (this.__P_97_0) {
+        qx.event.message.Bus.unsubscribe('cv.ui.structure.tile.currentPage', this.__P_97_0, this);
+        this.__P_97_0 = null;
+      }
       this._element = null;
     }
   });
   cv.ui.structure.tile.elements.AbstractCustomElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractCustomElement.js.map?dt=1735383845598
+//# sourceMappingURL=AbstractCustomElement.js.map?dt=1778272817458

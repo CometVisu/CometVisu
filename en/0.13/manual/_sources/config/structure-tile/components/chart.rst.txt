@@ -23,8 +23,9 @@ For each ``<dataset>`` a line is drawn in the chart.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Living room" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3">
-                <dataset chart-type="line" src="openhab://Temperature_FF_Living"/>
+            <cv-chart title="Living room" series="day" refresh="300" colspan="6" rowspan="3">
+                <y-axis format="%.1f °C"/>
+                <dataset chart-type="line" show-area="true" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -32,7 +33,7 @@ For each ``<dataset>`` a line is drawn in the chart.
 The example shows the temperature curve of the last 24 hours, the exact, formatted temperature value for a point in the
 chart is displayed as a tooltip when hovering over the chart.
 In order for the chart to reach a certain size, a tile with double width ``<cv-tile size="2x1">`` is used here and the
-chart itself should fill the entire tile ``<cv-chart ... colspan="3" rowspan="3">``.
+chart itself should fill the entire tile ``<cv-chart ... colspan="6" rowspan="3">``.
 
 Configuring the data source
 ###########################
@@ -163,7 +164,9 @@ It is also possible to display multiple lines in a chart and to color them diffe
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Power" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" series="month" refresh="300" colspan="6" rowspan="3">
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
                 <dataset src="openhab://PV_Energy_Today" color="#FF9900" title="Production" />
               </cv-chart>
@@ -187,7 +190,9 @@ The chart element also offers the possibility to display a bar chart:
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Power" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" series="month" refresh="300" colspan="6" rowspan="3">
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/> 
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false" chart-type="bar"/>
                 <dataset src="openhab://PV_Energy_Today" color="#FF9900" title="Production" chart-type="bar"/>
               </cv-chart>
@@ -212,7 +217,9 @@ the ``selection`` attribute. This can be filled with a comma-separated list of a
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Power" selection="week,month,year" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" selection="week,month,year" series="month" refresh="300" colspan="6" rowspan="3">
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
               </cv-chart>
         </cv-tile>
@@ -233,8 +240,9 @@ There are various options to influence the display of the chart. For example, yo
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Living room" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3" show-grid="false">
-                <dataset chart-type="line" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
+            <cv-chart title="Living room" series="day" refresh="300" colspan="6" rowspan="3" show-grid="false">
+                <y-axis format="%.1f °C"/>
+                <dataset chart-type="line" show-area="true" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
             </cv-chart>
         </cv-tile>
     </cv-widget>
@@ -258,7 +266,9 @@ With a horizontal line, a certain value can be marked (e.g. a threshold), or an 
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Power" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" selection="month" series="month" refresh="300" colspan="6" rowspan="3">
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
                 <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FF0000" value="max" format="%.1f"/>
                 <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
@@ -279,7 +289,9 @@ Inline queries can also be referenced this way:
 
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Strom" selection="month" series="month" refresh="300" colspan="6" rowspan="3">
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://inline#1" title="Grid withdrawal" color="#FF0000" show-area="false">
                     ...
                 <dataset>
@@ -309,9 +321,11 @@ The vertical lines allow only fixed value.
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Power" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" selection="day" series="day" refresh="300" colspan="6" rowspan="3">   
+                <x-axis format="%d. %b"/>
+                <y-axis format="%.1f kWh"/>
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
-                <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
+                <v-line color="#FFFFFF" value="2025-11-20T12:00:00" />
               </cv-chart>
         </cv-tile>
     </cv-widget>

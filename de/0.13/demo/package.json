@@ -7,6 +7,7 @@
     "url": "https://github.com/cometvisu/cometvisu.git"
   },
   "scripts": {
+    "bundle-monaco": "node utils/compile/bundle-monaco.js",
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
@@ -16,10 +17,14 @@
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "qx lint --use-eslintrc=false",
+    "lint": "eslint --cache source/class client/source/class source/ServiceWorker.js",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:tooling": "eslint --cache eslint.config.cjs Gruntfile.js compile.js .github/actions/github/index.js skeletons/widget-test.js",
+    "lint:qx": "qx lint --use-eslintrc=false",
     "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
     "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/",
+    "screenshots-pw": "grunt screenshots-pw",
     "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate",
     "selenium": "CV_BROWSER=chrome CV_VERSION=stable utils/ci/browser-setup.sh"
   },
@@ -42,21 +47,25 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/polyfill": "^7.8.7",
     "@openapitools/openapi-generator-cli": "^2.7.0",
-    "@prettier/plugin-php": "^0.22.1",
-    "@qooxdoo/eslint-config-qx": "^2.0.1",
+    "@playwright/test": "^1.57.0",
+    "@prettier/plugin-php": "^0.24.0",
+    "@qooxdoo/eslint-config-qx": "^3.0.1",
+    "@types/d3": "^7.4.3",
     "babel-eslint": "^10.1.0",
     "babel-preset-es2015": "^6.24.1",
     "chmodr": "^1.2.0",
+    "deasync": "^0.1.30",
     "easyimage": "^3.1.1",
+    "esbuild": "^0.28.0",
     "eslint": "^9.6.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.1.3",
-    "eslint-plugin-jsdoc": "^50.3.0",
+    "eslint-plugin-jsdoc": "^52.0.2",
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
-    "glob": "^10.3.10",
+    "globals": "^16.3.0",
     "grunt": "^1.6.1",
     "grunt-bump": "^0.8.0",
     "grunt-chmod": "^1.0.3",
@@ -84,13 +93,14 @@
     "protractor": "^7.0.0",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.16.0",
+    "sharp": "^0.33.5",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.7.2",
-    "@sentry/browser": "^8.34.0",
+    "@qooxdoo/framework": "^7.9.0",
+    "@sentry/browser": "^10.0.0",
     "crc-32": "^1.2.2",
-    "monaco-editor": "^0.52.0",
+    "monaco-editor": "^0.55.1",
     "oauth-pkce": "^0.0.7"
   },
   "eslintConfig": {
@@ -186,6 +196,20 @@
       },
       {
         "files": [
+          "source/test/playwright/**/*.js",
+          "utils/screenshots.playwright.js"
+        ],
+        "env": {
+          "node": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off",
+          "no-unused-vars": "off"
+        }
+      },
+      {
+        "files": [
           "utils/compile/**/*.js"
         ],
         "env": {
@@ -243,6 +267,8 @@
       "URL": "readonly",
       "sinon": "readonly",
       "RSSParser": "readonly",
+      "com": "readonly",
+      "qxl": "readonly",
       "QxConnector": "readonly",
       "InstallTrigger": "readonly",
       "d3": "readonly"

@@ -44,7 +44,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Backend.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -73,7 +73,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     members: {
       _name: null,
-      __P_95_0: null,
+      __P_100_0: null,
       _init: function _init() {
         var _this = this;
         var element = this._element;
@@ -159,7 +159,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           var client = cv.io.BackendConnections.addBackendClient(name, type, backendUrl, 'config');
           this._client = client;
           this._name = name;
-          this.__P_95_0 = [];
+          this.__P_100_0 = [];
           client.update = function (data) {
             return model.updateFrom(name, data);
           }; // override clients update function
@@ -181,7 +181,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               model.setDefaultBackendName(name);
             }
             var doSubscribe = function doSubscribe() {
-              var _iterator2 = _createForOfIteratorHelper(_this.__P_95_0),
+              var _iterator2 = _createForOfIteratorHelper(_this.__P_100_0),
                 _step2;
               try {
                 for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -239,4 +239,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.elements.Backend.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Backend.js.map?dt=1735383845708
+//# sourceMappingURL=Backend.js.map?dt=1778272817568

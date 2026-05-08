@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/elements/StateNotification.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 153,
       "column": 3,
-      "index": 5514
+      "index": 5692
     }
   },
   "className": "cv.ui.structure.tile.elements.StateNotification",
@@ -57,8 +57,8 @@
         },
         "end": {
           "line": 130,
-          "column": 3,
-          "index": 4896
+          "column": 5,
+          "index": 5074
         }
       },
       "type": "function",
@@ -75,12 +75,12 @@
         "start": {
           "line": 132,
           "column": 4,
-          "index": 4903
+          "index": 5081
         },
         "end": {
           "line": 140,
           "column": 5,
-          "index": 5280
+          "index": 5458
         }
       },
       "type": "function",

@@ -24,7 +24,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "cv.ui.structure.tile.components.AbstractComponent": {
         "require": true
       },
-      "cv.ui.structure.tile.MStringTransforms": {
+      "cv.util.MStringTransforms": {
         "require": true
       },
       "qx.event.message.Bus": {},
@@ -39,7 +39,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Menu.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -64,7 +64,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
    */
   qx.Class.define('cv.ui.structure.tile.components.Menu', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    include: [cv.ui.structure.tile.MStringTransforms],
+    include: [cv.util.MStringTransforms],
     /*
     ***********************************************
       PROPERTIES
@@ -152,6 +152,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             qx.event.Registration.addListener(this._element, 'swipe', this._onSwipe, this);
             icon.classList.add('ri-menu-line');
           } else if (model === 'menuItems') {
+            // we do not habe to wait for dom ready for this model
+            this.setDomReady(true);
             // add hamburger menu
             var _icon = document.createElement('i');
             _icon.classList.add('ri-more-2-fill');
@@ -195,7 +197,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               var rootList = this._element.querySelector(':scope > ul');
               if (rootList) {
                 rootList.replaceChildren();
-                this.__P_82_0(rootList, parentElement, currentPage, 0);
+                this.__P_83_0(rootList, parentElement, currentPage, 0);
               }
               break;
             }
@@ -223,6 +225,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                       li.appendChild(text);
                     }
                     li.addEventListener('click', function (event) {
+                      event.stopPropagation();
                       item.getInstance().onClick(event);
                     });
                     _rootList.appendChild(li);
@@ -263,6 +266,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           // add some general listeners to close
           qx.event.Registration.addListener(document, 'pointerdown', this._onPointerDown, this);
           qx.event.Registration.addListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+        } else {
+          this._closeAll();
         }
       },
       /**
@@ -271,9 +276,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       _onPointerDown: function _onPointerDown(ev) {
         var target = ev.getTarget();
-        if (target.classList.contains('menu') || target.parentElement && target.parentElement.classList.contains('menu') || target.nodeName.toLowerCase() === 'cv-menu' || target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu') {
+        if (target.classList.contains('menu') || target.parentElement && target.parentElement.classList.contains('menu') || target.nodeName.toLowerCase() === 'cv-menu' || target.parentElement && target.parentElement.nodeName.toLowerCase() === 'cv-menu' && target.parentElement === this._element) {
           // clicked in hamburger menu, do nothing
-        } else if (target.tagName.toLowerCase() !== '.summary' && target.tagName.toLowerCase() !== 'p') {
+        } else if (!target.classList.contains('summary') && target.tagName.toLowerCase() !== 'p') {
           // defer closing because it would prevent the link clicks and page selection
           qx.event.Timer.once(this._closeAll, this, 500);
         } else {
@@ -304,29 +309,35 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @private
        */
       _closeAll: function _closeAll(except) {
+        if (this.isDisposed()) {
+          return;
+        }
         if (this._element.classList.contains('open')) {
           this._element.classList.remove('open');
-        } else if (this._element.classList.contains('responsive')) {
+        }
+        if (this._element.classList.contains('responsive')) {
           this._element.classList.remove('responsive');
-        } else {
-          var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('.details[open]')),
-            _step3;
-          try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var detail = _step3.value;
-              if (!except || detail !== except) {
-                detail.removeAttribute('open');
-              }
+        }
+        var _iterator3 = _createForOfIteratorHelper(this._element.querySelectorAll('.details[open]')),
+          _step3;
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var detail = _step3.value;
+            if (!except || detail !== except) {
+              detail.removeAttribute('open');
             }
-          } catch (err) {
-            _iterator3.e(err);
-          } finally {
-            _iterator3.f();
           }
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
         }
         if (this._element.querySelectorAll('.details[open]').length === 0) {
           qx.event.Registration.removeListener(document, 'pointerdown', this._onPointerDown, this);
-          qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
+          var main = document.body.querySelector(':scope > main');
+          if (main) {
+            qx.event.Registration.removeListener(main, 'scroll', this._closeAll, this);
+          }
         }
       },
       _openDetail: function _openDetail(item) {
@@ -345,7 +356,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           qx.event.Registration.removeListener(document.body.querySelector(':scope > main'), 'scroll', this._closeAll, this);
         }
       },
-      __P_82_0: function __P_82_0(parentList, parentElement, currentPage, currentLevel) {
+      __P_83_0: function __P_83_0(parentList, parentElement, currentPage, currentLevel) {
         var _this3 = this;
         if (!parentElement) {
           return;
@@ -431,7 +442,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               details.appendChild(summary);
               var subList = document.createElement('ul');
               details.appendChild(subList);
-              _this3.__P_82_0(subList, page, currentPage, currentLevel + 1);
+              _this3.__P_83_0(subList, page, currentPage, currentLevel + 1);
               li.appendChild(details);
             } else {
               li.appendChild(a);
@@ -485,6 +496,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } finally {
           _iterator6.f();
         }
+      },
+      _disconnected: function _disconnected() {
+        this._closeAll();
+        cv.ui.structure.tile.components.Menu.superclass.prototype._disconnected.call(this);
       }
     },
     /*
@@ -517,4 +532,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1735383845004
+//# sourceMappingURL=Menu.js.map?dt=1778272816586

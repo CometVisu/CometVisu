@@ -102,9 +102,16 @@
         nullable: false,
         init: 10000
       }
+    },
+    environment: {
+      /**
+       * The factor by which any delay is multiplied or false or zero if no such
+       * factor should be applied.
+       */
+      "qx.test.delay.scale": false
     }
   });
   qx.dev.unit.AsyncWrapper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AsyncWrapper.js.map?dt=1735383851134
+//# sourceMappingURL=AsyncWrapper.js.map?dt=1778272822234

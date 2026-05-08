@@ -1,0 +1,224 @@
+{
+  "version": 0.3,
+  "lastModified": 1778272576158,
+  "lastModifiedIso": "2026-05-08T20:36:16.158Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/chart/YAxis.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 835
+    },
+    "end": {
+      "line": 164,
+      "column": 3,
+      "index": 6654
+    }
+  },
+  "className": "cv.ui.structure.tile.components.chart.YAxis",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.chart.AbstractAxis",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "chart"
+      },
+      {
+        "name": "type"
+      },
+      {
+        "name": "right"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 4,
+        "index": 1093
+      },
+      "end": {
+        "line": 55,
+        "column": 5,
+        "index": 2109
+      }
+    }
+  },
+  "members": {
+    "_applyDomain": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 8,
+          "index": 2135
+        },
+        "end": {
+          "line": 67,
+          "column": 9,
+          "index": 2578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "domain"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractAxis",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractAxis"
+      ]
+    },
+    "render": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 8,
+          "index": 2589
+        },
+        "end": {
+          "line": 97,
+          "column": 9,
+          "index": 3804
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractAxis",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractAxis"
+      ]
+    },
+    "setRangeOverride": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 8,
+          "index": 3815
+        },
+        "end": {
+          "line": 111,
+          "column": 9,
+          "index": 4504
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "range"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateTransform": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 8,
+          "index": 4515
+        },
+        "end": {
+          "line": 129,
+          "column": 9,
+          "index": 5223
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateRange": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 8,
+          "index": 5234
+        },
+        "end": {
+          "line": 138,
+          "column": 9,
+          "index": 5585
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyShowGrid": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 8,
+          "index": 5596
+        },
+        "end": {
+          "line": 151,
+          "column": 9,
+          "index": 6267
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.chart.AbstractAxis",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.chart.AbstractAxis"
+      ]
+    },
+    "_updateTickSize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 8,
+          "index": 6278
+        },
+        "end": {
+          "line": 162,
+          "column": 9,
+          "index": 6644
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

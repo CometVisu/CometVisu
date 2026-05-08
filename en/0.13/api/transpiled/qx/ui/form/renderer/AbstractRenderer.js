@@ -69,7 +69,7 @@
 
       // translation support
       {
-        qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+        this.__P_604_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
         this._names = [];
       }
       this._form = form;
@@ -194,8 +194,8 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      {
-        qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
+      if (true && this.__P_604_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_604_0);
       }
       this._names = null;
       this._form.removeListener("change", this._onFormChange, this);
@@ -205,4 +205,4 @@
   qx.ui.form.renderer.AbstractRenderer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRenderer.js.map?dt=1735383878373
+//# sourceMappingURL=AbstractRenderer.js.map?dt=1778272849173

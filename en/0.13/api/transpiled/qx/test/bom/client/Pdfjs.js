@@ -50,6 +50,9 @@
     members: {
       "test: is PDF.js available": function test_is_PDFJs_available() {
         this.require(["firefox"]);
+        if (navigator.plugins.length == 0) {
+          this.skip("test disabled on headless browsers");
+        }
         qx.core.Environment.getAsync("plugin.pdfjs", function (result) {
           this.resume(function () {
             this.assertTrue(result);
@@ -62,4 +65,4 @@
   qx.test.bom.client.Pdfjs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pdfjs.js.map?dt=1735383858565
+//# sourceMappingURL=Pdfjs.js.map?dt=1778272830478

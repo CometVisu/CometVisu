@@ -18,7 +18,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -125,8 +125,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
        */
       removeConnection: function removeConnection(other) {
-        if (this._connections.includes(other)) {
-          this._connections.remove(other);
+        if (!this._connections) {
+          return;
+        }
+        var index = this._connections.indexOf(other);
+        if (index > -1) {
+          this._connections.splice(index, 1);
           if (this.getUseConnectionSum()) {
             other.removeListener('changeValue', this._updateConnectionsSum, this);
           }
@@ -137,8 +141,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @param other {cv.ui.structure.tile.components.energy.PowerEntity}
        */
       removeInverseConnection: function removeInverseConnection(other) {
-        if (this._inverseConnections.includes(other)) {
-          this._inverseConnections.remove(other);
+        if (!this._inverseConnections) {
+          return;
+        }
+        var index = this._inverseConnections.indexOf(other);
+        if (index > -1) {
+          this._inverseConnections.splice(index, 1);
           if (this.getUseConnectionSum()) {
             other.removeListener('changeValue', this._updateConnectionsSum, this);
           }
@@ -316,20 +324,46 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      var source = this.getSource();
-      var target = this.getTarget();
+      var source = this._connectorFrom && this._connectorFrom.getSource ? this._connectorFrom.getSource() : null;
+      var target = this._connectorTo && this._connectorTo.getTarget ? this._connectorTo.getTarget() : null;
       if (target) {
         target.removeConnection(this);
       }
       if (source) {
         source.removeInverseConnection(this);
       }
+      if (this.getUseConnectionSum()) {
+        var _iterator5 = _createForOfIteratorHelper(this._connections),
+          _step5;
+        try {
+          for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+            var other = _step5.value;
+            other.removeListener('changeValue', this._updateConnectionsSum, this);
+          }
+        } catch (err) {
+          _iterator5.e(err);
+        } finally {
+          _iterator5.f();
+        }
+        var _iterator6 = _createForOfIteratorHelper(this._inverseConnections),
+          _step6;
+        try {
+          for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            var _other3 = _step6.value;
+            _other3.removeListener('changeValue', this._updateConnectionsSum, this);
+          }
+        } catch (err) {
+          _iterator6.e(err);
+        } finally {
+          _iterator6.f();
+        }
+      }
       this._disposeObjects('_connectorTo', '_connectorFrom');
-      this._connections.clear();
-      this._inverseConnections.clear();
+      this._connections = [];
+      this._inverseConnections = [];
     }
   });
   cv.ui.structure.tile.components.energy.MConnectable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MConnectable.js.map?dt=1735383845351
+//# sourceMappingURL=MConnectable.js.map?dt=1778272817209

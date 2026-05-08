@@ -36,17 +36,17 @@
     extend: qx.dev.unit.TestCase,
     members: {
       setUp: function setUp() {
-        this.__P_428_0 = qx.dom.Element.create("div");
+        this.__P_438_0 = qx.dom.Element.create("div");
         var inlineStyle = "position:absolute;top:50px;left:50px;width:200px;height:200px";
-        qx.bom.element.Style.setCss(this.__P_428_0, inlineStyle);
-        qx.dom.Element.insertBegin(this.__P_428_0, document.body);
+        qx.bom.element.Style.setCss(this.__P_438_0, inlineStyle);
+        qx.dom.Element.insertBegin(this.__P_438_0, document.body);
       },
       tearDown: function tearDown() {
-        qx.dom.Element.remove(this.__P_428_0);
+        qx.dom.Element.remove(this.__P_438_0);
       },
       testAppearEvent: function testAppearEvent() {
         var _this = this;
-        var inlineRoot = new qx.ui.root.Inline(this.__P_428_0);
+        var inlineRoot = new qx.ui.root.Inline(this.__P_438_0);
         inlineRoot.addListener("appear", function (e) {
           _this.resume(function () {
             this.assertTrue(qx.dom.Element.isInDom(inlineRoot.getContentElement().getDomElement()));
@@ -59,4 +59,4 @@
   qx.test.ui.root.Inline.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Inline.js.map?dt=1735383865222
+//# sourceMappingURL=Inline.js.map?dt=1778272837379

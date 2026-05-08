@@ -14,7 +14,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* PopupHandler.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -53,11 +53,11 @@
 
         // register to topics
         cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-          'cv.config.error': {
+          'cv.error': {
             type: 'error',
             icon: 'message_attention'
           },
-          'cv.error': {
+          'cv.config.error': {
             type: 'error',
             icon: 'message_attention'
           },
@@ -65,6 +65,10 @@
             type: 'error',
             icon: 'message_attention',
             deletable: true
+          },
+          'cv.loading.error': {
+            type: 'error',
+            icon: 'message_attention'
           }
         });
         qx.event.message.Bus.subscribe('path.pageLeft', this._onPageChanged, this);
@@ -267,4 +271,4 @@
   cv.ui.PopupHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PopupHandler.js.map?dt=1735383886015
+//# sourceMappingURL=PopupHandler.js.map?dt=1778272856832

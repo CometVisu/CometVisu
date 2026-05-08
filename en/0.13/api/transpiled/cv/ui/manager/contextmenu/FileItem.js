@@ -34,7 +34,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* FileItem.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -206,9 +206,10 @@
             this.getChildControl('replace-button').exclude();
           }
           // buttons that need write access
-          ['delete-button', 'replace-button', 'rename-button'].forEach(function (controlName) {
-            this.getChildControl(controlName).setEnabled(!file.isFake() && file.isWriteable() && (!isBackup || controlName === 'delete-button'));
+          ['replace-button', 'rename-button'].forEach(function (controlName) {
+            this.getChildControl(controlName).setEnabled(!file.isFake() && file.isWriteable() && !isBackup && !file.isTrash());
           }, this);
+          this.getChildControl('delete-button').setEnabled(!file.isFake() && file.isWriteable());
           this.getChildControl('download-button').setEnabled(!file.isFake() && file.getType() === 'file');
           this.getChildControl('restore-button').setVisibility(file.isInTrash() || isBackup ? 'visible' : 'excluded');
         } else {
@@ -421,4 +422,4 @@
   cv.ui.manager.contextmenu.FileItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FileItem.js.map?dt=1735383840298
+//# sourceMappingURL=FileItem.js.map?dt=1778272812284

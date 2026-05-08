@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687977,
-  "lastModifiedIso": "2024-12-28T11:01:27.977Z",
+  "lastModified": 1778272635256,
+  "lastModifiedIso": "2026-05-08T20:37:15.256Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Label.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 570
     },
     "end": {
-      "line": 349,
+      "line": 429,
       "column": 3,
-      "index": 9937
+      "index": 12001
     }
   },
   "className": "qx.bom.Label",
@@ -64,6 +64,39 @@
       },
       "appearsIn": []
     },
+    "__sizeCache": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Object<String,Object>} cache of label sizes "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object<String,Object>} cache of label sizes"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1092
+        },
+        "end": {
+          "line": 43,
+          "column": 19,
+          "index": 1107
+        }
+      },
+      "appearsIn": []
+    },
     "__prepareText": {
       "jsdoc": {
         "raw": [
@@ -91,14 +124,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 47,
+          "line": 50,
           "column": 4,
-          "index": 1157
+          "index": 1240
         },
         "end": {
-          "line": 52,
+          "line": 55,
           "column": 5,
-          "index": 1335
+          "index": 1418
         }
       },
       "type": "function",
@@ -135,14 +168,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 59,
+          "line": 62,
           "column": 4,
-          "index": 1468
+          "index": 1551
         },
         "end": {
-          "line": 64,
+          "line": 67,
           "column": 5,
-          "index": 1645
+          "index": 1728
         }
       },
       "type": "function",
@@ -191,14 +224,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 72,
+          "line": 75,
           "column": 4,
-          "index": 1826
+          "index": 1909
         },
         "end": {
-          "line": 113,
+          "line": 116,
           "column": 5,
-          "index": 2975
+          "index": 3058
         }
       },
       "type": "function",
@@ -255,14 +288,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 122,
+          "line": 125,
           "column": 4,
-          "index": 3238
+          "index": 3321
         },
         "end": {
-          "line": 139,
+          "line": 142,
           "column": 5,
-          "index": 3696
+          "index": 3779
         }
       },
       "type": "function",
@@ -346,14 +379,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 159,
+          "line": 162,
           "column": 4,
-          "index": 4515
+          "index": 4598
         },
         "end": {
-          "line": 208,
+          "line": 211,
           "column": 5,
-          "index": 5842
+          "index": 5925
         }
       },
       "type": "function",
@@ -395,14 +428,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 211,
+          "line": 214,
           "column": 4,
-          "index": 5879
+          "index": 5962
         },
         "end": {
-          "line": 211,
+          "line": 214,
           "column": 21,
-          "index": 5896
+          "index": 5979
         }
       },
       "appearsIn": []
@@ -441,14 +474,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 221,
+          "line": 224,
           "column": 4,
-          "index": 6258
+          "index": 6341
         },
         "end": {
-          "line": 229,
+          "line": 232,
           "column": 5,
-          "index": 6458
+          "index": 6541
         }
       },
       "type": "function",
@@ -502,14 +535,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 240,
+          "line": 243,
           "column": 4,
-          "index": 6734
+          "index": 6817
         },
         "end": {
-          "line": 259,
+          "line": 262,
           "column": 5,
-          "index": 7309
+          "index": 7392
         }
       },
       "type": "function",
@@ -562,14 +595,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 267,
+          "line": 270,
           "column": 4,
-          "index": 7491
+          "index": 7574
         },
         "end": {
-          "line": 278,
+          "line": 281,
           "column": 5,
-          "index": 7855
+          "index": 7938
         }
       },
       "type": "function",
@@ -639,14 +672,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 291,
           "column": 4,
-          "index": 8245
+          "index": 8328
         },
         "end": {
-          "line": 297,
+          "line": 308,
           "column": 5,
-          "index": 8555
+          "index": 8887
         }
       },
       "type": "function",
@@ -716,14 +749,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 317,
           "column": 4,
-          "index": 8830
+          "index": 9162
         },
         "end": {
-          "line": 319,
+          "line": 338,
           "column": 5,
-          "index": 9239
+          "index": 9807
         }
       },
       "type": "function",
@@ -740,6 +773,248 @@
       "returnType": {
         "type": "Map<any, any>"
       },
+      "appearsIn": []
+    },
+    "__getCacheKey": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a key for a specific set of styles, used in the caching of size calculations",
+          "     *",
+          "     * @param {*} styles",
+          "     * @param {Integer?} width optional width",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a key for a specific set of styles, used in the caching of size calculations</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} styles",
+            "paramName": "styles",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{Integer?} width optional width",
+            "paramName": "width",
+            "description": "optional width",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4,
+          "index": 10016
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 10349
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "*"
+        },
+        {
+          "name": "width",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__getCachedSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the cached size of the given text",
+          "     *",
+          "     * @param {String} cacheKey",
+          "     * @param {String} text",
+          "     * @returns {*} size object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the cached size of the given text</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} cacheKey",
+            "paramName": "cacheKey",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} text",
+            "paramName": "text",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} size object",
+            "type": "*",
+            "description": "size object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 10520
+        },
+        "end": {
+          "line": 371,
+          "column": 5,
+          "index": 10646
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheKey",
+          "type": "string"
+        },
+        {
+          "name": "text",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "__storeCacheSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores the size of the given text in the cache",
+          "     *",
+          "     * @param {String} cacheKey",
+          "     * @param {String} text",
+          "     * @param {*} size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stores the size of the given text in the cache</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} cacheKey",
+            "paramName": "cacheKey",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} text",
+            "paramName": "text",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{*} size",
+            "paramName": "size",
+            "description": "",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4,
+          "index": 10813
+        },
+        "end": {
+          "line": 392,
+          "column": 5,
+          "index": 11116
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheKey",
+          "type": "string"
+        },
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "*"
+        }
+      ],
+      "appearsIn": []
+    },
+    "flushSizeCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flushes the size cache - use this when something changes, for example webfonts have been loaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flushes the size cache - use this when something changes, for example webfonts have been loaded</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4,
+          "index": 11242
+        },
+        "end": {
+          "line": 399,
+          "column": 5,
+          "index": 11303
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": []
     },
     "__measureSize": {
@@ -789,14 +1064,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 328,
+          "line": 408,
           "column": 4,
-          "index": 9512
+          "index": 11576
         },
         "end": {
-          "line": 347,
+          "line": 427,
           "column": 5,
-          "index": 9929
+          "index": 11993
         }
       },
       "type": "function",

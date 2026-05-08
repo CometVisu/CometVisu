@@ -25,7 +25,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Icons.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -53,7 +53,6 @@
     ***********************************************
     */
     construct: function construct() {
-      this._disableFileEvents = true;
       cv.ui.manager.viewer.Folder.constructor.call(this, true);
     },
     /*
@@ -72,6 +71,7 @@
     ***********************************************
     */
     members: {
+      _disableFileEvents: true,
       _getDelegate: function _getDelegate() {
         return {
           createItem: function createItem() {
@@ -116,4 +116,4 @@
   cv.ui.manager.viewer.Icons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Icons.js.map?dt=1735383842614
+//# sourceMappingURL=Icons.js.map?dt=1778272814387

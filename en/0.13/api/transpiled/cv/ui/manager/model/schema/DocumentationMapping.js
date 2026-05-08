@@ -10,7 +10,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* DocumentationMapping.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -111,6 +111,7 @@
         'system-voraussetzungen': '/develop/manual/#system-voraussetzungen',
         'text': '/develop/manual/config/widgets/text/index.html#text',
         'tile-backend-system': '/develop/manual/config/structure-tile/elements/backend.html#tile-backend-system',
+        'tile-component-breadcrumbs': '/develop/manual/config/structure-tile/components/breadcrumbs.html#tile-component-breadcrumbs',
         'tile-component-button': '/develop/manual/config/structure-tile/components/button.html#tile-component-button',
         'tile-component-chart': '/develop/manual/config/structure-tile/components/chart.html#tile-component-chart',
         'tile-component-color': '/develop/manual/config/structure-tile/components/color.html#tile-component-color',
@@ -122,6 +123,7 @@
         'tile-component-list-date-format': '/develop/manual/config/structure-tile/components/list.html#tile-component-list-date-format',
         'tile-component-menu': '/develop/manual/config/structure-tile/components/menu.html#tile-component-menu',
         'tile-component-page': '/develop/manual/config/structure-tile/components/page.html#tile-component-page',
+        'tile-component-plugin': '/develop/manual/config/structure-tile/components/plugin.html#tile-component-plugin',
         'tile-component-popup': '/develop/manual/config/structure-tile/components/popup.html#tile-component-popup',
         'tile-component-power-entity': '/develop/manual/config/structure-tile/components/power-entity.html#tile-component-power-entity',
         'tile-component-select': '/develop/manual/config/structure-tile/components/select.html#tile-component-select',
@@ -189,4 +191,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1735383842160
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1778272813949

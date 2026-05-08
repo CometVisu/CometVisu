@@ -45,12 +45,19 @@
       /**
        * Static counter for all request ids
        */
-      __P_257_0: 0,
+      __P_265_0: 0,
+      /**
+       * Returns the current request id
+       * @returns {Number}
+       */
       getCurrentId: function getCurrentId() {
-        return qx.io.jsonrpc.protocol.Request.__P_257_0;
+        return qx.io.jsonrpc.protocol.Request.__P_265_0;
       },
+      /**
+       * Resets the request id to zero
+       */
       resetId: function resetId() {
-        qx.io.jsonrpc.protocol.Request.__P_257_0 = 0;
+        qx.io.jsonrpc.protocol.Request.__P_265_0 = 0;
       }
     },
     properties: {
@@ -74,21 +81,21 @@
     construct: function construct(method, params, id) {
       qx.io.jsonrpc.protocol.Notification.constructor.call(this, method, params);
       if (id === undefined) {
-        id = ++qx.io.jsonrpc.protocol.Request.__P_257_0;
+        id = ++qx.io.jsonrpc.protocol.Request.__P_265_0;
       }
       this.set({
         id: id
       });
-      this.__P_257_1 = new qx.Promise();
+      this.__P_265_1 = new qx.Promise();
     },
     members: {
-      __P_257_1: null,
+      __P_265_1: null,
       /**
-       * Getter for promise which resolves with the result to the request
+       * Getter for promise which resolves with the result to the request, if successful
        * @return {qx.Promise}
        */
       getPromise: function getPromise() {
-        return this.__P_257_1;
+        return this.__P_265_1;
       },
       /**
        * Determines how an exception during transport is handled. Standard
@@ -98,15 +105,11 @@
        * @param {qx.io.exception.Transport} exception
        */
       handleTransportException: function handleTransportException(exception) {
-        try {
-          this.getPromise().reject(exception);
-        } catch (e) {
-          this.warn("Promise has already been rejected");
-        }
+        this.__P_265_1.reject(exception);
       }
     }
   });
   qx.io.jsonrpc.protocol.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1735383855574
+//# sourceMappingURL=Request.js.map?dt=1778272826725

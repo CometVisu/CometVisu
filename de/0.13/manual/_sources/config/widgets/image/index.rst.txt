@@ -38,13 +38,6 @@ Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
     </settings>
     <image src="resource/icons/comet_128_ff8000.png"/>
 
-.. widget-example::
-    :hide-source: true
-
-    <settings>
-        <screenshot name="image_simple"/>
-    </settings>
-    <image src="resource/icons/comet_128_ff8000.png"/>
 
 Einstellungen
 -------------

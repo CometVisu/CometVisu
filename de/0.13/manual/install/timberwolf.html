@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation auf dem Timberwolf über die App &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=245627df"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/translations.js?v=70a09b52"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -120,7 +120,8 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Die einfachste Möglichkeit die CometVisu auf dem  <a class="reference external" href="https://wiregate.de/">Timberwolf</a>-Server zu
 installieren ist über die dort angebotene App.</p>
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="../_images/timberwolf_app.png"><img alt="../_images/timberwolf_app.png" src="../_images/timberwolf_app.png" style="width: 450.5px; height: 434.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_app.png"><img alt="../_images/timberwolf_app.png" src="../_images/timberwolf_app.png" style="width: 450.5px; height: 434.5px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Auswahl der CometVisu App auf der Timberwolf-Oberfläche</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
@@ -130,7 +131,8 @@ bereits der Link eingeblendet über den die CometVisu aufgerufen werden kann.</p
 <section id="update">
 <h2>Update<a class="headerlink" href="#update" title="Link to this heading"></a></h2>
 <figure class="align-default" id="id4">
-<a class="reference internal image-reference" href="../_images/timberwolf_installed_app.png"><img alt="../_images/timberwolf_installed_app.png" src="../_images/timberwolf_installed_app.png" style="width: 541.5px; height: 395.5px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_installed_app.png"><img alt="../_images/timberwolf_installed_app.png" src="../_images/timberwolf_installed_app.png" style="width: 541.5px; height: 395.5px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Installierte CometVisu App</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
@@ -168,7 +170,8 @@ und diese über Neustarts und Aktualisierungen des Containers hinweg
 beizubehalten.</p>
 <p>Die notwendigen Schritte sind: <em>Volumes</em> → <em>Add Volume</em> → Name: <code class="docutils literal notranslate"><span class="pre">CometVisuConfig</span></code> → <em>Create the Volume</em></p>
 <figure class="align-default" id="id5">
-<a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_volume_add.png"><img alt="../_images/portainer_volume_add.png" src="../_images/portainer_volume_add.png" style="width: 1362.0px; height: 615.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Volume im Portainer anlegen</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
@@ -221,7 +224,8 @@ belegt ist oder eine andere Linie als <code class="docutils literal notranslate"
 Timberwolf ist unter <em>Einstellungen</em> → <em>KNX</em> → <em>Schnittstellen</em> der
 verwendete Port ersichtlich:</p>
 <figure class="align-default">
-<a class="reference internal image-reference" href="../_images/timberwolf_knx_port.png"><img alt="../_images/timberwolf_knx_port.png" src="../_images/timberwolf_knx_port.png" style="width: 1016.0px; height: 319.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_knx_port.png"><img alt="../_images/timberwolf_knx_port.png" src="../_images/timberwolf_knx_port.png" style="width: 1016.0px; height: 319.0px;" />
+</a>
 </figure>
 <p>Sollte der Port von <code class="docutils literal notranslate"><span class="pre">3700</span></code> abweichen, so ist die Umgebungsvariable
 <code class="docutils literal notranslate"><span class="pre">KNX_INTERFACE</span></code> entsprechend anzupassen, in diesem Beispiel auf den
@@ -234,25 +238,29 @@ Wert <code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.
 </li>
 </ul>
 <figure class="align-default" id="id6">
-<a class="reference internal image-reference" href="../_images/portainer_container_add.png"><img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" style="width: 1346.0px; height: 755.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_container_add.png"><img alt="../_images/portainer_container_add.png" src="../_images/portainer_container_add.png" style="width: 1346.0px; height: 755.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Container im Portainer anlegen</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
-<a class="reference internal image-reference" href="../_images/portainer_container_volumes_add.png"><img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" style="width: 1082.0px; height: 369.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_container_volumes_add.png"><img alt="../_images/portainer_container_volumes_add.png" src="../_images/portainer_container_volumes_add.png" style="width: 1082.0px; height: 369.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Container <em>Volumes</em> im Portainer konfigurieren</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
-<a class="reference internal image-reference" href="../_images/portainer_container_env_add.png"><img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" style="width: 1081.0px; height: 259.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_container_env_add.png"><img alt="../_images/portainer_container_env_add.png" src="../_images/portainer_container_env_add.png" style="width: 1081.0px; height: 259.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Container <em>Env</em> im Portainer konfigurieren</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
-<a class="reference internal image-reference" href="../_images/portainer_container_restart_add.png"><img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" style="width: 763.0px; height: 217.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_container_restart_add.png"><img alt="../_images/portainer_container_restart_add.png" src="../_images/portainer_container_restart_add.png" style="width: 763.0px; height: 217.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Container <em>Restart policy</em> im Portainer konfigurieren</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
@@ -267,7 +275,8 @@ Wert <code class="docutils literal notranslate"><span class="pre">iptn:172.17.0.
 </ul>
 <p>Über <em>Add</em> bestätigen.</p>
 <figure class="align-default" id="id10">
-<a class="reference internal image-reference" href="../_images/timberwolf_proxy_add.png"><img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" style="width: 694.0px; height: 129.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_proxy_add.png"><img alt="../_images/timberwolf_proxy_add.png" src="../_images/timberwolf_proxy_add.png" style="width: 694.0px; height: 129.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Timberwolf Proxy-Eintrag hinzufügen</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
@@ -289,7 +298,8 @@ Zeitreihen-Datenbank zugreifen können“</em> auf das <code class="docutils lit
 den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
 zu bringen.</p>
 <figure class="align-default" id="id11">
-<a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 337.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_influx.png"><img alt="../_images/timberwolf_influx.png" src="../_images/timberwolf_influx.png" style="width: 1070.0px; height: 337.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Timberwolf InfluxDB Credentials</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
@@ -310,7 +320,8 @@ gegebenenfalls hier die IP-Adresse entsprechend angepasst werden)</p></li>
 </li>
 </ul>
 <figure class="align-default" id="id12">
-<a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 575.0px; height: 305.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/timberwolf_influx_manager.png"><img alt="../_images/timberwolf_influx_manager.png" src="../_images/timberwolf_influx_manager.png" style="width: 575.0px; height: 305.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Timberwolf InfluxDB Credentials im Manager</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
 </figcaption>
@@ -333,7 +344,8 @@ werden soll, so ist noch unter <em>Volumes</em> der Config-Pfad von
 <p>Mit <em>Actions</em> → <em>Deploy the Container</em> wird der Container nun durch die
 neueste Version ersetzt.</p>
 <figure class="align-default" id="id13">
-<a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_container_replace.png"><img alt="../_images/portainer_container_replace.png" src="../_images/portainer_container_replace.png" style="width: 836.0px; height: 863.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Container im Portainer durch eine neue Version ersetzen</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
 </figcaption>
@@ -354,7 +366,8 @@ neueste Version ersetzt.</p>
 <p>Durch markieren des zu löschenden Images (zu erkennen am Label <em>Unused</em> und
 dem entsprechenden Tag) kann über <em>Remove</em> das Image entfernt werden.</p>
 <figure class="align-default" id="id15">
-<a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/portainer_image_remove.png"><img alt="../_images/portainer_image_remove.png" src="../_images/portainer_image_remove.png" style="width: 1349.0px; height: 601.0px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Portainer Dialog um ein Image zu löschen</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
 </figcaption>
@@ -445,7 +458,7 @@ Schleife vereinfacht werden:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -462,7 +475,7 @@ Schleife vereinfacht werden:</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

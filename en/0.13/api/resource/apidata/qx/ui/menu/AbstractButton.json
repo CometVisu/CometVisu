@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686249,
-  "lastModifiedIso": "2024-12-28T11:01:26.249Z",
+  "lastModified": 1778272634446,
+  "lastModifiedIso": "2026-05-08T20:37:14.446Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menu/AbstractButton.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 966
     },
     "end": {
-      "line": 408,
+      "line": 404,
       "column": 3,
-      "index": 10680
+      "index": 10755
     }
   },
   "className": "qx.ui.menu.AbstractButton",
@@ -519,9 +519,9 @@
           "index": 6804
         },
         "end": {
-          "line": 285,
+          "line": 283,
           "column": 5,
-          "index": 7556
+          "index": 7609
         }
       },
       "type": "function",
@@ -550,14 +550,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 290,
+          "line": 288,
           "column": 4,
-          "index": 7626
+          "index": 7679
         },
         "end": {
-          "line": 299,
+          "line": 297,
           "column": 6,
-          "index": 7893
+          "index": 7946
         }
       },
       "appearsIn": []
@@ -571,14 +571,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 308,
+          "line": 306,
           "column": 4,
-          "index": 8127
+          "index": 8180
         },
         "end": {
-          "line": 314,
+          "line": 312,
           "column": 5,
-          "index": 8299
+          "index": 8352
         }
       },
       "type": "function",
@@ -601,14 +601,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 317,
+          "line": 315,
           "column": 4,
-          "index": 8328
+          "index": 8381
         },
         "end": {
-          "line": 323,
+          "line": 321,
           "column": 5,
-          "index": 8502
+          "index": 8555
         }
       },
       "type": "function",
@@ -631,14 +631,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 326,
+          "line": 324,
           "column": 4,
-          "index": 8531
+          "index": 8584
         },
         "end": {
-          "line": 360,
+          "line": 358,
           "column": 5,
-          "index": 9558
+          "index": 9611
         }
       },
       "type": "function",
@@ -680,14 +680,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 367,
+          "line": 365,
           "column": 4,
-          "index": 9716
+          "index": 9769
         },
         "end": {
-          "line": 373,
+          "line": 371,
           "column": 5,
-          "index": 9874
+          "index": 9927
         }
       },
       "type": "function",
@@ -708,14 +708,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 376,
+          "line": 374,
           "column": 4,
-          "index": 9903
+          "index": 9956
         },
         "end": {
-          "line": 382,
+          "line": 380,
           "column": 5,
-          "index": 10078
+          "index": 10131
         }
       },
       "type": "function",
@@ -845,14 +845,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 86,
           "column": 4,
-          "index": 2220
+          "index": 2366
         },
         "end": {
-          "line": 95,
+          "line": 99,
           "column": 5,
-          "index": 2491
+          "index": 2655
         }
       },
       "type": "function",
@@ -883,19 +883,37 @@
       ],
       "mixin": "qx.ui.core.MExecutable"
     },
-    "__semaphore": {
-      "jsdoc": null,
+    "__commandExecuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the command already executed. The protection flag to stop the second command execution.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the command already executed. The protection flag to stop the second command execution."
+          }
+        ]
+      },
       "access": "private",
       "location": {
         "start": {
-          "line": 64,
+          "line": 68,
           "column": 4,
-          "index": 1697
+          "index": 1837
         },
         "end": {
-          "line": 64,
-          "column": 22,
-          "index": 1715
+          "line": 68,
+          "column": 28,
+          "index": 1861
         }
       },
       "appearsIn": [
@@ -908,14 +926,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 65,
+          "line": 69,
           "column": 4,
-          "index": 1721
+          "index": 1867
         },
         "end": {
-          "line": 65,
+          "line": 69,
           "column": 29,
-          "index": 1746
+          "index": 1892
         }
       },
       "appearsIn": [
@@ -955,14 +973,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 73,
+          "line": 77,
           "column": 4,
-          "index": 1941
+          "index": 2087
         },
         "end": {
-          "line": 77,
+          "line": 81,
           "column": 6,
-          "index": 2161
+          "index": 2307
         }
       },
       "appearsIn": [
@@ -998,14 +1016,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 102,
+          "line": 106,
           "column": 4,
-          "index": 2646
+          "index": 2810
         },
         "end": {
-          "line": 113,
+          "line": 115,
           "column": 5,
-          "index": 2912
+          "index": 3038
         }
       },
       "type": "function",
@@ -1029,14 +1047,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 116,
+          "line": 118,
           "column": 4,
-          "index": 2941
+          "index": 3067
         },
         "end": {
-          "line": 173,
+          "line": 175,
           "column": 5,
-          "index": 4874
+          "index": 5000
         }
       },
       "type": "function",
@@ -1059,14 +1077,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 391,
+        "line": 389,
         "column": 2,
-        "index": 10278
+        "index": 10331
       },
       "end": {
-        "line": 407,
+        "line": 403,
         "column": 3,
-        "index": 10676
+        "index": 10751
       }
     }
   },

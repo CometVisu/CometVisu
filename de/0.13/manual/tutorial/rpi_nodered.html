@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raspberry Pi: Node-RED in Docker installieren &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../_static/documentation_options.js?v=245627df"></script>
-      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/translations.js?v=70a09b52"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
@@ -191,27 +191,27 @@ mit:</p>
 </pre></div>
 </div>
 <p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>
-<dl class="simple glossary">
-<dt id="term-d"><code class="docutils literal notranslate"><span class="pre">-d</span></code><a class="headerlink" href="#term-d" title="Link to this term"></a></dt><dd><p>Hierdurch wird der Container im Hintergrund gestartet.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-d</span></code></dt><dd><p>Hierdurch wird der Container im Hintergrund gestartet.</p>
 </dd>
-<dt id="term-name"><code class="docutils literal notranslate"><span class="pre">--name</span></code><a class="headerlink" href="#term-name" title="Link to this term"></a></dt><dd><p>Der Name unter dem der Container gemanagt wird.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">--name</span></code></dt><dd><p>Der Name unter dem der Container gemanagt wird.</p>
 </dd>
-<dt id="term-p"><code class="docutils literal notranslate"><span class="pre">-p</span></code><a class="headerlink" href="#term-p" title="Link to this term"></a></dt><dd><p>Durch <code class="docutils literal notranslate"><span class="pre">1880:1880</span></code> wird der Port 1880 im Container auf den Port 1880 des
+<dt><code class="docutils literal notranslate"><span class="pre">-p</span></code></dt><dd><p>Durch <code class="docutils literal notranslate"><span class="pre">1880:1880</span></code> wird der Port 1880 im Container auf den Port 1880 des
 Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
 Web-Server im Container von außen (über den Port 1880) zugegriffen werden.</p>
 </dd>
-<dt id="term-v"><code class="docutils literal notranslate"><span class="pre">-v</span></code><a class="headerlink" href="#term-v" title="Link to this term"></a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">node_red_data:/data</span></code> wird das vorhin angelegte Volume
+<dt><code class="docutils literal notranslate"><span class="pre">-v</span></code></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">node_red_data:/data</span></code> wird das vorhin angelegte Volume
 <code class="docutils literal notranslate"><span class="pre">node_red_data</span></code> auf den Pfad <code class="docutils literal notranslate"><span class="pre">/data</span></code> im Container gemappt.</p>
 </dd>
-<dt id="term-e"><code class="docutils literal notranslate"><span class="pre">-e</span></code><a class="headerlink" href="#term-e" title="Link to this term"></a></dt><dd><p>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
+<dt><code class="docutils literal notranslate"><span class="pre">-e</span></code></dt><dd><p>Über diesen Parameter wird eine <cite>Environment</cite>-Variable übergeben. Mit
 <code class="docutils literal notranslate"><span class="pre">TZ=Europe/Berlin</span></code> wird die Zeitzone für Node-RED auf <cite>Berlin</cite>
 festgelegt.</p>
 </dd>
-<dt id="term-restart"><code class="docutils literal notranslate"><span class="pre">--restart</span></code><a class="headerlink" href="#term-restart" title="Link to this term"></a></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
+<dt><code class="docutils literal notranslate"><span class="pre">--restart</span></code></dt><dd><p>Mit <code class="docutils literal notranslate"><span class="pre">unless-stopped</span></code> wird der Container auch bei Fehlern wieder
 automatisch gestartet - so lange er nicht per Befehl explizit beendet
 wurde.</p>
 </dd>
-<dt id="term-nodered-node-red-latest"><code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code><a class="headerlink" href="#term-nodered-node-red-latest" title="Link to this term"></a></dt><dd><p>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">nodered/node-red:latest</span></code></dt><dd><p>Als letztes wird das Image angegeben, dass ausgeführt werden soll.</p>
 </dd>
 </dl>
 <p>Node-RED kann nun auf dem Raspberry Pi auf dem Port <code class="docutils literal notranslate"><span class="pre">1880</span></code> mit dem Browser
@@ -243,7 +243,7 @@ haben, ist diese Warnung für uns nicht relevant.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -260,7 +260,7 @@ haben, ist diese Warnung für uns nicht relevant.</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

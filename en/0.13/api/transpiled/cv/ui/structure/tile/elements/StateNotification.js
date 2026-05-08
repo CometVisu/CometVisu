@@ -39,7 +39,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* StateNotification.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -199,4 +199,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.elements.StateNotification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=StateNotification.js.map?dt=1735383845800
+//# sourceMappingURL=StateNotification.js.map?dt=1778272817658

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/elements/Address.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 937
     },
     "end": {
-      "line": 228,
+      "line": 285,
       "column": 3,
-      "index": 8245
+      "index": 10496
     }
   },
   "className": "cv.ui.structure.tile.elements.Address",
@@ -98,38 +98,85 @@
       },
       "appearsIn": []
     },
+    "__sendStateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1282
+        },
+        "end": {
+          "line": 38,
+          "column": 28,
+          "index": 1306
+        }
+      },
+      "appearsIn": []
+    },
     "getAddress": {
       "jsdoc": null,
       "access": "public",
       "location": {
         "start": {
-          "line": 39,
+          "line": 40,
           "column": 4,
-          "index": 1283
+          "index": 1313
         },
         "end": {
-          "line": 41,
+          "line": 42,
           "column": 5,
-          "index": 1350
+          "index": 1380
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": []
     },
+    "_applyConnected": {
+      "jsdoc": {
+        "raw": [
+          " so the backend's initial full-state fetch stores the state for non-start-page elements."
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1568
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1992
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
     "_init": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 44,
+          "line": 59,
           "column": 4,
-          "index": 1358
+          "index": 1999
         },
         "end": {
-          "line": 139,
+          "line": 154,
           "column": 5,
-          "index": 5210
+          "index": 5889
         }
       },
       "type": "function",
@@ -139,6 +186,47 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 5896
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 6085
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "resend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 6092
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 6476
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
     "fireStateUpdate": {
       "jsdoc": {
         "raw": [
@@ -146,6 +234,7 @@
           "     * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.",
           "     * @param address {String} address",
           "     * @param state {variant} state to send",
+          "     * @param force {boolean} if true, the event is fired even if the state has not changed since the last update",
           "     "
         ],
         "@description": [
@@ -168,20 +257,27 @@
             "paramName": "state",
             "description": " state to send",
             "type": "variant"
+          },
+          {
+            "name": "@param",
+            "body": "force {boolean} if true, the event is fired even if the state has not changed since the last update",
+            "paramName": "force",
+            "description": " if true, the event is fired even if the state has not changed since the last update",
+            "type": "boolean"
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 146,
+          "line": 181,
           "column": 4,
-          "index": 5427
+          "index": 6807
         },
         "end": {
-          "line": 195,
+          "line": 244,
           "column": 5,
-          "index": 7632
+          "index": 9547
         }
       },
       "type": "function",
@@ -193,6 +289,10 @@
         {
           "name": "state",
           "type": "variant"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
         }
       ],
       "appearsIn": []
@@ -223,14 +323,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 201,
+          "line": 250,
           "column": 4,
-          "index": 7718
+          "index": 9633
         },
         "end": {
-          "line": 203,
+          "line": 252,
           "column": 5,
-          "index": 7795
+          "index": 9710
         }
       },
       "type": "function",
@@ -266,14 +366,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 209,
+          "line": 258,
           "column": 4,
-          "index": 7882
+          "index": 9797
         },
         "end": {
-          "line": 211,
+          "line": 260,
           "column": 5,
-          "index": 7959
+          "index": 9874
         }
       },
       "type": "function",
@@ -288,19 +388,35 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 213,
+          "line": 262,
           "column": 4,
-          "index": 7966
+          "index": 9881
         },
         "end": {
-          "line": 215,
+          "line": 264,
           "column": 5,
-          "index": 8022
+          "index": 9937
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 267,
+        "column": 2,
+        "index": 9946
+      },
+      "end": {
+        "line": 273,
+        "column": 3,
+        "index": 10277
+      }
     }
   },
   "statics": {},

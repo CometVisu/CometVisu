@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.ui.structure.pure.AbstractWidget": {
-        "construct": true,
         "require": true
       },
       "cv.ui.NotificationCenter": {},
@@ -18,7 +17,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* NotificationCenterBadge.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -40,8 +39,8 @@
    *
    *
    * @widgetexample <settings>
-   *   <caption>Configuration example of a centered text widget</caption>
-   *   <screenshot name="text_example" />
+   *   <caption>Configuration example of a NotificationCenterBadge widget</caption>
+   *   <screenshot name="notification_center_badge" />
    * </settings>
    * <notificationcenterbadge>
    *  <layout colspan="0" />
@@ -52,22 +51,6 @@
    */
   qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     extend: cv.ui.structure.pure.AbstractWidget,
-    /*
-    ******************************************************
-      CONSTRUCTOR
-    ******************************************************
-    */
-    construct: function construct(props) {
-      var classes = props.classes.trim().split(' ');
-      var i_right = classes.indexOf('right');
-      if (i_right !== -1) {
-        // do not align, but float the container instead
-        this.setContainerClass('float-right');
-        classes.splice(i_right, 1);
-        props.classes = classes.join(' ');
-      }
-      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-    },
     /*
     ******************************************************
       PROPERTIES
@@ -91,6 +74,17 @@
      */
     members: {
       __P_64_0: null,
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        var classes = props.classes.trim().split(' ');
+        var i_right = classes.indexOf('right');
+        if (i_right !== -1) {
+          // do not align, but float the container instead
+          this.setContainerClass('float-right');
+          classes.splice(i_right, 1);
+          props.classes = classes.join(' ');
+        }
+        return props;
+      },
       _onDomReady: function _onDomReady() {
         cv.ui.structure.pure.NotificationCenterBadge.superclass.prototype._onDomReady.call(this);
         var center = cv.ui.NotificationCenter.getInstance();
@@ -156,4 +150,4 @@
   cv.ui.structure.pure.NotificationCenterBadge.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1735383843150
+//# sourceMappingURL=NotificationCenterBadge.js.map?dt=1778272814860

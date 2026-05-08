@@ -45,7 +45,7 @@
       target: {
         nullable: false,
         check: "qx.tool.compiler.targets.Target",
-        apply: "__P_491_0"
+        apply: "__P_501_0"
       },
       /** Supported Locales */
       locales: {
@@ -58,7 +58,7 @@
         init: false,
         nullable: false,
         check: "Boolean",
-        apply: "__P_491_1"
+        apply: "__P_501_1"
       }
     },
     members: {
@@ -74,7 +74,7 @@
        * @param oldValue
        * @private
        */
-      __P_491_0: function __P_491_0(value, oldValue) {
+      __P_501_0: function __P_501_0(value, oldValue) {
         if (this._analyser) {
           this._analyser.setOutputDir(value ? value.getOutputDir() : null);
         }
@@ -91,7 +91,7 @@
        * @param oldValue
        * @private
        */
-      __P_491_1: function __P_491_1(value, oldValue) {
+      __P_501_1: function __P_501_1(value, oldValue) {
         if (this.getTarget()) {
           this.getTarget().setWriteAllTranslations(value);
         }
@@ -112,4 +112,4 @@
   qx.tool.compiler.makers.AbstractAppMaker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractAppMaker.js.map?dt=1735383872322
+//# sourceMappingURL=AbstractAppMaker.js.map?dt=1778272843673

@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576141,
+  "lastModifiedIso": "2026-05-08T20:36:16.141Z",
   "classFilename": "../../source/class/cv/data/Simulation.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 117
+      "index": 934
     },
     "end": {
-      "line": 580,
+      "line": 598,
       "column": 3,
-      "index": 20871
+      "index": 21636
     }
   },
   "className": "cv.data.Simulation",
@@ -43,14 +43,14 @@
     ],
     "location": {
       "start": {
-        "line": 11,
+        "line": 30,
         "column": 2,
-        "index": 311
+        "index": 1128
       },
       "end": {
-        "line": 17,
+        "line": 36,
         "column": 3,
-        "index": 544
+        "index": 1361
       }
     }
   },
@@ -58,14 +58,14 @@
     "initialized": {
       "location": {
         "start": {
-          "line": 25,
+          "line": 44,
           "column": 4,
-          "index": 692
+          "index": 1509
         },
         "end": {
-          "line": 29,
+          "line": 48,
           "column": 5,
-          "index": 788
+          "index": 1605
         }
       },
       "json": {
@@ -101,14 +101,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 41,
+          "line": 60,
           "column": 4,
-          "index": 977
+          "index": 1794
         },
         "end": {
-          "line": 41,
+          "line": 60,
           "column": 17,
-          "index": 990
+          "index": 1807
         }
       },
       "appearsIn": []
@@ -118,14 +118,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 42,
+          "line": 61,
           "column": 4,
-          "index": 996
+          "index": 1813
         },
         "end": {
-          "line": 42,
+          "line": 61,
           "column": 23,
-          "index": 1015
+          "index": 1832
         }
       },
       "appearsIn": []
@@ -135,14 +135,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 43,
+          "line": 62,
           "column": 4,
-          "index": 1021
+          "index": 1838
         },
         "end": {
-          "line": 43,
+          "line": 62,
           "column": 34,
-          "index": 1051
+          "index": 1868
         }
       },
       "appearsIn": []
@@ -152,14 +152,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 63,
           "column": 4,
-          "index": 1057
+          "index": 1874
         },
         "end": {
-          "line": 44,
+          "line": 63,
           "column": 20,
-          "index": 1073
+          "index": 1890
         }
       },
       "appearsIn": []
@@ -169,14 +169,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 45,
+          "line": 64,
           "column": 4,
-          "index": 1079
+          "index": 1896
         },
         "end": {
-          "line": 45,
+          "line": 64,
           "column": 22,
-          "index": 1097
+          "index": 1914
         }
       },
       "appearsIn": []
@@ -186,14 +186,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 46,
+          "line": 65,
           "column": 4,
-          "index": 1103
+          "index": 1920
         },
         "end": {
-          "line": 46,
+          "line": 65,
           "column": 25,
-          "index": 1124
+          "index": 1941
         }
       },
       "appearsIn": []
@@ -203,14 +203,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 67,
           "column": 4,
-          "index": 1131
+          "index": 1948
         },
         "end": {
-          "line": 61,
+          "line": 80,
           "column": 5,
-          "index": 1612
+          "index": 2429
         }
       },
       "type": "function",
@@ -226,14 +226,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 63,
+          "line": 82,
           "column": 4,
-          "index": 1619
+          "index": 2436
         },
         "end": {
-          "line": 184,
+          "line": 202,
           "column": 5,
-          "index": 6772
+          "index": 7537
         }
       },
       "type": "function",
@@ -245,14 +245,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 186,
+          "line": 204,
           "column": 4,
-          "index": 6779
+          "index": 7544
         },
         "end": {
-          "line": 192,
+          "line": 210,
           "column": 5,
-          "index": 7009
+          "index": 7774
         }
       },
       "type": "function",
@@ -271,14 +271,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 194,
+          "line": 212,
           "column": 4,
-          "index": 7016
+          "index": 7781
         },
         "end": {
-          "line": 205,
+          "line": 223,
           "column": 5,
-          "index": 7510
+          "index": 8275
         }
       },
       "type": "function",
@@ -294,14 +294,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 207,
+          "line": 225,
           "column": 4,
-          "index": 7517
+          "index": 8282
         },
         "end": {
-          "line": 224,
+          "line": 242,
           "column": 5,
-          "index": 8204
+          "index": 8969
         }
       },
       "type": "function",
@@ -317,14 +317,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 226,
+          "line": 244,
           "column": 4,
-          "index": 8211
+          "index": 8976
         },
         "end": {
-          "line": 309,
+          "line": 327,
           "column": 5,
-          "index": 11253
+          "index": 12018
         }
       },
       "type": "function",
@@ -343,14 +343,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 311,
+          "line": 329,
           "column": 4,
-          "index": 11260
+          "index": 12025
         },
         "end": {
-          "line": 329,
+          "line": 347,
           "column": 5,
-          "index": 11754
+          "index": 12519
         }
       },
       "type": "function",
@@ -362,14 +362,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 331,
+          "line": 349,
           "column": 4,
-          "index": 11761
+          "index": 12526
         },
         "end": {
-          "line": 411,
+          "line": 429,
           "column": 5,
-          "index": 14934
+          "index": 15699
         }
       },
       "type": "function",
@@ -388,14 +388,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 414,
+          "line": 432,
           "column": 4,
-          "index": 14942
+          "index": 15707
         },
         "end": {
-          "line": 481,
+          "line": 499,
           "column": 5,
-          "index": 17909
+          "index": 18674
         }
       },
       "type": "function",
@@ -411,14 +411,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 483,
+          "line": 501,
           "column": 4,
-          "index": 17916
+          "index": 18681
         },
         "end": {
-          "line": 566,
+          "line": 584,
           "column": 5,
-          "index": 20600
+          "index": 21365
         }
       },
       "type": "function",
@@ -438,14 +438,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 574,
+        "line": 592,
         "column": 2,
-        "index": 20734
+        "index": 21499
       },
       "end": {
-        "line": 579,
+        "line": 597,
         "column": 3,
-        "index": 20867
+        "index": 21632
       }
     }
   },

@@ -10,7 +10,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Location.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -77,4 +77,4 @@
   cv.util.Location.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Location.js.map?dt=1735383886027
+//# sourceMappingURL=Location.js.map?dt=1778272856843

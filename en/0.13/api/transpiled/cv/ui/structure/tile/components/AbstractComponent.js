@@ -21,7 +21,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* AbstractComponent.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -52,6 +52,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     construct: function construct(element) {
       cv.ui.structure.tile.elements.AbstractCustomElement.constructor.call(this, element);
       this._preMappingHooks = [];
+      this._store = new Map();
     },
     /*
     ***********************************************
@@ -112,13 +113,21 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     members: {
       _writeAddresses: null,
+      _readAddresses: null,
       _headerFooterParent: null,
       _preMappingHooks: null,
       _tileElement: null,
       __P_76_0: null,
+      __P_76_1: null,
+      /**
+       * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas
+       */
+      _store: null,
       _checkEnvironment: function _checkEnvironment() {
         var inPopup = false;
-        if (this._element.parentElement.localName === 'cv-popup') {
+        if (this._element.localName === 'cv-popup') {
+          this._headerFooterParent = this._element;
+        } else if (this._element.parentElement.localName === 'cv-popup') {
           this._headerFooterParent = this._element.parentElement;
           inPopup = true;
         } else {
@@ -155,34 +164,36 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this = this;
         this._checkEnvironment();
         var element = this._element;
-        var hasReadAddress = false;
         var writeAddresses = [];
+        var readAddresses = [];
         Array.prototype.forEach.call(element.querySelectorAll(':scope > cv-address'), function (address) {
           var mode = address.hasAttribute('mode') ? address.getAttribute('mode') : 'readwrite';
           switch (mode) {
             case 'readwrite':
-              hasReadAddress = true;
+              readAddresses.push(address);
               writeAddresses.push(address);
               break;
             case 'read':
-              hasReadAddress = true;
+              readAddresses.push(address);
               break;
             case 'write':
               writeAddresses.push(address);
               break;
           }
         });
+        var hasReadAddress = readAddresses.length > 0;
         if (!hasReadAddress) {
           // address groups are read-only
           hasReadAddress = element.querySelectorAll(':scope > cv-address-group').length > 0;
         }
         this._writeAddresses = writeAddresses;
+        this._readAddresses = readAddresses;
         if (hasReadAddress) {
-          element.addEventListener('stateUpdate', function (ev) {
+          this.__P_76_1 = function (ev) {
             _this.onStateUpdate(ev);
-            // cancel event here
             ev.stopPropagation();
-          });
+          };
+          element.addEventListener('stateUpdate', this.__P_76_1);
         }
 
         // has mobile attributes
@@ -214,29 +225,52 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           check(this._headerFooterParent);
         }
         if (this.__P_76_0.length > 0) {
-          qx.core.Init.getApplication().addListener('changeMobile', this.__P_76_1, this);
+          qx.core.Init.getApplication().addListener('changeMobile', this.__P_76_2, this);
         }
         if (document.body.classList.contains('mobile')) {
-          this.__P_76_1();
+          this.__P_76_2();
         }
       },
-      __P_76_1: function __P_76_1() {
+      _postInit: function _postInit() {
+        if (this._initialized && this._readAddresses) {
+          // trigger initial state update for all read addresses
+          var _iterator2 = _createForOfIteratorHelper(this._readAddresses),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var address = _step2.value;
+              if (address.getInstance && address.getInstance()) {
+                address.getInstance().resend();
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+        }
+      },
+      __P_76_2: function __P_76_2() {
         var isMobile = document.body.classList.contains('mobile');
-        var _iterator2 = _createForOfIteratorHelper(this.__P_76_0),
-          _step2;
+        var _iterator3 = _createForOfIteratorHelper(this.__P_76_0),
+          _step3;
         try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var entry = _step2.value;
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var entry = _step3.value;
             entry.target.setAttribute(entry.name, isMobile ? entry.mobile : entry.desktop);
           }
         } catch (err) {
-          _iterator2.e(err);
+          _iterator3.e(err);
         } finally {
-          _iterator2.f();
+          _iterator3.f();
         }
       },
-      getElement: function getElement() {
-        return this._element;
+      _disconnected: function _disconnected() {
+        qx.core.Init.getApplication().removeListener('changeMobile', this.__P_76_2, this);
+        if (this.__P_76_1) {
+          this._element.removeEventListener('stateUpdate', this.__P_76_1);
+          this.__P_76_1 = null;
+        }
       },
       /**
        * Append the given element to a header inside the widget this component is a direct child of.
@@ -338,42 +372,55 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           return e[0] !== callback;
         });
       },
+      _mapValue: function _mapValue(value) {
+        var _iterator4 = _createForOfIteratorHelper(this._preMappingHooks),
+          _step4;
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var hookEntry = _step4.value;
+            value = hookEntry[0].call(hookEntry[1], value);
+          }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
+        if (value !== null) {
+          if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
+            value = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), value, this._store);
+          }
+        }
+        return value;
+      },
+      _formatValue: function _formatValue(value) {
+        if (value !== null && this._element.hasAttribute('format') && this._element.getAttribute('format')) {
+          var format = this._element.getAttribute('format');
+          if (value instanceof Date && !format.includes('%')) {
+            if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
+              cv.ui.structure.tile.components.AbstractComponent.dateFormats[format] = new qx.util.format.DateFormat(format);
+            }
+            value = cv.ui.structure.tile.components.AbstractComponent.dateFormats[format].format(value);
+          } else {
+            value = cv.util.String.sprintf(format, value instanceof Date ? value.toLocaleString() : value);
+          }
+        }
+        return value;
+      },
+      _getStyleClass: function _getStyleClass(value) {
+        if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
+          return cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value, this._store);
+        }
+        return undefined;
+      },
       // property apply
       _applyValue: function _applyValue(value) {
         if (this.isConnected()) {
           this._element.setAttribute('value', value || '');
-          var mappedValue = value;
-          var _iterator3 = _createForOfIteratorHelper(this._preMappingHooks),
-            _step3;
-          try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var hookEntry = _step3.value;
-              mappedValue = hookEntry[0].call(hookEntry[1], mappedValue);
-            }
-          } catch (err) {
-            _iterator3.e(err);
-          } finally {
-            _iterator3.f();
-          }
-          if (mappedValue !== null) {
-            if (this._element.hasAttribute('mapping') && this._element.getAttribute('mapping')) {
-              mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
-            }
-            if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-              var format = this._element.getAttribute('format');
-              if (mappedValue instanceof Date && !format.includes('%')) {
-                if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
-                  cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
-                }
-                mappedValue = cv.ui.structure.tile.components.AbstractComponent[format].format(mappedValue);
-              } else {
-                mappedValue = cv.util.String.sprintf(format, mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
-              }
-            }
-          }
+          var mappedValue = this._mapValue(value);
+          mappedValue = this._formatValue(mappedValue);
           this._updateValue(mappedValue, value);
-          if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
-            var styleClass = cv.Application.structureController.styleValue(this._element.getAttribute('styling'), value);
+          var styleClass = this._getStyleClass(value);
+          if (styleClass !== undefined) {
             this.setStyleClass(styleClass);
           }
         }
@@ -454,7 +501,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           case 'styling':
             {
               var styling = '';
-              if (ev.detail.targetConfig) {
+              if (ev.detail.targetConfig && ev.detail.targetConfig.length > 0) {
                 // use address styling if available
                 styling = ev.detail.targetConfig[0];
               } else if (this._element.hasAttribute('styling') && this._element.getAttribute('styling')) {
@@ -466,6 +513,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               ev.stopPropagation();
               return true;
             }
+          case 'store':
+            // use targetConfig as store key if available, address as fallback
+            this._store.set(ev.detail.targetConfig && ev.detail.targetConfig.length === 1 ? ev.detail.targetConfig[0] : ev.detail.address, ev.detail.state);
+            ev.stopPropagation();
+            return true;
           case '':
             this.setValue(ev.detail.state);
             ev.stopPropagation();
@@ -481,11 +533,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     destruct: function destruct() {
       this._writeAddresses = null;
+      this._readAddresses = null;
       this._headerFooterParent = null;
-      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_76_1, this);
+      this._store.clear();
+      qx.core.Init.getApplication().removeListener('changeMobile', this.__P_76_2, this);
     }
   });
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1735383844109
+//# sourceMappingURL=AbstractComponent.js.map?dt=1778272815744

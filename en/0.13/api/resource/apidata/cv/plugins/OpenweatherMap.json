@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576145,
+  "lastModifiedIso": "2026-05-08T20:36:16.145Z",
   "classFilename": "../../source/class/cv/plugins/OpenweatherMap.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1335
     },
     "end": {
-      "line": 236,
+      "line": 240,
       "column": 3,
-      "index": 5891
+      "index": 5958
     }
   },
   "className": "cv.plugins.OpenweatherMap",
@@ -100,9 +100,9 @@
         "index": 1605
       },
       "end": {
-        "line": 65,
+        "line": 64,
         "column": 3,
-        "index": 2172
+        "index": 2151
       }
     }
   },
@@ -169,14 +169,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 82,
           "column": 4,
-          "index": 2742
+          "index": 2721
         },
         "end": {
-          "line": 95,
+          "line": 94,
           "column": 5,
-          "index": 3056
+          "index": 3035
         }
       },
       "type": "function",
@@ -208,14 +208,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 97,
+          "line": 96,
           "column": 4,
-          "index": 3063
+          "index": 3042
         },
         "end": {
-          "line": 114,
+          "line": 113,
           "column": 5,
-          "index": 3443
+          "index": 3422
         }
       },
       "type": "function",
@@ -257,14 +257,14 @@
     "cssClass": {
       "location": {
         "start": {
-          "line": 123,
+          "line": 122,
           "column": 4,
-          "index": 3609
+          "index": 3588
         },
         "end": {
-          "line": 126,
+          "line": 125,
           "column": 5,
-          "index": 3670
+          "index": 3649
         }
       },
       "json": {
@@ -277,14 +277,14 @@
     "lang": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 127,
           "column": 4,
-          "index": 3677
+          "index": 3656
         },
         "end": {
-          "line": 131,
+          "line": 130,
           "column": 5,
-          "index": 3734
+          "index": 3713
         }
       },
       "json": {
@@ -297,14 +297,14 @@
     "owID": {
       "location": {
         "start": {
-          "line": 133,
+          "line": 132,
           "column": 4,
-          "index": 3741
+          "index": 3720
         },
         "end": {
-          "line": 136,
+          "line": 135,
           "column": 5,
-          "index": 3798
+          "index": 3777
         }
       },
       "json": {
@@ -317,14 +317,14 @@
     "q": {
       "location": {
         "start": {
-          "line": 138,
+          "line": 137,
           "column": 4,
-          "index": 3805
+          "index": 3784
         },
         "end": {
-          "line": 141,
+          "line": 140,
           "column": 5,
-          "index": 3859
+          "index": 3838
         }
       },
       "json": {
@@ -337,14 +337,14 @@
     "lat": {
       "location": {
         "start": {
-          "line": 143,
+          "line": 142,
           "column": 4,
-          "index": 3866
+          "index": 3845
         },
         "end": {
-          "line": 146,
+          "line": 145,
           "column": 5,
-          "index": 3922
+          "index": 3901
         }
       },
       "json": {
@@ -357,14 +357,14 @@
     "lon": {
       "location": {
         "start": {
-          "line": 148,
+          "line": 147,
           "column": 4,
-          "index": 3929
+          "index": 3908
         },
         "end": {
-          "line": 151,
+          "line": 150,
           "column": 5,
-          "index": 3985
+          "index": 3964
         }
       },
       "json": {
@@ -377,14 +377,14 @@
     "units": {
       "location": {
         "start": {
-          "line": 153,
+          "line": 152,
           "column": 4,
-          "index": 3992
+          "index": 3971
         },
         "end": {
-          "line": 156,
+          "line": 155,
           "column": 5,
-          "index": 4050
+          "index": 4029
         }
       },
       "json": {
@@ -397,14 +397,14 @@
     "type": {
       "location": {
         "start": {
-          "line": 158,
+          "line": 157,
           "column": 4,
-          "index": 4057
+          "index": 4036
         },
         "end": {
-          "line": 161,
+          "line": 160,
           "column": 5,
-          "index": 4114
+          "index": 4093
         }
       },
       "json": {
@@ -417,14 +417,14 @@
     "forecast24hItems": {
       "location": {
         "start": {
-          "line": 163,
+          "line": 162,
           "column": 4,
-          "index": 4121
+          "index": 4100
         },
         "end": {
-          "line": 166,
+          "line": 165,
           "column": 5,
-          "index": 4190
+          "index": 4169
         }
       },
       "json": {
@@ -437,14 +437,14 @@
     "forecastDailyhItems": {
       "location": {
         "start": {
-          "line": 168,
+          "line": 167,
           "column": 4,
-          "index": 4197
+          "index": 4176
         },
         "end": {
-          "line": 171,
+          "line": 170,
           "column": 5,
-          "index": 4269
+          "index": 4248
         }
       },
       "json": {
@@ -457,14 +457,14 @@
     "showSunrise": {
       "location": {
         "start": {
-          "line": 173,
+          "line": 172,
           "column": 4,
-          "index": 4276
+          "index": 4255
         },
         "end": {
-          "line": 176,
+          "line": 175,
           "column": 5,
-          "index": 4340
+          "index": 4319
         }
       },
       "json": {
@@ -477,14 +477,14 @@
     "detailItems": {
       "location": {
         "start": {
-          "line": 178,
+          "line": 177,
           "column": 4,
-          "index": 4347
+          "index": 4326
         },
         "end": {
-          "line": 181,
+          "line": 180,
           "column": 5,
-          "index": 4411
+          "index": 4390
         }
       },
       "json": {
@@ -497,14 +497,14 @@
     "appid": {
       "location": {
         "start": {
-          "line": 183,
+          "line": 182,
           "column": 4,
-          "index": 4418
+          "index": 4397
         },
         "end": {
-          "line": 186,
+          "line": 185,
           "column": 5,
-          "index": 4476
+          "index": 4455
         }
       },
       "json": {
@@ -517,14 +517,14 @@
     "description": {
       "location": {
         "start": {
-          "line": 188,
+          "line": 187,
           "column": 4,
-          "index": 4483
+          "index": 4462
         },
         "end": {
-          "line": 191,
+          "line": 190,
           "column": 5,
-          "index": 4547
+          "index": 4526
         }
       },
       "json": {
@@ -611,31 +611,57 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 200,
+          "line": 199,
           "column": 4,
-          "index": 4707
+          "index": 4686
         },
         "end": {
-          "line": 200,
+          "line": 199,
           "column": 19,
-          "index": 4722
+          "index": 4701
         }
       },
       "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 4708
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 4789
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
     },
     "_getInnerDomString": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 202,
+          "line": 206,
           "column": 4,
-          "index": 4729
+          "index": 4796
         },
         "end": {
-          "line": 210,
+          "line": 214,
           "column": 5,
-          "index": 5043
+          "index": 5110
         }
       },
       "type": "function",
@@ -650,14 +676,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 212,
+          "line": 216,
           "column": 4,
-          "index": 5050
+          "index": 5117
         },
         "end": {
-          "line": 218,
+          "line": 222,
           "column": 5,
-          "index": 5295
+          "index": 5362
         }
       },
       "type": "function",
@@ -669,14 +695,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 220,
+          "line": 224,
           "column": 4,
-          "index": 5302
+          "index": 5369
         },
         "end": {
-          "line": 223,
+          "line": 227,
           "column": 5,
-          "index": 5413
+          "index": 5480
         }
       },
       "type": "function",

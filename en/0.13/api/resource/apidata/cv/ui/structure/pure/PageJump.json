@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576154,
+  "lastModifiedIso": "2026-05-08T20:36:16.154Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/PageJump.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 969
     },
     "end": {
-      "line": 167,
+      "line": 160,
       "column": 3,
-      "index": 5115
+      "index": 4866
     }
   },
   "className": "cv.ui.structure.pure.PageJump",
@@ -51,38 +51,18 @@
     "cv.ui.common.HasChildren",
     "cv.ui.common.HasAnimatedButton"
   ],
-  "construct": {
-    "type": "function",
-    "params": [
-      {
-        "name": "props"
-      }
-    ],
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 2,
-        "index": 1267
-      },
-      "end": {
-        "line": 43,
-        "column": 3,
-        "index": 1519
-      }
-    }
-  },
   "properties": {
     "target": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 37,
           "column": 4,
-          "index": 1681
+          "index": 1298
         },
         "end": {
-          "line": 54,
+          "line": 40,
           "column": 5,
-          "index": 1735
+          "index": 1352
         }
       },
       "json": {
@@ -95,14 +75,14 @@
     "activeScope": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 42,
           "column": 4,
-          "index": 1742
+          "index": 1359
         },
         "end": {
-          "line": 59,
+          "line": 45,
           "column": 5,
-          "index": 1816
+          "index": 1433
         }
       },
       "json": {
@@ -118,14 +98,14 @@
     "name": {
       "location": {
         "start": {
-          "line": 61,
+          "line": 47,
           "column": 4,
-          "index": 1823
+          "index": 1440
         },
         "end": {
-          "line": 64,
+          "line": 50,
           "column": 5,
-          "index": 1880
+          "index": 1497
         }
       },
       "json": {
@@ -138,14 +118,14 @@
     "targetPath": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 52,
           "column": 4,
-          "index": 1887
+          "index": 1504
         },
         "end": {
-          "line": 69,
+          "line": 55,
           "column": 5,
-          "index": 1950
+          "index": 1567
         }
       },
       "json": {
@@ -261,14 +241,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 84,
+          "line": 70,
           "column": 4,
-          "index": 2254
+          "index": 1871
         },
         "end": {
-          "line": 130,
+          "line": 116,
           "column": 5,
-          "index": 4093
+          "index": 3710
         }
       },
       "type": "function",
@@ -282,6 +262,32 @@
     }
   },
   "members": {
+    "_beforePropsApplied": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3870
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3997
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
     "_getInnerDomString": {
       "jsdoc": {
         "raw": [
@@ -291,14 +297,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 140,
+          "line": 133,
           "column": 4,
-          "index": 4271
+          "index": 4022
         },
         "end": {
-          "line": 151,
+          "line": 144,
           "column": 5,
-          "index": 4631
+          "index": 4382
         }
       },
       "type": "function",
@@ -317,14 +323,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 154,
+          "line": 147,
           "column": 4,
-          "index": 4656
+          "index": 4407
         },
         "end": {
-          "line": 160,
+          "line": 153,
           "column": 5,
-          "index": 4922
+          "index": 4673
         }
       },
       "type": "function",

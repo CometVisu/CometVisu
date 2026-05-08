@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576143,
+  "lastModifiedIso": "2026-05-08T20:36:16.143Z",
   "classFilename": "../../source/class/cv/io/timeseries/DemoSource.js",
   "type": "class",
   "location": {
     "start": {
       "line": 22,
       "column": 0,
-      "index": 888
+      "index": 893
     },
     "end": {
       "line": 60,
       "column": 3,
-      "index": 1772
+      "index": 1777
     }
   },
   "className": "cv.io.timeseries.DemoSource",
@@ -39,12 +39,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1130
+          "index": 1135
         },
         "end": {
           "line": 31,
           "column": 17,
-          "index": 1143
+          "index": 1148
         }
       },
       "appearsIn": []
@@ -56,12 +56,12 @@
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1149
+          "index": 1154
         },
         "end": {
           "line": 32,
           "column": 14,
-          "index": 1159
+          "index": 1164
         }
       },
       "appearsIn": []
@@ -73,12 +73,12 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1166
+          "index": 1171
         },
         "end": {
           "line": 42,
           "column": 5,
-          "index": 1422
+          "index": 1427
         }
       },
       "type": "function",
@@ -95,12 +95,12 @@
         "start": {
           "line": 44,
           "column": 4,
-          "index": 1429
+          "index": 1434
         },
         "end": {
           "line": 54,
           "column": 5,
-          "index": 1701
+          "index": 1706
         }
       },
       "type": "function",
@@ -130,12 +130,12 @@
         "start": {
           "line": 56,
           "column": 4,
-          "index": 1708
+          "index": 1713
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1764
+          "index": 1769
         }
       },
       "type": "function",

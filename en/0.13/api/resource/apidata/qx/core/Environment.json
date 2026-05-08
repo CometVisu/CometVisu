@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687261,
-  "lastModifiedIso": "2024-12-28T11:01:27.261Z",
+  "lastModified": 1778272634979,
+  "lastModifiedIso": "2026-05-08T20:37:14.979Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/Environment.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 36417
     },
     "end": {
-      "line": 1300,
+      "line": 1382,
       "column": 3,
-      "index": 50014
+      "index": 53808
     }
   },
   "className": "qx.core.Environment",
@@ -992,9 +992,9 @@
           "index": 36840
         },
         "end": {
-          "line": 917,
+          "line": 919,
           "column": 5,
-          "index": 38254
+          "index": 38360
         }
       },
       "appearsIn": []
@@ -1042,14 +1042,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 933,
+          "line": 935,
           "column": 4,
-          "index": 38957
+          "index": 39063
         },
         "end": {
-          "line": 963,
+          "line": 965,
           "column": 5,
-          "index": 39847
+          "index": 39953
         }
       },
       "type": "function",
@@ -1100,14 +1100,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 972,
+          "line": 974,
           "column": 4,
-          "index": 40102
+          "index": 40208
         },
         "end": {
-          "line": 988,
+          "line": 990,
           "column": 5,
-          "index": 40712
+          "index": 40818
         }
       },
       "type": "function",
@@ -1169,14 +1169,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1000,
+          "line": 1002,
           "column": 4,
-          "index": 41177
+          "index": 41283
         },
         "end": {
-          "line": 1038,
+          "line": 1040,
           "column": 5,
-          "index": 42247
+          "index": 42353
         }
       },
       "type": "function",
@@ -1243,14 +1243,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1049,
+          "line": 1051,
           "column": 4,
-          "index": 42682
+          "index": 42788
         },
         "end": {
-          "line": 1051,
+          "line": 1053,
           "column": 5,
-          "index": 42768
+          "index": 42874
         }
       },
       "type": "function",
@@ -1317,14 +1317,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1064,
+          "line": 1066,
           "column": 4,
-          "index": 43339
+          "index": 43445
         },
         "end": {
-          "line": 1073,
+          "line": 1075,
           "column": 5,
-          "index": 43566
+          "index": 43672
         }
       },
       "type": "function",
@@ -1392,14 +1392,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1085,
+          "line": 1087,
           "column": 4,
-          "index": 44027
+          "index": 44133
         },
         "end": {
-          "line": 1119,
+          "line": 1121,
           "column": 5,
-          "index": 44875
+          "index": 44981
         }
       },
       "type": "function",
@@ -1457,14 +1457,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1129,
+          "line": 1131,
           "column": 4,
-          "index": 45271
+          "index": 45377
         },
         "end": {
-          "line": 1139,
+          "line": 1141,
           "column": 5,
-          "index": 45466
+          "index": 45572
         }
       },
       "type": "function",
@@ -1507,14 +1507,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1146,
+          "line": 1148,
           "column": 4,
-          "index": 45593
+          "index": 45699
         },
         "end": {
-          "line": 1148,
+          "line": 1150,
           "column": 5,
-          "index": 45656
+          "index": 45762
         }
       },
       "type": "function",
@@ -1565,14 +1565,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1159,
+          "line": 1161,
           "column": 4,
-          "index": 46072
+          "index": 46178
         },
         "end": {
-          "line": 1176,
+          "line": 1178,
           "column": 5,
-          "index": 46650
+          "index": 46756
         }
       },
       "type": "function",
@@ -1627,14 +1627,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1187,
+          "line": 1189,
           "column": 4,
-          "index": 47125
+          "index": 47231
         },
         "end": {
-          "line": 1191,
+          "line": 1193,
           "column": 5,
-          "index": 47245
+          "index": 47351
         }
       },
       "type": "function",
@@ -1684,14 +1684,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1199,
+          "line": 1201,
           "column": 4,
-          "index": 47400
+          "index": 47506
         },
         "end": {
-          "line": 1201,
+          "line": 1203,
           "column": 5,
-          "index": 47446
+          "index": 47552
         }
       },
       "type": "function",
@@ -1735,20 +1735,154 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1209,
+          "line": 1211,
           "column": 4,
-          "index": 47603
+          "index": 47709
         },
         "end": {
-          "line": 1211,
+          "line": 1213,
           "column": 5,
-          "index": 47659
+          "index": 47765
         }
       },
       "type": "function",
       "params": [],
       "returnType": {
         "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "set": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the environment setting for the given key to the given value. This deletes any check function",
+          "     * associated with this key. ",
+          "     * ",
+          "     * This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.",
+          "     *",
+          "     * @param key {String} The key of the environment setting to set.",
+          "     * @param value {var} The value to set the environment setting to. Must be a scalar value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the environment setting for the given key to the given value. This deletes any check function\n associated with this key.\n This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key of the environment setting to set.",
+            "paramName": "key",
+            "description": " The key of the environment setting to set.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to set the environment setting to. Must be a scalar value.",
+            "paramName": "value",
+            "description": " The value to set the environment setting to. Must be a scalar value.",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1226,
+          "column": 4,
+          "index": 48255
+        },
+        "end": {
+          "line": 1238,
+          "column": 16,
+          "index": 48941
+        }
+      },
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the environment setting for the given key, and any check function associated with it. ",
+          "     * This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.",
+          "     *",
+          "     * @param key {String} The key of the environment setting to remove.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the environment setting for the given key, and any check function associated with it.\n This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key of the environment setting to remove.",
+            "paramName": "key",
+            "description": " The key of the environment setting to remove.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1246,
+          "column": 4,
+          "index": 49241
+        },
+        "end": {
+          "line": 1256,
+          "column": 16,
+          "index": 49767
+        }
+      },
+      "appearsIn": []
+    },
+    "reset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the environment settings to their original values. If a key is provided, only that key is reset.",
+          "     * This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.",
+          "     *",
+          "     * @param key {String?} The key of the environment setting to reset. If not provided, all settings are reset.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the environment settings to their original values. If a key is provided, only that key is reset.\n This method is only available if \"qx.environment.allowRuntimeMutations\" is set to true.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String?} The key of the environment setting to reset. If not provided, all settings are reset.",
+            "paramName": "key",
+            "description": " The key of the environment setting to reset. If not provided, all settings are reset.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1264,
+          "column": 4,
+          "index": 50117
+        },
+        "end": {
+          "line": 1281,
+          "column": 16,
+          "index": 50882
+        }
       },
       "appearsIn": []
     },
@@ -1769,14 +1903,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1216,
+          "line": 1286,
           "column": 4,
-          "index": 47751
+          "index": 50974
         },
         "end": {
-          "line": 1226,
+          "line": 1296,
           "column": 5,
-          "index": 48018
+          "index": 51241
         }
       },
       "type": "function",
@@ -1800,14 +1934,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1231,
+          "line": 1301,
           "column": 4,
-          "index": 48119
+          "index": 51342
         },
         "end": {
-          "line": 1240,
+          "line": 1310,
           "column": 5,
-          "index": 48387
+          "index": 51610
         }
       },
       "type": "function",
@@ -1832,14 +1966,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1246,
+          "line": 1316,
           "column": 4,
-          "index": 48510
+          "index": 51733
         },
         "end": {
-          "line": 1271,
+          "line": 1341,
           "column": 5,
-          "index": 49287
+          "index": 52510
         }
       },
       "type": "function",
@@ -1883,14 +2017,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1279,
+          "line": 1349,
           "column": 4,
-          "index": 49522
+          "index": 52745
         },
         "end": {
-          "line": 1287,
+          "line": 1357,
           "column": 5,
-          "index": 49681
+          "index": 52904
         }
       },
       "type": "function",

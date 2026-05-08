@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688489,
-  "lastModifiedIso": "2024-12-28T11:01:28.489Z",
+  "lastModified": 1778272635670,
+  "lastModifiedIso": "2026-05-08T20:37:15.670Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/TouchCore.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 713
     },
     "end": {
-      "line": 491,
+      "line": 493,
       "column": 3,
-      "index": 14683
+      "index": 14861
     }
   },
   "className": "qx.event.handler.TouchCore",
@@ -437,9 +437,9 @@
           "index": 2914
         },
         "end": {
-          "line": 150,
+          "line": 152,
           "column": 5,
-          "index": 4009
+          "index": 4187
         }
       },
       "type": "function",
@@ -463,14 +463,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 161,
+          "line": 163,
           "column": 4,
-          "index": 4280
+          "index": 4458
         },
         "end": {
-          "line": 169,
+          "line": 171,
           "column": 5,
-          "index": 4533
+          "index": 4711
         }
       },
       "type": "function",
@@ -505,14 +505,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 182,
+          "line": 184,
           "column": 4,
-          "index": 4872
+          "index": 5050
         },
         "end": {
-          "line": 184,
+          "line": 186,
           "column": 5,
-          "index": 4950
+          "index": 5128
         }
       },
       "type": "function",
@@ -568,14 +568,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 192,
+          "line": 194,
           "column": 4,
-          "index": 5208
+          "index": 5386
         },
         "end": {
-          "line": 197,
+          "line": 199,
           "column": 5,
-          "index": 5386
+          "index": 5564
         }
       },
       "type": "function",
@@ -638,14 +638,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 205,
+          "line": 207,
           "column": 4,
-          "index": 5636
+          "index": 5814
         },
         "end": {
-          "line": 209,
+          "line": 211,
           "column": 5,
-          "index": 5812
+          "index": 5990
         }
       },
       "type": "function",
@@ -701,14 +701,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 217,
+          "line": 219,
           "column": 4,
-          "index": 6232
+          "index": 6410
         },
         "end": {
-          "line": 223,
+          "line": 225,
           "column": 5,
-          "index": 6425
+          "index": 6603
         }
       },
       "type": "function",
@@ -759,14 +759,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 230,
+          "line": 232,
           "column": 4,
-          "index": 6863
+          "index": 7041
         },
         "end": {
-          "line": 253,
+          "line": 255,
           "column": 5,
-          "index": 7569
+          "index": 7747
         }
       },
       "type": "function",
@@ -819,14 +819,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 261,
+          "line": 263,
           "column": 4,
-          "index": 7728
+          "index": 7906
         },
         "end": {
-          "line": 342,
+          "line": 344,
           "column": 5,
-          "index": 10259
+          "index": 10437
         }
       },
       "type": "function",
@@ -891,14 +891,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 351,
+          "line": 353,
           "column": 4,
-          "index": 10575
+          "index": 10753
         },
         "end": {
-          "line": 365,
+          "line": 367,
           "column": 5,
-          "index": 11000
+          "index": 11178
         }
       },
       "type": "function",
@@ -955,14 +955,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 372,
+          "line": 374,
           "column": 4,
-          "index": 11195
+          "index": 11373
         },
         "end": {
-          "line": 386,
+          "line": 388,
           "column": 5,
-          "index": 11614
+          "index": 11792
         }
       },
       "type": "function",
@@ -1014,14 +1014,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 394,
+          "line": 396,
           "column": 4,
-          "index": 11762
+          "index": 11940
         },
         "end": {
-          "line": 419,
+          "line": 421,
           "column": 5,
-          "index": 12649
+          "index": 12827
         }
       },
       "type": "function",
@@ -1074,14 +1074,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 428,
+          "line": 430,
           "column": 4,
-          "index": 12990
+          "index": 13168
         },
         "end": {
-          "line": 455,
+          "line": 457,
           "column": 5,
-          "index": 13858
+          "index": 14036
         }
       },
       "type": "function",
@@ -1144,14 +1144,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 464,
+          "line": 466,
           "column": 4,
-          "index": 14085
+          "index": 14263
         },
         "end": {
-          "line": 474,
+          "line": 476,
           "column": 5,
-          "index": 14352
+          "index": 14530
         }
       },
       "type": "function",
@@ -1192,14 +1192,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 479,
+          "line": 481,
           "column": 4,
-          "index": 14402
+          "index": 14580
         },
         "end": {
-          "line": 489,
+          "line": 491,
           "column": 5,
-          "index": 14675
+          "index": 14853
         }
       },
       "type": "function",

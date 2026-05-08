@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686849,
-  "lastModifiedIso": "2024-12-28T11:01:26.849Z",
+  "lastModified": 1778272634770,
+  "lastModifiedIso": "2026-05-08T20:37:14.770Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 588
     },
     "end": {
-      "line": 355,
+      "line": 411,
       "column": 3,
-      "index": 11568
+      "index": 14801
     }
   },
   "className": "qx.io.jsonrpc.Client",
@@ -345,8 +345,8 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * Fires \"error\" event and throws the error after informing pending requests",
-          "     * about the error.",
+          "     * Fires \"error\" event and rejects the pending requests' promises.",
+          "     * The method will be renamed and made private in v8.",
           "     * @param exception",
           "     * @private",
           "     "
@@ -354,7 +354,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fires \"error\" event and throws the error after informing pending requests\n about the error.</p>"
+            "body": "<p>Fires \"error\" event and rejects the pending requests' promises.\n The method will be renamed and made private in v8.</p>"
           }
         ],
         "@param": [
@@ -377,12 +377,12 @@
         "start": {
           "line": 133,
           "column": 4,
-          "index": 4100
+          "index": 4124
         },
         "end": {
-          "line": 141,
+          "line": 144,
           "column": 5,
-          "index": 4395
+          "index": 4630
         }
       },
       "type": "function",
@@ -400,9 +400,24 @@
           "     * Send the given JSON-RPC message object using the configured transport",
           "     *",
           "     * @param {qx.io.jsonrpc.protocol.Message|qx.io.jsonrpc.protocol.Batch} message",
-          "     * @return {qx.Promise} Promise that resolves (with no data)",
-          "     * when the message has been successfully sent out, and rejects",
-          "     * when there is an error or a cancellation up to that point.",
+          "     * @return {qx.Promise} Promise that resolves (with no data) when the message has been successfully",
+          "     * sent out. As this means different things depending on the transport implementation, it is best",
+          "     * not to base any kind of business logic on the fulfillment of that promise.",
+          "     *",
+          "     * The current behavior is to return the promise from the transport `send()` implementation, which",
+          "     * might be rejected with a {@link qx.io.exception.Transport} in case of a transport error.",
+          "     * This has caused problems with \"unhandled promise rejection\" errors, so a new behaviour will be",
+          "     * the default in v8: The returned promise is already resolved, and any rejection of the transport",
+          "     * promise will only be forwarded to the promise(s) of the request(s) contained in the the `message`",
+          "     * argument. The returned promise will never be rejected. This behavior can be enabled by setting",
+          "     * the environment variable `qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest` to `true` in v7.",
+          "     * In v8, the default of `qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest` will become `true`,",
+          "     * and that environment variable will become deprecated.",
+          "     *",
+          "     * In any case, the result of the jsonrpc request is retrieved by awaiting {@link qx.io.jsonrpc.protocol.Request}'s",
+          "     * promise, which is resolved with the jsonrpc server's response or is rejected either  with a",
+          "     * {@link qx.io.exception.Transport} in case of a transport error or with {@link qx.io.protocol.Error}",
+          "     * in case of a jsonrpc error.",
           "     "
         ],
         "@description": [
@@ -426,23 +441,23 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.Promise} Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point.",
+            "body": "{qx.Promise} Promise that resolves (with no data) when the message has been successfully\n sent out. As this means different things depending on the transport implementation, it is best\n not to base any kind of business logic on the fulfillment of that promise.\n The current behavior is to return the promise from the transport <code>send()</code> implementation, which\n might be rejected with a {@link qx.io.exception.Transport} in case of a transport error.\n This has caused problems with \"unhandled promise rejection\" errors, so a new behaviour will be\n the default in v8: The returned promise is already resolved, and any rejection of the transport\n promise will only be forwarded to the promise(s) of the request(s) contained in the the <code>message</code>\n argument. The returned promise will never be rejected. This behavior can be enabled by setting\n the environment variable <code>qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest</code> to <code>true</code> in v7.\n In v8, the default of <code>qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest</code> will become <code>true</code>,\n and that environment variable will become deprecated.\n In any case, the result of the jsonrpc request is retrieved by awaiting {@link qx.io.jsonrpc.protocol.Request}'s\n promise, which is resolved with the jsonrpc server's response or is rejected either  with a\n {@link qx.io.exception.Transport} in case of a transport error or with {@link qx.io.protocol.Error}\n in case of a jsonrpc error.",
             "type": "qx.Promise",
-            "description": "Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point."
+            "description": "Promise that resolves (with no data) when the message has been successfully\n sent out. As this means different things depending on the transport implementation, it is best\n not to base any kind of business logic on the fulfillment of that promise.\n The current behavior is to return the promise from the transport <code>send()</code> implementation, which\n might be rejected with a {@link qx.io.exception.Transport} in case of a transport error.\n This has caused problems with \"unhandled promise rejection\" errors, so a new behaviour will be\n the default in v8: The returned promise is already resolved, and any rejection of the transport\n promise will only be forwarded to the promise(s) of the request(s) contained in the the <code>message</code>\n argument. The returned promise will never be rejected. This behavior can be enabled by setting\n the environment variable <code>qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest</code> to <code>true</code> in v7.\n In v8, the default of <code>qx.io.jsonrpc.forwardTransportPromiseRejectionToRequest</code> will become <code>true</code>,\n and that environment variable will become deprecated.\n In any case, the result of the jsonrpc request is retrieved by awaiting {@link qx.io.jsonrpc.protocol.Request}'s\n promise, which is resolved with the jsonrpc server's response or is rejected either  with a\n {@link qx.io.exception.Transport} in case of a transport error or with {@link qx.io.protocol.Error}\n in case of a jsonrpc error."
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 151,
+          "line": 169,
           "column": 4,
-          "index": 4785
+          "index": 6370
         },
         "end": {
-          "line": 195,
+          "line": 233,
           "column": 5,
-          "index": 6169
+          "index": 8611
         }
       },
       "type": "function",
@@ -510,14 +525,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 243,
           "column": 4,
-          "index": 6562
+          "index": 9004
         },
         "end": {
-          "line": 213,
+          "line": 253,
           "column": 5,
-          "index": 6802
+          "index": 9322
         }
       },
       "type": "function",
@@ -589,14 +604,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 222,
+          "line": 262,
           "column": 4,
-          "index": 7103
+          "index": 9623
         },
         "end": {
-          "line": 229,
+          "line": 269,
           "column": 5,
-          "index": 7322
+          "index": 9842
         }
       },
       "type": "function",
@@ -656,14 +671,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 237,
+          "line": 277,
           "column": 4,
-          "index": 7618
+          "index": 10138
         },
         "end": {
-          "line": 248,
+          "line": 290,
           "column": 5,
-          "index": 8009
+          "index": 10606
         }
       },
       "type": "function",
@@ -705,14 +720,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 254,
+          "line": 296,
           "column": 4,
-          "index": 8142
+          "index": 10739
         },
         "end": {
-          "line": 273,
+          "line": 315,
           "column": 5,
-          "index": 8798
+          "index": 11395
         }
       },
       "type": "function",
@@ -758,14 +773,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 280,
+          "line": 322,
           "column": 4,
-          "index": 8942
+          "index": 11539
         },
         "end": {
-          "line": 282,
+          "line": 324,
           "column": 5,
-          "index": 8992
+          "index": 11589
         }
       },
       "type": "function",
@@ -783,6 +798,7 @@
           "*",
           "     * Handle an incoming message or batch of messages",
           "     * @param {qx.io.jsonrpc.protocol.Message|qx.io.jsonrpc.protocol.Batch} message Message or Batch",
+          "     * @throws {qx.io.exception.Transport} For transport-related errors",
           "     "
         ],
         "@description": [
@@ -802,19 +818,27 @@
               "qx.io.jsonrpc.protocol.Batch"
             ]
           }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.io.exception.Transport} For transport-related errors",
+            "type": "qx.io.exception.Transport",
+            "description": " For transport-related errors"
+          }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 331,
           "column": 4,
-          "index": 9171
+          "index": 11840
         },
         "end": {
-          "line": 349,
+          "line": 393,
           "column": 5,
-          "index": 11504
+          "index": 14230
         }
       },
       "type": "function",

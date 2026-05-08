@@ -13,7 +13,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* IconTools.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -229,7 +229,6 @@
           var thisIconColors = cv.util.IconTools.iconCache[url].colors;
           var thisFillColor;
           while (thisFillColor = toFill.pop()) {
-            // eslint-disable-line no-cond-assign
             cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
           }
         };
@@ -363,4 +362,4 @@
   cv.util.IconTools.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconTools.js.map?dt=1735383886701
+//# sourceMappingURL=IconTools.js.map?dt=1778272857496

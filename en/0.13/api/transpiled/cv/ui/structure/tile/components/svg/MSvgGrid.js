@@ -11,6 +11,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         "usage": "dynamic",
         "require": true
       },
+      "cv.Config": {
+        "construct": true
+      },
       "qx.module.util.Function": {
         "construct": true
       }
@@ -18,7 +21,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -50,7 +53,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     construct: function construct() {
       this._cells = {};
       this._isLayoutValid = true;
-      this.debouncedLayoutAll = qx.module.util.Function.debounce(this._layoutAll.bind(this), 100);
+      this.debouncedLayoutAll = cv.Config && cv.Config.unitTesting ? this._layoutAll.bind(this) : qx.module.util.Function.debounce(this._layoutAll.bind(this), 100);
     },
     /*
     ***********************************************
@@ -63,42 +66,42 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         init: 3,
         event: 'changeRows',
         apply: '_invalidateLayout',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       columns: {
         check: 'Number',
         init: 3,
         event: 'changeColumns',
         apply: '_invalidateLayout',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       outerPadding: {
         check: 'Number',
         event: 'changeOuterPadding',
         init: 4,
         apply: '_invalidateLayout',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       spacing: {
         check: 'Number',
         init: 8,
         event: 'changeSpacing',
         apply: '_invalidateLayout',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       cellWidth: {
         check: 'Number',
         init: 56,
         apply: '_invalidateLayout',
         event: 'changeSize',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       cellHeight: {
         check: 'Number',
         init: 56,
         apply: '_invalidateLayout',
         event: 'changeSize',
-        transform: "__P_91_0"
+        transform: "__P_95_0"
       },
       viewBox: {
         check: 'String',
@@ -114,7 +117,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     members: {
       _cells: null,
       _isLayoutValid: null,
-      __P_91_0: function __P_91_0(value) {
+      __P_95_0: function __P_95_0(value) {
         if (typeof value === 'string') {
           return parseInt(value);
         }
@@ -207,7 +210,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           for (var _c = 0; _c < this.getColumns(); _c++) {
             cellId = row + '-' + _c;
             if (!this._cells[cellId]) {
-              return [row, column];
+              return [row, _c];
             }
           }
         } else {
@@ -230,4 +233,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.structure.tile.components.svg.MSvgGrid.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSvgGrid.js.map?dt=1735383845492
+//# sourceMappingURL=MSvgGrid.js.map?dt=1778272817346

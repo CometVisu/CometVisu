@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687805,
-  "lastModifiedIso": "2024-12-28T11:01:27.805Z",
+  "lastModified": 1778272635195,
+  "lastModifiedIso": "2026-05-08T20:37:15.195Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/ImageLoader.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 864
     },
     "end": {
-      "line": 348,
+      "line": 351,
       "column": 3,
-      "index": 9887
+      "index": 10105
     }
   },
   "className": "qx.io.ImageLoader",
@@ -164,8 +164,8 @@
         },
         "end": {
           "line": 44,
-          "column": 61,
-          "index": 1332
+          "column": 65,
+          "index": 1336
         }
       },
       "appearsIn": []
@@ -210,12 +210,12 @@
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1579
+          "index": 1583
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1682
+          "index": 1686
         }
       },
       "type": "function",
@@ -270,12 +270,12 @@
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1948
+          "index": 1952
         },
         "end": {
           "line": 68,
           "column": 5,
-          "index": 2051
+          "index": 2055
         }
       },
       "type": "function",
@@ -329,12 +329,12 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2270
+          "index": 2274
         },
         "end": {
           "line": 79,
           "column": 5,
-          "index": 2375
+          "index": 2379
         }
       },
       "type": "function",
@@ -388,12 +388,12 @@
         "start": {
           "line": 87,
           "column": 4,
-          "index": 2588
+          "index": 2592
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3352
+          "index": 3356
         }
       },
       "type": "function",
@@ -449,12 +449,12 @@
         "start": {
           "line": 123,
           "column": 4,
-          "index": 3708
+          "index": 3712
         },
         "end": {
           "line": 128,
           "column": 5,
-          "index": 3874
+          "index": 3878
         }
       },
       "type": "function",
@@ -508,12 +508,12 @@
         "start": {
           "line": 136,
           "column": 4,
-          "index": 4072
+          "index": 4076
         },
         "end": {
           "line": 139,
           "column": 5,
-          "index": 4176
+          "index": 4180
         }
       },
       "type": "function",
@@ -567,12 +567,12 @@
         "start": {
           "line": 147,
           "column": 4,
-          "index": 4376
+          "index": 4380
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 4482
+          "index": 4486
         }
       },
       "type": "function",
@@ -602,6 +602,8 @@
           "     *   second parameter is the data entry which contains additional",
           "     *   information about the image.",
           "     * @param context {Object?} Context in which the given callback should be executed",
+          "     * @param options {Map?} Optional configuration options:",
+          "     * - retryFailed {boolean} Whether to retry loading of a failed image source",
           "     "
         ],
         "@description": [
@@ -633,20 +635,28 @@
             "description": " Context in which the given callback should be executed",
             "optional": true,
             "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?} Optional configuration options:\n - retryFailed {boolean} Whether to retry loading of a failed image source",
+            "paramName": "options",
+            "description": " Optional configuration options:\n - retryFailed {boolean} Whether to retry loading of a failed image source",
+            "optional": true,
+            "type": "Map"
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 167,
           "column": 4,
-          "index": 5043
+          "index": 5189
         },
         "end": {
-          "line": 226,
+          "line": 229,
           "column": 5,
-          "index": 6651
+          "index": 6869
         }
       },
       "type": "function",
@@ -663,6 +673,11 @@
         {
           "name": "context",
           "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "options",
+          "type": "Map",
           "optional": true
         }
       ],
@@ -696,14 +711,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 236,
           "column": 4,
-          "index": 6794
+          "index": 7012
         },
         "end": {
-          "line": 259,
+          "line": 262,
           "column": 5,
-          "index": 7438
+          "index": 7656
         }
       },
       "type": "function",
@@ -732,14 +747,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 264,
+          "line": 267,
           "column": 4,
-          "index": 7515
+          "index": 7733
         },
         "end": {
-          "line": 271,
+          "line": 274,
           "column": 5,
-          "index": 7767
+          "index": 7985
         }
       },
       "type": "function",
@@ -798,14 +813,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 282,
+          "line": 285,
           "column": 4,
-          "index": 8086
+          "index": 8304
         },
         "end": {
-          "line": 339,
+          "line": 342,
           "column": 5,
-          "index": 9785
+          "index": 10003
         }
       },
       "type": "function",
@@ -842,14 +857,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 344,
+          "line": 347,
           "column": 4,
-          "index": 9838
+          "index": 10056
         },
         "end": {
-          "line": 346,
+          "line": 349,
           "column": 5,
-          "index": 9879
+          "index": 10097
         }
       },
       "type": "function",

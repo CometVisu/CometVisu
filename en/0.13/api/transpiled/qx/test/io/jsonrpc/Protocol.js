@@ -48,7 +48,7 @@
     },
     members: {
       "test: JSON-RPC request message object": function test_JSONRPC_request_message_object() {
-        var message = new qx.io.jsonrpc.protocol.Request("foo", ["bar", 1, false]);
+        var message = new qx.io.jsonrpc.protocol.Request("foo", ["bar", 1, false], 1);
         var expected = {
           id: 1,
           jsonrpc: "2.0",
@@ -103,4 +103,4 @@
   qx.test.io.jsonrpc.Protocol.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Protocol.js.map?dt=1735383861535
+//# sourceMappingURL=Protocol.js.map?dt=1778272833475

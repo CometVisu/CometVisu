@@ -15,7 +15,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* MHandleMessage.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -116,6 +116,12 @@
       },
       getSeverities: function getSeverities() {
         return this._severities;
+      },
+      clearMessages: function clearMessages() {
+        this._messages.removeAll();
+        this._idCounter = 0;
+        this.setCounter(0);
+        this.resetGlobalSeverity();
       },
       _updateHighestSeverity: function _updateHighestSeverity() {
         // get the highest severity
@@ -357,4 +363,4 @@
   cv.ui.MHandleMessage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MHandleMessage.js.map?dt=1735383888330
+//# sourceMappingURL=MHandleMessage.js.map?dt=1778272858902

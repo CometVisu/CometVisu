@@ -22,7 +22,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -55,7 +55,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     construct: function construct(source, target) {
       qx.core.Object.constructor.call(this);
-      this._updatePosition = this.__P_90_0.bind(this);
+      this._updatePosition = this.__P_94_0.bind(this);
       this._debouncedUpdatePosition = qx.util.Function.debounce(this._updatePosition, 50);
       this._sourceObserver = new MutationObserver(this._onMutation.bind(this));
       this._targetObserver = new MutationObserver(this._onMutation.bind(this));
@@ -98,13 +98,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       sourceConnectionPoint: {
         check: ['top', 'right', 'bottom', 'left', 'auto'],
         init: 'auto',
-        apply: "__P_90_0",
+        apply: "__P_94_0",
         validate: '_validateConnectionPoint'
       },
       targetConnectionPoint: {
         check: ['top', 'right', 'bottom', 'left', 'auto'],
         init: 'auto',
-        apply: "__P_90_0",
+        apply: "__P_94_0",
         validate: '_validateConnectionPoint'
       },
       styleClass: {
@@ -130,6 +130,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     */
     members: {
       _path: null,
+      _updatePositionTimeout: null,
       /**
        * @type {MutationObserver}
        */
@@ -217,8 +218,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             root.insertBefore(path, root.firstChild);
           }
           this._path = path;
-          setTimeout(function () {
-            _this.__P_90_0();
+          this._updatePositionTimeout = setTimeout(function () {
+            _this.__P_94_0();
           }, 1000);
         }
       },
@@ -238,9 +239,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           _iterator.f();
         }
       },
-      __P_90_0: function __P_90_0() {
+      __P_94_0: function __P_94_0() {
         var _this2 = this;
         var retried = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+        if (this._updatePositionTimeout) {
+          clearTimeout(this._updatePositionTimeout);
+          this._updatePositionTimeout = null;
+        }
         var sourceEntity = this.getSource();
         var targetEntity = this.getTarget();
         if (sourceEntity && targetEntity && this._path) {
@@ -260,7 +265,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             var l = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
             if (l === 0) {
               if (!retried) {
-                setTimeout(function () {
+                this._updatePositionTimeout = setTimeout(function () {
                   _this2._updatePosition(true);
                 }, 1000);
               }
@@ -378,20 +383,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this._path.removeAttribute('marker-start');
           this._path.removeAttribute('marker-end');
         } else if (value === 'both') {
-          markerId = this.__P_90_1();
+          markerId = this.__P_94_1();
           this._path.setAttribute('marker-start', "url(#".concat(markerId, ")"));
           this._path.setAttribute('marker-end', "url(#".concat(markerId, ")"));
         } else if (value === 'source' && !this.isInverted() || value === 'target' && this.isInverted()) {
-          markerId = this.__P_90_1();
+          markerId = this.__P_94_1();
           this._path.setAttribute('marker-start', "url(#".concat(markerId, ")"));
           this._path.removeAttribute('marker-end');
         } else if (value === 'target' && !this.isInverted() || value === 'source' && this.isInverted()) {
-          markerId = this.__P_90_1();
+          markerId = this.__P_94_1();
           this._path.removeAttribute('marker-start');
           this._path.setAttribute('marker-end', "url(#".concat(markerId, ")"));
         }
       },
-      __P_90_1: function __P_90_1() {
+      __P_94_1: function __P_94_1() {
         var arrowId = 'arrow';
         var styleClass = this.getStyleClass();
         if (styleClass) {
@@ -483,9 +488,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       this._sourceObserver = null;
       this._targetObserver.disconnect();
       this._targetObserver = null;
+      if (this._updatePositionTimeout) {
+        clearTimeout(this._updatePositionTimeout);
+        this._updatePositionTimeout = null;
+      }
     }
   });
   cv.ui.structure.tile.components.svg.Connector.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Connector.js.map?dt=1735383845445
+//# sourceMappingURL=Connector.js.map?dt=1778272817298

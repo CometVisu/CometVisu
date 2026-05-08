@@ -26,16 +26,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         "usage": "dynamic",
         "require": true
       },
-      "qx.util.LibraryManager": {},
       "qx.util.Uri": {},
-      "qx.util.DynamicScriptLoader": {},
+      "qx.util.ResourceManager": {},
       "cv.ui.manager.editor.completion.Config": {},
       "cv.ui.manager.editor.completion.CometVisu": {},
       "qx.log.Logger": {},
       "cv.ui.manager.editor.Worker": {},
       "cv.Version": {},
       "qx.io.request.Xhr": {},
-      "qx.util.ResourceManager": {},
       "cv.io.rest.Client": {},
       "cv.ui.manager.snackbar.Controller": {},
       "qxl.dialog.Dialog": {},
@@ -46,7 +44,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Source.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -65,6 +63,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
   /**
    * Monaco Texteditor integration
+   * @asset(monaco/*)
+   * @ignore(fetch)
    */
   qx.Class.define('cv.ui.manager.editor.Source', {
     extend: cv.ui.manager.editor.AbstractEditor,
@@ -117,6 +117,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       DEFAULT_FOR: /^(demo|\.)?\/?visu_config.*\.xml/,
       ICON: cv.theme.dark.Images.getIcon('text', 18),
+      __P_35_0: null,
       getExtensionRegex: function getExtensionRegex() {
         if (!cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX) {
           if (window.monaco && window.monaco.languages) {
@@ -140,42 +141,103 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         return cv.ui.manager.editor.Source.MONACO_EXTENSION_REGEX || cv.ui.manager.editor.Source.FALLBACK_EXTENSION_REGEX;
       },
       load: function load(callback, context) {
-        var _this = this;
-        var version = false ? 'dev' : 'min';
-        var resourceUri = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
-        if (!resourceUri.endsWith('/')) {
-          resourceUri += '/';
+        // Guard against multiple concurrent loads
+        if (cv.ui.manager.editor.Source.__P_35_0) {
+          cv.ui.manager.editor.Source.__P_35_0.push({
+            fn: callback,
+            ctx: context
+          });
+          return;
         }
-        var sourcePath = qx.util.Uri.getAbsolute(resourceUri + '..');
-        var loader = new qx.util.DynamicScriptLoader([sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
-        loader.addListener('ready', function () {
-          window.require.config({
-            paths: {
-              vs: sourcePath + 'node_modules/monaco-editor/' + version + '/vs'
+        cv.ui.manager.editor.Source.__P_35_0 = [{
+          fn: callback,
+          ctx: context
+        }];
+        var toUri = function toUri(res) {
+          return qx.util.Uri.getAbsolute(qx.util.ResourceManager.getInstance().toUri(res));
+        };
+
+        // Configure ESM workers
+        window.MonacoEnvironment = {
+          globalAPI: true,
+          getWorker: function getWorker(workerId, label) {
+            var workerFile;
+            switch (label) {
+              case 'json':
+                workerFile = 'json.worker.js';
+                break;
+              case 'css':
+              case 'scss':
+              case 'less':
+                workerFile = 'css.worker.js';
+                break;
+              case 'html':
+              case 'handlebars':
+              case 'razor':
+                workerFile = 'html.worker.js';
+                break;
+              case 'typescript':
+              case 'javascript':
+                workerFile = 'ts.worker.js';
+                break;
+              default:
+                workerFile = 'editor.worker.js';
+                break;
             }
-          });
-          window.require.config({
-            'vs/nls': {
-              availableLanguages: {
-                '*': qx.locale.Manager.getInstance().getLanguage() !== 'en' ? qx.locale.Manager.getInstance().getLanguage() : ''
-              }
-            }
-          });
-          window.require(['xml!*./resource/manager/completion-libs/qooxdoo.d.ts',
-          // the xml loader can load any file by adding * before the path,
-          'vs/editor/editor.main'], function (qxLib) {
-            callback.apply(context);
+            var workerUrl = toUri('monaco/' + workerFile);
+            var blob = new Blob(['import \'' + workerUrl + '\';'], {
+              type: 'text/javascript'
+            });
+            return new Worker(URL.createObjectURL(blob), {
+              type: 'module'
+            });
+          }
+        };
+
+        // Load Monaco CSS
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = toUri('monaco/editor.main.css');
+        document.head.appendChild(link);
+
+        // Listen for Monaco ESM loaded event
+        var qxLibUri = qx.util.ResourceManager.getInstance().toUri('manager/completion-libs/qooxdoo.d.ts');
+        document.addEventListener('cv-monaco-loaded', function () {
+          fetch(qxLibUri).then(function (r) {
+            return r.text();
+          }).then(function (qxLib) {
             window.monaco.languages.typescript.javascriptDefaults.addExtraLib(qxLib, 'qooxdoo.d.ts');
             var completionProvider = new cv.ui.manager.editor.completion.Config();
             var cvCompletionProvider = new cv.ui.manager.editor.completion.CometVisu();
             window.monaco.languages.registerCompletionItemProvider('javascript', cvCompletionProvider.getProvider());
             window.monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+
+            // Notify all pending callers
+            var cbs = cv.ui.manager.editor.Source.__P_35_0;
+            cv.ui.manager.editor.Source.__P_35_0 = null;
+            cbs.forEach(function (entry) {
+              entry.fn.apply(entry.ctx);
+            });
           });
+        }, {
+          once: true
         });
-        loader.addListener('failed', function (ev) {
-          qx.log.Logger.error(_this, ev.getData());
-        });
-        loader.start();
+
+        // Load NLS and Monaco ESM via inline module script
+        var lang = qx.locale.Manager.getInstance().getLanguage();
+        var code = '';
+        if (lang !== 'en') {
+          code += 'await import(\'' + toUri('monaco/nls.messages.' + lang + '.js') + '\').catch(function(){});\n';
+        }
+        code += 'await import(\'' + toUri('monaco/editor.main.js') + '\');\n';
+        code += 'document.dispatchEvent(new CustomEvent(\'cv-monaco-loaded\'));\n';
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.textContent = code;
+        script.onerror = function (err) {
+          qx.log.Logger.error(this, 'Failed to load Monaco editor: ' + err);
+        };
+        document.head.appendChild(script);
       }
     },
     /*
@@ -319,7 +381,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         }
       },
       _loadFromFs: function _loadFromFs() {
-        var _this2 = this;
+        var _this = this;
         if (this.getFile().getName() === 'hidden.php') {
           if (!this._configClient) {
             this._configClient = cv.io.rest.Client.getConfigClient();
@@ -327,9 +389,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               var content = ev.getData();
               if (Object.prototype.hasOwnProperty.call(content, 'error')) {
                 // hidden config json could not be parsed, show the raw data
-                _this2.setContent(content.data);
+                _this.setContent(content.data);
               } else {
-                _this2.setContent(JSON.stringify(ev.getData(), null, 2));
+                _this.setContent(JSON.stringify(ev.getData(), null, 2));
               }
             });
             this._configClient.addListener('updateSuccess', this._onSaved, this);
@@ -350,17 +412,17 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             // ask user if he really want to save a file with warnings
             qxl.dialog.Dialog.confirm(this.tr('Hidden config content has some warnings! It is recommended to fix the warnings before saving. Save anyways?'), function (confirmed) {
               if (confirmed) {
-                this.__P_35_0();
+                this.__P_35_1();
               }
             }, this, qx.locale.Manager.tr('Confirm saving with warnings'));
           } else {
-            this.__P_35_0();
+            this.__P_35_1();
           }
         } else {
           cv.ui.manager.editor.Source.superclass.prototype.save.call(this, callback, overrideHash);
         }
       },
-      __P_35_0: function __P_35_0() {
+      __P_35_1: function __P_35_1() {
         this._configClient.saveSync(null, JSON.parse(this.getCurrentContent()), function (err) {
           if (err) {
             cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
@@ -557,4 +619,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1735383840697
+//# sourceMappingURL=Source.js.map?dt=1778272812663

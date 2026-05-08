@@ -19,7 +19,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* PageLink.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -96,4 +96,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.pure.PageLink.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageLink.js.map?dt=1735383843232
+//# sourceMappingURL=PageLink.js.map?dt=1778272814936

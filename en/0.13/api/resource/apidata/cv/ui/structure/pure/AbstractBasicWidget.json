@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576154,
+  "lastModifiedIso": "2026-05-08T20:36:16.154Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/AbstractBasicWidget.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 837
     },
     "end": {
-      "line": 151,
+      "line": 162,
       "column": 3,
-      "index": 4035
+      "index": 4318
     }
   },
   "className": "cv.ui.structure.pure.AbstractBasicWidget",
@@ -47,9 +47,9 @@
         "index": 1088
       },
       "end": {
-        "line": 38,
+        "line": 40,
         "column": 3,
-        "index": 1259
+        "index": 1326
       }
     }
   },
@@ -57,14 +57,14 @@
     "path": {
       "location": {
         "start": {
-          "line": 49,
+          "line": 51,
           "column": 4,
-          "index": 1472
+          "index": 1539
         },
         "end": {
-          "line": 51,
+          "line": 53,
           "column": 5,
-          "index": 1507
+          "index": 1574
         }
       },
       "json": {
@@ -88,14 +88,14 @@
     "$$type": {
       "location": {
         "start": {
-          "line": 56,
+          "line": 58,
           "column": 4,
-          "index": 1553
+          "index": 1620
         },
         "end": {
-          "line": 58,
+          "line": 60,
           "column": 5,
-          "index": 1590
+          "index": 1657
         }
       },
       "json": {
@@ -119,14 +119,14 @@
     "pageType": {
       "location": {
         "start": {
-          "line": 63,
+          "line": 65,
           "column": 4,
-          "index": 1642
+          "index": 1709
         },
         "end": {
-          "line": 66,
+          "line": 68,
           "column": 5,
-          "index": 1713
+          "index": 1780
         }
       },
       "json": {
@@ -159,14 +159,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 75,
+          "line": 77,
           "column": 4,
-          "index": 1873
+          "index": 1940
         },
         "end": {
-          "line": 75,
+          "line": 77,
           "column": 24,
-          "index": 1893
+          "index": 1960
         }
       },
       "appearsIn": []
@@ -176,15 +176,73 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 76,
+          "line": 78,
           "column": 4,
-          "index": 1899
+          "index": 1966
         },
         "end": {
-          "line": 76,
+          "line": 78,
           "column": 21,
-          "index": 1916
+          "index": 1983
         }
+      },
+      "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to modify props before they are applied in the constructor",
+          "     * @param {object} props ",
+          "     * @returns {object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to modify props before they are applied in the constructor</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{object} props",
+            "paramName": "props",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2145
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2199
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
       },
       "appearsIn": []
     },
@@ -214,14 +272,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 93,
           "column": 4,
-          "index": 1992
+          "index": 2275
         },
         "end": {
-          "line": 84,
+          "line": 95,
           "column": 5,
-          "index": 2050
+          "index": 2333
         }
       },
       "type": "function",
@@ -238,14 +296,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 97,
           "column": 4,
-          "index": 2057
+          "index": 2340
         },
         "end": {
-          "line": 88,
+          "line": 99,
           "column": 5,
-          "index": 2122
+          "index": 2405
         }
       },
       "type": "function",
@@ -261,14 +319,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 101,
           "column": 4,
-          "index": 2129
+          "index": 2412
         },
         "end": {
-          "line": 100,
+          "line": 111,
           "column": 5,
-          "index": 2691
+          "index": 2974
         }
       },
       "type": "function",
@@ -301,14 +359,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 117,
           "column": 4,
-          "index": 2784
+          "index": 3067
         },
         "end": {
-          "line": 111,
+          "line": 122,
           "column": 5,
-          "index": 2950
+          "index": 3233
         }
       },
       "type": "function",
@@ -344,14 +402,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 128,
           "column": 4,
-          "index": 3050
+          "index": 3333
         },
         "end": {
-          "line": 119,
+          "line": 130,
           "column": 5,
-          "index": 3150
+          "index": 3433
         }
       },
       "type": "function",
@@ -387,14 +445,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 125,
+          "line": 136,
           "column": 4,
-          "index": 3306
+          "index": 3589
         },
         "end": {
-          "line": 134,
+          "line": 145,
           "column": 5,
-          "index": 3545
+          "index": 3828
         }
       },
       "type": "function",
@@ -430,14 +488,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 151,
           "column": 4,
-          "index": 3747
+          "index": 4030
         },
         "end": {
-          "line": 149,
+          "line": 160,
           "column": 5,
-          "index": 4027
+          "index": 4310
         }
       },
       "type": "function",

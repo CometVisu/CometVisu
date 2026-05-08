@@ -13,6 +13,19 @@
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2020 Henner Kollmann
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project"s top-level directory for details.
+  ************************************************************************ */
   /**
    * This is used to add an test case for qx test
    */
@@ -59,6 +72,14 @@
         init: true
       },
       /**
+       * If this special test fails exit process
+       */
+      failFast: {
+        check: "Boolean",
+        nullable: false,
+        init: false
+      },
+      /**
        * The test function called by qx test
        *
        */
@@ -85,4 +106,4 @@
   qx.tool.cli.api.Test.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Test.js.map?dt=1735383868493
+//# sourceMappingURL=Test.js.map?dt=1778272840537

@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chart &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../_static/documentation_options.js?v=245627df"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../../_static/translations.js?v=70a09b52"></script>
+      <script src="../../../_static/translations.js?v=9bf55d28"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -116,8 +116,9 @@ Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;data
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -126,7 +127,7 @@ Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;data
 <p>Das Beispiel zeigt den Temperaturverlauf der letzten 24 Stunden, der exakte, formatierte Temperaturwert für
 einen Zeitpunkt im Chart wird als Tooltip angezeigt, wenn man mit dem Mauszeiger über den Chart fährt.
 Damit der Chart eine gewisse Größe erreicht wird hier eine Kachel mit doppelter Breite <code class="docutils literal notranslate"><span class="pre">&lt;cv-tile</span> <span class="pre">size=&quot;2x1&quot;&gt;</span></code> benutzt
-und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils literal notranslate"><span class="pre">&lt;cv-chart</span> <span class="pre">...</span> <span class="pre">colspan=&quot;3&quot;</span> <span class="pre">rowspan=&quot;3&quot;&gt;</span></code>.</p>
+und der Chart selbst soll die gesamte Kachel ausfüllen <code class="docutils literal notranslate"><span class="pre">&lt;cv-chart</span> <span class="pre">...</span> <span class="pre">colspan=&quot;6&quot;</span> <span class="pre">rowspan=&quot;3&quot;&gt;</span></code>.</p>
 <section id="konfiguration-der-datenquelle">
 <h3>Konfiguration der Datenquelle<a class="headerlink" href="#konfiguration-der-datenquelle" title="Link to this heading"></a></h3>
 <p>Im <code class="docutils literal notranslate"><span class="pre">src</span></code>-Attribute des <code class="docutils literal notranslate"><span class="pre">dataset</span></code>-Elements wird eine URL angegeben die die Datenquelle definiert. Bisher werden
@@ -244,7 +245,9 @@ Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
@@ -262,7 +265,9 @@ Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Produktion&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
@@ -287,7 +292,9 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;week,month,year&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;week,month,year&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
@@ -303,8 +310,9 @@ oder auch die Linienfarbe ändern (<code class="docutils literal notranslate"><s
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">show-grid=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">gradient=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">show-grid=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">gradient=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -325,7 +333,9 @@ Höchst- oder Tiefstwert.</p>
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;h-line</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">show-value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;max&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;h-line</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">show-value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#CCCCCC&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;avg&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f&quot;</span><span class="nt">/&gt;</span>
@@ -343,7 +353,9 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <p>Auch Inline-Queries können auf diesem Weg wieder verwendet werden:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://inline#1&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
 <span class="w">                </span>...
 <span class="w">            </span><span class="nt">&lt;dataset&gt;</span>
@@ -367,9 +379,11 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;x-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;y-axis</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Netzbezug&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
-<span class="w">            </span><span class="nt">&lt;v-line</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFFFF&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2022-12-02T12:00:00&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;v-line</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FFFFFF&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;2025-11-20T12:00:00&quot;</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
@@ -389,18 +403,10 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="20"><p>cv-chart</p></td>
+<tr class="row-odd"><td rowspan="16"><p>cv-chart</p></td>
 <td><p>title</p></td>
 <td><p>Text</p></td>
 <td><p>Titel des Charts.</p></td>
-</tr>
-<tr class="row-even"><td><p>y-format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Werts auf der y-Achse. (printf-Syntax)</p></td>
-</tr>
-<tr class="row-odd"><td><p>x-format</p></td>
-<td><p>Text</p></td>
-<td><p>Formatierung des Datums auf der x-Achse. (siehe: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>). Wird keine Formatierung angegeben, wird diese automatisch bestimmt auf Basis der gerade angezeigten ‚series‘. Eine explizite Angabe der Formatierung deaktiviert die Automatik.</p></td>
 </tr>
 <tr class="row-even"><td><p>series</p></td>
 <td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> oder <em>year</em></p></td>
@@ -414,14 +420,6 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Erlaubt die Vergrößerung des Charts auf volle Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-odd"><td><p>show-x-axis</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>X-Achsen Skala anzeigen (default = true).</p></td>
-</tr>
-<tr class="row-even"><td><p>show-y-axis</p></td>
-<td><p><em>true</em> oder <em>false</em></p></td>
-<td><p>Y-Achsen Skala anzeigen (default = true).</p></td>
-</tr>
 <tr class="row-odd"><td><p>refresh</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeitintervall in Sekunden in dem dieses Widget aktualisiert wird.</p></td>
@@ -434,13 +432,13 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Zeigt den Chart im Hintergrund einer Kachel.</p></td>
 </tr>
-<tr class="row-even"><td><p>min</p></td>
+<tr class="row-even"><td><p>dataset-opacity</p></td>
 <td><p>Zahl</p></td>
-<td><p>Minimaler Wert.</p></td>
+<td><p>Definiert die Opazität aller Datensatzes im Chart (Wert in %).</p></td>
 </tr>
-<tr class="row-odd"><td><p>max</p></td>
-<td><p>Zahl</p></td>
-<td><p>Maximaler Wert.</p></td>
+<tr class="row-odd"><td><p>tooltip-time-format</p></td>
+<td><p>Text</p></td>
+<td><p>Definiert das Zeitformat für Tooltips im Chart.</p></td>
 </tr>
 <tr class="row-even"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
@@ -487,7 +485,7 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="7"><dl class="simple">
+<tr class="row-odd"><td rowspan="8"><dl class="simple">
 <dt>cv-chart</dt><dd><ul class="simple">
 <li><p>dataset</p></li>
 </ul>
@@ -503,7 +501,7 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <td><p>Titel des Chart-Elements.</p></td>
 </tr>
 <tr class="row-odd"><td><p>chart-type</p></td>
-<td><p><em>line</em> oder <em>bar</em></p></td>
+<td><p><em>line</em>, <em>bar</em> oder <em>stacked-bar</em></p></td>
 <td><p>Typ des Chart-Elements.</p></td>
 </tr>
 <tr class="row-even"><td><p>curve</p></td>
@@ -522,7 +520,11 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Bereich unterhalb eines Liniendiagramms mit einem linearen Gradienten ausfüllen (show-area darf nicht „false“ sein).</p></td>
 </tr>
-<tr class="row-even"><td><dl class="simple">
+<tr class="row-even"><td><p>aggregation-interval</p></td>
+<td><p>integer</p></td>
+<td><p>Intervall zur Aggregation von Datenpunkten (in Minuten).</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
 <dt>cv-chart</dt><dd><ul class="simple">
 <li><p>dataset</p>
 <ul>
@@ -629,6 +631,96 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 </tr>
 </tbody>
 </table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>x-axis</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>hide</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Diese Achse nicht anzeigen</p></td>
+</tr>
+<tr class="row-even"><td><p>show-line</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Achsenlinie anzeigen</p></td>
+</tr>
+<tr class="row-odd"><td><p>tick-size</p></td>
+<td><p>integer</p></td>
+<td><p>Tick-Marken anzeigen.</p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Datums auf der x-Achse. (siehe: <a class="reference external" href="https://d3js.org/d3-time-format#locale_format">https://d3js.org/d3-time-format#locale_format</a>). Wird keine Formatierung angegeben, wird diese automatisch bestimmt auf Basis der gerade angezeigten ‚series‘. Eine explizite Angabe der Formatierung deaktiviert die Automatik.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribut</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Struktur</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Inhalt</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>y-axis</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>min</p></td>
+<td><p>Zahl</p></td>
+<td><p>Minimaler Wert.</p></td>
+</tr>
+<tr class="row-even"><td><p>max</p></td>
+<td><p>Zahl</p></td>
+<td><p>Maximaler Wert.</p></td>
+</tr>
+<tr class="row-odd"><td><p>hide</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Diese Achse nicht anzeigen</p></td>
+</tr>
+<tr class="row-even"><td><p>show-line</p></td>
+<td><p><em>true</em> oder <em>false</em></p></td>
+<td><p>Achsenlinie anzeigen</p></td>
+</tr>
+<tr class="row-odd"><td><p>tick-size</p></td>
+<td><p>integer</p></td>
+<td><p>Tick-Marken anzeigen.</p></td>
+</tr>
+<tr class="row-even"><td><p>format</p></td>
+<td><p>Text</p></td>
+<td><p>Formatierung des Werts auf der y-Achse. (printf-Syntax)</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 </section>
@@ -645,7 +737,7 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -662,7 +754,7 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

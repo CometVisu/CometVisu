@@ -43,7 +43,7 @@
         debouncedTest(true);
         this.assertNotCalled(test);
         debouncedTest(false);
-        this.wait(100, function () {
+        this.wait(250, function () {
           this.assertCalledOnce(test);
           this.assertCalledWith(test, false);
         }, this);
@@ -57,7 +57,7 @@
         debouncedTest(false);
         debouncedTest(true);
         debouncedTest(false);
-        this.wait(100, function () {
+        this.wait(250, function () {
           this.assertCalledTwice(test);
           this.assertCalledWith(test, false);
         }, this);
@@ -67,4 +67,4 @@
   qx.test.util.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1735383866762
+//# sourceMappingURL=Function.js.map?dt=1778272838863

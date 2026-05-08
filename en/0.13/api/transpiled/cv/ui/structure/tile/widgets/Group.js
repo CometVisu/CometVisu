@@ -11,6 +11,9 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
 function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) { return t.__proto__ || Object.getPrototypeOf(t); }, _getPrototypeOf(t); }
 function _inherits(t, e) { if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function"); t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: !0, configurable: !0 } }), Object.defineProperty(t, "prototype", { writable: !1 }), e && _setPrototypeOf(t, e); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -30,7 +33,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Group.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -102,6 +105,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         } else if (summary) {
           qx.event.Registration.addListener(summary, 'click', this._toggleOpen, this);
         }
+        this.__P_102_0();
       },
       _toggleOpen: function _toggleOpen() {
         if (this._element.hasAttribute('open')) {
@@ -118,17 +122,45 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
       onStateUpdate: function onStateUpdate(ev) {
         if (!cv.ui.structure.tile.widgets.Group.superclass.prototype.onStateUpdate.call(this, ev)) {
           if (ev.detail.target === 'summary') {
-            var target = this._element.querySelector(':scope > summary > label.value');
-            if (!target) {
-              target = document.createElement('label');
-              target.classList.add('value');
-              var summary = this._element.querySelector(':scope > summary');
-              summary.appendChild(target);
-            }
-            target.textContent = ev.detail.state;
+            this.__P_102_1(ev.detail.state);
           } else {
             this.debug('unhandled address target', ev.detail.target);
           }
+        }
+      },
+      __P_102_1: function __P_102_1(state) {
+        var target = this._element.querySelector(':scope > summary > label.value');
+        if (!target) {
+          var summary = this._element.querySelector(':scope > summary');
+          if (!summary) {
+            return;
+          }
+          target = document.createElement('label');
+          target.classList.add('value');
+          summary.appendChild(target);
+        }
+        target.textContent = state;
+      },
+      __P_102_0: function __P_102_0() {
+        var _iterator = _createForOfIteratorHelper(this._element.querySelectorAll(':scope > cv-address[target="summary"], :scope > cv-address-group[target="summary"]')),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var address = _step.value;
+            var state = void 0;
+            if (address.hasAttribute('data-value')) {
+              state = address.getAttribute('data-value');
+            } else if (address.getInstance && address.getInstance() && typeof address.getInstance().getValue === 'function') {
+              state = address.getInstance().getValue();
+            }
+            if (state !== undefined && state !== null) {
+              this.__P_102_1(state);
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
         }
       }
     },
@@ -148,4 +180,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Group.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Group.js.map?dt=1735383845871
+//# sourceMappingURL=Group.js.map?dt=1778272817740

@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383633800,
-  "lastModifiedIso": "2024-12-28T11:00:33.800Z",
+  "lastModified": 1778272575914,
+  "lastModifiedIso": "2026-05-08T20:36:15.914Z",
   "classFilename": "../../client/source/class/cv/io/parser/Json.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 6,
+      "line": 25,
       "column": 0,
-      "index": 159
+      "index": 970
     },
     "end": {
-      "line": 52,
+      "line": 71,
       "column": 3,
-      "index": 1500
+      "index": 2311
     }
   },
   "className": "cv.io.parser.Json",
@@ -46,14 +46,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 15,
+          "line": 34,
           "column": 4,
-          "index": 370
+          "index": 1181
         },
         "end": {
-          "line": 50,
+          "line": 69,
           "column": 6,
-          "index": 1492
+          "index": 2303
         }
       },
       "appearsIn": []

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688481,
-  "lastModifiedIso": "2024-12-28T11:01:28.481Z",
+  "lastModified": 1778272635664,
+  "lastModifiedIso": "2026-05-08T20:37:15.664Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/ToggleButton.js",
   "type": "class",
   "location": {
@@ -858,19 +858,37 @@
       ],
       "mixin": "qx.ui.core.MExecutable"
     },
-    "__semaphore": {
-      "jsdoc": null,
+    "__commandExecuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the command already executed. The protection flag to stop the second command execution.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the command already executed. The protection flag to stop the second command execution."
+          }
+        ]
+      },
       "access": "private",
       "location": {
         "start": {
-          "line": 64,
+          "line": 68,
           "column": 4,
-          "index": 1697
+          "index": 1837
         },
         "end": {
-          "line": 64,
-          "column": 22,
-          "index": 1715
+          "line": 68,
+          "column": 28,
+          "index": 1861
         }
       },
       "appearsIn": [
@@ -883,14 +901,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 65,
+          "line": 69,
           "column": 4,
-          "index": 1721
+          "index": 1867
         },
         "end": {
-          "line": 65,
+          "line": 69,
           "column": 29,
-          "index": 1746
+          "index": 1892
         }
       },
       "appearsIn": [
@@ -930,14 +948,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 73,
+          "line": 77,
           "column": 4,
-          "index": 1941
+          "index": 2087
         },
         "end": {
-          "line": 77,
+          "line": 81,
           "column": 6,
-          "index": 2161
+          "index": 2307
         }
       },
       "appearsIn": [
@@ -962,14 +980,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 86,
           "column": 4,
-          "index": 2220
+          "index": 2366
         },
         "end": {
-          "line": 95,
+          "line": 99,
           "column": 5,
-          "index": 2491
+          "index": 2655
         }
       },
       "type": "function",
@@ -1008,14 +1026,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 102,
+          "line": 106,
           "column": 4,
-          "index": 2646
+          "index": 2810
         },
         "end": {
-          "line": 113,
+          "line": 115,
           "column": 5,
-          "index": 2912
+          "index": 3038
         }
       },
       "type": "function",
@@ -1039,14 +1057,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 116,
+          "line": 118,
           "column": 4,
-          "index": 2941
+          "index": 3067
         },
         "end": {
-          "line": 173,
+          "line": 175,
           "column": 5,
-          "index": 4874
+          "index": 5000
         }
       },
       "type": "function",

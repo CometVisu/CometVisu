@@ -13,7 +13,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* WidgetFactory.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -42,15 +42,15 @@
       /**
        * Map $$type to Classname
        */
-      __P_762_0: {},
+      __P_778_0: {},
       registry: {},
       registerClass: function registerClass(type, clazz) {
-        this.__P_762_0[type] = clazz;
+        this.__P_778_0[type] = clazz;
       },
       createInstance: function createInstance(type, data) {
         if (!this.registry[data.path]) {
           if (!cv.ui.structure[cv.Config.loadedStructure][type.charAt(0).toUpperCase() + type.substr(1)]) {
-            var Clazz = this.__P_762_0[type];
+            var Clazz = this.__P_778_0[type];
             if (Clazz) {
               this.registry[data.path] = new Clazz(data);
             } else {
@@ -92,4 +92,4 @@
   cv.ui.structure.WidgetFactory.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetFactory.js.map?dt=1735383886242
+//# sourceMappingURL=WidgetFactory.js.map?dt=1778272857057

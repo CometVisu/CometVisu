@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576160,
+  "lastModifiedIso": "2026-05-08T20:36:16.160Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Page.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 969
     },
     "end": {
-      "line": 111,
+      "line": 118,
       "column": 3,
-      "index": 3402
+      "index": 3633
     }
   },
   "className": "cv.ui.structure.tile.widgets.Page",
@@ -53,18 +53,38 @@
     ]
   },
   "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1088
+      },
+      "end": {
+        "line": 33,
+        "column": 3,
+        "index": 1161
+      }
+    }
+  },
   "properties": {
     "visibility": {
       "location": {
         "start": {
-          "line": 36,
+          "line": 41,
           "column": 4,
-          "index": 1231
+          "index": 1309
         },
         "end": {
-          "line": 39,
+          "line": 44,
           "column": 5,
-          "index": 1293
+          "index": 1371
         }
       },
       "json": {
@@ -83,14 +103,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 48,
+          "line": 53,
           "column": 4,
-          "index": 1455
+          "index": 1533
         },
         "end": {
-          "line": 48,
+          "line": 53,
           "column": 36,
-          "index": 1487
+          "index": 1565
         }
       },
       "appearsIn": []
@@ -100,14 +120,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 49,
+          "line": 54,
           "column": 4,
-          "index": 1493
+          "index": 1571
         },
         "end": {
-          "line": 49,
+          "line": 54,
           "column": 29,
-          "index": 1518
+          "index": 1596
         }
       },
       "appearsIn": []
@@ -117,14 +137,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 51,
+          "line": 56,
           "column": 4,
-          "index": 1525
+          "index": 1603
         },
         "end": {
-          "line": 61,
+          "line": 68,
           "column": 5,
-          "index": 2006
+          "index": 2237
         }
       },
       "type": "function",
@@ -140,14 +160,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 63,
+          "line": 70,
           "column": 4,
-          "index": 2013
+          "index": 2244
         },
         "end": {
-          "line": 83,
+          "line": 90,
           "column": 5,
-          "index": 2728
+          "index": 2959
         }
       },
       "type": "function",

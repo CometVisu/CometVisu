@@ -19,13 +19,15 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         "require": true
       },
       "cv.ui.structure.tile.components.AbstractComponent": {
-        "construct": true,
         "require": true
       },
       "cv.ui.structure.tile.MVisibility": {
         "require": true
       },
       "cv.ui.structure.tile.MRefresh": {
+        "require": true
+      },
+      "cv.ui.structure.tile.MFullscreen": {
         "require": true
       },
       "cv.io.rest.Client": {},
@@ -36,7 +38,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /*
-   * Copyright (c) 2010-2024, Christian Mayer and the CometVisu contributors.
+   * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -61,16 +63,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
    */
   qx.Class.define('cv.ui.structure.tile.widgets.Web', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
-    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh],
-    /*
-    ***********************************************
-      CONSTRUCTOR
-    ***********************************************
-    */
-    construct: function construct(element) {
-      cv.ui.structure.tile.components.AbstractComponent.constructor.call(this, element);
-      this.addListener('changeVisible', this._loadContent, this);
-    },
+    include: [cv.ui.structure.tile.MVisibility, cv.ui.structure.tile.MRefresh, cv.ui.structure.tile.MFullscreen],
     /*
     ***********************************************
       MEMBERS
@@ -82,7 +75,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
        */
       _url: null,
       _init: function _init() {
-        var element = this._element;
+        var element = this._headerFooterParent = this._element;
         var iframe = element.querySelector(':scope > iframe');
         if (!iframe) {
           iframe = document.createElement('iframe');
@@ -114,6 +107,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             this._url.searchParams.set('auth-type', element.getAttribute('auth-type').toLowerCase());
           }
         }
+        if (element.hasAttribute('allow-fullscreen') && element.getAttribute('allow-fullscreen') === 'true') {
+          this._initFullscreenSwitch();
+        }
       },
       _loadContent: function _loadContent() {
         if (this.isVisible() && this._url) {
@@ -127,6 +123,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
           this._url.searchParams.set('r', '' + Math.random());
           this._loadContent();
         }
+      },
+      _applyFullscreen: function _applyFullscreen(full) {
+        this._element.setAttribute('fullscreen', full ? 'true' : 'false');
       }
     },
     defer: function defer(QxClass) {
@@ -145,4 +144,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Web.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Web.js.map?dt=1735383846005
+//# sourceMappingURL=Web.js.map?dt=1778272817875

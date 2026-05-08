@@ -27,7 +27,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       "qx.util.format.DateFormat": {},
       "qx.locale.Date": {},
       "qx.event.Timer": {},
-      "qx.util.TimerManager": {},
       "qx.locale.Manager": {},
       "cv.ui.structure.tile.Controller": {
         "defer": "runtime"
@@ -37,7 +36,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Tile.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -84,11 +83,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         init: false,
         apply: '_applyOutdated'
       },
-      checkOutdated: {
-        check: 'Boolean',
-        init: false,
-        apply: '_applyCheckOutdated'
-      },
       outdatedMessage: {
         check: 'String',
         nullable: true,
@@ -111,10 +105,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
     members: {
       _fullScreenMode: null,
       _dateFormat: null,
-      _checkOutdatedTimerId: null,
       _lastUpdate: null,
       _maxAge: null,
       _hideTimer: null,
+      __P_104_0: null,
+      __P_104_1: null,
+      __P_104_2: null,
+      __P_104_3: null,
       _checkEnvironment: function _checkEnvironment() {
         cv.ui.structure.tile.widgets.Tile.superclass.prototype._checkEnvironment.call(this);
         var parent = this._element.parentElement;
@@ -125,33 +122,65 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var _this = this;
         cv.ui.structure.tile.widgets.Tile.superclass.prototype._init.call(this);
         this._dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('medium') + ' ' + qx.locale.Date.getTimeFormat('medium'));
+        this._element.removeEventListener('click', this._openPopupChildBounded);
         this._initPopupChild();
         if (this._element.hasAttribute('background-image')) {
           this.setBackgroundImage(this._element.getAttribute('background-image'));
         }
         if (this._childPopup) {
-          this._childPopup.addEventListener('closed', function () {
-            _this.resetPopup();
-          });
+          if (!this.__P_104_0) {
+            this.__P_104_0 = function () {
+              _this.resetPopup();
+            };
+          }
+          this._childPopup.removeEventListener('closed', this.__P_104_0);
+          this._childPopup.addEventListener('closed', this.__P_104_0);
         }
         if (this._element.querySelector(':scope > label.title')) {
           this._element.classList.add('has-title');
         }
-        this._hideTimer = new qx.event.Timer(5000);
-        this._hideTimer.addListener('interval', function () {
-          var elem = _this._element.querySelector(':scope > .outdated-value');
-          if (elem.style.display !== 'none') {
-            elem.style.display = 'none';
-          }
-          _this._hideTimer.stop();
-        });
-        if (this._element.hasAttribute('href')) {
-          this._element.addEventListener('click', function (ev) {
-            var _this$_element$getAtt;
-            window.open(_this._element.getAttribute('href'), (_this$_element$getAtt = _this._element.getAttribute('target')) !== null && _this$_element$getAtt !== void 0 ? _this$_element$getAtt : '_blank');
-            ev.stopPropagation();
-          });
+        if (!this._hideTimer) {
+          this._hideTimer = new qx.event.Timer(5000);
+          this.__P_104_2 = function () {
+            var elem = _this._element.querySelector(':scope > .outdated-value');
+            if (elem && elem.style.display !== 'none') {
+              elem.style.display = 'none';
+            }
+            _this._hideTimer.stop();
+          };
+          this._hideTimer.addListener('interval', this.__P_104_2);
         }
+        if (this._element.hasAttribute('href')) {
+          if (!this.__P_104_1) {
+            this.__P_104_1 = function (ev) {
+              var _this$_element$getAtt;
+              window.open(_this._element.getAttribute('href'), (_this$_element$getAtt = _this._element.getAttribute('target')) !== null && _this$_element$getAtt !== void 0 ? _this$_element$getAtt : '_blank');
+              ev.stopPropagation();
+            };
+          }
+          this._element.removeEventListener('click', this.__P_104_1);
+          this._element.addEventListener('click', this.__P_104_1);
+        }
+      },
+      _disconnected: function _disconnected() {
+        this._element.removeEventListener('click', this._openPopupChildBounded);
+        this._element.removeEventListener('click', this.__P_104_1);
+        if (this._childPopup && this.__P_104_0) {
+          this._childPopup.removeEventListener('closed', this.__P_104_0);
+        }
+        if (this._hideTimer) {
+          this._hideTimer.stop();
+        }
+        if (this._autoCloseTimer) {
+          this._autoCloseTimer.stop();
+        }
+        if (this.__P_104_3 && this._headerFooterParent) {
+          var closeButton = this._headerFooterParent.querySelector(':scope > button.close');
+          if (closeButton) {
+            closeButton.removeEventListener('click', this.__P_104_3);
+          }
+        }
+        cv.ui.structure.tile.widgets.Tile.superclass.prototype._disconnected.call(this);
       },
       _applyBackgroundImage: function _applyBackgroundImage(value) {
         if (value) {
@@ -217,15 +246,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           valueElem.textContent = value;
         }
       },
-      _applyCheckOutdated: function _applyCheckOutdated(value) {
-        var timer = qx.util.TimerManager.getInstance();
-        if (value) {
-          this._checkOutdatedTimerId = timer.start(this.checkOutdated, 5000, this);
-        } else if (this._checkOutdatedTimerId) {
-          timer.stop(this._checkOutdatedTimerId);
-          this._checkOutdatedTimerId = null;
-        }
-      },
       checkOutdated: function checkOutdated() {
         if (this._lastUpdate instanceof Date) {
           if (isNaN(this._lastUpdate.getTime())) {
@@ -258,10 +278,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             icon.classList.add('ri-close-line');
             closeButton.appendChild(icon);
             target.appendChild(closeButton);
-            closeButton.addEventListener('click', function () {
-              return _this3.setPopup(false);
-            });
           }
+          if (!this.__P_104_3) {
+            this.__P_104_3 = function () {
+              return _this3.setPopup(false);
+            };
+          }
+          closeButton.removeEventListener('click', this.__P_104_3);
+          closeButton.addEventListener('click', this.__P_104_3);
           closeButton.style.display = 'block';
           target.classList.add('popup');
           if (this._fullScreenMode) {
@@ -281,7 +305,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           this._headerFooterParent.classList.remove('popup');
           if (this._fullScreenMode) {
             this._headerFooterParent.classList.remove('fullscreen');
-            this.fireDataEvent('fullscreenChanged', true);
+            this.fireDataEvent('fullscreenChanged', false);
           }
           var closeButton = this._headerFooterParent.querySelector(':scope > button.close');
           if (closeButton) {
@@ -349,11 +373,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       ***********************************************
       */
       destruct: function destruct() {
-        this._disposeObjects('_dateFormat');
-        if (this._checkOutdatedTimerId) {
-          qx.util.TimerManager.getInstance().stop(this._checkOutdatedTimerId);
-          this._checkOutdatedTimerId = null;
-        }
+        this._disposeObjects('_autoCloseTimer', '_dateFormat', '_hideTimer');
       }
     },
     defer: function defer(QxClass) {
@@ -372,4 +392,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.structure.tile.widgets.Tile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tile.js.map?dt=1735383845977
+//# sourceMappingURL=Tile.js.map?dt=1778272817853

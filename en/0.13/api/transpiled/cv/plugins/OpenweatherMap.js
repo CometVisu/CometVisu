@@ -33,7 +33,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* OpenweatherMap.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -72,7 +72,6 @@
     ******************************************************
     */
     construct: function construct(props) {
-      props.refresh *= 60;
       cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
       this.__P_14_0 = {};
       Object.keys(props).forEach(function (key) {
@@ -203,6 +202,10 @@
     */
     members: {
       __P_14_0: null,
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        props.refresh *= 60;
+        return props;
+      },
       _getInnerDomString: function _getInnerDomString() {
         var classes = 'widget clearfix text openweathermap';
         if (this.getCssClass()) {
@@ -235,4 +238,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1735383839109
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1778272811171

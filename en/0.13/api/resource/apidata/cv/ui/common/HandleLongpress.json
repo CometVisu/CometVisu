@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634056,
-  "lastModifiedIso": "2024-12-28T11:00:34.056Z",
+  "lastModified": 1778272576148,
+  "lastModifiedIso": "2026-05-08T20:36:16.148Z",
   "classFilename": "../../source/class/cv/ui/common/HandleLongpress.js",
   "type": "mixin",
   "location": {
@@ -21,7 +21,7 @@
     "raw": [
       " HandleLongpress.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",

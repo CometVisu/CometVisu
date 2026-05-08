@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688453,
-  "lastModifiedIso": "2024-12-28T11:01:28.453Z",
+  "lastModified": 1778272635639,
+  "lastModifiedIso": "2026-05-08T20:37:15.639Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Test.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1199
     },
     "end": {
-      "line": 232,
+      "line": 238,
       "column": 3,
-      "index": 6526
+      "index": 6707
     }
   },
   "className": "qx.tool.cli.commands.Test",
@@ -169,7 +169,7 @@
       "end": {
         "line": 105,
         "column": 3,
-        "index": 2867
+        "index": 2882
       }
     }
   },
@@ -179,12 +179,12 @@
         "start": {
           "line": 112,
           "column": 4,
-          "index": 2948
+          "index": 2963
         },
         "end": {
           "line": 117,
           "column": 5,
-          "index": 3056
+          "index": 3071
         }
       },
       "json": {
@@ -214,12 +214,12 @@
         "start": {
           "line": 122,
           "column": 4,
-          "index": 3133
+          "index": 3148
         },
         "end": {
           "line": 126,
           "column": 5,
-          "index": 3218
+          "index": 3233
         }
       },
       "json": {
@@ -269,12 +269,12 @@
         "start": {
           "line": 133,
           "column": 4,
-          "index": 3278
+          "index": 3293
         },
         "end": {
           "line": 133,
           "column": 17,
-          "index": 3291
+          "index": 3306
         }
       },
       "appearsIn": []
@@ -308,12 +308,12 @@
         "start": {
           "line": 139,
           "column": 4,
-          "index": 3429
+          "index": 3444
         },
         "end": {
-          "line": 160,
+          "line": 163,
           "column": 5,
-          "index": 4190
+          "index": 4294
         }
       },
       "type": "function",
@@ -348,14 +348,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 168,
           "column": 4,
-          "index": 4230
+          "index": 4334
         },
         "end": {
-          "line": 222,
+          "line": 228,
           "column": 5,
-          "index": 6331
+          "index": 6512
         }
       },
       "type": "function",
@@ -372,14 +372,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 224,
+          "line": 230,
           "column": 4,
-          "index": 6338
+          "index": 6519
         },
         "end": {
-          "line": 230,
+          "line": 236,
           "column": 5,
-          "index": 6518
+          "index": 6699
         }
       },
       "type": "function",

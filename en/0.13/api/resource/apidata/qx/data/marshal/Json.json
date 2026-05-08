@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687957,
-  "lastModifiedIso": "2024-12-28T11:01:27.957Z",
+  "lastModified": 1778272635244,
+  "lastModifiedIso": "2026-05-08T20:37:15.244Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/marshal/Json.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 722
     },
     "end": {
-      "line": 497,
+      "line": 550,
       "column": 3,
-      "index": 17180
+      "index": 19188
     }
   },
   "className": "qx.data.marshal.Json",
@@ -58,19 +58,48 @@
     }
   },
   "statics": {
+    "__shownNotBreakingOnNonPojosWarning": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set to true when a warning has been shown that we are using the deprecated behaviour of trying to marshall non-POJO objects into Qooxdoo objects.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set to true when a warning has been shown that we are using the deprecated behaviour of trying to marshall non-POJO objects into Qooxdoo objects.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1242
+        },
+        "end": {
+          "line": 43,
+          "column": 46,
+          "index": 1284
+        }
+      },
+      "appearsIn": []
+    },
     "$$instance": {
       "jsdoc": null,
       "access": "public",
       "location": {
         "start": {
-          "line": 40,
+          "line": 44,
           "column": 4,
-          "index": 1073
+          "index": 1290
         },
         "end": {
-          "line": 40,
+          "line": 44,
           "column": 20,
-          "index": 1089
+          "index": 1306
         }
       },
       "appearsIn": []
@@ -124,14 +153,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 57,
           "column": 4,
-          "index": 1617
+          "index": 1834
         },
         "end": {
-          "line": 62,
+          "line": 66,
           "column": 5,
-          "index": 1978
+          "index": 2195
         }
       },
       "type": "function",
@@ -174,14 +203,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 78,
           "column": 4,
-          "index": 2280
+          "index": 2497
         },
         "end": {
-          "line": 79,
+          "line": 83,
           "column": 5,
-          "index": 2448
+          "index": 2665
         }
       },
       "type": "function",
@@ -194,6 +223,39 @@
         }
       ],
       "appearsIn": []
+    },
+    "checkIfWarnAboutNotBreakingOnNonPojos": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the environment setting \"qx.data.marshal.Json.breakOnNonPojos\" is not set,",
+          "     * it means we are using the old behaviour of marshalling non-POJO objects.",
+          "     * A warning is shown if it hasn't been shown already.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the environment setting \"qx.data.marshal.Json.breakOnNonPojos\" is not set,\n it means we are using the old behaviour of marshalling non-POJO objects.\n A warning is shown if it hasn't been shown already.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2912
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 3485
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
   "members": {
@@ -202,14 +264,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 83,
+          "line": 106,
           "column": 4,
-          "index": 2472
+          "index": 3509
         },
         "end": {
-          "line": 83,
+          "line": 106,
           "column": 20,
-          "index": 2488
+          "index": 3525
         }
       },
       "appearsIn": []
@@ -264,14 +326,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 118,
           "column": 4,
-          "index": 2961
+          "index": 3998
         },
         "end": {
-          "line": 103,
+          "line": 126,
           "column": 5,
-          "index": 3266
+          "index": 4303
         }
       },
       "type": "function",
@@ -345,14 +407,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 120,
+          "line": 143,
           "column": 4,
-          "index": 4096
+          "index": 5133
         },
         "end": {
-          "line": 138,
+          "line": 161,
           "column": 5,
-          "index": 4767
+          "index": 5804
         }
       },
       "type": "function",
@@ -425,14 +487,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 158,
+          "line": 181,
           "column": 4,
-          "index": 5678
+          "index": 6715
         },
         "end": {
-          "line": 160,
+          "line": 183,
           "column": 5,
-          "index": 5778
+          "index": 6815
         }
       },
       "type": "function",
@@ -507,14 +569,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 172,
+          "line": 195,
           "column": 4,
-          "index": 6255
+          "index": 7292
         },
         "end": {
-          "line": 300,
+          "line": 337,
           "column": 5,
-          "index": 10208
+          "index": 11696
         }
       },
       "type": "function",
@@ -569,14 +631,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 307,
+          "line": 344,
           "column": 4,
-          "index": 10340
+          "index": 11828
         },
         "end": {
-          "line": 317,
+          "line": 354,
           "column": 5,
-          "index": 10619
+          "index": 12107
         }
       },
       "type": "function",
@@ -654,14 +716,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 330,
+          "line": 367,
           "column": 4,
-          "index": 11132
+          "index": 12620
         },
         "end": {
-          "line": 361,
+          "line": 398,
           "column": 5,
-          "index": 12197
+          "index": 13685
         }
       },
       "type": "function",
@@ -747,14 +809,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 371,
+          "line": 408,
           "column": 4,
-          "index": 12595
+          "index": 14083
         },
         "end": {
-          "line": 374,
+          "line": 411,
           "column": 5,
-          "index": 12748
+          "index": 14236
         }
       },
       "type": "function",
@@ -834,14 +896,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 390,
+          "line": 427,
           "column": 4,
-          "index": 13512
+          "index": 15000
         },
         "end": {
-          "line": 392,
+          "line": 429,
           "column": 5,
-          "index": 13619
+          "index": 15107
         }
       },
       "type": "function",
@@ -935,14 +997,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 407,
+          "line": 444,
           "column": 4,
-          "index": 14289
+          "index": 15777
         },
         "end": {
-          "line": 495,
+          "line": 548,
           "column": 5,
-          "index": 17172
+          "index": 19180
         }
       },
       "type": "function",

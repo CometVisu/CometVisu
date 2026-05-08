@@ -11,16 +11,16 @@
   qx.Class.define('cv.Version', {
     type: 'static',
     statics: {
-      REV: '61d6c73240a7ba0cb786d0b890ac7485bfecb4ad',
+      REV: '030ab62c200fc3e97e6eb11d4aecae30b69321e4',
       BRANCH: 'develop',
       VERSION: '0.13.0-dev',
       LIBRARY_VERSION_PURE: 9,
       LIBRARY_VERSION_TILE: 1,
-      DATE: '2024-12-28T11:01:36.781Z',
+      DATE: '2026-05-08T20:37:22.127Z',
       TAGS: {}
     }
   });
   cv.Version.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Version.js.map?dt=1735383885879
+//# sourceMappingURL=Version.js.map?dt=1778272856713

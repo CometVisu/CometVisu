@@ -25,7 +25,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* IconAtom.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -169,4 +169,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.core.IconAtom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IconAtom.js.map?dt=1735383840452
+//# sourceMappingURL=IconAtom.js.map?dt=1778272812432

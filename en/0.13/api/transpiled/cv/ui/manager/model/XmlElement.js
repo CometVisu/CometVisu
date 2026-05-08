@@ -35,7 +35,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* XmlElement.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -1313,4 +1313,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.manager.model.XmlElement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XmlElement.js.map?dt=1735383842026
+//# sourceMappingURL=XmlElement.js.map?dt=1778272813822

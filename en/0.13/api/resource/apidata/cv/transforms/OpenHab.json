@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634056,
-  "lastModifiedIso": "2024-12-28T11:00:34.056Z",
+  "lastModified": 1778272576147,
+  "lastModifiedIso": "2026-05-08T20:36:16.147Z",
   "classFilename": "../../source/class/cv/transforms/OpenHab.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 911
     },
     "end": {
-      "line": 260,
+      "line": 259,
       "column": 3,
-      "index": 7185
+      "index": 7137
     }
   },
   "className": "cv.transforms.OpenHab",

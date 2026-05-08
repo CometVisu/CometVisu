@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576161,
+  "lastModifiedIso": "2026-05-08T20:36:16.161Z",
   "classFilename": "../../source/class/cv/util/ScriptLoader.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 819
     },
     "end": {
-      "line": 329,
+      "line": 334,
       "column": 3,
-      "index": 10464
+      "index": 10709
     }
   },
   "className": "cv.util.ScriptLoader",
@@ -21,7 +21,7 @@
     "raw": [
       " ScriptLoader.js",
       " *",
-      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
       " *",
       " * This program is free software; you can redistribute it and/or modify it",
       " * under the terms of the GNU General Public License as published by the Free",
@@ -587,9 +587,9 @@
           "index": 7626
         },
         "end": {
-          "line": 261,
+          "line": 266,
           "column": 5,
-          "index": 8137
+          "index": 8382
         }
       },
       "type": "function",
@@ -606,14 +606,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 263,
+          "line": 268,
           "column": 4,
-          "index": 8144
+          "index": 8389
         },
         "end": {
-          "line": 268,
+          "line": 273,
           "column": 5,
-          "index": 8313
+          "index": 8558
         }
       },
       "type": "function",
@@ -629,14 +629,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 270,
+          "line": 275,
           "column": 4,
-          "index": 8320
+          "index": 8565
         },
         "end": {
-          "line": 297,
+          "line": 302,
           "column": 5,
-          "index": 9397
+          "index": 9642
         }
       },
       "type": "function",
@@ -656,14 +656,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 300,
+          "line": 305,
           "column": 4,
-          "index": 9426
+          "index": 9671
         },
         "end": {
-          "line": 327,
+          "line": 332,
           "column": 5,
-          "index": 10456
+          "index": 10701
         }
       },
       "type": "function",

@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576142,
+  "lastModifiedIso": "2026-05-08T20:36:16.142Z",
   "classFilename": "../../source/class/cv/io/listmodel/Registry.js",
   "type": "class",
   "location": {
     "start": {
-      "line": 4,
+      "line": 23,
       "column": 0,
-      "index": 79
+      "index": 894
     },
     "end": {
-      "line": 56,
+      "line": 81,
       "column": 3,
-      "index": 1339
+      "index": 2428
     }
   },
   "className": "cv.io.listmodel.Registry",
@@ -38,14 +38,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 13,
+          "line": 32,
           "column": 4,
-          "index": 283
+          "index": 1098
         },
         "end": {
-          "line": 13,
+          "line": 32,
           "column": 12,
-          "index": 291
+          "index": 1106
         }
       },
       "appearsIn": []
@@ -76,14 +76,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 19,
+          "line": 38,
           "column": 4,
-          "index": 354
+          "index": 1169
         },
         "end": {
-          "line": 24,
+          "line": 43,
           "column": 5,
-          "index": 569
+          "index": 1384
         }
       },
       "type": "function",
@@ -91,6 +91,29 @@
         {
           "name": "modelClass",
           "type": "Class"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1391
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1480
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "modelClass"
         }
       ],
       "appearsIn": []
@@ -121,14 +144,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 30,
+          "line": 53,
           "column": 4,
-          "index": 627
+          "index": 1538
         },
         "end": {
-          "line": 54,
+          "line": 79,
           "column": 5,
-          "index": 1331
+          "index": 2420
         }
       },
       "type": "function",

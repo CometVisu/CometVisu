@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686709,
-  "lastModifiedIso": "2024-12-28T11:01:26.709Z",
+  "lastModified": 1778272634711,
+  "lastModifiedIso": "2026-05-08T20:37:14.711Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Bootstrap.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 6728
     },
     "end": {
-      "line": 968,
+      "line": 971,
       "column": 3,
-      "index": 29419
+      "index": 29643
     }
   },
   "className": "qx.Bootstrap",
@@ -1780,26 +1780,29 @@
       "jsdoc": {
         "raw": [
           "*",
-          "     * Whether the value is an object. Note that built-in types like Window are",
-          "     * not reported to be objects.",
+          "     * Whether the value is an POJO (ie {foo: 1})",
+          "     * or an object which is created from a ES6-style class or prototypical-inheritance-based class;",
+          "     * If you need to determine whether something is a POJO and not created from a class, use isPojo instead",
           "     *",
-          "     * @param value {var} Value to check.",
+          "     * Note that built-in types like Window are not deemed to be objects.",
+          "     *",
+          "     * @param {*} value value to check.",
           "     * @return {Boolean} Whether the value is an object.",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Whether the value is an object. Note that built-in types like Window are\n not reported to be objects.</p>"
+            "body": "<p>Whether the value is an POJO (ie {foo: 1})\n or an object which is created from a ES6-style class or prototypical-inheritance-based class;\n If you need to determine whether something is a POJO and not created from a class, use isPojo instead\n Note that built-in types like Window are not deemed to be objects.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "value {var} Value to check.",
+            "body": "{*} value value to check.",
             "paramName": "value",
-            "description": " Value to check.",
-            "type": "var"
+            "description": "value to check.",
+            "type": "*"
           }
         ],
         "@return": [
@@ -1814,21 +1817,21 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 876,
+          "line": 879,
           "column": 4,
-          "index": 26412
+          "index": 26636
         },
         "end": {
-          "line": 882,
+          "line": 885,
           "column": 5,
-          "index": 26566
+          "index": 26790
         }
       },
       "type": "function",
       "params": [
         {
           "name": "value",
-          "type": "var"
+          "type": "*"
         }
       ],
       "returnType": {
@@ -1873,14 +1876,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 890,
+          "line": 893,
           "column": 4,
-          "index": 26736
+          "index": 26960
         },
         "end": {
-          "line": 892,
+          "line": 895,
           "column": 5,
-          "index": 26819
+          "index": 27043
         }
       },
       "type": "function",
@@ -1932,14 +1935,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 900,
+          "line": 903,
           "column": 4,
-          "index": 27010
+          "index": 27234
         },
         "end": {
-          "line": 903,
+          "line": 906,
           "column": 5,
-          "index": 27159
+          "index": 27383
         }
       },
       "type": "function",
@@ -1967,14 +1970,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 911,
+          "line": 914,
           "column": 4,
-          "index": 27373
+          "index": 27597
         },
         "end": {
-          "line": 911,
+          "line": 914,
           "column": 14,
-          "index": 27383
+          "index": 27607
         }
       },
       "appearsIn": []
@@ -2017,14 +2020,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 921,
+          "line": 924,
           "column": 4,
-          "index": 27762
+          "index": 27986
         },
         "end": {
-          "line": 923,
+          "line": 926,
           "column": 5,
-          "index": 27846
+          "index": 28070
         }
       },
       "type": "function",
@@ -2078,14 +2081,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 933,
+          "line": 936,
           "column": 4,
-          "index": 28224
+          "index": 28448
         },
         "end": {
-          "line": 935,
+          "line": 938,
           "column": 5,
-          "index": 28306
+          "index": 28530
         }
       },
       "type": "function",
@@ -2139,14 +2142,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 945,
+          "line": 948,
           "column": 4,
-          "index": 28684
+          "index": 28908
         },
         "end": {
-          "line": 947,
+          "line": 950,
           "column": 5,
-          "index": 28766
+          "index": 28990
         }
       },
       "type": "function",
@@ -2200,14 +2203,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 957,
+          "line": 960,
           "column": 4,
-          "index": 29145
+          "index": 29369
         },
         "end": {
-          "line": 959,
+          "line": 962,
           "column": 5,
-          "index": 29229
+          "index": 29453
         }
       },
       "type": "function",
@@ -2251,14 +2254,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 966,
+          "line": 969,
           "column": 4,
-          "index": 29395
+          "index": 29619
         },
         "end": {
-          "line": 966,
+          "line": 969,
           "column": 20,
-          "index": 29411
+          "index": 29635
         }
       },
       "type": "function",

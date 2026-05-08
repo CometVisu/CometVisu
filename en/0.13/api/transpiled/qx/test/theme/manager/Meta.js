@@ -1,9 +1,3 @@
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -37,7 +31,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       },
       "qx.theme.manager.Meta": {},
       "qx.event.Registration": {},
-      "qx.core.ObjectRegistry": {},
       "qx.ui.form.Button": {},
       "qx.ui.core.queue.Manager": {},
       "qx.bom.element.Style": {}
@@ -125,34 +118,43 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       });
     },
     members: {
-      __P_373_0: null,
-      __P_373_1: null,
-      __P_373_2: /(orange.*yellow|rgb\(255, 0, 0\).*rgb\(0, 0, 255\)|none|data:image\/png;base64,iVBORw0K)/,
+      __P_383_0: null,
+      __P_383_1: null,
+      __P_383_2: /(orange.*yellow|rgb\(255, 0, 0\).*rgb\(0, 0, 255\)|none|data:image\/png;base64,iVBORw0K)/,
       setUp: function setUp() {
         if (qx.core.Environment.get("engine.name") == "mshtml" && qx.core.Environment.get("browser.documentmode") < 9) {
           this.skip("Skipped in IE 8.");
         }
         this.manager = qx.theme.manager.Meta.getInstance();
-        this.__P_373_0 = this.manager.getTheme();
-        var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
-        var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        this.__P_373_1 = _objectSpread({}, listener[hash]);
-        delete listener[hash];
+        this.__P_383_0 = this.manager.getTheme();
+        var eventMgr = qx.event.Registration.getManager(this.manager);
+
+        // Serialize listeners (Array of {handler, self, type, capture})
+        this.__P_383_1 = eventMgr.serializeListeners(this.manager);
+
+        // Remove all listeners
+        eventMgr.removeAllListeners(this.manager);
+
         // add a theme able widget
-        this.__P_373_3 = new qx.ui.form.Button("Foo").set({
+        this.__P_383_3 = new qx.ui.form.Button("Foo").set({
           appearance: "test-button-gradient"
         });
-        this.getRoot().add(this.__P_373_3);
+        this.getRoot().add(this.__P_383_3);
         qx.ui.core.queue.Manager.flush();
       },
       tearDown: function tearDown() {
-        this.__P_373_3.destroy();
-        this.manager.setTheme(this.__P_373_0);
-        this.__P_373_0 = null;
-        var listener = qx.event.Registration.getManager(this.manager).getAllListeners();
-        var hash = this.manager.$$hash || qx.core.ObjectRegistry.toHashCode(this.manager);
-        listener[hash] = this.__P_373_1;
-        this.__P_373_1 = null;
+        var _this = this;
+        this.__P_383_3.destroy();
+        this.manager.setTheme(this.__P_383_0);
+        this.__P_383_0 = null;
+
+        // Restore all listeners
+        if (this.__P_383_1) {
+          this.__P_383_1.forEach(function (entry) {
+            qx.event.Registration.addListener(_this.manager, entry.type, entry.handler, entry.self, entry.capture);
+          });
+          this.__P_383_1 = null;
+        }
         qx.ui.core.queue.Manager.flush();
       },
       testAllThemeManagerChanged: function testAllThemeManagerChanged() {
@@ -160,20 +162,20 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         qx.ui.core.queue.Manager.flush();
 
         // button element
-        var elem = this.__P_373_3.getContentElement().getDomElement();
+        var elem = this.__P_383_3.getContentElement().getDomElement();
 
         // mocked appearance theme defines a padding with 30px 80px
         this.assertEquals(qx.bom.element.Style.get(elem, "padding"), "30px 80px");
 
         // mocked color theme defines a gradient with 'orange' and 'yellow';
         // also check for corresponding rgb values (need for FireFox)
-        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_373_2));
+        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_383_2));
 
         // mocked decoration theme defines a border radius of 10 pixel
         this.assertEquals(qx.bom.element.Style.get(elem, "borderTopLeftRadius"), "10px");
 
         // button label element
-        elem = this.__P_373_3.getChildControl("label").getContentElement().getDomElement();
+        elem = this.__P_383_3.getChildControl("label").getContentElement().getDomElement();
 
         // mocked color theme defines red text color for button labels
         this.assertEquals(qx.bom.element.Style.get(elem, "color"), "rgb(255, 0, 0)");
@@ -181,10 +183,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       testColorThemeManagerChanged: function testColorThemeManagerChanged() {
         qx.theme.manager.Meta.getInstance().setTheme(qx.test.theme.manager.MockColor);
         qx.ui.core.queue.Manager.flush();
-        var elem = this.__P_373_3.getContentElement().getDomElement();
+        var elem = this.__P_383_3.getContentElement().getDomElement();
         // mocked color theme defines a gradient with 'orange' and 'yellow';
         // also check for corresponding rgb values (need for FireFox)
-        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_373_2));
+        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_383_2));
       },
       /*
           testDecoratorThemeManagerChanged : function()
@@ -202,16 +204,16 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         qx.ui.core.queue.Manager.flush();
 
         // mocked appearance theme defines a padding with 30px 80px
-        var elem = this.__P_373_3.getContentElement().getDomElement();
+        var elem = this.__P_383_3.getContentElement().getDomElement();
         this.assertEquals(qx.bom.element.Style.get(elem, "padding"), "30px 80px");
       },
       testColorThemeChanged: function testColorThemeChanged() {
         qx.theme.manager.Color.getInstance().setTheme(qx.test.theme.manager.mock.Color);
         qx.ui.core.queue.Manager.flush();
-        var elem = this.__P_373_3.getContentElement().getDomElement();
+        var elem = this.__P_383_3.getContentElement().getDomElement();
         // mocked color theme defines a gradient with 'orange' and 'yellow';
         // also check for corresponding rgb values (need for FireFox)
-        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_373_2));
+        this.assertNotNull(qx.bom.element.Style.get(elem, "backgroundImage").match(this.__P_383_2));
       }
     },
     destruct: function destruct() {}
@@ -219,4 +221,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   qx.test.theme.manager.Meta.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Meta.js.map?dt=1735383863289
+//# sourceMappingURL=Meta.js.map?dt=1778272835347

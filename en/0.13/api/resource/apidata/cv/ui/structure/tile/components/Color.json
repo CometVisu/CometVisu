@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Color.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 891
     },
     "end": {
-      "line": 192,
+      "line": 176,
       "column": 3,
-      "index": 6478
+      "index": 6016
     }
   },
   "className": "cv.ui.structure.tile.components.Color",
@@ -48,67 +48,20 @@
   "mixins": [
     "cv.ui.structure.tile.MResize"
   ],
-  "properties": {
-    "throttleInterval": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 1198
-        },
-        "end": {
-          "line": 39,
-          "column": 5,
-          "index": 1301
-        }
-      },
-      "json": {
-        "check": "Number",
-        "init": 250,
-        "apply": "_applyThrottleInterval"
-      },
-      "jsdoc": null,
-      "appearsIn": []
-    },
-    "resizeTarget": {
-      "location": {
-        "start": {
-          "line": 53,
-          "column": 4,
-          "index": 1562
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1663
-        }
-      },
-      "json": {
-        "check": "Element",
-        "nullable": true,
-        "apply": "_applyResizeTarget"
-      },
-      "jsdoc": null,
-      "appearsIn": [
-        "cv.ui.structure.tile.MResize"
-      ],
-      "mixin": "cv.ui.structure.tile.MResize"
-    }
-  },
   "statics": {
     "CC_COUNTER": {
       "jsdoc": null,
       "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 35,
           "column": 4,
-          "index": 1447
+          "index": 1192
         },
         "end": {
-          "line": 48,
+          "line": 35,
           "column": 17,
-          "index": 1460
+          "index": 1205
         }
       },
       "appearsIn": []
@@ -120,14 +73,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 57,
+          "line": 44,
           "column": 4,
-          "index": 1606
+          "index": 1351
         },
         "end": {
-          "line": 57,
+          "line": 44,
           "column": 24,
-          "index": 1626
+          "index": 1371
         }
       },
       "appearsIn": []
@@ -137,14 +90,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 59,
+          "line": 46,
           "column": 4,
-          "index": 1633
+          "index": 1378
         },
         "end": {
-          "line": 136,
+          "line": 120,
           "column": 5,
-          "index": 4928
+          "index": 4466
         }
       },
       "type": "function",
@@ -160,14 +113,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 138,
+          "line": 122,
           "column": 4,
-          "index": 4935
+          "index": 4473
         },
         "end": {
-          "line": 145,
+          "line": 129,
           "column": 5,
-          "index": 5252
+          "index": 4790
         }
       },
       "type": "function",
@@ -179,14 +132,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 147,
+          "line": 131,
           "column": 4,
-          "index": 5259
+          "index": 4797
         },
         "end": {
-          "line": 151,
+          "line": 135,
           "column": 5,
-          "index": 5366
+          "index": 4904
         }
       },
       "type": "function",
@@ -202,14 +155,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 137,
           "column": 4,
-          "index": 5373
+          "index": 4911
         },
         "end": {
-          "line": 170,
+          "line": 154,
           "column": 5,
-          "index": 6052
+          "index": 5590
         }
       },
       "type": "function",
@@ -299,15 +252,41 @@
     "params": [],
     "location": {
       "start": {
-        "line": 178,
+        "line": 162,
         "column": 2,
-        "index": 6186
+        "index": 5724
       },
       "end": {
-        "line": 180,
+        "line": 164,
         "column": 3,
-        "index": 6257
+        "index": 5795
       }
+    }
+  },
+  "properties": {
+    "resizeTarget": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1562
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1663
+        }
+      },
+      "json": {
+        "check": "Element",
+        "nullable": true,
+        "apply": "_applyResizeTarget"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MResize"
+      ],
+      "mixin": "cv.ui.structure.tile.MResize"
     }
   }
 }

@@ -37,7 +37,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Start.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -381,4 +381,4 @@
   cv.ui.manager.Start.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Start.js.map?dt=1735383840068
+//# sourceMappingURL=Start.js.map?dt=1778272812070

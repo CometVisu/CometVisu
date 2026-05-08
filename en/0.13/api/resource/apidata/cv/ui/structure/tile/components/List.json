@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/List.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 2001
     },
     "end": {
-      "line": 508,
+      "line": 522,
       "column": 3,
-      "index": 17917
+      "index": 18458
     }
   },
   "className": "cv.ui.structure.tile.components.List",
@@ -74,18 +74,38 @@
     "cv.ui.structure.tile.MRefresh",
     "cv.ui.structure.tile.MFullscreen"
   ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 68,
+        "column": 2,
+        "index": 2377
+      },
+      "end": {
+        "line": 71,
+        "column": 3,
+        "index": 2456
+      }
+    }
+  },
   "properties": {
     "value": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 79,
           "column": 4,
-          "index": 2394
+          "index": 2604
         },
         "end": {
-          "line": 72,
+          "line": 82,
           "column": 5,
-          "index": 2443
+          "index": 2653
         }
       },
       "json": {
@@ -100,14 +120,14 @@
     "visible": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1705
+          "index": 1432
         },
         "end": {
-          "line": 61,
+          "line": 53,
           "column": 5,
-          "index": 1793
+          "index": 1520
         }
       },
       "json": {
@@ -124,14 +144,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1449
+          "index": 1643
         },
         "end": {
-          "line": 46,
+          "line": 50,
           "column": 5,
-          "index": 1532
+          "index": 1726
         }
       },
       "json": {
@@ -150,12 +170,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1009
+          "index": 1014
         },
         "end": {
           "line": 36,
           "column": 5,
-          "index": 1137
+          "index": 1142
         }
       },
       "json": {
@@ -177,14 +197,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 81,
+          "line": 91,
           "column": 4,
-          "index": 2589
+          "index": 2799
         },
         "end": {
-          "line": 81,
+          "line": 91,
           "column": 17,
-          "index": 2602
+          "index": 2812
         }
       },
       "appearsIn": []
@@ -194,14 +214,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 82,
+          "line": 92,
           "column": 4,
-          "index": 2608
+          "index": 2818
         },
         "end": {
-          "line": 82,
+          "line": 92,
           "column": 16,
-          "index": 2620
+          "index": 2830
         }
       },
       "appearsIn": []
@@ -211,14 +231,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 83,
+          "line": 93,
           "column": 4,
-          "index": 2626
+          "index": 2836
         },
         "end": {
-          "line": 83,
+          "line": 93,
           "column": 16,
-          "index": 2638
+          "index": 2848
         }
       },
       "appearsIn": []
@@ -228,14 +248,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 84,
+          "line": 94,
           "column": 4,
-          "index": 2644
+          "index": 2854
         },
         "end": {
-          "line": 84,
+          "line": 94,
           "column": 19,
-          "index": 2659
+          "index": 2869
         }
       },
       "appearsIn": []
@@ -245,14 +265,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 85,
+          "line": 95,
           "column": 4,
-          "index": 2665
+          "index": 2875
         },
         "end": {
-          "line": 85,
+          "line": 95,
           "column": 22,
-          "index": 2683
+          "index": 2893
         }
       },
       "appearsIn": []
@@ -262,14 +282,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 86,
+          "line": 96,
           "column": 4,
-          "index": 2689
+          "index": 2899
         },
         "end": {
-          "line": 86,
+          "line": 96,
           "column": 20,
-          "index": 2705
+          "index": 2915
         }
       },
       "appearsIn": []
@@ -279,14 +299,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 87,
+          "line": 97,
           "column": 4,
-          "index": 2711
+          "index": 2921
         },
         "end": {
-          "line": 87,
+          "line": 97,
           "column": 16,
-          "index": 2723
+          "index": 2933
         }
       },
       "appearsIn": []
@@ -296,14 +316,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 88,
+          "line": 98,
           "column": 4,
-          "index": 2729
+          "index": 2939
         },
         "end": {
-          "line": 88,
+          "line": 98,
           "column": 24,
-          "index": 2749
+          "index": 2959
         }
       },
       "appearsIn": []
@@ -313,14 +333,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 90,
+          "line": 100,
           "column": 4,
-          "index": 2756
+          "index": 2966
         },
         "end": {
-          "line": 280,
+          "line": 290,
           "column": 5,
-          "index": 10013
+          "index": 10450
         }
       },
       "type": "function",
@@ -336,14 +356,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 282,
+          "line": 292,
           "column": 4,
-          "index": 10020
+          "index": 10457
         },
         "end": {
-          "line": 296,
+          "line": 306,
           "column": 5,
-          "index": 10447
+          "index": 10884
         }
       },
       "type": "function",
@@ -362,14 +382,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 298,
+          "line": 308,
           "column": 4,
-          "index": 10454
+          "index": 10891
         },
         "end": {
-          "line": 302,
+          "line": 312,
           "column": 5,
-          "index": 10590
+          "index": 11036
         }
       },
       "type": "function",
@@ -384,14 +404,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 304,
+          "line": 314,
           "column": 4,
-          "index": 10597
+          "index": 11043
         },
         "end": {
-          "line": 478,
+          "line": 492,
           "column": 5,
-          "index": 17318
+          "index": 17859
         }
       },
       "type": "function",
@@ -403,14 +423,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 480,
+          "line": 494,
           "column": 4,
-          "index": 17325
+          "index": 17866
         },
         "end": {
-          "line": 482,
+          "line": 496,
           "column": 5,
-          "index": 17386
+          "index": 17927
         }
       },
       "type": "function",
@@ -429,14 +449,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 70,
+          "line": 62,
           "column": 4,
-          "index": 1939
+          "index": 1666
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5,
-          "index": 2143
+          "index": 2303
         }
       },
       "type": "function",
@@ -446,19 +466,61 @@
       ],
       "mixin": "cv.ui.structure.tile.MVisibility"
     },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "_refreshTimer": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 60,
           "column": 4,
-          "index": 1678
+          "index": 1897
         },
         "end": {
-          "line": 55,
+          "line": 60,
           "column": 23,
-          "index": 1697
+          "index": 1916
         }
       },
       "appearsIn": [
@@ -471,14 +533,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 56,
+          "line": 61,
           "column": 4,
-          "index": 1703
+          "index": 1922
         },
         "end": {
-          "line": 56,
+          "line": 61,
           "column": 22,
-          "index": 1721
+          "index": 1940
         }
       },
       "appearsIn": [
@@ -491,14 +553,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 58,
+          "line": 63,
           "column": 4,
-          "index": 1728
+          "index": 1947
         },
         "end": {
-          "line": 76,
+          "line": 80,
           "column": 5,
-          "index": 2321
+          "index": 2545
         }
       },
       "type": "function",
@@ -517,14 +579,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 78,
+          "line": 82,
           "column": 4,
-          "index": 2328
+          "index": 2552
         },
         "end": {
-          "line": 93,
+          "line": 88,
           "column": 5,
-          "index": 2883
+          "index": 2696
         }
       },
       "type": "function",
@@ -538,23 +600,189 @@
       ],
       "mixin": "cv.ui.structure.tile.MRefresh"
     },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "__doRefresh": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 128,
           "column": 4,
-          "index": 2890
+          "index": 3719
         },
         "end": {
-          "line": 102,
+          "line": 135,
           "column": 5,
-          "index": 3105
+          "index": 3934
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
       "appearsIn": [
         "cv.ui.structure.tile.MRefresh"
       ],
@@ -567,12 +795,12 @@
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1283
+          "index": 1288
         },
         "end": {
           "line": 45,
           "column": 16,
-          "index": 1295
+          "index": 1300
         }
       },
       "appearsIn": [
@@ -587,12 +815,12 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1301
+          "index": 1306
         },
         "end": {
           "line": 46,
           "column": 24,
-          "index": 1321
+          "index": 1326
         }
       },
       "appearsIn": [
@@ -607,12 +835,92 @@
         "start": {
           "line": 47,
           "column": 4,
-          "index": 1327
+          "index": 1332
         },
         "end": {
           "line": 47,
           "column": 18,
-          "index": 1341
+          "index": 1346
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1352
+        },
+        "end": {
+          "line": 48,
+          "column": 23,
+          "index": 1371
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddressStateUpdateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 49,
+          "column": 41,
+          "index": 1414
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileClosedHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1420
+        },
+        "end": {
+          "line": 50,
+          "column": 29,
+          "index": 1445
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1469
         }
       },
       "appearsIn": [
@@ -625,14 +933,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 53,
           "column": 4,
-          "index": 1348
+          "index": 1476
         },
         "end": {
-          "line": 54,
+          "line": 58,
           "column": 5,
-          "index": 1476
+          "index": 1604
         }
       },
       "type": "function",
@@ -647,14 +955,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 60,
           "column": 4,
-          "index": 1483
+          "index": 1611
         },
         "end": {
-          "line": 61,
+          "line": 65,
           "column": 5,
-          "index": 1647
+          "index": 1775
         }
       },
       "type": "function",
@@ -669,14 +977,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 63,
+          "line": 67,
           "column": 4,
-          "index": 1654
+          "index": 1782
         },
         "end": {
-          "line": 67,
+          "line": 76,
           "column": 5,
-          "index": 1877
+          "index": 2173
         }
       },
       "type": "function",
@@ -695,14 +1003,36 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 69,
+          "line": 78,
           "column": 4,
-          "index": 1884
+          "index": 2180
         },
         "end": {
-          "line": 101,
+          "line": 120,
           "column": 5,
-          "index": 3288
+          "index": 4018
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__cleanupFullscreenBindings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4025
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4516
         }
       },
       "type": "function",
@@ -717,14 +1047,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 103,
+          "line": 134,
           "column": 4,
-          "index": 3295
+          "index": 4523
         },
         "end": {
-          "line": 112,
+          "line": 143,
           "column": 5,
-          "index": 3583
+          "index": 4811
         }
       },
       "type": "function",
@@ -747,14 +1077,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 490,
+        "line": 504,
         "column": 2,
-        "index": 17520
+        "index": 18061
       },
       "end": {
-        "line": 496,
+        "line": 510,
         "column": 3,
-        "index": 17697
+        "index": 18238
       }
     }
   },
@@ -769,9 +1099,9 @@
           "index": 1266
         },
         "end": {
-          "line": 48,
-          "column": 6,
-          "index": 1553
+          "line": 40,
+          "column": 18,
+          "index": 1280
         }
       },
       "appearsIn": [

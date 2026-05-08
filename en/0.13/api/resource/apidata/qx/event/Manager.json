@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688037,
-  "lastModifiedIso": "2024-12-28T11:01:28.037Z",
+  "lastModified": 1778272635304,
+  "lastModifiedIso": "2026-05-08T20:37:15.304Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Manager.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 697
     },
     "end": {
-      "line": 1025,
+      "line": 1064,
       "column": 3,
-      "index": 31640
+      "index": 33594
     }
   },
   "className": "qx.event.Manager",
@@ -61,7 +61,7 @@
       "end": {
         "line": 81,
         "column": 3,
-        "index": 2324
+        "index": 2331
       }
     }
   },
@@ -89,12 +89,12 @@
         "start": {
           "line": 91,
           "column": 4,
-          "index": 2581
+          "index": 2588
         },
         "end": {
           "line": 91,
           "column": 19,
-          "index": 2596
+          "index": 2603
         }
       },
       "appearsIn": []
@@ -129,12 +129,12 @@
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2815
+          "index": 2822
         },
         "end": {
           "line": 101,
           "column": 5,
-          "index": 2879
+          "index": 2886
         }
       },
       "type": "function",
@@ -169,12 +169,12 @@
         "start": {
           "line": 106,
           "column": 4,
-          "index": 2970
+          "index": 2977
         },
         "end": {
           "line": 106,
           "column": 29,
-          "index": 2995
+          "index": 3002
         }
       },
       "appearsIn": []
@@ -222,12 +222,12 @@
         "start": {
           "line": 118,
           "column": 4,
-          "index": 3523
+          "index": 3530
         },
         "end": {
           "line": 122,
           "column": 5,
-          "index": 3679
+          "index": 3686
         }
       },
       "type": "function",
@@ -274,12 +274,12 @@
         "start": {
           "line": 129,
           "column": 4,
-          "index": 3844
+          "index": 3851
         },
         "end": {
           "line": 132,
           "column": 5,
-          "index": 3981
+          "index": 3988
         }
       },
       "type": "function",
@@ -310,12 +310,12 @@
         "start": {
           "line": 137,
           "column": 4,
-          "index": 4048
+          "index": 4055
         },
         "end": {
           "line": 139,
           "column": 5,
-          "index": 4133
+          "index": 4140
         }
       },
       "type": "function",
@@ -359,12 +359,12 @@
         "start": {
           "line": 148,
           "column": 4,
-          "index": 4393
+          "index": 4400
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 4468
+          "index": 4475
         }
       },
       "type": "function",
@@ -414,12 +414,12 @@
         "start": {
           "line": 160,
           "column": 4,
-          "index": 4795
+          "index": 4802
         },
         "end": {
           "line": 163,
           "column": 5,
-          "index": 4911
+          "index": 4918
         }
       },
       "type": "function",
@@ -441,12 +441,12 @@
         "start": {
           "line": 173,
           "column": 4,
-          "index": 5119
+          "index": 5126
         },
         "end": {
           "line": 173,
           "column": 24,
-          "index": 5139
+          "index": 5146
         }
       },
       "appearsIn": []
@@ -458,12 +458,12 @@
         "start": {
           "line": 174,
           "column": 4,
-          "index": 5145
+          "index": 5152
         },
         "end": {
           "line": 174,
           "column": 21,
-          "index": 5162
+          "index": 5169
         }
       },
       "appearsIn": []
@@ -475,12 +475,12 @@
         "start": {
           "line": 176,
           "column": 4,
-          "index": 5169
+          "index": 5176
         },
         "end": {
           "line": 176,
           "column": 23,
-          "index": 5188
+          "index": 5195
         }
       },
       "appearsIn": []
@@ -492,12 +492,12 @@
         "start": {
           "line": 177,
           "column": 4,
-          "index": 5194
+          "index": 5201
         },
         "end": {
           "line": 177,
           "column": 26,
-          "index": 5216
+          "index": 5223
         }
       },
       "appearsIn": []
@@ -509,12 +509,12 @@
         "start": {
           "line": 179,
           "column": 4,
-          "index": 5223
+          "index": 5230
         },
         "end": {
           "line": 179,
           "column": 20,
-          "index": 5239
+          "index": 5246
         }
       },
       "appearsIn": []
@@ -526,12 +526,12 @@
         "start": {
           "line": 180,
           "column": 4,
-          "index": 5245
+          "index": 5252
         },
         "end": {
           "line": 180,
           "column": 24,
-          "index": 5265
+          "index": 5272
         }
       },
       "appearsIn": []
@@ -543,12 +543,12 @@
         "start": {
           "line": 181,
           "column": 4,
-          "index": 5271
+          "index": 5278
         },
         "end": {
           "line": 181,
           "column": 18,
-          "index": 5285
+          "index": 5292
         }
       },
       "appearsIn": []
@@ -560,12 +560,12 @@
         "start": {
           "line": 182,
           "column": 4,
-          "index": 5291
+          "index": 5298
         },
         "end": {
           "line": 182,
           "column": 20,
-          "index": 5307
+          "index": 5314
         }
       },
       "appearsIn": []
@@ -577,12 +577,12 @@
         "start": {
           "line": 184,
           "column": 4,
-          "index": 5314
+          "index": 5321
         },
         "end": {
           "line": 184,
           "column": 21,
-          "index": 5331
+          "index": 5338
         }
       },
       "appearsIn": []
@@ -594,12 +594,12 @@
         "start": {
           "line": 185,
           "column": 4,
-          "index": 5337
+          "index": 5344
         },
         "end": {
           "line": 185,
           "column": 26,
-          "index": 5359
+          "index": 5366
         }
       },
       "appearsIn": []
@@ -633,12 +633,12 @@
         "start": {
           "line": 198,
           "column": 4,
-          "index": 5690
+          "index": 5697
         },
         "end": {
           "line": 200,
           "column": 5,
-          "index": 5737
+          "index": 5744
         }
       },
       "type": "function",
@@ -677,12 +677,12 @@
         "start": {
           "line": 207,
           "column": 4,
-          "index": 5861
+          "index": 5868
         },
         "end": {
           "line": 209,
           "column": 5,
-          "index": 5912
+          "index": 5919
         }
       },
       "type": "function",
@@ -731,12 +731,12 @@
         "start": {
           "line": 217,
           "column": 4,
-          "index": 6166
+          "index": 6173
         },
         "end": {
           "line": 225,
           "column": 5,
-          "index": 6367
+          "index": 6374
         }
       },
       "type": "function",
@@ -790,12 +790,12 @@
         "start": {
           "line": 233,
           "column": 4,
-          "index": 6624
+          "index": 6631
         },
         "end": {
           "line": 244,
           "column": 5,
-          "index": 6888
+          "index": 6895
         }
       },
       "type": "function",
@@ -873,12 +873,12 @@
         "start": {
           "line": 266,
           "column": 4,
-          "index": 7700
+          "index": 7707
         },
         "end": {
-          "line": 279,
+          "line": 302,
           "column": 5,
-          "index": 8099
+          "index": 8869
         }
       },
       "type": "function",
@@ -911,7 +911,7 @@
           "     *",
           "     * @internal",
           "     *",
-          "     * @return {Map} All registered listeners. The key is the hash code form an object.",
+          "     * @return {Object} All registered listeners. The key is the hash code for an object.",
           "     "
         ],
         "@description": [
@@ -929,29 +929,29 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} All registered listeners. The key is the hash code form an object.",
-            "type": "Map<any, any>",
-            "description": "All registered listeners. The key is the hash code form an object."
+            "body": "{Object} All registered listeners. The key is the hash code for an object.",
+            "type": "Record<any, any>",
+            "description": "All registered listeners. The key is the hash code for an object."
           }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 311,
           "column": 4,
-          "index": 8282
+          "index": 9054
         },
         "end": {
-          "line": 290,
+          "line": 344,
           "column": 5,
-          "index": 8338
+          "index": 10322
         }
       },
       "type": "function",
       "params": [],
       "returnType": {
-        "type": "Map<any, any>"
+        "type": "Record<any, any>"
       },
       "appearsIn": []
     },
@@ -993,14 +993,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 299,
+          "line": 353,
           "column": 4,
-          "index": 8664
+          "index": 10648
         },
         "end": {
-          "line": 326,
+          "line": 377,
           "column": 5,
-          "index": 9495
+          "index": 11415
         }
       },
       "type": "function",
@@ -1064,14 +1064,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 341,
+          "line": 392,
           "column": 4,
-          "index": 10037
+          "index": 11957
         },
         "end": {
-          "line": 361,
+          "line": 410,
           "column": 5,
-          "index": 10760
+          "index": 12631
         }
       },
       "type": "function",
@@ -1144,14 +1144,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 373,
+          "line": 422,
           "column": 4,
-          "index": 11202
+          "index": 13073
         },
         "end": {
-          "line": 393,
+          "line": 441,
           "column": 5,
-          "index": 11792
+          "index": 13663
         }
       },
       "type": "function",
@@ -1221,14 +1221,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 410,
+          "line": 458,
           "column": 4,
-          "index": 12457
+          "index": 14328
         },
         "end": {
-          "line": 445,
+          "line": 501,
           "column": 5,
-          "index": 13620
+          "index": 15692
         }
       },
       "type": "function",
@@ -1335,14 +1335,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 467,
+          "line": 523,
           "column": 4,
-          "index": 14822
+          "index": 16894
         },
         "end": {
-          "line": 522,
+          "line": 578,
           "column": 5,
-          "index": 16482
+          "index": 18599
         }
       },
       "type": "function",
@@ -1383,7 +1383,7 @@
           "*",
           "     * Get the event handler class matching the given event target and type",
           "     *",
-          "     * @param target {var} The event target",
+          "     * @param target {Object} The event target",
           "     * @param type {String} The event type",
           "     * @return {qx.event.IEventHandler|null} The best matching event handler or",
           "     *     <code>null</code>.",
@@ -1398,10 +1398,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "target {var} The event target",
+            "body": "target {Object} The event target",
             "paramName": "target",
             "description": " The event target",
-            "type": "var"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1423,21 +1423,21 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 532,
+          "line": 588,
           "column": 4,
-          "index": 16785
+          "index": 18905
         },
         "end": {
-          "line": 615,
+          "line": 671,
           "column": 5,
-          "index": 19189
+          "index": 21309
         }
       },
       "type": "function",
       "params": [
         {
           "name": "target",
-          "type": "var"
+          "type": "Record<any, any>"
         },
         {
           "name": "type",
@@ -1504,14 +1504,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 627,
+          "line": 683,
           "column": 4,
-          "index": 19648
+          "index": 21768
         },
         "end": {
-          "line": 645,
+          "line": 701,
           "column": 5,
-          "index": 20106
+          "index": 22226
         }
       },
       "type": "function",
@@ -1615,14 +1615,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 660,
+          "line": 716,
           "column": 4,
-          "index": 20736
+          "index": 22856
         },
         "end": {
-          "line": 718,
+          "line": 765,
           "column": 5,
-          "index": 22351
+          "index": 24410
         }
       },
       "type": "function",
@@ -1703,14 +1703,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 728,
+          "line": 775,
           "column": 4,
-          "index": 22668
+          "index": 24727
         },
         "end": {
-          "line": 779,
+          "line": 818,
           "column": 5,
-          "index": 24025
+          "index": 25957
         }
       },
       "type": "function",
@@ -1766,14 +1766,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 787,
+          "line": 826,
           "column": 4,
-          "index": 24308
+          "index": 26240
         },
         "end": {
-          "line": 815,
+          "line": 854,
           "column": 5,
-          "index": 25128
+          "index": 27082
         }
       },
       "type": "function",
@@ -1826,14 +1826,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 826,
+          "line": 865,
           "column": 4,
-          "index": 25380
+          "index": 27334
         },
         "end": {
-          "line": 828,
+          "line": 867,
           "column": 5,
-          "index": 25459
+          "index": 27413
         }
       },
       "type": "function",
@@ -1901,14 +1901,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 841,
+          "line": 880,
           "column": 4,
-          "index": 25991
+          "index": 27945
         },
         "end": {
-          "line": 859,
+          "line": 898,
           "column": 5,
-          "index": 26453
+          "index": 28407
         }
       },
       "type": "function",
@@ -1988,14 +1988,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 881,
+          "line": 920,
           "column": 4,
-          "index": 27431
+          "index": 29385
         },
         "end": {
-          "line": 985,
+          "line": 1024,
           "column": 5,
-          "index": 30605
+          "index": 32559
         }
       },
       "type": "function",
@@ -2031,14 +2031,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 990,
+          "line": 1029,
           "column": 4,
-          "index": 30661
+          "index": 32615
         },
         "end": {
-          "line": 1000,
+          "line": 1039,
           "column": 5,
-          "index": 31036
+          "index": 32990
         }
       },
       "type": "function",
@@ -2053,7 +2053,7 @@
           "*",
           "     * Add event to blacklist.",
           "     *",
-          "     * @param uid {number} unique event id",
+          "     * @param uid {String} unique event id",
           "     "
         ],
         "@description": [
@@ -2065,31 +2065,31 @@
         "@param": [
           {
             "name": "@param",
-            "body": "uid {number} unique event id",
+            "body": "uid {String} unique event id",
             "paramName": "uid",
             "description": " unique event id",
-            "type": "number"
+            "type": "string"
           }
         ]
       },
       "access": "private",
       "location": {
         "start": {
-          "line": 1007,
+          "line": 1046,
           "column": 4,
-          "index": 31140
+          "index": 33094
         },
         "end": {
-          "line": 1013,
+          "line": 1052,
           "column": 5,
-          "index": 31325
+          "index": 33279
         }
       },
       "type": "function",
       "params": [
         {
           "name": "uid",
-          "type": "number"
+          "type": "string"
         }
       ],
       "appearsIn": []
@@ -2100,7 +2100,7 @@
           "*",
           "     * Check if the event with the given id has been removed and is therefore blacklisted for event handling",
           "     *",
-          "     * @param uid {number} unique event id",
+          "     * @param uid {String} unique event id",
           "     * @return {boolean}",
           "     "
         ],
@@ -2113,10 +2113,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "uid {number} unique event id",
+            "body": "uid {String} unique event id",
             "paramName": "uid",
             "description": " unique event id",
-            "type": "number"
+            "type": "string"
           }
         ],
         "@return": [
@@ -2131,21 +2131,21 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1021,
+          "line": 1060,
           "column": 4,
-          "index": 31532
+          "index": 33486
         },
         "end": {
-          "line": 1023,
+          "line": 1062,
           "column": 5,
-          "index": 31632
+          "index": 33586
         }
       },
       "type": "function",
       "params": [
         {
           "name": "uid",
-          "type": "number"
+          "type": "string"
         }
       ],
       "returnType": {

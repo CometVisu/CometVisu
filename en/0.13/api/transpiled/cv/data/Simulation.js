@@ -32,6 +32,25 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* Simulation.js
+   *
+   * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+   *
+   * This program is free software; you can redistribute it and/or modify it
+   * under the terms of the GNU General Public License as published by the Free
+   * Software Foundation; either version 3 of the License, or (at your option)
+   * any later version.
+   *
+   * This program is distributed in the hope that it will be useful, but WITHOUT
+   * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+   * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+   * more details.
+   *
+   * You should have received a copy of the GNU General Public License along
+   * with this program; if not, write to the Free Software Foundation, Inc.,
+   * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+   */
+
   /**
    * Handles all status update simulation used together with the cv.io.Mockup backend e.g. in the demo configs
    */
@@ -71,10 +90,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @var {cv.io.Mockup}
        */
       _client: null,
-      __P_786_0: null,
-      __P_786_1: false,
-      __P_786_2: null,
-      __P_786_3: 0,
+      __P_802_0: null,
+      __P_802_1: false,
+      __P_802_2: null,
+      __P_802_3: 0,
       _addressConfigs: null,
       init: function init(configFile) {
         var _this = this;
@@ -82,7 +101,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var r = new qx.io.request.Xhr(configFile);
         r.addListener('success', function (e) {
           cv.Config.initialDemoData = e.getTarget().getResponse();
-          _this.__P_786_4();
+          _this.__P_802_4();
           _this.setInitialized(true);
           _this.debug('simulator data has been loaded');
         });
@@ -91,15 +110,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         });
         r.send();
       },
-      __P_786_4: function __P_786_4() {
+      __P_802_4: function __P_802_4() {
         var _this2 = this;
-        this.__P_786_5 = cv.Config.initialDemoData.xhr;
+        this.__P_802_5 = cv.Config.initialDemoData.xhr;
 
         // we need to adjust the timestamps of the chart data
         var now = Date.now();
-        for (var url in this.__P_786_5) {
+        for (var url in this.__P_802_5) {
           if (url.startsWith('rrd')) {
-            this.__P_786_5[url].forEach(function (d) {
+            this.__P_802_5[url].forEach(function (d) {
               var data = d.body;
               var offset = now - data[data.length - 1][0];
               data.forEach(function (entry) {
@@ -107,7 +126,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               });
             });
           } else if (url.startsWith('resource/plugin/rsslog.php')) {
-            this.__P_786_5[url].forEach(function (d) {
+            this.__P_802_5[url].forEach(function (d) {
               var data = d.body.responseData.feed.entries;
               var date = new Date();
               date.setDate(date.getDate() - 1);
@@ -123,7 +142,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         sinon.sandbox = sinon;
 
         // override sinons filter handling to be able to manipulate the target URL from the filter
-        // eslint-disable-next-line consistent-return
         sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
           this.method = method;
           this.url = url;
@@ -183,16 +201,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               url = url.substr(window.location.pathname.length - 1);
             }
           }
-          if (!this.__P_786_5[url] || this.__P_786_5[url].length === 0) {
+          if (!this.__P_802_5[url] || this.__P_802_5[url].length === 0) {
             qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
           } else {
             qx.log.Logger.debug(this, 'faking response for ' + url);
             var response = '';
-            if (this.__P_786_5[url].length === 1) {
-              response = this.__P_786_5[url][0];
+            if (this.__P_802_5[url].length === 1) {
+              response = this.__P_802_5[url][0];
             } else {
               // multiple responses recorded use them as LIFO stack
-              response = this.__P_786_5[url].shift();
+              response = this.__P_802_5[url].shift();
             }
             if (request.readyState === 4 && request.status === 404) {
               // This is a hack, sometimes the request has a 404 status and send readystate
@@ -208,33 +226,33 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }.bind(this));
       },
       onWrite: function onWrite(address, value) {
-        if (this.__P_786_0 && Object.prototype.hasOwnProperty.call(this.__P_786_0, address)) {
+        if (this.__P_802_0 && Object.prototype.hasOwnProperty.call(this.__P_802_0, address)) {
           this._processSimulation(address, value);
           return true;
         }
         return false;
       },
       _registerSimulations: function _registerSimulations(simulations) {
-        this.__P_786_0 = {};
+        this.__P_802_0 = {};
         Object.keys(simulations).forEach(function (mainAddress) {
           var simulation = simulations[mainAddress];
-          this.__P_786_0[mainAddress] = simulation;
+          this.__P_802_0[mainAddress] = simulation;
           if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
             simulation.additionalAddresses.forEach(function (addr) {
-              this.__P_786_0[addr] = simulation;
+              this.__P_802_0[addr] = simulation;
             }, this);
           }
         }, this);
       },
       _registerGenerators: function _registerGenerators(generators) {
         var _this3 = this;
-        this.__P_786_6 = generators;
+        this.__P_802_6 = generators;
         var _loop = function _loop() {
-          var gen = _this3.__P_786_6[name];
+          var gen = _this3.__P_802_6[name];
           gen.interval = setInterval(function () {
             var data = {};
             var value = gen.targetValue + (Math.random() - 0.5) * gen.deviation * 2;
-            if (_this3.__P_786_1 && _this3._addressConfigs[gen.address]) {
+            if (_this3.__P_802_1 && _this3._addressConfigs[gen.address]) {
               value = cv.Transform.encodeBusAndRaw(_this3._addressConfigs[gen.address], value).raw;
             }
             data[gen.address] = value;
@@ -244,12 +262,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             });
           }, gen.interval);
         };
-        for (var name in this.__P_786_6) {
+        for (var name in this.__P_802_6) {
           _loop();
         }
       },
       generate: function generate(name, options) {
-        var generator = this.__P_786_6 ? this.__P_786_6[name] : null;
+        var generator = this.__P_802_6 ? this.__P_802_6[name] : null;
         var data = [];
         if (generator) {
           if (options) {
@@ -331,26 +349,26 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return data;
       },
       _startSequence: function _startSequence() {
-        if (this.__P_786_2.length <= this.__P_786_3) {
+        if (this.__P_802_2.length <= this.__P_802_3) {
           // start again
-          this.__P_786_3 = 0;
+          this.__P_802_3 = 0;
         }
         qx.event.Timer.once(function () {
           this._client.receive({
             i: new Date().getTime(),
-            d: this.__P_786_2[this.__P_786_3].data
+            d: this.__P_802_2[this.__P_802_3].data
           });
-          this.__P_786_3++;
+          this.__P_802_3++;
           this._startSequence();
-        }, this, this.__P_786_2[this.__P_786_3].delay);
+        }, this, this.__P_802_2[this.__P_802_3].delay);
       },
       _processSimulation: function _processSimulation(address, value) {
         var _this4 = this;
-        var simulation = this.__P_786_0[address];
+        var simulation = this.__P_802_0[address];
         if (!simulation) {
           return;
         }
-        if (this.__P_786_1 && address in this._addressConfigs) {
+        if (this.__P_802_1 && address in this._addressConfigs) {
           value = cv.Transform.encodeBusAndRaw(this._addressConfigs[address], value).raw;
         }
         var start = false;
@@ -374,7 +392,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             var initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
             if (initValue === undefined) {
               initValue = 0;
-            } else if (this.__P_786_1 && simulation.targetAddress in this._addressConfigs) {
+            } else if (this.__P_802_1 && simulation.targetAddress in this._addressConfigs) {
               initValue = cv.Transform.decode(this._addressConfigs[simulation.targetAddress], initValue);
             }
             simulation.value = initValue;
@@ -405,7 +423,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   d: {}
                 };
                 var sendValue = newValue;
-                if (_this4.__P_786_1 && simulation.targetAddress in _this4._addressConfigs) {
+                if (_this4.__P_802_1 && simulation.targetAddress in _this4._addressConfigs) {
                   sendValue = cv.Transform.encodeBusAndRaw(_this4._addressConfigs[simulation.targetAddress], newValue).raw;
                 }
                 update.d[simulation.targetAddress] = sendValue;
@@ -428,7 +446,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         var _this5 = this;
         if (cv.Config.initialDemoData && addresses.length > 0) {
           if (cv.Config.initialDemoData.encodeFirst) {
-            this.__P_786_1 = true;
+            this.__P_802_1 = true;
             // connect address data from widgets first
             this._addressConfigs = {};
             var widgetData = cv.data.Model.getInstance().getWidgetDataModel();
@@ -505,7 +523,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             d: cv.Config.initialDemoData.states
           });
           if (cv.Config.initialDemoData.sequence) {
-            this.__P_786_2 = cv.Config.initialDemoData.sequence;
+            this.__P_802_2 = cv.Config.initialDemoData.sequence;
             this._startSequence();
           }
           if (cv.Config.initialDemoData.simulations) {
@@ -597,13 +615,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_786_0 = null;
+      this.__P_802_0 = null;
       this._addressConfigs = null;
-      this.__P_786_2 = null;
+      this.__P_802_2 = null;
       this._client = null;
     }
   });
   cv.data.Simulation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simulation.js.map?dt=1735383888235
+//# sourceMappingURL=Simulation.js.map?dt=1778272858801

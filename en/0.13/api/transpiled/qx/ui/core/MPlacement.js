@@ -1,3 +1,9 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -38,8 +44,8 @@
    */
   qx.Mixin.define("qx.ui.core.MPlacement", {
     statics: {
-      __P_543_0: null,
-      __P_543_1: "left",
+      __P_553_0: null,
+      __P_553_1: "left",
       /**
        * Set the always visible element. If an element is set, the
        * {@link #moveTo} method takes care of every move and tries not to cover
@@ -48,7 +54,7 @@
        * @param elem {qx.ui.core.Widget} The widget which should always be visible.
        */
       setVisibleElement: function setVisibleElement(elem) {
-        this.__P_543_0 = elem;
+        this.__P_553_0 = elem;
       },
       /**
        * Returns the given always visible element. See {@link #setVisibleElement}
@@ -57,7 +63,7 @@
        * @return {qx.ui.core.Widget|null} The given widget.
        */
       getVisibleElement: function getVisibleElement() {
-        return this.__P_543_0;
+        return this.__P_553_0;
       },
       /**
        * Set the move direction for an element which hides always visible element.
@@ -67,7 +73,7 @@
        */
       setMoveDirection: function setMoveDirection(direction) {
         if (direction === "top" || direction === "left") {
-          this.__P_543_1 = direction;
+          this.__P_553_1 = direction;
         } else {
           throw new Error("Invalid value for the parameter 'direction' [qx.ui.core.MPlacement.setMoveDirection()], the value was '" + direction + "' " + "but 'top' or 'left' are allowed.");
         }
@@ -79,7 +85,7 @@
        * @return {String} The move direction.
        */
       getMoveDirection: function getMoveDirection() {
-        return this.__P_543_1;
+        return this.__P_553_1;
       }
     },
     properties: {
@@ -179,9 +185,12 @@
       }
     },
     members: {
-      __P_543_2: null,
-      __P_543_3: null,
-      __P_543_4: null,
+      __P_553_2: null,
+      __P_553_3: null,
+      __P_553_4: null,
+      /**@type {Record<"top" | "right" | "bottom" | "left", number> | null}*/
+      __P_553_5: null,
+      __P_553_6: null,
       /**
        * Returns the location data like {qx.bom.element.Location#get} does,
        * but does not rely on DOM elements coordinates to be rendered. Instead,
@@ -317,20 +326,29 @@
         // Use the idle event to make sure that the widget's position gets
         // updated automatically (e.g. the widget gets scrolled).
         if (liveupdate) {
-          this.__P_543_5();
+          this.__P_553_7();
 
           // Bind target and livupdate to placeToWidget
-          this.__P_543_2 = qx.lang.Function.bind(this.placeToWidget, this, target, false);
-          qx.event.Idle.getInstance().addListener("interval", this.__P_543_2);
+          this.__P_553_2 = qx.lang.Function.bind(this.placeToWidget, this, target, false);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_553_2);
 
           // Remove the listener when the element disappears.
-          this.__P_543_4 = function () {
-            this.__P_543_5();
+          this.__P_553_4 = function () {
+            this.__P_553_7();
           };
-          this.addListener("disappear", this.__P_543_4, this);
+          this.addListener("disappear", this.__P_553_4, this);
         }
         var coords = target.getContentLocation() || this.getLayoutLocation(target);
+        var size = this.__P_553_8();
         if (coords != null) {
+          var boundsAreEqual = function boundsAreEqual(bound1, bound2) {
+            return bound1 && bound2 && bound1.top === bound2.top && bound1.right === bound2.right && bound1.bottom === bound2.bottom && bound1.left === bound2.left;
+          };
+          if (boundsAreEqual(coords, this.__P_553_5) && boundsAreEqual(size, this.__P_553_6)) {
+            return true;
+          }
+          this.__P_553_5 = coords;
+          this.__P_553_6 = size;
           this._place(coords);
           return true;
         } else {
@@ -340,14 +358,14 @@
       /**
        * Removes all resources allocated by the last run of placeToWidget with liveupdate=true
        */
-      __P_543_5: function __P_543_5() {
-        if (this.__P_543_2) {
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_543_2);
-          this.__P_543_2 = null;
+      __P_553_7: function __P_553_7() {
+        if (this.__P_553_2) {
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_553_2);
+          this.__P_553_2 = null;
         }
-        if (this.__P_543_4) {
-          this.removeListener("disappear", this.__P_543_4, this);
-          this.__P_543_4 = null;
+        if (this.__P_553_4) {
+          this.removeListener("disappear", this.__P_553_4, this);
+          this.__P_553_4 = null;
         }
       },
       /**
@@ -387,14 +405,14 @@
         // updated automatically (e.g. the widget gets scrolled).
         if (liveupdate) {
           // Bind target and livupdate to placeToWidget
-          this.__P_543_2 = qx.lang.Function.bind(this.placeToElement, this, elem, false);
-          qx.event.Idle.getInstance().addListener("interval", this.__P_543_2);
+          this.__P_553_2 = qx.lang.Function.bind(this.placeToElement, this, elem, false);
+          qx.event.Idle.getInstance().addListener("interval", this.__P_553_2);
 
           // Remove the listener when the element disappears.
           this.addListener("disappear", function () {
-            if (_this.__P_543_2) {
-              qx.event.Idle.getInstance().removeListener("interval", _this.__P_543_2);
-              _this.__P_543_2 = null;
+            if (_this.__P_553_2) {
+              qx.event.Idle.getInstance().removeListener("interval", _this.__P_553_2);
+              _this.__P_553_2 = null;
             }
           });
         }
@@ -437,9 +455,9 @@
        * <code>_computePlacementSize</code>, which returns the size.
        *
        *  @param callback {Function} This function will be called with the size as
-       *    first argument
+       *    first argument. If it is null, the size is returned directly.
        */
-      __P_543_6: function __P_543_6(callback) {
+      __P_553_8: function __P_553_8(callback) {
         var _this2 = this;
         var size = null;
         if (this._computePlacementSize) {
@@ -447,9 +465,12 @@
         } else if (this.isVisible()) {
           var size = this.getBounds();
         }
+        if (!callback) {
+          return _objectSpread({}, size);
+        }
         if (size == null) {
           this.addListenerOnce("appear", function () {
-            _this2.__P_543_6(callback);
+            _this2.__P_553_8(callback);
           });
         } else {
           callback.call(this, size);
@@ -464,7 +485,7 @@
        *   and <code>bottom</code>.
        */
       _place: function _place(coords) {
-        this.__P_543_6(function (size) {
+        this.__P_553_8(function (size) {
           var result = qx.util.placement.Placement.compute(size, this.getLayoutParent().getBounds(), coords, this._getPlacementOffsets(), this.getPosition(), this.getPlacementModeX(), this.getPlacementModeY());
 
           // state handling for tooltips e.g.
@@ -476,10 +497,10 @@
       }
     },
     destruct: function destruct() {
-      this.__P_543_5();
+      this.__P_553_7();
     }
   });
   qx.ui.core.MPlacement.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MPlacement.js.map?dt=1735383876313
+//# sourceMappingURL=MPlacement.js.map?dt=1778272846934

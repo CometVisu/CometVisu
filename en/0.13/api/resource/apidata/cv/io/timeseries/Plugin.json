@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576143,
+  "lastModifiedIso": "2026-05-08T20:36:16.143Z",
   "classFilename": "../../source/class/cv/io/timeseries/Plugin.js",
   "type": "class",
   "location": {
     "start": {
       "line": 25,
       "column": 0,
-      "index": 916
+      "index": 921
     },
     "end": {
-      "line": 113,
+      "line": 147,
       "column": 3,
-      "index": 4091
+      "index": 5194
     }
   },
   "className": "cv.io.timeseries.Plugin",
@@ -53,12 +53,29 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1154
+          "index": 1159
         },
         "end": {
           "line": 34,
           "column": 17,
-          "index": 1167
+          "index": 1172
+        }
+      },
+      "appearsIn": []
+    },
+    "_waitingForType": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1178
+        },
+        "end": {
+          "line": 35,
+          "column": 23,
+          "index": 1197
         }
       },
       "appearsIn": []
@@ -68,14 +85,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 36,
+          "line": 37,
           "column": 4,
-          "index": 1174
+          "index": 1204
         },
         "end": {
-          "line": 38,
+          "line": 47,
           "column": 5,
-          "index": 1245
+          "index": 1600
         }
       },
       "type": "function",
@@ -88,6 +105,25 @@
         }
       ],
       "appearsIn": []
+    },
+    "clearWaiting": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1607
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1893
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
   "members": {
@@ -96,31 +132,53 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 47,
+          "line": 65,
           "column": 4,
-          "index": 1391
+          "index": 2039
         },
         "end": {
-          "line": 47,
+          "line": 65,
           "column": 17,
-          "index": 1404
+          "index": 2052
         }
       },
       "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2059
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2135
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
     },
     "_init": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 49,
+          "line": 73,
           "column": 4,
-          "index": 1411
+          "index": 2142
         },
         "end": {
-          "line": 55,
+          "line": 89,
           "column": 5,
-          "index": 1739
+          "index": 2842
         }
       },
       "type": "function",
@@ -191,14 +249,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 116,
           "column": 4,
-          "index": 2840
+          "index": 3943
         },
         "end": {
-          "line": 84,
+          "line": 118,
           "column": 5,
-          "index": 2964
+          "index": 4067
         }
       },
       "type": "function",
@@ -290,14 +348,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 130,
           "column": 4,
-          "index": 3578
+          "index": 4681
         },
         "end": {
-          "line": 98,
+          "line": 132,
           "column": 5,
-          "index": 3694
+          "index": 4797
         }
       },
       "type": "function",
@@ -361,14 +419,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 140,
           "column": 4,
-          "index": 3896
+          "index": 4999
         },
         "end": {
-          "line": 111,
+          "line": 145,
           "column": 5,
-          "index": 4083
+          "index": 5186
         }
       },
       "type": "function",

@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "limit",
+    "arguments",
+    "length",
+    "undefined",
+    "Infinity",
+    "constructor",
+    "call",
+    "__limit",
+    "__queue",
+    "__running",
+    "members",
+    "add",
+    "task",
+    "_this",
+    "Promise",
+    "resolve",
+    "reject",
+    "push",
+    "__checkQueue",
+    "_this2",
+    "next",
+    "shift",
+    "then",
+    "util",
+    "ConcurrencyLimiter"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/util/ConcurrencyLimiter.js"
+  ],
+  "sourcesContent": [
+    "/**\n * Utility class to limit the number of concurrent executions of async functions.\n *\n * @typedef {Object} TaskEntry\n * @template T\n * @property {() => Promise<T>} task The function to execute.\n * @property {(value: T) => void} resolve The function to call when the task resolves.\n * @property {(reason: any) => void} reject The function to call when the task rejects.\n */\nqx.Class.define(\"qx.util.ConcurrencyLimiter\", {\n  extend: qx.core.Object,\n\n  /**\n   * @param {Number?Infinity} limit The maximum number of concurrent executions. If Infinity, no limit is applied.\n   */\n  construct(limit = Infinity) {\n    super();\n    this.__limit = limit;\n\n    this.__queue = [];\n    this.__running = 0;\n  },\n\n  members: {\n    /**\n     * @type {TaskEntry<*>[]}\n     * The tasks that are waiting to be executed\n     */\n    __queue: null,\n\n    /**\n     * Number of currently running tasks.\n     */\n    __running: null,\n\n    /**\n     * Queues a function to be executed.\n     * If the limit is reached, the function will be put on hold until a slot is available.\n     *\n     * @template T\n     * @param {() => Promise<T>} task The function to execute.\n     * @returns {Promise<T>} The promise that will be resolved when the function is executed.\n     *  If the function rejects, the promise will also reject.\n     */\n    add(task) {\n      return new Promise((resolve, reject) => {\n        this.__queue.push({ task, resolve, reject });\n        this.__checkQueue();\n      });\n    },\n\n    /**\n     * Checks the queue to see if anything can be executed,\n     * and executes the next item in the queue if the limit is not reached.\n     * Once the item has finished executing, it will check the queue again.\n     */\n    __checkQueue() {\n      if (this.__running == this.__limit) {\n        return;\n      }\n\n      let next = this.__queue.shift();\n      if (!next) {\n        return;\n      }\n\n      let { task, resolve, reject } = next;\n\n      this.__running++;\n      task()\n        .then(resolve, reject)\n        .finally(() => {\n          this.__running--;\n          this.__checkQueue();\n        });\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtB;AACF;AACA;IACEC,SAAS,WAATA,SAASA,CAAA,EAAmB;MAAA,IAAlBC,KAAK,GAAAC,SAAA,CAAAC,MAAA,QAAAD,SAAA,QAAAE,SAAA,GAAAF,SAAA,MAAGG,QAAQ;MACxBd,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAO,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,SAAO,GAAGP,KAAK;MAEpB,IAAI,CAACQ,SAAO,GAAG,EAAE;MACjB,IAAI,CAACC,SAAS,GAAG,CAAC;IACpB,CAAC;IAEDC,OAAO,EAAE;MACP;AACJ;AACA;AACA;MACIF,SAAO,EAAE,IAAI;MAEb;AACJ;AACA;MACIC,SAAS,EAAE,IAAI;MAEf;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;MACIE,GAAG,WAAHA,GAAGA,CAACC,IAAI,EAAE;QAAA,IAAAC,KAAA;QACR,OAAO,IAAIC,OAAO,CAAC,UAACC,OAAO,EAAEC,MAAM,EAAK;UACtCH,KAAI,CAACL,SAAO,CAACS,IAAI,CAAC;YAAEL,IAAI,EAAJA,IAAI;YAAEG,OAAO,EAAPA,OAAO;YAAEC,MAAM,EAANA;UAAO,CAAC,CAAC;UAC5CH,KAAI,CAACK,SAAY,CAAC,CAAC;QACrB,CAAC,CAAC;MACJ,CAAC;MAED;AACJ;AACA;AACA;AACA;MACIA,SAAY,WAAZA,SAAYA,CAAA,EAAG;QAAA,IAAAC,MAAA;QACb,IAAI,IAAI,CAACV,SAAS,IAAI,IAAI,CAACF,SAAO,EAAE;UAClC;QACF;QAEA,IAAIa,IAAI,GAAG,IAAI,CAACZ,SAAO,CAACa,KAAK,CAAC,CAAC;QAC/B,IAAI,CAACD,IAAI,EAAE;UACT;QACF;QAEA,IAAMR,IAAI,GAAsBQ,IAAI,CAA9BR,IAAI;UAAEG,OAAO,GAAaK,IAAI,CAAxBL,OAAO;UAAEC,MAAM,GAAKI,IAAI,CAAfJ,MAAM;QAE3B,IAAI,CAACP,SAAS,EAAE;QAChBG,IAAI,CAAC,CAAC,CACHU,IAAI,CAACP,OAAO,EAAEC,MAAM,CAAC,WACd,CAAC,YAAM;UACbG,MAAI,CAACV,SAAS,EAAE;UAChBU,MAAI,CAACD,SAAY,CAAC,CAAC;QACrB,CAAC,CAAC;MACN;IACF;EACF,CAAC,CAAC;EA7EF5B,EAAE,CAACiC,IAAI,CAACC,kBAAkB,CAAC/B,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

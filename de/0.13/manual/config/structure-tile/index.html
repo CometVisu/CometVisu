@@ -7,8 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grundsätzlicher Aufbau &mdash; CometVisu</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=8073742d" />
 
   
@@ -16,9 +16,9 @@
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../_static/documentation_options.js?v=245627df"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/translations.js?v=70a09b52"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
@@ -194,6 +194,8 @@ Seitenleiste. Im Hauptbereich befinden sich dann die einzelnen Seiten mit den je
 hin und her navigiert werden kann. Die feststehenden Bereiche sind alle optional und können nach Bedarf genutzt oder
 weggelassen werden. Man kann sie z.B. für Navigationsleisten oder Widgets die einen globalen Status anzeigen, wie die Anzahl der
 offenen Fenster oder der eingeschalteten Lichter, nutzen.</p>
+<p>Für kompakte mobile Layouts können Navigationselemente in diesen festen Bereichen mit <code class="docutils literal notranslate"><span class="pre">hide-on-scroll=&quot;true&quot;</span></code> konfiguriert werden.
+Dann werden sie während des Scrollens im <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code>-Bereich ausgeblendet und am oberen Rand der Seite wieder eingeblendet.</p>
 <figure class="align-default" id="id1">
 <img alt="Grundstruktur mit allen verfügbaren optionalen Bereichen" src="../../_images/tile-ui-structure.png" />
 <figcaption>
@@ -252,7 +254,7 @@ jedoch der Header oder Footer Bereich an).</p>
 <figure class="align-default">
 <img alt="../../_images/tile-nav-menu.png" src="../../_images/tile-nav-menu.png" />
 </figure>
-<p>In den <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code>-Bereichen kann zusätzlich noch ein Breadcrumb-Menü hinzugefügt werden mit <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
+<p>In den <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code>-Bereichen kann zusätzlich noch ein <a class="reference internal" href="components/breadcrumbs.html#tile-component-breadcrumbs"><span class="std std-ref">Breadcrumb-Menü</span></a> hinzugefügt werden mit <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
 Damit kann man schnell zurück zu übergeordneten Seiten springen.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-breadcrumbs/&gt;</span>
@@ -262,7 +264,16 @@ Damit kann man schnell zurück zu übergeordneten Seiten springen.</p>
 <figure class="align-default">
 <img alt="../../_images/tile-nav-breadcrumb.png" src="../../_images/tile-nav-breadcrumb.png" />
 </figure>
+<p>Auf Touch-Geräten unterstützt die Tile-Struktur zusätzlich Pull-to-Refresh.
+Wenn der Inhalt im <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code>-Bereich bereits am Anfang ist, lädt das Ziehen nach unten die aktuelle Seite neu.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/menu.html">Menu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/breadcrumbs.html">Breadcrumbs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/page.html">Page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/group.html">Group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/popup.html">Popup</a></li>
+</ul>
 </div>
 </section>
 </section>
@@ -277,65 +288,77 @@ oder die Bedienung einer Rolllade (Shutter).</p>
 <col style="width: 70.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">Das Switch Widget</span></a>
 Einfacher Schalter, Taster oder Trigger</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">Das Dimmer Widget</span></a>
 Schalter mit zusätzlichem Slider zur Einstellung eines
 Prozentwerts.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">Das Shutter Widget</span></a>
 Taster für hoch/runter/stop zur Bedienung einer Jalousie</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">Das Info Widget</span></a>
 Darstellung eines Werts in verschiedenen Arten.</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">Das Status Widget</span></a>
 Status Anzeige in halber Kachel-Höhe</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">Das kleine Status Widget</span></a>
 Status Anzeige in Button-Größe</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">Das Status-Chart Widget</span></a>
 Status-Widget mit Chart im Hintergrund</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">Das RTC Widget</span></a>
 Raumtemperatursteuerung mit Einstellungen für HVAC und
 einer Solltemperatur</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">Das Media-Player Widget</span></a>
 Steuerung eines Medien-Abspielers mit Start/Stop
 vor &amp; zurück und einer Lautstärkeregelung</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">Das Widget-Pair</span></a>
 Ermöglicht es zwei Kacheln in halber Höhe darzustellen</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/energy.html#tile-energy"><span class="std std-ref">Das Energy Widget</span></a>
 Zeigt Energieflüsse innerhalb eines Hauses an</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.png"><img alt="../../_images/cv-link.png" src="../../_images/cv-link.png" style="width: 150px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.png"><img alt="../../_images/cv-link.png" src="../../_images/cv-link.png" style="width: 150px;" />
+</a>
 </td>
 <td><p><a class="reference internal" href="widgets/link.html#tile-link"><span class="std std-ref">Das Link Widget</span></a>
 Öffnet eine Webseite</p></td>
@@ -386,8 +409,8 @@ und ein Text angezeigt wird.</p>
 </pre></div>
 </div>
 <p>Diese Kachel-Konfiguration muss nun in ein Template übertragen werden. Dazu muss man sich zunächst eine Template-Datei
-anlegen. Das geht am besten über den <a class="reference internal" href="../manager.html#manager"><span class="std std-ref">Manager</span></a> indem man im Order „media“ eine Datei mit Namen „my-templates.xml“
-erzeugt. Damit diese Templates geladen werden fügt man in der Konfigurationsdatei im Meta-Bereich einen <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>
+anlegen. Das geht am besten über den <a class="reference internal" href="../manager.html#manager"><span class="std std-ref">Manager</span></a>, indem man im Ordner „media“ eine Datei mit Namen „my-templates.xml“
+erzeugt. Damit diese Templates geladen werden, fügt man in der Konfigurationsdatei im Meta-Bereich einen <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a>
 hinzu.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
@@ -433,7 +456,7 @@ und einen für das Label: <code class="docutils literal notranslate"><span class
 <p>Da selbst definierte Template-Widgets dem offiziellen Schema der CometVisu-Konfigurationsdateien nicht bekannt sind,
 muss man diese in ein <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> Element packen, damit die Konfigurationsdatei nicht als ungültig erkannt
 wird. Damit verliert man an dieser Stelle aber den Vorteil, dass dieser Teil der Konfigurationsdatei auf Gültigkeit
-geprüft werden kann. Sofern man darauf werden legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
+geprüft werden kann. Sofern man darauf Wert legt, kann auch eine Erweiterung des Schemas vorgenommen werden, in
 dem das eigene Widget eingetragen wird. Dazu muss die Datei „custom_visu_config.xsd“ im „config/“ Ordner vorhanden sein.
 Sofern sie nicht vorhanden ist, muss sie mit folgender Grundstruktur angelegt werden.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -531,6 +554,7 @@ mehrere Komponenten in einer Kachel.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="components/icon.html">Icon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/plugin.html">Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/address.html">Address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elements/address-group.html">Address-Group</a></li>
 </ul>
@@ -549,7 +573,7 @@ mehrere Komponenten in einer Kachel.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
   </div>
 
    
@@ -566,7 +590,7 @@ mehrere Komponenten in einer Kachel.</p>
   </script>
    
   <!--
-  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
   ~
   ~ This program is free software; you can redistribute it and/or modify it
   ~ under the terms of the GNU General Public License as published by the Free

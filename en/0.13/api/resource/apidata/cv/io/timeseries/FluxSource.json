@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634052,
-  "lastModifiedIso": "2024-12-28T11:00:34.052Z",
+  "lastModified": 1778272576143,
+  "lastModifiedIso": "2026-05-08T20:36:16.143Z",
   "classFilename": "../../source/class/cv/io/timeseries/FluxSource.js",
   "type": "class",
   "location": {
     "start": {
       "line": 22,
       "column": 0,
-      "index": 856
+      "index": 861
     },
     "end": {
-      "line": 180,
+      "line": 204,
       "column": 3,
-      "index": 6266
+      "index": 7402
     }
   },
   "className": "cv.io.timeseries.FluxSource",
@@ -39,12 +39,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1098
+          "index": 1103
         },
         "end": {
           "line": 31,
           "column": 21,
-          "index": 1115
+          "index": 1120
         }
       },
       "appearsIn": []
@@ -56,12 +56,12 @@
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1121
+          "index": 1126
         },
         "end": {
           "line": 32,
           "column": 28,
-          "index": 1145
+          "index": 1150
         }
       },
       "appearsIn": []
@@ -73,12 +73,12 @@
         "start": {
           "line": 33,
           "column": 4,
-          "index": 1151
+          "index": 1156
         },
         "end": {
           "line": 33,
           "column": 24,
-          "index": 1171
+          "index": 1176
         }
       },
       "appearsIn": []
@@ -90,12 +90,12 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1177
+          "index": 1182
         },
         "end": {
           "line": 34,
           "column": 19,
-          "index": 1192
+          "index": 1197
         }
       },
       "appearsIn": []
@@ -107,12 +107,12 @@
         "start": {
           "line": 36,
           "column": 4,
-          "index": 1199
+          "index": 1204
         },
         "end": {
           "line": 38,
           "column": 5,
-          "index": 1246
+          "index": 1251
         }
       },
       "type": "function",
@@ -126,12 +126,12 @@
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1253
+          "index": 1258
         },
         "end": {
-          "line": 107,
+          "line": 126,
           "column": 5,
-          "index": 3883
+          "index": 4725
         }
       },
       "type": "function",
@@ -146,14 +146,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 109,
+          "line": 128,
           "column": 4,
-          "index": 3890
+          "index": 4732
         },
         "end": {
-          "line": 111,
+          "line": 130,
           "column": 5,
-          "index": 3962
+          "index": 4804
         }
       },
       "type": "function",
@@ -169,14 +169,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 113,
+          "line": 132,
           "column": 4,
-          "index": 3969
+          "index": 4811
         },
         "end": {
-          "line": 128,
+          "line": 146,
           "column": 5,
-          "index": 4304
+          "index": 5123
         }
       },
       "type": "function",
@@ -192,14 +192,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 130,
+          "line": 148,
           "column": 4,
-          "index": 4311
+          "index": 5130
         },
         "end": {
-          "line": 146,
+          "line": 170,
           "column": 5,
-          "index": 5238
+          "index": 6374
         }
       },
       "type": "function",
@@ -254,14 +254,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 177,
           "column": 4,
-          "index": 5393
+          "index": 6529
         },
         "end": {
-          "line": 178,
+          "line": 202,
           "column": 5,
-          "index": 6258
+          "index": 7394
         }
       },
       "type": "function",

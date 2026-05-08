@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687993,
-  "lastModifiedIso": "2024-12-28T11:01:27.993Z",
+  "lastModified": 1778272635271,
+  "lastModifiedIso": "2026-05-08T20:37:15.271Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/List.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1945
     },
     "end": {
-      "line": 1096,
+      "line": 1125,
       "column": 3,
-      "index": 34429
+      "index": 35239
     }
   },
   "className": "qx.data.controller.List",
@@ -473,26 +473,79 @@
       "appearsIn": [
         "qx.data.controller.MSelection"
       ]
+    },
+    "allowSelectionNotInModel": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2768
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2866
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If set to true, the selection property will be allowed to have items which are not in the model property.",
+          "     * If the model property changes, this will not cause the selection property to be reset.",
+          "     *",
+          "     * If the selection property contains items which are not in the model property,",
+          "     * the selection of the target widget (e.g. qx.ui.form.SelectBox) will only be the items that are both in this controller's model property",
+          "     * and in this controller's selection property.",
+          "     *",
+          "     * This is useful when it is undesirable to reset the selection when the model changes,",
+          "     * because if the selection is bound to a business object,",
+          "     * data in the business object may be overwritten.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If set to true, the selection property will be allowed to have items which are not in the model property.\n If the model property changes, this will not cause the selection property to be reset.\n If the selection property contains items which are not in the model property,\n the selection of the target widget (e.g. qx.ui.form.SelectBox) will only be the items that are both in this controller's model property\n and in this controller's selection property.\n This is useful when it is undesirable to reset the selection when the model changes,\n because if the selection is bound to a business object,\n data in the business object may be overwritten.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
     }
   },
   "members": {
     "__changeModelListenerId": {
       "jsdoc": {
         "raw": [
-          " private members"
+          "*",
+          "     * Listener ID for the 'change' event of property `model`",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener ID for the 'change' event of property <code>model</code></p>"
+          }
         ]
       },
       "access": "private",
       "location": {
         "start": {
-          "line": 218,
+          "line": 214,
           "column": 4,
-          "index": 6088
+          "index": 5959
         },
         "end": {
-          "line": 218,
+          "line": 214,
           "column": 33,
-          "index": 6117
+          "index": 5988
         }
       },
       "appearsIn": []
@@ -502,14 +555,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 219,
+          "line": 215,
           "column": 4,
-          "index": 6123
+          "index": 5994
         },
         "end": {
-          "line": 219,
+          "line": 215,
           "column": 23,
-          "index": 6142
+          "index": 6013
         }
       },
       "appearsIn": []
@@ -519,14 +572,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 220,
+          "line": 216,
           "column": 4,
-          "index": 6148
+          "index": 6019
         },
         "end": {
-          "line": 220,
+          "line": 216,
           "column": 20,
-          "index": 6164
+          "index": 6035
         }
       },
       "appearsIn": []
@@ -536,14 +589,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 221,
+          "line": 217,
           "column": 4,
-          "index": 6170
+          "index": 6041
         },
         "end": {
-          "line": 221,
+          "line": 217,
           "column": 27,
-          "index": 6193
+          "index": 6064
         }
       },
       "appearsIn": []
@@ -553,14 +606,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 222,
+          "line": 218,
           "column": 4,
-          "index": 6199
+          "index": 6070
         },
         "end": {
-          "line": 222,
+          "line": 218,
           "column": 34,
-          "index": 6229
+          "index": 6100
         }
       },
       "appearsIn": []
@@ -570,14 +623,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 223,
+          "line": 219,
           "column": 4,
-          "index": 6235
+          "index": 6106
         },
         "end": {
-          "line": 223,
+          "line": 219,
           "column": 31,
-          "index": 6262
+          "index": 6133
         }
       },
       "appearsIn": []
@@ -587,14 +640,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 224,
+          "line": 220,
           "column": 4,
-          "index": 6268
+          "index": 6139
         },
         "end": {
-          "line": 224,
+          "line": 220,
           "column": 30,
-          "index": 6294
+          "index": 6165
         }
       },
       "appearsIn": []
@@ -617,14 +670,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 235,
+          "line": 231,
           "column": 4,
-          "index": 6653
+          "index": 6524
         },
         "end": {
-          "line": 240,
+          "line": 236,
           "column": 5,
-          "index": 6765
+          "index": 6636
         }
       },
       "type": "function",
@@ -674,14 +727,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 254,
+          "line": 250,
           "column": 4,
-          "index": 7243
+          "index": 7114
         },
         "end": {
-          "line": 259,
+          "line": 255,
           "column": 5,
-          "index": 7430
+          "index": 7301
         }
       },
       "type": "function",
@@ -746,14 +799,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 268,
+          "line": 264,
           "column": 4,
-          "index": 7693
+          "index": 7564
         },
         "end": {
-          "line": 283,
+          "line": 279,
           "column": 5,
-          "index": 8105
+          "index": 7976
         }
       },
       "type": "function",
@@ -818,14 +871,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 292,
+          "line": 288,
           "column": 4,
-          "index": 8371
+          "index": 8242
         },
         "end": {
-          "line": 307,
+          "line": 303,
           "column": 5,
-          "index": 8784
+          "index": 8655
         }
       },
       "type": "function",
@@ -890,14 +943,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 316,
+          "line": 312,
           "column": 4,
-          "index": 9044
+          "index": 8915
         },
         "end": {
-          "line": 318,
+          "line": 314,
           "column": 5,
-          "index": 9108
+          "index": 8979
         }
       },
       "type": "function",
@@ -962,14 +1015,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 327,
+          "line": 323,
           "column": 4,
-          "index": 9371
+          "index": 9242
         },
         "end": {
-          "line": 329,
+          "line": 325,
           "column": 5,
-          "index": 9436
+          "index": 9307
         }
       },
       "type": "function",
@@ -1008,14 +1061,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 334,
+          "line": 330,
           "column": 4,
-          "index": 9508
+          "index": 9379
         },
         "end": {
-          "line": 336,
+          "line": 332,
           "column": 5,
-          "index": 9577
+          "index": 9448
         }
       },
       "type": "function",
@@ -1046,14 +1099,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 341,
+          "line": 337,
           "column": 4,
-          "index": 9649
+          "index": 9520
         },
         "end": {
-          "line": 343,
+          "line": 339,
           "column": 5,
-          "index": 9723
+          "index": 9594
         }
       },
       "type": "function",
@@ -1084,14 +1137,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 348,
+          "line": 344,
           "column": 4,
-          "index": 9795
+          "index": 9666
         },
         "end": {
-          "line": 350,
+          "line": 346,
           "column": 5,
-          "index": 9868
+          "index": 9739
         }
       },
       "type": "function",
@@ -1123,14 +1176,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 356,
+          "line": 352,
           "column": 4,
-          "index": 10029
+          "index": 9900
         },
         "end": {
-          "line": 360,
+          "line": 356,
           "column": 5,
-          "index": 10133
+          "index": 10004
         }
       },
       "type": "function",
@@ -1182,14 +1235,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 371,
+          "line": 367,
           "column": 4,
-          "index": 10558
+          "index": 10429
         },
         "end": {
-          "line": 419,
+          "line": 431,
           "column": 5,
-          "index": 12183
+          "index": 12529
         }
       },
       "type": "function",
@@ -1256,14 +1309,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 430,
+          "line": 442,
           "column": 4,
-          "index": 12602
+          "index": 12948
         },
         "end": {
-          "line": 453,
+          "line": 473,
           "column": 5,
-          "index": 13313
+          "index": 13859
         }
       },
       "type": "function",
@@ -1304,14 +1357,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 465,
+          "line": 485,
           "column": 4,
-          "index": 13715
+          "index": 14261
         },
         "end": {
-          "line": 465,
+          "line": 485,
           "column": 26,
-          "index": 13737
+          "index": 14283
         }
       },
       "appearsIn": []
@@ -1333,14 +1386,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 470,
+          "line": 490,
           "column": 4,
-          "index": 13839
+          "index": 14385
         },
         "end": {
-          "line": 485,
+          "line": 505,
           "column": 5,
-          "index": 14361
+          "index": 14907
         }
       },
       "type": "function",
@@ -1374,14 +1427,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 494,
+          "line": 514,
           "column": 4,
-          "index": 14704
+          "index": 15250
         },
         "end": {
-          "line": 502,
+          "line": 522,
           "column": 5,
-          "index": 14960
+          "index": 15506
         }
       },
       "type": "function",
@@ -1406,14 +1459,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 508,
+          "line": 528,
           "column": 4,
-          "index": 15142
+          "index": 15688
         },
         "end": {
-          "line": 542,
+          "line": 571,
           "column": 5,
-          "index": 16205
+          "index": 17015
         }
       },
       "type": "function",
@@ -1439,14 +1492,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 549,
+          "line": 578,
           "column": 4,
-          "index": 16459
+          "index": 17269
         },
         "end": {
-          "line": 561,
+          "line": 590,
           "column": 5,
-          "index": 16889
+          "index": 17699
         }
       },
       "type": "function",
@@ -1481,14 +1534,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 574,
+          "line": 603,
           "column": 4,
-          "index": 17331
+          "index": 18141
         },
         "end": {
-          "line": 588,
+          "line": 617,
           "column": 5,
-          "index": 17802
+          "index": 18612
         }
       },
       "type": "function",
@@ -1527,14 +1580,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 596,
+          "line": 625,
           "column": 4,
-          "index": 17991
+          "index": 18801
         },
         "end": {
-          "line": 603,
+          "line": 632,
           "column": 5,
-          "index": 18236
+          "index": 19046
         }
       },
       "type": "function",
@@ -1564,14 +1617,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 609,
+          "line": 638,
           "column": 4,
-          "index": 18369
+          "index": 19179
         },
         "end": {
-          "line": 621,
+          "line": 650,
           "column": 5,
-          "index": 18788
+          "index": 19598
         }
       },
       "type": "function",
@@ -1607,14 +1660,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 630,
+          "line": 659,
           "column": 4,
-          "index": 19090
+          "index": 19900
         },
         "end": {
-          "line": 641,
+          "line": 670,
           "column": 5,
-          "index": 19419
+          "index": 20229
         }
       },
       "type": "function",
@@ -1661,14 +1714,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 655,
+          "line": 684,
           "column": 4,
-          "index": 19853
+          "index": 20663
         },
         "end": {
-          "line": 671,
+          "line": 700,
           "column": 5,
-          "index": 20502
+          "index": 21312
         }
       },
       "type": "function",
@@ -1726,14 +1779,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 685,
+          "line": 714,
           "column": 4,
-          "index": 20985
+          "index": 21795
         },
         "end": {
-          "line": 708,
+          "line": 737,
           "column": 5,
-          "index": 21487
+          "index": 22297
         }
       },
       "type": "function",
@@ -1822,14 +1875,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 726,
+          "line": 755,
           "column": 4,
-          "index": 22289
+          "index": 23099
         },
         "end": {
-          "line": 753,
+          "line": 782,
           "column": 5,
-          "index": 23386
+          "index": 24196
         }
       },
       "type": "function",
@@ -1934,14 +1987,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 769,
+          "line": 798,
           "column": 4,
-          "index": 24090
+          "index": 24900
         },
         "end": {
-          "line": 783,
+          "line": 812,
           "column": 5,
-          "index": 24706
+          "index": 25516
         }
       },
       "type": "function",
@@ -2020,14 +2073,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 793,
+          "line": 822,
           "column": 4,
-          "index": 25090
+          "index": 25900
         },
         "end": {
-          "line": 806,
+          "line": 835,
           "column": 5,
-          "index": 25623
+          "index": 26433
         }
       },
       "type": "function",
@@ -2076,14 +2129,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 814,
+          "line": 843,
           "column": 4,
-          "index": 25816
+          "index": 26626
         },
         "end": {
-          "line": 839,
+          "line": 868,
           "column": 5,
-          "index": 26738
+          "index": 27548
         }
       },
       "type": "function",
@@ -2112,14 +2165,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 844,
+          "line": 873,
           "column": 4,
-          "index": 26818
+          "index": 27628
         },
         "end": {
-          "line": 862,
+          "line": 891,
           "column": 5,
-          "index": 27432
+          "index": 28242
         }
       },
       "type": "function",
@@ -2163,14 +2216,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 876,
+          "line": 905,
           "column": 4,
-          "index": 27902
+          "index": 28712
         },
         "end": {
-          "line": 887,
+          "line": 916,
           "column": 5,
-          "index": 28226
+          "index": 29036
         }
       },
       "type": "function",
@@ -2223,14 +2276,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 896,
+          "line": 925,
           "column": 4,
-          "index": 28494
+          "index": 29304
         },
         "end": {
-          "line": 909,
+          "line": 938,
           "column": 5,
-          "index": 28877
+          "index": 29687
         }
       },
       "type": "function",
@@ -2283,14 +2336,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 918,
+          "line": 947,
           "column": 4,
-          "index": 29147
+          "index": 29957
         },
         "end": {
-          "line": 946,
+          "line": 975,
           "column": 5,
-          "index": 29883
+          "index": 30693
         }
       },
       "type": "function",
@@ -2351,14 +2404,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 957,
+          "line": 986,
           "column": 4,
-          "index": 30281
+          "index": 31091
         },
         "end": {
-          "line": 1020,
+          "line": 1049,
           "column": 5,
-          "index": 32195
+          "index": 33005
         }
       },
       "type": "function",
@@ -2398,14 +2451,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1026,
+          "line": 1055,
           "column": 4,
-          "index": 32348
+          "index": 33158
         },
         "end": {
-          "line": 1038,
+          "line": 1067,
           "column": 5,
-          "index": 32808
+          "index": 33618
         }
       },
       "type": "function",
@@ -2430,14 +2483,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1049,
+          "line": 1078,
           "column": 4,
-          "index": 33171
+          "index": 33981
         },
         "end": {
-          "line": 1070,
+          "line": 1099,
           "column": 5,
-          "index": 33750
+          "index": 34560
         }
       },
       "type": "function",
@@ -2481,14 +2534,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1078,
+          "line": 1107,
           "column": 4,
-          "index": 33942
+          "index": 34752
         },
         "end": {
-          "line": 1080,
+          "line": 1109,
           "column": 5,
-          "index": 34005
+          "index": 34815
         }
       },
       "type": "function",
@@ -2512,14 +2565,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 91,
+          "line": 109,
           "column": 4,
-          "index": 3013
+          "index": 3845
         },
         "end": {
-          "line": 91,
+          "line": 109,
           "column": 25,
-          "index": 3034
+          "index": 3866
         }
       },
       "mixin": "qx.data.controller.MSelection",
@@ -2532,14 +2585,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 92,
+          "line": 110,
           "column": 4,
-          "index": 3040
+          "index": 3872
         },
         "end": {
-          "line": 92,
+          "line": 110,
           "column": 31,
-          "index": 3067
+          "index": 3899
         }
       },
       "mixin": "qx.data.controller.MSelection",
@@ -2552,14 +2605,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 93,
+          "line": 111,
           "column": 4,
-          "index": 3073
+          "index": 3905
         },
         "end": {
-          "line": 93,
+          "line": 111,
           "column": 36,
-          "index": 3105
+          "index": 3937
         }
       },
       "mixin": "qx.data.controller.MSelection",
@@ -2572,14 +2625,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 94,
+          "line": 112,
           "column": 4,
-          "index": 3111
+          "index": 3943
         },
         "end": {
-          "line": 94,
+          "line": 112,
           "column": 24,
-          "index": 3131
+          "index": 3963
         }
       },
       "mixin": "qx.data.controller.MSelection",
@@ -2619,14 +2672,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 102,
+          "line": 120,
           "column": 4,
-          "index": 3368
+          "index": 4200
         },
         "end": {
-          "line": 110,
+          "line": 128,
           "column": 5,
-          "index": 3539
+          "index": 4371
         }
       },
       "type": "function",
@@ -2665,14 +2718,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 135,
           "column": 4,
-          "index": 3703
+          "index": 4535
         },
         "end": {
-          "line": 119,
+          "line": 137,
           "column": 5,
-          "index": 3755
+          "index": 4587
         }
       },
       "type": "function",
@@ -2699,14 +2752,48 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 124,
+          "line": 142,
           "column": 4,
-          "index": 3856
+          "index": 4688
         },
         "end": {
-          "line": 126,
+          "line": 144,
           "column": 5,
-          "index": 3905
+          "index": 4737
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "syncSelectionWithModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes any items from the selection property that are not in the model property.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes any items from the selection property that are not in the model property.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4849
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 5184
         }
       },
       "type": "function",
@@ -2747,14 +2834,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 140,
+          "line": 168,
           "column": 4,
-          "index": 4425
+          "index": 5704
         },
         "end": {
-          "line": 157,
+          "line": 185,
           "column": 5,
-          "index": 4997
+          "index": 6276
         }
       },
       "type": "function",
@@ -2790,14 +2877,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 169,
+          "line": 197,
           "column": 4,
-          "index": 5383
+          "index": 6662
         },
         "end": {
-          "line": 171,
+          "line": 199,
           "column": 5,
-          "index": 5446
+          "index": 6725
         }
       },
       "type": "function",
@@ -2826,14 +2913,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 178,
+          "line": 206,
           "column": 4,
-          "index": 5661
+          "index": 6940
         },
         "end": {
-          "line": 219,
+          "line": 247,
           "column": 5,
-          "index": 6932
+          "index": 8211
         }
       },
       "type": "function",
@@ -2849,6 +2936,8 @@
           "*",
           "     * Helper method which should be called by the classes including this",
           "     * Mixin when the target changes.",
+          "     * Removes the 'changeSelection' listener from the old target",
+          "     * and add a new one to the new target;",
           "     *",
           "     * @param value {qx.ui.core.Widget|null} The new target.",
           "     * @param old {qx.ui.core.Widget|null} The old target.",
@@ -2857,7 +2946,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.</p>"
+            "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.\n Removes the 'changeSelection' listener from the old target\n and add a new one to the new target;</p>"
           }
         ],
         "@param": [
@@ -2874,14 +2963,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 233,
+          "line": 263,
           "column": 4,
-          "index": 7385
+          "index": 8774
         },
         "end": {
-          "line": 253,
+          "line": 283,
           "column": 5,
-          "index": 8029
+          "index": 9418
         }
       },
       "type": "function",
@@ -2917,14 +3006,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 260,
+          "line": 290,
           "column": 4,
-          "index": 8259
+          "index": 9648
         },
         "end": {
-          "line": 321,
+          "line": 354,
           "column": 5,
-          "index": 10722
+          "index": 12259
         }
       },
       "type": "function",
@@ -2958,14 +3047,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 327,
+          "line": 360,
           "column": 4,
-          "index": 10893
+          "index": 12430
         },
         "end": {
-          "line": 333,
+          "line": 366,
           "column": 5,
-          "index": 11095
+          "index": 12632
         }
       },
       "type": "function",
@@ -2999,14 +3088,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 339,
+          "line": 372,
           "column": 4,
-          "index": 11268
+          "index": 12805
         },
         "end": {
-          "line": 345,
+          "line": 378,
           "column": 5,
-          "index": 11472
+          "index": 13009
         }
       },
       "type": "function",
@@ -3042,14 +3131,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 353,
+          "line": 386,
           "column": 4,
-          "index": 11675
+          "index": 13212
         },
         "end": {
-          "line": 367,
+          "line": 400,
           "column": 5,
-          "index": 12232
+          "index": 13769
         }
       },
       "type": "function",
@@ -3095,14 +3184,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 375,
+          "line": 408,
           "column": 4,
-          "index": 12482
+          "index": 14019
         },
         "end": {
-          "line": 387,
+          "line": 420,
           "column": 5,
-          "index": 12877
+          "index": 14414
         }
       },
       "type": "function",
@@ -3135,14 +3224,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 394,
+          "line": 427,
           "column": 4,
-          "index": 13091
+          "index": 14628
         },
         "end": {
-          "line": 396,
+          "line": 429,
           "column": 5,
-          "index": 13161
+          "index": 14698
         }
       },
       "type": "function",
@@ -3171,14 +3260,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 403,
+          "line": 436,
           "column": 4,
-          "index": 13327
+          "index": 14864
         },
         "end": {
-          "line": 405,
+          "line": 438,
           "column": 5,
-          "index": 13432
+          "index": 14969
         }
       },
       "type": "function",
@@ -3214,14 +3303,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 413,
+          "line": 446,
           "column": 4,
-          "index": 13695
+          "index": 15232
         },
         "end": {
-          "line": 415,
+          "line": 448,
           "column": 5,
-          "index": 13771
+          "index": 15308
         }
       },
       "type": "function",
@@ -3237,14 +3326,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 1089,
+        "line": 1118,
         "column": 2,
-        "index": 34205
+        "index": 35015
       },
       "end": {
-        "line": 1095,
+        "line": 1124,
         "column": 3,
-        "index": 34425
+        "index": 35235
       }
     }
   },

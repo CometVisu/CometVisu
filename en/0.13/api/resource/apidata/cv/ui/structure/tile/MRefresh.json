@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/MRefresh.js",
   "type": "mixin",
   "location": {
@@ -11,9 +11,9 @@
       "index": 943
     },
     "end": {
-      "line": 113,
+      "line": 168,
       "column": 3,
-      "index": 3302
+      "index": 4994
     }
   },
   "className": "cv.ui.structure.tile.MRefresh",
@@ -40,9 +40,9 @@
         "index": 1123
       },
       "end": {
-        "line": 34,
+        "line": 38,
         "column": 3,
-        "index": 1301
+        "index": 1495
       }
     }
   },
@@ -50,14 +50,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1449
+          "index": 1643
         },
         "end": {
-          "line": 46,
+          "line": 50,
           "column": 5,
-          "index": 1532
+          "index": 1726
         }
       },
       "json": {
@@ -70,19 +70,36 @@
     }
   },
   "members": {
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": []
+    },
     "_refreshTimer": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 60,
           "column": 4,
-          "index": 1678
+          "index": 1897
         },
         "end": {
-          "line": 55,
+          "line": 60,
           "column": 23,
-          "index": 1697
+          "index": 1916
         }
       },
       "appearsIn": []
@@ -92,14 +109,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 56,
+          "line": 61,
           "column": 4,
-          "index": 1703
+          "index": 1922
         },
         "end": {
-          "line": 56,
+          "line": 61,
           "column": 22,
-          "index": 1721
+          "index": 1940
         }
       },
       "appearsIn": []
@@ -109,14 +126,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 58,
+          "line": 63,
           "column": 4,
-          "index": 1728
+          "index": 1947
         },
         "end": {
-          "line": 76,
+          "line": 80,
           "column": 5,
-          "index": 2321
+          "index": 2545
         }
       },
       "type": "function",
@@ -132,14 +149,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 78,
+          "line": 82,
           "column": 4,
-          "index": 2328
+          "index": 2552
         },
         "end": {
-          "line": 93,
+          "line": 88,
           "column": 5,
-          "index": 2883
+          "index": 2696
         }
       },
       "type": "function",
@@ -150,23 +167,171 @@
       ],
       "appearsIn": []
     },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
     "__doRefresh": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 128,
           "column": 4,
-          "index": 2890
+          "index": 3719
         },
         "end": {
-          "line": 102,
+          "line": 135,
           "column": 5,
-          "index": 3105
+          "index": 3934
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": []
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
       "appearsIn": []
     }
   },
@@ -175,14 +340,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 110,
+        "line": 161,
         "column": 2,
-        "index": 3239
+        "index": 4765
       },
       "end": {
-        "line": 112,
+        "line": 167,
         "column": 3,
-        "index": 3298
+        "index": 4990
       }
     }
   },

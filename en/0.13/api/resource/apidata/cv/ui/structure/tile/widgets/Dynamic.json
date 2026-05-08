@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Dynamic.js",
   "type": "class",
   "location": {
     "start": {
       "line": 29,
       "column": 0,
-      "index": 1109
+      "index": 1114
     },
     "end": {
-      "line": 105,
+      "line": 102,
       "column": 3,
-      "index": 3191
+      "index": 3146
     }
   },
   "className": "cv.ui.structure.tile.widgets.Dynamic",
@@ -55,12 +55,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1374
+          "index": 1379
         },
         "end": {
           "line": 42,
           "column": 5,
-          "index": 1457
+          "index": 1462
         }
       },
       "json": {
@@ -73,42 +73,19 @@
     }
   },
   "members": {
-    "_init": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 51,
-          "column": 4,
-          "index": 1603
-        },
-        "end": {
-          "line": 53,
-          "column": 5,
-          "index": 1639
-        }
-      },
-      "type": "function",
-      "params": [],
-      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
-      "appearsIn": [
-        "cv.ui.structure.tile.components.AbstractComponent",
-        "cv.ui.structure.tile.elements.AbstractCustomElement"
-      ]
-    },
     "_updateValue": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 52,
           "column": 4,
-          "index": 1646
+          "index": 1609
         },
         "end": {
-          "line": 57,
+          "line": 54,
           "column": 5,
-          "index": 1781
+          "index": 1744
         }
       },
       "type": "function",
@@ -130,14 +107,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 59,
+          "line": 56,
           "column": 4,
-          "index": 1788
+          "index": 1751
         },
         "end": {
-          "line": 92,
+          "line": 89,
           "column": 5,
-          "index": 2964
+          "index": 2919
         }
       },
       "type": "function",

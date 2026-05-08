@@ -6,7 +6,6 @@
         "require": true
       },
       "cv.ui.structure.pure.AbstractWidget": {
-        "construct": true,
         "require": true
       },
       "cv.ui.common.HasChildren": {
@@ -29,7 +28,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* PageJump.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -56,19 +55,6 @@
   qx.Class.define('cv.ui.structure.pure.PageJump', {
     extend: cv.ui.structure.pure.AbstractWidget,
     include: [cv.ui.common.HasChildren, cv.ui.common.HasAnimatedButton],
-    /*
-    ***********************************************
-      CONSTRUCTOR
-    ***********************************************
-    */
-    construct: function construct(props) {
-      if (!props.name) {
-        // when there is no name the widget has no actor as clickable subelement, so we need
-        // to bind the click events to the whole widget
-        props.bindClickToWidget = true;
-      }
-      cv.ui.structure.pure.AbstractWidget.constructor.call(this, props);
-    },
     /*
     ******************************************************
       PROPERTIES
@@ -152,6 +138,12 @@
     ******************************************************
     */
     members: {
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        if (!props.name) {
+          props.bindClickToWidget = true;
+        }
+        return props;
+      },
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         var actor = '<div class="actor switchUnpressed';
@@ -182,4 +174,4 @@
   cv.ui.structure.pure.PageJump.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PageJump.js.map?dt=1735383843217
+//# sourceMappingURL=PageJump.js.map?dt=1778272814924

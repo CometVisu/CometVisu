@@ -10,7 +10,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* HandleLongpress.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -57,4 +57,4 @@
   cv.ui.common.HandleLongpress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HandleLongpress.js.map?dt=1735383887685
+//# sourceMappingURL=HandleLongpress.js.map?dt=1778272858300

@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/energy/MEntity.js",
   "type": "mixin",
   "location": {
     "start": {
       "line": 26,
       "column": 0,
-      "index": 885
+      "index": 890
     },
     "end": {
       "line": 71,
       "column": 3,
-      "index": 1913
+      "index": 1918
     }
   },
   "className": "cv.ui.structure.tile.components.energy.MEntity",
@@ -51,12 +51,12 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1099
+          "index": 1104
         },
         "end": {
           "line": 38,
           "column": 5,
-          "index": 1244
+          "index": 1249
         }
       },
       "json": {
@@ -80,12 +80,12 @@
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1251
+          "index": 1256
         },
         "end": {
           "line": 44,
           "column": 5,
-          "index": 1357
+          "index": 1362
         }
       },
       "json": {
@@ -105,12 +105,12 @@
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1503
+          "index": 1508
         },
         "end": {
           "line": 53,
           "column": 18,
-          "index": 1517
+          "index": 1522
         }
       },
       "appearsIn": []
@@ -122,12 +122,12 @@
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1524
+          "index": 1529
         },
         "end": {
           "line": 57,
           "column": 5,
-          "index": 1572
+          "index": 1577
         }
       },
       "type": "function",
@@ -141,12 +141,12 @@
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1579
+          "index": 1584
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 1727
+          "index": 1732
         }
       },
       "type": "function",
@@ -164,12 +164,12 @@
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1734
+          "index": 1739
         },
         "end": {
           "line": 69,
           "column": 5,
-          "index": 1905
+          "index": 1910
         }
       },
       "type": "function",

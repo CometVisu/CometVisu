@@ -33,7 +33,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Popup.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -74,50 +74,118 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
      */
     members: {
       _closeButton: null,
+      __P_103_0: null,
+      __P_103_1: null,
+      __P_103_2: null,
+      __P_103_3: null,
+      __P_103_4: null,
+      __P_103_5: function __P_103_5(isOpen) {
+        var clippingParent = this._element.closest('[hide-on-scroll="true"]');
+        if (clippingParent) {
+          clippingParent.classList.toggle('popup-open', isOpen);
+        }
+      },
+      __P_103_6: function __P_103_6() {
+        return this._element.getAttribute('modal') === 'true';
+      },
+      __P_103_7: function __P_103_7() {
+        if (!this.__P_103_6() || this.__P_103_3 || this._element.parentElement === document.body) {
+          return;
+        }
+        this.__P_103_2 = this._element.parentElement;
+        this.__P_103_4 = this._element.nextSibling;
+        this.__P_103_3 = document.createComment('cv-popup-placeholder');
+        this.__P_103_2.insertBefore(this.__P_103_3, this._element);
+        document.body.appendChild(this._element);
+      },
+      __P_103_8: function __P_103_8() {
+        if (!this.__P_103_3 || !this.__P_103_2) {
+          return;
+        }
+        if (this.__P_103_3.parentNode === this.__P_103_2) {
+          this.__P_103_2.insertBefore(this._element, this.__P_103_3);
+          this.__P_103_3.remove();
+        }
+        this.__P_103_3 = null;
+        this.__P_103_2 = null;
+        this.__P_103_4 = null;
+      },
       _init: function _init() {
         var _this = this;
         cv.ui.structure.tile.widgets.Popup.superclass.prototype._init.call(this);
         var popup = this._element;
         var closeable = !popup.hasAttribute('closeable') || popup.getAttribute('closeable') === 'true';
         if (closeable) {
-          this._closeButton = document.createElement('button');
-          this._closeButton.classList.add('close');
-          var icon = document.createElement('i');
-          icon.classList.add('ri-close-line');
-          this._closeButton.appendChild(icon);
-          popup.insertBefore(this._closeButton, popup.firstChild);
-          this._closeButton.addEventListener('click', function (ev) {
-            ev.stopPropagation();
-            _this.close();
-          });
+          this._closeButton = popup.querySelector(':scope > button.close');
+          if (!this._closeButton) {
+            this._closeButton = document.createElement('button');
+            this._closeButton.classList.add('close');
+            var icon = document.createElement('i');
+            icon.classList.add('ri-close-line');
+            this._closeButton.appendChild(icon);
+            popup.insertBefore(this._closeButton, popup.firstChild);
+          }
+          if (!this.__P_103_0) {
+            this.__P_103_0 = function (ev) {
+              ev.stopPropagation();
+              _this.close();
+            };
+          }
+          this._closeButton.removeEventListener('click', this.__P_103_0);
+          this._closeButton.addEventListener('click', this.__P_103_0);
         }
-        popup.addEventListener('close', function (ev) {
-          _this.close();
-        });
+        if (!this.__P_103_1) {
+          this.__P_103_1 = function () {
+            _this.close();
+          };
+        }
+        popup.removeEventListener('close', this.__P_103_1);
+        popup.addEventListener('close', this.__P_103_1);
         if (popup.hasAttribute('title')) {
-          var header = document.createElement('header');
-          popup.insertBefore(header, popup.firstChild);
-          var title = document.createElement('h2');
+          var header = popup.querySelector(':scope > header');
+          if (!header) {
+            header = document.createElement('header');
+            popup.insertBefore(header, popup.firstChild);
+          }
+          var title = header.querySelector(':scope > h2');
+          if (!title) {
+            title = document.createElement('h2');
+            header.appendChild(title);
+          }
           title.textContent = popup.getAttribute('title');
-          header.appendChild(title);
         }
         if (popup.hasAttribute('auto-close-timeout')) {
           var timeoutSeconds = parseInt(popup.getAttribute('auto-close-timeout'));
-          if (!isNaN(timeoutSeconds)) {
+          if (!isNaN(timeoutSeconds) && !this._autoCloseTimer) {
             this._autoCloseTimer = new qx.event.Timer(timeoutSeconds * 1000);
             this._autoCloseTimer.addListener('interval', function () {
               _this._autoCloseTimer.stop();
               _this.close();
             });
-          } else {
+          } else if (isNaN(timeoutSeconds)) {
             this.error('invalid auto-close-timeout value:', popup.getAttribute('auto-close-timeout'));
           }
         }
       },
+      _disconnected: function _disconnected() {
+        this.__P_103_5(false);
+        if (this._closeButton && this.__P_103_0) {
+          this._closeButton.removeEventListener('click', this.__P_103_0);
+        }
+        this._element.removeEventListener('close', this.__P_103_1);
+        if (this._autoCloseTimer) {
+          this._autoCloseTimer.stop();
+        }
+        cv.ui.structure.tile.widgets.Popup.superclass.prototype._disconnected.call(this);
+      },
       open: function open() {
         var popup = this._element;
         if (!popup.hasAttribute('open')) {
+          this.__P_103_7();
           popup.setAttribute('open', '');
+          if (!this.__P_103_3) {
+            this.__P_103_5(true);
+          }
           if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
             this.registerModalPopup();
           }
@@ -130,12 +198,14 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var popup = this._element;
         if (popup) {
           popup.removeAttribute('open');
+          this.__P_103_5(false);
           if (popup.hasAttribute('modal') && popup.getAttribute('modal') === 'true') {
             this.unregisterModalPopup();
           }
           if (this._autoCloseTimer) {
             this._autoCloseTimer.stop();
           }
+          this.__P_103_8();
           popup.dispatchEvent(new CustomEvent('closed'));
         }
       },
@@ -209,4 +279,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1735383845928
+//# sourceMappingURL=Popup.js.map?dt=1778272817800

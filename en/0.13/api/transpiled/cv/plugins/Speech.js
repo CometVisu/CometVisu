@@ -28,7 +28,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Speech.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -91,7 +91,6 @@
      ******************************************************
      */
     construct: function construct(props) {
-      this._initOnCreate = true;
       qx.core.Object.constructor.call(this);
       this.set(props);
       this.__P_17_0 = {};
@@ -158,6 +157,7 @@
      */
     members: {
       __P_17_0: null,
+      _initOnCreate: true,
       getDomString: function getDomString() {
         return undefined;
       },
@@ -213,4 +213,4 @@
   cv.plugins.Speech.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Speech.js.map?dt=1735383839288
+//# sourceMappingURL=Speech.js.map?dt=1778272811334

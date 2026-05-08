@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634064,
-  "lastModifiedIso": "2024-12-28T11:00:34.064Z",
+  "lastModified": 1778272576157,
+  "lastModifiedIso": "2026-05-08T20:36:16.157Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Chart.js",
   "type": "class",
   "location": {
     "start": {
       "line": 27,
       "column": 0,
-      "index": 948
+      "index": 912
     },
     "end": {
-      "line": 1741,
+      "line": 1620,
       "column": 3,
-      "index": 59541
+      "index": 54985
     }
   },
   "className": "cv.ui.structure.tile.components.Chart",
@@ -64,12 +64,12 @@
         "start": {
           "line": 42,
           "column": 4,
-          "index": 1370
+          "index": 1334
         },
         "end": {
           "line": 42,
           "column": 19,
-          "index": 1385
+          "index": 1349
         }
       },
       "appearsIn": []
@@ -81,12 +81,29 @@
         "start": {
           "line": 43,
           "column": 4,
-          "index": 1391
+          "index": 1355
         },
         "end": {
           "line": 43,
           "column": 33,
-          "index": 1420
+          "index": 1384
+        }
+      },
+      "appearsIn": []
+    },
+    "TF": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1390
+        },
+        "end": {
+          "line": 44,
+          "column": 12,
+          "index": 1398
         }
       },
       "appearsIn": []
@@ -96,14 +113,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 46,
           "column": 4,
-          "index": 1427
+          "index": 1405
         },
         "end": {
-          "line": 91,
-          "column": 6,
-          "index": 3289
+          "line": 107,
+          "column": 22,
+          "index": 4251
         }
       },
       "appearsIn": []
@@ -113,14 +130,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 93,
+          "line": 109,
           "column": 4,
-          "index": 3296
+          "index": 4258
         },
         "end": {
-          "line": 93,
+          "line": 109,
           "column": 16,
-          "index": 3308
+          "index": 4270
         }
       },
       "appearsIn": []
@@ -135,9 +152,9 @@
           "index": 1266
         },
         "end": {
-          "line": 48,
-          "column": 6,
-          "index": 1553
+          "line": 40,
+          "column": 18,
+          "index": 1280
         }
       },
       "appearsIn": [
@@ -150,14 +167,14 @@
     "currentSeries": {
       "location": {
         "start": {
-          "line": 102,
+          "line": 118,
           "column": 4,
-          "index": 3460
+          "index": 4422
         },
         "end": {
-          "line": 106,
+          "line": 122,
           "column": 5,
-          "index": 3591
+          "index": 4553
         }
       },
       "json": {
@@ -177,14 +194,14 @@
     "currentPeriod": {
       "location": {
         "start": {
-          "line": 108,
+          "line": 124,
           "column": 4,
-          "index": 3598
+          "index": 4560
         },
         "end": {
-          "line": 112,
+          "line": 128,
           "column": 5,
-          "index": 3691
+          "index": 4653
         }
       },
       "json": {
@@ -198,14 +215,14 @@
     "startTime": {
       "location": {
         "start": {
-          "line": 114,
+          "line": 130,
           "column": 4,
-          "index": 3698
+          "index": 4660
         },
         "end": {
-          "line": 117,
+          "line": 133,
           "column": 5,
-          "index": 3753
+          "index": 4715
         }
       },
       "json": {
@@ -218,14 +235,14 @@
     "endTime": {
       "location": {
         "start": {
-          "line": 119,
+          "line": 135,
           "column": 4,
-          "index": 3760
+          "index": 4722
         },
         "end": {
-          "line": 122,
+          "line": 138,
           "column": 5,
-          "index": 3813
+          "index": 4775
         }
       },
       "json": {
@@ -235,17 +252,355 @@
       "jsdoc": null,
       "appearsIn": []
     },
+    "minY": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 4781
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 4896
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "apply": "__updateYRange",
+        "event": "changeMinY"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "maxY": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4902
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 5017
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "apply": "__updateYRange",
+        "event": "changeMaxY"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "marginTop": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 5062
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 5180
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 12,
+        "apply": "_applyMargin",
+        "event": "changeMarginTop"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (top) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (top)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginRight": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 5227
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5349
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 24,
+        "apply": "_applyMargin",
+        "event": "changeMarginRight"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (right) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (right)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginBottom": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 5397
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 5521
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 20,
+        "apply": "_applyMargin",
+        "event": "changeMarginBottom"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (bottom) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (bottom)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginLeft": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 5567
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 5687
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 24,
+        "apply": "_applyMargin",
+        "event": "changeMarginLeft"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (left) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (left)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "margin": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 6106
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 6218
+        }
+      },
+      "json": {
+        "group": [
+          "marginTop",
+          "marginRight",
+          "marginBottom",
+          "marginLeft"
+        ],
+        "mode": "shorthand"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'margin' property is a shorthand property for setting 'marginTop',",
+          "     * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'margin' property is a shorthand property for setting 'marginTop',\n 'marginRight', 'marginBottom' and 'marginLeft' at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6225
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 6333
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 392,
+        "apply": "_applySize",
+        "event": "changeWidth"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 6340
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6450
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 192,
+        "apply": "_applySize",
+        "event": "changeHeight"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "aspectRatio": {
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6457
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 6522
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": "[[ BinaryExpression ]]"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "inBackground": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 6529
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 6592
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "xAxis": {
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6599
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 6700
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.tile.components.chart.XAxis",
+        "event": "changeXAxis"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "yAxis": {
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 6706
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 6807
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.tile.components.chart.YAxis",
+        "event": "changeYAxis"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
     "visible": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1705
+          "index": 1432
         },
         "end": {
-          "line": 61,
+          "line": 53,
           "column": 5,
-          "index": 1793
+          "index": 1520
         }
       },
       "json": {
@@ -262,14 +617,14 @@
     "refresh": {
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1449
+          "index": 1643
         },
         "end": {
-          "line": 46,
+          "line": 50,
           "column": 5,
-          "index": 1532
+          "index": 1726
         }
       },
       "json": {
@@ -312,12 +667,12 @@
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1009
+          "index": 1014
         },
         "end": {
           "line": 36,
           "column": 5,
-          "index": 1137
+          "index": 1142
         }
       },
       "json": {
@@ -339,14 +694,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 131,
+          "line": 237,
           "column": 4,
-          "index": 3959
+          "index": 6953
         },
         "end": {
-          "line": 131,
+          "line": 237,
           "column": 13,
-          "index": 3968
+          "index": 6962
         }
       },
       "appearsIn": []
@@ -356,14 +711,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 132,
+          "line": 238,
           "column": 4,
-          "index": 3974
+          "index": 6968
         },
         "end": {
-          "line": 132,
+          "line": 238,
           "column": 26,
-          "index": 3996
+          "index": 6990
         }
       },
       "appearsIn": []
@@ -373,14 +728,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 133,
+          "line": 239,
           "column": 4,
-          "index": 4002
+          "index": 6996
         },
         "end": {
-          "line": 133,
+          "line": 239,
           "column": 14,
-          "index": 4012
+          "index": 7006
         }
       },
       "appearsIn": []
@@ -390,14 +745,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 134,
+          "line": 240,
           "column": 4,
-          "index": 4018
+          "index": 7012
         },
         "end": {
-          "line": 134,
+          "line": 240,
           "column": 18,
-          "index": 4032
+          "index": 7026
         }
       },
       "appearsIn": []
@@ -407,48 +762,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 135,
+          "line": 241,
           "column": 4,
-          "index": 4038
+          "index": 7032
         },
         "end": {
-          "line": 135,
+          "line": 241,
           "column": 18,
-          "index": 4052
-        }
-      },
-      "appearsIn": []
-    },
-    "_width": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 136,
-          "column": 4,
-          "index": 4058
-        },
-        "end": {
-          "line": 136,
-          "column": 16,
-          "index": 4070
-        }
-      },
-      "appearsIn": []
-    },
-    "_height": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 137,
-          "column": 4,
-          "index": 4076
-        },
-        "end": {
-          "line": 137,
-          "column": 17,
-          "index": 4089
+          "index": 7046
         }
       },
       "appearsIn": []
@@ -458,31 +779,31 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 138,
+          "line": 242,
           "column": 4,
-          "index": 4095
+          "index": 7052
         },
         "end": {
-          "line": 138,
+          "line": 242,
           "column": 17,
-          "index": 4108
+          "index": 7065
         }
       },
       "appearsIn": []
     },
-    "_dataSetConfigs": {
+    "_datasets": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 139,
+          "line": 243,
           "column": 4,
-          "index": 4114
+          "index": 7071
         },
         "end": {
-          "line": 139,
-          "column": 25,
-          "index": 4135
+          "line": 243,
+          "column": 19,
+          "index": 7086
         }
       },
       "appearsIn": []
@@ -492,14 +813,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 140,
+          "line": 244,
           "column": 4,
-          "index": 4141
+          "index": 7092
         },
         "end": {
-          "line": 140,
+          "line": 244,
           "column": 23,
-          "index": 4160
+          "index": 7111
         }
       },
       "appearsIn": []
@@ -509,14 +830,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 141,
+          "line": 245,
           "column": 4,
-          "index": 4166
+          "index": 7117
         },
         "end": {
-          "line": 141,
+          "line": 245,
           "column": 28,
-          "index": 4190
+          "index": 7141
         }
       },
       "appearsIn": []
@@ -526,14 +847,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 142,
+          "line": 246,
           "column": 4,
-          "index": 4196
+          "index": 7147
         },
         "end": {
-          "line": 142,
+          "line": 246,
           "column": 24,
-          "index": 4216
+          "index": 7167
         }
       },
       "appearsIn": []
@@ -543,14 +864,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 143,
+          "line": 247,
           "column": 4,
-          "index": 4222
+          "index": 7173
         },
         "end": {
-          "line": 143,
+          "line": 247,
           "column": 24,
-          "index": 4242
+          "index": 7193
         }
       },
       "appearsIn": []
@@ -560,14 +881,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 144,
+          "line": 248,
           "column": 4,
-          "index": 4248
+          "index": 7199
         },
         "end": {
-          "line": 144,
+          "line": 248,
           "column": 29,
-          "index": 4273
+          "index": 7224
         }
       },
       "appearsIn": []
@@ -577,14 +898,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 145,
+          "line": 249,
           "column": 4,
-          "index": 4279
+          "index": 7230
         },
         "end": {
-          "line": 145,
+          "line": 249,
           "column": 25,
-          "index": 4300
+          "index": 7251
         }
       },
       "appearsIn": []
@@ -594,14 +915,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 146,
+          "line": 250,
           "column": 4,
-          "index": 4306
+          "index": 7257
         },
         "end": {
-          "line": 146,
+          "line": 250,
           "column": 19,
-          "index": 4321
+          "index": 7272
         }
       },
       "appearsIn": []
@@ -611,36 +932,104 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 147,
+          "line": 251,
           "column": 4,
-          "index": 4327
+          "index": 7278
         },
         "end": {
-          "line": 147,
+          "line": 251,
           "column": 17,
-          "index": 4340
+          "index": 7291
         }
       },
       "appearsIn": []
     },
-    "__srcToHash": {
+    "__autoHeightForFullscreen": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 148,
+          "line": 252,
           "column": 4,
-          "index": 4346
+          "index": 7297
         },
         "end": {
-          "line": 148,
-          "column": 21,
-          "index": 4363
+          "line": 252,
+          "column": 36,
+          "index": 7329
         }
       },
       "appearsIn": []
     },
-    "_dot": {
+    "__fullscreenRenderFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7335
+        },
+        "end": {
+          "line": 253,
+          "column": 33,
+          "index": 7364
+        }
+      },
+      "appearsIn": []
+    },
+    "__pendingReconnectClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4,
+          "index": 7370
+        },
+        "end": {
+          "line": 254,
+          "column": 34,
+          "index": 7400
+        }
+      },
+      "appearsIn": []
+    },
+    "__pendingReconnectListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 7406
+        },
+        "end": {
+          "line": 255,
+          "column": 36,
+          "index": 7438
+        }
+      },
+      "appearsIn": []
+    },
+    "_yFormat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7444
+        },
+        "end": {
+          "line": 256,
+          "column": 18,
+          "index": 7458
+        }
+      },
+      "appearsIn": []
+    },
+    "_tooltipIndicator": {
       "jsdoc": {
         "raw": [
           "*",
@@ -663,14 +1052,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 261,
           "column": 4,
-          "index": 4412
+          "index": 7507
         },
         "end": {
-          "line": 153,
-          "column": 14,
-          "index": 4422
+          "line": 261,
+          "column": 27,
+          "index": 7530
         }
       },
       "appearsIn": []
@@ -698,14 +1087,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 157,
+          "line": 265,
           "column": 4,
-          "index": 4472
+          "index": 7580
         },
         "end": {
-          "line": 157,
+          "line": 265,
           "column": 14,
-          "index": 4482
+          "index": 7590
         }
       },
       "appearsIn": []
@@ -733,14 +1122,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 161,
+          "line": 269,
           "column": 4,
-          "index": 4531
+          "index": 7639
         },
         "end": {
-          "line": 161,
+          "line": 269,
           "column": 18,
-          "index": 4545
+          "index": 7653
         }
       },
       "appearsIn": []
@@ -768,69 +1157,49 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 165,
+          "line": 273,
           "column": 4,
-          "index": 4589
+          "index": 7697
         },
         "end": {
-          "line": 165,
+          "line": 273,
           "column": 22,
-          "index": 4607
+          "index": 7715
         }
       },
       "appearsIn": []
     },
-    "__helpers": {
-      "jsdoc": null,
-      "access": "private",
-      "location": {
-        "start": {
-          "line": 167,
-          "column": 4,
-          "index": 4614
-        },
-        "end": {
-          "line": 167,
-          "column": 19,
-          "index": 4629
-        }
-      },
-      "appearsIn": []
-    },
-    "__config": {
-      "jsdoc": null,
-      "access": "private",
-      "location": {
-        "start": {
-          "line": 168,
-          "column": 4,
-          "index": 4635
-        },
-        "end": {
-          "line": 168,
-          "column": 18,
-          "index": 4649
-        }
-      },
-      "appearsIn": []
-    },
-    "_chartConf": {
+    "data": {
       "jsdoc": {
         "raw": [
-          " all chart properties"
+          "*",
+          "     * @type {cv.ui.structure.tile.components.chart.Data}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.ui.structure.tile.components.chart.Data}"
+          }
         ]
       },
-      "access": "protected",
+      "access": "public",
       "location": {
         "start": {
-          "line": 170,
+          "line": 277,
           "column": 4,
-          "index": 4683
+          "index": 7795
         },
         "end": {
-          "line": 170,
-          "column": 20,
-          "index": 4699
+          "line": 277,
+          "column": 14,
+          "index": 7805
         }
       },
       "appearsIn": []
@@ -840,14 +1209,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 172,
+          "line": 279,
           "column": 4,
-          "index": 4706
+          "index": 7812
         },
         "end": {
-          "line": 431,
+          "line": 541,
           "column": 5,
-          "index": 14361
+          "index": 17663
         }
       },
       "type": "function",
@@ -858,19 +1227,195 @@
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
+    "getXPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 543,
+          "column": 4,
+          "index": 17670
+        },
+        "end": {
+          "line": 549,
+          "column": 5,
+          "index": 17870
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "i"
+        },
+        {
+          "name": "isValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getYPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 551,
+          "column": 4,
+          "index": 17877
+        },
+        "end": {
+          "line": 556,
+          "column": 5,
+          "index": 18049
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "i"
+        },
+        {
+          "name": "isValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMinYPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 558,
+          "column": 4,
+          "index": 18056
+        },
+        "end": {
+          "line": 560,
+          "column": 5,
+          "index": 18120
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applySize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 562,
+          "column": 4,
+          "index": 18127
+        },
+        "end": {
+          "line": 566,
+          "column": 5,
+          "index": 18332
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyMargin": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 18339
+        },
+        "end": {
+          "line": 568,
+          "column": 21,
+          "index": 18356
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__updateYRange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 570,
+          "column": 4,
+          "index": 18363
+        },
+        "end": {
+          "line": 585,
+          "column": 5,
+          "index": 18811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_initAxes": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 587,
+          "column": 4,
+          "index": 18818
+        },
+        "end": {
+          "line": 677,
+          "column": 5,
+          "index": 22284
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initChartContent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 679,
+          "column": 4,
+          "index": 22291
+        },
+        "end": {
+          "line": 732,
+          "column": 5,
+          "index": 23962
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
     "_onLocaleChanged": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 433,
+          "line": 734,
           "column": 4,
-          "index": 14368
+          "index": 23969
         },
         "end": {
-          "line": 441,
+          "line": 742,
           "column": 5,
-          "index": 14687
+          "index": 24288
         }
       },
       "type": "function",
@@ -882,14 +1427,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 443,
+          "line": 744,
           "column": 4,
-          "index": 14694
+          "index": 24295
         },
         "end": {
-          "line": 458,
+          "line": 760,
           "column": 5,
-          "index": 15281
+          "index": 24917
         }
       },
       "type": "function",
@@ -908,14 +1453,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 460,
+          "line": 762,
           "column": 4,
-          "index": 15288
+          "index": 24924
         },
         "end": {
-          "line": 462,
+          "line": 764,
           "column": 5,
-          "index": 15367
+          "index": 25003
         }
       },
       "type": "function",
@@ -927,14 +1472,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 464,
+          "line": 766,
           "column": 4,
-          "index": 15374
+          "index": 25010
         },
         "end": {
-          "line": 474,
+          "line": 775,
           "column": 5,
-          "index": 15732
+          "index": 25336
         }
       },
       "type": "function",
@@ -950,14 +1495,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 476,
+          "line": 777,
           "column": 4,
-          "index": 15739
+          "index": 25343
         },
         "end": {
-          "line": 481,
+          "line": 782,
           "column": 5,
-          "index": 15902
+          "index": 25506
         }
       },
       "type": "function",
@@ -969,14 +1514,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 483,
+          "line": 784,
           "column": 4,
-          "index": 15909
+          "index": 25513
         },
         "end": {
-          "line": 487,
+          "line": 792,
           "column": 5,
-          "index": 16010
+          "index": 25704
         }
       },
       "type": "function",
@@ -992,14 +1537,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 490,
+          "line": 795,
           "column": 4,
-          "index": 16069
+          "index": 25763
         },
         "end": {
-          "line": 505,
+          "line": 810,
           "column": 5,
-          "index": 16532
+          "index": 26226
         }
       },
       "type": "function",
@@ -1011,14 +1556,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 507,
+          "line": 812,
           "column": 4,
-          "index": 16539
+          "index": 26233
         },
         "end": {
-          "line": 524,
+          "line": 829,
           "column": 5,
-          "index": 17184
+          "index": 26878
         }
       },
       "type": "function",
@@ -1034,14 +1579,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 526,
+          "line": 832,
           "column": 4,
-          "index": 17191
+          "index": 26890
         },
         "end": {
-          "line": 587,
+          "line": 887,
           "column": 5,
-          "index": 19535
+          "index": 28950
         }
       },
       "type": "function",
@@ -1053,14 +1598,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 589,
+          "line": 889,
           "column": 4,
-          "index": 19542
+          "index": 28957
         },
         "end": {
-          "line": 773,
+          "line": 935,
           "column": 5,
-          "index": 25539
+          "index": 30392
         }
       },
       "type": "function",
@@ -1072,22 +1617,41 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 775,
+          "line": 937,
           "column": 4,
-          "index": 25546
+          "index": 30399
         },
         "end": {
-          "line": 819,
+          "line": 945,
           "column": 5,
-          "index": 27047
+          "index": 30704
         }
       },
       "type": "function",
       "params": [
         {
-          "name": "data"
+          "name": "chartData"
         }
       ],
+      "appearsIn": []
+    },
+    "__cleanupReconnectListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 947,
+          "column": 4,
+          "index": 30711
+        },
+        "end": {
+          "line": 953,
+          "column": 5,
+          "index": 31035
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": []
     },
     "_onRendered": {
@@ -1095,14 +1659,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 821,
+          "line": 955,
           "column": 4,
-          "index": 27054
+          "index": 31042
         },
         "end": {
-          "line": 848,
+          "line": 985,
           "column": 5,
-          "index": 27974
+          "index": 31944
         }
       },
       "type": "function",
@@ -1116,19 +1680,42 @@
       ],
       "appearsIn": []
     },
+    "__handleFullscreenChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 987,
+          "column": 4,
+          "index": 31951
+        },
+        "end": {
+          "line": 1011,
+          "column": 5,
+          "index": 32697
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isFullscreen"
+        }
+      ],
+      "appearsIn": []
+    },
     "_getSize": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 850,
+          "line": 1013,
           "column": 4,
-          "index": 27981
+          "index": 32704
         },
         "end": {
-          "line": 876,
+          "line": 1043,
           "column": 5,
-          "index": 29253
+          "index": 34230
         }
       },
       "type": "function",
@@ -1140,51 +1727,18 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 878,
+          "line": 1045,
           "column": 4,
-          "index": 29260
+          "index": 34237
         },
         "end": {
-          "line": 896,
+          "line": 1069,
           "column": 5,
-          "index": 29726
+          "index": 35457
         }
       },
       "type": "function",
-      "params": [
-        {
-          "name": "formatsArray"
-        }
-      ],
-      "appearsIn": []
-    },
-    "_onStatusError": {
-      "jsdoc": null,
-      "access": "protected",
-      "location": {
-        "start": {
-          "line": 898,
-          "column": 4,
-          "index": 29733
-        },
-        "end": {
-          "line": 906,
-          "column": 5,
-          "index": 30113
-        }
-      },
-      "type": "function",
-      "params": [
-        {
-          "name": "ts"
-        },
-        {
-          "name": "key"
-        },
-        {
-          "name": "err"
-        }
-      ],
+      "params": [],
       "appearsIn": []
     },
     "_getSvgElement": {
@@ -1243,14 +1797,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 916,
+          "line": 1079,
           "column": 4,
-          "index": 30568
+          "index": 35912
         },
         "end": {
-          "line": 927,
+          "line": 1090,
           "column": 5,
-          "index": 30961
+          "index": 36305
         }
       },
       "type": "function",
@@ -1274,23 +1828,90 @@
       ],
       "appearsIn": []
     },
+    "getSvgElement": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1092,
+          "column": 4,
+          "index": 36312
+        },
+        "end": {
+          "line": 1094,
+          "column": 5,
+          "index": 36469
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeName"
+        },
+        {
+          "name": "classes"
+        },
+        {
+          "name": "attributes"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1096,
+          "column": 4,
+          "index": 36476
+        },
+        "end": {
+          "line": 1098,
+          "column": 5,
+          "index": 36533
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_render": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1100,
+          "column": 4,
+          "index": 36540
+        },
+        "end": {
+          "line": 1119,
+          "column": 5,
+          "index": 37104
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
     "_renderChart": {
       "jsdoc": {
         "raw": [
           "*",
-          "     * Copyright 2021 Observable, Inc.",
-          "     * Released under the ISC license.",
-          "     * https://observablehq.com/@d3/multi-line-chart",
-          "     *",
           "     * @param data",
-          "     * @param single",
+          "     * @param {Boolean} single Add a single data point to the chart",
           "     * @private",
           "     "
         ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Copyright 2021 Observable, Inc.\n Released under the ISC license.\n https://observablehq.com/@d3/multi-line-chart</p>"
+            "body": ""
           }
         ],
         "@param": [
@@ -1302,9 +1923,10 @@
           },
           {
             "name": "@param",
-            "body": "single",
+            "body": "{Boolean} single Add a single data point to the chart",
             "paramName": "single",
-            "type": ""
+            "description": "Add a single data point to the chart",
+            "type": "boolean"
           }
         ],
         "@private": [
@@ -1317,14 +1939,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 938,
+          "line": 1126,
           "column": 4,
-          "index": 31178
+          "index": 37230
         },
         "end": {
-          "line": 1385,
+          "line": 1200,
           "column": 5,
-          "index": 47401
+          "index": 39781
         }
       },
       "type": "function",
@@ -1333,7 +1955,8 @@
           "name": "data"
         },
         {
-          "name": "single"
+          "name": "single",
+          "type": "boolean"
         }
       ],
       "appearsIn": []
@@ -1343,25 +1966,18 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1387,
+          "line": 1202,
           "column": 4,
-          "index": 47408
+          "index": 39788
         },
         "end": {
-          "line": 1520,
+          "line": 1338,
           "column": 5,
-          "index": 52371
+          "index": 45245
         }
       },
       "type": "function",
-      "params": [
-        {
-          "name": "X"
-        },
-        {
-          "name": "Y"
-        }
-      ],
+      "params": [],
       "appearsIn": []
     },
     "_onPointerEntered": {
@@ -1369,14 +1985,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1522,
+          "line": 1340,
           "column": 4,
-          "index": 52378
+          "index": 45252
         },
         "end": {
-          "line": 1529,
+          "line": 1347,
           "column": 5,
-          "index": 52589
+          "index": 45463
         }
       },
       "type": "function",
@@ -1392,14 +2008,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1531,
+          "line": 1349,
           "column": 4,
-          "index": 52596
+          "index": 45470
         },
         "end": {
-          "line": 1541,
+          "line": 1359,
           "column": 5,
-          "index": 52842
+          "index": 45716
         }
       },
       "type": "function",
@@ -1415,14 +2031,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1543,
+          "line": 1361,
           "column": 4,
-          "index": 52849
+          "index": 45723
         },
         "end": {
-          "line": 1561,
+          "line": 1379,
           "column": 5,
-          "index": 53418
+          "index": 46330
         }
       },
       "type": "function",
@@ -1441,14 +2057,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1563,
+          "line": 1381,
           "column": 4,
-          "index": 53425
+          "index": 46337
         },
         "end": {
-          "line": 1608,
+          "line": 1450,
           "column": 5,
-          "index": 55380
+          "index": 49353
         }
       },
       "type": "function",
@@ -1462,19 +2078,85 @@
       ],
       "appearsIn": []
     },
+    "getSvg": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1452,
+          "column": 4,
+          "index": 49360
+        },
+        "end": {
+          "line": 1454,
+          "column": 5,
+          "index": 49429
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDatasetOpacity": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.",
+          "     * The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.",
+          "     * Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.",
+          "     * Returns null if the attribute is not present or the value is invalid.",
+          "     *",
+          "     * @returns {string|null} The opacity as a hexadecimal string, or null if not set or invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.\n The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.\n Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.\n Returns null if the attribute is not present or the value is invalid.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string|null} The opacity as a hexadecimal string, or null if not set or invalid.",
+            "type": "string|null",
+            "description": "The opacity as a hexadecimal string, or null if not set or invalid."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1464,
+          "column": 4,
+          "index": 49964
+        },
+        "end": {
+          "line": 1472,
+          "column": 5,
+          "index": 50324
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string|null"
+      },
+      "appearsIn": []
+    },
     "__updateTitle": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 1610,
+          "line": 1474,
           "column": 4,
-          "index": 55387
+          "index": 50331
         },
         "end": {
-          "line": 1618,
+          "line": 1482,
           "column": 5,
-          "index": 55689
+          "index": 50633
         }
       },
       "type": "function",
@@ -1514,14 +2196,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1625,
+          "line": 1489,
           "column": 4,
-          "index": 55819
+          "index": 50763
         },
         "end": {
-          "line": 1643,
+          "line": 1507,
           "column": 5,
-          "index": 56242
+          "index": 51186
         }
       },
       "type": "function",
@@ -1556,14 +2238,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1649,
+          "line": 1513,
           "column": 4,
-          "index": 56356
+          "index": 51300
         },
         "end": {
-          "line": 1688,
+          "line": 1552,
           "column": 5,
-          "index": 57950
+          "index": 52894
         }
       },
       "type": "function",
@@ -1575,14 +2257,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1690,
-          "column": 3,
-          "index": 57956
+          "line": 1554,
+          "column": 4,
+          "index": 52901
         },
         "end": {
-          "line": 1698,
+          "line": 1562,
           "column": 5,
-          "index": 58380
+          "index": 53325
         }
       },
       "type": "function",
@@ -1593,94 +2275,42 @@
       ],
       "appearsIn": []
     },
-    "__opacifyColor": {
-      "jsdoc": {
-        "raw": [
-          "*",
-          "     * add opacity to color",
-          "     * @param color",
-          "     * @param opacity {string} hex number 0 - 255",
-          "     * @return {string|*}",
-          "     * @private",
-          "     "
-        ],
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>add opacity to color</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "color",
-            "paramName": "color",
-            "type": ""
-          },
-          {
-            "name": "@param",
-            "body": "opacity {string} hex number 0 - 255",
-            "paramName": "opacity",
-            "description": " hex number 0 - 255",
-            "type": "string"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{string|*}",
-            "type": "string|*",
-            "description": ""
-          }
-        ],
-        "@private": [
-          {
-            "name": "@private",
-            "body": ""
-          }
-        ]
-      },
-      "access": "private",
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1707,
+          "line": 1564,
           "column": 4,
-          "index": 58543
+          "index": 53336
         },
         "end": {
-          "line": 1717,
+          "line": 1584,
           "column": 5,
-          "index": 59019
+          "index": 54062
         }
       },
       "type": "function",
-      "params": [
-        {
-          "name": "color"
-        },
-        {
-          "name": "opacity",
-          "type": "string"
-        }
-      ],
-      "returnType": {
-        "type": "string|*"
-      },
-      "appearsIn": []
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
     },
     "_observeVisibility": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 70,
+          "line": 62,
           "column": 4,
-          "index": 1939
+          "index": 1666
         },
         "end": {
-          "line": 76,
+          "line": 79,
           "column": 5,
-          "index": 2143
+          "index": 2303
         }
       },
       "type": "function",
@@ -1690,19 +2320,61 @@
       ],
       "mixin": "cv.ui.structure.tile.MVisibility"
     },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "_refreshTimer": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 60,
           "column": 4,
-          "index": 1678
+          "index": 1897
         },
         "end": {
-          "line": 55,
+          "line": 60,
           "column": 23,
-          "index": 1697
+          "index": 1916
         }
       },
       "appearsIn": [
@@ -1715,14 +2387,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 56,
+          "line": 61,
           "column": 4,
-          "index": 1703
+          "index": 1922
         },
         "end": {
-          "line": 56,
+          "line": 61,
           "column": 22,
-          "index": 1721
+          "index": 1940
         }
       },
       "appearsIn": [
@@ -1735,14 +2407,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 58,
+          "line": 63,
           "column": 4,
-          "index": 1728
+          "index": 1947
         },
         "end": {
-          "line": 76,
+          "line": 80,
           "column": 5,
-          "index": 2321
+          "index": 2545
         }
       },
       "type": "function",
@@ -1761,14 +2433,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 78,
+          "line": 82,
           "column": 4,
-          "index": 2328
+          "index": 2552
         },
         "end": {
-          "line": 93,
+          "line": 88,
           "column": 5,
-          "index": 2883
+          "index": 2696
         }
       },
       "type": "function",
@@ -1782,23 +2454,189 @@
       ],
       "mixin": "cv.ui.structure.tile.MRefresh"
     },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
     "__doRefresh": {
       "jsdoc": null,
       "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 128,
           "column": 4,
-          "index": 2890
+          "index": 3719
         },
         "end": {
-          "line": 102,
+          "line": 135,
           "column": 5,
-          "index": 3105
+          "index": 3934
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
       "appearsIn": [
         "cv.ui.structure.tile.MRefresh"
       ],
@@ -1878,12 +2716,12 @@
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1283
+          "index": 1288
         },
         "end": {
           "line": 45,
           "column": 16,
-          "index": 1295
+          "index": 1300
         }
       },
       "appearsIn": [
@@ -1898,12 +2736,12 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1301
+          "index": 1306
         },
         "end": {
           "line": 46,
           "column": 24,
-          "index": 1321
+          "index": 1326
         }
       },
       "appearsIn": [
@@ -1918,12 +2756,92 @@
         "start": {
           "line": 47,
           "column": 4,
-          "index": 1327
+          "index": 1332
         },
         "end": {
           "line": 47,
           "column": 18,
-          "index": 1341
+          "index": 1346
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1352
+        },
+        "end": {
+          "line": 48,
+          "column": 23,
+          "index": 1371
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddressStateUpdateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 49,
+          "column": 41,
+          "index": 1414
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileClosedHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1420
+        },
+        "end": {
+          "line": 50,
+          "column": 29,
+          "index": 1445
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1469
         }
       },
       "appearsIn": [
@@ -1936,14 +2854,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 53,
           "column": 4,
-          "index": 1348
+          "index": 1476
         },
         "end": {
-          "line": 54,
+          "line": 58,
           "column": 5,
-          "index": 1476
+          "index": 1604
         }
       },
       "type": "function",
@@ -1958,14 +2876,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 60,
           "column": 4,
-          "index": 1483
+          "index": 1611
         },
         "end": {
-          "line": 61,
+          "line": 65,
           "column": 5,
-          "index": 1647
+          "index": 1775
         }
       },
       "type": "function",
@@ -1980,14 +2898,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 63,
+          "line": 67,
           "column": 4,
-          "index": 1654
+          "index": 1782
         },
         "end": {
-          "line": 67,
+          "line": 76,
           "column": 5,
-          "index": 1877
+          "index": 2173
         }
       },
       "type": "function",
@@ -2006,14 +2924,36 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 69,
+          "line": 78,
           "column": 4,
-          "index": 1884
+          "index": 2180
         },
         "end": {
-          "line": 101,
+          "line": 120,
           "column": 5,
-          "index": 3288
+          "index": 4018
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__cleanupFullscreenBindings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4025
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4516
         }
       },
       "type": "function",
@@ -2028,14 +2968,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 103,
+          "line": 134,
           "column": 4,
-          "index": 3295
+          "index": 4523
         },
         "end": {
-          "line": 112,
+          "line": 143,
           "column": 5,
-          "index": 3583
+          "index": 4811
         }
       },
       "type": "function",
@@ -2058,14 +2998,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 1725,
+        "line": 1592,
         "column": 2,
-        "index": 59153
+        "index": 54196
       },
       "end": {
-        "line": 1729,
+        "line": 1608,
         "column": 3,
-        "index": 59320
+        "index": 54764
       }
     }
   }

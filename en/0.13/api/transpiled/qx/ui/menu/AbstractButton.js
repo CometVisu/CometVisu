@@ -273,10 +273,10 @@
         {
           var oldCommand = e.getOldData();
           if (!oldCommand) {
-            qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
+            this.__P_617_0 = qx.locale.Manager.getInstance().addListener("changeLocale", this._onChangeLocale, this);
           }
-          if (!command) {
-            qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
+          if (!command && this.__P_617_0) {
+            qx.locale.Manager.getInstance().removeListenerById(this.__P_617_0);
           }
         }
         var cmdString = command != null ? command.toString() : "";
@@ -376,12 +376,12 @@
           this.getMenu().destroy();
         }
       }
-      {
-        qx.locale.Manager.getInstance().removeListener("changeLocale", this._onChangeLocale, this);
+      if (true && this.__P_617_0) {
+        qx.locale.Manager.getInstance().removeListenerById(this.__P_617_0);
       }
     }
   });
   qx.ui.menu.AbstractButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractButton.js.map?dt=1735383879093
+//# sourceMappingURL=AbstractButton.js.map?dt=1778272849914

@@ -15,7 +15,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Manager.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -73,6 +73,25 @@
         this.oldWidth = width;
         this.COLSPAN_CLASS = newClass;
         return oldClass !== newClass;
+      },
+      updateNavbarVisibility: function updateNavbarVisibility() {
+        var navbarVisibility = this.getCurrentPageNavbarVisibility();
+        var left = document.querySelector('#navbarLeft');
+        var right = document.querySelector('#navbarRight');
+        var top = document.querySelector('#navbarTop');
+        var bottom = document.querySelector('#navbarBotton');
+        if (left) {
+          left.style.display = navbarVisibility.left ? 'block' : 'none';
+        }
+        if (right) {
+          right.style.display = navbarVisibility.right ? 'block' : 'none';
+        }
+        if (top) {
+          top.style.display = navbarVisibility.top ? 'block' : 'none';
+        }
+        if (bottom) {
+          bottom.style.display = navbarVisibility.bottom ? 'block' : 'none';
+        }
       },
       /**
        * return the available width for a the currently visible page
@@ -293,4 +312,4 @@
   cv.ui.structure.pure.layout.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1735383843562
+//# sourceMappingURL=Manager.js.map?dt=1778272815262

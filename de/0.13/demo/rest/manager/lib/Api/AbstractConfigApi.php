@@ -1,4 +1,23 @@
 <?php
+/* AbstractConfigApi.php
+ *
+ * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 
 /**
  * CometVisu Manager backend
@@ -36,6 +55,7 @@ use Slim\Exception\HttpNotImplementedException;
  */
 abstract class AbstractConfigApi
 {
+
     /**
      * @var ContainerInterface|null Slim app container instance
      */
@@ -50,6 +70,7 @@ abstract class AbstractConfigApi
     {
         $this->container = $container;
     }
+
 
     /**
      * POST createHiddenConfig
@@ -67,7 +88,7 @@ abstract class AbstractConfigApi
         $section = $args['section'];
         $key = $args['key'];
         $body = $request->getParsedBody();
-        $message = 'How about implementing createHiddenConfig as a POST method in OpenAPIServer\Api\ConfigApi class?';
+        $message = "How about implementing createHiddenConfig as a POST method in OpenAPIServer\Api\ConfigApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -86,7 +107,7 @@ abstract class AbstractConfigApi
     {
         $section = $args['section'];
         $key = $args['key'];
-        $message = 'How about implementing deleteHiddenConfig as a DELETE method in OpenAPIServer\Api\ConfigApi class?';
+        $message = "How about implementing deleteHiddenConfig as a DELETE method in OpenAPIServer\Api\ConfigApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -106,7 +127,7 @@ abstract class AbstractConfigApi
     {
         $section = $args['section'];
         $key = $args['key'];
-        $message = 'How about implementing getHiddenConfig as a GET method in OpenAPIServer\Api\ConfigApi class?';
+        $message = "How about implementing getHiddenConfig as a GET method in OpenAPIServer\Api\ConfigApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -124,7 +145,7 @@ abstract class AbstractConfigApi
     public function saveHiddenConfig(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
         $body = $request->getParsedBody();
-        $message = 'How about implementing saveHiddenConfig as a PUT method in OpenAPIServer\Api\ConfigApi class?';
+        $message = "How about implementing saveHiddenConfig as a PUT method in OpenAPIServer\Api\ConfigApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 
@@ -144,7 +165,7 @@ abstract class AbstractConfigApi
         $section = $args['section'];
         $key = $args['key'];
         $body = $request->getParsedBody();
-        $message = 'How about implementing updateHiddenConfig as a PUT method in OpenAPIServer\Api\ConfigApi class?';
+        $message = "How about implementing updateHiddenConfig as a PUT method in OpenAPIServer\Api\ConfigApi class?";
         throw new HttpNotImplementedException($request, $message);
     }
 }

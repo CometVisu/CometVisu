@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576159,
+  "lastModifiedIso": "2026-05-08T20:36:16.159Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/elements/AddressGroup.js",
   "type": "class",
   "location": {
     "start": {
       "line": 27,
       "column": 0,
-      "index": 993
+      "index": 998
     },
     "end": {
-      "line": 226,
+      "line": 231,
       "column": 3,
-      "index": 5914
+      "index": 6122
     }
   },
   "className": "cv.ui.structure.tile.elements.AddressGroup",
@@ -48,7 +48,7 @@
   },
   "superClass": "cv.ui.structure.tile.elements.Address",
   "mixins": [
-    "cv.ui.structure.tile.MStringTransforms"
+    "cv.util.MStringTransforms"
   ],
   "construct": {
     "type": "function",
@@ -61,12 +61,12 @@
       "start": {
         "line": 36,
         "column": 2,
-        "index": 1286
+        "index": 1278
       },
       "end": {
-        "line": 42,
+        "line": 46,
         "column": 3,
-        "index": 1568
+        "index": 1755
       }
     }
   },
@@ -76,14 +76,31 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 54,
           "column": 4,
-          "index": 1710
+          "index": 1897
         },
         "end": {
-          "line": 50,
+          "line": 54,
           "column": 8,
-          "index": 1714
+          "index": 1901
+        }
+      },
+      "appearsIn": []
+    },
+    "DEBOUNCE_TIME": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1907
+        },
+        "end": {
+          "line": 55,
+          "column": 21,
+          "index": 1924
         }
       },
       "appearsIn": []
@@ -95,14 +112,14 @@
       "jsdoc": null,
       "location": {
         "start": {
-          "line": 59,
+          "line": 64,
           "column": 4,
-          "index": 1858
+          "index": 2068
         },
         "end": {
-          "line": 59,
+          "line": 64,
           "column": 37,
-          "index": 1891
+          "index": 2101
         }
       }
     }
@@ -111,14 +128,14 @@
     "operator": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 74,
           "column": 4,
-          "index": 2044
+          "index": 2254
         },
         "end": {
-          "line": 73,
+          "line": 78,
           "column": 5,
-          "index": 2147
+          "index": 2357
         }
       },
       "json": {
@@ -137,14 +154,14 @@
     "round": {
       "location": {
         "start": {
-          "line": 75,
+          "line": 80,
           "column": 4,
-          "index": 2154
+          "index": 2364
         },
         "end": {
-          "line": 79,
+          "line": 84,
           "column": 5,
-          "index": 2244
+          "index": 2454
         }
       },
       "json": {
@@ -158,14 +175,14 @@
     "factor": {
       "location": {
         "start": {
-          "line": 81,
+          "line": 86,
           "column": 4,
-          "index": 2251
+          "index": 2461
         },
         "end": {
-          "line": 85,
+          "line": 90,
           "column": 5,
-          "index": 2335
+          "index": 2545
         }
       },
       "json": {
@@ -179,14 +196,14 @@
     "valid": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 92,
           "column": 4,
-          "index": 2342
+          "index": 2552
         },
         "end": {
-          "line": 91,
+          "line": 96,
           "column": 5,
-          "index": 2425
+          "index": 2635
         }
       },
       "json": {
@@ -200,14 +217,14 @@
     "nonZeroValues": {
       "location": {
         "start": {
-          "line": 93,
+          "line": 98,
           "column": 4,
-          "index": 2432
+          "index": 2642
         },
         "end": {
-          "line": 97,
+          "line": 102,
           "column": 5,
-          "index": 2527
+          "index": 2737
         }
       },
       "json": {
@@ -225,14 +242,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 106,
+          "line": 111,
           "column": 4,
-          "index": 2673
+          "index": 2883
         },
         "end": {
-          "line": 106,
+          "line": 111,
           "column": 12,
-          "index": 2681
+          "index": 2891
         }
       },
       "appearsIn": []
@@ -242,14 +259,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 107,
+          "line": 112,
           "column": 4,
-          "index": 2687
+          "index": 2897
         },
         "end": {
-          "line": 107,
+          "line": 112,
           "column": 17,
-          "index": 2700
+          "index": 2910
         }
       },
       "appearsIn": []
@@ -259,14 +276,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 108,
+          "line": 113,
           "column": 4,
-          "index": 2706
+          "index": 2916
         },
         "end": {
-          "line": 108,
+          "line": 113,
           "column": 17,
-          "index": 2719
+          "index": 2929
         }
       },
       "appearsIn": []
@@ -276,14 +293,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 115,
           "column": 4,
-          "index": 2726
+          "index": 2936
         },
         "end": {
-          "line": 117,
+          "line": 122,
           "column": 5,
-          "index": 2945
+          "index": 3155
         }
       },
       "type": "function",
@@ -299,14 +316,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 119,
+          "line": 124,
           "column": 4,
-          "index": 2952
+          "index": 3162
         },
         "end": {
-          "line": 121,
+          "line": 126,
           "column": 5,
-          "index": 2997
+          "index": 3207
         }
       },
       "type": "function",
@@ -321,14 +338,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 128,
           "column": 4,
-          "index": 3004
+          "index": 3214
         },
         "end": {
-          "line": 125,
+          "line": 130,
           "column": 5,
-          "index": 3051
+          "index": 3261
         }
       },
       "type": "function",
@@ -340,14 +357,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 127,
+          "line": 132,
           "column": 4,
-          "index": 3058
+          "index": 3268
         },
         "end": {
-          "line": 129,
+          "line": 134,
           "column": 5,
-          "index": 3125
+          "index": 3335
         }
       },
       "type": "function",
@@ -362,14 +379,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 131,
+          "line": 136,
           "column": 4,
-          "index": 3132
+          "index": 3342
         },
         "end": {
-          "line": 140,
+          "line": 145,
           "column": 5,
-          "index": 3459
+          "index": 3669
         }
       },
       "type": "function",
@@ -385,14 +402,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 142,
+          "line": 147,
           "column": 4,
-          "index": 3466
+          "index": 3676
         },
         "end": {
-          "line": 147,
+          "line": 152,
           "column": 5,
-          "index": 3650
+          "index": 3860
         }
       },
       "type": "function",
@@ -408,14 +425,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 149,
+          "line": 154,
           "column": 4,
-          "index": 3657
+          "index": 3867
         },
         "end": {
-          "line": 151,
+          "line": 156,
           "column": 5,
-          "index": 3743
+          "index": 3953
         }
       },
       "type": "function",
@@ -431,14 +448,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 158,
           "column": 4,
-          "index": 3750
+          "index": 3960
         },
         "end": {
-          "line": 196,
+          "line": 201,
           "column": 5,
-          "index": 5101
+          "index": 5309
         }
       },
       "type": "function",
@@ -450,14 +467,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 198,
+          "line": 203,
           "column": 4,
-          "index": 5108
+          "index": 5316
         },
         "end": {
-          "line": 212,
+          "line": 217,
           "column": 5,
-          "index": 5616
+          "index": 5824
         }
       },
       "type": "function",
@@ -475,12 +492,12 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 1161
+          "index": 1153
         },
         "end": {
-          "line": 40,
+          "line": 44,
           "column": 5,
-          "index": 1280
+          "index": 1414
         }
       },
       "type": "function",
@@ -489,24 +506,24 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     },
     "_parseFloat": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 4,
-          "index": 1287
+          "index": 1421
         },
         "end": {
-          "line": 47,
+          "line": 55,
           "column": 5,
-          "index": 1406
+          "index": 1678
         }
       },
       "type": "function",
@@ -515,24 +532,24 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     },
     "_parseBoolean": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
-          "line": 49,
+          "line": 57,
           "column": 4,
-          "index": 1413
+          "index": 1685
         },
         "end": {
-          "line": 54,
+          "line": 65,
           "column": 5,
-          "index": 1533
+          "index": 1873
         }
       },
       "type": "function",
@@ -541,10 +558,10 @@
           "name": "val"
         }
       ],
+      "mixin": "cv.util.MStringTransforms",
       "appearsIn": [
-        "cv.ui.structure.tile.MStringTransforms"
-      ],
-      "mixin": "cv.ui.structure.tile.MStringTransforms"
+        "cv.util.MStringTransforms"
+      ]
     }
   }
 }

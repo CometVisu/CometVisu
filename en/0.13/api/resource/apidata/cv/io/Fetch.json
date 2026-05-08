@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634048,
-  "lastModifiedIso": "2024-12-28T11:00:34.048Z",
+  "lastModified": 1778272576141,
+  "lastModifiedIso": "2026-05-08T20:36:16.141Z",
   "classFilename": "../../source/class/cv/io/Fetch.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 912
     },
     "end": {
-      "line": 168,
+      "line": 171,
       "column": 3,
-      "index": 5491
+      "index": 5616
     }
   },
   "className": "cv.io.Fetch",
@@ -98,9 +98,9 @@
           "index": 1187
         },
         "end": {
-          "line": 72,
+          "line": 75,
           "column": 5,
-          "index": 2513
+          "index": 2638
         }
       },
       "type": "function",
@@ -179,14 +179,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 85,
           "column": 4,
-          "index": 2711
+          "index": 2836
         },
         "end": {
-          "line": 138,
+          "line": 141,
           "column": 5,
-          "index": 4691
+          "index": 4816
         }
       },
       "type": "function",
@@ -268,14 +268,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 147,
+          "line": 150,
           "column": 4,
-          "index": 4861
+          "index": 4986
         },
         "end": {
-          "line": 149,
+          "line": 152,
           "column": 5,
-          "index": 4977
+          "index": 5102
         }
       },
       "type": "function",
@@ -325,14 +325,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 155,
+          "line": 158,
           "column": 4,
-          "index": 5058
+          "index": 5183
         },
         "end": {
-          "line": 166,
+          "line": 169,
           "column": 5,
-          "index": 5483
+          "index": 5608
         }
       },
       "type": "function",

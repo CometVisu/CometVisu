@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383688077,
-  "lastModifiedIso": "2024-12-28T11:01:28.077Z",
+  "lastModified": 1778272635327,
+  "lastModifiedIso": "2026-05-08T20:37:15.327Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/MetaExtraction.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 58
     },
     "end": {
-      "line": 508,
+      "line": 503,
       "column": 3,
-      "index": 15537
+      "index": 15448
     }
   },
   "className": "qx.tool.compiler.MetaExtraction",
@@ -361,9 +361,9 @@
           "index": 2175
         },
         "end": {
-          "line": 150,
+          "line": 145,
           "column": 5,
-          "index": 3686
+          "index": 3597
         }
       },
       "type": "function",
@@ -405,14 +405,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 157,
+          "line": 152,
           "column": 4,
-          "index": 3765
+          "index": 3676
         },
         "end": {
-          "line": 207,
+          "line": 202,
           "column": 5,
-          "index": 5541
+          "index": 5452
         }
       },
       "type": "function",
@@ -450,14 +450,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 214,
+          "line": 209,
           "column": 4,
-          "index": 5635
+          "index": 5546
         },
         "end": {
-          "line": 415,
+          "line": 410,
           "column": 5,
-          "index": 12836
+          "index": 12747
         }
       },
       "type": "function",
@@ -497,14 +497,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 422,
+          "line": 417,
           "column": 4,
-          "index": 12951
+          "index": 12862
         },
         "end": {
-          "line": 445,
+          "line": 440,
           "column": 5,
-          "index": 13616
+          "index": 13527
         }
       },
       "type": "function",
@@ -521,14 +521,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 447,
+          "line": 442,
           "column": 4,
-          "index": 13623
+          "index": 13534
         },
         "end": {
-          "line": 506,
+          "line": 501,
           "column": 5,
-          "index": 15529
+          "index": 15440
         }
       },
       "type": "function",

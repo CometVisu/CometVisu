@@ -6,6 +6,7 @@
         "require": true
       },
       "qx.core.Object": {
+        "construct": true,
         "require": true
       },
       "qx.Bootstrap": {
@@ -19,7 +20,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* AbstractBasicWidget.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -48,6 +49,8 @@
     ******************************************************
     */
     construct: function construct(props) {
+      qx.core.Object.constructor.call(this);
+      props = this._beforePropsApplied(props) || props;
       for (var prop in props) {
         if (this['set' + qx.Bootstrap.firstUp(prop)] !== undefined) {
           this.set(prop, props[prop]);
@@ -88,6 +91,14 @@
     members: {
       __P_57_0: null,
       _domElement: null,
+      /**
+       * Can be overridden to modify props before they are applied in the constructor
+       * @param {object} props 
+       * @returns {object}
+       */
+      _beforePropsApplied: function _beforePropsApplied(props) {
+        return props;
+      },
       /**
        * Override DomElement
        * @param node {Node}
@@ -158,4 +169,4 @@
   cv.ui.structure.pure.AbstractBasicWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1735383842658
+//# sourceMappingURL=AbstractBasicWidget.js.map?dt=1778272814431

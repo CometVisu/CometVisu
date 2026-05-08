@@ -19,7 +19,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Color.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -103,16 +103,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
          * @param A22
          */
         function det(A00, A10, A20, A01, A11, A21, A02, A12, A22) {
-          // eslint-disable-line
           return A00 * A11 * A22 + A01 * A12 * A20 + A02 * A10 * A21 - A20 * A11 * A02 - A21 * A12 * A00 - A22 * A10 * A01;
         }
         var detInv = 1 / det(A00, A10, A20, A01, A11, A21, A02, A12, A22);
-        return [det(y0, y1, y2, A01, A11, A21, A02, A12, A22) * detInv,
-        // eslint-disable-line
-        det(A00, A10, A20, y0, y1, y2, A02, A12, A22) * detInv,
-        // eslint-disable-line
-        det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv // eslint-disable-line
-        ];
+        return [det(y0, y1, y2, A01, A11, A21, A02, A12, A22) * detInv, det(A00, A10, A20, y0, y1, y2, A02, A12, A22) * detInv, det(A00, A10, A20, A01, A11, A21, y0, y1, y2) * detInv];
       },
       /**
        * calculate the intersection point between lines 1-2 and 3-4 as well as
@@ -169,7 +163,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         var x = T <= 4000 ? ((-0.2661239e9 / T - 0.2343589e6) / T + 0.8776956e3) / T + 0.17991 : ((-3.0258469e9 / T + 2.1070379e6) / T + 0.2226347e3) / T + 0.24039;
         return {
           x: x,
-          y: T <= 2222 ? ((-1.1063814 * x - 1.3481102) * x + 2.18555832) * x - 0.20219683 : T <= 4000 ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867 : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483 // eslint-disable-line space-in-parens
+          y: T <= 2222 ? ((-1.1063814 * x - 1.3481102) * x + 2.18555832) * x - 0.20219683 : T <= 4000 ? ((-0.9549476 * x - 1.37418593) * x + 2.09137015) * x - 0.16748867 : ((3.081758 * x - 5.8733867) * x + 3.75112997) * x - 0.37001483
         };
       },
       /**
@@ -265,6 +259,27 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }
         var ratio = (normalized - curve[lower]) / (curve[higher] - curve[lower]);
         return Math.min((lower + ratio) / (curve.length - 1), 1);
+      },
+      /**
+       * add opacity to color
+       * @param {string} color color in rgb(x,y,z), hex string or CSS variable
+       * @param {number} opacity % (0-100)
+       * @return {string|*}
+       * @private
+       */
+      opacify: function opacify(color, opacity) {
+        if (!opacity && opacity !== 0) {
+          return color;
+        }
+        if (color.startsWith('var(')) {
+          color = getComputedStyle(document.documentElement).getPropertyValue(color.substring(4, color.length - 1));
+        }
+        if (color.startsWith('rgb(')) {
+          return 'rgba(' + color.substring(4, color.length - 1) + ', ' + (opacity / 100).toFixed(2) + ')';
+        } else if (color.startsWith('#')) {
+          return color.substring(0, 7) + Math.round(2.55 * opacity).toString(16).padStart(2, '0');
+        }
+        return color;
       }
     },
     /*
@@ -286,68 +301,68 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       var Gxy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
       var Bxy = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
       var Wxy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
-      this.__P_767_0 = Rxy === undefined ? {
+      this.__P_783_0 = Rxy === undefined ? {
         x: 0.64,
         y: 0.33,
         Y: 0.2126
       } : Rxy; // default: sRGB
-      this.__P_767_1 = Gxy === undefined ? {
+      this.__P_783_1 = Gxy === undefined ? {
         x: 0.3,
         y: 0.6,
         Y: 0.7152
       } : Gxy;
-      this.__P_767_2 = Bxy === undefined ? {
+      this.__P_783_2 = Bxy === undefined ? {
         x: 0.15,
         y: 0.06,
         Y: 0.0722
       } : Bxy;
-      if (this.__P_767_0.Y === undefined) {
-        this.__P_767_0.Y = 1;
+      if (this.__P_783_0.Y === undefined) {
+        this.__P_783_0.Y = 1;
       }
-      if (this.__P_767_1.Y === undefined) {
-        this.__P_767_1.Y = 1;
+      if (this.__P_783_1.Y === undefined) {
+        this.__P_783_1.Y = 1;
       }
-      if (this.__P_767_2.Y === undefined) {
-        this.__P_767_2.Y = 1;
+      if (this.__P_783_2.Y === undefined) {
+        this.__P_783_2.Y = 1;
       }
 
       // normalize luminances
-      var normFac = 1 / (this.__P_767_0.Y + this.__P_767_1.Y + this.__P_767_2.Y);
-      this.__P_767_0.Y *= normFac;
-      this.__P_767_1.Y *= normFac;
-      this.__P_767_2.Y *= normFac;
+      var normFac = 1 / (this.__P_783_0.Y + this.__P_783_1.Y + this.__P_783_2.Y);
+      this.__P_783_0.Y *= normFac;
+      this.__P_783_1.Y *= normFac;
+      this.__P_783_2.Y *= normFac;
 
       // precalculate X and Z
-      this.__P_767_0.X = this.__P_767_0.x * this.__P_767_0.Y / this.__P_767_0.y;
-      this.__P_767_0.Z = (1 - this.__P_767_0.x - this.__P_767_0.y) * this.__P_767_0.Y / this.__P_767_0.y;
-      this.__P_767_1.X = this.__P_767_1.x * this.__P_767_1.Y / this.__P_767_1.y;
-      this.__P_767_1.Z = (1 - this.__P_767_1.x - this.__P_767_1.y) * this.__P_767_1.Y / this.__P_767_1.y;
-      this.__P_767_2.X = this.__P_767_2.x * this.__P_767_2.Y / this.__P_767_2.y;
-      this.__P_767_2.Z = (1 - this.__P_767_2.x - this.__P_767_2.y) * this.__P_767_2.Y / this.__P_767_2.y;
+      this.__P_783_0.X = this.__P_783_0.x * this.__P_783_0.Y / this.__P_783_0.y;
+      this.__P_783_0.Z = (1 - this.__P_783_0.x - this.__P_783_0.y) * this.__P_783_0.Y / this.__P_783_0.y;
+      this.__P_783_1.X = this.__P_783_1.x * this.__P_783_1.Y / this.__P_783_1.y;
+      this.__P_783_1.Z = (1 - this.__P_783_1.x - this.__P_783_1.y) * this.__P_783_1.Y / this.__P_783_1.y;
+      this.__P_783_2.X = this.__P_783_2.x * this.__P_783_2.Y / this.__P_783_2.y;
+      this.__P_783_2.Z = (1 - this.__P_783_2.x - this.__P_783_2.y) * this.__P_783_2.Y / this.__P_783_2.y;
       if (undefined !== Wxy) {
-        this.__P_767_3 = Wxy;
-        if (this.__P_767_3.Y === undefined) {
-          this.__P_767_3.Y = 1;
+        this.__P_783_3 = Wxy;
+        if (this.__P_783_3.Y === undefined) {
+          this.__P_783_3.Y = 1;
         }
-        this.__P_767_3.X = this.__P_767_3.x * this.__P_767_3.Y / this.__P_767_3.y;
-        this.__P_767_3.Z = (1 - this.__P_767_3.x - this.__P_767_3.y) * this.__P_767_3.Y / this.__P_767_3.y;
+        this.__P_783_3.X = this.__P_783_3.x * this.__P_783_3.Y / this.__P_783_3.y;
+        this.__P_783_3.Z = (1 - this.__P_783_3.x - this.__P_783_3.y) * this.__P_783_3.Y / this.__P_783_3.y;
       } else {
-        this.__P_767_3 = {
-          X: this.__P_767_0.X + this.__P_767_1.X + this.__P_767_2.X,
-          Y: this.__P_767_0.Y + this.__P_767_1.Y + this.__P_767_2.Y,
-          Z: this.__P_767_0.Z + this.__P_767_1.Z + this.__P_767_2.Z
+        this.__P_783_3 = {
+          X: this.__P_783_0.X + this.__P_783_1.X + this.__P_783_2.X,
+          Y: this.__P_783_0.Y + this.__P_783_1.Y + this.__P_783_2.Y,
+          Z: this.__P_783_0.Z + this.__P_783_1.Z + this.__P_783_2.Z
         };
-        this.__P_767_3.x = this.__P_767_3.X / (this.__P_767_3.X + this.__P_767_3.Y + this.__P_767_3.Z);
-        this.__P_767_3.y = this.__P_767_3.Y / (this.__P_767_3.X + this.__P_767_3.Y + this.__P_767_3.Z);
+        this.__P_783_3.x = this.__P_783_3.X / (this.__P_783_3.X + this.__P_783_3.Y + this.__P_783_3.Z);
+        this.__P_783_3.y = this.__P_783_3.Y / (this.__P_783_3.X + this.__P_783_3.Y + this.__P_783_3.Z);
       }
 
       // start color is a complete unsaturated red hue that is black:
-      this.__P_767_4 = {
+      this.__P_783_4 = {
         h: 0,
         s: 0,
         v: 0
       };
-      this.__P_767_5();
+      this.__P_783_5();
     },
     /*
     ******************************************************
@@ -356,77 +371,77 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
     */
     members: {
       // the base colors defining the color space of this color
-      __P_767_0: undefined,
-      __P_767_1: undefined,
-      __P_767_2: undefined,
-      __P_767_3: undefined,
+      __P_783_0: undefined,
+      __P_783_1: undefined,
+      __P_783_2: undefined,
+      __P_783_3: undefined,
       // the color itself
       /**
        * CIE 1931 XYZ color space: x of xyY
        * @type {number}
        */
-      __P_767_6: 0.3333333333333333,
+      __P_783_6: 0.3333333333333333,
       /**
        * CIE 1931 XYZ color space: y of xyY
        * @type {number}
        */
-      __P_767_7: 0.3333333333333333,
+      __P_783_7: 0.3333333333333333,
       /**
        * CIE 1931 XYZ color space: Y of xyY or XYZ - normalized to be between 0...1
        * @type {number}
        */
-      __P_767_8: 0,
+      __P_783_8: 0,
       // derived color representations, cached to allow partial change
       /**
        * HSV color space - h, s and v are normalized to the range 0...1
        * @type {{h: number, s: number, v: number}}
        */
-      __P_767_4: undefined,
+      __P_783_4: undefined,
       /**
        * HSV color space - last known value of h
        * @type {number}
        */
-      __P_767_9: 0,
+      __P_783_9: 0,
       /**
        * LCh color space - last known value of h
        * @type {number}
        */
-      __P_767_10: 0,
+      __P_783_10: 0,
       /**
        * RGB color space - r, g and b are normalized to the range 0...1
        * @type {{r: number, g: number, b: number}}
        */
-      __P_767_11: undefined,
+      __P_783_11: undefined,
       /**
        * RGBW color space - r, g, b and w are normalized to the range 0...1
        * @type {{r: number, g: number, b: number, w: number}}
        */
-      __P_767_12: undefined,
+      __P_783_12: undefined,
       /**
        * Color temperature in Kelvin
        * @type {number}
        */
-      __P_767_13: undefined,
+      __P_783_13: undefined,
       /**
        * L*a*b* color space - with L in 0...100, a* and b* in roughly -150...150
        * @type {{L: number, a: number, b: number}}
        */
-      __P_767_14: undefined,
+      __P_783_14: undefined,
       /**
        * L*C*h° color space - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150
        * @type {{L: number, C: number, h: number}}
        */
-      __P_767_15: undefined,
+      __P_783_15: undefined,
       /**
        * Get X, Y, Z from this color
        * @private
        * @returns {{X: number, Y: number, Z: number}}
        */
-      __P_767_16: function __P_767_16() {
+      __P_783_16: function __P_783_16() {
         return {
-          X: this.__P_767_6 * (this.__P_767_8 / Math.max(0.001, this.__P_767_7)),
-          Y: this.__P_767_8,
-          Z: (1 - this.__P_767_6 - this.__P_767_7) * (this.__P_767_8 / Math.max(0.001, this.__P_767_7))
+          X: this.__P_783_6 * (this.__P_783_8 / Math.max(0.001, this.__P_783_7)),
+          Y: this.__P_783_8,
+          Z: (1 - this.__P_783_6 - this.__P_783_7) * (this.__P_783_8 / Math.max(0.001, this.__P_783_7))
         };
       },
       /**
@@ -436,12 +451,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param {number} Y
        * @param {number} Z
        */
-      __P_767_17: function __P_767_17(X, Y, Z) {
+      __P_783_17: function __P_783_17(X, Y, Z) {
         var XYZ = X + Y + Z;
         // best guess for a total black: completely unsaturated, i.e. the white point
-        this.__P_767_6 = XYZ > 0 ? X / XYZ : this.__P_767_3.x;
-        this.__P_767_7 = XYZ > 0 ? Y / XYZ : this.__P_767_3.y;
-        this.__P_767_8 = Y;
+        this.__P_783_6 = XYZ > 0 ? X / XYZ : this.__P_783_3.x;
+        this.__P_783_7 = XYZ > 0 ? Y / XYZ : this.__P_783_3.y;
+        this.__P_783_8 = Y;
       },
       /**
        * move x and y to be inside the color range that the R, G and B span
@@ -450,11 +465,11 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param {number} y
        * @returns {{x: number, y: number}}
        */
-      __P_767_18: function __P_767_18() {
-        var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.__P_767_6;
-        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.__P_767_7;
+      __P_783_18: function __P_783_18() {
+        var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.__P_783_6;
+        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.__P_783_7;
         // is x-y on the same side of the R-G axis as the white point?
-        var iRG = cv.util.Color.intersect(this.__P_767_0, this.__P_767_1, this.__P_767_3, {
+        var iRG = cv.util.Color.intersect(this.__P_783_0, this.__P_783_1, this.__P_783_3, {
           x: x,
           y: y
         });
@@ -464,7 +479,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           y = iRG.y;
         }
         // is x-y on the same side of the G-B axis as the white point?
-        var iGB = cv.util.Color.intersect(this.__P_767_1, this.__P_767_2, this.__P_767_3, {
+        var iGB = cv.util.Color.intersect(this.__P_783_1, this.__P_783_2, this.__P_783_3, {
           x: x,
           y: y
         });
@@ -474,7 +489,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           y = iGB.y;
         }
         // is x-y on the same side of the B-R axis as the white point?
-        var iBR = cv.util.Color.intersect(this.__P_767_2, this.__P_767_0, this.__P_767_3, {
+        var iBR = cv.util.Color.intersect(this.__P_783_2, this.__P_783_0, this.__P_783_3, {
           x: x,
           y: y
         });
@@ -489,7 +504,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         };
       },
       // make derived color valid
-      __P_767_19: function __P_767_19(force) {
+      __P_783_19: function __P_783_19(force) {
         /**
          * solve a special set of equations:
          * <pre>
@@ -514,19 +529,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
          * @returns {number[]}
          */
         function solve(A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3) {
-          return [(B1 * C2 * D3 - B1 * C3 * D2 - B2 * C1 * D3 + B2 * C3 * D1 + B3 * C1 * D2 - B3 * C2 * D1) / (-A1 * C2 * D3 + A1 * C3 * D2 + A2 * C1 * D3 - A2 * C3 * D1 - A3 * C1 * D2 + A3 * C2 * D1),
-          // eslint-disable-line
-          (A1 * C2 * D3 - A1 * C3 * D2 - A2 * C1 * D3 + A2 * C3 * D1 + A3 * C1 * D2 - A3 * C2 * D1) / (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1),
-          // eslint-disable-line
-          (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1) / (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1) // eslint-disable-line
-          ];
+          return [(B1 * C2 * D3 - B1 * C3 * D2 - B2 * C1 * D3 + B2 * C3 * D1 + B3 * C1 * D2 - B3 * C2 * D1) / (-A1 * C2 * D3 + A1 * C3 * D2 + A2 * C1 * D3 - A2 * C3 * D1 - A3 * C1 * D2 + A3 * C2 * D1), (A1 * C2 * D3 - A1 * C3 * D2 - A2 * C1 * D3 + A2 * C3 * D1 + A3 * C1 * D2 - A3 * C2 * D1) / (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1), (-A1 * B2 * D3 + A1 * B3 * D2 + A2 * B1 * D3 - A2 * B3 * D1 - A3 * B1 * D2 + A3 * B2 * D1) / (-A1 * B2 * C3 + A1 * B3 * C2 + A2 * B1 * C3 - A2 * B3 * C1 - A3 * B1 * C2 + A3 * B2 * C1)];
         }
-        if (this.__P_767_4 === undefined || force) {
-          if (this.__P_767_8 < 1e-4) {
-            this.__P_767_4 = {
-              h: this.__P_767_9,
+        if (this.__P_783_4 === undefined || force) {
+          if (this.__P_783_8 < 1e-4) {
+            this.__P_783_4 = {
+              h: this.__P_783_9,
               s: 0,
-              v: this.__P_767_8
+              v: this.__P_783_8
             };
             return;
           }
@@ -542,162 +552,162 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
               Z: Z
             };
           };
-          var hues = [this.__P_767_0, this.__P_767_1, this.__P_767_2, this.__P_767_0];
+          var hues = [this.__P_783_0, this.__P_783_1, this.__P_783_2, this.__P_783_0];
           var thisXYZ = {
-            X: this.__P_767_6 * this.__P_767_8 / this.__P_767_7,
-            Y: this.__P_767_8,
-            Z: (1 - this.__P_767_6 - this.__P_767_7) * this.__P_767_8 / this.__P_767_7
+            X: this.__P_783_6 * this.__P_783_8 / this.__P_783_7,
+            Y: this.__P_783_8,
+            Z: (1 - this.__P_783_6 - this.__P_783_7) * this.__P_783_8 / this.__P_783_7
           };
-          if (Math.pow(this.__P_767_6 - this.__P_767_3.x, 2) + Math.pow(this.__P_767_7 - this.__P_767_3.y, 2) < 1e-6) {
+          if (Math.pow(this.__P_783_6 - this.__P_783_3.x, 2) + Math.pow(this.__P_783_7 - this.__P_783_3.y, 2) < 1e-6) {
             // color is white
-            this.__P_767_4 = {
-              h: this.__P_767_9,
+            this.__P_783_4 = {
+              h: this.__P_783_9,
               s: 0,
-              v: this.__P_767_8
+              v: this.__P_783_8
             };
             return;
           }
           for (var i = 0; i < 3; i++) {
-            var inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i + 1]), this.__P_767_3, {
-              x: this.__P_767_6,
-              y: this.__P_767_7
+            var inter1 = cv.util.Color.intersect(hues[i], colorAdd(hues[i], hues[i + 1]), this.__P_783_3, {
+              x: this.__P_783_6,
+              y: this.__P_783_7
             });
-            var inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i + 1]), hues[i + 1], this.__P_767_3, {
-              x: this.__P_767_6,
-              y: this.__P_767_7
+            var inter2 = cv.util.Color.intersect(colorAdd(hues[i], hues[i + 1]), hues[i + 1], this.__P_783_3, {
+              x: this.__P_783_6,
+              y: this.__P_783_7
             });
 
             // hues[i] -> (hues[i]+hues[i+1])
-            var fac = solve(hues[i + 1].X, hues[i + 1].Y, hues[i + 1].Z, hues[i].X - this.__P_767_3.X, hues[i].Y - this.__P_767_3.Y, hues[i].Z - this.__P_767_3.Z, this.__P_767_3.X, this.__P_767_3.Y, this.__P_767_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
+            var fac = solve(hues[i + 1].X, hues[i + 1].Y, hues[i + 1].Z, hues[i].X - this.__P_783_3.X, hues[i].Y - this.__P_783_3.Y, hues[i].Z - this.__P_783_3.Z, this.__P_783_3.X, this.__P_783_3.Y, this.__P_783_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
             if (inter1.factors[0] >= 0 && inter1.factors[1] >= 0 && inter1.factors[1] <= 1) {
-              this.__P_767_4 = {
+              this.__P_783_4 = {
                 h: 2 * i / 6 + fac[0] / 6,
                 s: fac[1],
                 v: fac[2]
               };
-              this.__P_767_9 = this.__P_767_4.h;
+              this.__P_783_9 = this.__P_783_4.h;
               break;
             }
 
             // (hues[i]+hues[i+1]) -> hues[i+1]
-            var fac2 = solve(-hues[i].X, -hues[i].Y, -hues[i].Z, hues[i].X + hues[i + 1].X - this.__P_767_3.X, hues[i].Y + hues[i + 1].Y - this.__P_767_3.Y, hues[i].Z + hues[i + 1].Z - this.__P_767_3.Z, this.__P_767_3.X, this.__P_767_3.Y, this.__P_767_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
+            var fac2 = solve(-hues[i].X, -hues[i].Y, -hues[i].Z, hues[i].X + hues[i + 1].X - this.__P_783_3.X, hues[i].Y + hues[i + 1].Y - this.__P_783_3.Y, hues[i].Z + hues[i + 1].Z - this.__P_783_3.Z, this.__P_783_3.X, this.__P_783_3.Y, this.__P_783_3.Z, thisXYZ.X, thisXYZ.Y, thisXYZ.Z);
             if (inter2.factors[0] >= 0 && inter2.factors[1] >= 0 && inter2.factors[1] <= 1) {
-              this.__P_767_4 = {
+              this.__P_783_4 = {
                 h: (2 * i + 1) / 6 + fac2[0] / 6,
                 s: fac2[1],
                 v: fac2[2]
               };
-              this.__P_767_9 = this.__P_767_4.h;
+              this.__P_783_9 = this.__P_783_4.h;
               break;
             }
-            this.__P_767_4 = {
+            this.__P_783_4 = {
               h: 0,
               s: 0,
-              v: this.__P_767_8
+              v: this.__P_783_8
             };
-            this.__P_767_9 = this.__P_767_4.h;
+            this.__P_783_9 = this.__P_783_4.h;
           }
         }
       },
-      __P_767_20: function __P_767_20(force) {
-        if (this.__P_767_21 === undefined || force) {
-          this.__P_767_21 = {};
-          var _this$__P_767_ = this.__P_767_16(),
-            X = _this$__P_767_.X,
-            Y = _this$__P_767_.Y,
-            Z = _this$__P_767_.Z;
+      __P_783_20: function __P_783_20(force) {
+        if (this.__P_783_21 === undefined || force) {
+          this.__P_783_21 = {};
+          var _this$__P_783_ = this.__P_783_16(),
+            X = _this$__P_783_.X,
+            Y = _this$__P_783_.Y,
+            Z = _this$__P_783_.Z;
           // scale and clamp:
-          var _cv$util$Color$solve = cv.util.Color.solve3d(this.__P_767_0.X, this.__P_767_0.Y, this.__P_767_0.Z, this.__P_767_1.X, this.__P_767_1.Y, this.__P_767_1.Z, this.__P_767_2.X, this.__P_767_2.Y, this.__P_767_2.Z, X, Y, Z);
+          var _cv$util$Color$solve = cv.util.Color.solve3d(this.__P_783_0.X, this.__P_783_0.Y, this.__P_783_0.Z, this.__P_783_1.X, this.__P_783_1.Y, this.__P_783_1.Z, this.__P_783_2.X, this.__P_783_2.Y, this.__P_783_2.Z, X, Y, Z);
           var _cv$util$Color$solve2 = _slicedToArray(_cv$util$Color$solve, 3);
-          this.__P_767_21.r = _cv$util$Color$solve2[0];
-          this.__P_767_21.g = _cv$util$Color$solve2[1];
-          this.__P_767_21.b = _cv$util$Color$solve2[2];
-          var max = Math.max(this.__P_767_21.r, this.__P_767_21.g, this.__P_767_21.b);
+          this.__P_783_21.r = _cv$util$Color$solve2[0];
+          this.__P_783_21.g = _cv$util$Color$solve2[1];
+          this.__P_783_21.b = _cv$util$Color$solve2[2];
+          var max = Math.max(this.__P_783_21.r, this.__P_783_21.g, this.__P_783_21.b);
           if (max < 1) {
             max = 1;
           }
-          this.__P_767_21.r = Math.max(0, this.__P_767_21.r / max);
-          this.__P_767_21.g = Math.max(0, this.__P_767_21.g / max);
-          this.__P_767_21.b = Math.max(0, this.__P_767_21.b / max);
+          this.__P_783_21.r = Math.max(0, this.__P_783_21.r / max);
+          this.__P_783_21.g = Math.max(0, this.__P_783_21.g / max);
+          this.__P_783_21.b = Math.max(0, this.__P_783_21.b / max);
         }
       },
-      __P_767_22: function __P_767_22(force) {
-        if (this.__P_767_23 === undefined || force) {
-          var _this$__P_767_2 = this.__P_767_16(),
-            X = _this$__P_767_2.X,
-            Y = _this$__P_767_2.Y,
-            Z = _this$__P_767_2.Z;
-          var w2rgb = cv.util.Color.solve3d(this.__P_767_0.X, this.__P_767_0.Y, this.__P_767_0.Z, this.__P_767_1.X, this.__P_767_1.Y, this.__P_767_1.Z, this.__P_767_2.X, this.__P_767_2.Y, this.__P_767_2.Z, this.__P_767_3.X, this.__P_767_3.Y, this.__P_767_3.Z);
-          this.__P_767_23 = {};
-          var _cv$util$Color$solve3 = cv.util.Color.solve3d(this.__P_767_0.X, this.__P_767_0.Y, this.__P_767_0.Z, this.__P_767_1.X, this.__P_767_1.Y, this.__P_767_1.Z, this.__P_767_2.X, this.__P_767_2.Y, this.__P_767_2.Z, X, Y, Z);
+      __P_783_22: function __P_783_22(force) {
+        if (this.__P_783_23 === undefined || force) {
+          var _this$__P_783_2 = this.__P_783_16(),
+            X = _this$__P_783_2.X,
+            Y = _this$__P_783_2.Y,
+            Z = _this$__P_783_2.Z;
+          var w2rgb = cv.util.Color.solve3d(this.__P_783_0.X, this.__P_783_0.Y, this.__P_783_0.Z, this.__P_783_1.X, this.__P_783_1.Y, this.__P_783_1.Z, this.__P_783_2.X, this.__P_783_2.Y, this.__P_783_2.Z, this.__P_783_3.X, this.__P_783_3.Y, this.__P_783_3.Z);
+          this.__P_783_23 = {};
+          var _cv$util$Color$solve3 = cv.util.Color.solve3d(this.__P_783_0.X, this.__P_783_0.Y, this.__P_783_0.Z, this.__P_783_1.X, this.__P_783_1.Y, this.__P_783_1.Z, this.__P_783_2.X, this.__P_783_2.Y, this.__P_783_2.Z, X, Y, Z);
           var _cv$util$Color$solve4 = _slicedToArray(_cv$util$Color$solve3, 3);
-          this.__P_767_23.r = _cv$util$Color$solve4[0];
-          this.__P_767_23.g = _cv$util$Color$solve4[1];
-          this.__P_767_23.b = _cv$util$Color$solve4[2];
-          this.__P_767_23.w = Math.min(this.__P_767_23.r / w2rgb[0], this.__P_767_23.g / w2rgb[1], this.__P_767_23.b / w2rgb[2]);
-          this.__P_767_23.r -= this.__P_767_23.w * w2rgb[0];
-          this.__P_767_23.g -= this.__P_767_23.w * w2rgb[1];
-          this.__P_767_23.b -= this.__P_767_23.w * w2rgb[2];
+          this.__P_783_23.r = _cv$util$Color$solve4[0];
+          this.__P_783_23.g = _cv$util$Color$solve4[1];
+          this.__P_783_23.b = _cv$util$Color$solve4[2];
+          this.__P_783_23.w = Math.min(this.__P_783_23.r / w2rgb[0], this.__P_783_23.g / w2rgb[1], this.__P_783_23.b / w2rgb[2]);
+          this.__P_783_23.r -= this.__P_783_23.w * w2rgb[0];
+          this.__P_783_23.g -= this.__P_783_23.w * w2rgb[1];
+          this.__P_783_23.b -= this.__P_783_23.w * w2rgb[2];
 
           // scale and clamp:
-          var max = Math.max(this.__P_767_23.r, this.__P_767_23.g, this.__P_767_23.b, this.__P_767_23.w);
+          var max = Math.max(this.__P_783_23.r, this.__P_783_23.g, this.__P_783_23.b, this.__P_783_23.w);
           if (max < 1) {
             max = 1;
           }
-          this.__P_767_23.r = Math.max(0, this.__P_767_23.r / max);
-          this.__P_767_23.g = Math.max(0, this.__P_767_23.g / max);
-          this.__P_767_23.b = Math.max(0, this.__P_767_23.b / max);
-          this.__P_767_23.w = Math.max(0, this.__P_767_23.w / max);
+          this.__P_783_23.r = Math.max(0, this.__P_783_23.r / max);
+          this.__P_783_23.g = Math.max(0, this.__P_783_23.g / max);
+          this.__P_783_23.b = Math.max(0, this.__P_783_23.b / max);
+          this.__P_783_23.w = Math.max(0, this.__P_783_23.w / max);
         }
       },
-      __P_767_24: function __P_767_24(force) {
+      __P_783_24: function __P_783_24(force) {
         // getting the color temperature from xy is only giving the correlated
         // color temperature, the temperature of the Planckian radiator whose
         // perceived color most closely resembles that of a given stimulus at the
         // same brightness and under specified viewing conditions
         // This formula works for CCT between 2000 K and 12500 K.
-        if (this.__P_767_13 === undefined || force) {
-          var n = (this.__P_767_6 - 0.332) / (this.__P_767_7 - 0.1858);
+        if (this.__P_783_13 === undefined || force) {
+          var n = (this.__P_783_6 - 0.332) / (this.__P_783_7 - 0.1858);
           var T = ((-449 * n + 3525) * n - 6823.3) * n + 5520.33;
-          this.__P_767_13 = Math.max(2000, Math.min(T, 12500));
+          this.__P_783_13 = Math.max(2000, Math.min(T, 12500));
         }
       },
-      __P_767_25: function __P_767_25(force) {
-        if (this.__P_767_14 === undefined || force) {
-          var Xn = this.__P_767_3.X;
-          var Yn = this.__P_767_3.Y;
-          var Zn = this.__P_767_3.Z;
-          var _this$__P_767_3 = this.__P_767_16(),
-            X = _this$__P_767_3.X,
-            Y = _this$__P_767_3.Y,
-            Z = _this$__P_767_3.Z;
+      __P_783_25: function __P_783_25(force) {
+        if (this.__P_783_14 === undefined || force) {
+          var Xn = this.__P_783_3.X;
+          var Yn = this.__P_783_3.Y;
+          var Zn = this.__P_783_3.Z;
+          var _this$__P_783_3 = this.__P_783_16(),
+            X = _this$__P_783_3.X,
+            Y = _this$__P_783_3.Y,
+            Z = _this$__P_783_3.Z;
           var f = function f(t) {
             if (t < 0.008856451679035631) {
               return (903.2962962962963 * t + 16) / 116;
             }
             return Math.pow(t, 0.3333333333333333);
           };
-          this.__P_767_14 = {
+          this.__P_783_14 = {
             L: 116 * f(Y / Yn) - 16,
             a: 500 * (f(X / Xn) - f(Y / Yn)),
             b: 200 * (f(Y / Yn) - f(Z / Zn))
           };
         }
       },
-      __P_767_26: function __P_767_26(force) {
-        this.__P_767_25();
-        if (this.__P_767_15 === undefined || force) {
-          this.__P_767_15 = {
-            L: this.__P_767_14.L / 100,
+      __P_783_26: function __P_783_26(force) {
+        this.__P_783_25();
+        if (this.__P_783_15 === undefined || force) {
+          this.__P_783_15 = {
+            L: this.__P_783_14.L / 100,
             // map to 0...1
-            C: Math.sqrt(Math.pow(this.__P_767_14.a, 2) + Math.pow(this.__P_767_14.b, 2)) / 150,
+            C: Math.sqrt(Math.pow(this.__P_783_14.a, 2) + Math.pow(this.__P_783_14.b, 2)) / 150,
             // map to 0...1
-            h: (Math.atan2(this.__P_767_14.b, this.__P_767_14.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
+            h: (Math.atan2(this.__P_783_14.b, this.__P_783_14.a) / (2 * Math.PI) + 1) % 1 // map angle to 0...1
           };
-          if (this.__P_767_15.C < 1e-5) {
-            this.__P_767_15.h = this.__P_767_10;
+          if (this.__P_783_15.C < 1e-5) {
+            this.__P_783_15.h = this.__P_783_10;
           } else {
-            this.__P_767_10 = this.__P_767_15.h;
+            this.__P_783_10 = this.__P_783_15.h;
           }
         }
       },
@@ -707,120 +717,120 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param {string} keep
        * @param {string} [keep2]
        */
-      __P_767_27: function __P_767_27(keep) {
+      __P_783_27: function __P_783_27(keep) {
         var _this = this;
         var keep2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-        ["__P_767_21", "__P_767_23", "__P_767_4", "__P_767_14", "__P_767_15", "__P_767_13"].forEach(function (cache) {
+        ["__P_783_21", "__P_783_23", "__P_783_4", "__P_783_14", "__P_783_15", "__P_783_13"].forEach(function (cache) {
           if (cache !== keep && cache !== keep2) {
             _this[cache] = undefined;
           }
         });
       },
       // synchronise xyY
-      __P_767_5: function __P_767_5() {
+      __P_783_5: function __P_783_5() {
         // first step: get maximum saturated RGB values
         var r;
         var g;
         var b;
         var u;
-        var d; // eslint-disable-line max-statements-per-line
-        if (this.__P_767_4.h < 0.16666666666666666) {
-          var _u = (this.__P_767_4.h - 0) * 6;
+        var d;
+        if (this.__P_783_4.h < 0.16666666666666666) {
+          var _u = (this.__P_783_4.h - 0) * 6;
           r = 1;
           g = _u;
-          b = 0; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_767_4.h < 0.3333333333333333) {
-          u = (this.__P_767_4.h - 0.16666666666666666) * 6;
-          d = 1 - u; // eslint-disable-line max-statements-per-line
+          b = 0;
+        } else if (this.__P_783_4.h < 0.3333333333333333) {
+          u = (this.__P_783_4.h - 0.16666666666666666) * 6;
+          d = 1 - u;
           r = d;
           g = 1;
-          b = 0; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_767_4.h < 0.5) {
-          var _u2 = (this.__P_767_4.h - 0.3333333333333333) * 6;
+          b = 0;
+        } else if (this.__P_783_4.h < 0.5) {
+          var _u2 = (this.__P_783_4.h - 0.3333333333333333) * 6;
           r = 0;
           g = 1;
-          b = _u2; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_767_4.h < 0.6666666666666666) {
-          u = (this.__P_767_4.h - 0.5) * 6;
-          d = 1 - u; // eslint-disable-line max-statements-per-line
+          b = _u2;
+        } else if (this.__P_783_4.h < 0.6666666666666666) {
+          u = (this.__P_783_4.h - 0.5) * 6;
+          d = 1 - u;
           r = 0;
           g = d;
-          b = 1; // eslint-disable-line max-statements-per-line
-        } else if (this.__P_767_4.h < 0.8333333333333334) {
-          u = (this.__P_767_4.h - 0.6666666666666666) * 6;
+          b = 1;
+        } else if (this.__P_783_4.h < 0.8333333333333334) {
+          u = (this.__P_783_4.h - 0.6666666666666666) * 6;
           r = u;
           g = 0;
-          b = 1; // eslint-disable-line max-statements-per-line
+          b = 1;
         } else {
-          u = (this.__P_767_4.h - 0.8333333333333334) * 6;
-          d = 1 - u; // eslint-disable-line max-statements-per-line
+          u = (this.__P_783_4.h - 0.8333333333333334) * 6;
+          d = 1 - u;
           r = 1;
           g = 0;
-          b = d; // eslint-disable-line max-statements-per-line
+          b = d;
         }
 
         // second step: blend with white to take saturation into account and scale with brightness
-        var X = ((this.__P_767_0.X * r + this.__P_767_1.X * g + this.__P_767_2.X * b) * this.__P_767_4.s + (1 - this.__P_767_4.s) * this.__P_767_3.X) * this.__P_767_4.v;
-        var Y = ((this.__P_767_0.Y * r + this.__P_767_1.Y * g + this.__P_767_2.Y * b) * this.__P_767_4.s + (1 - this.__P_767_4.s) * this.__P_767_3.Y) * this.__P_767_4.v;
-        var Z = ((this.__P_767_0.Z * r + this.__P_767_1.Z * g + this.__P_767_2.Z * b) * this.__P_767_4.s + (1 - this.__P_767_4.s) * this.__P_767_3.Z) * this.__P_767_4.v;
-        this.__P_767_17(X, Y, Z);
-        this.__P_767_27("__P_767_4");
+        var X = ((this.__P_783_0.X * r + this.__P_783_1.X * g + this.__P_783_2.X * b) * this.__P_783_4.s + (1 - this.__P_783_4.s) * this.__P_783_3.X) * this.__P_783_4.v;
+        var Y = ((this.__P_783_0.Y * r + this.__P_783_1.Y * g + this.__P_783_2.Y * b) * this.__P_783_4.s + (1 - this.__P_783_4.s) * this.__P_783_3.Y) * this.__P_783_4.v;
+        var Z = ((this.__P_783_0.Z * r + this.__P_783_1.Z * g + this.__P_783_2.Z * b) * this.__P_783_4.s + (1 - this.__P_783_4.s) * this.__P_783_3.Z) * this.__P_783_4.v;
+        this.__P_783_17(X, Y, Z);
+        this.__P_783_27("__P_783_4");
       },
-      __P_767_28: function __P_767_28() {
-        this.__P_767_8 = Math.max(this.__P_767_21.r, this.__P_767_21.g, this.__P_767_21.b);
-        if (this.__P_767_8 > 0) {
-          var X = this.__P_767_0.X * this.__P_767_21.r + this.__P_767_1.X * this.__P_767_21.g + this.__P_767_2.X * this.__P_767_21.b;
-          var Y = this.__P_767_0.Y * this.__P_767_21.r + this.__P_767_1.Y * this.__P_767_21.g + this.__P_767_2.Y * this.__P_767_21.b;
-          var Z = this.__P_767_0.Z * this.__P_767_21.r + this.__P_767_1.Z * this.__P_767_21.g + this.__P_767_2.Z * this.__P_767_21.b;
-          this.__P_767_17(X, Y, Z);
+      __P_783_28: function __P_783_28() {
+        this.__P_783_8 = Math.max(this.__P_783_21.r, this.__P_783_21.g, this.__P_783_21.b);
+        if (this.__P_783_8 > 0) {
+          var X = this.__P_783_0.X * this.__P_783_21.r + this.__P_783_1.X * this.__P_783_21.g + this.__P_783_2.X * this.__P_783_21.b;
+          var Y = this.__P_783_0.Y * this.__P_783_21.r + this.__P_783_1.Y * this.__P_783_21.g + this.__P_783_2.Y * this.__P_783_21.b;
+          var Z = this.__P_783_0.Z * this.__P_783_21.r + this.__P_783_1.Z * this.__P_783_21.g + this.__P_783_2.Z * this.__P_783_21.b;
+          this.__P_783_17(X, Y, Z);
         } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-        this.__P_767_27("__P_767_21");
+        this.__P_783_27("__P_783_21");
       },
-      __P_767_29: function __P_767_29() {
-        this.__P_767_8 = Math.max(this.__P_767_23.r, this.__P_767_23.g, this.__P_767_23.b, this.__P_767_23.w);
-        if (this.__P_767_8 > 0) {
-          var X = this.__P_767_0.X * this.__P_767_23.r + this.__P_767_1.X * this.__P_767_23.g + this.__P_767_2.X * this.__P_767_23.b + this.__P_767_3.X * this.__P_767_23.w;
-          var Y = this.__P_767_0.Y * this.__P_767_23.r + this.__P_767_1.Y * this.__P_767_23.g + this.__P_767_2.Y * this.__P_767_23.b + this.__P_767_3.Y * this.__P_767_23.w;
-          var Z = this.__P_767_0.Z * this.__P_767_23.r + this.__P_767_1.Z * this.__P_767_23.g + this.__P_767_2.Z * this.__P_767_23.b + this.__P_767_3.Z * this.__P_767_23.w;
-          this.__P_767_17(X, Y, Z);
+      __P_783_29: function __P_783_29() {
+        this.__P_783_8 = Math.max(this.__P_783_23.r, this.__P_783_23.g, this.__P_783_23.b, this.__P_783_23.w);
+        if (this.__P_783_8 > 0) {
+          var X = this.__P_783_0.X * this.__P_783_23.r + this.__P_783_1.X * this.__P_783_23.g + this.__P_783_2.X * this.__P_783_23.b + this.__P_783_3.X * this.__P_783_23.w;
+          var Y = this.__P_783_0.Y * this.__P_783_23.r + this.__P_783_1.Y * this.__P_783_23.g + this.__P_783_2.Y * this.__P_783_23.b + this.__P_783_3.Y * this.__P_783_23.w;
+          var Z = this.__P_783_0.Z * this.__P_783_23.r + this.__P_783_1.Z * this.__P_783_23.g + this.__P_783_2.Z * this.__P_783_23.b + this.__P_783_3.Z * this.__P_783_23.w;
+          this.__P_783_17(X, Y, Z);
         } // else: do nothing and keep the current x and y to be able to restore it's value when just the brightness will be increased again
-        this.__P_767_27("__P_767_23");
+        this.__P_783_27("__P_783_23");
       },
-      __P_767_30: function __P_767_30() {
-        var xy = cv.util.Color.temperature2xy(this.__P_767_13);
-        this.__P_767_6 = xy.x;
-        this.__P_767_7 = xy.y;
-        this.__P_767_27("__P_767_13");
+      __P_783_30: function __P_783_30() {
+        var xy = cv.util.Color.temperature2xy(this.__P_783_13);
+        this.__P_783_6 = xy.x;
+        this.__P_783_7 = xy.y;
+        this.__P_783_27("__P_783_13");
       },
-      __P_767_31: function __P_767_31() {
-        this.__P_767_27("__P_767_13");
+      __P_783_31: function __P_783_31() {
+        this.__P_783_27("__P_783_13");
       },
-      __P_767_32: function __P_767_32() {
+      __P_783_32: function __P_783_32() {
         var keepLCh = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-        var Xn = this.__P_767_3.X;
-        var Yn = this.__P_767_3.Y;
-        var Zn = this.__P_767_3.Z;
+        var Xn = this.__P_783_3.X;
+        var Yn = this.__P_783_3.Y;
+        var Zn = this.__P_783_3.Z;
         var fInv = function fInv(t) {
           if (t < 0.20689655172413793) {
             return 3 * Math.pow(0.20689655172413793, 2) * (t - 0.13793103448275862);
           }
           return Math.pow(t, 3);
         };
-        var Lab = this.__P_767_14;
+        var Lab = this.__P_783_14;
         var L16 = (Lab.L + 16) / 116;
         var X = Xn * fInv(L16 + Lab.a / 500);
         var Y = Yn * fInv(L16);
         var Z = Zn * fInv(L16 - Lab.b / 200);
-        this.__P_767_17(X, Y, Z);
-        this.__P_767_27("__P_767_14", keepLCh ? "__P_767_15" : '');
+        this.__P_783_17(X, Y, Z);
+        this.__P_783_27("__P_783_14", keepLCh ? "__P_783_15" : '');
       },
-      __P_767_33: function __P_767_33() {
-        this.__P_767_14 = {
-          L: this.__P_767_15.L * 100,
-          a: this.__P_767_15.C * Math.cos(this.__P_767_15.h * 2 * Math.PI) * 150,
-          b: this.__P_767_15.C * Math.sin(this.__P_767_15.h * 2 * Math.PI) * 150
+      __P_783_33: function __P_783_33() {
+        this.__P_783_14 = {
+          L: this.__P_783_15.L * 100,
+          a: this.__P_783_15.C * Math.cos(this.__P_783_15.h * 2 * Math.PI) * 150,
+          b: this.__P_783_15.C * Math.sin(this.__P_783_15.h * 2 * Math.PI) * 150
         };
-        this.__P_767_32(true);
+        this.__P_783_32(true);
       },
       /**
        * Change the color by changing one of it's components.
@@ -852,100 +862,100 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           case 'h':
           case 's':
           case 'v':
-            this.__P_767_19();
-            this.__P_767_4[component] = clamp(value);
-            this.__P_767_5();
+            this.__P_783_19();
+            this.__P_783_4[component] = clamp(value);
+            this.__P_783_5();
             break;
           case 'sv':
-            this.__P_767_19();
-            this.__P_767_4.s = clamp(value[0]);
-            this.__P_767_4.v = clamp(value[1]);
-            this.__P_767_5();
+            this.__P_783_19();
+            this.__P_783_4.s = clamp(value[0]);
+            this.__P_783_4.v = clamp(value[1]);
+            this.__P_783_5();
             break;
           case 'hsv':
-            this.__P_767_4 = {
+            this.__P_783_4 = {
               h: clamp(value.h),
               s: clamp(value.s),
               v: clamp(value.v)
             };
-            this.__P_767_5();
+            this.__P_783_5();
             break;
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
-            this.__P_767_20();
-            this.__P_767_21[component.split('-')[1]] = clamp(value);
-            this.__P_767_28();
+            this.__P_783_20();
+            this.__P_783_21[component.split('-')[1]] = clamp(value);
+            this.__P_783_28();
             break;
           case 'rgb':
-            this.__P_767_21 = {
+            this.__P_783_21 = {
               r: clamp(value.r),
               g: clamp(value.g),
               b: clamp(value.b)
             };
-            this.__P_767_28();
+            this.__P_783_28();
             break;
           case 'RGBW-r':
           case 'RGBW-g':
           case 'RGBW-b':
           case 'RGBW-w':
-            this.__P_767_22();
-            this.__P_767_23[component.split('-')[1]] = clamp(value);
-            this.__P_767_29();
+            this.__P_783_22();
+            this.__P_783_23[component.split('-')[1]] = clamp(value);
+            this.__P_783_29();
             break;
           case 'rgbw':
-            this.__P_767_23 = {
+            this.__P_783_23 = {
               r: clamp(value.r),
               g: clamp(value.g),
               b: clamp(value.b),
               w: clamp(value.w)
             };
-            this.__P_767_29();
+            this.__P_783_29();
             break;
           case 'T':
-            this.__P_767_13 = Math.max(1667, Math.min(value, 25000));
-            this.__P_767_30();
+            this.__P_783_13 = Math.max(1667, Math.min(value, 25000));
+            this.__P_783_30();
             break;
           case 'x':
-            this.__P_767_6 = clamp(value);
-            this.__P_767_27(''); // all precalculated colors are invalid now
+            this.__P_783_6 = clamp(value);
+            this.__P_783_27(''); // all precalculated colors are invalid now
             break;
           case 'y':
-            this.__P_767_7 = clamp(value);
-            this.__P_767_27(''); // all precalculated colors are invalid now
+            this.__P_783_7 = clamp(value);
+            this.__P_783_27(''); // all precalculated colors are invalid now
             break;
           case 'xy':
-            this.__P_767_6 = clamp(value.x);
-            this.__P_767_7 = clamp(value.y);
-            this.__P_767_27(''); // all precalculated colors are invalid now
+            this.__P_783_6 = clamp(value.x);
+            this.__P_783_7 = clamp(value.y);
+            this.__P_783_27(''); // all precalculated colors are invalid now
             break;
           case 'Y':
-            this.__P_767_8 = clamp(value);
-            this.__P_767_31();
+            this.__P_783_8 = clamp(value);
+            this.__P_783_31();
             break;
           case 'xyY':
-            this.__P_767_6 = clamp(value.x);
-            this.__P_767_7 = clamp(value.y);
-            this.__P_767_8 = clamp(value.Y);
-            this.__P_767_27(''); // all precalculated colors are invalid now
+            this.__P_783_6 = clamp(value.x);
+            this.__P_783_7 = clamp(value.y);
+            this.__P_783_8 = clamp(value.Y);
+            this.__P_783_27(''); // all precalculated colors are invalid now
             break;
           case 'LCh-L':
           case 'LCh-C':
-            this.__P_767_26();
-            this.__P_767_15[component.split('-')[1]] = clamp(value);
-            this.__P_767_33();
+            this.__P_783_26();
+            this.__P_783_15[component.split('-')[1]] = clamp(value);
+            this.__P_783_33();
             break;
           case 'LCh-h':
-            this.__P_767_26();
-            this.__P_767_15[component.split('-')[1]] = clamp(value);
-            this.__P_767_10 = this.__P_767_15.h;
-            this.__P_767_33();
+            this.__P_783_26();
+            this.__P_783_15[component.split('-')[1]] = clamp(value);
+            this.__P_783_10 = this.__P_783_15.h;
+            this.__P_783_33();
             break;
           case 'LCh-CL':
-            this.__P_767_26();
-            this.__P_767_15.C = clamp(value[0]);
-            this.__P_767_15.L = clamp(value[1]);
-            this.__P_767_33();
+            this.__P_783_26();
+            this.__P_783_15.C = clamp(value[0]);
+            this.__P_783_15.L = clamp(value[1]);
+            this.__P_783_33();
             break;
         }
       },
@@ -956,12 +966,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param {{h: number, s: number, v: number}} hsv
        */
       _forceHSV: function _forceHSV(hsv) {
-        this.__P_767_4 = hsv;
-        this.__P_767_5();
+        this.__P_783_4 = hsv;
+        this.__P_783_5();
       },
       _forceLCh: function _forceLCh(LCh) {
-        this.__P_767_15 = LCh;
-        this.__P_767_33();
+        this.__P_783_15 = LCh;
+        this.__P_783_33();
       },
       /**
        * Get the value(s) of the specified component
@@ -988,45 +998,45 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         switch (component) {
           case 'xy':
             return {
-              x: clamp(0, this.__P_767_6, 1),
-              y: clamp(0, this.__P_767_7, 1)
+              x: clamp(0, this.__P_783_6, 1),
+              y: clamp(0, this.__P_783_7, 1)
             };
           case 'Y':
-            return clamp(0, this.__P_767_8, 1);
+            return clamp(0, this.__P_783_8, 1);
           case 'xyY':
             return {
-              x: clamp(0, this.__P_767_6, 1),
-              y: clamp(0, this.__P_767_7, 1),
-              Y: clamp(0, this.__P_767_8, 1)
+              x: clamp(0, this.__P_783_6, 1),
+              y: clamp(0, this.__P_783_7, 1),
+              Y: clamp(0, this.__P_783_8, 1)
             };
           case 'h':
           case 's':
           case 'v':
-            this.__P_767_19(force);
-            return clamp(0, this.__P_767_4[component], 1);
+            this.__P_783_19(force);
+            return clamp(0, this.__P_783_4[component], 1);
           case 'hsv':
-            this.__P_767_19(force);
+            this.__P_783_19(force);
             return {
-              h: clamp(0, this.__P_767_4.h, 1),
-              s: clamp(0, this.__P_767_4.s, 1),
-              v: clamp(0, this.__P_767_4.v, 1)
+              h: clamp(0, this.__P_783_4.h, 1),
+              s: clamp(0, this.__P_783_4.s, 1),
+              v: clamp(0, this.__P_783_4.v, 1)
             };
           case 'RGB-r':
           case 'RGB-g':
           case 'RGB-b':
             {
-              this.__P_767_20(force);
-              var map = gamutMap ? 1 / Math.max(this.__P_767_21.r, this.__P_767_21.g, this.__P_767_21.b, 1) : 1;
-              return map * this.__P_767_21[component.split('-')[1]];
+              this.__P_783_20(force);
+              var map = gamutMap ? 1 / Math.max(this.__P_783_21.r, this.__P_783_21.g, this.__P_783_21.b, 1) : 1;
+              return map * this.__P_783_21[component.split('-')[1]];
             }
           case 'rgb':
             {
-              this.__P_767_20(force);
-              var _map = gamutMap ? 1 / Math.max(this.__P_767_21.r, this.__P_767_21.g, this.__P_767_21.b, 1) : 1;
+              this.__P_783_20(force);
+              var _map = gamutMap ? 1 / Math.max(this.__P_783_21.r, this.__P_783_21.g, this.__P_783_21.b, 1) : 1;
               return {
-                r: _map * this.__P_767_21.r,
-                g: _map * this.__P_767_21.g,
-                b: _map * this.__P_767_21.b
+                r: _map * this.__P_783_21.r,
+                g: _map * this.__P_783_21.g,
+                b: _map * this.__P_783_21.b
               };
             }
           case 'RGBW-r':
@@ -1034,38 +1044,38 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           case 'RGBW-b':
           case 'RGBW-w':
             {
-              this.__P_767_22(force);
-              var _map2 = gamutMap ? 1 / Math.max(this.__P_767_23.r, this.__P_767_23.g, this.__P_767_23.b, this.__P_767_23.w, 1) : 1;
-              return _map2 * this.__P_767_23[component.split('-')[1]];
+              this.__P_783_22(force);
+              var _map2 = gamutMap ? 1 / Math.max(this.__P_783_23.r, this.__P_783_23.g, this.__P_783_23.b, this.__P_783_23.w, 1) : 1;
+              return _map2 * this.__P_783_23[component.split('-')[1]];
             }
           case 'rgbw':
             {
-              this.__P_767_22(force);
-              var _map3 = gamutMap ? 1 / Math.max(this.__P_767_23.r, this.__P_767_23.g, this.__P_767_23.b, this.__P_767_23.w, 1) : 1;
+              this.__P_783_22(force);
+              var _map3 = gamutMap ? 1 / Math.max(this.__P_783_23.r, this.__P_783_23.g, this.__P_783_23.b, this.__P_783_23.w, 1) : 1;
               return {
-                r: _map3 * this.__P_767_23.r,
-                g: _map3 * this.__P_767_23.g,
-                b: _map3 * this.__P_767_23.b,
-                w: _map3 * this.__P_767_23.w
+                r: _map3 * this.__P_783_23.r,
+                g: _map3 * this.__P_783_23.g,
+                b: _map3 * this.__P_783_23.b,
+                w: _map3 * this.__P_783_23.w
               };
             }
           case 'T':
-            this.__P_767_24(force);
-            return clamp(1667, this.__P_767_13, 25000);
+            this.__P_783_24(force);
+            return clamp(1667, this.__P_783_13, 25000);
           case 'Lab':
-            this.__P_767_25(force);
-            return this.__P_767_14;
+            this.__P_783_25(force);
+            return this.__P_783_14;
           case 'LCh-L':
           case 'LCh-C':
           case 'LCh-h':
-            this.__P_767_26(force);
-            return clamp(0, this.__P_767_15[component.split('-')[1]], 1);
+            this.__P_783_26(force);
+            return clamp(0, this.__P_783_15[component.split('-')[1]], 1);
           case 'LCh':
-            this.__P_767_26(force);
+            this.__P_783_26(force);
             return {
-              L: clamp(0, this.__P_767_15.L, 1),
-              C: clamp(0, this.__P_767_15.C, 1),
-              h: clamp(0, this.__P_767_15.h, 1)
+              L: clamp(0, this.__P_783_15.L, 1),
+              C: clamp(0, this.__P_783_15.C, 1),
+              h: clamp(0, this.__P_783_15.h, 1)
             };
         }
         return undefined; // unknown component
@@ -1084,12 +1094,12 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @returns {number}
        */
       delta: function delta(otherColor) {
-        this.__P_767_25();
-        otherColor.__P_767_25();
-        var Lab = otherColor.__P_767_14;
-        var dL = this.__P_767_14.L - Lab.L;
-        var da = this.__P_767_14.a - Lab.a;
-        var db = this.__P_767_14.b - Lab.b;
+        this.__P_783_25();
+        otherColor.__P_783_25();
+        var Lab = otherColor.__P_783_14;
+        var dL = this.__P_783_14.L - Lab.L;
+        var da = this.__P_783_14.a - Lab.a;
+        var db = this.__P_783_14.b - Lab.b;
         return Math.sqrt(dL * dL + da * da + db * db);
       },
       /**
@@ -1103,14 +1113,14 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @returns {cv.util.Color}
        */
       blend: function blend(otherColor, ratio) {
-        this.__P_767_26();
-        otherColor.__P_767_26();
+        this.__P_783_26();
+        otherColor.__P_783_26();
         var b = function b(x, y) {
           return (1 - ratio) * x + ratio * y;
         };
         var c = this.copy();
-        var c1 = this.__P_767_15;
-        var c2 = otherColor.__P_767_15;
+        var c1 = this.__P_783_15;
+        var c2 = otherColor.__P_783_15;
         var s = Math.abs(c2.h - c1.h + 1) > Math.abs(c2.h - c1.h);
         var e = Math.abs(c2.h - c1.h - 1) > Math.abs(c2.h - c1.h);
         c._forceLCh({
@@ -1126,4 +1136,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.util.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1735383886554
+//# sourceMappingURL=Color.js.map?dt=1778272857350

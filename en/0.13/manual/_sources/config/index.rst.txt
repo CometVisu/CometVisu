@@ -310,6 +310,7 @@ but directly used in the browser.
 * Navigation menus are generated automatically.
 * Special widgets for typical smart home use-cases (switch, dimmer, blinds, room temperature controller, media player charts).
 * Easy creation of own, re-usable widgets without programming knowledge.
+* Mobile-specific behaviors such as pull-to-refresh and auto-hiding navigation elements help to save space on small screens.
 * Designed with mobile-first in mind, a good user experience on mobile devices has the highest priority
 
 .. figure:: _static/tile-demo.png

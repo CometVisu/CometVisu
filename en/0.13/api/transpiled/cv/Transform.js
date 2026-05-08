@@ -19,7 +19,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Transform.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -164,9 +164,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           var lastPart = 'start';
           var v = result; // use the fact that `v` is now a reference and not a copy
           while (selector !== '') {
-            var _this$__P_764_ = this.__P_764_0(selector),
-              firstPart = _this$__P_764_.firstPart,
-              remainingPart = _this$__P_764_.remainingPart;
+            var _this$__P_780_ = this.__P_780_0(selector),
+              firstPart = _this$__P_780_.firstPart,
+              remainingPart = _this$__P_780_.remainingPart;
             if (isFinite(firstPart)) {
               v[lastPart] = [];
             } else {
@@ -216,9 +216,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           try {
             var v = JSON.parse(value);
             while (selector !== '') {
-              var _this$__P_764_2 = this.__P_764_0(selector),
-                firstPart = _this$__P_764_2.firstPart,
-                remainingPart = _this$__P_764_2.remainingPart;
+              var _this$__P_780_2 = this.__P_780_0(selector),
+                firstPart = _this$__P_780_2.firstPart,
+                remainingPart = _this$__P_780_2.remainingPart;
               if (_typeof(v) === 'object' && firstPart in v) {
                 v = v[firstPart];
               } else {
@@ -252,7 +252,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
        * @param {string} selector - the JSON (sub-)selector
        * @returns {{firstPart: string, remainingPart: string}}
        */
-      __P_764_0: function __P_764_0(selector) {
+      __P_780_0: function __P_780_0(selector) {
         if (selector[0] === '[') {
           var _selector$match = selector.match(/^\[([^\]]*)]\.?(.*)/),
             _selector$match2 = _slicedToArray(_selector$match, 3),
@@ -289,4 +289,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.Transform.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Transform.js.map?dt=1735383886308
+//# sourceMappingURL=Transform.js.map?dt=1778272857121

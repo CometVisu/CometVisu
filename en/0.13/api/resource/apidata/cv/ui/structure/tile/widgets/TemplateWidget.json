@@ -1,19 +1,19 @@
 {
   "version": 0.3,
-  "lastModified": 1735383634068,
-  "lastModifiedIso": "2024-12-28T11:00:34.068Z",
+  "lastModified": 1778272576160,
+  "lastModifiedIso": "2026-05-08T20:36:16.160Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/widgets/TemplateWidget.js",
   "type": "class",
   "location": {
     "start": {
       "line": 23,
       "column": 0,
-      "index": 809
+      "index": 814
     },
     "end": {
       "line": 55,
       "column": 3,
-      "index": 1542
+      "index": 1547
     }
   },
   "className": "cv.ui.structure.tile.widgets.TemplateWidget",
@@ -37,12 +37,12 @@
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1081
+          "index": 1086
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 1133
+          "index": 1138
         }
       },
       "json": {
@@ -63,12 +63,12 @@
         "start": {
           "line": 44,
           "column": 4,
-          "index": 1279
+          "index": 1284
         },
         "end": {
           "line": 46,
           "column": 5,
-          "index": 1354
+          "index": 1359
         }
       },
       "type": "function",
@@ -85,12 +85,12 @@
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1361
+          "index": 1366
         },
         "end": {
           "line": 53,
           "column": 5,
-          "index": 1534
+          "index": 1539
         }
       },
       "type": "function",

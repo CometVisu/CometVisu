@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383686577,
-  "lastModifiedIso": "2024-12-28T11:01:26.577Z",
+  "lastModified": 1778272634653,
+  "lastModifiedIso": "2026-05-08T20:37:14.653Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/AsyncWrapper.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 647
     },
     "end": {
-      "line": 89,
+      "line": 97,
       "column": 3,
-      "index": 2571
+      "index": 2755
     }
   },
   "className": "qx.dev.unit.AsyncWrapper",

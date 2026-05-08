@@ -38,7 +38,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* Color.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -65,18 +65,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
     include: cv.ui.structure.tile.MResize,
     /*
     ***********************************************
-      PROPERTIES
-    ***********************************************
-    */
-    properties: {
-      throttleInterval: {
-        check: 'Number',
-        init: 250,
-        apply: '_applyThrottleInterval'
-      }
-    },
-    /*
-    ***********************************************
       STATICS
     ***********************************************
     */
@@ -93,9 +81,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _init: function _init() {
         var _this = this;
         var element = this._element;
-        if (element.hasAttribute('throttle-interval')) {
-          this.setThrottleInterval(parseInt(element.getAttribute('throttle-interval')));
-        }
 
         // init components
         var mode = element.hasAttribute('mode') ? element.getAttribute('mode') : 'popup';
@@ -152,8 +137,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 colspan: 1
               },
               controls: element.hasAttribute('controls') ? element.getAttribute('controls') : 'triangle',
-              address: addresses,
-              throttleInterval: this.getThrottleInterval()
+              address: addresses
             };
             cv.parser.pure.widgets.ColorChooser.parseAttributes(element, props);
             this.__P_79_0 = new cv.ui.structure.pure.ColorChooser(props);
@@ -228,4 +212,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1735383844597
+//# sourceMappingURL=Color.js.map?dt=1778272816205

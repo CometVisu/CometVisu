@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1735383687801,
-  "lastModifiedIso": "2024-12-28T11:01:27.801Z",
+  "lastModified": 1778272635192,
+  "lastModifiedIso": "2026-05-08T20:37:15.192Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/basic/Image.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1299
     },
     "end": {
-      "line": 1143,
+      "line": 1207,
       "column": 3,
-      "index": 32848
+      "index": 34772
     }
   },
   "className": "qx.ui.basic.Image",
@@ -348,6 +348,39 @@
       "appearsIn": [
         "qx.ui.core.LayoutItem"
       ]
+    },
+    "fallbackSource": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 3499
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 3621
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeFallbackSource"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Source of image to display if the image in the `source` property fails to load.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Source of image to display if the image in the <code>source</code> property fails to load.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
     }
   },
   "events": {
@@ -369,14 +402,14 @@
       },
       "location": {
         "start": {
-          "line": 161,
+          "line": 171,
           "column": 4,
-          "index": 3764
+          "index": 3996
         },
         "end": {
-          "line": 161,
+          "line": 171,
           "column": 40,
-          "index": 3800
+          "index": 4032
         }
       }
     },
@@ -398,14 +431,14 @@
       },
       "location": {
         "start": {
-          "line": 167,
+          "line": 177,
           "column": 4,
-          "index": 3942
+          "index": 4174
         },
         "end": {
-          "line": 167,
+          "line": 177,
           "column": 33,
-          "index": 3971
+          "index": 4203
         }
       }
     },
@@ -424,14 +457,14 @@
       },
       "location": {
         "start": {
-          "line": 170,
+          "line": 180,
           "column": 4,
-          "index": 4038
+          "index": 4270
         },
         "end": {
-          "line": 170,
+          "line": 180,
           "column": 34,
-          "index": 4068
+          "index": 4300
         }
       }
     }
@@ -442,14 +475,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 174,
+          "line": 184,
           "column": 4,
-          "index": 4092
+          "index": 4324
         },
         "end": {
-          "line": 175,
+          "line": 185,
           "column": 86,
-          "index": 4197
+          "index": 4429
         }
       },
       "appearsIn": []
@@ -461,14 +494,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 185,
+          "line": 195,
           "column": 4,
-          "index": 4405
+          "index": 4637
         },
         "end": {
-          "line": 185,
+          "line": 195,
           "column": 17,
-          "index": 4418
+          "index": 4650
         }
       },
       "appearsIn": []
@@ -478,14 +511,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 186,
+          "line": 196,
           "column": 4,
-          "index": 4424
+          "index": 4656
         },
         "end": {
-          "line": 186,
+          "line": 196,
           "column": 18,
-          "index": 4438
+          "index": 4670
         }
       },
       "appearsIn": []
@@ -495,14 +528,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 187,
+          "line": 197,
           "column": 4,
-          "index": 4444
+          "index": 4676
         },
         "end": {
-          "line": 187,
+          "line": 197,
           "column": 16,
-          "index": 4456
+          "index": 4688
         }
       },
       "appearsIn": []
@@ -512,14 +545,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 188,
+          "line": 198,
           "column": 4,
-          "index": 4462
+          "index": 4694
         },
         "end": {
-          "line": 188,
+          "line": 198,
           "column": 27,
-          "index": 4485
+          "index": 4717
         }
       },
       "appearsIn": []
@@ -529,14 +562,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 189,
+          "line": 199,
           "column": 4,
-          "index": 4491
+          "index": 4723
         },
         "end": {
-          "line": 189,
+          "line": 199,
           "column": 33,
-          "index": 4520
+          "index": 4752
         }
       },
       "appearsIn": []
@@ -546,14 +579,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 190,
+          "line": 200,
           "column": 4,
-          "index": 4526
+          "index": 4758
         },
         "end": {
-          "line": 190,
+          "line": 200,
           "column": 19,
-          "index": 4541
+          "index": 4773
         }
       },
       "appearsIn": []
@@ -563,14 +596,82 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 191,
+          "line": 201,
           "column": 4,
-          "index": 4547
+          "index": 4779
         },
         "end": {
-          "line": 191,
+          "line": 201,
           "column": 18,
-          "index": 4561
+          "index": 4793
+        }
+      },
+      "appearsIn": []
+    },
+    "__failedToLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the image in the `source` property failed to load.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the image in the <code>source</code> property failed to load.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 4876
+        },
+        "end": {
+          "line": 205,
+          "column": 25,
+          "index": 4897
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceToDisplay": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {string} The actual source of the image that we display.",
+          "     * While the `source` property is what we want to display,",
+          "     * this property is what we are actually showing.",
+          "     * This can be the `source` property but it can also be the `fallbackSource` property",
+          "     * if the image in the `source` property failed to load.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The actual source of the image that we display.\n While the <code>source</code> property is what we want to display,\n this property is what we are actually showing.\n This can be the <code>source</code> property but it can also be the <code>fallbackSource</code> property\n if the image in the <code>source</code> property failed to load."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 5258
+        },
+        "end": {
+          "line": 214,
+          "column": 27,
+          "index": 5281
         }
       },
       "appearsIn": []
@@ -584,14 +685,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 194,
+          "line": 217,
           "column": 4,
-          "index": 4586
+          "index": 5306
         },
         "end": {
-          "line": 198,
+          "line": 221,
           "column": 5,
-          "index": 4742
+          "index": 5462
         }
       },
       "type": "function",
@@ -611,14 +712,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 230,
           "column": 4,
-          "index": 4959
+          "index": 5679
         },
         "end": {
-          "line": 209,
+          "line": 232,
           "column": 5,
-          "index": 5035
+          "index": 5755
         }
       },
       "type": "function",
@@ -637,14 +738,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 212,
+          "line": 235,
           "column": 4,
-          "index": 5060
+          "index": 5780
         },
         "end": {
-          "line": 214,
+          "line": 237,
           "column": 5,
-          "index": 5140
+          "index": 5860
         }
       },
       "type": "function",
@@ -663,14 +764,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 217,
+          "line": 240,
           "column": 4,
-          "index": 5165
+          "index": 5885
         },
         "end": {
-          "line": 222,
+          "line": 245,
           "column": 5,
-          "index": 5283
+          "index": 6003
         }
       },
       "type": "function",
@@ -689,14 +790,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 225,
+          "line": 248,
           "column": 4,
-          "index": 5308
+          "index": 6028
         },
         "end": {
-          "line": 235,
+          "line": 258,
           "column": 5,
-          "index": 5631
+          "index": 6357
         }
       },
       "type": "function",
@@ -722,14 +823,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 238,
+          "line": 261,
           "column": 4,
-          "index": 5656
+          "index": 6382
         },
         "end": {
-          "line": 254,
+          "line": 277,
           "column": 5,
-          "index": 6054
+          "index": 6780
         }
       },
       "type": "function",
@@ -752,14 +853,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 257,
+          "line": 280,
           "column": 4,
-          "index": 6079
+          "index": 6805
         },
         "end": {
-          "line": 278,
+          "line": 301,
           "column": 5,
-          "index": 6806
+          "index": 7532
         }
       },
       "type": "function",
@@ -784,14 +885,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 280,
+          "line": 303,
           "column": 4,
-          "index": 6813
+          "index": 7539
         },
         "end": {
-          "line": 298,
+          "line": 321,
           "column": 5,
-          "index": 7379
+          "index": 8105
         }
       },
       "type": "function",
@@ -824,14 +925,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 307,
+          "line": 330,
           "column": 4,
-          "index": 7611
+          "index": 8337
         },
         "end": {
-          "line": 313,
+          "line": 336,
           "column": 5,
-          "index": 7751
+          "index": 8483
         }
       },
       "type": "function",
@@ -857,14 +958,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 316,
+          "line": 339,
           "column": 4,
-          "index": 7780
+          "index": 8512
         },
         "end": {
-          "line": 325,
+          "line": 350,
           "column": 5,
-          "index": 8000
+          "index": 8805
         }
       },
       "type": "function",
@@ -887,14 +988,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 328,
+          "line": 353,
           "column": 4,
-          "index": 8029
+          "index": 8834
         },
         "end": {
-          "line": 330,
+          "line": 355,
           "column": 5,
-          "index": 8082
+          "index": 8887
         }
       },
       "type": "function",
@@ -932,14 +1033,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 336,
+          "line": 361,
           "column": 4,
-          "index": 8260
+          "index": 9065
         },
         "end": {
-          "line": 338,
+          "line": 363,
           "column": 5,
-          "index": 8309
+          "index": 9114
         }
       },
       "type": "function",
@@ -979,14 +1080,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 346,
+          "line": 371,
           "column": 4,
-          "index": 8523
+          "index": 9328
         },
         "end": {
-          "line": 373,
+          "line": 398,
           "column": 5,
-          "index": 9180
+          "index": 9991
         }
       },
       "type": "function",
@@ -1033,14 +1134,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 381,
+          "line": 406,
           "column": 4,
-          "index": 9376
+          "index": 10187
         },
         "end": {
-          "line": 430,
+          "line": 455,
           "column": 5,
-          "index": 10605
+          "index": 11416
         }
       },
       "type": "function",
@@ -1082,14 +1183,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 437,
+          "line": 462,
           "column": 4,
-          "index": 10758
+          "index": 11569
         },
         "end": {
-          "line": 456,
+          "line": 481,
           "column": 5,
-          "index": 11214
+          "index": 12025
         }
       },
       "type": "function",
@@ -1105,7 +1206,6 @@
           "*",
           "     * Applies the source to the clipped image instance or preload",
           "     * an image to detect sizes and apply it afterwards.",
-          "     *",
           "     "
         ],
         "@description": [
@@ -1118,14 +1218,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 463,
+          "line": 487,
           "column": 4,
-          "index": 11368
+          "index": 12172
         },
         "end": {
-          "line": 529,
+          "line": 553,
           "column": 5,
-          "index": 13631
+          "index": 14441
         }
       },
       "type": "function",
@@ -1152,14 +1252,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 537,
+          "line": 561,
           "column": 4,
-          "index": 13922
+          "index": 14732
         },
         "end": {
-          "line": 549,
+          "line": 573,
           "column": 5,
-          "index": 14308
+          "index": 15118
         }
       },
       "type": "function",
@@ -1192,14 +1292,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 555,
+          "line": 579,
           "column": 4,
-          "index": 14414
+          "index": 15224
         },
         "end": {
-          "line": 562,
+          "line": 586,
           "column": 5,
-          "index": 14599
+          "index": 15409
         }
       },
       "type": "function",
@@ -1238,14 +1338,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 570,
+          "line": 594,
           "column": 4,
-          "index": 14810
+          "index": 15620
         },
         "end": {
-          "line": 615,
+          "line": 639,
           "column": 6,
-          "index": 16331
+          "index": 17141
         }
       },
       "appearsIn": []
@@ -1278,14 +1378,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 622,
+          "line": 646,
           "column": 4,
-          "index": 16488
+          "index": 17298
         },
         "end": {
-          "line": 724,
+          "line": 748,
           "column": 5,
-          "index": 20118
+          "index": 20928
         }
       },
       "type": "function",
@@ -1333,14 +1433,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 732,
+          "line": 756,
           "column": 4,
-          "index": 20289
+          "index": 21099
         },
         "end": {
-          "line": 787,
+          "line": 811,
           "column": 5,
-          "index": 22145
+          "index": 22955
         }
       },
       "type": "function",
@@ -1361,14 +1461,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 789,
+          "line": 813,
           "column": 4,
-          "index": 22152
+          "index": 22962
         },
         "end": {
-          "line": 802,
+          "line": 826,
           "column": 5,
-          "index": 22610
+          "index": 23426
         }
       },
       "type": "function",
@@ -1390,14 +1490,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 804,
+          "line": 828,
           "column": 4,
-          "index": 22617
+          "index": 23433
         },
         "end": {
-          "line": 820,
+          "line": 845,
           "column": 5,
-          "index": 23132
+          "index": 23968
         }
       },
       "type": "function",
@@ -1443,14 +1543,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 828,
+          "line": 853,
           "column": 4,
-          "index": 23315
+          "index": 24151
         },
         "end": {
-          "line": 838,
+          "line": 863,
           "column": 5,
-          "index": 23660
+          "index": 24496
         }
       },
       "type": "function",
@@ -1502,14 +1602,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 846,
+          "line": 871,
           "column": 4,
-          "index": 23831
+          "index": 24667
         },
         "end": {
-          "line": 876,
+          "line": 906,
           "column": 5,
-          "index": 24761
+          "index": 25801
         }
       },
       "type": "function",
@@ -1553,14 +1653,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 883,
+          "line": 913,
           "column": 4,
-          "index": 24886
+          "index": 25926
         },
         "end": {
-          "line": 891,
+          "line": 921,
           "column": 5,
-          "index": 25068
+          "index": 26108
         }
       },
       "type": "function",
@@ -1577,14 +1677,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 893,
+          "line": 923,
           "column": 4,
-          "index": 25075
+          "index": 26115
         },
         "end": {
-          "line": 904,
+          "line": 934,
           "column": 5,
-          "index": 25374
+          "index": 26414
         }
       },
       "type": "function",
@@ -1599,6 +1699,7 @@
       "jsdoc": {
         "raw": [
           "*",
+          "     * Sets image source on the DOM element",
           "     * Combines the decorator's image styles with our own image to make sure",
           "     * gradient and backgroundImage decorators work on Images.",
           "     *",
@@ -1609,7 +1710,7 @@
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Combines the decorator's image styles with our own image to make sure\n gradient and backgroundImage decorators work on Images.</p>"
+            "body": "<p>Sets image source on the DOM element\n Combines the decorator's image styles with our own image to make sure\n gradient and backgroundImage decorators work on Images.</p>"
           }
         ],
         "@param": [
@@ -1632,14 +1733,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 913,
+          "line": 944,
           "column": 4,
-          "index": 25631
+          "index": 26715
         },
         "end": {
-          "line": 992,
+          "line": 1023,
           "column": 5,
-          "index": 28518
+          "index": 29602
         }
       },
       "type": "function",
@@ -1653,6 +1754,79 @@
           "type": "string"
         }
       ],
+      "appearsIn": []
+    },
+    "tryReload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tries to display the image in the `source` property again if it has failed to load.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to display the image in the <code>source</code> property again if it has failed to load.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1028,
+          "column": 4,
+          "index": 29716
+        },
+        "end": {
+          "line": 1042,
+          "column": 5,
+          "index": 30044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hasFailedToLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @returns {boolean} If the image in the `source` property failed to load.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} If the image in the <code>source</code> property failed to load.",
+            "type": "boolean",
+            "description": "If the image in the <code>source</code> property failed to load."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1047,
+          "column": 4,
+          "index": 30147
+        },
+        "end": {
+          "line": 1049,
+          "column": 5,
+          "index": 30206
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
       "appearsIn": []
     },
     "__loaderCallback": {
@@ -1691,14 +1865,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1000,
+          "line": 1057,
           "column": 4,
-          "index": 28746
+          "index": 30434
         },
         "end": {
-          "line": 1027,
+          "line": 1091,
           "column": 5,
-          "index": 29560
+          "index": 31484
         }
       },
       "type": "function",
@@ -1750,14 +1924,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1035,
+          "line": 1099,
           "column": 4,
-          "index": 29759
+          "index": 31683
         },
         "end": {
-          "line": 1045,
+          "line": 1109,
           "column": 5,
-          "index": 30038
+          "index": 31962
         }
       },
       "type": "function",
@@ -1810,14 +1984,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 1052,
+          "line": 1116,
           "column": 4,
-          "index": 30258
+          "index": 32182
         },
         "end": {
-          "line": 1120,
+          "line": 1184,
           "column": 5,
-          "index": 32306
+          "index": 34230
         }
       },
       "type": "function",
@@ -1837,14 +2011,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 1129,
+        "line": 1193,
         "column": 2,
-        "index": 32502
+        "index": 34426
       },
       "end": {
-        "line": 1142,
+        "line": 1206,
         "column": 3,
-        "index": 32844
+        "index": 34768
       }
     }
   }

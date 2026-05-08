@@ -32,7 +32,7 @@
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
   /* ToastManager.js
    *
-   * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+   * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
    *
    * This program is free software; you can redistribute it and/or modify it
    * under the terms of the GNU General Public License as published by the Free
@@ -111,24 +111,24 @@
     ******************************************************
     */
     members: {
-      __P_757_0: null,
-      __P_757_1: null,
-      __P_757_2: false,
+      __P_773_0: null,
+      __P_773_1: null,
+      __P_773_2: false,
       /**
        * Attach to dom element and style it
        */
       _init: function _init() {
-        if (!this.__P_757_0) {
+        if (!this.__P_773_0) {
           // check if there is one (might be restored from cache)
-          this.__P_757_0 = document.querySelector(this.getRootElementId());
-          if (!this.__P_757_0) {
-            this.__P_757_0 = qx.dom.Element.create('div', {
+          this.__P_773_0 = document.querySelector(this.getRootElementId());
+          if (!this.__P_773_0) {
+            this.__P_773_0 = qx.dom.Element.create('div', {
               id: this.getRootElementId()
             });
           }
         }
         if (document.querySelectorAll(this.getRootElementId()).length === 0) {
-          document.body.appendChild(this.__P_757_0);
+          document.body.appendChild(this.__P_773_0);
         }
         if (document.querySelectorAll('#ToastTemplate').length === 0) {
           var template = qx.dom.Element.create('script', {
@@ -138,8 +138,11 @@
           });
           document.body.appendChild(template);
         }
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_757_0, 'ToastTemplate');
-        qx.event.Registration.addListener(this.__P_757_0, 'tap', this._onListTap, this);
+        if (this._list) {
+          this._list.dispose();
+        }
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_773_0, 'ToastTemplate');
+        qx.event.Registration.addListener(this.__P_773_0, 'tap', this._onListTap, this);
       },
       _performAction: function _performAction(message) {
         if (message.actions) {
@@ -155,17 +158,17 @@
     ******************************************************
     */
     destruct: function destruct() {
-      if (this.__P_757_1) {
-        this.__P_757_1.stop();
-        this.__P_757_1 = null;
+      if (this.__P_773_1) {
+        this.__P_773_1.stop();
+        this.__P_773_1 = null;
       }
-      if (this.__P_757_0) {
-        this.__P_757_0.parentNode.removeChild(this.__P_757_0);
-        this.__P_757_0 = null;
+      if (this.__P_773_0) {
+        this.__P_773_0.parentNode.removeChild(this.__P_773_0);
+        this.__P_773_0 = null;
       }
     }
   });
   cv.ui.ToastManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToastManager.js.map?dt=1735383886075
+//# sourceMappingURL=ToastManager.js.map?dt=1778272856892

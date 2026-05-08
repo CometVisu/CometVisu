@@ -1,6 +1,6 @@
 /* helper-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -315,13 +315,14 @@ beforeAll(function (done) {
 
   try {
     cv.Config.enableCache = false;
+    cv.Config.timeoutStructureLoad = 5000;
     // always test in 'en' locale
     qx.locale.Manager.getInstance().setLocale('en');
     const client = cv.io.BackendConnections.initBackendClients();
     const templateEngine = cv.TemplateEngine.getInstance();
     const model = cv.data.Model.getInstance();
     client.update = model.update.bind(model); // override clients update function
-    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch((e) => {
+    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch(e => {
       console.error('error loading parts:', e);
     }).then(() => {
       resetApplication();
@@ -330,12 +331,45 @@ beforeAll(function (done) {
   } catch (e) {
     console.error(e);
   }
+
+  /**
+   *
+   * @param name {string} HTML element tag-name
+   * @param attributes {object} HTML element attributes
+   * @param content {string} HTML element content
+   * @param append {boolean|string} append to body, or 'code' to return the HTML code
+   * @returns {ChildNode|string}
+   */
+  this.createHTMLElement = (name, attributes, content, append) => {
+    let attributesHTML = '';
+    for (const key in attributes) {
+      attributesHTML += `${key}="${attributes[key]}" `;
+    }
+    const html = `<${name} ${attributesHTML}>${content}</${name}>`;
+    if (append === 'code') {
+      return html;
+    }
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    const elem = template.content.firstChild;
+    if (append === true) {
+      document.body.appendChild(elem);
+    }
+    return elem;
+  };
+
+  this.createTileWidgetWithComponent = (name, attributes = {}, content = '', widgetName = 'cv-widget', widgetAttributes = {}) => {
+    const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
+    this.container = this.createHTMLElement(widgetName, widgetAttributes, `<cv-tile>${componentHtml}</cv-tile>`, true);
+    return this.container.querySelector(`${widgetName} > cv-tile > ${name}`);
+  };
 });
 
 beforeEach(function () {
   cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
   cv.Config.loadedStructure = 'pure';
   qx.core.Init.getApplication().setStructureLoaded(true);
+  cv.Config.unitTesting = true;
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
@@ -365,6 +399,18 @@ afterEach(function () {
     delete subs[topic];
   });
   cv.ui.structure.pure.layout.ResizeHandler.reset();
+
+  // dispose notification list controllers before clearing DOM to prevent
+  // stale template references causing 'Cannot read innerHTML of null'
+  [cv.ui.NotificationCenter, cv.ui.ToastManager].forEach(function(Clazz) {
+    var instance = Clazz.getInstance();
+    instance.clearMessages();
+    if (instance._list) {
+      instance._list.setModel(null);
+      instance._list.dispose();
+      instance._list = null;
+    }
+  });
 
   if (this.container) {
     try {
