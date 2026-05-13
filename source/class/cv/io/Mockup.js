@@ -36,7 +36,7 @@ qx.Class.define('cv.io.Mockup', {
   construct() {
     super();
     cv.io.Client.CLIENTS.push(this);
-    // make some functions accessible for the protractor runner
+    // expose test helpers on window for browser automation
     window._receive = this.receive.bind(this);
     const model = cv.data.Model.getInstance();
     window._widgetDataGet = model.getWidgetData.bind(model);
@@ -167,7 +167,7 @@ qx.Class.define('cv.io.Mockup', {
         return;
       }
       const ts = new Date().getTime();
-      // store in window, to make it accessible for protractor
+      // store on window so browser tests can inspect the last write
       const lastWrite = {
         address: address,
         value: value,
@@ -187,7 +187,7 @@ qx.Class.define('cv.io.Mockup', {
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
-      // store in window, to make it accessible for protractor
+      // store on window so browser tests can inspect the write history
       window.writeHistory.push(lastWrite);
     },
 

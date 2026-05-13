@@ -16,7 +16,7 @@ on:
     tags-ignore:
       - '*'
 env:
-  NODE_VERSION: '20.18'
+  NODE_VERSION: '24'
 jobs:
   cancel:
     name: 'Cancel Previous Runs'
@@ -32,14 +32,14 @@ jobs:
     if: github.repository == 'CometVisu/CometVisu'
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.5.4
+      - uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
       - name: Pull docker helper
@@ -48,11 +48,11 @@ jobs:
         run: |
           python -m pip install -r utils/requirements.txt
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         env:
           cache-name: cache-node-modules
         with:

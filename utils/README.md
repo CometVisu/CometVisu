@@ -10,7 +10,7 @@ apt-get install nodejs-legacy imagemagick
 
 Install required packages
 ```
-npm install jsdoc libxmljs-mt libxml-xsd easyimage
+npm install jsdoc libxmljs-mt libxml-xsd
 ```
 
 generate doc with

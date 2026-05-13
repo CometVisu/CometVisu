@@ -1,5 +1,5 @@
 const fs = require('fs');
-const chmodr = require('chmodr');
+const { chmodr } = require('chmodr');
 const fg = require('fast-glob');
 const fse = require('fs-extra');
 const path = require('path');

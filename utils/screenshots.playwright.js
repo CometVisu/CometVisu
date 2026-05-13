@@ -1,6 +1,6 @@
 /**
  * Generate screenshots from widget examples using Playwright
- * Replaces the Protractor-based screenshot generation
+ * Browser-driven screenshot generation used by the Playwright workflow
  *
  * @author Tobias Bräutigam
  * @since 2025
