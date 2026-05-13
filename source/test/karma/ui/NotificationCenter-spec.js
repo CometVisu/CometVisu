@@ -44,7 +44,7 @@ describe('test the NotificationCenter', function () {
     expect(severities.indexOf('urgent')).toBeGreaterThanOrEqual(0);
   });
 
-  it('should toggle the visibility', function(done) {
+  it('should toggle the visibility', function() {
     var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector('#notification-center');
 
@@ -52,17 +52,14 @@ describe('test the NotificationCenter', function () {
 
     expect(element.style.transform).toEqual('');
     center.show();
-    setTimeout(function() {
-      expect(element.style.transform).toEqual('translate(-300px)');
-      center.hide();
-      setTimeout(function() {
-        expect(element.style.transform).toEqual('translate(0px)');
-        done();
-      }, 10);
-    }, 10);
+
+    expect(element.style.transform).toEqual('translate(-300px)');
+    center.hide();
+
+    expect(element.style.transform).toEqual('translate(0px)');
   });
 
-  it('should toggle the badge visibility', function(done) {
+  it('should toggle the badge visibility', function() {
     var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector('#notification-center .badge');
 
@@ -70,14 +67,11 @@ describe('test the NotificationCenter', function () {
 
     expect(element.classList.contains('hidden')).toBeFalsy();
     center.disableBadge(true);
-    setTimeout(function() {
-      expect(element.classList.contains('hidden')).toBeTruthy();
-      center.disableBadge(false);
-      setTimeout(function() {
-        expect(element.classList.contains('hidden')).toBeFalsy();
-        done();
-      }, 10);
-    }, 10);
+
+    expect(element.classList.contains('hidden')).toBeTruthy();
+    center.disableBadge(false);
+
+    expect(element.classList.contains('hidden')).toBeFalsy();
   });
 
   it('should handle messages', function() {
