@@ -29,6 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
       - run: npm install
+      - name: Patch installed Qooxdoo sourcemap handling
+        run: npm run apply-qx-embedded-package-sourcemap-patch
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:

@@ -26,11 +26,11 @@ msgstr "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Tic
 msgid "Action recording"
 msgstr "Benutzerinteraktionen aufzeichnen"
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
@@ -1301,7 +1301,7 @@ msgstr "%d. %b"
 msgid "%b %d"
 msgstr "%d. %b"
 
-#: cv/ui/structure/tile/components/Chart.js
+#. NO LONGER USED
 msgid "%B"
 msgstr "%B"
 

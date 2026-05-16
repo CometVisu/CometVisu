@@ -41,7 +41,7 @@ qx.Class.define('cv.ui.PopupHandler', {
 
       // register to topics
       cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-        'cv.error': {
+        'cv.error.*': {
           type: 'error',
           icon: 'message_attention'
         },

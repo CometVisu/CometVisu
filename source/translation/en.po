@@ -26,11 +26,11 @@ msgstr ""
 msgid "Action recording"
 msgstr ""
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Send error to sentry.io"
 msgstr ""
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
@@ -1421,10 +1421,14 @@ msgstr ""
 msgid "%b %d"
 msgstr ""
 
-#: cv/ui/structure/tile/components/Chart.js
+#. NO LONGER USED
 msgid "%B"
 msgstr ""
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "%Y"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b"
 msgstr ""
