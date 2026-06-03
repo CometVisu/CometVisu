@@ -195,6 +195,15 @@ function getBuildSuffix(packageVersion) {
   return suffix;
 }
 
+/**
+ *
+ * @param filePath
+ */
+function addWritePermissions(filePath) {
+  const stats = fs.statSync(filePath);
+  fs.chmodSync(filePath, stats.mode | 0o222);
+}
+
 // grunt
 module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json') || {};
@@ -351,37 +360,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // protractor end-to-end tests
-    protractor: {
-      all: {
-        options: {
-          configFile: 'source/test/protractor/conf.js', // Default config file,
-          args: {
-            chromeDriver: process.env.WEBDRIVER_PATH
-          }
-        }
-      },
-      screenshots: {
-        options: {
-          configFile: 'utils/protractor.conf.js',
-          args: {
-            params: {
-              source: grunt.option('source'),
-              subDir: grunt.option('subDir'),
-              screenshots: grunt.option('files'),
-              target: grunt.option('target'),
-              targetDir: grunt.option('targetDir'),
-              forced: grunt.option('forced'),
-              verbose: grunt.option('verbose'),
-              language: grunt.option('lang')
-            },
-            chromeDriver: process.env.WEBDRIVER_PATH,
-            capabilities: grunt.option('verbose') ? {loggingPrefs:{browser: 'ALL'}} : {}
-          }
-        }
-      }
-    },
-
     shell: {
       updateicons: {
         command: [
@@ -460,33 +438,29 @@ module.exports = function(grunt) {
           return env.length > 0 ? env.join(' ') + ' ' + cmd : cmd;
         }
       }
-    },
-
-    scaffold: {
-      widgetTest: {
-        options: {
-          questions: [{
-            name: 'widgetName',
-            type: 'input',
-            message: 'Widget name:'
-          }],
-          filter: function (result) {
-            result.testFileName = result.widgetName.substr(0, 1).toUpperCase() + result.widgetName.substr(1);
-            return result;
-          },
-          template: {
-            'skeletons/widget-test.js': 'source/class/test/structure/pure/{{testFileName}}-spec.js'
-          },
-          after: function(result) {
-            var filename = 'source/class/test/structure/pure/'+result.testFileName+'-spec.js';
-            var test = grunt.file.read(filename, { encoding: 'utf8' }).toString();
-            grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
-          }
-        }
-      }
     }
   };
   grunt.initConfig(config);
+
+  grunt.registerTask('chmod', function(target) {
+    const chmodConfig = grunt.config.get('chmod') || {};
+    const targetNames = target ? [target] : Object.keys(chmodConfig).filter(name => name !== 'options');
+
+    if (targetNames.length === 0) {
+      grunt.fail.fatal('No chmod targets configured.');
+    }
+
+    targetNames.forEach(function(targetName) {
+      const targetConfig = chmodConfig[targetName] || {};
+      const files = [...new Set(grunt.file.expand(targetConfig.src || []))];
+
+      files.forEach(function(filePath) {
+        addWritePermissions(filePath);
+      });
+
+      grunt.log.ok('Updated write permissions for ' + files.length + ' path(s) in target ' + targetName + '.');
+    });
+  });
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
@@ -501,8 +475,8 @@ module.exports = function(grunt) {
     });
 
     const filename = baseDir + '/index.html';
-    config = grunt.file.read(filename, { encoding: 'utf8' }).toString();
-    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
+    const indexFile = grunt.file.read(filename, { encoding: 'utf8' }).toString();
+    grunt.file.write(filename, indexFile.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   // custom task to add the KNX user forum icons to the IconConfig.js:
@@ -528,16 +502,13 @@ module.exports = function(grunt) {
     );
   });
 
-    // Load the plugin tasks
+  // Load the plugin tasks
   grunt.loadNpmTasks('grunt-bump');
-  grunt.loadNpmTasks('grunt-chmod');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-scaffold');
   grunt.loadNpmTasks('grunt-shell');
 
   // Default task runs all code checks, updates the banner and builds the release
@@ -548,8 +519,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release-client', ['shell:buildClient', 'compress:qxClient', 'compress:jqClient']);
 
-  grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
-  grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
   grunt.registerTask('screenshots-pw', ['connect', 'shell:playwrightScreenshots']);
 
   // update icon submodule

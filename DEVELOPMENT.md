@@ -194,16 +194,6 @@ grunt screenshots-pw --lang=de
 grunt screenshots-pw --source=doc/manual/_screenshots/
 ```
 
-### Legacy Protractor System
-
-The original Protractor-based screenshot system is still available:
-
-```bash
-grunt screenshots
-```
-
-Note: Protractor is deprecated and the Playwright version should be preferred for new development.
-
 Running in docker container
 ---------------------------
 

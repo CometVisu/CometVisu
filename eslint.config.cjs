@@ -3,7 +3,6 @@
 const { FlatCompat } = require('@eslint/eslintrc');
 const globals = require('globals');
 const qxBrowserConfig = require('@qooxdoo/eslint-config-qx/browser');
-const protractorPlugin = require('eslint-plugin-protractor');
 const { eslintConfig } = require('./package.json');
 
 const compat = new FlatCompat({
@@ -17,10 +16,6 @@ const {
 } = eslintConfig;
 
 delete legacyConfig.root;
-
-const disableProtractorRecommendedRules = Object.fromEntries(
-  Object.keys(protractorPlugin.configs.recommended.rules).filter(r => r !== 'protractor/use-count-method' && r !== 'protractor/no-shadowing').map(ruleName => [ruleName, 'off'])
-);
 
 /**
  *
@@ -81,36 +76,12 @@ const qooxdooCompatPlugin = {
 
 /**
  *
- * @param rules
- */
-function filterOutProtractorRules(rules = {}) {
-  return Object.fromEntries(Object.entries(rules).filter(([ruleName]) => !ruleName.startsWith('protractor/')));
-}
-
-/**
- *
- * @param override
- */
-function sanitizeLegacyOverride(override) {
-  return {
-    ...override,
-    rules: filterOutProtractorRules(override.rules)
-  };
-}
-
-/**
- *
  * @param config
  */
 function sanitizeLegacyConfig(config) {
   return {
     ...config,
-    extends: (config.extends || []).filter(
-      configName => configName !== '@qooxdoo/qx/browser' && configName !== 'plugin:protractor/recommended'
-    ),
-    plugins: (config.plugins || []).filter(pluginName => pluginName !== 'protractor'),
-    rules: filterOutProtractorRules(config.rules),
-    overrides: (config.overrides || []).map(sanitizeLegacyOverride)
+    extends: (config.extends || []).filter(configName => configName !== '@qooxdoo/qx/browser')
   };
 }
 
@@ -132,23 +103,9 @@ module.exports = [
   {
     files: ['.github/actions/github/index.js'],
     languageOptions: {
-      parser: require('@babel/eslint-parser'),
+      ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: globals.node,
-      parserOptions: {
-        requireConfigFile: false,
-        babelOptions: {
-          parserOpts: {
-            plugins: ['importAssertions']
-          }
-        }
-      }
-    }
-  },
-  {
-    files: ['skeletons/widget-test.js'],
-    languageOptions: {
-      globals: globals.jasmine
+      globals: globals.node
     }
   },
   ...qxBrowserConfig,
@@ -181,36 +138,12 @@ module.exports = [
   {
     files: ['.github/actions/github/index.js'],
     languageOptions: {
-      parser: require('@babel/eslint-parser'),
+      ecmaVersion: 'latest',
       sourceType: 'module',
-      globals: globals.node,
-      parserOptions: {
-        requireConfigFile: false,
-        babelOptions: {
-          parserOpts: {
-            plugins: ['importAssertions']
-          }
-        }
-      }
+      globals: globals.node
     },
     rules: {
       'no-console': 'off'
     }
-  },
-  {
-    files: ['skeletons/widget-test.js'],
-    languageOptions: {
-      globals: globals.jasmine
-    }
-  },
-  {
-    files: ['**/*.js'],
-    ignores: [
-      'source/test/protractor/**/*.js',
-      'source/test/protractor/*.js',
-      'utils/screenshots-spec.js',
-      'utils/compile/**/*.js'
-    ],
-    rules: disableProtractorRecommendedRules
   }
 ];

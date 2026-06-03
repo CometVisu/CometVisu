@@ -19,7 +19,7 @@
 
 /**
  * Create mock config page test object for Playwright
- * Replaces the Protractor version
+ * Mock page object used by the Playwright test helpers
  *
  * @author Tobias Bräutigam
  * @since 2025

@@ -1,7 +1,7 @@
 /**
  * Playwright screenshot generation config
- * 
- * Replaces the deprecated Protractor configuration
+ *
+ * Shared config for screenshot generation with Playwright
  *
  * @author Tobias Bräutigam
  * @since 2025
