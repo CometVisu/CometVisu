@@ -7,7 +7,6 @@
     "url": "https://github.com/cometvisu/cometvisu.git"
   },
   "scripts": {
-    "apply-qx-embedded-package-sourcemap-patch": "node utils/compile/apply-qx-embedded-package-sourcemap-patch.js",
     "bundle-monaco": "node utils/compile/bundle-monaco.js",
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
