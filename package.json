@@ -88,7 +88,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.9.2",
+    "@qooxdoo/framework": "^7.9.3",
     "@sentry/browser": "^10.53.1",
     "crc-32": "^1.2.2",
     "monaco-editor": "^0.55.1",
