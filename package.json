@@ -58,7 +58,7 @@
     "eslint": "^10.3.0",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.2.2",
-    "eslint-plugin-jsdoc": "^62.9.0",
+    "eslint-plugin-jsdoc": "^63.0.2",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.5",
     "globals": "^17.6.0",
