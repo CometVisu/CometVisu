@@ -307,10 +307,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         span.textContent = element.getAttribute('title');
         this.appendToHeader(title);
       }
-
-      if (title && this._titleString === null) {
+      if (this._titleString === null) {
         // save base title for updating
-        this._titleString = title.textContent.trim();
+        if (element.hasAttribute('title')) {
+          this._titleString = element.getAttribute('title');  
+        } else {
+          this._titleString = title ? title.textContent.trim() : '';
+        }
       }
 
       let seriesSelection = [];

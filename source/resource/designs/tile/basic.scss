@@ -1609,6 +1609,8 @@ body {
         meter, progress {
             width: calc(var(--tileCellWidth) * #{$tileColumns} - var(--spacing)*2);
             border: 0;
+            height: 6px;
+            vertical-align: middle;
         }
 
         &.colspan-2 meter, &.colspan-2 progress {

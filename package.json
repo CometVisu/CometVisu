@@ -11,7 +11,7 @@
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
-    "build": "qx compile --watch -t build --set fakeLogin=true",
+    "build": "qx compile --watch -t build --set fakeLogin=true --save-source-in-map",
     "make-cv": "qx deploy --out=release --clean --source-maps --save-source-in-map",
     "compile": "qx compile",
     "api": "qx compile --set apiviewer=true -t build",
@@ -58,7 +58,7 @@
     "eslint": "^10.3.0",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.2.2",
-    "eslint-plugin-jsdoc": "^62.9.0",
+    "eslint-plugin-jsdoc": "^63.0.2",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.5",
     "globals": "^17.6.0",
@@ -88,7 +88,7 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.9.2",
+    "@qooxdoo/framework": "^7.9.3",
     "@sentry/browser": "^10.53.1",
     "crc-32": "^1.2.2",
     "monaco-editor": "^0.55.1",

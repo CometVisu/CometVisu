@@ -27,7 +27,7 @@
     "translation": "source/translation"
   },
   "requires": {
-    "@qooxdoo/framework": "^7.2.1",
+    "@qooxdoo/framework": "^7.9.3",
     "johnspackman/UploadMgr": "^2.0.0",
     "qooxdoo/qxl.versionlabel": "^2.0.0",
     "qooxdoo/qxl.apiviewer": "^2.0.0",

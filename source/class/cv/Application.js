@@ -23,6 +23,7 @@
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icons/*)
+ * @asset(libs/source-map.min.js)
  * @asset(sentry/*)
  * @asset(test/*)
  *
@@ -276,7 +277,11 @@ qx.Class.define('cv.Application', {
   members: {
     _blocker: null,
     __appReady: null,
+    __errorNotificationSequence: 0,
     _isCached: null,
+    __sourceMapConsumers: null,
+    __sourceMapLibraryPromise: null,
+    __sourceMapSupportUnavailable: false,
 
     /**
      * Toggle the {@link qx.bom.Blocker} visibility
@@ -589,6 +594,280 @@ qx.Class.define('cv.Application', {
         });
     },
 
+    __formatErrorPopupMessage(message) {
+      return '<pre>' + message + '</pre>';
+    },
+
+    __isMappableStackFrame(fileName) {
+      return Boolean(fileName) &&
+        !['<anonymous>', 'native'].includes(fileName) &&
+        !fileName.startsWith('eval') &&
+        /\.js(?:[?#]|$)/.test(fileName);
+    },
+
+    __parseStackFrame(line) {
+      if (!line) {
+        return null;
+      }
+
+      const trimmed = line.trim();
+      let match = /^at\s+(.*?)\s+\((.+):(\d+):(\d+)\)$/.exec(trimmed);
+      if (match) {
+        return {
+          functionName: match[1],
+          fileName: match[2],
+          lineNumber: parseInt(match[3], 10),
+          columnNumber: parseInt(match[4], 10)
+        };
+      }
+
+      match = /^at\s+(.+):(\d+):(\d+)$/.exec(trimmed);
+      if (match) {
+        return {
+          functionName: null,
+          fileName: match[1],
+          lineNumber: parseInt(match[2], 10),
+          columnNumber: parseInt(match[3], 10)
+        };
+      }
+
+      match = /^(.*?)@(.+):(\d+):(\d+)$/.exec(trimmed);
+      if (match) {
+        return {
+          functionName: match[1] || null,
+          fileName: match[2],
+          lineNumber: parseInt(match[3], 10),
+          columnNumber: parseInt(match[4], 10)
+        };
+      }
+
+      return null;
+    },
+
+    __normalizeResourceUrl(url) {
+      try {
+        return new URL(url, window.location.href).toString();
+      } catch (error) {
+        return null;
+      }
+    },
+
+    __getSourceMapUrl(scriptUrl) {
+      const url = new URL(scriptUrl, window.location.href);
+      url.pathname += '.map';
+      return url.toString();
+    },
+
+    __simplifyMappedSource(source, scriptUrl) {
+      const pathMarkers = [
+        '/source/class/',
+        '/client/source/class/',
+        '/node_modules/@qooxdoo/framework/source/class/'
+      ];
+      for (const marker of pathMarkers) {
+        const markerPosition = source.indexOf(marker);
+        if (markerPosition !== -1) {
+          return source.substring(markerPosition + marker.length);
+        }
+      }
+
+      try {
+        const resolved = new URL(source, scriptUrl);
+
+        if (resolved.origin === window.location.origin) {
+          return resolved.pathname.startsWith('/') ? resolved.pathname.substring(1) : resolved.pathname;
+        }
+        return resolved.toString();
+      } catch (error) {
+        return source;
+      }
+    },
+
+    __isFrameworkMappedSource(source) {
+      return source.includes('/node_modules/@qooxdoo/framework/source/class/') || source.startsWith('qx/');
+    },
+
+    __formatGeneratedFrame(frame) {
+      const normalizedUrl = this.__normalizeResourceUrl(frame.fileName);
+      let fileName = frame.fileName;
+      if (normalizedUrl) {
+        try {
+          const url = new URL(normalizedUrl);
+          fileName = url.pathname.startsWith('/') ? url.pathname.substring(1) : url.pathname;
+        } catch (error) {
+          fileName = frame.fileName;
+        }
+      }
+      let location = fileName + ':' + frame.lineNumber;
+      if (frame.columnNumber !== null) {
+        location += ':' + frame.columnNumber;
+      }
+      return '\t' + (frame.functionName || '<anonymous>') + ' (' + location + ')';
+    },
+
+    async __ensureSourceMapSupport() {
+      if (window.sourceMap && window.sourceMap.SourceMapConsumer) {
+        return true;
+      }
+      if (this.__sourceMapSupportUnavailable) {
+        return false;
+      }
+      if (!this.__sourceMapLibraryPromise) {
+        const scriptUrl = qx.util.ResourceManager.getInstance().toUri('libs/source-map.min.js');
+        this.__sourceMapLibraryPromise = cv.util.ScriptLoader
+          .includeScript(scriptUrl)
+          .then(() => Boolean(window.sourceMap && window.sourceMap.SourceMapConsumer))
+          .catch(error => {
+            this.debug('failed to load source-map runtime', error);
+            this.__sourceMapSupportUnavailable = true;
+            return false;
+          });
+      }
+      return this.__sourceMapLibraryPromise;
+    },
+
+    async __loadSourceMapConsumer(scriptUrl) {
+      const response = await window.fetch(this.__getSourceMapUrl(scriptUrl));
+      if (!response.ok) {
+        throw new Error('failed to load source map for ' + scriptUrl + ': ' + response.status);
+      }
+      const mapData = await response.json();
+      return new window.sourceMap.SourceMapConsumer(mapData);
+    },
+
+    async __getSourceMapConsumer(scriptUrl) {
+      const hasSourceMapSupport = await this.__ensureSourceMapSupport();
+      if (!hasSourceMapSupport) {
+        return null;
+      }
+
+      const normalizedUrl = this.__normalizeResourceUrl(scriptUrl);
+      if (!normalizedUrl) {
+        return null;
+      }
+
+      if (!this.__sourceMapConsumers) {
+        this.__sourceMapConsumers = {};
+      }
+      if (!Object.prototype.hasOwnProperty.call(this.__sourceMapConsumers, normalizedUrl)) {
+        this.__sourceMapConsumers[normalizedUrl] = this.__loadSourceMapConsumer(normalizedUrl)
+          .catch(error => {
+            this.debug('failed to load source map', normalizedUrl, error);
+            return null;
+          });
+      }
+      return this.__sourceMapConsumers[normalizedUrl];
+    },
+
+    async __mapStackFrame(frame) {
+      if (!this.__isMappableStackFrame(frame.fileName)) {
+        return null;
+      }
+
+      const scriptUrl = this.__normalizeResourceUrl(frame.fileName);
+      if (!scriptUrl) {
+        return null;
+      }
+
+      const consumer = await this.__getSourceMapConsumer(scriptUrl);
+      if (!consumer) {
+        return null;
+      }
+
+      const originalPosition = consumer.originalPositionFor({
+        line: frame.lineNumber,
+        column: Math.max(frame.columnNumber - 1, 0)
+      });
+      if (!originalPosition || !originalPosition.source || !originalPosition.line) {
+        return null;
+      }
+
+      return {
+        functionName: originalPosition.name || frame.functionName || '<anonymous>',
+        source: this.__simplifyMappedSource(originalPosition.source, scriptUrl),
+        sourceType: this.__isFrameworkMappedSource(originalPosition.source) ? 'framework' : 'application',
+        lineNumber: originalPosition.line,
+        columnNumber: originalPosition.column !== null ? originalPosition.column + 1 : null
+      };
+    },
+
+    async __mapErrorStack(ex) {
+      if (!ex || !ex.stack) {
+        return null;
+      }
+
+      const frames = ex.stack
+        .split('\n')
+        .map(this.__parseStackFrame, this)
+        .filter(Boolean);
+      if (frames.length === 0) {
+        return null;
+      }
+
+      const mappedFrames = [];
+      const unresolvedFrames = [];
+      for (const frame of frames) {
+        const mappedFrame = await this.__mapStackFrame(frame);
+        if (mappedFrame) {
+          mappedFrames.push(mappedFrame);
+        } else if (this.__isMappableStackFrame(frame.fileName)) {
+          unresolvedFrames.push(frame);
+        }
+      }
+
+      const applicationFrames = mappedFrames.filter(frame => frame.sourceType === 'application');
+      if (applicationFrames.length > 0) {
+        return applicationFrames
+          .slice(0, 8)
+          .map(frame => {
+            let sourceLocation = frame.source + ':' + frame.lineNumber;
+            if (frame.columnNumber !== null) {
+              sourceLocation += ':' + frame.columnNumber;
+            }
+            return '\t' + frame.functionName + ' (' + sourceLocation + ')';
+          })
+          .join('\n');
+      }
+
+      if (unresolvedFrames.length > 0) {
+        return [
+          'No sourcemap entries for the top generated stack frames:',
+          unresolvedFrames.slice(0, 4).map(this.__formatGeneratedFrame, this).join('\n')
+        ].join('\n');
+      }
+
+      if (mappedFrames.length > 0) {
+        return [
+          'Only framework-internal frames could be resolved:',
+          mappedFrames
+            .slice(0, 4)
+            .map(frame => {
+              let sourceLocation = frame.source + ':' + frame.lineNumber;
+              if (frame.columnNumber !== null) {
+                sourceLocation += ':' + frame.columnNumber;
+              }
+              return '\t' + frame.functionName + ' (' + sourceLocation + ')';
+            })
+            .join('\n')
+        ].join('\n');
+      }
+
+      return null;
+    },
+
+    async __updateGlobalErrorNotification(ex, exString, notification, sequence) {
+      try {
+        const mappedStack = await this.__mapErrorStack(ex);
+        if (!mappedStack || sequence !== this.__errorNotificationSequence) {
+          return;
+        }
+        notification.message = this.__formatErrorPopupMessage(exString + '\nMapped Stack:\n' + mappedStack);
+        cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      } catch (error) {
+        this.debug('failed to remap stack trace', error);
+      }
+    },
+
     __globalErrorHandler(ex) {
       // connect client data for Bug-Report
       let exString = '';
@@ -651,13 +930,15 @@ qx.Class.define('cv.Application', {
           }
         }
       }
+      const sequence = ++this.__errorNotificationSequence;
 
       const notification = {
-        topic: 'cv.error',
+        topic: 'cv.error.' + sequence,
         target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr('An error occured'),
-        message: '<pre>' + (exString || ex.stack) + '</pre>',
+        message: this.__formatErrorPopupMessage(exString || ex.stack),
         severity: 'urgent',
+        unique: true,
         deletable: false,
         actions: {
           optionGroup: {
@@ -734,12 +1015,17 @@ qx.Class.define('cv.Application', {
           });
         }
       }
+
+      
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      this.__updateGlobalErrorNotification(ex, exString || ex.stack, notification, sequence);
     },
 
     throwError: qx.core.Environment.select('qx.globalErrorHandling', {
       true() {
-        window.onerror(new Error('test error'));
+        qx.event.Timer.once(() => {
+          throw new Error('sourcemap test');
+        }, this, 100);
       },
       false: null
     }),
