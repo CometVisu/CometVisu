@@ -1,7 +1,7 @@
-/* ActionRegistry.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* ActionRegistry.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Global notification handler that routes messages topic-dependent to different {@link cv.core.notifications.IHandler}
@@ -44,12 +45,9 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
      * @param type {String} action type
      * @param handler {cv.core.notifications.IActionHandler}
      */
-    registerActionHandler(type, handler) {
+    registerActionHandler: function(type, handler) {
       if (this.__handlers[type]) {
-        qx.log.Logger.warn(
-          this,
-          'there is already an action handler registered for \'' + type + '\' action. replacing now'
-        );
+        qx.log.Logger.warn(this, 'there is already an action handler registered for \''+type+'\' action. replacing now');
       }
       this.__handlers[type] = handler;
     },
@@ -59,7 +57,7 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
      *
      * @param type {String} action type
      */
-    unregisterActionHandler(type) {
+    unregisterActionHandler: function(type) {
       if (this.__handlers[type]) {
         delete this.__handlers[type];
       }
@@ -71,11 +69,11 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
      * @param config {Map?} additional parameters that should be passed to the action handlers constructor
      * @return {cv.core.notifications.IActionHandler|null}
      */
-    getActionHandler(type, config) {
+    getActionHandler: function(type, config) {
       if (this.__handlers[type]) {
-        return new this.__handlers[type](config);
-      }
-      return null;
+        return new (this.__handlers[type])(config);
+      } 
+        return null;
     },
 
     /**
@@ -86,13 +84,12 @@ qx.Class.define('cv.core.notifications.ActionRegistry', {
      * @param config {Map} additional parameters that should be passed to the action handlers constructor
      * @return {Element|null}
      */
-    createActionElement(type, config) {
+    createActionElement: function(type, config) {
       if (!this.__handlers[type]) {
         qx.log.Logger.error(this, 'no action handler registered for \'%1\' action type', type);
-
         return null;
       }
-      const actionHandler = new this.__handlers[type](config, type);
+      const actionHandler = new (this.__handlers[type])(config);
       return actionHandler.getDomElement();
     }
   }

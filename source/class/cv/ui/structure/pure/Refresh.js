@@ -1,7 +1,7 @@
-/* Refresh.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Refresh.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.
  *
@@ -24,7 +25,7 @@
  * @since 2014
  */
 qx.Class.define('cv.ui.structure.pure.Refresh', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
   /*
@@ -43,21 +44,18 @@ qx.Class.define('cv.ui.structure.pure.Refresh', {
   */
   members: {
     // overridden
-    _onDomReady() {
-      super._onDomReady();
+    _onDomReady: function() {
+      this.base(arguments);
       this.defaultUpdate(undefined, this.getSendValue());
     },
 
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
-    _action() {
-      const clients = cv.io.BackendConnections.getClients();
-      for (const name in clients) {
-        clients[name].restart(true);
-      }
+    _action: function() {
+      cv.TemplateEngine.getInstance().visu.restart(true);
     }
   }
 });

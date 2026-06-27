@@ -5,10 +5,6 @@ inputs:
     description: 'Build target (e.g source, build, deploy)'
     required: true
     default: 'source'
-  node-version:
-    description: 'Node.js version used for npm install and qx compile'
-    required: false
-    default: '24'
   build-options:
     description: 'Additional options for the build process'
     required: false
@@ -17,10 +13,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Use Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
     - name: Install node dependencies
       run: npm install
       shell: bash

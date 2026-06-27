@@ -1,7 +1,7 @@
-/* Transform.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Transform.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * This class defines some default transformations like <code>raw</code>, <code>int</code> and <code>float</code>.
@@ -51,32 +52,30 @@ qx.Class.define('cv.Transform', {
    */
   statics: {
     registry: {
-      raw: {
+      'raw': {
         name: 'Only the RAW value',
-        encode(i) {
+        encode: function (i) {
           return i;
         },
-        decode(i) {
+        decode: function (i) {
           return i;
         }
       },
-
-      int: {
+      'int': {
         name: 'Cast to Int',
-        encode(i) {
+        encode: function (i) {
           return i.toString();
         },
-        decode(i) {
+        decode: function (i) {
           return parseInt(i);
         }
       },
-
-      float: {
+      'float': {
         name: 'Cast to Float',
-        encode(i) {
+        encode: function (i) {
           return i.toString();
         },
-        decode(i) {
+        decode: function (i) {
           return parseFloat(i);
         }
       }
@@ -92,7 +91,7 @@ qx.Class.define('cv.Transform', {
      * @param prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)
      * @param transforms {Object} map of transformations
      */
-    addTransform(prefix, transforms) {
+    addTransform: function (prefix, transforms) {
       for (let [transName, transform] of Object.entries(transforms)) {
         if (transform.link) {
           this.registry[prefix + ':' + transName] = Object.assign({}, transforms[transform.link], transform);
@@ -111,7 +110,7 @@ qx.Class.define('cv.Transform', {
      * @param [scaling] {Number} scale the clipping result by that amount
      * @return {number} the clipped value
      */
-    clip(min, value, max, scaling = 1) {
+    clip: function (min, value, max, scaling = 1) {
       const _value = +value; // enforce number
       return (_value > min ? (_value > max ? max : _value) : min) * scaling;
     },
@@ -125,7 +124,7 @@ qx.Class.define('cv.Transform', {
      * @param [scaling] {Number} scale the clipping result by that amount
      * @return {number} the clipped value
      */
-    clipInt(min, value, max, scaling = 1) {
+    clipInt: function (min, value, max, scaling = 1) {
       const _value = +value; // enforce number
       return Math.round((_value > min ? (_value > max ? max : _value) : min) * scaling);
     },
@@ -133,27 +132,29 @@ qx.Class.define('cv.Transform', {
     /**
      * transform JavaScript to bus value and raw value
      *
-     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} object with both encoded values
      */
-    encodeBusAndRaw(address, value) {
-      const { transform } = address;
-      let { selector, variantInfo } = address;
+    encodeBusAndRaw: function (address, value) {
+      if (cv.Config.testMode === true) {
+        return {bus: value, raw: value};
+      }
+      const {transform} = address;
+      let {selector} = address;
       let basetrans = transform.split('.')[0];
-      const encoding =
-        transform in cv.Transform.registry
-          ? cv.Transform.registry[transform].encode(value, variantInfo)
-          : basetrans in cv.Transform.registry
-          ? cv.Transform.registry[basetrans].encode(value, variantInfo)
-          : value;
+      const encoding = transform in cv.Transform.registry
+        ? cv.Transform.registry[transform].encode(value)
+        : (basetrans in cv.Transform.registry
+          ? cv.Transform.registry[basetrans].encode(value)
+          : value);
 
       if (typeof selector === 'string') {
         let result = {};
         let lastPart = 'start';
         let v = result; // use the fact that `v` is now a reference and not a copy
         while (selector !== '') {
-          const { firstPart, remainingPart } = this.__getFirstElement(selector);
+          const {firstPart, remainingPart} = this.__getFirstElement(selector);
           if (isFinite(firstPart)) {
             v[lastPart] = [];
           } else {
@@ -165,33 +166,37 @@ qx.Class.define('cv.Transform', {
         }
         v[lastPart] = encoding;
         const retval = JSON.stringify(result.start);
-        return { bus: retval, raw: retval };
+        return {bus: retval, raw: retval};
       }
-      return encoding.constructor === Object && 'bus' in encoding && 'raw' in encoding
+      return (encoding.constructor === Object && 'bus' in encoding && 'raw' in encoding)
         ? encoding
-        : { bus: encoding, raw: encoding };
+        : {bus: encoding, raw: encoding};
     },
 
     /**
      * transform JavaScript to bus value
      *
-     * @param {{transform: string, selector?: string, ignoreError?: string}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the encoded value
      */
-    encode(address, value) {
+    encode: function (address, value) {
       return this.encodeBusAndRaw(address, value).bus;
     },
 
     /**
      * transform bus to JavaScript value
-     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object
+     * @param {{transform: string, selector: string?, ignoreError: string?}} address - type of the transformation, as address object
      * @param {*} value - value to transform
      * @return {*} the decoded value
      */
-    decode(address, value) {
-      const { transform, ignoreError } = address;
-      let { selector, variantInfo } = address;
+    decode: function (address, value) {
+      if (cv.Config.testMode === true) {
+        return value;
+      }
+
+      const {transform, ignoreError} = address;
+      let {selector} = address;
       const basetrans = transform.split('.')[0];
 
       if (typeof value === 'string' && selector !== undefined && selector !== null) {
@@ -201,13 +206,11 @@ qx.Class.define('cv.Transform', {
         try {
           let v = JSON.parse(value);
           while (selector !== '') {
-            const { firstPart, remainingPart } = this.__getFirstElement(selector);
+            const {firstPart, remainingPart} = this.__getFirstElement(selector);
             if (typeof v === 'object' && firstPart in v) {
               v = v[firstPart];
             } else {
-              throw new Error(
-                qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v))
-              );
+              throw new Error(qx.locale.Manager.tr('Sub-selector "%1" does not fit to value %2', selector, JSON.stringify(v)));
             }
             if (selector === remainingPart) {
               throw new Error(qx.locale.Manager.tr('Sub-selector error: "%1"', selector));
@@ -223,24 +226,18 @@ qx.Class.define('cv.Transform', {
               severity: 'urgent',
               unique: false,
               deletable: true,
-              message: qx.locale.Manager.tr(
-                'decode: JSON.parse error: %1; selector: "%2"; value: %3',
-                e,
-                selectorOriginal,
-                JSON.stringify(value)
-              )
+              message: qx.locale.Manager.tr('decode: JSON.parse error: %1; selector: "%2"; value: %3', e, selectorOriginal, JSON.stringify(value))
             };
-
             cv.core.notifications.Router.dispatchMessage(message.topic, message);
           }
           return '-';
         }
       }
       return transform in cv.Transform.registry
-        ? cv.Transform.registry[transform].decode(value, variantInfo)
-        : basetrans in cv.Transform.registry
-        ? cv.Transform.registry[basetrans].decode(value, variantInfo)
-        : value;
+        ? cv.Transform.registry[transform].decode(value)
+        : (basetrans in cv.Transform.registry
+          ? cv.Transform.registry[basetrans].decode(value)
+          : value);
     },
 
     /**
@@ -248,22 +245,19 @@ qx.Class.define('cv.Transform', {
      * @param {string} selector - the JSON (sub-)selector
      * @returns {{firstPart: string, remainingPart: string}}
      */
-    __getFirstElement(selector) {
+    __getFirstElement: function (selector) {
       if (selector[0] === '[') {
         const [, firstPart, remainingPart] = selector.match(/^\[([^\]]*)]\.?(.*)/);
         if ((firstPart[0] === '"' || firstPart[0] === '\'') && firstPart[0] === firstPart.substr(-1)) {
-          return {
-            firstPart: firstPart.substr(1, firstPart.length - 2),
-            remainingPart
-          };
+          return {firstPart: firstPart.substr(1, firstPart.length-2), remainingPart};
         } else if (isFinite(firstPart)) {
-          return { firstPart, remainingPart };
+          return {firstPart, remainingPart};
         }
         throw qx.locale.Manager.tr('Sub-selector "%1" has bad first part "%2"', selector, firstPart);
       } else {
         const [, firstPart, remainingPart] = selector.match(/^([^.[]*)\.?(.*)/);
         if (firstPart.length > 0) {
-          return { firstPart, remainingPart };
+          return {firstPart, remainingPart};
         }
         throw qx.locale.Manager.tr('Sub-selector error: "%1"', selector);
       }

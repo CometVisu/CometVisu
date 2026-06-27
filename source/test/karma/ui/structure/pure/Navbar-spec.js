@@ -1,6 +1,6 @@
 /* Navbar-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -27,18 +27,17 @@ describe('testing a navbar widget', function() {
    * @param pos
    */
   function testNavbar(pos) {
-    const controller = cv.ui.structure.pure.Controller.getInstance();
-    controller.initPagePartsHandler();
+    var templateEngine = cv.TemplateEngine.getInstance();
     // eslint-disable-next-line jasmine/no-unsafe-spy
-    spyOn(controller.pagePartsHandler, 'navbarSetSize');
+    spyOn(templateEngine.pagePartsHandler, 'navbarSetSize');
 
-    const bar = document.createElement('div');
-    let barContainerId = 'navbar'+pos[0].toUpperCase() + pos.substring(1);
+    var bar = document.createElement('div');
+    var barContainerId = 'navbar'+pos[0].toUpperCase() + pos.substring(1);
     bar.setAttribute('id', barContainerId);
 
     document.body.appendChild(bar);
 
-    let attrs = {
+    var attrs = {
       'position': pos
     };
     if (pos === 'left') {
@@ -54,7 +53,7 @@ describe('testing a navbar widget', function() {
     qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
 
-    const navbar = document.querySelector('#'+barContainerId+' .navbar');
+    var navbar = document.querySelector('#'+barContainerId+' .navbar');
 
     expect(navbar).not.toBeNull();
     expect(navbar.getAttribute('id')).toBe('id_'+pos+'_navbar');
@@ -64,11 +63,11 @@ describe('testing a navbar widget', function() {
       expect(navbar.querySelector('h2').innerText).toBe('Testbar');
       expect(widget.getScope()).toBe(1);
     } else {
-      expect(controller.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
+      expect(templateEngine.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
       expect(widget.getScope()).toBe(-1);
     }
     document.body.removeChild(bar);
-    controller.pagePartsHandler.navbarSetSize.calls.reset();
+    templateEngine.pagePartsHandler.navbarSetSize.calls.reset();
   }
 
   beforeEach(() => {

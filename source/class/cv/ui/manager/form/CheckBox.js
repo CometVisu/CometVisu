@@ -1,7 +1,7 @@
-/* CheckBox.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* CheckBox.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  *
  */
@@ -28,7 +29,7 @@ qx.Class.define('cv.ui.manager.form.CheckBox', {
   ***********************************************
   */
   members: {
-    _onExecute(e) {
+    _onExecute : function(e) {
       if (this.isTriState()) {
         // toggle between three states
         if (this.getValue() === true) {
@@ -43,8 +44,8 @@ qx.Class.define('cv.ui.manager.form.CheckBox', {
       }
     },
 
-    _applyValue(value, old) {
-      super._applyValue(value, old);
+    _applyValue : function(value, old) {
+      this.base(arguments, value, old);
       if (value === null) {
         this.setLabel(' - ' + this.tr('not set') + ' - ');
       } else {

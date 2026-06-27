@@ -1,6 +1,6 @@
 /* Pagejump-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -74,8 +74,8 @@ describe('testing a pagejump widget', function() {
   });
 
   it('should trigger the pagejumps action', function() {
-    const controller = cv.ui.structure.pure.Controller.getInstance();
-    spyOn(controller, 'scrollToPage');
+    var templateEngine = cv.TemplateEngine.getInstance();
+    spyOn(templateEngine, 'scrollToPage');
 
     var widget = this.createTestElement('pagejump', {
       'target': 'test'
@@ -86,13 +86,13 @@ describe('testing a pagejump widget', function() {
 
     qx.event.Registration.fireEvent(widget.getInteractionElement(), 'tap', qx.event.type.Event, []);
 
-    expect(controller.scrollToPage).toHaveBeenCalledWith('test');
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('test');
   });
 
   it('should trigger the pagejumps action with target path', function() {
-    const controller = cv.ui.structure.pure.Controller.getInstance();
-    spyOn(controller, 'scrollToPage');
-    spyOn(controller, 'getPageIdByPath').and.returnValue('id_1');
+    var templateEngine = cv.TemplateEngine.getInstance();
+    spyOn(templateEngine, 'scrollToPage');
+    spyOn(templateEngine, 'getPageIdByPath').and.returnValue('id_1');
 
     var creator = this.createTestElement('pagejump', {
       'target': 'test',
@@ -104,7 +104,7 @@ describe('testing a pagejump widget', function() {
 
     qx.event.Registration.fireEvent(creator.getInteractionElement(), 'tap', qx.event.type.Event, []);
 
-    expect(controller.scrollToPage).toHaveBeenCalledWith('id_1');
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_1');
   });
 
   it('should test the scrolltopage listener', function() {

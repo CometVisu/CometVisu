@@ -1,7 +1,7 @@
-/* MAnnotation.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* MAnnotation.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,16 +17,18 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute
  */
 qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
+
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
+  construct: function () {
     this.__linkRegex = new RegExp(':ref:[`\'](.+?)[`\']', 'g');
     this.__language = qx.locale.Manager.getInstance().getLanguage() === 'de' ? 'de' : 'en';
   },
@@ -51,18 +53,16 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      */
     __documentationCache: null,
 
-    __getTextNodesByXPath(node, xpath) {
+    __getTextNodesByXPath: function (node, xpath) {
       const texts = [];
       const doc = node.ownerDocument;
       const nsResolver = doc.createNSResolver(doc.documentElement);
       let iterator = doc.evaluate(xpath, node, nsResolver, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
-
       try {
         let thisNode = iterator.iterateNext();
 
         while (thisNode) {
-          texts.push(thisNode.textContent.replaceAll(/``([^`]+)``/g, '<code>$1</code>'));
-
+          texts.push(thisNode.textContent);
           thisNode = iterator.iterateNext();
         }
       } catch (e) {
@@ -76,13 +76,12 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      *
      * @return  array   list of texts, or empty list if none
      */
-    getAppinfo() {
+    getAppinfo: function () {
       if (this.__appInfoCache !== null) {
         return this.__appInfoCache;
       }
       const node = this.getNode();
       const appInfo = this.__getTextNodesByXPath(node, 'xsd:annotation/xsd:appinfo');
-
       const type = this.getType();
       if (type === 'element') {
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
@@ -111,7 +110,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
      *
      * @return  array   list of texts, or empty list if none
      */
-    getDocumentation() {
+    getDocumentation: function () {
       if (this.__documentationCache !== null) {
         return this.__documentationCache;
       }
@@ -146,31 +145,22 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
       return documentation;
     },
 
+
     /**
      * Transform documentation text to link to the online documentation when it
      * contains a reference.
      * @param text
      * @return string The transformed input string.
      */
-    createDocumentationWebLinks(text) {
+    createDocumentationWebLinks: function (text) {
       const language = this.__language;
-      return text.replace(this.__linkRegex, function (match, contents) {
-        const reference = contents.match(/^(.*?) *<([^<]*)>$/);
-        const label = reference ? reference[1] : contents;
-        const key = reference ? reference[2] : contents;
-        const link = cv.ui.manager.model.schema.DocumentationMapping.MAP[key];
-        if (link) {
-          return (
-            '<a class="doclink" target="_blank" href="' +
-            cv.ui.manager.model.schema.DocumentationMapping.MAP._base +
-            language +
-            link +
-            '">' +
-            label +
-            '</a>'
-          );
-        }
-        return label;
+      return text.replace(this.__linkRegex, function(match, contents) {
+        const
+          reference = contents.match(/^(.*?) *<([^<]*)>$/);
+          const label = reference ? reference[1] : contents;
+          const key = reference ? reference[2] : contents;
+
+        return '<a class="doclink" target="_blank" href="' + cv.ui.manager.model.schema.DocumentationMapping.MAP._base + language + cv.ui.manager.model.schema.DocumentationMapping.MAP[key] + '">' + label + '</a>';
       });
     }
   },
@@ -180,7 +170,7 @@ qx.Mixin.define('cv.ui.manager.model.schema.MAnnotation', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     this.__appInfoCache = null;
     this.__documentationCache = null;
     this.__linkRegex = null;

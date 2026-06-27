@@ -1,7 +1,7 @@
-/* Diff.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Diff.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Monaco Texteditor for file content comparison
  */
@@ -28,8 +29,8 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     // this._handledActions = [];
   },
 
@@ -75,16 +76,16 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
   ***********************************************
   */
   members: {
-    _applyEditable(value) {
+    _applyEditable: function(value) {
       if (this._editor) {
-        this._editor.updateOptions({ readOnly: !value });
+        this._editor.updateOptions({readOnly: !value});
       }
     },
 
     // overridden, worker is a singleton and not usable for the diff editor
-    _initWorker() {},
+    _initWorker: function () {},
 
-    _draw() {
+    _draw: function () {
       if (!window.monaco) {
         cv.ui.manager.editor.Source.load(this._draw, this);
       } else {
@@ -99,7 +100,6 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
             theme: 'vs-dark',
             readOnly: !this.getEditable()
           });
-
           if (this.getFile()) {
             this._loadFile(this.getFile());
           }
@@ -107,7 +107,7 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       }
     },
 
-    _applyContent() {
+    _applyContent: function () {
       const original = this.getOriginalContent();
       const modified = this.getModifiedContent();
       if (original && modified) {
@@ -115,10 +115,8 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
         const originalFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getOriginalFile() : file;
         const modifiedFile = file instanceof cv.ui.manager.model.CompareFiles ? file.getModifiedFile() : file;
         const originalModel = window.monaco.editor.createModel(original, this._getLanguage(originalFile));
-
         originalModel.updateOptions(this._getDefaultModelOptions());
         const modifiedModel = window.monaco.editor.createModel(modified, this._getLanguage(modifiedFile));
-
         modifiedModel.updateOptions(this._getDefaultModelOptions());
         this._editor.setModel({
           original: originalModel,
@@ -127,149 +125,91 @@ qx.Class.define('cv.ui.manager.editor.Diff', {
       }
     },
 
-    getCurrentContent() {
+    getCurrentContent: function () {
       return this._editor.getModifiedEditor().getValue();
     },
 
-    clear() {
+    clear: function () {
       this._editor.getModel().original.dispose();
       this._editor.getModel().modified.dispose();
     },
 
-    save(callback) {
+    save: function (callback) {
       const handlerOptions = this.getHandlerOptions();
-      if (
-        this.getFile() instanceof cv.ui.manager.model.FileItem &&
-        Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') &&
-        handlerOptions.upgradeVersion === true
-      ) {
-        super.save(callback, 'ignore');
+      if (this.getFile() instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
+        this.base(arguments, callback, 'ignore');
       }
     },
 
-    _loadFile(file, old) {
+    _loadFile: function (file, old) {
       if (old && old instanceof cv.ui.manager.model.FileItem) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
       if (this._editor) {
         const handlerOptions = this.getHandlerOptions();
-        if (
-          file &&
-          file instanceof cv.ui.manager.model.FileItem &&
-          Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') &&
-          handlerOptions.upgradeVersion === true
-        ) {
+        if (file && file instanceof cv.ui.manager.model.FileItem && Object.prototype.hasOwnProperty.call(handlerOptions, 'upgradeVersion') && handlerOptions.upgradeVersion === true) {
           if (!file.isWriteable()) {
-            cv.ui.manager.snackbar.Controller.error(
-              this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath())
-            );
-
+            cv.ui.manager.snackbar.Controller.error(this.tr('"%1" is not writable. Upgrading not possible.', this.getFile().getFullPath()));
             cv.ui.manager.Main.getInstance().closeFile(file);
             return;
           }
           qx.event.message.Bus.subscribe(file.getBusTopic(), this._onChange, this);
-
           this.setEditable(file.isWriteable());
-          this._client.readSync(
-            { path: file.getFullPath() },
-            function (err, res) {
+          this._client.readSync({path: file.getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              this.setOriginalContent(res);
+              const [err, upgradedContent, changes] = this._upgradeConfig(res);
               if (err) {
-                cv.ui.manager.snackbar.Controller.error(err);
+                qxl.dialog.Dialog.error(err);
+                qx.event.message.Bus.dispatchByName('cv.manager.action.close');
               } else {
-                this.setOriginalContent(res);
-                const [err, upgradedContent, changes] = this._upgradeConfig(res);
-                if (err) {
-                  qxl.dialog.Dialog.error(err);
-                  qx.event.message.Bus.dispatchByName('cv.manager.action.close');
-                } else {
-                  this.setModifiedContent(this._convertToString(upgradedContent));
+                this.setModifiedContent(this._convertToString(upgradedContent));
+                let changesText = changes.length > 0
+                  ? '<div>' + qx.locale.Manager.tr('The following changes have been made') + '</div>' +
+                  '<ul><li>'+changes.join('</li><li>')+ '</li></ul>' +
+                  '<div>' + qx.locale.Manager.tr('You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.') + '</div>'
+                  : '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
 
-                  let changesText =
-                    changes.length > 0
-                      ? '<div>' +
-                        qx.locale.Manager.tr('The following changes have been made') +
-                        '</div>' +
-                        '<ul><li>' +
-                        changes.join('</li><li>') +
-                        '</li></ul>' +
-                        '<div>' +
-                        qx.locale.Manager.tr(
-                          'You can check the changes in the editor. The left side shows the content before the upgrade and the right side shows the content after the upgrade.'
-                        ) +
-                        '</div>'
-                      : '<div><strong>' + qx.locale.Manager.tr('No changes have been made') + '</strong></div>';
-
-                  let msg =
-                    '<h3>' +
-                    qx.locale.Manager.tr('Config file has been upgraded to the current library version.')
-                      .translate()
-                      .toString() +
-                    '</h3>' +
-                    changesText +
-                    '<div>' +
-                    qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') +
-                    '</div>' +
-                    '<div>' +
-                    qx.locale.Manager.tr(
-                      'Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.'
-                    ) +
-                    '</div>';
-                  const d = qxl.dialog.Dialog.confirm(
-                    msg,
-                    function (ok) {
-                      if (ok) {
-                        this.save(function () {
-                          // remove #manager to avoid reloading into manager
-                          window.location.hash = '';
-                          window.location.reload();
-                        });
-                      }
-                    },
-                    this,
-                    qx.locale.Manager.tr('Upgrade successful')
-                  );
-
-                  d.set({
-                    width: Math.min(qx.bom.Viewport.getWidth(), 600),
-                    yesButtonLabel: qx.locale.Manager.tr('Apply'),
-                    noButtonLabel: qx.locale.Manager.tr('Check')
-                  });
-
-                  file.setModified(true);
-                }
+                let msg = '<h3>' + qx.locale.Manager.tr('Config file has been upgraded to the current library version.').translate().toString() + '</h3>' + changesText +
+                  '<div>' + qx.locale.Manager.tr('Click "Apply" if you want to save the changes and reload the browser.') + '</div>' +
+                  '<div>' + qx.locale.Manager.tr('Click "Check" if you want to check the changes. You have to save the changes and reload your browser yourself in this case.') + '</div>';
+                const d = qxl.dialog.Dialog.confirm(msg, function (ok) {
+                  if (ok) {
+                    this.save(function () {
+                      // remove #manager to avoid reloading into manager
+                      window.location.hash = '';
+                      window.location.reload();
+                    });
+                  }
+                }, this, qx.locale.Manager.tr('Upgrade successful'));
+                d.set({
+                  width: Math.min(qx.bom.Viewport.getWidth(), 600),
+                  yesButtonLabel: qx.locale.Manager.tr('Apply'),
+                  noButtonLabel: qx.locale.Manager.tr('Check')
+                });
+                file.setModified(true);
               }
-            },
-            this
-          );
-        } else if (
-          file &&
-          file instanceof cv.ui.manager.model.CompareFiles &&
-          this.isSupported(file.getModifiedFile())
-        ) {
+            }
+          }, this);
+        } else if (file && file instanceof cv.ui.manager.model.CompareFiles && this.isSupported(file.getModifiedFile())) {
           this.resetEditable();
-          this._client.readSync(
-            { path: file.getModifiedFile().getFullPath() },
-            function (err, res) {
-              if (err) {
-                cv.ui.manager.snackbar.Controller.error(err);
-              } else {
-                this.setModifiedContent(res);
-              }
-            },
-            this
-          );
+          this._client.readSync({path: file.getModifiedFile().getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              this.setModifiedContent(res);
+            }
+          }, this);
 
-          this._client.readSync(
-            { path: file.getOriginalFile().getFullPath() },
-            function (err, res) {
-              if (err) {
-                cv.ui.manager.snackbar.Controller.error(err);
-              } else {
-                this.setOriginalContent(res);
-              }
-            },
-            this
-          );
+          this._client.readSync({path: file.getOriginalFile().getFullPath()}, function (err, res) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(err);
+            } else {
+              this.setOriginalContent(res);
+            }
+          }, this);
         } else {
           this.resetOriginalContent();
           this.resetModifiedContent();

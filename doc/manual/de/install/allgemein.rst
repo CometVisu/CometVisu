@@ -74,7 +74,7 @@ aus den Umgebungsvariablen.
 HTTP-Header / Docker-Umgebungsvariablen
 .......................................
 
-.. spelling:word-list::
+.. spelling::
 
     OpenHAB
     LoginUrl

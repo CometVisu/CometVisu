@@ -1,6 +1,6 @@
 /* NotificationCenter-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -44,22 +44,25 @@ describe('test the NotificationCenter', function () {
     expect(severities.indexOf('urgent')).toBeGreaterThanOrEqual(0);
   });
 
-  it('should toggle the visibility', function() {
+  it('should toggle the visibility', function(done) {
     var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector('#notification-center');
 
     expect(element).not.toBeUndefined();
 
-    expect(element.style.transform).toEqual('');
+    expect(window.getComputedStyle(element)['transform']).toEqual('none');
     center.show();
-
-    expect(element.style.transform).toEqual('translate(-300px)');
-    center.hide();
-
-    expect(element.style.transform).toEqual('translate(0px)');
+    setTimeout(function() {
+      expect(window.getComputedStyle(element)['transform']).toEqual('matrix(1, 0, 0, 1, -300, 0)');
+      center.hide();
+      setTimeout(function() {
+        expect(window.getComputedStyle(element)['transform']).toEqual('matrix(1, 0, 0, 1, 0, 0)');
+        done();
+      }, 10);
+    }, 10);
   });
 
-  it('should toggle the badge visibility', function() {
+  it('should toggle the badge visibility', function(done) {
     var center = cv.ui.NotificationCenter.getInstance();
     var element = document.querySelector('#notification-center .badge');
 
@@ -67,11 +70,14 @@ describe('test the NotificationCenter', function () {
 
     expect(element.classList.contains('hidden')).toBeFalsy();
     center.disableBadge(true);
-
-    expect(element.classList.contains('hidden')).toBeTruthy();
-    center.disableBadge(false);
-
-    expect(element.classList.contains('hidden')).toBeFalsy();
+    setTimeout(function() {
+      expect(element.classList.contains('hidden')).toBeTruthy();
+      center.disableBadge(false);
+      setTimeout(function() {
+        expect(element.classList.contains('hidden')).toBeFalsy();
+        done();
+      }, 10);
+    }, 10);
   });
 
   it('should handle messages', function() {

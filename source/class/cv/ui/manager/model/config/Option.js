@@ -1,7 +1,7 @@
-/* Option.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Option.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Simple config entry.
  */
@@ -28,8 +29,8 @@ qx.Class.define('cv.ui.manager.model.config.Option', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(key, value) {
-    super();
+  construct: function (key, value) {
+    this.base(arguments);
     this.setKey(key);
     this.setValue(value);
   },
@@ -41,7 +42,7 @@ qx.Class.define('cv.ui.manager.model.config.Option', {
   */
   events: {
     // sent whenever the options key or value has been changed
-    change: 'qx.event.type.Event'
+    'change': 'qx.event.type.Event'
   },
 
   /*
@@ -71,7 +72,7 @@ qx.Class.define('cv.ui.manager.model.config.Option', {
   ***********************************************
   */
   members: {
-    _applyChange() {
+    _applyChange: function () {
       this.fireEvent('change');
     }
   }

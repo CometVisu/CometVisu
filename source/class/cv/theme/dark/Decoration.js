@@ -1,7 +1,7 @@
-/* Decoration.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Decoration.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,35 +17,30 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 qx.Theme.define('cv.theme.dark.Decoration', {
-  extend: qx.theme.tangible.Decoration,
+  extend : osparc.theme.common.Decoration,
 
-  decorations: {
-    'window-caption-active': {},
-
-    'main-dark': {
-      style: {
-        width: 1,
-        color: 'button-border'
-      }
+  decorations : {
+    'window-caption-active': {
     },
 
     'cv-editor-config-section': {
       style: {
         width: 1,
-        color: 'primary-focused'
+        color: 'material-textfield'
       }
     },
 
     'cv-snackbar-msg': {
       style: {
-        backgroundColor: 'primary'
+        backgroundColor: 'button'
       }
     },
 
     'cv-snackbar-msg-error': {
       style: {
-        backgroundColor: 'error-focused'
+        backgroundColor: 'material-textfield-invalid'
       }
     },
 
@@ -59,17 +54,16 @@ qx.Theme.define('cv.theme.dark.Decoration', {
     'file-action-button': {
       style: {
         width: 1,
-        color: 'text-on-primary'
+        color: 'text'
       }
     },
 
     'cv-start-section-title': {
       style: {
         width: [1, 0, 0, 0],
-        color: 'text-on-secondary'
+        color: 'text-placeholder'
       }
     },
-
     'open-file-tabs': {
       style: {
         shadowSpreadRadius: 0,
@@ -83,7 +77,7 @@ qx.Theme.define('cv.theme.dark.Decoration', {
     'cv-file-item-add-file': {
       style: {
         width: 1,
-        color: 'text-on-primary',
+        color: 'text',
         style: 'dashed'
       }
     },
@@ -92,8 +86,8 @@ qx.Theme.define('cv.theme.dark.Decoration', {
       style: {
         width: 2,
         radius: 32,
-        color: 'text-hint-on-surface',
-        backgroundColor: 'primary',
+        color: 'button-border',
+        backgroundColor: 'button',
         shadowSpreadRadius: 0,
         shadowBlurRadius: 4,
         shadowHorizontalLength: 1,
@@ -101,12 +95,11 @@ qx.Theme.define('cv.theme.dark.Decoration', {
         shadowColor: 'rgba(255, 255, 255, 0.1)'
       }
     },
-
     'round-button-hovered': {
       include: 'round-button',
       style: {
         width: 4,
-        color: 'primary-hovered'
+        color: 'button-border-hovered'
       }
     }
   }

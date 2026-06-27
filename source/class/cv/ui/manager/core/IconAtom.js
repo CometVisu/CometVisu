@@ -1,7 +1,7 @@
-/* IconAtom.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* IconAtom.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,22 +17,12 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
- * Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image
+ * Atom with cv.ui.manager.viewer.SvgIcon instead ob an qx.ui.basic.Image
  */
 qx.Class.define('cv.ui.manager.core.IconAtom', {
   extend: qx.ui.basic.Atom,
-
-  /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(label, icon) {
-    super(label, icon);
-    this._fontIconRegex = /^\<i.*class=".*(knxuf-|ri-)([^\s"]+).*".*\<\/i\>$/;
-    this.addListener('tap', this._onTap, this);
-  },
 
   /*
   ***********************************************
@@ -43,11 +33,6 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
     appearance: {
       refine: true,
       init: 'cv-icon'
-    },
-
-    model: {
-      check: 'Array',
-      apply: '_applyModel'
     }
   },
 
@@ -57,100 +42,35 @@ qx.Class.define('cv.ui.manager.core.IconAtom', {
   ***********************************************
   */
   members: {
-    _fontIconRegex: null,
-    _iconChildControlName: null,
-
-    _onTap() {
-      if (typeof navigator.clipboard === 'object') {
-        navigator.clipboard.writeText(this.getLabel());
-        cv.ui.manager.snackbar.Controller.info(qx.locale.Manager.tr('Icon name has been copied to clipboard'));
-      }
+    _applyLabel: function (value) {
+      this.base(arguments, value);
+      this.getChildControl('icon').setName(value);
     },
 
-    // property apply
-    _applyLabel(value, old) {
-      super._applyLabel(value, old);
-      this.setToolTipText(value);
-    },
-
-    _applyModel(value) {
-      if (value) {
-        const [name, icon] = value;
-        this.setLabel(name);
-        this.setIcon(icon);
+    /**
+     * Updates the visibility of the icon
+     */
+    _handleIcon : function() {
+      if (!this.getChildControl('icon').getName() || this.getShow() === 'label') {
+        this._excludeChildControl('icon');
       } else {
-        this.resetLabel();
-        this.resetIcon();
-      }
-    },
-
-    _applyIcon(value, old) {
-      if (value) {
-        if (this._fontIconRegex.test(value)) {
-          this._iconChildControlName = 'htmlIcon';
-          const icon = this.getChildControl(this._iconChildControlName, true);
-          if (icon) {
-            icon.setValue(value);
-          }
-          this._excludeChildControl('icon');
-        } else {
-          this._iconChildControlName = 'icon';
-          const icon = this.getChildControl(this._iconChildControlName, true);
-          if (icon) {
-            icon.setSource(value);
-          }
-          this._excludeChildControl('htmlIcon');
-        }
-      } else {
-        this._iconChildControlName = 'icon';
-        this._excludeChildControl('htmlIcon');
-      }
-      this._handleIcon();
-    },
-
-    _handleIcon() {
-      if (this.getIcon() === null || this.getShow() === 'label') {
-        this._excludeChildControl(this._iconChildControlName);
-      } else {
-        this._showChildControl(this._iconChildControlName);
+        this._showChildControl('icon');
       }
     },
 
     // overridden
-    _createChildControlImpl(id) {
+    _createChildControlImpl : function(id) {
       let control;
 
       switch (id) {
-        case 'icon':
-          control = new cv.ui.manager.basic.Image(this.getIcon());
-          control.set({
-            anonymous: true,
-            scale: true,
-            maxHeight: 64
-          });
+         case 'icon':
+           control = new cv.ui.manager.viewer.SvgIcon();
+           control.setAnonymous(true);
+           this._addAt(control, 0);
+           break;
+       }
 
-          this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === 'label') {
-            control.exclude();
-          }
-          break;
-
-        case 'htmlIcon':
-          control = new qx.ui.basic.Label(this.getIcon());
-          control.set({
-            anonymous: true,
-            rich: true,
-            height: 64,
-            width: 64
-          });
-
-          this._addAt(control, 0);
-          if (this.getIcon() === null || this.getShow() === 'label') {
-            control.exclude();
-          }
-      }
-
-      return control || super._createChildControlImpl(id);
+       return control || this.base(arguments, id);
     }
   }
 });

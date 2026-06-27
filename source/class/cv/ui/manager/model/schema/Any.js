@@ -1,7 +1,7 @@
-/* Any.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Any.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * any content.
  */
@@ -28,8 +29,8 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(node, schema) {
-    super(node, schema);
+  construct: function (node, schema) {
+    this.base(arguments, node, schema);
     this.parse();
   },
 
@@ -51,13 +52,14 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
   ***********************************************
   */
   members: {
+
     /**
      * parse a list of elements in this group.
      * Group is allowed (all|choice|sequence)? as per the definition.
      * We do all of those (except for 'all')
      */
-    parse() {
-      super.parse();
+    parse: function () {
+      this.base(arguments);
       const schema = this.getSchema();
 
       let group = this.getNode();
@@ -82,35 +84,35 @@ qx.Class.define('cv.ui.manager.model.schema.Any', {
     },
 
     // overridden
-    isElementAllowed(element) {
+    isElementAllowed: function (element) {
       return true;
     },
 
     // overridden
-    getSchemaElementForElementName(elementName) {
+    getSchemaElementForElementName: function (elementName) {
       // can not find any reason why elementName is allowed with us...
       return undefined;
     },
 
     // overridden
-    getRequiredElements() {
+    getRequiredElements: function () {
       return [];
     },
 
     // overridden
-    getAllowedElements() {
+    getAllowedElements: function() {
       return {};
     },
 
-    getRegex(separator, nocapture) {
+    getRegex: function (separator, nocapture) {
       return '.*';
     },
 
-    hasMultiLevelBounds() {
+    hasMultiLevelBounds: function () {
       return true;
     },
 
-    getBoundsForElementName(childName) {
+    getBoundsForElementName: function (childName) {
       return this._bounds;
     }
   }

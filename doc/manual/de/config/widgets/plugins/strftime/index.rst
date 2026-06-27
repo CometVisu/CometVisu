@@ -13,7 +13,7 @@ Das Strftime Plugin
 Beschreibung
 ------------
 
-Das strftime-Plugin fügt der Visuseite eine formatierbare Datums- und Uhrzeit-Anzeige hinzu.
+Das strftime-Plugin fügt der Visuseite eine formatierbare Datums- und Uhrzeitanzeige hinzu.
 
 .. figure:: _static/strftime_simple.png
 

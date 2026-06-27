@@ -1,7 +1,7 @@
-/* Router.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Router.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Global notification handler that routes messages topic-dependent to different {@link cv.core.notifications.IHandler}
@@ -33,13 +34,12 @@ qx.Class.define('cv.core.notifications.Router', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct() {
-    super();
+  construct: function() {
+    this.base(arguments);
     this.__routes = {};
     this.debug('new router');
 
     this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat('short'));
-
     this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat('short'));
   },
 
@@ -54,7 +54,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param message {Map}
      * @returns {Boolean}
      */
-    evaluateCondition(message) {
+    evaluateCondition: function(message) {
       if (!Object.prototype.hasOwnProperty.call(message, 'condition')) {
         // nothing to evaluate
         return true;
@@ -62,9 +62,8 @@ qx.Class.define('cv.core.notifications.Router', {
         return message.condition;
       } else if (typeof message.condition === 'function') {
         return message.condition();
-      }
-      qx.log.Logger.error(this, 'unhandled message condition type: ' + message.condition);
-
+      } 
+      qx.log.Logger.error(this, 'unhandled message condition type: '+message.condition);
       return false;
     },
 
@@ -74,7 +73,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param message
      * @param target
      */
-    dispatchMessage(topic, message, target) {
+    dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
     },
 
@@ -84,7 +83,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param name {String} target name, e.g. popup, notificationCenter, etc.
      * @return {Object|Function|null} the target that can handle messages
      */
-    getTarget(name) {
+    getTarget: function(name) {
       switch (name) {
         case 'popup':
           return cv.ui.PopupHandler;
@@ -94,17 +93,16 @@ qx.Class.define('cv.core.notifications.Router', {
           if (!window.speechSynthesis) {
             // not supported
             qx.log.Logger.warn(this, 'this browser does not support the Web Speech API');
-
             return null;
           }
           return cv.core.notifications.SpeechHandler.getInstance();
         case 'toast':
           return cv.ui.ToastManager.getInstance();
       }
-
       return null;
     }
   },
+
 
   /*
   *****************************************************************************
@@ -117,7 +115,7 @@ qx.Class.define('cv.core.notifications.Router', {
     __dateFormat: null,
     __timeFormat: null,
 
-    getStateMessageConfig() {
+    getStateMessageConfig: function () {
       return this.__stateMessageConfig;
     },
 
@@ -145,55 +143,20 @@ qx.Class.define('cv.core.notifications.Router', {
      *
      * @param config {Map}
      */
-    registerStateUpdateHandler(config) {
-      if (this.__stateMessageConfig) {
-        this.__stateMessageConfig = Object.assign(this.__stateMessageConfig, config);
-      } else {
-        this.__stateMessageConfig = config;
-      }
-      for (const address in config) {
+    registerStateUpdateHandler: function(config) {
+      this.__stateMessageConfig = config;
+      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
         cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
-      }
-    },
-
-    /**
-     * Toggle state update handler enabled state
-     * @param id {number} ID of the handler
-     * @param enable {boolean}
-     */
-    enableStateUpdateHandler(id, enable) {
-      for (const address in this.__stateMessageConfig) {
-        for (const config of this.__stateMessageConfig[address]) {
-          if (config.id === id) {
-            config.enabled = enable;
-          }
-        }
-      }
-    },
-
-    /**
-     * Change state update severity
-     * @param id {number} ID of the handler
-     * @param severity {string} new severity
-     */
-    changeStateUpdateHandlerSeverity(id, severity) {
-      for (const address in this.__stateMessageConfig) {
-        for (const config of this.__stateMessageConfig[address]) {
-          if (config.id === id) {
-            config.severity = severity;
-          }
-        }
-      }
+      }, this);
     },
 
     /**
      * Unregister state update listeners for a list of addresses
      * @param addresses {Array}
      */
-    unregisterStateUpdatehandler(addresses) {
-      addresses.forEach(function (address) {
+    unregisterStateUpdatehandler: function(addresses) {
+      addresses.forEach(function(address) {
         cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
-
         if (this.__stateMessageConfig[address]) {
           delete this.__stateMessageConfig[address];
         }
@@ -205,18 +168,18 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param handler {cv.core.notifications.IHandler}
      * @param topics {Map} map of topics as key and configuration-maps as values
      */
-    registerMessageHandler(handler, topics) {
-      Object.getOwnPropertyNames(topics).forEach(function (topic) {
+    registerMessageHandler: function(handler, topics) {
+      Object.getOwnPropertyNames(topics).forEach(function(topic) {
         const segments = topic.split('.');
         const firstSegment = segments.shift();
         let currentSegment = this.__routes[firstSegment];
         if (!currentSegment) {
-          this.__routes[firstSegment] = { __handlers__: [] };
+          this.__routes[firstSegment] = {__handlers__: []};
           currentSegment = this.__routes[firstSegment];
         }
-        segments.forEach(function (segment) {
+        segments.forEach(function(segment) {
           if (!currentSegment[segment]) {
-            currentSegment[segment] = { __handlers__: [] };
+            currentSegment[segment] = {__handlers__: []};
           }
           currentSegment = currentSegment[segment];
         }, this);
@@ -236,7 +199,7 @@ qx.Class.define('cv.core.notifications.Router', {
      * @param changed {Boolean} true if the incoming state update differs from the last one
      * @protected
      */
-    _onIncomingData(address, state, initial, changed) {
+    _onIncomingData: function(address, state, initial, changed) {
       if (!this.__stateMessageConfig[address]) {
         return;
       }
@@ -245,8 +208,8 @@ qx.Class.define('cv.core.notifications.Router', {
       const formattedDate = this.__dateFormat.format(now);
       const formattedTime = this.__timeFormat.format(now);
 
-      this.__stateMessageConfig[address].forEach(function (config) {
-        if (config.enabled === false || (initial === true && config.skipInitial === true) || changed === false) {
+      this.__stateMessageConfig[address].forEach(function(config) {
+        if (initial === true && config.skipInitial === true || changed === false) {
           // do not handle the first update
           return;
         }
@@ -263,7 +226,6 @@ qx.Class.define('cv.core.notifications.Router', {
 
         // transform the raw value to a JavaScript type
         templateData.value = cv.Transform.decode(config.addressConfig, templateData.value);
-
         if (config.valueMapping) {
           // apply mapping
           templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
@@ -275,16 +237,13 @@ qx.Class.define('cv.core.notifications.Router', {
         const message = {
           topic: Object.prototype.hasOwnProperty.call(config, 'topic') ? config.topic : 'cv.state.update.' + address,
           title: qx.bom.Template.render('' + config.titleTemplate, templateData),
-
           message: qx.bom.Template.render('' + config.messageTemplate, templateData),
-
           deletable: Object.prototype.hasOwnProperty.call(config, 'deletable') ? config.deletable : true,
           unique: Object.prototype.hasOwnProperty.call(config, 'unique') ? config.unique : false,
           severity: config.severity
         };
-
         if (Object.prototype.hasOwnProperty.call(config, 'condition')) {
-          message.condition = state == config.condition;
+          message.condition = state == config.condition; // jshint ignore:line
         }
         if (config.icon) {
           message.icon = config.icon;
@@ -296,7 +255,7 @@ qx.Class.define('cv.core.notifications.Router', {
       }, this);
     },
 
-    __collectHandlers(topic) {
+    __collectHandlers: function(topic) {
       const handlers = new qx.data.Array();
       const segments = topic.split('.');
       const firstSegment = segments.shift();
@@ -328,9 +287,9 @@ qx.Class.define('cv.core.notifications.Router', {
       return handlers;
     },
 
-    __collectAllFromSegment(segment, handlers) {
+    __collectAllFromSegment: function(segment, handlers) {
       handlers.append(segment.__handlers__);
-      Object.getOwnPropertyNames(segment).forEach(function (segmentName) {
+      Object.getOwnPropertyNames(segment).forEach(function(segmentName) {
         if (segmentName !== '__handlers__') {
           this.__collectAllFromSegment(segment[segmentName], handlers);
         }
@@ -338,7 +297,7 @@ qx.Class.define('cv.core.notifications.Router', {
       return handlers;
     },
 
-    dispatchMessage(topic, message, target) {
+    dispatchMessage: function(topic, message, target) {
       if (message.target && !target) {
         target = cv.core.notifications.Router.getTarget(message.target);
       }
@@ -348,21 +307,12 @@ qx.Class.define('cv.core.notifications.Router', {
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
           this.debug('dispatching \'' + topic + '\' message to handler: ' + entry.handler);
-
           entry.handler.handleMessage(message, entry.config);
         }, this);
       }
-      if (cv.Config.unitTesting === true) {
-        // log all errors in unit test
-        if (message.severity === 'high' || topic.endsWith('.error')) {
-          qx.log.Logger.error(this, 'message: ' + message.message);
-        } else {
-          qx.log.Logger.info(this, 'message: ' + message.message);
-        }
-      }
     },
 
-    clear() {
+    clear: function() {
       this.__routes = {};
       this.__stateMessageConfig = {};
     }
@@ -373,7 +323,7 @@ qx.Class.define('cv.core.notifications.Router', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct() {
+  destruct: function() {
     this.clear();
     this._disposeObjects('__dateFormat', '__timeFormat');
   }

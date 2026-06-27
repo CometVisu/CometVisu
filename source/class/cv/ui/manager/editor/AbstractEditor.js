@@ -1,7 +1,7 @@
-/* AbstractEditor.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* AbstractEditor.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,16 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Abstract base class for all editors.
  */
 qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   extend: qx.ui.core.Widget,
-  implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
-
+  implement: [
+    cv.ui.manager.editor.IEditor,
+    cv.ui.manager.IActionHandler
+  ],
   type: 'abstract',
 
   /*
@@ -31,33 +34,17 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     this._initClient();
-    if (this._client) {
-      this._client.addListener('error', function(ev) {
-        if (ev.getRequest().getStatus() === 401) {
-          this.fireEvent('unauthorized');
-        }
-      }, this);
-    }
     this._nativePasteSupported = document.queryCommandSupported('paste');
   },
 
   /*
-  ***********************************************
-   EVENTS
-  ***********************************************
-  */
-  events: {
-   'unauthorized': 'qx.event.type.Event'
-  },
-
-  /*
-  ***********************************************
+ ***********************************************
    PROPERTIES
-  ***********************************************
-  */
+ ***********************************************
+ */
   properties: {
     file: {
       check: 'cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles',
@@ -112,14 +99,14 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     _handledActions: null,
     _nativePasteSupported: false,
 
-    canHandleAction(actionName) {
+    canHandleAction: function (actionName) {
       if (actionName === 'save' && this.getFile() && !this.getFile().isWriteable()) {
         return false;
       }
       return this._handledActions && this._handledActions.includes(actionName);
     },
 
-    handleAction(actionName) {
+    handleAction: function (actionName) {
       if (this.canHandleAction(actionName)) {
         switch (actionName) {
           case 'save':
@@ -129,16 +116,16 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    configureButton(button) {},
-    unConfigureButton(button) {},
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
 
-    _initClient() {
+    _initClient: function () {
       this._client = cv.io.rest.Client.getFsClient();
     },
 
-    _applyHandlerOptions() {},
+    _applyHandlerOptions: function () {},
 
-    _loadFile(file, old) {
+    _loadFile: function (file, old) {
       if (old) {
         qx.event.message.Bus.unsubscribe(old.getBusTopic(), this._onChange, this);
       }
@@ -154,24 +141,20 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    _loadFromFs() {
-      this._client.readSync(
-        { path: this.getFile().getFullPath() },
-        function (err, res) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(err);
-          } else {
-            if (res instanceof XMLDocument) {
-              res = new XMLSerializer().serializeToString(res);
-            }
-            this.setContent(res);
+    _loadFromFs: function () {
+      this._client.readSync({path: this.getFile().getFullPath()}, function (err, res) {
+        if (err) {
+          cv.ui.manager.snackbar.Controller.error(err);
+        } else {
+          if (res instanceof XMLDocument) {
+            res = new XMLSerializer().serializeToString(res);
           }
-        },
-        this
-      );
+          this.setContent(res);
+        }
+      }, this);
     },
 
-    _onChange(ev) {
+    _onChange: function (ev) {
       const data = ev.getData();
       if (data.type === 'fsContentChanged' && data.source !== this) {
         this.setContent(data.data);
@@ -179,12 +162,12 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     },
 
     // must be overridden by inheriting classes
-    _applyContent() {},
+    _applyContent: function() {},
 
     // must be overridden by inheriting classes
-    getCurrentContent() {},
+    getCurrentContent: function () {},
 
-    _handleSaveResponse(type, err) {
+    _handleSaveResponse: function (type, err) {
       if (err) {
         cv.ui.manager.snackbar.Controller.error(err);
       } else {
@@ -205,38 +188,25 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    save(callback, overrideHash) {
+    save: function (callback, overrideHash) {
       const file = this.getFile();
       if (file.isModified()) {
         if (file.isTemporary()) {
-          this._client.createSync(
-            {
-              path: file.getFullPath(),
-              hash: overrideHash || file.getHash(),
-              type: 'file'
-            },
-
-            this.getCurrentContent(),
-            callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'),
-            this
-          );
+          this._client.createSync({
+            path: file.getFullPath(),
+            hash: overrideHash || file.getHash(),
+            type: 'file'
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'created'), this);
         } else {
-          this._client.updateSync(
-            {
-              path: file.getFullPath(),
-              hash: overrideHash || file.getHash()
-            },
-
-            this.getCurrentContent(),
-            callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'),
-
-            this
-          );
+          this._client.updateSync({
+            path: file.getFullPath(),
+            hash: overrideHash || file.getHash()
+          }, this.getCurrentContent(), callback || qx.lang.Function.curry(this._handleSaveResponse, 'contentChanged'), this);
         }
       }
     },
 
-    _onSaved() {
+    _onSaved: function () {
       const file = this.getFile();
       if (file) {
         file.resetModified();
@@ -244,8 +214,8 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
       }
     },
 
-    showErrors(path, errorList) {},
-    showDecorations(path, decorators) {}
+    showErrors: function (path, errorList) {},
+    showDecorations: function (path, decorators) {}
   },
 
   /*
@@ -253,7 +223,7 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     if (this._client) {
       this._client = null;
     }

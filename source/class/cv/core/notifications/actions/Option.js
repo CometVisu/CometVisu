@@ -1,7 +1,7 @@
-/* Option.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Option.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Shows a checkbox in the actions to allow some boolean settings.
@@ -32,9 +33,9 @@ qx.Class.define('cv.core.notifications.actions.Option', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props, type) {
-    super();
-    this.set(props, type);
+  construct: function(props) {
+    this.base(arguments);
+    this.set(props);
   },
 
   /*
@@ -47,7 +48,6 @@ qx.Class.define('cv.core.notifications.actions.Option', {
       check: 'String',
       nullable: true
     },
-
     name: {
       check: 'String',
       init: ''
@@ -60,37 +60,34 @@ qx.Class.define('cv.core.notifications.actions.Option', {
   *****************************************************************************
   */
   members: {
-    handleAction(ev) {
+
+    handleAction: function(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
       }
     },
 
-    getDomElement() {
+    getDomElement: function() {
       const container = qx.dom.Element.create('span', {
         style: this.getStyle()
       });
 
       const checkbox = qx.dom.Element.create('input', {
-        class: 'action',
-        type: 'checkbox',
-        value: 'true',
-        id: this.getName()
+        'class': 'action',
+        'type': 'checkbox',
+        'value': 'true',
+        'id': this.getName()
       });
-
       container.appendChild(checkbox);
-      container.appendChild(
-        qx.dom.Element.create('span', {
-          html: this.getTitle()
-        })
-      );
-
+      container.appendChild(qx.dom.Element.create('span', {
+        html: this.getTitle()
+      }));
       return container;
     }
   },
 
-  defer() {
+  defer: function() {
     cv.core.notifications.ActionRegistry.registerActionHandler('option', cv.core.notifications.actions.Option);
   }
 });

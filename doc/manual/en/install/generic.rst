@@ -73,7 +73,7 @@ environment variables.
 HTTP header / Docker environment variable
 .........................................
 
-.. spelling:word-list::
+.. spelling::
 
     OpenHAB
     Url

@@ -1,6 +1,6 @@
 /* Pushbutton-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -23,10 +23,16 @@
  *
  */
 describe('testing a pushbutton widget', function() {
+  var realClient;
   beforeEach(function() {
-    const client = new cv.io.Mockup();
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
+    realClient = cv.TemplateEngine.getInstance().visu;
+    var client = new cv.io.Mockup();
+    cv.TemplateEngine.getInstance().visu = client;
     spyOn(client, 'write');
+  });
+
+  afterEach(function () {
+    cv.TemplateEngine.getInstance().visu = realClient;
   });
 
   it('should test the pushbutton creator', function() {
@@ -77,7 +83,7 @@ describe('testing a pushbutton widget', function() {
     var actor = button.getActor();
 
     this.initWidget(button);
-    const client = cv.io.BackendConnections.getClient();
+    const client = cv.TemplateEngine.getInstance().visu;
     var Reg = qx.event.Registration;
 
     Reg.fireEvent(actor, 'pointerdown');

@@ -1,7 +1,7 @@
-/* Image.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Image.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 // noinspection JSClosureCompilerSyntax
 /**
@@ -51,7 +52,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
      * @param source {String} path to image
      * @returns {{width: *, aspectRatio: number, height: *}}
      */
-    getImageData(source) {
+    getImageData: function (source) {
       let data = qx.util.ResourceManager.getInstance().getData(source);
       if (data) {
         return {
@@ -59,18 +60,14 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
           height: data[1],
           aspectRatio: data[0] / data[1]
         };
-      }
-      data = qx.io.ImageLoader.getSize(source);
-      if (data && data.width && data.height) {
-        return Object.assign(
-          {
+      } 
+        data = qx.io.ImageLoader.getSize(source);
+        if (data && data.width && data.height) {
+          return Object.assign({
             aspectRatio: data.width / data.height
-          },
-
-          data
-        );
-      }
-
+          }, data);
+        }
+      
       return null;
     }
   },
@@ -81,7 +78,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
   ***********************************************
   */
   members: {
-    _applyFile(file) {
+    _applyFile: function (file) {
       const control = this.getChildControl('image');
       if (file) {
         control.setIcon(file.getServerPath());
@@ -99,7 +96,7 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
       }
     },
 
-    _scaleImage() {
+    _scaleImage: function () {
       const bounds = this.getBounds();
       if (!bounds) {
         this.addListenerOnce('appear', this._scaleImage, this);
@@ -111,12 +108,11 @@ qx.Class.define('cv.ui.manager.viewer.Image', {
       }
       const icon = this.getChildControl('image').getChildControl('icon');
       const data = cv.ui.manager.viewer.Image.getImageData(file.getServerPath());
-
       const paddingX = 10;
       const paddingY = 20;
       const availableHeight = bounds.height - paddingY * 2;
       let width = bounds.width - paddingX * 2;
-      let height = Math.round((1 / data.aspectRatio) * width);
+      let height = Math.round(1 / data.aspectRatio * width);
       if (height > availableHeight) {
         height = availableHeight;
         width = Math.round(data.aspectRatio * availableHeight);

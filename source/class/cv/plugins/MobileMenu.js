@@ -1,7 +1,7 @@
-/* MobileMenu.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* MobileMenu.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,14 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * @author alltime84
  * @since 2016
  * @asset(plugins/mobilemenu/*.css)
  */
 qx.Class.define('cv.plugins.MobileMenu', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.HasChildren],
 
   /*
@@ -32,6 +33,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
   ******************************************************
   */
   statics: {
+
     /**
      * Parses the widgets XML configuration and extracts the given information
      * to a simple key/value map.
@@ -42,19 +44,19 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse(xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType);
-
-      cv.parser.pure.WidgetParser.parseChildren(xml, path, flavour, pageType);
+    parse: function (xml, path, flavour, pageType) {
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
-    getWidgetElements(xmlElement, path) {
-      cv.data.Model.getInstance().setWidgetData(path + '_0', {
-        containerClass: 'actor'
+    getWidgetElements: function(xmlElement, path) {
+      cv.data.Model.getInstance().setWidgetData(path+'_0', {
+        containerClass           : 'actor'
       });
     }
   },
+
 
   /*
   ******************************************************
@@ -62,38 +64,37 @@ qx.Class.define('cv.plugins.MobileMenu', {
   ******************************************************
   */
   members: {
-    __navLeft: null,
+    __navLeft : null,
     __isTouchDevice: null,
 
     // overridden
-    getDomString() {
+    getDomString: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
-        const navLeft = (this.__navLeft = document.querySelector('#navbarLeft'));
+        const navLeft = this.__navLeft = document.querySelector('#navbarLeft');
         if (!navLeft.classList.contains('mobilemenu')) {
           navLeft.classList.add('mobilemenu');
         }
         navLeft.style.display = 'none';
-        qx.event.message.Bus.subscribe('path.pageChanged', function () {
+        qx.event.message.Bus.subscribe('path.pageChanged', function() {
           const navbar = navLeft.querySelector('.navbar');
           const animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
-
-          animation.addListenerOnce('end', () => {
+          animation.addListenerOnce('end', function() {
             navLeft.style.display = 'none';
-          });
+          }, this);
         });
 
         return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
-      }
-      return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
+      } 
+        return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
     },
 
-    _onDomReady() {
+    _onDomReady: function() {
       if (this.isTouchDevice()) {
         this.touchScroll('navbarLeft');
       }
     },
 
-    _action() {
+    _action: function() {
       if (window.innerWidth <= cv.Config.maxMobileScreenWidth) {
         if (this.isTouchDevice()) {
           this.__navLeft.style.display = 'block';
@@ -103,32 +104,22 @@ qx.Class.define('cv.plugins.MobileMenu', {
       }
     },
 
-    touchScroll(id) {
+    touchScroll: function(id) {
       let scrollStartPos = 0;
 
       const elem = document.querySelector('#' + id);
-      qx.event.Registration.addListener(
-        elem,
-        'touchstart',
-        function (event) {
-          scrollStartPos = this.scrollTop + event.touches[0].pageY;
-          event.preventDefault();
-        },
-        false
-      );
+      qx.event.Registration.addListener(elem, 'touchstart', function(event) {
+        scrollStartPos=this.scrollTop+event.touches[0].pageY;
+        event.preventDefault();
+      }, false);
 
-      qx.event.Registration.addListener(
-        elem,
-        'touchmove',
-        function (event) {
-          this.scrollTop = scrollStartPos - event.touches[0].pageY;
-          event.preventDefault();
-        },
-        false
-      );
+      qx.event.Registration.addListener(elem, 'touchmove', function(event) {
+        this.scrollTop=scrollStartPos-event.touches[0].pageY;
+        event.preventDefault();
+      }, false);
     },
 
-    isTouchDevice() {
+    isTouchDevice: function() {
       if (this.__isTouchDevice === null) {
         try {
           document.createEvent('TouchEvent');
@@ -149,10 +140,10 @@ qx.Class.define('cv.plugins.MobileMenu', {
   //     } );
   // });
 
-  defer(statics) {
+  defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.parser.pure.WidgetParser.addHandler('mobilemenu', statics);
+    cv.parser.WidgetParser.addHandler('mobilemenu', statics);
     cv.ui.structure.WidgetFactory.registerClass('mobilemenu', statics);
   }
 });

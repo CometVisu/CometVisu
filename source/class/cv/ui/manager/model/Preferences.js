@@ -1,7 +1,7 @@
-/* Preferences.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Preferences.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * User preferences.
  */
@@ -29,8 +30,8 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     this._restorePreferences();
   },
 
@@ -83,7 +84,7 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
   members: {
     _skipSaving: false,
 
-    _savePreferences() {
+    _savePreferences: function () {
       if (!this._skipSaving) {
         const store = qx.bom.Storage.getLocal();
         const data = qx.util.Serializer.toNativeObject(this);
@@ -92,12 +93,12 @@ qx.Class.define('cv.ui.manager.model.Preferences', {
       }
     },
 
-    _restorePreferences() {
+    _restorePreferences: function () {
       const store = qx.bom.Storage.getLocal();
       this.set(store.getItem('preferences'));
     },
 
-    setPreferences(preferences, noSave) {
+    setPreferences: function (preferences, noSave) {
       if (noSave) {
         this._skipSaving = true;
       }

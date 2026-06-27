@@ -19,7 +19,7 @@
   "defaultTarget": "build",
   "locales": [],
   "environment": {
-    "qx.promise.useNativePromises": true,
+    "qx.promise": false,
     "qx.theme" : null
   },
   "applications": [

@@ -1,6 +1,6 @@
 /* Slide.js
  *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
  *
@@ -24,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.ui.structure.pure.Slide', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
   /*
@@ -32,11 +33,10 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {
-    super(props);
+  construct: function(props) {
+    this.base(arguments, props);
     this.__animator = new cv.util.LimitedRateUpdateAnimator(this.__updateHandlePosition, this);
-
-    this.__pageSizeListener = cv.ui.structure.pure.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
+    this.__pageSizeListener = cv.ui.layout.ResizeHandler.states.addListener('changePageSizeInvalid', () => {
       // Quick fix for issue https://github.com/CometVisu/CometVisu/issues/1369
       // make sure that the `__invalidateScreensize` is delayed so that
       // reading the available spaces is valid.
@@ -52,9 +52,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
-    cv.ui.structure.pure.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
-
+  destruct: function () {
+    cv.ui.layout.ResizeHandler.states.removeListenerById(this.__pageSizeListener);
     this.__pageSizeListener = null;
     this.__button = null;
   },
@@ -69,22 +68,18 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       check: 'Number',
       init: 0
     },
-
     max: {
       check: 'Number',
       init: 100
     },
-
     step: {
       check: 'Number',
       init: 0.5
     },
-
     showInvalidValues: {
       check: 'Boolean',
       init: false
     },
-
     sendOnFinish: {
       check: 'Boolean',
       init: false
@@ -108,30 +103,26 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     __coordMin: undefined, // minimal screen coordinate of slider
 
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       const placeholder = this.getFormat() === '' ? '' : '-';
-      return (
-        `
+      return `
         <div class="actor ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style="touch-action: pan-y;">
-          <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">` +
-        placeholder +
-        `</button>
+          <button class="ui-slider-handle ui-state-default ui-corner-all" draggable="false" unselectable="true" style="transform: translate3d(0px, 0px, 0px);">`+placeholder+`</button>
           <div class="ui-slider-range value" style="margin-left: 0px; width: 0px;"></div>
         </div>
-      `
-      );
+      `;
     },
 
     // overridden
-    _onDomReady() {
-      super._onDomReady();
+    _onDomReady: function() {
+      this.base(arguments);
 
-      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, { trailing: true }, this);
+      this.__throttled = cv.util.Function.throttle(this.__onChangeValue, 250, {trailing: true}, this);
 
       this.getActor().addEventListener('pointerdown', this);
     },
 
-    _update(address, data) {
+    _update: function (address, data) {
       let transform = this.getAddress()[address].transform;
       if (this.__inDrag || this.__lastBusValue[transform] === data) {
         // slider in use -> ignore value from bus
@@ -153,18 +144,18 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
      * @param instant {Boolean} Animate or instant change
      * @param relaxDisplay {Boolean} Let the handle move to an unstable position
      *   to give visual feedback that something does happen during interaction
-     * @returns {Number} The real value that is respecting the configured restraints
+     * @returns realValue - the real value that is respecting the configured restraints
      * @private
      */
-    __setSliderTo(value, instant, relaxDisplay = false) {
+    __setSliderTo: function(value, instant, relaxDisplay = false) {
       let min = this.getMin();
       let max = this.getMax();
       let step = this.getStep();
-      if (step === 0 || Math.abs((max - min) / step) > 10000) {
+      if (step === 0 || Math.abs((max-min)/step) > 10000) {
         // limit too small step size - it's not necessary to have more than
         // 10000 steps for the range as even the biggest screen doesn't have
         // that many pixels
-        step = (max - min) / 10000;
+        step = (max-min)/10000;
       }
       let realValue = Math.min(Math.max(value, min), max);
 
@@ -177,14 +168,14 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         realValue = realValue < maxSwitchValue ? stepValue : max;
       }
 
-      let ratio = max === min ? 0 : (realValue - min) / (max - min);
+      let ratio = max===min ? 0 : (realValue-min)/(max-min);
 
       if (relaxDisplay) {
-        let valueRatio = max === min ? 0 : (Math.min(Math.max(value, min), max) - min) / (max - min);
+        let valueRatio = max===min ? 0 : (Math.min(Math.max(value, min), max)-min)/(max-min);
         let delta = ratio - valueRatio;
         let stepCount = (max - min) / step;
-        let factor = (2 * stepCount) ** 3;
-        ratio -= Math.min(factor * delta ** 4, Math.abs(delta)) * Math.sign(delta);
+        let factor = (2*stepCount) ** 3;
+        ratio -= Math.min(factor * delta**4, Math.abs(delta)) * Math.sign(delta);
       }
 
       // store it to be able to suppress sending of unchanged data
@@ -209,7 +200,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       return realValue;
     },
 
-    __updateHandlePosition(ratio) {
+    __updateHandlePosition: function (ratio) {
       if (this.__button === undefined) {
         let element = this.getDomElement();
         this.__button = element.querySelector('button');
@@ -227,14 +218,14 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       this.__range.style.width = length + 'px';
     },
 
-    __invalidateScreensize() {
+    __invalidateScreensize: function () {
       let min = this.getMin();
       let max = this.getMax();
       this.__actorWidth = undefined; // invalidate cached values
-      this.__animator.setTo(max === min ? 0 : (this.getBasicValue() - min) / (max - min), true);
+      this.__animator.setTo(max===min ? 0 : (this.getBasicValue()-min)/(max-min), true);
     },
 
-    handleEvent(event) {
+    handleEvent: function (event) {
       let newRatio = 0;
 
       switch (event.type) {
@@ -272,13 +263,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       }
     },
 
-    __onChangeValue(value) {
+    __onChangeValue: function(value) {
       this.__lastBusValue = this.sendToBackend(value, false, this.__lastBusValue);
     },
 
     __getActorWidth() {
       if (this.__actorWidth === undefined || this.__buttonWidth === undefined) {
-        if (cv.ui.structure.pure.layout.ResizeHandler.states.isPageSizeInvalid()) {
+        if (cv.ui.layout.ResizeHandler.states.isPageSizeInvalid()) {
           return 1e10; // a no valid value that doesn't break other calculations
         }
         let actor = this.getDomElement().querySelector('.actor');
@@ -293,7 +284,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     cv.ui.structure.WidgetFactory.registerClass('slide', statics);
   }
 });

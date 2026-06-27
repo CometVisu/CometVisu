@@ -1,7 +1,7 @@
-/* Info.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Info.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Adds a dynamic field to the visu that can represent values from the BUS
@@ -36,7 +37,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.Info', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Update,
 
   /*
@@ -46,8 +47,9 @@ qx.Class.define('cv.ui.structure.pure.Info', {
   */
   members: {
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return '<div class="actor"><div class="value">-</div></div>';
     }
   }
 });
+

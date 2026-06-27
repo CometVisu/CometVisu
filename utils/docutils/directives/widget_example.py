@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -19,12 +19,10 @@
 from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper
-from docutils.parsers.rst import directives
-from sphinx.util.docutils import SphinxDirective
+from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path
 from lxml import etree
-import math
 
 from helper.widget_example_parser import WidgetExampleParser
 
@@ -40,7 +38,7 @@ def editor(argument):
     return directives.choice(argument, align_values)
 
 
-class WidgetExampleDirective(SphinxDirective):
+class WidgetExampleDirective(Directive):
     """
     reStructuredText directive for widget examples. Extracts the example code, validates it against the
     XSD-File provided by CometVisu and creates an file with the relevant content the screenshot generation tool needs
@@ -90,12 +88,9 @@ class WidgetExampleDirective(SphinxDirective):
         'linenos': directives.flag,
         'lineno-start': int,
         'scale': int, # scale screenshot in percent
-        'hide': directives.unchanged, # true or false
-        'hide-screenshots': directives.unchanged, # true or false
         'hide-source': directives.unchanged, # true or false
         'editor': editor,
-        'align': align,
-        'shots-per-row': int
+        'align': align
     }
     has_content = True
 
@@ -114,41 +109,56 @@ class WidgetExampleDirective(SphinxDirective):
         node += caption
 
     def run(self):
-        hide = False
-        hide_source = False
-        hide_screenshots = False
-        shots_per_row = min(4, int(self.options['shots-per-row'])) if 'shots-per-row' in self.options else 1
+        config = None
+        # meta_node = None
+        # settings_node = None
+        # global_caption = None
+        show_source = True
         editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
-        
-        # Use get_source_info() to get the actual source file of the directive,
-        # not the document it might be included into. This prevents duplicate
-        # screenshot control files when a file is included by another.
-        directive_source, _ = self.get_source_info()
-        
-        # Extract relative path from the directive's source file
-        manual_prefix = path.join("doc", "manual") + path.sep
-        # when the directive source is not the same as the document source, we are in an include and do not want
-        # to generate duplicate screenshot control files^
-        save_screenshot_control_files = directive_source == self.state_machine.document.settings._source
-        if manual_prefix in directive_source:
-            source_path = directive_source.split(manual_prefix, 1)[1]
-        else:
-            # Fallback to document source if directive source doesn't contain the expected path
-            source_path = self.state_machine.document.settings._source.split(manual_prefix, 1)[1]
-        
+        source_path = self.state_machine.document.settings._source.split("%s%s" % (path.join("doc", "manual"), path.sep), 1)[1]
         screenshot_dir = path.join("doc", "manual", path.sep.join(source_path.split(path.sep)[0:-1]), "_static")
         parser.set_screenshot_dir(screenshot_dir)
-        name = source_path[:-4].replace("/", "_").replace(path.sep, "_")
-        if 'hide' in self.options and self.options['hide'] == "true":
-            hide = True
-        if 'hide-screenshots' in self.options and self.options['hide-screenshots'] == "true":
-            hide_screenshots = True
-        if 'hide-source' in self.options and self.options['hide-source'] == "true":
-            hide_source = True
+        name = source_path[:-4].replace("/", "_")
 
+        # visu_config_parts = self.config_parts.copy()
         parse_result = parser.parse(source, name, editor)
+        # try:
+        #     # we need one surrouding element to prevent parse errors
+        #     xml = etree.fromstring("<root>%s</root>" % source)
+        #     for child in xml:
+        #         if etree.iselement(child):
+        #
+        #             if child.tag == "settings":
+        #                 # meta settings
+        #                 settings_node = child
+        #             elif child.tag == "meta":
+        #                 # config meta settings
+        #                 meta_node = child
+        #             elif child.tag == "caption":
+        #                 global_caption = child.text
+        #             else:
+        #                 # the config example
+        #                 config = child
+        # except Exception as e:
+        #     print("Parse error: %s" % str(e))
+
+        # example_content = etree.tostring(config, encoding='utf-8')
+        # if meta_node is not None:
+        #     example_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), example_content)
+        #     visu_config_parts['meta'] = etree.tostring(meta_node, encoding='utf-8').decode('utf-8')
+        #
+        # settings = {
+        #     "selector": ".widget_container",
+        #     "screenshots": [],
+        #     "screenshotDir": screenshot_dir
+        # }
+        # example_content = parse_result['example_content']
+        # visu_config_parts['meta'] = parse_result['meta_content']
+        # settings = parse_result['settings']
+        # settings['screenshotDir'] = screenshot_dir
+        # global_caption = parse_result['global_caption']
 
         if 'scale' in self.options:
             scale = max(1, min(100, int(self.options['scale'] or 100)))
@@ -166,13 +176,89 @@ class WidgetExampleDirective(SphinxDirective):
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}
             })
-            hide_source = True
+            show_source = False
 
-        if save_screenshot_control_files:
-            try:
-                parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
-            except etree.XMLSyntaxError as e:
-                raise self.error(str(e))
+        try:
+            parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
+        except etree.XMLSyntaxError as e:
+            raise self.error(str(e))
+
+        # elif settings_node is not None:
+        #     # read meta settings
+        #     design = settings_node.get("design", "metal")
+        #     settings['selector'] = settings_node.get("selector", ".widget_container")
+        #     if settings_node.get("sleep"):
+        #         settings['sleep'] = settings_node.get("sleep")
+        #
+        #     for screenshot in settings_node.iter('screenshot'):
+        #         shot = {
+        #             "name": screenshot.get("name", name + str(counters[name] + shot_index)),
+        #             "data": []
+        #         }
+        #         if screenshot.get("sleep"):
+        #             shot['sleep'] = screenshot.get("sleep")
+        #         if screenshot.get("clickpath", None):
+        #             shot['clickPath'] = screenshot.get('clickpath')
+        #         if screenshot.get("waitfor", None):
+        #             shot['waitFor'] = screenshot.get('waitfor')
+        #
+        #         shot_index += 1
+        #
+        #         for data in screenshot.iter('data'):
+        #             values = {
+        #                 'address': data.get("address", "0/0/0"),
+        #                 'value': data.text
+        #             }
+        #             if data.get("type"):
+        #                 values['type'] = data.get("type")
+        #
+        #             shot['data'].append(values)
+        #
+        #         for caption in screenshot.iter('caption'):
+        #             if 'caption' not in shot:
+        #                 shot['caption'] = caption.text
+        #             else:
+        #                 shot['caption'] += caption.text
+        #
+        #         settings['screenshots'].append(shot)
+        #
+        #     for caption in settings_node.iterchildren('caption'):
+        #         global_caption = caption.text
+
+        # # no screenshots defined, add a default one
+        # if len(settings['screenshots']) == 0:
+        #     settings['screenshots'].append({
+        #         "name": name + str(shot_index)
+        #     })
+
+        # # replace the design value in the config
+        # visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", design)
+        # if config.tag == "page":
+        #     visu_config_parts['content_start'] = ""
+        #     visu_config_parts['content_end'] = ""
+        #
+        # # build the real config source
+        # visu_config = visu_config_parts['start'] + \
+        #               visu_config_parts['meta'] + \
+        #               visu_config_parts['content_start']  + \
+        #               etree.tostring(config, encoding='utf-8').decode('utf-8') + \
+        #               visu_config_parts['content_end'] + \
+        #               visu_config_parts['end']
+        #
+        # # validate generated config against XSD
+        # try:
+        #     etree.fromstring(visu_config, parser)
+        # except etree.XMLSyntaxError as e:
+        #     raise self.error(str(e))
+        #
+        # if not path.exists(self.example_dir):
+        #     makedirs(self.example_dir)
+        #
+        # with open("%s_%s.xml" % (path.join(self.example_dir, name), parser.counters[name]), encoding='utf-8', mode="w") as f:
+        #     f.write(u"%s\n%s" % (json.dumps(settings), visu_config))
+
+        # create the code-block
+        classes = ['code', 'xml']
         # set up lexical analyzer
         try:
             tokens = Lexer(parse_result['display_content'], 'xml', self.state.document.settings.syntax_highlight)
@@ -189,75 +275,43 @@ class WidgetExampleDirective(SphinxDirective):
             # add linenumber filter:
             tokens = NumberLines(tokens, startline, endline)
 
+        if 'hide-source' in self.options and show_source:
+            show_source = self.options['hide-source'] != "true"
+
         res_nodes = []
-        if not hide:
-            if not hide_screenshots:
-                shots = len(parse_result['settings']['screenshots'])
-                use_table = shots_per_row > 1 and shots > 1
-                if use_table:
-                    columns = min(shots_per_row, shots)
-                    rows = math.ceil(shots / columns)
-                    col_width = 100/columns
-                    table = nodes.table()
-                    tgroup = nodes.tgroup(cols=columns)
-                    table += tgroup
-                    table['classes'].append("image-float")
-                    tbody = nodes.tbody()
-                    for i in range(columns):
-                        tgroup += nodes.colspec(colwidth=col_width)
+        for shot in parse_result['settings']['screenshots']:
+            reference = "_static/%s.png" % shot['name']
+            options = dict(uri=reference)
+            if 'caption' in shot:
+                options['alt'] = shot['caption']
 
-                    for row in range(rows):
-                        row_node = nodes.row()
-                        for col in range(columns):
-                            index = row * columns + col
-                            if index >= shots:
-                                break
-                            shot = parse_result['settings']['screenshots'][index]
-                            cell = nodes.entry()
-                            cell += self.create_figure(shot, parse_result, hide_source)
-                            row_node += cell
-                        tbody += row_node
+            image_node = nodes.image(rawsource=shot['name'], **options)
+            figure_node = nodes.figure('', image_node)
+            if 'align' in self.options:
+                figure_node['align'] = self.options['align']
 
-                    tgroup += tbody
-                    res_nodes.append(table)
-                else:
-                    for shot in parse_result['settings']['screenshots']:
-                        figure_node = self.create_figure(shot, parse_result, hide_source)
-                        res_nodes.append(figure_node)
+            if 'caption' in shot:
+                self.add_caption(shot['caption'], figure_node)
 
-            if not hide_source:
-                example_content = parse_result['display_content'].decode('utf-8')
-                node = nodes.literal_block(example_content, example_content)
-                node['language'] = 'xml'
-                node['linenos'] = 'linenos' in self.options or \
-                                 'lineno-start' in self.options
-                node['classes'] += self.options.get('class', [])
+            elif not show_source and parse_result['global_caption'] and len(parse_result['settings']['screenshots']) == 1:
+                self.add_caption(parse_result['global_caption'], figure_node)
 
-                set_source_info(self, node)
+            res_nodes.append(figure_node)
 
-                if parse_result['global_caption']:
-                    self.options.setdefault('name', nodes.fully_normalize_name(parse_result['global_caption']))
-                    node = container_wrapper(self, node, parse_result['global_caption'])
-                self.add_name(node)
-                res_nodes.append(node)
+        if show_source:
+            example_content = parse_result['display_content'].decode('utf-8')
+            node = nodes.literal_block(example_content, example_content)
+            node['language'] = 'xml'
+            node['linenos'] = 'linenos' in self.options or \
+                             'lineno-start' in self.options
+            node['classes'] += self.options.get('class', [])
+
+            set_source_info(self, node)
+
+            if parse_result['global_caption']:
+                self.options.setdefault('name', nodes.fully_normalize_name(parse_result['global_caption']))
+                node = container_wrapper(self, node, parse_result['global_caption'])
+            self.add_name(node)
+            res_nodes.append(node)
 
         return res_nodes
-
-    def create_figure(self, shot, parse_result, hide_source):
-        reference = "_static/%s.png" % shot['name']
-        options = dict(uri=reference)
-        if 'caption' in shot:
-            options['alt'] = shot['caption']
-
-        image_node = nodes.image(rawsource=shot['name'], **options)
-        figure_node = nodes.figure('', image_node)
-        if 'align' in self.options:
-            figure_node['align'] = self.options['align']
-
-        if 'caption' in shot:
-            self.add_caption(shot['caption'], figure_node)
-
-        elif hide_source and parse_result['global_caption'] and len(parse_result['settings']['screenshots']) == 1:
-            self.add_caption(parse_result['global_caption'], figure_node)
-
-        return figure_node

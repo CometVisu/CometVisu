@@ -1,8 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const { CvCompileHandler } = require('./cv/CompileHandler');
 const { ApiCompileHandler } = require('./apiviewer/CompileHandler');
-const packageConfig = require('../../package.json');
-const path = require('path');
-const fs = require('fs');
 
 qx.Class.define('cv.compile.LibraryApi', {
   extend: qx.tool.cli.api.LibraryApi,
@@ -10,7 +9,10 @@ qx.Class.define('cv.compile.LibraryApi', {
   members: {
     __compileHandler: null,
 
-    async load() {
+    /**
+     * Called to load any library-specific configuration and update the compilerConfig
+     */
+    async afterLibrariesLoaded() {
       const compilerApi = this.getCompilerApi();
       const command = compilerApi.getCommand();
       if (command instanceof qx.tool.cli.commands.Compile || command instanceof qx.tool.cli.commands.Deploy) {
@@ -26,11 +28,10 @@ qx.Class.define('cv.compile.LibraryApi', {
             }
           });
         }
-        const makeApi= this.__makeApi = customSettings.apiviewer === 'true';
+        const makeApi = customSettings.apiviewer === 'true';
         const outputPath = process.env.CV_OUTPUT_PATH || customSettings.outputPath;
-        const targetType = command.getTargetType();
         config.targets.forEach(target => {
-          if (target.type === targetType) {
+          if (target.type === config.targetType) {
             if (outputPath) {
               target.outputPath = outputPath;
             }
@@ -46,14 +47,7 @@ qx.Class.define('cv.compile.LibraryApi', {
           this.__compileHandler = new CvCompileHandler(compilerApi, customSettings);
         }
         await this.__compileHandler.onLoad();
-      } else if (command instanceof qx.tool.cli.commands.Lint) {
-        const config = compilerApi.getConfiguration();
-        // copy eslint config from package.json
-        if (packageConfig.hasOwnProperty('eslintConfig')) {
-          config.eslintConfig = packageConfig.eslintConfig;
-        }
       }
-      return this.base(arguments);
     },
 
     readEnv (config, customSettings) {

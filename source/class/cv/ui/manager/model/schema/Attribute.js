@@ -1,7 +1,7 @@
-/* Attribute.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Attribute.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * a single attribute from the schema.
  */
@@ -29,8 +30,8 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(node, schema) {
-    super(node, schema);
+  construct: function (node, schema) {
+    this.base(arguments, node, schema);
     this.parse();
   },
 
@@ -47,7 +48,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      * @return  string          name of the element
      * @throws  if the name can not be found
      */
-    getAttributeName(e, schema) {
+    getAttributeName: function(e, schema) {
       if (e.hasAttribute('name')) {
         return e.getAttribute('name');
       }
@@ -78,17 +79,14 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
       refine: true,
       init: 'attribute'
     },
-
     name: {
       check: 'String',
       init: ''
     },
-
     optional: {
       check: 'Boolean',
       init: false
     },
-
     defaultValue: {
       check: 'String',
       nullable: true
@@ -103,7 +101,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
   members: {
     _type: null,
 
-    parse() {
+    parse: function () {
       const node = this.getNode();
       const schema = this.getSchema();
       /**
@@ -112,7 +110,6 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
        */
       this._type = new cv.ui.manager.model.schema.SimpleType(node, schema);
       this.setName(cv.ui.manager.model.schema.Attribute.getAttributeName(node, schema));
-
       if (node.hasAttribute('default')) {
         this.setDefaultValue(node.getAttribute('default'));
       }
@@ -125,7 +122,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      * @param   value   mixed   the value to check
      * @return  boolean         if the value is valid
      */
-    isValueValid(value) {
+    isValueValid: function (value) {
       if (value === null || value === undefined) {
         value = '';
       } else {
@@ -143,7 +140,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      *
      * @return  string  description of allowed values, almost user-readable :)
      */
-    getTypeString() {
+    getTypeString: function () {
       const description = this._type.getBaseType();
 
       if (description.match(/xsd\:/)) {
@@ -158,7 +155,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
      *
      * @return  array   list of string of valid values
      */
-    getEnumeration() {
+    getEnumeration: function () {
       return this._type.getEnumeration();
     }
   },
@@ -168,7 +165,7 @@ qx.Class.define('cv.ui.manager.model.schema.Attribute', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     this.__appInfoCache = null;
     this.__documentationCache = null;
   }

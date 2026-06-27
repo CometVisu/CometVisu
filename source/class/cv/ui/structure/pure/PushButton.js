@@ -1,7 +1,7 @@
-/* PushButton.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* PushButton.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Adds a button to the visu that sends a defined value to the BUS when you press and release.
  * E.g. pushing a 1 and releasing a 0. This makes it possible, for example,
@@ -25,7 +26,7 @@
  * @since 2013
  */
 qx.Class.define('cv.ui.structure.pure.PushButton', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.Update],
 
   /*
@@ -34,8 +35,8 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
   ******************************************************
   */
   properties: {
-    downValue: { check: 'String', init: '1' },
-    upValue: { check: 'String', init: '0' }
+    'downValue': {check: 'String', init: '1'},
+    'upValue': {check: 'String', init: '0'}
   },
 
   /*
@@ -45,12 +46,12 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
   */
   members: {
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     // overridden
-    initListeners() {
+    initListeners: function() {
       this.addElementListener('pointerdown', this._onPointerDown, this);
       this.addElementListener('pointerup', this._onPointerUp, this);
     },
@@ -61,13 +62,12 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
      *
      * @param value {any} incoming data (already transformed + mapped)
      */
-    handleUpdate(value) {
+    handleUpdate: function (value) {
       const actor = this.getActor();
       // compare against the unmapped value
       value = '' + this.getBasicValue();
       const off = this.getUpValue();
       actor.classList.remove(value === off ? 'switchPressed' : 'switchUnpressed');
-
       actor.classList.add(value === off ? 'switchUnpressed' : 'switchPressed');
     },
 
@@ -75,29 +75,29 @@ qx.Class.define('cv.ui.structure.pure.PushButton', {
      * Get the value that should be send to backend after the action has been triggered
      * @param event
      */
-    getActionValue(event) {
+    getActionValue: function (event) {
       if (event.type === 'pointerup') {
         return this.getUpValue();
-      }
-      return this.getDownValue();
+      } 
+        return this.getDownValue();
     },
 
-    _onPointerUp() {
+    _onPointerUp: function () {
       const sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
-        return !address.variantInfo || address.variantInfo === 'up';
+        return (!address.variantInfo || address.variantInfo === 'up');
       });
     },
 
-    _onPointerDown() {
+    _onPointerDown: function () {
       const sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
-        return !address.variantInfo || address.variantInfo === 'down';
+        return (!address.variantInfo || address.variantInfo === 'down');
       });
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     cv.ui.structure.WidgetFactory.registerClass('pushbutton', statics);
   }
 });

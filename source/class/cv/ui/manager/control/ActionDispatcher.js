@@ -1,7 +1,7 @@
-/* ActionDispatcher.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* ActionDispatcher.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * The ActionDispatcher listens to the events in the 'cv.manager.action' topic and
  * dispatched those events to the currently relevant handler (e.g. the save event to the opened editor).
@@ -30,8 +31,8 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
   },
 
@@ -59,7 +60,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
   ***********************************************
   */
   members: {
-    updateBarButtons() {
+    updateBarButtons: function () {
       const actionHandler = this.getFocusedWidget();
       const menuBar = cv.ui.manager.MenuBar.getInstance();
       const config = menuBar.getButtonConfiguration();
@@ -68,7 +69,6 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
         button = menuBar.getButton(actionId);
         if (button) {
           button.setEnabled(config[actionId].general || this.hasHandler(actionId));
-
           if (actionHandler) {
             actionHandler.configureButton(actionId, button);
           }
@@ -76,7 +76,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
       }, this);
     },
 
-    _applyFocusedWidget(value, old) {
+    _applyFocusedWidget: function (value, old) {
       if (old) {
         const menuBar = cv.ui.manager.MenuBar.getInstance();
         const config = menuBar.getButtonConfiguration();
@@ -96,11 +96,11 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
      * @param actionName
      * @return {Boolean}
      */
-    hasHandler(actionName) {
+    hasHandler: function (actionName) {
       return !!this._getHandler(actionName);
     },
 
-    _getHandler(actionName) {
+    _getHandler: function (actionName) {
       const handler = this.getFocusedWidget();
       const main = this.getMain();
       if (handler && handler.canHandleAction(actionName)) {
@@ -111,7 +111,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
       return null;
     },
 
-    _onAction(ev) {
+    _onAction: function (ev) {
       const topic = ev.getName();
       const actionName = topic.split('.').pop();
       const handler = this._getHandler(actionName);
@@ -128,7 +128,7 @@ qx.Class.define('cv.ui.manager.control.ActionDispatcher', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     qx.event.message.Bus.subscribe('cv.manager.action.*', this._onAction, this);
   }
 });

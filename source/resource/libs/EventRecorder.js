@@ -39,7 +39,7 @@ var EVENT_RECORDER = null;
             if (EVENT_RECORDER) {
               EVENT_RECORDER(ev);
             }
-            listener.call(this, ev);
+            listener(ev);
           };
           this.$$wrappers[type][listener.$$WRID] = wrapper;
 

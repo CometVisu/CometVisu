@@ -1,7 +1,7 @@
-/* AbstractViewer.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* AbstractViewer.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,13 +17,16 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Abstract base class for all widgets that can display file items.
  */
 qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
   extend: qx.ui.core.Widget,
-  implement: [cv.ui.manager.editor.IEditor, cv.ui.manager.IActionHandler],
-
+  implement: [
+    cv.ui.manager.editor.IEditor,
+    cv.ui.manager.IActionHandler
+  ],
   type: 'abstract',
 
   /*
@@ -31,8 +34,8 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     this._setLayout(new qx.ui.layout.Grow());
   },
 
@@ -70,21 +73,21 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
   ***********************************************
   */
   members: {
-    canHandleAction() {
+    canHandleAction: function () {
       return false;
     },
-    handleAction() {},
-    configureButton(button) {},
-    unConfigureButton(button) {},
-    save() {},
-    getCurrentContent() {},
+    handleAction: function () {},
+    configureButton: function (button) {},
+    unConfigureButton: function (button) {},
+    save: function () {},
+    getCurrentContent: function () {},
 
-    _applyFile(file, old) {
+    _applyFile: function (file, old) {
       // show icon for file type
     },
 
     // overridden
-    _createChildControlImpl(id) {
+    _createChildControlImpl : function (id) {
       let control;
 
       switch (id) {
@@ -100,7 +103,7 @@ qx.Class.define('cv.ui.manager.viewer.AbstractViewer', {
           break;
       }
 
-      return control || super._createChildControlImpl(id);
+      return control || this.base(arguments, id);
     }
   }
 });

@@ -1,7 +1,7 @@
-/* String.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* String.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 qx.Class.define('cv.util.String', {
   type: 'static',
@@ -33,7 +34,7 @@ qx.Class.define('cv.util.String', {
      * @param str {String} string to decode
      * @return {String}
      */
-    decodeHtmlEntities(str) {
+    decodeHtmlEntities: function (str) {
       if (!this.__elem) {
         this.__elem = document.createElement('span');
       }
@@ -46,7 +47,7 @@ qx.Class.define('cv.util.String', {
      * @param str {String} string to decode
      * @return {Element}
      */
-    htmlStringToDomElement(str) {
+    htmlStringToDomElement: function (str) {
       //var widget = qx.bom.Html.clean([res[1]])[0];
       //var widget = (function(){var div=document.createElement('div');div.innerHTML=res[1];return div.childNodes[0];})();
       const div = document.createElement('div');
@@ -61,7 +62,7 @@ qx.Class.define('cv.util.String', {
      * is shown on the console.
      * @return {String}
      */
-    sprintf() {
+    sprintf: function() {
       const args = Array.prototype.slice.call(arguments);
       let string = '-';
       try {
@@ -72,4 +73,5 @@ qx.Class.define('cv.util.String', {
       return string;
     }
   }
+
 });

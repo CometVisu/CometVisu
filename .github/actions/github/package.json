@@ -9,18 +9,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "engines": {
-    "node": ">=24"
-  },
   "dependencies": {
-    "@actions/core": "^3.0.1",
-    "@actions/github": "^9.1.1",
-    "@octokit/action": "^8.0.4",
-    "@octokit/rest": "^22.0.1",
-    "adm-zip": "^0.5.17",
-    "camelcase": "^9.0.0",
-    "follow-redirects": "^1.16.0",
-    "simple-git": "^3.36.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^4.0.0",
+    "@octokit/action": "^3.18.1",
+    "@octokit/rest": "^18.12.0",
+    "adm-zip": "^0.5.10",
+    "camelcase": "^6.3.0",
+    "follow-redirects": "^1.15.2",
+    "simple-git": "^3.19.1"
   }
 }

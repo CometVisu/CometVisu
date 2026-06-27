@@ -35,17 +35,17 @@ if [[ $IS_TAG == 1 ]]; then
     # check if we have a "real" release tag like "v0.12.0" with no appendix
     [[ $TAG =~ ^v\d{1,2}\.\d{1,3}\.\d{1,3}$ ]] && IS_RELEASE=1
 
-    if [[ $IS_RELEASE -ne 0 && $IN_DEVELOP -ne 0 ]]; then
+    if [[ $IS_RELEASE == 1 && $IN_DEVELOP == 1 ]]; then
       echo "building real release versions in the develop-branch are not supported. They must be created either in the master or one of the release-branches!"
       exit 1
     fi
 
-    if [[ $IN_DEVELOP -ne 0 ]]; then
+    if [[ $IN_DEVELOP == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
-    elif [[ $IN_MASTER -ne 0 ]]; then
+    elif [[ $IN_MASTER == 1 ]]; then
       MASTER_TAG=latest
-    elif [[ $IN_RELEASE -ne 0 ]]; then
+    elif [[ $IN_RELEASE == 1 ]]; then
       # dont use tag at all
       TAG=""
       if [[ $IS_RELEASE == 1 ]]; then

@@ -1,7 +1,7 @@
-/* InfoAction.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* InfoAction.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * The infoaction widget is a combination of an info/text widget and an "action"-widget, e.g. switch or trigger.
@@ -66,7 +67,7 @@
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
 qx.Class.define('cv.ui.structure.pure.InfoAction', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
   include: cv.ui.common.HasChildren,
 
@@ -76,11 +77,12 @@ qx.Class.define('cv.ui.structure.pure.InfoAction', {
   ******************************************************
   */
   properties: {
-    anonymous: {
+    anonymous : {
       refine: true,
       init: true
     }
   },
+
 
   /*
    ******************************************************
@@ -89,12 +91,12 @@ qx.Class.define('cv.ui.structure.pure.InfoAction', {
    */
   members: {
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return this.getChildrenDomString();
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     cv.ui.structure.WidgetFactory.registerClass('infoaction', statics);
   }
 });

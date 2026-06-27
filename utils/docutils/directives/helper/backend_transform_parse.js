@@ -2,7 +2,7 @@
 
 /* backend_transform_parse.js
  *
- * copyright (c) 2022-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2022-2022, Christian Mayer and the CometVisu contributers.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free

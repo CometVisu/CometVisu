@@ -1,22 +1,14 @@
-/* owm_core.js 
- * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- * 
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 3 of the License, or (at your option)
- * any later version.
+/**
+ * Plugin: jquery.OWM
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
- * more details.
+ * jQuery plugin to display data from OpenWeatherMap.
  *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- */
-
+ * Version: 0.0.2
+ * Copyright (c) 2015, Stefan Borchert
+ * Updated 2019 by Matthias
+ * 
+ * Licensed under the GPLv3 license.
+ **/
 
 var jOWM = jOWM || {};
 (function ($) {
@@ -396,8 +388,7 @@ var jOWM = jOWM || {};
            callback(data);
        }, this);
        req.addListener("error", function (ev) {
-           var req = ev.getTarget();
-           console.error('error requesting', url, req.getStatus(), req.getStatusText());
+           console.log('error requesting', url, ev.getData());
        }, this);
        req.send();
     };

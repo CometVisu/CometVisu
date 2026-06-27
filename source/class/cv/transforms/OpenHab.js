@@ -1,7 +1,7 @@
-/* OpenHab.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* OpenHab.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Transformations for the openHAB backend
  *
@@ -24,103 +25,84 @@
  * @since 2012
  */
 qx.Class.define('cv.transforms.OpenHab', {
+
   /*
   ******************************************************
     STATICS
   ******************************************************
   */
   statics: {
-    isUndefined(value) {
+    isUndefined: function (value) {
       return ['NaN', 'Uninitialized', 'NULL', 'UNDEF', undefined, null].indexOf(value) >= 0;
     }
   },
+
 
   /**
    * This class defines the default transforms: encode: transform JavaScript to
    * bus value decode: transform bus to JavaScript value
    */
-  defer() {
+  defer: function () {
     cv.Transform.addTransform('OH', {
-      switch: {
+      'switch': {
         name: 'OH_Switch',
-        encode(phy) {
+        encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'ON' : 'OFF';
+          return phy == 1 ? 'ON' : 'OFF'; // jshint ignore:line
         },
-        decode(string) {
+        decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
             return 0;
           }
-          return string === 'ON' || parseInt(string) > 0 ? 1 : 0;
+          return (string === 'ON' || parseInt(string) > 0) ? 1 : 0;
         }
       },
-
-      playPause: {
-        name: 'OH_PlayPause',
-        encode(phy) {
-          // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'PLAY' : 'PAUSE';
-        },
-        decode(string) {
-          if (cv.transforms.OpenHab.isUndefined(string)) {
-            return 0;
-          }
-          return string === 'PLAY' || parseInt(string) > 0 ? 1 : 0;
-        }
-      },
-
-      contact: {
+      'contact': {
         name: 'OH_Contact',
-        encode(phy) {
+        encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
-          return phy == 1 ? 'OPEN' : 'CLOSED';
+          return phy == 1 ? 'OPEN' : 'CLOSED'; // jshint ignore:line
         },
-        decode(string) {
+        decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) {
             return 0;
           }
           return string === 'OPEN' ? 1 : 0;
         }
       },
-
-      rollershutter: {
+      'rollershutter': {
         name: 'OH_RollerShutter',
-        encode(phy) {
+        encode: function (phy) {
           // using == comparisons to make sure that e.g. 1 equals "1"
           // noinspection EqualityComparisonWithCoercionJS
-          if (phy == -1) {
-            return 'STOP';
-          }
-          // noinspection EqualityComparisonWithCoercionJS
-          if (phy == 1 || phy == 100) {
+          if (phy == 1) {
             return 'DOWN';
-          }
-          // noinspection EqualityComparisonWithCoercionJS
-          if (phy == 0) {
-            return 'UP';
+            // eslint-disable-next-line no-else-return
+          } else {
+            // noinspection EqualityComparisonWithCoercionJS
+            if (phy == 0) { // eslint-disable-line no-lonely-if
+              return 'UP';
+            }
           }
           return phy;
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
-            return undefined;
-          } else if (str === 'UP' || str === '0') {
             return 0;
-          } else if (str === 'DOWN' || str === '100') {
-            return 100;
-          } else if (str === 'STOP') {
-            return -1;
+          } else if (str === 'UP') {
+            return 0;
+          } else if (str === 'DOWN') {
+            return 1;
           }
           return str;
         }
       },
-
-      dimmer: {
+      'dimmer': {
         name: 'OH_Dimmer',
-        encode(phy) {
+        encode: function (phy) {
           return parseInt(phy);
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
             return 0;
           } else if (str === 'ON') {
@@ -131,58 +113,54 @@ qx.Class.define('cv.transforms.OpenHab', {
           return parseInt(str);
         }
       },
-
-      number: {
+      'number': {
         name: 'OH_Number',
-        encode(phy) {
+        encode: function (phy) {
           return parseFloat(phy);
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
             return 0;
           }
           return parseFloat(str);
         }
       },
-
-      string: {
+      'string': {
         name: 'OH_String',
-        encode(phy) {
+        encode: function (phy) {
           return phy;
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
             return '';
           }
           return str;
         }
       },
-
-      datetime: {
+      'datetime': {
         name: 'OH_DateTime',
-        encode(phy) {
+        encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleDateString();
           }
           return phy;
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
             return '-';
           }
           return new Date(Date.parse(str));
         }
       },
-
-      time: {
+      'time': {
         name: 'OH_Time',
-        encode(phy) {
+        encode: function (phy) {
           if (phy instanceof Date) {
             return phy.toLocaleTimeString();
           }
           return phy;
         },
-        decode(str) {
+        decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) {
             return '-';
           }
@@ -194,64 +172,26 @@ qx.Class.define('cv.transforms.OpenHab', {
           return date;
         }
       },
-
-      color: {
+      'color': {
         name: 'OH_Color',
-        encode(phy) {
+        encode: function (phy) {
           if (!(phy instanceof Map)) {
             return '0, 0, 0';
           }
-          if (phy.has('h') && phy.has('s') && phy.has('v')) {
-            let hsv = [phy.get('h') || 0, phy.get('s') || 0, phy.get('v') || 0];
-
-            return hsv.join(', ');
-          } else if (phy.has('r') && phy.has('g') && phy.has('b')) {
-            let rgb = [phy.get('r') || 0, phy.get('g') || 0, phy.get('b') || 0];
-
-            return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
-          }
-          return '0, 0, 0';
+          let rgb = [
+            phy.get('r') || 0,
+            phy.get('g') || 0,
+            phy.get('b') || 0
+          ];
+          return qx.util.ColorUtil.rgbToHsb(rgb).join(', ');
         },
-        decode(hsbString, variant) {
+        decode: function (hsbString) {
           if (cv.transforms.OpenHab.isUndefined(hsbString)) {
-            return variant === 'rgb'
-              ? new Map([
-                  ['r', 0],
-                  ['g', 0],
-                  ['b', 0]
-                ])
-              : new Map([
-                  ['h', 0],
-                  ['s', 0],
-                  ['v', 0]
-                ]);
+            return new Map([['r', 0], ['g', 0], ['b', 0]]);
           }
           // decode HSV/HSB to RGB
-          if (variant === 'rgb') {
-            // decode HSV/HSB to RGB
-            let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
-            return new Map([
-              ['r', rgb[0]],
-              ['g', rgb[1]],
-              ['b', rgb[2]]
-            ]);
-          }
-          let hsv = hsbString.split(',').map(parseFloat);
-          return new Map([
-            ['h', hsv[0]],
-            ['s', hsv[1]],
-            ['v', hsv[2]]
-          ]);
-        }
-      },
-
-      'thing-status': {
-        name: 'OH_Thing',
-        encode(val) {
-          return val ? 'ONLINE' : 'OFFLINE';
-        },
-        decode(val) {
-          return val === 'ONLINE';
+          let rgb = qx.util.ColorUtil.hsbToRgb(hsbString.split(','));
+          return new Map([['r', rgb[0]], ['g', rgb[1]], ['b', rgb[2]]]);
         }
       }
     });

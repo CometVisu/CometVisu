@@ -10,17 +10,10 @@ class AbstractCompileHandler {
     this._compilerApi = compilerApi;
     this._config = compilerApi.getConfiguration();
     this._customSettings = customSettings;
-    this._customCompileSettings = {};
-
-    // check for local override settings
-    const customCompileConfig = path.join(process.cwd(), 'cv-compile.json');
-    if (fs.existsSync(customCompileConfig)) {
-      this._customCompileSettings = require(customCompileConfig);
-    }
   }
 
   async onLoad() {
-    await this.beforeBuild(this._compilerApi.getCommand().getTargetType());
+    this.beforeBuild(this._config.targetType);
   }
 
   /**
@@ -39,8 +32,7 @@ class AbstractCompileHandler {
       revision: revision,
       branch: branch,
       date: new Date().toISOString(),
-      libraryVersionPure: 0,
-      libraryVersionTile: 0,
+      libraryVersion: 0,
       tags: []
     };
     Object.keys(this._customSettings).forEach(key => {
@@ -55,8 +47,7 @@ class AbstractCompileHandler {
     data.version = packageData.version;
 
     // get library version
-    data.libraryVersionPure = packageData.org_cometvisu.libraryVersionPure;
-    data.libraryVersionTile = packageData.org_cometvisu.libraryVersionTile;
+    data.libraryVersion = packageData.org_cometvisu.libraryVersion;
 
     const code = mustache.render(`
 qx.Class.define('cv.Version', {
@@ -66,8 +57,7 @@ qx.Class.define('cv.Version', {
     REV: '{{ revision }}',
     BRANCH: '{{ branch }}',
     VERSION: '{{ version }}',
-    LIBRARY_VERSION_PURE: {{ libraryVersionPure }},
-    LIBRARY_VERSION_TILE: {{ libraryVersionTile }},
+    LIBRARY_VERSION: {{ libraryVersion }},
     DATE: '{{ date }}',
     TAGS: { {{#tags}}
       {{ name }}: '{{value}}'{{^last}},{{/last}}{{/tags}}
@@ -103,10 +93,10 @@ qx.Class.define('cv.Version', {
 
   _getTargetDir(type) {
     let targetDir = null;
-    const command = this._compilerApi.getCommand();
     if (!type) {
-      type = command.getTargetType();
+      type = this._config.targetType;
     }
+    const command = this._compilerApi.getCommand();
     const isDeploy = command instanceof qx.tool.cli.commands.Deploy;
     if (isDeploy) {
       type = 'build';
@@ -114,15 +104,11 @@ qx.Class.define('cv.Version', {
     this._config.targets.some(target => {
       if (target.type === type) {
         if (isDeploy) {
-          if (command.argv.out) {
-            targetDir = command.argv.out;
-          } else if (typeof target.getDeployDir == 'function') {
-            targetDir = target.getDeployDir();
-          }
+          targetDir = command.argv.out || typeof target.getDeployDir == 'function' && target.getDeployDir();
         } else {
           targetDir = target.outputPath;
         }
-        return targetDir !== null;
+        return true;
       }
       return false;
     });

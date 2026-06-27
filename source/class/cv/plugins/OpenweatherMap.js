@@ -1,7 +1,7 @@
-/* OpenweatherMap.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* OpenweatherMap.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * This plugins integrates OpenWeatherMap data.
  *
@@ -31,7 +32,7 @@
  * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: cv.ui.common.Refresh,
 
   /*
@@ -39,8 +40,9 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props) {    
-    super(props);
+  construct: function(props) {
+    props.refresh *= 60;
+    this.base(arguments, props);
     this.__options = {};
     Object.keys(props).forEach(function (key) {
       if (props[key]) {
@@ -48,17 +50,13 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       }
     }, this);
     if (props.refresh === 0) {
-      // call once
       if (cv.TemplateEngine.getInstance().isDomFinished()) {
         this._refreshAction();
       } else {
-        qx.event.message.Bus.subscribe(
-          'setup.dom.finished',
-          function () {
-            this._refreshAction();
-          },
-          this
-        );
+        qx.event.message.Bus.subscribe('setup.dom.finished', function() {
+          // init once
+          this._refreshAction();
+        }, this);
       }
     }
   },
@@ -79,36 +77,28 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse(xml, path, flavour, pageType) {
-      const data = cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType,
-        this.getAttributeToPropertyMappings()
-      );
-
-      cv.parser.pure.WidgetParser.parseRefresh(xml, path);
+    parse: function (xml, path, flavour, pageType) {
+      const data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
-    getAttributeToPropertyMappings() {
+    getAttributeToPropertyMappings: function () {
       return {
-        class: { target: 'cssClass' },
-        lang: {},
-        owID: {},
-        q: {},
-        lat: {},
-        lon: {},
-        units: {},
-        type: {},
-        forecast24hItems: {},
-        forecastDailyItems: {},
-        detailItems: {},
-        showSunrise: {},
-        appid: {},
-        description: {}
+        'class': { target: 'cssClass' },
+        'lang':   { },
+        'owID':  { },
+        'q':   { },
+        'lat':   { },
+        'lon':   { },
+        'units':   { },
+        'type':   { },
+        'forecast24hItems':   { },
+        'forecastDailyItems':   { },
+        'detailItems':   { },
+        'showSunrise': { },
+        'appid':   { },
+        'description':   { }
       };
     }
   },
@@ -123,67 +113,54 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       check: 'String',
       nullable: true
     },
-
     lang: {
       check: 'String',
       nullable: true
     },
-
     owID: {
       check: 'String',
       nullable: true
     },
-
     q: {
       check: 'String',
       nullable: true
     },
-
     lat: {
       check: 'String',
       nullable: true
     },
-
     lon: {
       check: 'String',
       nullable: true
     },
-
     units: {
       check: 'String',
       nullable: true
     },
-
     type: {
       check: 'String',
       nullable: true
     },
-
     forecast24hItems: {
       check: 'String',
       nullable: true
     },
-
     forecastDailyhItems: {
       check: 'String',
       nullable: true
     },
-
     showSunrise: {
       check: 'String',
       nullable: true
     },
-
     detailItems: {
       check: 'String',
       nullable: true
     },
-
     appid: {
       check: 'String',
       nullable: true
     },
-
     description: {
       check: 'String',
       nullable: true
@@ -198,22 +175,15 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
   members: {
     __options: null,
 
-    _beforePropsApplied(props) {
-      props.refresh *= 60;
-      return props;
-    },
-
-    _getInnerDomString() {
+    _getInnerDomString: function() {
       let classes = 'widget clearfix text openweathermap';
       if (this.getCssClass()) {
-        classes += ' ' + this.getCssClass();
+        classes+=' '+this.getCssClass();
       }
-      return (
-        '<div class="' + classes + '"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>'
-      );
+      return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
     },
 
-    _setupRefreshAction() {
+    _setupRefreshAction: function() {
       this._timer = new qx.event.Timer(this.getRefresh());
       this._timer.addListener('interval', this._refreshAction, this);
       this._timer.start();
@@ -221,20 +191,19 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       this._refreshAction();
     },
 
-    _refreshAction() {
+    _refreshAction: function() {
       const elem = $(this.getDomElement());
       elem.openweathermap(this.__options);
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/openweathermap/owm_basic_style.css');
     loader.addStyles('plugins/openweathermap/owm_weathericon.css');
     loader.addScripts('plugins/openweathermap/owm_core.js');
     // register the parser
-    cv.parser.pure.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
-
+    cv.parser.WidgetParser.addHandler('openweathermap', cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass('openweathermap', statics);
   }
 });

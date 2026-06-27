@@ -13,22 +13,21 @@ $SELENIUM_MANAGER --version
 
 if [ $CV_BROWSER = Firefox ]; then
     OUTPUT=$($SELENIUM_MANAGER --browser=firefox --browser-version=$CV_VERSION)
-    DRIVER_PATH=$(printf ${OUTPUT} | grep "Driver path" | awk '{print $6}')
-    BROWSER_PATH=$(printf ${OUTPUT} | grep "Browser path" | awk '{print $6}')
+    DRIVER_PATH=$(printf ${OUTPUT} | grep "Driver path" | awk '{print $4}')
+    BROWSER_PATH=$(printf ${OUTPUT} | grep "Browser path" | awk '{print $4}')
     ln -s -f ${BROWSER_PATH} firefox
-    echo "export WEBDRIVER_PATH=${DRIVER_PATH}" | tee .browser-env
-    echo "export BROWSER_PATH=${BROWSER_PATH}" | tee -a .browser-env
+    echo WEBDRIVER_PATH=${DRIVER_PATH} | tee .protractor-env
+    echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
 else
   OUTPUT=$($SELENIUM_MANAGER --browser=chrome --browser-version=$CV_VERSION)
-  BROWSER_PATH=$(printf "${OUTPUT}" | grep "Browser path" | awk '{print $6}')
+  BROWSER_PATH=$(printf "${OUTPUT}" | grep "Browser path" | awk '{print $4}')
   CHROME_FULL_VERSION=$($BROWSER_PATH --version | awk '{print $3}')
   OUTPUT=$($SELENIUM_MANAGER --browser=chrome --browser-version=$CV_VERSION --driver chromedriver --driver-version=$CHROME_FULL_VERSION)
-  DRIVER_PATH=$(printf "${OUTPUT}" | grep "Driver path" | awk '{print $6}')
+  DRIVER_PATH=$(printf "${OUTPUT}" | grep "Driver path" | awk '{print $4}')
   ln -s -f ${BROWSER_PATH} chrome
-  echo "export WEBDRIVER_PATH=${DRIVER_PATH}" | tee .browser-env
-  echo "export BROWSER_PATH=${BROWSER_PATH}" | tee -a .browser-env
-  if [ -z "${CHROME_BIN}" ]; then
-    echo "export CHROME_BIN=${BROWSER_PATH}" | tee -a .browser-env
-  fi
+  echo WEBDRIVER_PATH=${DRIVER_PATH} | tee .protractor-env
+  echo BROWSER_PATH=${BROWSER_PATH} | tee -a .protractor-env
+  mkdir -p ./node_modules/protractor/node_modules/webdriver-manager/selenium/
+  cp ${DRIVER_PATH} ./node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_${CHROME_FULL_VERSION}
   $SELENIUM_MANAGER --browser=chrome --browser-version=$CV_VERSION --debug
 fi

@@ -1,7 +1,7 @@
-/* Reload.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Reload.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.
  *
@@ -24,8 +25,10 @@
  * @since 2014
  */
 qx.Class.define('cv.ui.structure.pure.Reload', {
-  extend: cv.ui.structure.pure.AbstractWidget,
-  include: [cv.ui.common.Update],
+  extend: cv.ui.structure.AbstractWidget,
+  include: [
+    cv.ui.common.Update
+  ],
 
   /*
   ******************************************************
@@ -34,16 +37,16 @@ qx.Class.define('cv.ui.structure.pure.Reload', {
   */
   members: {
     // overridden, return undefined to prevent widget from being renderered into DOM
-    getDomString() {
+    getDomString: function() {
       return;
     },
 
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return;
     },
 
-    _update(address, data) {
+    _update: function (address, data) {
       const value = this.defaultValueHandling(address, data);
       if (value > 0) {
         cv.util.Location.reload(true);

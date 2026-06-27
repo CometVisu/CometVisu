@@ -1,7 +1,7 @@
-/* Update.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Update.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * This role provides the update method for incoming data
  *
@@ -29,7 +30,7 @@ qx.Mixin.define('cv.ui.common.Update', {
    CONSTRUCTOR
    ******************************************************
    */
-  construct() {
+  construct: function () {
     if (this.getAddress) {
       if (this._initOnCreate === true) {
         this.__initUpdater();
@@ -47,13 +48,10 @@ qx.Mixin.define('cv.ui.common.Update', {
   members: {
     _initOnCreate: false,
 
-    __initUpdater() {
+    __initUpdater : function() {
       const model = cv.data.Model.getInstance();
-      const addresses = this.getAddress();
-      let addressSettings;
-      Object.getOwnPropertyNames(addresses).forEach(function (address) {
-        addressSettings = addresses[address];
-        if (!cv.data.Model.isReadAddress(addressSettings)) {
+      Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
+        if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
           // no read address
           return;
         }
@@ -62,7 +60,7 @@ qx.Mixin.define('cv.ui.common.Update', {
           this.update(address, state);
         }
         //add listener
-        model.addUpdateListener(address, this.update, this, addressSettings.backendType);
+        model.addUpdateListener(address, this.update, this);
       }, this);
     },
 
@@ -72,7 +70,7 @@ qx.Mixin.define('cv.ui.common.Update', {
      * @param address {String} Address of the incoming value
      * @param data {String} the incoming value
      */
-    update(address, data) {
+    update: function (address, data) {
       if (this._update) {
         this._update(address, data);
       } else {
@@ -83,7 +81,7 @@ qx.Mixin.define('cv.ui.common.Update', {
       }
     },
 
-    processIncomingValue(address, data) {
+    processIncomingValue: function (address, data) {
       if (this._processIncomingValue) {
         const value = this._processIncomingValue(address, data);
         // store it to be able to suppress sending of unchanged data
@@ -101,7 +99,7 @@ qx.Mixin.define('cv.ui.common.Update', {
      * @param ev {var}
      * @param data {var}
      */
-    update3d(ev, data) {
+    update3d: function (ev, data) {
       const l = ev.data.layout;
       const pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
       ev.data.element.css('left', pos.x + 'px');

@@ -1,7 +1,7 @@
-/* Mockup.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Mockup.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Mockup simulating a backend + client for the Cometvisu protocol
  *
@@ -25,7 +26,7 @@
  */
 /* istanbul ignore next */
 qx.Class.define('cv.io.Mockup', {
-  extend: cv.io.AbstractClient,
+  extend: qx.core.Object,
   implement: cv.io.IClient,
 
   /*
@@ -33,10 +34,10 @@ qx.Class.define('cv.io.Mockup', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct() {
-    super();
+  construct: function() {
+    this.base(arguments);
     cv.io.Client.CLIENTS.push(this);
-    // expose test helpers on window for browser automation
+    // make some functions accessible for the protactor runner
     window._receive = this.receive.bind(this);
     const model = cv.data.Model.getInstance();
     window._widgetDataGet = model.getWidgetData.bind(model);
@@ -45,40 +46,29 @@ qx.Class.define('cv.io.Mockup', {
 
     const testMode = qx.core.Environment.get('cv.testMode');
     if (typeof testMode === 'string' && testMode !== 'true') {
-      this.setConnected(false);
-      this.__simulation = new cv.data.Simulation(testMode, this);
+      this.__loadTestData();
     }
     this.addresses = [];
-
-    let file = this._resources['simulation'];
-    if (file) {
-      this.setConnected(false);
-      this.__simulation = new cv.data.Simulation(file, this);
-    } else {
-      this.addListener('resourcePathAdded', ev => {
-        switch (ev.getData()) {
-          case 'simulation': {
-            const file = this._resources['simulation'];
-            if (file) {
-              this.setConnected(false);
-              this.__simulation = new cv.data.Simulation(file, this);
-            }
-            break;
-          }
-        }
-      });
-    }
   },
 
   /*
-  ***********************************************
+  ******************************************************
     PROPERTIES
-  ***********************************************
+  ******************************************************
   */
   properties: {
+    dataReceived : {
+      check: 'Boolean',
+      init: true
+    },
+    server: {
+      check: 'String',
+      init: 'Mockup'
+    },
     connected: {
+      check: 'Boolean',
       init: true,
-      refine: true
+      event: 'changeConnected'
     }
   },
 
@@ -91,18 +81,186 @@ qx.Class.define('cv.io.Mockup', {
     backendName: 'mockup',
     addresses: null,
     __xhr: null,
-    __simulation: null,
+    __sequence: null,
+    __sequenceIndex: 0,
+    __simulations: null,
 
-    getType() {
-      return this.backendName;
+    __loadTestData: function () {
+      // load the demo data to fill the visu with some values
+      const r = new qx.io.request.Xhr(qx.core.Environment.get('cv.testMode'));
+      r.addListener('success', function (e) {
+        cv.Config.initialDemoData = e.getTarget().getResponse();
+        this.__applyTestData();
+      }, this);
+      r.send();
     },
 
+    __applyTestData: function () {
+      this.__xhr = cv.Config.initialDemoData.xhr;
+
+      // we need to adjust the timestamps of the chart data
+      const now = Date.now();
+      for (let url in this.__xhr) {
+        if (url.startsWith('rrd')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body;
+            const offset = now - data[data.length - 1][0];
+            data.forEach(entry => entry[0] += offset);
+          });
+        } else if (url.startsWith('resource/plugin/rsslog.php')) {
+          this.__xhr[url].forEach(d => {
+            const data = d.body.responseData.feed.entries;
+            let date = new Date();
+            date.setDate(date.getDate()-1);
+            data.forEach(entry => {
+              entry.publishedDate = date.toUTCString();
+              date.setTime(date.getTime() + 60*60*1000);
+            });
+          });
+        }
+      }
+
+      const that = this;
+
+      // override sinons filter handling to be able to manipulate the target URL from the filter
+      // eslint-disable-next-line consistent-return
+      sinon.FakeXMLHttpRequest.prototype.open = function open(method, url, async, username, password) {
+        this.method = method;
+        this.url = url;
+        this.async = typeof async == 'boolean' ? async : true;
+        this.username = username;
+        this.password = password;
+        this.responseText = null;
+        this.responseXML = null;
+        this.requestHeaders = {};
+        this.sendFlag = false;
+        if (sinon.FakeXMLHttpRequest.useFilters === true) {
+          let xhrArgs = arguments;
+          let defake = sinon.FakeXMLHttpRequest.filters.some(function(filter) {
+            return filter.call(this, xhrArgs);
+          });
+          if (defake) {
+            const xhr = that.defake(this, xhrArgs);
+            xhr.open.apply(xhr, xhrArgs);
+            xhr.setRequestHeader('Accept', 'text/*, image/*');
+            return;
+          }
+        }
+        this.readyStateChange(sinon.FakeXMLHttpRequest.OPENED);
+      };
+
+      // configure server
+      qx.dev.FakeServer.getInstance().addFilter(function (args) {
+        const method = args[0];
+        const url = args[1];
+        if (url.startsWith('https://sentry.io')) {
+          return true;
+        } else if (method === 'GET' && (
+          url.indexOf('resource/visu_config') >= 0 ||
+          url.indexOf('resource/demo/visu_config') >= 0 ||
+          url.indexOf('resource/hidden-schema.json') >= 0 ||
+          url.indexOf('resource/manager/') >= 0
+        )) {
+          return true;
+        } else if (method === 'GET' && /rest\/manager\/index.php\/fs\?path=.+\.[\w]+$/.test(url)) {
+          // change url to avoid API access and do a real request
+          const path = url.split('=').pop();
+          const suffix = path.startsWith('demo/') ? '' : 'config/';
+          args[1] = window.location.pathname + 'resource/' + suffix + path;
+          return true;
+        }
+        return false;
+      }, this);
+      const server = qx.dev.FakeServer.getInstance().getFakeServer();
+      server.respondWith(function (request) {
+        const parsed = qx.util.Uri.parseUri(request.url);
+        let url = request.url;
+        if (!parsed.host || parsed.host === window.location.host) {
+          url = cv.report.Record.normalizeUrl(request.url);
+          if (url.startsWith(window.location.pathname)) {
+            url = url.substr(window.location.pathname.length-1);
+          }
+        }
+        if (!this.__xhr[url] || this.__xhr[url].length === 0) {
+          qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
+        } else {
+          qx.log.Logger.debug(this, 'faking response for ' + url);
+          let response = '';
+          if (this.__xhr[url].length === 1) {
+            response = this.__xhr[url][0];
+          } else {
+            // multiple responses recorded use them as LIFO stack
+            response = this.__xhr[url].shift();
+          }
+
+          if (request.readyState === 4 && request.status === 404) {
+            // This is a hack, sometimes the request has a 404 status and send readystate
+            // the respond would fail if we do not override it here
+            request.readyState = 1;
+          }
+          request.respond(response.status, response.headers, JSON.stringify(response.body));
+        }
+      }.bind(this));
+    },
+
+    defake: function(fakeXhr, xhrArgs) {
+      // eslint-disable-next-line new-cap
+      const xhr = new sinon.xhr.workingXHR();
+      ['open', 'setRequestHeader', 'send', 'abort', 'getResponseHeader',
+          'getAllResponseHeaders', 'addEventListener', 'overrideMimeType', 'removeEventListener'].forEach(function(method) {
+          fakeXhr[method] = function() {
+            return xhr[method].apply(xhr, arguments);
+          };
+        });
+
+      const copyAttrs = function(args) {
+        args.forEach(function(attr) {
+          try {
+            fakeXhr[attr] = xhr[attr];
+          } catch (e) {
+            if (!/MSIE 6/.test(navigator.userAgent)) {
+             throw e;
+            }
+          }
+        });
+      };
+
+      const stateChange = function() {
+        fakeXhr.readyState = xhr.readyState;
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.HEADERS_RECEIVED) {
+          copyAttrs(['status', 'statusText']);
+        }
+        if (xhr.readyState >= sinon.FakeXMLHttpRequest.LOADING) {
+          copyAttrs(['responseText']);
+        }
+        if (xhr.readyState === sinon.FakeXMLHttpRequest.DONE) {
+          copyAttrs(['responseXML']);
+        }
+        if (fakeXhr.onreadystatechange) {
+          fakeXhr.onreadystatechange({ target: fakeXhr });
+        }
+      };
+      if (xhr.addEventListener) {
+        for (let event in fakeXhr.eventListeners) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (fakeXhr.eventListeners.hasOwnProperty(event)) {
+            fakeXhr.eventListeners[event].forEach(function(handler) {
+              xhr.addEventListener(event, handler);
+            });
+          }
+        }
+        xhr.addEventListener('readystatechange', stateChange);
+      } else {
+        xhr.onreadystatechange = stateChange;
+      }
+      return xhr;
+    },
 
     /**
      * This function gets called once the communication is established and session information is available
      * @param json
      */
-    receive(json) {
+    receive: function (json) {
       if (json) {
         cv.io.Client.CLIENTS.forEach(function (client) {
           client.update(json.d);
@@ -110,18 +268,125 @@ qx.Class.define('cv.io.Mockup', {
       }
     },
 
-    login(loginOnly, credentials, callback, context) {
+    login: function (loginOnly, credentials, callback, context) {
       if (callback) {
-        if (this.__simulation && !this.__simulation.isInitialized()) {
-          this.__simulation.addListenerOnce('changeInitialized', () => {
-            this.setConnected(true);
-            this.debug('(delayed) logged in to mockup client');
-            callback.call(context);
-          });
-        } else {
-          this.setConnected(true);
-          this.debug('logged in to mockup client');
-          callback.call(context);
+        callback.call(context);
+        if (qx.core.Environment.get('cv.testMode')) {
+          if (cv.Config.initialDemoData) {
+            this.receive({
+              i: new Date().getTime(),
+              d: cv.Config.initialDemoData.states
+            });
+
+            if (cv.Config.initialDemoData.sequence) {
+              this.__sequence = cv.Config.initialDemoData.sequence;
+              this._startSequence();
+            }
+            if (cv.Config.initialDemoData.simulations) {
+              this._registerSimulations(cv.Config.initialDemoData.simulations);
+            }
+            cv.Config.initialDemoData = null;
+          }
+        }
+      }
+    },
+
+    _registerSimulations: function (simulations) {
+      this.__simulations = {};
+      Object.keys(simulations).forEach(function (mainAddress) {
+        const simulation = simulations[mainAddress];
+        this.__simulations[mainAddress] = simulation;
+        if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
+          simulation.additionalAddresses.forEach(function (addr) {
+            this.__simulations[addr] = simulation;
+          }, this);
+        }
+      }, this);
+    },
+
+    _startSequence: function () {
+      if (this.__sequence.length <= this.__sequenceIndex) {
+        // start again
+        this.__sequenceIndex = 0;
+      }
+      qx.event.Timer.once(function () {
+        this.receive({
+          i: new Date().getTime(),
+          d: this.__sequence[this.__sequenceIndex].data
+        });
+        this.__sequenceIndex++;
+        this._startSequence();
+      }, this, this.__sequence[this.__sequenceIndex].delay);
+    },
+
+    _processSimulation: function (address, value) {
+      const simulation = this.__simulations[address];
+      if (!simulation) {
+        return;
+      }
+      let start = false;
+      let stop = false;
+      if (Object.prototype.hasOwnProperty.call(simulation, 'startValues')) {
+        // try the more specific matches with address included
+        start = simulation.startValues.indexOf(address + '|' + value) >= 0;
+        if (Object.prototype.hasOwnProperty.call(simulation, 'stopValues')) {
+          stop = simulation.stopValues.indexOf(address + '|' + value) >= 0;
+        }
+        if (!stop) {
+          // the the more general ones
+          start = simulation.startValues.indexOf(value) >= 0;
+          stop = simulation.startValues.indexOf(value) >= 0;
+        }
+      }
+      if (start) {
+        // start simulation
+        if (simulation.type === 'shutter') {
+          simulation.direction = value === '0' ? 'up' : 'down';
+          let initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
+          if (initValue === undefined) {
+            initValue = 0;
+          }
+          simulation.value = initValue;
+
+          if (simulation.timer) {
+            simulation.timer.stop();
+          } else {
+            simulation.timer = new qx.event.Timer(simulation.interval || 100);
+            const stepSize = simulation.stepSize || 10;
+            simulation.timer.addListener('interval', function () {
+              let newValue = simulation.value;
+              if (simulation.direction === 'up') {
+                // drive up
+                newValue = simulation.value + stepSize;
+                if (newValue > 100) {
+                  simulation.timer.stop();
+                  return;
+                }
+              } else {
+                // drive down
+                newValue = simulation.value - stepSize;
+                if (newValue < 0) {
+                  simulation.timer.stop();
+                  return;
+                }
+              }
+              const update = {
+                i: new Date().getTime(),
+                d: {}
+              };
+              update.d[simulation.targetAddress] = newValue;
+              this.receive(update);
+              if (simulation.value !== newValue) {
+                simulation.value = newValue;
+              }
+            }, this);
+          }
+          simulation.timer.start();
+        }
+      } else if (stop) {
+        // stop simulation
+        if (simulation.timer) {
+          simulation.timer.stop();
         }
       }
     },
@@ -130,30 +395,8 @@ qx.Class.define('cv.io.Mockup', {
      * Subscribe to the addresses in the parameter
      * @param addresses
      */
-    subscribe(addresses) {
+    subscribe: function (addresses) {
       this.addresses = addresses ? addresses : [];
-      if (this.__simulation) {
-        this.__simulation.prepareTestData(this.addresses);
-      }
-    },
-
-    addSubscription(address) {
-      if (!this.addresses.includes(address)) {
-        this.addresses.push(address);
-      }
-    },
-
-    __decode(address, value) {
-      if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
-        if (/^[\da-fA-F]+$/.test(value)) {
-          if (value.length <= 2) {
-            value = '' + (parseInt(value, 16) & 63);
-          } else {
-            value = value.substring(2);
-          }
-        }
-      }
-      return value;
     },
 
     /**
@@ -161,108 +404,78 @@ qx.Class.define('cv.io.Mockup', {
      * @param address
      * @param value
      */
-    write(address, value) {
+    write: function (address, value) {
       if (cv.report.Record.REPLAYING === true) {
         // do nothing in replay mode
         return;
       }
       const ts = new Date().getTime();
-      // store on window so browser tests can inspect the last write
-      const lastWrite = {
+      // store in window, to make it accessible for protractor
+      window.writeHistory.push({
         address: address,
         value: value,
         ts: ts
-      };
+      });
 
-      value = this.__decode(address, value);
-
-      if (!this.__simulation || !this.__simulation.onWrite(address, value)) {
+      if (this.__simulations && Object.prototype.hasOwnProperty.call(this.__simulations, address)) {
+        this._processSimulation(address, value);
+      } else {
         // send update
         const answer = {
           i: ts,
           d: {}
         };
-        lastWrite.transformedValue = value;
         answer.d[address] = value;
         this.debug('sending value: ' + value + ' to address: ' + address);
         this.receive(answer);
       }
-      // store on window so browser tests can inspect the write history
-      window.writeHistory.push(lastWrite);
     },
 
-    restart() {},
+    restart: function() {},
 
-    stop() {},
+    stop: function () {},
 
-    getResourcePath(name, map) {
-      if (cv.Config.testMode) {
-        // fallback to old behaviour just for screenshot generation / testing
-        if (name === 'charts' && map && map.src) {
-          return name + '/' + map.src;
-        }
-        return name;
+    getResourcePath: function (name) {
+      if (name === 'charts') {
+        return null;
       }
-      let basePath = '';
-      if (Object.prototype.hasOwnProperty.call(this._resources, name)) {
-        basePath = this._resources[name];
-        if (basePath && !basePath.endsWith('/')) {
-          basePath += '/';
-        }
-      }
-      if (name === 'charts' && map && map.src) {
-        if (map.src.startsWith('generator:')) {
-          // the generator also might need the start/end values
-          let path = basePath + map.src + '?';
-          for (const key in map) {
-            path += `&${key}=${map[key]}`;
-          }
-          return path;
-        }
-        return basePath + map.src;
-      }
-      return basePath;
+      return name;
     },
 
-    getLastError() {
+    getLastError: function () {
       return null;
     },
 
-    getBackend() {
+    getBackend: function () {
       return {};
     },
 
-    authorize(req) {},
-
-    canAuthorize() {
-      return false;
+    authorize: function (req) {
     },
 
-    terminate() {},
+    terminate: function () {},
 
-    update(json) {},
-    record(type, data) {},
-    showError(type, message, args) {},
+    update: function(json) {},
+    record: function(type, data) {},
+    showError: function(type, message, args) {},
 
     // not used / needed in this client
-    setInitialAddresses(addresses) {},
+    setInitialAddresses: function(addresses) {
+    },
 
-    hasCustomChartsDataProcessor() {
+    hasCustomChartsDataProcessor : function () {
       return false;
     },
-    processChartsData(data) {
+    processChartsData : function (data) {
       return data;
     },
-    hasProvider(name) {
+    hasProvider: function (name) {
       return false;
     },
-    getProviderUrl(name) {
+    getProviderUrl: function (name) {
       return null;
     },
-    getProviderConvertFunction(name, format) {
-      return null;
-    },
-    getProviderData : function (name, format) {
+    getProviderConvertFunction : function (name, format) {
       return null;
     }
   }

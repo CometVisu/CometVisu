@@ -215,10 +215,8 @@ of the ``@author`` and ``@since`` specifications.
     to the name of the source code file without file extension, e.g.
     for ``structure/pure/Switch.js`` use ``.. api-doc :: Switch``
     (case-sensitive). For plugins, the folder name of the plugin
-    must be specified, e.g. for ``plugins/clock/`` you use ``.. api-doc :: clock``.
-    For widgets of other structures or any other source code files the full name must be used as it is defined in
-    ``qx.Class.define``, e.g. for ``qx.Class.define('cv.ui.structure.tile.Controller',...`` you use
-    ``.. api-doc:: cv.ui.structure.tile.Controller``.
+    must be specified, e.g. for ``plugins/clock/`` you
+    take ``.. api-doc :: clock``
 
 Example for the Switch-Widget:
 

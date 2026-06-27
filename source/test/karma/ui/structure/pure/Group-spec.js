@@ -1,6 +1,6 @@
 /* Group-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -53,8 +53,8 @@ describe('testing a group widget', function() {
   });
 
   it('should trigger the group action', function() {
-    const controller = cv.ui.structure.pure.Controller.getInstance();
-    spyOn(controller, 'scrollToPage');
+    var templateEngine = cv.TemplateEngine.getInstance();
+    spyOn(templateEngine, 'scrollToPage');
     var res = this.createTestElement('group', { target: 'target' }, '', false);
 
     this.initWidget(res);
@@ -66,6 +66,6 @@ describe('testing a group widget', function() {
 
     Reg.fireEvent(actor, 'tap', qx.event.type.Event, []);
 
-    expect(controller.scrollToPage).toHaveBeenCalledWith('target');
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('target');
   });
 });

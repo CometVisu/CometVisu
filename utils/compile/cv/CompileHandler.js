@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { chmodr } = require('chmodr');
+const chmodr = require('chmodr');
 const fg = require('fast-glob');
 const fse = require('fs-extra');
 const path = require('path');
@@ -7,25 +7,27 @@ const chokidar = require('chokidar');
 const { exec } = require('child_process');
 const { AbstractCompileHandler } = require('../AbstractCompileHandler');
 const { CvBuildTarget } = require('./BuildTarget');
-const types = require("@babel/types");
 
-// because the qx compiler does not handle files in the root resource folder well
+// because the qx compiler does not handle files in the root resoure folder well
 // we add them here
 const additionalResources = [
-  'visu_config*.xsd',
+  'visu_config.xsd',
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
-  'config/custom_visu_config.xsd',
-  'config/media/*templates*.xml',
   'config/hidden.php'
 ];
 
 // files that must be copied in the compiled folder
 const filesToCopy = [
   '../package.json',
+  'editor',
+  'upgrade',
+  'check_config.php',
+  'manager.php',
   'version',
-  '../node_modules/oauth-pkce/dist/oauth-pkce.min.js',
+  'library_version.inc.php',
+  '../node_modules/monaco-editor',
   'rest/manager',
   'rest/openapi.yaml',
   'test',
@@ -37,77 +39,22 @@ const filesToCopy = [
 
 // directories to exclude from copying
 const excludeFromCopy = {
+  build: [
+    '../node_modules/monaco-editor/dev',
+    '../node_modules/monaco-editor/esm'
+  ]
 };
 
 const deleteBefore = [
   'qx_packages/**/font/*/*.svg'
 ];
 
-
-/**
- * Helper method that collapses the MemberExpression into a string
- * @param node
- * @returns {string}
- */
-function collapseMemberExpression(node) {
-  var done = false;
-  function doCollapse(node) {
-    if (node.type == "ThisExpression") {
-      return "this";
-    }
-    if (node.type == "Super") {
-      return "super";
-    }
-    if (node.type == "Identifier") {
-      return node.name;
-    }
-    if (node.type == "ArrayExpression") {
-      var result = [];
-      node.elements.forEach(element => result.push(doCollapse(element)));
-      return result;
-    }
-    if (node.type != "MemberExpression") {
-      return "(" + node.type + ")";
-    }
-    if (types.isIdentifier(node.object)) {
-      let str = node.object.name;
-      if (node.property.name) {
-        str += "." + node.property.name;
-      } else {
-        done = true;
-      }
-      return str;
-    }
-    var str;
-    if (node.object.type == "ArrayExpression") {
-      str = "[]";
-    } else {
-      str = doCollapse(node.object);
-    }
-    if (done) {
-      return str;
-    }
-    // `computed` is set if the expression is a subscript, eg `abc[def]`
-    if (node.computed) {
-      done = true;
-    } else if (node.property.name) {
-      str += "." + node.property.name;
-    } else {
-      done = true;
-    }
-    return str;
-  }
-
-  return doCollapse(node);
-}
-
 class CvCompileHandler extends AbstractCompileHandler {
-  async onLoad() {
+  onLoad() {
     this._onBeforeLoad();
-    await super.onLoad();
+    super.onLoad();
     const command = this._compilerApi.getCommand();
-    const targetType = command.getTargetType();
-    if (targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
+    if (this._config.targetType === 'build' || command instanceof qx.tool.cli.commands.Deploy) {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = CvBuildTarget;
@@ -116,31 +63,27 @@ class CvCompileHandler extends AbstractCompileHandler {
         return false;
       });
     }
-    command.addListener('writtenApplications', async () => this._onMade());
+    command.addListener('made', () => this._onMade());
     if (command instanceof qx.tool.cli.commands.Deploy) {
       command.addListener('afterDeploy', this._onAfterDeploy, this);
     }
-    command.addListener('compilingClass', this._onCompilingClass, this);
     command.addListener('compiledClass', this._onCompiledClass, this);
 
     const currentDir = process.cwd();
     const targetDir = this._getTargetDir();
-    const exclude = this._customCompileSettings.hasOwnProperty('excludeFromCopy')
-      ? Object.assign(this._customCompileSettings.excludeFromCopy, excludeFromCopy) : excludeFromCopy;
-    this._excludes = exclude.hasOwnProperty(targetType) ? exclude[targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
+    this._excludes = excludeFromCopy.hasOwnProperty(this._config.targetType) ? excludeFromCopy[this._config.targetType].map(d => path.join(currentDir, targetDir, (d.startsWith('../') ? d.substring(3) : d))) : [];
   }
 
   /**
    * Called after all libraries have been loaded and added to the compilation data
    */
   async _onMade() {
-    const command = this._compilerApi.getCommand();
-    if (!(command instanceof qx.tool.cli.commands.Deploy)) {
+    if (!(this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy)) {
       await this.copyFiles();
       this.updateTestData();
       await this.updateCacheVersion();
     }
-    if (command.getTargetType() === 'build') {
+    if (this._config.targetType === 'build') {
       return this.afterBuild();
     }
     return Promise.resolve(true);
@@ -159,119 +102,12 @@ class CvCompileHandler extends AbstractCompileHandler {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  _onCompilingClass(ev) {
-    const data = ev.getData();
-    const className = data.classFile.getClassName();
-    if (className.startsWith('cv.ui.structure.tile.components.')
-      || className.startsWith('cv.ui.structure.tile.elements.')
-      || className.startsWith('cv.ui.structure.tile.widgets.')) {
-      // this is a terrible hack to get rid of this warning from the babel compiler:
-      //    Unexpected termination when testing for unresolved symbols, node type ClassProperty
-      // it is caused by the static observedAttributes = ... line in the QxConnector class
-      // All the hack does is appending "ClassProperty: 1" to "DO_NOT_WARN_TYPES"
-      const plugin = data.classFile._babelClassPlugins();
-      const t = data.classFile;
-      plugin.Compiler.visitor.Identifier = (path) => {
-        path.node.name = t.encodePrivate(path.node.name, true, path.loc);
-
-        // These are AST node types which do not cause undefined references for the identifier,
-        // eg ObjectProperty could be `{ abc: 1 }`, and `abc` is not undefined, it is an identifier
-        const CHECK_FOR_UNDEFINED = {
-          ObjectProperty: 1,
-          ObjectMethod: 1,
-          FunctionExpression: 1,
-          FunctionStatement: 1,
-          ArrowFunctionExpression: 1,
-          VariableDeclarator: 1,
-          FunctionDeclaration: 1,
-          CatchClause: 1,
-          AssignmentPattern: 1,
-          RestElement: 1,
-          ArrayPattern: 1,
-          SpreadElement: 1,
-          ClassDeclaration: 1,
-          ClassMethod: 1,
-          LabeledStatement: 1,
-          BreakStatement: 1
-        };
-
-        // These are AST node types we expect to find at the root of the identifier, and which will
-        //  not trigger a warning.  The idea is that all of the types in CHECK_FOR_UNDEFINED are types
-        //  that cause references to variables, everything else is in DO_NOT_WARN_TYPES.  But, if anything
-        //  has been missed and is not in either of these lists, throw a warning so that it can be checked
-        const DO_NOT_WARN_TYPES = {
-          AssignmentExpression: 1,
-          BooleanExpression: 1,
-          CallExpression: 1,
-          BinaryExpression: 1,
-          UnaryExpression: 1,
-          WhileStatement: 1,
-          IfStatement: 1,
-          NewExpression: 1,
-          ReturnStatement: 1,
-          ConditionalExpression: 1,
-          LogicalExpression: 1,
-          ForInStatement: 1,
-          ArrayExpression: 1,
-          SwitchStatement: 1,
-          SwitchCase: 1,
-          ThrowStatement: 1,
-          ExpressionStatement: 1,
-          UpdateExpression: 1,
-          SequenceExpression: 1,
-          ContinueStatement: 1,
-          ForStatement: 1,
-          TemplateLiteral: 1,
-          AwaitExpression: 1,
-          DoWhileStatement: 1,
-          ForOfStatement: 1,
-          TaggedTemplateExpression: 1,
-          ClassExpression: 1,
-          OptionalCallExpression: 1,
-          JSXExpressionContainer: 1,
-          ClassProperty: 1
-        };
-
-        let root = path;
-        while (root) {
-          let parentType = root.parentPath.node.type;
-          if (
-            parentType == "MemberExpression" ||
-            parentType == "OptionalMemberExpression"
-          ) {
-            root = root.parentPath;
-            continue;
-          }
-          if (CHECK_FOR_UNDEFINED[parentType]) {
-            return;
-          }
-          if (!DO_NOT_WARN_TYPES[parentType]) {
-            t.addMarker("testForUnresolved", path.node.loc, parentType);
-          }
-          break;
-        }
-
-        let name = collapseMemberExpression(root.node);
-        if (name.startsWith("(")) {
-          return;
-        }
-        let members = name.split(".");
-        t.addReference(members, root.node.loc);
-      };
-      data.classFile._babelClassPlugins = () => plugin;
-    }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
   _onCompiledClass(ev) {
     const data = ev.getData();
     if (data.classFile.getClassName() === 'cv.Application') {
       const currentDir = process.cwd();
       const resourceDir = path.join(currentDir, 'source', 'resource');
-      const resources = this._customCompileSettings.hasOwnProperty('additionalResources')
-      ? Object.assign(this._customCompileSettings.additionalResources, additionalResources)
-        : additionalResources;
-      resources.forEach(res => {
+      additionalResources.forEach(res => {
         fg.sync(path.join(resourceDir, res)).forEach(file => data.dbClassInfo.assets.push(file.substr(resourceDir.length + 1)));
       });
     }
@@ -282,20 +118,13 @@ class CvCompileHandler extends AbstractCompileHandler {
     if (!targetDir) {
       targetDir = this._getTargetDir();
     }
-    
-    if (targetDir && !targetDir.startsWith('/')) {
-    targetDir = path.join(currentDir, targetDir);
-    }
     const command = this._compilerApi.getCommand();
     this._watchList = {};
     const promises = [];
     if (targetDir) {
-      const fileList = this._customCompileSettings.hasOwnProperty('filesToCopy')
-        ? filesToCopy.concat(this._customCompileSettings.filesToCopy)
-        : filesToCopy;
-      fileList.forEach(file => {
+      filesToCopy.forEach(file => {
         const source = path.join(currentDir, 'source', file);
-        let target = path.join(targetDir, (file.startsWith('../') ? file.substring(3) : file));
+        const target = path.join(currentDir, targetDir, (file.startsWith('../') ? file.substring(3) : file));
         const stats = fs.statSync(source);
         const dirname = stats.isDirectory() ? target : path.dirname(target);
         fse.ensureDirSync(dirname);
@@ -309,7 +138,7 @@ class CvCompileHandler extends AbstractCompileHandler {
       });
 
       // make everything in resource/config writeable
-      const configFolder = path.join(targetDir, 'resource', 'config');
+      const configFolder = path.join(currentDir, targetDir, 'resource', 'config');
 
       // create config/media folder
       const configFolders =[
@@ -344,11 +173,11 @@ class CvCompileHandler extends AbstractCompileHandler {
     }
 
     // copy IconConfig.js to make it available for resource/icons/iconlist.html
-    const classTargetDir = path.join(targetDir, 'class', 'cv');
+    const classTargetDir = path.join(currentDir, targetDir, 'class', 'cv');
     fse.ensureDirSync(classTargetDir);
     fse.copySync(path.join(process.cwd(), 'source', 'class', 'cv', 'IconConfig.js'), path.join(classTargetDir, 'IconConfig.js'));
 
-    if (command.getTargetType() === 'source' || this._customSettings.fakeLogin === 'true') {
+    if (this._config.targetType === 'source' || this._customSettings.fakeLogin === 'true') {
       // copy a fake /cgi-bin/l response to the target folder
       fse.copySync(path.join(process.cwd(), 'source', 'resource', 'test'), path.join(targetDir, 'cgi-bin'));
     }

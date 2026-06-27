@@ -1,7 +1,7 @@
-/* Sequence.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Sequence.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * a single sequence.
  * may be recursive
@@ -29,8 +30,8 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(node, schema) {
-    super(node, schema);
+  construct: function (node, schema) {
+    this.base(arguments, node, schema);
     this.parse();
   },
 
@@ -44,7 +45,6 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       refine: true,
       init: 'sequence'
     },
-
     elementsHaveOrder: {
       refine: true,
       init: true
@@ -57,13 +57,14 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
   ***********************************************
   */
   members: {
+
     /**
      * parse a list of elements in this group.
      * Group is allowed (all|choice|sequence)? as per the definition.
      * We do all of those (except for 'all')
      */
-    parse() {
-      super.parse();
+    parse: function () {
+      this.base(arguments);
       const schema = this.getSchema();
 
       // for a sequence, we need to keep the order of the elements
@@ -89,7 +90,6 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
           case 'xsd:sequence':
           case 'sequence':
             subObject = new cv.ui.manager.model.schema.Sequence(subNode, schema);
-
             this._subGroupings.push(subObject);
             break;
           case 'xsd:group':
@@ -116,7 +116,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
      * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    getRegex(separator, nocapture) {
+    getRegex: function (separator, nocapture) {
       if (this._regexCache !== null) {
         // use the cache if primed
         return this._regexCache;
@@ -140,6 +140,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
 
       regexString += ')';
 
+
       // append bounds to regex
       regexString += '{';
       const bounds = this.getBounds();
@@ -157,7 +158,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
       return regexString;
     },
 
-    getBoundsForElementName(childName) {
+    getBoundsForElementName: function (childName) {
       // we are a sequence-element; there is actually a lot of sayings ...
       if (typeof this._allowedElements[childName] !== 'undefined') {
         const elementBounds = this._allowedElements[childName].getBounds();
@@ -218,7 +219,7 @@ qx.Class.define('cv.ui.manager.model.schema.Sequence', {
      * @param sortNumber  integer the sortNumber of a parent (only used when recursive)
      * @return object     list of allowed elements, with their sort-number as value
      */
-    getAllowedElementsSorting(sortNumber) {
+    getAllowedElementsSorting: function (sortNumber) {
       const namesWithSorting = {};
 
       this._sortedContent.forEach((item, i) => {

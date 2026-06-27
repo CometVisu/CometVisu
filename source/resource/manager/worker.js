@@ -1,5 +1,5 @@
 /*
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,7 @@
  */
 
 /**
- * Webworker for CometVisu's XML text editor. Detect changes in document,
+ * Webworker for CometVisu's XML text editor. Detects changes in document,
  * Syntax errors and other stuff.
  *
  * @since 0.11.0
@@ -26,14 +26,8 @@
 importScripts('xmllint.js');
 importScripts('crc32.js');
 
-let configSchemas = {};
-let currentSchema;
+let configSchema;
 
-const schemaRegex = /\w+:noNamespaceSchemaLocation="([^"]+)"/;
-
-/**
- * @param path
- */
 function getFileContent (path) {
   try {
     var xhr = new XMLHttpRequest();
@@ -41,11 +35,12 @@ function getFileContent (path) {
     xhr.send();
     if (xhr.status === 200) {
       return xhr.response;
-    } 
-      console.error('XHR Error for ', path, xhr.status, xhr.statusText);
+    } else {
+      console.error("XHR Error for ", path, xhr.status, xhr.statusText);
       return null;
-  } catch (e) {
-    console.error('XHR Error for ', path, e.toString());
+    }
+  } catch(e) {
+    console.error("XHR Error for ", path, e.toString());
     return null;
   }
 }
@@ -64,6 +59,11 @@ class SourceFile {
       modified: true,
       initialValidation: false
     }, features || {});
+
+    if (this.isConfigFile && !configSchema) {
+      // load scheme file
+      configSchema = getFileContent('../visu_config.xsd');
+    }
   }
 
   /**
@@ -74,25 +74,7 @@ class SourceFile {
     if (!data || !data.code) {
       return;
     }
-    this.initialCode = data.code.split('\n');
-
-    // detect schema
-    let schemaFile = '../visu_config.xsd';
-    this.initialCode.some(line => {
-      const match = schemaRegex.exec(line);
-      if (match) {
-        schemaFile = match[1];
-        return true;
-      }
-      return false;
-    });
-
-    if (this.isConfigFile) {
-      if (!configSchemas.hasOwnProperty(schemaFile)) {
-        loadSchema(schemaFile);
-      }
-    }
-
+    this.initialCode = data.code.split("\n");
     if (this.features.hash) {
       this.initialHash = SourceFile.hashCode(data.code);
     }
@@ -109,10 +91,7 @@ class SourceFile {
    * @param data {String} Complete code
    */
   saved(data) {
-    if (!data || !data.code) {
-      return;
-    }
-    this.initialCode = data.split('\n');
+    this.initialCode = data.split("\n");
     if (this.features.hash) {
       this.initialHash = SourceFile.hashCode(data);
     }
@@ -124,13 +103,13 @@ class SourceFile {
     }
     if (this.features.modified) {
       // check modifications
-      postMessage(['modified', {
+      postMessage(["modified", {
         modified: (this.currentHash !== this.initialHash),
         currentHash: this.currentHash,
         initialHash: this.initialHash
       }, this.path]);
     } else if (this.features.hash) {
-      postMessage(['hash', this.currentHash, this.path]);
+      postMessage(["hash", this.currentHash, this.path]);
     }
 
     this.validateConfig(data.code);
@@ -144,9 +123,9 @@ class SourceFile {
     if ((this.features.validate || force) && this.isConfigFile) {
       const lint = xmllint.validateXML({
         xml: code,
-        schema: currentSchema
+        schema: configSchema
       });
-      postMessage(['errors', parseErrors(code, lint.errors), this.path]);
+      postMessage(["errors", parseErrors(code, lint.errors), this.path]);
     }
   }
 
@@ -172,13 +151,12 @@ class SourceFile {
         }
       }
     });
-    postMessage(['decorations', decorations, this.path]);
+    postMessage(["decorations", decorations, this.path]);
   }
 
   /**
    * Calculate HashCode from string using the crc32 lib.
    *
-   * @param string
    * @return {number}
    */
   static hashCode(string) {
@@ -189,31 +167,19 @@ class SourceFile {
 // mapping calls to SourceFile instances
 const openFiles = {};
 
-/**
- * @param data
- * @param features
- */
-// eslint-disable-next-line no-unused-vars
-function openFile(data, features) {
+function openFile(data, features) { // jshint ignore:line
   if (!openFiles.hasOwnProperty(data.path)) {
-    openFiles[data.path] = new SourceFile(data.path, features);
+    const source = new SourceFile(data.path, features);
+    openFiles[data.path] = source;
   }
   openFiles[data.path].open(data);
 }
 
-/**
- * @param data
- */
-// eslint-disable-next-line no-unused-vars
-function closeFile(data) {
+function closeFile(data) { // jshint ignore:line
   delete openFiles[data.path];
 }
 
-/**
- * @param data
- */
-// eslint-disable-next-line no-unused-vars
-function contentChange(data) {
+function contentChange(data) { // jshint ignore:line
   if (openFiles.hasOwnProperty(data.path)) {
     const source = openFiles[data.path];
     source.contentChange(data);
@@ -222,10 +188,6 @@ function contentChange(data) {
   }
 }
 
-/**
- * @param lineElementMap
- * @param lineNo
- */
 function getPath(lineElementMap, lineNo) {
   if (lineElementMap.has(lineNo)) {
     const parts = [];
@@ -233,7 +195,7 @@ function getPath(lineElementMap, lineNo) {
     let parent = child.parent;
     while (parent) {
       parts.unshift(`${parent.name}[${parent.children.indexOf(child)}]`);
-      child = parent;
+      child = parent
       parent = child.parent;
     }
     return '/' + parts.join('/');
@@ -241,11 +203,6 @@ function getPath(lineElementMap, lineNo) {
   return '';
 }
 
-/**
- * @param content
- * @param errors
- * @param includePaths
- */
 function parseErrors(content, errors, includePaths) {
   if (!errors) {
     return [];
@@ -253,27 +210,27 @@ function parseErrors(content, errors, includePaths) {
   // parse errors and add xpath expressions to the errors to make the position findable
   const parsedErrors = [];
   const lineElementMap = new Map();
-  const contentLines = content.split('\n');
+  const contentLines = content.split("\n");
   if (includePaths) {
     let currentElement;
     let currentParent;
     let root;
     let context;
     contentLines.forEach((line, lineNo) => {
-      if (context === 'comment') {
+      if (context === "comment") {
         // do not parse comments
-        const endOfComment = line.indexOf('-->');
+        const endOfComment = line.indexOf("-->");
         if (endOfComment < 0) {
           // multiline comment goto next line
           return;
         }
       }
       for (let i = line.search(/[^\s]/), l = line.length; i < l; i++) {
-        if (line[i] === '<') {
-          if (line[i + 1] === '!') {
+        if (line[i] === "<") {
+          if (line[i + 1] === "!") {
             const oldContext = context;
-            context = 'comment';
-            const endOfComment = line.indexOf('-->', i);
+            context = "comment";
+            const endOfComment = line.indexOf("-->", i);
             i++;
             if (endOfComment >= i) {
               i = endOfComment+2;
@@ -283,24 +240,24 @@ function parseErrors(content, errors, includePaths) {
               // multiline comment goto next line
               return;
             }
-          } else if (line[i + 1] === '/') {
+          } else if (line[i + 1] === "/") {
             // close tag
-            context = '';
+            context = ""
             if (currentParent) {
               currentElement = currentParent;
               currentParent = currentElement.parent;
-              context = 'element';
+              context = "element";
             }
             i++;
             continue;
-          } else if (line[i + 1] === '?') {
-            context = 'header';
+          } else if (line[i + 1] === "?") {
+            context = "header"
             // skip header
-            i = line.indexOf('>', i + 1) + 1;
+            i = line.indexOf(">", i + 1) + 1;
           } else {
-            context = 'element';
+            context = "element";
           }
-          if (context === 'element') {
+          if (context === "element") {
             // new tag
             const match = /^<([^\s>]+)/.exec(line.substr(i));
             if (currentElement) {
@@ -308,7 +265,7 @@ function parseErrors(content, errors, includePaths) {
             }
             currentElement = { line: lineNo+1, name: match[1], children: [], parent: currentParent };
             if (currentParent) {
-              currentParent.children.push(currentElement);
+              currentParent.children.push(currentElement)
             }
             if (!root) {
               root = currentElement;
@@ -316,10 +273,10 @@ function parseErrors(content, errors, includePaths) {
             lineElementMap.set(lineNo+1, currentElement);
             let endIndex = line.indexOf(`</${currentElement.name}>`, i);
             if (endIndex === -1) {
-              let endTag = line.substr(i).search('>');
+              let endTag = line.substr(i).search(">");
               if (endTag >= 0) {
                 endTag+=i;
-                if (line.substr(endTag-1, 1) === '/') {
+                if (line.substr(endTag-1, 1) === "/") {
                   // position pointer before the /
                   endIndex = endTag - 2;
                 } else {
@@ -331,12 +288,12 @@ function parseErrors(content, errors, includePaths) {
               i = endIndex;
             }
           }
-        } else if (line[i] === '/') {
-          context = '';
+        } else if (line[i] === "/") {
+          context = ""
           if (currentParent) {
             currentElement = currentParent;
             currentParent = currentElement.parent;
-            context = 'element';
+            context = "element";
           }
         }
       }
@@ -344,17 +301,15 @@ function parseErrors(content, errors, includePaths) {
   }
   errors.forEach(error => {
     if (/.*\.xml:[\d]+:.+/.test(error)) {
-      const parts = error.split(':');
-      // eslint-disable-next-line no-unused-vars
+      const parts = error.split(":");
       const file = parts.shift();
       let lineNo = parseInt(parts.shift());
       const errorType = parts.shift().trim();
-      let title;
-      let message;
-      if (errorType === 'parser error') {
+      let title, message;
+      if (errorType === "parser error") {
         const end = parts[parts.length - 1];
         title= errorType;
-        message = parts.join(': ');
+        message = parts.join(": ");
         const lineMatch = /.+line ([\d]+).+/.exec(end);
         if (lineMatch) {
           lineNo = parseInt(lineMatch[1]);
@@ -376,22 +331,21 @@ function parseErrors(content, errors, includePaths) {
         err.startColumn++;
         err.endColumn++;
         parsedErrors.push(err);
-      } else if (errorType.startsWith('element')) {
+      } else if (errorType.startsWith("element")) {
         title = parts.shift().trim();
         const position = parts.shift().trim();
-        message = parts.join(':').trim();
+        message = parts.join(":").trim();
         const posMatch = /^Element '([^']+)'(,\sattribute '([^']+)')?/.exec(position);
         // in the last part there might be a more precise line number for the error
         const lineMatch = /.+line ([\d]+) -+/.exec(message);
         if (lineMatch) {
           lineNo = parseInt(lineMatch[1]);
         }
-        let element;
-        let attribute;
+        let element, attribute;
         const source = contentLines[lineNo - 1];
         if (posMatch) {
           element = posMatch[1];
-          attribute = posMatch.length > 3 ? posMatch[3] : null;
+          attribute = posMatch.length > 3 ? posMatch[3] : null
           const err = {
             line: lineNo,
             title: title,
@@ -404,7 +358,7 @@ function parseErrors(content, errors, includePaths) {
             original: error
           };
           if (attribute && source.indexOf(attribute) >= 0) {
-            err.startColumn = source.indexOf(attribute + '=');
+            err.startColumn = source.indexOf(attribute + "=");
             const attrMatch = /^(="[^"]*").*/.exec(source.substr(err.startColumn + attribute.length));
             err.endColumn = err.startColumn + attribute.length + attrMatch[1].length;
           }
@@ -414,111 +368,57 @@ function parseErrors(content, errors, includePaths) {
           err.endColumn++;
           parsedErrors.push(err);
         } else {
-          console.error('could parse position', position);
+          console.error("could parse position", position);
         }
       } else {
-        console.error('unhandled error type', errorType, error);
+        console.error("unhandled error type", errorType, error);
       }
     }
   });
   return parsedErrors;
 }
 
-/**
- * @param content
- */
-function loadContentSchema(content) {
-  const match = schemaRegex.exec(content);
-  let schemaFile = '../visu_config.xsd';
-  if (match) {
-    schemaFile = match[1];
-  }
-  loadSchema(schemaFile);
-}
-
-/**
- * @param schemaFile
- */
-function loadSchema(schemaFile) {
-  if (!configSchemas.hasOwnProperty(schemaFile)) {
-    // load scheme file
-    let content = getFileContent(schemaFile);
-    if (content === null) {
-      // schema file not found
-      configSchemas[schemaFile] = content;
-      return;
-    }
-    let file;
-    let includedContent;
-    const matches = content.matchAll(/<xsd:include schemaLocation="([^"]+)"\s?\/>/g);
-    const includeRegex = /<xsd:schema[^>]+>(.+)<\/xsd:schema>/gms;
-    const cyclicIncludeRegex = new RegExp(`<xsd:include schemaLocation="${schemaFile}"\s?\/>`);
-    for (const match of matches) {
-      file = '../' + match[1];
-      includedContent = getFileContent(file);
-      // only copy what is inside of <xsd:schema>...</xsd:schema>
-      const incMatch = includeRegex.exec(includedContent);
-      let replacement = incMatch ? incMatch[1] : '';
-      const cyclicIncludeMatch = cyclicIncludeRegex.exec(replacement);
-      if (cyclicIncludeMatch) {
-        replacement = replacement.replace(cyclicIncludeMatch[0], '');
-      }
-      content = content.replace(match[0], replacement);
-    }
-    configSchemas[schemaFile] = content;
-  }
-  currentSchema = configSchemas[schemaFile];
-}
-
-/**
- * @param data
- */
-// eslint-disable-next-line no-unused-vars
 function validateConfig (data) {
   const url = data.path.startsWith('http') ? data.path : '../../' + data.path;
   const content = getFileContent(url);
   if (content) {
-    loadContentSchema(content);
+    if (!configSchema) {
+      configSchema = getFileContent('../visu_config.xsd');
+    }
     const lint = xmllint.validateXML({
       xml: content,
-      schema: currentSchema
+      schema: configSchema
     });
     if (lint.errors) {
-      postMessage(['validationResult', parseErrors(content, lint.errors), data.path]);
+      postMessage(["validationResult", parseErrors(content, lint.errors), data.path]);
     } else {
-      postMessage(['validationResult', true, data.path]);
+      postMessage(["validationResult", true, data.path]);
     }
   }
 }
 
-/**
- * @param id
- * @param content
- * @param includePaths
- */
-// eslint-disable-next-line no-unused-vars
 function validateXmlConfig(id, content, includePaths) {
-  loadContentSchema(content);
+  if (!configSchema) {
+    configSchema = getFileContent('../visu_config.xsd');
+  }
   const lint = xmllint.validateXML({
     xml: content,
-    schema: currentSchema
+    schema: configSchema
   });
   if (!includePaths || !lint.errors) {
-    postMessage(['validationResult', lint.errors || true, id]);
+    postMessage(["validationResult", lint.errors || true, id]);
   } else if (lint.errors) {
-    postMessage(['validationResult', parseErrors(content, lint.errors, includePaths), id]);
+    postMessage(["validationResult", parseErrors(content, lint.errors, includePaths), id]);
   } else {
-    postMessage(['validationResult', true, id]);
+    postMessage(["validationResult", true, id]);
   }
 }
 
 /**
  * Handle messages from application
- *
- * @param ev
  */
 onmessage = function(ev) {
-  const topic = ev.data.shift();
+  var topic = ev.data.shift();
   if (topic in this) {
     // dispatch message to handler
     this[topic].apply(this, ev.data);

@@ -33,16 +33,13 @@ class ApiCompileHandler extends AbstractCompileHandler {
     this.defaultDesign = 'metal';
     this.counters = {};
     this._docConfig = {};
-
-    this._cvSourceFiles = [];
   }
 
 
   onLoad () {
-    const targetType = this._compilerApi.getCommand().getTargetType();
-    this.exampleDir = path.join(process.cwd(), 'cache', 'widget_examples', targetType);
+    this.exampleDir = path.join(process.cwd(), 'cache', 'widget_examples', this._config.targetType);
     fs.ensureDir(this.exampleDir);
-    if (targetType === 'build') {
+    if (this._config.targetType === 'build') {
       this._config.targets.some(target => {
         if (target.type === 'build') {
           target.targetClass = qx.tool.compiler.targets.BuildTarget;
@@ -58,27 +55,9 @@ class ApiCompileHandler extends AbstractCompileHandler {
     let command = this._compilerApi.getCommand();
     command.addListener('made', () => this._onMade());
     command.addListener('compiledClass', this._onCompiledClass, this);
-    command.addListener("writtenMetaData", async () => {
-      const metaDir = path.join(targetDir, '..', 'meta')
-      // write parsed jsdoc to metadata before the apiviewer compiler reads these
-      for (const data of this._cvSourceFiles) {
-        const jsonFile = path.join(metaDir, ...data.classname.split('.')) + '.json';
-        if (fs.pathExistsSync(jsonFile)) {
-          const meta = fs.readJsonSync(jsonFile);
-          meta.jsdoc['@description'] = data.jsdoc;
-          fs.writeJsonSync(jsonFile, meta, { spaces: 2 });
-        } else {
-          console.error(jsonFile, 'not found, custom jsdoc data (@widgetexample, @author, ...) will now be applied');
-        }
-      }
-    });
   }
 
   _onMade() {
-    if (this._compilerApi.getCommand() instanceof qx.tool.cli.commands.Deploy) {
-      return;
-    }
-
     // cleanup files we do not need (everything from the compiled cv application: resources, application)
     const targetDir = this._getTargetDir();
     if (targetDir) {
@@ -110,10 +89,7 @@ class ApiCompileHandler extends AbstractCompileHandler {
         return;
       }
 
-      let modifyMeta = false;
-
       if (jsdoc.hasOwnProperty('@widgetexample')) {
-        modifyMeta = true;
         jsdoc['@widgetexample'].forEach(example => {
           const body = example['body'];
           try {
@@ -128,7 +104,6 @@ class ApiCompileHandler extends AbstractCompileHandler {
       }
 
       if (jsdoc.hasOwnProperty('@author')) {
-        modifyMeta = true;
         const authors = [];
         jsdoc['@author'].forEach(author => {
           authors.push(author.body);
@@ -136,19 +111,12 @@ class ApiCompileHandler extends AbstractCompileHandler {
         jsdoc['@description'][0]['body'] += '<div class="authors"><label>' + (authors.length > 1 ? 'Authors' : 'Author') +':</label> ' + authors.join('; ') +'</div>';
       }
       if (jsdoc.hasOwnProperty('@since')) {
-        modifyMeta = true;
         let since = '<div class="since"><label>Since:</label> ';
         jsdoc['@since'].forEach(s => {
           since += s.body;
         });
         since += '</div>';
         jsdoc['@description'][0]['body'] += since;
-      }
-      if (modifyMeta) {
-        this._cvSourceFiles.push({
-          classname: data.classFile.getClassName(),
-          jsdoc: jsdoc['@description']
-        })
       }
     }
   }

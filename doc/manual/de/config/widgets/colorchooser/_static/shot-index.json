@@ -1,14 +1,14 @@
 {
-    "colorchooser_example": "74004fa28d8293d40c6e717b9600e8f8",
-    "colorchooser_slider_rgb": "8c7ea36bc675bc9aa6c4d97b468e693e",
-    "de_config_widgets_colorchooser_index_editor_attributes": "ada01a96240f6e18c9e1f3fa84a3d2bc",
-    "de_config_widgets_colorchooser_index_editor_elements": "e3584eb92139a3597a0b2bf1a4c55d9c",
-    "colorchooser_slider_rgbw": "b9ea5709ce837366067e3ff65153ac50",
-    "colorchooser_slider_hsv": "d4688cb6626a15e5ba07291dccff28a7",
-    "colorchooser_slider_TY": "1bceb8fce3bbb3c692d4e62a2e407fc2",
-    "colorchooser_slider_LCh": "1a1daca9f58b5a0694a88c8edc5727db",
-    "colorchooser_complex_box": "86aa8e6b7069f7aeb93f6de531e57ec3",
-    "colorchooser_complex_triangle": "1227be9ed0561faf2049628f71b6cfb3",
-    "colorchooser_complex_LCh_box": "ceceac0ea13af1fcf038bfd10ebeb7ba",
-    "colorchooser_complex_LCh_triangle": "cc535527e5c9e04587c6df127f4cf436"
+    "colorchooser_example": "801e189d7d4378791764af03f23a1cd8",
+    "colorchooser_slider_rgb": "7d46af58b9842882e2e6afc0a984d81c",
+    "de_config_widgets_colorchooser_index_editor_attributes": "50d7612ad8153a31479b941c9cf0a650",
+    "de_config_widgets_colorchooser_index_editor_elements": "36aebc2fe810e97c43327bebb3d8e65d",
+    "colorchooser_slider_rgbw": "ae1d291bd02de15dd833947cddedf998",
+    "colorchooser_slider_hsv": "342a34a597cefcaf6df6863adb75a6a0",
+    "colorchooser_slider_TY": "73d0a3abf3475eb51639559f203b6c52",
+    "colorchooser_slider_LCh": "ecbe411011c58fd00608e173f1bb92e2",
+    "colorchooser_complex_box": "e712dd27cdb77e1eda671f685fa4b82c",
+    "colorchooser_complex_triangle": "696e0c4f599768e28211364e4c92765e",
+    "colorchooser_complex_LCh_box": "fbcfd76be3e2382a39acba4612a65f05",
+    "colorchooser_complex_LCh_triangle": "482a052b32173560498acf0720e038bf"
 }

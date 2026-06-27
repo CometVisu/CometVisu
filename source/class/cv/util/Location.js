@@ -1,7 +1,7 @@
-/* Location.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Location.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Helper function to proxy access to <code>window.location.*</code> functions.
@@ -35,7 +36,7 @@ qx.Class.define('cv.util.Location', {
      *
      * @return {String} URI of the page the browser is currently showing
      */
-    getHref() {
+    getHref: function() {
       return window.location.href;
     },
 
@@ -44,7 +45,7 @@ qx.Class.define('cv.util.Location', {
      *
      * @param loc {String} - URI of the location the browser should be redirected to
      */
-    setHref(loc) {
+    setHref: function(loc) {
       window.location.href = loc;
     },
 
@@ -53,7 +54,7 @@ qx.Class.define('cv.util.Location', {
      *
      * @param value {Boolean} parameter to call reload with
      */
-    reload(value) {
+    reload: function(value) {
       window.location.reload(value);
     },
 
@@ -63,8 +64,9 @@ qx.Class.define('cv.util.Location', {
      * @param url {String} url to open
      * @param target {String} where to open the window
      */
-    open(url, target) {
+    open: function(url, target) {
       window.open(url, target);
     }
   }
+
 });

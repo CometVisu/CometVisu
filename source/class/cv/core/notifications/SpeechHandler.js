@@ -1,7 +1,7 @@
-/* SpeechHandler.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* SpeechHandler.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * SpeechHandler
@@ -36,8 +37,8 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct() {
-    super();
+  construct: function() {
+    this.base(arguments);
     this.__lastSpeech = {};
   },
 
@@ -49,14 +50,13 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
   members: {
     __lastSpeech: null,
 
-    handleMessage(message, config) {
+    handleMessage: function(message, config) {
       let text = message.message || message.title;
       if (config.skipInitial && !this.__lastSpeech[message.topic]) {
         this.__lastSpeech[message.topic] = {
           text: text,
           time: Date.now()
         };
-
         return;
       }
       if (cv.core.notifications.Router.evaluateCondition(message)) {
@@ -71,12 +71,8 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
           text = text.substring(1);
         } else if (config.repeatTimeout >= 0) {
           // do not repeat (within timeout when this.repeatTimeout > 0)
-          if (
-            this.__lastSpeech[message.topic] &&
-            this.__lastSpeech[message.topic].text === text &&
-            (config.repeatTimeout === 0 ||
-              config.repeatTimeout >= Math.round((Date.now() - this.__lastSpeech[message.topic].time) / 1000))
-          ) {
+          if (this.__lastSpeech[message.topic] && this.__lastSpeech[message.topic].text === text && (config.repeatTimeout === 0 ||
+              config.repeatTimeout >= Math.round((Date.now()-this.__lastSpeech[message.topic].time)/1000))) {
             // update time
             this.__lastSpeech[message.topic].time = Date.now();
             // do not repeat
@@ -94,7 +90,7 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
       }
     },
 
-    say(text, language) {
+    say: /* istanbul ignore next [no need to text the browsers TTS capability] */ function(text, language) {
       if (!window.speechSynthesis) {
         this.warn(this, 'this browser does not support the Web Speech API');
         return;
@@ -116,8 +112,8 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
           this.say(text, language);
         }.bind(this);
         return;
-      }
-      synth.onvoiceschanged = null;
+      } 
+        synth.onvoiceschanged = null;
 
       let i = 0;
       const l = voices.length;
@@ -133,8 +129,9 @@ qx.Class.define('cv.core.notifications.SpeechHandler', {
         selectedVoice = defaultVoice;
       }
       utterThis.voice = selectedVoice;
-      this.debug('saying \'' + text + '\' in voice ' + selectedVoice.name);
+      this.debug('saying \''+text+'\' in voice '+selectedVoice.name);
       synth.speak(utterThis);
     }
   }
+
 });

@@ -1,7 +1,7 @@
-/* Client.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Client.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  *
@@ -34,78 +35,46 @@ qx.Class.define('cv.io.rest.Client', {
     __dirClient: null,
     __dpClient: null,
     __callbacks: {},
-    AUTH_REQUIRED: false,
 
-    getBaseUrl() {
+    getBaseUrl: function () {
       if (!this.BASE_URL) {
         let path = '';
         if (qx.core.Init.getApplication().isServedByOpenhab()) {
           path = '/rest/cv';
         } else {
-          path =
-            qx.util.Uri.parseUri(window.location.href).directory +
-            'rest/manager/index.php';
+          path = qx.util.Uri.parseUri(window.location.href).directory + 'rest/manager/index.php';
         }
         this.BASE_URL = path;
       }
       return this.BASE_URL;
     },
 
-    checkAuth(req) {
-      if (this.AUTH_REQUIRED) {
-        if (qx.core.Init.getApplication().isServedByOpenhab()) {
-          const backend = cv.io.BackendConnections.getClientByType('openhab');
-          if (backend) {
-            backend.authorize(req);
-          } else {
-            qx.log.Logger.warn('no openHAB backend configured, cannot authorize');
-          }
-        } else {
-          qx.log.Logger.warn('authentication is currently only implemented for the openHAB API backend');
-        }
-      }
-    },
-
-    getConfigClient() {
+    getConfigClient: function() {
       if (!this.__configFile) {
         const config = {
           get: {
-            method: 'GET',
-            url: '/config/hidden/{section}/{key}'
+            method: 'GET', url: '/config/hidden/{section}/{key}'
           },
-
           put: {
-            method: 'PUT',
-            url: '/config/hidden/{section}/{key}'
+            method: 'PUT', url: '/config/hidden/{section}/{key}'
           },
-
           post: {
-            method: 'POST',
-            url: '/config/hidden/{section}/{key}'
+            method: 'POST', url: '/config/hidden/{section}/{key}'
           },
-
-          delete: {
-            method: 'DELETE',
-            url: '/config/hidden/{section}/{key}'
+          'delete': {
+            method: 'DELETE', url: '/config/hidden/{section}/{key}'
           },
-
           save: {
-            method: 'PUT',
-            url: '/config/hidden'
+            method: 'PUT', url: '/config/hidden'
           }
         };
-
         this.__configFile = new qx.io.rest.Resource(config);
         this.__configFile.setBaseUrl(this.getBaseUrl());
         this.__configFile.configureRequest(function (req, action) {
-          if (cv.Config.transactionId) {
-            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
-          }
           if (action === 'save') {
             req.setRequestHeader('Content-Type', 'application/json');
           }
           req.setAccept('application/json');
-          cv.io.rest.Client.checkAuth(req);
         });
 
         this._enableSync(this.__configFile, config);
@@ -113,46 +82,31 @@ qx.Class.define('cv.io.rest.Client', {
       return this.__configFile;
     },
 
-    getFsClient() {
+    getFsClient: function () {
       if (!this.__dirClient) {
         const config = {
           read: {
-            method: 'GET',
-            url: '/fs?path={path}'
+            method: 'GET', url: '/fs?path={path}'
           },
-
           update: {
-            method: 'PUT',
-            url: '/fs?path={path}'
+            method: 'PUT', url: '/fs?path={path}'
           },
-
           create: {
-            method: 'POST',
-            url: '/fs?path={path}&type={type}'
+            method: 'POST', url: '/fs?path={path}&type={type}'
           },
-
-          delete: {
-            method: 'DELETE',
-            url: '/fs?path={path}&force={force}'
+          'delete': {
+            method: 'DELETE', url: '/fs?path={path}&force={force}'
           },
-
           move: {
-            method: 'PUT',
-            url: '/fs/move?src={src}&target={target}'
+            method: 'PUT', url: '/fs/move?src={src}&target={target}'
           },
-
           checkEnvironment: {
-            method: 'GET',
-            url: '/fs/check'
+            method: 'GET', url: '/fs/check'
           }
         };
-
         this.__dirClient = new qx.io.rest.Resource(config);
         this.__dirClient.setBaseUrl(this.getBaseUrl());
         this.__dirClient.configureRequest(function (req, action, params) {
-          if (cv.Config.transactionId) {
-            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
-          }
           if (params.hash) {
             req.setUrl(req.getUrl() + '&hash=' + params.hash);
           }
@@ -170,71 +124,51 @@ qx.Class.define('cv.io.rest.Client', {
             }
             req.setAccept('application/json');
           }
-          cv.io.rest.Client.checkAuth(req);
         });
+
 
         this._enableSync(this.__dirClient, config);
 
         // general listeners
         this.__dirClient.addListener('updateSuccess', this._onSaveSuccess, this);
-
         this.__dirClient.addListener('createSuccess', this._onSaveSuccess, this);
-
         this.__dirClient.addListener('updateError', this._onSaveError, this);
         this.__dirClient.addListener('createError', this._onSaveError, this);
       }
       return this.__dirClient;
     },
 
-    getDataProviderClient() {
+    getDataProviderClient: function () {
       if (!this.__dpClient) {
         const config = {
           designs: {
-            method: 'GET',
-            url: '/data/designs'
+            method: 'GET', url: '/data/designs'
           },
-
           rrds: {
-            method: 'GET',
-            url: '/data/rrds'
+            method: 'GET', url: '/data/rrds'
           },
-
           addresses: {
-            method: 'GET',
-            url: '/data/addresses'
+            method: 'GET', url: '/data/addresses'
           },
-
           influxdbs: {
-            method: 'GET',
-            url: '/data/influxdbs?auth={auth}'
+            method: 'GET', url: '/data/influxdbs?auth={auth}'
           },
-
           influxdbfields: {
-            method: 'GET',
-            url: '/data/influxdbfields?auth={auth}&measurement={measurement}'
+            method: 'GET', url: '/data/influxdbfields?auth={auth}&measurement={measurement}'
           },
-
           influxdbtags: {
-            method: 'GET',
-            url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
+            method: 'GET', url: '/data/influxdbtags?auth={auth}&measurement={measurement}'
           }
         };
-
         this.__dpClient = new qx.io.rest.Resource(config);
         this.__dpClient.setBaseUrl(this.getBaseUrl());
-        if (cv.Config.transactionId) {
-          this.__dpClient.configureRequest(function (req, action, params) {
-            req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
-            cv.io.rest.Client.checkAuth(req);
-          });
-        }
 
         this._enableSync(this.__dpClient, config);
       }
       return this.__dpClient;
     },
 
-    _enableSync(client, config) {
+    _enableSync: function (client, config) {
       // install the callback calls
       Object.keys(config).forEach(function (callName) {
         client[callName + 'Sync'] = function () {
@@ -252,16 +186,16 @@ qx.Class.define('cv.io.rest.Client', {
       }, this);
 
       // add the general listeners
-      client.addListener('success', ev => {
+      client.addListener('success', function (ev) {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
           this.__callbacks[id](null, ev.getData());
           delete this.__callbacks[id];
         }
-      });
+      }, this);
 
-      client.addListener('error', ev => {
+      client.addListener('error', function (ev) {
         const req = ev.getRequest();
         const id = parseInt(req.toHashCode(), 10);
         if (Object.prototype.hasOwnProperty.call(this.__callbacks, id)) {
@@ -283,10 +217,10 @@ qx.Class.define('cv.io.rest.Client', {
           // error during load phase => backend not reachable
           qxl.dialog.Dialog.error(qx.locale.Manager.tr('Backend does not respond!'));
         }
-      });
+      }, this);
     },
 
-    _onSaveSuccess(ev) {
+    _onSaveSuccess: function (ev) {
       const req = ev.getRequest();
       const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it
@@ -295,7 +229,7 @@ qx.Class.define('cv.io.rest.Client', {
       }
     },
 
-    _onSaveError(ev) {
+    _onSaveError: function (ev) {
       const req = ev.getRequest();
       const id = parseInt(req.toHashCode(), 10);
       // only handle this events, when there is no callback for it

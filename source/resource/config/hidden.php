@@ -11,13 +11,6 @@ $data = '{
     "user": "docker",
     "pass": "secret", 
     "selfsigned": "true"
-  },
-  "proxy.whitelist": {
   }
 }';
-
-try {
-  $hidden = json_decode($data, true, 512, JSON_THROW_ON_ERROR);
-} catch (JsonException $e) {
-  $hidden = ["error" => $e->getMessage(), "data" => $data];
-}
+$hidden = json_decode($data, true);

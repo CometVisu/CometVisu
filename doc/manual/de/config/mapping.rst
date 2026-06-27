@@ -294,7 +294,7 @@ bspw. so aus:
             <data address="Sunrise_Time">2016-08-21T03:57:50</data>
          </screenshot>
         </settings>
-        <info format="%s">
+        <info format="%s Uhr">
             <address transform="OH:datetime">Sunrise_Time</address>
         </info>
 

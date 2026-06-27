@@ -1,7 +1,7 @@
-/* SimpleType.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* SimpleType.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * a single SimpleType from the schema.
  * Should be useable for SimpleContent, too.
@@ -30,8 +31,8 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct(node, schema) {
-    super(node, schema);
+  construct: function (node, schema) {
+    this.base(arguments, node, schema);
     this.__enumerations = [];
     this.__pattern = [];
     this.__regexCache = {};
@@ -49,7 +50,6 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
       refine: true,
       init: 'simpleType'
     },
-
     optional: {
       check: 'Boolean',
       init: false
@@ -76,7 +76,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     __bases: null,
     __regexCache: null,
 
-    parse() {
+    parse: function () {
       const node = this.getNode();
       this.setOptional(node.getAttribute('use') === 'required');
       this.__fillNodeData(node);
@@ -87,7 +87,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
      *
      * @param   node    DOMNode the node to parse
      */
-    __fillNodeData(node) {
+    __fillNodeData: function (node) {
       const schema = this.getSchema();
 
       if (node.hasAttribute('ref')) {
@@ -117,11 +117,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         return;
       }
 
-      const subNodes = Array.from(
-        node.querySelectorAll(
-          ':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension'
-        )
-      );
+      const subNodes = Array.from(node.querySelectorAll(':scope > restriction, :scope > extension, :scope > simpleType > restriction, :scope > simpleType > extension'));
 
       subNodes.forEach(subNode => {
         const baseType = subNode.getAttribute('base');
@@ -154,7 +150,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
      * @param   value   mixed   the value to check
      * @return  boolean         if the value is valid
      */
-    isValueValid(value) {
+    isValueValid: function (value) {
       const baseType = this.getBaseType();
       const schema = this.getSchema();
       if (!baseType) {
@@ -170,51 +166,49 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
         // created our own type, will need to find and use it.
         const typeNode = schema.getTypeNode('simple', baseType);
         const subType = new cv.ui.manager.model.schema.SimpleType(typeNode, schema);
-
         return subType.isValueValid(value);
-      }
-      // xsd:-namespaces types, those are the originals
-      switch (baseType) {
-        case 'xsd:string':
-        case 'xsd:normalizedString':
-        case 'xsd:token':
-        case 'xsd:anyURI':
-        case 'xsd:anyType':
-          if (!(typeof value == 'string')) {
-            // it's not a string, but it should be.
-            // pretty much any input a user gives us is string, so this is pretty much moot.
-            return false;
-          }
-          break;
-        case 'xsd:decimal':
-          if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
-            return false;
-          }
-          break;
-        case 'xsd:unsignedByte':
-        case 'xsd:nonNegativeInteger':
-          if (!value.match(/^[+]?[0-9]+$/)) {
-            return false;
-          }
-          break;
-        case 'xsd:integer':
-          if (!value.match(/^[-+]?[0-9]+$/)) {
-            return false;
-          }
-          break;
-        case 'xsd:float':
-          if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
-            return false;
-          }
-          break;
-        case 'xsd:boolean':
-          if (!value.match(/^(true|false|0|1)$/)) {
-            return false;
-          }
-          break;
-        default:
-          throw new Error('not implemented baseType ' + baseType);
-      }
+      } 
+        // xsd:-namespaces types, those are the originals
+        switch (baseType) {
+          case 'xsd:string':
+          case 'xsd:anyURI':
+          case 'xsd:anyType':
+            if (!(typeof (value) == 'string')) {
+              // it's not a string, but it should be.
+              // pretty much any input a user gives us is string, so this is pretty much moot.
+              return false;
+            }
+            break;
+          case 'xsd:decimal':
+            if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
+              return false;
+            }
+            break;
+          case 'xsd:unsignedByte':
+          case 'xsd:nonNegativeInteger':
+            if (!value.match(/^[+]?[0-9]+$/)) {
+              return false;
+            }
+            break;
+          case 'xsd:integer':
+            if (!value.match(/^[-+]?[0-9]+$/)) {
+              return false;
+            }
+            break;
+          case 'xsd:float':
+            if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
+              return false;
+            }
+            break;
+          case 'xsd:boolean':
+            if (!value.match(/^(true|false|0|1)$/)) {
+              return false;
+            }
+            break;
+          default:
+            throw new Error('not implemented baseType ' + baseType);
+        }
+      
 
       // check if the value is in our list of valid values, if there is such a list
       if (this.__enumerations.length > 0) {
@@ -262,10 +256,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
               // append the rest
               branchIndices.push([start, item.length - start]);
             }
-            const branches = branchIndices.map(
-              entry => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`
-            );
-
+            const branches = branchIndices.map(entry => `^${item.substr(entry[0], entry[1]).replace(/\\([\s\S])|(\$)/g, '\\$1$2')}$`);
             this.__regexCache[item] = this.regexFromString(branches.join('|'));
           }
 
@@ -291,7 +282,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
      *
      * @return  array   list of allowed values (if there are any)
      */
-    getEnumeration() {
+    getEnumeration: function () {
       if (this.getBaseType() === 'xsd:boolean') {
         // special handling for boolean, as we KNOW it to be an enumeration
         return ['true', 'false'];
@@ -306,7 +297,7 @@ qx.Class.define('cv.ui.manager.model.schema.SimpleType', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     this.__regexCache = null;
   }
 });

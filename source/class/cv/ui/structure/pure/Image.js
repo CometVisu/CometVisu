@@ -1,7 +1,7 @@
-/* Image.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Image.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Adds an image to your visualization. Using the auto-refresh setting this widget can be used e.g. to show
  * a camera picture.
@@ -31,9 +32,9 @@
  * @asset(qx/static/blank.gif)
  */
 qx.Class.define('cv.ui.structure.pure.Image', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
-  include: [cv.ui.common.Refresh, cv.ui.common.Update],
+  include: [cv.ui.common.Refresh, cv.ui.common.Update ],
 
   /*
   ******************************************************
@@ -41,12 +42,12 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   properties: {
-    width: { check: 'String', init: '100%' },
-    height: { check: 'String', nullable: true },
-    cropTop: { check: 'String' },
-    cropBottom: { check: 'String' },
-    src: { check: 'String', init: '' },
-    widthFit: { check: 'Boolean', init: false },
+    width      : { check: 'String', init: '100%' },
+    height     : { check: 'String', nullable: true },
+    cropTop    : { check: 'String' },
+    cropBottom : { check: 'String' },
+    src        : { check: 'String', init: '' },
+    widthFit   : { check: 'Boolean', init: false },
     placeholder: {
       check: ['none', 'src', 'hide', 'exclude'],
       init: 'none'
@@ -62,7 +63,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     __src: null,
 
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       // create the actor
       let imgStyle = '';
       if (this.getWidth()) {
@@ -92,7 +93,6 @@ qx.Class.define('cv.ui.structure.pure.Image', {
         switch (this.getPlaceholder()) {
           case 'hide':
             src = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
-
             break;
 
           case 'exclude':
@@ -110,7 +110,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     /**
      * Return the real src value
      */
-    __getSrc() {
+    __getSrc: function() {
       if (!this.__src) {
         let src = this.getSrc();
         const parsedUri = qx.util.Uri.parseUri(this.getSrc());
@@ -123,7 +123,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       return this.__src;
     },
 
-    handleUpdate(text, address) {
+    handleUpdate: function(text, address) {
       const valueElem = this.getValueElement();
       if (!text) {
         switch (this.getPlaceholder()) {
@@ -134,7 +134,6 @@ qx.Class.define('cv.ui.structure.pure.Image', {
 
           case 'hide':
             text = qx.util.ResourceManager.getInstance().toUri('qx/static/blank.gif');
-
             valueElem.style.display = 'inline';
             break;
 
@@ -149,12 +148,12 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     },
 
     // overridden
-    getValueElement() {
+    getValueElement: function() {
       return this.getDomElement().querySelector('img');
     },
 
     // overridden
-    _applyVisible(value) {
+    _applyVisible: function(value) {
       const valueElem = this.getValueElement();
       if (!valueElem || this.getRefresh() > 0) {
         return;
@@ -167,7 +166,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     cv.ui.structure.WidgetFactory.registerClass('image', statics);
   }
 });

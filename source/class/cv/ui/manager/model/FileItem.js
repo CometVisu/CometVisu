@@ -1,7 +1,7 @@
-/* FileItem.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* FileItem.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,21 +17,24 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Represents an entry in the filesystem (file or folder).
  */
 qx.Class.define('cv.ui.manager.model.FileItem', {
   extend: qx.core.Object,
-  include: [qx.data.marshal.MEventBubbling, cv.ui.manager.control.MFileEventHandler],
-
+  include: [
+    qx.data.marshal.MEventBubbling,
+    cv.ui.manager.control.MFileEventHandler
+  ],
   implement: [cv.ui.manager.control.IFileEventHandler],
   /*
   ***********************************************
     CONSTRUCTOR
   ***********************************************
   */
-  construct(name, path, parent, fakeChildren) {
-    super();
+  construct: function (name, path, parent, fakeChildren) {
+    this.base(arguments);
     this.initChildren(new qx.data.Array());
     if (fakeChildren) {
       this.setFakeChildren(fakeChildren);
@@ -64,14 +67,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     _hiddenConfigFakeFile: null,
     _acceptedFiles: {
       '.': '*.xml',
-      media: '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
+      'media': '*.js,*.jpg,*.gif,*.png,*.conf,*.svg,*.md,*.rst,*,css,*.txt'
     },
 
-    isConfigFile(path) {
+    isConfigFile: function (path) {
       return /visu_config.*\.xml/.test(path);
     },
 
-    getConfigName(filename) {
+    getConfigName: function (filename) {
       const match = /visu_config_?([^.]+)\.xml/.exec(filename);
       if (match) {
         return match[1];
@@ -79,13 +82,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return null;
     },
 
-    getIconFile() {
+    getIconFile: function () {
       if (!this._fakeIconFile) {
-        this._fakeIconFile = new cv.ui.manager.model.FileItem(
-          'CometVisu-Icons',
-          '',
-          cv.ui.manager.model.FileItem.ROOT
-        ).set({
+        this._fakeIconFile = new cv.ui.manager.model.FileItem('CometVisu-Icons', '', cv.ui.manager.model.FileItem.ROOT).set({
           type: 'file',
           overrideIcon: true,
           writeable: false,
@@ -100,13 +99,9 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return this._fakeIconFile;
     },
 
-    getHiddenConfigFile() {
+    getHiddenConfigFile: function () {
       if (!this._hiddenConfigFakeFile) {
-        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem(
-          'hidden.php',
-          '',
-          cv.ui.manager.model.FileItem.ROOT
-        ).set({
+        this._hiddenConfigFakeFile = new cv.ui.manager.model.FileItem('hidden.php', '', cv.ui.manager.model.FileItem.ROOT).set({
           hasChildren: false,
           loaded: true,
           readable: true,
@@ -121,7 +116,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return this._hiddenConfigFakeFile;
     },
 
-    getAcceptedFiles(folder) {
+    getAcceptedFiles: function (folder) {
       return this._acceptedFiles[folder.getFullPath()];
     }
   },
@@ -132,35 +127,35 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
   ***********************************************
   */
   properties: {
-    open: {
-      check: 'Boolean',
-      event: 'changeOpen',
-      apply: '_onOpen',
-      init: false
+    open : {
+      check : 'Boolean',
+      event : 'changeOpen',
+      apply : '_onOpen',
+      init : false
     },
 
-    loaded: {
-      check: 'Boolean',
-      event: 'changeLoaded',
-      init: false
+    loaded : {
+      check : 'Boolean',
+      event : 'changeLoaded',
+      init : false
     },
 
-    loading: {
-      check: 'Boolean',
-      event: 'changeLoading',
-      init: false
+    loading : {
+      check : 'Boolean',
+      event : 'changeLoading',
+      init : false
     },
 
-    parent: {
-      event: 'changeParent',
-      init: null
+    parent : {
+      event : 'changeParent',
+      init : null
     },
 
-    children: {
-      check: 'qx.data.Array',
-      event: 'changeChildren',
+    children : {
+      check : 'qx.data.Array',
+      event : 'changeChildren',
       apply: '_applyEventPropagation',
-      deferredInit: true
+      deferredInit : true
     },
 
     fakeChildren: {
@@ -259,17 +254,17 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
 
     // Backend properties
 
-    hasChildren: {
-      check: 'Boolean',
-      event: 'changeHasChildren',
-      apply: '_applyHasChildren',
-      init: false
+    hasChildren : {
+      check : 'Boolean',
+      event : 'changeHasChildren',
+      apply : '_applyHasChildren',
+      init : false
     },
 
-    name: {
-      check: 'String',
-      event: 'changeName',
-      init: '',
+    name : {
+      check : 'String',
+      event : 'changeName',
+      init : '',
       apply: '_applyName'
     },
 
@@ -326,15 +321,15 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     __fullPath: null,
     __onLoadCallback: null,
 
-    _toLowerCase(name) {
+    _toLowerCase: function (name) {
       return name.toLowerCase();
     },
 
-    isRelated(path) {
+    isRelated: function (path) {
       return this.getFullPath() === path;
     },
 
-    _handleFileEvent(ev) {
+    _handleFileEvent: function (ev) {
       if (this.isFake()) {
         return;
       }
@@ -370,7 +365,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
-    _applyName(value, old) {
+    _applyName: function (value, old) {
       this.__fullPath = null;
       if (value && (this.getDisplayName() === null || this.getDisplayName() === old)) {
         // use name as default display name
@@ -378,7 +373,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
-    getPath() {
+    getPath: function () {
       if (!this.__path) {
         let parentFolder = this.getParentFolder();
         if (!parentFolder) {
@@ -391,14 +386,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       return this.__path;
     },
 
-    _onOpen(value) {
+    _onOpen : function(value) {
       if (!this.isLoaded() && value) {
         this.load();
       }
       this._maintainIcon();
     },
 
-    _maintainIcon() {
+    _maintainIcon: function () {
       if (!this.isOverrideIcon()) {
         if (this.getType() === 'file') {
           this.setIcon(cv.theme.dark.Images.getIcon('file', 18));
@@ -414,33 +409,31 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }
     },
 
-    isConfigFile() {
+    isConfigFile: function () {
       return cv.ui.manager.model.FileItem.isConfigFile(this.getName());
     },
 
-    _applyHasChildren(value) {
+    _applyHasChildren: function (value) {
       if (value === true && this.getChildren().length === 0) {
         // add dummy child
         this.getChildren().push(new cv.ui.manager.model.FileItem(''));
       }
     },
 
-    unload() {
+    unload: function() {
       this.setLoaded(false);
       this.setLoading(false);
-      this.getChildren()
-        .removeAll()
-        .forEach(function (child) {
-          this.removeRelatedBindings(child);
-        }, this);
+      this.getChildren().removeAll().forEach(function (child) {
+        this.removeRelatedBindings(child);
+      }, this);
     },
 
-    reload(callback, context) {
+    reload : function(callback, context) {
       this.unload();
       return this.load(callback, context);
     },
 
-    addChild(child) {
+    addChild: function (child) {
       const oldParent = child.getParent();
       if (oldParent !== this) {
         oldParent.getChildren().remove(child);
@@ -454,7 +447,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.getChildren().push(child);
     },
 
-    _onGet(data) {
+    _onGet: function (data) {
       const children = this.getChildren();
       children.removeAll().forEach(function (child) {
         this.removeRelatedBindings(child);
@@ -486,14 +479,12 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.setLoading(false);
     },
 
-    _onError(err) {
+    _onError: function (err) {
       this.error(err);
       cv.ui.manager.snackbar.Controller.error(err);
-      this.getChildren()
-        .removeAll()
-        .forEach(function (child) {
-          this.removeRelatedBindings(child);
-        }, this);
+      this.getChildren().removeAll().forEach(function (child) {
+        this.removeRelatedBindings(child);
+      }, this);
       this.setLoaded(true);
       if (this.__onLoadCallback) {
         this.__onLoadCallback();
@@ -501,7 +492,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.setLoading(false);
     },
 
-    load(callback, context) {
+    load: function(callback, context) {
       // If currently loading, delay ready
       if (this.getType() === 'file') {
         // nothing to load
@@ -528,17 +519,13 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
         if (callback) {
           this.__onLoadCallback = callback.bind(context || this);
         }
-        cv.io.rest.Client.getFsClient().readSync(
-          { path: this.getFullPath() },
-          function (err, res) {
-            if (err) {
-              this._onError(err);
-            } else {
-              this._onGet(res);
-            }
-          },
-          this
-        );
+        cv.io.rest.Client.getFsClient().readSync({path: this.getFullPath()}, function (err, res) {
+          if (err) {
+            this._onError(err);
+          } else {
+            this._onGet(res);
+          }
+        }, this);
       }
     },
 
@@ -546,14 +533,14 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      * Returns the complete path needed for the REST API  to identify this file
      * @returns {null}
      */
-    getFullPath() {
+    getFullPath: function () {
       if (!this.__fullPath) {
         this.__fullPath = this.getPath() + this.getName();
       }
       return this.__fullPath;
     },
 
-    getBusTopic() {
+    getBusTopic: function () {
       return 'cv.manager.fs.' + this.getFullPath().replace(/\//g, '.');
     },
 
@@ -562,7 +549,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      * Used by monaco editor as model URI.
      * @returns {Uri}
      */
-    getUri() {
+    getUri: function () {
       return 'cv://' + this.getFullPath();
     },
 
@@ -575,7 +562,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
      *
      * @returns {string}
      */
-    getServerPath() {
+    getServerPath: function () {
       if (!this.isMounted()) {
         return qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/config/' + this.getFullPath();
       }
@@ -585,7 +572,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
     /**
      *  Sort entries: folders first, files then
      */
-    sortElements() {
+    sortElements: function () {
       const sortF = function (a, b) {
         if (a.getType() === 'dir') {
           if (b.getType() === 'dir') {
@@ -605,7 +592,7 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       this.getChildren().sort(sortF);
     },
 
-    openPath(path) {
+    openPath: function (path) {
       const parts = qx.lang.Type.isArray(path) ? path : path.split('/');
       const relPath = parts.shift();
       this.getChildren().some(function (child) {
@@ -622,24 +609,24 @@ qx.Class.define('cv.ui.manager.model.FileItem', {
       }, this);
     },
 
-    _onChangeLocale: qx.core.Environment.select('qx.dynlocale', {
-      true() {
+    _onChangeLocale : qx.core.Environment.select('qx.dynlocale', {
+      'true': function () {
         const content = this.getDisplayName();
         if (content && content.translate) {
           this.setDisplayName(content.translate());
         }
       },
 
-      false: null
+      'false' : null
     })
   },
-
+  
   /*
   ***********************************************
     DESTRUCTOR  
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     this.__fullPath = null;
-  }
+  } 
 });

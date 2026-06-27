@@ -1,7 +1,7 @@
-/* MFileEventHandler.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* MFileEventHandler.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Mixin for all classes that have to handle event on the 'cv.manager.file' topic.
  * Those classes need to implement the cv.ui.manager.control.IFileEventHandler interface.
@@ -27,7 +28,7 @@ qx.Mixin.define('cv.ui.manager.control.MFileEventHandler', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
+  construct: function () {
     if (qx.core.Environment.get('qx.debug')) {
       qx.core.Assert.assertInterface(this, cv.ui.manager.control.IFileEventHandler);
     }
@@ -50,7 +51,7 @@ qx.Mixin.define('cv.ui.manager.control.MFileEventHandler', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     qx.event.message.Bus.unsubscribe('cv.manager.file', this._handleFileEvent, this);
   }
 });

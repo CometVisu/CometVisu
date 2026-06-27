@@ -1,7 +1,7 @@
-/* Message.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Message.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * View component that shows a snackbar message.
  */
@@ -27,8 +28,8 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct() {
-    super();
+  construct: function () {
+    this.base(arguments);
     this._setLayout(new qx.ui.layout.HBox(8));
     this.addListener('appear', this._onAppear, this);
   },
@@ -39,7 +40,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
   ***********************************************
   */
   events: {
-    close: 'qx.event.type.Data'
+    'close': 'qx.event.type.Data'
   },
 
   /*
@@ -80,7 +81,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
   members: {
     _timer: null,
 
-    _applyModel(value, old) {
+    _applyModel: function (value, old) {
       if (old) {
         old.removeRelatedBindings(this);
         old.removeRelatedBindings(this.getChildControl('content'));
@@ -89,16 +90,15 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
         value.bind('title', this.getChildControl('content'), 'value');
         value.bind('type', this, 'type');
         value.bind('sticky', this, 'timeout', {
-          converter(value) {
+          converter: function (value) {
             return value ? 0 : 5000;
           }
         });
-
         this.getChildControl('close');
       }
     },
 
-    _applyType(value) {
+    _applyType: function (value) {
       if (value) {
         this.setDecorator(this.getAppearance() + '-' + value);
       } else {
@@ -106,7 +106,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
       }
     },
 
-    _applyTimeout(value) {
+    _applyTimeout: function (value) {
       if (this._timer) {
         this._timer.stop();
         if (value === 0) {
@@ -115,7 +115,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
       }
     },
 
-    _onAppear() {
+    _onAppear: function () {
       const timeout = this.getTimeout();
       if (this._timer) {
         this._timer.stop();
@@ -125,39 +125,37 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
       }
     },
 
-    close() {
+    close: function () {
       this.fireDataEvent('close', this.getModel());
     },
 
     // overridden
-    _createChildControlImpl(id) {
+    _createChildControlImpl : function(id) {
       let control;
 
       switch (id) {
-        case 'icon':
-          control = new qx.ui.basic.Image();
-          this._addAt(control, 0);
-          break;
+         case 'icon':
+           control = new qx.ui.basic.Image();
+           this._addAt(control, 0);
+           break;
 
-        case 'content':
-          control = new qx.ui.basic.Label();
-          control.set({
-            rich: true,
-            wrap: true
-          });
+         case 'content':
+           control = new qx.ui.basic.Label();
+           control.set({
+             rich: true,
+             wrap: true
+           });
+           this._addAt(control, 1, {flex: 1});
+           break;
 
-          this._addAt(control, 1, { flex: 1 });
-          break;
+         case 'close':
+           control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon('close', 15));
+           control.addListener('tap', this.close, this);
+           this._addAt(control, 2);
+           break;
+       }
 
-        case 'close':
-          control = new qx.ui.basic.Image(cv.theme.dark.Images.getIcon('close', 15));
-
-          control.addListener('tap', this.close, this);
-          this._addAt(control, 2);
-          break;
-      }
-
-      return control || super._createChildControlImpl(id);
+       return control || this.base(arguments, id);
     }
   },
 
@@ -166,7 +164,7 @@ qx.Class.define('cv.ui.manager.snackbar.Message', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct() {
+  destruct: function () {
     this._disposeObjects('_timer');
   }
 });

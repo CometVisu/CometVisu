@@ -1,0 +1,54 @@
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    position:absolute; top:0; bottom:0; right:0; left:0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#container {
+    width: 100%;
+    position:absolute; top: 40px; bottom:0; right:0; left:0;
+    border:1px solid grey;
+}
+.actions { background-color: #1e1e1e; height: 100%; }
+.actions > button {
+    margin: 5px 10px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.actions > button[disabled="disabled"] {
+    color: grey;
+    cursor: auto;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.actions > button img {
+    width: 25px;
+}
+.actions > button .name {
+    margin: 5px;
+    float: right;
+    vertical-align: middle;
+}
+
+.line-error {
+    background: red;
+    width: 5px !important;
+    left: 3px;
+}
+.modified-line {
+    background: lightblue;
+    width: 5px !important;
+    margin-left: 5px;
+    opacity: 0.5;
+}
+#errors, .error { color: red; font-weight: bold; }

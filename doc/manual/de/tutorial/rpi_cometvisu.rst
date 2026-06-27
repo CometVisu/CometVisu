@@ -84,7 +84,7 @@ Hinzufügen des CometVisu Containers
 
 Im Formular ist ein passender `Name`, hier ``CometVisu``, für den neuen
 Container zu wählen und das Image auszuwählen. Das Image
-``cometvisu/cometvisu:latest`` wird hier direkt
+``cometvisu/cometvisu:latest-arm`` wird hier direkt
 vom offiziellen `Docker Hub <https://hub.docker.com/r/cometvisu/cometvisu>`_
 geladen.
 
@@ -171,7 +171,7 @@ Hinzufügen des CometVisu Containers
 
 Der `offizielle CometVisu Container <https://hub.docker.com/r/cometvisu/cometvisu>`_
 für den Raspberry Pi ist, in der jeweils neuesten Version,
-``cometvisu/cometvisu:latest``.
+``cometvisu/cometvisu:latest-arm``.
 
 .. note::
 
@@ -181,43 +181,45 @@ für den Raspberry Pi ist, in der jeweils neuesten Version,
 
 Installiert wird dieser mit: ::
 
-    docker pull cometvisu/cometvisu:latest
+    docker pull cometvisu/cometvisu:latest-arm
 
 Zum ersten mal wird der CometVisu-Server nun gestartet mit: ::
 
-    docker run --name CometVisu -e KNX_INTERFACE='iptn:192.168.0.35:3700' --restart unless-stopped -d -p 80:80 -v CometVisuConfig:/var/www/html/resource/config cometvisu/cometvisu:latest
+    docker run --name CometVisu -e KNX_INTERFACE='iptn:192.168.0.35:3700' --restart unless-stopped -d -p 80:80 -v CometVisuConfig:/var/www/html/resource/config cometvisu/cometvisu:latest-arm
 
 Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:
 
-``--name``
-    Der Name unter dem der Container gemanagt wird.
+.. glossary::
 
-``-e``
-    Über diesen Parameter wird eine `Environment`-Variable übergeben. Mit
-    ``KNX_INTERFACE='iptn:192.168.0.35:3700'`` wird der CometVisu-Server
-    auf die KNX Bus-Schnittstelle mit einem IP-Tunnel an die Adresse
-    ``192.168.0.35`` und den Port ``3700`` eingerichtet.
+    ``--name``
+        Der Name unter dem der Container gemanagt wird.
 
-``--restart``
-    Mit ``unless-stopped`` wird der Container auch bei Fehlern wieder
-    automatisch gestartet - so lange er nicht per Befehl explizit beendet
-    wurde.
+    ``-e``
+        Über diesen Parameter wird eine `Environment`-Variable übergeben. Mit
+        ``KNX_INTERFACE='iptn:192.168.0.35:3700'`` wird der CometVisu-Server
+        auf die KNX Bus-Schnittstelle mit einem IP-Tunnel an die Adresse
+        ``192.168.0.35`` und den Port ``3700`` eingerichtet.
 
-``-d``
-    Hierdurch wird der Container im Hintergrund gestartet.
+    ``--restart``
+        Mit ``unless-stopped`` wird der Container auch bei Fehlern wieder
+        automatisch gestartet - so lange er nicht per Befehl explizit beendet
+        wurde.
 
-``-p``
-    Durch ``80:80`` wird der Port 80 im Container auf den Port 80 des
-    Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
-    Web-Server im Container von außen zugegriffen werden.
+    ``-d``
+        Hierdurch wird der Container im Hintergrund gestartet.
 
-``-v``
-    Mit ``CometVisuConfig:/var/www/html/resource/config`` wird das vorhin
-    angelegte Volume ``CometVisuConfig`` auf den Pfad
-    ``/var/www/html/resource/config`` im Container gemappt.
+    ``-p``
+        Durch ``80:80`` wird der Port 80 im Container auf den Port 80 des
+        Hosts, also des Raspberry Pi, gemappt. Erst hierdurch kann auf den
+        Web-Server im Container von außen zugegriffen werden.
 
-``cometvisu/cometvisu:latest``
-    Als letztes wird das Image angegeben, dass ausgeführt werden soll.
+    ``-v``
+        Mit ``CometVisuConfig:/var/www/html/resource/config`` wird das vorhin
+        angelegte Volume ``CometVisuConfig`` auf den Pfad
+        ``/var/www/html/resource/config`` im Container gemappt.
+
+    ``cometvisu/cometvisu:latest-arm``
+        Als letztes wird das Image angegeben, dass ausgeführt werden soll.
 
 .. important::
 

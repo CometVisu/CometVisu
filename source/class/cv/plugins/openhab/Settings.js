@@ -1,7 +1,7 @@
-/* Settings.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Settings.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Show and edit openHAB CometVisu backends settings via openHAB api.
  *
@@ -28,24 +29,23 @@ qx.Class.define('cv.plugins.openhab.Settings', {
   extend: qx.ui.core.Widget,
 
   /*
-  *****************************************************************************
+ *****************************************************************************
     CONSTRUCTOR
-  *****************************************************************************
-  */
-  construct() {
-    super();
+ *****************************************************************************
+ */
+  construct: function () {
+    this.base(arguments);
     this._setLayout(new qx.ui.layout.VBox());
     this.set({
       padding: 10,
       backgroundColor: 'rgba(216, 216, 216, 1.0)',
       textColor: 'rgb(61, 61, 61)'
     });
-
     // override text-shadow setting
     if (!this.getBounds()) {
-      this.addListenerOnce('appear', () => {
+      this.addListenerOnce('appear', function() {
         this.getContentElement().setStyle('text-shadow', 'none');
-      });
+      }, this);
     } else {
       this.getContentElement().setStyle('text-shadow', 'none');
     }
@@ -62,12 +62,14 @@ qx.Class.define('cv.plugins.openhab.Settings', {
   ******************************************************
   */
   properties: {
+
     modified: {
       check: 'Boolean',
       init: false,
       event: 'changeModified'
     }
   },
+
 
   /*
   *****************************************************************************
@@ -84,27 +86,26 @@ qx.Class.define('cv.plugins.openhab.Settings', {
     _store: null,
     __initialValues: null,
 
-    _initStore(pid) {
+    _initStore: function(pid) {
       const serviceDesc = {
-        get: { method: 'GET', url: '/rest/services/' + pid + '/config' },
-        delete: { method: 'DELETE', url: '/rest/services/' + pid + '/config' },
-        put: { method: 'PUT', url: '/rest/services/' + pid + '/config' }
+        'get': {method: 'GET', url: '/rest/services/' + pid + '/config'},
+        'delete': {method: 'DELETE', url: '/rest/services/' + pid + '/config'},
+        'put': {method: 'PUT', url: '/rest/services/' + pid + '/config'}
       };
-
-      const service = (this.__service = new qx.io.rest.Resource(serviceDesc));
-      const client = cv.io.BackendConnections.getClientByType('openhab');
+      const service = this.__service = new qx.io.rest.Resource(serviceDesc);
+      const client = cv.TemplateEngine.getInstance().visu;
 
       this._store = new qx.data.store.Rest(service, 'get', {
-        configureRequest(req) {
+        configureRequest: function(req) {
           req.setRequestHeader('Content-Type', 'application/json');
           if (client instanceof cv.io.openhab.Rest) {
             client.authorize(req);
           }
         },
-        manipulateData(data) {
+        manipulateData: function(data) {
           // normalize the keys (replace .> with _) for the marshaller
           const n = {};
-          Object.getOwnPropertyNames(data).forEach(function (key) {
+          Object.getOwnPropertyNames(data).forEach(function(key) {
             n[key.replace(/[\.>]/g, '_')] = data[key];
           });
           if (!Object.prototype.hasOwnProperty.call(n, 'autoDownload')) {
@@ -113,35 +114,33 @@ qx.Class.define('cv.plugins.openhab.Settings', {
           return n;
         }
       });
-
       // load data
       service.get();
-      this._store.addListenerOnce('changeModel', () => {
+      this._store.addListenerOnce('changeModel', function() {
         this.__initialValues = JSON.parse(qx.util.Serializer.toJson(this._store.getModel()));
-      });
+      }, this);
     },
 
-    _saveConfig() {
+    _saveConfig: function() {
       let data = qx.util.Serializer.toJson(this._store.getModel());
       data = data.replace(/icons_mapping_/g, 'icons.mapping>');
       data = JSON.parse(data.replace('icons_enableMapping', 'icons>enableMapping'));
-
       this.__service.put(null, data);
       this.__service.addListenerOnce('putSuccess', this.close, this);
     },
 
-    _initConfigRestClient() {
+    _initConfigRestClient: function() {
       const description = {
-        get: { method: 'GET', url: '/rest/config-descriptions/' + this.__uri }
+        'get': {method: 'GET', url: '/rest/config-descriptions/' + this.__uri}
       };
 
-      const config = (this.__configDescriptionResource = new qx.io.rest.Resource(description));
-      const client = cv.io.BackendConnections.getClientByType('openhab');
+      const config = this.__configDescriptionResource = new qx.io.rest.Resource(description);
+      const client = cv.TemplateEngine.getInstance().visu;
 
-      config.addListener('getSuccess', ev => {
+      config.addListener('getSuccess', function(ev) {
         this._createForm(ev.getRequest().getResponse());
-      });
-      config.configureRequest(function (req) {
+      }, this);
+      config.configureRequest(function(req) {
         req.setRequestHeader('Content-Type', 'application/json');
         if (client instanceof cv.io.openhab.Rest) {
           client.authorize(req);
@@ -152,7 +151,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       this._initStore(this.__servicePid);
     },
 
-    _createForm(config) {
+    _createForm: function(config) {
       if (config && Object.prototype.hasOwnProperty.call(config, 'parameters') && Array.isArray(config.parameters)) {
         this._createChildControl('title');
         const form = this.getChildControl('form');
@@ -170,7 +169,6 @@ qx.Class.define('cv.plugins.openhab.Settings', {
               field.setValue(param.defaultValue === 'true');
               break;
           }
-
           if (param.readOnly) {
             field.setReadOnly(true);
           }
@@ -184,12 +182,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
 
         const renderer = new cv.plugins.openhab.renderer.Single(form);
         if (cv.Config.guessIfProxied()) {
-          renderer.setBottomText(
-            this.tr(
-              'The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'
-            )
-          );
-
+          renderer.setBottomText(this.tr('The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing.'));
           renderer.getChildControl('bottom-text').set({
             padding: 10,
             textAlign: 'center',
@@ -208,14 +201,13 @@ qx.Class.define('cv.plugins.openhab.Settings', {
       }
     },
 
-    _onFormFieldChange() {
+    _onFormFieldChange: function() {
       let modified = false;
       const items = this.getChildControl('form').getItems();
-      Object.getOwnPropertyNames(items).some(function (name) {
+      Object.getOwnPropertyNames(items).some(function(name) {
         // noinspection EqualityComparisonWithCoercionJS
-        if (this.__initialValues[name] != items[name].getValue()) {
-          this.debug(name + ' has changed from ' + this.__initialValues[name] + ' to ' + items[name].getValue());
-
+        if (this.__initialValues[name] != items[name].getValue()) { // jshint ignore:line
+          this.debug(name+' has changed from '+this.__initialValues[name]+' to '+items[name].getValue());
           modified = true;
           return true;
         }
@@ -225,7 +217,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
     },
 
     // overridden
-    _createChildControlImpl(id, hash) {
+    _createChildControlImpl : function(id, hash) {
       let control;
       switch (id) {
         case 'title':
@@ -236,7 +228,6 @@ qx.Class.define('cv.plugins.openhab.Settings', {
             allowGrowX: true,
             decorator: 'window-caption'
           });
-
           this._addAt(control, 0);
           break;
 
@@ -255,11 +246,10 @@ qx.Class.define('cv.plugins.openhab.Settings', {
           this.bind('modified', control, 'enabled');
           break;
       }
-
-      return control || super._createChildControlImpl(id, hash);
+      return control || this.base(arguments, id, hash);
     },
 
-    close() {
+    close: function() {
       this.setVisibility('excluded');
     }
   },
@@ -269,7 +259,7 @@ qx.Class.define('cv.plugins.openhab.Settings', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct() {
+  destruct: function() {
     this._disposeObjects('__configDescriptionResource', '__service', '__root', '_store', '_window');
   }
 });

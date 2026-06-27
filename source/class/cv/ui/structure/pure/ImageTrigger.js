@@ -1,7 +1,7 @@
-/* ImageTrigger.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* ImageTrigger.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additionally the image can be changed by incoming
@@ -68,8 +69,13 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
-  extend: cv.ui.structure.pure.AbstractWidget,
-  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.Refresh, cv.ui.common.Update],
+  extend: cv.ui.structure.AbstractWidget,
+  include: [
+    cv.ui.common.Operate,
+    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.Refresh,
+    cv.ui.common.Update
+  ],
 
   /*
   ******************************************************
@@ -78,11 +84,11 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   */
   properties: {
     height: { check: 'String', nullable: true },
-    updateType: { check: 'String', init: '' },
-    width: { check: 'String', init: '100%' },
+    updateType: {check: 'String', init: ''},
+    width: {check: 'String', init: '100%'},
     src: { check: 'String', nullable: true },
     suffix: { check: 'String', nullable: true },
-    sendValue: { check: 'String', init: '' }
+    sendValue: { check: 'String', init: ''}
   },
 
   /*
@@ -92,16 +98,16 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   */
   members: {
     // overridden
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       let style = '';
       if (Object.keys(this.getLayout()).length === 0) {
-        style += cv.parser.pure.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
+        style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';
       }
       if (style.length > 0) {
-        style = ' style="' + style + '"';
+        style = ' style="'+style+'"';
       }
 
       let actor = '<div class="actor">';
@@ -115,14 +121,13 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       return actor;
     },
 
-    _update(address, value) {
+    _update: function(address, value) {
       const imageChild = this.getDomElement().querySelector('img');
       if (this.getUpdateType() === 'show') {
         if (value === 0) {
           imageChild.style.display = 'none';
         } else {
           imageChild.setAttribute('src', this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
-
           imageChild.style.display = 'block';
         }
       } else if (this.getUpdateType() === 'select') {
@@ -130,7 +135,6 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
           imageChild.style.display = 'none';
         } else {
           imageChild.setAttribute('src', this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
-
           imageChild.style.display = 'block';
         }
       }
@@ -141,7 +145,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       //TODO: add SVG-magics
     },
 
-    __getUrl(url) {
+    __getUrl: function(url) {
       const parsedUri = qx.util.Uri.parseUri(url);
       if (!parsedUri.protocol && !url.startsWith('/')) {
         // is relative URI, use the ResourceManager
@@ -150,15 +154,15 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       return url;
     },
 
-    _action() {
+    _action: function() {
       if (this.getSendValue() === '') {
-        return;
-      }
+ return; 
+}
       this.sendToBackend(this.getSendValue());
     }
   },
 
-  defer(statics) {
+  defer: function(statics) {
     cv.ui.structure.WidgetFactory.registerClass('imagetrigger', statics);
   }
 });

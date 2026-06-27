@@ -1,7 +1,7 @@
-/* OptionGroup.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* OptionGroup.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Shows a group of checkboxes in the actions to allow some boolean settings.
@@ -32,8 +33,8 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct(props, type) {
-    super(type);
+  construct: function(props) {
+    this.base(arguments);
     this.set(props);
   },
 
@@ -47,7 +48,6 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
       check: 'String',
       nullable: true
     },
-
     options: {
       check: 'Array',
       nullable: true
@@ -60,14 +60,15 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
   *****************************************************************************
   */
   members: {
-    handleAction(ev) {
+
+    handleAction: function(ev) {
       if (ev) {
         ev.stopPropagation();
         ev.preventDefault();
       }
     },
 
-    getDomElement() {
+    getDomElement: function() {
       if (this.getOptions().length === 0) {
         return null;
       }
@@ -76,7 +77,6 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
         style: this.getStyle(),
         html: content
       });
-
       this.getOptions().forEach(function (option) {
         container.appendChild(cv.core.notifications.ActionRegistry.createActionElement('option', option));
       });
@@ -84,10 +84,7 @@ qx.Class.define('cv.core.notifications.actions.OptionGroup', {
     }
   },
 
-  defer() {
-    cv.core.notifications.ActionRegistry.registerActionHandler(
-      'optionGroup',
-      cv.core.notifications.actions.OptionGroup
-    );
+  defer: function() {
+    cv.core.notifications.ActionRegistry.registerActionHandler('optionGroup', cv.core.notifications.actions.OptionGroup);
   }
 });

@@ -26,39 +26,39 @@ msgstr "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Tic
 msgid "Action recording"
 msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "Connection error"
 msgstr "Verbindungsfehler"
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "Error requesting %1: %2 - %3."
 msgstr "Fehler beim Laden von %1: %2 - %3."
 
-#. NO LONGER USED
+#: cv/TemplateEngine.js
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "CometVisu protocol error"
 msgstr "CometVisu Protokollfehler"
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "The backend did send an invalid response to the %1Login%2 request: missing protocol version."
 msgstr "Das Backend hat eine ungültige Antwort auf die %1Login%2-Anfrage geschickt: Fehlende Protokollversion."
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "Please try to fix the problem in the backend."
 msgstr "Bitte versuchen Sie das Problem im Backend zu lösen."
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "Backend-Response:"
 msgstr "Antwort des Backends:"
 
@@ -74,11 +74,11 @@ msgstr "Datei wurde gespeichert"
 msgid "Error saving file"
 msgstr "Fehler beim Speichern der Datei"
 
-#: cv/parser/pure/MetaParser.js
+#: cv/parser/MetaParser.js
 msgid "Template loading error"
 msgstr "Fehler beim Laden des Templates"
 
-#: cv/parser/pure/MetaParser.js
+#: cv/parser/MetaParser.js
 msgid "Template '%1' could not be loaded from '%2'."
 msgstr "Template '%1' konnte nicht geladen werden von '%2'."
 
@@ -370,11 +370,11 @@ msgstr "Datei \"%1\" wurde angelegt"
 msgid "Folder \"%1\" has been created"
 msgstr "Ordner \"%1\" wurde angelegt"
 
-#. NO LONGER USED
+#: cv/ui/manager/control/FileController.js
 msgid "File \"%1\" has been renamed"
 msgstr "Datei \"%1\" wurde umbenannt"
 
-#. NO LONGER USED
+#: cv/ui/manager/control/FileController.js
 msgid "Folder \"%1\" has been renamed"
 msgstr "Ordner \"%1\" wurde umbenannt"
 
@@ -400,7 +400,7 @@ msgstr "Ordner \"%1\" wurde wieder hergestellt"
 
 #: cv/ui/manager/control/FileController.js
 msgid "Do you really want to clear the trash?"
-msgstr "Möchten Sie den Papierkorb wirklich leeren?"
+msgstr "Mächten Sie den Papirtkorb wirklich leeren?"
 
 #: cv/ui/manager/control/FileController.js
 msgid "Do you really want to delete file \"%1\" from the trash?"
@@ -474,7 +474,7 @@ msgstr "Das Speichern der versteckten Konfiguration ist fehlgeschlagen: %1 (%2)"
 
 #: cv/ui/manager/editor/Source.js
 msgid "Hidden config has been saved"
-msgstr "Die versteckte Konfiguration wurde gespeichert"
+msgstr "Die Verstackte Konfiguration wurde gespeichert"
 
 #: cv/ui/manager/editor/Config.js
 msgid "Section is invalid and has not been saved."
@@ -712,7 +712,7 @@ msgstr "Speichen trotz Warnungen bestätigen"
 msgid "The XML-Editor does not support files that are not writeable!"
 msgstr "Der XML-Editor unterstützt keine Dateien, die nicht gespeichert werden können!"
 
-#: cv/io/BackendConnections.js
+#: cv/TemplateEngine.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
 msgstr "Das Backend hat eine ungültige Antwort für eine %1Lese%2-Anfrage gesendet: Fehlender \"i\" Wert."
 
@@ -1000,7 +1000,7 @@ msgstr "\"%1\" ist nicht speicherbar. Upgrade kann nicht durchgeführt werden."
 msgid "Diagram communication error"
 msgstr "Diagram Kommunikations-Fehler"
 
-#: cv/ui/structure/tile/components/chart/Dataset.js
+#: cv/plugins/diagram/AbstractDiagram.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr "URL: %1<br/><br/>Antwort:</br>%2"
 
@@ -1104,211 +1104,14 @@ msgstr "Sie können den Manager öffnen, um eine neue Konfigurations-Datei zu er
 msgid "Open manager"
 msgstr "Manager öffnen"
 
-#: cv/ui/structure/tile/elements/Loader.js
-msgid "File Error!"
-msgstr "Dateifehler!"
-
-#: cv/ui/structure/tile/elements/Loader.js
-msgid "Invalid XML file!"
-msgstr "Ungültige XML Datei!"
-
-#: cv/ui/structure/tile/elements/Loader.js
-msgid "404: File not found, %1."
-msgstr "404: Datei nicht gefunden, %1."
-
-#: cv/io/BackendConnections.js
-msgid "Restart connection"
-msgstr "Verbindung neu starten"
-
-#: cv/util/ConfigUpgrader.js
-msgid "This is no pure-structure config, root element pages not found"
-msgstr "Diese Konfigurationsdatei enthält keine Pure-Struktur, das Wurzelelement pages wurde nicht gefunden"
-
-#: cv/ui/structure/tile/elements/Backend.js
-msgid "Config error"
-msgstr "Konfigurationsfehler"
-
-#: cv/ui/structure/tile/components/chart/Dataset.js
-msgid "Communication error"
-msgstr "Kommunikationsfehler"
-
-#: cv/ui/structure/tile/elements/Backend.js
-msgid "There already exists a backend named: \"%1\""
-msgstr "Es existiert bereits ein Backend mit dem Namen: \"%1\""
-
-#: cv/ui/manager/contextmenu/FileItem.js
-msgid "Convert to tile structure"
-msgstr "In Tile-Struktur konvertieren"
-
-#: cv/ui/manager/core/IconAtom.js
-msgid "Icon name has been copied to clipboard"
-msgstr "Der Icon-Name wurde in die Zwischenablage kopiert"
-
-#: cv/io/BackendConnections.js
-msgid "Connection to backend \"%1\" is lost."
-msgstr "Verbindung zum Backend \"%1\" verloren."
-
-#: cv/ui/manager/control/FileController.js
-msgid "File \"%1\" has been renamed to \"%2\""
-msgstr "Datei \"%1\" wurde umbenannt in \"%2\""
-
-#: cv/ui/manager/control/FileController.js
-msgid "Folder \"%1\" has been renamed to \"%2\""
-msgstr "Ordner \"%1\" wurde umbenannt in \"%2\""
-
-#: cv/ui/manager/Main.js
-msgid "Server"
-msgstr "Server"
-
-#: cv/ui/manager/Main.js
-msgid "PHP version"
-msgstr "PHP Version"
+#: cv/Application.js
+msgid "Your server does not support PHP"
+msgstr "Ihr Server unterstützt kein PHP"
 
 #: cv/ui/manager/editor/Tree.js
 msgid "Disabling preview because the preview file could not be created."
 msgstr "Vorschau wurde deaktiviert, weil die Vorschaudatei nicht erzeugt werden konnte."
 
-#: cv/ui/manager/editor/Config.js
-msgid "Hidden configuration error"
-msgstr "Fehler in der versteckten Konfiguration"
-
-#: cv/ui/manager/editor/Config.js
-msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
-msgstr "Die versteckte Konfiguration enthält einen Syntax-Fehler und konnte nicht geladen werden, Sie können versuchen das Problem im Texteditor zu beheben. Möchten Sie die Datei im Texteditor öffnen?"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "previous"
-msgstr "zurück"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "next"
-msgstr "vor"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "today"
-msgstr "heute"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "yesterday"
-msgstr "gestern"
-
-#. CW = calendar week
-#: cv/ui/structure/tile/components/Chart.js
-msgid "CW %1"
-msgstr "KW %1"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "Hour"
-msgstr "Stunde"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "Day"
-msgstr "Tag"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "Week"
-msgstr "Woche"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "Month"
-msgstr "Monat"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "Year"
-msgstr "Jahr"
-
-#: cv/ui/structure/tile/widgets/Tile.js
-msgid "Last update: %1"
-msgstr "Letzte Aktualisierung: %1"
-
-#: cv/Application.js
-msgid "Disabling manager due to missing PHP support."
-msgstr "Manager ist deaktiviert aufgrund von fehlender Unterstützung von PHP."
-
-#: cv/Application.js
-msgid "Your server does not support PHP."
-msgstr "Ihr Server unterstützt kein PHP."
-
-#: cv/Application.js
-msgid "Disabling manager due to failed PHP request querying the environment."
-msgstr "Manager ist deaktiviert aufgrund eines fehlerhaften PHP Aufrufs während der 'environment'-Abfrage."
-
-#: cv/Application.js
-msgid "Failed PHP request querying the environment."
-msgstr "PHP Abfrage des 'environment' fehlgeschlagen."
-
-#: cv/ui/structure/tile/widgets/Tile.js
-msgid "Last update: unknown"
-msgstr "Letzte Aktualisierung: unbekannt"
-
-#: cv/core/notifications/actions/Confirm.js
-msgid "yes"
-msgstr "ja"
-
-#: cv/core/notifications/actions/Confirm.js
-msgid "no"
-msgstr "nein"
-
-#: cv/io/listmodel/RssLog.js
-msgid "Do you really want to delete this entry?"
-msgstr "Möchten Sie diesen Eintrag wirklich löschen?"
-
 #: cv/TemplateEngine.js
-msgid "loadParts \"Structure\" failed"
-msgstr "loadParts \"Structure\" fehlgeschlagen"
-
-#: cv/TemplateEngine.js
-msgid "CometVisu startup error"
-msgstr "CometVisu Start-Fehler"
-
-#: cv/plugins/diagram/AbstractDiagram.js
-msgid "Bad MIME type. Expected \"application/json\", got \"%1\"."
-msgstr "Falscher MIME-Typ. Erwartet \"application/json\", erhalten \"%1\"."
-
-#: cv/plugins/diagram/AbstractDiagram.js
-msgid "Data is not in an array."
-msgstr "Die Daten sind nicht in einem Array."
-
-#: cv/ui/manager/Main.js
-msgid "Please provide an openHAB API token. It can be generated in openHABs main UI."
-msgstr "Bitte geben Sie einen openHAB-API-Token an. Dieser kann in der Hauptoberfläche von openHAB generiert werden."
-
-#: cv/ui/manager/Main.js
-msgid "Provide API token"
-msgstr "API-Token bereitstellen"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid ".%L"
-msgstr ".%L"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid ":%S"
-msgstr ":%S"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%I:%M"
-msgstr "%H:%M"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%I %p"
-msgstr "%H"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%a %d"
-msgstr "%d. %b"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%b %d"
-msgstr "%d. %b"
-
-#. NO LONGER USED
-msgid "%B"
-msgstr "%B"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%b"
-msgstr "%b"
-
-#: cv/ui/structure/tile/components/Chart.js
-msgid "%Y"
-msgstr "%Y"
+msgid "Restart connection"
+msgstr "Verbindung neu starten"

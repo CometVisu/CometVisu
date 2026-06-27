@@ -1,6 +1,6 @@
 /* Web-spec.js 
  * 
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -23,11 +23,7 @@
  */
 describe('testing a web widget', function() {
   it('should test the web creator', function() {
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(function() {
-      return {
-        getType: () => 'knxd'
-      };
-    });
+    cv.Config.backend = 'knxd';
     const [widget, element] = this.createTestWidgetString('web', {ga: 'Test'}, '<label>Test</label>');
 
     expect(widget.getPath()).toBe('id_0');
@@ -39,20 +35,19 @@ describe('testing a web widget', function() {
   });
 
   it('should test the ga with openhab backend', function() {
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(function() {
-      return {
-        getType: () => 'openhab'
-      };
-    });
+    var defBackend = cv.Config.backend;
+    cv.Config.backend = 'openhab';
     const [widget, element] = this.createTestWidgetString('web', {ga: 'Test'}, '<label>Test</label>');
 
     expect(widget.getAddress()['_Test'].transform).toBe('OH:switch');
     expect(widget.getAddress()['_Test'].mode).toBe('OFF');
+
+    cv.Config.backend = defBackend;
   });
 
   it('should test web update', function() {
-    const client = jasmine.createSpyObj('client', ['write']);
-    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
+    var engine = cv.TemplateEngine.getInstance();
+    engine.visu = jasmine.createSpyObj('visu', ['write']);
     var res = this.createTestElement('web', {
       width: '60%',
       height: '90%',
@@ -74,6 +69,6 @@ describe('testing a web widget', function() {
     res.update('Test', 1);
 
     expect(res.refreshAction).toHaveBeenCalled();
-    expect(client.write).toHaveBeenCalledWith('Test', '80');
+    expect(engine.visu.write).toHaveBeenCalledWith('Test', '80');
   });
 });

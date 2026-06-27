@@ -1,7 +1,7 @@
-/* Strftime.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* Strftime.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * This plugins integrates formatted date and clock strings into based on strftime.
  *
@@ -25,7 +26,7 @@
  * @asset(plugins/strftime/strftime.css)
  */
 qx.Class.define('cv.plugins.Strftime', {
-  extend: cv.ui.structure.pure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
   /*
   ******************************************************
@@ -37,7 +38,6 @@ qx.Class.define('cv.plugins.Strftime', {
       check: 'String',
       init: '%c'
     },
-
     locale: {
       check: 'String',
       nullable: true
@@ -50,9 +50,9 @@ qx.Class.define('cv.plugins.Strftime', {
   ******************************************************
   */
   statics: {
-    __elements: {},
-    __internalCounter: 0,
-    __timer: null,
+    __elements : {},
+    __internalCounter : 0,
+    __timer : null,
 
     /**
      * Parses the widgets XML configuration and extracts the given information
@@ -63,29 +63,22 @@ qx.Class.define('cv.plugins.Strftime', {
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
      */
-    parse(xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(
-        this,
-        xml,
-        path,
-        flavour,
-        pageType,
-        this.getAttributeToPropertyMappings()
-      );
+    parse: function (xml, path, flavour, pageType) {
+      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
-    getAttributeToPropertyMappings() {
+    getAttributeToPropertyMappings: function() {
       return {
-        lang: { target: 'locale' },
-        format: { default: '%c' }
+        'lang': { target: 'locale' },
+        'format': { 'default': '%c'}
       };
     },
 
-    uniqid() {
+    uniqid: function() {
       return this.__internalCounter++;
     },
 
-    startTimer() {
+    startTimer: function() {
       if (!this.__timer) {
         this.__timer = new qx.event.Timer(1000);
       }
@@ -104,12 +97,12 @@ qx.Class.define('cv.plugins.Strftime', {
     __timerStarted: false,
     __valueElement: null,
 
-    _getInnerDomString() {
+    _getInnerDomString: function () {
       return '<div class="strftime_value"></div>';
     },
 
     // overridden
-    getValueElement() {
+    getValueElement: function() {
       if (!this.__valueElement) {
         this.__valueElement = this.getDomElement().querySelector('.strftime_value');
       }
@@ -117,12 +110,12 @@ qx.Class.define('cv.plugins.Strftime', {
     },
 
     // overridden
-    _onDomReady() {
+    _onDomReady: function () {
       this.self(arguments).startTimer();
       this.self(arguments).__timer.addListener('interval', this.__update, this);
     },
 
-    __update() {
+    __update: function() {
       const elem = this.getValueElement();
       const d = new Date();
       d.locale = this.getLocale();
@@ -135,66 +128,33 @@ qx.Class.define('cv.plugins.Strftime', {
     DESTRUCTOR
   ******************************************************
   */
-  destruct() {
+  destruct: function() {
     this.self(arguments).__timer.removeListener('interval', this.__update, this);
   },
 
-  defer(statics) {
+  defer: function(statics) {
     const loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.parser.pure.WidgetParser.addHandler('strftime', statics);
+    cv.parser.WidgetParser.addHandler('strftime', statics);
     cv.ui.structure.WidgetFactory.registerClass('strftime', statics);
 
     // extend locales by German and French
     Date.ext.locales.de = {
       a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
       A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-
       b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-
-      B: [
-        'Januar',
-        'Februar',
-        'März',
-        'April',
-        'Mai',
-        'Juni',
-        'Juli',
-        'August',
-        'September',
-        'Oktober',
-        'November',
-        'Dezember'
-      ],
-
+      B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
       c: '%a %d %b %Y %T %Z',
       p: ['', ''],
       P: ['', ''],
       x: '%d.%m.%Y',
       X: '%T'
     };
-
     Date.ext.locales.fr = {
       a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
       A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-
       b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
-
-      B: [
-        'janvier',
-        'février',
-        'mars',
-        'avril',
-        'mai',
-        'juin',
-        'juillet',
-        'août',
-        'septembre',
-        'octobre',
-        'novembre',
-        'décembre'
-      ],
-
+      B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
       c: '%a %d %b %Y %T %Z',
       p: ['', ''],
       P: ['', ''],

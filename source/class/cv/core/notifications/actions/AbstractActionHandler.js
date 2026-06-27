@@ -1,7 +1,7 @@
-/* AbstractActionHandler.js
- *
- * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
- *
+/* AbstractActionHandler.js 
+ * 
+ * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Opens a link in a new window.
  *
@@ -26,16 +27,6 @@
 qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
   extend: qx.core.Object,
   type: 'abstract',
-
-  /*
-  ***********************************************
-    CONSTRUCTOR
-  ***********************************************
-  */
-  construct(type) {
-    super();
-    this._type = type;
-  },
 
   /*
   ******************************************************
@@ -52,7 +43,6 @@ qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
       check: 'Boolean',
       init: false
     },
-
     style: {
       check: 'String',
       init: ''
@@ -66,14 +56,5 @@ qx.Class.define('cv.core.notifications.actions.AbstractActionHandler', {
   */
   events: {
     close: 'qx.event.type.Event'
-  },
-
-  /*
-  ***********************************************
-    MEMBERS
-  ***********************************************
-  */
-  members: {
-    _type: null
   }
 });

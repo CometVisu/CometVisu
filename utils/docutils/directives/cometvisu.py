@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -34,7 +34,7 @@ reference_prefix = config.get("references", "prefix").replace("<version>", Versi
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
 
-default_ref = re.compile(r"^index-[0-9]+$")
+default_ref = re.compile("^index-[0-9]+$")
 redirect_map = {}
 if os.path.exists(redirect_file):
     with open(redirect_file, "r") as f:
@@ -142,7 +142,5 @@ def setup(app):
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', on_finish)
     app.connect('source-read', source_read)
-
-    config.set("DEFAULT", "language", app.config.language)
 
     return {'version': '0.1'}
