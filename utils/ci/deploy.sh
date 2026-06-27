@@ -33,8 +33,8 @@ fi
 
 
 # Save some useful information
-REPO=`git config remote.origin.url`
-PUSH_REPO="https://x-access-token:${DEPLOY_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+REPO="git@github.com:${GITHUB_REPOSITORY}.git"
+SOURCE_BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 SHA=`git rev-parse --verify HEAD`
 NO_API=0
 BUILD_CV=1
@@ -87,10 +87,7 @@ if [[ "$GENERATE_DOCS" -eq 1 ]]; then
       # we need a source-build to generate screenshots
       qx compile -t=source -f=false
       echo "generate API screenshots"
-      if test -f .protractor-env; then
-        source .protractor-env
-      fi
-      grunt screenshots --subDir=build --browserName=chrome --target=source
+      grunt screenshots-pw --subDir=build --target=source
       BUILD_CV=0
 
       # move generated screenshots to the api viewer
@@ -125,10 +122,10 @@ fi
 
 if [[ "$GENERATE_DEMO" -eq 1 ]]; then
   echo "generating test mode build"
-  CV_TAG_RUNTIME=demo CV_TESTMODE=resource/demo/media/demo_testmode_data.json qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
-  grunt update-demo-config --base-dir=out/de/$VERSION_PATH/demo
+  sed -i 's/"qx.globalErrorHandling": true,/"qx.globalErrorHandling": false,/g' compile.json
+  qx deploy --clean -t build -f=false --source-maps --save-source-in-map -o out/de/$VERSION_PATH/demo
   # Copy demo-mode to default config
-  cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo_testmode.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
+  cp out/de/$VERSION_PATH/demo/resource/demo/visu_config_demo-tile.xml out/de/$VERSION_PATH/demo/resource/config/visu_config.xml
 fi
 
 echo "copying JSON schema for hidden configuration"
@@ -166,18 +163,19 @@ git commit -q -m "Deploy to GitHub Pages: ${SHA}"
 
 # Now that we're all set up, we can push.
 echo "pushing changes to remote repository"
-git push "$PUSH_REPO" $TARGET_BRANCH
+git push "$REMOTE_NAME" $TARGET_BRANCH
 
 # Commit generated screenshots and shot-index files into this repo
 echo "committing changed screenshots and shot-index files"
 cd ..
 git config --local user.name "$COMMIT_AUTHOR_NAME"
 git config --local user.email "$COMMIT_AUTHOR_EMAIL"
+git remote set-url "$REMOTE_NAME" "$REPO"
 
 git add doc/**/*.json
 git add doc/**/*.png
 # only commit when there are changes
 if [ `git diff-index --cached HEAD | wc -l` -gt 0 ]; then
   git commit -q -m "[skip ci] Add generated files: ${SHA}"
-  git push
+  git push "$REMOTE_NAME" "HEAD:${SOURCE_BRANCH_NAME}"
 fi

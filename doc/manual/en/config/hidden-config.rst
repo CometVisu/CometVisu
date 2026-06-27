@@ -35,25 +35,8 @@ The content consists of several entries containing a *name* with several
 *key* and *value* pairs. In the file itself, this information is
 stored as a PHP array:
 
-
-.. code-block:: php
-
-    <?php
-    // File for configurations that shouldn't be shared with the user
-    $data = '{
-      "fritzbox": {
-        "uri": "https://192.168.0.1:49443/",
-        "user": "CometVisuTestUser",
-        "pass": "secret"
-      },
-      "influx": {
-        "uri": "https://172.17.0.1/proxy/ts/query",
-        "user": "docker",
-        "pass": "secret",
-        "selfsigned": "true"
-      }
-    }';
-    $hidden = json_decode($data, true);
+.. literalinclude:: ../../../../source/resource/config/hidden.php
+   :language: php
 
 Manager
 -------
@@ -71,9 +54,10 @@ usual entries for it, which are recommended to be used. Thus, some
 widgets or plug-ins without an explicit configuration can look in the usual
 name for entries, which can reduce the configuration effort.
 
-========  ==============  =======
-Name      Usage           Default
-========  ==============  =======
-fritzbox  :ref:`tr064`
-influx    :ref:`diagram`  X
-========  ==============  =======
+=================  ====================================================================  =======
+Name               Usage                                                                 Default
+=================  ====================================================================  =======
+fritzbox           :ref:`tr064`
+influx             :ref:`diagram`                                                        X
+proxy.whitelist    :ref:`Image component of the tile-structure <tile-component-image>`
+=================  ====================================================================  =======

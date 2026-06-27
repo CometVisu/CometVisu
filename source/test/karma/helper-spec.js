@@ -1,6 +1,6 @@
 /* helper-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -37,11 +37,11 @@ const createTestWidgetString = function (name, attributes, content) {
     // create surrounding root page
     var page = qx.dom.Element.create('page', {visible: 'false'});
     page.appendChild(elem);
-    data = cv.parser.WidgetParser.parse(page, 'id', null, 'text');
+    data = cv.parser.pure.WidgetParser.parse(page, 'id', null, 'text');
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data.children[0]);
   } else {
-    data = cv.parser.WidgetParser.parse(elem, 'id_0', null, 'text');
+    data = cv.parser.pure.WidgetParser.parse(elem, 'id_0', null, 'text');
   }
   var res = [];
   let inst;
@@ -137,7 +137,7 @@ const resetApplication = function() {
 
   var body = document.querySelector('body');
   // load empty HTML structure
-  body.innerHTML = cv.Application.HTML_STRUCT;
+  body.innerHTML = '';
 
   cv.Config.cacheUsed = false;
   // reset templateEngine's init values
@@ -145,8 +145,18 @@ const resetApplication = function() {
   templateEngine.resetScriptsLoaded();
   templateEngine.resetPartsLoaded();
   cv.util.ScriptLoader.getInstance().resetAllQueued();
+  switch (cv.Config.getStructure()) {
+    case 'structure-tile':
+      cv.Config.loadedStructure = 'tile';
+      break;
 
-  cv.ui.layout.ResizeHandler.reset();
+    case 'structure-pure':
+      cv.Config.loadedStructure = 'pure';
+      if (cv.ui.structure.pure && cv.ui.structure.pure.layout) {
+        cv.ui.structure.pure.layout.ResizeHandler.reset();
+      }
+      break;
+  }
 };
 
 // DOM Helpers
@@ -292,63 +302,119 @@ const customMatchers = {
 beforeAll(function (done) {
   window.cvTestMode = true;
   jasmine.addMatchers(customMatchers);
-  setTimeout(function () {
-    try {
-      cv.Config.enableCache = false;
-      // always test in 'en' locale
-      qx.locale.Manager.getInstance().setLocale('en');
-      var templateEngine = cv.TemplateEngine.getInstance();
-      var startUp = function () {
-        resetApplication();
-        setTimeout(done, 100);
-      };
-      if (templateEngine.isDomFinished()) {
-        startUp();
-      } else {
-        qx.event.message.Bus.subscribe('setup.dom.finished', startUp, this);
+
+  // this is an ugly hack but the only known way to get rid of '//' in URIs that the karma webserver cannot handle correctly
+  for (const k in qx.util.LibraryManager) {
+    if (k.startsWith('__libs')) {
+      const libs = qx.util.LibraryManager[k];
+      if (libs && libs.cv.resourceUri.endsWith('/')) {
+        libs.cv.resourceUri = libs.cv.resourceUri.substring(0, libs.cv.resourceUri.length-1);
       }
-    } catch (e) {
-      console.error(e);
     }
-  }, 2000);
+  }
+
+  try {
+    cv.Config.enableCache = false;
+    cv.Config.timeoutStructureLoad = 5000;
+    // always test in 'en' locale
+    qx.locale.Manager.getInstance().setLocale('en');
+    const client = cv.io.BackendConnections.initBackendClients();
+    const templateEngine = cv.TemplateEngine.getInstance();
+    const model = cv.data.Model.getInstance();
+    client.update = model.update.bind(model); // override clients update function
+    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch(e => {
+      console.error('error loading parts:', e);
+    }).then(() => {
+      resetApplication();
+      done();
+    });
+  } catch (e) {
+    console.error(e);
+  }
+
+  /**
+   *
+   * @param name {string} HTML element tag-name
+   * @param attributes {object} HTML element attributes
+   * @param content {string} HTML element content
+   * @param append {boolean|string} append to body, or 'code' to return the HTML code
+   * @returns {ChildNode|string}
+   */
+  this.createHTMLElement = (name, attributes, content, append) => {
+    let attributesHTML = '';
+    for (const key in attributes) {
+      attributesHTML += `${key}="${attributes[key]}" `;
+    }
+    const html = `<${name} ${attributesHTML}>${content}</${name}>`;
+    if (append === 'code') {
+      return html;
+    }
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    const elem = template.content.firstChild;
+    if (append === true) {
+      document.body.appendChild(elem);
+    }
+    return elem;
+  };
+
+  this.createTileWidgetWithComponent = (name, attributes = {}, content = '', widgetName = 'cv-widget', widgetAttributes = {}) => {
+    const componentHtml = this.createHTMLElement(name, attributes, content, 'code');
+    this.container = this.createHTMLElement(widgetName, widgetAttributes, `<cv-tile>${componentHtml}</cv-tile>`, true);
+    return this.container.querySelector(`${widgetName} > cv-tile > ${name}`);
+  };
 });
 
 beforeEach(function () {
-  var templateEngine = cv.TemplateEngine.getInstance();
+  cv.Application.structureController = cv.ui.structure.pure.Controller.getInstance();
+  cv.Config.loadedStructure = 'pure';
+  qx.core.Init.getApplication().setStructureLoaded(true);
+  cv.Config.unitTesting = true;
 
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
   this.findChild = findChild;
   this.initWidget = function(widget) {
     if (widget.getVisibilityParent) {
-      var parent = widget.getVisibilityParent();
+      const parent = widget.getVisibilityParent();
       if (parent) {
         parent.setVisible(true);
       }
     }
     widget.setVisible && widget.setVisible(true);
     qx.event.message.Bus.dispatchByName('setup.dom.finished.before');
+    //cv.TemplateEngine.getInstance().setDomFinished(true);
     qx.event.message.Bus.dispatchByName('setup.dom.finished');
   };
-  var model = cv.data.Model.getInstance();
-  templateEngine.visu.update = model.update.bind(model); // override clients update function
 });
 
 afterEach(function () {
-  var templateEngine = cv.TemplateEngine.getInstance();
+  const templateEngine = cv.TemplateEngine.getInstance();
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
   cv.ui.structure.WidgetFactory.clear();
 
-  var subs = qx.event.message.Bus.getInstance().getSubscriptions();
+  const subs = qx.event.message.Bus.getInstance().getSubscriptions();
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
-  cv.ui.layout.ResizeHandler.reset();
+  cv.ui.structure.pure.layout.ResizeHandler.reset();
+
+  // dispose notification list controllers before clearing DOM to prevent
+  // stale template references causing 'Cannot read innerHTML of null'
+  [cv.ui.NotificationCenter, cv.ui.ToastManager].forEach(function(Clazz) {
+    var instance = Clazz.getInstance();
+    instance.clearMessages();
+    if (instance._list) {
+      instance._list.setModel(null);
+      instance._list.dispose();
+      instance._list = null;
+    }
+  });
 
   if (this.container) {
     try {
-      document.body.removeChild(this.container);
+      this.container.remove();
     } catch (e) {
       console.error(e);
     }
@@ -358,9 +424,8 @@ afterEach(function () {
     this.creator = null;
   }
 
-  var body = document.querySelector('body');
   // load empty HTML structure
-  body.innerHTML = cv.Application.HTML_STRUCT;
+  document.body.innerHTML = '';
   cv.TemplateEngine.getInstance().resetDomFinished();
-  // resetApplication();
+  qx.core.Init.getApplication().resetStructureLoaded();
 });

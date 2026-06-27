@@ -1,21 +1,5 @@
 ## Change Log
 
-0.12.6
-======
-
-- [#1373](https://github.com/CometVisu/CometVisu/pull/1373) Cherry pick of: Fix slider to respect steps (@ChristianMayer)
-
-0.12.5
-======
-
-- [#1370](https://github.com/CometVisu/CometVisu/pull/1370) Make slide work after Android device rotation. (@ChristianMayer)
-- [#1363](https://github.com/CometVisu/CometVisu/pull/1363) entries in cv.Config.configSettings.stylesToLoad  can be objects {urlo… (@peuter)
-
-0.12.4
-======
-
-- [#1353](https://github.com/CometVisu/CometVisu/pull/1353) fixes icon cache error (@peuter)
-
 0.12.3
 ======
 

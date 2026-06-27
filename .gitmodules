@@ -1,3 +1,6 @@
 [submodule "external/knx-uf-iconset"]
 	path = external/knx-uf-iconset
 	url = https://github.com/OpenAutomationProject/knx-uf-iconset.git
+[submodule "external/svg-to-ttf"]
+	path = external/svg-to-ttf
+	url = https://github.com/peuter/svg-to-ttf.git

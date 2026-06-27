@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cid=$(docker ps -a -f name=svg-to-ttf --quiet)
+if [[ ! -z "$cid" ]]; then
+    docker rm $cid
+fi
+docker run -v "$(pwd)":"$(pwd)" --name svg-to-ttf --workdir "$(pwd)" peuter/svg-to-ttf "$@"

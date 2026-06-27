@@ -1,7 +1,7 @@
-/* Link.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Link.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This plugins integrates a simple link.
  *
@@ -25,7 +24,7 @@
  * @since 2015
  */
 qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
 
   /*
   ******************************************************
@@ -37,14 +36,17 @@ qx.Class.define('cv.plugins.Link', {
       check: 'String',
       init: ''
     },
+
     text: {
       check: 'String',
       init: ''
     },
+
     href: {
       check: 'String',
       init: ''
     },
+
     newWindow: {
       check: 'Boolean',
       init: false
@@ -67,18 +69,28 @@ qx.Class.define('cv.plugins.Link', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} extracted data from config element as key/value map
      */
-    parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    parse(xml, path, flavour, pageType) {
+      return cv.parser.pure.WidgetParser.parseElement(
+        this,
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
     },
 
-    getAttributeToPropertyMappings: function () {
+    getAttributeToPropertyMappings() {
       return {
-        'class': {target: 'cssClass', 'default': ''},
-        'text': {'default': ''},
-        'href': {'default': ''},
-        'newWindow': {'default': false, transform: function(value) {
+        class: { target: 'cssClass', default: '' },
+        text: { default: '' },
+        href: { default: '' },
+        newWindow: {
+          default: false,
+          transform(value) {
             return value === 'true';
-          }}
+          }
+        }
       };
     }
   },
@@ -89,22 +101,22 @@ qx.Class.define('cv.plugins.Link', {
   ******************************************************
   */
   members: {
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       let classes = 'link';
       if (this.getCssClass()) {
-        classes += ' '+this.getCssClass();
+        classes += ' ' + this.getCssClass();
       }
       const href = this.getHref() ? ' href="' + this.getHref() + '"' : '';
       let attributes = '';
       if (this.isNewWindow()) {
         attributes += ' target="_blank"';
       }
-      return '<a class="'+classes+'"' + href + attributes + '>' + this.getText() + '</a>';
+      return '<a class="' + classes + '"' + href + attributes + '>' + this.getText() + '</a>';
     }
   },
 
-  defer: function(statics) {
-    cv.parser.WidgetParser.addHandler('link', cv.plugins.Link);
+  defer(statics) {
+    cv.parser.pure.WidgetParser.addHandler('link', cv.plugins.Link);
     cv.ui.structure.WidgetFactory.registerClass('link', statics);
   }
 });

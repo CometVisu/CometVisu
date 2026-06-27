@@ -77,7 +77,7 @@ another container that simultaneously incorporates this RRD container.
 
 **Important:** The internal format of the RRD files is architecture specific.
 Thus, the RRG files from WireGate (32 bit architecture) can not be
-used directly on the Timberwolf (64 bit architecture) [1].
+used directly on the Timberwolf (64 bit architecture) [1]_.
 
 Creating a Container
 ^^^^^^^^^^^^^^^^^^^^
@@ -255,7 +255,7 @@ incompatibly due to future updates.
 As described under :ref:`Docker <docker>` the newest
 Development version the tag ``testing``. Thus, under
 *Creating the container* as ``name`` ``cometvisu/cometvisu:testing``
- must be used.
+must be used.
 
 
 In order to have a uniform environment for error reporting, etc.

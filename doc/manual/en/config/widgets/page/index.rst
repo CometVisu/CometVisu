@@ -95,6 +95,65 @@ position in pixel.
         :alt: development mode
         :target: ../../../_images/editor_2d_widgets.png
 
+Bus initiated page switch
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Communication
+.............
+
+.. spelling:word-list::
+
+    clientIDs
+
+When the attribute ``ga`` is set to a bus address, a bus message to that
+address can switch the displayed page to this page.
+
+When only ``ga`` is set, the change will happen when a ``1`` (KNX: with DPT:1
+or DPT:5) is sent.
+
+When the attribute ``transform`` is set, the address in the ``ga`` attribute
+is interpreted accordingly.
+
+.. warning::
+
+    The use of ``ga`` without ``transform`` is deprecated and will not work in
+    future versions.
+
+.. _pageClientSelection:
+
+Client selection
+................
+
+To define the value for the page switch or to limit the switching to select
+clients the attribute ``clients`` is used. It's content is a (comma separated)
+list of :ref:`client ID <urlClientID>` with colon and the trigger value.
+The wildcard ``*`` can be used for multiple client IDs that start with the
+same text.
+
+**Examples:**
+
+* ``clients="*:1"``
+    Every client (also those without a client ID) will switch when a ``1`` is sent.
+* ``clients="floor_ground"``
+    Only visu ``floor_ground`` is reacting, a ``1`` must be sent.
+* ``clients="floor_1st:0"``
+    Only visu ``floor_ground`` is reacting, a ``0`` must be sent.
+* ``clients="floor_basement:0, floor_ground:1"``
+    Visu ``floor_basement`` reacts when a ``0`` is sent,
+    ``floor_ground`` reacts when to the same address a ``1`` is sent.
+* ``clients="floor_*"`` or ``clients="floor_*:1"``
+    Every client starting with ``floor_`` (like e.g. ``floor_basement`` and
+    ``floor_ground``) is reacting when ``1`` is sent.
+
+A possible use case would be wall mounted touch panel PCs that should switch
+to the page with the external camera view when the door bell gets rung (the
+page with the camera view would then use ``clients=floor_*:1"`` to make all
+visu clients in the floors switch to this page when to the address in ``ga``
+a ``1`` is sent, but others, like smart phones, are not).
+Also common is a use case where by opening the front door the visu next to
+it (selected by ``clients="floor_ground:1"``) should show the locking state of
+all windows so that when you leave the house you can see that everything is safe.
+
 Allowed child-elements and their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

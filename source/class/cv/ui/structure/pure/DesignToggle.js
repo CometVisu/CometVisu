@@ -1,6 +1,6 @@
 /* DesignToggle.js
  *
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Adds a button to toggle through the available designs
  * @widgetexample
@@ -32,7 +31,7 @@
  * @since 0.5.3 (2010)
  */
 qx.Class.define('cv.ui.structure.pure.DesignToggle', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
 
   /*
@@ -42,7 +41,7 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
    */
   members: {
     // overridden
-    _getInnerDomString: function () {
+    _getInnerDomString() {
       return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
     },
     /**
@@ -53,10 +52,10 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
      * @param actor {Element} - DOMElement
      * @param isCanceled {Boolean} - If true the action does nothing
      */
-    _action: function(path, actor, isCanceled) {
+    _action(path, actor, isCanceled) {
       if (isCanceled) {
- return; 
-}
+        return;
+      }
 
       const designs = cv.Config.designStructureMap.pure;
 
@@ -65,20 +64,24 @@ qx.Class.define('cv.ui.structure.pure.DesignToggle', {
 
       const URL = cv.util.Location.getHref();
       const regexp = new RegExp('design=' + oldDesign);
-      if (URL.search(regexp) !== -1) { // has URL-parameter design
-        cv.util.Location.setHref(URL.replace(regexp, 'design='+newDesign));
+      if (URL.search(regexp) !== -1) {
+        // has URL-parameter design
+        cv.util.Location.setHref(URL.replace(regexp, 'design=' + newDesign));
       } else {
         const parts = cv.util.Location.getHref().split('#');
-        let req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
+        let req = qx.util.Uri.appendParamsToUrl(parts[0], {
+          design: newDesign
+        });
+
         if (parts.length > 1) {
-          req += '#'+parts[1];
+          req += '#' + parts[1];
         }
         cv.util.Location.setHref(req);
       }
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('designtoggle', statics);
   }
 });

@@ -8,6 +8,15 @@
     "^influx(\\..*)?$": { "$ref": "#/definitions/login" },
     "^tr064(\\..*)?$": { "$ref": "#/definitions/login" }
   },
+  "properties": {
+    "proxy.whitelist": {
+      "description": "list of named regular expressions or URLs that are allowed to be proxied.",
+      "type": "object",
+      "patternProperties": {
+        "^.+$": { "type": "string" }
+      }
+    }
+  },
   "definitions": {
     "login": {
       "type": "object",

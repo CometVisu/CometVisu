@@ -36,7 +36,7 @@ Target    3/3/30 DPT:9.001
 First visu - in less than half a minute
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. spelling::
+.. spelling:word-list::
 
     Editieren
     Wohnzimmertemperatur

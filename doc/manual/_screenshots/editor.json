@@ -12,6 +12,10 @@
   "screenshotDir": "config/_static",
   "fixtures": [
     {
+      "targetPath": "rest/manager/environment.php",
+      "sourceFile": "source/test/fixtures/environment.php.json"
+    },
+    {
       "targetPath": "rest/manager/index.php/fs?path=.",
       "data": [
         {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false}
@@ -19,7 +23,10 @@
       "mimeType": "application/json"
     },
     {
-      "targetPath": "rest/manager/index.php/fs?path=visu_config.xml",
+      "targetPath": [
+        "rest/manager/index.php/fs?path=visu_config.xml",
+        "resource/config/visu_config_previewtemp.xml"
+      ],
       "data": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"><meta/><page name=\"Start\">\n    <line>\n      <layout colspan=\"12\"/>\n    </line>\n    <text align=\"center\">\n      <label>Welcome to the CometVisu!</label>\n    </text>\n    <line>\n      <layout colspan=\"12\"/>\n    </line>\n  </page></pages>",
       "mimeType": "text/xml;charset=UTF-8"
     }
@@ -29,5 +36,5 @@
   "widget": "page",
   "configFileName": "",
   "showPreview": true,
-  "config": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"/>"
+  "config": "<pages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" lib_version=\"0\" design=\"metal\" xsi:noNamespaceSchemaLocation=\"../visu_config.xsd\" scroll_speed=\"0\"></pages>"
 }

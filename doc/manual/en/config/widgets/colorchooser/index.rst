@@ -22,9 +22,9 @@ as a RGBW light source that also has a white channel.
     <settings sleep="500">
         <screenshot name="colorchooser_example" sleep="1000">
             <caption>The ColorChooser</caption>
-            <data address="1/2/59" type="float">50</data>
-            <data address="1/2/60" type="float">60</data>
-            <data address="1/2/61" type="float">100</data>
+            <data address="1/2/59" transform="DPT:5.001">50</data>
+            <data address="1/2/60" transform="DPT:5.001">60</data>
+            <data address="1/2/61" transform="DPT:5.001">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="LCh-box;T:2500-15000;Y">
@@ -85,9 +85,9 @@ Example: RGB slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_rgb" sleep="1000">
             <caption>ColorChooser, RGB slider</caption>
-            <data address="1/2/59" type="float">90</data>
-            <data address="1/2/60" type="float">80</data>
-            <data address="1/2/61" type="float">100</data>
+            <data address="1/2/59" transform="DPT:5.001">90</data>
+            <data address="1/2/60" transform="DPT:5.001">80</data>
+            <data address="1/2/61" transform="DPT:5.001">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="RGB-r;RGB-g;RGB-b">
@@ -106,10 +106,10 @@ Example: RGBW slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_rgbw" sleep="1000">
             <caption>ColorChooser, RGBW slider</caption>
-            <data address="1/2/59" type="float">90</data>
-            <data address="1/2/60" type="float">100</data>
-            <data address="1/2/61" type="float">0</data>
-            <data address="1/2/62" type="float">80</data>
+            <data address="1/2/59" transform="DPT:5.001">90</data>
+            <data address="1/2/60" transform="DPT:5.001">100</data>
+            <data address="1/2/61" transform="DPT:5.001">0</data>
+            <data address="1/2/62" transform="DPT:5.001">80</data>
         </screenshot>
     </settings>
     <colorchooser controls="RGBW-r;RGBW-g;RGBW-b;RGBW-w">
@@ -129,9 +129,9 @@ Example: HSV slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_hsv" sleep="1000">
             <caption>ColorChooser, HSV slider</caption>
-            <data address="1/2/59" type="float">99</data>
-            <data address="1/2/60" type="float">80</data>
-            <data address="1/2/61" type="float">90</data>
+            <data address="1/2/59" transform="DPT:5.001">99</data>
+            <data address="1/2/60" transform="DPT:5.001">80</data>
+            <data address="1/2/61" transform="DPT:5.001">90</data>
         </screenshot>
     </settings>
     <colorchooser controls="h;s;v">
@@ -150,9 +150,9 @@ Example: color temperature and brightness slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_TY" sleep="1000">
             <caption>ColorChooser, color temperature and brightness slider</caption>
-            <data address="1/2/59" type="float">45.1</data>
-            <data address="1/2/60" type="float">68.6</data>
-            <data address="1/2/61" type="float">100</data>
+            <data address="1/2/59" transform="DPT:5.001">45.1</data>
+            <data address="1/2/60" transform="DPT:5.001">68.6</data>
+            <data address="1/2/61" transform="DPT:5.001">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="T:2000-10000;Y">
@@ -171,9 +171,9 @@ Example: LCh slider
     <settings sleep="500">
         <screenshot name="colorchooser_slider_LCh" sleep="1000">
             <caption>ColorChooser, LCh slider</caption>
-            <data address="1/2/59" type="float">42.7</data>
-            <data address="1/2/60" type="float">0</data>
-            <data address="1/2/61" type="float">100</data>
+            <data address="1/2/59" transform="DPT:5.001">42.7</data>
+            <data address="1/2/60" transform="DPT:5.001">0</data>
+            <data address="1/2/61" transform="DPT:5.001">100</data>
         </screenshot>
     </settings>
     <colorchooser controls="LCh-L;LCh-C;LCh-h">
@@ -278,7 +278,7 @@ Example: combined chooser ``LCh-triangle``
 Dim curves
 """"""""""
 
-The eye doesn't measure brightness in a linear fashion but in a logarithmic
+The eye does not measure brightness in a linear fashion but in a logarithmic
 way to be able to see at a dark night as well as during high noon. Different
 lighting systems, like DALI, take that into account and thus use a non linear
 dim curve, so that the brightness of the light has a better match to the selected
@@ -378,7 +378,7 @@ color temperature instead of the ``xy`` coordinates. A deviation from the
 black body curve can't be stated, in such a case the  ``x`` and ``y``
 coordinates must be used.
 
-The configured brightness doesn't need to follow a specific physical unit (like
+The configured brightness does not need to follow a specific physical unit (like
 lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
 values.
 
@@ -524,7 +524,7 @@ Valid values for ``variant`` are:
 
 .. note::
 
-    The ``variant`` used for communication doesn't necessarily be similar to
+    The ``variant`` used for communication does not necessarily be similar to
     the used widget elements as defined by ``controls``. It is valid to use
     a ColorChooser with a HSV control and RGB bus communication.
 

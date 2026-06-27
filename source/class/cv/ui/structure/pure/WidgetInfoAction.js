@@ -1,7 +1,7 @@
-/* WidgetInfoAction.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* WidgetInfoAction.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This is a helper class for the InfoAction widget it cannot be used directly
  *
@@ -25,7 +24,7 @@
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
 qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
-  extend: cv.ui.structure.AbstractWidget,
+  extend: cv.ui.structure.pure.AbstractWidget,
   include: cv.ui.common.HasChildren,
 
   /*
@@ -34,11 +33,12 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
    ******************************************************
    */
   properties: {
-    anonymous : {
+    anonymous: {
       refine: true,
       init: true
     },
-    childObjects: {check: 'Array', init: []}
+
+    childObjects: { check: 'Array', init: [] }
   },
 
   /*
@@ -48,12 +48,12 @@ qx.Class.define('cv.ui.structure.pure.WidgetInfoAction', {
    */
   members: {
     // overridden
-    getDomString: function () {
+    getDomString() {
       return this.getChildrenDomString();
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('widgetinfo', statics);
     cv.ui.structure.WidgetFactory.registerClass('widgetaction', statics);
   }

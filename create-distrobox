@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+additional_flags=""
+
+# Load environment variables from .env file
+if [ -f .env ]; then
+    while read line || [ -n "$line" ]
+    do
+        if [[ ! "$line" =~ ^#.*$ && -n "$line" ]]; then
+            additional_flags+="--env '$line' "
+        fi
+    done < "./.env"
+    # Remove trailing space
+    additional_flags="${additional_flags%"${additional_flags##*[![:space:]]}"}"
+    echo "Using additional flags: $additional_flags"
+    # Replace placeholder in distrobox.ini.in and create distrobox.ini
+    sed -E "s|^additional_flags=\"([^\"]*)\"$|additional_flags=\"\1 $additional_flags\"|" distrobox.ini.in > distrobox.ini
+    # Create the distrobox
+    distrobox assemble create --replace
+    # Start the distrobox
+    distrobox enter cv
+else
+    echo ".env file not found!"
+    exit 1
+fi

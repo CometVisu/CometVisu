@@ -4,16 +4,16 @@
  * @author add your name here
  * @since ###SINCE###
  */
-qx.Class.define("cv.plugin.$0", {
-   extend: cv.ui.structure.AbstractWidget,
+qx.Class.define('cv.plugin.$0', {
+   extend: cv.ui.structure.pure.AbstractWidget,
 
    /*
    ***********************************************
      CONSTRUCTOR
    ***********************************************
    */
-   construct: function (props) {
-     this.base(arguments, props);
+   constructor(props) {
+     super(props);
    },
 
    /*
@@ -31,14 +31,14 @@ qx.Class.define("cv.plugin.$0", {
       * @param flavour {String} Flavour of the widget
       * @param pageType {String} Page type (2d, 3d, ...)
       */
-     parse: function (xml, path, flavour, pageType) {
-       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+     parse (xml, path, flavour, pageType) {
+       let data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
 
        // uncomment this line when your plugin has an address element
-       // cv.parser.WidgetParser.parseAddress(xml, path);
+       // cv.parser.pure.WidgetParser.parseAddress(xml, path);
 
        // uncomment this line if your plugin needs to refresh regularly (this parses the 'refresh' attribute)
-       // cv.parser.WidgetParser.parseRefresh(xml, path);
+       // cv.parser.pure.WidgetParser.parseRefresh(xml, path);
        return data;
      },
 
@@ -84,6 +84,6 @@ qx.Class.define("cv.plugin.$0", {
 
    defer: function (statics) {
      // register the parser, Note: element-name must be changed to the xml-elements name this plugin should parse
-     cv.parser.WidgetParser.addHandler("element-name", statics);
+     cv.parser.pure.WidgetParser.addHandler('element-name', statics);
    }
 });

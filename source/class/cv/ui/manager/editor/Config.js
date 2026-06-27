@@ -1,7 +1,7 @@
-/* Config.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Config.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Editor for the (hidden) configuration.
  */
@@ -29,8 +28,8 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     CONSTRUCTOR
   ***********************************************
   */
-  construct: function () {
-    this.base(arguments);
+  construct() {
+    super();
     this._handledActions = ['save'];
     this._setLayout(new qx.ui.layout.VBox(8));
     this._createChildControl('list');
@@ -68,26 +67,66 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     _listController: null,
     __initialSectionCount: 0,
 
-    _initClient: function () {
+    _initClient() {
       this._client = cv.io.rest.Client.getConfigClient();
       this._client.addListener('getSuccess', this._onModelValueChange, this);
       this._client.addListener('updateSuccess', this._onSaved, this);
+      this._client.addListener('error', function(ev) {
+        let data = ev.getData();
+        if (typeof data === 'string') {
+          if (data.startsWith('{') && data.endsWith('}')) {
+            try {
+              data = JSON.parse(data);
+            } catch (e) {}
+          }
+        }
+        if (data.error) {
+          data = data.error;
+        }
+        cv.ui.manager.snackbar.Controller.error(data.message);
+      }, this);
     },
 
-    _loadFile: function (file) {
+    _loadFile(file) {
       if (file) {
-        this._client.get({section: '*', key: '*'});
+        this._client.get({ section: '*', key: '*' });
       }
     },
 
-    _onModelValueChange: function (ev) {
+    _onModelValueChange(ev) {
       if (this.getFile()) {
-        this.setContent(ev.getData());
+        const content = ev.getData();
+        if (Object.prototype.hasOwnProperty.call(content, 'error')) {
+          // loading error
+          qxl.dialog.Dialog.confirm(
+            this.tr(
+              'Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?'
+            ),
+            function (confirmed) {
+              const file = this.getFile();
+              qx.event.message.Bus.dispatchByName('cv.manager.action.close', file);
+
+              if (confirmed) {
+                qx.event.message.Bus.dispatchByName('cv.manager.openWith', {
+                  file: file.getFullPath(),
+                  handler: 'cv.ui.manager.editor.Source',
+                  handlerOptions: {
+                    jumpToError: true
+                  }
+                });
+              }
+            },
+            this,
+            qx.locale.Manager.tr('Hidden configuration error')
+          );
+        } else {
+          this.setContent(content);
+        }
       }
     },
 
     // overridden
-    _applyContent: function(value) {
+    _applyContent(value) {
       const model = this._listController.getModel();
       model.removeAll();
 
@@ -105,11 +144,11 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     // overridden
-    getCurrentContent: function () {
+    getCurrentContent() {
       return this.getContent();
     },
 
-    _onDeleteSection: function (ev) {
+    _onDeleteSection(ev) {
       if (this.getFile() && this.getFile().isWriteable()) {
         const section = ev.getData();
         const model = this._listController.getModel();
@@ -119,21 +158,24 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     },
 
     // compare current controller model with the loaded config content
-    __checkForModification: function () {
+    __checkForModification() {
       const file = this.getFile();
       if (this.__initialSectionCount !== this._listController.getModel().length) {
         file.setModified(true);
         return;
       }
-      const modified = this.getChildControl('list').getChildren().some(function (sectionListItem) {
-        return sectionListItem.isModified();
-      }, this);
+      const modified = this.getChildControl('list')
+        .getChildren()
+        .some(function (sectionListItem) {
+          return sectionListItem.isModified();
+        }, this);
       file.setModified(modified);
     },
 
-    save: function () {
+    save() {
       if (!this.getFile() || !this.getFile().isWriteable()) {
         cv.ui.manager.snackbar.Controller.info(this.tr('Hidden configuration file (hidden.php) not writeable'));
+
         return;
       }
       // check for duplicate section names of keys
@@ -156,7 +198,9 @@ qx.Class.define('cv.ui.manager.editor.Config', {
             optionKeys.push(optionKey);
           } else {
             valid = false;
-            cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Option key duplicate: "%1" in section "%2".', optionKey, key));
+            cv.ui.manager.snackbar.Controller.error(
+              qx.locale.Manager.tr('Option key duplicate: "%1" in section "%2".', optionKey, key)
+            );
           }
         }, this);
       }, this);
@@ -170,71 +214,82 @@ qx.Class.define('cv.ui.manager.editor.Config', {
           });
           data[section.getName()] = options;
         }, this);
-        this._client.saveSync(null, data, function (err) {
-          if (err) {
-            cv.ui.manager.snackbar.Controller.error(this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText));
-          } else {
-            cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
-            this._onSaved();
-          }
-        }, this);
+        this._client.saveSync(
+          null,
+          data,
+          function (err) {
+            if (err) {
+              cv.ui.manager.snackbar.Controller.error(
+                this.tr('Saving hidden config failed with error %1 (%2)', err.status, err.statusText)
+              );
+            } else {
+              cv.ui.manager.snackbar.Controller.info(this.tr('Hidden config has been saved'));
+
+              this._onSaved();
+            }
+          },
+          this
+        );
       } else {
         cv.ui.manager.snackbar.Controller.error(qx.locale.Manager.tr('Section is invalid and has not been saved.'));
       }
     },
 
     // overridden
-    _createChildControlImpl : function(id) {
+    _createChildControlImpl(id) {
       let control;
 
       switch (id) {
-         case 'list':
-           control = new qx.ui.form.List();
-           control.setEnableInlineFind(false);
-           this._listController = new qx.data.controller.List(new qx.data.Array(), control);
-           this._listController.setDelegate({
-             createItem: function () {
-               return new cv.ui.manager.form.SectionListItem();
-             },
+        case 'list':
+          control = new qx.ui.form.List();
+          control.setEnableInlineFind(false);
+          this._listController = new qx.data.controller.List(new qx.data.Array(), control);
 
-             configureItem: function (item) {
-               item.addListener('delete', this._onDeleteSection, this);
-               item.addListener('changeModified', this.__checkForModification, this);
-             }.bind(this),
+          this._listController.setDelegate({
+            createItem() {
+              return new cv.ui.manager.form.SectionListItem();
+            },
 
-             bindItem: function (controller, item, index) {
-               controller.bindProperty('', 'model', null, item, index);
-               this.bind('file.writeable', item, 'readOnly', {
-                 converter: function (value) {
-                   return !value;
-                 }
-               });
-             }.bind(this)
-           });
-           this._add(control, {flex: 1});
-           break;
+            configureItem: function (item) {
+              item.addListener('delete', this._onDeleteSection, this);
+              item.addListener('changeModified', this.__checkForModification, this);
+            }.bind(this),
 
-         case 'buttons':
-           control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
-           this._add(control);
-           break;
+            bindItem: function (controller, item, index) {
+              controller.bindProperty('', 'model', null, item, index);
+              this.bind('file.writeable', item, 'readOnly', {
+                converter(value) {
+                  return !value;
+                }
+              });
+            }.bind(this)
+          });
 
-         case 'add-section':
-           control = new qx.ui.form.Button(this.tr('Add section'));
-           control.addListener('execute', function () {
-             this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
-             this.__checkForModification();
-           }, this);
-           this.bind('file.writeable', control, 'visibility', {
-             converter: function (value) {
-               return value ? 'visible' : 'excluded';
-             }
-           });
-           this.getChildControl('buttons').add(control);
-           break;
-       }
+          this._add(control, { flex: 1 });
+          break;
 
-       return control || this.base(arguments, id);
+        case 'buttons':
+          control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
+          this._add(control);
+          break;
+
+        case 'add-section':
+          control = new qx.ui.form.Button(this.tr('Add section'));
+          control.addListener('execute', () => {
+            this._listController.getModel().push(new cv.ui.manager.model.config.Section(''));
+            this.__checkForModification();
+          });
+          this.bind('file.writeable', control, 'visibility', {
+            converter(value) {
+              return value ? 'visible' : 'excluded';
+            }
+          });
+
+          this.getChildControl('buttons').add(control);
+          break;
+      }
+
+      return control || super._createChildControlImpl(id);
     }
   },
 
@@ -243,7 +298,7 @@ qx.Class.define('cv.ui.manager.editor.Config', {
     DESTRUCTOR
   ***********************************************
   */
-  destruct: function () {
+  destruct() {
     this._disposeObjects('_model', '_listController');
   }
 });

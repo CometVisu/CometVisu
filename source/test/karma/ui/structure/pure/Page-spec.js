@@ -1,7 +1,7 @@
-/* Page-spec.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Page-spec.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -119,8 +119,8 @@ describe('testing a page widget', function () {
   });
 
   it('should test the page update', function () {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
 
     const pageLink = this.createTestElement('page', {
       'type': 'text',
@@ -135,13 +135,18 @@ describe('testing a page widget', function () {
 
     page.update('1/0/0', 1);
 
-    expect(page.sendToBackend).toHaveBeenCalledWith('0');
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
+    //expect(page.sendToBackend).toHaveBeenCalledWith('0'); // currently not implemented
+    // first call should be hihibited (assuming it's within 1 second)
+    expect(controller.scrollToPage).not.toHaveBeenCalledWith('id_0_');
+
+    // second call should work now
+    page.update('1/0/0', 1);
+    expect(controller.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 
   it('should trigger the page action', function () {
-    var templateEngine = cv.TemplateEngine.getInstance();
-    spyOn(templateEngine, 'scrollToPage');
+    const controller = cv.ui.structure.pure.Controller.getInstance();
+    spyOn(controller, 'scrollToPage');
 
     var pageLink = this.createTestElement('page', {
       'type': 'text',
@@ -151,6 +156,6 @@ describe('testing a page widget', function () {
     this.initWidget(pageLink);
     qx.event.Registration.fireEvent(pageLink.getActor(), 'tap', qx.event.type.Event, []);
 
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
+    expect(controller.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 });

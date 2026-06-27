@@ -1,7 +1,7 @@
-/* MXhrReplayHook.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* MXhrReplayHook.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * This mixin patches {qx.io.request.Xhr} during replaying mode of reporting to add the delays to the responses
  * and unqueue aborted responses
@@ -28,7 +27,7 @@ qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
+  construct() {
     this.addListener('changePhase', this._onPhaseChange, this);
   },
 
@@ -38,20 +37,42 @@ qx.Mixin.define('cv.report.utils.MXhrReplayHook', {
   ******************************************************
   */
   members: {
+    __responseTimout: null,
 
-    _onPhaseChange: function(ev) {
-      const response = cv.report.utils.FakeServer.getResponse(this._getConfiguredUrl());
+    _onPhaseChange(ev) {
+      const request = this.getTransport().getRequest();
+      let url = request.url;
+      const response = cv.report.utils.FakeServer.getResponse(url);
       if (!response) {
         // no logged response found might be an 404
         return;
       }
-      if (ev.getData() === 'opened') {
-        this.info('delaying response for '+this._getConfiguredUrl()+' by '+response.delay);
-        qx.dev.FakeServer.getInstance().getFakeServer().autoRespondAfter = response ? response.delay : 10;
-      } else if (ev.getData() === 'abort') {
-        if (response.phase === 'abort') {
-          cv.report.utils.FakeServer.unqueueResponse(this._getConfiguredUrl());
-        }
+      switch (ev.getData()) {
+        case 'opened':
+          this.info('delaying response for ' + url + ' by ' + response.delay);
+          this.__responseTimout = setTimeout(() => {
+            this.info('responding ' + url);
+            const server = qx.dev.FakeServer.getInstance().getFakeServer();
+            if (server) {
+              for (const queuedRequest of server.requests) {
+                if (queuedRequest === request) {
+                  request.respond(response.status, response.headers, response.body);
+                  break;
+                }
+              }
+            }
+          }, response.delay || 10);
+          break;
+
+        case 'abort':
+          if (response.phase === 'abort') {
+            cv.report.utils.FakeServer.unqueueResponse(url);
+          }
+          if (this.__responseTimout) {
+            clearTimeout(this.__responseTimout);
+            this.__responseTimout = null;
+          }
+          break;
       }
     }
   }
