@@ -1,7 +1,7 @@
 {
   "name": "cometvisu",
   "description": "The CometVisu is an interactive, realtime, web based visualization. It can be used to access the KNX bus or with the OpenHAB backend everything in the OpenHAB world.",
-  "version": "0.13.0-dev",
+  "version": "1.0.0-alpha1",
   "repository": {
     "type": "git",
     "url": "https://github.com/cometvisu/cometvisu.git"
