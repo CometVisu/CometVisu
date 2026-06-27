@@ -1,3 +1,22 @@
+/* Jquery.js
+ *
+ * Copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
 /**
  * JQuery Wrapper for AJAX request that allows re-sending the request
  *
@@ -16,7 +35,7 @@ qx.Class.define('cv.io.request.Jquery', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function(config) {
+  construct(config) {
     this.__lastRequest = config;
   },
 
@@ -33,7 +52,6 @@ qx.Class.define('cv.io.request.Jquery', {
     }
   },
 
-
   /*
   ******************************************************
     MEMBERS
@@ -44,21 +62,21 @@ qx.Class.define('cv.io.request.Jquery', {
     __xhr: null,
 
     // property apply
-    _applyRequestData: function(value) {
+    _applyRequestData(value) {
       if (!this.__lastRequest) {
         this.__lastRequest['data'] = value;
       }
     },
 
-    removeListener: function(eventName) {
+    removeListener(eventName) {
       delete this.__lastRequest[eventName];
     },
 
-    addListener: function(eventName, callback, context) {
+    addListener(eventName, callback, context) {
       this.__lastRequest[eventName] = callback.bind(context);
     },
 
-    send: function() {
+    send() {
       if (this.__lastRequest) {
         $.ajax(this.__lastRequest);
       } else {
@@ -72,17 +90,17 @@ qx.Class.define('cv.io.request.Jquery', {
     ***********************************************************
     */
 
-    abort: function() {
+    abort() {
       if (this.__xhr && this.__xhr.abort) {
         this.__xhr.abort();
       }
     },
 
-    getResponseHeader: function(headerName) {
+    getResponseHeader(headerName) {
       if (this.__xhr) {
         return this.__xhr.getResponseHeader(headerName);
-      } 
-        return null;
+      }
+      return null;
     }
   }
 });

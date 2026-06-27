@@ -1,6 +1,6 @@
 /* Meta-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * @author Tobias Bräutigam
  * @since 2016
@@ -30,7 +31,7 @@ describe('testing the meta parser', function() {
 
     // this is loaded from fixtures/karma
     let xml = qx.xml.Document.fromString(window.__html__['meta-config.xml']);
-    let parser = new cv.parser.MetaParser();
+    let parser = new cv.parser.pure.MetaParser();
     parser.parse(xml, function () {
       // check mappings
       expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
@@ -65,8 +66,8 @@ describe('testing the meta parser', function() {
       });
 
       // template
-      expect(cv.parser.WidgetParser.getTemplates().hasOwnProperty('test')).toBeTruthy();
-      expect(cv.parser.WidgetParser.getTemplates().test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
+      expect(cv.parser.pure.WidgetParser.getTemplates().hasOwnProperty('test')).toBeTruthy();
+      expect(cv.parser.pure.WidgetParser.getTemplates().test.trim()).toEqual('<root><text><label>Test template</label></text></root>');
 
       footer.parentNode.removeChild(footer);
     });

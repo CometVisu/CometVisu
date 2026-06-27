@@ -1,6 +1,6 @@
 /* Infotrigger-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -58,16 +58,10 @@ describe('testing a infotrigger widget', function() {
     qx.event.Registration.fireEvent(actor, type, qx.event.type.Pointer, [nativeEvent, actor, actor, true, true]);
   };
 
-  var realClient;
   beforeEach(function() {
-    realClient = cv.TemplateEngine.getInstance().visu;
-    var client = new cv.io.Mockup();
-    cv.TemplateEngine.getInstance().visu = client;
+    const client = new cv.io.Mockup();
+    spyOn(cv.io.BackendConnections, 'getClient').and.callFake(() => client);
     spyOn(client, 'write');
-  });
-
-  afterEach(function () {
-    cv.TemplateEngine.getInstance().visu = realClient;
   });
 
   it('should test the infotrigger creator', function() {
@@ -82,8 +76,8 @@ describe('testing a infotrigger widget', function() {
     // check infoposition
     var info = obj.getInfoActor();
     var actors = Array.from(widget.getElementsByTagName('*')).filter(function(m) {
- return m.matches('.actor'); 
-});
+      return m.matches('.actor');
+    });
 
     expect(actors.indexOf(info)).toBe(0);
   });
@@ -199,7 +193,7 @@ describe('testing a infotrigger widget', function() {
     ]);
 
     this.initWidget(res);
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getUpActor();
 
     expect(actor).not.toBe(null);
@@ -235,7 +229,7 @@ describe('testing a infotrigger widget', function() {
     ]);
 
     this.initWidget(res);
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getUpActor();
 
     expect(actor).not.toBe(null);
@@ -272,7 +266,7 @@ describe('testing a infotrigger widget', function() {
     ]);
 
     this.initWidget(res);
-    var client = cv.TemplateEngine.getInstance().visu;
+    var client = cv.io.BackendConnections.getClient();
     var actor = res.getUpActor();
 
     expect(actor).not.toBe(null);

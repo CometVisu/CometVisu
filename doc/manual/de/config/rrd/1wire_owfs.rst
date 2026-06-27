@@ -9,7 +9,7 @@ Hier hat der 1wire Sensor die ID 28.AB8BCB040000, diese muss angepasst werden!!
 
 Dieses Script funktioniert so wenn es unter /var/www/rrd/1wire_temp_aussen gespeichert (und ausführbar) ist.
 
-.. spelling::
+.. spelling:word-list::
 
     aussen
 

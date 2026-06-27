@@ -74,7 +74,7 @@ JSON wie
 
 .. code-block:: xml
 
-     <address transform="MQTT:number" selector="foo[1].bar" retain="true">/topic/baz<address>
+     <address transform="MQTT:number" selector="foo[1].bar" retain="true">/topic/baz</address>
 
 Roh-Werte / Test:
 .................

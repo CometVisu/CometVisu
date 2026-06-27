@@ -172,7 +172,10 @@ body br
 .widget .pagejump .icon { margin-top: -0; }
 .widget .actor .icon,
 .rsslog_popup .icon { margin-bottom: -0.6em; }
-.widget .switchPressed .icon, .widget .switchUnpressed .icon { margin-top: -0.4em; margin-bottom: -0.6em;}
+.widget .switchPressed .icon, .widget .switchUnpressed .icon {
+    margin-top: -0.4em; margin-bottom: -0.6em;
+    vertical-align: middle;
+}
 .navbar .widget_container > .pagejump > .label, .navbar .widget_container > .refresh > .label {
 	width: auto;
 	display: inline;
@@ -322,6 +325,11 @@ body br
   background: transparent;
   text-align: center;
   cursor: pointer;
+}
+
+.switchUnpressed div:has(i), .switchPressed div:has(i)
+{
+    padding: 1px;
 }
 
 .pagejump > .switchUnpressed, .pagejump > .switchPressed,
@@ -577,7 +585,8 @@ div#demo_3 {
 .navbar .pagejump .label > .icon,
 .navbar .refresh .label > .icon { 
 	height: 44px !important;
-        width: 44px !important;
+    width: 44px !important;
+    font-size: 36px;
 	display: block;
 	margin: 0 auto;
 }

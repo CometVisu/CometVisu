@@ -38,13 +38,6 @@ Browser unterstützen werden. Vorzugweise sollten das PNG, GIF und JPG sein.
     </settings>
     <image src="resource/icons/comet_128_ff8000.png"/>
 
-.. widget-example::
-    :hide-source: true
-
-    <settings>
-        <screenshot name="image_simple"/>
-    </settings>
-    <image src="resource/icons/comet_128_ff8000.png"/>
 
 Einstellungen
 -------------
@@ -160,11 +153,11 @@ Eigenschaften einfügt:
     </image>
 
 
-.. code-block:: xml
-
 Beispiel für die Übermittlung eines Bildes per Gruppenadresse. Da der KNX-Bus die Übermittlung
 von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
 Dieses Beispiel nutzt ein openHAB-Item.
+
+.. code-block:: xml
 
     <image>
         <address transform="OH:string">CovertArt</address>

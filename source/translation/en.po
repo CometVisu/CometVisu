@@ -26,39 +26,39 @@ msgstr ""
 msgid "Action recording"
 msgstr ""
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Send error to sentry.io"
 msgstr ""
 
-#. NO LONGER USED
+#: cv/Application.js
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Connection error"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Error requesting %1: %2 - %3."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#. NO LONGER USED
 msgid "Connection to backend is lost."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "CometVisu protocol error"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to the %1Login%2 request: missing protocol version."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Please try to fix the problem in the backend."
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "Backend-Response:"
 msgstr ""
 
@@ -74,11 +74,11 @@ msgstr ""
 msgid "Error saving file"
 msgstr ""
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template loading error"
 msgstr ""
 
-#: cv/parser/MetaParser.js
+#: cv/parser/pure/MetaParser.js
 msgid "Template '%1' could not be loaded from '%2'."
 msgstr ""
 
@@ -370,11 +370,11 @@ msgstr ""
 msgid "Folder \"%1\" has been created"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js
+#. NO LONGER USED
 msgid "File \"%1\" has been renamed"
 msgstr ""
 
-#: cv/ui/manager/control/FileController.js
+#. NO LONGER USED
 msgid "Folder \"%1\" has been renamed"
 msgstr ""
 
@@ -716,7 +716,7 @@ msgstr ""
 msgid "Do you really want to replace the '%1' with the uploaded files content?"
 msgstr ""
 
-#: cv/TemplateEngine.js
+#: cv/io/BackendConnections.js
 msgid "The backend did send an invalid response to a %1read%2 request: Missing \"i\" value."
 msgstr ""
 
@@ -1052,7 +1052,7 @@ msgstr ""
 msgid "Diagram communication error"
 msgstr ""
 
-#: cv/plugins/diagram/AbstractDiagram.js
+#: cv/ui/structure/tile/components/chart/Dataset.js
 msgid "URL: %1<br/><br/>Response:</br>%2"
 msgstr ""
 
@@ -1180,14 +1180,255 @@ msgstr ""
 msgid "Open manager"
 msgstr ""
 
-#: cv/Application.js
-msgid "Your server does not support PHP"
+#. NO LONGER USED
+msgid "Convert to tile"
+msgstr ""
+
+#. NO LONGER USED
+msgid "Chart communication error"
+msgstr ""
+
+#. NO LONGER USED
+msgid "CometVisu config error"
+msgstr ""
+
+#. NO LONGER USED
+msgid "The already has a backend named: \"%1\""
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "File Error!"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "Invalid XML file!"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Loader.js
+msgid "404: File not found, %1."
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Restart connection"
+msgstr ""
+
+#: cv/util/ConfigUpgrader.js
+msgid "This is no pure-structure config, root element pages not found"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "Config error"
+msgstr ""
+
+#: cv/ui/structure/tile/components/chart/Dataset.js
+msgid "Communication error"
+msgstr ""
+
+#: cv/ui/structure/tile/elements/Backend.js
+msgid "There already exists a backend named: \"%1\""
+msgstr ""
+
+#: cv/ui/manager/contextmenu/FileItem.js
+msgid "Convert to tile structure"
+msgstr ""
+
+#: cv/ui/manager/core/IconAtom.js
+msgid "Icon name has been copied to clipboard"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Connection to backend \"%1\" is lost."
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "File \"%1\" has been renamed to \"%2\""
+msgstr ""
+
+#: cv/ui/manager/control/FileController.js
+msgid "Folder \"%1\" has been renamed to \"%2\""
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Server"
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "PHP version"
 msgstr ""
 
 #: cv/ui/manager/editor/Tree.js
 msgid "Disabling preview because the preview file could not be created."
 msgstr ""
 
+#. NO LONGER USED
+msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text Editor?"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration error"
+msgstr ""
+
+#: cv/ui/manager/editor/Config.js
+msgid "Hidden configuration has a syntax error and could not be loaded, you can try to fix the problem in the text editor. Do you want to open the file in the text editor?"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "previous"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "next"
+msgstr ""
+
+#. NO LONGER USED
+msgid "h"
+msgstr ""
+
+#. NO LONGER USED
+msgid "d"
+msgstr ""
+
+#. NO LONGER USED
+msgid "w"
+msgstr ""
+
+#. NO LONGER USED
+msgid "m"
+msgstr ""
+
+#. NO LONGER USED
+msgid "y"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "today"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "yesterday"
+msgstr ""
+
+#. NO LONGER USED
+msgid "CW %s"
+msgstr ""
+
+#. CW = calendar week
+#: cv/ui/structure/tile/components/Chart.js
+msgid "CW %1"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Hour"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Day"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Week"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Month"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "Year"
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: %1"
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to missing PHP support."
+msgstr ""
+
+#: cv/Application.js
+msgid "Your server does not support PHP."
+msgstr ""
+
+#: cv/Application.js
+msgid "Disabling manager due to failed PHP request querying the environment."
+msgstr ""
+
+#: cv/Application.js
+msgid "Failed PHP request querying the environment."
+msgstr ""
+
+#: cv/ui/structure/tile/widgets/Tile.js
+msgid "Last update: unknown"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "yes"
+msgstr ""
+
+#: cv/core/notifications/actions/Confirm.js
+msgid "no"
+msgstr ""
+
+#: cv/io/listmodel/RssLog.js
+msgid "Do you really want to delete this entry?"
+msgstr ""
+
 #: cv/TemplateEngine.js
-msgid "Restart connection"
+msgid "loadParts \"Structure\" failed"
+msgstr ""
+
+#: cv/TemplateEngine.js
+msgid "CometVisu startup error"
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Bad MIME type. Expected \"application/json\", got \"%1\"."
+msgstr ""
+
+#: cv/plugins/diagram/AbstractDiagram.js
+msgid "Data is not in an array."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Please provide an openHAB API token. It can be generated in openHABs main UI."
+msgstr ""
+
+#: cv/ui/manager/Main.js
+msgid "Provide API token"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ".%L"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid ":%S"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I:%M"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%I %p"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%a %d"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b %d"
+msgstr ""
+
+#. NO LONGER USED
+msgid "%B"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%Y"
+msgstr ""
+
+#: cv/ui/structure/tile/components/Chart.js
+msgid "%b"
 msgstr ""

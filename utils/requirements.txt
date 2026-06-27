@@ -1,6 +1,6 @@
 docutils
 sh
-sphinx==7.2.6
+sphinx==8.2.3
 lxml
 sphinxcontrib-plantuml
 sphinxcontrib-spelling
@@ -12,3 +12,4 @@ semver
 requests
 Pillow
 python-dotenv
+pyenchant

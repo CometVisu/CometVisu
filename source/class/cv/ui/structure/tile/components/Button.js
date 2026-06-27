@@ -1,0 +1,463 @@
+/* Button.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+/**
+ *
+ * @author Tobias Bräutigam
+ * @since 2022
+ */
+qx.Class.define('cv.ui.structure.tile.components.Button', {
+  extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: cv.util.MStringTransforms,
+
+  /*
+  ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    type: {
+      check: ['button', 'trigger', 'push'],
+      init: 'button'
+    },
+
+    on: {
+      check: 'Boolean',
+      init: false,
+      apply: '_applyOn'
+    },
+
+    onClass: {
+      check: 'String',
+      init: 'active'
+    },
+
+    offClass: {
+      check: 'String',
+      init: 'inactive'
+    },
+
+    onValue: {
+      check: 'String',
+      init: '1'
+    },
+
+    offValue: {
+      check: 'String',
+      init: '0'
+    },
+
+    name: {
+      check: 'String',
+      init: '',
+      apply: '_applyName'
+    },
+
+    progress: {
+      check: 'Number',
+      init: -1,
+      apply: '_applyProgress',
+      transform: '_parseInt'
+    }
+  },
+
+  /*
+  ***********************************************
+    MEMBERS
+  ***********************************************
+  */
+  members: {
+    _writeAddresses: null,
+    __textLabel: null,
+    __circumference: null,
+    _triggerOnValue: null,
+    __pendingTimers: null,
+
+    _init() {
+      super._init();
+      this.__pendingTimers = [];
+      const element = this._element;
+      if (element.hasAttribute('type')) {
+        this.setType(element.getAttribute('type'));
+      }
+      if (element.hasAttribute('name')) {
+        this.setName(element.getAttribute('name'));
+      }
+      if (element.hasAttribute('progress')) {
+        this.setProgress(element.getAttribute('progress'));
+      }
+      if (element.hasAttribute('on-value')) {
+        this.setOnValue(element.getAttribute('on-value'));
+      }
+      if (element.hasAttribute('off-value')) {
+        this.setOffValue(element.getAttribute('off-value'));
+      }
+
+      const events = {};
+      if (this._writeAddresses.length > 0) {
+        let eventSource = element;
+        if (element.getAttribute('whole-tile') === 'true') {
+          // find parent tile and use it as event source
+          let parent = element.parentElement;
+          let level = 0;
+          while (level <= 2) {
+            if (parent.tagName.toLowerCase() === 'cv-tile') {
+              eventSource = parent;
+              eventSource.classList.add('clickable');
+              break;
+            }
+            parent = parent.parentElement;
+            level++;
+          }
+        }
+        this._writeAddresses.forEach(addr => {
+          let event = addr.hasAttribute('on') ? addr.getAttribute('on') : 'click';
+          switch (event) {
+            case 'click':
+              events.click = ev => this.onClicked(ev);
+              break;
+            case 'up':
+              events.pointerup = ev => this.onPointerUp(ev);
+              break;
+            case 'down':
+              events.pointerdown = ev => this.onPointerDown(ev);
+              break;
+          }
+        });
+        Object.getOwnPropertyNames(events).forEach(eventName =>
+          eventSource.addEventListener(eventName, ev => {
+            events[eventName](ev);
+          })
+        );
+      }
+      if (element.hasAttribute('doc-link') && !Object.prototype.hasOwnProperty.call(events, 'click')) {
+        element.addEventListener('click', ev => {
+          this.onClicked(ev);
+        });
+      }
+      let triggerAddresses = [];
+      if (this._readAddresses.length === 0 && (element.hasAttribute('mapping') || element.hasAttribute('styling'))) {
+        // apply the trigger state
+        triggerAddresses = this._writeAddresses.filter(addr => addr.hasAttribute('value') && !addr.hasAttribute('on'));
+      }
+
+      // detect button type
+      if (triggerAddresses.length === 1) {
+        // only one write address with a fixed value and no special event => simple trigger
+        this.setType('trigger');
+
+        if (!element.hasAttribute('on-value')) {
+          // we consider the trigger address value as on-value when no one is given
+          this._triggerOnValue = triggerAddresses[0].getAttribute('value');
+        } else {
+          this._triggerOnValue = this.getOnValue();
+        }
+
+        const value = triggerAddresses[0].getAttribute('value');
+        this.__scheduleOnce(() => {
+          // set it to the opposite of what is being sent when clicked to make the feedback simulation work
+          // e.g. value="1", trigger is off and when clicked for a short amount of time in on state,
+          // using == comparisons to make sure that e.g. 1 equals "1"
+          // noinspection EqualityComparisonWithCoercionJS
+          this.setOn(value != this._triggerOnValue);
+        }, 1000);
+      } else {
+        let hasDown = false;
+        let hasUp = false;
+        this._writeAddresses.some(addr => {
+          if (addr.hasAttribute('value') && addr.hasAttribute('on')) {
+            if (!hasDown) {
+              hasDown = addr.getAttribute('on') === 'down';
+            }
+            if (!hasUp) {
+              hasUp = addr.getAttribute('on') === 'up';
+            }
+          }
+          return hasUp && hasDown;
+        });
+        if (hasUp && hasDown) {
+          // has an address for up and one for down event with a fixed value -> pushbutton
+          this.setType('push');
+        }
+      }
+      if (this.getType() !== 'trigger') {
+        // delay this because we need the mappings to be ready
+        this.__scheduleOnce(() => this._applyOn(), 1000);
+      }
+    },
+
+    _initProgress() {
+      const element = this._element;
+      this.__circumference = 100 * Math.PI;
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('type', 'circle');
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+      circle.classList.add('bar');
+      circle.setAttribute('r', '49');
+      circle.setAttribute('cx', '50');
+      circle.setAttribute('cy', '50');
+      circle.setAttribute('stroke-width', '2');
+      circle.setAttribute('stroke-dasharray', this.__circumference + ' ' + this.__circumference);
+
+      circle.setAttribute('stroke-dashoffset', '' + this.__circumference);
+      svg.appendChild(circle);
+      element.appendChild(svg);
+      // make sure that we do not override the progress bar by state appearance
+      element.classList.add('progress');
+    },
+
+    _disconnected() {
+      this.__clearPendingTimers();
+      super._disconnected();
+    },
+
+    __scheduleOnce(callback, delay) {
+      const timer = qx.event.Timer.once(() => {
+        this.__pendingTimers = this.__pendingTimers.filter(entry => entry !== timer);
+        if (!this.__isActive()) {
+          return;
+        }
+        callback();
+      }, null, delay);
+      this.__pendingTimers.push(timer);
+      return timer;
+    },
+
+    __clearPendingTimers() {
+      if (!this.__pendingTimers) {
+        return;
+      }
+      this.__pendingTimers.forEach(timer => timer.stop());
+      this.__pendingTimers = [];
+    },
+
+    __isActive() {
+      return !this.isDisposed() && this.isConnected();
+    },
+
+    _applyOn() {
+      if (this.isConnected()) {
+        let value = this.isOn() ? this.getOnValue() : this.getOffValue();
+        this._element.setAttribute('value', value || '');
+        let mappedValue = this._mapValue(value);
+        this._updateValue(mappedValue, value);
+
+        let styleClass = this.isOn() ? this.getOnClass() : this.getOffClass();
+        if (this._element.hasAttribute('styling')) {
+          styleClass = this._getStyleClass(value);
+        }
+        this.setStyleClass(styleClass);
+      }
+    },
+
+    _applyProgress(value) {
+      let valueElement = this._element.querySelector(':scope > svg > circle.bar');
+
+      if (!valueElement) {
+        this._initProgress();
+        valueElement = this._element.querySelector(':scope > svg > circle.bar');
+      }
+      if (valueElement) {
+        if (this._element.hasAttribute('progress-mapping')) {
+          value = cv.Application.structureController.mapValue(
+            this._element.getAttribute('progress-mapping'),
+            value,
+            this._store
+          );
+        }
+        valueElement.setAttribute(
+          'stroke-dashoffset',
+          '' + (this.__circumference - (value / 100) * this.__circumference)
+        );
+      }
+    },
+
+    _applyName(value) {
+      if (!this.__textLabel) {
+        this.__textLabel = document.createElement('label');
+        this.__textLabel.classList.add('button-label');
+        this._element.appendChild(this.__textLabel);
+      }
+      this.__textLabel.textContent = value;
+    },
+
+    _updateValue(mappedValue, value) {
+      const target = this._element.querySelector('.value');
+      if (target && target.tagName.toLowerCase() === 'cv-icon') {
+        if (target._instance) {
+          target._instance.setId(mappedValue);
+        } else {
+          target.textContent = mappedValue;
+        }
+      } else {
+        const elem = this._element.querySelector('span.value');
+        if (elem) {
+          elem.innerHTML = mappedValue;
+        }
+      }
+    },
+
+    /**
+     * Handles the incoming data from the backend for this widget
+     *
+     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component
+     */
+    onStateUpdate(ev) {
+      // using == comparisons to make sure that e.g. 1 equals "1"
+      // noinspection EqualityComparisonWithCoercionJS
+      let value = ev.detail.state == this.getOnValue();
+      let target = ev.detail.target || 'default';
+      if (ev.detail.source instanceof cv.ui.structure.tile.elements.Address) {
+        const addressElement = ev.detail.source.getElement();
+        if (addressElement.hasAttribute('value')) {
+          // noinspection EqualityComparisonWithCoercionJS
+          value = ev.detail.state == addressElement.getAttribute('value');
+        }
+      }
+      if (target === 'default') {
+        if (this.isOn() === value) {
+          this._applyOn();
+        } else {
+          this.setOn(value);
+        }
+        ev.stopPropagation();
+        return true;
+      } else if (target === 'progress') {
+        this.setProgress(ev.detail.state);
+        ev.stopPropagation();
+        return true;
+      } 
+        return super.onStateUpdate(ev);
+    },
+
+    onClicked(event) {
+      this.createRipple(event);
+      if (this._element.hasAttribute('doc-link')) {
+        let relPath = this._element.getAttribute('doc-link');
+        // add locale and version
+        const baseVersion = cv.Version.VERSION.split('.').slice(0, 2).join('.');
+        let language = qx.locale.Manager.getInstance().getLanguage();
+        if (language !== 'de') {
+          // documentation only exists in 'de' and 'en'
+          language = 'en';
+        }
+        window.open(`https://www.cometvisu.org/CometVisu/${language}/${baseVersion}/manual/${relPath}`);
+        event.stopPropagation();
+      } else {
+        if (!this._writeAddresses) {
+          this._writeAddresses = Array.prototype.filter.call(
+            this._element.querySelectorAll('addresses > cv-address'),
+            address => !address.hasAttribute('mode') || address.getAttribute('mode') !== 'read'
+          );
+        }
+        const ev = new CustomEvent('sendState', {
+          detail: {
+            value: this.isOn() ? this.getOffValue() : this.getOnValue(),
+            source: this
+          }
+        });
+
+        const wa = this._writeAddresses
+          .filter(addr => !addr.hasAttribute('on') || addr.getAttribute('on') === 'click');
+
+        if (this.getType() === 'trigger') {
+          // simulate feedback
+          // using == comparisons to make sure that e.g. 1 equals "1"
+          // noinspection EqualityComparisonWithCoercionJS
+          const simulatedValue = wa[0].getAttribute('value') == this._triggerOnValue;
+          this.setOn(simulatedValue);
+          this.__scheduleOnce(() => {
+            this.setOn(!simulatedValue);
+          }, 500);
+        }
+        wa.forEach(address => address.dispatchEvent(ev));
+        event.stopPropagation();
+      }
+    },
+
+    onPointerDown() {
+      this._writeAddresses
+        .filter(addr => addr.getAttribute('on') === 'down' && addr.hasAttribute('value'))
+        .forEach(address => {
+          address.dispatchEvent(
+            new CustomEvent('sendState', {
+              detail: {
+                value: address.getAttribute('value'),
+                source: this
+              }
+            })
+          );
+        });
+    },
+
+    onPointerUp() {
+      this._writeAddresses
+        .filter(addr => addr.getAttribute('on') === 'up' && addr.hasAttribute('value'))
+        .forEach(address => {
+          address.dispatchEvent(
+            new CustomEvent('sendState', {
+              detail: {
+                value: address.getAttribute('value'),
+                source: this
+              }
+            })
+          );
+        });
+    },
+
+    createRipple(event) {
+      const button = event.currentTarget;
+      let container = button.querySelector(':scope .ripple-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.classList.add('ripple-container');
+        button.appendChild(container);
+      }
+      const circle = document.createElement('span');
+      const diameter = Math.max(button.clientWidth, button.clientHeight);
+      const radius = diameter / 2;
+      circle.style.width = circle.style.height = `${diameter}px`;
+      let x = event.clientX - (button.offsetLeft + radius);
+      let y = event.clientY - (button.offsetTop + radius);
+      if (button === this._element) {
+        x -= button.offsetParent.offsetLeft;
+        y -= button.offsetParent.offsetTop;
+      }
+      circle.style.left = `${x}px`;
+      circle.style.top = `${y}px`;
+      circle.classList.add('ripple');
+      // remove old ones
+      container.querySelectorAll('.ripple').forEach(ripple => ripple.remove());
+      container.appendChild(circle);
+    }
+  },
+
+  defer(QxClass) {
+    customElements.define(
+      cv.ui.structure.tile.Controller.PREFIX + 'button',
+      class extends QxConnector {
+        constructor() {
+          super(QxClass);
+        }
+      }
+    );
+  }
+});

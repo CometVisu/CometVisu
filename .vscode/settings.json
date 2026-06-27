@@ -1,6 +1,20 @@
 {
-    "restructuredtext.confPath" : "${workspaceRoot}/doc/manual/de",
-    "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/out/preview/de",
-    "restructuredtext.updateOnTextChanged" : "false"
-    // "restructuredtext.sphinxBuildPath": "${workspaceRoot}/sphinx-build"
+    "eslint.useFlatConfig": true,
+    "eslint.validate": [
+        "javascript"
+    ],
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ],
+    "eslint.run": "onType",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "esbonio.sphinx.pythonCommand": {
+        "path": "/usr/bin/python",
+        "args": []
+    },
+    "esbonio.preview.showLineMarkers": false
 }

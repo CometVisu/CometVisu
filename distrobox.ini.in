@@ -1,0 +1,19 @@
+[cv]
+image=docker.io/cometvisu/cometvisuabstractbase:testing
+pull=true
+init=true
+root=false
+start_now=true
+additional_flags=""
+volume="${PWD}/compiled:/var/www/html ${PWD}/.serve/logs:/var/log/apache2 ${PWD}/.serve/run:/var/run/apache2 ${PWD}:/home/cv:rw"
+
+# Basic utilities + server stuff
+additional_packages="git vim vim-python-jedi curl gpg systemd libpam-systemd"
+# Python
+additional_packages="libxml2-dev libxslt-dev plantuml python3 python3-pip python-is-python3 python3-venv python3-enchant hunspell-de-de-frami hunspell-en-gb hunspell-en-us"
+# For selenium (karma) support
+additional_packages="libnspr4 libnss3 libatk-bridge2.0-0 libxkbcommon0 libasound2 imagemagick"
+# Node
+additional_packages="nodejs npm"
+
+init_hooks=/home/cv/utils/distrobox/init.sh;

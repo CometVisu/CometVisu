@@ -79,10 +79,10 @@ Hier ein komplexes Beispiel für ein Navigationsmenü in einer Navbar:
     <settings selector="#navbarTop .navbar">
         <screenshot name="pagejump_komplex">
             <caption>Navbar mit PageJump-Widgets</caption>
-            <data address="1/0/0" type="float">20.5</data>
-            <data address="1/0/1" type="float">21.5</data>
-            <data address="1/0/2" type="float">22</data>
-            <data address="1/0/3" type="float">18</data>
+            <data address="1/0/0" transform="DPT:9">20.5</data>
+            <data address="1/0/1" transform="DPT:9">21.5</data>
+            <data address="1/0/2" transform="DPT:9">22</data>
+            <data address="1/0/3" transform="DPT:9">18</data>
         </screenshot>
     </settings>
     <navbar position="top" dynamic="true">

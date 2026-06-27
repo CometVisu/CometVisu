@@ -5,7 +5,7 @@ The RSSLog plugin
 
 .. api-doc:: cv.plugins.RssLog
 
-.. spelling::
+.. spelling:word-list::
 
     Ausgang
     Eingang

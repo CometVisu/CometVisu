@@ -20,9 +20,11 @@ settings/keys/deploy_key
 /compiled/
 /client/compiled/
 /.env/
+/venv/
 /test/
 /source/script/
 /source/class/cv/Version.js
+/source/resource/monaco/
 /source/replay-log.js
 /client/build/
 /.chrome
@@ -34,3 +36,12 @@ settings/keys/deploy_key
 **/.vscode/**
 qx_packages/
 source/REV
+cv-compile.json
+.browser-env
+distrobox.ini
+.env
+playwright-report/
+test-results/
+.eslintcache
+*Todos.md
+*.log

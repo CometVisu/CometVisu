@@ -1,10 +1,10 @@
-const { Octokit } = require('@octokit/action');
-const simpleGit = require('simple-git');
-const camelCase = require('camelcase');
-const AdmZip = require('adm-zip');
-const https = require('follow-redirects').https;
-const fs = require('fs');
-const cvInfo = require('../../../package.json');
+import { Octokit } from '@octokit/action';
+import simpleGit from 'simple-git';
+import camelCase from 'camelcase';
+import AdmZip from 'adm-zip';
+import https from 'follow-redirects';
+import * as fs from 'fs';
+import cvInfo from '../../../package.json' with { type: 'json' };
 
 //
 // For local testing run this with the following environment variables set:
@@ -21,47 +21,50 @@ let core = {
       case 'options':
         return myArgs.slice(1);
     }
+
+    return undefined;
   },
 
   setOutput(name, data) {
-    console.log(name + ":");
+    console.log(name + ':');
     console.log(data);
   },
 
   setFailed(message) {
-    console.error("###########################################");
-    console.error("Error: ");
+    console.error('###########################################');
+    console.error('Error: ');
     console.error(message);
-    console.error("###########################################");
+    console.error('###########################################');
   }
-}
+};
 try {
   if (process.env.GITHUB_EVENT_NAME) {
-    core = require('@actions/core');
+    core = await import('@actions/core');
   }
 } catch (e) {
-  console.log("! - not in action context")
+  console.log('! - not in action context', e);
 }
 
 class GithubClient {
   constructor() {
     this.client = new Octokit();
-    const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+    const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
     this.owner = owner;
     this.repo = repo;
+    this.version = 'v' + cvInfo.version;
     this.versionRegex = new RegExp(`^${this.getVersion()}([0-9]+)$`, 'g');
-    this.maxTextLength = 70
+    this.maxTextLength = 70;
 
     this.__cache = {};
   }
 
   getVersion() {
-    return 'v' + cvInfo.version;
+    return this.version;
   }
 
   async getLatestNightlyBuild(key) {
-    if (!this.__cache.hasOwnProperty('latest-nightly-release')) {
-      console.log(">>> Search latest nightly build for version: " + cvInfo.version);
+    if (!Object.prototype.hasOwnProperty.call(this.__cache, 'latest-nightly-release')) {
+      console.log('>>> Search latest nightly build for version: ' + cvInfo.version);
       const {data} = await this.client.request('GET /repos/{owner}/{repo}/releases', {
         owner: this.owner,
         repo: this.repo
@@ -75,20 +78,20 @@ class GithubClient {
         });
 
       if (releases.length === 0) {
-        throw new Error("No nightly build found for version: " + cvInfo.version)
+        throw new Error('No nightly build found for version: ' + cvInfo.version);
       }
       this.__cache['latest-nightly-release'] = releases[0];
     }
     const release = this.__cache['latest-nightly-release'];
     if (key) {
-      if (release.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(release, key)) {
         return release[key];
-      } else {
-        core.setFailed(key + ' not found in result');
       }
-    } else {
-      return release;
+      core.setFailed(key + ' not found in result');
+      return null;
     }
+
+    return release;
   }
 
   async getLatestTag(baseVersion) {
@@ -99,11 +102,13 @@ class GithubClient {
     const res = await git.raw('for-each-ref', '--format=%(refname)', '--sort=-taggerdate', 'refs/tags');
     const regex = new RegExp(`^refs/tags/${baseVersion}(\\d+)$`);
     let tag = null;
-    res.split('\n').some( line => {
+    res.split('\n').some(line => {
       if (regex.test(line)) {
         tag = line;
         return true;
       }
+
+      return false;
     });
     return tag;
   }
@@ -126,10 +131,10 @@ class GithubClient {
       splitter: '\n',
       multiLine: true,
       symmetric: false
-    }
+    };
     //console.debug(args);
     const raw = await git.log(args);
-    console.log(raw.total, "changes found from", startRef, "to", endRef);
+    console.log(raw.total, 'changes found from', startRef, 'to', endRef);
     return raw.total > 0;
   }
 
@@ -144,17 +149,19 @@ class GithubClient {
       const zipAsset = zips[0];
       const dest = '/tmp/' + zipAsset.name;
       if (!fs.existsSync(dest)) {
-        await this.download(dest, zipAsset.browser_download_url);
+        await GithubClient.download(dest, zipAsset.browser_download_url);
       }
       if (fs.existsSync(dest)) {
         const file = new AdmZip(dest);
         const zipEntries = file.getEntries();
         let revision = null;
-        zipEntries.some((zipEntry)  => {
+        zipEntries.some(zipEntry  => {
           if (zipEntry.entryName === 'cometvisu/release/REV') {
             revision = zipEntry.getData().toString('utf8');
             return true;
           }
+
+          return false;
         });
         return revision;
       }
@@ -169,7 +176,7 @@ class GithubClient {
    * @returns {Promise<null>}
    */
   async cleanupAssets(limit) {
-    let release
+    let release;
     try {
       release = await this.getLatestNightlyBuild();
     } catch (e) {
@@ -184,15 +191,15 @@ class GithubClient {
       .filter(asset => /^CometVisu-.+\.tar\.gz$/.test(asset.name))
       .sort((a, b) => Date.parse(b.updated_at) - Date.parse(a.updated_at));
     limit = parseInt(limit);
-    const releaseVerRegex = new RegExp("^CometVisu-"+release.tag_name+"(\\.tar\\.gz|\\.zip)$")
-    const containsLatest = release.assets.some(asset => releaseVerRegex.test(asset.name))
+    const releaseVerRegex = new RegExp('^CometVisu-'+release.tag_name+'(\\.tar\\.gz|\\.zip)$');
+    const containsLatest = release.assets.some(asset => releaseVerRegex.test(asset.name));
     if (!containsLatest) {
       // current release is no been attached yet, we need to decrease the limit
-      limit--
+      limit--;
     }
     if (zipBuildAssets.length > limit) {
       for (let i = limit; i < zipBuildAssets.length; i++) {
-        console.log("Deleting", zipBuildAssets[i].name, "from", release.name)
+        console.log('Deleting', zipBuildAssets[i].name, 'from', release.name);
         await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
           owner: this.owner,
           repo: this.repo,
@@ -202,7 +209,7 @@ class GithubClient {
     }
     if (tarBuildAssets.length > limit) {
       for (let i = limit; i < tarBuildAssets.length; i++) {
-        console.log("Deleting", tarBuildAssets[i].name, "from", release.name)
+        console.log('Deleting', tarBuildAssets[i].name, 'from', release.name);
         await this.client.request('DELETE /repos/{owner}/{repo}/releases/assets/{assetId}', {
           owner: this.owner,
           repo: this.repo,
@@ -218,7 +225,7 @@ class GithubClient {
    * @param url {string} URL to download the file from
    * @returns {Promise<null>}
    */
-  async download(dest, url) {
+  static async download(dest, url) {
     const file = fs.createWriteStream(dest);
     return new Promise((resolve, reject) => {
       https.get(url, function(response) {
@@ -245,8 +252,8 @@ class GithubClient {
       repo: this.repo,
       pull_number: pullId
     });
-    let text = pr.data.title ? pr.data.title.trim() : "";
-    const body = pr.data.body ? pr.data.body.trim().split("\n").filter(line => !/^s*Signed-off-by:.+$/.test(line)) : []
+    let text = pr.data.title ? pr.data.title.trim() : '';
+    const body = pr.data.body ? pr.data.body.trim().split('\n').filter(line => !/^s*Signed-off-by:.+$/.test(line)) : [];
     if (text.endsWith('…') && body.length > 0 && body[0].startsWith('…')) {
       text = text.substr(0, text.length-1) + body.pop().substr(1).trim();
     }
@@ -262,7 +269,7 @@ class GithubClient {
     const git = simpleGit();
     const endRef = await git.revparse(['--abbrev-ref', 'HEAD']);
     const out = await git.log(['--merges', `${ref}..${endRef}`]);
-    let text = ''
+    let text = '';
     for (const entry of out.all) {
       const match = /^Merge pull request #([\d]+) from.+$/.exec(entry.message);
       if (match) {
@@ -270,7 +277,7 @@ class GithubClient {
         text += info;
       }
     }
-    return text
+    return text;
   }
 
   async increaseBuildTag(start, type, dryRun) {
@@ -280,7 +287,7 @@ class GithubClient {
       start = false;
     }
     if (!type) {
-      type = "nightly";
+      type = 'nightly';
     }
     if (typeof dryRun === 'string') {
       dryRun = dryRun === 'true';
@@ -296,31 +303,31 @@ class GithubClient {
     if (/.\d+$/.test(baseVersion)) {
       //end with number -> avoid v0.12.01 tags, we want v0.12.0-1
       if (type ==='nightly') {
-        baseVersion += "-";
+        baseVersion += '-';
       }
     }
     let useLastRelease = false;
-    let currentRelease
+    let currentRelease;
     let noMergeInfo = false;
     let force = false;
 
     switch (type) {
-      case "nightly":
+      case 'nightly':
         latestTag = await this.getLatestTag(baseVersion);
         break;
-      case "rc":
-        baseVersion += "-RC";
+      case 'rc':
+        baseVersion += '-RC';
         latestTag = await this.getLatestTag(baseVersion);
         currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
-          repo: this.repo,
+          repo: this.repo
         });
         latestRelease = `refs/tags/${currentRelease.data.tag_name}`;
         break;
-      case "release":
+      case 'release':
         currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
-          repo: this.repo,
+          repo: this.repo
         });
         latestTag = `refs/tags/${currentRelease.data.tag_name}`;
         useLastRelease = true;
@@ -331,16 +338,16 @@ class GithubClient {
     if (!latestTag) {
       if (!start) {
         core.setFailed(`Need a manual starting tag for ${baseVersion} - aborting`);
-        return;
+        return '';
       } else if (type === 'nightly') {
         noMergeInfo = true;
         force = true;
       } else if (!latestRelease) {
         const currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
-          repo: this.repo,
+          repo: this.repo
         });
-        console.log(currentRelease)
+        console.log(currentRelease);
         latestTag = `refs/tags/${currentRelease.tag_name}`;
         useLastRelease = true;
       }
@@ -354,8 +361,8 @@ class GithubClient {
     }
     const currentHash = await git.revparse(['HEAD']);
 
-    let buildNo = 0
-    let newRev = ''
+    let buildNo = 0;
+    let newRev = '';
     if (type === 'release') {
       const parts = baseVersion.split('.');
       buildNo = parseInt(parts.pop());
@@ -368,14 +375,14 @@ class GithubClient {
         tagExists = await git.raw(['tag', '-l', newRev]);
       }
     } else if (!latestTag && type === 'nightly') {
-      newRev = baseVersion + "0";
+      newRev = baseVersion + '0';
     } else {
-      const re = new RegExp(`^${baseVersion}(\\d+)$`)
+      const re = new RegExp(`^${baseVersion}(\\d+)$`);
       const m = type === 'rc' && !latestTag ? re.exec(latestRelease.split('/')[2]) : re.exec(latestTag.split('/')[2]);
       if (!m) {
         if (!start) {
           core.setFailed(`Unable to parse previous tag '${type === 'rc' && !latestTag ? latestRelease.split('/')[2] : latestTag.split('/')[2]}'`);
-          return;
+          return '';
         }
       } else {
         buildNo = parseInt(m[1]);
@@ -386,13 +393,13 @@ class GithubClient {
     if (!force) {
       if (currentHash === lastTagHash) {
         console.log('No new commits - skipping');
-        return;
-      } else {
-        const hasChanges = !latestTag || await this.checkForChanges(latestTag);
-        if (!hasChanges) {
-          console.log('No changes in source folder - skipping');
-          return;
-        }
+        return '';
+      }
+
+      const hasChanges = !latestTag || await this.checkForChanges(latestTag);
+      if (!hasChanges) {
+        console.log('No changes in source folder - skipping');
+        return '';
       }
 
       console.log('New commits detected - tagging new dev release:', newRev);
@@ -407,8 +414,8 @@ Branch       : ${branch}
 Commit       : ${currentHash}
 `;
 
-    let tagDescription = ""
-    let info = ''
+    let tagDescription = '';
+    let info = '';
     if (!noMergeInfo) {
       if (type === 'rc') {
         if (latestTag) {
@@ -426,22 +433,22 @@ Commit       : ${currentHash}
       }
     }
     if (info) {
-      tagDescription += 'This release comes with these annotated changes:\n\n'
-      tagDescription += info
+      tagDescription += 'This release comes with these annotated changes:\n\n';
+      tagDescription += info;
     } else {
-      tagDescription += 'This release contains minor fixes or improvements.\n'
+      tagDescription += 'This release contains minor fixes or improvements.\n';
     }
-    git.addConfig("user.name", process.env.COMMIT_AUTHOR_NAME);
-    git.addConfig("user.email", process.env.COMMIT_AUTHOR_EMAIL);
+    git.addConfig('user.name', process.env.COMMIT_AUTHOR_NAME);
+    git.addConfig('user.email', process.env.COMMIT_AUTHOR_EMAIL);
 
     if (!dryRun) {
       await git.addAnnotatedTag(newRev, tagDescription + buildInfo);
     }
 
     if (!dryRun) {
-      console.log("Pushing tags...");
-      await git.pushTags('origin')
-      console.log("Creating release...");
+      console.log('Pushing tags...');
+      await git.pushTags('origin');
+      console.log('Creating release...');
     }
     let releaseName = newRev;
     let prerelease = false;
@@ -454,7 +461,7 @@ The CometVisu project is happy to publish the version ${newRev} that can be down
 
 ${changes}
 `;
-    if (baseVersion.endsWith("dev") || type === 'nightly') {
+    if (baseVersion.endsWith('dev') || type === 'nightly') {
       releaseName = `Nightly build ${newRev}`;
       prerelease = true;
       changes = tagDescription;
@@ -467,11 +474,11 @@ The build can be downloaded at:
 
 ${changes}
 `;
-    } else if (baseVersion.endsWith("RC") || type === 'rc') {
-      releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - 3)} - release candidate ${newRev.substr(baseVersion.length)}`
+    } else if (baseVersion.endsWith('RC') || type === 'rc') {
+      releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - 3)} - release candidate ${newRev.substr(baseVersion.length)}`;
       prerelease = true;
     } else if (type === 'release') {
-      releaseName = `CometVisu release ${newRev}`
+      releaseName = `CometVisu release ${newRev}`;
       prerelease = false;
     }
 
@@ -480,8 +487,8 @@ ${changes}
       try {
         latestNightly = await this.getLatestNightlyBuild();
         if (!latestNightly) {
-          core.setFailed("No nightly release found");
-          return
+          core.setFailed('No nightly release found');
+          return '';
         }
       } catch (e) {
         console.log(e.message);
@@ -507,49 +514,50 @@ ${changes}
             prerelease: prerelease
           });
         }
-        return "refs/tags/"+ newRev;
-      } else {
-        if (latestNightly) {
-          console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
-        } else {
-          console.log(`would have created release '${releaseName}' to '${newRev}'\n\n${releaseMessage}`);
-        }
+        return 'refs/tags/' + newRev;
       }
-    } else {
-      if (!dryRun) {
-        await this.client.repos.createRelease({
-          owner: this.owner,
-          repo: this.repo,
-          tag_name: newRev,
-          name: releaseName,
-          body: releaseMessage,
-          draft: draft,
-          prerelease: prerelease
-        });
-        return "refs/tags/"+ newRev;
-      } else {
-        console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
+      if (latestNightly) {
+        console.log(`would have updated release '${releaseName}' (${latestNightly.id}) from '${latestNightly.tag_name}' to '${newRev}'\n\n${releaseMessage}`);
+        return '';
       }
+
+      console.log(`would have created release '${releaseName}' to '${newRev}'\n\n${releaseMessage}`);
+      return '';
     }
-    return "";
+
+    if (!dryRun) {
+      await this.client.repos.createRelease({
+        owner: this.owner,
+        repo: this.repo,
+        tag_name: newRev,
+        name: releaseName,
+        body: releaseMessage,
+        draft: draft,
+        prerelease: prerelease
+      });
+      return 'refs/tags/' + newRev;
+    }
+
+    console.log(`would have created new git release '${releaseName}' from tag '${newRev}', prerelease=${prerelease}\n\n${releaseMessage}`);
+    return '';
   }
 
   async triggerBuild(ref) {
     if (ref) {
-      console.log("running build_release for ref", ref);
+      console.log('running build_release for ref', ref);
 
       // build nightly and deploy it to github
       await this.client.actions.createWorkflowDispatch({
         owner: this.owner,
         repo: this.repo,
-        workflow_id: "build_release.yml",
+        workflow_id: 'build_release.yml',
         ref: ref
       });
       // delete old nightlies
       await this.client.actions.createWorkflowDispatch({
         owner: this.owner,
         repo: this.repo,
-        workflow_id: "cleanup_nightly.yml",
+        workflow_id: 'cleanup_nightly.yml',
         ref: ref
       });
 
@@ -557,7 +565,7 @@ ${changes}
       await this.client.actions.createWorkflowDispatch({
         owner: this.owner,
         repo: this.repo,
-        workflow_id: "main.yml",
+        workflow_id: 'main.yml',
         ref: ref
       });
     }
@@ -572,16 +580,15 @@ ${changes}
     const method = camelCase(action);
     if (typeof gh[method] === 'function') {
       if (typeof options === 'string') {
-        options = options.split(" ");
+        options = options.split(' ');
       } else if (!Array.isArray(options)) {
         options = [options];
       }
       const result = await gh[method](...options);
-      core.setOutput("result", result);
+      core.setOutput('result', result);
     } else {
       core.setFailed('unknown action: ' + action);
     }
-
   } catch (error) {
     core.setFailed(error.message);
   }

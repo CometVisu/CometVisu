@@ -1,6 +1,6 @@
 /* Refresh-spec.js 
  * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -33,13 +33,14 @@ describe('testing a refresh widget', function() {
   });
 
   it('should test the refresh actor', function() {
-    var res = this.createTestElement('refresh');
-    cv.TemplateEngine.getInstance().visu = jasmine.createSpyObj('visu', ['restart']);
+    const res = this.createTestElement('refresh');
+    const client = jasmine.createSpyObj('client', ['restart']);
+    spyOn(cv.io.BackendConnections, 'getClients').and.callFake(() => ({main: client}));
 
     spyOn(res, 'defaultUpdate');
     this.initWidget(res);
     qx.event.Registration.fireEvent(res.getActor(), 'tap');
 
-    expect(cv.TemplateEngine.getInstance().visu.restart).toHaveBeenCalled();
+    expect(client.restart).toHaveBeenCalled();
   });
 });

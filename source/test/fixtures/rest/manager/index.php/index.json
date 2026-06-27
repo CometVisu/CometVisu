@@ -1,0 +1,108 @@
+{
+  "fs?path=media": {
+    "data": [],
+    "mimeType": "application/json"
+  },
+  "fs?path=demo": {
+    "data": [],
+    "mimeType": "application/json"
+  },
+  "fs?path=backup": {
+    "data": [],
+    "mimeType": "application/json"
+  },
+  "fs?path=.": {
+    "data": [
+      {"name":"hidden.php","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"visu_config_mockup.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"media","type":"dir","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"demo","type":"dir","mounted":true,"parentFolder":"","hasChildren":true,"readable":true,"writeable":false},
+      {"name":".trash","type":"dir","mounted":false,"parentFolder":"","hasChildren":false,"readable":true,"writeable":false,"trash":true}
+    ],
+    "mimeType": "application/json"
+  },
+  "fs": {
+    "data": [
+      {"name":"hidden.php","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"visu_config.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"visu_config_mockup.xml","type":"file","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"media","type":"dir","parentFolder":"","hasChildren":false,"readable":true,"writeable":true,"trash":false,"inTrash":false,"mounted":false},
+      {"name":"demo","type":"dir","mounted":true,"parentFolder":"","hasChildren":true,"readable":true,"writeable":false},
+      {"name":".trash","type":"dir","mounted":false,"parentFolder":"","hasChildren":false,"readable":true,"writeable":false,"trash":true}
+    ],
+    "mimeType": "application/json"
+  },
+  "fs/check": {
+    "data": [
+      {
+        "name": "hidden.php",
+        "type": "file",
+        "parentFolder": "",
+        "hasChildren": false,
+        "readable": true,
+        "writeable": true,
+        "trash": false,
+        "inTrash": false,
+        "mounted": false
+      },
+      {
+        "name": "visu_config.xml",
+        "type": "file",
+        "parentFolder": "",
+        "hasChildren": false,
+        "readable": true,
+        "writeable": true,
+        "trash": false,
+        "inTrash": false,
+        "mounted": false
+      },
+      {
+        "name": "visu_config_mockup.xml",
+        "type": "file",
+        "parentFolder": "",
+        "hasChildren": false,
+        "readable": true,
+        "writeable": true,
+        "trash": false,
+        "inTrash": false,
+        "mounted": false
+      },
+      {
+        "name": "media",
+        "type": "dir",
+        "parentFolder": "",
+        "hasChildren": false,
+        "readable": true,
+        "writeable": true,
+        "trash": false,
+        "inTrash": false,
+        "mounted": false
+      },
+      {
+        "name": "demo",
+        "type": "dir",
+        "mounted": true,
+        "parentFolder": "",
+        "hasChildren": true,
+        "readable": true,
+        "writeable": false
+      },
+      {
+        "name": ".trash",
+        "type": "dir",
+        "mounted": false,
+        "parentFolder": "",
+        "hasChildren": false,
+        "readable": true,
+        "writeable": false,
+        "trash": true
+      }
+    ],
+    "mimeType": "application/json"
+  },
+  "data/designs": {
+    "data": ["pure", "metal", "alaska"],
+    "mimeType": "application/json"
+  }
+}

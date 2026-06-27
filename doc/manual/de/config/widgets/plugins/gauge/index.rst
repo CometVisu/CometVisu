@@ -119,7 +119,7 @@ Weiteres einfacheres Beispiel:
     <settings>
         <screenshot name="gauge_simple">
             <caption>Gauge-Plugin, einfach</caption>
-            <data address="12/7/90" type="float">21.5</data>
+            <data address="12/7/90" transform="DPT:9">21.5</data>
         </screenshot>
     </settings>
     <meta>

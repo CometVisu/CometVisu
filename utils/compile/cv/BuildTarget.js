@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
+const glob = require('fast-glob');
 
 qx.Class.define('cv.compile.cv.BuildTarget', {
   extend: qx.tool.compiler.targets.BuildTarget,

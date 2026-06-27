@@ -11,7 +11,7 @@ few simple steps:
 1. Install the backend, i.e. the dynamic interface to the web server that is
    connecting to the KNX bus.
    Detailed instructions are given on the web page at:
-       http://cometvisu.de/wiki/CometVisu/Installation/Backend/en
+       https://www.cometvisu.org/CometVisu/en/latest/manual/install/index.html
   
    When you use the WireGate, it should be already installed for you.
    

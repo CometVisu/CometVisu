@@ -214,7 +214,7 @@ def setup(app):
 
     from sphinx.util.texescape import tex_replacements
     tex_replacements += [(u'♮', u'$\\natural$'),
-                         (u'ē', u'\=e'),
-                         (u'♩', u'\quarternote'),
+                         (u'ē', u'\\=e'),
+                         (u'♩', u'\\quarternote'),
                          (u'↑', u'$\\uparrow$'),
                          ]

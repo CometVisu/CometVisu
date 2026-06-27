@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../visu_config_tile.xsd"
+        version="1">
+    <cv-meta>
+    </cv-meta>
+    <main>
+        <cv-page id="main" name="Start">
+            <h1>Welcome to the CometVisu!</h1>
+        </cv-page>
+    </main>
+</config>

@@ -353,7 +353,7 @@ preview windows with a short delay.
 
 .. figure:: doc/_static/visual_studio_live_preview.png
 
-   Ansicht des Editors mit Live-Preview
+   Editor with live-preview
 
 .. toctree::
     :hidden:

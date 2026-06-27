@@ -1,7 +1,7 @@
-/* Tree.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Tree.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * Tree
  *
@@ -26,7 +25,7 @@
  */
 
 /**
- * Helper methods for the widget tree
+ * Helper methods for the widget/dom tree
  */
 qx.Class.define('cv.util.Tree', {
   type: 'static',
@@ -37,14 +36,26 @@ qx.Class.define('cv.util.Tree', {
   ******************************************************
   */
   statics: {
+    /**
+     * Checks if child is a child of parent
+     * @param child {Node}
+     * @param parent {Node}
+     * @return {boolean}
+     */
+    isChildOf(child, parent) {
+      while (child && child !== parent) {
+        child = child.parentNode;
+      }
+      return !!child;
+    },
 
     /*
      * *********************************************************
      * Widget tree helper functions
      * ********************************************************
      */
-    getChildWidgets: function(widget, type) {
-      return widget.getChildren().filter(function(child) {
+    getChildWidgets(widget, type) {
+      return widget.getChildren().filter(function (child) {
         return !type || child.get$$type() === type;
       });
     },
@@ -52,11 +63,11 @@ qx.Class.define('cv.util.Tree', {
     /**
      * Get the parent widget with optional type filter
      *
-     * @param widget {cv.ui.structure.AbstractWidget} start traversing up the with this widget
+     * @param widget {cv.ui.structure.pure.AbstractWidget} start traversing up the with this widget
      * @param type {String?} only return parent of this type
-     * @return {cv.ui.structure.AbstractWidget|null}
+     * @return {cv.ui.structure.pure.AbstractWidget|null}
      */
-    getParentWidget: function(widget, type) {
+    getParentWidget(widget, type) {
       let parent = widget.getParentWidget();
       while (parent) {
         if (!type || parent.get$$type() === type) {
@@ -72,7 +83,7 @@ qx.Class.define('cv.util.Tree', {
      * Widget data tree helper functions
      * ********************************************************
      */
-    getParentPageData: function(path) {
+    getParentPageData(path) {
       let data = {};
       const isPage = path.substr(-1, 1) === '_'; // path ends with _
       if (!isPage) {
@@ -100,7 +111,7 @@ qx.Class.define('cv.util.Tree', {
      * @param path {String}
      * @return {var}
      */
-    getParentData: function(path) {
+    getParentData(path) {
       let data = {};
 
       /**
@@ -134,12 +145,12 @@ qx.Class.define('cv.util.Tree', {
     },
 
     /*
-    * *********************************************************
-    * DOM-Element tree helper functions
-    * ********************************************************
-    */
-    getChildElements: function(element, selector) {
-      return Array.from(element.childNodes).filter(function(child) {
+     * *********************************************************
+     * DOM-Element tree helper functions
+     * ********************************************************
+     */
+    getChildElements(element, selector) {
+      return Array.from(element.childNodes).filter(function (child) {
         if (selector) {
           return Array.prototype.filter.call(child, function (m) {
             return m.matches(selector);
@@ -149,15 +160,15 @@ qx.Class.define('cv.util.Tree', {
       }, this);
     },
 
-    getParentPage: function(element) {
+    getParentPage(element) {
       return this.getParent(element, '#pages', '.page', 1)[0];
     },
 
-    getParentGroup: function(element) {
+    getParentGroup(element) {
       return this.getParent(element, '#pages', '.group', 1)[0];
     },
 
-    getParent: function(element, until, selector, limit) {
+    getParent(element, until, selector, limit) {
       let parents = [];
       let parent = element.parentNode;
       while (parent && parent.getAttribute('id') !== 'pages') {
@@ -171,9 +182,12 @@ qx.Class.define('cv.util.Tree', {
         if (limit && parents.length >= limit) {
           break;
         }
-        if (until && Array.prototype.filter.call([parent], function (m) {
-          return m.matches(until);
-        }).length > 0) {
+        if (
+          until &&
+          Array.prototype.filter.call([parent], function (m) {
+            return m.matches(until);
+          }).length > 0
+        ) {
           break;
         }
         parent = parent.parentNode;
@@ -181,7 +195,7 @@ qx.Class.define('cv.util.Tree', {
       return parents;
     },
 
-    getClosest: function (elem, selector) {
+    getClosest(elem, selector) {
       const findClosest = function (current) {
         const found = Array.prototype.filter.call([current], function (m) {
           return m.matches(selector);

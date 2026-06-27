@@ -1,26 +1,37 @@
 {
-  "name": "CometVisu",
+  "name": "cometvisu",
   "description": "The CometVisu is an interactive, realtime, web based visualization. It can be used to access the KNX bus or with the OpenHAB backend everything in the OpenHAB world.",
-  "version": "0.12.6",
+  "version": "0.13.0-dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/cometvisu/cometvisu.git"
   },
   "scripts": {
+    "bundle-monaco": "node utils/compile/bundle-monaco.js",
     "presource": "mkdir -p compiled/source && php -S 0.0.0.0:8082 -t compiled/source &",
     "source": "qx compile --watch",
     "prebuild": "mkdir -p compiled/build && php -S 0.0.0.0:8082 -t compiled/build &",
-    "build": "qx compile --watch -t build --set fakeLogin=true",
+    "build": "qx compile --watch -t build --set fakeLogin=true --save-source-in-map",
     "make-cv": "qx deploy --out=release --clean --source-maps --save-source-in-map",
     "compile": "qx compile",
     "api": "qx compile --set apiviewer=true -t build",
     "pretest": "qx compile",
     "test": "grunt karma:debug",
-    "lint": "qx lint source/class/cv/ client/source/class/cv/",
+    "lint": "eslint --cache source/class client/source/class source/ServiceWorker.js",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:tooling": "eslint --cache eslint.config.cjs Gruntfile.js compile.js .github/actions/github/index.js",
+    "lint:qx": "qx lint --use-eslintrc=false",
+    "update-knxuf-font": "grunt shell:buildicons",
     "make-client": "cd client && qx compile -t build",
-    "static-screenshots": "grunt screenshots --source=doc/manual/_screenshots/"
+    "static-screenshots": "grunt screenshots-pw --source=doc/manual/_screenshots/",
+    "screenshots-pw": "grunt screenshots-pw",
+    "generate-api": "PHP_POST_PROCESS_FILE=\"prettier --parser php --write\" openapi-generator-cli generate",
+    "selenium": "CV_BROWSER=chrome CV_VERSION=stable utils/ci/browser-setup.sh"
   },
   "license": "GPL-3.0",
+  "engines": {
+    "node": ">=24"
+  },
   "authors": [
     {
       "name": "Christian Mayer (ChristianMayer)",
@@ -32,75 +43,69 @@
     }
   ],
   "org_cometvisu": {
-    "libraryVersion": 9
+    "libraryVersionPure": 9,
+    "libraryVersionTile": 1
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.8.7",
-    "@qooxdoo/compiler": "^1.0.4",
-    "chmodr": "^1.2.0",
-    "coffeescript": "^2.6.1",
-    "csso": "^4.2.0",
-    "easyimage": "^3.1.1",
-    "eslint-plugin-jasmine": "^4.1.3",
-    "eslint-plugin-protractor": "^2.1.1",
-    "fast-glob": "^3.2.7",
-    "fs-extra": "^10.0.0",
-    "glob": "^7.2.0",
-    "grunt": "^1.5.2",
-    "grunt-banner": "^0.6.0",
+    "@openapitools/openapi-generator-cli": "^2.32.0",
+    "@playwright/test": "^1.60.0",
+    "@prettier/plugin-php": "^0.25.0",
+    "@qooxdoo/eslint-config-qx": "^3.0.1",
+    "@types/d3": "^7.4.3",
+    "chmodr": "^2.0.2",
+    "deasync": "^0.1.31",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-custom-elements": "^0.0.8",
+    "eslint-plugin-jasmine": "^4.2.2",
+    "eslint-plugin-jsdoc": "^63.0.2",
+    "fast-glob": "^3.3.3",
+    "fs-extra": "^11.3.5",
+    "globals": "^17.6.0",
+    "grunt": "^1.6.2",
     "grunt-bump": "^0.8.0",
-    "grunt-chmod": "latest",
-    "grunt-composer": "^0.4.5",
-    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-compress": "^2.0.0",
-    "grunt-contrib-connect": "^3.0.0",
+    "grunt-contrib-connect": "^5.0.1",
     "grunt-file-creator": "^0.1.3",
-    "grunt-http-server": "^2.1.0",
     "grunt-karma": "^4.0.2",
-    "grunt-karma-coveralls": "^2.5.4",
-    "grunt-prompt": "^1.3.3",
-    "grunt-protractor-runner": "^5.0.0",
-    "grunt-scaffold": "^0.7.0",
-    "grunt-shell": "^3.0.1",
-    "grunt-svgmin": "^6.0.0",
-    "grunt-svgstore": "latest",
-    "ini": "^2.0.0",
-    "jasmine-core": "^4.1.1",
-    "jshint-stylish": "^2.1.0",
-    "karma": "^6.3.20",
-    "karma-chrome-launcher": "^3.1.1",
-    "karma-coverage": "^2.2.0",
-    "karma-firefox-launcher": "^2.1.2",
+    "grunt-shell": "^4.0.0",
+    "jasmine-core": "^6.2.0",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.1",
+    "karma-firefox-launcher": "^2.1.3",
     "karma-html2js-preprocessor": "^1.1.0",
-    "karma-jasmine": "^5.0.1",
-    "karma-qooxdoo": "^0.7.2",
+    "karma-jasmine": "^5.1.0",
+    "karma-qooxdoo": "^0.7.3",
     "karma-remap-coverage": "^0.1.5",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-spec-reporter": "0.0.34",
-    "mustache": "^4.0.1",
-    "protractor": "^7.0.0",
-    "request": "^2.88.2",
-    "selenium-webdriver": "^4.16.0",
-    "svgmin": "^0.1.0",
-    "uglify-es": "^3.3.9",
+    "karma-sourcemap-loader": "^0.4.0",
+    "karma-spec-reporter": "0.0.36",
+    "mustache": "^4.2.0",
+    "prettier": "^3.8.3",
+    "selenium-webdriver": "^4.44.0",
+    "sharp": "^0.34.5",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@sentry/browser": "^6.17.9",
-    "@sentry/tracing": "^6.17.9",
-    "crc-32": "^1.2.0",
-    "monaco-editor": "^0.32.1",
-    "to": "^0.2.9",
-    "update": "^0.7.4"
+    "@qooxdoo/framework": "^7.9.3",
+    "@sentry/browser": "^10.53.1",
+    "crc-32": "^1.2.2",
+    "monaco-editor": "^0.55.1",
+    "oauth-pkce": "^0.0.7"
   },
   "eslintConfig": {
+    "root": true,
     "extends": [
       "@qooxdoo/qx/browser",
       "plugin:jasmine/recommended",
-      "plugin:protractor/recommended"
+      "plugin:custom-elements/minimal"
     ],
+    "env": {
+      "es2021": true
+    },
     "parserOptions": {
-      "ecmaVersion": 2017
+      "ecmaVersion": 2022
     },
     "rules": {
       "no-warning-comments": "off",
@@ -119,12 +124,12 @@
         "single"
       ],
       "no-multi-spaces": "off",
-      "protractor/no-shadowing": "off",
-      "protractor/no-promise-in-if": "off"
+      "custom-elements/valid-tag-name": "off",
+      "custom-elements/extends-correct-class": "off"
     },
     "plugins": [
       "jasmine",
-      "protractor"
+      "custom-elements"
     ],
     "overrides": [
       {
@@ -140,7 +145,6 @@
           "no-console": "off",
           "no-prototype-builtins": "off",
           "no-unused-vars": "off",
-          "protractor/no-shadowing": "off",
           "jasmine/prefer-toHaveBeenCalledWith": "off"
         }
       },
@@ -154,25 +158,16 @@
       },
       {
         "files": [
-          "source/test/protractor/**/*.js",
-          "source/test/protractor/*.js"
+          "source/test/playwright/**/*.js",
+          "utils/screenshots.playwright.js"
         ],
         "env": {
-          "jasmine": true,
           "node": true
         },
         "rules": {
           "no-console": "off",
           "no-prototype-builtins": "off",
-          "no-unused-vars": "off",
-          "protractor/no-describe-selectors": "off",
-          "protractor/no-repetitive-locators": "off",
-          "protractor/no-repetitive-selectors": "off",
-          "protractor/no-browser-sleep": "off",
-          "protractor/no-by-xpath": "off",
-          "jasmine/no-disabled-tests": "off",
-          "protractor/no-shadowing": "warn",
-          "protractor/no-promise-in-if": "warn"
+          "no-unused-vars": "off"
         }
       },
       {
@@ -186,28 +181,36 @@
           "no-console": "off",
           "no-prototype-builtins": "off",
           "no-unused-vars": "off",
-          "protractor/no-describe-selectors": "off",
-          "protractor/no-repetitive-locators": "off",
-          "protractor/no-repetitive-selectors": "off",
-          "protractor/no-browser-sleep": "off",
-          "protractor/no-by-xpath": "off",
           "jasmine/no-disabled-tests": "off"
+        }
+      },
+      {
+        "files": [
+          "source/resource/manager/*.js"
+        ],
+        "env": {
+          "worker": true
+        },
+        "rules": {
+          "no-console": "off",
+          "no-prototype-builtins": "off"
+        },
+        "globals": {
+          "xmllint": "readonly",
+          "crc32": "readonly"
         }
       }
     ],
     "globals": {
       "cv": "readonly",
-      "osparc": "readonly",
-      "com": "readonly",
       "steelseries": "readonly",
-      "iconfont": "readonly",
-      "qxl": "readonly",
       "$": "readonly",
       "EVENT_RECORDER": "writable",
       "EventSource": "readonly",
       "Favico": "readonly",
       "jQuery": "readonly",
       "localStorage": "readonly",
+      "sessionStorage": "readonly",
       "monaco": "readonly",
       "Paho": "readonly",
       "replayLog": "readonly",
@@ -220,7 +223,12 @@
       "indexedDB": "readonly",
       "URL": "readonly",
       "sinon": "readonly",
-      "RSSParser": "readonly"
+      "RSSParser": "readonly",
+      "com": "readonly",
+      "qxl": "readonly",
+      "QxConnector": "readonly",
+      "InstallTrigger": "readonly",
+      "d3": "readonly"
     }
   }
 }

@@ -1,7 +1,7 @@
-/* Config.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Config.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,19 +17,18 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
- * Main settings that an be accessed from anywhere inside the Application
+ * Main settings that can be accessed from anywhere inside the Application
  */
 qx.Class.define('cv.Config', {
-  type:'static',
+  type: 'static',
 
   statics: {
     /**
      * Define ENUM of maturity levels for features, so that e.g. the editor can
      * ignore some widgets when they are not supported yet
      */
-    Maturity : {
+    Maturity: {
       release: 0,
       development: 1
     },
@@ -69,50 +68,55 @@ qx.Class.define('cv.Config', {
      * Default scrolling speed for page changes (in ms)
      * @type {Number}
      */
-    scrollSpeed : 400,
+    scrollSpeed: 400,
 
     /**
      * Default number of colums the layout should use
      * @type {Number}
      */
-    defaultColumns : 12,
+    defaultColumns: 12,
     /**
      * Minimum column width
      * @type {Number}
      */
-    minColumnWidth : 120,
+    minColumnWidth: 120,
 
     /**
      * If true, the client only loads the states for the widgets that are part of the start page at first
      * read request (should increase the performance when huge config files are used)
      * @type {Boolean}
      */
-    enableAddressQueue : false,
+    enableAddressQueue: false,
 
     /**
      * Type of the used backend (*default*, *openhab* or *openhab2*)
      * @type {String}
      */
-    backend : null,
+    backend: null,
     /**
      * Initial URL to the backend
      * @type {String}
      */
-    backendLoginUrl : null,
+    backendLoginUrl: null,
     /**
      * @type {String}
      */
-    configSuffix : null,
+    configSuffix: null,
     /**
      * The design currently used
      * @type {String}
      */
-    clientDesign : '',
+    clientDesign: '',
+    /**
+     * The (optional) ID of this client instance
+     * @type {String|null}
+     */
+    clientID: null,
     /**
      * Maturity level
      * @type {var}
      */
-    use_maturity : false,
+    use_maturity: false,
 
     /**
      * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)
@@ -130,6 +134,11 @@ qx.Class.define('cv.Config', {
      * @type {Map}
      */
     managerOptions: {},
+
+    /**
+     * Optional settings for backend defined by server
+     */
+    server: {},
 
     /**
      * All configuration and settings from the current configuration
@@ -156,7 +165,9 @@ qx.Class.define('cv.Config', {
       credentials: {
         username: null,
         password: null
-      }
+      },
+
+      bindClickToWidget: false
     },
 
     /**
@@ -172,11 +183,35 @@ qx.Class.define('cv.Config', {
     lazyLoading: false,
 
     /**
+     * Timeout till when all structure parts should be loaded. Only very slow
+     * systems need to increase this value.
+     * @type {number}
+     */
+    timeoutStructureLoad: 2000,
+
+    /**
      * Defines which structure is supported by which designs
      */
     designStructureMap: {
-      'pure': [/*broken  'alaska', 'alaska_slim', */'discreet', 'discreet_sand', 'discreet_slim', 'metal', 'pitchblack', /* broken 'planet', */'pure']
+      pure: [
+        // broken: 'alaska',
+        // broken: 'alaska_slim',
+        'discreet',
+        'discreet_sand',
+        'discreet_slim',
+        'metal',
+        'pitchblack',
+        // broken: 'planet',
+        'pure'
+      ],
+
+      tile: ['tile']
     },
+
+    /**
+     * Currently loaded structure
+     */
+    loadedStructure: '',
 
     /**
      * Wether the error reporting with sentry is enabled or not
@@ -199,25 +234,91 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
+     * Only set in unit tests
+     */
+    unitTesting: false,
+
+    /**
      * If the CometVisu can use service workers
      */
     useServiceWorker: false,
 
-    enableServiceWorkerCache : true,
+    enableServiceWorkerCache: true,
+
+    defaultManifest: {
+      'short_name': 'CometVisu',
+      'name': 'CometVisu',
+      'start_url': 'index.html',
+      'theme_color': '#000',
+      'background_color': '#000',
+      'icons': [
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_36.png',
+          'sizes': '36x36',
+          'type': 'image/png',
+          'density': '0.75',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_48.png',
+          'sizes': '48x48',
+          'type': 'image/png',
+          'density': '1.0',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_72.png',
+          'sizes': '72x72',
+          'type': 'image/png',
+          'density': '1.5',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_96.png',
+          'sizes': '96x96',
+          'type': 'image/png',
+          'density': '2.0',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_144.png',
+          'sizes': '144x144',
+          'type': 'image/png',
+          'density': '3.0',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_192.png',
+          'sizes': '192x192',
+          'type': 'image/png',
+          'density': '4.0',
+          'purpose': 'any'
+        },
+        {
+          'src': 'resource/icons/comet_webapp_icon_android_512.png',
+          'sizes': '512x512',
+          'type': 'image/png',
+          'density': '4.0',
+          'purpose': 'any'
+        }
+      ],
+      'display': 'standalone',
+      'orientation': 'any'
+    },
 
     /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
      */
-    getStructure: function(design) {
+    getStructure(design) {
       if (!design) {
         design = this.getDesign();
       }
       for (let structure in this.designStructureMap) {
         if (Object.prototype.hasOwnProperty.call(this.designStructureMap, structure)) {
           if (this.designStructureMap[structure].indexOf(design) >= 0) {
-            return 'structure-'+structure;
+            return 'structure-' + structure;
           }
         }
       }
@@ -230,48 +331,52 @@ qx.Class.define('cv.Config', {
      * (by comparing if the visu_config.xml-File has been delivered from another server than the
      * loging response). As this is just an assumption, you should not treat this result as reliable.
      */
-    guessIfProxied: function() {
-      if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
+    guessIfProxied() {
+      if (this.configServer === null || cv.io.BackendConnections.getClient().getServer() === null) {
         throw new Error('not ready yet');
       }
-      return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
+      return this.configServer !== cv.io.BackendConnections.getClient().getServer();
     },
 
-    addMapping: function (name, mapping) {
+    addMapping(name, mapping) {
       this.configSettings.mappings[name] = mapping;
     },
 
-    getMapping: function (name) {
+    getMapping(name) {
       return this.configSettings.mappings[name];
     },
 
-    hasMapping: function(name) {
+    hasMapping(name) {
       return Object.prototype.hasOwnProperty.call(this.configSettings.mappings, name);
     },
 
-    clearMappings: function() {
+    clearMappings() {
       this.configSettings.mappings = {};
     },
 
-    addStyling: function (name, styling) {
+    addStyling(name, styling) {
       this.configSettings.stylings[name] = styling;
     },
 
-    getStyling: function (name) {
+    getStyling(name) {
       return this.configSettings.stylings[name];
     },
 
-    hasStyling: function(name) {
+    hasStyling(name) {
       return Object.prototype.hasOwnProperty.call(this.configSettings.stylings, name);
     },
 
-    getDesign: function() {
+    getDesign() {
       return this.clientDesign || this.configSettings.clientDesign;
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     const req = qx.util.Uri.parseUri(window.location.href);
+
+    if (req.queryKey.timeoutStructureLoad) {
+      cv.Config.timeoutStructureLoad = parseInt(req.queryKey.timeoutStructureLoad, 10);
+    }
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
@@ -282,9 +387,13 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.backend) {
-      cv.Config.URL = {backend: req.queryKey.backend};
+      cv.Config.URL = { backend: req.queryKey.backend };
     } else {
-      cv.Config.URL = {backend: undefined};
+      cv.Config.URL = { backend: undefined };
+    }
+
+    if (req.queryKey.clientID) {
+      cv.Config.clientID = req.queryKey.clientID;
     }
 
     if (req.queryKey.design) {
@@ -298,12 +407,13 @@ qx.Class.define('cv.Config', {
     if (req.queryKey.reportErrors) {
       if (window.Sentry) {
         cv.Config.sentryEnabled = true;
-        Sentry.configureScope(function (scope) {
-          scope.setTag('build.date', cv.Version.DATE);
-          scope.setTag('build.branch', cv.Version.BRANCH);
-          Object.keys(cv.Version.TAGS).forEach(function (tag) {
-            scope.setTag(tag, cv.Version.TAGS[tag]);
-          });
+        // generate unique transactionId and set as Sentry tag
+        cv.Config.transactionId = Math.random().toString(36).substr(2, 9);
+        Sentry.setTag('transaction_id', cv.Config.transactionId);
+        Sentry.setTag('build.date', cv.Version.DATE);
+        Sentry.setTag('build.branch', cv.Version.BRANCH);
+        Object.keys(cv.Version.TAGS).forEach(function (tag) {
+          Sentry.setTag(tag, cv.Version.TAGS[tag]);
         });
       }
     }
@@ -335,13 +445,18 @@ qx.Class.define('cv.Config', {
     // caching is only possible when localStorage is available
     if (qx.core.Environment.get('html.storage.local') === false) {
       cv.Config.enableCache = false;
-      qx.log.Logger.warn(statics, 'localStorage is not available in your browser. Some advanced features, like caching will not work!');
+      qx.log.Logger.warn(
+        statics,
+        'localStorage is not available in your browser. Some advanced features, like caching will not work!'
+      );
     } else if (req.queryKey.enableCache === 'invalid') {
-        cv.ConfigCache.clear(cv.Config.configSuffix);
-        cv.Config.enableCache = true;
-      } else {
-        cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === 'true' : !qx.core.Environment.get('qx.debug');
-      }
+      cv.ConfigCache.clear(cv.Config.configSuffix);
+      cv.Config.enableCache = true;
+    } else {
+      cv.Config.enableCache = req.queryKey.enableCache
+        ? req.queryKey.enableCache === 'true'
+        : !qx.core.Environment.get('qx.debug');
+    }
 
     cv.Config.enableLogging = qx.core.Environment.get('html.console');
     if (req.queryKey.log === 'false') {
@@ -363,7 +478,8 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    if (req.queryKey.forceDevice) { // overwrite detection when set by URL
+    if (req.queryKey.forceDevice) {
+      // overwrite detection when set by URL
       switch (req.queryKey.forceDevice) {
         case 'mobile':
           cv.Config.mobileDevice = true;
@@ -374,7 +490,6 @@ qx.Class.define('cv.Config', {
           break;
       }
     }
-
 
     // Disable features that aren't ready yet
     // Config can be overwritten in the URL with the parameter "maturity"

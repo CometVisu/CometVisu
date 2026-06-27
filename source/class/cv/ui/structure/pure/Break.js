@@ -1,7 +1,7 @@
-/* Break.js 
- * 
- * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.
- * 
+/* Break.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -17,7 +17,6 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
 /**
  * A break tag is used to start in new line for a grouped and thereby tidy display of
  * elements on one page.
@@ -30,7 +29,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.ui.structure.pure.Break', {
-  extend: cv.ui.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.pure.AbstractBasicWidget,
 
   /*
    ******************************************************
@@ -39,12 +38,12 @@ qx.Class.define('cv.ui.structure.pure.Break', {
    */
   members: {
     // overridden
-    getDomString: function () {
+    getDomString() {
       return '<br/>';
     }
   },
 
-  defer: function(statics) {
+  defer(statics) {
     cv.ui.structure.WidgetFactory.registerClass('break', statics);
   }
 });
