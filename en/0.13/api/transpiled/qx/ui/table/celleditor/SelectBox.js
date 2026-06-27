@@ -133,4 +133,4 @@
   qx.ui.table.celleditor.SelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SelectBox.js.map?dt=1778272852401
+//# sourceMappingURL=SelectBox.js.map?dt=1782595079269

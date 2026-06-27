@@ -377,4 +377,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1778272819998
+//# sourceMappingURL=Attribute.js.map?dt=1782595052339

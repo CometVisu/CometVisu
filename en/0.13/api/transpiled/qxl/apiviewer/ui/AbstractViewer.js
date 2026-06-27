@@ -404,4 +404,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qxl.apiviewer.ui.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1778272859857
+//# sourceMappingURL=AbstractViewer.js.map?dt=1782595085675

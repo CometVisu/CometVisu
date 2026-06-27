@@ -1050,6 +1050,22 @@
           };
         }
       },
+      "selectbox-arrow-button": "widget",
+      /*
+      ---------------------------------------------------------------------------
+        CHECKED SELECT BOX
+      ---------------------------------------------------------------------------
+      */
+
+      "checked-selectbox": "selectbox",
+      "checked-selectbox/allNone": {
+        include: "button"
+      },
+      "checked-selectbox/tag": "tag",
+      tag: {
+        alias: "button",
+        include: "button"
+      },
       /*
       ---------------------------------------------------------------------------
         COMBO BOX
@@ -1609,8 +1625,8 @@
             decorator: "datechooser-weekday",
             font: "bold",
             textAlign: "center",
-            textColor: states.disabled ? "text-disabled" : states.weekend ? "background-selected-dark" : "background",
-            backgroundColor: states.weekend ? "background" : "background-selected-dark",
+            textColor: states.disabled ? "text-disabled" : states.weekend ? "datechooser-background-selected-dark" : "datechooser-background",
+            backgroundColor: states.weekend ? "datechooser-background" : "datechooser-background-selected-dark",
             paddingTop: 2
           };
         }
@@ -1630,7 +1646,8 @@
         style: function style(states) {
           return {
             textAlign: "center",
-            textColor: "background-selected-dark",
+            textColor: "datechooser-background",
+            backgroundColor: "datechooser-background-selected-dark",
             padding: [2, 4],
             decorator: states.header ? "datechooser-week-header" : "datechooser-week"
           };
@@ -2201,4 +2218,4 @@
   qx.theme.simple.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1778272839915
+//# sourceMappingURL=Appearance.js.map?dt=1782595068896

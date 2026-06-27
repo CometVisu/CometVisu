@@ -53,7 +53,7 @@
 
         // register to topics
         cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
-          'cv.error': {
+          'cv.error.*': {
             type: 'error',
             icon: 'message_attention'
           },
@@ -271,4 +271,4 @@
   cv.ui.PopupHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PopupHandler.js.map?dt=1778272856832
+//# sourceMappingURL=PopupHandler.js.map?dt=1782595083184

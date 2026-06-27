@@ -419,8 +419,9 @@
         var ms = date.getMilliseconds();
         var timezoneOffset = date.getTimezoneOffset();
         var timezoneSign = timezoneOffset > 0 ? 1 : -1;
-        var timezoneHours = Math.floor(Math.abs(timezoneOffset) / 60);
-        var timezoneMinutes = Math.abs(timezoneOffset) % 60;
+        var absTimezoneOffset = Math.abs(timezoneOffset);
+        var timezoneHours = Math.floor(absTimezoneOffset / 60);
+        var timezoneMinutes = Math.trunc(absTimezoneOffset) % 60;
 
         // Create the output
         this.__P_759_16();
@@ -1434,4 +1435,4 @@
   qx.util.format.DateFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateFormat.js.map?dt=1778272856031
+//# sourceMappingURL=DateFormat.js.map?dt=1782595082553

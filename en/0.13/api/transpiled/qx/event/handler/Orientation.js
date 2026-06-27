@@ -238,4 +238,4 @@
   qx.event.handler.Orientation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Orientation.js.map?dt=1778272825307
+//# sourceMappingURL=Orientation.js.map?dt=1782595056679

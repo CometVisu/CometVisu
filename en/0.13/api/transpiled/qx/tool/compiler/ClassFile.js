@@ -742,7 +742,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               });
             } else if (param.type == "ObjectPattern") {
               param.properties.forEach(function (prop) {
-                return addDecl(prop.value);
+                if (prop.type == "RestElement") {
+                  addDecl(prop);
+                } else {
+                  addDecl(prop.value);
+                }
               });
             } else {
               t.addMarker("testForFunctionParameterType", node.loc, param.type);
@@ -1342,6 +1346,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 });
               }
               path.traverse(VISITOR);
+            } else if (keyName == "delegate") {
+              path.skip();
+              path.traverse(VISITOR);
             } else if (keyName == "aliases") {
               path.skip();
               if (!prop.value.properties) {
@@ -1490,7 +1497,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               ClassDeclaration: 1,
               ClassMethod: 1,
               LabeledStatement: 1,
-              BreakStatement: 1
+              BreakStatement: 1,
+              ContinueStatement: 1
             };
 
             // These are AST node types we expect to find at the root of the identifier, and which will
@@ -1804,7 +1812,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 } else if (name == "this.tr" || name == "this.marktr" || name == "qx.locale.Manager.tr" || name == "qx.locale.Manager.marktr") {
                   var arg0 = getStringArg(0);
                   if (!arg0) {
-                    t.addMarker("translate.invalidMessageId", path.node.loc, arg0);
+                    t.addMarker("translate.invalidMessageId", path.node.loc, arg0 !== null && arg0 !== void 0 ? arg0 : "");
                   } else {
                     addTranslation({
                       msgid: arg0
@@ -1814,7 +1822,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   var _arg4 = getStringArg(0);
                   var arg1 = getStringArg(1);
                   if (!_arg4 || !arg1) {
-                    t.addMarker("translate.invalidMessageIds", path.node.loc, _arg4, arg1);
+                    t.addMarker("translate.invalidMessageIds", path.node.loc, _arg4 !== null && _arg4 !== void 0 ? _arg4 : "", arg1 !== null && arg1 !== void 0 ? arg1 : "");
                   } else {
                     addTranslation({
                       msgid: _arg4,
@@ -1982,7 +1990,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   // Object destructuring `var {a,b} = {...}`
                 } else if (decl.id.type == "ObjectPattern") {
                   decl.id.properties.forEach(function (prop) {
-                    if (prop.value.type == "AssignmentPattern") {
+                    if (prop.type == "RestElement") {
+                      t.addDeclaration(prop.argument.name);
+                    } else if (prop.value.type == "AssignmentPattern") {
                       t.addDeclaration(prop.value.left.name);
                     } else {
                       t.addDeclaration(prop.value.name);
@@ -2739,4 +2749,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.tool.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1778272842937
+//# sourceMappingURL=ClassFile.js.map?dt=1782595071273

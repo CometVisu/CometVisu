@@ -64,7 +64,7 @@
       var _this = this;
       cv.io.AbstractClient.constructor.call(this);
       cv.io.Client.CLIENTS.push(this);
-      // make some functions accessible for the protractor runner
+      // expose test helpers on window for browser automation
       window._receive = this.receive.bind(this);
       var model = cv.data.Model.getInstance();
       window._widgetDataGet = model.getWidgetData.bind(model);
@@ -185,7 +185,7 @@
           return;
         }
         var ts = new Date().getTime();
-        // store in window, to make it accessible for protractor
+        // store on window so browser tests can inspect the last write
         var lastWrite = {
           address: address,
           value: value,
@@ -203,7 +203,7 @@
           this.debug('sending value: ' + value + ' to address: ' + address);
           this.receive(answer);
         }
-        // store in window, to make it accessible for protractor
+        // store on window so browser tests can inspect the write history
         window.writeHistory.push(lastWrite);
       },
       restart: function restart() {},
@@ -275,4 +275,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1778272856531
+//# sourceMappingURL=Mockup.js.map?dt=1782595082902

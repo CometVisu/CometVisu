@@ -142,6 +142,38 @@
         var expected = this.getVisibleItemsFrom(root, [root]);
         this.__P_448_0(expected);
       },
+      /**
+       * Test for issue #9390: VirtualTree doesn't render if hideRoot is true
+       * when adding nodes dynamically
+       */
+      testDynamicNodesWithHiddenRoot: function testDynamicNodesWithHiddenRoot() {
+        // Create initial model
+        var root = this.createModelAndSetModel(1);
+
+        // Set hideRoot before adding nodes
+        this.tree.setHideRoot(true);
+
+        // Flush to ensure initial rendering
+        this.flush();
+
+        // Get initial visible items (should be root's children)
+        var expectedBefore = this.getVisibleItemsFrom(root, [root]);
+        this.__P_448_0(expectedBefore);
+
+        // Dynamically add a new branch to the root
+        var newBranch = new qx.test.ui.tree.virtual.Node("Dynamic Branch");
+        this._createNodes(newBranch, 1);
+        root.getChildren().push(newBranch);
+
+        // The tree should automatically update without calling refresh()
+        // Expected items should now include the new branch
+        var expectedAfter = this.getVisibleItemsFrom(root, [root]);
+        this.__P_448_0(expectedAfter);
+
+        // Verify the new branch is in the lookup table
+        var lookupTable = this.tree.getLookupTable();
+        this.assertTrue(lookupTable.contains(newBranch), "New dynamically added branch should be visible in tree with hidden root");
+      },
       testBuildLookupWithoutLeafs: function testBuildLookupWithoutLeafs() {
         var root = this.createModelAndSetModel(2);
         var nodesToOpen = [root, root.getChildren().getItem(2)];
@@ -404,4 +436,4 @@
   qx.test.ui.tree.virtual.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1778272838011
+//# sourceMappingURL=Tree.js.map?dt=1782595067339

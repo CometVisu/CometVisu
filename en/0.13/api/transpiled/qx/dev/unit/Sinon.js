@@ -15785,4 +15785,4 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1778272823968
+//# sourceMappingURL=Sinon.js.map?dt=1782595055723

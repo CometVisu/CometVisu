@@ -161,6 +161,28 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee5);
         }))();
       },
+      "test issue 10623": function test_issue_10623() {
+        var _this6 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+          var classFile, dbClassInfo;
+          return _regenerator().w(function (_context6) {
+            while (1) switch (_context6.n) {
+              case 0:
+                classFile = new qx.tool.compiler.ClassFile(_this6.__P_334_1, "classIssue10623", _this6.__P_334_0);
+                _context6.n = 1;
+                return qx.tool.utils.Promisify.call(function (cb) {
+                  return classFile.load(cb);
+                });
+              case 1:
+                dbClassInfo = {};
+                classFile.writeDbInfo(dbClassInfo);
+                _this6.assert(!dbClassInfo.unresolved);
+              case 2:
+                return _context6.a(2);
+            }
+          }, _callee6);
+        }))();
+      },
       __P_334_0: null,
       __P_334_1: null
     }
@@ -168,4 +190,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1778272831073
+//# sourceMappingURL=ClassFile.js.map?dt=1782595061328

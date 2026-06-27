@@ -1,3 +1,7 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -218,10 +222,87 @@
         localeManager.setLocale("de");
         label.setValue(test);
         this.assertEquals("DE", label.getContentElement().getValue(), "label must have the current locale set");
+      },
+      /**
+       * Test for issue #9564: Translated string as property init value causes
+       * invalid calculation of label width.
+       *
+       * This test reproduces the issue where a LocalizedString created before
+       * translations are loaded (typical for property init values) causes the
+       * label to calculate its width based on the untranslated message ID
+       * instead of the actual translated text.
+       */
+      testTranslatedStringPropertyInitWidth: function testTranslatedStringPropertyInitWidth() {
+        this.require(["qx.dynlocale"]);
+        var localeManager = qx.locale.Manager.getInstance();
+
+        // Save the current locale to restore it later
+        var originalLocale = localeManager.getLocale();
+        try {
+          // Set up a translation with a short message ID and a long translation
+          var shortMsgId = "ISSUE_9564_TEST_MESSAGE";
+          var longTranslation = "This is a very long translated string that should be much wider than the message ID";
+          localeManager.setLocale("en");
+
+          // IMPORTANT: Create LocalizedString BEFORE the translation is loaded
+          // This simulates the typical scenario where tr() is called in a property init
+          var localizedStr = qx.locale.Manager.tr(shortMsgId);
+
+          // At this point, localizedStr contains the message ID as fallback text
+          // because the translation hasn't been loaded yet
+          this.assertEquals(shortMsgId, localizedStr.toString(), "LocalizedString should contain message ID before translation is loaded");
+
+          // NOW load the translation (simulating translations loading after class definition)
+          localeManager.addTranslation("en", _defineProperty({}, shortMsgId, longTranslation));
+
+          // Create two labels for comparison
+          // Label 1: Uses the LocalizedString directly (simulates property init)
+          var labelWithLocalizedString = new qx.ui.basic.Label();
+          labelWithLocalizedString.setValue(localizedStr);
+
+          // Label 2: Uses the plain translated string for comparison
+          var labelWithPlainString = new qx.ui.basic.Label(longTranslation);
+
+          // Add both labels to the root
+          this.getRoot().add(labelWithLocalizedString);
+          this.getRoot().add(labelWithPlainString);
+
+          // Flush to ensure layout is calculated
+          this.flush();
+
+          // Trigger the changeLocale event to simulate the fix for issue #9564
+          // In a real application, this is automatically triggered by qx.bom.Lifecycle.onReady()
+          // but in the test context, we need to trigger it manually
+          localeManager.fireDataEvent("changeLocale", localeManager.getLocale());
+
+          // Flush again to apply the changes from the changeLocale event
+          this.flush();
+
+          // Both labels should display the same translated text
+          this.assertEquals(longTranslation, labelWithLocalizedString.getContentElement().getValue(), "Label with LocalizedString should display the translated text");
+          this.assertEquals(longTranslation, labelWithPlainString.getContentElement().getValue(), "Label with plain string should display the translated text");
+
+          // Get the bounds of both labels
+          var boundsWithLocalizedString = labelWithLocalizedString.getBounds();
+          var boundsWithPlainString = labelWithPlainString.getBounds();
+
+          // Both labels should have the same width since they display the same text
+          // This is the core assertion for issue #9564
+          // In the buggy version, labelWithLocalizedString would have a width based on
+          // the short message ID, not the long translated text
+          this.assertEquals(boundsWithPlainString.width, boundsWithLocalizedString.width, "Label with LocalizedString should have the same width as label with plain translated string. Expected: " + boundsWithPlainString.width + ", Actual: " + boundsWithLocalizedString.width);
+
+          // Clean up
+          labelWithLocalizedString.destroy();
+          labelWithPlainString.destroy();
+        } finally {
+          // Restore the original locale
+          localeManager.setLocale(originalLocale);
+        }
       }
     }
   });
   qx.test.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1778272835887
+//# sourceMappingURL=Label.js.map?dt=1782595065279

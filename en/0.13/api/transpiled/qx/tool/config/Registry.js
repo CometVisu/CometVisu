@@ -54,4 +54,4 @@
   qx.tool.config.Registry.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registry.js.map?dt=1778272844973
+//# sourceMappingURL=Registry.js.map?dt=1782595073225

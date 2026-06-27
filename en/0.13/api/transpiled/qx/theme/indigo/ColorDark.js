@@ -53,6 +53,8 @@
       "highlight": "#eeeeee",
       "highlight-shade": "#dddddd",
       // backgrounds
+      "datechooser-background-selected-dark": "#333",
+      "datechooser-background": "#666",
       "background-selected": "#666666",
       "background-selected-disabled": "#777777",
       "background-selected-dark": "#333333",
@@ -127,4 +129,4 @@
   qx.theme.indigo.ColorDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorDark.js.map?dt=1778272839473
+//# sourceMappingURL=ColorDark.js.map?dt=1782595068542

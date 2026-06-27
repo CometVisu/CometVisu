@@ -42,4 +42,4 @@
   qx.test.ui.list.fixture.ItemMock.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ItemMock.js.map?dt=1778272837366
+//# sourceMappingURL=ItemMock.js.map?dt=1782595066813

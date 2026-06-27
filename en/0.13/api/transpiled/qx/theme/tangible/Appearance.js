@@ -1127,6 +1127,7 @@
           };
         }
       },
+      "selectbox-arrow-button": "widget",
       /*
       ---------------------------------------------------------------------------
         CHECKED SELECT BOX
@@ -2144,4 +2145,4 @@
   qx.theme.tangible.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1778272840073
+//# sourceMappingURL=Appearance.js.map?dt=1782595069026

@@ -3383,6 +3383,90 @@
           180
         ]
       ],
+      "#__formatErrorPopupMessage": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__isMappableStackFrame": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__parseStackFrame": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__normalizeResourceUrl": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__getSourceMapUrl": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__simplifyMappedSource": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__isFrameworkMappedSource": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__formatGeneratedFrame": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__ensureSourceMapSupport": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__loadSourceMapConsumer": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__getSourceMapConsumer": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__mapStackFrame": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__mapErrorStack": [
+        [
+          7,
+          18
+        ]
+      ],
+      "#__updateGlobalErrorNotification": [
+        [
+          7,
+          18
+        ]
+      ],
       "#__globalErrorHandler": [
         [
           7,

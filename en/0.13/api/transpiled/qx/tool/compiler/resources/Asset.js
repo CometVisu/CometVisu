@@ -155,11 +155,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regenerator().w(function (_context) {
             while (1) switch (_context.n) {
               case 0:
-                if (_this2.__P_505_2) {
-                  _this2.__P_505_2.forEach(function (loader) {
-                    return loader.load(_this2);
-                  });
+                if (!_this2.__P_505_2) {
+                  _context.n = 1;
+                  break;
                 }
+                _context.n = 1;
+                return Promise.all(_this2.__P_505_2.map(function (loader) {
+                  return loader.load(_this2);
+                }));
               case 1:
                 return _context.a(2);
             }
@@ -332,4 +335,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.Asset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Asset.js.map?dt=1778272843838
+//# sourceMappingURL=Asset.js.map?dt=1782595072023

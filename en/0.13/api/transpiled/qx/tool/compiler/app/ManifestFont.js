@@ -185,4 +185,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.ManifestFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ManifestFont.js.map?dt=1778272843440
+//# sourceMappingURL=ManifestFont.js.map?dt=1782595071689

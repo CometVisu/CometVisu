@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1778272634525,
-  "lastModifiedIso": "2026-05-08T20:37:14.525Z",
+  "lastModified": 1782594888740,
+  "lastModifiedIso": "2026-06-27T21:14:48.740Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/classic/Appearance.js",
   "type": "theme",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1291
     },
     "end": {
-      "line": 2386,
+      "line": 2407,
       "column": 3,
-      "index": 55097
+      "index": 55547
     }
   },
   "className": "qx.theme.classic.Appearance",

@@ -206,32 +206,32 @@
     */
     members: {
       _list: null,
-      __P_772_0: null,
-      __P_772_1: null,
-      __P_772_2: false,
-      __P_772_3: null,
-      __P_772_4: null,
-      __P_772_5: null,
+      __P_773_0: null,
+      __P_773_1: null,
+      __P_773_2: false,
+      __P_773_3: null,
+      __P_773_4: null,
+      __P_773_5: null,
       _openCommand: null,
       disableBadge: function disableBadge(value) {
         if (value) {
-          this.__P_772_4.classList.add('hidden');
+          this.__P_773_4.classList.add('hidden');
         } else {
-          this.__P_772_4.classList.remove('hidden');
+          this.__P_773_4.classList.remove('hidden');
         }
       },
       _onResize: function _onResize() {
         var height = document.documentElement.clientHeight;
-        if (this.__P_772_0) {
-          this.__P_772_0.style.left = document.documentElement.clientWidth + 'px';
-          this.__P_772_0.style.height = height + 'px';
+        if (this.__P_773_0) {
+          this.__P_773_0.style.left = document.documentElement.clientWidth + 'px';
+          this.__P_773_0.style.height = height + 'px';
         }
-        if (this.__P_772_1) {
+        if (this.__P_773_1) {
           // get header+footer heights
-          var headerRect = this.__P_772_0.querySelector(':scope > header').getBoundingClientRect();
-          var footerRect = this.__P_772_0.querySelector(':scope > footer').getBoundingClientRect();
+          var headerRect = this.__P_773_0.querySelector(':scope > header').getBoundingClientRect();
+          var footerRect = this.__P_773_0.querySelector(':scope > footer').getBoundingClientRect();
           var messageBoxHeight = height - Math.round(headerRect.bottom - headerRect.top) - Math.round(footerRect.bottom - footerRect.top);
-          this.__P_772_1.style.height = messageBoxHeight + 'px';
+          this.__P_773_1.style.height = messageBoxHeight + 'px';
         }
       },
       /**
@@ -240,17 +240,17 @@
        */
       _init: function _init() {
         var body = document.querySelector('body');
-        this.__P_772_3 = cv.ui.BodyBlocker.getInstance();
-        this.__P_772_5 = new Favico({
+        this.__P_773_3 = cv.ui.BodyBlocker.getInstance();
+        this.__P_773_5 = new Favico({
           animation: 'fade',
           bgColor: '#1C391C'
         });
 
         // check if the element is already there (might have been cached)
-        var elem = this.__P_772_0 = document.querySelector(this.getRootElementId());
+        var elem = this.__P_773_0 = document.querySelector(this.getRootElementId());
         if (!elem) {
           // create new element
-          elem = this.__P_772_0 = qx.dom.Element.create('div', {
+          elem = this.__P_773_0 = qx.dom.Element.create('div', {
             id: this.getRootElementId(),
             style: 'visibility: hidden;',
             html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr('Message center') + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr('Delete all') + '<div></div></footer>'
@@ -270,26 +270,26 @@
           });
           body.appendChild(template);
         }
-        this.__P_772_1 = elem.querySelector('section.messages');
-        this.__P_772_4 = elem.querySelector('.badge');
-        qx.event.Registration.addListener(this.__P_772_4, 'tap', this.toggleVisibility, this);
+        this.__P_773_1 = elem.querySelector('section.messages');
+        this.__P_773_4 = elem.querySelector('.badge');
+        qx.event.Registration.addListener(this.__P_773_4, 'tap', this.toggleVisibility, this);
 
         // add HTML template for messages to header
         if (this._list) {
           this._list.dispose();
         }
-        this._list = new qx.data.controller.website.List(this._messages, this.__P_772_1, 'MessageTemplate');
-        qx.event.Registration.addListener(this.__P_772_1, 'tap', this._onListTap, this);
+        this._list = new qx.data.controller.website.List(this._messages, this.__P_773_1, 'MessageTemplate');
+        qx.event.Registration.addListener(this.__P_773_1, 'tap', this._onListTap, this);
 
         // connect badge content
-        this._messages.addListener('changeLength', this.__P_772_6, this);
-        this.__P_772_6();
+        this._messages.addListener('changeLength', this.__P_773_6, this);
+        this.__P_773_6();
 
         // update dimensions
         new qx.util.DeferredCall(this._onResize, this).schedule();
       },
-      __P_772_6: function __P_772_6() {
-        var currentContent = parseInt(this.__P_772_4.getAttribute('html'));
+      __P_773_6: function __P_773_6() {
+        var currentContent = parseInt(this.__P_773_4.getAttribute('html'));
         if (isNaN(currentContent)) {
           currentContent = 0;
         }
@@ -299,7 +299,7 @@
           if (this.getMessages().getLength() === 0) {
             this.hide();
           } else {
-            this.__P_772_0.style.visibility = '';
+            this.__P_773_0.style.visibility = '';
             this._onSeverityChange();
           }
         }.bind(this);
@@ -311,23 +311,23 @@
         }
         if (currentContent < messages) {
           // blink to get the users attention for the new message
-          qx.bom.element.Animation.animate(this.__P_772_4, cv.ui.NotificationCenter.BLINK);
+          qx.bom.element.Animation.animate(this.__P_773_4, cv.ui.NotificationCenter.BLINK);
         }
         if (messages) {
-          this.__P_772_4.innerHTML = '' + messages;
+          this.__P_773_4.innerHTML = '' + messages;
         } else {
-          this.__P_772_4.innerHTML = '';
+          this.__P_773_4.innerHTML = '';
         }
       },
       _onSeverityChange: function _onSeverityChange() {
         var severity = this.getGlobalSeverity();
-        if (this.__P_772_4) {
-          this.__P_772_4.classList.remove.apply(this.__P_772_4.classList, this._severities);
-          this.__P_772_4.classList.add(severity);
+        if (this.__P_773_4) {
+          this.__P_773_4.classList.remove.apply(this.__P_773_4.classList, this._severities);
+          this.__P_773_4.classList.add(severity);
         }
-        if (this.__P_772_5) {
+        if (this.__P_773_5) {
           // update favicon badge
-          this.__P_772_5.badge(this.getMessages().getLength(), {
+          this.__P_773_5.badge(this.getMessages().getLength(), {
             bgColor: this.getSeverityColor(severity)
           });
         }
@@ -336,18 +336,18 @@
        * Show the NotificationCenter
        */
       show: function show() {
-        if (!this.__P_772_2) {
-          this.__P_772_2 = true;
-          this.__P_772_3.block();
-          this.__P_772_0.style.visibility = '';
-          qx.event.Registration.addListener(this.__P_772_3.getBlockerElement(), 'tap', this.hide, this);
+        if (!this.__P_773_2) {
+          this.__P_773_2 = true;
+          this.__P_773_3.block();
+          this.__P_773_0.style.visibility = '';
+          qx.event.Registration.addListener(this.__P_773_3.getBlockerElement(), 'tap', this.hide, this);
           if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-            var anim = qx.bom.element.Animation.animate(this.__P_772_0, cv.ui.NotificationCenter.SLIDE);
+            var anim = qx.bom.element.Animation.animate(this.__P_773_0, cv.ui.NotificationCenter.SLIDE);
             anim.on('end', function () {
-              this.__P_772_0.style.transform = 'translate(-300px)';
+              this.__P_773_0.style.transform = 'translate(-300px)';
             }, this);
           } else {
-            this.__P_772_0.style.transform = 'translate(-300px)';
+            this.__P_773_0.style.transform = 'translate(-300px)';
           }
         }
       },
@@ -355,7 +355,7 @@
        * Toggle the NotificationCenter visibility
        */
       toggleVisibility: function toggleVisibility() {
-        if (this.__P_772_2) {
+        if (this.__P_773_2) {
           this.hide();
         } else {
           this.show();
@@ -365,18 +365,18 @@
        * Hide the NotificationCenter
        */
       hide: function hide() {
-        if (this.__P_772_2) {
-          this.__P_772_2 = false;
-          qx.event.Registration.removeListener(this.__P_772_3.getBlockerElement(), 'tap', this.hide, this);
+        if (this.__P_773_2) {
+          this.__P_773_2 = false;
+          qx.event.Registration.removeListener(this.__P_773_3.getBlockerElement(), 'tap', this.hide, this);
           if (cv.ui.NotificationCenter.SLIDE.duration > 0) {
-            var anim = qx.bom.element.Animation.animateReverse(this.__P_772_0, cv.ui.NotificationCenter.SLIDE);
+            var anim = qx.bom.element.Animation.animateReverse(this.__P_773_0, cv.ui.NotificationCenter.SLIDE);
             anim.on('end', function () {
-              this.__P_772_0.style.transform = 'translate(0px)';
-              this.__P_772_3.unblock();
+              this.__P_773_0.style.transform = 'translate(0px)';
+              this.__P_773_3.unblock();
             }, this);
           } else {
-            this.__P_772_0.style.transform = 'translate(0px)';
-            this.__P_772_3.unblock();
+            this.__P_773_0.style.transform = 'translate(0px)';
+            this.__P_773_3.unblock();
           }
         }
       }
@@ -388,12 +388,12 @@
     */
     destruct: function destruct() {
       qx.event.Registration.removeListener(window, 'resize', this._onResize, this);
-      qx.event.Registration.removeListener(this.__P_772_3.getBlockerElement(), 'tap', this.hide, this);
-      qx.event.Registration.removeListener(this.__P_772_1, 'tap', this._onListTap, this);
-      this._disposeObjects("__P_772_3", "__P_772_1", '_openCommand', '_list');
+      qx.event.Registration.removeListener(this.__P_773_3.getBlockerElement(), 'tap', this.hide, this);
+      qx.event.Registration.removeListener(this.__P_773_1, 'tap', this._onListTap, this);
+      this._disposeObjects("__P_773_3", "__P_773_1", '_openCommand', '_list');
     }
   });
   cv.ui.NotificationCenter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NotificationCenter.js.map?dt=1778272856873
+//# sourceMappingURL=NotificationCenter.js.map?dt=1782595083218

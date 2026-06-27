@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1778272634553,
-  "lastModifiedIso": "2026-05-08T20:37:14.553Z",
+  "lastModified": 1782594888754,
+  "lastModifiedIso": "2026-06-27T21:14:48.754Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/Appearance.js",
   "type": "theme",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1208
     },
     "end": {
-      "line": 2494,
+      "line": 2496,
       "column": 3,
-      "index": 58441
+      "index": 58482
     }
   },
   "className": "qx.theme.tangible.Appearance",

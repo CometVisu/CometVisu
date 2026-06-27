@@ -1,4 +1,7 @@
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -64,6 +67,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       "cv.data.FileWorker": {},
       "qx.log.Logger": {},
       "qx.core.Init": {},
+      "cv.util.ScriptLoader": {},
       "qx.core.WindowError": {},
       "qx.dev.StackTrace": {},
       "cv.ui.PopupHandler": {},
@@ -72,7 +76,6 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       "cv.ui.NotificationCenter": {},
       "cv.ui.ToastManager": {},
       "cv.util.ConfigLoader": {},
-      "cv.util.ScriptLoader": {},
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "cv.ui.structure.WidgetFactory": {},
@@ -115,6 +118,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
    * @asset(demo/*)
    * @asset(designs/*)
    * @asset(icons/*)
+   * @asset(libs/source-map.min.js)
    * @asset(sentry/*)
    * @asset(test/*)
    *
@@ -342,7 +346,11 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
     members: {
       _blocker: null,
       __P_2_0: null,
+      __P_2_2: 0,
       _isCached: null,
+      __P_2_3: null,
+      __P_2_4: null,
+      __P_2_5: false,
       /**
        * Toggle the {@link qx.bom.Blocker} visibility
        * @param val {Boolean}
@@ -387,7 +395,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
         } else {
           this.addListenerOnce('serverCheckedChanged', this._checkBackend, this);
         }
-        qx.event.GlobalError.setErrorHandler(this.__P_2_2, this);
+        qx.event.GlobalError.setErrorHandler(this.__P_2_6, this);
         document.body.classList.add('loading');
         cv.report.Record.prepare();
         var info = "\n  _____                     ___      ___\n / ____|                   | \\ \\    / (_)\n| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n-----------------------------------------------------------\n ©2010-" + new Date().getFullYear() + ' Christian Mayer and the CometVisu contributors.\n' + ' Version: ' + cv.Version.VERSION + '\n';
@@ -423,7 +431,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
          */
         // in debug mode load the uncompressed unobfuscated scripts
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css') + (cv.Config.forceReload === true ? '?' + Date.now() : ''));
-        this.__P_2_3();
+        this.__P_2_7();
         if (typeof cv.Config.mobileDevice === 'boolean') {
           this.setMobile(cv.Config.mobileDevice);
         }
@@ -571,7 +579,372 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           _this3.error(err);
         });
       },
-      __P_2_2: function __P_2_2(ex) {
+      __P_2_8: function __P_2_8(message) {
+        return '<pre>' + message + '</pre>';
+      },
+      __P_2_9: function __P_2_9(fileName) {
+        return Boolean(fileName) && !['<anonymous>', 'native'].includes(fileName) && !fileName.startsWith('eval') && /\.js(?:[?#]|$)/.test(fileName);
+      },
+      __P_2_10: function __P_2_10(line) {
+        if (!line) {
+          return null;
+        }
+        var trimmed = line.trim();
+        var match = /^at\s+(.*?)\s+\((.+):(\d+):(\d+)\)$/.exec(trimmed);
+        if (match) {
+          return {
+            functionName: match[1],
+            fileName: match[2],
+            lineNumber: parseInt(match[3], 10),
+            columnNumber: parseInt(match[4], 10)
+          };
+        }
+        match = /^at\s+(.+):(\d+):(\d+)$/.exec(trimmed);
+        if (match) {
+          return {
+            functionName: null,
+            fileName: match[1],
+            lineNumber: parseInt(match[2], 10),
+            columnNumber: parseInt(match[3], 10)
+          };
+        }
+        match = /^(.*?)@(.+):(\d+):(\d+)$/.exec(trimmed);
+        if (match) {
+          return {
+            functionName: match[1] || null,
+            fileName: match[2],
+            lineNumber: parseInt(match[3], 10),
+            columnNumber: parseInt(match[4], 10)
+          };
+        }
+        return null;
+      },
+      __P_2_11: function __P_2_11(url) {
+        try {
+          return new URL(url, window.location.href).toString();
+        } catch (error) {
+          return null;
+        }
+      },
+      __P_2_12: function __P_2_12(scriptUrl) {
+        var url = new URL(scriptUrl, window.location.href);
+        url.pathname += '.map';
+        return url.toString();
+      },
+      __P_2_13: function __P_2_13(source, scriptUrl) {
+        var pathMarkers = ['/source/class/', '/client/source/class/', '/node_modules/@qooxdoo/framework/source/class/'];
+        for (var _i = 0, _pathMarkers = pathMarkers; _i < _pathMarkers.length; _i++) {
+          var marker = _pathMarkers[_i];
+          var markerPosition = source.indexOf(marker);
+          if (markerPosition !== -1) {
+            return source.substring(markerPosition + marker.length);
+          }
+        }
+        try {
+          var resolved = new URL(source, scriptUrl);
+          if (resolved.origin === window.location.origin) {
+            return resolved.pathname.startsWith('/') ? resolved.pathname.substring(1) : resolved.pathname;
+          }
+          return resolved.toString();
+        } catch (error) {
+          return source;
+        }
+      },
+      __P_2_14: function __P_2_14(source) {
+        return source.includes('/node_modules/@qooxdoo/framework/source/class/') || source.startsWith('qx/');
+      },
+      __P_2_15: function __P_2_15(frame) {
+        var normalizedUrl = this.__P_2_11(frame.fileName);
+        var fileName = frame.fileName;
+        if (normalizedUrl) {
+          try {
+            var url = new URL(normalizedUrl);
+            fileName = url.pathname.startsWith('/') ? url.pathname.substring(1) : url.pathname;
+          } catch (error) {
+            fileName = frame.fileName;
+          }
+        }
+        var location = fileName + ':' + frame.lineNumber;
+        if (frame.columnNumber !== null) {
+          location += ':' + frame.columnNumber;
+        }
+        return '\t' + (frame.functionName || '<anonymous>') + ' (' + location + ')';
+      },
+      __P_2_16: function __P_2_16() {
+        var _this4 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+          var scriptUrl;
+          return _regenerator().w(function (_context) {
+            while (1) switch (_context.n) {
+              case 0:
+                if (!(window.sourceMap && window.sourceMap.SourceMapConsumer)) {
+                  _context.n = 1;
+                  break;
+                }
+                return _context.a(2, true);
+              case 1:
+                if (!_this4.__P_2_5) {
+                  _context.n = 2;
+                  break;
+                }
+                return _context.a(2, false);
+              case 2:
+                if (!_this4.__P_2_4) {
+                  scriptUrl = qx.util.ResourceManager.getInstance().toUri('libs/source-map.min.js');
+                  _this4.__P_2_4 = cv.util.ScriptLoader.includeScript(scriptUrl).then(function () {
+                    return Boolean(window.sourceMap && window.sourceMap.SourceMapConsumer);
+                  })["catch"](function (error) {
+                    _this4.debug('failed to load source-map runtime', error);
+                    _this4.__P_2_5 = true;
+                    return false;
+                  });
+                }
+                return _context.a(2, _this4.__P_2_4);
+            }
+          }, _callee);
+        }))();
+      },
+      __P_2_17: function __P_2_17(scriptUrl) {
+        var _this5 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+          var response, mapData;
+          return _regenerator().w(function (_context2) {
+            while (1) switch (_context2.n) {
+              case 0:
+                _context2.n = 1;
+                return window.fetch(_this5.__P_2_12(scriptUrl));
+              case 1:
+                response = _context2.v;
+                if (response.ok) {
+                  _context2.n = 2;
+                  break;
+                }
+                throw new Error('failed to load source map for ' + scriptUrl + ': ' + response.status);
+              case 2:
+                _context2.n = 3;
+                return response.json();
+              case 3:
+                mapData = _context2.v;
+                return _context2.a(2, new window.sourceMap.SourceMapConsumer(mapData));
+            }
+          }, _callee2);
+        }))();
+      },
+      __P_2_18: function __P_2_18(scriptUrl) {
+        var _this6 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+          var hasSourceMapSupport, normalizedUrl;
+          return _regenerator().w(function (_context3) {
+            while (1) switch (_context3.n) {
+              case 0:
+                _context3.n = 1;
+                return _this6.__P_2_16();
+              case 1:
+                hasSourceMapSupport = _context3.v;
+                if (hasSourceMapSupport) {
+                  _context3.n = 2;
+                  break;
+                }
+                return _context3.a(2, null);
+              case 2:
+                normalizedUrl = _this6.__P_2_11(scriptUrl);
+                if (normalizedUrl) {
+                  _context3.n = 3;
+                  break;
+                }
+                return _context3.a(2, null);
+              case 3:
+                if (!_this6.__P_2_3) {
+                  _this6.__P_2_3 = {};
+                }
+                if (!Object.prototype.hasOwnProperty.call(_this6.__P_2_3, normalizedUrl)) {
+                  _this6.__P_2_3[normalizedUrl] = _this6.__P_2_17(normalizedUrl)["catch"](function (error) {
+                    _this6.debug('failed to load source map', normalizedUrl, error);
+                    return null;
+                  });
+                }
+                return _context3.a(2, _this6.__P_2_3[normalizedUrl]);
+            }
+          }, _callee3);
+        }))();
+      },
+      __P_2_19: function __P_2_19(frame) {
+        var _this7 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+          var scriptUrl, consumer, originalPosition;
+          return _regenerator().w(function (_context4) {
+            while (1) switch (_context4.n) {
+              case 0:
+                if (_this7.__P_2_9(frame.fileName)) {
+                  _context4.n = 1;
+                  break;
+                }
+                return _context4.a(2, null);
+              case 1:
+                scriptUrl = _this7.__P_2_11(frame.fileName);
+                if (scriptUrl) {
+                  _context4.n = 2;
+                  break;
+                }
+                return _context4.a(2, null);
+              case 2:
+                _context4.n = 3;
+                return _this7.__P_2_18(scriptUrl);
+              case 3:
+                consumer = _context4.v;
+                if (consumer) {
+                  _context4.n = 4;
+                  break;
+                }
+                return _context4.a(2, null);
+              case 4:
+                originalPosition = consumer.originalPositionFor({
+                  line: frame.lineNumber,
+                  column: Math.max(frame.columnNumber - 1, 0)
+                });
+                if (!(!originalPosition || !originalPosition.source || !originalPosition.line)) {
+                  _context4.n = 5;
+                  break;
+                }
+                return _context4.a(2, null);
+              case 5:
+                return _context4.a(2, {
+                  functionName: originalPosition.name || frame.functionName || '<anonymous>',
+                  source: _this7.__P_2_13(originalPosition.source, scriptUrl),
+                  sourceType: _this7.__P_2_14(originalPosition.source) ? 'framework' : 'application',
+                  lineNumber: originalPosition.line,
+                  columnNumber: originalPosition.column !== null ? originalPosition.column + 1 : null
+                });
+            }
+          }, _callee4);
+        }))();
+      },
+      __P_2_20: function __P_2_20(ex) {
+        var _this8 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+          var frames, mappedFrames, unresolvedFrames, _iterator, _step, frame, mappedFrame, applicationFrames, _t;
+          return _regenerator().w(function (_context5) {
+            while (1) switch (_context5.p = _context5.n) {
+              case 0:
+                if (!(!ex || !ex.stack)) {
+                  _context5.n = 1;
+                  break;
+                }
+                return _context5.a(2, null);
+              case 1:
+                frames = ex.stack.split('\n').map(_this8.__P_2_10, _this8).filter(Boolean);
+                if (!(frames.length === 0)) {
+                  _context5.n = 2;
+                  break;
+                }
+                return _context5.a(2, null);
+              case 2:
+                mappedFrames = [];
+                unresolvedFrames = [];
+                _iterator = _createForOfIteratorHelper(frames);
+                _context5.p = 3;
+                _iterator.s();
+              case 4:
+                if ((_step = _iterator.n()).done) {
+                  _context5.n = 7;
+                  break;
+                }
+                frame = _step.value;
+                _context5.n = 5;
+                return _this8.__P_2_19(frame);
+              case 5:
+                mappedFrame = _context5.v;
+                if (mappedFrame) {
+                  mappedFrames.push(mappedFrame);
+                } else if (_this8.__P_2_9(frame.fileName)) {
+                  unresolvedFrames.push(frame);
+                }
+              case 6:
+                _context5.n = 4;
+                break;
+              case 7:
+                _context5.n = 9;
+                break;
+              case 8:
+                _context5.p = 8;
+                _t = _context5.v;
+                _iterator.e(_t);
+              case 9:
+                _context5.p = 9;
+                _iterator.f();
+                return _context5.f(9);
+              case 10:
+                applicationFrames = mappedFrames.filter(function (frame) {
+                  return frame.sourceType === 'application';
+                });
+                if (!(applicationFrames.length > 0)) {
+                  _context5.n = 11;
+                  break;
+                }
+                return _context5.a(2, applicationFrames.slice(0, 8).map(function (frame) {
+                  var sourceLocation = frame.source + ':' + frame.lineNumber;
+                  if (frame.columnNumber !== null) {
+                    sourceLocation += ':' + frame.columnNumber;
+                  }
+                  return '\t' + frame.functionName + ' (' + sourceLocation + ')';
+                }).join('\n'));
+              case 11:
+                if (!(unresolvedFrames.length > 0)) {
+                  _context5.n = 12;
+                  break;
+                }
+                return _context5.a(2, ['No sourcemap entries for the top generated stack frames:', unresolvedFrames.slice(0, 4).map(_this8.__P_2_15, _this8).join('\n')].join('\n'));
+              case 12:
+                if (!(mappedFrames.length > 0)) {
+                  _context5.n = 13;
+                  break;
+                }
+                return _context5.a(2, ['Only framework-internal frames could be resolved:', mappedFrames.slice(0, 4).map(function (frame) {
+                  var sourceLocation = frame.source + ':' + frame.lineNumber;
+                  if (frame.columnNumber !== null) {
+                    sourceLocation += ':' + frame.columnNumber;
+                  }
+                  return '\t' + frame.functionName + ' (' + sourceLocation + ')';
+                }).join('\n')].join('\n'));
+              case 13:
+                return _context5.a(2, null);
+            }
+          }, _callee5, null, [[3, 8, 9, 10]]);
+        }))();
+      },
+      __P_2_21: function __P_2_21(ex, exString, notification, sequence) {
+        var _this9 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+          var mappedStack, _t2;
+          return _regenerator().w(function (_context6) {
+            while (1) switch (_context6.p = _context6.n) {
+              case 0:
+                _context6.p = 0;
+                _context6.n = 1;
+                return _this9.__P_2_20(ex);
+              case 1:
+                mappedStack = _context6.v;
+                if (!(!mappedStack || sequence !== _this9.__P_2_2)) {
+                  _context6.n = 2;
+                  break;
+                }
+                return _context6.a(2);
+              case 2:
+                notification.message = _this9.__P_2_8(exString + '\nMapped Stack:\n' + mappedStack);
+                cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+                _context6.n = 4;
+                break;
+              case 3:
+                _context6.p = 3;
+                _t2 = _context6.v;
+                _this9.debug('failed to remap stack trace', _t2);
+              case 4:
+                return _context6.a(2);
+            }
+          }, _callee6, null, [[0, 3]]);
+        }))();
+      },
+      __P_2_6: function __P_2_6(ex) {
         // connect client data for Bug-Report
         var exString = '';
         var maxTraceLength = 2000;
@@ -633,12 +1006,14 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
             }
           }
         }
+        var sequence = ++this.__P_2_2;
         var notification = {
-          topic: 'cv.error',
+          topic: 'cv.error.' + sequence,
           target: cv.ui.PopupHandler,
           title: qx.locale.Manager.tr('An error occured'),
-          message: '<pre>' + (exString || ex.stack) + '</pre>',
+          message: this.__P_2_8(exString || ex.stack),
           severity: 'urgent',
+          unique: true,
           deletable: false,
           actions: {
             optionGroup: {
@@ -710,10 +1085,13 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           }
         }
         cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+        this.__P_2_21(ex, exString || ex.stack, notification, sequence);
       },
       throwError: qx.core.Environment.select('qx.globalErrorHandling', {
         "true": function _true() {
-          window.onerror(new Error('test error'));
+          qx.event.Timer.once(function () {
+            throw new Error('sourcemap test');
+          }, this, 100);
         },
         "false": null
       }),
@@ -733,35 +1111,35 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       /**
        * Internal initialization method
        */
-      __P_2_3: function __P_2_3() {
-        var _this4 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-          return _regenerator().w(function (_context2) {
-            while (1) switch (_context2.n) {
+      __P_2_7: function __P_2_7() {
+        var _this0 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+          return _regenerator().w(function (_context8) {
+            while (1) switch (_context8.n) {
               case 0:
                 window.addEventListener('pagehide', function () {
                   cv.io.Client.stopAll();
                 });
-                qx.bom.Lifecycle.onReady(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+                qx.bom.Lifecycle.onReady(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
                   var configLoader;
-                  return _regenerator().w(function (_context) {
-                    while (1) switch (_context.n) {
+                  return _regenerator().w(function (_context7) {
+                    while (1) switch (_context7.n) {
                       case 0:
                         // init notification router
                         cv.core.notifications.Router.getInstance();
-                        _this4._isCached = false;
+                        _this0._isCached = false;
                         if (!cv.Config.enableCache) {
-                          _context.n = 2;
+                          _context7.n = 2;
                           break;
                         }
-                        _context.n = 1;
+                        _context7.n = 1;
                         return cv.ConfigCache.isCached();
                       case 1:
-                        _this4._isCached = _context.v;
+                        _this0._isCached = _context7.v;
                       case 2:
-                        if (_this4._isCached) {
+                        if (_this0._isCached) {
                           // load settings
-                          _this4.debug('using cache');
+                          _this0.debug('using cache');
                           cv.ConfigCache.restore();
                         }
                         // initialize NotificationCenter
@@ -769,29 +1147,29 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                         cv.ui.ToastManager.getInstance();
                         if (!window.cvTestMode && !cv.Config.loadManager) {
                           configLoader = new cv.util.ConfigLoader();
-                          configLoader.load(_this4.bootstrap, _this4);
+                          configLoader.load(_this0.bootstrap, _this0);
                         }
                       case 3:
-                        return _context.a(2);
+                        return _context7.a(2);
                     }
-                  }, _callee);
+                  }, _callee7);
                 })));
 
                 // reaction on browser back button
                 qx.bom.History.getInstance().addListener('request', function (e) {
                   var anchor = e.getData();
-                  if (_this4.isInManager() && anchor !== 'manager') {
-                    _this4.hideManager();
-                  } else if (!_this4.isInManager() && anchor === 'manager') {
-                    _this4.showManager();
+                  if (_this0.isInManager() && anchor !== 'manager') {
+                    _this0.hideManager();
+                  } else if (!_this0.isInManager() && anchor === 'manager') {
+                    _this0.showManager();
                   } else if (cv.Application.structureController) {
                     cv.Application.structureController.onHistoryRequest(anchor);
                   }
                 });
               case 1:
-                return _context2.a(2);
+                return _context8.a(2);
             }
-          }, _callee2);
+          }, _callee8);
         }))();
       },
       /**
@@ -799,27 +1177,27 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
        * @param xml {Document} XML configuration retrieved from backend
        */
       bootstrap: function bootstrap(xml) {
-        var _this5 = this;
-        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+        var _this1 = this;
+        return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
           var engine, loader, cacheValid, structure, styles, scripts, _engine;
-          return _regenerator().w(function (_context4) {
-            while (1) switch (_context4.n) {
+          return _regenerator().w(function (_context0) {
+            while (1) switch (_context0.n) {
               case 0:
-                _this5.debug('bootstrapping');
+                _this1.debug('bootstrapping');
                 engine = cv.TemplateEngine.getInstance();
                 loader = cv.util.ScriptLoader.getInstance();
                 engine.setConfigSource(xml);
                 loader.bind('finished', engine, 'scriptsLoaded');
-                if (!_this5._isCached) {
-                  _context4.n = 2;
+                if (!_this1._isCached) {
+                  _context0.n = 2;
                   break;
                 }
-                _context4.n = 1;
+                _context0.n = 1;
                 return cv.ConfigCache.isValid(null, engine.getConfigHash());
               case 1:
-                cacheValid = _context4.v;
+                cacheValid = _context0.v;
                 if (!cacheValid) {
-                  _this5.debug('cache is invalid re-parse xml');
+                  _this1.debug('cache is invalid re-parse xml');
                   // cache invalid
                   cv.Config.cacheUsed = false;
                   cv.ConfigCache.clear();
@@ -835,25 +1213,25 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
 
                   // load part for structure
                   structure = cv.Config.getStructure();
-                  _this5.debug('loading structure ' + structure);
+                  _this1.debug('loading structure ' + structure);
                   engine.loadParts([structure]).then(function () {
-                    _this5.loadPlugins();
+                    _this1.loadPlugins();
                   });
-                  engine.addListenerOnce('changeReady', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+                  engine.addListenerOnce('changeReady', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
                     var data;
-                    return _regenerator().w(function (_context3) {
-                      while (1) switch (_context3.n) {
+                    return _regenerator().w(function (_context9) {
+                      while (1) switch (_context9.n) {
                         case 0:
-                          _context3.n = 1;
+                          _context9.n = 1;
                           return cv.Application.structureController.getInitialPageId();
                         case 1:
-                          cv.Config.treePath = _context3.v;
+                          cv.Config.treePath = _context9.v;
                           data = cv.data.Model.getInstance().getWidgetData('id_');
                           cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
                         case 2:
-                          return _context3.a(2);
+                          return _context9.a(2);
                       }
-                    }, _callee3);
+                    }, _callee9);
                   })));
                   // check if the current design settings overrides the cache one
                   if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
@@ -866,44 +1244,44 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                         style.uri = style.uri.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign);
                         styles.push(style);
                       }
-                    }, _this5);
-                    _this5.loadStyles(styles);
+                    }, _this1);
+                    _this1.loadStyles(styles);
                     scripts = [];
                     cv.Config.configSettings.scriptsToLoad.forEach(function (style) {
                       scripts.push(style.replace('designs/' + cv.Config.configSettings.clientDesign, 'designs/' + cv.Config.clientDesign));
-                    }, _this5);
-                    _this5.loadScripts(scripts);
+                    }, _this1);
+                    _this1.loadScripts(scripts);
                   } else {
-                    _this5.loadStyles();
-                    _this5.loadScripts();
+                    _this1.loadStyles();
+                    _this1.loadScripts();
                   }
                 }
               case 2:
                 if (cv.Config.cacheUsed) {
-                  _context4.n = 4;
+                  _context0.n = 4;
                   break;
                 }
-                _this5.debug('start parsing config file');
+                _this1.debug('start parsing config file');
                 _engine = cv.TemplateEngine.getInstance();
-                _context4.n = 3;
+                _context0.n = 3;
                 return _engine.parse();
               case 3:
-                _this5.loadPlugins();
-                _this5.loadStyles();
-                _this5.loadScripts();
-                _this5.debug('done');
+                _this1.loadPlugins();
+                _this1.loadStyles();
+                _this1.loadScripts();
+                _this1.debug('done');
                 if (cv.Config.enableCache && cv.Application.structureController.supports('cache')) {
                   // cache dom + data when everything is ready
                   qx.event.message.Bus.subscribe('setup.dom.finished', function () {
                     cv.ConfigCache.dump(xml, _engine.getConfigHash());
-                  }, _this5);
+                  }, _this1);
                 }
               case 4:
-                _this5.__P_2_0 = true;
+                _this1.__P_2_0 = true;
               case 5:
-                return _context4.a(2);
+                return _context0.a(2);
             }
-          }, _callee4);
+          }, _callee0);
         }))();
       },
       /**
@@ -940,7 +1318,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
        * Load plugins
        */
       loadPlugins: function loadPlugins() {
-        var _this6 = this;
+        var _this10 = this;
         var plugins = cv.Config.configSettings.pluginsToLoad.slice();
         cv.Config.pluginsToLoad.forEach(function (name) {
           if (!plugins.includes(name)) {
@@ -956,12 +1334,12 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           if (!partsLoaded) {
             engine.addListener('changePartsLoaded', function (ev) {
               if (ev.getData() === true) {
-                _this6.debug('plugins loaded');
+                _this10.debug('plugins loaded');
                 partsLoaded = true;
                 if (allPluginsQueued) {
                   qx.event.Timer.once(function () {
                     cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                  }, _this6, 0);
+                  }, _this10, 0);
                 }
               }
             });
@@ -990,12 +1368,12 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
               var lid = this.addListener('changeStructureLoaded', function (ev) {
                 if (ev.getData() === true) {
                   allPluginsQueued = true;
-                  _this6.debug('loading standalone plugins');
+                  _this10.debug('loading standalone plugins');
                   cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
                   if (partsLoaded) {
                     cv.util.ScriptLoader.getInstance().setAllQueued(true);
                   }
-                  _this6.removeListenerById(lid);
+                  _this10.removeListenerById(lid);
                 }
               });
             }
@@ -1010,7 +1388,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
         }
       },
-      __P_2_4: function __P_2_4(serverVersionId, constraint) {
+      __P_2_22: function __P_2_22(serverVersionId, constraint) {
         var match = /^(>=|<|>|<=|\^)(\d+)\.(\d+)\.?(\d+)?$/.exec(constraint);
         if (match) {
           var operator = match[1];
@@ -1058,7 +1436,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
         return false;
       },
       _checkBackend: function _checkBackend() {
-        var _this7 = this;
+        var _this11 = this;
         if (cv.Config.testMode === true) {
           this.setManagerChecked(true);
           this.setServerHasPhpSupport(true);
@@ -1071,11 +1449,11 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
             accept: 'application/json'
           });
           var failedCheck = function failedCheck(errorText, disableReason) {
-            _this7.setServerHasPhpSupport(false);
-            _this7.error(errorText);
-            _this7.setManagerDisabled(true);
-            _this7.setManagerDisabledReason(disableReason);
-            _this7.setManagerChecked(true);
+            _this11.setServerHasPhpSupport(false);
+            _this11.error(errorText);
+            _this11.setManagerDisabled(true);
+            _this11.setManagerDisabledReason(disableReason);
+            _this11.setManagerChecked(true);
           };
           xhr.addListenerOnce('success', function (e) {
             var req = e.getTarget();
@@ -1091,9 +1469,9 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
             } else {
               // is this is served by native openHAB server, we do not have native PHP support, only the basic
               // rest api is available, but nothing else that needs PHP (like some plugin backend code)
-              _this7.setServerHasPhpSupport(!isOpenHab);
-              _this7.setServerPhpVersion(env.phpversion);
-              _this7.setServer(env.SERVER_SOFTWARE);
+              _this11.setServerHasPhpSupport(!isOpenHab);
+              _this11.setServerPhpVersion(env.phpversion);
+              _this11.setServer(env.SERVER_SOFTWARE);
               if (Object.prototype.hasOwnProperty.call(env, 'requiresAuth')) {
                 cv.io.rest.Client.AUTH_REQUIRED = env.requiresAuth === true;
               }
@@ -1107,7 +1485,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                 });
                 // pass when no failed andPart has been found
                 return !andParts.some(function (constraint) {
-                  return _this7.__P_2_4(serverVersionId, constraint);
+                  return _this11.__P_2_22(serverVersionId, constraint);
                 });
               });
               // one of the OR constraints need to pass
@@ -1115,13 +1493,13 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                 return res === true;
               });
               if (enable) {
-                _this7.info('Manager available for PHP version', env.phpversion);
+                _this11.info('Manager available for PHP version', env.phpversion);
               } else {
-                _this7.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
-                _this7.setManagerDisabled(true);
-                _this7.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
+                _this11.error('Disabling manager due to PHP version mismatch. Installed:', env.phpversion, 'required:', env.required_php_version);
+                _this11.setManagerDisabled(true);
+                _this11.setManagerDisabledReason(qx.locale.Manager.tr('Your system does not provide the required PHP version for the manager. Installed: %1, required: %2', env.phpversion, env.required_php_version));
               }
-              _this7.setManagerChecked(true);
+              _this11.setManagerChecked(true);
               if (window.Sentry) {
                 if ('server_release' in env) {
                   Sentry.setTag('server.release', env.server_release);
@@ -1189,4 +1567,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1778272809450
+//# sourceMappingURL=Application.js.map?dt=1782595043580

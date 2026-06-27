@@ -1355,7 +1355,11 @@
        *          visible.
        */
       setFocusedCell: function setFocusedCell(col, row, scrollVisible) {
-        if (!this.isEditing() && (col != this.__P_677_2 || row != this.__P_677_3)) {
+        var cellChanged = col != this.__P_677_2 || row != this.__P_677_3;
+        if (this.isEditing() && cellChanged) {
+          this.stopEditing();
+        }
+        if (!this.isEditing() && cellChanged) {
           if (col === null) {
             col = 0;
           }
@@ -1874,4 +1878,4 @@
   qx.ui.table.Table.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Table.js.map?dt=1778272852323
+//# sourceMappingURL=Table.js.map?dt=1782595079203

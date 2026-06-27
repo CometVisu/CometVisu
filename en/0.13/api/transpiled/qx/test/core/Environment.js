@@ -896,13 +896,13 @@
           return;
         }
         // compile-time environment
-        var qxVersion = "7.9.2";
+        var qxVersion = "7.9.3";
         qx.core.Environment.set("qx.version", "1.0");
-        this.assertEquals("1.0", "7.9.2");
+        this.assertEquals("1.0", "7.9.3");
         qx.core.Environment.reset("qx.version");
-        this.assertEquals(qxVersion, "7.9.2");
+        this.assertEquals(qxVersion, "7.9.3");
         qx.core.Environment.remove("qx.version");
-        this.assertUndefined("7.9.2");
+        this.assertUndefined("7.9.3");
 
         // runtime environment
         var browserName = qx.core.Environment.get("browser.name");
@@ -915,7 +915,7 @@
 
         // cleanup
         qx.core.Environment.reset();
-        this.assertEquals(qxVersion, "7.9.2");
+        this.assertEquals(qxVersion, "7.9.3");
         this.assertEquals(browserName, qx.core.Environment.get("browser.name"));
       }
     }
@@ -923,4 +923,4 @@
   qx.test.core.Environment.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Environment.js.map?dt=1778272831198
+//# sourceMappingURL=Environment.js.map?dt=1782595061433

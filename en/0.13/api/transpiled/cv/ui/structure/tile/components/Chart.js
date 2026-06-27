@@ -395,9 +395,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   span.textContent = element.getAttribute('title');
                   _this2.appendToHeader(title);
                 }
-                if (title && _this2._titleString === null) {
+                if (_this2._titleString === null) {
                   // save base title for updating
-                  _this2._titleString = title.textContent.trim();
+                  if (element.hasAttribute('title')) {
+                    _this2._titleString = element.getAttribute('title');
+                  } else {
+                    _this2._titleString = title ? title.textContent.trim() : '';
+                  }
                 }
                 seriesSelection = [];
                 if (!inBackground && element.hasAttribute('selection')) {
@@ -1695,4 +1699,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1778272816109
+//# sourceMappingURL=Chart.js.map?dt=1782595048890

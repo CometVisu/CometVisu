@@ -1472,6 +1472,22 @@
           };
         }
       },
+      "selectbox-arrow-button": "widget",
+      /*
+      ---------------------------------------------------------------------------
+        CHECKED SELECT BOX
+      ---------------------------------------------------------------------------
+      */
+
+      "checked-selectbox": "selectbox",
+      "checked-selectbox/allNone": {
+        include: "button"
+      },
+      "checked-selectbox/tag": "tag",
+      tag: {
+        alias: "button",
+        include: "button"
+      },
       /*
       ---------------------------------------------------------------------------
         DATE CHOOSER
@@ -2253,4 +2269,4 @@
   qx.theme.modern.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1778272839749
+//# sourceMappingURL=Appearance.js.map?dt=1782595068766

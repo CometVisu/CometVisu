@@ -156,9 +156,14 @@
       __P_638_6: null,
       __P_638_7: null,
       /**
+       * Flag which ignores event domupdated caused by this widget and stopps infinite recursive `_updatePosition` calls
+       */
+      __P_638_8: false,
+      /**
        * Event handler. Called whenever the position of the popup should be updated.
        */
       _updatePosition: function _updatePosition() {
+        this.__P_638_8 = true;
         // Traverse single anchor classes for removal, for preventing 'domupdated' event if no CSS classes changed.
         var anchorClasses = ["top", "bottom", "left", "right", "anchor"];
         for (var i = 0; i < anchorClasses.length; i++) {
@@ -216,7 +221,7 @@
       show: function show() {
         if (!this.__P_638_1) {
           qx.core.Init.getApplication().fireEvent("popup");
-          this.__P_638_8();
+          this.__P_638_9();
 
           // Needs to be added to screen, before rendering position, for calculating
           // objects height.
@@ -238,7 +243,7 @@
        */
       hide: function hide() {
         if (this.__P_638_1) {
-          this.__P_638_9();
+          this.__P_638_10();
           this.exclude();
         }
         this.__P_638_1 = false;
@@ -323,7 +328,7 @@
       /**
        * Registers all needed event listeners
        */
-      __P_638_8: function __P_638_8() {
+      __P_638_9: function __P_638_9() {
         qx.core.Init.getApplication().addListener("stop", this.hide, this);
         qx.core.Init.getApplication().addListener("popup", this.hide, this);
         qx.event.Registration.addListener(window, "resize", this._updatePosition, this);
@@ -335,7 +340,7 @@
       /**
        * Unregisters all needed event listeners
        */
-      __P_638_9: function __P_638_9() {
+      __P_638_10: function __P_638_10() {
         qx.core.Init.getApplication().removeListener("stop", this.hide, this);
         qx.core.Init.getApplication().removeListener("popup", this.hide, this);
         qx.event.Registration.removeListener(window, "resize", this._updatePosition, this);
@@ -351,6 +356,7 @@
        *
        */
       _initializeChild: function _initializeChild(widget) {
+        var _this = this;
         if (this.__P_638_3 == null) {
           this.__P_638_3 = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox());
           this.__P_638_3.setDefaultCssClass("popup-content");
@@ -363,7 +369,13 @@
         this.__P_638_3.add(widget, {
           flex: 1
         });
-        widget.addListener("domupdated", this._updatePosition, this);
+        widget.addListener("domupdated", function () {
+          if (!_this.__P_638_8) {
+            _this._updatePosition();
+          } else {
+            _this.__P_638_8 = false;
+          }
+        }, this);
         this.__P_638_5 = widget;
       },
       /**
@@ -461,7 +473,7 @@
       }
     },
     destruct: function destruct() {
-      this.__P_638_9();
+      this.__P_638_10();
       this._disposeObjects("__P_638_3");
       this.__P_638_1 = this.__P_638_2 = this.__P_638_4 = this._anchor = this.__P_638_5 = this.__P_638_7 = null;
     }
@@ -469,4 +481,4 @@
   qx.ui.mobile.dialog.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1778272850795
+//# sourceMappingURL=Popup.js.map?dt=1782595077920

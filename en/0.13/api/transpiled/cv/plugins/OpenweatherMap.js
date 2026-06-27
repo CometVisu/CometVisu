@@ -238,4 +238,4 @@
   cv.plugins.OpenweatherMap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OpenweatherMap.js.map?dt=1778272811171
+//# sourceMappingURL=OpenweatherMap.js.map?dt=1782595044835

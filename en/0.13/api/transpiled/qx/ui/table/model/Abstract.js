@@ -84,7 +84,7 @@
        * current implementations so only introduce the change from QX v8.
        * Ref: https://github.com/qooxdoo/qooxdoo/pull/10377#discussion_r818697343
        */
-      THROW_ON_MODEL_CHANGE_DURING_EDIT: parseInt("7.9.2", 10) >= 8
+      THROW_ON_MODEL_CHANGE_DURING_EDIT: parseInt("7.9.3", 10) >= 8
     },
     members: {
       __P_688_0: null,
@@ -300,4 +300,4 @@
   qx.ui.table.model.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1778272852786
+//# sourceMappingURL=Abstract.js.map?dt=1782595079586

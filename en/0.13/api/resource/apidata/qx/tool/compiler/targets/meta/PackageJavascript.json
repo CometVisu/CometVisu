@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1778272635428,
-  "lastModifiedIso": "2026-05-08T20:37:15.428Z",
+  "lastModified": 1782594890627,
+  "lastModifiedIso": "2026-06-27T21:14:50.627Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/PackageJavascript.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1032
     },
     "end": {
-      "line": 145,
+      "line": 149,
       "column": 3,
-      "index": 3919
+      "index": 4068
     }
   },
   "className": "qx.tool.compiler.targets.meta.PackageJavascript",
@@ -126,9 +126,9 @@
           "index": 1529
         },
         "end": {
-          "line": 113,
+          "line": 117,
           "column": 5,
-          "index": 3162
+          "index": 3311
         }
       },
       "type": "function",
@@ -165,14 +165,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 122,
           "column": 4,
-          "index": 3201
+          "index": 3350
         },
         "end": {
-          "line": 125,
+          "line": 129,
           "column": 5,
-          "index": 3477
+          "index": 3626
         }
       },
       "type": "function",
@@ -205,14 +205,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 130,
+          "line": 134,
           "column": 4,
-          "index": 3516
+          "index": 3665
         },
         "end": {
-          "line": 143,
+          "line": 147,
           "column": 5,
-          "index": 3911
+          "index": 4060
         }
       },
       "type": "function",

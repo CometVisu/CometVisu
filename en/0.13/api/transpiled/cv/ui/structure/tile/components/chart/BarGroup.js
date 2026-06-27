@@ -137,4 +137,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.chart.BarGroup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BarGroup.js.map?dt=1778272816928
+//# sourceMappingURL=BarGroup.js.map?dt=1782595049660

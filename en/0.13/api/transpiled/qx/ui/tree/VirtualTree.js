@@ -686,7 +686,11 @@
               item = qx.data.SingleValueBinding.resolvePropertyChain(this.getModel(), propertyChain);
             }
           }
-          if (this.__P_705_0.indexOf(item) != -1) {
+
+          // Issue #9390: When hideRoot is true, the root is not in the lookup table,
+          // but we still need to update when its children change
+          var isRootAndHidden = this.isHideRoot() && item === this.getModel();
+          if (this.__P_705_0.indexOf(item) != -1 || isRootAndHidden) {
             this.__P_705_8();
           }
         }
@@ -1040,4 +1044,4 @@
   qx.ui.tree.VirtualTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualTree.js.map?dt=1778272853641
+//# sourceMappingURL=VirtualTree.js.map?dt=1782595080536

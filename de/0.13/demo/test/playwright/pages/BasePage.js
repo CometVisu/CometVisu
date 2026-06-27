@@ -19,7 +19,7 @@
 
 /**
  * The basic PageObject supplies generic helper functions needed for testing the CometVisu app
- * Playwright version - replaces Protractor BasePage
+ * Base page object for Playwright-driven CometVisu browser tests
  * 
  * @author Tobias Bräutigam
  * @since 2025

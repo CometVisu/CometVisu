@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1778272634766,
-  "lastModifiedIso": "2026-05-08T20:37:14.766Z",
+  "lastModified": 1782594889203,
+  "lastModifiedIso": "2026-06-27T21:14:49.203Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/ClassFile.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 4724
     },
     "end": {
-      "line": 3328,
+      "line": 3340,
       "column": 3,
-      "index": 104303
+      "index": 104730
     }
   },
   "className": "qx.tool.compiler.ClassFile",
@@ -932,9 +932,9 @@
           "index": 20047
         },
         "end": {
-          "line": 2446,
+          "line": 2458,
           "column": 5,
-          "index": 79627
+          "index": 80054
         }
       },
       "type": "function",
@@ -970,14 +970,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 2454,
+          "line": 2466,
           "column": 4,
-          "index": 79873
+          "index": 80300
         },
         "end": {
-          "line": 2470,
+          "line": 2482,
           "column": 5,
-          "index": 80393
+          "index": 80820
         }
       },
       "type": "function",
@@ -1006,14 +1006,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 2475,
+          "line": 2487,
           "column": 4,
-          "index": 80510
+          "index": 80937
         },
         "end": {
-          "line": 2491,
+          "line": 2503,
           "column": 5,
-          "index": 81066
+          "index": 81493
         }
       },
       "type": "function",
@@ -1041,14 +1041,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2496,
+          "line": 2508,
           "column": 4,
-          "index": 81128
+          "index": 81555
         },
         "end": {
-          "line": 2505,
+          "line": 2517,
           "column": 5,
-          "index": 81389
+          "index": 81816
         }
       },
       "type": "function",
@@ -1082,14 +1082,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2510,
+          "line": 2522,
           "column": 4,
-          "index": 81447
+          "index": 81874
         },
         "end": {
-          "line": 2531,
+          "line": 2543,
           "column": 5,
-          "index": 81995
+          "index": 82422
         }
       },
       "type": "function",
@@ -1127,14 +1127,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2538,
+          "line": 2550,
           "column": 4,
-          "index": 82109
+          "index": 82536
         },
         "end": {
-          "line": 2540,
+          "line": 2552,
           "column": 5,
-          "index": 82165
+          "index": 82592
         }
       },
       "type": "function",
@@ -1171,14 +1171,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2547,
+          "line": 2559,
           "column": 4,
-          "index": 82272
+          "index": 82699
         },
         "end": {
-          "line": 2549,
+          "line": 2561,
           "column": 5,
-          "index": 82320
+          "index": 82747
         }
       },
       "type": "function",
@@ -1225,14 +1225,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2558,
+          "line": 2570,
           "column": 4,
-          "index": 82633
+          "index": 83060
         },
         "end": {
-          "line": 2570,
+          "line": 2582,
           "column": 5,
-          "index": 83036
+          "index": 83463
         }
       },
       "type": "function",
@@ -1285,14 +1285,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2579,
+          "line": 2591,
           "column": 4,
-          "index": 83230
+          "index": 83657
         },
         "end": {
-          "line": 2590,
+          "line": 2602,
           "column": 5,
-          "index": 83527
+          "index": 83954
         }
       },
       "type": "function",
@@ -1339,14 +1339,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2597,
+          "line": 2609,
           "column": 4,
-          "index": 83665
+          "index": 84092
         },
         "end": {
-          "line": 2645,
+          "line": 2657,
           "column": 5,
-          "index": 84824
+          "index": 85251
         }
       },
       "type": "function",
@@ -1413,14 +1413,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2655,
+          "line": 2667,
           "column": 4,
-          "index": 85244
+          "index": 85671
         },
         "end": {
-          "line": 2712,
+          "line": 2724,
           "column": 5,
-          "index": 87029
+          "index": 87456
         }
       },
       "type": "function",
@@ -1469,14 +1469,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2718,
+          "line": 2730,
           "column": 4,
-          "index": 87169
+          "index": 87596
         },
         "end": {
-          "line": 2726,
+          "line": 2738,
           "column": 5,
-          "index": 87418
+          "index": 87845
         }
       },
       "type": "function",
@@ -1515,14 +1515,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2733,
+          "line": 2745,
           "column": 4,
-          "index": 87559
+          "index": 87986
         },
         "end": {
-          "line": 2737,
+          "line": 2749,
           "column": 5,
-          "index": 87677
+          "index": 88104
         }
       },
       "type": "function",
@@ -1562,14 +1562,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2744,
+          "line": 2756,
           "column": 4,
-          "index": 87803
+          "index": 88230
         },
         "end": {
-          "line": 2750,
+          "line": 2762,
           "column": 5,
-          "index": 88047
+          "index": 88474
         }
       },
       "type": "function",
@@ -1613,14 +1613,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2756,
+          "line": 2768,
           "column": 4,
-          "index": 88147
+          "index": 88574
         },
         "end": {
-          "line": 2774,
+          "line": 2786,
           "column": 5,
-          "index": 88690
+          "index": 89117
         }
       },
       "type": "function",
@@ -1668,14 +1668,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2781,
+          "line": 2793,
           "column": 4,
-          "index": 88858
+          "index": 89285
         },
         "end": {
-          "line": 2797,
+          "line": 2809,
           "column": 5,
-          "index": 89285
+          "index": 89712
         }
       },
       "type": "function",
@@ -1717,14 +1717,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2803,
+          "line": 2815,
           "column": 4,
-          "index": 89388
+          "index": 89815
         },
         "end": {
-          "line": 2810,
+          "line": 2822,
           "column": 5,
-          "index": 89579
+          "index": 90006
         }
       },
       "type": "function",
@@ -1772,14 +1772,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2818,
+          "line": 2830,
           "column": 4,
-          "index": 89730
+          "index": 90157
         },
         "end": {
-          "line": 2866,
+          "line": 2878,
           "column": 5,
-          "index": 91637
+          "index": 92064
         }
       },
       "type": "function",
@@ -1836,14 +1836,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 2875,
+          "line": 2887,
           "column": 4,
-          "index": 91944
+          "index": 92371
         },
         "end": {
-          "line": 2929,
+          "line": 2941,
           "column": 5,
-          "index": 93365
+          "index": 93792
         }
       },
       "type": "function",
@@ -1913,14 +1913,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 2942,
+          "line": 2954,
           "column": 4,
-          "index": 93883
+          "index": 94310
         },
         "end": {
-          "line": 3029,
+          "line": 3041,
           "column": 5,
-          "index": 96482
+          "index": 96909
         }
       },
       "type": "function",
@@ -1966,14 +1966,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 3033,
+          "line": 3045,
           "column": 8,
-          "index": 96548
+          "index": 96975
         },
         "end": {
-          "line": 3040,
+          "line": 3052,
           "column": 5,
-          "index": 96801
+          "index": 97228
         }
       },
       "type": "function",
@@ -2008,14 +2008,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3044,
+          "line": 3056,
           "column": 8,
-          "index": 96883
+          "index": 97310
         },
         "end": {
-          "line": 3046,
+          "line": 3058,
           "column": 5,
-          "index": 96938
+          "index": 97365
         }
       },
       "type": "function",
@@ -2058,14 +2058,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 3053,
+          "line": 3065,
           "column": 4,
-          "index": 97079
+          "index": 97506
         },
         "end": {
-          "line": 3058,
+          "line": 3070,
           "column": 5,
-          "index": 97182
+          "index": 97609
         }
       },
       "type": "function",
@@ -2122,14 +2122,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 3068,
+          "line": 3080,
           "column": 4,
-          "index": 97366
+          "index": 97793
         },
         "end": {
-          "line": 3081,
+          "line": 3093,
           "column": 5,
-          "index": 97775
+          "index": 98202
         }
       },
       "type": "function",
@@ -2169,14 +2169,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3088,
+          "line": 3100,
           "column": 4,
-          "index": 97880
+          "index": 98307
         },
         "end": {
-          "line": 3090,
+          "line": 3102,
           "column": 5,
-          "index": 97945
+          "index": 98372
         }
       },
       "type": "function",
@@ -2209,14 +2209,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3097,
+          "line": 3109,
           "column": 4,
-          "index": 98035
+          "index": 98462
         },
         "end": {
-          "line": 3099,
+          "line": 3111,
           "column": 5,
-          "index": 98103
+          "index": 98530
         }
       },
       "type": "function",
@@ -2250,14 +2250,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3105,
+          "line": 3117,
           "column": 4,
-          "index": 98201
+          "index": 98628
         },
         "end": {
-          "line": 3107,
+          "line": 3119,
           "column": 5,
-          "index": 98254
+          "index": 98681
         }
       },
       "type": "function",
@@ -2304,14 +2304,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3130,
+          "line": 3142,
           "column": 4,
-          "index": 99380
+          "index": 99807
         },
         "end": {
-          "line": 3133,
+          "line": 3145,
           "column": 5,
-          "index": 99490
+          "index": 99917
         }
       },
       "type": "function",
@@ -2348,14 +2348,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3144,
+          "line": 3156,
           "column": 4,
-          "index": 100004
+          "index": 100431
         },
         "end": {
-          "line": 3148,
+          "line": 3160,
           "column": 5,
-          "index": 100139
+          "index": 100566
         }
       },
       "appearsIn": []
@@ -2377,14 +2377,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3153,
+          "line": 3165,
           "column": 4,
-          "index": 100262
+          "index": 100689
         },
         "end": {
-          "line": 3157,
+          "line": 3169,
           "column": 5,
-          "index": 100363
+          "index": 100790
         }
       },
       "appearsIn": []
@@ -2406,14 +2406,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3162,
+          "line": 3174,
           "column": 4,
-          "index": 100430
+          "index": 100857
         },
         "end": {
-          "line": 3173,
+          "line": 3185,
           "column": 5,
-          "index": 100689
+          "index": 101116
         }
       },
       "appearsIn": []
@@ -2423,14 +2423,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3175,
+          "line": 3187,
           "column": 4,
-          "index": 100696
+          "index": 101123
         },
         "end": {
-          "line": 3242,
+          "line": 3254,
           "column": 5,
-          "index": 101926
+          "index": 102353
         }
       },
       "appearsIn": []
@@ -2440,14 +2440,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3244,
+          "line": 3256,
           "column": 4,
-          "index": 101933
+          "index": 102360
         },
         "end": {
-          "line": 3267,
+          "line": 3279,
           "column": 5,
-          "index": 102397
+          "index": 102824
         }
       },
       "appearsIn": []
@@ -2457,14 +2457,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3269,
+          "line": 3281,
           "column": 4,
-          "index": 102404
+          "index": 102831
         },
         "end": {
-          "line": 3278,
+          "line": 3290,
           "column": 5,
-          "index": 102567
+          "index": 102994
         }
       },
       "appearsIn": []
@@ -2474,14 +2474,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3280,
+          "line": 3292,
           "column": 4,
-          "index": 102574
+          "index": 103001
         },
         "end": {
-          "line": 3280,
+          "line": 3292,
           "column": 39,
-          "index": 102609
+          "index": 103036
         }
       },
       "appearsIn": []
@@ -2491,14 +2491,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3282,
+          "line": 3294,
           "column": 4,
-          "index": 102616
+          "index": 103043
         },
         "end": {
-          "line": 3282,
+          "line": 3294,
           "column": 24,
-          "index": 102636
+          "index": 103063
         }
       },
       "appearsIn": []
@@ -2522,14 +2522,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3289,
+          "line": 3301,
           "column": 4,
-          "index": 102981
+          "index": 103408
         },
         "end": {
-          "line": 3324,
+          "line": 3336,
           "column": 5,
-          "index": 104269
+          "index": 104696
         }
       },
       "appearsIn": []
@@ -2539,14 +2539,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 3326,
+          "line": 3338,
           "column": 4,
-          "index": 104276
+          "index": 104703
         },
         "end": {
-          "line": 3326,
+          "line": 3338,
           "column": 23,
-          "index": 104295
+          "index": 104722
         }
       },
       "appearsIn": []

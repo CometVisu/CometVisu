@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1778272634652,
-  "lastModifiedIso": "2026-05-08T20:37:14.652Z",
+  "lastModified": 1782594888871,
+  "lastModifiedIso": "2026-06-27T21:14:48.871Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/Asset.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 285,
       "column": 3,
-      "index": 7753
+      "index": 7768
     }
   },
   "className": "qx.tool.compiler.resources.Asset",
@@ -610,7 +610,7 @@
         "end": {
           "line": 172,
           "column": 5,
-          "index": 4453
+          "index": 4468
         }
       },
       "type": "function",
@@ -624,12 +624,12 @@
         "start": {
           "line": 174,
           "column": 4,
-          "index": 4460
+          "index": 4475
         },
         "end": {
           "line": 275,
           "column": 5,
-          "index": 7603
+          "index": 7618
         }
       },
       "type": "function",
@@ -647,12 +647,12 @@
         "start": {
           "line": 277,
           "column": 4,
-          "index": 7610
+          "index": 7625
         },
         "end": {
           "line": 279,
           "column": 5,
-          "index": 7693
+          "index": 7708
         }
       },
       "type": "function",
@@ -666,12 +666,12 @@
         "start": {
           "line": 281,
           "column": 4,
-          "index": 7700
+          "index": 7715
         },
         "end": {
           "line": 283,
           "column": 5,
-          "index": 7745
+          "index": 7760
         }
       },
       "type": "function",

@@ -69,7 +69,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this = this;
         return _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
-          var pkg, data, strip;
+          var pkg, data, packageWs, strip;
           return _regenerator().w(function (_context2) {
             while (1) switch (_context2.n) {
               case 0:
@@ -97,8 +97,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _this.__P_517_1 = [];
+                packageWs = new qx.tool.utils.Utils.LineCountingTransform();
                 strip = new qx.tool.utils.Utils.StripSourceMapTransform();
-                strip.pipe(ws);
+                strip.pipe(packageWs);
+                packageWs.pipe(ws, {
+                  end: false
+                });
                 _context2.n = 1;
                 return new Promise(/*#__PURE__*/function () {
                   var _ref = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(resolve) {
@@ -113,7 +117,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             break;
                           }
                           js = pkg.getJavascriptMetas()[i];
-                          _this.__P_517_1.push(ws.getLineNumber());
+                          _this.__P_517_1.push(packageWs.getLineNumber());
                           _context.n = 2;
                           return js.unwrap().writeSourceCodeToStream(strip);
                         case 2:
@@ -209,4 +213,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.PackageJavascript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageJavascript.js.map?dt=1778272844797
+//# sourceMappingURL=PackageJavascript.js.map?dt=1782595073060

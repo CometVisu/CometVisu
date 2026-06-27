@@ -138,8 +138,8 @@
         },
         qxGitBranch: function qxGitBranch(node) {
           return qx.core.Environment.get("qx.revision") // e.g. "master:47ac02f"
-          ? qx.core.Environment.get("qx.revision").split(":")[1] : "7.9.2" // e.g. "2.1.2"
-          ? "release_" + "7.9.2".replace(/\./g, "_") : "master";
+          ? qx.core.Environment.get("qx.revision").split(":")[1] : "7.9.3" // e.g. "2.1.2"
+          ? "release_" + "7.9.3".replace(/\./g, "_") : "master";
         }
       },
       /**
@@ -620,4 +620,4 @@
   qxl.apiviewer.ui.ClassViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassViewer.js.map?dt=1778272859767
+//# sourceMappingURL=ClassViewer.js.map?dt=1782595085599

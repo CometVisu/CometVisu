@@ -294,4 +294,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.compiler.targets.meta.Browserify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browserify.js.map?dt=1778272844707
+//# sourceMappingURL=Browserify.js.map?dt=1782595072989

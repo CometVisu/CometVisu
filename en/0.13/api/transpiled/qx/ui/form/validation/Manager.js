@@ -467,7 +467,7 @@
                 continue;
               }
               var msg = item.getInvalidMessage();
-              if (msg && qx.core.Environment.get("qx.ui.form.validation.Manager.allowDefaultInvalidMessage")) {
+              if (!msg && qx.core.Environment.get("qx.ui.form.validation.Manager.allowDefaultInvalidMessage")) {
                 msg = qx.locale.Manager.tr("Invalid field");
               }
               tooltip.setLabel(msg);
@@ -639,4 +639,4 @@
   qx.ui.form.validation.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1778272849290
+//# sourceMappingURL=Manager.js.map?dt=1782595076687

@@ -720,7 +720,7 @@
           var timezoneOffset = date.getTimezoneOffset();
           var timezoneSign = timezoneOffset > 0 ? 1 : -1;
           var timezoneHours = Math.floor(Math.abs(timezoneOffset) / 60);
-          var timezoneMinutes = Math.abs(timezoneOffset) % 60;
+          var timezoneMinutes = Math.trunc(Math.abs(timezoneOffset)) % 60;
           var localTimeZone = "GMT" + (timezoneSign > 0 ? "-" : "+") + this.__P_458_1(Math.abs(timezoneHours), 2) + ":" + this.__P_458_1(timezoneMinutes, 2);
           df = new qx.util.format.DateFormat("z");
           this.assertEquals(localTimeZone, df.format(date));
@@ -851,4 +851,4 @@
   qx.test.util.DateFormat.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateFormat.js.map?dt=1778272838774
+//# sourceMappingURL=DateFormat.js.map?dt=1782595067974
