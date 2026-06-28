@@ -298,7 +298,7 @@ class GithubClient {
     let latestTag = null;
     let latestRelease = null;
     const prereleaseTypes = ['alpha', 'beta', 'rc'];
-    const prereleaseSuffixMap = { alpha: '-Alpha', beta: '-Beta', rc: '-RC' };
+    const prereleaseSuffixMap = { alpha: '-alpha', beta: '-beta', rc: '-RC' };
     const isPrerelease = prereleaseTypes.includes(type);
     if (isPrerelease && baseVersion.endsWith('-dev')) {
       baseVersion = baseVersion.substr(0, baseVersion.indexOf('-dev'));
