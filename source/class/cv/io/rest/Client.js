@@ -141,6 +141,11 @@ qx.Class.define('cv.io.rest.Client', {
             url: '/fs/move?src={src}&target={target}'
           },
 
+          copy: {
+            method: 'PUT',
+            url: '/fs/copy?src={src}&target={target}&force={force}'
+          },
+
           checkEnvironment: {
             method: 'GET',
             url: '/fs/check'

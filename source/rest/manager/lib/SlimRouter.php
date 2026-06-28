@@ -459,6 +459,43 @@ class SlimRouter
         [
             'httpMethod' => 'PUT',
             'basePathWithoutHost' => '',
+            'path' => '/fs/copy',
+            'apiPackage' => 'OpenAPIServer\Api',
+            'classname' => 'AbstractFsApi',
+            'userClassname' => 'FsApi',
+            'operationId' => 'copy',
+            'responses' => [
+              '200' => [
+                'jsonSchema' => '{
+        "description" : "successful operation"
+      }',
+              ],
+              '403' => [
+                'jsonSchema' => '{
+        "description" : "Not allowed"
+      }',
+              ],
+              '404' => [
+                'jsonSchema' => '{
+        "description" : "Source does not exist"
+      }',
+              ],
+              '405' => [
+                'jsonSchema' => '{
+        "description" : "Error occurred"
+      }',
+              ],
+              '406' => [
+                'jsonSchema' => '{
+        "description" : "Target does exist"
+      }',
+              ],
+            ],
+            'authMethods' => [],
+          ],
+          [
+            'httpMethod' => 'PUT',
+            'basePathWithoutHost' => '',
             'path' => '/fs/move',
             'apiPackage' => 'OpenAPIServer\Api',
             'classname' => 'AbstractFsApi',

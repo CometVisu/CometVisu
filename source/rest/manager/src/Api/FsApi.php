@@ -273,6 +273,60 @@ class FsApi extends AbstractFsApi
         }
     }
 
+    public function copy(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        array $args
+    ) {
+        $src = Helper::getQueryParam($request, "src");
+        $target = Helper::getQueryParam($request, "target");
+        $force = Helper::getQueryParam($request, "force", "false") === "true";
+        $mount = $this->getMount($src);
+        $fsPath = $this->getAbsolutePath($src, $mount);
+
+        $targetMount = $this->getMount($target);
+        $targetPath = $this->getAbsolutePath($target, $targetMount);
+        
+        if (!file_exists($fsPath)) {
+            return Helper::withJson(
+                $response,
+                ["message" => "Source not found", "mount" => $mount, "fsPath" => $fsPath, "targetMount" => $targetMount, "targetPath" => $targetPath],
+                404
+            );
+        }
+        if (file_exists($targetPath) && !$force) {
+            return Helper::withJson(
+                $response,
+                ["message" => "Target exists", "mount" => $mount, "fsPath" => $fsPath, "targetMount" => $targetMount, "targetPath" => $targetPath],
+                406
+            );
+        }
+        if (
+            !$this->checkAccess($targetPath) ||
+            ($targetMount && $targetMount["writeable"] === false)
+        ) {
+            return Helper::withJson($response, ["message" => "Forbidden"], 403);
+        } else {
+            try {
+                if (FileHandler::copy($fsPath, $targetPath, $force)) {
+                    return $response->withStatus(200);
+                } else {
+                    return Helper::withJson(
+                        $response,
+                        ["message" => "copy failed"],
+                        500
+                    );
+                }
+            } catch (Exception $e) {
+                return Helper::withJson(
+                    $response,
+                    ["message" => $e->getMessage()],
+                    $e->getCode()
+                );
+            }
+        }
+    }
+
     private function __processRequest(
         ServerRequestInterface $request,
         ResponseInterface $response,
@@ -405,12 +459,15 @@ class FsApi extends AbstractFsApi
                 "/resource/config"
             ) {
                 foreach ($this->config->mounts as $mount) {
+                    if ($mount["visible"] === false) {
+                        continue;
+                    }
                     array_push($content, [
                         "name" => $mount["mountPoint"],
-                        "type" => "dir",
+                        "type" => is_dir($mount["path"]) ? "dir" : "file",
                         "mounted" => true,
                         "parentFolder" => "",
-                        "hasChildren" => count(scandir($mount["path"])) > 2,
+                        "hasChildren" => is_dir($mount["path"]) && count(scandir($mount["path"])) > 2,
                         "readable" => true,
                         "writeable" => $mount["writeable"] !== false,
                     ]);
@@ -506,12 +563,8 @@ class FsApi extends AbstractFsApi
             }
 
             $file = $dirname . DIRECTORY_SEPARATOR . $options["filename"];
-            if (file_exists($file) && (!$options || !$options["force"])) {
-                throw new Exception("File already exists", 406);
-            } else {
-                FileHandler::saveFile($file, $content, $hash);
-                return $response->withStatus(200);
-            }
+            FileHandler::createFile($file, $content, $hash, $options);
+            return $response->withStatus(200);
         } catch (Exception $e) {
             return Helper::withJson(
                 $response,
@@ -593,6 +646,9 @@ class FsApi extends AbstractFsApi
     {
         $fsPath = $this->__sanitize($fsPath);
         if ($mount) {
+            if ($fsPath === $mount["mountPoint"]) {
+                return $mount["path"];
+            }
             // remove mountPoint from requested path
             $fsPath = substr($fsPath, strlen($mount["mountPoint"]) + 1);
             $res = realpath($mount["path"] . "/" . $fsPath);
