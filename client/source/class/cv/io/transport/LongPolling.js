@@ -53,6 +53,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /** @type {cv.io.Client} */
     client: null,
     running: null,
+    /** @type {Number} */
+    __backendErrorRetryCount: 0,
 
     /**
      * This function gets called once the communication is established
@@ -116,7 +118,22 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * and this.client information is available
      */
     handleRead() {
-      const json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
+      let json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
+
+      // The response might still be a raw JSON string if auto-parsing failed
+      if (typeof json === 'string') {
+        try {
+          json = JSON.parse(json);
+        } catch (e) {
+          // Backend might return single-quoted JSON like {'error':'Foo'},
+          // which is not valid per spec. Normalize quotes and retry.
+          try {
+            json = JSON.parse(json.replace(/'/g, '"'));
+          } catch (e2) {
+            // not parseable as JSON, leave as-is
+          }
+        }
+      }
 
       if (this.doRestart || (!json && this.lastIndex === -1)) {
         this.client.setDataReceived(false);
@@ -146,6 +163,41 @@ qx.Class.define('cv.io.transport.LongPolling', {
         return;
       }
 
+      if (json && Object.prototype.hasOwnProperty.call(json, 'error')) {
+        // Backend returned an error response (e.g. {"error":"Read failed"})
+        this.error('Backend error: ' + json.error, JSON.stringify(json));
+
+        this.__backendErrorRetryCount++;
+
+        if (this.__backendErrorRetryCount === 1) {
+          // First failure: restart silently
+          this.restart();
+          return;
+        }
+
+        const maxRetries = this.client.backend.maxRetries || 3;
+        if (this.__backendErrorRetryCount <= maxRetries) {
+          // Show self-healing notification (will auto-resolve on successful reconnect)
+          this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, json);
+          // Restart with exponential backoff delay
+          const delay = 1000 * Math.pow(2, this.__backendErrorRetryCount - 2);
+          this.watchdog.stop();
+          qx.event.Timer.once(
+            function () {
+              this.restart();
+              this.watchdog.start(5);
+            },
+            this,
+            delay
+          );
+          return;
+        }
+
+        // Max retries reached: show final error, stop retrying
+        this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR_MAX_RETRIES, json);
+        return;
+      }
+
       let data;
       if (json && !this.doRestart) {
         if (!Object.prototype.hasOwnProperty.call(json, 'i')) {
@@ -159,6 +211,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
         data = json.d;
         this.readResendHeaderValues();
         this.client.update(data);
+        this.__backendErrorRetryCount = 0; // reset on success
+        this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
         this.retryCounter = 0;
         this.client.setDataReceived(true);
         this.client.setConnected(true);

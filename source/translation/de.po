@@ -26,11 +26,11 @@ msgstr "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Tic
 msgid "Action recording"
 msgstr "Benutzerinteraktionen aufzeichnen"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Send error to sentry.io"
 msgstr "Fehlerbericht an sentry.io schicken"
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Error reporting (on sentry.io)"
 msgstr "Absturzberichte senden (an sentry.io)"
 
@@ -1312,3 +1312,19 @@ msgstr "%b"
 #: cv/ui/structure/tile/components/Chart.js
 msgid "%Y"
 msgstr "%Y"
+
+#: cv/io/BackendConnections.js
+msgid "Backend communication error"
+msgstr "Backend Kommunikationsfehler"
+
+#: cv/io/BackendConnections.js
+msgid "The backend reported an error. Retrying to connect …"
+msgstr "Das Backend hat einen Fehler gemeldet. Versuche neue Verbindung …"
+
+#: cv/io/BackendConnections.js
+msgid "Backend unreachable"
+msgstr "Backend nicht erreichbar"
+
+#: cv/io/BackendConnections.js
+msgid "The backend did not recover after multiple retries. Please restart the application."
+msgstr "Das Backend konnte nach mehreren Versuchen nicht erreicht werden. Bitte neu starten."

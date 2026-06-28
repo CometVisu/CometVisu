@@ -180,7 +180,9 @@ qx.Class.define('cv.io.BackendConnections', {
           });
         };
       }
-      client.showError = this._handleClientError.bind(this);
+      client.showError = (errorCode, ...args) => {
+        this._handleClientError(errorCode, args, name);
+      };
 
       if (cv.Config.sentryEnabled && window.Sentry) {
         Sentry.setTag('backend.' + name, type);
@@ -408,61 +410,126 @@ qx.Class.define('cv.io.BackendConnections', {
       }
     },
 
-    _handleClientError(errorCode, varargs) {
-      varargs = Array.prototype.slice.call(arguments, 1);
-      varargs = JSON.stringify(varargs[0], null, 2);
-      // escape HTML:
-      let div = document.createElement('div');
-      div.innerText = varargs;
-      varargs = div.innerHTML;
+    _handleClientError(errorCode, varargs, sourceName) {
       let notification;
       switch (errorCode) {
-        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
-          notification = {
-            topic: 'cv.error',
-            title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:
-              qx.locale.Manager.tr(
-                'The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
-                '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-                '</a>'
-              ) +
-              '<br/>' +
-              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' +
-              qx.locale.Manager.tr('Backend-Response:') +
-              '</strong><pre>' +
-              varargs +
-              '</pre></div>',
-            severity: 'urgent',
-            unique: true,
-            deletable: false
-          };
+        case cv.io.Client.ERROR_CODES.BACKEND_ERROR:
+          if (varargs && varargs[0]) {
+            // Show self-healing notification (can be cleared when connection is restored)
+            const errorContent = JSON.stringify(varargs[0], null, 2);
+            let div = document.createElement('div');
+            div.innerText = errorContent;
+            const escaped = div.innerHTML;
+            notification = {
+              topic: 'cv.client.backendError.' + (sourceName || 'main'),
+              title: qx.locale.Manager.tr('Backend communication error'),
+              message:
+                qx.locale.Manager.tr(
+                  'The backend reported an error. Retrying to connect …'
+                ) +
+                '<br/><br/><strong>' +
+                qx.locale.Manager.tr('Backend-Response:') +
+                '</strong><pre>' +
+                escaped +
+                '</pre></div>',
+              severity: 'high',
+              unique: true,
+              deletable: false,
+              condition: true // show while condition is true
+            };
+          } else {
+            // null/empty args means clear the notification
+            notification = {
+              topic: 'cv.client.backendError.' + (sourceName || 'main'),
+              unique: true,
+              condition: false // removes the existing message
+            };
+          }
+          break;
 
+        case cv.io.Client.ERROR_CODES.BACKEND_ERROR_MAX_RETRIES:
+          {
+            const errorContent = JSON.stringify(varargs && varargs[0], null, 2);
+            let div = document.createElement('div');
+            div.innerText = errorContent;
+            const escaped = div.innerHTML;
+            notification = {
+              topic: 'cv.client.backendError.' + (sourceName || 'main'),
+              title: qx.locale.Manager.tr('Backend unreachable'),
+              message:
+                qx.locale.Manager.tr(
+                  'The backend did not recover after multiple retries. Please restart the application.'
+                ) +
+                '<br/><br/><strong>' +
+                qx.locale.Manager.tr('Backend-Response:') +
+                '</strong><pre>' +
+                escaped +
+                '</pre></div>',
+              severity: 'urgent',
+              unique: true,
+              deletable: false
+            };
+          }
+          break;
+
+        case cv.io.Client.ERROR_CODES.PROTOCOL_MISSING_VERSION:
+          {
+            varargs = varargs || Array.prototype.slice.call(arguments, 1);
+            varargs = JSON.stringify(varargs[0], null, 2);
+            let div = document.createElement('div');
+            div.innerText = varargs;
+            const escaped = div.innerHTML;
+            notification = {
+              topic: 'cv.error',
+              title: qx.locale.Manager.tr('CometVisu protocol error'),
+              message:
+                qx.locale.Manager.tr(
+                  'The backend did send an invalid response to the %1Login%2 request: missing protocol version.',
+                  '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+                  '</a>'
+                ) +
+                '<br/>' +
+                qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+                '<br/><br/><strong>' +
+                qx.locale.Manager.tr('Backend-Response:') +
+                '</strong><pre>' +
+                escaped +
+                '</pre></div>',
+              severity: 'urgent',
+              unique: true,
+              deletable: false
+            };
+          }
           break;
 
         case cv.io.Client.ERROR_CODES.PROTOCOL_INVALID_READ_RESPONSE_MISSING_I:
-          notification = {
-            topic: 'cv.error',
-            title: qx.locale.Manager.tr('CometVisu protocol error'),
-            message:
-              qx.locale.Manager.tr(
-                'The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
-                '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
-                '</a>'
-              ) +
-              '<br/>' +
-              qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
-              '<br/><br/><strong>' +
-              qx.locale.Manager.tr('Backend-Response:') +
-              '</strong><pre>' +
-              varargs +
-              '</pre></div>',
-            severity: 'urgent',
-            unique: true,
-            deletable: false
-          };
-
+          {
+            varargs = varargs || Array.prototype.slice.call(arguments, 1);
+            varargs = JSON.stringify(varargs[0], null, 2);
+            let div = document.createElement('div');
+            div.innerText = varargs;
+            const escaped = div.innerHTML;
+            notification = {
+              topic: 'cv.error',
+              title: qx.locale.Manager.tr('CometVisu protocol error'),
+              message:
+                qx.locale.Manager.tr(
+                  'The backend did send an invalid response to a %1read%2 request: Missing "i" value.',
+                  '<a href="https://github.com/CometVisu/CometVisu/wiki/Protocol#Login" target="_blank">',
+                  '</a>'
+                ) +
+                '<br/>' +
+                qx.locale.Manager.tr('Please try to fix the problem in the backend.') +
+                '<br/><br/><strong>' +
+                qx.locale.Manager.tr('Backend-Response:') +
+                '</strong><pre>' +
+                escaped +
+                '</pre></div>',
+              severity: 'urgent',
+              unique: true,
+              deletable: false
+            };
+          }
           break;
       }
 
