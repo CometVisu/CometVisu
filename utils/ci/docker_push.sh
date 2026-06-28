@@ -44,7 +44,12 @@ if [[ $IS_TAG == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
     elif [[ $IN_MASTER -ne 0 ]]; then
-      MASTER_TAG=latest
+      if [[ $IS_RELEASE -ne 1 ]]; then
+        # Pre-release -> do not tag it with latest
+        MASTER_TAG=$VERSION_TAG
+      else
+        MASTER_TAG=latest
+      fi
     elif [[ $IN_RELEASE -ne 0 ]]; then
       # dont use tag at all
       TAG=""

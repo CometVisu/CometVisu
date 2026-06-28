@@ -12,6 +12,23 @@ jobs:
       - name: Install action dependencies
         run: npm install
         working-directory: ./.github/actions/github
+      - name: Configure git user
+        run: |
+          git config user.name "CometVisu-CI"
+          git config user.email "generator@cometvisu.org"
+      - name: Merge develop into master (develop wins on conflicts)
+        run: |
+          git checkout master
+          git merge develop --no-ff -X theirs -m "Merge branch 'develop' into master for release"
+          git push origin master
+      - name: Remove -dev suffix from version on master
+        run: |
+          sed -i 's/"version": "\(.*\)-dev"/"version": "\1"/' package.json
+          VERSION=$(node -p "require('./package.json').version")
+          echo "New version: $VERSION"
+          git add package.json
+          git commit -m "Prepare release v$VERSION"
+          git push origin master
       - id: nightly
         name: "Create tag on change"
         uses: ./.github/actions/github
