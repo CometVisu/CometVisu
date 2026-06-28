@@ -41,6 +41,14 @@ return (object) [
             "showSubDirs" => true,
             "writeable" => false,
         ],
+        [
+            // mounting this file allows copying it to the config folder, so that the manager can create a default file if it is missing
+            "mountPoint" => "resource/custom_visu_config.xsd",
+            "path" => realpath($resourcesDir . "/custom_visu_config.xsd"),
+            "showSubDirs" => false,
+            "writeable" => false,
+            "visible" => false,
+        ],
     ],
     "addressFiles" => [
         "addresses" => [

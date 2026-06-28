@@ -190,11 +190,23 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         // embed all includes
         let includeXml;
         for (let include of xml.querySelectorAll('schema include')) {
-          includeXml = await this.loadXml('resource/' + include.getAttribute('schemaLocation'));
           const target = include.parentElement;
           include.remove();
-          for (let includedChild of includeXml.querySelectorAll('schema > *')) {
-            target.appendChild(includedChild);
+          try {
+            includeXml = await this.loadXml('resource/' + include.getAttribute('schemaLocation'));
+            for (let includedChild of includeXml.querySelectorAll('schema > *')) {
+              target.appendChild(includedChild);
+            }
+          } catch (e) {
+            if (include.getAttribute('schemaLocation') === 'config/custom_visu_config.xsd') {
+              this.warn('use has no custom_visu_config.xsd, using default one as fallback');
+              includeXml = await this.loadXml('resource/custom_visu_config.xsd');
+              for (let includedChild of includeXml.querySelectorAll('schema > *')) {
+                target.appendChild(includedChild);
+              }
+            } else {
+              this.error('failed to load schema include', e);
+            }
           }
         }
         this.__xsd = xml;
@@ -222,7 +234,7 @@ qx.Class.define('cv.ui.manager.model.Schema', {
         });
         ajaxRequest.addListenerOnce('statusError', e => {
           const req = e.getTarget();
-          reject(new Error(req.getStatusText()));
+          reject(new Error(file + ': ' + req.getStatusText()));
         });
         ajaxRequest.send();
       });

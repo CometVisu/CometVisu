@@ -81,6 +81,23 @@ if ($SERVER_ADDR[0]==='172' && $SERVER_ADDR[1]==='17') { // Linux Docker uses su
   }
 }
 
+function tile_config_exists() {
+  $files = glob('../../resource/config/visu_config*.xml');
+  for ($i = 0; $i < count($files); $i++) {
+    $xml = simplexml_load_file($files[$i]);
+    if ($xml->getName() === 'config') {
+      return true;
+    }
+  }
+  return false;
+}
+
+// check for a tile-config in resources/config folder, if there is one, we need to check
+// for a resource/config/custom_visu_config.xsd file, if it is not there, we need to warn the user
+if (tile_config_exists() && !file_exists('../../resource/config/custom_visu_config.xsd')) {
+  $retval['custom_visu_config_xsd_missing'] = true;
+}
+
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($retval);
 ?>
