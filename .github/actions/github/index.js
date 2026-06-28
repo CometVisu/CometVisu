@@ -297,10 +297,7 @@ class GithubClient {
     let baseVersion = this.getVersion();
     let latestTag = null;
     let latestRelease = null;
-    const prereleaseTypes = ['alpha', 'beta', 'rc'];
-    const prereleaseSuffixMap = { alpha: '-alpha', beta: '-beta', rc: '-RC' };
-    const isPrerelease = prereleaseTypes.includes(type);
-    if (isPrerelease && baseVersion.endsWith('-dev')) {
+    if (type === 'rc' && baseVersion.endsWith('-dev')) {
       baseVersion = baseVersion.substr(0, baseVersion.indexOf('-dev'));
     }
     if (/.\d+$/.test(baseVersion)) {
@@ -318,10 +315,8 @@ class GithubClient {
       case 'nightly':
         latestTag = await this.getLatestTag(baseVersion);
         break;
-      case 'alpha':
-      case 'beta':
       case 'rc':
-        baseVersion += prereleaseSuffixMap[type];
+        baseVersion += '-RC';
         latestTag = await this.getLatestTag(baseVersion);
         currentRelease = await this.client.repos.getLatestRelease({
           owner: this.owner,
@@ -359,7 +354,7 @@ class GithubClient {
     }
     const git = simpleGit();
     let lastTagHash = null;
-    if (isPrerelease && !latestTag) {
+    if (type === 'rc' && !latestTag) {
       lastTagHash = await git.raw(['rev-list', '-n', '1', latestRelease]);
     } else if (latestTag) {
       lastTagHash = await git.raw(['rev-list', '-n', '1', latestTag]);
@@ -383,10 +378,10 @@ class GithubClient {
       newRev = baseVersion + '0';
     } else {
       const re = new RegExp(`^${baseVersion}(\\d+)$`);
-      const m = isPrerelease && !latestTag ? re.exec(latestRelease.split('/')[2]) : re.exec(latestTag.split('/')[2]);
+      const m = type === 'rc' && !latestTag ? re.exec(latestRelease.split('/')[2]) : re.exec(latestTag.split('/')[2]);
       if (!m) {
         if (!start) {
-          core.setFailed(`Unable to parse previous tag '${isPrerelease && !latestTag ? latestRelease.split('/')[2] : latestTag.split('/')[2]}'`);
+          core.setFailed(`Unable to parse previous tag '${type === 'rc' && !latestTag ? latestRelease.split('/')[2] : latestTag.split('/')[2]}'`);
           return '';
         }
       } else {
@@ -422,14 +417,12 @@ Commit       : ${currentHash}
     let tagDescription = '';
     let info = '';
     if (!noMergeInfo) {
-      if (isPrerelease) {
+      if (type === 'rc') {
         if (latestTag) {
-          const labelMap = { alpha: 'alpha', beta: 'beta', rc: 'release candidate' };
-          const label = labelMap[type];
-          const lastChanged = await this.getMergeInfo(latestTag);
-          if (lastChanged) {
-            info += 'Changes since last ' + label + ' (' + latestTag.split('/')[2] + '):\n\n';
-            info += lastChanged;
+          const lastRcChanged = await this.getMergeInfo(latestTag);
+          if (lastRcChanged) {
+            info += 'Changes since last release candidate (' + latestTag.split('/')[2] + '):\n\n';
+            info += lastRcChanged;
             info += '\n\n';
             info += 'Changes since last release (' + latestRelease.split('/')[2] + '):\n\n';
           }
@@ -481,11 +474,8 @@ The build can be downloaded at:
 
 ${changes}
 `;
-    } else if (isPrerelease) {
-      const labelMap = { alpha: 'alpha', beta: 'beta', rc: 'release candidate' };
-      const label = labelMap[type];
-      const suffix = prereleaseSuffixMap[type];
-      releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - suffix.length)} - ${label} ${newRev.substr(baseVersion.length)}`;
+    } else if (baseVersion.endsWith('RC') || type === 'rc') {
+      releaseName = `CometVisu release ${baseVersion.substr(0, baseVersion.length - 3)} - release candidate ${newRev.substr(baseVersion.length)}`;
       prerelease = true;
     } else if (type === 'release') {
       releaseName = `CometVisu release ${newRev}`;

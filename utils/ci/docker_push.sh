@@ -44,8 +44,8 @@ if [[ $IS_TAG == 1 ]]; then
       MASTER_TAG=testing
       TESTING=1
     elif [[ $IN_MASTER -ne 0 ]]; then
-      if [[ $TAG =~ -(alpha|beta|RC)[0-9]+$ ]]; then
-        # Pre-release tags (alpha, beta, RC) on master should not be tagged as "latest"
+      if [[ $TAG == *-* ]]; then
+        # Pre-release tags (containing a dash) on master should not be tagged as "latest"
         MASTER_TAG=$VERSION_TAG
       else
         MASTER_TAG=latest
