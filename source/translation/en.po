@@ -26,11 +26,11 @@ msgstr ""
 msgid "Action recording"
 msgstr ""
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Send error to sentry.io"
 msgstr ""
 
-#: cv/Application.js
+#. NO LONGER USED
 msgid "Error reporting (on sentry.io)"
 msgstr ""
 
@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr ""
 
@@ -1431,4 +1431,20 @@ msgstr ""
 
 #: cv/ui/structure/tile/components/Chart.js
 msgid "%b"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Backend communication error"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "The backend reported an error. Retrying to connect …"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "Backend unreachable"
+msgstr ""
+
+#: cv/io/BackendConnections.js
+msgid "The backend did not recover after multiple retries. Please restart the application."
 msgstr ""
