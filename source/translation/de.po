@@ -1328,3 +1328,19 @@ msgstr "Backend nicht erreichbar"
 #: cv/io/BackendConnections.js
 msgid "The backend did not recover after multiple retries. Please restart the application."
 msgstr "Das Backend konnte nach mehreren Versuchen nicht erreicht werden. Bitte neu starten."
+
+#: cv/Application.js
+msgid "Missing file \"custom_visu_config.xsd\""
+msgstr "Fehlende \"custom_visu_config.xsd\" Datei"
+
+#: cv/Application.js
+msgid "The file \"custom_visu_config.xsd\" is missing in your config-folder. Do you want to create a default file now? This file is needed for full tile-config validation support."
+msgstr "Die Datei \"custom_visu_config.xsd\" fehlt in Ihren config-Ordner. Möchten Sie sie erzeugen? Diese Datei wird für die benötigt, um Config-Dateien der Tile-Struktur validieren zu können."
+
+#: cv/Application.js
+msgid "Ignore"
+msgstr "Ignorieren"
+
+#: cv/Application.js
+msgid "Yes"
+msgstr "Ja"
