@@ -1448,6 +1448,7 @@ qx.Class.define('cv.Application', {
 
             if (env.custom_visu_config_xsd_missing === true && !localStorage.getItem('cv.custom_visu_config_xsd_missing')) {
               this.warn('custom_visu_config.xsd is missing, using default one as fallback');
+              cv.Config.enableCache = false; // avoid caching the popup notification
 
               const notification = {
                 topic: 'cv.info.custom_visu_config_xsd_missing',
