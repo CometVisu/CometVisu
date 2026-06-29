@@ -26,6 +26,12 @@ from xml.sax.saxutils import escape, unescape
 import html
 from settings import config, root_dir
 
+if not path.exists(path.join(root_dir, config.get("tile", "custom-schema-file-target"))):
+    makedirs(path.dirname(path.join(root_dir, config.get("tile", "custom-schema-file-target"))), exist_ok=True)
+    with open(path.join(root_dir, config.get("tile", "custom-schema-file-source")), encoding='utf-8', mode="r") as f:
+        with open(path.join(root_dir, config.get("tile", "custom-schema-file-target")), encoding='utf-8', mode="w") as t:
+            t.write(f.read())
+
 pure_xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("DEFAULT", "schema-file"))))
 tile_xsd = etree.XMLSchema(etree.parse(path.join(root_dir, config.get("tile", "schema-file"))))
 parser = etree.XMLParser(schema=pure_xsd)
