@@ -1,0 +1,809 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602415,
+  "lastModifiedIso": "2026-06-29T04:00:02.415Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Input.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 53,
+      "column": 0,
+      "index": 1823
+    },
+    "end": {
+      "line": 735,
+      "column": 3,
+      "index": 21313
+    }
+  },
+  "className": "qx.event.handler.Input",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This handler provides an \"change\" event for all form fields and an",
+      " * \"input\" event for form fields of type \"text\" and \"textarea\".",
+      " *",
+      " * To let these events work it is needed to create the elements using",
+      " * {@link qx.bom.Input}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This handler provides an \"change\" event for all form fields and an\n \"input\" event for form fields of type \"text\" and \"textarea\".\n To let these events work it is needed to create the elements using\n {@link qx.bom.Input}</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 2,
+        "index": 2121
+      },
+      "end": {
+        "line": 84,
+        "column": 3,
+        "index": 2789
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 3045
+        },
+        "end": {
+          "line": 94,
+          "column": 51,
+          "index": 3092
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 3144
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3200
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3260
+        },
+        "end": {
+          "line": 103,
+          "column": 55,
+          "index": 3311
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3396
+        },
+        "end": {
+          "line": 106,
+          "column": 28,
+          "index": 3420
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__enter": {
+      "jsdoc": {
+        "raw": [
+          " special handling for opera"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3662
+        },
+        "end": {
+          "line": 117,
+          "column": 18,
+          "index": 3676
+        }
+      },
+      "appearsIn": []
+    },
+    "__onInputTimeoutId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3682
+        },
+        "end": {
+          "line": 118,
+          "column": 28,
+          "index": 3706
+        }
+      },
+      "appearsIn": []
+    },
+    "__oldValue": {
+      "jsdoc": {
+        "raw": [
+          " stores the former set value for opera and IE"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3765
+        },
+        "end": {
+          "line": 121,
+          "column": 20,
+          "index": 3781
+        }
+      },
+      "appearsIn": []
+    },
+    "__oldInputValue": {
+      "jsdoc": {
+        "raw": [
+          " stores the former set value for IE"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3830
+        },
+        "end": {
+          "line": 124,
+          "column": 25,
+          "index": 3851
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 4095
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4461
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4500
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 7173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "__registerInputListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 7180
+        },
+        "end": {
+          "line": 305,
+          "column": 6,
+          "index": 9140
+        }
+      },
+      "appearsIn": []
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 9179
+        },
+        "end": {
+          "line": 386,
+          "column": 5,
+          "index": 11515
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "__unregisterInputListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 4,
+          "index": 11522
+        },
+        "end": {
+          "line": 465,
+          "column": 6,
+          "index": 13495
+        }
+      },
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for fixing the different behavior when pressing the enter key.",
+          "     *",
+          "     * FF and Safari fire a \"change\" event if the user presses the enter key.",
+          "     * IE and Opera fire the event only if the focus is changed.",
+          "     *",
+          "     * @signature function(e, target)",
+          "     * @param e {Event} DOM event object",
+          "     * @param target {Element} The event target",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for fixing the different behavior when pressing the enter key.\n FF and Safari fire a \"change\" event if the user presses the enter key.\n IE and Opera fire the event only if the focus is changed.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e, target)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} DOM event object",
+            "paramName": "e",
+            "description": " DOM event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4,
+          "index": 14113
+        },
+        "end": {
+          "line": 512,
+          "column": 6,
+          "index": 14901
+        }
+      },
+      "appearsIn": []
+    },
+    "_inputFix": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for fixing the different behavior when pressing the backspace or",
+          "     * delete key.",
+          "     *",
+          "     * The other browsers fire a \"input\" event if the user presses the backspace",
+          "     * or delete key.",
+          "     * IE fire the event only for other keys.",
+          "     *",
+          "     * @signature function(e, target)",
+          "     * @param e {Event} DOM event object",
+          "     * @param target {Element} The event target",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for fixing the different behavior when pressing the backspace or\n delete key.\n The other browsers fire a \"input\" event if the user presses the backspace\n or delete key.\n IE fire the event only for other keys.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e, target)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} DOM event object",
+            "paramName": "e",
+            "description": " DOM event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 15532
+        },
+        "end": {
+          "line": 547,
+          "column": 6,
+          "index": 15994
+        }
+      },
+      "appearsIn": []
+    },
+    "_onKeyDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Key event listener for opera which recognizes if the enter key has been",
+          "     * pressed.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} DOM event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Key event listener for opera which recognizes if the enter key has been\n pressed.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} DOM event object",
+            "paramName": "e",
+            "description": " DOM event object",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 4,
+          "index": 16409
+        },
+        "end": {
+          "line": 570,
+          "column": 6,
+          "index": 16619
+        }
+      },
+      "appearsIn": []
+    },
+    "_onKeyUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Key event listener for opera which recognizes if the enter key has been",
+          "     * pressed.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} DOM event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Key event listener for opera which recognizes if the enter key has been\n pressed.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} DOM event object",
+            "paramName": "e",
+            "description": " DOM event object",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 579,
+          "column": 4,
+          "index": 16815
+        },
+        "end": {
+          "line": 588,
+          "column": 6,
+          "index": 17024
+        }
+      },
+      "appearsIn": []
+    },
+    "_onInput": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function called by input elements created using {@link qx.bom.Input}.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} Native DOM event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function called by input elements created using {@link qx.bom.Input}.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native DOM event",
+            "paramName": "e",
+            "description": " Native DOM event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 602,
+          "column": 4,
+          "index": 17414
+        },
+        "end": {
+          "line": 627,
+          "column": 6,
+          "index": 18369
+        }
+      },
+      "appearsIn": []
+    },
+    "_onChangeValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function called by input elements created using {@link qx.bom.Input}.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} Native DOM event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function called by input elements created using {@link qx.bom.Input}.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native DOM event",
+            "paramName": "e",
+            "description": " Native DOM event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 635,
+          "column": 4,
+          "index": 18556
+        },
+        "end": {
+          "line": 651,
+          "column": 6,
+          "index": 19046
+        }
+      },
+      "appearsIn": []
+    },
+    "_onChangeChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function called by input elements created using {@link qx.bom.Input}.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} Native DOM event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function called by input elements created using {@link qx.bom.Input}.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native DOM event",
+            "paramName": "e",
+            "description": " Native DOM event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4,
+          "index": 19233
+        },
+        "end": {
+          "line": 676,
+          "column": 6,
+          "index": 19728
+        }
+      },
+      "appearsIn": []
+    },
+    "_onProperty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function called by input elements created using {@link qx.bom.Input}.",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} Native DOM event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function called by input elements created using {@link qx.bom.Input}.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native DOM event",
+            "paramName": "e",
+            "description": " Native DOM event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4,
+          "index": 19915
+        },
+        "end": {
+          "line": 723,
+          "column": 6,
+          "index": 21051
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

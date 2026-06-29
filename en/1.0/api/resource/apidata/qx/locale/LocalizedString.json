@@ -1,0 +1,208 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602657,
+  "lastModifiedIso": "2026-06-29T04:00:02.657Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/LocalizedString.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 609
+    },
+    "end": {
+      "line": 74,
+      "column": 3,
+      "index": 1913
+    }
+  },
+  "className": "qx.locale.LocalizedString",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class contains the translation of a message and all information",
+      " * to translate it again into a different language.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class contains the translation of a message and all information\n to translate it again into a different language.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.type.BaseString",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "translation"
+      },
+      {
+        "name": "messageId"
+      },
+      {
+        "name": "args"
+      },
+      {
+        "name": "localized"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 985
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1160
+      }
+    }
+  },
+  "members": {
+    "__localized": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1180
+        },
+        "end": {
+          "line": 41,
+          "column": 21,
+          "index": 1197
+        }
+      },
+      "appearsIn": []
+    },
+    "__messageId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1203
+        },
+        "end": {
+          "line": 42,
+          "column": 21,
+          "index": 1220
+        }
+      },
+      "appearsIn": []
+    },
+    "__args": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1226
+        },
+        "end": {
+          "line": 43,
+          "column": 16,
+          "index": 1238
+        }
+      },
+      "appearsIn": []
+    },
+    "translate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a translation of the string using the current locale.",
+          "     *",
+          "     * @return {qx.locale.LocalizedString|String} This string translated using the current",
+          "     *    locale.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a translation of the string using the current locale.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.locale.LocalizedString|String} This string translated using the current\n    locale.",
+            "type": "qx.locale.LocalizedString|String",
+            "description": "This string translated using the current\n    locale."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1442
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1729
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.locale.LocalizedString|String"
+      },
+      "appearsIn": []
+    },
+    "getMessageId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the messageId.",
+          "     *",
+          "     * @return {String} The messageId of this localized String",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the messageId.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The messageId of this localized String",
+            "type": "string",
+            "description": "The messageId of this localized String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1852
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1905
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

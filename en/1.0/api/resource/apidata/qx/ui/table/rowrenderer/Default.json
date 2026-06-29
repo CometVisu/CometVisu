@@ -1,0 +1,500 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601764,
+  "lastModifiedIso": "2026-06-29T04:00:01.764Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/rowrenderer/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 609
+    },
+    "end": {
+      "line": 263,
+      "column": 3,
+      "index": 7509
+    }
+  },
+  "className": "qx.ui.table.rowrenderer.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default data row renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default data row renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.IRowRenderer"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 918
+      },
+      "end": {
+        "line": 47,
+        "column": 3,
+        "index": 1234
+      }
+    }
+  },
+  "properties": {
+    "highlightFocusRow": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1502
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1569
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the focused row should be highlighted. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the focused row should be highlighted.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_colors": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1777
+        },
+        "end": {
+          "line": 70,
+          "column": 17,
+          "index": 1790
+        }
+      },
+      "appearsIn": []
+    },
+    "_fontStyle": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1796
+        },
+        "end": {
+          "line": 71,
+          "column": 20,
+          "index": 1812
+        }
+      },
+      "appearsIn": []
+    },
+    "_fontStyleString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1818
+        },
+        "end": {
+          "line": 72,
+          "column": 26,
+          "index": 1840
+        }
+      },
+      "appearsIn": []
+    },
+    "initThemeValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the colors from the color theme.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the colors from the color theme.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1932
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2919
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_insetY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * the sum of the vertical insets. This is needed to compute the box model",
+          "     * independent size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the sum of the vertical insets. This is needed to compute the box model\n independent size</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3045
+        },
+        "end": {
+          "line": 112,
+          "column": 14,
+          "index": 3055
+        }
+      },
+      "appearsIn": []
+    },
+    "_renderFont": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Render the new font and update the table pane content",
+          "     * to reflect the font change.",
+          "     *",
+          "     * @param font {qx.bom.Font} The font to use for the table row",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Render the new font and update the table pane content\n to reflect the font change.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "font {qx.bom.Font} The font to use for the table row",
+            "paramName": "font",
+            "description": " The font to use for the table row",
+            "type": "qx.bom.Font"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3264
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3621
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "font",
+          "type": "qx.bom.Font"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateDataRowElement": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3660
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4520
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo"
+        },
+        {
+          "name": "rowElem"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IRowRenderer"
+      ]
+    },
+    "getRowHeightStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the row's height CSS style taking the box model into account",
+          "     *",
+          "     * @param height {Integer} The row's (border-box) height in pixel",
+          "     * @return {String} CSS rule for the row height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the row's height CSS style taking the box model into account</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "height {Integer} The row's (border-box) height in pixel",
+            "paramName": "height",
+            "description": " The row's (border-box) height in pixel",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} CSS rule for the row height",
+            "type": "string",
+            "description": "CSS rule for the row height"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4744
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4925
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.table.IRowRenderer"
+      ]
+    },
+    "createRowStyle": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4964
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5875
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IRowRenderer"
+      ]
+    },
+    "getRowClass": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5882
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IRowRenderer"
+      ]
+    },
+    "getRowAttributes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add extra attributes to each row.",
+          "     *",
+          "     * @param rowInfo {Object}",
+          "     *   The following members are available in rowInfo:",
+          "     *   <dl>",
+          "     *     <dt>table {qx.ui.table.Table}</dt>",
+          "     *     <dd>The table object</dd>",
+          "     *",
+          "     *     <dt>styleHeight {Integer}</dt>",
+          "     *     <dd>The height of this (and every) row</dd>",
+          "     *",
+          "     *     <dt>row {Integer}</dt>",
+          "     *     <dd>The number of the row being added</dd>",
+          "     *",
+          "     *     <dt>selected {Boolean}</dt>",
+          "     *     <dd>Whether the row being added is currently selected</dd>",
+          "     *",
+          "     *     <dt>focusedRow {Boolean}</dt>",
+          "     *     <dd>Whether the row being added is currently focused</dd>",
+          "     *",
+          "     *     <dt>rowData {Array}</dt>",
+          "     *     <dd>The array row from the data model of the row being added</dd>",
+          "     *   </dl>",
+          "     *",
+          "     * @return {String}",
+          "     *   Any additional attributes and their values that should be added to the",
+          "     *   div tag for the row.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add extra attributes to each row.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rowInfo {Object}\n   The following members are available in rowInfo:\n   <dl>\n     <dt>table {qx.ui.table.Table}</dt>\n     <dd>The table object</dd>\n     <dt>styleHeight {Integer}</dt>\n     <dd>The height of this (and every) row</dd>\n     <dt>row {Integer}</dt>\n     <dd>The number of the row being added</dd>\n     <dt>selected {Boolean}</dt>\n     <dd>Whether the row being added is currently selected</dd>\n     <dt>focusedRow {Boolean}</dt>\n     <dd>Whether the row being added is currently focused</dd>\n     <dt>rowData {Array}</dt>\n     <dd>The array row from the data model of the row being added</dd>\n   </dl>",
+            "paramName": "rowInfo",
+            "description": "\n   The following members are available in rowInfo:\n   <dl>\n     <dt>table {qx.ui.table.Table}</dt>\n     <dd>The table object</dd>\n     <dt>styleHeight {Integer}</dt>\n     <dd>The height of this (and every) row</dd>\n     <dt>row {Integer}</dt>\n     <dd>The number of the row being added</dd>\n     <dt>selected {Boolean}</dt>\n     <dd>Whether the row being added is currently selected</dd>\n     <dt>focusedRow {Boolean}</dt>\n     <dd>Whether the row being added is currently focused</dd>\n     <dt>rowData {Array}</dt>\n     <dd>The array row from the data model of the row being added</dd>\n   </dl>",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   Any additional attributes and their values that should be added to the\n   div tag for the row.",
+            "type": "string",
+            "description": "   Any additional attributes and their values that should be added to the\n   div tag for the row."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 6891
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 6970
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 253,
+        "column": 2,
+        "index": 7166
+      },
+      "end": {
+        "line": 262,
+        "column": 3,
+        "index": 7505
+      }
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,214 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601400,
+  "lastModifiedIso": "2026-06-29T04:00:01.400Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/layout/CardAnimation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 792
+    },
+    "end": {
+      "line": 174,
+      "column": 3,
+      "index": 4980
+    }
+  },
+  "className": "qx.ui.mobile.layout.CardAnimation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains all animations which are needed for page transitions on {@link qx.ui.mobile.layout.Card}.",
+      " * Provides a convenience method {@link qx.ui.mobile.layout.CardAnimation#getAnimation} which",
+      " * makes it possibility to resolve the right animation for a pageTransition out of the cardAnimationMap.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains all animations which are needed for page transitions on {@link qx.ui.mobile.layout.Card}.\n Provides a convenience method {@link qx.ui.mobile.layout.CardAnimation#getAnimation} which\n makes it possibility to resolve the right animation for a pageTransition out of the cardAnimationMap.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1063
+      },
+      "end": {
+        "line": 100,
+        "column": 3,
+        "index": 2772
+      }
+    }
+  },
+  "members": {
+    "_cardAnimationsMap": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2792
+        },
+        "end": {
+          "line": 103,
+          "column": 28,
+          "index": 2816
+        }
+      },
+      "appearsIn": []
+    },
+    "getAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map with properties for {@link qx.bom.element.Animation} according to the given input parameters.",
+          "     * @param animationName {String} the animation key",
+          "     * @param direction {String} the animation direction (\"in\" | \"out\")",
+          "     * @param reverse {Boolean} flag which indicates whether it is a reverse animation.",
+          "     * @return {Map} animation property map, intended for the usage with {@link qx.bom.element.Animation}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map with properties for {@link qx.bom.element.Animation} according to the given input parameters.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "animationName {String} the animation key",
+            "paramName": "animationName",
+            "description": " the animation key",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "direction {String} the animation direction (\"in\" | \"out\")",
+            "paramName": "direction",
+            "description": " the animation direction (\"in\" | \"out\")",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "reverse {Boolean} flag which indicates whether it is a reverse animation.",
+            "paramName": "reverse",
+            "description": " flag which indicates whether it is a reverse animation.",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} animation property map, intended for the usage with {@link qx.bom.element.Animation}",
+            "type": "Map<any, any>",
+            "description": "animation property map, intended for the usage with {@link qx.bom.element.Animation}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3275
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4753
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "animationName",
+          "type": "string"
+        },
+        {
+          "name": "direction",
+          "type": "string"
+        },
+        {
+          "name": "reverse",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the cardAnimationsMap.",
+          "     * @return {Map} the cardAnimationsMap.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the cardAnimationsMap.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} the cardAnimationsMap.",
+            "type": "Map<any, any>",
+            "description": "the cardAnimationsMap."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4861
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4915
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 171,
+        "column": 2,
+        "index": 4924
+      },
+      "end": {
+        "line": 173,
+        "column": 3,
+        "index": 4976
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

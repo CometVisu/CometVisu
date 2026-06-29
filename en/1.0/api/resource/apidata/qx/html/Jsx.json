@@ -1,0 +1,237 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602519,
+  "lastModifiedIso": "2026-06-29T04:00:02.519Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Jsx.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 962
+    },
+    "end": {
+      "line": 328,
+      "column": 3,
+      "index": 10075
+    }
+  },
+  "className": "qx.html.Jsx",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class includes work from on https://github.com/alecsgone/jsx-render; at the time of writing,",
+      " * the https://github.com/alecsgone/jsx-render repo is available under an MIT license.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class includes work from on https://github.com/alecsgone/jsx-render; at the time of writing,\n the https://github.com/alecsgone/jsx-render repo is available under an MIT license.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "createElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an element.",
+          "     *",
+          "     * Fragments are supported if the tagname is `qx.html.Jsx.FRAGMENT`; but in this case,",
+          "     * an `qx.data.Array` is returned.",
+          "     *",
+          "     * Custom tags are supported, the attributes will be passed to the function as a single object. Example;",
+          "     * ```jsx",
+          "     * const CustomTag = (attrs, children) => <div id={attrs.id}>{children}</div>;",
+          "     *",
+          "     * const myElem = (",
+          "     *   <CustomTag id=\"myId\">",
+          "     *     <span>My content</span>",
+          "     *   </CustomTag>",
+          "     * );",
+          "     * ```",
+          "     *",
+          "     * @param tagname {String|Function} the name of the tag",
+          "     * @param attributes {Record<string, any>} map of attribute values",
+          "     * @param children {qx.html.Node[]} array of children",
+          "     * @return {qx.html.Element|qx.data.Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an element.\n Fragments are supported if the tagname is <code>qx.html.Jsx.FRAGMENT</code>; but in this case,\n an <code>qx.data.Array</code> is returned.\n Custom tags are supported, the attributes will be passed to the function as a single object. Example;\n <code></code><code>jsx\n const CustomTag = (attrs, children) =&gt; &lt;div id={attrs.id}&gt;{children}&lt;/div&gt;;\n const myElem = (\n   &lt;CustomTag id=\"myId\"&gt;\n     &lt;span&gt;My content&lt;/span&gt;\n   &lt;/CustomTag&gt;\n );\n </code><code></code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagname {String|Function} the name of the tag",
+            "paramName": "tagname",
+            "description": " the name of the tag",
+            "type": [
+              "String",
+              "Function"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Record<string, any>} map of attribute values",
+            "paramName": "attributes",
+            "description": " map of attribute values",
+            "type": "Record<string, any>"
+          },
+          {
+            "name": "@param",
+            "body": "children {qx.html.Node[]} array of children",
+            "paramName": "children",
+            "description": " array of children",
+            "type": "qx.html.Node[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Element|qx.data.Array}",
+            "type": "qx.html.Element|qx.data.Array",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1815
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 8479
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagname",
+          "type": [
+            "String",
+            "Function"
+          ]
+        },
+        {
+          "name": "attributes",
+          "type": "Record<string, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element|qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "SYNTETIC_EVENTS": {
+      "jsdoc": {
+        "raw": [
+          "* @deprecated Use {@link qx.html.Jsx.SYNTHETIC_EVENTS} instead "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "Use {@link qx.html.Jsx.SYNTHETIC_EVENTS} instead"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4,
+          "index": 8558
+        },
+        "end": {
+          "line": 261,
+          "column": 25,
+          "index": 8579
+        }
+      },
+      "appearsIn": []
+    },
+    "SYNTHETIC_EVENTS": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} map of event names, all values are `true` "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} map of event names, all values are <code>true</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 8651
+        },
+        "end": {
+          "line": 264,
+          "column": 26,
+          "index": 8673
+        }
+      },
+      "appearsIn": []
+    },
+    "FRAGMENT": {
+      "jsdoc": {
+        "raw": [
+          "* @type {string} tagname for anonymous (native) fragments "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} tagname for anonymous (native) fragments"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 8747
+        },
+        "end": {
+          "line": 267,
+          "column": 36,
+          "index": 8779
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

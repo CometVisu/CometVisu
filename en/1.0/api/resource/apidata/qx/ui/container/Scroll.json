@@ -1,0 +1,648 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603140,
+  "lastModifiedIso": "2026-06-29T04:00:03.140Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/container/Scroll.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 58,
+      "column": 0,
+      "index": 1586
+    },
+    "end": {
+      "line": 128,
+      "column": 3,
+      "index": 3426
+    }
+  },
+  "className": "qx.ui.container.Scroll",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Container, which allows vertical and horizontal scrolling if the contents is",
+      " * larger than the container.",
+      " *",
+      " * Note that this class can only have one child widget. This container has a",
+      " * fixed layout, which cannot be changed.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   // create scroll container",
+      " *   var scroll = new qx.ui.container.Scroll().set({",
+      " *     width: 300,",
+      " *     height: 200",
+      " *   });",
+      " *",
+      " *   // add a widget which is larger than the container",
+      " *   scroll.add(new qx.ui.core.Widget().set({",
+      " *     width: 600,",
+      " *     minWidth: 600,",
+      " *     height: 400,",
+      " *     minHeight: 400",
+      " *   }));",
+      " *",
+      " *   this.getRoot().add(scroll);",
+      " * </pre>",
+      " *",
+      " * This example creates a scroll container and adds a widget, which is larger",
+      " * than the container. This will cause the container to display vertical",
+      " * and horizontal toolbars.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/scroll.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Container, which allows vertical and horizontal scrolling if the contents is\n larger than the container.\n Note that this class can only have one child widget. This container has a\n fixed layout, which cannot be changed.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var scroll = new qx.ui.container.Scroll().set({\n     width: 300,\n     height: 200\n   });\n\n   scroll.add(new qx.ui.core.Widget().set({\n     width: 600,\n     minWidth: 600,\n     height: 400,\n     minHeight: 400\n   }));\n   this.getRoot().add(scroll);\n </pre>\n<p>This example creates a scroll container and adds a widget, which is larger\n than the container. This will cause the container to display vertical\n and horizontal toolbars.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/scroll.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.scroll.AbstractScrollArea",
+  "mixins": [
+    "qx.ui.core.MContentPadding"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "content"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 72,
+        "column": 2,
+        "index": 2023
+      },
+      "end": {
+        "line": 78,
+        "column": 3,
+        "index": 2111
+      }
+    }
+  },
+  "members": {
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the content of the scroll container. Scroll containers",
+          "     * may only have one child, so it always replaces the current",
+          "     * child with the given one.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to insert",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the content of the scroll container. Scroll containers\n may only have one child, so it always replaces the current\n child with the given one.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to insert",
+            "paramName": "widget",
+            "description": " Widget to insert",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2562
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2629
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content of the scroll area.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content of the scroll area.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to remove",
+            "paramName": "widget",
+            "description": " Widget to remove",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2764
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2837
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content of the scroll container.",
+          "     *",
+          "     * Scroll containers may only have one child. This",
+          "     * method returns an array containing the child or an empty array.",
+          "     *",
+          "     * @return {Object[]} The child array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content of the scroll container.\n Scroll containers may only have one child. This\n method returns an array containing the child or an empty array.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} The child array",
+            "type": "Object[]",
+            "description": "The child array"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3094
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3172
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "_getContentPaddingTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the element, to which the content padding should be applied.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The content padding target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the element, to which the content padding should be applied.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The content padding target.",
+            "type": "qx.ui.core.Widget",
+            "description": "The content padding target."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3341
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3418
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "__contentPaddingSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2915
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3125
+        }
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "__contentPaddingThemedSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the themed setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingThemedSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the themed setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingThemedSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3313
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3553
+        }
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "__contentPaddingResetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the resetter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingResetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the resetter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingResetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3732
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3952
+        }
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "_applyContentPadding": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3981
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {
+    "contentPaddingTop": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1146
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1270
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Top padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top padding of the content pane</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "contentPaddingRight": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1322
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1448
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Right padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right padding of the content pane</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "contentPaddingBottom": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Bottom padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom padding of the content pane</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "contentPaddingLeft": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1679
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1804
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Left padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left padding of the content pane</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    },
+    "contentPadding": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2270
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2486
+        }
+      },
+      "json": {
+        "group": [
+          "contentPaddingTop",
+          "contentPaddingRight",
+          "contentPaddingBottom",
+          "contentPaddingLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',",
+          "     * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'",
+          "     * at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',\n 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'\n at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MContentPadding",
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ]
+    }
+  }
+}

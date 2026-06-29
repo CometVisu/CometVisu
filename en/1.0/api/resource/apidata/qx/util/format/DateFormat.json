@@ -1,0 +1,1525 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601689,
+  "lastModifiedIso": "2026-06-29T04:00:01.689Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/format/DateFormat.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 71,
+      "column": 0,
+      "index": 2883
+    },
+    "end": {
+      "line": 1860,
+      "column": 3,
+      "index": 53266
+    }
+  },
+  "className": "qx.util.format.DateFormat",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A formatter and parser for dates, see",
+      " * http://www.unicode.org/reports/tr35/#Date_Format_Patterns",
+      " *",
+      " * Here is a quick overview of the format pattern keys:",
+      " * <table>",
+      " * <tr><th>Key &nbsp;<th>Description",
+      " * <tr><td><code> G </code><td> era, e.g. \"AD\"",
+      " * <tr><td><code> y </code><td> year",
+      " * <tr><td><code> Y </code><td> week year",
+      " * <tr><td><code> u </code><td> extended year [Not supported yet]",
+      " * <tr><td><code> Q </code><td> quarter",
+      " * <tr><td><code> q </code><td> stand-alone quarter",
+      " * <tr><td><code> M </code><td> month",
+      " * <tr><td><code> L </code><td> stand-alone month",
+      " * <tr><td><code> I </code><td> chinese leap month [Not supported yet]",
+      " * <tr><td><code> w </code><td> week of year",
+      " * <tr><td><code> W </code><td> week of month",
+      " * <tr><td><code> d </code><td> day of month",
+      " * <tr><td><code> D </code><td> day of year",
+      " * <tr><td><code> F </code><td> day of week in month [Not supported yet]",
+      " * <tr><td><code> g </code><td> modified Julian day [Not supported yet]",
+      " * <tr><td><code> E </code><td> day of week",
+      " * <tr><td><code> e </code><td> local day of week",
+      " * <tr><td><code> c </code><td> stand-alone local day of week",
+      " * <tr><td><code> a </code><td> period of day (am or pm)",
+      " * <tr><td><code> h </code><td> 12-hour hour",
+      " * <tr><td><code> H </code><td> 24-hour hour",
+      " * <tr><td><code> K </code><td> hour [0-11]",
+      " * <tr><td><code> k </code><td> hour [1-24]",
+      " * <tr><td><code> j </code><td> special symbol [Not supported yet]",
+      " * <tr><td><code> m </code><td> minute",
+      " * <tr><td><code> s </code><td> second",
+      " * <tr><td><code> S </code><td> fractional second",
+      " * <tr><td><code> A </code><td> millisecond in day [Not supported yet]",
+      " * <tr><td><code> z </code><td> time zone, specific non-location format",
+      " * <tr><td><code> Z </code><td> time zone, rfc822/gmt format",
+      " * <tr><td><code> v </code><td> time zone, generic non-location format [Not supported yet]",
+      " * <tr><td><code> V </code><td> time zone, like z except metazone abbreviations [Not supported yet]",
+      " * </table>",
+      " *",
+      " * (This list is preliminary, not all format keys might be implemented). Most",
+      " * keys support repetitions that influence the meaning of the format. Parts of the",
+      " * format string that should not be interpreted as format keys have to be",
+      " * single-quoted.",
+      " *",
+      " * The same format patterns will be used for both parsing and output formatting.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A formatter and parser for dates, see\n http://www.unicode.org/reports/tr35/#Date<em>Format</em>Patterns\n Here is a quick overview of the format pattern keys:\n </p>\n<table>\n <tr><th>Key &nbsp;<th>Description\n <tr><td><code> G </code><td> era, e.g. \"AD\"\n <tr><td><code> y </code><td> year\n <tr><td><code> Y </code><td> week year\n <tr><td><code> u </code><td> extended year [Not supported yet]\n <tr><td><code> Q </code><td> quarter\n <tr><td><code> q </code><td> stand-alone quarter\n <tr><td><code> M </code><td> month\n <tr><td><code> L </code><td> stand-alone month\n <tr><td><code> I </code><td> chinese leap month [Not supported yet]\n <tr><td><code> w </code><td> week of year\n <tr><td><code> W </code><td> week of month\n <tr><td><code> d </code><td> day of month\n <tr><td><code> D </code><td> day of year\n <tr><td><code> F </code><td> day of week in month [Not supported yet]\n <tr><td><code> g </code><td> modified Julian day [Not supported yet]\n <tr><td><code> E </code><td> day of week\n <tr><td><code> e </code><td> local day of week\n <tr><td><code> c </code><td> stand-alone local day of week\n <tr><td><code> a </code><td> period of day (am or pm)\n <tr><td><code> h </code><td> 12-hour hour\n <tr><td><code> H </code><td> 24-hour hour\n <tr><td><code> K </code><td> hour [0-11]\n <tr><td><code> k </code><td> hour [1-24]\n <tr><td><code> j </code><td> special symbol [Not supported yet]\n <tr><td><code> m </code><td> minute\n <tr><td><code> s </code><td> second\n <tr><td><code> S </code><td> fractional second\n <tr><td><code> A </code><td> millisecond in day [Not supported yet]\n <tr><td><code> z </code><td> time zone, specific non-location format\n <tr><td><code> Z </code><td> time zone, rfc822/gmt format\n <tr><td><code> v </code><td> time zone, generic non-location format [Not supported yet]\n <tr><td><code> V </code><td> time zone, like z except metazone abbreviations [Not supported yet]\n </table>\n<p>(This list is preliminary, not all format keys might be implemented). Most\n keys support repetitions that influence the meaning of the format. Parts of the\n format string that should not be interpreted as format keys have to be\n single-quoted.\n The same format patterns will be used for both parsing and output formatting.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.util.format.IFormat"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "format"
+      },
+      {
+        "name": "locale"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 87,
+        "column": 2,
+        "index": 3520
+      },
+      "end": {
+        "line": 110,
+        "column": 3,
+        "index": 4165
+      }
+    }
+  },
+  "statics": {
+    "getDateInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience factory that returns a <code>DateFomat</code> instance that",
+          "     * uses a short date-only format. Beware that the overall layout of the",
+          "     * date/time format string is that of the locale in effect when the factory",
+          "     * function is called.",
+          "     *",
+          "     * Implemented as a quasi-singleton, so beware of side effects.",
+          "     *",
+          "     * @return {DateFormat} a DateFormat instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convenience factory that returns a <code>DateFomat</code> instance that\n uses a short date-only format. Beware that the overall layout of the\n date/time format string is that of the locale in effect when the factory\n function is called.\n Implemented as a quasi-singleton, so beware of side effects.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DateFormat} a DateFormat instance.",
+            "type": "qx.util.format.DateFormat",
+            "description": "a DateFormat instance."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 4780
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 5215
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.util.format.DateFormat"
+      },
+      "appearsIn": []
+    },
+    "getDateTimeInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience factory that returns a <code>DateFomat</code> instance that",
+          "     * uses a long date/time format. Beware that the overall layout of the",
+          "     * date/time format string is that of the locale in effect when the factory",
+          "     * function is called.",
+          "     *",
+          "     * Implemented as a quasi-singleton, so beware of side effects.",
+          "     *",
+          "     * @return {DateFormat} a DateFormat instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convenience factory that returns a <code>DateFomat</code> instance that\n uses a long date/time format. Beware that the overall layout of the\n date/time format string is that of the locale in effect when the factory\n function is called.\n Implemented as a quasi-singleton, so beware of side effects.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DateFormat} a DateFormat instance.",
+            "type": "qx.util.format.DateFormat",
+            "description": "a DateFormat instance."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5632
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 6168
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.util.format.DateFormat"
+      },
+      "appearsIn": []
+    },
+    "ASSUME_YEAR_2000_THRESHOLD": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Integer} The threshold until when a year should be assumed to belong to the",
+          "     *   21st century (e.g. 12 -> 2012). Years over this threshold but below 100 will be",
+          "     *   assumed to belong to the 20th century (e.g. 88 -> 1988). Years over 100 will be",
+          "     *   used unchanged (e.g. 1792 -> 1792).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The threshold until when a year should be assumed to belong to the\n   21st century (e.g. 12 -> 2012). Years over this threshold but below 100 will be\n   assumed to belong to the 20th century (e.g. 88 -> 1988). Years over 100 will be\n   used unchanged (e.g. 1792 -> 1792)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 6504
+        },
+        "end": {
+          "line": 180,
+          "column": 34,
+          "index": 6534
+        }
+      },
+      "appearsIn": []
+    },
+    "ISO_MASKS": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Special masks of patterns that are used frequently"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Special masks of patterns that are used frequently"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 6614
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 6828
+        }
+      },
+      "appearsIn": []
+    },
+    "AM_MARKER": {
+      "jsdoc": {
+        "raw": [
+          "* @type {String} The am marker. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The am marker."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 6876
+        },
+        "end": {
+          "line": 192,
+          "column": 19,
+          "index": 6891
+        }
+      },
+      "appearsIn": []
+    },
+    "PM_MARKER": {
+      "jsdoc": {
+        "raw": [
+          "* @type {String} The pm marker. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The pm marker."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 6939
+        },
+        "end": {
+          "line": 195,
+          "column": 19,
+          "index": 6954
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__locale": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 7162
+        },
+        "end": {
+          "line": 205,
+          "column": 18,
+          "index": 7176
+        }
+      },
+      "appearsIn": []
+    },
+    "__initialLocale": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 7182
+        },
+        "end": {
+          "line": 206,
+          "column": 25,
+          "index": 7203
+        }
+      },
+      "appearsIn": []
+    },
+    "__format": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 7209
+        },
+        "end": {
+          "line": 207,
+          "column": 18,
+          "index": 7223
+        }
+      },
+      "appearsIn": []
+    },
+    "__parseFeed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 7229
+        },
+        "end": {
+          "line": 208,
+          "column": 21,
+          "index": 7246
+        }
+      },
+      "appearsIn": []
+    },
+    "__parseRules": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 7252
+        },
+        "end": {
+          "line": 209,
+          "column": 22,
+          "index": 7270
+        }
+      },
+      "appearsIn": []
+    },
+    "__formatTree": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4,
+          "index": 7276
+        },
+        "end": {
+          "line": 210,
+          "column": 22,
+          "index": 7294
+        }
+      },
+      "appearsIn": []
+    },
+    "__UTC": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 7300
+        },
+        "end": {
+          "line": 211,
+          "column": 15,
+          "index": 7311
+        }
+      },
+      "appearsIn": []
+    },
+    "__fillNumber": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fills a number with leading zeros (\"25\" -> \"0025\").",
+          "     *",
+          "     * @param number {Integer} the number to fill.",
+          "     * @param minSize {Integer} the minimum size the returned string should have.",
+          "     * @return {String} the filled number as string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fills a number with leading zeros (\"25\" -&gt; \"0025\").</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "number {Integer} the number to fill.",
+            "paramName": "number",
+            "description": " the number to fill.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "minSize {Integer} the minimum size the returned string should have.",
+            "paramName": "minSize",
+            "description": " the minimum size the returned string should have.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the filled number as string.",
+            "type": "string",
+            "description": "the filled number as string."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 7586
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 7796
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "number",
+          "type": "Integer"
+        },
+        {
+          "name": "minSize",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getDayInYear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the day in year of a date.",
+          "     *",
+          "     * @param date {Date} the date.",
+          "     * @return {Integer} the day in year.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the day in year of a date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} the date.",
+            "paramName": "date",
+            "description": " the date.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the day in year.",
+            "type": "Integer",
+            "description": "the day in year."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 7946
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 8257
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__thursdayOfSameWeek": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the thursday in the same week as the date.",
+          "     *",
+          "     * @param date {Date} the date to get the thursday of.",
+          "     * @return {Date} the thursday in the same week as the date.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the thursday in the same week as the date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} the date to get the thursday of.",
+            "paramName": "date",
+            "description": " the date to get the thursday of.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Date} the thursday in the same week as the date.",
+            "type": "Date",
+            "description": "the thursday in the same week as the date."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 8469
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 8603
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "Date"
+      },
+      "appearsIn": []
+    },
+    "__getWeekInYear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the week in year of a date.",
+          "     *",
+          "     * @param date {Date} the date to get the week in year of.",
+          "     * @return {Integer} the week in year.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the week in year of a date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} the date to get the week in year of.",
+            "paramName": "date",
+            "description": " the date to get the week in year of.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the week in year.",
+            "type": "Integer",
+            "description": "the week in year."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 8782
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 9470
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__getWeekInMonth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the week in month of a date.",
+          "     *",
+          "     * @param date {Date} the date to get the week in year of.",
+          "     * @return {Integer} the week in month.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the week in month of a date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} the date to get the week in year of.",
+            "paramName": "date",
+            "description": " the date to get the week in year of.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the week in month.",
+            "type": "Integer",
+            "description": "the week in month."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 9651
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 9973
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__getWeekYear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the week year of a date. (that is the year of the week where this date happens to be)",
+          "     * For a week in the middle of the summer, the year is easily obtained, but for a week",
+          "     * when New Year's Eve takes place, the year of that week is ambiguous.",
+          "     * The thursday day of that week is used to determine the year.",
+          "     *",
+          "     * @param date {Date} the date to get the week in year of.",
+          "     * @return {Integer} the week year.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the week year of a date. (that is the year of the week where this date happens to be)\n For a week in the middle of the summer, the year is easily obtained, but for a week\n when New Year's Eve takes place, the year of that week is ambiguous.\n The thursday day of that week is used to determine the year.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} the date to get the week in year of.",
+            "paramName": "date",
+            "description": " the date to get the week in year of.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the week year.",
+            "type": "Integer",
+            "description": "the week year."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4,
+          "index": 10442
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 10568
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__isLeapYear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if the year is a leap one.",
+          "     *",
+          "     * @param year {Integer} the year to check.",
+          "     * @return {Boolean} true if it is a leap year.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if the year is a leap one.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "year {Integer} the year to check.",
+            "paramName": "year",
+            "description": " the year to check.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if it is a leap year.",
+            "type": "boolean",
+            "description": "true if it is a leap year."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 10745
+        },
+        "end": {
+          "line": 326,
+          "column": 5,
+          "index": 10898
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "year",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__getMonthAndDayFromDayOfYear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a json object with month and day as keys.",
+          "     *",
+          "     * @param dayOfYear {Integer} the day of year.",
+          "     * @param year {Integer} the year to check.",
+          "     * @return {Object} a json object {month: M, day: D}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a json object with month and day as keys.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dayOfYear {Integer} the day of year.",
+            "paramName": "dayOfYear",
+            "description": " the day of year.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "year {Integer} the year to check.",
+            "paramName": "year",
+            "description": " the year to check.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} a json object {month: M, day: D}.",
+            "type": "Record<any, any>",
+            "description": "a json object {month: M, day: D}."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 11142
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 11778
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dayOfYear",
+          "type": "Integer"
+        },
+        {
+          "name": "year",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getYearFromWeekYearAndMonth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the year of a date when we know the week year",
+          "     *",
+          "     * @param weekYear {Integer} the week year.",
+          "     * @param month {Integer} the month",
+          "     * @param dayOfMonth {Integer} the day in month",
+          "     * @return {Integer} the year.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the year of a date when we know the week year</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "weekYear {Integer} the week year.",
+            "paramName": "weekYear",
+            "description": " the week year.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "month {Integer} the month",
+            "paramName": "month",
+            "description": " the month",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "dayOfMonth {Integer} the day in month",
+            "paramName": "dayOfMonth",
+            "description": " the day in month",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the year.",
+            "type": "Integer",
+            "description": "the year."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 12044
+        },
+        "end": {
+          "line": 392,
+          "column": 5,
+          "index": 12646
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "weekYear",
+          "type": "Integer"
+        },
+        {
+          "name": "month",
+          "type": "Integer"
+        },
+        {
+          "name": "dayOfMonth",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the new value for locale property",
+          "     * @param value {String} The new value.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the new value for locale property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The new value.",
+            "paramName": "value",
+            "description": " The new value.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 4,
+          "index": 12766
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 13032
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the Locale",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the Locale</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 4,
+          "index": 13080
+        },
+        "end": {
+          "line": 413,
+          "column": 5,
+          "index": 13129
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the locale",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the locale</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 13178
+        },
+        "end": {
+          "line": 424,
+          "column": 5,
+          "index": 13356
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFormatString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the original format string",
+          "     *",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the original format string</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 13452
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 13505
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "format": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Formats a date.",
+          "     *",
+          "     * @param date {Date} The date to format.",
+          "     * @return {String} the formatted date.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Formats a date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "date {Date} The date to format.",
+            "paramName": "date",
+            "description": " The date to format.",
+            "type": "Date"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the formatted date.",
+            "type": "string",
+            "description": "the formatted date."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 441,
+          "column": 4,
+          "index": 13648
+        },
+        "end": {
+          "line": 845,
+          "column": 5,
+          "index": 26546
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.util.format.IFormat"
+      ]
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses a date.",
+          "     *",
+          "     * @param dateStr {String} the date to parse.",
+          "     * @return {Date} the parsed date.",
+          "     * @throws {Error} If the format is not well formed or if the date string does not",
+          "     *       match to the format.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses a date.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dateStr {String} the date to parse.",
+            "paramName": "dateStr",
+            "description": " the date to parse.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Date} the parsed date.",
+            "type": "Date",
+            "description": "the parsed date."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the format is not well formed or if the date string does not\n       match to the format.",
+            "type": "Error",
+            "description": " If the format is not well formed or if the date string does not\n       match to the format."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 855,
+          "column": 4,
+          "index": 26808
+        },
+        "end": {
+          "line": 1006,
+          "column": 5,
+          "index": 30859
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dateStr",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Date"
+      },
+      "appearsIn": [
+        "qx.util.format.IFormat"
+      ]
+    },
+    "__initFormatTree": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method for {@link #format()} and {@link #parse()}.",
+          "     * Parses the date format.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for {@link #format()} and {@link #parse()}.\n Parses the date format.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1013,
+          "column": 4,
+          "index": 30985
+        },
+        "end": {
+          "line": 1148,
+          "column": 5,
+          "index": 34618
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__initParseFeed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the parse feed.",
+          "     *",
+          "     * The parse contains everything needed for parsing: The regular expression",
+          "     * (in compiled and uncompiled form) and the used rules.",
+          "     *",
+          "     * @throws {Error} If the date format is malformed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the parse feed.\n The parse contains everything needed for parsing: The regular expression\n (in compiled and uncompiled form) and the used rules.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If the date format is malformed.",
+            "type": "Error",
+            "description": " If the date format is malformed."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1158,
+          "column": 4,
+          "index": 34887
+        },
+        "end": {
+          "line": 1238,
+          "column": 5,
+          "index": 37097
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__isRuleForWildcard": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the rule matches the wildcard or not.",
+          "     * @param rule {Object} the rule we try to match with the wildcard",
+          "     * @param wildcardChar {String} the character in the wildcard",
+          "     * @param wildcardSize {Integer} the number of  wildcardChar characters in the wildcard",
+          "     * @return {Boolean} if the rule matches or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the rule matches the wildcard or not.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rule {Object} the rule we try to match with the wildcard",
+            "paramName": "rule",
+            "description": " the rule we try to match with the wildcard",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "wildcardChar {String} the character in the wildcard",
+            "paramName": "wildcardChar",
+            "description": " the character in the wildcard",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "wildcardSize {Integer} the number of  wildcardChar characters in the wildcard",
+            "paramName": "wildcardSize",
+            "description": " the number of  wildcardChar characters in the wildcard",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} if the rule matches or not",
+            "type": "boolean",
+            "description": "if the rule matches or not"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1247,
+          "column": 4,
+          "index": 37461
+        },
+        "end": {
+          "line": 1260,
+          "column": 5,
+          "index": 37940
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rule",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "wildcardChar",
+          "type": "string"
+        },
+        {
+          "name": "wildcardSize",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__initParseRules": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the static parse rules.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the static parse rules.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1265,
+          "column": 4,
+          "index": 38012
+        },
+        "end": {
+          "line": 1858,
+          "column": 5,
+          "index": 53258
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

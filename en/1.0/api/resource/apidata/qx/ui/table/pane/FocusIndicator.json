@@ -1,0 +1,308 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602028,
+  "lastModifiedIso": "2026-06-29T04:00:02.028Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/pane/FocusIndicator.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 504
+    },
+    "end": {
+      "line": 160,
+      "column": 3,
+      "index": 4485
+    }
+  },
+  "className": "qx.ui.table.pane.FocusIndicator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The focus indicator widget",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The focus indicator widget</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "scroller"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 708
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1000
+      }
+    }
+  },
+  "properties": {
+    "visibility": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1041
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1103
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "excluded"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "row": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1163
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1220
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Table row, where the indicator is placed. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Table row, where the indicator is placed.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "column": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1283
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1343
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Table column, where the indicator is placed. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Table column, where the indicator is placed.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__scroller": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1367
+        },
+        "end": {
+          "line": 59,
+          "column": 20,
+          "index": 1383
+        }
+      },
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Keypress handler. Suppress all key events but \"Enter\" and \"Escape\"",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} key event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Keypress handler. Suppress all key events but \"Enter\" and \"Escape\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} key event",
+            "paramName": "e",
+            "description": " key event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1541
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1690
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "moveToCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Move the focus indicator to the given table cell.",
+          "     *",
+          "     * @param col {Integer?null} The table column",
+          "     * @param row {Integer?null} The table row",
+          "     * @param editing {Boolean?null} Whether or not the cell is being edited",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Move the focus indicator to the given table cell.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer?null} The table column",
+            "paramName": "col",
+            "description": " The table column",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer?null} The table row",
+            "paramName": "row",
+            "description": " The table row",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "editing {Boolean?null} Whether or not the cell is being edited",
+            "paramName": "editing",
+            "description": " Whether or not the cell is being edited",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1951
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4428
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "row",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "editing",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 157,
+        "column": 2,
+        "index": 4437
+      },
+      "end": {
+        "line": 159,
+        "column": 3,
+        "index": 4481
+      }
+    }
+  },
+  "statics": {}
+}

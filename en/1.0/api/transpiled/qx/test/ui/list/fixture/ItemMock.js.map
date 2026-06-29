@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "properties",
+    "name",
+    "event",
+    "group",
+    "test",
+    "ui",
+    "list",
+    "fixture",
+    "ItemMock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/list/fixture/ItemMock.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.ui.list.fixture.ItemMock\", {\n  extend: qx.core.Object,\n\n  properties: {\n    name: {\n      event: \"changeName\"\n    },\n\n    group: {\n      event: \"changeGroup\"\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,kCAAkC,EAAE;IAClDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,UAAU,EAAE;MACVC,IAAI,EAAE;QACJC,KAAK,EAAE;MACT,CAAC;MAEDC,KAAK,EAAE;QACLD,KAAK,EAAE;MACT;IACF;EACF,CAAC,CAAC;EA7BFX,EAAE,CAACa,IAAI,CAACC,EAAE,CAACC,IAAI,CAACC,OAAO,CAACC,QAAQ,CAACd,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

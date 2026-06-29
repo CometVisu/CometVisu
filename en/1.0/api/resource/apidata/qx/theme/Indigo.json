@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602404,
+  "lastModifiedIso": "2026-06-29T04:00:02.404Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/Indigo.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 540
+    },
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 798
+    }
+  },
+  "className": "qx.theme.Indigo",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

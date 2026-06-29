@@ -1,0 +1,1339 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602687,
+  "lastModifiedIso": "2026-06-29T04:00:02.687Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 1011
+    },
+    "end": {
+      "line": 453,
+      "column": 3,
+      "index": 15176
+    }
+  },
+  "className": "qx.locale.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The qx.locale.Manager provides static translation methods (like tr()) and",
+      " * general locale information.",
+      " *",
+      " * @require(qx.event.dispatch.Direct)",
+      " * @require(qx.locale.LocalizedString)",
+      " * @require(qx.bom.client.Locale)",
+      " * @require(qx.bom.Lifecycle)",
+      " *",
+      " * Note: \"translating\" the empty string, e.g. tr(\"\") will return the header",
+      " * of the respective .po file. See also https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html#PO-Files",
+      " *",
+      " * @cldr()",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The qx.locale.Manager provides static translation methods (like tr()) and\n general locale information.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.dispatch.Direct"
+      },
+      {
+        "name": "@require",
+        "body": "qx.locale.LocalizedString"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.client.Locale"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.Lifecycle"
+      }
+    ],
+    "@cldr": [
+      {
+        "name": "@cldr",
+        "body": ""
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 46,
+        "column": 2,
+        "index": 1288
+      },
+      "end": {
+        "line": 66,
+        "column": 3,
+        "index": 1907
+      }
+    }
+  },
+  "statics": {
+    "tr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message",
+          "     *",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     * @see qx.lang.String.format",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.lang.String.format"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2440
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2604
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} singular form if equals 1, otherwise plural",
+          "     * @param varargs {Object} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     * @see qx.lang.String.format",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} singular form if equals 1, otherwise plural",
+            "paramName": "count",
+            "description": " singular form if equals 1, otherwise plural",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.lang.String.format"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3237
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3849
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message with translation hint (from developer addressed to translator).",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     * @see qx.lang.String.format",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message with translation hint (from developer addressed to translator).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.lang.String.format"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4351
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trnc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message with translation hint (from developer addressed to translator).",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} singular form if equals 1, otherwise plural",
+          "     * @param varargs {Object} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     * @see qx.lang.String.format",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message with translation hint (from developer addressed to translator).\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} singular form if equals 1, otherwise plural",
+            "paramName": "count",
+            "description": " singular form if equals 1, otherwise plural",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.lang.String.format"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 5343
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 5756
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "marktr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark the message for translation but return the original message.",
+          "     *",
+          "     * @param messageId {String} the message ID",
+          "     * @return {String} messageId",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mark the message for translation but return the original message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} the message ID",
+            "paramName": "messageId",
+            "description": " the message ID",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} messageId",
+            "type": "string",
+            "description": "messageId"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 5941
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 5990
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "locale": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6293
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 6756
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyLocale",
+        "event": "changeLocale"
+      },
+      "jsdoc": {
+        "raw": [
+          "* current locale. locale is an language code like de, de_AT, en, en_GB, fr, ... "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>current locale. locale is an language code like de, de<em>AT, en, en</em>GB, fr, …</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__defaultLocale": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 6964
+        },
+        "end": {
+          "line": 206,
+          "column": 62,
+          "index": 7022
+        }
+      },
+      "appearsIn": []
+    },
+    "__locale": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 7028
+        },
+        "end": {
+          "line": 207,
+          "column": 18,
+          "index": 7042
+        }
+      },
+      "appearsIn": []
+    },
+    "__language": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 7048
+        },
+        "end": {
+          "line": 208,
+          "column": 20,
+          "index": 7064
+        }
+      },
+      "appearsIn": []
+    },
+    "__translations": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 7070
+        },
+        "end": {
+          "line": 209,
+          "column": 24,
+          "index": 7090
+        }
+      },
+      "appearsIn": []
+    },
+    "__locales": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4,
+          "index": 7096
+        },
+        "end": {
+          "line": 210,
+          "column": 19,
+          "index": 7111
+        }
+      },
+      "appearsIn": []
+    },
+    "__clientLocale": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 7117
+        },
+        "end": {
+          "line": 211,
+          "column": 24,
+          "index": 7137
+        }
+      },
+      "appearsIn": []
+    },
+    "getLanguage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the language code of the current locale",
+          "     *",
+          "     * This is the first part of a locale definition. The language for \"de_DE\" would be \"de\"",
+          "     *",
+          "     * @return {String} language code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the language code of the current locale\n This is the first part of a locale definition. The language for \"de_DE\" would be \"de\"</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} language code",
+            "type": "string",
+            "description": "language code"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 7356
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 7407
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTerritory": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the territory code of the current locale",
+          "     *",
+          "     * This is the second part of a locale definition. The territory for \"de_DE\" would be \"DE\"",
+          "     *",
+          "     * @return {String} territory code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the territory code of the current locale\n This is the second part of a locale definition. The territory for \"de_DE\" would be \"DE\"</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} territory code",
+            "type": "string",
+            "description": "territory code"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7630
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 7703
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAvailableLocales": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the available application locales",
+          "     *",
+          "     * This corresponds to the LOCALES setting in config.json. Without argument,",
+          "     * it only returns the currently loaded locales, with an argument of true",
+          "     * all locales that went into the build. This is particularly interesting if",
+          "     * locales were generated as dedicated I18N parts, and have to be loaded",
+          "     * explicitly before being available.",
+          "     *",
+          "     * @param includeNonloaded {Boolean?null} include locales not yet loaded",
+          "     * @return {String[]} array of available locales",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the available application locales\n This corresponds to the LOCALES setting in config.json. Without argument,\n it only returns the currently loaded locales, with an argument of true\n all locales that went into the build. This is particularly interesting if\n locales were generated as dedicated I18N parts, and have to be loaded\n explicitly before being available.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "includeNonloaded {Boolean?null} include locales not yet loaded",
+            "paramName": "includeNonloaded",
+            "description": " include locales not yet loaded",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} array of available locales",
+            "type": "String[]",
+            "description": "array of available locales"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 8277
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 8644
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "includeNonloaded",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "__extractLanguage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract the language part from a locale.",
+          "     *",
+          "     * @param locale {String} locale to be used",
+          "     * @return {String} language",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extract the language part from a locale.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "locale {String} locale to be used",
+            "paramName": "locale",
+            "description": " locale to be used",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} language",
+            "type": "string",
+            "description": "language"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 8803
+        },
+        "end": {
+          "line": 282,
+          "column": 5,
+          "index": 9093
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_applyLocale": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 9122
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 9450
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addTranslation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a translation to the translation manager.",
+          "     *",
+          "     * If <code>languageCode</code> already exists, its map will be updated with",
+          "     * <code>translationMap</code> (new keys will be added, existing keys will be",
+          "     * overwritten).",
+          "     *",
+          "     * @param languageCode {String} language code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+          "     * @param translationMap {Map} mapping of message identifiers to message strings in the target",
+          "     *                             language, e.g. <i>{\"greeting_short\" : \"Hello\"}</i>. Plural forms",
+          "     *                             are separate keys.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a translation to the translation manager.\n If <code>languageCode</code> already exists, its map will be updated with\n <code>translationMap</code> (new keys will be added, existing keys will be\n overwritten).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "languageCode {String} language code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+            "paramName": "languageCode",
+            "description": " language code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "translationMap {Map} mapping of message identifiers to message strings in the target\n                             language, e.g. <i>{\"greeting_short\" : \"Hello\"}</i>. Plural forms\n                             are separate keys.",
+            "paramName": "translationMap",
+            "description": " mapping of message identifiers to message strings in the target\n                             language, e.g. <i>{\"greeting_short\" : \"Hello\"}</i>. Plural forms\n                             are separate keys.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 10088
+        },
+        "end": {
+          "line": 317,
+          "column": 5,
+          "index": 10399
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "languageCode",
+          "type": "string"
+        },
+        {
+          "name": "translationMap",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a localization to the localization manager.",
+          "     *",
+          "     * If <code>localeCode</code> already exists, its map will be updated with",
+          "     * <code>localeMap</code> (new keys will be added, existing keys will be overwritten).",
+          "     *",
+          "     * @param localeCode {String} locale code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+          "     * @param localeMap {Map} mapping of locale keys to the target locale values, e.g.",
+          "     *                        <i>{\"cldr_date_format_short\" : \"M/d/yy\"}</i>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a localization to the localization manager.\n If <code>localeCode</code> already exists, its map will be updated with\n <code>localeMap</code> (new keys will be added, existing keys will be overwritten).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "localeCode {String} locale code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+            "paramName": "localeCode",
+            "description": " locale code of the translation like <i>de, de_AT, en, en_GB, fr, ...</i>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "localeMap {Map} mapping of locale keys to the target locale values, e.g.\n                        <i>{\"cldr_date_format_short\" : \"M/d/yy\"}</i>.",
+            "paramName": "localeMap",
+            "description": " mapping of locale keys to the target locale values, e.g.\n                        <i>{\"cldr_date_format_short\" : \"M/d/yy\"}</i>.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4,
+          "index": 10931
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 11204
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "localeCode",
+          "type": "string"
+        },
+        {
+          "name": "localeMap",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "translate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message using the current locale and apply format string to the arguments.",
+          "     *",
+          "     * Implements the lookup chain locale (e.g. en_US) -> language (e.g. en) ->",
+          "     * default locale (e.g. C). Localizes the arguments if possible and splices",
+          "     * them into the message. If qx.dynlocale is on, returns a {@link",
+          "     * LocalizedString}.",
+          "     *",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param args {Object[]} array of objects, which are inserted into the format string",
+          "     * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+          "     * @return {String|LocalizedString} translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message using the current locale and apply format string to the arguments.\n Implements the lookup chain locale (e.g. en_US) -&gt; language (e.g. en) -&gt;\n default locale (e.g. C). Localizes the arguments if possible and splices\n them into the message. If qx.dynlocale is on, returns a {@link\n LocalizedString}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Object[]} array of objects, which are inserted into the format string",
+            "paramName": "args",
+            "description": " array of objects, which are inserted into the format string",
+            "type": "Object[]"
+          },
+          {
+            "name": "@param",
+            "body": "locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+            "paramName": "locale",
+            "description": " locale to be used; if not given, defaults to the value of {@link #locale}",
+            "optional": true,
+            "defaultValue": "#locale",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 11946
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 12100
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Object[]"
+        },
+        {
+          "name": "locale",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "#locale"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "localize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Provide localization (CLDR) data.",
+          "     *",
+          "     * Implements the lookup chain locale (e.g. en_US) -> language (e.g. en) ->",
+          "     * default locale (e.g. C). Localizes the arguments if possible and splices",
+          "     * them into the message. If qx.dynlocale is on, returns a {@link",
+          "     * LocalizedString}.",
+          "     *",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param args {Object[]} array of objects, which are inserted into the format string",
+          "     * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+          "     * @return {String|LocalizedString} translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provide localization (CLDR) data.\n Implements the lookup chain locale (e.g. en_US) -&gt; language (e.g. en) -&gt;\n default locale (e.g. C). Localizes the arguments if possible and splices\n them into the message. If qx.dynlocale is on, returns a {@link\n LocalizedString}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Object[]} array of objects, which are inserted into the format string",
+            "paramName": "args",
+            "description": " array of objects, which are inserted into the format string",
+            "type": "Object[]"
+          },
+          {
+            "name": "@param",
+            "body": "locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+            "paramName": "locale",
+            "description": " locale to be used; if not given, defaults to the value of {@link #locale}",
+            "optional": true,
+            "defaultValue": "#locale",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4,
+          "index": 12789
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 12937
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Object[]"
+        },
+        {
+          "name": "locale",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "#locale"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "__lookupAndExpand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Look up an I18N key in a catalog and expand format strings.",
+          "     *",
+          "     * Implements the lookup chain locale (e.g. en_US) -> language (e.g. en) ->",
+          "     * default locale (e.g. C). Localizes the arguments if possible and splices",
+          "     * them into the message. If qx.dynlocale is on, returns a {@link",
+          "     * LocalizedString}.",
+          "     *",
+          "     * @param catalog {Map} map of I18N keys and their values",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param args {Object[]} array of objects, which are inserted into the format string",
+          "     * @param locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+          "     * @return {String|LocalizedString} translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Look up an I18N key in a catalog and expand format strings.\n Implements the lookup chain locale (e.g. en_US) -&gt; language (e.g. en) -&gt;\n default locale (e.g. C). Localizes the arguments if possible and splices\n them into the message. If qx.dynlocale is on, returns a {@link\n LocalizedString}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "catalog {Map} map of I18N keys and their values",
+            "paramName": "catalog",
+            "description": " map of I18N keys and their values",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Object[]} array of objects, which are inserted into the format string",
+            "paramName": "args",
+            "description": " array of objects, which are inserted into the format string",
+            "type": "Object[]"
+          },
+          {
+            "name": "@param",
+            "body": "locale {String ? #locale} locale to be used; if not given, defaults to the value of {@link #locale}",
+            "paramName": "locale",
+            "description": " locale to be used; if not given, defaults to the value of {@link #locale}",
+            "optional": true,
+            "defaultValue": "#locale",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "translated message or localized string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4,
+          "index": 13714
+        },
+        "end": {
+          "line": 451,
+          "column": 5,
+          "index": 15168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "catalog",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Object[]"
+        },
+        {
+          "name": "locale",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "#locale"
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    }
+  }
+}

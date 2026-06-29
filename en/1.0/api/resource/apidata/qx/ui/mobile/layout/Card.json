@@ -1,0 +1,927 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601397,
+  "lastModifiedIso": "2026-06-29T04:00:01.397Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/layout/Card.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1165
+    },
+    "end": {
+      "line": 385,
+      "column": 3,
+      "index": 10314
+    }
+  },
+  "className": "qx.ui.mobile.layout.Card",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A card layout.",
+      " *",
+      " * The card layout lays out widgets in a stack. Call show to display a widget.",
+      " * Only the widget which show method is called is displayed. All other widgets are excluded.",
+      " *",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the Card layout.",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var layout = new qx.ui.mobile.layout.Card());",
+      " * var container = new qx.ui.mobile.container.Composite(layout);",
+      " *",
+      " * var label1 = new qx.ui.mobile.basic.Label(\"1\");",
+      " * container.add(label1);",
+      " * var label2 = new qx.ui.mobile.basic.Label(\"2\");",
+      " * container.add(label2);",
+      " *",
+      " * label2.show();",
+      " * </pre>",
+      " *",
+      " * @use(qx.event.handler.Transition)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A card layout.\n The card layout lays out widgets in a stack. Call show to display a widget.\n Only the widget which show method is called is displayed. All other widgets are excluded.\n<em>Example</em>\n Here is a little example of how to use the Card layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.mobile.layout.Card());\n var container = new qx.ui.mobile.container.Composite(layout);\n var label1 = new qx.ui.mobile.basic.Label(\"1\");\n container.add(label1);\n var label2 = new qx.ui.mobile.basic.Label(\"2\");\n container.add(label2);\n label2.show();\n </pre>"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.event.handler.Transition"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.layout.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 1441
+      },
+      "end": {
+        "line": 57,
+        "column": 3,
+        "index": 1540
+      }
+    }
+  },
+  "events": {
+    "animationStart": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the animation of a page transition starts "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the animation of a page transition starts</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1806
+        },
+        "end": {
+          "line": 67,
+          "column": 40,
+          "index": 1842
+        }
+      }
+    },
+    "animationEnd": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the animation of a page transition ends "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the animation of a page transition ends</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1911
+        },
+        "end": {
+          "line": 70,
+          "column": 38,
+          "index": 1945
+        }
+      }
+    }
+  },
+  "properties": {
+    "defaultAnimation": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2223
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2291
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "slide"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The default animation to use for page transition "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default animation to use for page transition</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "showAnimation": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2389
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2452
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Flag which indicates, whether animation is needed, or widgets should only swap. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag which indicates, whether animation is needed, or widgets should only swap.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "animationDuration": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2509
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2575
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 350
+      },
+      "jsdoc": {
+        "raw": [
+          "* Transition duration of each animation. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transition duration of each animation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__nextWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2787
+        },
+        "end": {
+          "line": 106,
+          "column": 22,
+          "index": 2805
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2811
+        },
+        "end": {
+          "line": 107,
+          "column": 25,
+          "index": 2832
+        }
+      },
+      "appearsIn": []
+    },
+    "__inAnimation": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2838
+        },
+        "end": {
+          "line": 108,
+          "column": 23,
+          "index": 2857
+        }
+      },
+      "appearsIn": []
+    },
+    "__animation": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2863
+        },
+        "end": {
+          "line": 109,
+          "column": 21,
+          "index": 2880
+        }
+      },
+      "appearsIn": []
+    },
+    "__reverse": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2886
+        },
+        "end": {
+          "line": 110,
+          "column": 19,
+          "index": 2901
+        }
+      },
+      "appearsIn": []
+    },
+    "__cardAnimation": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2907
+        },
+        "end": {
+          "line": 111,
+          "column": 25,
+          "index": 2928
+        }
+      },
+      "appearsIn": []
+    },
+    "_getCssClasses": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2953
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3018
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "connectToChildWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3043
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3257
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "disconnectFromChildWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3282
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3413
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "updateLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3438
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3627
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "action"
+        },
+        {
+          "name": "properties"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "setCardAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for this.__cardAnimation.",
+          "     * @param value {qx.ui.mobile.layout.CardAnimation} the new CardAnimation object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Setter for this.__cardAnimation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.ui.mobile.layout.CardAnimation} the new CardAnimation object.",
+            "paramName": "value",
+            "description": " the new CardAnimation object.",
+            "type": "qx.ui.mobile.layout.CardAnimation"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3776
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3843
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "qx.ui.mobile.layout.CardAnimation"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCardAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for this.__cardAnimation.",
+          "     * @return {qx.ui.mobile.layout.CardAnimation} the current CardAnimation object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for this.__cardAnimation.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.layout.CardAnimation} the current CardAnimation object.",
+            "type": "qx.ui.mobile.layout.CardAnimation",
+            "description": "the current CardAnimation object."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3991
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4052
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.layout.CardAnimation"
+      },
+      "appearsIn": []
+    },
+    "_showWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the widget with the given properties.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The target widget",
+          "     * @param properties {Map} The layout properties to set. Key / value pairs.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the widget with the given properties.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The target widget",
+            "paramName": "widget",
+            "description": " The target widget",
+            "type": "qx.ui.mobile.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "properties {Map} The layout properties to set. Key / value pairs.",
+            "paramName": "properties",
+            "description": " The layout properties to set. Key / value pairs.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4279
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5443
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        },
+        {
+          "name": "properties",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_swapWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Excludes the current widget and sets the next widget to the current widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Excludes the current widget and sets the next widget to the current widget.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 5549
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5805
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_fixWidgetSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fix size, only if widget has mixin MResize set,",
+          "     * and nextWidget is set.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The target widget which should have a fixed size.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fix size, only if widget has mixin MResize set,\n and nextWidget is set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The target widget which should have a fixed size.",
+            "paramName": "widget",
+            "description": " The target widget which should have a fixed size.",
+            "type": "qx.ui.mobile.core.Widget"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 6018
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 6319
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_releaseWidgetSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Releases recently fixed widget size (width/height). This is needed for allowing further",
+          "     * flexbox layouting.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The target widget which should have a flexible size.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Releases recently fixed widget size (width/height). This is needed for allowing further\n flexbox layouting.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The target widget which should have a flexible size.",
+            "paramName": "widget",
+            "description": " The target widget which should have a flexible size.",
+            "type": "qx.ui.mobile.core.Widget"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 6571
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 6890
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__startAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts the animation for the page transition.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The target widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts the animation for the page transition.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The target widget",
+            "paramName": "widget",
+            "description": " The target widget",
+            "type": "qx.ui.mobile.core.Widget"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 7039
+        },
+        "end": {
+          "line": 313,
+          "column": 5,
+          "index": 8437
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAnimationEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the animation of the page transition ends.",
+          "     *",
+          "     * @param evt {qx.event.type.Event} The causing event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the animation of the page transition ends.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Event} The causing event",
+            "paramName": "evt",
+            "description": " The causing event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 320,
+          "column": 4,
+          "index": 8602
+        },
+        "end": {
+          "line": 326,
+          "column": 5,
+          "index": 8769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__stopAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the animation for the page transition.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the animation for the page transition.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 8844
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 9714
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__getAnimationClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the animation CSS classes for a given direction. The direction",
+          "     * can be <code>in</code> or <code>out</code>.",
+          "     *",
+          "     * @param direction {String} The direction of the animation. <code>in</code> or <code>out</code>.",
+          "     * @return {String[]} The CSS classes for the set animation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the animation CSS classes for a given direction. The direction\n can be <code>in</code> or <code>out</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "direction {String} The direction of the animation. <code>in</code> or <code>out</code>.",
+            "paramName": "direction",
+            "description": " The direction of the animation. <code>in</code> or <code>out</code>.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} The CSS classes for the set animation.",
+            "type": "String[]",
+            "description": "The CSS classes for the set animation."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4,
+          "index": 10040
+        },
+        "end": {
+          "line": 379,
+          "column": 5,
+          "index": 10240
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "direction",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 382,
+        "column": 2,
+        "index": 10249
+      },
+      "end": {
+        "line": 384,
+        "column": 3,
+        "index": 10310
+      }
+    }
+  },
+  "statics": {}
+}

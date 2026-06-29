@@ -1,0 +1,520 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603325,
+  "lastModifiedIso": "2026-06-29T04:00:03.325Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Transition.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1038
+    },
+    "end": {
+      "line": 330,
+      "column": 3,
+      "index": 9011
+    }
+  },
+  "className": "qx.event.handler.Transition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * This class provides support for HTML5 transition and animation events.",
+      " * Currently only WebKit and Firefox are supported.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides support for HTML5 transition and animation events.\n Currently only WebKit and Firefox are supported.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 2,
+        "index": 1483
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1632
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1888
+        },
+        "end": {
+          "line": 72,
+          "column": 51,
+          "index": 1935
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2111
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2171
+        },
+        "end": {
+          "line": 83,
+          "column": 55,
+          "index": 2222
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2307
+        },
+        "end": {
+          "line": 86,
+          "column": 27,
+          "index": 2330
+        }
+      },
+      "appearsIn": []
+    },
+    "TYPE_TO_NATIVE": {
+      "jsdoc": {
+        "raw": [
+          "* Mapping of supported event types to native event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of supported event types to native event types</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2403
+        },
+        "end": {
+          "line": 89,
+          "column": 24,
+          "index": 2423
+        }
+      },
+      "appearsIn": []
+    },
+    "NATIVE_TO_TYPE": {
+      "jsdoc": {
+        "raw": [
+          "* Mapping of native event types to supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of native event types to supported event types</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2496
+        },
+        "end": {
+          "line": 92,
+          "column": 24,
+          "index": 2516
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__onEventWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2724
+        },
+        "end": {
+          "line": 102,
+          "column": 26,
+          "index": 2746
+        }
+      },
+      "appearsIn": []
+    },
+    "__registeredEvents": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 103,
+          "column": 28,
+          "index": 2776
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3020
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3095
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is added using {@link qx.event.Manager#addListener}.",
+          "     *",
+          "     * @param target {var} The target to, which the event handler should",
+          "     *     be attached",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     * @signature function(target, type, capture)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time an event listener, for one of the\n supported events, is added using {@link qx.event.Manager#addListener}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The target to, which the event handler should\n     be attached",
+            "paramName": "target",
+            "description": " The target to, which the event handler should\n     be attached",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "boolean"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target, type, capture)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3627
+        },
+        "end": {
+          "line": 181,
+          "column": 6,
+          "index": 4982
+        }
+      },
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is removed by using {@link qx.event.Manager#removeListener}",
+          "     * and no other event listener is listening on this type.",
+          "     *",
+          "     * @param target {var} The target from, which the event handler should",
+          "     *     be removed",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     * @signature function(target, type, capture)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time an event listener, for one of the\n supported events, is removed by using {@link qx.event.Manager#removeListener}\n and no other event listener is listening on this type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The target from, which the event handler should\n     be removed",
+            "paramName": "target",
+            "description": " The target from, which the event handler should\n     be removed",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "boolean"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target, type, capture)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 5584
+        },
+        "end": {
+          "line": 258,
+          "column": 6,
+          "index": 7022
+        }
+      },
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_onNative": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Global handler for the transition event.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} DOM event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Global handler for the transition event.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 7373
+        },
+        "end": {
+          "line": 278,
+          "column": 6,
+          "index": 7624
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 287,
+        "column": 2,
+        "index": 7820
+      },
+      "end": {
+        "line": 303,
+        "column": 3,
+        "index": 8182
+      }
+    }
+  },
+  "properties": {}
+}

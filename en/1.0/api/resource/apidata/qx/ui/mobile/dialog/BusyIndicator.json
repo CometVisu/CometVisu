@@ -1,0 +1,277 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601321,
+  "lastModifiedIso": "2026-06-29T04:00:01.321Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/dialog/BusyIndicator.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 818
+    },
+    "end": {
+      "line": 129,
+      "column": 3,
+      "index": 2902
+    }
+  },
+  "className": "qx.ui.mobile.dialog.BusyIndicator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The widget displays a busy indicator.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var busyIndicator = new qx.ui.mobile.dialog.BusyIndicator(\"Please wait\");",
+      " *   this.getRoot().add(busyIndicator);",
+      " * </pre>",
+      " *",
+      " * This example create a widget to display the busy indicator.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The widget displays a busy indicator.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var busyIndicator = new qx.ui.mobile.dialog.BusyIndicator(\"Please wait\");\n   this.getRoot().add(busyIndicator);\n </pre>\n<p>This example create a widget to display the busy indicator.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.basic.Atom",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 963
+      },
+      "end": {
+        "line": 45,
+        "column": 3,
+        "index": 1236
+      }
+    }
+  },
+  "properties": {
+    "spinnerClass": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1312
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1436
+        }
+      },
+      "json": {
+        "apply": "_applySpinnerClass",
+        "nullable": false,
+        "check": "String",
+        "init": "spinner"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The spinner css class to use.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The spinner css class to use.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "SPINNER_ANIMATION": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1460
+        },
+        "end": {
+          "line": 60,
+          "column": 27,
+          "index": 1483
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__animationHandle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1507
+        },
+        "end": {
+          "line": 64,
+          "column": 27,
+          "index": 1530
+        }
+      },
+      "appearsIn": []
+    },
+    "_onAppear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for appear event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for appear event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1587
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1792
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onDisappear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for disappear event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for disappear event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1851
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 1910
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createIconWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 1935
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iconUrl"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.basic.Atom",
+      "appearsIn": [
+        "qx.ui.mobile.basic.Atom"
+      ]
+    },
+    "_applySpinnerClass": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2134
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2323
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 101,
+        "column": 2,
+        "index": 2332
+      },
+      "end": {
+        "line": 110,
+        "column": 3,
+        "index": 2582
+      }
+    }
+  }
+}

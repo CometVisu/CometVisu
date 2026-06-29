@@ -1,0 +1,668 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603202,
+  "lastModifiedIso": "2026-06-29T04:00:03.202Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/SingleSelectionManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 700
+    },
+    "end": {
+      "line": 278,
+      "column": 3,
+      "index": 7654
+    }
+  },
+  "className": "qx.ui.core.SingleSelectionManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Responsible for the single selection management.",
+      " *",
+      " * The class manage a list of {@link qx.ui.core.Widget} which are returned from",
+      " * {@link qx.ui.core.ISingleSelectionProvider#getItems}.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Responsible for the single selection management.\n The class manage a list of {@link qx.ui.core.Widget} which are returned from\n {@link qx.ui.core.ISingleSelectionProvider#getItems}.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "selectionProvider"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1135
+      },
+      "end": {
+        "line": 54,
+        "column": 3,
+        "index": 1443
+      }
+    }
+  },
+  "events": {
+    "changeSelected": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fires after the selection was modified "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the selection was modified</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1695
+        },
+        "end": {
+          "line": 64,
+          "column": 40,
+          "index": 1731
+        }
+      }
+    }
+  },
+  "properties": {
+    "allowEmptySelection": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2179
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2291
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "__applyAllowEmptySelection"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the value is <code>true</code> the manager allows an empty selection,",
+          "     * otherwise the first selectable element returned from the",
+          "     * <code>qx.ui.core.ISingleSelectionProvider</code> will be selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the value is <code>true</code> the manager allows an empty selection,\n otherwise the first selectable element returned from the\n <code>qx.ui.core.ISingleSelectionProvider</code> will be selected.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__selected": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.Widget} The selected widget. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.Widget} The selected widget."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2557
+        },
+        "end": {
+          "line": 94,
+          "column": 20,
+          "index": 2573
+        }
+      },
+      "appearsIn": []
+    },
+    "__selectionProvider": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.ISingleSelectionProvider} The provider for selection management "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.ISingleSelectionProvider} The provider for selection management"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2673
+        },
+        "end": {
+          "line": 97,
+          "column": 29,
+          "index": 2698
+        }
+      },
+      "appearsIn": []
+    },
+    "getSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current selected element.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The current selected widget or",
+          "     *    <code>null</code> if the selection is empty.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current selected element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget|null} The current selected widget or\n    <code>null</code> if the selection is empty.",
+            "type": "qx.ui.core.Widget|null",
+            "description": "The current selected widget or\n    <code>null</code> if the selection is empty."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3092
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3143
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "setSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the passed element.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Element to select.",
+          "     * @throws {Error} if the element is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the passed element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Element to select.",
+            "paramName": "item",
+            "description": " Element to select.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the element is not a child element.",
+            "type": "Error",
+            "description": " if the element is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3328
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3550
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reset the current selection. If {@link #allowEmptySelection} is set to",
+          "     * <code>true</code> the first element will be selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reset the current selection. If {@link #allowEmptySelection} is set to\n <code>true</code> the first element will be selected.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3712
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3767
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return <code>true</code> if the passed element is selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Element to check if selected.",
+          "     * @return {Boolean} <code>true</code> if passed element is selected,",
+          "     *    <code>false</code> otherwise.",
+          "     * @throws {Error} if the element is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return <code>true</code> if the passed element is selected.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Element to check if selected.",
+            "paramName": "item",
+            "description": " Element to check if selected.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if passed element is selected,\n    <code>false</code> otherwise.",
+            "type": "boolean",
+            "description": "<code>true</code> if passed element is selected,\n    <code>false</code> otherwise."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the element is not a child element.",
+            "type": "Error",
+            "description": " if the element is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4109
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 4391
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns <code>true</code> if selection is empty.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if selection is empty,",
+          "     *    <code>false</code> otherwise.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns <code>true</code> if selection is empty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if selection is empty,\n    <code>false</code> otherwise.",
+            "type": "boolean",
+            "description": "<code>true</code> if selection is empty,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4583
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4647
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all elements which are selectable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
+            "paramName": "all",
+            "description": " true for all selectables, false for the\n   selectables the user can interactively select",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The contained items.",
+            "type": "qx.ui.core.Widget[]",
+            "description": "The contained items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4908
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 5449
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "__applyAllowEmptySelection": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5672
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 5791
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__setSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set selected element.",
+          "     *",
+          "     * If passes value is <code>null</code>, the selection will be reseted.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget | null} element to select, or",
+          "     *    <code>null</code> to reset selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set selected element.\n If passes value is <code>null</code>, the selection will be reseted.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget | null} element to select, or\n    <code>null</code> to reset selection.",
+            "paramName": "item",
+            "description": " element to select, or\n    <code>null</code> to reset selection.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 6239
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6743
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isChildElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if passed element is a child element.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Element to check if child element.",
+          "     * @return {Boolean} <code>true</code> if element is child element,",
+          "     *    <code>false</code> otherwise.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if passed element is a child element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Element to check if child element.",
+            "paramName": "item",
+            "description": " Element to check if child element.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if element is child element,\n    <code>false</code> otherwise.",
+            "type": "boolean",
+            "description": "<code>true</code> if element is child element,\n    <code>false</code> otherwise."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 7011
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 7238
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 269,
+        "column": 2,
+        "index": 7437
+      },
+      "end": {
+        "line": 277,
+        "column": 3,
+        "index": 7650
+      }
+    }
+  },
+  "statics": {}
+}

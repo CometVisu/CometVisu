@@ -1,0 +1,39 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/contextmenu/GlobalFileItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 832
+    },
+    "end": {
+      "line": 26,
+      "column": 3,
+      "index": 963
+    }
+  },
+  "className": "cv.ui.manager.contextmenu.GlobalFileItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.contextmenu.FileItem",
+  "isSingleton": true,
+  "abstract": false,
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

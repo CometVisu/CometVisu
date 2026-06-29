@@ -1,0 +1,155 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543935,
+  "lastModifiedIso": "2026-06-29T03:59:03.935Z",
+  "classFilename": "../../source/class/cv/io/timeseries/DemoSource.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 893
+    },
+    "end": {
+      "line": 60,
+      "column": 3,
+      "index": 1777
+    }
+  },
+  "className": "cv.io.timeseries.DemoSource",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Only for demo configs, load chart data directly from a json file or s generator",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Only for demo configs, load chart data directly from a json file or s generator</p>"
+      }
+    ]
+  },
+  "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "members": {
+    "_client": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1135
+        },
+        "end": {
+          "line": 31,
+          "column": 17,
+          "index": 1148
+        }
+      },
+      "appearsIn": []
+    },
+    "_src": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1154
+        },
+        "end": {
+          "line": 32,
+          "column": 14,
+          "index": 1164
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1171
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1427
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "getRequestConfig": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1434
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1706
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        },
+        {
+          "name": "series"
+        },
+        {
+          "name": "offset"
+        }
+      ],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "processResponse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1713
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response"
+        }
+      ],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

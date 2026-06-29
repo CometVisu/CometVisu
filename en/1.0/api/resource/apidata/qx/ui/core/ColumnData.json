@@ -1,0 +1,275 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601570,
+  "lastModifiedIso": "2026-06-29T04:00:01.570Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/ColumnData.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 660
+    },
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 2393
+    }
+  },
+  "className": "qx.ui.core.ColumnData",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All of the resizing information about a column.",
+      " *",
+      " *  This is used internally by qx.ui.table and qx.ui.progressive's table and",
+      " *  may be used for other widgets as well.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All of the resizing information about a column.\n  This is used internally by qx.ui.table and qx.ui.progressive's table and\n  may be used for other widgets as well.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.LayoutItem",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 739
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 802
+      }
+    }
+  },
+  "members": {
+    "__computedWidth": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 822
+        },
+        "end": {
+          "line": 35,
+          "column": 25,
+          "index": 843
+        }
+      },
+      "appearsIn": []
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 868
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 950
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "width"
+        },
+        {
+          "name": "height"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "getComputedWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the computed width of the column.",
+          "     * @return {Integer} Computed column width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the computed width of the column.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Computed column width",
+            "type": "Integer",
+            "description": "Computed column width"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1065
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1126
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getFlex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the column's flex value",
+          "     *",
+          "     * @return {Integer} The column's flex value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the column's flex value</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The column's flex value",
+            "type": "Integer",
+            "description": "The column's flex value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1240
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1308
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the column width. The column width can be one of the following",
+          "     * values:",
+          "     *",
+          "     * * Pixels: e.g. <code>23</code>",
+          "     * * Autosized: <code>\"auto\"</code>",
+          "     * * Flex: e.g. <code>\"1*\"</code>",
+          "     * * Percent: e.g. <code>\"33%\"</code>",
+          "     *",
+          "     * @param width {Integer|String} The column width",
+          "     * @param flex {Integer?0} Optional flex value of the column",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the column width. The column width can be one of the following\n values:</p>\n<ul>\n<li>Pixels: e.g. <code>23</code></li>\n<li>Autosized: <code>\"auto\"</code></li>\n<li>Flex: e.g. <code>\"1*\"</code></li>\n<li>Percent: e.g. <code>\"33%\"</code></li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer|String} The column width",
+            "paramName": "width",
+            "description": " The column width",
+            "type": [
+              "Integer",
+              "String"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "flex {Integer?0} Optional flex value of the column",
+            "paramName": "flex",
+            "description": " Optional flex value of the column",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1711
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2329
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": [
+            "Integer",
+            "String"
+          ]
+        },
+        {
+          "name": "flex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

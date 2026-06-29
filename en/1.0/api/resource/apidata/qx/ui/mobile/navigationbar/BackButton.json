@@ -1,0 +1,67 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601172,
+  "lastModifiedIso": "2026-06-29T04:00:01.172Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/navigationbar/BackButton.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 518
+    },
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 943
+    }
+  },
+  "className": "qx.ui.mobile.navigationbar.BackButton",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A navigation bar back button widget.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A navigation bar back button widget.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.navigationbar.Button",
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 852
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 935
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "navigationbar-backbutton"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.navigationbar.Button",
+        "qx.ui.mobile.form.Button",
+        "qx.ui.mobile.basic.Atom",
+        "qx.ui.mobile.core.Widget"
+      ]
+    }
+  },
+  "members": {},
+  "statics": {}
+}

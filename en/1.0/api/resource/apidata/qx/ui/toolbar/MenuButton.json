@@ -1,0 +1,213 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602770,
+  "lastModifiedIso": "2026-06-29T04:00:02.770Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/MenuButton.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 612
+    },
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 2411
+    }
+  },
+  "className": "qx.ui.toolbar.MenuButton",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The button to fill the menubar",
+      " *",
+      " * @childControl arrow {qx.ui.basic.Image} arrow widget to show a submenu is available",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The button to fill the menubar</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "arrow {qx.ui.basic.Image} arrow widget to show a submenu is available"
+      }
+    ]
+  },
+  "superClass": "qx.ui.menubar.Button",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 934
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1006
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "toolbar-menubutton"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Appearance of the widget "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Appearance of the widget</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.menubar.Button",
+        "qx.ui.form.MenuButton",
+        "qx.ui.form.Button",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "showArrow": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1095
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1210
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "themeable": true,
+        "apply": "_applyShowArrow"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the button should show an arrow to indicate the menu behind it "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the button should show an arrow to indicate the menu behind it</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyVisibility": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1436
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1872
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.MenuButton",
+      "appearsIn": [
+        "qx.ui.form.MenuButton",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1897
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2204
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyShowArrow": {
+      "jsdoc": {
+        "raw": [
+          " property apply routine"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2403
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

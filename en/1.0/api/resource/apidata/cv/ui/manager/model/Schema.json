@@ -1,0 +1,1019 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543944,
+  "lastModifiedIso": "2026-06-29T03:59:03.944Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/Schema.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 432,
+      "column": 3,
+      "index": 13015
+    }
+  },
+  "className": "cv.ui.manager.model.Schema",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "filename"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1027
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1460
+      }
+    }
+  },
+  "statics": {
+    "__CACHE": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 51,
+          "column": 15,
+          "index": 1613
+        }
+      },
+      "appearsIn": []
+    },
+    "getInstance": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2322
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "schemaFile"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "loaded": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2474
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2560
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeLoaded"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "structure": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2567
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2647
+        }
+      },
+      "json": {
+        "check": [
+          "pure",
+          "tile"
+        ],
+        "apply": "_applyStructure"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__filename": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2793
+        },
+        "end": {
+          "line": 98,
+          "column": 20,
+          "index": 2809
+        }
+      },
+      "appearsIn": []
+    },
+    "__xsd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * object of the schema/xsd",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>object of the schema/xsd</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2882
+        },
+        "end": {
+          "line": 103,
+          "column": 15,
+          "index": 2893
+        }
+      },
+      "appearsIn": []
+    },
+    "__allowedRootElements": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * object of allowed root-level elements",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>object of allowed root-level elements</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2980
+        },
+        "end": {
+          "line": 109,
+          "column": 31,
+          "index": 3007
+        }
+      },
+      "appearsIn": []
+    },
+    "__referencedNodeCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for referenced nods",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for referenced nods</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3082
+        },
+        "end": {
+          "line": 115,
+          "column": 31,
+          "index": 3109
+        }
+      },
+      "appearsIn": []
+    },
+    "__typeNodeCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getTypeNode",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getTypeNode</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3180
+        },
+        "end": {
+          "line": 121,
+          "column": 25,
+          "index": 3201
+        }
+      },
+      "appearsIn": []
+    },
+    "__textNodeSchemaElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for #text-SchemaElement",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for #text-SchemaElement</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3280
+        },
+        "end": {
+          "line": 127,
+          "column": 33,
+          "index": 3309
+        }
+      },
+      "appearsIn": []
+    },
+    "__commentNodeSchemaElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for #comment-SchemaElement",
+          "     * @var object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for #comment-SchemaElement</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3391
+        },
+        "end": {
+          "line": 133,
+          "column": 36,
+          "index": 3423
+        }
+      },
+      "appearsIn": []
+    },
+    "_widgetNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {Array<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Array<String>}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3474
+        },
+        "end": {
+          "line": 138,
+          "column": 22,
+          "index": 3492
+        }
+      },
+      "appearsIn": []
+    },
+    "__rootElementName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3536
+        },
+        "end": {
+          "line": 143,
+          "column": 27,
+          "index": 3559
+        }
+      },
+      "appearsIn": []
+    },
+    "__pageParentElementName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3603
+        },
+        "end": {
+          "line": 148,
+          "column": 33,
+          "index": 3632
+        }
+      },
+      "appearsIn": []
+    },
+    "__pageElementName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{String}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3676
+        },
+        "end": {
+          "line": 153,
+          "column": 27,
+          "index": 3699
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyStructure": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4014
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "structure"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onLoaded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4021
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4205
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_cacheXSD": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * load and cache the xsd from the server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>load and cache the xsd from the server</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4274
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5926
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "loadXml": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5933
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 6702
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_parseXSD": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * parse the schema once",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>parse the schema once</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 6754
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7079
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getElementNode": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 7086
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 7362
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getReferencedNode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * dive into the schema and find the element that is being pulled in by a ref.",
+          "     * Do so recursively.",
+          "     * referenced nodes can be top-level-nodes only!",
+          "     *",
+          "     * @param   type       string  Type of the node (e.g. element, attributeGroup, ...)",
+          "     * @param   refName    string  Name as per the ref-attribute",
+          "     * @param   noFallback boolean Don't look up other types as fallback, if the requested type is not found",
+          "     * @return  object          jQuery-object of the ref'ed element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>dive into the schema and find the element that is being pulled in by a ref.\n Do so recursively.\n referenced nodes can be top-level-nodes only!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type       string  Type of the node (e.g. element, attributeGroup, ...)"
+          },
+          {
+            "name": "@param",
+            "body": "refName    string  Name as per the ref-attribute"
+          },
+          {
+            "name": "@param",
+            "body": "noFallback boolean Don't look up other types as fallback, if the requested type is not found"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object          jQuery-object of the ref'ed element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 7884
+        },
+        "end": {
+          "line": 313,
+          "column": 5,
+          "index": 9416
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "refName"
+        },
+        {
+          "name": "noFallback"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getTypeNode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the definition of a type, be it complex or simple",
+          "     *",
+          "     * @param   type    string  Type of type to find (either simple or complex)",
+          "     * @param   name    string  Name of the type to find",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the definition of a type, be it complex or simple</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type    string  Type of type to find (either simple or complex)"
+          },
+          {
+            "name": "@param",
+            "body": "name    string  Name of the type to find"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 9644
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 10346
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTextNodeSchemaElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a SchemaElement for a #text-node",
+          "     *",
+          "     * @return  object  SchemaElement for #text-node",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get a SchemaElement for a #text-node</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object  SchemaElement for #text-node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 10473
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 10910
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getCommentNodeSchemaElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a SchemaElement for a #comment-node",
+          "     *",
+          "     * @return  object  SchemaElement for #comment-node",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get a SchemaElement for a #comment-node</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object  SchemaElement for #comment-node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 4,
+          "index": 11043
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 11597
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getSchemaDOM": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the DOM for this Schema",
+          "     *",
+          "     * @return  object  DOM",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the DOM for this Schema</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object  DOM"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4,
+          "index": 11690
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 11737
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getWidgetNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A CometVisu-Schema specific helper function that returns an array of all widget names.",
+          "     * @returns {Array<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A CometVisu-Schema specific helper function that returns an array of all widget names.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array<String>}",
+            "type": "Array<String>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 11886
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 12459
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<String>"
+      },
+      "appearsIn": []
+    },
+    "isRoot": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 12466
+        },
+        "end": {
+          "line": 411,
+          "column": 5,
+          "index": 12532
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isPage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 12539
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 12605
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 423,
+        "column": 2,
+        "index": 12739
+      },
+      "end": {
+        "line": 431,
+        "column": 3,
+        "index": 13011
+      }
+    }
+  }
+}

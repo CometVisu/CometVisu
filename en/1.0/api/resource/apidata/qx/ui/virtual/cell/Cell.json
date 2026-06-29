@@ -1,0 +1,1425 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601411,
+  "lastModifiedIso": "2026-06-29T04:00:01.411Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/Cell.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 626
+    },
+    "end": {
+      "line": 515,
+      "column": 3,
+      "index": 13306
+    }
+  },
+  "className": "qx.ui.virtual.cell.Cell",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Themeable Cell renderer.",
+      " *",
+      " * This cell renderer can be styled by an appearance theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Themeable Cell renderer.\n This cell renderer can be styled by an appearance theme.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.cell.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 713
+      },
+      "end": {
+        "line": 45,
+        "column": 3,
+        "index": 1063
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1399
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1493
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "cell",
+        "apply": "_applyAppearance"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The appearance ID. This ID is used to identify the appearance theme",
+          "     * entry to use for this cell.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The appearance ID. This ID is used to identify the appearance theme\n entry to use for this cell.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "backgroundColor": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1539
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1667
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyBackgroundColor",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The cell's background color "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The cell's background color</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "textColor": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1707
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 1823
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyTextColor",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The cell's text color "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The cell's text color</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "textAlign": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1882
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2029
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "nullable": true,
+        "themeable": true,
+        "apply": "_applyTextAlign"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The text alignment of the cell's content "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text alignment of the cell's content</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "font": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2180
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2285
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyFont",
+        "check": "Font",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The cell's font. The value is either a font name defined in the font",
+          "     * theme or an instance of {@link qx.bom.Font}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The cell's font. The value is either a font name defined in the font\n theme or an instance of {@link qx.bom.Font}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "paddingTop": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2520
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2630
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Padding of the widget (top) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Padding of the widget (top)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "paddingRight": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2678
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 2797
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Padding of the widget (right) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Padding of the widget (right)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "paddingBottom": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 2846
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 2966
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Padding of the widget (bottom) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Padding of the widget (bottom)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "paddingLeft": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3013
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3131
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Padding of the widget (left) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Padding of the widget (left)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "padding": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3562
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3702
+        }
+      },
+      "json": {
+        "group": [
+          "paddingTop",
+          "paddingRight",
+          "paddingBottom",
+          "paddingLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'padding' property is a shorthand property for setting 'paddingTop',",
+          "     * 'paddingRight', 'paddingBottom' and 'paddingLeft' at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left",
+          "     * respectively. If there is only one value, it applies to all sides, if",
+          "     * there are two or three, the missing values are taken from the opposite",
+          "     * side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'padding' property is a shorthand property for setting 'paddingTop',\n 'paddingRight', 'paddingBottom' and 'paddingLeft' at the same time.\n If four values are specified they apply to top, right, bottom and left\n respectively. If there is only one value, it applies to all sides, if\n there are two or three, the missing values are taken from the opposite\n side.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__themableProperties": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Array} List of all non CSS themable properties "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} List of all non CSS themable properties"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 3975
+        },
+        "end": {
+          "line": 161,
+          "column": 30,
+          "index": 4001
+        }
+      },
+      "appearsIn": []
+    },
+    "__statesKey": {
+      "jsdoc": {
+        "raw": [
+          "* @type {String} Unique key over the current set of states "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Unique key over the current set of states"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4076
+        },
+        "end": {
+          "line": 164,
+          "column": 21,
+          "index": 4093
+        }
+      },
+      "appearsIn": []
+    },
+    "__states": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4100
+        },
+        "end": {
+          "line": 166,
+          "column": 18,
+          "index": 4114
+        }
+      },
+      "appearsIn": []
+    },
+    "__themeValues": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4121
+        },
+        "end": {
+          "line": 168,
+          "column": 23,
+          "index": 4140
+        }
+      },
+      "appearsIn": []
+    },
+    "__themeStyles": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4146
+        },
+        "end": {
+          "line": 169,
+          "column": 23,
+          "index": 4165
+        }
+      },
+      "appearsIn": []
+    },
+    "__userStyles": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 4171
+        },
+        "end": {
+          "line": 170,
+          "column": 22,
+          "index": 4189
+        }
+      },
+      "appearsIn": []
+    },
+    "__userPaddings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4196
+        },
+        "end": {
+          "line": 172,
+          "column": 24,
+          "index": 4216
+        }
+      },
+      "appearsIn": []
+    },
+    "__themePaddings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4222
+        },
+        "end": {
+          "line": 173,
+          "column": 25,
+          "index": 4243
+        }
+      },
+      "appearsIn": []
+    },
+    "__isThemed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4250
+        },
+        "end": {
+          "line": 175,
+          "column": 21,
+          "index": 4267
+        }
+      },
+      "appearsIn": []
+    },
+    "__stylesheet": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4273
+        },
+        "end": {
+          "line": 176,
+          "column": 22,
+          "index": 4291
+        }
+      },
+      "appearsIn": []
+    },
+    "__initializeThemableProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collect all themable properties, which are not CSS properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Collect all themable properties, which are not CSS properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4383
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 4897
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getCssProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of all properties, which should be applied as CSS styles.",
+          "     *",
+          "     * @return {Array} List of property names",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of all properties, which should be applied as CSS styles.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} List of property names",
+            "type": "Array<any>",
+            "description": "List of property names"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 5049
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 5278
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_applyAppearance": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 5307
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 5401
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute the value of the given property",
+          "     *",
+          "     * @param propertyName {String} Name of the property",
+          "     * @return {var} The Property value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute the value of the given property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyName {String} Name of the property",
+            "paramName": "propertyName",
+            "description": " Name of the property",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The Property value",
+            "type": "var",
+            "description": "The Property value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4,
+          "index": 5575
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 5799
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "_storeStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Store a properties computed style string either in the user or in the",
+          "     * theme values. User values will be applied as inline styles, while theme",
+          "     * values are stored in a stylesheet.",
+          "     *",
+          "     * @param propertyName {String} The property name",
+          "     * @param styles {String} String with computed CSS styles",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Store a properties computed style string either in the user or in the\n theme values. User values will be applied as inline styles, while theme\n values are stored in a stylesheet.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propertyName {String} The property name",
+            "paramName": "propertyName",
+            "description": " The property name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "styles {String} String with computed CSS styles",
+            "paramName": "styles",
+            "description": " String with computed CSS styles",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 6143
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 6452
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBackgroundColor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 6481
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 6798
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTextColor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 6827
+        },
+        "end": {
+          "line": 287,
+          "column": 5,
+          "index": 7115
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTextAlign": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 7144
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 7361
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFont": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4,
+          "index": 7390
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 7698
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPadding": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4,
+          "index": 7727
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 8278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCellProperties": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4,
+          "index": 8503
+        },
+        "end": {
+          "line": 350,
+          "column": 5,
+          "index": 8847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract",
+        "qx.ui.virtual.cell.ICell"
+      ]
+    },
+    "getAttributes": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 8872
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 8925
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract"
+      ]
+    },
+    "getContent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4,
+          "index": 8950
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 9003
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract"
+      ]
+    },
+    "getCssClasses": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 9028
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 9176
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract"
+      ]
+    },
+    "__setStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the cell states and set the correct CSS class for the given state",
+          "     * combination",
+          "     *",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the cell states and set the correct CSS class for the given state\n combination</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4,
+          "index": 9385
+        },
+        "end": {
+          "line": 397,
+          "column": 5,
+          "index": 10083
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__clearThemedPropertyValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the themed value from all CSS properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the themed value from all CSS properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 402,
+          "column": 4,
+          "index": 10161
+        },
+        "end": {
+          "line": 408,
+          "column": 5,
+          "index": 10438
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__updateThemeableProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the new themed value for all CSS properties given the set of states",
+          "     *",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the new themed value for all CSS properties given the set of states</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 4,
+          "index": 10630
+        },
+        "end": {
+          "line": 435,
+          "column": 5,
+          "index": 11131
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__computeCssClassForStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute a CSS class for the current values of all CSS properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute a CSS class for the current values of all CSS properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 11226
+        },
+        "end": {
+          "line": 443,
+          "column": 5,
+          "index": 11409
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__cacheThemedValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cache the themed values for the current state combination",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cache the themed values for the current state combination</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 448,
+          "column": 4,
+          "index": 11497
+        },
+        "end": {
+          "line": 461,
+          "column": 5,
+          "index": 11943
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__applyThemeValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the themed values to the properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the themed values to the properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 466,
+          "column": 4,
+          "index": 12015
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 12264
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getStyles": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 475,
+          "column": 4,
+          "index": 12289
+        },
+        "end": {
+          "line": 477,
+          "column": 5,
+          "index": 12378
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract"
+      ]
+    },
+    "getInsets": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 480,
+          "column": 4,
+          "index": 12403
+        },
+        "end": {
+          "line": 501,
+          "column": 5,
+          "index": 13046
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.cell.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 504,
+        "column": 2,
+        "index": 13055
+      },
+      "end": {
+        "line": 514,
+        "column": 3,
+        "index": 13302
+      }
+    }
+  },
+  "statics": {}
+}

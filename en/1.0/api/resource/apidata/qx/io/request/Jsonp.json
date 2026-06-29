@@ -1,0 +1,473 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602509,
+  "lastModifiedIso": "2026-06-29T04:00:02.509Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/request/Jsonp.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 72,
+      "column": 0,
+      "index": 1955
+    },
+    "end": {
+      "line": 206,
+      "column": 3,
+      "index": 5799
+    }
+  },
+  "className": "qx.io.request.Jsonp",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Query JSONP services using the script element. Requests may be cross-origin.",
+      " *",
+      " * Configuration of the request is done with properties. Events are fired for",
+      " * various states in the life cycle of a request, such as \"success\". Request",
+      " * data is transparently processed.",
+      " *",
+      " * For an introduction to JSONP, please refer to",
+      " * <a href=\"http://ajaxian.com/archives/jsonp-json-with-padding\">Ajaxian.com</a>.",
+      " *",
+      " * Here is how to request a JSON file from a REST service and listen to",
+      " * the \"success\" event:",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var req = new qx.io.request.Jsonp();",
+      " * req.setUrl(\"http://feeds.delicious.com/v2/json/popular\");",
+      " *",
+      " * // Some services have a fixed callback name",
+      " * // req.setCallbackName(\"callback\");",
+      " *",
+      " * req.addListener(\"success\", function(e) {",
+      " *   var req = e.getTarget();",
+      " *",
+      " *   // HTTP status code indicating success, e.g. 200",
+      " *   req.getStatus();",
+      " *",
+      " *   // \"success\"",
+      " *   req.getPhase();",
+      " *",
+      " *   // JSON response",
+      " *   req.getResponse();",
+      " * }, this);",
+      " *",
+      " * // Send request",
+      " * req.send();",
+      " * </pre>",
+      " *",
+      " * Some noteable features:",
+      " *",
+      " * * Abstraction of low-level request",
+      " * * Convenient setup using properties",
+      " * * Fine-grained events",
+      " * * Symbolic phases",
+      " * * Transparent processing of request data",
+      " * * Stream-lined authentication",
+      " * * Flexible callback handling",
+      " * * Cross-origin requests",
+      " *",
+      " * In order to debug requests, set the environment flag",
+      " * <code>qx.debug.io</code>.",
+      " *",
+      " * Internally uses {@link qx.bom.request.Jsonp}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Query JSONP services using the script element. Requests may be cross-origin.\n Configuration of the request is done with properties. Events are fired for\n various states in the life cycle of a request, such as \"success\". Request\n data is transparently processed.\n For an introduction to JSONP, please refer to\n <a href=\"http://ajaxian.com/archives/jsonp-json-with-padding\">Ajaxian.com</a>.\n Here is how to request a JSON file from a REST service and listen to\n the \"success\" event:\n </p>\n<pre class=\"javascript\">\n var req = new qx.io.request.Jsonp();\n req.setUrl(\"http://feeds.delicious.com/v2/json/popular\");\n\n\n req.addListener(\"success\", function(e) {\n   var req = e.getTarget();\n\n   req.getStatus();\n\n   req.getPhase();\n\n   req.getResponse();\n }, this);\n\n req.send();\n </pre>\n<p>Some noteable features:</p>\n<ul>\n<li>Abstraction of low-level request</li>\n<li>Convenient setup using properties</li>\n<li>Fine-grained events</li>\n<li>Symbolic phases</li>\n<li>Transparent processing of request data</li>\n<li>Stream-lined authentication</li>\n<li>Flexible callback handling</li>\n<li>Cross-origin requests\nIn order to debug requests, set the environment flag\n<code>qx.debug.io</code>.\nInternally uses {@link qx.bom.request.Jsonp}.</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.io.request.AbstractRequest",
+  "events": {
+    "success": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when request completes without error and data has been received.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when request completes without error and data has been received.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2148
+        },
+        "end": {
+          "line": 79,
+          "column": 34,
+          "index": 2178
+        }
+      }
+    },
+    "load": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when request completes without error.",
+          "     *",
+          "     * Every request receiving a response completes without error. This means",
+          "     * that even for responses that do not call the callback, a \"load\" event",
+          "     * is fired. If you are only interested in the JSON data received, consider",
+          "     * listening to the {@link #success} event instead.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when request completes without error.\n Every request receiving a response completes without error. This means\n that even for responses that do not call the callback, a \"load\" event\n is fired. If you are only interested in the JSON data received, consider\n listening to the {@link #success} event instead.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2550
+        },
+        "end": {
+          "line": 89,
+          "column": 31,
+          "index": 2577
+        }
+      }
+    },
+    "statusError": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when request completes without error but no data was received.",
+          "     *",
+          "     * The underlying script transport does not know the HTTP status of the",
+          "     * response. However, if the callback was not called (no data received)",
+          "     * an erroneous status (500) is assigned to the transport’s status",
+          "     * property.",
+          "     *",
+          "     * Note: If you receive an unexpected \"statusError\", check that the JSONP",
+          "     * service accepts arbitrary callback names given as the \"callback\"",
+          "     * parameter. In case the service expects another parameter for the callback",
+          "     * name, use {@link #setCallbackParam}. Should the service respond with a",
+          "     * hard-coded callback, set a custom callback name with",
+          "     * {@link #setCallbackName}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when request completes without error but no data was received.\n The underlying script transport does not know the HTTP status of the\n response. However, if the callback was not called (no data received)\n an erroneous status (500) is assigned to the transport’s status\n property.\n Note: If you receive an unexpected \"statusError\", check that the JSONP\n service accepts arbitrary callback names given as the \"callback\"\n parameter. In case the service expects another parameter for the callback\n name, use {@link #setCallbackParam}. Should the service respond with a\n hard-coded callback, set a custom callback name with\n {@link #setCallbackName}.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3332
+        },
+        "end": {
+          "line": 106,
+          "column": 38,
+          "index": 3366
+        }
+      }
+    }
+  },
+  "properties": {
+    "cache": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3638
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3693
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow request to be answered from cache.",
+          "     *",
+          "     * Allowed values:",
+          "     *",
+          "     * * <code>true</code>: Allow caching (Default)",
+          "     * * <code>false</code>: Prohibit caching. Appends nocache parameter to URL.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow request to be answered from cache.\n Allowed values:</p>\n<ul>\n<li><code>true</code>: Allow caching (Default)</li>\n<li><code>false</code>: Prohibit caching. Appends nocache parameter to URL.</li>\n</ul>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_createTransport": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create JSONP transport.",
+          "     *",
+          "     * @return {qx.bom.request.Jsonp} Transport.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create JSONP transport.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Jsonp} Transport.",
+            "type": "qx.bom.request.Jsonp",
+            "description": "Transport."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4021
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 4088
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.request.Jsonp"
+      },
+      "overriddenFrom": "qx.io.request.AbstractRequest",
+      "appearsIn": [
+        "qx.io.request.AbstractRequest"
+      ]
+    },
+    "_getConfiguredUrl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get configured URL.",
+          "     *",
+          "     * Append request data to URL. Also append random string",
+          "     * to URL if required by value of {@link #cache}.",
+          "     *",
+          "     * @return {String} The configured URL.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get configured URL.\n Append request data to URL. Also append random string\n to URL if required by value of {@link #cache}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The configured URL.",
+            "type": "string",
+            "description": "The configured URL."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4311
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4810
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.io.request.AbstractRequest",
+      "appearsIn": [
+        "qx.io.request.AbstractRequest"
+      ]
+    },
+    "_getParsedResponse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the transport’s responseJson property.",
+          "     *",
+          "     * See {@link qx.bom.request.Jsonp}.",
+          "     *",
+          "     * @return {Object} The parsed response of the request.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the transport’s responseJson property.\n See {@link qx.bom.request.Jsonp}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} The parsed response of the request.",
+            "type": "Record<any, any>",
+            "description": "The parsed response of the request."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 5001
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 5072
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "overriddenFrom": "qx.io.request.AbstractRequest",
+      "appearsIn": [
+        "qx.io.request.AbstractRequest"
+      ]
+    },
+    "setCallbackParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set callback parameter.",
+          "     *",
+          "     * See {@link qx.bom.request.Jsonp#setCallbackParam}.",
+          "     *",
+          "     * @param param {String} Name of the callback parameter.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set callback parameter.\n See {@link qx.bom.request.Jsonp#setCallbackParam}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "param {String} Name of the callback parameter.",
+            "paramName": "param",
+            "description": " Name of the callback parameter.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5460
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 5538
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "param",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setCallbackName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set callback name.",
+          "     *",
+          "     * See {@link qx.bom.request.Jsonp#setCallbackName}.",
+          "     *",
+          "     * @param name {String} Name of the callback function.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set callback name.\n See {@link qx.bom.request.Jsonp#setCallbackName}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the callback function.",
+            "paramName": "name",
+            "description": " Name of the callback function.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5717
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 5791
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

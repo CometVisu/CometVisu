@@ -1,0 +1,1012 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543943,
+  "lastModifiedIso": "2026-06-29T03:59:03.943Z",
+  "classFilename": "../../source/class/cv/ui/manager/editor/data/Provider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 884
+    },
+    "end": {
+      "line": 694,
+      "column": 3,
+      "index": 20040
+    }
+  },
+  "className": "cv.ui.manager.editor.data.Provider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper class for all data providers.",
+      " * @ignore(Element)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper class for all data providers.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "Element"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1116
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1231
+      }
+    }
+  },
+  "statics": {
+    "Config": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1373
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3274
+        }
+      },
+      "appearsIn": []
+    },
+    "get": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3281
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4120
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__cache": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4266
+        },
+        "end": {
+          "line": 174,
+          "column": 17,
+          "index": 4279
+        }
+      },
+      "appearsIn": []
+    },
+    "_getFromCache": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4286
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4352
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__clearFromCache": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4359
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 4502
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_addToCache": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 4509
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 4579
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheId"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDesigns": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the available design names as array of suggestions.",
+          "     * @param format",
+          "     * @param config",
+          "     * @param structure {String} pure (default) or tile",
+          "     * @returns {Array} suggestions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the available design names as array of suggestions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "structure {String} pure (default) or tile",
+            "paramName": "structure",
+            "description": " pure (default) or tile",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} suggestions",
+            "type": "Array<any>",
+            "description": "suggestions"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 4803
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5390
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "structure",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__getData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param cacheId {String}",
+          "     * @param rpc {String|Function} rpcname to use with this._client or function to call",
+          "     * @param rpcContext {Object} rpc context",
+          "     * @param args {Array} rpc arguments",
+          "     * @param converter {Function} converter that converts the response to suggestions for the text editor",
+          "     * @param converterContext {Object} context fot the converter function",
+          "     * @param cache",
+          "     * @returns {Promise<any>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cacheId {String}",
+            "paramName": "cacheId",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "rpc {String|Function} rpcname to use with this._client or function to call",
+            "paramName": "rpc",
+            "description": " rpcname to use with this._client or function to call",
+            "type": [
+              "String",
+              "Function"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "rpcContext {Object} rpc context",
+            "paramName": "rpcContext",
+            "description": " rpc context",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array} rpc arguments",
+            "paramName": "args",
+            "description": " rpc arguments",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "converter {Function} converter that converts the response to suggestions for the text editor",
+            "paramName": "converter",
+            "description": " converter that converts the response to suggestions for the text editor",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "converterContext {Object} context fot the converter function",
+            "paramName": "converterContext",
+            "description": " context fot the converter function",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "cache",
+            "paramName": "cache",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<any>}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 5869
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7178
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheId",
+          "type": "string"
+        },
+        {
+          "name": "rpc",
+          "type": [
+            "String",
+            "Function"
+          ]
+        },
+        {
+          "name": "rpcContext",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        },
+        {
+          "name": "converter",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "converterContext",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "cache"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "__getFromUrl": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7185
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 8239
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        },
+        {
+          "name": "converter"
+        },
+        {
+          "name": "converterContext"
+        },
+        {
+          "name": "cache"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAddresses": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 4,
+          "index": 8246
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 8984
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "backend"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getRrds": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 8991
+        },
+        "end": {
+          "line": 348,
+          "column": 5,
+          "index": 9613
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInfluxDBs": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4,
+          "index": 9620
+        },
+        "end": {
+          "line": 361,
+          "column": 5,
+          "index": 9960
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getInfluxArgs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 9967
+        },
+        "end": {
+          "line": 381,
+          "column": 5,
+          "index": 10660
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "withMeasurement"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInfluxDBFields": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 10667
+        },
+        "end": {
+          "line": 398,
+          "column": 5,
+          "index": 11138
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getInfluxDBTags": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 400,
+          "column": 4,
+          "index": 11145
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 11551
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "element"
+        },
+        {
+          "name": "converter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInfluxDBTags": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 4,
+          "index": 11558
+        },
+        "end": {
+          "line": 432,
+          "column": 5,
+          "index": 12073
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInfluxDBValues": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 12080
+        },
+        "end": {
+          "line": 455,
+          "column": 5,
+          "index": 12715
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "element"
+        },
+        {
+          "name": "tag"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_parseDpResponseForMonaco": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 4,
+          "index": 12722
+        },
+        "end": {
+          "line": 459,
+          "column": 5,
+          "index": 12814
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_parseDpResponseForEditor": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 4,
+          "index": 12821
+        },
+        "end": {
+          "line": 463,
+          "column": 5,
+          "index": 12909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__parseDpResponse": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 4,
+          "index": 12916
+        },
+        "end": {
+          "line": 479,
+          "column": 5,
+          "index": 13353
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        },
+        {
+          "name": "format"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMediaFiles": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 481,
+          "column": 4,
+          "index": 13360
+        },
+        "end": {
+          "line": 505,
+          "column": 5,
+          "index": 14118
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "typeFilter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTransforms": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list of available transformations as suggestion entry array.",
+          "     * @param format",
+          "     * @param config",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list of available transformations as suggestion entry array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 513,
+          "column": 4,
+          "index": 14287
+        },
+        "end": {
+          "line": 552,
+          "column": 5,
+          "index": 15528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getPlugins": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the plugin names (all defined parts staring with 'plugin-')",
+          "     * @param format",
+          "     * @param config",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the plugin names (all defined parts staring with 'plugin-')</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "format",
+            "paramName": "format",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "config",
+            "paramName": "config",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 560,
+          "column": 4,
+          "index": 15692
+        },
+        "end": {
+          "line": 593,
+          "column": 5,
+          "index": 16729
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getIcons": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param {String} format",
+          "     * @param {Map?} config",
+          "     * @param {Element?} element",
+          "     * @returns {Array} array with icon definitions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} format",
+            "paramName": "format",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Map?} config",
+            "paramName": "config",
+            "description": "",
+            "optional": true,
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "{Element?} element",
+            "paramName": "element",
+            "description": "",
+            "optional": true,
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} array with icon definitions",
+            "type": "Array<any>",
+            "description": "array with icon definitions"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 602,
+          "column": 4,
+          "index": 16902
+        },
+        "end": {
+          "line": 683,
+          "column": 5,
+          "index": 19861
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true
+        },
+        {
+          "name": "element",
+          "type": "Element",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 691,
+        "column": 2,
+        "index": 19995
+      },
+      "end": {
+        "line": 693,
+        "column": 3,
+        "index": 20036
+      }
+    }
+  },
+  "properties": {}
+}

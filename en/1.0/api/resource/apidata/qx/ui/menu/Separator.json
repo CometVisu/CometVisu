@@ -1,0 +1,96 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603168,
+  "lastModifiedIso": "2026-06-29T04:00:03.168Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menu/Separator.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 815
+    },
+    "end": {
+      "line": 51,
+      "column": 3,
+      "index": 1268
+    }
+  },
+  "className": "qx.ui.menu.Separator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This widget draws a separator line between two instances of",
+      " * {@link qx.ui.menu.AbstractButton} and is inserted into the",
+      " * {@link qx.ui.menu.Menu}.",
+      " *",
+      " * For convenience reasons there is also",
+      " * a method {@link qx.ui.menu.Menu#addSeparator} to append instances",
+      " * of this class to the menu.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This widget draws a separator line between two instances of\n {@link qx.ui.menu.AbstractButton} and is inserted into the\n {@link qx.ui.menu.Menu}.\n For convenience reasons there is also\n a method {@link qx.ui.menu.Menu#addSeparator} to append instances\n of this class to the menu.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1112
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1180
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "menu-separator"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "anonymous": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1205
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1260
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {},
+  "statics": {}
+}

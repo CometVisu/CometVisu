@@ -1,0 +1,73 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602154,
+  "lastModifiedIso": "2026-06-29T04:00:02.154Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/FunctionCaller.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 576
+    },
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 801
+    }
+  },
+  "className": "qx.ui.progressive.renderer.FunctionCaller",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Function \"renderer\" for Progressive.",
+      " * This is a renderer that simply calls the function provided by the data",
+      " * element.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Function \"renderer\" for Progressive.\n This is a renderer that simply calls the function provided by the data\n element.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.renderer.Abstract",
+  "members": {
+    "render": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 722
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 793
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.renderer.Abstract",
+      "appearsIn": [
+        "qx.ui.progressive.renderer.Abstract"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,113 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602862,
+  "lastModifiedIso": "2026-06-29T04:00:02.862Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/MRequirementsBasic.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 579
+    },
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 3002
+    }
+  },
+  "className": "qx.dev.unit.MRequirementsBasic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds support for verification of infrastructure requirements to unit test",
+      " * classes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds support for verification of infrastructure requirements to unit test\n classes.</p>"
+      }
+    ]
+  },
+  "members": {
+    "require": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Verifies a list of infrastructure requirements by checking for",
+          "     * corresponding \"has\" methods. If no such method was found,",
+          "     * {@link qx.core.Environment} will be checked for a key matching the given",
+          "     * feature name. Note that asynchronous environment checks are not supported!",
+          "     *",
+          "     * @throws {qx.dev.unit.RequirementError} if any requirement check returned",
+          "     *   <code>false</code>",
+          "     * @throws {Error} if no valid check was found for a feature.",
+          "     *",
+          "     * @param featureList {String[]} List of infrastructure requirements",
+          "     * @lint environmentNonLiteralKey(feature)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Verifies a list of infrastructure requirements by checking for\n corresponding \"has\" methods. If no such method was found,\n {@link qx.core.Environment} will be checked for a key matching the given\n feature name. Note that asynchronous environment checks are not supported!</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{qx.dev.unit.RequirementError} if any requirement check returned\n   <code>false</code>",
+            "type": "qx.dev.unit.RequirementError",
+            "description": " if any requirement check returned\n   <code>false</code>"
+          },
+          {
+            "name": "@throws",
+            "body": "{Error} if no valid check was found for a feature.",
+            "type": "Error",
+            "description": " if no valid check was found for a feature."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "featureList {String[]} List of infrastructure requirements",
+            "paramName": "featureList",
+            "description": " List of infrastructure requirements",
+            "type": "String[]"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "environmentNonLiteralKey(feature)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1452
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2994
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "featureList",
+          "type": "String[]"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

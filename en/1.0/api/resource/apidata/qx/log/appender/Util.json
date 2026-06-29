@@ -1,0 +1,113 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603349,
+  "lastModifiedIso": "2026-06-29T04:00:03.349Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/Util.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 615
+    },
+    "end": {
+      "line": 43,
+      "column": 3,
+      "index": 1132
+    }
+  },
+  "className": "qx.log.appender.Util",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains some common methods available to all log appenders.",
+      " *",
+      " * @deprecated {6.0} See qx.util.appender.Formatter instead",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains some common methods available to all log appenders.</p>"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "{6.0} See qx.util.appender.Formatter instead"
+      }
+    ]
+  },
+  "statics": {
+    "toHtml": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 678
+        },
+        "end": {
+          "line": 26,
+          "column": 16,
+          "index": 690
+        }
+      },
+      "appearsIn": []
+    },
+    "toText": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 696
+        },
+        "end": {
+          "line": 27,
+          "column": 16,
+          "index": 708
+        }
+      },
+      "appearsIn": []
+    },
+    "toTextArray": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 714
+        },
+        "end": {
+          "line": 28,
+          "column": 21,
+          "index": 731
+        }
+      },
+      "appearsIn": []
+    },
+    "escapeHTML": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 737
+        },
+        "end": {
+          "line": 29,
+          "column": 52,
+          "index": 785
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

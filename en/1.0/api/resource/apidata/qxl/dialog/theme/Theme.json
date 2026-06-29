@@ -1,0 +1,55 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/theme/Theme.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 10,
+      "column": 0,
+      "index": 185
+    },
+    "end": {
+      "line": 18,
+      "column": 3,
+      "index": 446
+    }
+  },
+  "className": "qxl.dialog.theme.Theme",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The theme(s) of the demo application",
+      " *",
+      " * @require(qxl.dialog.theme.icon.IcoMoonFree)",
+      " * @require(qxl.dialog.theme.icon.Oxygen)",
+      " * @require(qxl.dialog.theme.icon.Tango)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The theme(s) of the demo application</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qxl.dialog.theme.icon.IcoMoonFree"
+      },
+      {
+        "name": "@require",
+        "body": "qxl.dialog.theme.icon.Oxygen"
+      },
+      {
+        "name": "@require",
+        "body": "qxl.dialog.theme.icon.Tango"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

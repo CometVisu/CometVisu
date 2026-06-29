@@ -1,0 +1,260 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/elements/Mapping.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 955
+    },
+    "end": {
+      "line": 159,
+      "column": 3,
+      "index": 5507
+    }
+  },
+  "className": "cv.ui.structure.tile.elements.Mapping",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mapping maps a value to another value that can be used to show e.g. the current state.",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mapping maps a value to another value that can be used to show e.g. the current state.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.elements.AbstractCustomElement",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1206
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1273
+      }
+    }
+  },
+  "members": {
+    "__cache": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1415
+        },
+        "end": {
+          "line": 44,
+          "column": 17,
+          "index": 1428
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyConnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1435
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1955
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "mapValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param val {variant}",
+          "     * @param store {Map<string, variant>?} optional stored values from other addresses",
+          "     * @param params {Array<variant>?} optional array of parameters for the mapping",
+          "     * @param emptyWhenNoMatch {Boolean} return empty string when no mapped value is found, otherwise the value is returned (default)",
+          "     * @return {string|*|string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "val {variant}",
+            "paramName": "val",
+            "type": "variant"
+          },
+          {
+            "name": "@param",
+            "body": "store {Map<string, variant>?} optional stored values from other addresses",
+            "paramName": "store",
+            "description": " optional stored values from other addresses",
+            "optional": true,
+            "type": "Map<string, variant>"
+          },
+          {
+            "name": "@param",
+            "body": "params {Array<variant>?} optional array of parameters for the mapping",
+            "paramName": "params",
+            "description": " optional array of parameters for the mapping",
+            "optional": true,
+            "type": "Array<variant>"
+          },
+          {
+            "name": "@param",
+            "body": "emptyWhenNoMatch {Boolean} return empty string when no mapped value is found, otherwise the value is returned (default)",
+            "paramName": "emptyWhenNoMatch",
+            "description": " return empty string when no mapped value is found, otherwise the value is returned (default)",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string|*|string}",
+            "type": "string|*|string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2352
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 4817
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val",
+          "type": "variant"
+        },
+        {
+          "name": "store",
+          "type": "Map<string, variant>",
+          "optional": true
+        },
+        {
+          "name": "params",
+          "type": "Array<variant>",
+          "optional": true
+        },
+        {
+          "name": "emptyWhenNoMatch",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "string|*|string"
+      },
+      "appearsIn": []
+    },
+    "_convert": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 4824
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 5113
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 145,
+        "column": 2,
+        "index": 5247
+      },
+      "end": {
+        "line": 147,
+        "column": 3,
+        "index": 5288
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

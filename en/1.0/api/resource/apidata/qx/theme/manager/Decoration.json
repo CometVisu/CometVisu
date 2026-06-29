@@ -1,0 +1,694 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601713,
+  "lastModifiedIso": "2026-06-29T04:00:01.713Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/manager/Decoration.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 650
+    },
+    "end": {
+      "line": 344,
+      "column": 3,
+      "index": 9194
+    }
+  },
+  "className": "qx.theme.manager.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manager for decoration themes",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manager for decoration themes\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "statics": {
+    "CSS_CLASSNAME_PREFIX": {
+      "jsdoc": {
+        "raw": [
+          "* The prefix for all created CSS classes"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The prefix for all created CSS classes</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 849
+        },
+        "end": {
+          "line": 34,
+          "column": 31,
+          "index": 876
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 885
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1079
+      }
+    }
+  },
+  "properties": {
+    "theme": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1326
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1439
+        }
+      },
+      "json": {
+        "check": "Theme",
+        "nullable": true,
+        "apply": "_applyTheme",
+        "event": "changeTheme"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Selected decoration theme "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selected decoration theme</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__dynamic": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1647
+        },
+        "end": {
+          "line": 68,
+          "column": 19,
+          "index": 1662
+        }
+      },
+      "appearsIn": []
+    },
+    "__rules": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1668
+        },
+        "end": {
+          "line": 69,
+          "column": 17,
+          "index": 1681
+        }
+      },
+      "appearsIn": []
+    },
+    "__legacyIe": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1687
+        },
+        "end": {
+          "line": 70,
+          "column": 21,
+          "index": 1704
+        }
+      },
+      "appearsIn": []
+    },
+    "getCssClassName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the name which will be / is used as css class name.",
+          "     * @param value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+          "     * @return {String} The css class name.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the name which will be / is used as css class name.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+            "paramName": "value",
+            "description": " The decorator string or instance.",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The css class name.",
+            "type": "string",
+            "description": "The css class name."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1929
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "addCssClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a css class to the global stylesheet for the given decorator.",
+          "     * This includes resolving the decorator if it's a string.",
+          "     * @param value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+          "     * @return {String} the css class name.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a css class to the global stylesheet for the given decorator.\n This includes resolving the decorator if it's a string.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+            "paramName": "value",
+            "description": " The decorator string or instance.",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the css class name.",
+            "type": "string",
+            "description": "the css class name."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2463
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4148
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "removeAllCssClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all previously by {@link #addCssClass} created CSS rule from",
+          "     * the global stylesheet.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all previously by {@link #addCssClass} created CSS rule from\n the global stylesheet.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4277
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4526
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "resolve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the dynamically interpreted result for the incoming value",
+          "     *",
+          "     * @param value {String} dynamically interpreted idenfier",
+          "     * @return {var} return the (translated) result of the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the dynamically interpreted result for the incoming value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} dynamically interpreted idenfier",
+            "paramName": "value",
+            "description": " dynamically interpreted idenfier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} return the (translated) result of the incoming value",
+            "type": "var",
+            "description": "return the (translated) result of the incoming value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4765
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 6113
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "isValidPropertyValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given value is valid for being used in a property",
+          "     * with the 'check' configured to 'Decorator'.",
+          "     *",
+          "     * @param value {var} Incoming value",
+          "     * @return {Boolean} Whether the value is valid for being used in a Decorator property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given value is valid for being used in a property\n with the 'check' configured to 'Decorator'.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Incoming value",
+            "paramName": "value",
+            "description": " Incoming value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the value is valid for being used in a Decorator property",
+            "type": "boolean",
+            "description": "Whether the value is valid for being used in a Decorator property"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 6395
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 6695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDynamic": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a value is interpreted dynamically",
+          "     *",
+          "     * @param value {String} dynamically interpreted identifier",
+          "     * @return {Boolean} returns <code>true</code> if the value is interpreted dynamically",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a value is interpreted dynamically</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} dynamically interpreted identifier",
+            "paramName": "value",
+            "description": " dynamically interpreted identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} returns <code>true</code> if the value is interpreted dynamically",
+            "type": "boolean",
+            "description": "returns <code>true</code> if the value is interpreted dynamically"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 6930
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 7132
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isCached": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given decorator is cached",
+          "     *",
+          "     * @param decorator {String|qx.ui.decoration.IDecorator} The decorator to check",
+          "     * @return {Boolean} <code>true</code> if the decorator is cached",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given decorator is cached</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "decorator {String|qx.ui.decoration.IDecorator} The decorator to check",
+            "paramName": "decorator",
+            "description": " The decorator to check",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the decorator is cached",
+            "type": "boolean",
+            "description": "<code>true</code> if the decorator is cached"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7378
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7512
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "decorator",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_applyTheme": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 7541
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 8012
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears internal caches and removes all previously created CSS classes.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears internal caches and removes all previously created CSS classes.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4,
+          "index": 8113
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 8560
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes all decorator by clearing internal caches and re applying",
+          "     * aliases.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Refreshes all decorator by clearing internal caches and re applying\n aliases.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 8674
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 8960
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 341,
+        "column": 2,
+        "index": 9156
+      },
+      "end": {
+        "line": 343,
+        "column": 3,
+        "index": 9190
+      }
+    }
+  }
+}

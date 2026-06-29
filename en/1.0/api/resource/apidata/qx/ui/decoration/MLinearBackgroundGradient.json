@@ -1,0 +1,1050 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602813,
+  "lastModifiedIso": "2026-06-29T04:00:02.813Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MLinearBackgroundGradient.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 67,
+      "column": 0,
+      "index": 2361
+    },
+    "end": {
+      "line": 497,
+      "column": 3,
+      "index": 18186
+    }
+  },
+  "className": "qx.ui.decoration.MLinearBackgroundGradient",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for the linear background gradient CSS property.",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " *",
+      " * Keep in mind that this is not supported by all browsers:",
+      " *",
+      " * * Safari 4.0+",
+      " * * Chrome 4.0+",
+      " * * Firefox 3.6+",
+      " * * Opera 11.1+",
+      " * * IE 10+",
+      " * * IE 5.5+ (with limitations)",
+      " *",
+      " * For IE 5.5 to IE 8,this class uses the filter rules to create the gradient. This",
+      " * has some limitations: The start and end position property can not be used. For",
+      " * more details, see the original documentation:",
+      " * http://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx",
+      " *",
+      " * For IE9, we create a gradient in a canvas element and render this gradient",
+      " * as background image. Due to restrictions in the <code>background-image</code>",
+      " * css property, we can not allow negative start values in that case.",
+      " *",
+      " * It is possible to define multiple background gradients by setting an",
+      " * array containing the needed values as the property value.",
+      " * In case multiple values are specified, the values of the properties",
+      " * are repeated until all match in length. It is not possible to define",
+      " * multiple background gradients when falling back to filter rules (IE5.5 to IE8).",
+      " *",
+      " * An example:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       startColor:['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],",
+      " *       endColor: 'rgba(255, 255, 255, 0.2)',",
+      " *       orientation: ['horizontal', 'vertical']",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " * which is the same as:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       startColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],",
+      " *       endColor: ['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)'],",
+      " *       orientation: ['horizontal', 'vertical', 'horizontal']",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for the linear background gradient CSS property.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Safari 4.0+</li>\n<li>Chrome 4.0+</li>\n<li>Firefox 3.6+</li>\n<li>Opera 11.1+</li>\n<li>IE 10+</li>\n<li><p>IE 5.5+ (with limitations)\nFor IE 5.5 to IE 8,this class uses the filter rules to create the gradient. This\nhas some limitations: The start and end position property can not be used. For\nmore details, see the original documentation:\nhttp://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx\nFor IE9, we create a gradient in a canvas element and render this gradient\nas background image. Due to restrictions in the <code>background-image</code>\ncss property, we can not allow negative start values in that case.\nIt is possible to define multiple background gradients by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length. It is not possible to define\nmultiple background gradients when falling back to filter rules (IE5.5 to IE8).\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       startColor:['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],\n       endColor: 'rgba(255, 255, 255, 0.2)',\n       orientation: ['horizontal', 'vertical']\n     }\n   }\n </pre>\n<p>which is the same as:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       startColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],\n       endColor: ['rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)', 'rgba(255, 255, 255, 0.2)'],\n       orientation: ['horizontal', 'vertical', 'horizontal']\n     }\n   }\n </pre>"
+      }
+    ]
+  },
+  "properties": {
+    "startColor": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2577
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2664
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start color of the background gradient.",
+          "     * Note that alpha transparency (rgba) is not supported in IE 8.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start color of the background gradient.\n Note that alpha transparency (rgba) is not supported in IE 8.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "endColor": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2801
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2886
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * End color of the background gradient.",
+          "     * Note that alpha transparency (rgba) is not supported in IE 8.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>End color of the background gradient.\n Note that alpha transparency (rgba) is not supported in IE 8.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2937
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 3027
+        }
+      },
+      "json": {
+        "init": "vertical",
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The orientation of the gradient. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The orientation of the gradient.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "startColorPosition": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 3091
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 3179
+        }
+      },
+      "json": {
+        "init": 0,
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Position in percent where to start the color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position in percent where to start the color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "endColorPosition": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 3243
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3331
+        }
+      },
+      "json": {
+        "init": 100,
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Position in percent where to start the color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position in percent where to start the color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "colorPositionUnit": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3395
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3484
+        }
+      },
+      "json": {
+        "init": "%",
+        "apply": "_applyLinearBackgroundGradient"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Defines if the given positions are in % or px."
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Defines if the given positions are in % or px.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "gradientStart": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3570
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3667
+        }
+      },
+      "json": {
+        "group": [
+          "startColor",
+          "startColorPosition"
+        ],
+        "mode": "shorthand"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Property group to set the start color including its start position. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the start color including its start position.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "gradientEnd": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3749
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3840
+        }
+      },
+      "json": {
+        "group": [
+          "endColor",
+          "endColorPosition"
+        ],
+        "mode": "shorthand"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Property group to set the end color including its end position. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to set the end color including its end position.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_styleLinearBackgroundGradient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the linear background styles in place to the",
+          "     * given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the linear background styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4112
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 6516
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__styleLinearBackgroundGradientForLegacyWebkit": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute CSS rules to style the background with gradients.",
+          "     * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.",
+          "     * Legacy implementation for old WebKit browsers (Chrome < 10).",
+          "     *",
+          "     * @param startColor {Color} The color to start the gradient with",
+          "     * @param endColor {Color} The color to end the gradient with",
+          "     * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+          "     * @param orientation {String} Either 'horizontal' or 'vertical'",
+          "     * @param startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+          "     * @param backgroundStyle {Map} This method should push new background styles onto this array.",
+          "     *",
+          "     * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Legacy implementation for old WebKit browsers (Chrome &lt; 10).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "boolean",
+            "description": "Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 7804
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 8634
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "startColor",
+          "type": "Color"
+        },
+        {
+          "name": "endColor",
+          "type": "Color"
+        },
+        {
+          "name": "unit",
+          "type": "Color"
+        },
+        {
+          "name": "orientation",
+          "type": "string"
+        },
+        {
+          "name": "startColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "endColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "backgroundStyle",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__styleLinearBackgroundGradientWithCanvas": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute CSS rules to style the background with gradients.",
+          "     * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.",
+          "     * IE9 canvas solution.",
+          "     *",
+          "     * @param startColor {Color} The color to start the gradient with",
+          "     * @param endColor {Color} The color to end the gradient with",
+          "     * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+          "     * @param orientation {String} Either 'horizontal' or 'vertical'",
+          "     * @param startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+          "     * @param backgroundStyle {Map} This method should push new background styles onto this array.",
+          "     *",
+          "     * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n IE9 canvas solution.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "boolean",
+            "description": "Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 9882
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 12340
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "startColor",
+          "type": "Color"
+        },
+        {
+          "name": "endColor",
+          "type": "Color"
+        },
+        {
+          "name": "unit",
+          "type": "Color"
+        },
+        {
+          "name": "orientation",
+          "type": "string"
+        },
+        {
+          "name": "startColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "endColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "backgroundStyle",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__styleLinearBackgroundGradientWithMSFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute CSS rules to style the background with gradients.",
+          "     * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.",
+          "     * Old IE filter fallback.",
+          "     *",
+          "     * @param startColor {Color} The color to start the gradient with",
+          "     * @param endColor {Color} The color to end the gradient with",
+          "     * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+          "     * @param orientation {String} Either 'horizontal' or 'vertical'",
+          "     * @param startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that). Note: this particular implementation will do that because it needs to change the `filter` property.",
+          "     * @param backgroundStyle {Map} This method should push new background styles onto this array.",
+          "     *",
+          "     * @return {Boolean} Whether this implementation supports multiple gradients atop each other (false).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Old IE filter fallback.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that). Note: this particular implementation will do that because it needs to change the <code>filter</code> property.",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (false).",
+            "type": "boolean",
+            "description": "Whether this implementation supports multiple gradients atop each other (false)."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4,
+          "index": 13693
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 15385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "startColor",
+          "type": "Color"
+        },
+        {
+          "name": "endColor",
+          "type": "Color"
+        },
+        {
+          "name": "unit",
+          "type": "Color"
+        },
+        {
+          "name": "orientation",
+          "type": "string"
+        },
+        {
+          "name": "startColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "endColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "backgroundStyle",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__styleLinearBackgroundGradientAccordingToSpec": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute CSS rules to style the background with gradients.",
+          "     * This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.",
+          "     * Default implementation (uses spec-compliant syntax).",
+          "     *",
+          "     * @param startColor {Color} The color to start the gradient with",
+          "     * @param endColor {Color} The color to end the gradient with",
+          "     * @param unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+          "     * @param orientation {String} Either 'horizontal' or 'vertical'",
+          "     * @param startColorPosition {Number} The position of the gradient’s starting point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param endColorPosition {Number} The position of the gradient’s ending point, measured in `unit` units along the `orientation` axis from top or left",
+          "     * @param styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use `backgroundStyle` for that)",
+          "     * @param backgroundStyle {Map} This method should push new background styles onto this array.",
+          "     *",
+          "     * @return {Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute CSS rules to style the background with gradients.\n This can be called multiple times and SHOULD layer the gradients on top of each other and on top of existing backgrounds.\n Default implementation (uses spec-compliant syntax).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "startColor {Color} The color to start the gradient with",
+            "paramName": "startColor",
+            "description": " The color to start the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "endColor {Color} The color to end the gradient with",
+            "paramName": "endColor",
+            "description": " The color to end the gradient with",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "unit {Color} The unit in which startColorPosition and endColorPosition are measured",
+            "paramName": "unit",
+            "description": " The unit in which startColorPosition and endColorPosition are measured",
+            "type": "Color"
+          },
+          {
+            "name": "@param",
+            "body": "orientation {String} Either 'horizontal' or 'vertical'",
+            "paramName": "orientation",
+            "description": " Either 'horizontal' or 'vertical'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "startColorPosition {Number} The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "startColorPosition",
+            "description": " The position of the gradient’s starting point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "endColorPosition {Number} The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "paramName": "endColorPosition",
+            "description": " The position of the gradient’s ending point, measured in <code>unit</code> units along the <code>orientation</code> axis from top or left",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "paramName": "styles",
+            "description": " The complete styles currently poised to be applied by decorators. Should not be written to in this method (use <code>backgroundStyle</code> for that)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "backgroundStyle {Map} This method should push new background styles onto this array.",
+            "paramName": "backgroundStyle",
+            "description": " This method should push new background styles onto this array.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether this implementation supports multiple gradients atop each other (true).",
+            "type": "boolean",
+            "description": "Whether this implementation supports multiple gradients atop each other (true)."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 4,
+          "index": 16665
+        },
+        "end": {
+          "line": 473,
+          "column": 5,
+          "index": 17569
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "startColor",
+          "type": "Color"
+        },
+        {
+          "name": "endColor",
+          "type": "Color"
+        },
+        {
+          "name": "unit",
+          "type": "Color"
+        },
+        {
+          "name": "orientation",
+          "type": "string"
+        },
+        {
+          "name": "startColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "endColorPosition",
+          "type": "number"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "backgroundStyle",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__getColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to get a resolved color from a name",
+          "     * @param color {String} The color name",
+          "     * @return {Map} The resolved color",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to get a resolved color from a name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "color {String} The color name",
+            "paramName": "color",
+            "description": " The color name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The resolved color",
+            "type": "Map<any, any>",
+            "description": "The resolved color"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 480,
+          "column": 4,
+          "index": 17726
+        },
+        "end": {
+          "line": 484,
+          "column": 5,
+          "index": 17879
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "color",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_applyLinearBackgroundGradient": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4,
+          "index": 17908
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 18178
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

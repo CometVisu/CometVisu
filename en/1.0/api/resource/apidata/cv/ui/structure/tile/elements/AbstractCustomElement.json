@@ -1,0 +1,319 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/elements/AbstractCustomElement.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 839
+    },
+    "end": {
+      "line": 129,
+      "column": 3,
+      "index": 4154
+    }
+  },
+  "className": "cv.ui.structure.tile.elements.AbstractCustomElement",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1087
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1314
+      }
+    }
+  },
+  "properties": {
+    "connected": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1462
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1586
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyConnected",
+        "event": "changeConnected"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_element": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {HTMLElement}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{HTMLElement}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1774
+        },
+        "end": {
+          "line": 62,
+          "column": 18,
+          "index": 1788
+        }
+      },
+      "appearsIn": []
+    },
+    "_deferInit": {
+      "jsdoc": {
+        "raw": [
+          "* ",
+          "     * @var {boolean} Whether this element supports deferring initialization until its page becomes active (true), does not support it (false)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{boolean} Whether this element supports deferring initialization until its page becomes active (true), does not support it (false)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1955
+        },
+        "end": {
+          "line": 67,
+          "column": 20,
+          "index": 1971
+        }
+      },
+      "appearsIn": []
+    },
+    "_initialized": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1978
+        },
+        "end": {
+          "line": 69,
+          "column": 23,
+          "index": 1997
+        }
+      },
+      "appearsIn": []
+    },
+    "__deferredInitHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2003
+        },
+        "end": {
+          "line": 70,
+          "column": 31,
+          "index": 2030
+        }
+      },
+      "appearsIn": []
+    },
+    "_initCounter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2036
+        },
+        "end": {
+          "line": 71,
+          "column": 22,
+          "index": 2054
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyConnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2061
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 3663
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3669
+        },
+        "end": {
+          "line": 107,
+          "column": 14,
+          "index": 3679
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_postInit": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3685
+        },
+        "end": {
+          "line": 108,
+          "column": 18,
+          "index": 3699
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 110,
+          "column": 22,
+          "index": 3724
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getElement": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3731
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3779
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 122,
+        "column": 2,
+        "index": 3913
+      },
+      "end": {
+        "line": 128,
+        "column": 3,
+        "index": 4150
+      }
+    }
+  },
+  "statics": {}
+}

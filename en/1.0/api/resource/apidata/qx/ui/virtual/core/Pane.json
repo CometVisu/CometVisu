@@ -1,0 +1,2222 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602972,
+  "lastModifiedIso": "2026-06-29T04:00:02.972Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/core/Pane.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 776
+    },
+    "end": {
+      "line": 923,
+      "column": 3,
+      "index": 26386
+    }
+  },
+  "className": "qx.ui.virtual.core.Pane",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Pane provides a window of a larger virtual grid.",
+      " *",
+      " * The actual rendering is performed by one or several layers ({@link ILayer}.",
+      " * The pane computes, which cells of the virtual area is visible and instructs",
+      " * the layers to render these cells.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Pane provides a window of a larger virtual grid.\n The actual rendering is performed by one or several layers ({@link ILayer}.\n The pane computes, which cells of the virtual area is visible and instructs\n the layers to render these cells.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "rowCount"
+      },
+      {
+        "name": "columnCount"
+      },
+      {
+        "name": "cellHeight"
+      },
+      {
+        "name": "cellWidth"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1137
+      },
+      "end": {
+        "line": 69,
+        "column": 3,
+        "index": 2312
+      }
+    }
+  },
+  "events": {
+    "cellTap": {
+      "type": "qx.ui.virtual.core.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "* Fired if a cell is tapped. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if a cell is tapped.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2369
+        },
+        "end": {
+          "line": 73,
+          "column": 43,
+          "index": 2408
+        }
+      }
+    },
+    "cellContextmenu": {
+      "type": "qx.ui.virtual.core.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "* Fired if a cell is right-clicked. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if a cell is right-clicked.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2460
+        },
+        "end": {
+          "line": 76,
+          "column": 51,
+          "index": 2507
+        }
+      }
+    },
+    "cellDbltap": {
+      "type": "qx.ui.virtual.core.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "* Fired if a cell is double-tapped. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if a cell is double-tapped.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2559
+        },
+        "end": {
+          "line": 79,
+          "column": 46,
+          "index": 2601
+        }
+      }
+    },
+    "update": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired on resize of either the container or the (virtual) content. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired on resize of either the container or the (virtual) content.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2685
+        },
+        "end": {
+          "line": 82,
+          "column": 33,
+          "index": 2714
+        }
+      }
+    },
+    "scrollX": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired if the pane is scrolled horizontally. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if the pane is scrolled horizontally.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2776
+        },
+        "end": {
+          "line": 85,
+          "column": 33,
+          "index": 2805
+        }
+      }
+    },
+    "scrollY": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired if the pane is scrolled vertically. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired if the pane is scrolled vertically.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2865
+        },
+        "end": {
+          "line": 88,
+          "column": 33,
+          "index": 2894
+        }
+      }
+    }
+  },
+  "properties": {
+    "width": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2939
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2989
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 400
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 3014
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 3065
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 300
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    }
+  },
+  "members": {
+    "__rowConfig": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3089
+        },
+        "end": {
+          "line": 106,
+          "column": 21,
+          "index": 3106
+        }
+      },
+      "appearsIn": []
+    },
+    "__columnConfig": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3112
+        },
+        "end": {
+          "line": 107,
+          "column": 24,
+          "index": 3132
+        }
+      },
+      "appearsIn": []
+    },
+    "__scrollTop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3138
+        },
+        "end": {
+          "line": 108,
+          "column": 21,
+          "index": 3155
+        }
+      },
+      "appearsIn": []
+    },
+    "__scrollLeft": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3161
+        },
+        "end": {
+          "line": 109,
+          "column": 22,
+          "index": 3179
+        }
+      },
+      "appearsIn": []
+    },
+    "__paneHeight": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3185
+        },
+        "end": {
+          "line": 110,
+          "column": 22,
+          "index": 3203
+        }
+      },
+      "appearsIn": []
+    },
+    "__paneWidth": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3209
+        },
+        "end": {
+          "line": 111,
+          "column": 21,
+          "index": 3226
+        }
+      },
+      "appearsIn": []
+    },
+    "__layerWindow": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3232
+        },
+        "end": {
+          "line": 112,
+          "column": 23,
+          "index": 3251
+        }
+      },
+      "appearsIn": []
+    },
+    "__jobs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3257
+        },
+        "end": {
+          "line": 113,
+          "column": 16,
+          "index": 3269
+        }
+      },
+      "appearsIn": []
+    },
+    "__layerContainer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3275
+        },
+        "end": {
+          "line": 114,
+          "column": 26,
+          "index": 3297
+        }
+      },
+      "appearsIn": []
+    },
+    "__layers": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3303
+        },
+        "end": {
+          "line": 115,
+          "column": 18,
+          "index": 3317
+        }
+      },
+      "appearsIn": []
+    },
+    "__dontFireUpdate": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3323
+        },
+        "end": {
+          "line": 116,
+          "column": 26,
+          "index": 3345
+        }
+      },
+      "appearsIn": []
+    },
+    "__columnSizes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3351
+        },
+        "end": {
+          "line": 117,
+          "column": 23,
+          "index": 3370
+        }
+      },
+      "appearsIn": []
+    },
+    "__rowSizes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3376
+        },
+        "end": {
+          "line": 118,
+          "column": 20,
+          "index": 3392
+        }
+      },
+      "appearsIn": []
+    },
+    "__pointerDownCoords": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3398
+        },
+        "end": {
+          "line": 119,
+          "column": 29,
+          "index": 3423
+        }
+      },
+      "appearsIn": []
+    },
+    "getRowConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the axis object, which defines the row numbers and the row sizes.",
+          "     *",
+          "     * @return {qx.ui.virtual.core.Axis} The row configuration.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the axis object, which defines the row numbers and the row sizes.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.virtual.core.Axis} The row configuration.",
+            "type": "qx.ui.virtual.core.Axis",
+            "description": "The row configuration."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3792
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3845
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.virtual.core.Axis"
+      },
+      "appearsIn": []
+    },
+    "getColumnConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the axis object, which defines the column numbers and the column sizes.",
+          "     *",
+          "     * @return {qx.ui.virtual.core.Axis} The column configuration.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the axis object, which defines the column numbers and the column sizes.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.virtual.core.Axis} The column configuration.",
+            "type": "qx.ui.virtual.core.Axis",
+            "description": "The column configuration."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4025
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4084
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.virtual.core.Axis"
+      },
+      "appearsIn": []
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array containing the layer container.",
+          "     *",
+          "     * @return {Object[]} The layer container array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array containing the layer container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} The layer container array.",
+            "type": "Object[]",
+            "description": "The layer container array."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4421
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4480
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "addLayer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a layer to the layer container.",
+          "     *",
+          "     * @param layer {qx.ui.virtual.core.ILayer} The layer to add.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a layer to the layer container.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layer {qx.ui.virtual.core.ILayer} The layer to add.",
+            "paramName": "layer",
+            "description": " The layer to add.",
+            "type": "qx.ui.virtual.core.ILayer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4619
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 4876
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layer",
+          "type": "qx.ui.virtual.core.ILayer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of all layers.",
+          "     *",
+          "     * @return {qx.ui.virtual.core.ILayer[]} List of the pane's layers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of all layers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.virtual.core.ILayer[]} List of the pane's layers.",
+            "type": "qx.ui.virtual.core.ILayer[]",
+            "description": "List of the pane's layers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5011
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 5058
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.virtual.core.ILayer[]"
+      },
+      "appearsIn": []
+    },
+    "getVisibleLayers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of all visible layers.",
+          "     *",
+          "     * @return {qx.ui.virtual.core.ILayer[]} List of the pane's visible layers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of all visible layers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.virtual.core.ILayer[]} List of the pane's visible layers.",
+            "type": "qx.ui.virtual.core.ILayer[]",
+            "description": "List of the pane's visible layers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 5209
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 5453
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.virtual.core.ILayer[]"
+      },
+      "appearsIn": []
+    },
+    "getScrollMaxX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum horizontal scroll position.",
+          "     *",
+          "     * @return {Integer} Maximum horizontal scroll position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum horizontal scroll position.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Maximum horizontal scroll position.",
+            "type": "Integer",
+            "description": "Maximum horizontal scroll position."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 5787
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5981
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScrollMaxY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum vertical scroll position.",
+          "     *",
+          "     * @return {Integer} Maximum vertical scroll position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum vertical scroll position.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Maximum vertical scroll position.",
+            "type": "Integer",
+            "description": "Maximum vertical scroll position."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 6115
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 6307
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setScrollY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the content to the given left coordinate.",
+          "     *",
+          "     * @param value {Integer} The vertical position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the content to the given left coordinate.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The vertical position to scroll to.",
+            "paramName": "value",
+            "description": " The vertical position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 6460
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 6843
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getScrollY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the vertical scroll offset.",
+          "     *",
+          "     * @return {Integer} The vertical scroll offset.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the vertical scroll offset.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The vertical scroll offset.",
+            "type": "Integer",
+            "description": "The vertical scroll offset."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 6969
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 7020
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setScrollX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the content to the given top coordinate.",
+          "     *",
+          "     * @param value {Integer} The horizontal position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the content to the given top coordinate.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The horizontal position to scroll to.",
+            "paramName": "value",
+            "description": " The horizontal position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 7174
+        },
+        "end": {
+          "line": 288,
+          "column": 5,
+          "index": 7561
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getScrollX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the horizontal scroll offset.",
+          "     *",
+          "     * @return {Integer} The horizontal scroll offset.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the horizontal scroll offset.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The horizontal scroll offset.",
+            "type": "Integer",
+            "description": "The horizontal scroll offset."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 7691
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 7743
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScrollSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The (virtual) size of the content.",
+          "     *",
+          "     * @return {Map} Size of the content (keys: <code>width</code> and",
+          "     *     <code>height</code>).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The (virtual) size of the content.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Size of the content (keys: <code>width</code> and\n     <code>height</code>).",
+            "type": "Map<any, any>",
+            "description": "Size of the content (keys: <code>width</code> and\n     <code>height</code>)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 7919
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8065
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "scrollRowIntoView": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls a row into the visible area of the pane.",
+          "     *",
+          "     * @param row {Integer} The row's index.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls a row into the visible area of the pane.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The row's index.",
+            "paramName": "row",
+            "description": " The row's index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4,
+          "index": 8402
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 9168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollColumnIntoView": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls a column into the visible area of the pane.",
+          "     *",
+          "     * @param column {Integer} The column's index.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls a column into the visible area of the pane.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "column {Integer} The column's index.",
+            "paramName": "column",
+            "description": " The column's index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4,
+          "index": 9308
+        },
+        "end": {
+          "line": 382,
+          "column": 5,
+          "index": 10100
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollCellIntoView": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls a grid cell into the visible area of the pane.",
+          "     *",
+          "     * @param row {Integer} The cell's row index.",
+          "     * @param column {Integer} The cell's column index.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls a grid cell into the visible area of the pane.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The cell's row index.",
+            "paramName": "row",
+            "description": " The cell's row index.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "column {Integer} The cell's column index.",
+            "paramName": "column",
+            "description": " The cell's column index.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4,
+          "index": 10298
+        },
+        "end": {
+          "line": 409,
+          "column": 5,
+          "index": 10802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCellAtPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the grid cell at the given absolute document coordinates. This method",
+          "     * can be used to convert the pointer position returned by",
+          "     * {@link qx.event.type.Pointer#getDocumentLeft} and",
+          "     * {@link qx.event.type.Pointer#getDocumentLeft} into cell coordinates.",
+          "     *",
+          "     * @param documentX {Integer} The x coordinate relative to the viewport",
+          "     *    origin.",
+          "     * @param documentY {Integer} The y coordinate relative to the viewport",
+          "     *    origin.",
+          "     * @return {Map|null} A map containing the <code>row</code> and <code>column</code>",
+          "     *    of the found cell. If the coordinate is outside of the pane's bounds",
+          "     *    or there is no cell at the coordinate <code>null</code> is returned.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the grid cell at the given absolute document coordinates. This method\n can be used to convert the pointer position returned by\n {@link qx.event.type.Pointer#getDocumentLeft} and\n {@link qx.event.type.Pointer#getDocumentLeft} into cell coordinates.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "documentX {Integer} The x coordinate relative to the viewport\n    origin.",
+            "paramName": "documentX",
+            "description": " The x coordinate relative to the viewport\n    origin.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "documentY {Integer} The y coordinate relative to the viewport\n    origin.",
+            "paramName": "documentY",
+            "description": " The y coordinate relative to the viewport\n    origin.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null} A map containing the <code>row</code> and <code>column</code>\n    of the found cell. If the coordinate is outside of the pane's bounds\n    or there is no cell at the coordinate <code>null</code> is returned.",
+            "type": "Map|null",
+            "description": "A map containing the <code>row</code> and <code>column</code>\n    of the found cell. If the coordinate is outside of the pane's bounds\n    or there is no cell at the coordinate <code>null</code> is returned."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 11737
+        },
+        "end": {
+          "line": 461,
+          "column": 5,
+          "index": 12506
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "documentX",
+          "type": "Integer"
+        },
+        {
+          "name": "documentY",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "prefetchX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Increase the layers width beyond the needed width to improve",
+          "     * horizontal scrolling. The layers are only resized if invisible parts",
+          "     * left/right of the pane window are smaller than minLeft/minRight.",
+          "     *",
+          "     * @param minLeft {Integer} Only prefetch if the invisible part left of the",
+          "     *    pane window if smaller than this (pixel) value.",
+          "     * @param maxLeft {Integer} The amount of pixel the layers should reach",
+          "     *    left of the pane window.",
+          "     * @param minRight {Integer} Only prefetch if the invisible part right of the",
+          "     *    pane window if smaller than this (pixel) value.",
+          "     * @param maxRight {Integer} The amount of pixel the layers should reach",
+          "     *    right of the pane window.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Increase the layers width beyond the needed width to improve\n horizontal scrolling. The layers are only resized if invisible parts\n left/right of the pane window are smaller than minLeft/minRight.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "minLeft {Integer} Only prefetch if the invisible part left of the\n    pane window if smaller than this (pixel) value.",
+            "paramName": "minLeft",
+            "description": " Only prefetch if the invisible part left of the\n    pane window if smaller than this (pixel) value.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxLeft {Integer} The amount of pixel the layers should reach\n    left of the pane window.",
+            "paramName": "maxLeft",
+            "description": " The amount of pixel the layers should reach\n    left of the pane window.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "minRight {Integer} Only prefetch if the invisible part right of the\n    pane window if smaller than this (pixel) value.",
+            "paramName": "minRight",
+            "description": " Only prefetch if the invisible part right of the\n    pane window if smaller than this (pixel) value.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxRight {Integer} The amount of pixel the layers should reach\n    right of the pane window.",
+            "paramName": "maxRight",
+            "description": " The amount of pixel the layers should reach\n    right of the pane window.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 483,
+          "column": 4,
+          "index": 13452
+        },
+        "end": {
+          "line": 513,
+          "column": 5,
+          "index": 14345
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "minLeft",
+          "type": "Integer"
+        },
+        {
+          "name": "maxLeft",
+          "type": "Integer"
+        },
+        {
+          "name": "minRight",
+          "type": "Integer"
+        },
+        {
+          "name": "maxRight",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "prefetchY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Increase the layers height beyond the needed height to improve",
+          "     * vertical scrolling. The layers are only resized if invisible parts",
+          "     * above/below the pane window are smaller than minAbove/minBelow.",
+          "     *",
+          "     * @param minAbove {Integer} Only prefetch if the invisible part above the",
+          "     *    pane window if smaller than this (pixel) value.",
+          "     * @param maxAbove {Integer} The amount of pixel the layers should reach",
+          "     *    above the pane window.",
+          "     * @param minBelow {Integer} Only prefetch if the invisible part below the",
+          "     *    pane window if smaller than this (pixel) value.",
+          "     * @param maxBelow {Integer} The amount of pixel the layers should reach",
+          "     *    below the pane window.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Increase the layers height beyond the needed height to improve\n vertical scrolling. The layers are only resized if invisible parts\n above/below the pane window are smaller than minAbove/minBelow.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "minAbove {Integer} Only prefetch if the invisible part above the\n    pane window if smaller than this (pixel) value.",
+            "paramName": "minAbove",
+            "description": " Only prefetch if the invisible part above the\n    pane window if smaller than this (pixel) value.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxAbove {Integer} The amount of pixel the layers should reach\n    above the pane window.",
+            "paramName": "maxAbove",
+            "description": " The amount of pixel the layers should reach\n    above the pane window.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "minBelow {Integer} Only prefetch if the invisible part below the\n    pane window if smaller than this (pixel) value.",
+            "paramName": "minBelow",
+            "description": " Only prefetch if the invisible part below the\n    pane window if smaller than this (pixel) value.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maxBelow {Integer} The amount of pixel the layers should reach\n    below the pane window.",
+            "paramName": "maxBelow",
+            "description": " The amount of pixel the layers should reach\n    below the pane window.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4,
+          "index": 15084
+        },
+        "end": {
+          "line": 559,
+          "column": 5,
+          "index": 15985
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "minAbove",
+          "type": "Integer"
+        },
+        {
+          "name": "maxAbove",
+          "type": "Integer"
+        },
+        {
+          "name": "minBelow",
+          "type": "Integer"
+        },
+        {
+          "name": "maxBelow",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resize event handler.",
+          "     *",
+          "     * Updates the visible window.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resize event handler.\n Updates the visible window.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 572,
+          "column": 4,
+          "index": 16275
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 16504
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onAppear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resize event handler. Do a full update on first appear.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resize event handler. Do a full update on first appear.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 584,
+          "column": 4,
+          "index": 16590
+        },
+        "end": {
+          "line": 586,
+          "column": 5,
+          "index": 16634
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for pointer down. Remembers cell position to prevent pointer event when cell position change.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The incoming pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for pointer down. Remembers cell position to prevent pointer event when cell position change.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The incoming pointer event.",
+            "paramName": "e",
+            "description": " The incoming pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 4,
+          "index": 16848
+        },
+        "end": {
+          "line": 598,
+          "column": 5,
+          "index": 16995
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for pointer taps. Fires an cellTap event.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The incoming pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for pointer taps. Fires an cellTap event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The incoming pointer event.",
+            "paramName": "e",
+            "description": " The incoming pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 605,
+          "column": 4,
+          "index": 17157
+        },
+        "end": {
+          "line": 607,
+          "column": 5,
+          "index": 17225
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onContextmenu": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for context menu taps. Fires an cellContextmenu event.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The incoming pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for context menu taps. Fires an cellContextmenu event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The incoming pointer event.",
+            "paramName": "e",
+            "description": " The incoming pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 614,
+          "column": 4,
+          "index": 17400
+        },
+        "end": {
+          "line": 616,
+          "column": 5,
+          "index": 17484
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDbltap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for double taps. Fires an cellDbltap event.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The incoming pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for double taps. Fires an cellDbltap event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The incoming pointer event.",
+            "paramName": "e",
+            "description": " The incoming pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 623,
+          "column": 4,
+          "index": 17648
+        },
+        "end": {
+          "line": 625,
+          "column": 5,
+          "index": 17722
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkScrollBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fixed scrollbar position whenever it is out of range",
+          "     * it can happen when removing an item from the list reducing",
+          "     * the max value for scrollY #8976",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fixed scrollbar position whenever it is out of range\n it can happen when removing an item from the list reducing\n the max value for scrollY #8976</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 632,
+          "column": 4,
+          "index": 17910
+        },
+        "end": {
+          "line": 645,
+          "column": 5,
+          "index": 18318
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__handlePointerCellEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a pointer event into a cell event and fires the cell event if the",
+          "     * pointer is over a cell.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event.",
+          "     * @param cellEventType {String} The name of the cell event to fire.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a pointer event into a cell event and fires the cell event if the\n pointer is over a cell.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event.",
+            "paramName": "e",
+            "description": " The pointer event.",
+            "type": "qx.event.type.Pointer"
+          },
+          {
+            "name": "@param",
+            "body": "cellEventType {String} The name of the cell event to fire.",
+            "paramName": "cellEventType",
+            "description": " The name of the cell event to fire.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 654,
+          "column": 4,
+          "index": 18593
+        },
+        "end": {
+          "line": 679,
+          "column": 5,
+          "index": 19192
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        },
+        {
+          "name": "cellEventType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "syncWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 688,
+          "column": 4,
+          "index": 19410
+        },
+        "end": {
+          "line": 697,
+          "column": 5,
+          "index": 19693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jobs"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_setLayerWindow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the size of the layers to contain the cells at the pixel position",
+          "     * \"left/right\" up to \"left+minHeight/right+minHeight\". The offset of the",
+          "     * layer container is adjusted to respect the pane's scroll top and scroll",
+          "     * left values.",
+          "     *",
+          "     * @param layers {qx.ui.virtual.core.ILayer[]} List of layers to update.",
+          "     * @param left {Integer} Maximum left pixel coordinate of the layers.",
+          "     * @param top {Integer} Maximum top pixel coordinate of the layers.",
+          "     * @param minWidth {Integer} The minimum end coordinate of the layers will",
+          "     *    be larger than <code>left+minWidth</code>.",
+          "     * @param minHeight {Integer} The minimum end coordinate of the layers will",
+          "     *    be larger than <code>top+minHeight</code>.",
+          "     * @param doFullUpdate {Boolean?false} Whether a full update on the layer",
+          "     *    should be performed of if only the layer window should be updated.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the size of the layers to contain the cells at the pixel position\n \"left/right\" up to \"left+minHeight/right+minHeight\". The offset of the\n layer container is adjusted to respect the pane's scroll top and scroll\n left values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layers {qx.ui.virtual.core.ILayer[]} List of layers to update.",
+            "paramName": "layers",
+            "description": " List of layers to update.",
+            "type": "qx.ui.virtual.core.ILayer[]"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer} Maximum left pixel coordinate of the layers.",
+            "paramName": "left",
+            "description": " Maximum left pixel coordinate of the layers.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} Maximum top pixel coordinate of the layers.",
+            "paramName": "top",
+            "description": " Maximum top pixel coordinate of the layers.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "minWidth {Integer} The minimum end coordinate of the layers will\n    be larger than <code>left+minWidth</code>.",
+            "paramName": "minWidth",
+            "description": " The minimum end coordinate of the layers will\n    be larger than <code>left+minWidth</code>.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "minHeight {Integer} The minimum end coordinate of the layers will\n    be larger than <code>top+minHeight</code>.",
+            "paramName": "minHeight",
+            "description": " The minimum end coordinate of the layers will\n    be larger than <code>top+minHeight</code>.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "doFullUpdate {Boolean?false} Whether a full update on the layer\n    should be performed of if only the layer window should be updated.",
+            "paramName": "doFullUpdate",
+            "description": " Whether a full update on the layer\n    should be performed of if only the layer window should be updated.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 715,
+          "column": 4,
+          "index": 20621
+        },
+        "end": {
+          "line": 783,
+          "column": 5,
+          "index": 22790
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layers",
+          "type": "qx.ui.virtual.core.ILayer[]"
+        },
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "minWidth",
+          "type": "Integer"
+        },
+        {
+          "name": "minHeight",
+          "type": "Integer"
+        },
+        {
+          "name": "doFullUpdate",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__checkPaneResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the pane was resized and fire an {@link #update} event if",
+          "     * it was.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the pane was resized and fire an {@link #update} event if\n it was.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 789,
+          "column": 4,
+          "index": 22907
+        },
+        "end": {
+          "line": 803,
+          "column": 5,
+          "index": 23291
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "fullUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schedule a full update on all visible layers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Schedule a full update on all visible layers.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 808,
+          "column": 4,
+          "index": 23367
+        },
+        "end": {
+          "line": 811,
+          "column": 5,
+          "index": 23463
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isUpdatePending": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a full update is scheduled.",
+          "     *",
+          "     * @return {Boolean} Whether a full update is scheduled.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a full update is scheduled.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a full update is scheduled.",
+            "type": "boolean",
+            "description": "Whether a full update is scheduled."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 818,
+          "column": 4,
+          "index": 23597
+        },
+        "end": {
+          "line": 820,
+          "column": 5,
+          "index": 23662
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_fullUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Perform a full update on all visible layers. All cached data will be",
+          "     * discarded.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Perform a full update on all visible layers. All cached data will be\n discarded.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 826,
+          "column": 4,
+          "index": 23779
+        },
+        "end": {
+          "line": 849,
+          "column": 5,
+          "index": 24283
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_deferredUpdateScrollPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schedule an update the visible window of the grid according to the top",
+          "     * and left scroll positions.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Schedule an update the visible window of the grid according to the top\n and left scroll positions.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 855,
+          "column": 4,
+          "index": 24418
+        },
+        "end": {
+          "line": 858,
+          "column": 5,
+          "index": 24543
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateScrollPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the visible window of the grid according to the top and left scroll",
+          "     * positions.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the visible window of the grid according to the top and left scroll\n positions.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 864,
+          "column": 4,
+          "index": 24666
+        },
+        "end": {
+          "line": 911,
+          "column": 5,
+          "index": 26132
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 914,
+        "column": 2,
+        "index": 26141
+      },
+      "end": {
+        "line": 922,
+        "column": 3,
+        "index": 26382
+      }
+    }
+  },
+  "statics": {}
+}

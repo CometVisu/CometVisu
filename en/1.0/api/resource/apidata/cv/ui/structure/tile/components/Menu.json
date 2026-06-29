@@ -1,0 +1,691 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543949,
+  "lastModifiedIso": "2026-06-29T03:59:03.949Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/Menu.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 944
+    },
+    "end": {
+      "line": 462,
+      "column": 3,
+      "index": 15496
+    }
+  },
+  "className": "cv.ui.structure.tile.components.Menu",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generates a menu of a model, currently only the pages model is implemented.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generates a menu of a model, currently only the pages model is implemented.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "mixins": [
+    "cv.util.MStringTransforms"
+  ],
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1249
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1327
+        }
+      },
+      "json": {
+        "check": [
+          "pages",
+          "menuItems"
+        ],
+        "apply": "_applyModel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1333
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1444
+        }
+      },
+      "json": {
+        "check": [
+          "text",
+          "icons",
+          "dock"
+        ],
+        "init": "text",
+        "apply": "_applyAppearance"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "depth": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1569
+        }
+      },
+      "json": {
+        "check": "!isNaN(value) && value >= -1 && value <= 100",
+        "init": -1,
+        "apply": "_applyDepth"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "domReady": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1576
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1665
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_generateMenu"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showLabels": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1672
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1799
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowLabels",
+        "transform": "_parseBoolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyAppearance": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1945
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2199
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDepth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2206
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2296
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyShowLabels": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2303
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2540
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDomAppended": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2547
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2688
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2695
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4157
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "model"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4164
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4629
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_generateMenu": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4636
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 6380
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onHamburgerMenu": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 6387
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 7114
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param ev {qx.event.type.Event}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {qx.event.type.Event}",
+            "paramName": "ev",
+            "type": "qx.event.type.Event"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 7192
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7984
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSwipe": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4,
+          "index": 7991
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 8620
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_closeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Close all open sub-menus",
+          "     * @param except {Element?} do not close this one",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Close all open sub-menus</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "except {Element?} do not close this one",
+            "paramName": "except",
+            "description": " do not close this one",
+            "optional": true,
+            "type": "Element"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 8745
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 9602
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "except",
+          "type": "Element",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "_openDetail": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 9609
+        },
+        "end": {
+          "line": 302,
+          "column": 5,
+          "index": 9997
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_closeDetail": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 10004
+        },
+        "end": {
+          "line": 311,
+          "column": 5,
+          "index": 10399
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__generatePagesModel": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 10406
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 13875
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parentList"
+        },
+        {
+          "name": "parentElement"
+        },
+        {
+          "name": "currentPage"
+        },
+        {
+          "name": "currentLevel"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPageChange": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 13882
+        },
+        "end": {
+          "line": 430,
+          "column": 5,
+          "index": 14739
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 432,
+          "column": 4,
+          "index": 14746
+        },
+        "end": {
+          "line": 435,
+          "column": 5,
+          "index": 14822
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1153
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseFloat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1421
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseBoolean": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1685
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1873
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 443,
+        "column": 2,
+        "index": 14956
+      },
+      "end": {
+        "line": 447,
+        "column": 3,
+        "index": 15167
+      }
+    }
+  },
+  "statics": {}
+}

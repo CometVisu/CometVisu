@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601552,
+  "lastModifiedIso": "2026-06-29T04:00:01.552Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/ColorLight.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 529
+    },
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 754
+    }
+  },
+  "className": "qx.theme.tangible.ColorLight",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple color theme</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.tangible.ColorEngine",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

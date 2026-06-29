@@ -1,0 +1,74 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603233,
+  "lastModifiedIso": "2026-06-29T04:00:03.233Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/application/Standalone.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 900
+    },
+    "end": {
+      "line": 44,
+      "column": 3,
+      "index": 1273
+    }
+  },
+  "className": "qx.application.Standalone",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * For a GUI application that looks & feels like native desktop application",
+      " * (often called \"RIA\" - Rich Internet Application).",
+      " *",
+      " * Such a stand-alone application typically creates and updates all content",
+      " * dynamically. Often it is called a \"single-page application\", since the",
+      " * document itself is never reloaded or changed. Communication with the server",
+      " * is done with AJAX.",
+      " *",
+      " * @require(qx.core.Init)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>For a GUI application that looks &amp; feels like native desktop application\n (often called \"RIA\" - Rich Internet Application).\n Such a stand-alone application typically creates and updates all content\n dynamically. Often it is called a \"single-page application\", since the\n document itself is never reloaded or changed. Communication with the server\n is done with AJAX.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.core.Init"
+      }
+    ]
+  },
+  "superClass": "qx.application.AbstractGui",
+  "members": {
+    "_createRootWidget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1187
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.AbstractGui",
+      "appearsIn": [
+        "qx.application.AbstractGui"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

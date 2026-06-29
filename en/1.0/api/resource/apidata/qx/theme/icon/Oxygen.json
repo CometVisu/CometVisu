@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602958,
+  "lastModifiedIso": "2026-06-29T04:00:02.958Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/icon/Oxygen.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 536
+    },
+    "end": {
+      "line": 27,
+      "column": 3,
+      "index": 644
+    }
+  },
+  "className": "qx.theme.icon.Oxygen",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * KDE Oxygen icons",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>KDE Oxygen icons</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Font",
+    "fonts",
+    "size",
+    "family",
+    "test",
+    "manager",
+    "mock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/theme/manager/mock/Font.js"
+  ],
+  "sourcesContent": [
+    "qx.Theme.define(\"qx.test.theme.manager.mock.Font\", {\n  extend: qx.theme.simple.Font,\n\n  fonts: {\n    default: {\n      size: 99,\n      family: [\"arial\", \"sans-serif\"]\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iCAAiC,EAAE;IACjDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,MAAM,CAACC,IAAI;IAE5BC,KAAK,EAAE;MACL,WAAS;QACPC,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,OAAO,EAAE,YAAY;MAChC;IACF;EACF,CAAC,CAAC;EATFZ,EAAE,CAACa,IAAI,CAACN,KAAK,CAACO,OAAO,CAACC,IAAI,CAACN,IAAI,CAACN,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

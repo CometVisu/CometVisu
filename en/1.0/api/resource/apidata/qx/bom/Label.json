@@ -1,0 +1,1098 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602536,
+  "lastModifiedIso": "2026-06-29T04:00:02.536Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Label.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 570
+    },
+    "end": {
+      "line": 429,
+      "column": 3,
+      "index": 12001
+    }
+  },
+  "className": "qx.bom.Label",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser abstractions to work with labels.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser abstractions to work with labels.</p>"
+      }
+    ]
+  },
+  "statics": {
+    "__styles": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains all supported styles "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Contains all supported styles"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 862
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1024
+        }
+      },
+      "appearsIn": []
+    },
+    "__sizeCache": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Object<String,Object>} cache of label sizes "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object<String,Object>} cache of label sizes"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1092
+        },
+        "end": {
+          "line": 43,
+          "column": 19,
+          "index": 1107
+        }
+      },
+      "appearsIn": []
+    },
+    "__prepareText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the helper DOM element for text measuring",
+          "     *",
+          "     * @return {Element} Helper DOM element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the helper DOM element for text measuring</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Helper DOM element",
+            "type": "qx.bom.Element",
+            "description": "Helper DOM element"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1240
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1418
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__prepareHtml": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the helper DOM element for HTML measuring",
+          "     *",
+          "     * @return {Element} Helper DOM element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the helper DOM element for HTML measuring</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Helper DOM element",
+            "type": "qx.bom.Element",
+            "description": "Helper DOM element"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1551
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1728
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__createMeasureElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the measure element",
+          "     *",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @return {Element} The measure element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the measure element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "html {Boolean?false} Whether HTML markup should be used.",
+            "paramName": "html",
+            "description": " Whether HTML markup should be used.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The measure element",
+            "type": "qx.bom.Element",
+            "description": "The measure element"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1909
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3058
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__getStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map of all styles which should be applied as",
+          "     * a basic set.",
+          "     *",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @return {Map} Initial styles which should be applied to a label element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map of all styles which should be applied as\n a basic set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "html {Boolean?false} Whether HTML markup should be used.",
+            "paramName": "html",
+            "description": " Whether HTML markup should be used.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Initial styles which should be applied to a label element.",
+            "type": "Map<any, any>",
+            "description": "Initial styles which should be applied to a label element."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3321
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3779
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "create": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a label.",
+          "     *",
+          "     * The default mode is 'text' which means that the overlapping text is cut off",
+          "     * using ellipsis automatically. Text wrapping is disabled in this mode",
+          "     * as well. Spaces are normalized. Umlauts and other special symbols are only",
+          "     * allowed in unicode mode as normal characters.",
+          "     *",
+          "     * In the HTML mode you can insert any HTML, but loose the capability to cut",
+          "     * of overlapping text. Automatic text wrapping is enabled by default.",
+          "     *",
+          "     * It is not possible to modify the mode afterwards.",
+          "     *",
+          "     * @param content {String} Content of the label",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @param win {Window?null} Window to create the element for",
+          "     * @return {Element} The created iframe node",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a label.\n The default mode is 'text' which means that the overlapping text is cut off\n using ellipsis automatically. Text wrapping is disabled in this mode\n as well. Spaces are normalized. Umlauts and other special symbols are only\n allowed in unicode mode as normal characters.\n In the HTML mode you can insert any HTML, but loose the capability to cut\n of overlapping text. Automatic text wrapping is enabled by default.\n It is not possible to modify the mode afterwards.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "content {String} Content of the label",
+            "paramName": "content",
+            "description": " Content of the label",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "html {Boolean?false} Whether HTML markup should be used.",
+            "paramName": "html",
+            "description": " Whether HTML markup should be used.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "win {Window?null} Window to create the element for",
+            "paramName": "win",
+            "description": " Window to create the element for",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Window"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The created iframe node",
+            "type": "qx.bom.Element",
+            "description": "The created iframe node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4598
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5925
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__sanitizer": {
+      "jsdoc": {
+        "raw": [
+          "* Sanitizer function "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sanitizer function</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 5962
+        },
+        "end": {
+          "line": 214,
+          "column": 21,
+          "index": 5979
+        }
+      },
+      "appearsIn": []
+    },
+    "setSanitizer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a function to sanitize values. It will be used by {@link #setValue}.",
+          "     * The function to sanitize will get the <code>string</code> value and",
+          "     * should return a sanitized / cleared <code>string</code>.",
+          "     *",
+          "     * @param func {Function | null} Function to sanitize / clean HTML code",
+          "     *  from given string parameter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a function to sanitize values. It will be used by {@link #setValue}.\n The function to sanitize will get the <code>string</code> value and\n should return a sanitized / cleared <code>string</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function | null} Function to sanitize / clean HTML code\n  from given string parameter",
+            "paramName": "func",
+            "description": " Function to sanitize / clean HTML code\n  from given string parameter",
+            "type": [
+              "Function",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 6341
+        },
+        "end": {
+          "line": 232,
+          "column": 5,
+          "index": 6541
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": [
+            "Function",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the content of the element.",
+          "     *",
+          "     * The possibilities of the value depends on the mode",
+          "     * defined using {@link #create}.",
+          "     *",
+          "     * @param element {Element} DOM element to modify.",
+          "     * @param value {String} Content to insert.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the content of the element.\n The possibilities of the value depends on the mode\n defined using {@link #create}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to modify.",
+            "paramName": "element",
+            "description": " DOM element to modify.",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} Content to insert.",
+            "paramName": "value",
+            "description": " Content to insert.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 6817
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 7392
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content of the element.",
+          "     *",
+          "     * @param element {Element} DOM element to query.",
+          "     * @return {String} Content stored in the element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content of the element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to query.",
+            "paramName": "element",
+            "description": " DOM element to query.",
+            "type": "qx.bom.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Content stored in the element.",
+            "type": "string",
+            "description": "Content stored in the element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 7574
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 7938
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getHtmlSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the preferred dimensions of the given HTML content.",
+          "     *",
+          "     * @param content {String} The HTML markup to measure",
+          "     * @param styles {Map?null} Optional styles to apply",
+          "     * @param width {Integer} To support width for height it is possible to limit the width",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the preferred dimensions of the given HTML content.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "content {String} The HTML markup to measure",
+            "paramName": "content",
+            "description": " The HTML markup to measure",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map?null} Optional styles to apply",
+            "paramName": "styles",
+            "description": " Optional styles to apply",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} To support width for height it is possible to limit the width",
+            "paramName": "width",
+            "description": " To support width for height it is possible to limit the width",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 8328
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 8887
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getTextSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the preferred dimensions of the given text.",
+          "     *",
+          "     * @param text {String} The text to measure",
+          "     * @param styles {Map} Optional styles to apply",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the preferred dimensions of the given text.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text {String} The text to measure",
+            "paramName": "text",
+            "description": " The text to measure",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} Optional styles to apply",
+            "paramName": "styles",
+            "description": " Optional styles to apply",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 9162
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 9807
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getCacheKey": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a key for a specific set of styles, used in the caching of size calculations",
+          "     *",
+          "     * @param {*} styles",
+          "     * @param {Integer?} width optional width",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a key for a specific set of styles, used in the caching of size calculations</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} styles",
+            "paramName": "styles",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{Integer?} width optional width",
+            "paramName": "width",
+            "description": "optional width",
+            "optional": true,
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4,
+          "index": 10016
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 10349
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "*"
+        },
+        {
+          "name": "width",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__getCachedSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the cached size of the given text",
+          "     *",
+          "     * @param {String} cacheKey",
+          "     * @param {String} text",
+          "     * @returns {*} size object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the cached size of the given text</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} cacheKey",
+            "paramName": "cacheKey",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} text",
+            "paramName": "text",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} size object",
+            "type": "*",
+            "description": "size object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 10520
+        },
+        "end": {
+          "line": 371,
+          "column": 5,
+          "index": 10646
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheKey",
+          "type": "string"
+        },
+        {
+          "name": "text",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "__storeCacheSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores the size of the given text in the cache",
+          "     *",
+          "     * @param {String} cacheKey",
+          "     * @param {String} text",
+          "     * @param {*} size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stores the size of the given text in the cache</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} cacheKey",
+            "paramName": "cacheKey",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} text",
+            "paramName": "text",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{*} size",
+            "paramName": "size",
+            "description": "",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4,
+          "index": 10813
+        },
+        "end": {
+          "line": 392,
+          "column": 5,
+          "index": 11116
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cacheKey",
+          "type": "string"
+        },
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "*"
+        }
+      ],
+      "appearsIn": []
+    },
+    "flushSizeCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flushes the size cache - use this when something changes, for example webfonts have been loaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flushes the size cache - use this when something changes, for example webfonts have been loaded</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4,
+          "index": 11242
+        },
+        "end": {
+          "line": 399,
+          "column": 5,
+          "index": 11303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__measureSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Measure the size of the given element",
+          "     *",
+          "     * @param element {Element} The element to measure",
+          "     * @param styles {Map?null} Optional styles to apply",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Measure the size of the given element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element to measure",
+            "paramName": "element",
+            "description": " The element to measure",
+            "type": "qx.bom.Element"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map?null} Optional styles to apply",
+            "paramName": "styles",
+            "description": " Optional styles to apply",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 11576
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 11993
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "styles",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

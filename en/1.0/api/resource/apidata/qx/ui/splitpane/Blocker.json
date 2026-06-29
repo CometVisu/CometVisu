@@ -1,0 +1,380 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601268,
+  "lastModifiedIso": "2026-06-29T04:00:01.268Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/splitpane/Blocker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 834
+    },
+    "end": {
+      "line": 135,
+      "column": 3,
+      "index": 3753
+    }
+  },
+  "className": "qx.ui.splitpane.Blocker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A special blocker element for the splitpane which is based on",
+      " * {@link qx.html.Element} and takes care of the positioning of the div.",
+      " *",
+      " * @internal",
+      " * @asset(qx/static/blank.gif)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A special blocker element for the splitpane which is based on\n {@link qx.html.Element} and takes care of the positioning of the div.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/static/blank.gif"
+      }
+    ]
+  },
+  "superClass": "qx.html.Element",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "orientation"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 997
+      },
+      "end": {
+        "line": 58,
+        "column": 3,
+        "index": 1584
+      }
+    }
+  },
+  "properties": {
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1730
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1850
+        }
+      },
+      "json": {
+        "init": "horizontal",
+        "check": [
+          "horizontal",
+          "vertical"
+        ],
+        "apply": "_applyOrientation"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The orientation of the blocker which should be the same as the",
+          "     * orientation of the splitpane.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The orientation of the blocker which should be the same as the\n orientation of the splitpane.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyOrientation": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1896
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the two parameters and set the propper width of the blocker.",
+          "     *",
+          "     * @param offset {Number} The offset of the splitpane.",
+          "     * @param spliterSize {Number} The width of the splitter.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the two parameters and set the propper width of the blocker.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Number} The offset of the splitpane.",
+            "paramName": "offset",
+            "description": " The offset of the splitpane.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "spliterSize {Number} The width of the splitter.",
+            "paramName": "spliterSize",
+            "description": " The width of the splitter.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2537
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2662
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "number"
+        },
+        {
+          "name": "spliterSize",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the two parameter and sets the propper height of the blocker.",
+          "     *",
+          "     * @param offset {Number} The offset of the splitpane.",
+          "     * @param spliterSize {Number} The height of the splitter.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the two parameter and sets the propper height of the blocker.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Number} The offset of the splitpane.",
+            "paramName": "offset",
+            "description": " The offset of the splitpane.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "spliterSize {Number} The height of the splitter.",
+            "paramName": "spliterSize",
+            "description": " The height of the splitter.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2889
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3018
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "number"
+        },
+        {
+          "name": "spliterSize",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setLeft": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the two parameter and sets the propper left position of",
+          "     * the blocker.",
+          "     *",
+          "     * @param offset {Number} The offset of the splitpane.",
+          "     * @param splitterLeft {Number} The left position of the splitter.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the two parameter and sets the propper left position of\n the blocker.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Number} The offset of the splitpane.",
+            "paramName": "offset",
+            "description": " The offset of the splitpane.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "splitterLeft {Number} The left position of the splitter.",
+            "paramName": "splitterLeft",
+            "description": " The left position of the splitter.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3267
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3386
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "number"
+        },
+        {
+          "name": "splitterLeft",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setTop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the two parameter and sets the propper top position of",
+          "     * the blocker.",
+          "     *",
+          "     * @param offset {Number} The offset of the splitpane.",
+          "     * @param splitterTop {Number} The top position of the splitter.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the two parameter and sets the propper top position of\n the blocker.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Number} The offset of the splitpane.",
+            "paramName": "offset",
+            "description": " The offset of the splitpane.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "splitterTop {Number} The top position of the splitter.",
+            "paramName": "splitterTop",
+            "description": " The top position of the splitter.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3632
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3745
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "number"
+        },
+        {
+          "name": "splitterTop",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

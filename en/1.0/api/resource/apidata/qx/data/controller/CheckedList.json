@@ -1,0 +1,852 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601446,
+  "lastModifiedIso": "2026-06-29T04:00:01.446Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/CheckedList.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 963
+    },
+    "end": {
+      "line": 385,
+      "column": 3,
+      "index": 10454
+    }
+  },
+  "className": "qx.data.controller.CheckedList",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Extension of `qx.data.controller.List` which adds support for `qx.ui.form.CheckedList`",
+      " * and `qx.ui.form.CheckedSelectBox`.",
+      " *",
+      " * The principal is that the underlying `List` controller implementation has a model which",
+      " * is the complete array of items that can be selected, and that array is used to populate",
+      " * the UI widget (ie as normal).",
+      " *",
+      " * The `checked` psuedo property in this `CheckedList` controller relates to the checked",
+      " * property of the UI widget.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Extension of <code>qx.data.controller.List</code> which adds support for <code>qx.ui.form.CheckedList</code>\n and <code>qx.ui.form.CheckedSelectBox</code>.\n The principal is that the underlying <code>List</code> controller implementation has a model which\n is the complete array of items that can be selected, and that array is used to populate\n the UI widget (ie as normal).\n The <code>checked</code> psuedo property in this <code>CheckedList</code> controller relates to the checked\n property of the UI widget.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.data.controller.List",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "model"
+      },
+      {
+        "name": "widget"
+      },
+      {
+        "name": "path"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1268
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1428
+      }
+    }
+  },
+  "properties": {
+    "checked": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1596
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "qx.data.Array",
+        "event": "changeChecked",
+        "apply": "_applyChecked"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "checkedLabelPath": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1867
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1965
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "__updateTags",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as a label for a tag for a checked item. This is only needed if",
+          "     * used with a CheckedSelectBox, and only if live updates of the label",
+          "     * are required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as a label for a tag for a checked item. This is only needed if\n used with a CheckedSelectBox, and only if live updates of the label\n are required.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "checkedIconPath": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2236
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2333
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "__updateTags",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as an icon for a tag for a checked item. This is only needed if",
+          "     * used with a CheckedSelectBox, and only if live updates of the label",
+          "     * are required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as an icon for a tag for a checked item. This is only needed if\n used with a CheckedSelectBox, and only if live updates of the label\n are required.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "checkedLabelOptions": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2517
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2595
+        }
+      },
+      "json": {
+        "apply": "__updateTags",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the checkedLabel binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the checkedLabel binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "checkedIconOptions": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2779
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2856
+        }
+      },
+      "json": {
+        "apply": "__updateTags",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the checked icon binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the checked icon binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyChecked": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2880
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3144
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3184
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3665
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "__onCheckedChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the checked array",
+          "     *",
+          "     * @param evt {qx.event.type.Data} the event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes to the checked array</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} the event",
+            "paramName": "evt",
+            "description": " the event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3798
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3987
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 4054
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "_setFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4094
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 4239
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "syncWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4279
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4439
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4479
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 4741
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "_applyTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 4781
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 5860
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "overriddenFrom": "qx.data.controller.List",
+      "appearsIn": [
+        "qx.data.controller.List"
+      ]
+    },
+    "__onTargetCheckedChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes in the target widget's `checked` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes in the target widget's <code>checked</code> property</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 5958
+        },
+        "end": {
+          "line": 251,
+          "column": 5,
+          "index": 6394
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onTargetAttachResultsTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes in the target widget's `attachResults` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes in the target widget's <code>attachResults</code> property</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 6498
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 6691
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onTargetDetachResultsTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes in the target widget's `detachResults` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes in the target widget's <code>detachResults</code> property</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4,
+          "index": 6795
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 6983
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__updateTags": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates all tags in the target widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates all tags in the target widget</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 7051
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 7368
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__attachTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attaches a single tag; used to bind to the tag so that live updates to the underlying model are reflected in tag names",
+          "     *",
+          "     * @param tagWidget {qx.ui.core.Widget} the widget which is the tag",
+          "     * @param item {qx.ui.core.Widget} the list item that lists the model item that this tag is for",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Attaches a single tag; used to bind to the tag so that live updates to the underlying model are reflected in tag names</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagWidget {qx.ui.core.Widget} the widget which is the tag",
+            "paramName": "tagWidget",
+            "description": " the widget which is the tag",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} the list item that lists the model item that this tag is for",
+            "paramName": "item",
+            "description": " the list item that lists the model item that this tag is for",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 7696
+        },
+        "end": {
+          "line": 312,
+          "column": 5,
+          "index": 8315
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__detachTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detaches a single tag, inverse of `__attachTag`",
+          "     *",
+          "     * @param tagWidget {qx.ui.core.Widget} the widget which is the tag",
+          "     * @param item {qx.ui.core.Widget} the list item that lists the model item that this tag is for",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detaches a single tag, inverse of <code>__attachTag</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagWidget {qx.ui.core.Widget} the widget which is the tag",
+            "paramName": "tagWidget",
+            "description": " the widget which is the tag",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} the list item that lists the model item that this tag is for",
+            "paramName": "item",
+            "description": " the list item that lists the model item that this tag is for",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 320,
+          "column": 4,
+          "index": 8572
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 9034
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the checked widget items to match the array of checked model items",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the checked widget items to match the array of checked model items</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 9139
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 10446
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

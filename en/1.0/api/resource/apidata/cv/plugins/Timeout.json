@@ -1,0 +1,408 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/Timeout.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 963
+    },
+    "end": {
+      "line": 196,
+      "column": 3,
+      "index": 5837
+    }
+  },
+  "className": "cv.plugins.Timeout",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This plugins jumps back to a defined page after a given timeout period",
+      " *",
+      " * @author Carsten Tschach (Carsten@Tschach.com)",
+      " * @since 2012",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This plugins jumps back to a defined page after a given timeout period</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Carsten Tschach (Carsten@Tschach.com)"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2012"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractBasicWidget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1198
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1296
+      }
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1866
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 2095
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2102
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2388
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "target": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2556
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2612
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "id_"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "time": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2619
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2671
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 600
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "debug": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2678
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2734
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__timeoutIdleCount": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2894
+        },
+        "end": {
+          "line": 109,
+          "column": 28,
+          "index": 2918
+        }
+      },
+      "appearsIn": []
+    },
+    "__timeoutCurrentPage": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2924
+        },
+        "end": {
+          "line": 110,
+          "column": 30,
+          "index": 2950
+        }
+      },
+      "appearsIn": []
+    },
+    "__timeoutCurrentPageTitle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2956
+        },
+        "end": {
+          "line": 111,
+          "column": 35,
+          "index": 2987
+        }
+      },
+      "appearsIn": []
+    },
+    "__timeoutTargetPage": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 112,
+          "column": 29,
+          "index": 3018
+        }
+      },
+      "appearsIn": []
+    },
+    "__timer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3024
+        },
+        "end": {
+          "line": 113,
+          "column": 17,
+          "index": 3037
+        }
+      },
+      "appearsIn": []
+    },
+    "__initialize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3044
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4274
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onUserAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4281
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4339
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "timeoutTrigger": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4346
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5463
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 188,
+        "column": 2,
+        "index": 5611
+      },
+      "end": {
+        "line": 190,
+        "column": 3,
+        "index": 5664
+      }
+    }
+  }
+}

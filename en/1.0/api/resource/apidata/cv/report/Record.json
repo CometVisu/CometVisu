@@ -1,0 +1,960 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543938,
+  "lastModifiedIso": "2026-06-29T03:59:03.938Z",
+  "classFilename": "../../source/class/cv/report/Record.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 962
+    },
+    "end": {
+      "line": 524,
+      "column": 3,
+      "index": 16628
+    }
+  },
+  "className": "cv.report.Record",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Recording tool for user interactions on existing configs. Used for bug reproduction.",
+      "",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0 (2017)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Recording tool for user interactions on existing configs. Used for bug reproduction.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0 (2017)"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1190
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1380
+      }
+    }
+  },
+  "statics": {
+    "CONFIG": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1536
+        },
+        "end": {
+          "line": 50,
+          "column": 20,
+          "index": 1552
+        }
+      },
+      "appearsIn": []
+    },
+    "BACKEND": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1558
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1576
+        }
+      },
+      "appearsIn": []
+    },
+    "USER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1582
+        },
+        "end": {
+          "line": 52,
+          "column": 16,
+          "index": 1594
+        }
+      },
+      "appearsIn": []
+    },
+    "CACHE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1600
+        },
+        "end": {
+          "line": 53,
+          "column": 18,
+          "index": 1614
+        }
+      },
+      "appearsIn": []
+    },
+    "XHR": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 54,
+          "column": 14,
+          "index": 1630
+        }
+      },
+      "appearsIn": []
+    },
+    "SCREEN": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1636
+        },
+        "end": {
+          "line": 55,
+          "column": 20,
+          "index": 1652
+        }
+      },
+      "appearsIn": []
+    },
+    "RUNTIME": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1658
+        },
+        "end": {
+          "line": 56,
+          "column": 22,
+          "index": 1676
+        }
+      },
+      "appearsIn": []
+    },
+    "STORAGE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1682
+        },
+        "end": {
+          "line": 57,
+          "column": 22,
+          "index": 1700
+        }
+      },
+      "appearsIn": []
+    },
+    "REPLAYING": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1706
+        },
+        "end": {
+          "line": 58,
+          "column": 20,
+          "index": 1722
+        }
+      },
+      "appearsIn": []
+    },
+    "data": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1728
+        },
+        "end": {
+          "line": 59,
+          "column": 14,
+          "index": 1738
+        }
+      },
+      "appearsIn": []
+    },
+    "USER_EVENTS": {
+      "jsdoc": {
+        "raw": [
+          " Events that should be recorded"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1783
+        },
+        "end": {
+          "line": 62,
+          "column": 81,
+          "index": 1860
+        }
+      },
+      "appearsIn": []
+    },
+    "prepare": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1867
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3403
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getClientData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3410
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 4558
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "record": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4565
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "category"
+        },
+        {
+          "name": "path"
+        },
+        {
+          "name": "data"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "appearsIn": []
+    },
+    "logCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Save cache in",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Save cache in</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4813
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 5061
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "logLocalStorage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 5068
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5198
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "normalizeUrl": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 5205
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 5883
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "appearsIn": []
+    },
+    "download": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 5890
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 6066
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 6073
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 6247
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFileName": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 6254
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 6334
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__start": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 6494
+        },
+        "end": {
+          "line": 214,
+          "column": 17,
+          "index": 6507
+        }
+      },
+      "appearsIn": []
+    },
+    "__log": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 6513
+        },
+        "end": {
+          "line": 215,
+          "column": 15,
+          "index": 6524
+        }
+      },
+      "appearsIn": []
+    },
+    "__xhr": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 6530
+        },
+        "end": {
+          "line": 216,
+          "column": 15,
+          "index": 6541
+        }
+      },
+      "appearsIn": []
+    },
+    "__listeners": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6547
+        },
+        "end": {
+          "line": 217,
+          "column": 21,
+          "index": 6564
+        }
+      },
+      "appearsIn": []
+    },
+    "__data": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6570
+        },
+        "end": {
+          "line": 218,
+          "column": 16,
+          "index": 6582
+        }
+      },
+      "appearsIn": []
+    },
+    "__delta": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 6588
+        },
+        "end": {
+          "line": 219,
+          "column": 15,
+          "index": 6599
+        }
+      },
+      "appearsIn": []
+    },
+    "__minDelta": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 6605
+        },
+        "end": {
+          "line": 220,
+          "column": 17,
+          "index": 6618
+        }
+      },
+      "appearsIn": []
+    },
+    "__maxDelta": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6624
+        },
+        "end": {
+          "line": 221,
+          "column": 18,
+          "index": 6638
+        }
+      },
+      "appearsIn": []
+    },
+    "__deltas": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 6644
+        },
+        "end": {
+          "line": 222,
+          "column": 18,
+          "index": 6658
+        }
+      },
+      "appearsIn": []
+    },
+    "__ID": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 6664
+        },
+        "end": {
+          "line": 223,
+          "column": 11,
+          "index": 6671
+        }
+      },
+      "appearsIn": []
+    },
+    "record": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 6678
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 7577
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "category"
+        },
+        {
+          "name": "path"
+        },
+        {
+          "name": "data"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__scrubSensitiveContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config",
+          "     * @param category {String} recording category",
+          "     * @param data {Object} recorded content",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "category {String} recording category",
+            "paramName": "category",
+            "description": " recording category",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object} recorded content",
+            "paramName": "data",
+            "description": " recorded content",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 7812
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 9265
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "category",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__extractDataFromEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract useful data we need from every event",
+          "     * @param nativeEvent {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extract useful data we need from every event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nativeEvent {Event}",
+            "paramName": "nativeEvent",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 9374
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 12153
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nativeEvent",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "recordNativeEvent": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4,
+          "index": 12160
+        },
+        "end": {
+          "line": 414,
+          "column": 5,
+          "index": 13489
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "recordScroll": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 4,
+          "index": 13496
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 13849
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getDomPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param el {Element|Node|Window|undefined}",
+          "     * @return {string} CSS selector to element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element|Node|Window|undefined}",
+            "paramName": "el",
+            "type": [
+              "Element",
+              "Node",
+              "Window",
+              "undefined"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} CSS selector to element",
+            "type": "string",
+            "description": "CSS selector to element"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 433,
+          "column": 4,
+          "index": 13969
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 15324
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": [
+            "Element",
+            "Node",
+            "Window",
+            "undefined"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 4,
+          "index": 15331
+        },
+        "end": {
+          "line": 486,
+          "column": 5,
+          "index": 15624
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dontStop"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFileName": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 488,
+          "column": 4,
+          "index": 15631
+        },
+        "end": {
+          "line": 499,
+          "column": 5,
+          "index": 16029
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "download": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Download Log as file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Download Log as file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4,
+          "index": 16080
+        },
+        "end": {
+          "line": 522,
+          "column": 5,
+          "index": 16620
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

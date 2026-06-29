@@ -1,0 +1,674 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/ScriptLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 819
+    },
+    "end": {
+      "line": 334,
+      "column": 3,
+      "index": 10709
+    }
+  },
+  "className": "cv.util.ScriptLoader",
+  "jsdoc": {
+    "raw": [
+      " ScriptLoader.js",
+      " *",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 1051
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1254
+      }
+    }
+  },
+  "statics": {
+    "markAsLoaded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1396
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1474
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isMarkedAsLoaded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1481
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1567
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "includeStylesheet": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include a CSS file",
+          "     *",
+          "     * @param href {String} Href value",
+          "     * @param media {string?} Content of the media attribute",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Include a CSS file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "href {String} Href value",
+            "paramName": "href",
+            "description": " Href value",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "media {string?} Content of the media attribute",
+            "paramName": "media",
+            "description": " Content of the media attribute",
+            "optional": true,
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1723
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2272
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "href",
+          "type": "string"
+        },
+        {
+          "name": "media",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "includeScript": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include a JS file with module support",
+          "     *",
+          "     * @param src {String} Href value",
+          "     * @param type {string?} Content of the type attribute",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Include a JS file with module support</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "src {String} Href value",
+            "paramName": "src",
+            "description": " Href value",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "type {string?} Content of the type attribute",
+            "paramName": "type",
+            "description": " Content of the type attribute",
+            "optional": true,
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2444
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2930
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "allQueued": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3096
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3216
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_checkQueue",
+        "event": "changeAllQueued"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "finished": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3223
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3313
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeFinished"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "finished": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3471
+        },
+        "end": {
+          "line": 128,
+          "column": 35,
+          "index": 3502
+        }
+      }
+    },
+    "stylesLoaded": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3508
+        },
+        "end": {
+          "line": 129,
+          "column": 39,
+          "index": 3543
+        }
+      }
+    },
+    "stylesAndScriptsLoaded": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3549
+        },
+        "end": {
+          "line": 130,
+          "column": 49,
+          "index": 3594
+        }
+      }
+    },
+    "designError": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3600
+        },
+        "end": {
+          "line": 131,
+          "column": 37,
+          "index": 3633
+        }
+      }
+    }
+  },
+  "members": {
+    "__scriptsSetup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3793
+        },
+        "end": {
+          "line": 140,
+          "column": 25,
+          "index": 3814
+        }
+      },
+      "appearsIn": []
+    },
+    "__stylesSetup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3820
+        },
+        "end": {
+          "line": 141,
+          "column": 24,
+          "index": 3840
+        }
+      },
+      "appearsIn": []
+    },
+    "__stylesLoaded": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3846
+        },
+        "end": {
+          "line": 142,
+          "column": 24,
+          "index": 3866
+        }
+      },
+      "appearsIn": []
+    },
+    "__scriptQueue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3872
+        },
+        "end": {
+          "line": 143,
+          "column": 23,
+          "index": 3891
+        }
+      },
+      "appearsIn": []
+    },
+    "__loaders": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3897
+        },
+        "end": {
+          "line": 144,
+          "column": 19,
+          "index": 3912
+        }
+      },
+      "appearsIn": []
+    },
+    "__listener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3918
+        },
+        "end": {
+          "line": 145,
+          "column": 20,
+          "index": 3934
+        }
+      },
+      "appearsIn": []
+    },
+    "__markedAsLoaded": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3940
+        },
+        "end": {
+          "line": 146,
+          "column": 26,
+          "index": 3962
+        }
+      },
+      "appearsIn": []
+    },
+    "addStyles": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3969
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5745
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styleArr"
+        }
+      ],
+      "appearsIn": []
+    },
+    "markAsLoaded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 5752
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5933
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isMarkedAsLoaded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 5940
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6021
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addScripts": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 6028
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scriptArr"
+        },
+        {
+          "name": "order"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__loadSingleScript": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load one script",
+          "     *",
+          "     * @param script {String} path to script",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load one script</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "script {String} path to script",
+            "paramName": "script",
+            "description": " path to script",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4,
+          "index": 7626
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 8382
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "script",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onLoaded": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 8389
+        },
+        "end": {
+          "line": 273,
+          "column": 5,
+          "index": 8558
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFailed": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 8565
+        },
+        "end": {
+          "line": 302,
+          "column": 5,
+          "index": 9642
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkQueue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 9671
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 10701
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

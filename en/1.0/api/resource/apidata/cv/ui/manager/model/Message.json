@@ -1,0 +1,127 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543944,
+  "lastModifiedIso": "2026-06-29T03:59:03.944Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/Message.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 913
+    },
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1526
+    }
+  },
+  "className": "cv.ui.manager.model.Message",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Model for Messages shown in Snackbar/Dialog (usually error, warnings or info messages).",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Model for Messages shown in Snackbar/Dialog (usually error, warnings or info messages).</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "title": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1134
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1214
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeTitle"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "content": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1221
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1305
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeContent"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "type": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1312
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1425
+        }
+      },
+      "json": {
+        "check": [
+          "alert",
+          "hint",
+          "warning",
+          "error"
+        ],
+        "nullable": true,
+        "event": "changeType"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "sticky": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1518
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeSticky"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "statics": {}
+}

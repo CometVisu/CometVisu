@@ -1,0 +1,204 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602431,
+  "lastModifiedIso": "2026-06-29T04:00:02.431Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/INumberForm.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 607
+    },
+    "end": {
+      "line": 71,
+      "column": 3,
+      "index": 1767
+    }
+  },
+  "className": "qx.ui.form.INumberForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Form interface for all form widgets which use a numeric value as their",
+      " * primary data type like a spinner.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Form interface for all form widgets which use a numeric value as their\n primary data type like a spinner.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.IField",
+  "events": {
+    "changeValue": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the value was modified "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the value was modified</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 929
+        },
+        "end": {
+          "line": 34,
+          "column": 37,
+          "index": 962
+        }
+      }
+    }
+  },
+  "members": {
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's value.",
+          "     *",
+          "     * @param value {Number|null} The new value of the element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the element's value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number|null} The new value of the element.",
+            "paramName": "value",
+            "description": " The new value of the element.",
+            "type": [
+              "Number",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1486
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1545
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Number",
+            "null"
+          ]
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.IField",
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the element's value to its initial value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the element's value to its initial value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 62,
+          "column": 19,
+          "index": 1639
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.form.IField",
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element's user set value.",
+          "     *",
+          "     * @return {Number|null} The value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The element's user set value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number|null} The value.",
+            "type": "Number|null",
+            "description": "The value."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1746
+        },
+        "end": {
+          "line": 69,
+          "column": 17,
+          "index": 1759
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "overriddenFrom": "qx.ui.form.IField",
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

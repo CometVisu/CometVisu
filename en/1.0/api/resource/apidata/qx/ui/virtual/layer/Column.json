@@ -1,0 +1,173 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601566,
+  "lastModifiedIso": "2026-06-29T04:00:01.566Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/layer/Column.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 533
+    },
+    "end": {
+      "line": 122,
+      "column": 3,
+      "index": 3100
+    }
+  },
+  "className": "qx.ui.virtual.layer.Column",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Row layer renders row background colors.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Row layer renders row background colors.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.layer.AbstractBackground",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 857
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 923
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "column-layer"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "_fullUpdate": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1149
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2443
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow"
+        },
+        {
+          "name": "firstColumn"
+        },
+        {
+          "name": "rowSizes"
+        },
+        {
+          "name": "columnSizes"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.layer.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.layer.Abstract"
+      ]
+    },
+    "updateLayerWindow": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2450
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2785
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow"
+        },
+        {
+          "name": "firstColumn"
+        },
+        {
+          "name": "rowSizes"
+        },
+        {
+          "name": "columnSizes"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.layer.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.layer.Abstract",
+        "qx.ui.virtual.core.ILayer"
+      ]
+    },
+    "setColor": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2810
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3092
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        },
+        {
+          "name": "color"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.layer.AbstractBackground",
+      "appearsIn": [
+        "qx.ui.virtual.layer.AbstractBackground"
+      ]
+    }
+  },
+  "statics": {}
+}

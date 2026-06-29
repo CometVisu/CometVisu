@@ -1,0 +1,282 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602797,
+  "lastModifiedIso": "2026-06-29T04:00:02.797Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/MForm.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 570
+    },
+    "end": {
+      "line": 112,
+      "column": 3,
+      "index": 2841
+    }
+  },
+  "className": "qx.ui.form.MForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin handling the valid and required properties for the form widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin handling the valid and required properties for the form widgets.</p>"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 23,
+        "column": 2,
+        "index": 610
+      },
+      "end": {
+        "line": 31,
+        "column": 3,
+        "index": 849
+      }
+    }
+  },
+  "properties": {
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 105,
+        "column": 2,
+        "index": 2616
+      },
+      "end": {
+        "line": 111,
+        "column": 3,
+        "index": 2837
+      }
+    }
+  },
+  "statics": {}
+}

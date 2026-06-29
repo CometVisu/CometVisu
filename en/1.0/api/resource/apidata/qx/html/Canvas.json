@@ -1,0 +1,379 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601383,
+  "lastModifiedIso": "2026-06-29T04:00:01.383Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Canvas.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 529
+    },
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 3082
+    }
+  },
+  "className": "qx.html.Canvas",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Managed wrapper for the HTML canvas tag.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Managed wrapper for the HTML canvas tag.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.html.Element",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "styles"
+      },
+      {
+        "name": "attributes"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1091
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1221
+      }
+    }
+  },
+  "members": {
+    "__canvas": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1425
+        },
+        "end": {
+          "line": 49,
+          "column": 18,
+          "index": 1439
+        }
+      },
+      "appearsIn": []
+    },
+    "_createDomElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1464
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1519
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element",
+        "qx.html.Node"
+      ]
+    },
+    "getCanvas": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the canvas element [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas\">W3C-HMTL5</a>]",
+          "     *",
+          "     * @return {Element} The canvas DOM element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the canvas element [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvas\">W3C-HMTL5</a>]</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The canvas DOM element.",
+            "type": "qx.html.Element",
+            "description": "The canvas DOM element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1745
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1792
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "setWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the width attribute of the canvas element. This property controls the",
+          "     * size of the canvas coordinate space.",
+          "     *",
+          "     * @param width {Integer} canvas width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the width attribute of the canvas element. This property controls the\n size of the canvas coordinate space.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer} canvas width",
+            "paramName": "width",
+            "description": " canvas width",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1990
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2048
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the width attribute of the canvas element",
+          "     *",
+          "     * @return {Integer} canvas width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the width attribute of the canvas element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} canvas width",
+            "type": "Integer",
+            "description": "canvas width"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2169
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2221
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the height attribute of the canvas element. This property controls the",
+          "     * size of the canvas coordinate space.",
+          "     *",
+          "     * @param height {Integer} canvas height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the height attribute of the canvas element. This property controls the\n size of the canvas coordinate space.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "height {Integer} canvas height",
+            "paramName": "height",
+            "description": " canvas height",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2422
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2484
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the height attribute of the canvas element",
+          "     *",
+          "     * @return {Integer} canvas height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the height attribute of the canvas element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} canvas height",
+            "type": "Integer",
+            "description": "canvas height"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2607
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2661
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getContext2d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the canvas' 2D rendering context",
+          "     * [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d\">W3C-HTML5</a>].",
+          "     * All drawing operations are performed on this context.",
+          "     *",
+          "     * @return {CanvasRenderingContext2D} The 2D rendering context.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the canvas' 2D rendering context\n [<a href=\"http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#canvasrenderingcontext2d\">W3C-HTML5</a>].\n All drawing operations are performed on this context.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{CanvasRenderingContext2D} The 2D rendering context.",
+            "type": "CanvasRenderingContext2D",
+            "description": "The 2D rendering context."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3007
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3074
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "CanvasRenderingContext2D"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

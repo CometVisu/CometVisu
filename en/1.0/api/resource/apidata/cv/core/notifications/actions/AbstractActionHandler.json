@@ -1,0 +1,171 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543933,
+  "lastModifiedIso": "2026-06-29T03:59:03.933Z",
+  "classFilename": "../../source/class/cv/core/notifications/actions/AbstractActionHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 917
+    },
+    "end": {
+      "line": 79,
+      "column": 3,
+      "index": 1933
+    }
+  },
+  "className": "cv.core.notifications.actions.AbstractActionHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Opens a link in a new window.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Opens a link in a new window.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "type"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1165
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1222
+      }
+    }
+  },
+  "properties": {
+    "needsConfirmation": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1384
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1452
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "deleteMessageAfterExecution": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1459
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1537
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "style": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1544
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1596
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "close": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1740
+        },
+        "end": {
+          "line": 68,
+          "column": 32,
+          "index": 1768
+        }
+      }
+    }
+  },
+  "members": {
+    "_type": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1914
+        },
+        "end": {
+          "line": 77,
+          "column": 15,
+          "index": 1925
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

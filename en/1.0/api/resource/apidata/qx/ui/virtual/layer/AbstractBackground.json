@@ -1,0 +1,551 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600857,
+  "lastModifiedIso": "2026-06-29T04:00:00.857Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/layer/AbstractBackground.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 555
+    },
+    "end": {
+      "line": 188,
+      "column": 3,
+      "index": 4833
+    }
+  },
+  "className": "qx.ui.virtual.layer.AbstractBackground",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for the {@link Row} and {@link Column} layers.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for the {@link Row} and {@link Column} layers.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.layer.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "colorEven"
+      },
+      {
+        "name": "colorOdd"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 976
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1209
+      }
+    }
+  },
+  "properties": {
+    "colorEven": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1454
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1570
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyColorEven",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* color for event indexes "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>color for event indexes</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "colorOdd": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1724
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyColorOdd",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* color for odd indexes "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>color for odd indexes</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__colorEven": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1932
+        },
+        "end": {
+          "line": 81,
+          "column": 21,
+          "index": 1949
+        }
+      },
+      "appearsIn": []
+    },
+    "__colorOdd": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 1955
+        },
+        "end": {
+          "line": 82,
+          "column": 20,
+          "index": 1971
+        }
+      },
+      "appearsIn": []
+    },
+    "__customColors": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 1977
+        },
+        "end": {
+          "line": 83,
+          "column": 24,
+          "index": 1997
+        }
+      },
+      "appearsIn": []
+    },
+    "__decorators": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2003
+        },
+        "end": {
+          "line": 84,
+          "column": 22,
+          "index": 2021
+        }
+      },
+      "appearsIn": []
+    },
+    "setColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the color for the given index",
+          "     *",
+          "     * @param index {Integer} Index to set the color for",
+          "     * @param color {Color|null} the color to set. A value of <code>null</code>",
+          "     *    will reset the color.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the color for the given index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index to set the color for",
+            "paramName": "index",
+            "description": " Index to set the color for",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "color {Color|null} the color to set. A value of <code>null</code>\n    will reset the color.",
+            "paramName": "color",
+            "description": " the color to set. A value of <code>null</code>\n    will reset the color.",
+            "type": [
+              "Color",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2458
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2673
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "color",
+          "type": [
+            "Color",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "clearCustomColors": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear all colors set using {@link #setColor}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clear all colors set using {@link #setColor}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2749
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2838
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the color at the given index",
+          "     *",
+          "     * @param index {Integer} The index to get the color for.",
+          "     * @return {Color} The color at the given index",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the color at the given index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index to get the color for.",
+            "paramName": "index",
+            "description": " The index to get the color for.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Color} The color at the given index",
+            "type": "Color",
+            "description": "The color at the given index"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3022
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3241
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Color"
+      },
+      "appearsIn": []
+    },
+    "_applyColorEven": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3270
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3490
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyColorOdd": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3519
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 3736
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setBackground": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the decorator for the given index",
+          "     *",
+          "     * @param index {Integer} Index to set the color for",
+          "     * @param decorator {qx.ui.decoration.IDecorator|null} the decorator to set. A value of",
+          "     *    <code>null</code> will reset the decorator.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the decorator for the given index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index to set the color for",
+            "paramName": "index",
+            "description": " Index to set the color for",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "decorator {qx.ui.decoration.IDecorator|null} the decorator to set. A value of\n    <code>null</code> will reset the decorator.",
+            "paramName": "decorator",
+            "description": " the decorator to set. A value of\n    <code>null</code> will reset the decorator.",
+            "type": [
+              "qx.ui.decoration.IDecorator",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 4015
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "decorator",
+          "type": [
+            "qx.ui.decoration.IDecorator",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "getBackground": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the decorator at the given index",
+          "     *",
+          "     * @param index {Integer} The index to get the decorator for.",
+          "     * @return {qx.ui.decoration.IDecorator} The decorator at the given index",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the decorator at the given index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index to get the decorator for.",
+            "paramName": "index",
+            "description": " The index to get the decorator for.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.decoration.IDecorator} The decorator at the given index",
+            "type": "qx.ui.decoration.IDecorator",
+            "description": "The decorator at the given index"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4496
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4563
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.decoration.IDecorator"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 185,
+        "column": 2,
+        "index": 4761
+      },
+      "end": {
+        "line": 187,
+        "column": 3,
+        "index": 4829
+      }
+    }
+  },
+  "statics": {}
+}

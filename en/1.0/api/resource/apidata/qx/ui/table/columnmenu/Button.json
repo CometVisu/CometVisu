@@ -1,0 +1,208 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601346,
+  "lastModifiedIso": "2026-06-29T04:00:01.346Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/columnmenu/Button.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 566
+    },
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 2509
+    }
+  },
+  "className": "qx.ui.table.columnmenu.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The traditional qx.ui.menu.MenuButton to access the column visibility menu.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The traditional qx.ui.menu.MenuButton to access the column visibility menu.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.MenuButton",
+  "interfaces": [
+    "qx.ui.table.IColumnMenuButton"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 853
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 954
+      }
+    }
+  },
+  "members": {
+    "__columnMenuButtons": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 974
+        },
+        "end": {
+          "line": 39,
+          "column": 29,
+          "index": 999
+        }
+      },
+      "appearsIn": []
+    },
+    "__blocker": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1005
+        },
+        "end": {
+          "line": 40,
+          "column": 19,
+          "index": 1020
+        }
+      },
+      "appearsIn": []
+    },
+    "factory": {
+      "jsdoc": {
+        "raw": [
+          " Documented in qx.ui.table.IColumnMenu"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1072
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IColumnMenuButton"
+      ]
+    },
+    "getBlocker": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the blocker of the columnmenu button.",
+          "     *",
+          "     * @return {qx.ui.core.Blocker} the blocker.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the blocker of the columnmenu button.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Blocker} the blocker.",
+            "type": "qx.ui.core.Blocker",
+            "description": "the blocker."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2028
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Blocker"
+      },
+      "appearsIn": []
+    },
+    "empty": {
+      "jsdoc": {
+        "raw": [
+          " Documented in qx.ui.table.IColumnMenu"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2080
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2263
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.table.IColumnMenuButton"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 98,
+        "column": 2,
+        "index": 2459
+      },
+      "end": {
+        "line": 100,
+        "column": 3,
+        "index": 2505
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

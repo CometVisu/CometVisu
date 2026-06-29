@@ -1,0 +1,308 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602948,
+  "lastModifiedIso": "2026-06-29T04:00:02.948Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/OperatingSystem.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 788
+    },
+    "end": {
+      "line": 250,
+      "column": 3,
+      "index": 7122
+    }
+  },
+  "className": "qx.bom.client.OperatingSystem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for checking the operating systems name.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " * @ignore(process.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for checking the operating systems name.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "process.*"
+      }
+    ]
+  },
+  "statics": {
+    "getName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the name of the operating system.",
+          "     * @return {String} The name of the operating system.",
+          "     * @internal",
+          "     * @ignore(process.*)",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for the name of the operating system.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the operating system.",
+            "type": "string",
+            "description": "The name of the operating system."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "process.*"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1036
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2827
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__ids": {
+      "jsdoc": {
+        "raw": [
+          "* Maps user agent names to system IDs "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maps user agent names to system IDs</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2881
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4328
+        }
+      },
+      "appearsIn": []
+    },
+    "getVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the version of the operating system using the internal map.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The version as strin or an empty string if the version",
+          "     *   could not be detected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for the version of the operating system using the internal map.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The version as strin or an empty string if the version\n   could not be detected.",
+            "type": "string",
+            "description": "The version as strin or an empty string if the version\n   could not be detected."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4564
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 4945
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getVersionForDesktopOs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detect OS version for desktop devices",
+          "     * @param userAgent {String} userAgent parameter, needed for detection.",
+          "     * @return {String} version number as string or null.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detect OS version for desktop devices</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "userAgent {String} userAgent parameter, needed for detection.",
+            "paramName": "userAgent",
+            "description": " userAgent parameter, needed for detection.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} version number as string or null.",
+            "type": "string",
+            "description": "version number as string or null."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 5147
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "userAgent",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getVersionForMobileOs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detect OS version for mobile devices",
+          "     * @param userAgent {String} userAgent parameter, needed for detection.",
+          "     * @return {String} version number as string or null.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detect OS version for mobile devices</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "userAgent {String} userAgent parameter, needed for detection.",
+            "paramName": "userAgent",
+            "description": " userAgent parameter, needed for detection.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} version number as string or null.",
+            "type": "string",
+            "description": "version number as string or null."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 5745
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6969
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "userAgent",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

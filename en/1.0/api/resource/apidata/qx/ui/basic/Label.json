@@ -1,0 +1,1099 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602556,
+  "lastModifiedIso": "2026-06-29T04:00:02.556Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/basic/Label.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 61,
+      "column": 0,
+      "index": 2013
+    },
+    "end": {
+      "line": 544,
+      "column": 3,
+      "index": 15291
+    }
+  },
+  "className": "qx.ui.basic.Label",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The label class brings typical text content to the widget system.",
+      " *",
+      " * It supports simple text nodes and complex HTML (rich). The default",
+      " * content mode is for text only. The mode is changeable through the property",
+      " * {@link #rich}.",
+      " *",
+      " * The label supports heightForWidth when used in HTML mode. This means",
+      " * that multi line HTML automatically computes the correct preferred height.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   // a simple text label without wrapping and markup support",
+      " *   var label1 = new qx.ui.basic.Label(\"Simple text label\");",
+      " *   this.getRoot().add(label1, {left:20, top:10});",
+      " *",
+      " *   // a HTML label with automatic line wrapping",
+      " *   var label2 = new qx.ui.basic.Label().set({",
+      " *     value: \"A <b>long label</b> text with auto-wrapping. This also may contain <b style='color:red'>rich HTML</b> markup.\",",
+      " *     rich : true,",
+      " *     width: 120",
+      " *   });",
+      " *   this.getRoot().add(label2, {left:20, top:50});",
+      " * </pre>",
+      " *",
+      " * The first label in this example is a basic text only label. As such no",
+      " * automatic wrapping is supported. The second label is a long label containing",
+      " * HTML markup with automatic line wrapping.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/label.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The label class brings typical text content to the widget system.\n It supports simple text nodes and complex HTML (rich). The default\n content mode is for text only. The mode is changeable through the property\n {@link #rich}.\n The label supports heightForWidth when used in HTML mode. This means\n that multi line HTML automatically computes the correct preferred height.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var label1 = new qx.ui.basic.Label(\"Simple text label\");\n   this.getRoot().add(label1, {left:20, top:10});\n\n   var label2 = new qx.ui.basic.Label().set({\n     value: \"A <b>long label</b> text with auto-wrapping. This also may contain <b style='color:red'>rich HTML</b> markup.\",\n     rich : true,\n     width: 120\n   });\n   this.getRoot().add(label2, {left:20, top:50});\n </pre>\n<p>The first label in this example is a basic text only label. As such no\n automatic wrapping is supported. The second label is a long label containing\n HTML markup with automatic line wrapping.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/label.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.form.IStringForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 74,
+        "column": 2,
+        "index": 2378
+      },
+      "end": {
+        "line": 88,
+        "column": 3,
+        "index": 2695
+      }
+    }
+  },
+  "properties": {
+    "rich": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 3322
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRich",
+        "apply": "_applyRich"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Switches between rich HTML and text content. The text mode (<code>false</code>) supports",
+          "     * advanced features like ellipsis when the available space is not",
+          "     * enough. HTML mode (<code>true</code>) supports multi-line content and all the",
+          "     * markup features of HTML content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Switches between rich HTML and text content. The text mode (<code>false</code>) supports\n advanced features like ellipsis when the available space is not\n enough. HTML mode (<code>true</code>) supports multi-line content and all the\n markup features of HTML content.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "wrap": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3651
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3732
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyWrap"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controls whether text wrap is activated or not. But please note, that",
+          "     * this property works only in combination with the property {@link #rich}.",
+          "     * The {@link #wrap} has only an effect if the {@link #rich} property is",
+          "     * set to <code>true</code>, otherwise {@link #wrap} has no effect.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether text wrap is activated or not. But please note, that\n this property works only in combination with the property {@link #rich}.\n The {@link #wrap} has only an effect if the {@link #rich} property is\n set to <code>true</code>, otherwise {@link #wrap} has no effect.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "breakWithinWords": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 4166
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 4272
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyBreakWithinWords"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controls whether line wrapping can occur in the middle of a word; this is",
+          "     * typically only useful when there is a restricted amount of horizontal space",
+          "     * and words would otherwise overflow beyond the width of the element.  Words",
+          "     * are typically considered as separated by spaces, so \"abc/def/ghi\" is a 11",
+          "     * character word that would not be split without `breakWithWords` set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether line wrapping can occur in the middle of a word; this is\n typically only useful when there is a restricted amount of horizontal space\n and words would otherwise overflow beyond the width of the element.  Words\n are typically considered as separated by spaces, so \"abc/def/ghi\" is a 11\n character word that would not be split without <code>breakWithWords</code> set to true.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4584
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4698
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyValue",
+        "event": "changeValue",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Contains the HTML or text content. Interpretation depends on the value",
+          "     * of {@link #rich}. In text mode entities and other HTML special content",
+          "     * is not supported. But it is possible to use unicode escape sequences",
+          "     * to insert symbols and other non ASCII characters.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Contains the HTML or text content. Interpretation depends on the value\n of {@link #rich}. In text mode entities and other HTML special content\n is not supported. But it is possible to use unicode escape sequences\n to insert symbols and other non ASCII characters.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "buddy": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 5156
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5296
+        }
+      },
+      "json": {
+        "check": "qx.ui.core.Widget",
+        "apply": "_applyBuddy",
+        "nullable": true,
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The buddy property can be used to connect the label to another widget.",
+          "     * That causes two things:",
+          "     * <ul>",
+          "     *   <li>The label will always take the same enabled state as the buddy",
+          "     *       widget.",
+          "     *   </li>",
+          "     *   <li>A tap on the label will focus the buddy widget.</li>",
+          "     * </ul>",
+          "     * This is the behavior of the for attribute of HTML:",
+          "     * http://www.w3.org/TR/html401/interact/forms.html#adef-for",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The buddy property can be used to connect the label to another widget.\n That causes two things:\n </p>\n<ul>\n   <li>The label will always take the same enabled state as the buddy\n       widget.\n   </li>\n   <li>A tap on the label will focus the buddy widget.</li>\n </ul>\n<p>This is the behavior of the for attribute of HTML:\n http://www.w3.org/TR/html401/interact/forms.html#adef-for</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "textAlign": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 5341
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5520
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "nullable": true,
+        "themeable": true,
+        "apply": "_applyTextAlign",
+        "event": "changeTextAlign"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Control the text alignment "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Control the text alignment</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5545
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 5604
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "label"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "selectable": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5629
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 5686
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "allowGrowX": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5711
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 5768
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "allowGrowY": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 5793
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5850
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "allowShrinkY": {
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5875
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 5934
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    }
+  },
+  "members": {
+    "__font": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 6195
+        },
+        "end": {
+          "line": 215,
+          "column": 16,
+          "index": 6207
+        }
+      },
+      "appearsIn": []
+    },
+    "__invalidContentSize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 6213
+        },
+        "end": {
+          "line": 216,
+          "column": 30,
+          "index": 6239
+        }
+      },
+      "appearsIn": []
+    },
+    "__tapListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6245
+        },
+        "end": {
+          "line": 217,
+          "column": 25,
+          "index": 6266
+        }
+      },
+      "appearsIn": []
+    },
+    "__webfontListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6272
+        },
+        "end": {
+          "line": 218,
+          "column": 29,
+          "index": 6297
+        }
+      },
+      "appearsIn": []
+    },
+    "_getContentHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 6514
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6794
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_hasHeightForWidth": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 6819
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 6894
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "_applySelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 6919
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 7544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_getContentHeightForWidth": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 7569
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7740
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createContentElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 7765
+        },
+        "end": {
+          "line": 277,
+          "column": 5,
+          "index": 7830
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyTextAlign": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 7859
+        },
+        "end": {
+          "line": 282,
+          "column": 5,
+          "index": 7955
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTextColor": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 7980
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 8247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__contentSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Internal fallback of label size when no font is defined",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentSize)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Internal fallback of label size when no font is defined"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentSize)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 8595
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8649
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyFont": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 8678
+        },
+        "end": {
+          "line": 357,
+          "column": 5,
+          "index": 10009
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__computeContentSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal utility to compute the content dimensions.",
+          "     *",
+          "     * @param width {Integer?null} Optional width constraint",
+          "     * @return {Map} Map with <code>width</code> and <code>height</code> keys",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal utility to compute the content dimensions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer?null} Optional width constraint",
+            "paramName": "width",
+            "description": " Optional width constraint",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map with <code>width</code> and <code>height</code> keys",
+            "type": "Map<any, any>",
+            "description": "Map with <code>width</code> and <code>height</code> keys"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 10237
+        },
+        "end": {
+          "line": 386,
+          "column": 5,
+          "index": 10852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__fixEllipsis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Firefox > 9 on OS X will draw an ellipsis on top of the label content even",
+          "     * though there is enough space for the text. Re-applying the content forces",
+          "     * a recalculation and fixes the problem. See qx bug #6293",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Firefox &gt; 9 on OS X will draw an ellipsis on top of the label content even\n though there is enough space for the text. Re-applying the content forces\n a recalculation and fixes the problem. See qx bug #6293</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 11101
+        },
+        "end": {
+          "line": 409,
+          "column": 5,
+          "index": 11666
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyBuddy": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 11893
+        },
+        "end": {
+          "line": 441,
+          "column": 5,
+          "index": 12611
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRich": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 4,
+          "index": 12640
+        },
+        "end": {
+          "line": 453,
+          "column": 5,
+          "index": 12894
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyWrap": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4,
+          "index": 12923
+        },
+        "end": {
+          "line": 469,
+          "column": 5,
+          "index": 13396
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBreakWithinWords": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4,
+          "index": 13425
+        },
+        "end": {
+          "line": 477,
+          "column": 5,
+          "index": 13594
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4,
+          "index": 13730
+        },
+        "end": {
+          "line": 494,
+          "column": 6,
+          "index": 13981
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 497,
+          "column": 4,
+          "index": 14010
+        },
+        "end": {
+          "line": 522,
+          "column": 6,
+          "index": 14723
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 531,
+        "column": 2,
+        "index": 14919
+      },
+      "end": {
+        "line": 543,
+        "column": 3,
+        "index": 15287
+      }
+    }
+  },
+  "statics": {}
+}

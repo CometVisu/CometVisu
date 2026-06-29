@@ -1,0 +1,461 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603387,
+  "lastModifiedIso": "2026-06-29T04:00:03.387Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/WebWorker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 850
+    },
+    "end": {
+      "line": 182,
+      "column": 3,
+      "index": 4254
+    }
+  },
+  "className": "qx.bom.WebWorker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * Web Workers allows us to run JavaScript in parallel on a web page,",
+      " * without blocking the user interface. A 'worker' is just another script",
+      " * file that will be loaded and executed in the background.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * For more information see:",
+      " * http://www.w3.org/TR/workers/",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Web Workers allows us to run JavaScript in parallel on a web page,\n without blocking the user interface. A 'worker' is just another script\n file that will be loaded and executed in the background.\n NOTE: Instances of this class must be disposed of after use\n For more information see:\n http://www.w3.org/TR/workers/</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "src"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1052
+      },
+      "end": {
+        "line": 44,
+        "column": 3,
+        "index": 1219
+      }
+    }
+  },
+  "events": {
+    "message": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when worker sends a message "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when worker sends a message</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1283
+        },
+        "end": {
+          "line": 48,
+          "column": 33,
+          "index": 1312
+        }
+      }
+    },
+    "error": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when an error occurs "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an error occurs</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1357
+        },
+        "end": {
+          "line": 51,
+          "column": 31,
+          "index": 1384
+        }
+      }
+    }
+  },
+  "members": {
+    "_worker": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1408
+        },
+        "end": {
+          "line": 55,
+          "column": 17,
+          "index": 1421
+        }
+      },
+      "appearsIn": []
+    },
+    "_handleErrorBound": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1427
+        },
+        "end": {
+          "line": 56,
+          "column": 27,
+          "index": 1450
+        }
+      },
+      "appearsIn": []
+    },
+    "_handleMessageBound": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1456
+        },
+        "end": {
+          "line": 57,
+          "column": 29,
+          "index": 1481
+        }
+      },
+      "appearsIn": []
+    },
+    "__isNative": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1488
+        },
+        "end": {
+          "line": 59,
+          "column": 20,
+          "index": 1504
+        }
+      },
+      "appearsIn": []
+    },
+    "__fake": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 60,
+          "column": 16,
+          "index": 1522
+        }
+      },
+      "appearsIn": []
+    },
+    "__initNative": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the native worker",
+          "     * @param src {String} The path to worker as an URL",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the native worker</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "src {String} The path to worker as an URL",
+            "paramName": "src",
+            "description": " The path to worker as an URL",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1637
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2134
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__initFake": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the fake worker",
+          "     * @param src {String} The path to worker as an URL",
+          "     * @lint ignoreDeprecated(eval)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the fake worker</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "src {String} The path to worker as an URL",
+            "paramName": "src",
+            "description": " The path to worker as an URL",
+            "type": "string"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(eval)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2283
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3013
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "postMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send a message to the worker.",
+          "     * @param msg {String} the message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send a message to the worker.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msg {String} the message",
+            "paramName": "msg",
+            "description": " the message",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3112
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3472
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_handleMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message handler",
+          "     * @param e {Event} message event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} message event",
+            "paramName": "e",
+            "description": " message event",
+            "type": "qx.bom.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3556
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3626
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.bom.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_handleError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Error handler",
+          "     * @param e {Event} error event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Error handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} error event",
+            "paramName": "e",
+            "description": " error event",
+            "type": "qx.bom.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 3775
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.bom.Event"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 158,
+        "column": 2,
+        "index": 3784
+      },
+      "end": {
+        "line": 181,
+        "column": 3,
+        "index": 4250
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

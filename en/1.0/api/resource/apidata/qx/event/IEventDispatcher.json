@@ -1,0 +1,217 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602308,
+  "lastModifiedIso": "2026-06-29T04:00:02.308Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/IEventDispatcher.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 662
+    },
+    "end": {
+      "line": 52,
+      "column": 3,
+      "index": 1703
+    }
+  },
+  "className": "qx.event.IEventDispatcher",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All event dispatchers must implement this interface. Event dispatchers must",
+      " * register themselves at the event Manager using",
+      " * {@link qx.event.Registration#addDispatcher}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All event dispatchers must implement this interface. Event dispatchers must\n register themselves at the event Manager using\n {@link qx.event.Registration#addDispatcher}.</p>"
+      }
+    ]
+  },
+  "members": {
+    "canDispatchEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the dispatcher is responsible for the this event.",
+          "     *",
+          "     * @param target {Element|Event} The event dispatch target",
+          "     * @param event {qx.event.type.Event} The event object",
+          "     * @param type {String} the event type",
+          "     * @return {Boolean} Whether the event dispatcher is responsible for the this event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the dispatcher is responsible for the this event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element|Event} The event dispatch target",
+            "paramName": "target",
+            "description": " The event dispatch target",
+            "type": [
+              "Element",
+              "Event"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event} The event object",
+            "paramName": "event",
+            "description": " The event object",
+            "type": "qx.event.type.Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} the event type",
+            "paramName": "type",
+            "description": " the event type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event dispatcher is responsible for the this event",
+            "type": "boolean",
+            "description": "Whether the event dispatcher is responsible for the this event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1071
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 1202
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": [
+            "Element",
+            "Event"
+          ]
+        },
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatchEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function dispatches the event to the event listeners.",
+          "     *",
+          "     * @param target {Element|Event} The event dispatch target",
+          "     * @param event {qx.event.type.Event} event object to dispatch",
+          "     * @param type {String} the event type",
+          "     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function dispatches the event to the event listeners.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element|Event} The event dispatch target",
+            "paramName": "target",
+            "description": " The event dispatch target",
+            "type": [
+              "Element",
+              "Event"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event} event object to dispatch",
+            "paramName": "event",
+            "description": " event object to dispatch",
+            "type": "qx.event.type.Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} the event type",
+            "paramName": "type",
+            "description": " the event type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} a promise, if one or more of the event handlers returned a promise",
+            "type": "qx.Promise?",
+            "description": "a promise, if one or more of the event handlers returned a promise"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1567
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": [
+            "Element",
+            "Event"
+          ]
+        },
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,685 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/schema/Attribute.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 863
+    },
+    "end": {
+      "line": 175,
+      "column": 3,
+      "index": 4622
+    }
+  },
+  "className": "cv.ui.manager.model.schema.Attribute",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * a single attribute from the schema.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>a single attribute from the schema.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.model.schema.Base",
+  "mixins": [
+    "cv.ui.manager.model.schema.MAnnotation"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "node"
+      },
+      {
+        "name": "schema"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1144
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1216
+      }
+    }
+  },
+  "statics": {
+    "getAttributeName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the name of a schema-node",
+          "     * @param e object  element to find the name of",
+          "     * @param schema",
+          "     * @return  string          name of the element",
+          "     * @throws  if the name can not be found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the name of a schema-node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e object  element to find the name of"
+          },
+          {
+            "name": "@param",
+            "body": "schema",
+            "paramName": "schema",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "string          name of the element"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "if the name can not be found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1581
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2095
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        },
+        {
+          "name": "schema"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2247
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2304
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "attribute"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2311
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2362
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "optional": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2369
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2428
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "defaultValue": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2435
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2500
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_type": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2646
+        },
+        "end": {
+          "line": 104,
+          "column": 15,
+          "index": 2657
+        }
+      },
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2664
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3225
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "isValueValid": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * check if a given value is valid for this attribute",
+          "     *",
+          "     * @param   value   mixed   the value to check",
+          "     * @return  boolean         if the value is valid",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>check if a given value is valid for this attribute</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value   mixed   the value to check"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "boolean         if the value is valid"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3418
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3740
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getTypeString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a simple string telling us, what type of content is allowed",
+          "     *",
+          "     * @return  string  description of allowed values, almost user-readable :)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get a simple string telling us, what type of content is allowed</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "string  description of allowed values, almost user-readable :)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3920
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4158
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getEnumeration": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the list of values that are valid for this attribute, if it is an enumeration",
+          "     *",
+          "     * @return  array   list of string of valid values",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the list of values that are valid for this attribute, if it is an enumeration</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "array   list of string of valid values"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4332
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4398
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__appInfoCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getAppinfo",
+          "     * @var array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getAppinfo</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1484
+        },
+        "end": {
+          "line": 44,
+          "column": 24,
+          "index": 1504
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__linkRegex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 45,
+          "column": 21,
+          "index": 1527
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__language": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1533
+        },
+        "end": {
+          "line": 46,
+          "column": 20,
+          "index": 1549
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__documentationCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getDocumentation",
+          "     * @var array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getDocumentation</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 52,
+          "column": 30,
+          "index": 1650
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__getTextNodesByXPath": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1657
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2294
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "xpath"
+        }
+      ],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "getAppinfo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the appinfo information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the appinfo information from the element, if any</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "array   list of texts, or empty list if none"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2445
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "getDocumentation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the documentation information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the documentation information from the element, if any</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "array   list of texts, or empty list if none"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3675
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 5019
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "createDocumentationWebLinks": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transform documentation text to link to the online documentation when it",
+          "     * contains a reference.",
+          "     * @param text",
+          "     * @return string The transformed input string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transform documentation text to link to the online documentation when it\n contains a reference.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "string The transformed input string."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5222
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5959
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text"
+        }
+      ],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 171,
+        "column": 2,
+        "index": 4532
+      },
+      "end": {
+        "line": 174,
+        "column": 3,
+        "index": 4618
+      }
+    }
+  }
+}

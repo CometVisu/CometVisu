@@ -1,0 +1,56 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603018,
+  "lastModifiedIso": "2026-06-29T04:00:03.018Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Pool.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 644
+    },
+    "end": {
+      "line": 40,
+      "column": 3,
+      "index": 1105
+    }
+  },
+  "className": "qx.event.Pool",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Central instance pool for event objects. All event objects dispatched by the",
+      " * event loader are pooled using this class.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Central instance pool for event objects. All event objects dispatched by the\n event loader are pooled using this class.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.util.ObjectPool",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1069
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1101
+      }
+    }
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

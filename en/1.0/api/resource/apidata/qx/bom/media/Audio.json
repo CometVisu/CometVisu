@@ -1,0 +1,78 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601157,
+  "lastModifiedIso": "2026-06-29T04:00:01.157Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/media/Audio.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 625
+    },
+    "end": {
+      "line": 40,
+      "column": 3,
+      "index": 920
+    }
+  },
+  "className": "qx.bom.media.Audio",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * Media object for playing sounds.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of to free resources",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Media object for playing sounds.\n NOTE: Instances of this class must be disposed of to free resources</p>"
+      }
+    ]
+  },
+  "superClass": "qx.bom.media.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "source"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 775
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 880
+      }
+    }
+  },
+  "members": {
+    "_audio": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 900
+        },
+        "end": {
+          "line": 38,
+          "column": 16,
+          "index": 912
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

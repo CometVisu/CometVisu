@@ -1,0 +1,105 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/widgets/TemplateWidget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 814
+    },
+    "end": {
+      "line": 55,
+      "column": 3,
+      "index": 1547
+    }
+  },
+  "className": "cv.ui.structure.tile.widgets.TemplateWidget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "properties": {
+    "widget": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1086
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1138
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    }
+  },
+  "members": {
+    "_checkEnvironment": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1284
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1359
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "_getTileParent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1366
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1539
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    }
+  },
+  "statics": {}
+}

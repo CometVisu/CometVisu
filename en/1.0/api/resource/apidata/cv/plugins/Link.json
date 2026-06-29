@@ -1,0 +1,272 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/Link.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 927
+    },
+    "end": {
+      "line": 122,
+      "column": 3,
+      "index": 3280
+    }
+  },
+  "className": "cv.plugins.Link",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This plugins integrates a simple link.",
+      " *",
+      " * @author Stefan Borchert [stefan@borchert.cc]",
+      " * @since 2015",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This plugins integrates a simple link.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Stefan Borchert [stefan@borchert.cc]"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2015"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "properties": {
+    "cssClass": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1171
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1226
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "text": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1233
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1284
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "href": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1342
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "newWindow": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1349
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1409
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1983
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2212
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2219
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2532
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_getInnerDomString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2692
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3112
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    }
+  }
+}

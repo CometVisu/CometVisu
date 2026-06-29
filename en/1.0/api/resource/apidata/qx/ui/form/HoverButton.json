@@ -1,0 +1,692 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602225,
+  "lastModifiedIso": "2026-06-29T04:00:02.225Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/HoverButton.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 53,
+      "column": 0,
+      "index": 1734
+    },
+    "end": {
+      "line": 165,
+      "column": 3,
+      "index": 4264
+    }
+  },
+  "className": "qx.ui.form.HoverButton",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The HoverButton is an {@link qx.ui.basic.Atom}, which fires repeatedly",
+      " * execute events while the pointer is over the widget.",
+      " *",
+      " * The rate at which the execute event is fired accelerates is the pointer keeps",
+      " * inside of the widget. The initial delay and the interval time can be set using",
+      " * the properties {@link #firstInterval} and {@link #interval}. The",
+      " * {@link #execute} events will be fired in a shorter amount of time if the pointer",
+      " * remains over the widget, until the min {@link #minTimer} is reached.",
+      " * The {@link #timerDecrease} property sets the amount of milliseconds which will",
+      " * decreased after every firing.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var button = new qx.ui.form.HoverButton(\"Hello World\");",
+      " *",
+      " *   button.addListener(\"execute\", function(e) {",
+      " *     alert(\"Button is hovered\");",
+      " *   }, this);",
+      " *",
+      " *   this.getRoot.add(button);",
+      " * </pre>",
+      " *",
+      " * This example creates a button with the label \"Hello World\" and attaches an",
+      " * event listener to the {@link #execute} event.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/hoverbutton.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The HoverButton is an {@link qx.ui.basic.Atom}, which fires repeatedly\n execute events while the pointer is over the widget.\n The rate at which the execute event is fired accelerates is the pointer keeps\n inside of the widget. The initial delay and the interval time can be set using\n the properties {@link #firstInterval} and {@link #interval}. The\n {@link #execute} events will be fired in a shorter amount of time if the pointer\n remains over the widget, until the min {@link #minTimer} is reached.\n The {@link #timerDecrease} property sets the amount of milliseconds which will\n decreased after every firing.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var button = new qx.ui.form.HoverButton(\"Hello World\");\n   button.addListener(\"execute\", function(e) {\n     alert(\"Button is hovered\");\n   }, this);\n   this.getRoot.add(button);\n </pre>\n<p>This example creates a button with the label \"Hello World\" and attaches an\n event listener to the {@link #execute} event.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/hoverbutton.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.basic.Atom",
+  "mixins": [
+    "qx.ui.core.MExecutable"
+  ],
+  "interfaces": [
+    "qx.ui.form.IExecutable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 62,
+        "column": 2,
+        "index": 1980
+      },
+      "end": {
+        "line": 70,
+        "column": 3,
+        "index": 2279
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2320
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2386
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "hover-button"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "interval": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2561
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2617
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 80
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Interval used after the first run of the timer. Usually a smaller value",
+          "     * than the \"firstInterval\" property value to get a faster reaction.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Interval used after the first run of the timer. Usually a smaller value\n than the \"firstInterval\" property value to get a faster reaction.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "firstInterval": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2814
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2876
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 200
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Interval used for the first run of the timer. Usually a greater value",
+          "     * than the \"interval\" property value to a little delayed reaction at the first",
+          "     * time.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Interval used for the first run of the timer. Usually a greater value\n than the \"interval\" property value to a little delayed reaction at the first\n time.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "minTimer": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2952
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 3008
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 20
+      },
+      "jsdoc": {
+        "raw": [
+          "* This configures the minimum value for the timer interval. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This configures the minimum value for the timer interval.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "timerDecrease": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 3113
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 3173
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 2
+      },
+      "jsdoc": {
+        "raw": [
+          "* Decrease of the timer on each interval (for the next interval) until minTimer reached. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decrease of the timer on each interval (for the next interval) until minTimer reached.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "command": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1320
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1455
+        }
+      },
+      "json": {
+        "check": "qx.ui.command.Command",
+        "apply": "_applyCommand",
+        "event": "changeCommand",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A command called if the {@link #execute} method is called, e.g. on a",
+          "     * button tap.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A command called if the {@link #execute} method is called, e.g. on a\n button tap.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    }
+  },
+  "members": {
+    "__timer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3197
+        },
+        "end": {
+          "line": 112,
+          "column": 17,
+          "index": 3210
+        }
+      },
+      "appearsIn": []
+    },
+    "_onPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start timer on pointer over",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start timer on pointer over</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event",
+            "paramName": "e",
+            "description": " The pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3333
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3709
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop timer on pointer out",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop timer on pointer out</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event",
+            "paramName": "e",
+            "description": " The pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3830
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3998
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire execute event on timer interval event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire execute event on timer interval event</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4071
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4198
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__executableBindingIds": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1663
+        },
+        "end": {
+          "line": 63,
+          "column": 32,
+          "index": 1691
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "__commandExecuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the command already executed. The protection flag to stop the second command execution.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the command already executed. The protection flag to stop the second command execution."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1837
+        },
+        "end": {
+          "line": 68,
+          "column": 28,
+          "index": 1861
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "__executeListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1867
+        },
+        "end": {
+          "line": 69,
+          "column": 29,
+          "index": 1892
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "_bindableProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Set of properties, which will by synced from the command to the",
+          "     *    including widget",
+          "     *",
+          "     * @lint ignoreReferenceField(_bindableProperties)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Set of properties, which will by synced from the command to the\n    including widget"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_bindableProperties)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2087
+        },
+        "end": {
+          "line": 81,
+          "column": 6,
+          "index": 2307
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "execute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initiate the execute action.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initiate the execute action.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2366
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2655
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MExecutable",
+        "qx.ui.form.IExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "__onCommandExecute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the execute event of the command.",
+          "     *",
+          "     * @param e {qx.event.type.Event} The execute event of the command.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the execute event of the command.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} The execute event of the command.",
+            "paramName": "e",
+            "description": " The execute event of the command.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2810
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3038
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    },
+    "_applyCommand": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3067
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5000
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ],
+      "mixin": "qx.ui.core.MExecutable"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 162,
+        "column": 2,
+        "index": 4207
+      },
+      "end": {
+        "line": 164,
+        "column": 3,
+        "index": 4260
+      }
+    }
+  },
+  "statics": {}
+}

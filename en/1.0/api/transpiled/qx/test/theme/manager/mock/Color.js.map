@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Color",
+    "colors",
+    "test",
+    "manager",
+    "mock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/theme/manager/mock/Color.js"
+  ],
+  "sourcesContent": [
+    "qx.Theme.define(\"qx.test.theme.manager.mock.Color\", {\n  extend: qx.theme.simple.Color,\n\n  colors: {\n    \"text-label\": \"red\",\n    \"border-button\": \"green\",\n    \"button-start\": \"orange\",\n    \"button-end\": \"yellow\"\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,kCAAkC,EAAE;IAClDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,MAAM,CAACC,KAAK;IAE7BC,MAAM,EAAE;MACN,YAAY,EAAE,KAAK;MACnB,eAAe,EAAE,OAAO;MACxB,cAAc,EAAE,QAAQ;MACxB,YAAY,EAAE;IAChB;EACF,CAAC,CAAC;EATFV,EAAE,CAACW,IAAI,CAACJ,KAAK,CAACK,OAAO,CAACC,IAAI,CAACJ,KAAK,CAACN,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

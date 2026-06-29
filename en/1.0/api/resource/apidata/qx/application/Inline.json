@@ -1,0 +1,72 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602409,
+  "lastModifiedIso": "2026-06-29T04:00:02.409Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/application/Inline.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 765
+    },
+    "end": {
+      "line": 42,
+      "column": 3,
+      "index": 1127
+    }
+  },
+  "className": "qx.application.Inline",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * For a GUI application on a traditional, HTML-dominated web page.",
+      " *",
+      " * The ideal environment for typical portal sites which use just a few qooxdoo",
+      " * widgets. {@link qx.ui.root.Inline} can be used to embed qooxdoo widgets",
+      " * into the page flow.",
+      " *",
+      " * @require(qx.core.Init)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>For a GUI application on a traditional, HTML-dominated web page.\n The ideal environment for typical portal sites which use just a few qooxdoo\n widgets. {@link qx.ui.root.Inline} can be used to embed qooxdoo widgets\n into the page flow.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.core.Init"
+      }
+    ]
+  },
+  "superClass": "qx.application.AbstractGui",
+  "members": {
+    "_createRootWidget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1048
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1119
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.AbstractGui",
+      "appearsIn": [
+        "qx.application.AbstractGui"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,237 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/Location.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 986
+    },
+    "end": {
+      "line": 70,
+      "column": 3,
+      "index": 2112
+    }
+  },
+  "className": "cv.util.Location",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper function to proxy access to <code>window.location.*</code> functions.",
+      " * The main purpose of proxying them is to allow them to be spyable in unit tests.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper function to proxy access to <code>window.location.*</code> functions.\n The main purpose of proxying them is to allow them to be spyable in unit tests.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "getHref": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for getting the <code>window.location.href</code> value.",
+          "     *",
+          "     * @return {String} URI of the page the browser is currently showing",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for getting the <code>window.location.href</code> value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} URI of the page the browser is currently showing",
+            "type": "string",
+            "description": "URI of the page the browser is currently showing"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1364
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1416
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setHref": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Changes <code>window.location.href</code> to trigger a redirect",
+          "     *",
+          "     * @param loc {String} - URI of the location the browser should be redirected to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Changes <code>window.location.href</code> to trigger a redirect</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "loc {String} - URI of the location the browser should be redirected to",
+            "paramName": "loc",
+            "description": " - URI of the location the browser should be redirected to",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1656
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loc",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for calling <code>window.location.reload()</code>",
+          "     *",
+          "     * @param value {Boolean} parameter to call reload with",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for calling <code>window.location.reload()</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} parameter to call reload with",
+            "paramName": "value",
+            "description": " parameter to call reload with",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1811
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1869
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for calling <code>window.open()</code>",
+          "     *",
+          "     * @param url {String} url to open",
+          "     * @param target {String} where to open the window",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for calling <code>window.open()</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} url to open",
+            "paramName": "url",
+            "description": " url to open",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "target {String} where to open the window",
+            "paramName": "target",
+            "description": " where to open the window",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2047
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2104
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

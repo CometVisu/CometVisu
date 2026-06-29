@@ -1,0 +1,73 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543943,
+  "lastModifiedIso": "2026-06-29T03:59:03.943Z",
+  "classFilename": "../../source/class/cv/ui/manager/form/VirtualSelectBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 924
+    },
+    "end": {
+      "line": 49,
+      "column": 3,
+      "index": 1554
+    }
+  },
+  "className": "cv.ui.manager.form.VirtualSelectBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * qx.ui.form.VirtualSelectBox that uses cv.ui.manager.form.ListItem as 'atom' childcontrol.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>qx.ui.form.VirtualSelectBox that uses cv.ui.manager.form.ListItem as 'atom' childcontrol.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.VirtualSelectBox",
+  "members": {
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1178
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1546
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.VirtualSelectBox",
+      "appearsIn": [
+        "qx.ui.form.VirtualSelectBox",
+        "qx.ui.form.core.AbstractVirtualBox",
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

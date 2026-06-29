@@ -1,0 +1,749 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601858,
+  "lastModifiedIso": "2026-06-29T04:00:01.858Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Dom.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 589
+    },
+    "end": {
+      "line": 204,
+      "column": 3,
+      "index": 5483
+    }
+  },
+  "className": "qx.event.type.Dom",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Common base class for all DOM events.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Common base class for all DOM events.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Native",
+  "statics": {
+    "SHIFT_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the shift key. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the shift key."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 742
+        },
+        "end": {
+          "line": 29,
+          "column": 17,
+          "index": 755
+        }
+      },
+      "appearsIn": []
+    },
+    "CTRL_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the control key. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the control key."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 828
+        },
+        "end": {
+          "line": 32,
+          "column": 16,
+          "index": 840
+        }
+      },
+      "appearsIn": []
+    },
+    "ALT_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the alt key. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the alt key."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 909
+        },
+        "end": {
+          "line": 35,
+          "column": 15,
+          "index": 920
+        }
+      },
+      "appearsIn": []
+    },
+    "META_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the meta key (e.g. apple key on Macs). "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the meta key (e.g. apple key on Macs)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1015
+        },
+        "end": {
+          "line": 38,
+          "column": 16,
+          "index": 1027
+        }
+      },
+      "appearsIn": []
+    },
+    "CAPSLOCK_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the CapsLock modifier. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the CapsLock modifier."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1106
+        },
+        "end": {
+          "line": 41,
+          "column": 21,
+          "index": 1123
+        }
+      },
+      "appearsIn": []
+    },
+    "NUMLOCK_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the NumLock modifier. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the NumLock modifier."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1201
+        },
+        "end": {
+          "line": 44,
+          "column": 20,
+          "index": 1217
+        }
+      },
+      "appearsIn": []
+    },
+    "SCROLLLOCK_MASK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The modifier mask for the ScrollLock modifier. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The modifier mask for the ScrollLock modifier."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1298
+        },
+        "end": {
+          "line": 47,
+          "column": 23,
+          "index": 1317
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_cloneNativeEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1359
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2049
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nativeEvent"
+        },
+        {
+          "name": "clone"
+        }
+      ],
+      "overriddenFrom": "qx.event.type.Native",
+      "appearsIn": [
+        "qx.event.type.Native"
+      ]
+    },
+    "getModifiers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return in a bit map, which modifier keys are pressed. The constants",
+          "     * {@link #SHIFT_MASK}, {@link #CTRL_MASK}, {@link #ALT_MASK},",
+          "     * {@link #META_MASK} and {@link #CAPSLOCK_MASK} define the bit positions",
+          "     * of the corresponding keys.",
+          "     *",
+          "     * @return {Integer} A bit map with the pressed modifier keys.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return in a bit map, which modifier keys are pressed. The constants\n {@link #SHIFT<em>MASK}, {@link #CTRL</em>MASK}, {@link #ALT<em>MASK},\n {@link #META</em>MASK} and {@link #CAPSLOCK_MASK} define the bit positions\n of the corresponding keys.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} A bit map with the pressed modifier keys.",
+            "type": "Integer",
+            "description": "A bit map with the pressed modifier keys."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2400
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2803
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getKeyLockState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return in a bit map, which lock keys are pressed. The constants",
+          "     * {@link #CAPSLOCK_MASK}, {@link #NUMLOCK_MASK}, and {@link #SCROLLLOCK_MASK}",
+          "     * define the bit positions of the corresponding keys.",
+          "     *",
+          "     * @return {Integer} A bit map with the locked keys.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return in a bit map, which lock keys are pressed. The constants\n {@link #CAPSLOCK<em>MASK}, {@link #NUMLOCK</em>MASK}, and {@link #SCROLLLOCK_MASK}\n define the bit positions of the corresponding keys.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} A bit map with the locked keys.",
+            "type": "Integer",
+            "description": "A bit map with the locked keys."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3103
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3449
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "isCtrlPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the ctrl key is pressed.",
+          "     *",
+          "     * @return {Boolean} whether the ctrl key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the ctrl key is pressed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the ctrl key is pressed.",
+            "type": "boolean",
+            "description": "whether the ctrl key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3585
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3643
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isShiftPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the shift key is pressed.",
+          "     *",
+          "     * @return {Boolean} whether the shift key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the shift key is pressed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the shift key is pressed.",
+            "type": "boolean",
+            "description": "whether the shift key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3781
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3841
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isAltPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the alt key is pressed.",
+          "     *",
+          "     * @return {Boolean} whether the alt key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the alt key is pressed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the alt key is pressed.",
+            "type": "boolean",
+            "description": "whether the alt key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3975
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4031
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isMetaPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the meta key is pressed.",
+          "     *",
+          "     * @return {Boolean} whether the meta key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the meta key is pressed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the meta key is pressed.",
+            "type": "boolean",
+            "description": "whether the meta key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4167
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4225
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isCapsLocked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the caps-lock modifier is active",
+          "     *",
+          "     * @return {Boolean} whether the CapsLock key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the caps-lock modifier is active</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the CapsLock key is pressed.",
+            "type": "boolean",
+            "description": "whether the CapsLock key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4373
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4431
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isNumLocked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the num-lock modifier is active",
+          "     *",
+          "     * @return {Boolean} whether the NumLock key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the num-lock modifier is active</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the NumLock key is pressed.",
+            "type": "boolean",
+            "description": "whether the NumLock key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4577
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 4633
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isScrollLocked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the scroll-lock modifier is active",
+          "     *",
+          "     * @return {Boolean} whether the ScrollLock key is pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the scroll-lock modifier is active</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the ScrollLock key is pressed.",
+            "type": "boolean",
+            "description": "whether the ScrollLock key is pressed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4785
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 4847
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isCtrlOrCommandPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the ctrl key or (on the Mac) the command key is pressed.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if the command key is pressed on the Mac",
+          "     *           or the ctrl key is pressed on another system.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the ctrl key or (on the Mac) the command key is pressed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the command key is pressed on the Mac\n           or the ctrl key is pressed on another system.",
+            "type": "boolean",
+            "description": "<code>true</code> if the command key is pressed on the Mac\n           or the ctrl key is pressed on another system."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5104
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 5475
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

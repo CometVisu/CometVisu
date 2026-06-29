@@ -1,0 +1,239 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601750,
+  "lastModifiedIso": "2026-06-29T04:00:01.750Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/model/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 490
+    },
+    "end": {
+      "line": 89,
+      "column": 3,
+      "index": 2233
+    }
+  },
+  "className": "qx.ui.progressive.model.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data Model for Progressive renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data Model for Progressive renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.model.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 2,
+        "index": 590
+      },
+      "end": {
+        "line": 29,
+        "column": 3,
+        "index": 647
+      }
+    }
+  },
+  "members": {
+    "__elements": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 667
+        },
+        "end": {
+          "line": 32,
+          "column": 20,
+          "index": 683
+        }
+      },
+      "appearsIn": []
+    },
+    "addElements": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add elements to be progressively rendered.  Each element must be an",
+          "     * object which contains at least two members: renderer (the renderer",
+          "     * name) and data.",
+          "     *",
+          "     * @param elems {Array}",
+          "     *   An array of elements to be added to the element queue",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add elements to be progressively rendered.  Each element must be an\n object which contains at least two members: renderer (the renderer\n name) and data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elems {Array}\n   An array of elements to be added to the element queue",
+            "paramName": "elems",
+            "description": "\n   An array of elements to be added to the element queue",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 976
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1227
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elems",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a single element to be progressively rendered.  The element must",
+          "     * be an object which contains at least two members: renderer (the",
+          "     * renderer name) and data.",
+          "     *",
+          "     * @param elem {var}",
+          "     *   An element to be added to the element queue",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a single element to be progressively rendered.  The element must\n be an object which contains at least two members: renderer (the\n renderer name) and data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {var}\n   An element to be added to the element queue",
+            "paramName": "elem",
+            "description": "\n   An element to be added to the element queue",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1514
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1742
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getElementCount": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1767
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1829
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.progressive.model.Abstract",
+      "appearsIn": [
+        "qx.ui.progressive.model.Abstract"
+      ]
+    },
+    "getNextElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1854
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2176
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.progressive.model.Abstract",
+      "appearsIn": [
+        "qx.ui.progressive.model.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 86,
+        "column": 2,
+        "index": 2185
+      },
+      "end": {
+        "line": 88,
+        "column": 3,
+        "index": 2229
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

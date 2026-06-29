@@ -1,0 +1,3942 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602762,
+  "lastModifiedIso": "2026-06-29T04:00:02.762Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menu/Menu.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 918
+    },
+    "end": {
+      "line": 788,
+      "column": 3,
+      "index": 20554
+    }
+  },
+  "className": "qx.ui.menu.Menu",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The menu is a popup like control which supports buttons. It comes",
+      " * with full keyboard navigation and an improved timeout based pointer",
+      " * control behavior.",
+      " *",
+      " * This class is the container for all derived instances of",
+      " * {@link qx.ui.menu.AbstractButton}.",
+      " *",
+      " * @childControl slidebar {qx.ui.menu.MenuSlideBar} shows a slidebar to easily navigate inside the menu (if too little space is left)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The menu is a popup like control which supports buttons. It comes\n with full keyboard navigation and an improved timeout based pointer\n control behavior.\n This class is the container for all derived instances of\n {@link qx.ui.menu.AbstractButton}.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "slidebar {qx.ui.menu.MenuSlideBar} shows a slidebar to easily navigate inside the menu (if too little space is left)"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "mixins": [
+    "qx.ui.core.MPlacement",
+    "qx.ui.core.MRemoteChildrenHandling"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1060
+      },
+      "end": {
+        "line": 64,
+        "column": 3,
+        "index": 1896
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2136
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2194
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "menu"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "allowGrowX": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2219
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2276
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "allowGrowY": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2301
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2358
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "visibility": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2383
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2445
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "excluded"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "keepFocus": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2470
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2525
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "keepActive": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2550
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2606
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "spacingX": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2869
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2978
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "apply": "_applySpacingX",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The spacing between each cell of the menu buttons "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The spacing between each cell of the menu buttons</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "spacingY": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3033
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3142
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "apply": "_applySpacingY",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The spacing between each menu button "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The spacing between each menu button</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconColumnWidth": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3287
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3410
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true,
+        "apply": "_applyIconColumnWidth"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default icon column width if no icons are rendered.",
+          "     * This property is ignored as soon as an icon is present.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default icon column width if no icons are rendered.\n This property is ignored as soon as an icon is present.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "arrowColumnWidth": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3484
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3609
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true,
+        "apply": "_applyArrowColumnWidth"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Default arrow column width if no sub menus are rendered "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default arrow column width if no sub menus are rendered</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "blockerColor": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3660
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 3800
+        }
+      },
+      "json": {
+        "check": "Color",
+        "nullable": true,
+        "apply": "_applyBlockerColor",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Color of the blocker",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Color of the blocker</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "blockerOpacity": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 3853
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 3973
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_applyBlockerOpacity",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opacity of the blocker",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opacity of the blocker</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "selectedButton": {
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4227
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4342
+        }
+      },
+      "json": {
+        "check": "qx.ui.core.Widget",
+        "nullable": true,
+        "apply": "_applySelectedButton"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The currently selected button "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently selected button</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "openedButton": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4410
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4521
+        }
+      },
+      "json": {
+        "check": "qx.ui.core.Widget",
+        "nullable": true,
+        "apply": "_applyOpenedButton"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The currently opened button (sub menu is visible) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently opened button (sub menu is visible)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "opener": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 4567
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 4666
+        }
+      },
+      "json": {
+        "check": "qx.ui.core.Widget",
+        "nullable": true,
+        "apply": "_applyOpener"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Widget that opened the menu "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Widget that opened the menu</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "openInterval": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 4939
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 5023
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "themeable": true,
+        "init": 250
+      },
+      "jsdoc": {
+        "raw": [
+          "* Interval in ms after which sub menus should be opened "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Interval in ms after which sub menus should be opened</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "closeInterval": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 5096
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 5181
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "themeable": true,
+        "init": 250
+      },
+      "jsdoc": {
+        "raw": [
+          "* Interval in ms after which sub menus should be closed  "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Interval in ms after which sub menus should be closed</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "blockBackground": {
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 5250
+        },
+        "end": {
+          "line": 223,
+          "column": 5,
+          "index": 5339
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "themeable": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Blocks the background if value is <code>true<code> "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Blocks the background if value is <code>true<code></p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "position": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3107
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3467
+        }
+      },
+      "json": {
+        "check": [
+          "top-left",
+          "top-center",
+          "top-right",
+          "bottom-left",
+          "bottom-center",
+          "bottom-right",
+          "left-top",
+          "left-middle",
+          "left-bottom",
+          "right-top",
+          "right-middle",
+          "right-bottom"
+        ],
+        "init": "bottom-left",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Position of the aligned object in relation to the opener.",
+          "     *",
+          "     * Please note than changes to this property are only applied",
+          "     * when re-aligning the widget.",
+          "     *",
+          "     * The first part of the value is the edge to attach to. The second",
+          "     * part the alignment of the orthogonal edge after the widget",
+          "     * has been attached.",
+          "     *",
+          "     * The default value \"bottom-left\" for example means that the",
+          "     * widget should be shown directly under the given target and",
+          "     * then should be aligned to be left edge:",
+          "     *",
+          "     * <pre>",
+          "     * +--------+",
+          "     * | target |",
+          "     * +--------+",
+          "     * +-------------+",
+          "     * |   widget    |",
+          "     * +-------------+",
+          "     * </pre>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the aligned object in relation to the opener.\n Please note than changes to this property are only applied\n when re-aligning the widget.\n The first part of the value is the edge to attach to. The second\n part the alignment of the orthogonal edge after the widget\n has been attached.\n The default value \"bottom-left\" for example means that the\n widget should be shown directly under the given target and\n then should be aligned to be left edge:\n </p>\n<pre>\n +--------+\n | target |\n +--------+\n +-------------+\n |   widget    |\n +-------------+\n </pre>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placeMethod": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3587
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3688
+        }
+      },
+      "json": {
+        "check": [
+          "widget",
+          "pointer"
+        ],
+        "init": "pointer",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget should be placed relative to an other widget or to",
+          "     * the pointer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should be placed relative to an other widget or to\n the pointer.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "domMove": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3757
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3815
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the widget should moved using DOM methods. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should moved using DOM methods.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placementModeX": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4124
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 4246
+        }
+      },
+      "json": {
+        "check": [
+          "direct",
+          "keep-align",
+          "best-fit"
+        ],
+        "init": "keep-align",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the algorithm to place the widget horizontally. <code>direct</code>",
+          "     * uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>",
+          "     * uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>",
+          "     * uses {@link qx.util.placement.BestFitAxis}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget horizontally. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placementModeY": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4553
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4675
+        }
+      },
+      "json": {
+        "check": [
+          "direct",
+          "keep-align",
+          "best-fit"
+        ],
+        "init": "keep-align",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the algorithm to place the widget vertically. <code>direct</code>",
+          "     * uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>",
+          "     * uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>",
+          "     * uses {@link qx.util.placement.BestFitAxis}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the algorithm to place the widget vertically. <code>direct</code>\n uses {@link qx.util.placement.DirectAxis}, <code>keep-align</code>\n uses {@link qx.util.placement.KeepAlignAxis} and <code>best-fit</code>\n uses {@link qx.util.placement.BestFitAxis}.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "offsetLeft": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4731
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4811
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Left offset of the pointer (in pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "offsetTop": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4866
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4945
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Top offset of the pointer (in pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "offsetRight": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 5002
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 5083
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Right offset of the pointer (in pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "offsetBottom": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5141
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5223
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Bottom offset of the pointer (in pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom offset of the pointer (in pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "offset": {
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5262
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5397
+        }
+      },
+      "json": {
+        "group": [
+          "offsetTop",
+          "offsetRight",
+          "offsetBottom",
+          "offsetLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Offsets in one group "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offsets in one group</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    }
+  },
+  "members": {
+    "__scheduledOpen": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 5547
+        },
+        "end": {
+          "line": 233,
+          "column": 25,
+          "index": 5568
+        }
+      },
+      "appearsIn": []
+    },
+    "__onAfterSlideBarAdd": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 5574
+        },
+        "end": {
+          "line": 234,
+          "column": 30,
+          "index": 5600
+        }
+      },
+      "appearsIn": []
+    },
+    "_blocker": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.Blocker} blocker for background blocking "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.Blocker} blocker for background blocking"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 5677
+        },
+        "end": {
+          "line": 237,
+          "column": 18,
+          "index": 5691
+        }
+      },
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the menu and configures the opener",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the menu and configures the opener</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 5954
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 6450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "openAtPointer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the menu at the pointer position",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event to align to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the menu at the pointer position</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer event to align to",
+            "paramName": "e",
+            "description": " Pointer event to align to",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 6592
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 6805
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "openAtPoint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the menu in relation to the given point",
+          "     *",
+          "     * @param point {Map} Coordinate of any point with the keys <code>left</code>",
+          "     *   and <code>top</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the menu in relation to the given point</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "point {Map} Coordinate of any point with the keys <code>left</code>\n   and <code>top</code>.",
+            "paramName": "point",
+            "description": " Coordinate of any point with the keys <code>left</code>\n   and <code>top</code>.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 7001
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 7147
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "point",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addSeparator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience method to add a separator to the menu",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convenience method to add a separator to the menu</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 7227
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 7293
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getColumnSizes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the column sizes detected during the pre-layout phase",
+          "     *",
+          "     * @return {Array} List of all column widths",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the column sizes detected during the pre-layout phase</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} List of all column widths",
+            "type": "Array<any>",
+            "description": "List of all column widths"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 7441
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 7518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return all selectable menu items.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} selectable widgets",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return all selectable menu items.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} selectable widgets",
+            "type": "qx.ui.core.Widget[]",
+            "description": "selectable widgets"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 7645
+        },
+        "end": {
+          "line": 328,
+          "column": 5,
+          "index": 7899
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "_applyIconColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 8133
+        },
+        "end": {
+          "line": 339,
+          "column": 5,
+          "index": 8229
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyArrowColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4,
+          "index": 8258
+        },
+        "end": {
+          "line": 344,
+          "column": 5,
+          "index": 8356
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySpacingX": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4,
+          "index": 8385
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 8472
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySpacingY": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 8501
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 8582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyVisibility": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4,
+          "index": 8607
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 9513
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__updateBlockerVisibility": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the blocker's visibility",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the blocker's visibility</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 9576
+        },
+        "end": {
+          "line": 403,
+          "column": 5,
+          "index": 9892
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getParentMenu": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the parent menu. Returns <code>null</code> if the menu doesn't have a",
+          "     * parent menu.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The parent menu.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the parent menu. Returns <code>null</code> if the menu doesn't have a\n parent menu.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget|null} The parent menu.",
+            "type": "qx.ui.core.Widget|null",
+            "description": "The parent menu."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 4,
+          "index": 10080
+        },
+        "end": {
+          "line": 425,
+          "column": 5,
+          "index": 10462
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "_applySelectedButton": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 4,
+          "index": 10491
+        },
+        "end": {
+          "line": 453,
+          "column": 5,
+          "index": 11178
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyOpenedButton": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4,
+          "index": 11207
+        },
+        "end": {
+          "line": 464,
+          "column": 5,
+          "index": 11380
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyOpener": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 467,
+          "column": 4,
+          "index": 11409
+        },
+        "end": {
+          "line": 479,
+          "column": 5,
+          "index": 11778
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBlockerColor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4,
+          "index": 11807
+        },
+        "end": {
+          "line": 484,
+          "column": 5,
+          "index": 11882
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBlockerOpacity": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4,
+          "index": 11911
+        },
+        "end": {
+          "line": 489,
+          "column": 5,
+          "index": 11990
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getChildrenContainer": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 498,
+          "column": 4,
+          "index": 12212
+        },
+        "end": {
+          "line": 500,
+          "column": 5,
+          "index": 12303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 4,
+          "index": 12328
+        },
+        "end": {
+          "line": 533,
+          "column": 5,
+          "index": 13174
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_getMenuLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the menu layout manager",
+          "     *",
+          "     * @return {qx.ui.layout.Abstract} The menu layout manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the menu layout manager</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.layout.Abstract} The menu layout manager",
+            "type": "qx.ui.layout.Abstract",
+            "description": "The menu layout manager"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4,
+          "index": 13302
+        },
+        "end": {
+          "line": 548,
+          "column": 5,
+          "index": 13535
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Abstract"
+      },
+      "appearsIn": []
+    },
+    "_getMenuBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the menu bounds",
+          "     *",
+          "     * @return {Map} The menu bounds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the menu bounds</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The menu bounds",
+            "type": "Map<any, any>",
+            "description": "The menu bounds"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 555,
+          "column": 4,
+          "index": 13629
+        },
+        "end": {
+          "line": 563,
+          "column": 5,
+          "index": 13861
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_computePlacementSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the size of the menu. This method is used by the",
+          "     * {@link qx.ui.core.MPlacement} mixin.",
+          "     * @return {Map} The menu bounds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the size of the menu. This method is used by the\n {@link qx.ui.core.MPlacement} mixin.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The menu bounds",
+            "type": "Map<any, any>",
+            "description": "The menu bounds"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 570,
+          "column": 4,
+          "index": 14030
+        },
+        "end": {
+          "line": 572,
+          "column": 5,
+          "index": 14097
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__updateSlideBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the visibility of the slidebar based on the menu's current size",
+          "     * and position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the visibility of the slidebar based on the menu's current size\n and position.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 578,
+          "column": 4,
+          "index": 14220
+        },
+        "end": {
+          "line": 604,
+          "column": 5,
+          "index": 15127
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_assertSlideBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schedules the addition of the slidebar and calls the given callback",
+          "     * after the slidebar has been added.",
+          "     *",
+          "     * @param callback {Function} the callback to call",
+          "     * @return {var|undefined} The return value of the callback if the slidebar",
+          "     * already exists, or <code>undefined</code> if it doesn't",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Schedules the addition of the slidebar and calls the given callback\n after the slidebar has been added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} the callback to call",
+            "paramName": "callback",
+            "description": " the callback to call",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var|undefined} The return value of the callback if the slidebar\n already exists, or <code>undefined</code> if it doesn't",
+            "type": "var|undefined",
+            "description": "The return value of the callback if the slidebar\n already exists, or <code>undefined</code> if it doesn't"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 614,
+          "column": 4,
+          "index": 15472
+        },
+        "end": {
+          "line": 621,
+          "column": 5,
+          "index": 15681
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "returnType": {
+        "type": "var|undefined"
+      },
+      "appearsIn": []
+    },
+    "syncWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 624,
+          "column": 4,
+          "index": 15706
+        },
+        "end": {
+          "line": 630,
+          "column": 5,
+          "index": 15905
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jobs"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_afterAddChild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets called when a child is added. Sets ARIA attrs",
+          "     * @param {*} child",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets called when a child is added. Sets ARIA attrs</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} child",
+            "paramName": "child",
+            "description": "",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 642,
+          "column": 4,
+          "index": 16206
+        },
+        "end": {
+          "line": 649,
+          "column": 5,
+          "index": 16545
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "*"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update position if the menu or the root is resized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update position if the menu or the root is resized</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 654,
+          "column": 4,
+          "index": 16626
+        },
+        "end": {
+          "line": 668,
+          "column": 5,
+          "index": 17070
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for pointerover event.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} pointerover event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for pointerover event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointerover event",
+            "paramName": "e",
+            "description": " pointerover event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 675,
+          "column": 4,
+          "index": 17203
+        },
+        "end": {
+          "line": 713,
+          "column": 5,
+          "index": 18345
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for pointerout event.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} pointerout event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for pointerout event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointerout event",
+            "paramName": "e",
+            "description": " pointerout event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 720,
+          "column": 4,
+          "index": 18476
+        },
+        "end": {
+          "line": 745,
+          "column": 5,
+          "index": 19425
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getRootOpener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the opener of the root/the first parent menu.",
+          "     * parent menu.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The opener.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the opener of the root/the first parent menu.\n parent menu.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget|null} The opener.",
+            "type": "qx.ui.core.Widget|null",
+            "description": "The opener."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 759,
+          "column": 4,
+          "index": 19782
+        },
+        "end": {
+          "line": 770,
+          "column": 5,
+          "index": 20082
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "__ptwLiveUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5421
+        },
+        "end": {
+          "line": 203,
+          "column": 26,
+          "index": 5443
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__ptwLiveDisappearListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 5449
+        },
+        "end": {
+          "line": 204,
+          "column": 36,
+          "index": 5481
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__ptwLiveUpdateDisappearListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5487
+        },
+        "end": {
+          "line": 205,
+          "column": 42,
+          "index": 5525
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__lastKnownCoords": {
+      "jsdoc": {
+        "raw": [
+          "*@type {Record<\"top\" | \"right\" | \"bottom\" | \"left\", number> | null}"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 5607
+        },
+        "end": {
+          "line": 207,
+          "column": 27,
+          "index": 5630
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__lastKnownSize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 5636
+        },
+        "end": {
+          "line": 208,
+          "column": 25,
+          "index": 5657
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "getLayoutLocation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the location data like {qx.bom.element.Location#get} does,",
+          "     * but does not rely on DOM elements coordinates to be rendered. Instead,",
+          "     * this method works with the available layout data available in the moment",
+          "     * when it is executed.",
+          "     * This works best when called in some type of <code>resize</code> or",
+          "     * <code>move</code> event which are supported by all widgets out of the",
+          "     * box.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Any widget",
+          "     * @return {Map|null} Returns a map with <code>left</code>, <code>top</code>,",
+          "     *   <code>right</code> and <code>bottom</code> which contains the distance",
+          "     *   of the widget relative coords the document.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the location data like {qx.bom.element.Location#get} does,\n but does not rely on DOM elements coordinates to be rendered. Instead,\n this method works with the available layout data available in the moment\n when it is executed.\n This works best when called in some type of <code>resize</code> or\n <code>move</code> event which are supported by all widgets out of the\n box.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Any widget",
+            "paramName": "widget",
+            "description": " Any widget",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null} Returns a map with <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code> which contains the distance\n   of the widget relative coords the document.",
+            "type": "Map|null",
+            "description": "Returns a map with <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code> which contains the distance\n   of the widget relative coords the document."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 6377
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 7677
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "moveTo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the position. Uses low-level, high-performance DOM",
+          "     * methods when the property {@link #domMove} is enabled.",
+          "     * Checks if an always visible element is set and moves the widget to not",
+          "     * overlay the always visible widget if possible. The algorithm tries to",
+          "     * move the widget as far left as necessary but not of the screen.",
+          "     * ({@link #setVisibleElement})",
+          "     *",
+          "     * @param left {Integer} The left position",
+          "     * @param top {Integer} The top position",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the position. Uses low-level, high-performance DOM\n methods when the property {@link #domMove} is enabled.\n Checks if an always visible element is set and moves the widget to not\n overlay the always visible widget if possible. The algorithm tries to\n move the widget as far left as necessary but not of the screen.\n ({@link #setVisibleElement})</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "left {Integer} The left position",
+            "paramName": "left",
+            "description": " The left position",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} The top position",
+            "paramName": "top",
+            "description": " The top position",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 8186
+        },
+        "end": {
+          "line": 337,
+          "column": 5,
+          "index": 9703
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placeToWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Places the widget to another (at least laid out) widget. The DOM",
+          "     * element is not needed, but the bounds are needed to compute the",
+          "     * location of the widget to align to.",
+          "     *",
+          "     * @param target {qx.ui.core.Widget} Target coords align coords",
+          "     * @param liveupdate {Boolean} Flag indicating if the position of the",
+          "     * widget should be checked and corrected automatically.",
+          "     * @return {Boolean} true if the widget was successfully placed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Places the widget to another (at least laid out) widget. The DOM\n element is not needed, but the bounds are needed to compute the\n location of the widget to align to.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {qx.ui.core.Widget} Target coords align coords",
+            "paramName": "target",
+            "description": " Target coords align coords",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "liveupdate {Boolean} Flag indicating if the position of the\n widget should be checked and corrected automatically.",
+            "paramName": "liveupdate",
+            "description": " Flag indicating if the position of the\n widget should be checked and corrected automatically.",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the widget was successfully placed",
+            "type": "boolean",
+            "description": "true if the widget was successfully placed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 10190
+        },
+        "end": {
+          "line": 404,
+          "column": 5,
+          "index": 11819
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "liveupdate",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__cleanupFromLastPlaceToWidgetLiveUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all resources allocated by the last run of placeToWidget with liveupdate=true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all resources allocated by the last run of placeToWidget with liveupdate=true</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 11935
+        },
+        "end": {
+          "line": 428,
+          "column": 5,
+          "index": 12426
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placeToPointer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Places the widget to the pointer position.",
+          "     *",
+          "     * @param event {qx.event.type.Pointer} Pointer event to align to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Places the widget to the pointer position.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Pointer} Pointer event to align to",
+            "paramName": "event",
+            "description": " Pointer event to align to",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 4,
+          "index": 12576
+        },
+        "end": {
+          "line": 447,
+          "column": 5,
+          "index": 12849
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placeToElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Places the widget to any (rendered) DOM element.",
+          "     *",
+          "     * @param elem {Element} DOM element to align to",
+          "     * @param liveupdate {Boolean} Flag indicating if the position of the",
+          "     * widget should be checked and corrected automatically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Places the widget to any (rendered) DOM element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} DOM element to align to",
+            "paramName": "elem",
+            "description": " DOM element to align to",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "liveupdate {Boolean} Flag indicating if the position of the\n widget should be checked and corrected automatically.",
+            "paramName": "liveupdate",
+            "description": " Flag indicating if the position of the\n widget should be checked and corrected automatically.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4,
+          "index": 13123
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 14261
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "liveupdate",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "placeToPoint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Places the widget in relation to the given point",
+          "     *",
+          "     * @param point {Map} Coordinate of any point with the keys <code>left</code>",
+          "     *   and <code>top</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Places the widget in relation to the given point</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "point {Map} Coordinate of any point with the keys <code>left</code>\n   and <code>top</code>.",
+            "paramName": "point",
+            "description": " Coordinate of any point with the keys <code>left</code>\n   and <code>top</code>.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 503,
+          "column": 4,
+          "index": 14460
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 14648
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "point",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "_getPlacementOffsets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the placement offsets as a map",
+          "     *",
+          "     * @return {Map} The placement offsets",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the placement offsets as a map</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The placement offsets",
+            "type": "Map<any, any>",
+            "description": "The placement offsets"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 4,
+          "index": 14767
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 14968
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__getPlacementSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the size of the object to place. The callback will be called with",
+          "     * the size as first argument. This methods works asynchronously.",
+          "     *",
+          "     * The size of the object to place is the size of the widget. If a widget",
+          "     * including this mixin needs a different size it can implement the method",
+          "     * <code>_computePlacementSize</code>, which returns the size.",
+          "     *",
+          "     *  @param callback {Function} This function will be called with the size as",
+          "     *    first argument. If it is null, the size is returned directly.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the size of the object to place. The callback will be called with\n the size as first argument. This methods works asynchronously.\n The size of the object to place is the size of the widget. If a widget\n including this mixin needs a different size it can implement the method\n <code>_computePlacementSize</code>, which returns the size.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} This function will be called with the size as\n    first argument. If it is null, the size is returned directly.",
+            "paramName": "callback",
+            "description": " This function will be called with the size as\n    first argument. If it is null, the size is returned directly.",
+            "type": "((...args: any[]) => any)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 539,
+          "column": 4,
+          "index": 15529
+        },
+        "end": {
+          "line": 559,
+          "column": 5,
+          "index": 16007
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "_place": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal method to read specific this properties and",
+          "     * apply the results to the this afterwards.",
+          "     *",
+          "     * @param coords {Map} Location of the object to align the this to. This map",
+          "     *   should have the keys <code>left</code>, <code>top</code>, <code>right</code>",
+          "     *   and <code>bottom</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal method to read specific this properties and\n apply the results to the this afterwards.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "coords {Map} Location of the object to align the this to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "paramName": "coords",
+            "description": " Location of the object to align the this to. This map\n   should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n   and <code>bottom</code>.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 4,
+          "index": 16347
+        },
+        "end": {
+          "line": 590,
+          "column": 5,
+          "index": 17002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coords",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__forward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Forward the call with the given function name to the children container",
+          "     *",
+          "     * @param functionName {String} name of the method to forward",
+          "     * @param a1 {var?} first argument of the method to call",
+          "     * @param a2 {var?} second argument of the method to call",
+          "     * @param a3 {var?} third argument of the method to call",
+          "     * @return {var} The return value of the forward method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Forward the call with the given function name to the children container</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionName {String} name of the method to forward",
+            "paramName": "functionName",
+            "description": " name of the method to forward",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "a1 {var?} first argument of the method to call",
+            "paramName": "a1",
+            "description": " first argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a2 {var?} second argument of the method to call",
+            "paramName": "a2",
+            "description": " second argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a3 {var?} third argument of the method to call",
+            "paramName": "a3",
+            "description": " third argument of the method to call",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the forward method",
+            "type": "var",
+            "description": "The return value of the forward method"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1555
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1782
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "functionName",
+          "type": "string"
+        },
+        {
+          "name": "a1",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a2",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a3",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the children list",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem[]} The children array (Arrays are",
+          "     *   reference types, please do not modify them in-place)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\n   reference types, please do not modify them in-place)",
+            "type": "qx.ui.core.LayoutItem[]",
+            "description": "The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "hasChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains children.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when the widget has children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children.",
+            "type": "boolean",
+            "description": "Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget.",
+          "     *",
+          "     * The supported keys of the layout options map depend on the layout manager",
+          "     * used to position the widget. The options are documented in the class",
+          "     * documentation of each layout manager {@link qx.ui.layout}.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to add.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.\n The supported keys of the layout options map depend on the layout manager\n used to position the widget. The options are documented in the class\n documentation of each layout manager {@link qx.ui.layout}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to add.",
+            "paramName": "child",
+            "description": " the item to add.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2831
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given child item.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to remove",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to remove",
+            "paramName": "child",
+            "description": " the item to remove",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3030
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3097
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all children.",
+          "     * @return {Array} An array containing the removed children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the removed children.",
+            "type": "Array<any>",
+            "description": "An array containing the removed children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3274
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index position of the given item if it is",
+          "     * a child item. Otherwise it returns <code>-1</code>.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to query for",
+          "     * @return {Integer} The index position or <code>-1</code> when",
+          "     *   the given item is no child of this layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given item if it is\n a child item. Otherwise it returns <code>-1</code>.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to query for",
+            "paramName": "child",
+            "description": " the item to query for",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given item is no child of this layout.",
+            "type": "Integer",
+            "description": "The index position or <code>-1</code> when\n   the given item is no child of this layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3909
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a child at the specified index",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param index {Integer} Index, at which the item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child at the specified index\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the item will be inserted",
+            "paramName": "index",
+            "description": " Index, at which the item will be inserted",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4541
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addBefore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item before another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item before another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+            "paramName": "before",
+            "description": " item before the new item will be inserted.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 5224
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 5324
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "before",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAfter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item after another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item after another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+            "paramName": "after",
+            "description": " item, after which the new item will be inserted",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5920
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 6016
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "after",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the item at the specified index.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param index {Integer} Index of the item to remove.",
+          "     * @return {qx.ui.core.LayoutItem} The removed item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the item at the specified index.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the item to remove.",
+            "paramName": "index",
+            "description": " Index of the item to remove.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The removed item",
+            "type": "qx.ui.core.LayoutItem",
+            "description": "The removed item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6507
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 6578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 779,
+        "column": 2,
+        "index": 20278
+      },
+      "end": {
+        "line": 787,
+        "column": 3,
+        "index": 20550
+      }
+    }
+  },
+  "statics": {
+    "__visible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 733
+        },
+        "end": {
+          "line": 27,
+          "column": 19,
+          "index": 748
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "__direction": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 754
+        },
+        "end": {
+          "line": 28,
+          "column": 23,
+          "index": 773
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "setVisibleElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the always visible element. If an element is set, the",
+          "     * {@link #moveTo} method takes care of every move and tries not to cover",
+          "     * the given element with a movable widget like a popup or context menu.",
+          "     *",
+          "     * @param elem {qx.ui.core.Widget} The widget which should always be visible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the always visible element. If an element is set, the\n {@link #moveTo} method takes care of every move and tries not to cover\n the given element with a movable widget like a popup or context menu.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {qx.ui.core.Widget} The widget which should always be visible.",
+            "paramName": "elem",
+            "description": " The widget which should always be visible.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1105
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1165
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "getVisibleElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the given always visible element. See {@link #setVisibleElement}",
+          "     * for more details.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The given widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the given always visible element. See {@link #setVisibleElement}\n for more details.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget|null} The given widget.",
+            "type": "qx.ui.core.Widget|null",
+            "description": "The given widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1358
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1414
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "setMoveDirection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the move direction for an element which hides always visible element.",
+          "     * The value has only an effect when the {@link #setVisibleElement} is set.",
+          "     *",
+          "     * @param direction {String} The direction <code>left</code> or <code>top</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the move direction for an element which hides always visible element.\n The value has only an effect when the {@link #setVisibleElement} is set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "direction {String} The direction <code>left</code> or <code>top</code>.",
+            "paramName": "direction",
+            "description": " The direction <code>left</code> or <code>top</code>.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1691
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "direction",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    },
+    "getMoveDirection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the move direction for an element which hides always visible element.",
+          "     * See {@link #setMoveDirection} for more details.",
+          "     *",
+          "     * @return {String} The move direction.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the move direction for an element which hides always visible element.\n See {@link #setMoveDirection} for more details.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The move direction.",
+            "type": "string",
+            "description": "The move direction."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2319
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2376
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.core.MPlacement"
+      ],
+      "mixin": "qx.ui.core.MPlacement"
+    }
+  }
+}

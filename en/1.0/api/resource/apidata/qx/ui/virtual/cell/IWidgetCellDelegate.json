@@ -1,0 +1,88 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602471,
+  "lastModifiedIso": "2026-06-29T04:00:02.471Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/IWidgetCellDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 1013
+    },
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 1287
+    }
+  },
+  "className": "qx.ui.virtual.cell.IWidgetCellDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects, which are used as delegates for {@link qx.ui.virtual.cell.WidgetCell} may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need implement all of the methods of this interface. If a method is not",
+      " * implemented the {@link qx.ui.virtual.cell.WidgetCell} provides a default implementation.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * really implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects, which are used as delegates for {@link qx.ui.virtual.cell.WidgetCell} may\n implement any of the methods described in this interface. The delegate does\n not need implement all of the methods of this interface. If a method is not\n implemented the {@link qx.ui.virtual.cell.WidgetCell} provides a default implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n really implemented.</p>"
+      }
+    ]
+  },
+  "members": {
+    "createWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a <code>Widget</code> which will be used for rendering.",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem} A new created <code>Widget</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a <code>Widget</code> which will be used for rendering.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} A new created <code>Widget</code>.",
+            "type": "qx.ui.core.LayoutItem",
+            "description": "A new created <code>Widget</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1262
+        },
+        "end": {
+          "line": 36,
+          "column": 21,
+          "index": 1279
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

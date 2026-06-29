@@ -1,0 +1,366 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600958,
+  "lastModifiedIso": "2026-06-29T04:00:00.958Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/AliasManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1798
+    },
+    "end": {
+      "line": 174,
+      "column": 3,
+      "index": 5034
+    }
+  },
+  "className": "qx.util.AliasManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This singleton manages global resource aliases.",
+      " *",
+      " * The AliasManager supports simple prefix replacement on strings. There are",
+      " * some pre-defined aliases, and you can register your own with {@link #add}.",
+      " * The AliasManager is automatically invoked in various situations, e.g. when",
+      " * resolving the icon image for a button, so it is common to register aliases for",
+      " * <a href=\"http://qooxdoo.org/docs/#desktop/gui/resources.md\">resource id's</a>.",
+      " * You can of course call the AliasManager's {@link #resolve}",
+      " * explicitly to get an alias resolution in any situation, but keep that",
+      " * automatic invocation of the AliasManager in mind when defining new aliases as",
+      " * they will be applied globally in many classes, not only your own.",
+      " *",
+      " * Examples:",
+      " * <ul>",
+      " *  <li> <code>foo</code> -> <code>bar/16pt/baz</code>  (resolves e.g. __\"foo/a/b/c.png\"__ to",
+      " *    __\"bar/16pt/baz/a/b/c.png\"__)",
+      " *  <li> <code>imgserver</code> -> <code>http&#058;&#047;&#047;imgs03.myserver.com/my/app/</code>",
+      " *    (resolves e.g. __\"imgserver/a/b/c.png\"__ to",
+      " *    __\"http&#058;&#047;&#047;imgs03.myserver.com/my/app/a/b/c.png\"__)",
+      " * </ul>",
+      " *",
+      " * For resources, only aliases that resolve to proper resource id's can be __managed__",
+      " * resources, and will be considered __unmanaged__ resources otherwise.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This singleton manages global resource aliases.\n The AliasManager supports simple prefix replacement on strings. There are\n some pre-defined aliases, and you can register your own with {@link #add}.\n The AliasManager is automatically invoked in various situations, e.g. when\n resolving the icon image for a button, so it is common to register aliases for\n <a href=\"http://qooxdoo.org/docs/#desktop/gui/resources.md\">resource id's</a>.\n You can of course call the AliasManager's {@link #resolve}\n explicitly to get an alias resolution in any situation, but keep that\n automatic invocation of the AliasManager in mind when defining new aliases as\n they will be applied globally in many classes, not only your own.\n Examples:\n </p>\n<ul>\n  <li> <code>foo</code> -> <code>bar/16pt/baz</code>  (resolves e.g. __\"foo/a/b/c.png\"__ to\n    __\"bar/16pt/baz/a/b/c.png\"__)\n  <li> <code>imgserver</code> -> <code>http&#058;&#047;&#047;imgs03.myserver.com/my/app/</code>\n    (resolves e.g. __\"imgserver/a/b/c.png\"__ to\n    __\"http&#058;&#047;&#047;imgs03.myserver.com/my/app/a/b/c.png\"__)\n </ul>\n<p>For resources, only aliases that resolve to proper resource id's can be <strong>managed</strong>\n resources, and will be considered <strong>unmanaged</strong> resources otherwise.</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.util.ValueManager",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 2,
+        "index": 2084
+      },
+      "end": {
+        "line": 63,
+        "column": 3,
+        "index": 2293
+      }
+    }
+  },
+  "members": {
+    "__aliases": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2497
+        },
+        "end": {
+          "line": 72,
+          "column": 19,
+          "index": 2512
+        }
+      },
+      "appearsIn": []
+    },
+    "_preprocess": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * pre-process incoming dynamic value",
+          "     *",
+          "     * @param value {String} incoming value",
+          "     * @return {String} pre processed value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>pre-process incoming dynamic value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} incoming value",
+            "paramName": "value",
+            "description": " incoming value",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} pre processed value",
+            "type": "string",
+            "description": "pre processed value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2672
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3494
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Define an alias to a resource path",
+          "     *",
+          "     * @param alias {String} alias name for the resource path/url",
+          "     * @param base {String} first part of URI for all images which use this alias",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Define an alias to a resource path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "alias {String} alias name for the resource path/url",
+            "paramName": "alias",
+            "description": " alias name for the resource path/url",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "base {String} first part of URI for all images which use this alias",
+            "paramName": "base",
+            "description": " first part of URI for all images which use this alias",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3714
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 4101
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "alias",
+          "type": "string"
+        },
+        {
+          "name": "base",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove a previously defined alias",
+          "     *",
+          "     * @param alias {String} alias name for the resource path/url",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a previously defined alias</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "alias {String} alias name for the resource path/url",
+            "paramName": "alias",
+            "description": " alias name for the resource path/url",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4238
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4404
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "alias",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resolve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resolves a given path",
+          "     *",
+          "     * @param path {String} input path",
+          "     * @return {String} resulting path (with interpreted aliases)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resolves a given path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} input path",
+            "paramName": "path",
+            "description": " input path",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} resulting path (with interpreted aliases)",
+            "type": "string",
+            "description": "resulting path (with interpreted aliases)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4568
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4740
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.util.ValueManager",
+      "appearsIn": [
+        "qx.util.ValueManager"
+      ]
+    },
+    "getAliases": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get registered aliases",
+          "     *",
+          "     * @return {Map} the map of the currently registered alias:resolution pairs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get registered aliases</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} the map of the currently registered alias:resolution pairs",
+            "type": "Map<any, any>",
+            "description": "the map of the currently registered alias:resolution pairs"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4880
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 5026
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

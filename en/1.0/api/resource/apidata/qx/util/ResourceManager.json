@@ -1,0 +1,927 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603099,
+  "lastModifiedIso": "2026-06-29T04:00:03.099Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/ResourceManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 641
+    },
+    "end": {
+      "line": 458,
+      "column": 3,
+      "index": 14095
+    }
+  },
+  "className": "qx.util.ResourceManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains information about images (size, format, clipping, ...) and",
+      " * other resources like CSS files, local data, ...",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains information about images (size, format, clipping, …) and\n other resources like CSS files, local data, …</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 924
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 954
+      }
+    }
+  },
+  "statics": {
+    "__registry": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} the shared image registry "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} the shared image registry"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1207
+        },
+        "end": {
+          "line": 46,
+          "column": 36,
+          "index": 1239
+        }
+      },
+      "appearsIn": []
+    },
+    "__urlPrefix": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} prefix per library used in HTTPS mode for IE "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} prefix per library used in HTTPS mode for IE"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1314
+        },
+        "end": {
+          "line": 49,
+          "column": 19,
+          "index": 1329
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "findHighResolutionSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether there is a high-resolution image available.",
+          "     * A high-resolution image is assumed to have the same file name as",
+          "     * the parameter source, but with a pixelRatio identifier before the file",
+          "     * extension, like \"@2x\".",
+          "     * Medium Resolution: \"example.png\", high-resolution: \"example@2x.png\"",
+          "     *",
+          "     * @param lowResImgSrc {String} source of the low resolution image.",
+          "     * @param factor {Number} Factor to find the right image. If not set calculated by getDevicePixelRatio()",
+          "     * @return {String|Boolean} If a high-resolution image source.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether there is a high-resolution image available.\n A high-resolution image is assumed to have the same file name as\n the parameter source, but with a pixelRatio identifier before the file\n extension, like \"@2x\".\n Medium Resolution: \"example.png\", high-resolution: \"example@2x.png\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "lowResImgSrc {String} source of the low resolution image.",
+            "paramName": "lowResImgSrc",
+            "description": " source of the low resolution image.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "factor {Number} Factor to find the right image. If not set calculated by getDevicePixelRatio()",
+            "paramName": "factor",
+            "description": " Factor to find the right image. If not set calculated by getDevicePixelRatio()",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|Boolean} If a high-resolution image source.",
+            "type": "String|Boolean",
+            "description": "If a high-resolution image source."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2130
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3302
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "lowResImgSrc",
+          "type": "string"
+        },
+        {
+          "name": "factor",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "String|Boolean"
+      },
+      "appearsIn": []
+    },
+    "getHighResolutionSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the source name for the high-resolution image based on the passed",
+          "     * parameters.",
+          "     * @param source {String} the source of the medium resolution image.",
+          "     * @param pixelRatio {Number} the pixel ratio of the high-resolution image.",
+          "     * @return {String} the high-resolution source name or null if no source could be found.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the source name for the high-resolution image based on the passed\n parameters.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} the source of the medium resolution image.",
+            "paramName": "source",
+            "description": " the source of the medium resolution image.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pixelRatio {Number} the pixel ratio of the high-resolution image.",
+            "paramName": "pixelRatio",
+            "description": " the pixel ratio of the high-resolution image.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the high-resolution source name or null if no source could be found.",
+            "type": "string",
+            "description": "the high-resolution source name or null if no source could be found."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3671
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4100
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "pixelRatio",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getIds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get all known resource IDs.",
+          "     *",
+          "     * @param pathfragment{String|null|undefined} an optional path fragment to check against with id.indexOf(pathfragment)",
+          "     * @return {Array|null} an array containing the IDs or null if the registry is not initialized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get all known resource IDs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pathfragment{String|null|undefined} an optional path fragment to check against with id.indexOf(pathfragment)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array|null} an array containing the IDs or null if the registry is not initialized",
+            "type": "Array|null",
+            "description": "an array containing the IDs or null if the registry is not initialized"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4387
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4655
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pathfragment"
+        }
+      ],
+      "returnType": {
+        "type": "Array|null"
+      },
+      "appearsIn": []
+    },
+    "has": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the registry has information about the given resource.",
+          "     *",
+          "     * @param id {String} The resource to get the information for",
+          "     * @return {Boolean} <code>true</code> when the resource is known.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the registry has information about the given resource.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The resource to get the information for",
+            "paramName": "id",
+            "description": " The resource to get the information for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> when the resource is known.",
+            "type": "boolean",
+            "description": "<code>true</code> when the resource is known."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4892
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4959
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get information about an resource.",
+          "     *",
+          "     * @param id {String} The resource to get the information for",
+          "     * @return {Array} Registered data or <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get information about an resource.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The resource to get the information for",
+            "paramName": "id",
+            "description": " The resource to get the information for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} Registered data or <code>null</code>",
+            "type": "Array<any>",
+            "description": "Registered data or <code>null</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5157
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 5234
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getImageWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the width of the given resource ID,",
+          "     * when it is not a known image <code>0</code> is",
+          "     * returned.",
+          "     *",
+          "     * @param id {String} Resource identifier",
+          "     * @return {Integer} The image width, maybe <code>null</code> when the width is unknown",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the width of the given resource ID,\n when it is not a known image <code>0</code> is\n returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The image width, maybe <code>null</code> when the width is unknown",
+            "type": "Integer",
+            "description": "The image width, maybe <code>null</code> when the width is unknown"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5524
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 5996
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getImageHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the height of the given resource ID,",
+          "     * when it is not a known image <code>0</code> is",
+          "     * returned.",
+          "     *",
+          "     * @param id {String} Resource identifier",
+          "     * @return {Integer} The image height, maybe <code>null</code> when the height is unknown",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the height of the given resource ID,\n when it is not a known image <code>0</code> is\n returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The image height, maybe <code>null</code> when the height is unknown",
+            "type": "Integer",
+            "description": "The image height, maybe <code>null</code> when the height is unknown"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 6289
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6583
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getImageFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the format of the given resource ID,",
+          "     * when it is not a known image <code>null</code>",
+          "     * is returned.",
+          "     *",
+          "     * @param id {String} Resource identifier",
+          "     * @return {String} File format of the image",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the format of the given resource ID,\n when it is not a known image <code>null</code>\n is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} File format of the image",
+            "type": "string",
+            "description": "File format of the image"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6834
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 7023
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getCombinedFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the format of the combined image (png, gif, ...), if the given",
+          "     * resource identifier is an image contained in one, or the empty string",
+          "     * otherwise.",
+          "     *",
+          "     * @param id {String} Resource identifier",
+          "     * @return {String} The type of the combined image containing id",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the format of the combined image (png, gif, …), if the given\n resource identifier is an image contained in one, or the empty string\n otherwise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource identifier",
+            "paramName": "id",
+            "description": " Resource identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The type of the combined image containing id",
+            "type": "string",
+            "description": "The type of the combined image containing id"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 7341
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 7787
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given resource ID to a full qualified URI",
+          "     *",
+          "     * @param id {String} Resource ID",
+          "     * @return {String} Resulting URI",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given resource ID to a full qualified URI</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Resource ID",
+            "paramName": "id",
+            "description": " Resource ID",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Resulting URI",
+            "type": "string",
+            "description": "Resulting URI"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 7955
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 8749
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toDataUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Construct a data: URI for an image resource.",
+          "     *",
+          "     * Constructs a data: URI for a given resource id, if this resource is",
+          "     * contained in a base64 combined image. If this is not the case (e.g.",
+          "     * because the combined image has not been loaded yet), returns the direct",
+          "     * URI to the image file itself.",
+          "     *",
+          "     * @param resid {String} resource id of the image",
+          "     * @return {String} \"data:\" or \"http:\" URI",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Construct a data: URI for an image resource.\n Constructs a data: URI for a given resource id, if this resource is\n contained in a base64 combined image. If this is not the case (e.g.\n because the combined image has not been loaded yet), returns the direct\n URI to the image file itself.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resid {String} resource id of the image",
+            "paramName": "resid",
+            "description": " resource id of the image",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} \"data:\" or \"http:\" URI",
+            "type": "string",
+            "description": "\"data:\" or \"http:\" URI"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9205
+        },
+        "end": {
+          "line": 333,
+          "column": 5,
+          "index": 9687
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "resid",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isFontUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether a given resource id for an image is a font handle.",
+          "     *",
+          "     * @param resid {String} resource id of the image",
+          "     * @return {Boolean} True if it's a font URI",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether a given resource id for an image is a font handle.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resid {String} resource id of the image",
+            "paramName": "resid",
+            "description": " resource id of the image",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True if it's a font URI",
+            "type": "boolean",
+            "description": "True if it's a font URI"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4,
+          "index": 9893
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 9969
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "resid",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fromFontUriToCharCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the correct char code, ignoring scale postfix.",
+          "     *",
+          "     * The resource ID can be a ligature name (eg `@FontAwesome/heart` or `@MaterialIcons/home/16`),",
+          "     * or a hex character code (eg `@FontAwesome/f004` or `@FontAwesome/f004/16`)",
+          "     *",
+          "     * @param source {String} resource id of the image",
+          "     * @returns charCode of the glyph",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the correct char code, ignoring scale postfix.\n The resource ID can be a ligature name (eg <code>@FontAwesome/heart</code> or <code>@MaterialIcons/home/16</code>),\n or a hex character code (eg <code>@FontAwesome/f004</code> or <code>@FontAwesome/f004/16</code>)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} resource id of the image",
+            "paramName": "source",
+            "description": " resource id of the image",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "charCode of the glyph"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 354,
+          "column": 4,
+          "index": 10344
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 11036
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,0 +1,485 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/svg/MSvgGrid.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 908
+    },
+    "end": {
+      "line": 217,
+      "column": 3,
+      "index": 6117
+    }
+  },
+  "className": "cv.ui.structure.tile.components.svg.MSvgGrid",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for SVG elements that provide a grid layout.",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for SVG elements that provide a grid layout.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1103
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1349
+      }
+    }
+  },
+  "properties": {
+    "rows": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1497
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1636
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 3,
+        "event": "changeRows",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "columns": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1643
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1788
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 3,
+        "event": "changeColumns",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "outerPadding": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1795
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1950
+        }
+      },
+      "json": {
+        "check": "Number",
+        "event": "changeOuterPadding",
+        "init": 4,
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "spacing": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1957
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2102
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 8,
+        "event": "changeSpacing",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "cellWidth": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2109
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2254
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 56,
+        "apply": "_invalidateLayout",
+        "event": "changeSize",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "cellHeight": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2261
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2407
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 56,
+        "apply": "_invalidateLayout",
+        "event": "changeSize",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "viewBox": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2414
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2504
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeViewBox"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_cells": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2650
+        },
+        "end": {
+          "line": 107,
+          "column": 16,
+          "index": 2662
+        }
+      },
+      "appearsIn": []
+    },
+    "_isLayoutValid": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2668
+        },
+        "end": {
+          "line": 108,
+          "column": 24,
+          "index": 2688
+        }
+      },
+      "appearsIn": []
+    },
+    "__toInt": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2695
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 2816
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_invalidateLayout": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2823
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 2918
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_layoutAll": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 2925
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3212
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getCells": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the number of cells in this grid",
+          "     * @returns {number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the number of cells in this grid</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3308
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3375
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "layout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a SVGElement to a cell in the grid.",
+          "     * @param element {SVGGraphicsElement} element to place",
+          "     * @param row {number} row number (-1 to find next free row)",
+          "     * @param column {number} column cumber (-1 to use next free cell)",
+          "     * @param replace {boolean} it true replace current item in cell, otherwise the element will not be added when the cell is not empty",
+          "     * @param retries {number} internal value used to limit layout retries for one element. Do not set this externally!",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a SVGElement to a cell in the grid.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {SVGGraphicsElement} element to place",
+            "paramName": "element",
+            "description": " element to place",
+            "type": "SVGGraphicsElement"
+          },
+          {
+            "name": "@param",
+            "body": "row {number} row number (-1 to find next free row)",
+            "paramName": "row",
+            "description": " row number (-1 to find next free row)",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "column {number} column cumber (-1 to use next free cell)",
+            "paramName": "column",
+            "description": " column cumber (-1 to use next free cell)",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "replace {boolean} it true replace current item in cell, otherwise the element will not be added when the cell is not empty",
+            "paramName": "replace",
+            "description": " it true replace current item in cell, otherwise the element will not be added when the cell is not empty",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "retries {number} internal value used to limit layout retries for one element. Do not set this externally!",
+            "paramName": "retries",
+            "description": " internal value used to limit layout retries for one element. Do not set this externally!",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3898
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 4933
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "SVGGraphicsElement"
+        },
+        {
+          "name": "row",
+          "type": "number"
+        },
+        {
+          "name": "column",
+          "type": "number"
+        },
+        {
+          "name": "replace",
+          "type": "boolean"
+        },
+        {
+          "name": "retries",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getNextFreeCell": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4940
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 6109
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "row"
+        },
+        {
+          "name": "column"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

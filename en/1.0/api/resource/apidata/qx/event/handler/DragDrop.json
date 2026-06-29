@@ -1,0 +1,2212 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601884,
+  "lastModifiedIso": "2026-06-29T04:00:01.884Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/DragDrop.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 765
+    },
+    "end": {
+      "line": 1107,
+      "column": 3,
+      "index": 30622
+    }
+  },
+  "className": "qx.event.handler.DragDrop",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Event handler, which supports drag events on DOM elements.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * @require(qx.event.handler.Gesture)",
+      " * @require(qx.event.handler.Keyboard)",
+      " * @require(qx.event.handler.Capture)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Event handler, which supports drag events on DOM elements.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Gesture"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Keyboard"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Capture"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1176
+      },
+      "end": {
+        "line": 63,
+        "column": 3,
+        "index": 1718
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1974
+        },
+        "end": {
+          "line": 73,
+          "column": 51,
+          "index": 2021
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2073
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2246
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2331
+        },
+        "end": {
+          "line": 88,
+          "column": 27,
+          "index": 2354
+        }
+      },
+      "appearsIn": []
+    },
+    "ALLOWED_BUTTONS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array of strings holding the names of the allowed mouse buttons",
+          "     * for Drag & Drop. The default is \"left\" but could be extended with",
+          "     * \"middle\" or \"right\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array of strings holding the names of the allowed mouse buttons\n for Drag &amp; Drop. The default is \"left\" but could be extended with\n \"middle\" or \"right\"</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2548
+        },
+        "end": {
+          "line": 95,
+          "column": 29,
+          "index": 2573
+        }
+      },
+      "appearsIn": []
+    },
+    "MIN_DRAG_DISTANCE": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The distance needed to change the mouse position before a drag session start.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The distance needed to change the mouse position before a drag session start.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2681
+        },
+        "end": {
+          "line": 100,
+          "column": 24,
+          "index": 2701
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "cursor": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2878
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2966
+        }
+      },
+      "json": {
+        "check": "qx.ui.core.Widget",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Widget instance of the drag & drop cursor. If non is given, the default",
+          "     * {@link qx.ui.core.DragDropCursor} will be used.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Widget instance of the drag &amp; drop cursor. If non is given, the default\n {@link qx.ui.core.DragDropCursor} will be used.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3174
+        },
+        "end": {
+          "line": 122,
+          "column": 19,
+          "index": 3189
+        }
+      },
+      "appearsIn": []
+    },
+    "__root": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3195
+        },
+        "end": {
+          "line": 123,
+          "column": 16,
+          "index": 3207
+        }
+      },
+      "appearsIn": []
+    },
+    "__dropTarget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 124,
+          "column": 22,
+          "index": 3231
+        }
+      },
+      "appearsIn": []
+    },
+    "__dragTarget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3237
+        },
+        "end": {
+          "line": 125,
+          "column": 22,
+          "index": 3255
+        }
+      },
+      "appearsIn": []
+    },
+    "__types": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3261
+        },
+        "end": {
+          "line": 126,
+          "column": 17,
+          "index": 3274
+        }
+      },
+      "appearsIn": []
+    },
+    "__actions": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3280
+        },
+        "end": {
+          "line": 127,
+          "column": 19,
+          "index": 3295
+        }
+      },
+      "appearsIn": []
+    },
+    "__keys": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3301
+        },
+        "end": {
+          "line": 128,
+          "column": 16,
+          "index": 3313
+        }
+      },
+      "appearsIn": []
+    },
+    "__cache": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3319
+        },
+        "end": {
+          "line": 129,
+          "column": 17,
+          "index": 3332
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentType": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3338
+        },
+        "end": {
+          "line": 130,
+          "column": 23,
+          "index": 3357
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentAction": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3363
+        },
+        "end": {
+          "line": 131,
+          "column": 25,
+          "index": 3384
+        }
+      },
+      "appearsIn": []
+    },
+    "__sessionActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3390
+        },
+        "end": {
+          "line": 132,
+          "column": 26,
+          "index": 3412
+        }
+      },
+      "appearsIn": []
+    },
+    "__validDrop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3418
+        },
+        "end": {
+          "line": 133,
+          "column": 22,
+          "index": 3436
+        }
+      },
+      "appearsIn": []
+    },
+    "__validAction": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3442
+        },
+        "end": {
+          "line": 134,
+          "column": 24,
+          "index": 3462
+        }
+      },
+      "appearsIn": []
+    },
+    "__dragTargetWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3468
+        },
+        "end": {
+          "line": 135,
+          "column": 28,
+          "index": 3492
+        }
+      },
+      "appearsIn": []
+    },
+    "__startConfig": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3498
+        },
+        "end": {
+          "line": 136,
+          "column": 23,
+          "index": 3517
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3761
+        },
+        "end": {
+          "line": 145,
+          "column": 35,
+          "index": 3792
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3831
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3914
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3953
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4038
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "addType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers a supported type",
+          "     *",
+          "     * @param type {String} The type to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers a supported type</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type to add",
+            "paramName": "type",
+            "description": " The type to add",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4342
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4396
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addAction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers a supported action. One of <code>move</code>,",
+          "     * <code>copy</code> or <code>alias</code>.",
+          "     *",
+          "     * @param action {String} The action to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers a supported action. One of <code>move</code>,\n <code>copy</code> or <code>alias</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} The action to add",
+            "paramName": "action",
+            "description": " The action to add",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4585
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4647
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "action",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "supportsType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the current drag target supports the given type",
+          "     *",
+          "     * @param type {String} Any type",
+          "     * @return {Boolean} Whether the type is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the current drag target supports the given type</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any type",
+            "paramName": "type",
+            "description": " Any type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the type is supported",
+            "type": "boolean",
+            "description": "Whether the type is supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 4832
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 4893
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "supportsAction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the current drag target supports the given action",
+          "     *",
+          "     * @param type {String} Any type",
+          "     * @return {Boolean} Whether the action is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the current drag target supports the given action</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any type",
+            "paramName": "type",
+            "description": " Any type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the action is supported",
+            "type": "boolean",
+            "description": "Whether the action is supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4,
+          "index": 5082
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5147
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setDropAllowed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the current drop target allows the current drag target.",
+          "     *",
+          "     * @param isAllowed {Boolean} False if a drop should be disallowed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the current drop target allows the current drag target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "isAllowed {Boolean} False if a drop should be disallowed",
+            "paramName": "isAllowed",
+            "description": " False if a drop should be disallowed",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 5319
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5417
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isAllowed",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the data of the given type during the <code>drop</code> event",
+          "     * on the drop target. This method fires a <code>droprequest</code> at",
+          "     * the drag target which should be answered by calls to {@link #addData}.",
+          "     *",
+          "     * Note that this is a synchronous method and if any of the drag and drop",
+          "     * events handlers are implemented using Promises, this may fail; @see",
+          "     * `getDataAsync`.",
+          "     *",
+          "     * @param type {String} Any supported type",
+          "     * @return {var} The result data in a promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the data of the given type during the <code>drop</code> event\n on the drop target. This method fires a <code>droprequest</code> at\n the drag target which should be answered by calls to {@link #addData}.\n Note that this is a synchronous method and if any of the drag and drop\n events handlers are implemented using Promises, this may fail; @see\n <code>getDataAsync</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any supported type",
+            "paramName": "type",
+            "description": " Any supported type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The result data in a promise",
+            "type": "var",
+            "description": "The result data in a promise"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 5957
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 6702
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getDataAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the data of the given type during the <code>drop</code> event",
+          "     * on the drop target. This method fires a <code>droprequest</code> at",
+          "     * the drag target which should be answered by calls to {@link #addData}.",
+          "     *",
+          "     * @param type {String} Any supported type",
+          "     * @return {qx.Promise} The result data in a promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the data of the given type during the <code>drop</code> event\n on the drop target. This method fires a <code>droprequest</code> at\n the drag target which should be answered by calls to {@link #addData}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any supported type",
+            "paramName": "type",
+            "description": " Any supported type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} The result data in a promise",
+            "type": "qx.Promise",
+            "description": "The result data in a promise"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 7066
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 8008
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "getCurrentAction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the currently selected action (by user keyboard modifiers)",
+          "     *",
+          "     * @return {String} One of <code>move</code>, <code>copy</code> or",
+          "     *    <code>alias</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently selected action (by user keyboard modifiers)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} One of <code>move</code>, <code>copy</code> or\n    <code>alias</code>",
+            "type": "string",
+            "description": "One of <code>move</code>, <code>copy</code> or\n    <code>alias</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 8212
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 8302
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getCurrentActionAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the currently selected action (by user keyboard modifiers)",
+          "     *",
+          "     * @return {qx.Promise|String} One of <code>move</code>, <code>copy</code> or",
+          "     *    <code>alias</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the currently selected action (by user keyboard modifiers)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|String} One of <code>move</code>, <code>copy</code> or\n    <code>alias</code>",
+            "type": "qx.Promise|String",
+            "description": "One of <code>move</code>, <code>copy</code> or\n    <code>alias</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 8517
+        },
+        "end": {
+          "line": 330,
+          "column": 6,
+          "index": 8930
+        }
+      },
+      "returnType": {
+        "type": "qx.Promise|String"
+      },
+      "appearsIn": []
+    },
+    "getDragTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the widget which has been the target of the drag start.",
+          "     * @return {qx.ui.core.Widget} The widget on which the drag started.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the widget which has been the target of the drag start.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The widget on which the drag started.",
+            "type": "qx.ui.core.Widget",
+            "description": "The widget on which the drag started."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4,
+          "index": 9097
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 9158
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "addData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds data of the given type to the internal storage. The data",
+          "     * is available until the <code>dragend</code> event is fired.",
+          "     *",
+          "     * @param type {String} Any valid type",
+          "     * @param data {var} Any data to store",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds data of the given type to the internal storage. The data\n is available until the <code>dragend</code> event is fired.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Any valid type",
+            "paramName": "type",
+            "description": " Any valid type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} Any data to store",
+            "paramName": "data",
+            "description": " Any data to store",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4,
+          "index": 9410
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 9470
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCurrentType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the type which was requested last.",
+          "     *",
+          "     * @return {String} The last requested data type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the type which was requested last.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The last requested data type",
+            "type": "string",
+            "description": "The last requested data type"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4,
+          "index": 9603
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 9660
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isSessionActive": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if a drag session is currently active",
+          "     *",
+          "     * @return {Boolean} active drag session",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns if a drag session is currently active</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} active drag session",
+            "type": "boolean",
+            "description": "active drag session"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 9788
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 9848
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__rebuildStructures": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rebuilds the internal data storage used during a drag&drop session",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rebuilds the internal data storage used during a drag&amp;drop session</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 4,
+          "index": 10141
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 10271
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__detectAction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the current action and stores it under the private",
+          "     * field <code>__currentAction</code>. Also fires the event",
+          "     * <code>dragchange</code> on every modification.",
+          "     *",
+          "     * @return {qx.Promise|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the current action and stores it under the private\n field <code>__currentAction</code>. Also fires the event\n <code>dragchange</code> on every modification.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|null}",
+            "type": "qx.Promise|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 10518
+        },
+        "end": {
+          "line": 463,
+          "column": 5,
+          "index": 12544
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.Promise|null"
+      },
+      "appearsIn": []
+    },
+    "__fireEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for {@link qx.event.Registration#fireEvent} for drag&drop events",
+          "     * needed in this class.",
+          "     *",
+          "     * @param type {String} Event type",
+          "     * @param target {Object} Target to fire on",
+          "     * @param relatedTarget {Object} Related target, i.e. drag or drop target",
+          "     *    depending on the drag event",
+          "     * @param cancelable {Boolean} Whether the event is cancelable",
+          "     * @param original {qx.event.type.Pointer} Original pointer event",
+          "     * @return {qx.Promise|Boolean} <code>true</code> if the event's default behavior was",
+          "     * not prevented",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for {@link qx.event.Registration#fireEvent} for drag&amp;drop events\n needed in this class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} Event type",
+            "paramName": "type",
+            "description": " Event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "target {Object} Target to fire on",
+            "paramName": "target",
+            "description": " Target to fire on",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "relatedTarget {Object} Related target, i.e. drag or drop target\n    depending on the drag event",
+            "paramName": "relatedTarget",
+            "description": " Related target, i.e. drag or drop target\n    depending on the drag event",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean} Whether the event is cancelable",
+            "paramName": "cancelable",
+            "description": " Whether the event is cancelable",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "original {qx.event.type.Pointer} Original pointer event",
+            "paramName": "original",
+            "description": " Original pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|Boolean} <code>true</code> if the event's default behavior was\n not prevented",
+            "type": "qx.Promise|Boolean",
+            "description": "<code>true</code> if the event's default behavior was\n not prevented"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 478,
+          "column": 4,
+          "index": 13134
+        },
+        "end": {
+          "line": 510,
+          "column": 5,
+          "index": 14249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "relatedTarget",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "cancelable",
+          "type": "boolean"
+        },
+        {
+          "name": "original",
+          "type": "qx.event.type.Pointer"
+        },
+        {
+          "name": "async"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise|Boolean"
+      },
+      "appearsIn": []
+    },
+    "__findDraggable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds next draggable parent of the given element. Maybe the element itself as well.",
+          "     *",
+          "     * Looks for the attribute <code>qxDraggable</code> with the value <code>on</code>.",
+          "     *",
+          "     * @param elem {Element} The element to query",
+          "     * @return {Element} The next parent element which is draggable. May also be <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds next draggable parent of the given element. Maybe the element itself as well.\n Looks for the attribute <code>qxDraggable</code> with the value <code>on</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} The element to query",
+            "paramName": "elem",
+            "description": " The element to query",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The next parent element which is draggable. May also be <code>null</code>",
+            "type": "qx.event.handler.Element",
+            "description": "The next parent element which is draggable. May also be <code>null</code>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 520,
+          "column": 4,
+          "index": 14614
+        },
+        "end": {
+          "line": 530,
+          "column": 5,
+          "index": 14836
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "__findDroppable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds next droppable parent of the given element. Maybe the element itself as well.",
+          "     *",
+          "     * Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.",
+          "     *",
+          "     * @param elem {Element} The element to query",
+          "     * @return {Element} The next parent element which is droppable. May also be <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds next droppable parent of the given element. Maybe the element itself as well.\n Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} The element to query",
+            "paramName": "elem",
+            "description": " The element to query",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The next parent element which is droppable. May also be <code>null</code>",
+            "type": "qx.event.handler.Element",
+            "description": "The next parent element which is droppable. May also be <code>null</code>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4,
+          "index": 15201
+        },
+        "end": {
+          "line": 550,
+          "column": 5,
+          "index": 15423
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "clearSession": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cleans up a drag&drop session when <code>dragstart</code> was fired before.",
+          "     *",
+          "     * @return {qx.Promise?} promise, if one was created by event handlers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cleans up a drag&amp;drop session when <code>dragstart</code> was fired before.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} promise, if one was created by event handlers",
+            "type": "qx.Promise?",
+            "description": "promise, if one was created by event handlers"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 4,
+          "index": 15611
+        },
+        "end": {
+          "line": 639,
+          "column": 5,
+          "index": 17372
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    },
+    "_onLongtap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for long tap which takes care of starting the drag & drop session for",
+          "     * touch interactions.",
+          "     * @param e {qx.event.type.Tap} The longtap event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for long tap which takes care of starting the drag &amp; drop session for\n touch interactions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Tap} The longtap event.",
+            "paramName": "e",
+            "description": " The longtap event.",
+            "type": "qx.event.type.Tap"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 652,
+          "column": 4,
+          "index": 17758
+        },
+        "end": {
+          "line": 660,
+          "column": 5,
+          "index": 18007
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Tap"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_start": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to start the drag & drop session. It is responsible for firing the",
+          "     * dragstart event and attaching the key listener.",
+          "     * @param e {qx.event.type.Pointer} Either a longtap or pointermove event.",
+          "     *",
+          "     * @return {Boolean} Returns <code>false</code> if drag session should be",
+          "     * canceled.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to start the drag &amp; drop session. It is responsible for firing the\n dragstart event and attaching the key listener.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Either a longtap or pointermove event.",
+            "paramName": "e",
+            "description": " Either a longtap or pointermove event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>false</code> if drag session should be\n canceled.",
+            "type": "boolean",
+            "description": "Returns <code>false</code> if drag session should be\n canceled."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 670,
+          "column": 4,
+          "index": 18347
+        },
+        "end": {
+          "line": 749,
+          "column": 5,
+          "index": 20695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_onPointerdown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointerdown event which stores the initial targets and the coordinates.",
+          "     * @param e {qx.event.type.Pointer} The pointerdown event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointerdown event which stores the initial targets and the coordinates.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointerdown event.",
+            "paramName": "e",
+            "description": " The pointerdown event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 755,
+          "column": 4,
+          "index": 20882
+        },
+        "end": {
+          "line": 779,
+          "column": 5,
+          "index": 21427
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointermove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointermove event which starts the drag session and",
+          "     * is responsible for firing the drag, dragover and dragleave event.",
+          "     * @param e {qx.event.type.Pointer} The pointermove event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointermove event which starts the drag session and\n is responsible for firing the drag, dragover and dragleave event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointermove event.",
+            "paramName": "e",
+            "description": " The pointermove event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 786,
+          "column": 4,
+          "index": 21667
+        },
+        "end": {
+          "line": 945,
+          "column": 5,
+          "index": 26852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getDelta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper function to compute the delta between current cursor position from given event",
+          "     * and the stored coordinates at {@link #_onPointerdown}.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event",
+          "     *",
+          "     * @return {Map} containing the deltaX as x, and deltaY as y.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper function to compute the delta between current cursor position from given event\n and the stored coordinates at {@link #_onPointerdown}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event",
+            "paramName": "e",
+            "description": " The pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} containing the deltaX as x, and deltaY as y.",
+            "type": "Map<any, any>",
+            "description": "containing the deltaX as x, and deltaY as y."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 955,
+          "column": 4,
+          "index": 27168
+        },
+        "end": {
+          "line": 967,
+          "column": 5,
+          "index": 27443
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_onPointerup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the pointerup event which is responsible fore firing the drop event.",
+          "     * @param e {qx.event.type.Pointer} The pointerup event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the pointerup event which is responsible fore firing the drop event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointerup event",
+            "paramName": "e",
+            "description": " The pointerup event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 973,
+          "column": 4,
+          "index": 27614
+        },
+        "end": {
+          "line": 1003,
+          "column": 5,
+          "index": 28302
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onRoll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Roll listener to stop scrolling on touch devices.",
+          "     * @param e {qx.event.type.Roll} The roll event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Roll listener to stop scrolling on touch devices.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Roll} The roll event.",
+            "paramName": "e",
+            "description": " The roll event.",
+            "type": "qx.event.type.Roll"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1009,
+          "column": 4,
+          "index": 28435
+        },
+        "end": {
+          "line": 1011,
+          "column": 5,
+          "index": 28469
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Roll"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onWindowBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for window's <code>blur</code> event",
+          "     *",
+          "     * @param e {qx.event.type.Event} Event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for window's <code>blur</code> event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1018,
+          "column": 4,
+          "index": 28609
+        },
+        "end": {
+          "line": 1020,
+          "column": 5,
+          "index": 28667
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for root's <code>keydown</code> event",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} Event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for root's <code>keydown</code> event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1027,
+          "column": 4,
+          "index": 28814
+        },
+        "end": {
+          "line": 1038,
+          "column": 5,
+          "index": 29098
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for root's <code>keyup</code> event",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} Event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for root's <code>keyup</code> event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1045,
+          "column": 4,
+          "index": 29243
+        },
+        "end": {
+          "line": 1056,
+          "column": 5,
+          "index": 29525
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for root's <code>keypress</code> event",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} Event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for root's <code>keypress</code> event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} Event object",
+            "paramName": "e",
+            "description": " Event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1063,
+          "column": 4,
+          "index": 29673
+        },
+        "end": {
+          "line": 1069,
+          "column": 5,
+          "index": 29825
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1078,
+        "column": 2,
+        "index": 30021
+      },
+      "end": {
+        "line": 1096,
+        "column": 3,
+        "index": 30364
+      }
+    }
+  }
+}

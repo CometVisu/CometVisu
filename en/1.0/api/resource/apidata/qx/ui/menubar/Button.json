@@ -1,0 +1,292 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601335,
+  "lastModifiedIso": "2026-06-29T04:00:01.335Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menubar/Button.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 537
+    },
+    "end": {
+      "line": 159,
+      "column": 3,
+      "index": 3950
+    }
+  },
+  "className": "qx.ui.menubar.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A menubar button",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A menubar button</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.MenuButton",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 820
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 888
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "menubar-button"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.form.MenuButton",
+        "qx.ui.form.Button",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 895
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 950
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "inherit"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    }
+  },
+  "members": {
+    "getMenuBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inspects the parent chain to find the MenuBar",
+          "     *",
+          "     * @return {qx.ui.menubar.MenuBar} MenuBar instance or <code>null</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inspects the parent chain to find the MenuBar</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.menubar.MenuBar} MenuBar instance or <code>null</code>.",
+            "type": "qx.ui.menubar.MenuBar",
+            "description": "MenuBar instance or <code>null</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1508
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1855
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.menubar.MenuBar"
+      },
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1880
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2051
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selectFirst"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.MenuButton",
+      "appearsIn": [
+        "qx.ui.form.MenuButton"
+      ]
+    },
+    "_onMenuChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for visibility property changes of the attached menu",
+          "     *",
+          "     * @param e {qx.event.type.Data} Property change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for visibility property changes of the attached menu</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Property change event",
+            "paramName": "e",
+            "description": " Property change event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2406
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 2929
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.MenuButton",
+      "appearsIn": [
+        "qx.ui.form.MenuButton"
+      ]
+    },
+    "_onPointerUp": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 2954
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3214
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.MenuButton",
+      "appearsIn": [
+        "qx.ui.form.MenuButton",
+        "qx.ui.form.Button"
+      ]
+    },
+    "_onPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for pointerover event",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} pointerover event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for pointerover event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointerover event object",
+            "paramName": "e",
+            "description": " pointerover event object",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3353
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 3942
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.MenuButton",
+      "appearsIn": [
+        "qx.ui.form.MenuButton",
+        "qx.ui.form.Button"
+      ]
+    }
+  },
+  "statics": {}
+}

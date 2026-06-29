@@ -1,0 +1,1135 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603144,
+  "lastModifiedIso": "2026-06-29T04:00:03.144Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/scroll/ScrollBar.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 50,
+      "column": 0,
+      "index": 1527
+    },
+    "end": {
+      "line": 441,
+      "column": 3,
+      "index": 12215
+    }
+  },
+  "className": "qx.ui.core.scroll.ScrollBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The scroll bar widget, is a special slider, which is used in qooxdoo instead",
+      " * of the native browser scroll bars.",
+      " *",
+      " * Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually",
+      " * a scroll bar is not used directly.",
+      " *",
+      " * @childControl slider {qx.ui.core.scroll.ScrollSlider} scroll slider component",
+      " * @childControl button-begin {qx.ui.form.RepeatButton} button to scroll to top",
+      " * @childControl button-end {qx.ui.form.RepeatButton} button to scroll to bottom",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");",
+      " *   scrollBar.set({",
+      " *     maximum: 500",
+      " *   })",
+      " *   this.getRoot().add(scrollBar);",
+      " * </pre>",
+      " *",
+      " * This example creates a horizontal scroll bar with a maximum value of 500.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The scroll bar widget, is a special slider, which is used in qooxdoo instead\n of the native browser scroll bars.\n Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually\n a scroll bar is not used directly.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "slider {qx.ui.core.scroll.ScrollSlider} scroll slider component"
+      },
+      {
+        "name": "@childControl",
+        "body": "button-begin {qx.ui.form.RepeatButton} button to scroll to top"
+      },
+      {
+        "name": "@childControl",
+        "body": "button-end {qx.ui.form.RepeatButton} button to scroll to bottom\n*Example*\n Here is a little example of how to use the widget.\n <pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.ScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n This example creates a horizontal scroll bar with a maximum value of 500.\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.core.scroll.IScrollBar"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "orientation"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 2,
+        "index": 1932
+      },
+      "end": {
+        "line": 87,
+        "column": 3,
+        "index": 2471
+      }
+    }
+  },
+  "events": {
+    "scrollAnimationEnd": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Change event for the value. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Change event for the value.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2529
+        },
+        "end": {
+          "line": 91,
+          "column": 45,
+          "index": 2570
+        }
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2802
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2865
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "scrollbar"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2922
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3042
+        }
+      },
+      "json": {
+        "check": [
+          "horizontal",
+          "vertical"
+        ],
+        "init": "horizontal",
+        "apply": "_applyOrientation"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The scroll bar orientation",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The scroll bar orientation</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3151
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3245
+        }
+      },
+      "json": {
+        "check": "PositiveInteger",
+        "apply": "_applyMaximum",
+        "init": 100
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum value (difference between available size and",
+          "     * content size).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum value (difference between available size and\n content size).</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "position": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3562
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3728
+        }
+      },
+      "json": {
+        "check": "qx.lang.Type.isNumber(value)&&value>=0&&value<=this.getMaximum()",
+        "init": 0,
+        "apply": "_applyPosition",
+        "event": "scroll"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Position of the scrollbar (which means the scroll left/top of the",
+          "     * attached area's pane)",
+          "     *",
+          "     * Strictly validates according to {@link #maximum}.",
+          "     * Does not apply any correction to the incoming value. If you depend",
+          "     * on this, please use {@link #scrollTo} instead.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Position of the scrollbar (which means the scroll left/top of the\n attached area's pane)\n Strictly validates according to {@link #maximum}.\n Does not apply any correction to the incoming value. If you depend\n on this, please use {@link #scrollTo} instead.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "singleStep": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3819
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3877
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 20
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Step size for each tap on the up/down or left/right buttons.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Step size for each tap on the up/down or left/right buttons.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "pageStep": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4042
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 4129
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 10,
+        "apply": "_applyPageStep"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The amount to increment on each event. Typically corresponds",
+          "     * to the user pressing <code>PageUp</code> or <code>PageDown</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The amount to increment on each event. Typically corresponds\n to the user pressing <code>PageUp</code> or <code>PageDown</code>.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "knobFactor": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4267
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4371
+        }
+      },
+      "json": {
+        "check": "PositiveNumber",
+        "apply": "_applyKnobFactor",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factor to apply to the width/height of the knob in relation",
+          "     * to the dimension of the underlying area.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factor to apply to the width/height of the knob in relation\n to the dimension of the underlying area.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    }
+  },
+  "members": {
+    "__offset": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4579
+        },
+        "end": {
+          "line": 177,
+          "column": 15,
+          "index": 4590
+        }
+      },
+      "appearsIn": []
+    },
+    "__originalMinSize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4596
+        },
+        "end": {
+          "line": 178,
+          "column": 24,
+          "index": 4616
+        }
+      },
+      "appearsIn": []
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4641
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 4956
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 4981
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 5549
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "width"
+        },
+        {
+          "name": "height"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5574
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 6684
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyMaximum": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4,
+          "index": 6918
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 7002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPosition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 7031
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 7114
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyKnobFactor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 7143
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPageStep": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 7262
+        },
+        "end": {
+          "line": 271,
+          "column": 5,
+          "index": 7348
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyOrientation": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 7377
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 8467
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollTo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls to the given position.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param position {Integer} Scroll to this position. Must be greater zero.",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls to the given position.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} Scroll to this position. Must be greater zero.",
+            "paramName": "position",
+            "description": " Scroll to this position. Must be greater zero.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 9016
+        },
+        "end": {
+          "line": 328,
+          "column": 5,
+          "index": 9118
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "scrollBy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls by the given offset.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param offset {Integer} Scroll by this offset",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls by the given offset.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "offset {Integer} Scroll by this offset",
+            "paramName": "offset",
+            "description": " Scroll by this offset",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4,
+          "index": 9428
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9526
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "scrollBySteps": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls by the given number of steps.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param steps {Integer} Number of steps",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls by the given number of steps.\n This method automatically corrects the given position to respect\n the {@link #maximum}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "steps {Integer} Number of steps",
+            "paramName": "steps",
+            "description": " Number of steps",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "duration {Number} The time in milliseconds the slide to should take.",
+            "paramName": "duration",
+            "description": " The time in milliseconds the slide to should take.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 9838
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 9985
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "steps",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
+    },
+    "updatePosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the position property considering the minimum and maximum values.",
+          "     * @param position {Number} The new position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the position property considering the minimum and maximum values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Number} The new position.",
+            "paramName": "position",
+            "description": " The new position.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 361,
+          "column": 4,
+          "index": 10139
+        },
+        "end": {
+          "line": 363,
+          "column": 5,
+          "index": 10234
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "stopScrollAnimation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If a scroll animation is running, it will be stopped.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If a scroll animation is running, it will be stopped.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 10318
+        },
+        "end": {
+          "line": 370,
+          "column": 5,
+          "index": 10406
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onExecuteBegin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executed when the up/left button is executed (pressed)",
+          "     *",
+          "     * @param e {qx.event.type.Event} Execute event of the button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executed when the up/left button is executed (pressed)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Execute event of the button",
+            "paramName": "e",
+            "description": " Execute event of the button",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 10760
+        },
+        "end": {
+          "line": 385,
+          "column": 5,
+          "index": 10834
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onExecuteEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executed when the down/right button is executed (pressed)",
+          "     *",
+          "     * @param e {qx.event.type.Event} Execute event of the button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Executed when the down/right button is executed (pressed)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Execute event of the button",
+            "paramName": "e",
+            "description": " Execute event of the button",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 10995
+        },
+        "end": {
+          "line": 394,
+          "column": 5,
+          "index": 11066
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSlideAnimationEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Change listener for slider animation end.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Change listener for slider animation end.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 4,
+          "index": 11138
+        },
+        "end": {
+          "line": 401,
+          "column": 5,
+          "index": 11212
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onChangeSliderValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Change listener for slider value changes.",
+          "     *",
+          "     * @param e {qx.event.type.Data} The change event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Change listener for slider value changes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The change event object",
+            "paramName": "e",
+            "description": " The change event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 11352
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 11420
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onResizeSlider": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hide the knob of the slider if the slidebar is too small or show it",
+          "     * otherwise.",
+          "     *",
+          "     * @param e {qx.event.type.Data} event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hide the knob of the slider if the slidebar is too small or show it\n otherwise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} event object",
+            "paramName": "e",
+            "description": " event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 11593
+        },
+        "end": {
+          "line": 439,
+          "column": 5,
+          "index": 12207
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

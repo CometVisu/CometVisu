@@ -1,0 +1,482 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603408,
+  "lastModifiedIso": "2026-06-29T04:00:03.408Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Window.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 746
+    },
+    "end": {
+      "line": 239,
+      "column": 3,
+      "index": 6169
+    }
+  },
+  "className": "qx.event.handler.Window",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This handler provides event for the window object.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * @require(qx.event.type.Native)",
+      " * @require(qx.event.Pool)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This handler provides event for the window object.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.type.Native"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.Pool"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 44,
+        "column": 2,
+        "index": 1187
+      },
+      "end": {
+        "line": 53,
+        "column": 3,
+        "index": 1380
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1636
+        },
+        "end": {
+          "line": 63,
+          "column": 51,
+          "index": 1683
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1735
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1888
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 77,
+          "column": 54,
+          "index": 1998
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2083
+        },
+        "end": {
+          "line": 80,
+          "column": 27,
+          "index": 2106
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2551
+        },
+        "end": {
+          "line": 97,
+          "column": 35,
+          "index": 2582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2621
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2704
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2743
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2828
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_initWindowObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the native window event listeners.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the native window event listeners.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3112
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3441
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopWindowObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnect the native window event listeners.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Disconnect the native window event listeners.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3524
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3777
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onNative": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * When qx.globalErrorHandling is enabled the callback will observed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>When qx.globalErrorHandling is enabled the callback will observed</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4075
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4332
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onNativeHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native listener for all supported events.",
+          "     *",
+          "     * @param e {Event} Native event",
+          "     * @return {String|undefined}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native listener for all supported events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} Native event",
+            "paramName": "e",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|undefined}",
+            "type": "String|undefined",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4482
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 5626
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "String|undefined"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 225,
+        "column": 2,
+        "index": 5822
+      },
+      "end": {
+        "line": 228,
+        "column": 3,
+        "index": 5911
+      }
+    }
+  },
+  "properties": {}
+}

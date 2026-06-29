@@ -1,0 +1,99 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602284,
+  "lastModifiedIso": "2026-06-29T04:00:02.284Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/IColumnMenuItem.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 519
+    },
+    "end": {
+      "line": 39,
+      "column": 3,
+      "index": 1006
+    }
+  },
+  "className": "qx.ui.table.IColumnMenuItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for a column menu item corresponding to a table column.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for a column menu item corresponding to a table column.</p>"
+      }
+    ]
+  },
+  "properties": {
+    "columnVisible": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 718
+        },
+        "end": {
+          "line": 28,
+          "column": 21,
+          "index": 735
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the table column associated with this menu item is visible",
+          "     * Should be of type {Boolean}!",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the table column associated with this menu item is visible\n Should be of type {Boolean}!</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "changeColumnVisible": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when a column changes visibility state. The event data is a",
+          "     * boolean indicating whether the table column associated with this menu",
+          "     * item is now visible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when a column changes visibility state. The event data is a\n boolean indicating whether the table column associated with this menu\n item is now visible.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 957
+        },
+        "end": {
+          "line": 37,
+          "column": 45,
+          "index": 998
+        }
+      }
+    }
+  },
+  "members": {},
+  "statics": {}
+}

@@ -1,0 +1,249 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602305,
+  "lastModifiedIso": "2026-06-29T04:00:02.305Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/IdleCallback.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 884
+    },
+    "end": {
+      "line": 110,
+      "column": 3,
+      "index": 3568
+    }
+  },
+  "className": "qx.bom.IdleCallback",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is a cross browser wrapper for requestIdleCallback. For further",
+      " * information about the feature, take a look at spec:",
+      " * https://www.w3.org/TR/requestidlecallback/",
+      " *",
+      " * Here is a sample usage:",
+      " * <pre class='javascript'>var cb = function(deadline) {",
+      " *   while (deadline.timeRemaining() > 0) {",
+      " *     // ... do some last tasks",
+      " *   }",
+      " * };",
+      " *",
+      " * qx.bom.IdleCallback.request(cb, this);",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is a cross browser wrapper for requestIdleCallback. For further\n information about the feature, take a look at spec:\n https://www.w3.org/TR/requestidlecallback/\n Here is a sample usage:\n </p>\n<pre class='javascript'>var cb = function(deadline) {\n   while (deadline.timeRemaining() > 0) {\n\n   }\n };\n qx.bom.IdleCallback.request(cb, this);\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "TIMEOUT": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default time in ms the setTimeout() fallback implementation uses. There is no",
+          "     * way to detect if the browser has some spare IDLE time, it defaults to zero - meaning",
+          "     * that the callback will be called as soon as possible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default time in ms the setTimeout() fallback implementation uses. There is no\n way to detect if the browser has some spare IDLE time, it defaults to zero - meaning\n that the callback will be called as soon as possible.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1231
+        },
+        "end": {
+          "line": 43,
+          "column": 14,
+          "index": 1241
+        }
+      },
+      "appearsIn": []
+    },
+    "REMAINING": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default remaining time in ms the timeout fallback implementation uses. Since we",
+          "     * cannot know how much time is available, this is a hard coded time bucket available",
+          "     * for actions done in the callback.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default remaining time in ms the timeout fallback implementation uses. Since we\n cannot know how much time is available, this is a hard coded time bucket available\n for actions done in the callback.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1486
+        },
+        "end": {
+          "line": 50,
+          "column": 18,
+          "index": 1500
+        }
+      },
+      "appearsIn": []
+    },
+    "request": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Request for an IDLE callback. If the native <code>requestIdleCallback</code>",
+          "     * method is supported, it will be used. Otherwise, we use timeouts with a",
+          "     * 30ms delay. The HighResolutionTime will be used if supported but the time given",
+          "     * to the callback will still be a timestamp starting at 1 January 1970 00:00:00 UTC.",
+          "     *",
+          "     * @param callback {Function} The callback function which will get a deadline",
+          "     *   object. It contains a <code>timeRemaining()</code> call which returns the",
+          "     *   remaining milliseconds and the <code>didTimeout</code> flag which indicates",
+          "     *   whether the callback was fired due to a timeout. The latter is always false",
+          "     *   in case of the emulation.",
+          "     * @param context {var} The context of the callback.",
+          "     * @param timeout {Number} Timeout in milliseconds.",
+          "     * @return {Number} Handle for that request",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Request for an IDLE callback. If the native <code>requestIdleCallback</code>\n method is supported, it will be used. Otherwise, we use timeouts with a\n 30ms delay. The HighResolutionTime will be used if supported but the time given\n to the callback will still be a timestamp starting at 1 January 1970 00:00:00 UTC.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function} The callback function which will get a deadline\n   object. It contains a <code>timeRemaining()</code> call which returns the\n   remaining milliseconds and the <code>didTimeout</code> flag which indicates\n   whether the callback was fired due to a timeout. The latter is always false\n   in case of the emulation.",
+            "paramName": "callback",
+            "description": " The callback function which will get a deadline\n   object. It contains a <code>timeRemaining()</code> call which returns the\n   remaining milliseconds and the <code>didTimeout</code> flag which indicates\n   whether the callback was fired due to a timeout. The latter is always false\n   in case of the emulation.",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {var} The context of the callback.",
+            "paramName": "context",
+            "description": " The context of the callback.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "timeout {Number} Timeout in milliseconds.",
+            "paramName": "timeout",
+            "description": " Timeout in milliseconds.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Handle for that request",
+            "type": "number",
+            "description": "Handle for that request"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2401
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3219
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "var"
+        },
+        {
+          "name": "timeout",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "cancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancel a requested IDLE callback.",
+          "     *",
+          "     * @param handle {Number} Handle acquired by <code>qx.bom.IdleCallback.request()</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancel a requested IDLE callback.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "handle {Number} Handle acquired by <code>qx.bom.IdleCallback.request()</code>.",
+            "paramName": "handle",
+            "description": " Handle acquired by <code>qx.bom.IdleCallback.request()</code>.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3383
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 3560
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handle",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

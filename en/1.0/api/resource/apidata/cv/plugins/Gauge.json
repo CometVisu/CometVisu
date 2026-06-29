@@ -1,0 +1,1403 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/Gauge.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 1098
+    },
+    "end": {
+      "line": 314,
+      "column": 3,
+      "index": 9934
+    }
+  },
+  "className": "cv.plugins.Gauge",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This plugins integrates Gauge (in canvas) into the visualization",
+      " *",
+      " * @author NetFritz [NetFritz at gmx dot de]",
+      " * @since 0.8.1",
+      " *",
+      " * @ignore(steelseries.*)",
+      " * @asset(plugins/gauge/gauge.css)",
+      " * @asset(plugins/gauge/dep/steelseries.js)",
+      " * @asset(plugins/gauge/dep/tween.js)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This plugins integrates Gauge (in canvas) into the visualization</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "NetFritz [NetFritz at gmx dot de]"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.8.1"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "steelseries.*"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/gauge/gauge.css"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/gauge/dep/steelseries.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/gauge/dep/tween.js"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Update",
+    "cv.ui.common.Operate"
+  ],
+  "properties": {
+    "pagejumpTarget": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1399
+        },
+        "end": {
+          "line": 41,
+          "column": 55,
+          "index": 1450
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "gaugeType": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1456
+        },
+        "end": {
+          "line": 42,
+          "column": 50,
+          "index": 1502
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "subtype": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1508
+        },
+        "end": {
+          "line": 43,
+          "column": 48,
+          "index": 1552
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "gType": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1558
+        },
+        "end": {
+          "line": 44,
+          "column": 46,
+          "index": 1600
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "Radial"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "titleString": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1606
+        },
+        "end": {
+          "line": 45,
+          "column": 52,
+          "index": 1654
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "unitString": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1660
+        },
+        "end": {
+          "line": 46,
+          "column": 51,
+          "index": 1707
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "unitStringVisible": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1713
+        },
+        "end": {
+          "line": 47,
+          "column": 56,
+          "index": 1765
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "size": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1771
+        },
+        "end": {
+          "line": 48,
+          "column": 40,
+          "index": 1807
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 150
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1813
+        },
+        "end": {
+          "line": 49,
+          "column": 41,
+          "index": 1850
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 320
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1856
+        },
+        "end": {
+          "line": 50,
+          "column": 42,
+          "index": 1894
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 140
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "minValue": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1900
+        },
+        "end": {
+          "line": 51,
+          "column": 42,
+          "index": 1938
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "maxValue": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1944
+        },
+        "end": {
+          "line": 52,
+          "column": 44,
+          "index": 1984
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 100
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "frameDesign": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1990
+        },
+        "end": {
+          "line": 53,
+          "column": 52,
+          "index": 2038
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "backgroundColor": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 2044
+        },
+        "end": {
+          "line": 54,
+          "column": 56,
+          "index": 2096
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "foregroundType": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 2102
+        },
+        "end": {
+          "line": 55,
+          "column": 55,
+          "index": 2153
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "pointerType": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 2159
+        },
+        "end": {
+          "line": 56,
+          "column": 52,
+          "index": 2207
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "pointerColor": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 2213
+        },
+        "end": {
+          "line": 57,
+          "column": 53,
+          "index": 2262
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lcdColor": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 2268
+        },
+        "end": {
+          "line": 58,
+          "column": 49,
+          "index": 2313
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lcdVisible": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 2319
+        },
+        "end": {
+          "line": 59,
+          "column": 49,
+          "index": 2364
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lcdDecimals": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 60,
+          "column": 52,
+          "index": 2418
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "ledVisible": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 2424
+        },
+        "end": {
+          "line": 61,
+          "column": 49,
+          "index": 2469
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "ledColor": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2475
+        },
+        "end": {
+          "line": 62,
+          "column": 49,
+          "index": 2520
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "valueColor": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2526
+        },
+        "end": {
+          "line": 63,
+          "column": 51,
+          "index": 2573
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "trendVisible": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 2579
+        },
+        "end": {
+          "line": 64,
+          "column": 51,
+          "index": 2626
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "thresholdRising": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 2632
+        },
+        "end": {
+          "line": 65,
+          "column": 54,
+          "index": 2682
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "threshold": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2688
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2775
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyThreshold"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "thresholdVisible": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2782
+        },
+        "end": {
+          "line": 72,
+          "column": 55,
+          "index": 2833
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "autoScroll": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2839
+        },
+        "end": {
+          "line": 73,
+          "column": 49,
+          "index": 2884
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "valuesNumeric": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2890
+        },
+        "end": {
+          "line": 74,
+          "column": 52,
+          "index": 2938
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3512
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3916
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 5472
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "makeAddressListFn": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 5479
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 5565
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        },
+        {
+          "name": "transform"
+        },
+        {
+          "name": "mode"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__gaugeElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 5725
+        },
+        "end": {
+          "line": 181,
+          "column": 24,
+          "index": 5745
+        }
+      },
+      "appearsIn": []
+    },
+    "__updateQueue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 5751
+        },
+        "end": {
+          "line": 182,
+          "column": 23,
+          "index": 5770
+        }
+      },
+      "appearsIn": []
+    },
+    "_getInnerDomString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5777
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 6001
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_onDomReady": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 6026
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 7008
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "getValueElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 7033
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 7135
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_applyThreshold": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 7164
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 7265
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_processIncomingValue": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 7290
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 7484
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle the incoming data",
+          "     * @param value {var} Processed incoming value",
+          "     * @param address {String} source address of the value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle the incoming data</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Processed incoming value",
+            "paramName": "value",
+            "description": " Processed incoming value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "address {String} source address of the value",
+            "paramName": "address",
+            "description": " source address of the value",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7649
+        },
+        "end": {
+          "line": 296,
+          "column": 5,
+          "index": 9396
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "address",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_action": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 9421
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 9567
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initOnCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1550
+        }
+      },
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "__initUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1557
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the incoming data, update the shown value and the stylings",
+          "     *",
+          "     * @param address {String} Address of the incoming value",
+          "     * @param data {String} the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2408
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "processIncomingValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update3d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Description",
+          "     *",
+          "     * @param ev {var}",
+          "     * @param data {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3200
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3664
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Action performed when the widget got clicked, sends data to the backend",
+          "     *",
+          "     * @param event {Event} tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Action performed when the widget got clicked, sends data to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} tap event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "downaction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles pointerdown events",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles pointerdown events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1778
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "sendToBackend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given value to all writeable addresses known to this widget",
+          "     *",
+          "     * @param value {any} value to send",
+          "     * @param filter {Function} optional filter function for addresses",
+          "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
+          "     *          that were sent on the bus. When the encoding of the new value",
+          "     *          to send is equal to the currentBusValues a transmission will",
+          "     *          be suppressed. The object is a hash with the encoding as a key",
+          "     *          for the encoded value",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given value to all writeable addresses known to this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {any} value to send"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function} optional filter function for addresses"
+          },
+          {
+            "name": "@param",
+            "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the object/hash of encoded values that were sent last time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2603
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "filter"
+        },
+        {
+          "name": "currentBusValues"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate"
+      ]
+    }
+  }
+}

@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation auf einem Ubuntu System mit openHAB und Docker &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/install/docker_openhab.html"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=245627df"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Installation auf dem Timberwolf über die App" href="timberwolf.html" />
+    <link rel="prev" title="Installation mittels Docker-Container" href="docker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openhab.html">Installation auf einem Debian System mit openHAB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Installation mittels Docker-Container</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf einem Ubuntu System mit openHAB und Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voraussetzungen">1. Voraussetzungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-von-docker-ce-und-compose-auf-dem-server">2. Installation von Docker-CE und Compose auf dem Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemvorbereitungen">3. Systemvorbereitungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cometvisu-per-docker-installieren">4. CometVisu per Docker installieren</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html">Installation auf dem Timberwolf über die App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timberwolf.html#installation-auf-dem-timberwolf-mittels-portainer">Installation auf dem Timberwolf mittels Portainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation-auf-mobilen-geraten">Installation auf mobilen Geräten</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Installation der CometVisu</a></li>
+      <li class="breadcrumb-item active">Installation auf einem Ubuntu System mit openHAB und Docker</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="installation-auf-einem-ubuntu-system-mit-openhab-und-docker">
+<span id="docker-openhab-installation"></span><h1>Installation auf einem Ubuntu System mit openHAB und Docker<a class="headerlink" href="#installation-auf-einem-ubuntu-system-mit-openhab-und-docker" title="Link to this heading"></a></h1>
+<section id="voraussetzungen">
+<h2>1. Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Link to this heading"></a></h2>
+<p>Für den Betrieb der CometVisu mit openHAB und Docker werden folgende Dinge benötigt:</p>
+<ol class="arabic simple">
+<li><p>Server mit funktionierender openHAB Installation.</p></li>
+<li><p>Docker-CE und Docker Compose</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Es wird kein zusätzlicher Webserver, wie z.B. Apache o.ä. mit installiertem PHP Support benötigt, da dies
+alles Bestandteil des Containers ist.
+Die o.g. Punkte sind alles, was zur erfolgreichen Inbetriebnahme erforderlich ist.</p>
+</div>
+</section>
+<section id="installation-von-docker-ce-und-compose-auf-dem-server">
+<h2>2. Installation von Docker-CE und Compose auf dem Server<a class="headerlink" href="#installation-von-docker-ce-und-compose-auf-dem-server" title="Link to this heading"></a></h2>
+<p>Dies alles kann durch folgenden Konsolenbefehle ausgeführt werden:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Update
+<span class="go">sudo apt-get update</span>
+
+<span class="gp"># </span>Vorausetzungen<span class="w"> </span>installieren
+<span class="go">sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</span>
+
+<span class="gp"># </span>Hinzufügen<span class="w"> </span>vom<span class="w"> </span>Docker<span class="w"> </span>GPG-Key
+<span class="go">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
+
+<span class="gp"># </span>Hinzufügen<span class="w"> </span>vom<span class="w"> </span>Docker<span class="w"> </span>Repository
+<span class="go">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span>
+
+<span class="gp"># </span>Nochmal<span class="w"> </span>ein<span class="w"> </span>Update
+<span class="go">sudo apt-get update</span>
+
+<span class="gp"># </span>Installation<span class="w"> </span>docker-ce<span class="w"> </span>und<span class="w"> </span>Compose
+<span class="go">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose</span>
+</pre></div>
+</div>
+</section>
+<section id="systemvorbereitungen">
+<h2>3. Systemvorbereitungen<a class="headerlink" href="#systemvorbereitungen" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Aktuellen<span class="w"> </span>Benutzer<span class="w"> </span>zur<span class="w"> </span>Gruppe<span class="w"> </span>*Docker*<span class="w"> </span>hinzufügen
+<span class="go">sudo usermod -aG docker $USER</span>
+</pre></div>
+</div>
+<p>Nach dem Aufnehmen des Benutzers nochmal neu Anmelden</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen<span class="w"> </span>vom<span class="w"> </span>Verzeichnis<span class="w"> </span>resource/config<span class="w"> </span>unter<span class="w"> </span>dem<span class="w"> </span>aktuellen<span class="w"> </span>Benutzer
+<span class="go">sudo mkdir -p resource/config</span>
+
+<span class="gp"># </span>Anlegen<span class="w"> </span>einer<span class="w"> </span>Beispiel<span class="w"> </span>XML-Datei<span class="w"> </span>unter<span class="w"> </span>resource/config
+<span class="go">sudo nano resource/config/visu_config.xml</span>
+</pre></div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;pure&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;statusbar&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            &lt;img src=&quot;resource/icons/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
+<span class="cp">            -&lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
+<span class="cp">            -&lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;!edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
+<span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">        - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
+<span class="cp">        &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
+<span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/statusbar&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Startseite&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/page&gt;</span>
+<span class="nt">&lt;/pages&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Anlegen<span class="w"> </span>der<span class="w"> </span>Verzeichnisse<span class="w"> </span>Backup<span class="w"> </span>und<span class="w"> </span>media<span class="w"> </span>unter<span class="w"> </span>resource/config
+<span class="go">sudo mkdir -p resource/config/media</span>
+<span class="go">sudo mkdir -p resource/config/backup</span>
+
+<span class="gp"># </span>Rechte<span class="w"> </span>für<span class="w"> </span>den<span class="w"> </span>Webserver<span class="w"> </span>setzen
+<span class="go">sudo chown -hR www-data:www-data resource/config</span>
+</pre></div>
+</div>
+</section>
+<section id="cometvisu-per-docker-installieren">
+<h2>4. CometVisu per Docker installieren<a class="headerlink" href="#cometvisu-per-docker-installieren" title="Link to this heading"></a></h2>
+<p>Jetzt den Container installieren</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># yaml datei Anlegen</span>
+sudo<span class="w"> </span>nano<span class="w"> </span>docker-compose.yaml
+
+<span class="c"># Beispielinhalt für openhab</span>
+
+version:<span class="w"> </span><span class="s1">&#39;3.4&#39;</span>
+services:
+<span class="w">    </span>cometvisu:
+<span class="w">        </span>image:<span class="w"> </span><span class="s2">&quot;cometvisu/cometvisu:latest&quot;</span>
+<span class="w">        </span>restart:<span class="w"> </span>always
+<span class="w">        </span>ports:
+<span class="w">        </span>-<span class="w"> </span><span class="m">80</span>:80
+<span class="w">        </span>volumes:
+<span class="w">            </span>-<span class="w"> </span>./resource/config:/var/www/html/resource/config
+<span class="w">        </span>environment:
+<span class="w">            </span>BACKEND_NAME:<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
+<span class="w">            </span>BACKEND_OPENHAB:<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
+<span class="w">            </span>BACKEND_PROXY_SOURCE:<span class="w"> </span><span class="s2">&quot;/rest&quot;</span>
+<span class="w">            </span>BACKEND_PROXY_TARGET:<span class="w"> </span><span class="s2">&quot;http://&lt;IP-Openhab2&gt;:8080/rest&quot;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Bei der YAML-Datei ist darauf zu achten, dass die Einrückungen jeweils mit 2 Leerzeichen erstellt werden.</p>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>docker<span class="w"> </span>starten
+<span class="go">docker-compose up -d</span>
+
+<span class="gp"># </span>Name<span class="w"> </span>des<span class="w"> </span>laufenden<span class="w"> </span>containers<span class="w"> </span>herausfinden
+<span class="go">docker-compose ps</span>
+
+<span class="gp"># </span>IP<span class="w"> </span>Adresse<span class="w"> </span>des<span class="w"> </span>Docker<span class="w"> </span>Container<span class="w"> </span>herausfinden<span class="w"> </span>&lt;name&gt;<span class="w"> </span>bitte<span class="w"> </span>mit<span class="w"> </span>dem<span class="w"> </span>passenden<span class="w"> </span>Namen<span class="w"> </span>ersetzen
+<span class="go">docker inspect -f &#39;{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39; &lt;name&gt;</span>
+</pre></div>
+</div>
+<p>Die CometVisu ist dann direkt unter der URL <code class="docutils literal notranslate"><span class="pre">http://&lt;container-IP&gt;:</span></code> im Browser erreichbar.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="docker.html" class="btn btn-neutral float-left" title="Installation mittels Docker-Container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="timberwolf.html" class="btn btn-neutral float-right" title="Installation auf dem Timberwolf über die App" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 1.0.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versionen</dt>
+        
+        <dd><a href="../../../0.10/manual">0.10.2</a>
+        </dd>
+        
+        <dd><a href="../../../0.11/manual">0.11.2</a>
+        </dd>
+        
+        <dd><a href="../../../0.12/manual">0.12.6</a>
+        </dd>
+        
+        <dd><a href="../../../0.13/manual">0.13.0-dev</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

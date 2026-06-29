@@ -1,0 +1,87 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603335,
+  "lastModifiedIso": "2026-06-29T04:00:03.335Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/TreeFolder.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 698
+    },
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1039
+    }
+  },
+  "className": "qx.ui.tree.TreeFolder",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The tree folder is a tree element, which can have nested tree elements.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The tree folder is a tree element, which can have nested tree elements.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.tree.core.AbstractTreeItem",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 806
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 871
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "tree-folder"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "_addWidgets": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 913
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1031
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.tree.core.AbstractItem",
+      "appearsIn": [
+        "qx.ui.tree.core.AbstractItem"
+      ]
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,51 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543939,
+  "lastModifiedIso": "2026-06-29T03:59:03.939Z",
+  "classFilename": "../../source/class/cv/transforms/Knx.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 860
+    },
+    "end": {
+      "line": 1210,
+      "column": 3,
+      "index": 29571
+    }
+  },
+  "className": "cv.transforms.Knx",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @author Christian Mayer",
+      " * @since 2010",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2010"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

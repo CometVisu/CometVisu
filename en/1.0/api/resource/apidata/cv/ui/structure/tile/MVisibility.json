@@ -1,0 +1,154 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543949,
+  "lastModifiedIso": "2026-06-29T03:59:03.949Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MVisibility.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 894
+    },
+    "end": {
+      "line": 90,
+      "column": 3,
+      "index": 2512
+    }
+  },
+  "className": "cv.ui.structure.tile.MVisibility",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Detects dom elements visibility",
+      " * @ignore(IntersectionObserver)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Detects dom elements visibility</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "IntersectionObserver"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1076
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 1124
+      }
+    }
+  },
+  "statics": {
+    "observer": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1266
+        },
+        "end": {
+          "line": 40,
+          "column": 18,
+          "index": 1280
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "visible": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1520
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_observeVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1666
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 87,
+        "column": 2,
+        "index": 2459
+      },
+      "end": {
+        "line": 89,
+        "column": 3,
+        "index": 2508
+      }
+    }
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602915,
+  "lastModifiedIso": "2026-06-29T04:00:02.915Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/Number.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 661
+    },
+    "end": {
+      "line": 72,
+      "column": 3,
+      "index": 1745
+    }
+  },
+  "className": "qx.locale.Number",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides information about locale-dependent number formatting (like the decimal",
+      " * separator).",
+      " *",
+      " * @cldr()",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides information about locale-dependent number formatting (like the decimal\n separator).</p>"
+      }
+    ],
+    "@cldr": [
+      {
+        "name": "@cldr",
+        "body": ""
+      }
+    ]
+  },
+  "statics": {
+    "getDecimalSeparator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get decimal separator for number formatting",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} decimal separator.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get decimal separator for number formatting</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "locale {String} optional locale to be used",
+            "paramName": "locale",
+            "description": " optional locale to be used",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} decimal separator.",
+            "type": "string",
+            "description": "decimal separator."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 890
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1057
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getGroupSeparator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get thousand grouping separator for number formatting",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} group separator.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get thousand grouping separator for number formatting</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "locale {String} optional locale to be used",
+            "paramName": "locale",
+            "description": " optional locale to be used",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} group separator.",
+            "type": "string",
+            "description": "group separator."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1246
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1409
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getPercentFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get percent format string",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} percent format string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get percent format string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "locale {String} optional locale to be used",
+            "paramName": "locale",
+            "description": " optional locale to be used",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} percent format string.",
+            "type": "string",
+            "description": "percent format string."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1576
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1737
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

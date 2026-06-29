@@ -1,0 +1,389 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600859,
+  "lastModifiedIso": "2026-06-29T04:00:00.859Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/layout/AbstractBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 521
+    },
+    "end": {
+      "line": 220,
+      "column": 3,
+      "index": 5407
+    }
+  },
+  "className": "qx.ui.mobile.layout.AbstractBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all box layout managers.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all box layout managers.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.layout.Abstract",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "alignX"
+      },
+      {
+        "name": "alignY"
+      },
+      {
+        "name": "reversed"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1047
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1269
+      }
+    }
+  },
+  "properties": {
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1556
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1687
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of the whole children block.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of the whole children block.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1751
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1882
+        }
+      },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom"
+        ],
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of each child.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of each child.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "reversed": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1957
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2072
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Children will be displayed in reverse order.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Children will be displayed in reverse order.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "PROPERTY_CSS_MAPPING": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The property to CSS mapping.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The property to CSS mapping.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2336
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3233
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_CHILD_LAYOUT_PROPERTIES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Supported child layout properties. Used to check if the property is allowed.",
+          "     * List all supported child layout properties here.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Supported child layout properties. Used to check if the property is allowed.\n List all supported child layout properties here.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3396
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3452
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_getSupportedChildLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3682
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 3806
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "_setLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3831
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4129
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "property"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "connectToWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4154
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4342
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "disconnectFromChildWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 4367
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 4540
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.layout.Abstract"
+      ]
+    },
+    "_applyLayoutChange": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 4569
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5399
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "property"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

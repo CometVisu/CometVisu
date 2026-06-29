@@ -1,0 +1,367 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603256,
+  "lastModifiedIso": "2026-06-29T04:00:03.256Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/tabbar/TabBar.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 40,
+      "column": 0,
+      "index": 1036
+    },
+    "end": {
+      "line": 173,
+      "column": 3,
+      "index": 4261
+    }
+  },
+  "className": "qx.ui.mobile.tabbar.TabBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This widget displays a tab bar.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var tabBar = new qx.ui.mobile.tabbar.TabBar();",
+      " *   var tabButton1 = new qx.ui.mobile.tabbar.TabButton(\"Tab 1\");",
+      " *   tabButton1.setView(view1);",
+      " *   tabBar.add(tabButton1);",
+      " *   var tabButton2 = new qx.ui.mobile.tabbar.TabButton(\"Tab 2\");",
+      " *   tabButton2.setView(view2);",
+      " *   tabBar.add(tabButton2);",
+      " *",
+      " *   this.getRoot.add(tabBar);",
+      " * </pre>",
+      " *",
+      " * This example creates a tab bar and adds two tab buttons to it.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This widget displays a tab bar.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var tabBar = new qx.ui.mobile.tabbar.TabBar();\n   var tabButton1 = new qx.ui.mobile.tabbar.TabButton(\"Tab 1\");\n   tabButton1.setView(view1);\n   tabBar.add(tabButton1);\n   var tabButton2 = new qx.ui.mobile.tabbar.TabButton(\"Tab 2\");\n   tabButton2.setView(view2);\n   tabBar.add(tabButton2);\n   this.getRoot.add(tabBar);\n </pre>\n<p>This example creates a tab bar and adds two tab buttons to it.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 49,
+        "column": 2,
+        "index": 1315
+      },
+      "end": {
+        "line": 53,
+        "column": 3,
+        "index": 1446
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1678
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1743
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "tabBar"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "selection": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1796
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 1963
+        }
+      },
+      "json": {
+        "check": "qx.ui.mobile.tabbar.TabButton",
+        "nullable": true,
+        "apply": "_applySelection",
+        "event": "changeSelection"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the selected tab.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the selected tab.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a tab event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Tap} The event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a tab event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Tap} The event object",
+            "paramName": "evt",
+            "description": " The event object",
+            "type": "qx.event.type.Tap"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2307
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2891
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Tap"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySelection": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2920
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3235
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a tab button to the tab bar.",
+          "     *",
+          "     * @param button {qx.ui.mobile.tabbar.TabButton} The button to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a tab button to the tab bar.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "button {qx.ui.mobile.tabbar.TabButton} The button to add",
+            "paramName": "button",
+            "description": " The button to add",
+            "type": "qx.ui.mobile.tabbar.TabButton"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3377
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3577
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.mobile.tabbar.TabButton"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeView": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the view was changed.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the view was changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event",
+            "paramName": "evt",
+            "description": " The event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3712
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3828
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a tab button from the tab bar.",
+          "     *",
+          "     * @param button {qx.ui.mobile.tabbar.TabButton} The button to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a tab button from the tab bar.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "button {qx.ui.mobile.tabbar.TabButton} The button to remove",
+            "paramName": "button",
+            "description": " The button to remove",
+            "type": "qx.ui.mobile.tabbar.TabButton"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 3978
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4181
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.mobile.tabbar.TabButton"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 170,
+        "column": 2,
+        "index": 4190
+      },
+      "end": {
+        "line": 172,
+        "column": 3,
+        "index": 4257
+      }
+    }
+  },
+  "statics": {}
+}

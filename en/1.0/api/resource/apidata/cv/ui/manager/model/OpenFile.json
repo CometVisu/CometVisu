@@ -1,0 +1,321 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543944,
+  "lastModifiedIso": "2026-06-29T03:59:03.944Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/OpenFile.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 938
+    },
+    "end": {
+      "line": 157,
+      "column": 3,
+      "index": 4402
+    }
+  },
+  "className": "cv.ui.manager.model.OpenFile",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data model for currently opened files, a combination of cv.ui.manager.model.FileItem and a certain FileHandler.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data model for currently opened files, a combination of cv.ui.manager.model.FileItem and a certain FileHandler.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "file"
+      },
+      {
+        "name": "handlerId"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1143
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1299
+      }
+    }
+  },
+  "properties": {
+    "file": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1446
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1615
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.model.FileItem || cv.ui.manager.model.CompareFiles",
+        "nullable": true,
+        "event": "changeFile",
+        "apply": "_applyFile"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "handlerId": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1622
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1735
+        }
+      },
+      "json": {
+        "check": "!!qx.Class.getByName(value)",
+        "nullable": true,
+        "apply": "_maintainIcon"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "handlerOptions": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1742
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1806
+        }
+      },
+      "json": {
+        "check": "Map",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "permanent": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2082
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2174
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changePermanent"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The opening state: permanent false behaves like a quick preview, where",
+          "     * the current file content is replaces by the next selected file on single click.",
+          "     * In permanent mode a new tab will be created, which content will not be replaced.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The opening state: permanent false behaves like a quick preview, where\n the current file content is replaces by the next selected file on single click.\n In permanent mode a new tab will be created, which content will not be replaced.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2238
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2316
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Icon to show in e.g. the File-Tab",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Icon to show in e.g. the File-Tab</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "closeable": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2323
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2414
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeCloseable"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__ibid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2560
+        },
+        "end": {
+          "line": 97,
+          "column": 16,
+          "index": 2572
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2579
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2911
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_maintainIcon": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2918
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3508
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_maintainPermanent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3515
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3707
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3714
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4394
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback"
+        },
+        {
+          "name": "overrideHash"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

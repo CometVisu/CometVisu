@@ -1,0 +1,612 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/File.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 935
+    },
+    "end": {
+      "line": 193,
+      "column": 3,
+      "index": 4623
+    }
+  },
+  "className": "com.zenesis.qx.upload.File",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Represents a file that is to be or has been uploaded; this should be",
+      " * instantiated by the _createFile method of AbstractHandler implementations and",
+      " * is not expected to be used separately",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Represents a file that is to be or has been uploaded; this should be\n instantiated by the _createFile method of AbstractHandler implementations and\n is not expected to be used separately</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "browserObject"
+      },
+      {
+        "name": "filename"
+      },
+      {
+        "name": "id"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 43,
+        "column": 2,
+        "index": 1320
+      },
+      "end": {
+        "line": 51,
+        "column": 3,
+        "index": 1602
+      }
+    }
+  },
+  "properties": {
+    "filename": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1661
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1755
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "event": "changeFilename"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The filename</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "id": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1812
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1894
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "event": "changeId"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A unique ID for the upload",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A unique ID for the upload</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "size": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1985
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2088
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": false,
+        "init": -1,
+        "event": "changeSize"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Size of the file, if known (not available on older browsers)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Size of the file, if known (not available on older browsers)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "progress": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2185
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2295
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": false,
+        "init": 0,
+        "event": "changeProgress"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Progress of the upload, if known (not available on older browsers)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Progress of the upload, if known (not available on older browsers)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "state": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2358
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2546
+        }
+      },
+      "json": {
+        "check": [
+          "not-started",
+          "uploading",
+          "cancelled",
+          "uploaded"
+        ],
+        "nullable": false,
+        "init": "not-started",
+        "event": "changeState",
+        "apply": "_applyState"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * State of the file, re: uploading",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>State of the file, re: uploading</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "response": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2621
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2732
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeResponse"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The response string received from the server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The response string received from the server</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "uploadWidget": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2799
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 2895
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeUploadWidget"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The widget that triggered the upload",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The widget that triggered the upload</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "status": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3022
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3106
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeStatus"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The status of an XHR request. This can be used to determine if the",
+          "     * upload was successful.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The status of an XHR request. This can be used to determine if the\n upload was successful.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__browserObject": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3131
+        },
+        "end": {
+          "line": 134,
+          "column": 25,
+          "index": 3152
+        }
+      },
+      "appearsIn": []
+    },
+    "__params": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3158
+        },
+        "end": {
+          "line": 135,
+          "column": 18,
+          "index": 3172
+        }
+      },
+      "appearsIn": []
+    },
+    "setParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a parameter value to be sent with the file",
+          "     *",
+          "     * @param name",
+          "     *          {String} name of the parameter",
+          "     * @param value",
+          "     *          {String} the value of the parameter, or null to delete a",
+          "     *          previous parameter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name\n          {String} name of the parameter",
+            "paramName": "name",
+            "description": " name of the parameter",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value\n          {String} the value of the parameter, or null to delete a\n          previous parameter",
+            "paramName": "value",
+            "description": " the value of the parameter, or null to delete a\n          previous parameter",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3451
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3635
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a parameter value to be sent with the file",
+          "     *",
+          "     * @param name {String} Name of the parameter",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the parameter",
+            "paramName": "name",
+            "description": " Name of the parameter",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 3799
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 3872
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getParamNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of parameter names",
+          "     *",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of parameter names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 3967
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4110
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getBrowserObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the browser object",
+          "     *",
+          "     * @returns {DOM}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the browser object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DOM}",
+            "type": "DOM",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4196
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4257
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "DOM"
+      },
+      "appearsIn": []
+    },
+    "_applyState": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 4286
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 4613
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,2284 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601685,
+  "lastModifiedIso": "2026-06-29T04:00:01.685Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/DateField.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 40,
+      "column": 0,
+      "index": 1334
+    },
+    "end": {
+      "line": 586,
+      "column": 3,
+      "index": 16086
+    }
+  },
+  "className": "qx.ui.form.DateField",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A *date field* is like a combo box with the date as popup. As button to",
+      " * open the calendar a calendar icon is shown at the right to the textfield.",
+      " *",
+      " * To be conform with all form widgets, the {@link qx.ui.form.IForm} interface",
+      " * is implemented.",
+      " *",
+      " * The following example creates a date field and sets the current",
+      " * date as selected.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var dateField = new qx.ui.form.DateField();",
+      " * this.getRoot().add(dateField, {top: 20, left: 20});",
+      " * dateField.setValue(new Date());",
+      " * </pre>",
+      " *",
+      " * @childControl list {qx.ui.control.DateChooser} date chooser component",
+      " * @childControl popup {qx.ui.popup.Popup} popup which shows the list control",
+      " * @childControl textfield {qx.ui.form.TextField} text field for manual date entry",
+      " * @childControl button {qx.ui.form.Button} button that opens the list control",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A <em>date field</em> is like a combo box with the date as popup. As button to\n open the calendar a calendar icon is shown at the right to the textfield.\n To be conform with all form widgets, the {@link qx.ui.form.IForm} interface\n is implemented.\n The following example creates a date field and sets the current\n date as selected.\n </p>\n<pre class='javascript'>\n var dateField = new qx.ui.form.DateField();\n this.getRoot().add(dateField, {top: 20, left: 20});\n dateField.setValue(new Date());\n </pre>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "list {qx.ui.control.DateChooser} date chooser component"
+      },
+      {
+        "name": "@childControl",
+        "body": "popup {qx.ui.popup.Popup} popup which shows the list control"
+      },
+      {
+        "name": "@childControl",
+        "body": "textfield {qx.ui.form.TextField} text field for manual date entry"
+      },
+      {
+        "name": "@childControl",
+        "body": "button {qx.ui.form.Button} button that opens the list control"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "mixins": [
+    "qx.ui.core.MRemoteChildrenHandling",
+    "qx.ui.form.MForm"
+  ],
+  "interfaces": [
+    "qx.ui.form.IForm",
+    "qx.ui.form.IDateForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 52,
+        "column": 2,
+        "index": 1719
+      },
+      "end": {
+        "line": 83,
+        "column": 3,
+        "index": 2671
+      }
+    }
+  },
+  "events": {
+    "changeValue": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Whenever the value is changed this event is fired",
+          "     *",
+          "     *  Event data: The new text value of the field.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whenever the value is changed this event is fired\n  Event data: The new text value of the field.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2999
+        },
+        "end": {
+          "line": 96,
+          "column": 37,
+          "index": 3032
+        }
+      }
+    }
+  },
+  "properties": {
+    "dateFormat": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3319
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3412
+        }
+      },
+      "json": {
+        "check": "qx.util.format.DateFormat",
+        "apply": "_applyDateFormat"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The formatter, which converts the selected date to a string. *"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The formatter, which converts the selected date to a string. *</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "placeholder": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3597
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3695
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyPlaceholder"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * String value which will be shown as a hint if the field is all of:",
+          "     * unset, unfocused and enabled. Set to null to not show a placeholder",
+          "     * text.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String value which will be shown as a hint if the field is all of:\n unset, unfocused and enabled. Set to null to not show a placeholder\n text.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3720
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3783
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "datefield"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focusable": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3808
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3863
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3888
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3938
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 120
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    }
+  },
+  "statics": {
+    "__dateFormat": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4146
+        },
+        "end": {
+          "line": 149,
+          "column": 22,
+          "index": 4164
+        }
+      },
+      "appearsIn": []
+    },
+    "__formatter": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4170
+        },
+        "end": {
+          "line": 150,
+          "column": 21,
+          "index": 4187
+        }
+      },
+      "appearsIn": []
+    },
+    "getDefaultDateFormatter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the shared default date formatter",
+          "     *",
+          "     * @return {qx.util.format.DateFormat} The shared date formatter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the shared default date formatter</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.util.format.DateFormat} The shared date formatter",
+            "type": "qx.util.format.DateFormat",
+            "description": "The shared date formatter"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4331
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4793
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.util.format.DateFormat"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__localeListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 5054
+        },
+        "end": {
+          "line": 186,
+          "column": 28,
+          "index": 5078
+        }
+      },
+      "appearsIn": []
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5151
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5215
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_setDefaultDateFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the default date format which is returned by",
+          "     * {@link #getDefaultDateFormatter}. You can override this method to",
+          "     * define your own default format.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the default date format which is returned by\n {@link #getDefaultDateFormatter}. You can override this method to\n define your own default format.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 5605
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 5710
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_addLocaleChangeListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for \"qx.dynlocale\" and adds a listener to the locale changes.",
+          "     * On every change, {@link #_setDefaultDateFormat} is called to reinitialize",
+          "     * the format. You can easily override that method to prevent that behavior.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for \"qx.dynlocale\" and adds a listener to the locale changes.\n On every change, {@link #_setDefaultDateFormat} is called to reinitialize\n the format. You can easily override that method to prevent that behavior.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 5971
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 6289
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method sets the date, which will be formatted according to",
+          "     * #dateFormat to the date field. It will also select the date in the",
+          "     * calendar popup.",
+          "     *",
+          "     * @param value {Date} The date to set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method sets the date, which will be formatted according to\n #dateFormat to the date field. It will also select the date in the\n calendar popup.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Date} The date to set.",
+            "paramName": "value",
+            "description": " The date to set.",
+            "type": "Date"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 6727
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7039
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Date"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IDateForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current set date, parsed from the input-field",
+          "     * corresponding to the {@link #dateFormat}.",
+          "     * If the given text could not be parsed, <code>null</code> will be returned.",
+          "     *",
+          "     * @return {Date} The currently set date.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current set date, parsed from the input-field\n corresponding to the {@link #dateFormat}.\n If the given text could not be parsed, <code>null</code> will be returned.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Date} The currently set date.",
+            "type": "Date",
+            "description": "The currently set date."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 7311
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 7697
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Date"
+      },
+      "appearsIn": [
+        "qx.ui.form.IDateForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the DateField. The textfield will be empty and the datechooser",
+          "     * will also have no selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the DateField. The textfield will be empty and the datechooser\n will also have no selection.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 7833
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 8109
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IDateForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the date chooser popup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the date chooser popup.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 8361
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 8484
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "close": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the date chooser popup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hides the date chooser popup.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 8544
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8684
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "toggle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the date chooser popup visibility.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the date chooser popup visibility.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4,
+          "index": 8757
+        },
+        "end": {
+          "line": 322,
+          "column": 5,
+          "index": 8929
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDateFormat": {
+      "jsdoc": {
+        "raw": [
+          " property apply routine"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 9170
+        },
+        "end": {
+          "line": 348,
+          "column": 5,
+          "index": 9695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          " property apply routine"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 9732
+        },
+        "end": {
+          "line": 353,
+          "column": 5,
+          "index": 9832
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 10049
+        },
+        "end": {
+          "line": 411,
+          "column": 5,
+          "index": 11531
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onChangeDate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler method which handles the tap on the calender popup.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler method which handles the tap on the calender popup.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event.",
+            "paramName": "e",
+            "description": " The pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 424,
+          "column": 4,
+          "index": 11884
+        },
+        "end": {
+          "line": 431,
+          "column": 5,
+          "index": 12122
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the popup's visibility.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the popup's visibility.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer tap event",
+            "paramName": "e",
+            "description": " Pointer tap event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 12249
+        },
+        "end": {
+          "line": 440,
+          "column": 5,
+          "index": 12286
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the blur event of the current widget.",
+          "     *",
+          "     * @param e {qx.event.type.Focus} The blur event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the blur event of the current widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Focus} The blur event.",
+            "paramName": "e",
+            "description": " The blur event.",
+            "type": "qx.event.type.Focus"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 12427
+        },
+        "end": {
+          "line": 449,
+          "column": 5,
+          "index": 12465
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Focus"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler method which handles the key press. It forwards all key event",
+          "     * to the opened date chooser except the escape key event. Escape closes",
+          "     * the popup.",
+          "     * If the list is cloned, all key events will not be processed further.",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} Keypress event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler method which handles the key press. It forwards all key event\n to the opened date chooser except the escape key event. Escape closes\n the popup.\n If the list is cloned, all key events will not be processed further.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} Keypress event",
+            "paramName": "e",
+            "description": " Keypress event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 4,
+          "index": 12802
+        },
+        "end": {
+          "line": 493,
+          "column": 5,
+          "index": 13656
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPopupChangeVisibility": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Redirects changeVisibility event from the list to this widget.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Property change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Redirects changeVisibility event from the list to this widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Property change event",
+            "paramName": "e",
+            "description": " Property change event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 13815
+        },
+        "end": {
+          "line": 514,
+          "column": 5,
+          "index": 14354
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTextFieldChangeValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reacts on value changes of the text field and syncs the",
+          "     * value to the combobox.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reacts on value changes of the text field and syncs the\n value to the combobox.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Change event",
+            "paramName": "e",
+            "description": " Change event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4,
+          "index": 14527
+        },
+        "end": {
+          "line": 532,
+          "column": 5,
+          "index": 14810
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the textfield of the DateField is empty.",
+          "     *",
+          "     * @return {Boolean} True, if the textfield of the DateField is empty.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the textfield of the DateField is empty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True, if the textfield of the DateField is empty.",
+            "type": "boolean",
+            "description": "True, if the textfield of the DateField is empty."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 539,
+          "column": 4,
+          "index": 14973
+        },
+        "end": {
+          "line": 542,
+          "column": 5,
+          "index": 15097
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 545,
+          "column": 4,
+          "index": 15122
+        },
+        "end": {
+          "line": 548,
+          "column": 5,
+          "index": 15225
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "tabFocus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 551,
+          "column": 4,
+          "index": 15250
+        },
+        "end": {
+          "line": 556,
+          "column": 5,
+          "index": 15390
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "setAriaLabel": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 559,
+          "column": 4,
+          "index": 15415
+        },
+        "end": {
+          "line": 561,
+          "column": 5,
+          "index": 15503
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "label"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "addAriaLabelledBy": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 564,
+          "column": 4,
+          "index": 15528
+        },
+        "end": {
+          "line": 566,
+          "column": 5,
+          "index": 15646
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...labelWidgets"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "addAriaDescribedBy": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 569,
+          "column": 4,
+          "index": 15671
+        },
+        "end": {
+          "line": 573,
+          "column": 5,
+          "index": 15817
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...describingWidgets"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__forward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Forward the call with the given function name to the children container",
+          "     *",
+          "     * @param functionName {String} name of the method to forward",
+          "     * @param a1 {var?} first argument of the method to call",
+          "     * @param a2 {var?} second argument of the method to call",
+          "     * @param a3 {var?} third argument of the method to call",
+          "     * @return {var} The return value of the forward method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Forward the call with the given function name to the children container</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionName {String} name of the method to forward",
+            "paramName": "functionName",
+            "description": " name of the method to forward",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "a1 {var?} first argument of the method to call",
+            "paramName": "a1",
+            "description": " first argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a2 {var?} second argument of the method to call",
+            "paramName": "a2",
+            "description": " second argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a3 {var?} third argument of the method to call",
+            "paramName": "a3",
+            "description": " third argument of the method to call",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the forward method",
+            "type": "var",
+            "description": "The return value of the forward method"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1555
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1782
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "functionName",
+          "type": "string"
+        },
+        {
+          "name": "a1",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a2",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a3",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the children list",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem[]} The children array (Arrays are",
+          "     *   reference types, please do not modify them in-place)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\n   reference types, please do not modify them in-place)",
+            "type": "qx.ui.core.LayoutItem[]",
+            "description": "The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "hasChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains children.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when the widget has children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children.",
+            "type": "boolean",
+            "description": "Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget.",
+          "     *",
+          "     * The supported keys of the layout options map depend on the layout manager",
+          "     * used to position the widget. The options are documented in the class",
+          "     * documentation of each layout manager {@link qx.ui.layout}.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to add.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.\n The supported keys of the layout options map depend on the layout manager\n used to position the widget. The options are documented in the class\n documentation of each layout manager {@link qx.ui.layout}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to add.",
+            "paramName": "child",
+            "description": " the item to add.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2831
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given child item.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to remove",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to remove",
+            "paramName": "child",
+            "description": " the item to remove",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3030
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3097
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all children.",
+          "     * @return {Array} An array containing the removed children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the removed children.",
+            "type": "Array<any>",
+            "description": "An array containing the removed children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3274
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index position of the given item if it is",
+          "     * a child item. Otherwise it returns <code>-1</code>.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to query for",
+          "     * @return {Integer} The index position or <code>-1</code> when",
+          "     *   the given item is no child of this layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given item if it is\n a child item. Otherwise it returns <code>-1</code>.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to query for",
+            "paramName": "child",
+            "description": " the item to query for",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given item is no child of this layout.",
+            "type": "Integer",
+            "description": "The index position or <code>-1</code> when\n   the given item is no child of this layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3909
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a child at the specified index",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param index {Integer} Index, at which the item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child at the specified index\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the item will be inserted",
+            "paramName": "index",
+            "description": " Index, at which the item will be inserted",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4541
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addBefore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item before another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item before another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+            "paramName": "before",
+            "description": " item before the new item will be inserted.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 5224
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 5324
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "before",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAfter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item after another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item after another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+            "paramName": "after",
+            "description": " item, after which the new item will be inserted",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5920
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 6016
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "after",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the item at the specified index.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param index {Integer} Index of the item to remove.",
+          "     * @return {qx.ui.core.LayoutItem} The removed item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the item at the specified index.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the item to remove.",
+            "paramName": "index",
+            "description": " Index of the item to remove.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The removed item",
+            "type": "qx.ui.core.LayoutItem",
+            "description": "The removed item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6507
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 6578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 576,
+        "column": 2,
+        "index": 15826
+      },
+      "end": {
+        "line": 585,
+        "column": 3,
+        "index": 16082
+      }
+    }
+  }
+}

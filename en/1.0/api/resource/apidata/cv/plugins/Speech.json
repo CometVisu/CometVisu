@@ -1,0 +1,537 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/Speech.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 57,
+      "column": 0,
+      "index": 2178
+    },
+    "end": {
+      "line": 195,
+      "column": 3,
+      "index": 6266
+    }
+  },
+  "className": "cv.plugins.Speech",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)",
+      " * to make text-to-speech service available. This plugin listens to a address and forwards the",
+      " * incoming data to the browser TTS engine (if the browser supports it)",
+      " *",
+      " * <h4>Simple example</h4>",
+      " * <pre class=\"sunlight-highlight-xml\">",
+      " * &lt;speech lang=&quot;en&quot;&gt;",
+      " *  &lt;address transform=&quot;OH:string&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;",
+      " * &lt;/speech&gt;",
+      " * </pre>",
+      " *",
+      " * <h4>Example preventing repetition within a timeout and use mapping</h4>",
+      " * <pre class=\"sunlight-highlight-xml\">",
+      " * ...",
+      " * &lt;meta&gt;",
+      " *  &lt;plugins&gt;",
+      " *    &lt;plugin name=&quot;speech&quot; /&gt;",
+      " *  &lt;/plugins&gt;",
+      " *  &lt;mappings&gt;",
+      " *    &lt;mapping name=&quot;speak&quot;&gt;",
+      " *      &lt;entry value=&quot;0&quot;&gt;Hello, welcome home&lt;/entry&gt;",
+      " *      &lt;entry value=&quot;1&quot;&gt;Please close all windows&lt;/entry&gt;",
+      " *      &lt;entry value=&quot;2&quot;&gt;Please close all doors&lt;/entry&gt;",
+      " *    &lt;/mapping&gt;",
+      " *  &lt;/mappings&gt;",
+      " * &lt;/meta&gt;",
+      " * ...",
+      " * &lt;speech lang=&quot;en&quot; repeat-timout=&quot;300&quot; mapping=&quot;speak&quot;&gt;",
+      " *  &lt;address transform=&quot;DPT:5.010&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;",
+      " * &lt;/speech&gt;",
+      " * </pre>",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.10.0",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web<em>Speech</em>API)\n to make text-to-speech service available. This plugin listens to a address and forwards the\n incoming data to the browser TTS engine (if the browser supports it)\n </p>\n<h4>Simple example</h4>\n<pre class=\"sunlight-highlight-xml\">\n &lt;speech lang=&quot;en&quot;&gt;\n  &lt;address transform=&quot;OH:string&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;\n &lt;/speech&gt;\n </pre>\n<h4>Example preventing repetition within a timeout and use mapping</h4>\n<pre class=\"sunlight-highlight-xml\">\n ...\n &lt;meta&gt;\n  &lt;plugins&gt;\n    &lt;plugin name=&quot;speech&quot; /&gt;\n  &lt;/plugins&gt;\n  &lt;mappings&gt;\n    &lt;mapping name=&quot;speak&quot;&gt;\n      &lt;entry value=&quot;0&quot;&gt;Hello, welcome home&lt;/entry&gt;\n      &lt;entry value=&quot;1&quot;&gt;Please close all windows&lt;/entry&gt;\n      &lt;entry value=&quot;2&quot;&gt;Please close all doors&lt;/entry&gt;\n    &lt;/mapping&gt;\n  &lt;/mappings&gt;\n &lt;/meta&gt;\n ...\n &lt;speech lang=&quot;en&quot; repeat-timout=&quot;300&quot; mapping=&quot;speak&quot;&gt;\n  &lt;address transform=&quot;DPT:5.010&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;\n &lt;/speech&gt;\n </pre>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "mixins": [
+    "cv.ui.common.Update"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 66,
+        "column": 2,
+        "index": 2420
+      },
+      "end": {
+        "line": 70,
+        "column": 3,
+        "index": 2504
+      }
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2662
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 3479
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "path": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3647
+        },
+        "end": {
+          "line": 106,
+          "column": 29,
+          "index": 3672
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "$$type": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3678
+        },
+        "end": {
+          "line": 107,
+          "column": 31,
+          "index": 3705
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "$$initOnCacheLoad": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3711
+        },
+        "end": {
+          "line": 108,
+          "column": 43,
+          "index": 3750
+        }
+      },
+      "json": {
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "language": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3756
+        },
+        "end": {
+          "line": 109,
+          "column": 33,
+          "index": 3785
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "mapping": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3791
+        },
+        "end": {
+          "line": 110,
+          "column": 42,
+          "index": 3829
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "repeatTimeout": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3835
+        },
+        "end": {
+          "line": 111,
+          "column": 48,
+          "index": 3879
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": -1
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "parentWidget": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3885
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3980
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.pure.AbstractBasicWidget"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__lastSpeech": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4142
+        },
+        "end": {
+          "line": 124,
+          "column": 22,
+          "index": 4160
+        }
+      },
+      "appearsIn": []
+    },
+    "_initOnCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1550
+        }
+      },
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "getDomString": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4192
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 4238
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_processIncomingValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 4245
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4496
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleUpdate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 4503
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 6065
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text"
+        },
+        {
+          "name": "address"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__initUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1557
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the incoming data, update the shown value and the stylings",
+          "     *",
+          "     * @param address {String} Address of the incoming value",
+          "     * @param data {String} the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2408
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "processIncomingValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update3d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Description",
+          "     *",
+          "     * @param ev {var}",
+          "     * @param data {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3200
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3664
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600823,
+  "lastModifiedIso": "2026-06-29T04:00:00.823Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/model/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 490
+    },
+    "end": {
+      "line": 77,
+      "column": 3,
+      "index": 2132
+    }
+  },
+  "className": "qx.ui.progressive.model.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data Model for Progressive renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data Model for Progressive renderer.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "events": {
+    "dataAvailable": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired when new data has been added to the data model.  It",
+          "     * typically informs Progressive to begin its rendering process.",
+          "     *",
+          "     * The event data is an integer: the number of elements now available on",
+          "     * the element queue.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired when new data has been added to the data model.  It\n typically informs Progressive to begin its rendering process.\n The event data is an integer: the number of elements now available on\n the element queue.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 881
+        },
+        "end": {
+          "line": 34,
+          "column": 39,
+          "index": 916
+        }
+      }
+    }
+  },
+  "members": {
+    "getElementCount": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the number of data elements currently available.",
+          "     *",
+          "     * @throws {Error} An error if this method is called.",
+          "     * @return {Integer}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the number of data elements currently available.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} An error if this method is called.",
+            "type": "Error",
+            "description": " An error if this method is called."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}",
+            "type": "Integer",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1106
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1187
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getNextElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the next available element from the data model.",
+          "     *",
+          "     * @throws {Error} An error if this method is called.",
+          "     * @return {Object}",
+          "     *   The returned object must provide at least the following members:",
+          "     *   <dl>",
+          "     *     <dt>",
+          "     *       renderer</dt>",
+          "     *     <dd>",
+          "     *       The name of a renderer.  That name is used by {@link",
+          "     *       qx.ui.progressive.Progressive} to select the renderer to be used",
+          "     *       to render this element.  The name should match one provided to",
+          "     *       {@link qx.ui.progressive.Progressive#addRenderer}.",
+          "     *     </dd>",
+          "     *",
+          "     *     <dt>",
+          "     *       data",
+          "     *     </dt>",
+          "     *     <dd>",
+          "     *       The data to be passed to the renderer.  The data may be of any",
+          "     *       type that the renderer knows how to render.",
+          "     *     </dd>",
+          "     *   </dl>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the next available element from the data model.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} An error if this method is called.",
+            "type": "Error",
+            "description": " An error if this method is called."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}\n   The returned object must provide at least the following members:\n   <dl>\n     <dt>\n       renderer</dt>\n     <dd>\n       The name of a renderer.  That name is used by {@link\n       qx.ui.progressive.Progressive} to select the renderer to be used\n       to render this element.  The name should match one provided to\n       {@link qx.ui.progressive.Progressive#addRenderer}.\n     </dd>\n     <dt>\n       data\n     </dt>\n     <dd>\n       The data to be passed to the renderer.  The data may be of any\n       type that the renderer knows how to render.\n     </dd>\n   </dl>",
+            "type": "Record<any, any>",
+            "description": "   The returned object must provide at least the following members:\n   <dl>\n     <dt>\n       renderer</dt>\n     <dd>\n       The name of a renderer.  That name is used by {@link\n       qx.ui.progressive.Progressive} to select the renderer to be used\n       to render this element.  The name should match one provided to\n       {@link qx.ui.progressive.Progressive#addRenderer}.\n     </dd>\n     <dt>\n       data\n     </dt>\n     <dd>\n       The data to be passed to the renderer.  The data may be of any\n       type that the renderer knows how to render.\n     </dd>\n   </dl>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2045
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2124
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

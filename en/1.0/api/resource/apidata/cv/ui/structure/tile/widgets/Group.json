@@ -1,0 +1,187 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Group.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 954
+    },
+    "end": {
+      "line": 143,
+      "column": 3,
+      "index": 4771
+    }
+  },
+  "className": "cv.ui.structure.tile.widgets.Group",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a group of widgets that can be hidden (works like the <detail> HTML Element)",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a group of widgets that can be hidden (works like the <detail> HTML Element)</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "members": {
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1227
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2867
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_toggleOpen": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2874
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 3065
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onStateUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the incoming data from the backend for this widget",
+          "     *",
+          "     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the incoming data from the backend for this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {CustomEvent} stateUpdate event fired from a cv-address component",
+            "paramName": "ev",
+            "description": " stateUpdate event fired from a cv-address component",
+            "type": "CustomEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3244
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3507
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "CustomEvent"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "__setSummaryValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3514
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3943
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__syncSummaryValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3950
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4546
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

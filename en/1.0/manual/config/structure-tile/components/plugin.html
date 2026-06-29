@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plugin &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/components/plugin.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Addresses - communication with the backend" href="../elements/address.html" />
+    <link rel="prev" title="Icon" href="icon.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-structure">Pure-structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-structure">Tile-structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Basic structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#define-own-widgets">Define own widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../index.html#components">Components</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Basic structure</a></li>
+      <li class="breadcrumb-item active">Plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<section id="plugin">
+<span id="tile-component-plugin"></span><h1>Plugin<a class="headerlink" href="#plugin" title="Link to this heading"></a></h1>
+<p>The plugin component embeds compatible CometVisu plugins inside the tile structure.
+The wrapper loads the plugin code and renders its output directly at the place of the <code class="docutils literal notranslate"><span class="pre">&lt;cv-plugin&gt;</span></code> element.
+This is useful for content that already exists as a plugin, for example weather information inside a popup.</p>
+<p>Within the tile schema, <code class="docutils literal notranslate"><span class="pre">&lt;cv-plugin&gt;</span></code> is currently mainly used with the OpenWeatherMap plugin.
+Additional plugins can be integrated in the same way when the configuration schema is extended accordingly.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-small-status</span><span class="w"> </span><span class="na">value-format=</span><span class="s">&quot;%d°&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;value&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;font-size: 32px&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>Outside<span class="nt">&lt;/label&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.010&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-popup</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;popup&quot;</span><span class="w"> </span><span class="na">modal=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-plugin&gt;</span>
+<span class="w">            </span><span class="nt">&lt;openweathermap</span><span class="w"> </span><span class="na">q=</span><span class="s">&quot;Somewhere&quot;</span><span class="w"> </span><span class="na">owID=</span><span class="s">&quot;12345677&quot;</span><span class="w"> </span><span class="na">appid=</span><span class="s">&quot;123456789&quot;</span><span class="w"> </span><span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-plugin&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-popup&gt;</span>
+<span class="nt">&lt;/cv-small-status&gt;</span>
+</pre></div>
+</div>
+<section id="allowed-attributes">
+<h2>Allowed attributes<a class="headerlink" href="#allowed-attributes" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="8"><p>cv-plugin</p></td>
+<td><p>name</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>row</p></td>
+<td><p><em>1</em>, <em>2</em>, <em>3</em>, <em>first</em>, <em>middle</em> or <em>last</em></p></td>
+<td><p>Row number or position (first, middle, last)</p></td>
+</tr>
+<tr class="row-even"><td><p>column</p></td>
+<td><p><em>1</em>, <em>2</em>, <em>3</em>, <em>first</em>, <em>middle</em> or <em>last</em></p></td>
+<td><p>Column number or position (first, middle, last)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rowspan</p></td>
+<td><p>integer</p></td>
+<td><p>Number of rows this element spans</p></td>
+</tr>
+<tr class="row-even"><td><p>colspan</p></td>
+<td><p>integer</p></td>
+<td><p>Number of columns this element spans</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
+<h2>Allowed child elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h2>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="13"><dl class="simple">
+<dt>cv-plugin</dt><dd><ul class="simple">
+<li><p>openweathermap</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>lang</p></td>
+<td><p><em>en</em>, <em>de</em> or <em>fr</em></p></td>
+<td><p>Language / format of the date</p></td>
+</tr>
+<tr class="row-even"><td><p><abbr title="mandatory">appid</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Personal access key as obtained from <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>description</p></td>
+<td><p>string</p></td>
+<td><p>Describing text, displays the place name when left empty. “false” disables the display</p></td>
+</tr>
+<tr class="row-even"><td><p>detailItems</p></td>
+<td><p>integer</p></td>
+<td><p>Displays details when set to 1 (default) and hides them when set to 0</p></td>
+</tr>
+<tr class="row-odd"><td><p>forecast24hItems</p></td>
+<td><p>integer</p></td>
+<td><p>Number of items to show (0…8)</p></td>
+</tr>
+<tr class="row-even"><td><p>forecastDailyItems</p></td>
+<td><p>integer</p></td>
+<td><p>Number of items to show (0…4)</p></td>
+</tr>
+<tr class="row-odd"><td><p>showSunrise</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show the sun rise and set information</p></td>
+</tr>
+<tr class="row-even"><td><p>owID</p></td>
+<td><p>string</p></td>
+<td><p>OpenWeatherMap city ID as defined in <a class="reference external" href="https://bulk.openweathermap.org/sample/city.list.json.gz">https://bulk.openweathermap.org/sample/city.list.json.gz</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>q</p></td>
+<td><p>string</p></td>
+<td><p>When owID is not used: City name and country code divided by comma, use ISO 3166 country codes</p></td>
+</tr>
+<tr class="row-even"><td><p>lat</p></td>
+<td><p>string</p></td>
+<td><p>When owID or q is not used: latitude of place</p></td>
+</tr>
+<tr class="row-odd"><td><p>lon</p></td>
+<td><p>string</p></td>
+<td><p>When owID or q is not used: longitude of place</p></td>
+</tr>
+<tr class="row-even"><td><p>refresh</p></td>
+<td><p>integer</p></td>
+<td><p>Refresh interval of the data in minutes</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="icon.html" class="btn btn-neutral float-left" title="Icon" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../elements/address.html" class="btn btn-neutral float-right" title="Addresses - communication with the backend" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 1.0.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+        <dd><a href="../../../../../0.10/manual">0.10.2</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.11/manual">0.11.2</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.12/manual">0.12.6</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.13/manual">0.13.0-dev</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

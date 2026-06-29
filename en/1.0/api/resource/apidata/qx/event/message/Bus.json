@@ -1,0 +1,1271 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601316,
+  "lastModifiedIso": "2026-06-29T04:00:01.316Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/message/Bus.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 926
+    },
+    "end": {
+      "line": 412,
+      "column": 3,
+      "index": 13367
+    }
+  },
+  "className": "qx.event.message.Bus",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A simple message bus singleton.",
+      " * The message bus registers subscriptions to topics and notifies subscribers when",
+      " * a matching message is dispatched. A topic acts as a filter to select only those",
+      " * messages which match the filter. It can be the name of a message, which can",
+      " * terminated with a trailing `*` as a wildcard, or a regular expression.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A simple message bus singleton.\n The message bus registers subscriptions to topics and notifies subscribers when\n a matching message is dispatched. A topic acts as a filter to select only those\n messages which match the filter. It can be the name of a message, which can\n terminated with a trailing <code>*</code> as a wildcard, or a regular expression.</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
+  "statics": {
+    "getSubscriptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.getSubscription}",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.getSubscription}</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1147
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1225
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "subscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.subscribe}",
+          "     * @param topic {String|RegExp}",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Success",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.subscribe}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp}",
+            "paramName": "topic",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "boolean",
+            "description": "Success"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1528
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1653
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "subscribeOnce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.subscribeOnce}",
+          "     * @param topic {String|RegExp}",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Success",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.subscribeOnce}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp}",
+            "paramName": "topic",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "boolean",
+            "description": "Success"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1960
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 2117
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "checkSubscription": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.checkSubscription}",
+          "     * @param topic {String|RegExp} The topic that has been used when subscribing",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Whether a subscription was removed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.checkSubscription}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a subscription was removed",
+            "type": "boolean",
+            "description": "Whether a subscription was removed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2501
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2666
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "unsubscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.unsubscribe}",
+          "     * @param topic {String|RegExp} The topic that has been used when subscribing",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Whether a subscription was removed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.unsubscribe}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a subscription was removed",
+            "type": "boolean",
+            "description": "Whether a subscription was removed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 3044
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 3197
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.dispatch}",
+          "     * @param message {qx.event.message.Message} Message which is being dispatched",
+          "     * @return {Boolean} If the message could be dispatched",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.dispatch}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {qx.event.message.Message} Message which is being dispatched",
+            "paramName": "message",
+            "description": " Message which is being dispatched",
+            "type": "qx.event.message.Message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} If the message could be dispatched",
+            "type": "boolean",
+            "description": "If the message could be dispatched"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3429
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3533
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "qx.event.message.Message"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatchByName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand method for {@link qx.event.message.Bus.dispatchByName}",
+          "     * @param name {String} name of the message",
+          "     * @param data {var} Any type of data to attach",
+          "     * @return {Boolean} If the message was dispatched",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand method for {@link qx.event.message.Bus.dispatchByName}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} name of the message",
+            "paramName": "name",
+            "description": " name of the message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} Any type of data to attach",
+            "paramName": "data",
+            "description": " Any type of data to attach",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} If the message was dispatched",
+            "type": "boolean",
+            "description": "If the message was dispatched"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3783
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3926
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 122,
+        "column": 2,
+        "index": 3964
+      },
+      "end": {
+        "line": 125,
+        "column": 3,
+        "index": 4025
+      }
+    }
+  },
+  "members": {
+    "__subscriptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscriptions cache",
+          "     * @var {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscriptions cache</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Object}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4109
+        },
+        "end": {
+          "line": 132,
+          "column": 25,
+          "index": 4130
+        }
+      },
+      "appearsIn": []
+    },
+    "getSubscriptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the map of message subscriptions with registered subscriptions. The key is",
+          "     * the topic and the value is a map with <code>{subscriber:",
+          "     * {Function}, context: {Object|null}}</code>.",
+          "     *",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the map of message subscriptions with registered subscriptions. The key is\n the topic and the value is a map with <code>{subscriber:\n {Function}, context: {Object|null}}</code>.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4389
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "subscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribes to a topic",
+          "     *",
+          "     * @param topic {String|RegExp} Either a string, which can be",
+          "     * terminated with a trailing `*` as a wildcard to match all message",
+          "     * names that start with the prefix, or a regular expression",
+          "     * object, which the message name has to match. If you use regular",
+          "     * expressions, you cannot use message names that start and end",
+          "     * with a slash (\"/\") at the same time, because regular expressions",
+          "     * are converted to their string representation when stored.",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Success",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribes to a topic</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} Either a string, which can be\n terminated with a trailing <code>*</code> as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "paramName": "topic",
+            "description": " Either a string, which can be\n terminated with a trailing <code>*</code> as a wildcard to match all message\n names that start with the prefix, or a regular expression\n object, which the message name has to match. If you use regular\n expressions, you cannot use message names that start and end\n with a slash (\"/\") at the same time, because regular expressions\n are converted to their string representation when stored.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "boolean",
+            "description": "Success"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 5166
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 6159
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "subscribeOnce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribes to a topic just for one dispatch and automatically unsubscribes",
+          "     * after executing the message handler. This subscription cannot be unsubscribed",
+          "     * from after it has been registered.",
+          "     *",
+          "     * @param topic {String|RegExp} Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}",
+          "     * for details",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Success",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribes to a topic just for one dispatch and automatically unsubscribes\n after executing the message handler. This subscription cannot be unsubscribed\n from after it has been registered.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}\n for details",
+            "paramName": "topic",
+            "description": " Topic to subscribe to. see {@link qx.event.message.Bus#subscribe}\n for details",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Success",
+            "type": "boolean",
+            "description": "Success"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4,
+          "index": 6697
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 7003
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "checkSubscription": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if subscription is already present. If you supply",
+          "     * the message handler function, match only this exact subscription,",
+          "     * otherwise any topic subscription will match.",
+          "     *",
+          "     * @param topic {String|RegExp} Either a string, which can be truncated by `*`",
+          "     * to match all message names that start with the prefix, or a regular expression",
+          "     * object, which the message name has to match.",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Whether a subscription exists for the topic",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if subscription is already present. If you supply\n the message handler function, match only this exact subscription,\n otherwise any topic subscription will match.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} Either a string, which can be truncated by <code>*</code>\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "paramName": "topic",
+            "description": " Either a string, which can be truncated by <code>*</code>\n to match all message names that start with the prefix, or a regular expression\n object, which the message name has to match.",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a subscription exists for the topic",
+            "type": "boolean",
+            "description": "Whether a subscription exists for the topic"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7656
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 8186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "unsubscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unsubscribe from a topic.",
+          "     *",
+          "     * If a \"wildcard\" topic was subscribed to with a trailing asterisk,",
+          "     * because the subscriber wanted to receive messages for any topic",
+          "     * with the given prefix, that same \"wildcard\" topic should be used to",
+          "     * unsubscribe. It is not possible to unsubscribe using any topic other",
+          "     * than one exactly matching one that has previously been subscribed to.",
+          "     *",
+          "     * If you supply the callback function and execution context, only this",
+          "     * exact subscription is removed. Otherwise, all subscriptions to this topic",
+          "     * will be removed.",
+          "     *",
+          "     * @param topic {String|RegExp} The topic that has been used when subscribing",
+          "     * @param subscriber {Function} Message handler function",
+          "     * @param context {Object} The execution context of the callback (i.e. \"this\")",
+          "     * @return {Boolean} Whether a subscription was removed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unsubscribe from a topic.\n If a \"wildcard\" topic was subscribed to with a trailing asterisk,\n because the subscriber wanted to receive messages for any topic\n with the given prefix, that same \"wildcard\" topic should be used to\n unsubscribe. It is not possible to unsubscribe using any topic other\n than one exactly matching one that has previously been subscribed to.\n If you supply the callback function and execution context, only this\n exact subscription is removed. Otherwise, all subscriptions to this topic\n will be removed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String|RegExp} The topic that has been used when subscribing",
+            "paramName": "topic",
+            "description": " The topic that has been used when subscribing",
+            "type": [
+              "String",
+              "RegExp"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "subscriber {Function} Message handler function",
+            "paramName": "subscriber",
+            "description": " Message handler function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} The execution context of the callback (i.e. \"this\")",
+            "paramName": "context",
+            "description": " The execution context of the callback (i.e. \"this\")",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a subscription was removed",
+            "type": "boolean",
+            "description": "Whether a subscription was removed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 9102
+        },
+        "end": {
+          "line": 305,
+          "column": 5,
+          "index": 10008
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "subscriber",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatch message, which calls subscribers",
+          "     *",
+          "     * @param message {qx.event.message.Message} Message which is being dispatched",
+          "     * @return {Boolean} If the message could be dispatched, i.e. if subscribers",
+          "     * exist which have received the message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatch message, which calls subscribers</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {qx.event.message.Message} Message which is being dispatched",
+            "paramName": "message",
+            "description": " Message which is being dispatched",
+            "type": "qx.event.message.Message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} If the message could be dispatched, i.e. if subscribers\n exist which have received the message",
+            "type": "boolean",
+            "description": "If the message could be dispatched, i.e. if subscribers\n exist which have received the message"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 10296
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 11260
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "qx.event.message.Message"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatchByName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatches a new message by supplying the name of the",
+          "     * message and its data.",
+          "     *",
+          "     * @param name {String} name of the message",
+          "     * @param data {var} Any type of data to attach",
+          "     * @return {Boolean} If the message was dispatched",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatches a new message by supplying the name of the\n message and its data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} name of the message",
+            "paramName": "name",
+            "description": " name of the message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} Any type of data to attach",
+            "paramName": "data",
+            "description": " Any type of data to attach",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} If the message was dispatched",
+            "type": "boolean",
+            "description": "If the message was dispatched"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 11535
+        },
+        "end": {
+          "line": 365,
+          "column": 5,
+          "index": 11928
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeAllSubscriptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all subscriptions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all subscriptions</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4,
+          "index": 11984
+        },
+        "end": {
+          "line": 375,
+          "column": 5,
+          "index": 12149
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__callSubscribers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Call subscribers with passed message.",
+          "     *",
+          "     * Each currently-subscribed subscriber function will be called in",
+          "     * turn. Any requests to unsubscribe a subscriber from the list, while",
+          "     * processing the currently-subscribed subscriber functions, will take",
+          "     * effect after all currently-subscribed subscriber functions have been",
+          "     * processed.",
+          "     *",
+          "     * @param subscribers {Array} subscribers to call",
+          "     * @param message {qx.event.message.Message} message for subscribers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call subscribers with passed message.\n Each currently-subscribed subscriber function will be called in\n turn. Any requests to unsubscribe a subscriber from the list, while\n processing the currently-subscribed subscriber functions, will take\n effect after all currently-subscribed subscriber functions have been\n processed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "subscribers {Array} subscribers to call",
+            "paramName": "subscribers",
+            "description": " subscribers to call",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "message {qx.event.message.Message} message for subscribers",
+            "paramName": "message",
+            "description": " message for subscribers",
+            "type": "qx.event.message.Message"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 389,
+          "column": 4,
+          "index": 12673
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 13359
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "subscribers",
+          "type": "Array<any>"
+        },
+        {
+          "name": "message",
+          "type": "qx.event.message.Message"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

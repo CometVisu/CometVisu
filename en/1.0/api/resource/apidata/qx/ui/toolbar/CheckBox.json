@@ -1,0 +1,118 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601444,
+  "lastModifiedIso": "2026-06-29T04:00:01.444Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/CheckBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 564
+    },
+    "end": {
+      "line": 55,
+      "column": 3,
+      "index": 1336
+    }
+  },
+  "className": "qx.ui.toolbar.CheckBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A button which is toggle-able for toolbars.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A button which is toggle-able for toolbars.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.ToggleButton",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 851
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 919
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "toolbar-button"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.form.ToggleButton",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 926
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 981
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "inherit"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    }
+  },
+  "members": {
+    "_applyVisibility": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1023
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1328
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

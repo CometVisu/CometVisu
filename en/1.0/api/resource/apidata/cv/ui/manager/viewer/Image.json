@@ -1,0 +1,218 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/manager/viewer/Image.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 876
+    },
+    "end": {
+      "line": 131,
+      "column": 3,
+      "index": 3811
+    }
+  },
+  "className": "cv.ui.manager.viewer.Image",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Show images.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Show images.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.viewer.AbstractViewer",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1125
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1191
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "image-viewer"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {
+    "SUPPORTED_FILES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1337
+        },
+        "end": {
+          "line": 45,
+          "column": 57,
+          "index": 1390
+        }
+      },
+      "appearsIn": []
+    },
+    "TITLE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1396
+        },
+        "end": {
+          "line": 46,
+          "column": 45,
+          "index": 1437
+        }
+      },
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "ICON": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1443
+        },
+        "end": {
+          "line": 47,
+          "column": 51,
+          "index": 1490
+        }
+      },
+      "appearsIn": []
+    },
+    "getImageData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns size information for images",
+          "     * @param source {String} path to image",
+          "     * @returns {{width: *, aspectRatio: number, height: *}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns size information for images</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} path to image",
+            "paramName": "source",
+            "description": " path to image",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{width: *, aspectRatio: number, height: *}}",
+            "type": "{width: *, aspectRatio: number, height: *}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1661
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2164
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "{width: *, aspectRatio: number, height: *}"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2310
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2931
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "appearsIn": [
+        "cv.ui.manager.viewer.AbstractViewer"
+      ]
+    },
+    "_scaleImage": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2938
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3803
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

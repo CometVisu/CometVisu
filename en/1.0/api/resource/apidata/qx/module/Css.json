@@ -1,0 +1,1994 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601636,
+  "lastModifiedIso": "2026-06-29T04:00:01.636Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Css.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 584
+    },
+    "end": {
+      "line": 594,
+      "column": 3,
+      "index": 17659
+    }
+  },
+  "className": "qx.module.Css",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * CSS/Style property manipulation module",
+      " * @group (Core)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>CSS/Style property manipulation module</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Core"
+      }
+    ]
+  },
+  "statics": {
+    "_getHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * INTERNAL",
+          "     *",
+          "     * Returns the rendered height of the first element in the collection.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the height of a <em>non displayed</em> element",
+          "     * @return {Number} The first item's rendered height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>INTERNAL\n Returns the rendered height of the first element in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the height of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the height of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The first item's rendered height",
+            "type": "number",
+            "description": "The first item's rendered height"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 936
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1808
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_getWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * INTERNAL",
+          "     *",
+          "     * Returns the rendered width of the first element in the collection",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the width of a <em>non displayed</em> element",
+          "     * @return {Number} The first item's rendered width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>INTERNAL\n Returns the rendered width of the first element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the width of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the width of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The first item's rendered width",
+            "type": "number",
+            "description": "The first item's rendered width"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2107
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2970
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_getContentHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * INTERNAL",
+          "     *",
+          "     * Returns the content height of the first element in the collection.",
+          "     * This is the maximum height the element can use, excluding borders,",
+          "     * margins, padding or scroll bars.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the content height of a <em>non displayed</em> element",
+          "     * @return {Number} Computed content height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>INTERNAL\n Returns the content height of the first element in the collection.\n This is the maximum height the element can use, excluding borders,\n margins, padding or scroll bars.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the content height of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the content height of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Computed content height",
+            "type": "number",
+            "description": "Computed content height"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3385
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3986
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_getContentWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * INTERNAL",
+          "     *",
+          "     * Returns the content width of the first element in the collection.",
+          "     * This is the maximum width the element can use, excluding borders,",
+          "     * margins, padding or scroll bars.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the content width of a <em>non displayed</em> element",
+          "     * @return {Number} Computed content width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>INTERNAL\n Returns the content width of the first element in the collection.\n This is the maximum width the element can use, excluding borders,\n margins, padding or scroll bars.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the content width of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the content width of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Computed content width",
+            "type": "number",
+            "description": "Computed content width"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4397
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 4991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__displayDefaults": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maps HTML elements to their default \"display\" style values.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maps HTML elements to their default \"display\" style values.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 5081
+        },
+        "end": {
+          "line": 186,
+          "column": 25,
+          "index": 5102
+        }
+      },
+      "appearsIn": []
+    },
+    "__getDisplayDefault": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attempts tp determine the default \"display\" style value for",
+          "     * elements with the given tag name.",
+          "     *",
+          "     * @param tagName {String} Tag name",
+          "     * @param  doc {Document?} Document element. Default: The current document",
+          "     * @return {String} The default \"display\" value, e.g. <code>inline</code>",
+          "     * or <code>block</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Attempts tp determine the default \"display\" style value for\n elements with the given tag name.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagName {String} Tag name",
+            "paramName": "tagName",
+            "description": " Tag name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "doc {Document?} Document element. Default: The current document",
+            "paramName": "doc",
+            "description": " Document element. Default: The current document",
+            "optional": true,
+            "type": "Document"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The default \"display\" value, e.g. <code>inline</code>\n or <code>block</code>",
+            "type": "string",
+            "description": "The default \"display\" value, e.g. <code>inline</code>\n or <code>block</code>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 5466
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5833
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        },
+        {
+          "name": "doc",
+          "type": "Document",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__swap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Swaps the given styles of the element and execute the callback",
+          "     * before the original values are restored.",
+          "     *",
+          "     * Finally returns the return value of the callback.",
+          "     *",
+          "     * @param element {Element} the DOM element to operate on",
+          "     * @param styles {Map} the styles to swap",
+          "     * @param methodName {String} the callback functions name",
+          "     * @param context {Object} the context in which the callback should be called",
+          "     * @return {Object} the return value of the callback",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Swaps the given styles of the element and execute the callback\n before the original values are restored.\n Finally returns the return value of the callback.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} the DOM element to operate on",
+            "paramName": "element",
+            "description": " the DOM element to operate on",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "styles {Map} the styles to swap",
+            "paramName": "styles",
+            "description": " the styles to swap",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "methodName {String} the callback functions name",
+            "paramName": "methodName",
+            "description": " the callback functions name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} the context in which the callback should be called",
+            "paramName": "context",
+            "description": " the context in which the callback should be called",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the return value of the callback",
+            "type": "Record<any, any>",
+            "description": "the return value of the callback"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6354
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 6839
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "includeStylesheet": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Includes a Stylesheet file",
+          "     *",
+          "     * @attachStatic {qxWeb}",
+          "     * @param uri {String} The stylesheet's URI",
+          "     * @param doc {Document?} Document to modify",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Includes a Stylesheet file</p>"
+          }
+        ],
+        "@attachStatic": [
+          {
+            "name": "@attachStatic",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uri {String} The stylesheet's URI",
+            "paramName": "uri",
+            "description": " The stylesheet's URI",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "doc {Document?} Document to modify",
+            "paramName": "doc",
+            "description": " Document to modify",
+            "optional": true,
+            "type": "Document"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 7029
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 7111
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "doc",
+          "type": "Document",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "getHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered height of the first element in the collection.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the height of a <em>non displayed</em> element",
+          "     * @return {Number} The first item's rendered height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered height of the first element in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the height of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the height of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The first item's rendered height",
+            "type": "number",
+            "description": "The first item's rendered height"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 7408
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 7469
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered width of the first element in the collection",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the width of a <em>non displayed</em> element",
+          "     * @return {Number} The first item's rendered width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the rendered width of the first element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the width of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the width of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The first item's rendered width",
+            "type": "number",
+            "description": "The first item's rendered width"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 7745
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 7804
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getContentHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content height of the first element in the collection.",
+          "     * This is the maximum height the element can use, excluding borders,",
+          "     * margins, padding or scroll bars.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the content height of a <em>non displayed</em> element",
+          "     * @return {Number} Computed content height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content height of the first element in the collection.\n This is the maximum height the element can use, excluding borders,\n margins, padding or scroll bars.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the content height of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the content height of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Computed content height",
+            "type": "number",
+            "description": "Computed content height"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4,
+          "index": 8196
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 8271
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getContentWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content width of the first element in the collection.",
+          "     * This is the maximum width the element can use, excluding borders,",
+          "     * margins, padding or scroll bars.",
+          "     * @attach {qxWeb}",
+          "     * @param force {Boolean?false} When true also get the content width of a <em>non displayed</em> element",
+          "     * @return {Number} Computed content width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content width of the first element in the collection.\n This is the maximum width the element can use, excluding borders,\n margins, padding or scroll bars.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean?false} When true also get the content width of a <em>non displayed</em> element",
+            "paramName": "force",
+            "description": " When true also get the content width of a <em>non displayed</em> element",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Computed content width",
+            "type": "number",
+            "description": "Computed content width"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 8659
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 8732
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "show": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows any elements with \"display: none\" in the collection. If an element",
+          "     * was hidden by using the {@link #hide} method, its previous",
+          "     * \"display\" style value will be re-applied. Otherwise, the",
+          "     * default \"display\" value for the element type will be applied.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows any elements with \"display: none\" in the collection. If an element\n was hidden by using the {@link #hide} method, its previous\n \"display\" style value will be re-applied. Otherwise, the\n default \"display\" value for the element type will be applied.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 9115
+        },
+        "end": {
+          "line": 322,
+          "column": 5,
+          "index": 9690
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "hide": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides all elements in the collection by setting their \"display\"",
+          "     * style to \"none\". The previous value is stored so it can be re-applied",
+          "     * when {@link #show} is called.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hides all elements in the collection by setting their \"display\"\n style to \"none\". The previous value is stored so it can be re-applied\n when {@link #show} is called.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 9979
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 10258
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance between the first element in the collection and its",
+          "     * offset parent",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {Map} a map with the keys <code>left</code> and <code>top</code>",
+          "     * containing the distance between the elements",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the distance between the first element in the collection and its\n offset parent</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} a map with the keys <code>left</code> and <code>top</code>\n containing the distance between the elements",
+            "type": "Map<any, any>",
+            "description": "a map with the keys <code>left</code> and <code>top</code>\n containing the distance between the elements"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 10544
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 10715
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getOffset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the computed location of the given element in the context of the",
+          "     * document dimensions.",
+          "     *",
+          "     * Supported modes:",
+          "     *",
+          "     * * <code>margin</code>: Calculate from the margin box of the element (bigger than the visual appearance: including margins of given element)",
+          "     * * <code>box</code>: Calculates the offset box of the element (default, uses the same size as visible)",
+          "     * * <code>border</code>: Calculate the border box (useful to align to border edges of two elements).",
+          "     * * <code>scroll</code>: Calculate the scroll box (relevant for absolute positioned content).",
+          "     * * <code>padding</code>: Calculate the padding box (relevant for static/relative positioned content).",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param mode {String?box} A supported option. See comment above.",
+          "     * @return {Map} A map with the keys <code>left</code>, <code>top</code>,",
+          "     * <code>right</code> and <code>bottom</code> which contains the distance",
+          "     * of the element relative to the document.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the computed location of the given element in the context of the\n document dimensions.\n Supported modes:</p>\n<ul>\n<li><code>margin</code>: Calculate from the margin box of the element (bigger than the visual appearance: including margins of given element)</li>\n<li><code>box</code>: Calculates the offset box of the element (default, uses the same size as visible)</li>\n<li><code>border</code>: Calculate the border box (useful to align to border edges of two elements).</li>\n<li><code>scroll</code>: Calculate the scroll box (relevant for absolute positioned content).</li>\n<li><code>padding</code>: Calculate the padding box (relevant for static/relative positioned content).</li>\n</ul>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mode {String?box} A supported option. See comment above.",
+            "paramName": "mode",
+            "description": " A supported option. See comment above.",
+            "optional": true,
+            "defaultValue": "box",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the keys <code>left</code>, <code>top</code>,\n <code>right</code> and <code>bottom</code> which contains the distance\n of the element relative to the document.",
+            "type": "Map<any, any>",
+            "description": "A map with the keys <code>left</code>, <code>top</code>,\n <code>right</code> and <code>bottom</code> which contains the distance\n of the element relative to the document."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4,
+          "index": 11758
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 11941
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mode",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "box"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Modifies the given style property on all elements in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Name of the style property to modify",
+          "     * @param value {var} The value to apply",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Modifies the given style property on all elements in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the style property to modify",
+            "paramName": "name",
+            "description": " Name of the style property to modify",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} The value to apply",
+            "paramName": "value",
+            "description": " The value to apply",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4,
+          "index": 12231
+        },
+        "end": {
+          "line": 405,
+          "column": 5,
+          "index": 12474
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the value of the given style property for the first item in the",
+          "     * collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Style property name",
+          "     * @return {var} Style property value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of the given style property for the first item in the\n collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Style property name",
+            "paramName": "name",
+            "description": " Style property name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} Style property value",
+            "type": "var",
+            "description": "Style property value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 415,
+          "column": 4,
+          "index": 12715
+        },
+        "end": {
+          "line": 423,
+          "column": 5,
+          "index": 12968
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets multiple style properties for each item in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param styles {Map} A map of style property name/value pairs",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets multiple style properties for each item in the collection.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map of style property name/value pairs",
+            "paramName": "styles",
+            "description": " A map of style property name/value pairs",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 432,
+          "column": 4,
+          "index": 13211
+        },
+        "end": {
+          "line": 437,
+          "column": 5,
+          "index": 13339
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the values of multiple style properties for each item in the",
+          "     * collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} List of style property names",
+          "     * @return {Map} Map of style property name/value pairs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the values of multiple style properties for each item in the\n collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "names {String[]} List of style property names",
+            "paramName": "names",
+            "description": " List of style property names",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of style property name/value pairs",
+            "type": "Map<any, any>",
+            "description": "Map of style property name/value pairs"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 13606
+        },
+        "end": {
+          "line": 453,
+          "column": 5,
+          "index": 13781
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "addClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a class name to each element in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Class name",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a class name to each element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Class name",
+            "paramName": "name",
+            "description": " Class name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4,
+          "index": 13983
+        },
+        "end": {
+          "line": 467,
+          "column": 5,
+          "index": 14125
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "addClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds multiple class names to each element in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} List of class names to add",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds multiple class names to each element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "names {String[]} List of class names to add",
+            "paramName": "names",
+            "description": " List of class names to add",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 476,
+          "column": 4,
+          "index": 14354
+        },
+        "end": {
+          "line": 481,
+          "column": 5,
+          "index": 14507
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "removeClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a class name from each element in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} The class name to remove",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a class name from each element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The class name to remove",
+            "paramName": "name",
+            "description": " The class name to remove",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 14728
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 14876
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "removeClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes multiple class names from each element in the collection.",
+          "     * Use {@link qx.module.Attribute#removeAttribute} to remove all classes.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} List of class names to remove",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes multiple class names from each element in the collection.\n Use {@link qx.module.Attribute#removeAttribute} to remove all classes.</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "names {String[]} List of class names to remove",
+            "paramName": "names",
+            "description": " List of class names to remove",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 505,
+          "column": 4,
+          "index": 15192
+        },
+        "end": {
+          "line": 510,
+          "column": 5,
+          "index": 15351
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "hasClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the first element in the collection has the given class name",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Class name to check for",
+          "     * @return {Boolean} <code>true</code> if the first item has the given class name",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the first element in the collection has the given class name</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Class name to check for",
+            "paramName": "name",
+            "description": " Class name to check for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the first item has the given class name",
+            "type": "boolean",
+            "description": "<code>true</code> if the first item has the given class name"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 4,
+          "index": 15620
+        },
+        "end": {
+          "line": 524,
+          "column": 5,
+          "index": 15783
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class name of the first element in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {String} Class name",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the class name of the first element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Class name",
+            "type": "string",
+            "description": "Class name"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4,
+          "index": 15940
+        },
+        "end": {
+          "line": 537,
+          "column": 5,
+          "index": 16090
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toggleClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the given class name on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Class name",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the given class name on each item in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Class name",
+            "paramName": "name",
+            "description": " Class name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 546,
+          "column": 4,
+          "index": 16300
+        },
+        "end": {
+          "line": 552,
+          "column": 5,
+          "index": 16517
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "toggleClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the given list of class names on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} Class names",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the given list of class names on each item in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "names {String[]} Class names",
+            "paramName": "names",
+            "description": " Class names",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 4,
+          "index": 16740
+        },
+        "end": {
+          "line": 566,
+          "column": 5,
+          "index": 16885
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "replaceClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces a class name on each element in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param oldName {String} Class name to remove",
+          "     * @param newName {String} Class name to add",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces a class name on each element in the collection</p>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "oldName {String} Class name to remove",
+            "paramName": "oldName",
+            "description": " Class name to remove",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "newName {String} Class name to add",
+            "paramName": "newName",
+            "description": " Class name to add",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 576,
+          "column": 4,
+          "index": 17153
+        },
+        "end": {
+          "line": 581,
+          "column": 5,
+          "index": 17327
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "oldName",
+          "type": "string"
+        },
+        {
+          "name": "newName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

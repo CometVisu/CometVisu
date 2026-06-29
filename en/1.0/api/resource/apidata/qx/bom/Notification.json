@@ -1,0 +1,619 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602909,
+  "lastModifiedIso": "2026-06-29T04:00:02.909Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Notification.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 54,
+      "column": 0,
+      "index": 1807
+    },
+    "end": {
+      "line": 300,
+      "column": 3,
+      "index": 9275
+    }
+  },
+  "className": "qx.bom.Notification",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class offers a constant API over the Notification Spec:",
+      " * http://www.w3.org/TR/notifications/",
+      " *",
+      " * It forwards all the browsers support if supported.",
+      " *",
+      " * *Example*",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var notifications = qx.bom.Notification.getInstance();",
+      " *",
+      " * var button = new qx.ui.form.Button(\"Notify me!\");",
+      " * button.addListener(\"execute\", function() {",
+      " *   notifications.show(\"Information\", \"Hey there!\", \"icon/64/status/dialog-information.png\", 5000);",
+      " * });",
+      " *",
+      " * // Enable button if supported",
+      " * button.setEnabled(qx.core.Environment.get(\"html.notification\"));",
+      " *",
+      " * </pre>",
+      " *",
+      " * **Note**",
+      " *",
+      " * A notification can only be sent if the user allows these notifications to",
+      " * be shown. <code>qx.bom.Notification</code> automatically tries to",
+      " * trigger a browser dialog which asks the user for permission.",
+      " *",
+      " * But there is a restriction: the dialog will only show up if it is triggered",
+      " * by code that is running inside a request handler for an interactive browser",
+      " * event like a mouse click or a keyboard interaction.",
+      " *",
+      " * For real life applications this means that you may add a <code>request()</code>",
+      " * call i.e. to your applications login button to let the browser ask for",
+      " * permission initially. After that happened and the user decided to",
+      " * accept these notifications, they can be sent any time without the",
+      " * need to be inside of event handlers.",
+      " *",
+      " * @ignore(Notification.requestPermission,Notification,Notification.permission)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class offers a constant API over the Notification Spec:\n http://www.w3.org/TR/notifications/\n It forwards all the browsers support if supported.\n<em>Example</em>\n </p>\n<pre class=\"javascript\">\n var notifications = qx.bom.Notification.getInstance();\n var button = new qx.ui.form.Button(\"Notify me!\");\n button.addListener(\"execute\", function() {\n   notifications.show(\"Information\", \"Hey there!\", \"icon/64/status/dialog-information.png\", 5000);\n });\n\n button.setEnabled(qx.core.Environment.get(\"html.notification\"));\n </pre>\n<pre><code>*Note**\n</code></pre>\n<p>A notification can only be sent if the user allows these notifications to\n be shown. <code>qx.bom.Notification</code> automatically tries to\n trigger a browser dialog which asks the user for permission.\n But there is a restriction: the dialog will only show up if it is triggered\n by code that is running inside a request handler for an interactive browser\n event like a mouse click or a keyboard interaction.\n For real life applications this means that you may add a <code>request()</code>\n call i.e. to your applications login button to let the browser ask for\n permission initially. After that happened and the user decided to\n accept these notifications, they can be sent any time without the\n need to be inside of event handlers.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "Notification.requestPermission,Notification,Notification.permission"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "getNotification": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports the desktop notification API.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if notification API is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the client supports the desktop notification API.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if notification API is supported",
+            "type": "boolean",
+            "description": "<code>true</code> if notification API is supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2278
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2351
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 85,
+        "column": 2,
+        "index": 2637
+      },
+      "end": {
+        "line": 88,
+        "column": 3,
+        "index": 2698
+      }
+    }
+  },
+  "events": {
+    "appear": {
+      "type": "Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event fired when a notification with data <code>tag</code> appeared.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a notification with data <code>tag</code> appeared.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2992
+        },
+        "end": {
+          "line": 100,
+          "column": 18,
+          "index": 3006
+        }
+      }
+    },
+    "click": {
+      "type": "Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event fired when a notification with data <code>tag</code> has been",
+          "     * clicked by the user.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a notification with data <code>tag</code> has been\n clicked by the user.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3132
+        },
+        "end": {
+          "line": 106,
+          "column": 17,
+          "index": 3145
+        }
+      }
+    },
+    "close": {
+      "type": "Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event fired when a notification with data <code>tag</code> has been",
+          "     * closed. This may happen either interactively or due to a timeout",
+          "     * defined by the instance displaying the notification.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a notification with data <code>tag</code> has been\n closed. This may happen either interactively or due to a timeout\n defined by the instance displaying the notification.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3375
+        },
+        "end": {
+          "line": 113,
+          "column": 17,
+          "index": 3388
+        }
+      }
+    }
+  },
+  "members": {
+    "__notifications": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3596
+        },
+        "end": {
+          "line": 123,
+          "column": 25,
+          "index": 3617
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3623
+        },
+        "end": {
+          "line": 124,
+          "column": 15,
+          "index": 3634
+        }
+      },
+      "appearsIn": []
+    },
+    "show": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Display a desktop notification using a _title_, _message_ and _icon_.",
+          "     *",
+          "     * @param title {String} The notification title",
+          "     * @param message {String} The message body",
+          "     * @param icon {String} Resource string or icon URL",
+          "     * @param expire {Number} Number of milliseconds after the message is",
+          "     *                     automatically destroyed. Leave empty for no",
+          "     *                     timeout. Note that some notification systems",
+          "     *                     tend to remove timeout-less messages after some",
+          "     *                     time.",
+          "     * @param tag {String} Multiple messages with the same tag replace each",
+          "     *                     other. Leave blank for automatic tag handling.",
+          "     * @return {String} Notification tag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Display a desktop notification using a <em>title</em>, <em>message</em> and <em>icon</em>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "title {String} The notification title",
+            "paramName": "title",
+            "description": " The notification title",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "message {String} The message body",
+            "paramName": "message",
+            "description": " The message body",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "icon {String} Resource string or icon URL",
+            "paramName": "icon",
+            "description": " Resource string or icon URL",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "expire {Number} Number of milliseconds after the message is\n                     automatically destroyed. Leave empty for no\n                     timeout. Note that some notification systems\n                     tend to remove timeout-less messages after some\n                     time.",
+            "paramName": "expire",
+            "description": " Number of milliseconds after the message is\n                     automatically destroyed. Leave empty for no\n                     timeout. Note that some notification systems\n                     tend to remove timeout-less messages after some\n                     time.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "tag {String} Multiple messages with the same tag replace each\n                     other. Leave blank for automatic tag handling.",
+            "paramName": "tag",
+            "description": " Multiple messages with the same tag replace each\n                     other. Leave blank for automatic tag handling.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Notification tag",
+            "type": "string",
+            "description": "Notification tag"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4413
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 5385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "icon",
+          "type": "string"
+        },
+        {
+          "name": "expire",
+          "type": "number"
+        },
+        {
+          "name": "tag",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_show": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Display a desktop notification using a _title_, _message_ and _icon_.",
+          "     *",
+          "     * @internal",
+          "     * @param tag {String} Notification tag",
+          "     * @param title {String} The notification title",
+          "     * @param message {String} The message body",
+          "     * @param icon {String} Resource string or icon URL",
+          "     * @param expire {Integer} Number of milliseconds after the message is",
+          "     *                     automatically destroyed. Leave empty for no",
+          "     *                     timeout. Note that some notification systems",
+          "     *                     tend to remove timeout-less messages after some",
+          "     *                     time.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Display a desktop notification using a <em>title</em>, <em>message</em> and <em>icon</em>.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tag {String} Notification tag",
+            "paramName": "tag",
+            "description": " Notification tag",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "title {String} The notification title",
+            "paramName": "title",
+            "description": " The notification title",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "message {String} The message body",
+            "paramName": "message",
+            "description": " The message body",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "icon {String} Resource string or icon URL",
+            "paramName": "icon",
+            "description": " Resource string or icon URL",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "expire {Integer} Number of milliseconds after the message is\n                     automatically destroyed. Leave empty for no\n                     timeout. Note that some notification systems\n                     tend to remove timeout-less messages after some\n                     time.",
+            "paramName": "expire",
+            "description": " Number of milliseconds after the message is\n                     automatically destroyed. Leave empty for no\n                     timeout. Note that some notification systems\n                     tend to remove timeout-less messages after some\n                     time.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 6035
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 8033
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tag",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "icon",
+          "type": "string"
+        },
+        {
+          "name": "expire",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "close": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Actively close an active notification.",
+          "     *",
+          "     * @param tag {String} Notification tag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Actively close an active notification.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tag {String} Notification tag",
+            "paramName": "tag",
+            "description": " Notification tag",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 8153
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 8261
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tag",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "request": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tell the browser to request permission to display notifications.",
+          "     *",
+          "     * **Note:**",
+          "     *",
+          "     * This needs to be called from within an interactive event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tell the browser to request permission to display notifications.\n    <em>Note:</em>*\n This needs to be called from within an interactive event handler.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 8460
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 8728
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getPermission": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if we've the permission to send notifications.",
+          "     *",
+          "     * @return {String} Returns either \"default\", \"denied\" or \"granted\". \"default\"",
+          "     *                  indicates that we need to call <code>request()</code>  before",
+          "     *                  a notification can be sent.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if we've the permission to send notifications.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Returns either \"default\", \"denied\" or \"granted\". \"default\"\n                  indicates that we need to call <code>request()</code>  before\n                  a notification can be sent.",
+            "type": "string",
+            "description": "Returns either \"default\", \"denied\" or \"granted\". \"default\"\n                  indicates that we need to call <code>request()</code>  before\n                  a notification can be sent."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 9039
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 9167
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

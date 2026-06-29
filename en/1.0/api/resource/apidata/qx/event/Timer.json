@@ -1,0 +1,651 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603306,
+  "lastModifiedIso": "2026-06-29T04:00:03.306Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Timer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 846
+    },
+    "end": {
+      "line": 287,
+      "column": 3,
+      "index": 7349
+    }
+  },
+  "className": "qx.event.Timer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Global timer support.",
+      " *",
+      " * This class can be used to periodically fire an event. This event can be",
+      " * used to simulate e.g. a background task. The static method",
+      " * {@link #once} is a special case. It will call a function deferred after a",
+      " * given timeout.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Global timer support.\n This class can be used to periodically fire an event. This event can be\n used to simulate e.g. a background task. The static method\n {@link #once} is a special case. It will call a function deferred after a\n given timeout.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "interval"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 44,
+        "column": 2,
+        "index": 1224
+      },
+      "end": {
+        "line": 59,
+        "column": 3,
+        "index": 1706
+      }
+    }
+  },
+  "events": {
+    "interval": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* This event if fired each time the interval time has elapsed "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event if fired each time the interval time has elapsed</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 69,
+          "column": 35,
+          "index": 2010
+        }
+      }
+    }
+  },
+  "statics": {
+    "once": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start a function after a given timeout.",
+          "     *",
+          "     * @param func {Function} Function to call",
+          "     * @param obj {Object} context (this), the function is called with",
+          "     * @param timeout {Number} Number of milliseconds to wait before the",
+          "     *   function is called.",
+          "     * @return {qx.event.Timer} The timer object used for the timeout. This",
+          "     *    object can be used to cancel the timeout. Note that the timer is",
+          "     *    only valid until the timer has been executed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start a function after a given timeout.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "func {Function} Function to call",
+            "paramName": "func",
+            "description": " Function to call",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "obj {Object} context (this), the function is called with",
+            "paramName": "obj",
+            "description": " context (this), the function is called with",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "timeout {Number} Number of milliseconds to wait before the\n   function is called.",
+            "paramName": "timeout",
+            "description": " Number of milliseconds to wait before the\n   function is called.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.Timer} The timer object used for the timeout. This\n    object can be used to cancel the timeout. Note that the timer is\n    only valid until the timer has been executed.",
+            "type": "qx.event.Timer",
+            "description": "The timer object used for the timeout. This\n    object can be used to cancel the timeout. Note that the timer is\n    only valid until the timer has been executed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2715
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3549
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "timeout",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.Timer"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "enabled": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3974
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 4062
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "apply": "_applyEnabled"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * With the enabled property the Timer can be started and suspended.",
+          "     * Setting it to \"true\" is equivalent to {@link #start}, setting it",
+          "     * to \"false\" is equivalent to {@link #stop}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>With the enabled property the Timer can be started and suspended.\n Setting it to \"true\" is equivalent to {@link #start}, setting it\n to \"false\" is equivalent to {@link #stop}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "interval": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4223
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4312
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 1000,
+        "apply": "_applyInterval"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Time in milliseconds between two callback calls.",
+          "     * This property can be set to modify the interval of",
+          "     * a running timer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Time in milliseconds between two callback calls.\n This property can be set to modify the interval of\n a running timer.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__intervalHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4520
+        },
+        "end": {
+          "line": 161,
+          "column": 27,
+          "index": 4543
+        }
+      },
+      "appearsIn": []
+    },
+    "__oninterval": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4549
+        },
+        "end": {
+          "line": 162,
+          "column": 22,
+          "index": 4567
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the interval of the timer.",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @param old {var} Previous value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the interval of the timer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var} Previous value",
+            "paramName": "old",
+            "description": " Previous value",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4912
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5009
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the enabled state of the timer.",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @param old {var} Previous value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the enabled state of the timer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var} Previous value",
+            "paramName": "old",
+            "description": " Previous value",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5163
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 5462
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the timer",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the timer</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4,
+          "index": 5708
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 5752
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "startWith": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the timer with a given interval",
+          "     *",
+          "     * @param interval {Integer} Time in milliseconds between two callback calls.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the timer with a given interval</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "interval {Integer} Time in milliseconds between two callback calls.",
+            "paramName": "interval",
+            "description": " Time in milliseconds between two callback calls.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 5909
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 5990
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "interval",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "stop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the timer.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the timer.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6043
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6087
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "restart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the timer.",
+          "     * This makes it possible to change the interval of a running timer.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the timer.\n This makes it possible to change the interval of a running timer.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6216
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 6272
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "restartWith": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the timer. with a given interval.",
+          "     *",
+          "     * @param interval {Integer} Time in milliseconds between two callback calls.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the timer. with a given interval.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "interval {Integer} Time in milliseconds between two callback calls.",
+            "paramName": "interval",
+            "description": " Time in milliseconds between two callback calls.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 6433
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 6513
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "interval",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_oninterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * timer callback",
+          "     *",
+          "     * @signature function()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>timer callback</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 6788
+        },
+        "end": {
+          "line": 271,
+          "column": 6,
+          "index": 6985
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 280,
+        "column": 2,
+        "index": 7181
+      },
+      "end": {
+        "line": 286,
+        "column": 3,
+        "index": 7345
+      }
+    }
+  }
+}

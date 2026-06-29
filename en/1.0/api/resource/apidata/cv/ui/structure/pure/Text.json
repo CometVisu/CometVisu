@@ -1,0 +1,93 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543947,
+  "lastModifiedIso": "2026-06-29T03:59:03.947Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/Text.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1221
+    },
+    "end": {
+      "line": 48,
+      "column": 3,
+      "index": 1542
+    }
+  },
+  "className": "cv.ui.structure.pure.Text",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The text-tag defines static (non-changing) text to be displayed on a page. The content of a &lt;label&gt; with free text.",
+      " *",
+      " * @widgetexample <settings>",
+      " *   <caption>Configuration example of a centered text widget</caption>",
+      " *   <screenshot name=\"text_example\" />",
+      " * </settings>",
+      " * <text align=\"center\"><label>Example text</label></text>",
+      " *",
+      " *",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 0.8.0 (2012)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The text-tag defines static (non-changing) text to be displayed on a page. The content of a &lt;label&gt; with free text.</p>"
+      }
+    ],
+    "@widgetexample": [
+      {
+        "name": "@widgetexample",
+        "body": "<settings>\n   <caption>Configuration example of a centered text widget</caption>\n   <screenshot name=\"text_example\" />\n </settings>\n <text align=\"center\"><label>Example text</label></text>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.8.0 (2012)"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "members": {
+    "_getInnerDomString": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1489
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1534
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

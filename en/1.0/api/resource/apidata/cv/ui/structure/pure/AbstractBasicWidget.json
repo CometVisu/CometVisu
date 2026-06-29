@@ -1,0 +1,510 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/AbstractBasicWidget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 837
+    },
+    "end": {
+      "line": 162,
+      "column": 3,
+      "index": 4318
+    }
+  },
+  "className": "cv.ui.structure.pure.AbstractBasicWidget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1088
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1326
+      }
+    }
+  },
+  "properties": {
+    "path": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1539
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1574
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal path to the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal path to the widget</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "$$type": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1657
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The widget type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The widget type</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "pageType": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1709
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1780
+        }
+      },
+      "json": {
+        "check": [
+          "text",
+          "2d",
+          "3d"
+        ],
+        "init": "text"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The parents page type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The parents page type</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__parentWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1940
+        },
+        "end": {
+          "line": 77,
+          "column": 24,
+          "index": 1960
+        }
+      },
+      "appearsIn": []
+    },
+    "_domElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1966
+        },
+        "end": {
+          "line": 78,
+          "column": 21,
+          "index": 1983
+        }
+      },
+      "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to modify props before they are applied in the constructor",
+          "     * @param {object} props ",
+          "     * @returns {object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to modify props before they are applied in the constructor</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{object} props",
+            "paramName": "props",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2145
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2199
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setDomElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Override DomElement",
+          "     * @param node {Node}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Override DomElement</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Node}",
+            "paramName": "node",
+            "type": "Node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2275
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2333
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "Node"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setParentWidget": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2340
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2405
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParentWidget": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2412
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2974
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDomElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the DOMElement of this widget",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the DOMElement of this widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3067
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 3233
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getDomString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the DOM string for this widget",
+          "     * @return {String|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the DOM string for this widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null}",
+            "type": "String|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3333
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3433
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getParentPage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widgets parent page. This might not be the same as the parent widget.",
+          "     * @return {cv.ui.structure.pure.Page|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widgets parent page. This might not be the same as the parent widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.ui.structure.pure.Page|null}",
+            "type": "cv.ui.structure.pure.Page|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3589
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 3828
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "cv.ui.structure.pure.Page|null"
+      },
+      "appearsIn": []
+    },
+    "getVisibilityParent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the parent element that defines if this widget is visible. Can be either a page or a navbar",
+          "     * @return {cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the parent element that defines if this widget is visible. Can be either a page or a navbar</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null}",
+            "type": "cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4030
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4310
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "cv.ui.structure.pure.Page|cv.ui.structure.pure.NavBar|null"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

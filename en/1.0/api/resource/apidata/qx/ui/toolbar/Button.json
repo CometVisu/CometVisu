@@ -1,0 +1,119 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601348,
+  "lastModifiedIso": "2026-06-29T04:00:01.348Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/toolbar/Button.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 629
+    },
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1393
+    }
+  },
+  "className": "qx.ui.toolbar.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The normal toolbar button. Like a normal {@link qx.ui.form.Button}",
+      " * but with a style matching the toolbar.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The normal toolbar button. Like a normal {@link qx.ui.form.Button}\n but with a style matching the toolbar.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.Button",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 908
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 976
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "toolbar-button"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.form.Button",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 983
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1038
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "inherit"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    }
+  },
+  "members": {
+    "_applyVisibility": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1080
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

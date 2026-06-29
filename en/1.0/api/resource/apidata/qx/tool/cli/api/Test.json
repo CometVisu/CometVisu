@@ -1,0 +1,301 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603274,
+  "lastModifiedIso": "2026-06-29T04:00:03.274Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/api/Test.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 17,
+      "column": 0,
+      "index": 452
+    },
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 1826
+    }
+  },
+  "className": "qx.tool.cli.api.Test",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is used to add an test case for qx test",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is used to add an test case for qx test</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "testFunction"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 2,
+        "index": 522
+      },
+      "end": {
+        "line": 25,
+        "column": 3,
+        "index": 666
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 731
+        },
+        "end": {
+          "line": 32,
+          "column": 5,
+          "index": 766
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Name of the process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Name of the process</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "description": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 856
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 932
+        }
+      },
+      "json": {
+        "check": "String",
+        "event": "changeDescription"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A description of the test.",
+          "     * For documentation purpose",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A description of the test.\n For documentation purpose</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "exitCode": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 996
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1106
+        }
+      },
+      "json": {
+        "check": "Number",
+        "event": "changeExitCode",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The exit code of the test.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The exit code of the test.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "needsServer": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1184
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1268
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the webserver instance needed for this test?",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is the webserver instance needed for this test?</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "failFast": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1338
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1420
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If this special test fails exit process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If this special test fails exit process</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "testFunction": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1493
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1583
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The test function called by qx test",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The test function called by qx test</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "execute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Execute the test",
+          "     *",
+          "     * @returns: Promise",
+          "     *",
+          "     * Can be overriden",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Execute the test</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ": Promise\n Can be overriden"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 1710
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 1818
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

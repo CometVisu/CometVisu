@@ -1,0 +1,136 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543942,
+  "lastModifiedIso": "2026-06-29T03:59:03.942Z",
+  "classFilename": "../../source/class/cv/ui/manager/dialog/BigAlert.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 873
+    },
+    "end": {
+      "line": 94,
+      "column": 3,
+      "index": 2801
+    }
+  },
+  "className": "cv.ui.manager.dialog.BigAlert",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A dialog that alerts the user to something.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A dialog that alerts the user to something.</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Alert",
+  "members": {
+    "_hbox": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 969
+        },
+        "end": {
+          "line": 27,
+          "column": 15,
+          "index": 980
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyImage": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 987
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1325
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1393
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2612
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Alert",
+      "appearsIn": [
+        "qxl.dialog.Alert",
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 91,
+        "column": 2,
+        "index": 2746
+      },
+      "end": {
+        "line": 93,
+        "column": 3,
+        "index": 2797
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

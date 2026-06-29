@@ -1,0 +1,84 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603241,
+  "lastModifiedIso": "2026-06-29T04:00:03.241Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/String.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 490
+    },
+    "end": {
+      "line": 37,
+      "column": 3,
+      "index": 792
+    }
+  },
+  "className": "qx.ui.progressive.renderer.table.cell.String",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Table Cell Renderer for Progressive.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Table Cell Renderer for Progressive.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.renderer.table.cell.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2,
+        "index": 629
+      },
+      "end": {
+        "line": 29,
+        "column": 3,
+        "index": 659
+      }
+    }
+  },
+  "members": {
+    "_getContentHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 697
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 784
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Abstract",
+      "appearsIn": [
+        "qx.ui.progressive.renderer.table.cell.Abstract"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

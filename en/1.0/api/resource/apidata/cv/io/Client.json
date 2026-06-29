@@ -1,0 +1,2005 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543708,
+  "lastModifiedIso": "2026-06-29T03:59:03.708Z",
+  "classFilename": "../../client/source/class/cv/io/Client.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1241
+    },
+    "end": {
+      "line": 759,
+      "column": 3,
+      "index": 21322
+    }
+  },
+  "className": "cv.io.Client",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The JavaScript library that implements the CometVisu protocol.",
+      " * The Client handles all communication issues to supply the user",
+      " * of this object with reliable realtime data.",
+      " * It can be seen as the session layer (layer 5) according to the OSI",
+      " * model.",
+      " *",
+      " * @author Christan Mayer",
+      " * @author Tobias Bräutigam",
+      " * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)",
+      " *",
+      " * @ignore($)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The JavaScript library that implements the CometVisu protocol.\n The Client handles all communication issues to supply the user\n of this object with reliable realtime data.\n It can be seen as the session layer (layer 5) according to the OSI\n model.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christan Mayer"
+      },
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "$"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "cv.io.IClient"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "backendName"
+      },
+      {
+        "name": "backendLoginUrl"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 47,
+        "column": 2,
+        "index": 1602
+      },
+      "end": {
+        "line": 97,
+        "column": 3,
+        "index": 3050
+      }
+    }
+  },
+  "statics": {
+    "CLIENTS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 3208
+        },
+        "end": {
+          "line": 105,
+          "column": 15,
+          "index": 3219
+        }
+      },
+      "appearsIn": []
+    },
+    "TEST_MODE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3225
+        },
+        "end": {
+          "line": 106,
+          "column": 20,
+          "index": 3241
+        }
+      },
+      "appearsIn": []
+    },
+    "ERROR_CODES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3247
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3479
+        }
+      },
+      "appearsIn": []
+    },
+    "stopAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop all running clients",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop all running clients</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3534
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3631
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "backendNameAliases": {
+      "jsdoc": {
+        "raw": [
+          " used for backwards compability"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3676
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3796
+        }
+      },
+      "appearsIn": []
+    },
+    "backends": {
+      "jsdoc": {
+        "raw": [
+          " with the login response so no defaults are defined here"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3961
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4737
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "running": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4972
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 5060
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRunning"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the communication running at the moment?",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is the communication running at the moment?</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "connected": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 5142
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5266
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeConnected",
+        "apply": "_applyConnected"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the client connected to a backend at the moment?",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is the client connected to a backend at the moment?</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "dataReceived": {
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5391
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5454
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * needed to be able to check if the incoming update is the initial answer or a successing update",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>needed to be able to check if the incoming update is the initial answer or a successing update</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "currentTransport": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 5519
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5561
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * the currently used transport layer",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the currently used transport layer</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "server": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 5662
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5751
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changedServer"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The server we are currently speaking to (read from the login response)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The server we are currently speaking to (read from the login response)</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 5758
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 5815
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    }
+  },
+  "members": {
+    "backend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 5977
+        },
+        "end": {
+          "line": 224,
+          "column": 17,
+          "index": 5990
+        }
+      },
+      "appearsIn": []
+    },
+    "backendName": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 5996
+        },
+        "end": {
+          "line": 225,
+          "column": 21,
+          "index": 6013
+        }
+      },
+      "appearsIn": []
+    },
+    "_type": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 6019
+        },
+        "end": {
+          "line": 226,
+          "column": 15,
+          "index": 6030
+        }
+      },
+      "appearsIn": []
+    },
+    "backendLoginUrl": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 6036
+        },
+        "end": {
+          "line": 227,
+          "column": 25,
+          "index": 6057
+        }
+      },
+      "appearsIn": []
+    },
+    "addresses": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6063
+        },
+        "end": {
+          "line": 228,
+          "column": 19,
+          "index": 6078
+        }
+      },
+      "appearsIn": []
+    },
+    "initialAddresses": {
+      "jsdoc": {
+        "raw": [
+          " the subscribed addresses"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 6112
+        },
+        "end": {
+          "line": 229,
+          "column": 26,
+          "index": 6134
+        }
+      },
+      "appearsIn": []
+    },
+    "filters": {
+      "jsdoc": {
+        "raw": [
+          " the addresses which should be loaded before the subscribed addresses"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4,
+          "index": 6212
+        },
+        "end": {
+          "line": 230,
+          "column": 17,
+          "index": 6225
+        }
+      },
+      "appearsIn": []
+    },
+    "user": {
+      "jsdoc": {
+        "raw": [
+          " the subscribed filters"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 6257
+        },
+        "end": {
+          "line": 231,
+          "column": 14,
+          "index": 6267
+        }
+      },
+      "appearsIn": []
+    },
+    "pass": {
+      "jsdoc": {
+        "raw": [
+          " the current user"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 6293
+        },
+        "end": {
+          "line": 232,
+          "column": 14,
+          "index": 6303
+        }
+      },
+      "appearsIn": []
+    },
+    "device": {
+      "jsdoc": {
+        "raw": [
+          " the current password"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 6333
+        },
+        "end": {
+          "line": 233,
+          "column": 16,
+          "index": 6345
+        }
+      },
+      "appearsIn": []
+    },
+    "session": {
+      "jsdoc": {
+        "raw": [
+          " the current device ID"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6376
+        },
+        "end": {
+          "line": 234,
+          "column": 17,
+          "index": 6389
+        }
+      },
+      "appearsIn": []
+    },
+    "loginSettings": {
+      "jsdoc": {
+        "raw": [
+          " current session ID"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 6418
+        },
+        "end": {
+          "line": 236,
+          "column": 23,
+          "index": 6437
+        }
+      },
+      "appearsIn": []
+    },
+    "headers": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6443
+        },
+        "end": {
+          "line": 237,
+          "column": 17,
+          "index": 6456
+        }
+      },
+      "appearsIn": []
+    },
+    "resendHeaders": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 6462
+        },
+        "end": {
+          "line": 238,
+          "column": 23,
+          "index": 6481
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastError": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6487
+        },
+        "end": {
+          "line": 239,
+          "column": 21,
+          "index": 6504
+        }
+      },
+      "appearsIn": []
+    },
+    "getType": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 6511
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6553
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "_applyConnected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method to call when the `connected` property is set",
+          "     * @param value {boolean}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to call when the <code>connected</code> property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {boolean}",
+            "paramName": "value",
+            "type": "boolean"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 6681
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6819
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setInitialAddresses": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 6826
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 6905
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "setBackend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4,
+          "index": 6912
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 8471
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "newBackend"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getBackend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 8478
+        },
+        "end": {
+          "line": 307,
+          "column": 5,
+          "index": 8525
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "beforeSend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * manipulates the header of the current ajax query before it will be sent to the server",
+          "     * @param xhr",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>manipulates the header of the current ajax query before it will be sent to the server</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xhr",
+            "paramName": "xhr",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 8659
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 9078
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xhr"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getResourcePath": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 9085
+        },
+        "end": {
+          "line": 330,
+          "column": 5,
+          "index": 9277
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "map"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "setResourcePath": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 9284
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 9362
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "hasCustomChartsDataProcessor": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4,
+          "index": 9369
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 9427
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "processChartsData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4,
+          "index": 9433
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9483
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "subscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribe to the addresses in the parameter. The second parameter",
+          "     * (filter) is optional",
+          "     *",
+          "     * @param addresses {Array?} addresses to subscribe to",
+          "     * @param filters {Array?} Filters",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribe to the addresses in the parameter. The second parameter\n (filter) is optional</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "addresses {Array?} addresses to subscribe to",
+            "paramName": "addresses",
+            "description": " addresses to subscribe to",
+            "optional": true,
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "filters {Array?} Filters",
+            "paramName": "filters",
+            "description": " Filters",
+            "optional": true,
+            "type": "Array"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 9719
+        },
+        "end": {
+          "line": 368,
+          "column": 5,
+          "index": 10309
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array",
+          "optional": true
+        },
+        {
+          "name": "filters",
+          "type": "Array",
+          "optional": true
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "addSubscription": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4,
+          "index": 10316
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 10511
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "login": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function starts the communication by a login and then runs the",
+          "     * ongoing communication task",
+          "     *",
+          "     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription",
+          "     *                            to addresses (default: false)",
+          "     * @param credentials {Object?} not used in this client",
+          "     * @param callback {Function?} call this function when login is done",
+          "     * @param context {Object?} context for the callback (this)",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function starts the communication by a login and then runs the\n ongoing communication task</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "loginOnly {Boolean} if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
+            "paramName": "loginOnly",
+            "description": " if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "credentials {Object?} not used in this client",
+            "paramName": "credentials",
+            "description": " not used in this client",
+            "optional": true,
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function?} call this function when login is done",
+            "paramName": "callback",
+            "description": " call this function when login is done",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} context for the callback (this)",
+            "paramName": "context",
+            "description": " context for the callback (this)",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4,
+          "index": 11014
+        },
+        "end": {
+          "line": 418,
+          "column": 5,
+          "index": 12002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loginOnly",
+          "type": "boolean"
+        },
+        {
+          "name": "credentials",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "callback",
+          "type": "Function",
+          "optional": true
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "getResponse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the json response from the parameter received from the used XHR transport",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the json response from the parameter received from the used XHR transport</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 423,
+          "column": 4,
+          "index": 12110
+        },
+        "end": {
+          "line": 450,
+          "column": 6,
+          "index": 12756
+        }
+      },
+      "appearsIn": []
+    },
+    "getResponseHeader": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4,
+          "index": 12763
+        },
+        "end": {
+          "line": 462,
+          "column": 6,
+          "index": 13059
+        }
+      },
+      "appearsIn": []
+    },
+    "getQueryString": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4,
+          "index": 13066
+        },
+        "end": {
+          "line": 484,
+          "column": 5,
+          "index": 13766
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "doRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an XHR request. The request type depends on the \"cv.xhr\" environment setting",
+          "     * (currently \"qx\" and \"jquery\" are supported)",
+          "     * @param url {String} URI",
+          "     * @param data {Object} request data",
+          "     * @param callback {Function} success callback",
+          "     * @param context {Object} context for the callback",
+          "     * @return {qx.io.request.Xhr|jQuery}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an XHR request. The request type depends on the \"cv.xhr\" environment setting\n (currently \"qx\" and \"jquery\" are supported)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} URI",
+            "paramName": "url",
+            "description": " URI",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object} request data",
+            "paramName": "data",
+            "description": " request data",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} success callback",
+            "paramName": "callback",
+            "description": " success callback",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} context for the callback",
+            "paramName": "context",
+            "description": " context for the callback",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.request.Xhr|jQuery}",
+            "type": "qx.io.request.Xhr|jQuery",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 495,
+          "column": 4,
+          "index": 14153
+        },
+        "end": {
+          "line": 558,
+          "column": 6,
+          "index": 16108
+        }
+      },
+      "returnType": {
+        "type": "qx.io.request.Xhr|jQuery"
+      },
+      "appearsIn": []
+    },
+    "_onError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors from qooxdoos XHR request",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle errors from qooxdoos XHR request</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 564,
+          "column": 4,
+          "index": 16203
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 16630
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLastError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the last recorded error",
+          "     *",
+          "     * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the last recorded error</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
+            "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 586,
+          "column": 4,
+          "index": 16810
+        },
+        "end": {
+          "line": 588,
+          "column": 5,
+          "index": 16863
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*"
+      },
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "handleLogin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles login response, applies backend configuration if send by",
+          "     * backend and forwards to the configured transport handleSession",
+          "     * function",
+          "     *",
+          "     * Parameter varies depending on the XHR type used",
+          "     * qx (Qooxdoo):",
+          "     *   ev {Event} the 'success' event from the XHR request",
+          "     *",
+          "     * jQuery:",
+          "     *   data {Object} The JSON data returned from the server",
+          "     *   textStatus {String} a string describing the status",
+          "     *   request {Object} the jqXHR object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles login response, applies backend configuration if send by\n backend and forwards to the configured transport handleSession\n function\n Parameter varies depending on the XHR type used\n qx (Qooxdoo):\n   ev {Event} the 'success' event from the XHR request\n jQuery:\n   data {Object} The JSON data returned from the server\n   textStatus {String} a string describing the status\n   request {Object} the jqXHR object</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 604,
+          "column": 4,
+          "index": 17375
+        },
+        "end": {
+          "line": 627,
+          "column": 5,
+          "index": 18290
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function stops an ongoing connection",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function stops an ongoing connection</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 633,
+          "column": 4,
+          "index": 18369
+        },
+        "end": {
+          "line": 639,
+          "column": 5,
+          "index": 18554
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "buildRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build the URL part that contains the addresses and filters",
+          "     * @param addresses {Array?}",
+          "     * @param asString {boolean?}",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Build the URL part that contains the addresses and filters</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "addresses {Array?}",
+            "paramName": "addresses",
+            "optional": true,
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "asString {boolean?}",
+            "paramName": "asString",
+            "optional": true,
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 647,
+          "column": 4,
+          "index": 18734
+        },
+        "end": {
+          "line": 670,
+          "column": 5,
+          "index": 19352
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array",
+          "optional": true
+        },
+        {
+          "name": "asString",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function sends a value",
+          "     * @param address {String} address to send the value to",
+          "     * @param value {String} value to send",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function sends a value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} address to send the value to",
+            "paramName": "address",
+            "description": " address to send the value to",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} value to send",
+            "paramName": "value",
+            "description": " value to send",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 678,
+          "column": 4,
+          "index": 19520
+        },
+        "end": {
+          "line": 699,
+          "column": 5,
+          "index": 20059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "authorize": {
+      "jsdoc": {
+        "raw": [
+          " this client does not implement an authorization"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 702,
+          "column": 4,
+          "index": 20121
+        },
+        "end": {
+          "line": 702,
+          "column": 21,
+          "index": 20138
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "req"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "canAuthorize": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 704,
+          "column": 4,
+          "index": 20145
+        },
+        "end": {
+          "line": 706,
+          "column": 5,
+          "index": 20187
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "restart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the connection",
+          "     * @param full",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the connection</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 712,
+          "column": 4,
+          "index": 20259
+        },
+        "end": {
+          "line": 714,
+          "column": 5,
+          "index": 20328
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "full"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "terminate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 716,
+          "column": 4,
+          "index": 20335
+        },
+        "end": {
+          "line": 718,
+          "column": 5,
+          "index": 20396
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "update": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 720,
+          "column": 4,
+          "index": 20403
+        },
+        "end": {
+          "line": 720,
+          "column": 19,
+          "index": 20418
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "json"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "record": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to record client communication with backend",
+          "     * @param type {String} type of event to record",
+          "     * @param data {Object} data to record",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to record client communication with backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} type of event to record",
+            "paramName": "type",
+            "description": " type of event to record",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object} data to record",
+            "paramName": "data",
+            "description": " data to record",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 727,
+          "column": 4,
+          "index": 20605
+        },
+        "end": {
+          "line": 727,
+          "column": 25,
+          "index": 20626
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "showError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to provide an error handler for client errors",
+          "     * @param type {Number} one of cv.io.Client.ERROR_CODES",
+          "     * @param message {String} detailed error message",
+          "     * @param args",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to provide an error handler for client errors</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {Number} one of cv.io.Client.ERROR_CODES",
+            "paramName": "type",
+            "description": " one of cv.io.Client.ERROR_CODES",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "message {String} detailed error message",
+            "paramName": "message",
+            "description": " detailed error message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args",
+            "paramName": "args",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 735,
+          "column": 4,
+          "index": 20853
+        },
+        "end": {
+          "line": 735,
+          "column": 37,
+          "index": 20886
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "number"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "args"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "hasProvider": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 737,
+          "column": 4,
+          "index": 20893
+        },
+        "end": {
+          "line": 739,
+          "column": 5,
+          "index": 20938
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "getProviderUrl": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 740,
+          "column": 4,
+          "index": 20944
+        },
+        "end": {
+          "line": 742,
+          "column": 5,
+          "index": 20991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "getProviderConvertFunction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 743,
+          "column": 4,
+          "index": 20997
+        },
+        "end": {
+          "line": 745,
+          "column": 5,
+          "index": 21064
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "format"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
+    "getProviderData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 746,
+          "column": 4,
+          "index": 21070
+        },
+        "end": {
+          "line": 748,
+          "column": 5,
+          "index": 21137
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "format"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 756,
+        "column": 2,
+        "index": 21285
+      },
+      "end": {
+        "line": 758,
+        "column": 3,
+        "index": 21318
+      }
+    }
+  }
+}

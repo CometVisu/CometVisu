@@ -1,0 +1,5 @@
+Design-Guidelines:
+------------------
+
+ - <label>-elements, use <text>-Widgets instead (exception: in <diagram_*> and <rsslog> the labels are used as caption)
+ - define proper stylings for switch/trigger widget (example will be added)

@@ -1,0 +1,543 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601436,
+  "lastModifiedIso": "2026-06-29T04:00:01.436Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/CheckBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 594
+    },
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 2927
+    }
+  },
+  "className": "qx.ui.form.CheckBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A check box widget with an optional label.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A check box widget with an optional label.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.ToggleButton",
+  "mixins": [
+    "qx.ui.form.MForm",
+    "qx.ui.form.MModelProperty"
+  ],
+  "interfaces": [
+    "qx.ui.form.IForm",
+    "qx.ui.form.IModel",
+    "qx.ui.form.IListItem"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1075
+      },
+      "end": {
+        "line": 55,
+        "column": 3,
+        "index": 1553
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1781
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1843
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "checkbox"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.ToggleButton",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "allowGrowX": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1868
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1925
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1367
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1483
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Model property for storing additional information for the including",
+          "     * object. It can act as value property on form items for example.",
+          "     *",
+          "     * Be careful using that property as this is used for the",
+          "     * {@link qx.ui.form.MModelSelection} it has some restrictions:",
+          "     *",
+          "     * * Don't use equal models in one widget using the",
+          "     *     {@link qx.ui.form.MModelSelection}.",
+          "     *",
+          "     * * Avoid setting only some model properties if the widgets are added to",
+          "     *     a {@link qx.ui.form.MModelSelection} widget.",
+          "     *",
+          "     * Both restrictions result of the fact, that the set models are deputies",
+          "     * for their widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Model property for storing additional information for the including\n object. It can act as value property on form items for example.\n Be careful using that property as this is used for the\n {@link qx.ui.form.MModelSelection} it has some restrictions:</p>\n<ul>\n<li>Don't use equal models in one widget using the\n {@link qx.ui.form.MModelSelection}.</li>\n<li>Avoid setting only some model properties if the widgets are added to\n a {@link qx.ui.form.MModelSelection} widget.\nBoth restrictions result of the fact, that the set models are deputies\nfor their widget.</li>\n</ul>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MModelProperty",
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ]
+    }
+  },
+  "members": {
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2069
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2201
+        }
+      },
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_bindableProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * overridden (from MExecutable to keep the icon out of the binding)",
+          "     * @lint ignoreReferenceField(_bindableProperties)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>overridden (from MExecutable to keep the icon out of the binding)</p>"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_bindableProperties)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2352
+        },
+        "end": {
+          "line": 94,
+          "column": 77,
+          "index": 2425
+        }
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2450
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2919
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "appearsIn": [
+        "qx.ui.form.ToggleButton"
+      ]
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1527
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1588
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.form.MModelProperty",
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ]
+    }
+  },
+  "statics": {}
+}

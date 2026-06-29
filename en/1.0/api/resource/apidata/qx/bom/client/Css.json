@@ -1,0 +1,1281 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601634,
+  "lastModifiedIso": "2026-06-29T04:00:01.634Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Css.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 781
+    },
+    "end": {
+      "line": 493,
+      "column": 3,
+      "index": 15470
+    }
+  },
+  "className": "qx.bom.client.Css",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The purpose of this class is to contain all checks about css.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " * @ignore(WebKitCSSMatrix)",
+      " * @require(qx.bom.Style)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The purpose of this class is to contain all checks about css.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "WebKitCSSMatrix"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.Style"
+      }
+    ]
+  },
+  "statics": {
+    "__WEBKIT_LEGACY_GRADIENT": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 841
+        },
+        "end": {
+          "line": 31,
+          "column": 34,
+          "index": 871
+        }
+      },
+      "appearsIn": []
+    },
+    "getBoxModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks what box model is used in the current environment.",
+          "     * @return {String} It either returns \"content\" or \"border\".",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks what box model is used in the current environment.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} It either returns \"content\" or \"border\".",
+            "type": "string",
+            "description": "It either returns \"content\" or \"border\"."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1041
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1231
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTextOverflow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>textOverflow</code> style property.",
+          "     *",
+          "     * @return {String|null} textOverflow property name or <code>null</code> if",
+          "     * textOverflow is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>textOverflow</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} textOverflow property name or <code>null</code> if\n textOverflow is not supported.",
+            "type": "String|null",
+            "description": "textOverflow property name or <code>null</code> if\n textOverflow is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1521
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1605
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a placeholder could be used.",
+          "     * @return {Boolean} <code>true</code>, if it could be used.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a placeholder could be used.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if it could be used.",
+            "type": "boolean",
+            "description": "<code>true</code>, if it could be used."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1756
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1955
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAppearance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>appearance</code> style property.",
+          "     *",
+          "     * @return {String|null} appearance property name or <code>null</code> if",
+          "     * appearance is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>appearance</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} appearance property name or <code>null</code> if\n appearance is not supported.",
+            "type": "String|null",
+            "description": "appearance property name or <code>null</code> if\n appearance is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2239
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2319
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getBorderRadius": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>borderRadius</code> style property.",
+          "     *",
+          "     * @return {String|null} borderRadius property name or <code>null</code> if",
+          "     * borderRadius is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>borderRadius</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} borderRadius property name or <code>null</code> if\n borderRadius is not supported.",
+            "type": "String|null",
+            "description": "borderRadius property name or <code>null</code> if\n borderRadius is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2609
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2693
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getBoxShadow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>boxShadow</code> style property.",
+          "     *",
+          "     * @return {String|null} boxShadow property name or <code>null</code> if",
+          "     * boxShadow is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>boxShadow</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} boxShadow property name or <code>null</code> if\n boxShadow is not supported.",
+            "type": "String|null",
+            "description": "boxShadow property name or <code>null</code> if\n boxShadow is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2974
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 3052
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getBorderImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>borderImage</code> style property.",
+          "     *",
+          "     * @return {String|null} borderImage property name or <code>null</code> if",
+          "     * borderImage is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>borderImage</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} borderImage property name or <code>null</code> if\n borderImage is not supported.",
+            "type": "String|null",
+            "description": "borderImage property name or <code>null</code> if\n borderImage is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3339
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3421
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getBorderImageSyntax": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the type of syntax this client supports for its CSS border-image",
+          "     * implementation. Some browsers do not support the \"fill\" keyword defined",
+          "     * in the W3C draft (http://www.w3.org/TR/css3-background/) and will not",
+          "     * show the border image if it's set. Others follow the standard closely and",
+          "     * will omit the center image if \"fill\" is not set.",
+          "     *",
+          "     * @return {Boolean|null} <code>true</code> if the standard syntax is supported.",
+          "     * <code>null</code> if the supported syntax could not be detected.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the type of syntax this client supports for its CSS border-image\n implementation. Some browsers do not support the \"fill\" keyword defined\n in the W3C draft (http://www.w3.org/TR/css3-background/) and will not\n show the border image if it's set. Others follow the standard closely and\n will omit the center image if \"fill\" is not set.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|null} <code>true</code> if the standard syntax is supported.\n <code>null</code> if the supported syntax could not be detected.",
+            "type": "Boolean|null",
+            "description": "<code>true</code> if the standard syntax is supported.\n <code>null</code> if the supported syntax could not be detected."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3998
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4975
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Boolean|null"
+      },
+      "appearsIn": []
+    },
+    "getUserSelect": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>userSelect</code> style property.",
+          "     *",
+          "     * @return {String|null} userSelect property name or <code>null</code> if",
+          "     * userSelect is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>userSelect</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} userSelect property name or <code>null</code> if\n userSelect is not supported.",
+            "type": "String|null",
+            "description": "userSelect property name or <code>null</code> if\n userSelect is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 5259
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 5339
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getUserSelectNone": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) value for the",
+          "     * <code>userSelect</code> style property that disables selection. For Gecko,",
+          "     * \"-moz-none\" is returned since \"none\" only makes the target element appear",
+          "     * as if its text could not be selected",
+          "     *",
+          "     * @internal",
+          "     * @return {String|null} the userSelect property value that disables",
+          "     * selection or <code>null</code> if userSelect is not supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) value for the\n <code>userSelect</code> style property that disables selection. For Gecko,\n \"-moz-none\" is returned since \"none\" only makes the target element appear\n as if its text could not be selected</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} the userSelect property value that disables\n selection or <code>null</code> if userSelect is not supported",
+            "type": "String|null",
+            "description": "the userSelect property value that disables\n selection or <code>null</code> if userSelect is not supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5795
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 6112
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getUserModify": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>userModify</code> style property.",
+          "     *",
+          "     * @return {String|null} userModify property name or <code>null</code> if",
+          "     * userModify is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>userModify</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} userModify property name or <code>null</code> if\n userModify is not supported.",
+            "type": "String|null",
+            "description": "userModify property name or <code>null</code> if\n userModify is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 6396
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6476
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getFloat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the vendor-specific name of the <code>float</code> style property",
+          "     *",
+          "     * @return {String|null} <code>cssFloat</code> for standards-compliant",
+          "     * browsers, <code>styleFloat</code> for legacy IEs, <code>null</code> if",
+          "     * the client supports neither property.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the vendor-specific name of the <code>float</code> style property</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} <code>cssFloat</code> for standards-compliant\n browsers, <code>styleFloat</code> for legacy IEs, <code>null</code> if\n the client supports neither property.",
+            "type": "String|null",
+            "description": "<code>cssFloat</code> for standards-compliant\n browsers, <code>styleFloat</code> for legacy IEs, <code>null</code> if\n the client supports neither property."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 6802
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 7013
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getLinearGradient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name this client uses for",
+          "     * <code>linear-gradient</code>.",
+          "     * http://dev.w3.org/csswg/css3-images/#linear-gradients",
+          "     *",
+          "     * @return {String|null} Prefixed linear-gradient name or <code>null</code>",
+          "     * if linear gradients are not supported",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name this client uses for\n <code>linear-gradient</code>.\n http://dev.w3.org/csswg/css3-images/#linear-gradients</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Prefixed linear-gradient name or <code>null</code>\n if linear gradients are not supported",
+            "type": "String|null",
+            "description": "Prefixed linear-gradient name or <code>null</code>\n if linear gradients are not supported"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7355
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 8168
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getRadialGradient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name this client uses for",
+          "     * <code>radial-gradient</code>.",
+          "     *",
+          "     * @return {String|null} Prefixed radial-gradient name or <code>null</code>",
+          "     * if radial gradients are not supported",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name this client uses for\n <code>radial-gradient</code>.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} Prefixed radial-gradient name or <code>null</code>\n if radial gradients are not supported",
+            "type": "String|null",
+            "description": "Prefixed radial-gradient name or <code>null</code>\n if radial gradients are not supported"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 8449
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 8801
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getLegacyWebkitGradient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if **only** the old WebKit (version < 534.16) syntax for",
+          "     * linear gradients is supported, e.g.",
+          "     * <code>linear-gradient(0deg, #fff, #000)</code>",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if the legacy syntax must be used",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if <strong>only</strong> the old WebKit (version &lt; 534.16) syntax for\n linear gradients is supported, e.g.\n <code>linear-gradient(0deg, #fff, #000)</code></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the legacy syntax must be used",
+            "type": "boolean",
+            "description": "<code>true</code> if the legacy syntax must be used"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 9093
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 9303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getRgba": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if rgba colors can be used:",
+          "     * http://www.w3.org/TR/2010/PR-css3-color-20101028/#rgba-color",
+          "     *",
+          "     * @return {Boolean} <code>true</code>, if rgba colors are supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if rgba colors can be used:\n http://www.w3.org/TR/2010/PR-css3-color-20101028/#rgba-color</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if rgba colors are supported.",
+            "type": "boolean",
+            "description": "<code>true</code>, if rgba colors are supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 9534
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 9909
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getBoxSizing": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name the browser uses for the",
+          "     * <code>boxSizing</code> style property.",
+          "     *",
+          "     * @return {String|null} boxSizing property name or <code>null</code> if",
+          "     * boxSizing is not supported.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the (possibly vendor-prefixed) name the browser uses for the\n <code>boxSizing</code> style property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} boxSizing property name or <code>null</code> if\n boxSizing is not supported.",
+            "type": "String|null",
+            "description": "boxSizing property name or <code>null</code> if\n boxSizing is not supported."
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4,
+          "index": 10190
+        },
+        "end": {
+          "line": 331,
+          "column": 5,
+          "index": 10268
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getInlineBlock": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the browser-specific name used for the <code>display</code> style",
+          "     * property's <code>inline-block</code> value.",
+          "     *",
+          "     * @internal",
+          "     * @return {String|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the browser-specific name used for the <code>display</code> style\n property's <code>inline-block</code> value.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null}",
+            "type": "String|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 4,
+          "index": 10476
+        },
+        "end": {
+          "line": 351,
+          "column": 5,
+          "index": 10832
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getOpacity": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if CSS opacity is supported",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if opacity is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if CSS opacity is supported</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if opacity is supported",
+            "type": "boolean",
+            "description": "<code>true</code> if opacity is supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 4,
+          "index": 10988
+        },
+        "end": {
+          "line": 361,
+          "column": 5,
+          "index": 11080
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTextShadow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if CSS texShadow is supported",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if textShadow is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if CSS texShadow is supported</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if textShadow is supported",
+            "type": "boolean",
+            "description": "<code>true</code> if textShadow is supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4,
+          "index": 11241
+        },
+        "end": {
+          "line": 371,
+          "column": 5,
+          "index": 11323
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAlphaImageLoaderNeeded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the Alpha Image Loader must be used to display transparent PNGs.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if the Alpha Image Loader is required",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the Alpha Image Loader must be used to display transparent PNGs.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the Alpha Image Loader is required",
+            "type": "boolean",
+            "description": "<code>true</code> if the Alpha Image Loader is required"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 4,
+          "index": 11516
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 11681
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPointerEvents": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if pointer events are available.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if pointer events are supported.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if pointer events are available.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if pointer events are supported.",
+            "type": "boolean",
+            "description": "<code>true</code> if pointer events are supported."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 391,
+          "column": 4,
+          "index": 11851
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 12470
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getFlexboxSyntax": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns which Flexbox syntax is supported by the browser.",
+          "     * <code>display: box;</code> old 2009 version of Flexbox.",
+          "     * <code>display: flexbox;</code> tweener phase in 2011.",
+          "     * <code>display: flex;</code> current specification.",
+          "     * @internal",
+          "     * @return {String} <code>flex</code>,<code>flexbox</code>,<code>box</code> or <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns which Flexbox syntax is supported by the browser.\n <code>display: box;</code> old 2009 version of Flexbox.\n <code>display: flexbox;</code> tweener phase in 2011.\n <code>display: flex;</code> current specification.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} <code>flex</code>,<code>flexbox</code>,<code>box</code> or <code>null</code>",
+            "type": "string",
+            "description": "<code>flex</code>,<code>flexbox</code>,<code>box</code> or <code>null</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 4,
+          "index": 12858
+        },
+        "end": {
+          "line": 453,
+          "column": 5,
+          "index": 13685
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

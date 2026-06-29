@@ -1,0 +1,103 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602288,
+  "lastModifiedIso": "2026-06-29T04:00:02.288Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/manager/Icon.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 544
+    },
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 1575
+    }
+  },
+  "className": "qx.theme.manager.Icon",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manager for icon themes",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manager for icon themes</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
+  "properties": {
+    "theme": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 879
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 992
+        }
+      },
+      "json": {
+        "check": "Theme",
+        "nullable": true,
+        "apply": "_applyTheme",
+        "event": "changeTheme"
+      },
+      "jsdoc": {
+        "raw": [
+          "* currently used icon theme "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>currently used icon theme</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyTheme": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1222
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1567
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

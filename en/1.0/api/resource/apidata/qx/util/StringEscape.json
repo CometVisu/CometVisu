@@ -1,0 +1,182 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603247,
+  "lastModifiedIso": "2026-06-29T04:00:03.247Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/StringEscape.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 656
+    },
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 2609
+    }
+  },
+  "className": "qx.util.StringEscape",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generic escaping and unescaping of DOM strings.",
+      " *",
+      " * {@link qx.bom.String} for (un)escaping of HTML strings.",
+      " * {@link qx.xml.String} for (un)escaping of XML strings.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generic escaping and unescaping of DOM strings.\n {@link qx.bom.String} for (un)escaping of HTML strings.\n {@link qx.xml.String} for (un)escaping of XML strings.</p>"
+      }
+    ]
+  },
+  "statics": {
+    "escape": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * generic escaping method",
+          "     *",
+          "     * @param str {String} string to escape",
+          "     * @param charCodeToEntities {Map} entity to charcode map",
+          "     * @return {String} escaped string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>generic escaping method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to escape",
+            "paramName": "str",
+            "description": " string to escape",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "charCodeToEntities {Map} entity to charcode map",
+            "paramName": "charCodeToEntities",
+            "description": " entity to charcode map",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} escaped string",
+            "type": "string",
+            "description": "escaped string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 918
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1482
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "charCodeToEntities",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "unescape": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * generic unescaping method",
+          "     *",
+          "     * @param str {String} string to unescape",
+          "     * @param entitiesToCharCode {Map} charcode to entity map",
+          "     * @return {String} unescaped string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>generic unescaping method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to unescape",
+            "paramName": "str",
+            "description": " string to unescape",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "entitiesToCharCode {Map} charcode to entity map",
+            "paramName": "entitiesToCharCode",
+            "description": " charcode to entity map",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} unescaped string",
+            "type": "string",
+            "description": "unescaped string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1694
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2601
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "entitiesToCharCode",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

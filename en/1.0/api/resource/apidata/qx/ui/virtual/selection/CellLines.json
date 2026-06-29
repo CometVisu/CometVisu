@@ -1,0 +1,72 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601420,
+  "lastModifiedIso": "2026-06-29T04:00:01.420Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/selection/CellLines.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 548
+    },
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 1877
+    }
+  },
+  "className": "qx.ui.virtual.selection.CellLines",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cell selection manager",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cell selection manager</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.selection.CellRectangle",
+  "members": {
+    "_getSelectableRange": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1080
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1869
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item1"
+        },
+        {
+          "name": "item2"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.CellRectangle",
+      "appearsIn": [
+        "qx.ui.virtual.selection.CellRectangle",
+        "qx.ui.core.selection.Abstract"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

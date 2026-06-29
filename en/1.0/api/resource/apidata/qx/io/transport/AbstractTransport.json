@@ -1,0 +1,128 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600932,
+  "lastModifiedIso": "2026-06-29T04:00:00.932Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/transport/AbstractTransport.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 8,
+      "column": 0,
+      "index": 243
+    },
+    "end": {
+      "line": 40,
+      "column": 3,
+      "index": 992
+    }
+  },
+  "className": "qx.io.transport.AbstractTransport",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract class for JSON-RPC transports",
+      " *",
+      " * For the moment, any special configuration of the transport, such as",
+      " * authentication, must be done on the level of the underlying implementation,",
+      " * an abstract API will be added later.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract class for JSON-RPC transports\n For the moment, any special configuration of the transport, such as\n authentication, must be done on the level of the underlying implementation,\n an abstract API will be added later.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "properties": {
+    "endpoint": {
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 4,
+          "index": 532
+        },
+        "end": {
+          "line": 21,
+          "column": 5,
+          "index": 665
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeEndpoint"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *  A representation of the the endpoint, which is either a uri (a String)",
+          "     *  or an object (such as in the case of the PostMessage transport)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A representation of the the endpoint, which is either a uri (a String)\n  or an object (such as in the case of the PostMessage transport)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "message": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event fired when a message is received from the endpoint. Event data",
+          "     * is an UTF-8 encoded string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a message is received from the endpoint. Event data\n is an UTF-8 encoded string</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 814
+        },
+        "end": {
+          "line": 29,
+          "column": 33,
+          "index": 843
+        }
+      }
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "endpoint"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 918
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 988
+      }
+    }
+  },
+  "members": {},
+  "statics": {}
+}

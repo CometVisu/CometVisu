@@ -1,0 +1,1089 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601429,
+  "lastModifiedIso": "2026-06-29T04:00:01.429Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/layer/CellSpanManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 692
+    },
+    "end": {
+      "line": 425,
+      "column": 3,
+      "index": 12256
+    }
+  },
+  "className": "qx.ui.virtual.layer.CellSpanManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The CellSpanManager manages cells, which span several rows or columns.",
+      " *",
+      " * It provides functionality to compute, which spanning cells are visible",
+      " * in a given view port and how they have to be placed.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The CellSpanManager manages cells, which span several rows or columns.\n It provides functionality to compute, which spanning cells are visible\n in a given view port and how they have to be placed.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "rowConfig"
+      },
+      {
+        "name": "columnConfig"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1048
+      },
+      "end": {
+        "line": 51,
+        "column": 3,
+        "index": 1593
+      }
+    }
+  },
+  "members": {
+    "addCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a spanning cell to the manager.",
+          "     *",
+          "     * @param id {String} Unique id for the cell definition. This id is required",
+          "     *    for removing the cell from the manager",
+          "     * @param row {PositiveInteger} The cell's row",
+          "     * @param column {PositiveInteger} The cell's column",
+          "     * @param rowSpan {PositiveInteger} The number of rows the cells spans",
+          "     * @param columnSpan {PositiveInteger} The number of columns the cells spans",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a spanning cell to the manager.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} Unique id for the cell definition. This id is required\n    for removing the cell from the manager",
+            "paramName": "id",
+            "description": " Unique id for the cell definition. This id is required\n    for removing the cell from the manager",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "row {PositiveInteger} The cell's row",
+            "paramName": "row",
+            "description": " The cell's row",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "column {PositiveInteger} The cell's column",
+            "paramName": "column",
+            "description": " The cell's column",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "rowSpan {PositiveInteger} The number of rows the cells spans",
+            "paramName": "rowSpan",
+            "description": " The number of rows the cells spans",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "columnSpan {PositiveInteger} The number of columns the cells spans",
+            "paramName": "columnSpan",
+            "description": " The number of columns the cells spans",
+            "type": "PositiveInteger"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2257
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2529
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "row",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "column",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "rowSpan",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "columnSpan",
+          "type": "PositiveInteger"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove a cell from the manager",
+          "     *",
+          "     * @param id {String} The id of the cell to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a cell from the manager</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The id of the cell to remove",
+            "paramName": "id",
+            "description": " The id of the cell to remove",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2652
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2739
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_invalidateSortCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invalidate the sort cache",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Invalidate the sort cache</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2795
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2850
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getSortedCells": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the cell array sorted by the given key (ascending)",
+          "     *",
+          "     * @param key {String} The sort key. One of <code>firstRow</code>,",
+          "     *     <code>lastRow</code>, <code>firstColumn</code> or <code>lastColumn</code>",
+          "     * @return {Map[]} sorted array of cell descriptions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the cell array sorted by the given key (ascending)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The sort key. One of <code>firstRow</code>,\n     <code>lastRow</code>, <code>firstColumn</code> or <code>lastColumn</code>",
+            "paramName": "key",
+            "description": " The sort key. One of <code>firstRow</code>,\n     <code>lastRow</code>, <code>firstColumn</code> or <code>lastColumn</code>",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} sorted array of cell descriptions",
+            "type": "Map[]",
+            "description": "sorted array of cell descriptions"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3155
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3433
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "_findCellsInRange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds all cells with a sort key within the given range.",
+          "     *",
+          "     * Complexity: O(log n)",
+          "     *",
+          "     * @param key {String} The key to search for",
+          "     * @param min {Integer} minimum value",
+          "     * @param max {Integer} maximum value (inclusive)",
+          "     * @return {Map} Map, which will contain the search results",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds all cells with a sort key within the given range.\n Complexity: O(log n)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key to search for",
+            "paramName": "key",
+            "description": " The key to search for",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "min {Integer} minimum value",
+            "paramName": "min",
+            "description": " minimum value",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "max {Integer} maximum value (inclusive)",
+            "paramName": "max",
+            "description": " maximum value (inclusive)",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map, which will contain the search results",
+            "type": "Map<any, any>",
+            "description": "Map, which will contain the search results"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3770
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4680
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "min",
+          "type": "Integer"
+        },
+        {
+          "name": "max",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "findCellsInWindow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Find all cells, which are visible in the given grid window.",
+          "     *",
+          "     * @param firstRow {PositiveInteger} first visible row",
+          "     * @param firstColumn {PositiveInteger} first visible column",
+          "     * @param rowCount {PositiveInteger} number of rows in the window",
+          "     * @param columnCount {PositiveInteger} number of columns in the window",
+          "     * @return {Map[]} The array of found cell descriptions. A cell description",
+          "     *    contains the keys <code>firstRow</code>, <code>lastRow</code>,",
+          "     *    <code>firstColumn</code> or <code>lastColumn</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Find all cells, which are visible in the given grid window.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "firstRow {PositiveInteger} first visible row",
+            "paramName": "firstRow",
+            "description": " first visible row",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "firstColumn {PositiveInteger} first visible column",
+            "paramName": "firstColumn",
+            "description": " first visible column",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "rowCount {PositiveInteger} number of rows in the window",
+            "paramName": "rowCount",
+            "description": " number of rows in the window",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "columnCount {PositiveInteger} number of columns in the window",
+            "paramName": "columnCount",
+            "description": " number of columns in the window",
+            "type": "PositiveInteger"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} The array of found cell descriptions. A cell description\n    contains the keys <code>firstRow</code>, <code>lastRow</code>,\n    <code>firstColumn</code> or <code>lastColumn</code>",
+            "type": "Map[]",
+            "description": "The array of found cell descriptions. A cell description\n    contains the keys <code>firstRow</code>, <code>lastRow</code>,\n    <code>firstColumn</code> or <code>lastColumn</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 5262
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6228
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "firstColumn",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "rowCount",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "columnCount",
+          "type": "PositiveInteger"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "__intersectionAsArray": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the intersection of two maps as an array. The objects intersect if",
+          "     * they have the same keys.",
+          "     *",
+          "     * @param setA {Object} The first map",
+          "     * @param setB {Object} The second map",
+          "     * @return {String[]} An array keys found in both maps",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the intersection of two maps as an array. The objects intersect if\n they have the same keys.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "setA {Object} The first map",
+            "paramName": "setA",
+            "description": " The first map",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "setB {Object} The second map",
+            "paramName": "setB",
+            "description": " The second map",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} An array keys found in both maps",
+            "type": "String[]",
+            "description": "An array keys found in both maps"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 6515
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 6725
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "setA",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "setB",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "_onRowConfigChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for row configuration changes",
+          "     *",
+          "     * @param e {qx.event.type.Event} the event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for row configuration changes</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} the event object",
+            "paramName": "e",
+            "description": " the event object",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6861
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 6915
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onColumnConfigChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for column configuration changes",
+          "     *",
+          "     * @param e {qx.event.type.Event} the event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for column configuration changes</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} the event object",
+            "paramName": "e",
+            "description": " the event object",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 7054
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 7114
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_invalidatePositionCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invalidates the row/column position cache",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Invalidates the row/column position cache</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 7186
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7273
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getRowPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the pixel start position of the given row",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @return {Integer} The pixel start position of the given row",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the pixel start position of the given row</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {Integer} The row index",
+            "paramName": "row",
+            "description": " The row index",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The pixel start position of the given row",
+            "type": "Integer",
+            "description": "The pixel start position of the given row"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4,
+          "index": 7465
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 7676
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getColumnPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the pixel start position of the given column",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Integer} The pixel start position of the given column",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the pixel start position of the given column</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "column {Integer} The column index",
+            "paramName": "column",
+            "description": " The column index",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The pixel start position of the given column",
+            "type": "Integer",
+            "description": "The pixel start position of the given column"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 7880
+        },
+        "end": {
+          "line": 286,
+          "column": 5,
+          "index": 8123
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getSingleCellBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the bounds of a single cell",
+          "     *",
+          "     * @param cell {Map} the cell description as returned by",
+          "     *    {@link #findCellsInWindow} to get the bounds for",
+          "     * @param firstVisibleRow {Map} The pane's first visible row",
+          "     * @param firstVisibleColumn {Map} The pane's first visible column",
+          "     * @return {Map} Boundaries map with the keys <code>left</code>,",
+          "     * <code>top</code>, <code>width</code> and <code>height</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the bounds of a single cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cell {Map} the cell description as returned by\n    {@link #findCellsInWindow} to get the bounds for",
+            "paramName": "cell",
+            "description": " the cell description as returned by\n    {@link #findCellsInWindow} to get the bounds for",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "firstVisibleRow {Map} The pane's first visible row",
+            "paramName": "firstVisibleRow",
+            "description": " The pane's first visible row",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "firstVisibleColumn {Map} The pane's first visible column",
+            "paramName": "firstVisibleColumn",
+            "description": " The pane's first visible column",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Boundaries map with the keys <code>left</code>,\n <code>top</code>, <code>width</code> and <code>height</code>",
+            "type": "Map<any, any>",
+            "description": "Boundaries map with the keys <code>left</code>,\n <code>top</code>, <code>width</code> and <code>height</code>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4,
+          "index": 8585
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 9363
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cell",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "firstVisibleRow",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "firstVisibleColumn",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getCellBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the bounds of a list of cells as returned by {@link #findCellsInWindow}",
+          "     *",
+          "     * @param cells {Map[]} Array of cell descriptions",
+          "     * @param firstVisibleRow {Map} The pane's first visible row",
+          "     * @param firstVisibleColumn {Map} The pane's first visible column",
+          "     * @return {Map[]} Array, which contains a bounds map for each cell.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the bounds of a list of cells as returned by {@link #findCellsInWindow}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cells {Map[]} Array of cell descriptions",
+            "paramName": "cells",
+            "description": " Array of cell descriptions",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "firstVisibleRow {Map} The pane's first visible row",
+            "paramName": "firstVisibleRow",
+            "description": " The pane's first visible row",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "firstVisibleColumn {Map} The pane's first visible column",
+            "paramName": "firstVisibleColumn",
+            "description": " The pane's first visible column",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array, which contains a bounds map for each cell.",
+            "type": "Map[]",
+            "description": "Array, which contains a bounds map for each cell."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 9740
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 10074
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cells",
+          "type": "Map[]"
+        },
+        {
+          "name": "firstVisibleRow",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "firstVisibleColumn",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "computeCellSpanMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute a bitmap, which marks for each visible cell, whether the cell",
+          "     * is covered by a spanning cell.",
+          "     *",
+          "     * @param cells {Map[]} Array of cell descriptions as returned by",
+          "     *     {@link #findCellsInWindow}.",
+          "     * @param firstRow {PositiveInteger} first visible row",
+          "     * @param firstColumn {PositiveInteger} first visible column",
+          "     * @param rowCount {PositiveInteger} number of rows in the window",
+          "     * @param columnCount {PositiveInteger} number of columns in the window",
+          "     * @return {Map[][]} Two dimensional array, which contains a <code>1</code>",
+          "     *    for each visible cell, which is covered by a spanned cell.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute a bitmap, which marks for each visible cell, whether the cell\n is covered by a spanning cell.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cells {Map[]} Array of cell descriptions as returned by\n     {@link #findCellsInWindow}.",
+            "paramName": "cells",
+            "description": " Array of cell descriptions as returned by\n     {@link #findCellsInWindow}.",
+            "type": "Map[]"
+          },
+          {
+            "name": "@param",
+            "body": "firstRow {PositiveInteger} first visible row",
+            "paramName": "firstRow",
+            "description": " first visible row",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "firstColumn {PositiveInteger} first visible column",
+            "paramName": "firstColumn",
+            "description": " first visible column",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "rowCount {PositiveInteger} number of rows in the window",
+            "paramName": "rowCount",
+            "description": " number of rows in the window",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "columnCount {PositiveInteger} number of columns in the window",
+            "paramName": "columnCount",
+            "description": " number of columns in the window",
+            "type": "PositiveInteger"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[][]} Two dimensional array, which contains a <code>1</code>\n    for each visible cell, which is covered by a spanned cell.",
+            "type": "Map[][]",
+            "description": "Two dimensional array, which contains a <code>1</code>\n    for each visible cell, which is covered by a spanned cell."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 10747
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 11893
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cells",
+          "type": "Map[]"
+        },
+        {
+          "name": "firstRow",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "firstColumn",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "rowCount",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "columnCount",
+          "type": "PositiveInteger"
+        }
+      ],
+      "returnType": {
+        "type": "Map[][]"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 409,
+        "column": 2,
+        "index": 11902
+      },
+      "end": {
+        "line": 424,
+        "column": 3,
+        "index": 12252
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

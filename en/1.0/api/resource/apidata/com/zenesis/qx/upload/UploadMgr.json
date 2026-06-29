@@ -1,0 +1,1342 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/UploadMgr.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1085
+    },
+    "end": {
+      "line": 404,
+      "column": 3,
+      "index": 11184
+    }
+  },
+  "className": "com.zenesis.qx.upload.UploadMgr",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manages uploading of files to the server; this class can use any suitable",
+      " * widget to attach the input[type=file] to, provided the widget includes",
+      " * com.zenesis.qx.upload.MUploadButton.",
+      " *",
+      " * Uploader will use XhrHandler to upload via XMLHttpRequest if supported or",
+      " * will fall back to FormHandler.",
+      " *",
+      " * @require(qx.event.handler.Input)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manages uploading of files to the server; this class can use any suitable\n widget to attach the input[type=file] to, provided the widget includes\n com.zenesis.qx.upload.MUploadButton.\n Uploader will use XhrHandler to upload via XMLHttpRequest if supported or\n will fall back to FormHandler.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Input"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "mixins": [
+    "com.zenesis.qx.upload.MParameters"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "widget"
+      },
+      {
+        "name": "uploadUrl"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 2,
+        "index": 1215
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1380
+      }
+    }
+  },
+  "events": {
+    "addFile": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a file is added to the queue; data is the",
+          "     * com.zenesis.qx.upload.File",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a file is added to the queue; data is the\n com.zenesis.qx.upload.File</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1509
+        },
+        "end": {
+          "line": 50,
+          "column": 33,
+          "index": 1538
+        }
+      }
+    },
+    "beginUpload": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a file starts to be uploaded; data is the",
+          "     * com.zenesis.qx.upload.File",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a file starts to be uploaded; data is the\n com.zenesis.qx.upload.File</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1655
+        },
+        "end": {
+          "line": 56,
+          "column": 37,
+          "index": 1688
+        }
+      }
+    },
+    "completeUpload": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a file has been uploaded; data is the",
+          "     * com.zenesis.qx.upload.File",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a file has been uploaded; data is the\n com.zenesis.qx.upload.File</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1801
+        },
+        "end": {
+          "line": 62,
+          "column": 40,
+          "index": 1837
+        }
+      }
+    },
+    "cancelUpload": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a file upload has been cancelled; data is the",
+          "     * com.zenesis.qx.upload.File",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a file upload has been cancelled; data is the\n com.zenesis.qx.upload.File</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1958
+        },
+        "end": {
+          "line": 68,
+          "column": 38,
+          "index": 1992
+        }
+      }
+    }
+  },
+  "properties": {
+    "uploadUrl": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2064
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2176
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "init": "",
+        "event": "changeUploadUrl"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The URL to upload to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The URL to upload to</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "autoUpload": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2290
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2440
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "nullable": false,
+        "event": "changeAutoUpload",
+        "apply": "_applyAutoUpload"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to automatically start uploading when a file is added",
+          "     * (default=true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to automatically start uploading when a file is added\n (default=true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "multiple": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2567
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2742
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "nullable": false,
+        "event": "changeMultiple",
+        "apply": "_applyMultiple"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to support multiple files (default=true); this is not supported",
+          "     * on older browsers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to support multiple files (default=true); this is not supported\n on older browsers</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "directory": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2749
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2897
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false,
+        "apply": "_applyDirectory",
+        "event": "changeDirectory"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "inputNamePrefix": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2971
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3109
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "uploadMgrInput",
+        "nullable": false,
+        "event": "changeInputNamePrefix"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prefix to apply to the name of input fields",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prefix to apply to the name of input fields</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "requireMultipartFormData": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3207
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3399
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "nullable": false,
+        "event": "changeRequireMultipartFormData",
+        "apply": "_applyRequireMultipartFormData"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the server can only handle multipart/form-data content type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the server can only handle multipart/form-data content type</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__widgetsData": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3424
+        },
+        "end": {
+          "line": 138,
+          "column": 23,
+          "index": 3443
+        }
+      },
+      "appearsIn": []
+    },
+    "__inputSerial": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3449
+        },
+        "end": {
+          "line": 139,
+          "column": 20,
+          "index": 3465
+        }
+      },
+      "appearsIn": []
+    },
+    "__uploadHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3471
+        },
+        "end": {
+          "line": 140,
+          "column": 25,
+          "index": 3492
+        }
+      },
+      "appearsIn": []
+    },
+    "__uploadId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3498
+        },
+        "end": {
+          "line": 141,
+          "column": 17,
+          "index": 3511
+        }
+      },
+      "appearsIn": []
+    },
+    "addWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a widget which is to have an input[type=file] attached; this would",
+          "     * typically be an instance of com.zenesis.qx.upload.UploadButton (see",
+          "     * com.zenesis.qx.upload.MUploadButton for implementing for other widgets)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a widget which is to have an input[type=file] attached; this would\n typically be an instance of com.zenesis.qx.upload.UploadButton (see\n com.zenesis.qx.upload.MUploadButton for implementing for other widgets)</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3767
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 5755
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a widget",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to remvove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to remvove",
+            "paramName": "widget",
+            "description": " Widget to remvove",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 5868
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addBlob": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a blob to the upload list",
+          "     *",
+          "     * @param blob    {Blob}    the blob to upload",
+          "     * @param params  {Object}  List of params added to the upload params",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a blob to the upload list</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "blob    {Blob}    the blob to upload",
+            "paramName": "blob",
+            "description": "    the blob to upload",
+            "type": "Blob"
+          },
+          {
+            "name": "@param",
+            "body": "params  {Object}  List of params added to the upload params",
+            "paramName": "params",
+            "description": "  List of params added to the upload params",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 6361
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 6535
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "blob",
+          "type": "Blob"
+        },
+        {
+          "name": "params",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__fixupSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method that corrects the size of the input element to match the",
+          "     * size of the widget",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to fixup size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method that corrects the size of the input element to match the\n size of the widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} Widget to fixup size",
+            "paramName": "widget",
+            "description": " Widget to fixup size",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4,
+          "index": 6731
+        },
+        "end": {
+          "line": 263,
+          "column": 5,
+          "index": 7252
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyAutoUpload": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 7281
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 7368
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMultiple": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 7397
+        },
+        "end": {
+          "line": 276,
+          "column": 5,
+          "index": 7603
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDirectory": {
+      "jsdoc": {
+        "raw": [
+          " property directory"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4,
+          "index": 7636
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 7844
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRequireMultipartFormData": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4,
+          "index": 7873
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 8135
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "cancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancels a file being uploaded",
+          "     *",
+          "     * @param file {String} Upload to cancel",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels a file being uploaded</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {String} Upload to cancel",
+            "paramName": "file",
+            "description": " Upload to cancel",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4,
+          "index": 8247
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 8311
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "cancelAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancels all files being uploaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels all files being uploaded</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 8374
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8436
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createInputElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the input[type=file] element",
+          "     *",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the input[type=file] element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 8526
+        },
+        "end": {
+          "line": 330,
+          "column": 5,
+          "index": 8998
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "_removeInputElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the input element - ie discards the current one (which presumably",
+          "     * has already been queued for uploading)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the input element - ie discards the current one (which presumably\n has already been queued for uploading)</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4,
+          "index": 9148
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 9399
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_resetInputElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the input element - ie discards the current one (which presumably",
+          "     * has already been queued for uploading) and creates a new one",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the input element - ie discards the current one (which presumably\n has already been queued for uploading) and creates a new one</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4,
+          "index": 9570
+        },
+        "end": {
+          "line": 352,
+          "column": 5,
+          "index": 9754
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onInputChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback for changes to the input[ty=file]'s value, ie this is called",
+          "     * when the user has selected a file to upload",
+          "     *",
+          "     * @param elem {Element} Element which is affected",
+          "     * @param evt {Event} Event data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback for changes to the input[ty=file]'s value, ie this is called\n when the user has selected a file to upload</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} Element which is affected",
+            "paramName": "elem",
+            "description": " Element which is affected",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "evt {Event} Event data",
+            "paramName": "evt",
+            "description": " Event data",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 361,
+          "column": 4,
+          "index": 10004
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 10255
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "evt",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getUploadHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the upload handler",
+          "     *",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the upload handler</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4,
+          "index": 10335
+        },
+        "end": {
+          "line": 385,
+          "column": 5,
+          "index": 10734
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "setUploadHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the upload handler",
+          "     *",
+          "     * @param elem {AbstractHandler} The upload handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the upload handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {AbstractHandler} The upload handler",
+            "paramName": "elem",
+            "description": " The upload handler",
+            "type": "com.zenesis.qx.upload.AbstractHandler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 10851
+        },
+        "end": {
+          "line": 394,
+          "column": 5,
+          "index": 10922
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handler"
+        }
+      ],
+      "appearsIn": []
+    },
+    "allocateUploadId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allocates a new upload ID; this is just a unique number that widgets or",
+          "     * application code can use to uniquely identify themselves to the server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allocates a new upload ID; this is just a unique number that widgets or\n application code can use to uniquely identify themselves to the server</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 400,
+          "column": 4,
+          "index": 11102
+        },
+        "end": {
+          "line": 402,
+          "column": 5,
+          "index": 11174
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__params": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 913
+        },
+        "end": {
+          "line": 30,
+          "column": 18,
+          "index": 927
+        }
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MParameters"
+    },
+    "setParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a parameter value to be sent with the file",
+          "     *",
+          "     * @param name",
+          "     *          {String} name of the parameter",
+          "     * @param value",
+          "     *          {String} the value of the parameter, or null to delete a",
+          "     *          previous parameter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name\n          {String} name of the parameter",
+            "paramName": "name",
+            "description": " name of the parameter",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value\n          {String} the value of the parameter, or null to delete a\n          previous parameter",
+            "paramName": "value",
+            "description": " the value of the parameter, or null to delete a\n          previous parameter",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1206
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1390
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MParameters"
+    },
+    "getParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a parameter value to be sent with the file",
+          "     *",
+          "     * @param name {String} Name of the parameter",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the parameter",
+            "paramName": "name",
+            "description": " Name of the parameter",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1627
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MParameters"
+    },
+    "getParamNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of parameter names",
+          "     *",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of parameter names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1722
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1865
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MParameters"
+    }
+  },
+  "statics": {}
+}

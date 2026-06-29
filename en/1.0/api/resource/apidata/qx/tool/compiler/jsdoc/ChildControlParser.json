@@ -1,0 +1,85 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601456,
+  "lastModifiedIso": "2026-06-29T04:00:01.456Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/ChildControlParser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 743
+    },
+    "end": {
+      "line": 46,
+      "column": 3,
+      "index": 1340
+    }
+  },
+  "className": "qx.tool.compiler.jsdoc.ChildControlParser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Parser for JSDoc \"@param\"",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Parser for JSDoc \"@param\"</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.jsdoc.CommandParser",
+  "members": {
+    "parseCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 905
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1332
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pdoc"
+        },
+        {
+          "name": "typeResolver"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.jsdoc.CommandParser",
+      "appearsIn": [
+        "qx.tool.compiler.jsdoc.CommandParser"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

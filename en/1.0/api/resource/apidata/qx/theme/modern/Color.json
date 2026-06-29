@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601528,
+  "lastModifiedIso": "2026-06-29T04:00:01.528Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/modern/Color.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 613
+    },
+    "end": {
+      "line": 283,
+      "column": 3,
+      "index": 7927
+    }
+  },
+  "className": "qx.theme.modern.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Modern color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Modern color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

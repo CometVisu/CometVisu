@@ -1,0 +1,222 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602999,
+  "lastModifiedIso": "2026-06-29T04:00:02.999Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Pinch.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 592
+    },
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 1842
+    }
+  },
+  "className": "qx.module.event.Pinch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the pinch gesture.",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the pinch gesture.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
+  "statics": {
+    "TYPES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 716
+        },
+        "end": {
+          "line": 31,
+          "column": 20,
+          "index": 732
+        }
+      },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 739
+        },
+        "end": {
+          "line": 33,
+          "column": 30,
+          "index": 765
+        }
+      },
+      "appearsIn": []
+    },
+    "getScale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the calculated scale of this event.",
+          "     *",
+          "     * @return {Float} the scale value of this event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the calculated scale of this event.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Float} the scale value of this event.",
+            "type": "Float",
+            "description": "the scale value of this event."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 900
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 953
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Float"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": "Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1265
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1704
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

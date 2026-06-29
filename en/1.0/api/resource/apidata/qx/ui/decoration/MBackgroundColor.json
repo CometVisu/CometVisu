@@ -1,0 +1,139 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602724,
+  "lastModifiedIso": "2026-06-29T04:00:02.724Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MBackgroundColor.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 631
+    },
+    "end": {
+      "line": 60,
+      "column": 3,
+      "index": 1584
+    }
+  },
+  "className": "qx.ui.decoration.MBackgroundColor",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin responsible for setting the background color of a widget.",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin responsible for setting the background color of a widget.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.</p>"
+      }
+    ]
+  },
+  "properties": {
+    "backgroundColor": {
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 741
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 846
+        }
+      },
+      "json": {
+        "check": "Color",
+        "nullable": true,
+        "apply": "_applyBackgroundColor"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Color of the background "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Color of the background</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_styleBackgroundColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the background-color styles to the given map",
+          "     * @param styles {Map} CSS style map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the background-color styles to the given map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} CSS style map",
+            "paramName": "styles",
+            "description": " CSS style map",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 984
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1286
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBackgroundColor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1315
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1576
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

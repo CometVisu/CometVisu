@@ -1,0 +1,330 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602319,
+  "lastModifiedIso": "2026-06-29T04:00:02.319Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Iframe.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 571
+    },
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 3114
+    }
+  },
+  "className": "qx.event.handler.Iframe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This handler provides a \"load\" event for iframes",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This handler provides a \"load\" event for iframes</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler"
+  ],
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 933
+        },
+        "end": {
+          "line": 35,
+          "column": 51,
+          "index": 980
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1032
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1089
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1149
+        },
+        "end": {
+          "line": 44,
+          "column": 55,
+          "index": 1200
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1285
+        },
+        "end": {
+          "line": 47,
+          "column": 28,
+          "index": 1309
+        }
+      },
+      "appearsIn": []
+    },
+    "onevent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function called by iframes created using {@link qx.bom.Iframe}.",
+          "     *",
+          "     * @signature function(target)",
+          "     * @internal",
+          "     * @param target {Element} DOM element which is the target of this event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function called by iframes created using {@link qx.bom.Iframe}.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target)"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} DOM element which is the target of this event",
+            "paramName": "target",
+            "description": " DOM element which is the target of this event",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1548
+        },
+        "end": {
+          "line": 73,
+          "column": 6,
+          "index": 2069
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2514
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2606
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2645
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2728
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2767
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    }
+  },
+  "properties": {}
+}

@@ -1,0 +1,1826 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603263,
+  "lastModifiedIso": "2026-06-29T04:00:03.263Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tabview/TabView.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 1258
+    },
+    "end": {
+      "line": 656,
+      "column": 3,
+      "index": 17918
+    }
+  },
+  "className": "qx.ui.tabview.TabView",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A tab view is a multi page view where only one page is visible",
+      " * at each moment. It is possible to switch the pages using the",
+      " * buttons rendered by each page.",
+      " *",
+      " * Note that prior to v6.0, when changing the currently selected tab via code",
+      " * (ie changing the selection property) TabView would automatically set the",
+      " * focus to that tab; this is undesirable (and inconsistent with other parts",
+      " * of the framework) and is no longer done automatically.",
+      " *",
+      " * @childControl bar {qx.ui.container.SlideBar} slidebar for all tab buttons",
+      " * @childControl pane {qx.ui.container.Stack} stack container to show one tab page",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A tab view is a multi page view where only one page is visible\n at each moment. It is possible to switch the pages using the\n buttons rendered by each page.\n Note that prior to v6.0, when changing the currently selected tab via code\n (ie changing the selection property) TabView would automatically set the\n focus to that tab; this is undesirable (and inconsistent with other parts\n of the framework) and is no longer done automatically.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "bar {qx.ui.container.SlideBar} slidebar for all tab buttons"
+      },
+      {
+        "name": "@childControl",
+        "body": "pane {qx.ui.container.Stack} stack container to show one tab page"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.core.ISingleSelection"
+  ],
+  "mixins": [
+    "qx.ui.core.MContentPadding"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "barPosition"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 50,
+        "column": 2,
+        "index": 1693
+      },
+      "end": {
+        "line": 77,
+        "column": 3,
+        "index": 2368
+      }
+    }
+  },
+  "events": {
+    "changeSelection": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fires after the selection was modified "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the selection was modified</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2620
+        },
+        "end": {
+          "line": 87,
+          "column": 41,
+          "index": 2657
+        }
+      }
+    },
+    "changeValue": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fires after the value was modified "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires after the value was modified</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2710
+        },
+        "end": {
+          "line": 90,
+          "column": 37,
+          "index": 2743
+        }
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2975
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3036
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "tabview"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "barPosition": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3147
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3268
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "right",
+          "top",
+          "bottom"
+        ],
+        "init": "top",
+        "apply": "_applyBarPosition"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This property defines on which side of the TabView the bar should be positioned.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This property defines on which side of the TabView the bar should be positioned.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "contentPaddingTop": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1146
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1270
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Top padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingRight": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1322
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1448
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Right padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingBottom": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Bottom padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingLeft": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1679
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1804
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Left padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPadding": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2270
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2486
+        }
+      },
+      "json": {
+        "group": [
+          "contentPaddingTop",
+          "contentPaddingRight",
+          "contentPaddingBottom",
+          "contentPaddingLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',",
+          "     * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'",
+          "     * at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',\n 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'\n at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    }
+  },
+  "members": {
+    "__radioGroup": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.form.RadioGroup} instance containing the radio group "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.form.RadioGroup} instance containing the radio group"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3553
+        },
+        "end": {
+          "line": 124,
+          "column": 22,
+          "index": 3571
+        }
+      },
+      "appearsIn": []
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param item {null|qx.ui.tabview.Page} Page to set as selected value.",
+          "     * @returns {null|TypeError} The status of this operation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {null|qx.ui.tabview.Page} Page to set as selected value.",
+            "paramName": "item",
+            "description": " Page to set as selected value.",
+            "type": [
+              "null",
+              "qx.ui.tabview.Page"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|TypeError} The status of this operation.",
+            "type": "null|TypeError",
+            "description": "The status of this operation."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3816
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4160
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": [
+            "null",
+            "qx.ui.tabview.Page"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "null|TypeError"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @returns {null|qx.ui.tabview.Page} The currently selected page or null if there is none.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|qx.ui.tabview.Page} The currently selected page or null if there is none.",
+            "type": "null|qx.ui.tabview.Page",
+            "description": "The currently selected page or null if there is none."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4362
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null|qx.ui.tabview.Page"
+      },
+      "appearsIn": []
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4615
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4664
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4881
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5345
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createRadioGroupInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the radio group manager instance.",
+          "     *",
+          "     * Allows override customizations of the instance",
+          "     *",
+          "     * @return {qx.ui.form.RadioGroup}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the radio group manager instance.\n Allows override customizations of the instance</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.RadioGroup}",
+            "type": "qx.ui.form.RadioGroup",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5524
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 5601
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.RadioGroup"
+      },
+      "appearsIn": []
+    },
+    "_getContentPaddingTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the element, to which the content padding should be applied.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The content padding target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the element, to which the content padding should be applied.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The content padding target.",
+            "type": "qx.ui.core.Widget",
+            "description": "The content padding target."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 5770
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 5847
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a page to the tabview including its needed button",
+          "     * (contained in the page).",
+          "     *",
+          "     * @param page {qx.ui.tabview.Page} The page which should be added.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a page to the tabview including its needed button\n (contained in the page).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qx.ui.tabview.Page} The page which should be added.",
+            "paramName": "page",
+            "description": " The page which should be added.",
+            "type": "qx.ui.tabview.Page"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6242
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 7081
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "qx.ui.tabview.Page"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a page to the tabview including its needed button",
+          "     * (contained in the page).",
+          "     *",
+          "     * @param page {qx.ui.tabview.Page} The page which should be added.",
+          "     * @param index {Integer?null} Optional position where to add the page.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a page to the tabview including its needed button\n (contained in the page).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qx.ui.tabview.Page} The page which should be added.",
+            "paramName": "page",
+            "description": " The page which should be added.",
+            "type": "qx.ui.tabview.Page"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer?null} Optional position where to add the page.",
+            "paramName": "index",
+            "description": " Optional position where to add the page.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 7353
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8492
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "qx.ui.tabview.Page"
+        },
+        {
+          "name": "index",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a page (and its corresponding button) from the TabView.",
+          "     *",
+          "     * @param page {qx.ui.tabview.Page} The page to be removed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a page (and its corresponding button) from the TabView.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qx.ui.tabview.Page} The page to be removed.",
+            "paramName": "page",
+            "description": " The page to be removed.",
+            "type": "qx.ui.tabview.Page"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 8657
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 9733
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "qx.ui.tabview.Page"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns TabView's children widgets.",
+          "     *",
+          "     * @return {qx.ui.tabview.Page[]} List of children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns TabView's children widgets.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.tabview.Page[]} List of children.",
+            "type": "qx.ui.tabview.Page[]",
+            "description": "List of children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 9862
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 9940
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.tabview.Page[]"
+      },
+      "appearsIn": []
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the position of the given page in the TabView.",
+          "     *",
+          "     * @param page {qx.ui.tabview.Page} The page to query for.",
+          "     * @return {Integer} Position of the page in the TabView.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the position of the given page in the TabView.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {qx.ui.tabview.Page} The page to query for.",
+            "paramName": "page",
+            "description": " The page to query for.",
+            "type": "qx.ui.tabview.Page"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Position of the page in the TabView.",
+            "type": "Integer",
+            "description": "Position of the page in the TabView."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4,
+          "index": 10157
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 10235
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "qx.ui.tabview.Page"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getRadioGroup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the radio group manager.",
+          "     *",
+          "     * @return {qx.ui.form.RadioGroup} the radio group.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the radio group manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.RadioGroup} the radio group.",
+            "type": "qx.ui.form.RadioGroup",
+            "description": "the radio group."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4,
+          "index": 10361
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 10416
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.RadioGroup"
+      },
+      "appearsIn": []
+    },
+    "__barPositionToState": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Maps the bar position to an appearance state "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps the bar position to an appearance state"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 10687
+        },
+        "end": {
+          "line": 392,
+          "column": 30,
+          "index": 10713
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyBarPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the placeBarOnTop-Property.",
+          "     *",
+          "     * Passes the desired value to the layout of the tabview so",
+          "     * that the layout can handle it.",
+          "     * It also sets the states to all buttons so they know the",
+          "     * position of the bar.",
+          "     *",
+          "     * @param value {Boolean} The new value.",
+          "     * @param old {Boolean} The old value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply method for the placeBarOnTop-Property.\n Passes the desired value to the layout of the tabview so\n that the layout can handle it.\n It also sets the states to all buttons so they know the\n position of the bar.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} The new value.",
+            "paramName": "value",
+            "description": " The new value.",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "old {Boolean} The old value.",
+            "paramName": "old",
+            "description": " The old value.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4,
+          "index": 11083
+        },
+        "end": {
+          "line": 454,
+          "column": 5,
+          "index": 12509
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "old",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.tabview.Page[]} List of items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of currently selected items.\n Note: The result is only a set of selected items, so the order can\n differ from the sequence in which the items were added.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.tabview.Page[]} List of items.",
+            "type": "qx.ui.tabview.Page[]",
+            "description": "List of items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4,
+          "index": 12984
+        },
+        "end": {
+          "line": 479,
+          "column": 5,
+          "index": 13216
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.tabview.Page[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "setSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.tabview.Page[]} Items to select.",
+          "     * @throws {Error} if one of the items is not a child element and if",
+          "     *    items contains more than one elements.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces current selection with the given items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.tabview.Page[]} Items to select.",
+            "paramName": "items",
+            "description": " Items to select.",
+            "type": "qx.ui.tabview.Page[]"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if one of the items is not a child element and if\n    items contains more than one elements.",
+            "type": "Error",
+            "description": " if one of the items is not a child element and if\n    items contains more than one elements."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 488,
+          "column": 4,
+          "index": 13484
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 13696
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.tabview.Page[]"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the whole selection at once.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 13762
+        },
+        "end": {
+          "line": 502,
+          "column": 5,
+          "index": 13828
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.tabview.Page} Any valid selectable item.",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if one of the items is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the given item is currently selected.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.tabview.Page} Any valid selectable item.",
+            "paramName": "item",
+            "description": " Any valid selectable item.",
+            "type": "qx.ui.tabview.Page"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the item is selected.",
+            "type": "boolean",
+            "description": "Whether the item is selected."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if one of the items is not a child element.",
+            "type": "Error",
+            "description": " if one of the items is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 511,
+          "column": 4,
+          "index": 14108
+        },
+        "end": {
+          "line": 514,
+          "column": 5,
+          "index": 14234
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.tabview.Page"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the selection is empty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the selection is empty.",
+            "type": "boolean",
+            "description": "Whether the selection is empty."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 521,
+          "column": 4,
+          "index": 14360
+        },
+        "end": {
+          "line": 523,
+          "column": 5,
+          "index": 14437
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @return {qx.ui.tabview.Page[]} The contained items.",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all elements which are selectable.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.tabview.Page[]} The contained items.",
+            "type": "qx.ui.tabview.Page[]",
+            "description": "The contained items."
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
+            "paramName": "all",
+            "description": " true for all selectables, false for the\n   selectables the user can interactively select",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4,
+          "index": 14699
+        },
+        "end": {
+          "line": 541,
+          "column": 5,
+          "index": 14941
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.tabview.Page[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "_onChangeSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for <code>changeSelection</code>.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for <code>changeSelection</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Data event.",
+            "paramName": "e",
+            "description": " Data event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 548,
+          "column": 4,
+          "index": 15075
+        },
+        "end": {
+          "line": 568,
+          "column": 5,
+          "index": 15622
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onBeforeChangeSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for <code>beforeChangeSelection</code>.",
+          "     *",
+          "     * @param e {qx.event.type.Event} Data event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for <code>beforeChangeSelection</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Data event.",
+            "paramName": "e",
+            "description": " Data event.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 575,
+          "column": 4,
+          "index": 15763
+        },
+        "end": {
+          "line": 585,
+          "column": 5,
+          "index": 15991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onRadioChangeSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the change of the selected item of the radio group.",
+          "     * @param e {qx.event.type.Data} The data event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the change of the selected item of the radio group.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The data event",
+            "paramName": "e",
+            "description": " The data event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 597,
+          "column": 4,
+          "index": 16340
+        },
+        "end": {
+          "line": 604,
+          "column": 5,
+          "index": 16543
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPageClose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the Page widget on which the close button was tapped.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the Page widget on which the close button was tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointer event",
+            "paramName": "e",
+            "description": " pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 611,
+          "column": 4,
+          "index": 16696
+        },
+        "end": {
+          "line": 619,
+          "column": 5,
+          "index": 17015
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onPageChangeTabVisibility": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 621,
+          "column": 4,
+          "index": 17022
+        },
+        "end": {
+          "line": 623,
+          "column": 5,
+          "index": 17100
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__updateFirstLastTabStates": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 625,
+          "column": 4,
+          "index": 17107
+        },
+        "end": {
+          "line": 643,
+          "column": 5,
+          "index": 17622
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__contentPaddingSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2915
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3125
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "__contentPaddingThemedSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the themed setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingThemedSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the themed setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingThemedSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3313
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3553
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "__contentPaddingResetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the resetter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingResetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the resetter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingResetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3732
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3952
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "_applyContentPadding": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3981
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 652,
+        "column": 2,
+        "index": 17818
+      },
+      "end": {
+        "line": 655,
+        "column": 3,
+        "index": 17914
+      }
+    }
+  },
+  "statics": {}
+}

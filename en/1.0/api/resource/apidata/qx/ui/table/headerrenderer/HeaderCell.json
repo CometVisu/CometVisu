@@ -1,0 +1,312 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602216,
+  "lastModifiedIso": "2026-06-29T04:00:02.216Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/headerrenderer/HeaderCell.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 721
+    },
+    "end": {
+      "line": 135,
+      "column": 3,
+      "index": 3131
+    }
+  },
+  "className": "qx.ui.table.headerrenderer.HeaderCell",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default header cell widget",
+      " *",
+      " * @childControl label {qx.ui.basic.Label} label of the header cell",
+      " * @childControl sort-icon {qx.ui.basic.Image} sort icon of the header cell",
+      " * @childControl icon {qx.ui.basic.Image} icon of the header cell",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default header cell widget</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "label {qx.ui.basic.Label} label of the header cell"
+      },
+      {
+        "name": "@childControl",
+        "body": "sort-icon {qx.ui.basic.Image} sort icon of the header cell"
+      },
+      {
+        "name": "@childControl",
+        "body": "icon {qx.ui.basic.Image} icon of the header cell"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 820
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1100
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1123
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1194
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "table-header-cell"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1230
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1334
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyLabel"
+      },
+      "jsdoc": {
+        "raw": [
+          "* header cell label "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>header cell label</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "sortIcon": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1390
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1523
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applySortIcon",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The icon URL of the sorting indicator "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The icon URL of the sorting indicator</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1550
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1652
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Icon URL "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Icon URL</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyLabel": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1698
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 1872
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySortIcon": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 1901
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2087
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIcon": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2116
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2288
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2313
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3123
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

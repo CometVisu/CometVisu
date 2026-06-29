@@ -1,0 +1,191 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543947,
+  "lastModifiedIso": "2026-06-29T03:59:03.947Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/PageLink.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 1064
+    },
+    "end": {
+      "line": 89,
+      "column": 3,
+      "index": 2511
+    }
+  },
+  "className": "cv.ui.structure.pure.PageLink",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * PageLink Widget for visible pages. Do not use this directly because the pagelink widget",
+      " * is automatically added when you use a page widget with parameter <code>visible=true</code>.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.10.0 (2017)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>PageLink Widget for visible pages. Do not use this directly because the pagelink widget\n is automatically added when you use a page widget with parameter <code>visible=true</code>.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0 (2017)"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1324
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1397
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "wstyle": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1457
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "address": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1464
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1518
+        }
+      },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "bindClickToWidget": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1525
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1588
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    }
+  },
+  "members": {
+    "getDomString": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1766
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2290
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget",
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2315
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2408
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    }
+  },
+  "statics": {}
+}

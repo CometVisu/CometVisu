@@ -1,0 +1,489 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603087,
+  "lastModifiedIso": "2026-06-29T04:00:03.087Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/Resetter.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 731
+    },
+    "end": {
+      "line": 171,
+      "column": 3,
+      "index": 4976
+    }
+  },
+  "className": "qx.ui.form.Resetter",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The resetter is responsible for managing a set of fields and resetting these",
+      " * fields on a {@link #reset} call. It can handle all form field implementing IField.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The resetter is responsible for managing a set of fields and resetting these\n fields on a {@link #reset} call. It can handle all form field implementing IField.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2,
+        "index": 801
+      },
+      "end": {
+        "line": 31,
+        "column": 3,
+        "index": 855
+      }
+    }
+  },
+  "members": {
+    "__items": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 875
+        },
+        "end": {
+          "line": 34,
+          "column": 17,
+          "index": 888
+        }
+      },
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adding a field to the resetter will get its current value and store",
+          "     * it for resetting.",
+          "     *",
+          "     * @param field {qx.ui.form.IField} The field which should be added.",
+          "     * @throws {TypeError} When given argument is not a field.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adding a field to the resetter will get its current value and store\n it for resetting.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "field {qx.ui.form.IField} The field which should be added.",
+            "paramName": "field",
+            "description": " The field which should be added.",
+            "type": "qx.ui.form.IField"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{TypeError} When given argument is not a field.",
+            "type": "TypeError",
+            "description": " When given argument is not a field."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1154
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1269
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "qx.ui.form.IField"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a field from the resetter.",
+          "     *",
+          "     * @param field {qx.ui.form.IField} The field which should be removed.",
+          "     * @throws {TypeError} When given argument is not a field.",
+          "     * @return {Boolean} <code>true</code>, if the field has been removed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a field from the resetter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "field {qx.ui.form.IField} The field which should be removed.",
+            "paramName": "field",
+            "description": " The field which should be removed.",
+            "type": "qx.ui.form.IField"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{TypeError} When given argument is not a field.",
+            "type": "TypeError",
+            "description": " When given argument is not a field."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the field has been removed.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the field has been removed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1841
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "qx.ui.form.IField"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "reset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets all added fields to their initial value. The initial value",
+          "     * is the value in the widget during the {@link #add}.",
+          "     *",
+          "     * @return {null|Error} Returns an error when some fields could not be reset.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets all added fields to their initial value. The initial value\n is the value in the widget during the {@link #add}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|Error} Returns an error when some fields could not be reset.",
+            "type": "null|Error",
+            "description": "Returns an error when some fields could not be reset."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2085
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2497
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null|Error"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "resetItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets a single given field. The field has to be added to the resetter",
+          "     * instance before. Otherwise, an error is thrown.",
+          "     *",
+          "     * @param field {qx.ui.form.IField} The field, which should be reset.",
+          "     * @throws {TypeError} When given argument is not a field.",
+          "     * @return {null|Error} Returns an error when the field value could not be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets a single given field. The field has to be added to the resetter\n instance before. Otherwise, an error is thrown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "field {qx.ui.form.IField} The field, which should be reset.",
+            "paramName": "field",
+            "description": " The field, which should be reset.",
+            "type": "qx.ui.form.IField"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{TypeError} When given argument is not a field.",
+            "type": "TypeError",
+            "description": " When given argument is not a field."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|Error} Returns an error when the field value could not be set.",
+            "type": "null|Error",
+            "description": "Returns an error when the field value could not be set."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2881
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3201
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "qx.ui.form.IField"
+        }
+      ],
+      "returnType": {
+        "type": "null|Error"
+      },
+      "appearsIn": []
+    },
+    "redefine": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the current values of all added fields and uses these values as",
+          "     * init values for resetting.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the current values of all added fields and uses these values as\n init values for resetting.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3335
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3585
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "redefineItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the current value of the given field and stores this value as init",
+          "     * value for resetting.",
+          "     *",
+          "     * @param field {qx.ui.form.IField} The field to redefine.",
+          "     * @throws {TypeError} When given argument is not a field.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the current value of the given field and stores this value as init\n value for resetting.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "field {qx.ui.form.IField} The field to redefine.",
+            "paramName": "field",
+            "description": " The field to redefine.",
+            "type": "qx.ui.form.IField"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{TypeError} When given argument is not a field.",
+            "type": "TypeError",
+            "description": " When given argument is not a field."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3849
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": "qx.ui.form.IField"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__typeCheck": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert when given argument is not a field.",
+          "     *",
+          "     * @param field {qx.ui.form.IField|var} Any argument that should be a field.",
+          "     * @throws {TypeError} When given argument is not a field.",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Assert when given argument is not a field.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "field {qx.ui.form.IField|var} Any argument that should be a field.",
+            "paramName": "field",
+            "description": " Any argument that should be a field.",
+            "type": [
+              "qx.ui.form.IField",
+              "var"
+            ]
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{TypeError} When given argument is not a field.",
+            "type": "TypeError",
+            "description": " When given argument is not a field."
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4489
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "field",
+          "type": [
+            "qx.ui.form.IField",
+            "var"
+          ]
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 167,
+        "column": 2,
+        "index": 4873
+      },
+      "end": {
+        "line": 170,
+        "column": 3,
+        "index": 4972
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

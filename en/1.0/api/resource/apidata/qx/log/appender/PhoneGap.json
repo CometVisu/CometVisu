@@ -1,0 +1,75 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602996,
+  "lastModifiedIso": "2026-06-29T04:00:02.996Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/PhoneGap.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1031
+    },
+    "end": {
+      "line": 87,
+      "column": 3,
+      "index": 2154
+    }
+  },
+  "className": "qx.log.appender.PhoneGap",
+  "jsdoc": {
+    "raw": [
+      " global debug "
+    ]
+  },
+  "statics": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Processes a single log entry",
+          "     * @param entry {Map} The entry to process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes a single log entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1703
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "entry",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

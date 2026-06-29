@@ -1,0 +1,787 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543940,
+  "lastModifiedIso": "2026-06-29T03:59:03.940Z",
+  "classFilename": "../../source/class/cv/ui/MHandleMessage.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 1009
+    },
+    "end": {
+      "line": 371,
+      "column": 3,
+      "index": 10731
+    }
+  },
+  "className": "cv.ui.MHandleMessage",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * MHandleMessage mixin provides a handleMessage method for most common use cases in message handling.",
+      " * Holds a list of messages",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>MHandleMessage mixin provides a handleMessage method for most common use cases in message handling.\n Holds a list of messages</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1193
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1372
+      }
+    }
+  },
+  "properties": {
+    "maxEntries": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1582
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1672
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 50,
+        "event": "_applyMaxEntries"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maximum allowed messages",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum allowed messages</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "counter": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1729
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1813
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "event": "changedCounter"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Current amount of messages",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current amount of messages</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "globalSeverity": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1876
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2008
+        }
+      },
+      "json": {
+        "check": [
+          "low",
+          "normal",
+          "high",
+          "urgent"
+        ],
+        "init": "normal",
+        "event": "changedGlobalSeverity"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Highest severity of the messages",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Highest severity of the messages</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "rootElementId": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2113
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2179
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * ID of the root element of this message handler (HTML attribute 'id' value)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "messageElementId": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2338
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2407
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pattern id the message elements IDs (suffix without is,",
+          "     * e.g. messages get mes_1, mes_2, ... mes_ is the messageElementId)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2414
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2475
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_messages": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2635
+        },
+        "end": {
+          "line": 103,
+          "column": 19,
+          "index": 2650
+        }
+      },
+      "appearsIn": []
+    },
+    "_severities": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2656
+        },
+        "end": {
+          "line": 104,
+          "column": 21,
+          "index": 2673
+        }
+      },
+      "appearsIn": []
+    },
+    "_idCounter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2679
+        },
+        "end": {
+          "line": 105,
+          "column": 17,
+          "index": 2692
+        }
+      },
+      "appearsIn": []
+    },
+    "getIdCounter": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2699
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2751
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSeverities": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2758
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2812
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "clearMessages": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2819
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 2963
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateHighestSeverity": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 2970
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3457
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSeverityColor": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3464
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3677
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "severity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMaxEntries": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3903
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle messages from {@link cv.core.notifications.Router}",
+          "     * @param message {Map}",
+          "     * @param config {Map?} optional configuration of this message for the handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle messages from {@link cv.core.notifications.Router}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {Map}",
+            "paramName": "message",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map?} optional configuration of this message for the handler",
+            "paramName": "config",
+            "description": " optional configuration of this message for the handler",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4102
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 6586
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMessageIdFromEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the message the tap event has been triggered on an returns",
+          "     * an array [messageId, action], where action can be one of \"delete\", \"action\".",
+          "     *",
+          "     * @param ev {Event}",
+          "     * @return {Array} [messageId, action]",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the message the tap event has been triggered on an returns\n an array [messageId, action], where action can be one of \"delete\", \"action\".</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} [messageId, action]",
+            "type": "Array<any>",
+            "description": "[messageId, action]"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6840
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 7695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_onListTap": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 7702
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 7968
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getTooltip": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 7975
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 8298
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delete all messages.",
+          "     *",
+          "     * @param force {Boolean} if false: only delete \"deletable\" messages, if true: delete all messages",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete all messages.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "force {Boolean} if false: only delete \"deletable\" messages, if true: delete all messages",
+            "paramName": "force",
+            "description": " if false: only delete \"deletable\" messages, if true: delete all messages",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 8459
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 8840
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMessage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 8847
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 8916
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMessages": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4,
+          "index": 8923
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 8973
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "deleteMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delete a message by index",
+          "     * @param index {Number}",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete a message by index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number}",
+            "paramName": "index",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4,
+          "index": 9083
+        },
+        "end": {
+          "line": 331,
+          "column": 5,
+          "index": 9562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "performAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4,
+          "index": 9569
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 10524
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId"
+        },
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 368,
+        "column": 2,
+        "index": 10672
+      },
+      "end": {
+        "line": 370,
+        "column": 3,
+        "index": 10727
+      }
+    }
+  },
+  "statics": {}
+}

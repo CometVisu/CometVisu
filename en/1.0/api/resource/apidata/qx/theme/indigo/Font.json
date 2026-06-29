@@ -1,0 +1,54 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602041,
+  "lastModifiedIso": "2026-06-29T04:00:02.041Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 786
+    },
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 1461
+    }
+  },
+  "className": "qx.theme.indigo.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo font theme.",
+      " *",
+      " * @usefont(JosefinSlab)",
+      " * @usefont(qx.theme.indigo.defaultFont)",
+      " * @usefont(qx.theme.monospace)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo font theme.</p>"
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "JosefinSlab"
+      },
+      {
+        "name": "@usefont",
+        "body": "qx.theme.indigo.defaultFont"
+      },
+      {
+        "name": "@usefont",
+        "body": "qx.theme.monospace"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

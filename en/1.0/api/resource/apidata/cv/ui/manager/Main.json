@@ -1,0 +1,1419 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/Main.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 960
+    },
+    "end": {
+      "line": 1254,
+      "column": 3,
+      "index": 42437
+    }
+  },
+  "className": "cv.ui.manager.Main",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Main class of the CometVisu file manager.",
+      " * @author Tobias Bräutigam",
+      " * @since 0.12.0",
+      " *",
+      " * @asset(manager/*)",
+      " * @ignore(sessionStorage)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Main class of the CometVisu file manager.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.12.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "manager/*"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "sessionStorage"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "mixins": [
+    "cv.ui.manager.control.MFileEventHandler"
+  ],
+  "interfaces": [
+    "cv.ui.manager.IActionHandler",
+    "cv.ui.manager.control.IFileEventHandler"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1317
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 2019
+      }
+    }
+  },
+  "statics": {
+    "ROOT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2161
+        },
+        "end": {
+          "line": 70,
+          "column": 14,
+          "index": 2171
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "openFiles": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2323
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2396
+        }
+      },
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "writeableFolder": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2506
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2610
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeWriteableFolder"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Current selected folder (if a file is selected its parent folder) is writeable.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current selected folder (if a file is selected its parent folder) is writeable.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "currentFolder": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2617
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2777
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_applyCurrentFolder",
+        "event": "changeCurrentFolder"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "currentSelection": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2784
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2953
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_applyCurrentSelection",
+        "event": "changeCurrentSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "deleteableSelection": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2960
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3072
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeDeleteableSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "renameableSelection": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3079
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3191
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRenameableSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "visible": {
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3198
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3315
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeVisible",
+        "apply": "_applyVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__previewFileIndex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3461
+        },
+        "end": {
+          "line": 133,
+          "column": 28,
+          "index": 3485
+        }
+      },
+      "appearsIn": []
+    },
+    "__root": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3491
+        },
+        "end": {
+          "line": 134,
+          "column": 16,
+          "index": 3503
+        }
+      },
+      "appearsIn": []
+    },
+    "_pane": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3509
+        },
+        "end": {
+          "line": 135,
+          "column": 15,
+          "index": 3520
+        }
+      },
+      "appearsIn": []
+    },
+    "_tree": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3526
+        },
+        "end": {
+          "line": 136,
+          "column": 15,
+          "index": 3537
+        }
+      },
+      "appearsIn": []
+    },
+    "_stack": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3543
+        },
+        "end": {
+          "line": 137,
+          "column": 16,
+          "index": 3555
+        }
+      },
+      "appearsIn": []
+    },
+    "_oldCommandGroup": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3561
+        },
+        "end": {
+          "line": 138,
+          "column": 26,
+          "index": 3583
+        }
+      },
+      "appearsIn": []
+    },
+    "_managerCommands": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3589
+        },
+        "end": {
+          "line": 139,
+          "column": 26,
+          "index": 3611
+        }
+      },
+      "appearsIn": []
+    },
+    "_mainContent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3617
+        },
+        "end": {
+          "line": 140,
+          "column": 22,
+          "index": 3635
+        }
+      },
+      "appearsIn": []
+    },
+    "_openFilesController": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3641
+        },
+        "end": {
+          "line": 141,
+          "column": 30,
+          "index": 3667
+        }
+      },
+      "appearsIn": []
+    },
+    "_hiddenConfigFakeFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3673
+        },
+        "end": {
+          "line": 142,
+          "column": 31,
+          "index": 3700
+        }
+      },
+      "appearsIn": []
+    },
+    "__actionDispatcher": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 143,
+          "column": 28,
+          "index": 3730
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyVisible": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3737
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4123
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkEnvironment": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4130
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 6444
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "canHandleAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 6451
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 7169
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "_doClose": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4,
+          "index": 7176
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 7500
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "handleAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7507
+        },
+        "end": {
+          "line": 371,
+          "column": 5,
+          "index": 11726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "_onBeforeUnload": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4,
+          "index": 11733
+        },
+        "end": {
+          "line": 382,
+          "column": 5,
+          "index": 12013
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "configureButton": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 12020
+        },
+        "end": {
+          "line": 384,
+          "column": 30,
+          "index": 12046
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "unConfigureButton": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4,
+          "index": 12052
+        },
+        "end": {
+          "line": 385,
+          "column": 32,
+          "index": 12080
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "_handleFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4,
+          "index": 12087
+        },
+        "end": {
+          "line": 409,
+          "column": 5,
+          "index": 12861
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.control.IFileEventHandler"
+      ]
+    },
+    "_initAuth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 4,
+          "index": 12868
+        },
+        "end": {
+          "line": 428,
+          "column": 5,
+          "index": 13545
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleUnauthorized": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 430,
+          "column": 4,
+          "index": 13552
+        },
+        "end": {
+          "line": 452,
+          "column": 5,
+          "index": 14620
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__findConfigFile": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4,
+          "index": 14627
+        },
+        "end": {
+          "line": 480,
+          "column": 5,
+          "index": 15350
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onManagerEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4,
+          "index": 15357
+        },
+        "end": {
+          "line": 506,
+          "column": 5,
+          "index": 16186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeTreeSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * open selected file in preview mode",
+          "     * @param ev",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>open selected file in preview mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev",
+            "paramName": "ev",
+            "type": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 513,
+          "column": 4,
+          "index": 16284
+        },
+        "end": {
+          "line": 533,
+          "column": 5,
+          "index": 16917
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__openSelectedFile": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 535,
+          "column": 4,
+          "index": 16924
+        },
+        "end": {
+          "line": 544,
+          "column": 5,
+          "index": 17199
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "mode"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCurrentFolder": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 546,
+          "column": 4,
+          "index": 17206
+        },
+        "end": {
+          "line": 555,
+          "column": 5,
+          "index": 17448
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCurrentSelection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 557,
+          "column": 4,
+          "index": 17455
+        },
+        "end": {
+          "line": 571,
+          "column": 5,
+          "index": 17849
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeFileSelection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 573,
+          "column": 4,
+          "index": 17856
+        },
+        "end": {
+          "line": 605,
+          "column": 5,
+          "index": 19361
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "openFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param file {cv.ui.manager.model.FileItem} the file to open",
+          "     * @param preview {Boolean} open the file in preview mode",
+          "     * @param handlerId {String} use this handler to open the file (classname as string)",
+          "     * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
+          "     * @param handlerOptions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {cv.ui.manager.model.FileItem} the file to open",
+            "paramName": "file",
+            "description": " the file to open",
+            "type": "cv.ui.manager.model.FileItem"
+          },
+          {
+            "name": "@param",
+            "body": "preview {Boolean} open the file in preview mode",
+            "paramName": "preview",
+            "description": " open the file in preview mode",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "handlerId {String} use this handler to open the file (classname as string)",
+            "paramName": "handlerId",
+            "description": " use this handler to open the file (classname as string)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
+            "paramName": "handlerType",
+            "description": " use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "handlerOptions",
+            "paramName": "handlerOptions",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 614,
+          "column": 4,
+          "index": 19767
+        },
+        "end": {
+          "line": 678,
+          "column": 5,
+          "index": 22140
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "cv.ui.manager.model.FileItem"
+        },
+        {
+          "name": "preview",
+          "type": "boolean"
+        },
+        {
+          "name": "handlerId",
+          "type": "string"
+        },
+        {
+          "name": "handlerType",
+          "type": "string"
+        },
+        {
+          "name": "handlerOptions"
+        }
+      ],
+      "appearsIn": []
+    },
+    "checkUnsavedChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens a confirm dialog on how to treat the unsaved changes in the file if it has been modified and not saved.",
+          "     * @param openFile {cv.ui.manager.model.OpenFile|cv.ui.manager.model.FileItem} file to check",
+          "     * @return {boolean} true if the confirm dialog has been shown",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens a confirm dialog on how to treat the unsaved changes in the file if it has been modified and not saved.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "openFile {cv.ui.manager.model.OpenFile|cv.ui.manager.model.FileItem} file to check",
+            "paramName": "openFile",
+            "description": " file to check",
+            "type": [
+              "cv.ui.manager.model.OpenFile",
+              "cv.ui.manager.model.FileItem"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} true if the confirm dialog has been shown",
+            "type": "boolean",
+            "description": "true if the confirm dialog has been shown"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 685,
+          "column": 4,
+          "index": 22444
+        },
+        "end": {
+          "line": 744,
+          "column": 5,
+          "index": 24443
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "openFile",
+          "type": [
+            "cv.ui.manager.model.OpenFile",
+            "cv.ui.manager.model.FileItem"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "closeFile": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 746,
+          "column": 4,
+          "index": 24450
+        },
+        "end": {
+          "line": 818,
+          "column": 5,
+          "index": 27172
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "openFile"
+        },
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
+    },
+    "closeCurrentFile": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 820,
+          "column": 4,
+          "index": 27179
+        },
+        "end": {
+          "line": 828,
+          "column": 5,
+          "index": 27434
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onCloseFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 830,
+          "column": 4,
+          "index": 27441
+        },
+        "end": {
+          "line": 832,
+          "column": 5,
+          "index": 27501
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getRoot": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 834,
+          "column": 4,
+          "index": 27508
+        },
+        "end": {
+          "line": 845,
+          "column": 5,
+          "index": 27886
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__initCommands": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 847,
+          "column": 4,
+          "index": 27893
+        },
+        "end": {
+          "line": 877,
+          "column": 5,
+          "index": 29443
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onDelete": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 879,
+          "column": 4,
+          "index": 29450
+        },
+        "end": {
+          "line": 884,
+          "column": 5,
+          "index": 29627
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeStackSelection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 886,
+          "column": 4,
+          "index": 29634
+        },
+        "end": {
+          "line": 902,
+          "column": 5,
+          "index": 30209
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getFileNamePrompt": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 904,
+          "column": 4,
+          "index": 30216
+        },
+        "end": {
+          "line": 916,
+          "column": 5,
+          "index": 30585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message"
+        },
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        },
+        {
+          "name": "value"
+        },
+        {
+          "name": "caption"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 918,
+          "column": 4,
+          "index": 30592
+        },
+        "end": {
+          "line": 1018,
+          "column": 5,
+          "index": 34104
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "folder"
+        },
+        {
+          "name": "handlerId"
+        },
+        {
+          "name": "suggestedName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__findDroppable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds next droppable parent of the given element. Maybe the element itself as well.",
+          "     *",
+          "     * Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.",
+          "     *",
+          "     * @param elem {Element} The element to query",
+          "     * @return {Element} The next parent element which is droppable. May also be <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds next droppable parent of the given element. Maybe the element itself as well.\n Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} The element to query",
+            "paramName": "elem",
+            "description": " The element to query",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The next parent element which is droppable. May also be <code>null</code>",
+            "type": "Element",
+            "description": "The next parent element which is droppable. May also be <code>null</code>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1028,
+          "column": 4,
+          "index": 34469
+        },
+        "end": {
+          "line": 1038,
+          "column": 5,
+          "index": 34693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "_draw": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1041,
+          "column": 4,
+          "index": 34718
+        },
+        "end": {
+          "line": 1194,
+          "column": 5,
+          "index": 40242
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_showAbout": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1196,
+          "column": 4,
+          "index": 40249
+        },
+        "end": {
+          "line": 1223,
+          "column": 5,
+          "index": 41514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_disableFileEvents": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 45,
+          "column": 29,
+          "index": 1644
+        }
+      },
+      "mixin": "cv.ui.manager.control.MFileEventHandler",
+      "appearsIn": [
+        "cv.ui.manager.control.MFileEventHandler"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1231,
+        "column": 2,
+        "index": 41648
+      },
+      "end": {
+        "line": 1253,
+        "column": 3,
+        "index": 42433
+      }
+    }
+  }
+}

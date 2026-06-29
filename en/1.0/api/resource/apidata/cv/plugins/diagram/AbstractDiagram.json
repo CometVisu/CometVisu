@@ -1,0 +1,1811 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543938,
+  "lastModifiedIso": "2026-06-29T03:59:03.938Z",
+  "classFilename": "../../source/class/cv/plugins/diagram/AbstractDiagram.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 66,
+      "column": 0,
+      "index": 3026
+    },
+    "end": {
+      "line": 959,
+      "column": 3,
+      "index": 29937
+    }
+  },
+  "className": "cv.plugins.diagram.AbstractDiagram",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This plugins integrates flot (diagrams in javascript) into the visualization.",
+      " * server-side data-storage is rrd or InfluxDB.",
+      " *",
+      " * short documentation",
+      " *",
+      " * <h4>widgets:</h4>",
+      " * <ul>",
+      " *   <li>diagram</li>",
+      " *   <li>diagram_info</li>",
+      " * </ul>",
+      " *",
+      " * <h4>attributes (per diagram):</h4>",
+      " * <ul>",
+      " *   <li>series:               optional, \"hour\", \"day\" (default), \"week\", \"month\", \"year\"</li>",
+      " *   <li>period:               optional, number of \"series\" to be shown</li>",
+      " *   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>",
+      " *   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>",
+      " *   <li>width, height:        optional, width and height of \"inline\"-diagram</li>",
+      " *   <li>previewlabels:        optional, show labels on \"inline\"-diagram</li>",
+      " *   <li>popup:                optional, make diagram clickable and open popup</li>",
+      " *   <li>legend:               optional, \"none\", \"both\", \"inline\", \"popup\" select display of legend</li>",
+      " *   <li>title:                optional, diagram title (overrides label-content)</li>",
+      " * </ul>",
+      " *",
+      " * <h4>attributes (per graph):</h4>",
+      " * <ul>",
+      " *   <li>style:                optional, \"lines\" (default), \"bars\", \"points\" select graph type</li>",
+      " *   <li>fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)</li>",
+      " *   <li>barWidth:             optional, width of bars (bar style graphs)</li>",
+      " *   <li>align:                optional, \"left\" (default), \"center\", \"right\" select qlignemnt of bars (bar style graphs)</li>",
+      " * </ul>",
+      " *",
+      " * @author Michael Hausl [michael at hausl dot com]",
+      " * @since 0.6.0",
+      " *",
+      " * @asset(plugins/diagram/influxfetch.php)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.touch.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.canvas.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.resize.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.time.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.axislabels.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.tooltip.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This plugins integrates flot (diagrams in javascript) into the visualization.\n server-side data-storage is rrd or InfluxDB.\n short documentation\n </p>\n<h4>widgets:</h4>\n<ul>\n   <li>diagram</li>\n   <li>diagram_info</li>\n </ul>\n<h4>attributes (per diagram):</h4>\n<ul>\n   <li>series:               optional, \"hour\", \"day\" (default), \"week\", \"month\", \"year\"</li>\n   <li>period:               optional, number of \"series\" to be shown</li>\n   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>\n   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>\n   <li>width, height:        optional, width and height of \"inline\"-diagram</li>\n   <li>previewlabels:        optional, show labels on \"inline\"-diagram</li>\n   <li>popup:                optional, make diagram clickable and open popup</li>\n   <li>legend:               optional, \"none\", \"both\", \"inline\", \"popup\" select display of legend</li>\n   <li>title:                optional, diagram title (overrides label-content)</li>\n </ul>\n<h4>attributes (per graph):</h4>\n<ul>\n   <li>style:                optional, \"lines\" (default), \"bars\", \"points\" select graph type</li>\n   <li>fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)</li>\n   <li>barWidth:             optional, width of bars (bar style graphs)</li>\n   <li>align:                optional, \"left\" (default), \"center\", \"right\" select qlignemnt of bars (bar style graphs)</li>\n </ul>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Michael Hausl [michael at hausl dot com]"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.6.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/influxfetch.php"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.touch.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.canvas.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.resize.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.time.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.axislabels.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.tooltip.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.navigate.min.js"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Operate",
+    "cv.ui.common.Refresh"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 76,
+        "column": 2,
+        "index": 3335
+      },
+      "end": {
+        "line": 79,
+        "column": 3,
+        "index": 3477
+      }
+    }
+  },
+  "statics": {
+    "cache": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 3633
+        },
+        "end": {
+          "line": 87,
+          "column": 13,
+          "index": 3642
+        }
+      },
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @param mappings",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "mappings",
+            "paramName": "mappings",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 4005
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4701
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        },
+        {
+          "name": "mappings"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 4708
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 5677
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDiagramElements": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 5684
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 8305
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xmlElement"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInfluxFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recursively walk through the elem to build filter sting",
+          "     * @param elem",
+          "     * @param type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Recursively walk through the elem to build filter sting</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem",
+            "paramName": "elem",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "type",
+            "paramName": "type",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 8429
+        },
+        "end": {
+          "line": 267,
+          "column": 5,
+          "index": 9366
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    },
+    "lookupTsCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the rrd or InfluxDB and put it's content in the cache.",
+          "     * @param ts",
+          "     * @param start",
+          "     * @param end",
+          "     * @param res",
+          "     * @param forceNowDatapoint",
+          "     * @param refresh {Number} time is seconds to refresh the data",
+          "     * @param force {Boolean} Update even when the cache is still valid",
+          "     * @param callback {Function} call when the data has arrived",
+          "     * @param callbackParameter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the rrd or InfluxDB and put it's content in the cache.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts",
+            "paramName": "ts",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "start",
+            "paramName": "start",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "end",
+            "paramName": "end",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "res",
+            "paramName": "res",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "forceNowDatapoint",
+            "paramName": "forceNowDatapoint",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "refresh {Number} time is seconds to refresh the data",
+            "paramName": "refresh",
+            "description": " time is seconds to refresh the data",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "force {Boolean} Update even when the cache is still valid",
+            "paramName": "force",
+            "description": " Update even when the cache is still valid",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} call when the data has arrived",
+            "paramName": "callback",
+            "description": " call when the data has arrived",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "callbackParameter",
+            "paramName": "callbackParameter",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 9796
+        },
+        "end": {
+          "line": 351,
+          "column": 5,
+          "index": 12603
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts"
+        },
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        },
+        {
+          "name": "res"
+        },
+        {
+          "name": "forceNowDatapoint"
+        },
+        {
+          "name": "refresh",
+          "type": "number"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "callbackParameter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSuccess": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 12610
+        },
+        "end": {
+          "line": 392,
+          "column": 5,
+          "index": 14355
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts"
+        },
+        {
+          "name": "key"
+        },
+        {
+          "name": "ev"
+        },
+        {
+          "name": "forceNowDatapoint"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onStatusError": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 394,
+          "column": 4,
+          "index": 14362
+        },
+        "end": {
+          "line": 422,
+          "column": 5,
+          "index": 15512
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts"
+        },
+        {
+          "name": "key"
+        },
+        {
+          "name": "ev"
+        },
+        {
+          "name": "additionalErrorMessage"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__forceImgReload": {
+      "jsdoc": {
+        "raw": [
+          " based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7041
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "properties": {
+    "content": {
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 15678
+        },
+        "end": {
+          "line": 434,
+          "column": 5,
+          "index": 15732
+        }
+      },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "title": {
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4,
+          "index": 15739
+        },
+        "end": {
+          "line": 440,
+          "column": 5,
+          "index": 15825
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyTitle"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "series": {
+      "location": {
+        "start": {
+          "line": 442,
+          "column": 4,
+          "index": 15832
+        },
+        "end": {
+          "line": 445,
+          "column": 5,
+          "index": 15941
+        }
+      },
+      "json": {
+        "check": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year",
+          "fullday",
+          "custom"
+        ],
+        "init": "day"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesStart": {
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 15948
+        },
+        "end": {
+          "line": 450,
+          "column": 5,
+          "index": 16015
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "end-month"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesEnd": {
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4,
+          "index": 16022
+        },
+        "end": {
+          "line": 455,
+          "column": 5,
+          "index": 16081
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "now"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesResolution": {
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 4,
+          "index": 16088
+        },
+        "end": {
+          "line": 460,
+          "column": 5,
+          "index": 16152
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 300
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "forceNowDatapoint": {
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4,
+          "index": 16159
+        },
+        "end": {
+          "line": 465,
+          "column": 5,
+          "index": 16226
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "period": {
+      "location": {
+        "start": {
+          "line": 467,
+          "column": 4,
+          "index": 16233
+        },
+        "end": {
+          "line": 470,
+          "column": 5,
+          "index": 16285
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendInline": {
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4,
+          "index": 16292
+        },
+        "end": {
+          "line": 475,
+          "column": 5,
+          "index": 16354
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendPopup": {
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4,
+          "index": 16361
+        },
+        "end": {
+          "line": 480,
+          "column": 5,
+          "index": 16422
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendposition": {
+      "location": {
+        "start": {
+          "line": 482,
+          "column": 4,
+          "index": 16429
+        },
+        "end": {
+          "line": 485,
+          "column": 5,
+          "index": 16508
+        }
+      },
+      "json": {
+        "check": [
+          "nw",
+          "ne",
+          "sw",
+          "se"
+        ],
+        "init": "ne"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "timeformat": {
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4,
+          "index": 16515
+        },
+        "end": {
+          "line": 490,
+          "column": 5,
+          "index": 16578
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "timeformatTooltip": {
+      "location": {
+        "start": {
+          "line": 492,
+          "column": 4,
+          "index": 16585
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 16663
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "%d.%m.%Y %H:%M"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "zoomYAxis": {
+      "location": {
+        "start": {
+          "line": 497,
+          "column": 4,
+          "index": 16670
+        },
+        "end": {
+          "line": 500,
+          "column": 5,
+          "index": 16730
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "gridcolor": {
+      "location": {
+        "start": {
+          "line": 502,
+          "column": 4,
+          "index": 16737
+        },
+        "end": {
+          "line": 505,
+          "column": 5,
+          "index": 16800
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "#81664B"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "previewlabels": {
+      "location": {
+        "start": {
+          "line": 507,
+          "column": 4,
+          "index": 16807
+        },
+        "end": {
+          "line": 510,
+          "column": 5,
+          "index": 16871
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "popup": {
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4,
+          "index": 16878
+        },
+        "end": {
+          "line": 515,
+          "column": 5,
+          "index": 16934
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "tooltip": {
+      "location": {
+        "start": {
+          "line": 517,
+          "column": 4,
+          "index": 16941
+        },
+        "end": {
+          "line": 520,
+          "column": 5,
+          "index": 16999
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1550
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1603
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "cachecontrol": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1673
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "full"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "restartOnVisible": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1680
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1786
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyRestartOnVisible"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "members": {
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4,
+          "index": 17159
+        },
+        "end": {
+          "line": 529,
+          "column": 16,
+          "index": 17171
+        }
+      },
+      "appearsIn": []
+    },
+    "popupplot": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 530,
+          "column": 4,
+          "index": 17177
+        },
+        "end": {
+          "line": 530,
+          "column": 19,
+          "index": 17192
+        }
+      },
+      "appearsIn": []
+    },
+    "plot": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 17198
+        },
+        "end": {
+          "line": 531,
+          "column": 14,
+          "index": 17208
+        }
+      },
+      "appearsIn": []
+    },
+    "plotted": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4,
+          "index": 17214
+        },
+        "end": {
+          "line": 532,
+          "column": 17,
+          "index": 17227
+        }
+      },
+      "appearsIn": []
+    },
+    "_timerPopup": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 533,
+          "column": 4,
+          "index": 17233
+        },
+        "end": {
+          "line": 533,
+          "column": 21,
+          "index": 17250
+        }
+      },
+      "appearsIn": []
+    },
+    "__isPopup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 534,
+          "column": 4,
+          "index": 17256
+        },
+        "end": {
+          "line": 534,
+          "column": 20,
+          "index": 17272
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyTitle": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 537,
+          "column": 4,
+          "index": 17301
+        },
+        "end": {
+          "line": 542,
+          "column": 5,
+          "index": 17445
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setupRefreshAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 544,
+          "column": 4,
+          "index": 17452
+        },
+        "end": {
+          "line": 560,
+          "column": 5,
+          "index": 17995
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the refresh timer",
+          "     *",
+          "     * @param timer {qx.event.Timer} stop this timer",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the refresh timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "timer {qx.event.Timer} stop this timer",
+            "paramName": "timer",
+            "description": " stop this timer",
+            "type": "qx.event.Timer"
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 18126
+        },
+        "end": {
+          "line": 572,
+          "column": 5,
+          "index": 18223
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "timer",
+          "type": "qx.event.Timer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_startRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the refresh timer",
+          "     *",
+          "     * @param timer {qx.event.Timer} start this timer",
+          "     * @param runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the refresh timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "timer {qx.event.Timer} start this timer",
+            "paramName": "timer",
+            "description": " start this timer",
+            "type": "qx.event.Timer"
+          },
+          {
+            "name": "@param",
+            "body": "runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now",
+            "paramName": "runImmediately",
+            "description": " fire the timers 'interval' event immediately to trigger an refresh right now",
+            "type": "boolean"
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 581,
+          "column": 4,
+          "index": 18472
+        },
+        "end": {
+          "line": 590,
+          "column": 5,
+          "index": 18700
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "timer",
+          "type": "qx.event.Timer"
+        },
+        {
+          "name": "runImmediately",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_action": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 592,
+          "column": 4,
+          "index": 18707
+        },
+        "end": {
+          "line": 638,
+          "column": 5,
+          "index": 20145
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "initDiagram": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 640,
+          "column": 4,
+          "index": 20152
+        },
+        "end": {
+          "line": 798,
+          "column": 5,
+          "index": 24938
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isPopup"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSeriesSettings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 800,
+          "column": 4,
+          "index": 24945
+        },
+        "end": {
+          "line": 837,
+          "column": 5,
+          "index": 26247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xAxis"
+        },
+        {
+          "name": "isInteractive"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadDiagramData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 839,
+          "column": 4,
+          "index": 26254
+        },
+        "end": {
+          "line": 928,
+          "column": 5,
+          "index": 29073
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "plot"
+        },
+        {
+          "name": "isInteractive"
+        },
+        {
+          "name": "forceReload"
+        }
+      ],
+      "appearsIn": []
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Action performed when the widget got clicked, sends data to the backend",
+          "     *",
+          "     * @param event {Event} tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Action performed when the widget got clicked, sends data to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} tap event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "downaction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles pointerdown events",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles pointerdown events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1778
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "sendToBackend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given value to all writeable addresses known to this widget",
+          "     *",
+          "     * @param value {any} value to send",
+          "     * @param filter {Function} optional filter function for addresses",
+          "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
+          "     *          that were sent on the bus. When the encoding of the new value",
+          "     *          to send is equal to the currentBusValues a transmission will",
+          "     *          be suppressed. The object is a hash with the encoding as a key",
+          "     *          for the encoded value",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given value to all writeable addresses known to this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {any} value to send"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function} optional filter function for addresses"
+          },
+          {
+            "name": "@param",
+            "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the object/hash of encoded values that were sent last time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2603
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "filter"
+        },
+        {
+          "name": "currentBusValues"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate"
+      ]
+    },
+    "_timer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 74,
+          "column": 16,
+          "index": 1960
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__timerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1966
+        },
+        "end": {
+          "line": 75,
+          "column": 19,
+          "index": 1981
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__setup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 2001
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__lastRun": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2007
+        },
+        "end": {
+          "line": 77,
+          "column": 19,
+          "index": 2022
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 78,
+          "column": 24,
+          "index": 2048
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartOnVisible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 79,
+          "column": 29,
+          "index": 2079
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_applyRestartOnVisible": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2086
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_maintainTimerState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the while invisible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the while invisible</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3528
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "setupRefreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3535
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "refreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4897
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 936,
+        "column": 2,
+        "index": 29221
+      },
+      "end": {
+        "line": 940,
+        "column": 3,
+        "index": 29314
+      }
+    }
+  }
+}

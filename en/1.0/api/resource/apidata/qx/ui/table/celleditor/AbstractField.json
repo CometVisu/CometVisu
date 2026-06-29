@@ -1,0 +1,180 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600876,
+  "lastModifiedIso": "2026-06-29T04:00:00.876Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/AbstractField.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 582
+    },
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2185
+    }
+  },
+  "className": "qx.ui.table.celleditor.AbstractField",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An abstract cell editor factory creating text/password/spinner/... fields.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An abstract cell editor factory creating text/password/spinner/… fields.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.ICellEditorFactory"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "properties": {
+    "validationFunction": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 958
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1049
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * function that validates the result",
+          "     * the function will be called with the new value and the old value and is",
+          "     * supposed to return the value that is set as the table value.",
+          "     *"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>function that validates the result\n the function will be called with the new value and the old value and is\n supposed to return the value that is set as the table value.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_createEditor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory to create the editor widget",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The editor widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory to create the editor widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The editor widget",
+            "type": "qx.ui.core.Widget",
+            "description": "The editor widget"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1192
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1263
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "createCellEditor": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1302
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1711
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    },
+    "getCellEditorValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1750
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2177
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellEditor"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    }
+  },
+  "statics": {}
+}

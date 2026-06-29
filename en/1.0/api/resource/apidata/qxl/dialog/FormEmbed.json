@@ -1,0 +1,1020 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/FormEmbed.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 630
+    },
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 999
+    }
+  },
+  "className": "qxl.dialog.FormEmbed",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A dialog with a form that is constructed on-the-fly",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A dialog with a form that is constructed on-the-fly</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.DialogEmbed",
+  "mixins": [
+    "qxl.dialog.MForm"
+  ],
+  "members": {
+    "_createOkButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create OK Button",
+          "     * unlike our superclass, we do not add an appear listener to focus OK",
+          "     * @override",
+          "     * @return {qx.ui.form.Button}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create OK Button\n unlike our superclass, we do not add an appear listener to focus OK</p>"
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Button}",
+            "type": "qx.ui.form.Button",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 922
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 989
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.Button"
+      },
+      "overriddenFrom": "qxl.dialog.DialogEmbed",
+      "appearsIn": [
+        "qxl.dialog.DialogEmbed",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_formContainer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4,
+          "index": 9245
+        },
+        "end": {
+          "line": 301,
+          "column": 24,
+          "index": 9265
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_form": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 9271
+        },
+        "end": {
+          "line": 302,
+          "column": 15,
+          "index": 9282
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_formValidator": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 4,
+          "index": 9288
+        },
+        "end": {
+          "line": 303,
+          "column": 24,
+          "index": 9308
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_formController": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 9314
+        },
+        "end": {
+          "line": 304,
+          "column": 25,
+          "index": 9335
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_formElements": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 9341
+        },
+        "end": {
+          "line": 305,
+          "column": 23,
+          "index": 9360
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 9367
+        },
+        "end": {
+          "line": 330,
+          "column": 5,
+          "index": 10509
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "getForm": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the form",
+          "     * @return {qx.ui.form.Form}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the form</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Form}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4,
+          "index": 10588
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 10630
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     * @param properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4,
+          "index": 10723
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 12922
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "properties"
+        }
+      ],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm",
+        "qxl.dialog.DialogEmbed",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_applyFormData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Constructs the form on-the-fly",
+          "     * @param formData {Map} The form data map",
+          "     * @param old {Map|null} The old value",
+          "     * @lint ignoreDeprecated(alert,eval)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Constructs the form on-the-fly</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "formData {Map} The form data map"
+          },
+          {
+            "name": "@param",
+            "body": "old {Map|null} The old value"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(alert,eval)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 4,
+          "index": 13115
+        },
+        "end": {
+          "line": 726,
+          "column": 5,
+          "index": 23464
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "formData"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_applyLabelColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Constructs the form on-the-fly",
+          "     * @param width",
+          "     * @param old {Map|null} The old value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Constructs the form on-the-fly</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width"
+          },
+          {
+            "name": "@param",
+            "body": "old {Map|null} The old value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 733,
+          "column": 4,
+          "index": 23588
+        },
+        "end": {
+          "line": 746,
+          "column": 5,
+          "index": 24047
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_onFormReady": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hook for subclasses to do something with the form, for example",
+          "     * in order to attach bindings to the validation manager.",
+          "     * Default behavior: bind the enabled state of the \"OK\" button to the",
+          "     * validity of the current form.",
+          "     * @param form {qx.ui.form.Form} The form to bind",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hook for subclasses to do something with the form, for example\n in order to attach bindings to the validation manager.\n Default behavior: bind the enabled state of the \"OK\" button to the\n validity of the current form.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "form {qx.ui.form.Form} The form to bind"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 755,
+          "column": 4,
+          "index": 24367
+        },
+        "end": {
+          "line": 761,
+          "column": 5,
+          "index": 24551
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "form"
+        }
+      ],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_handleOk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on ok button. Calls callback with the result map",
+          "     * @override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on ok button. Calls callback with the result map</p>"
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 767,
+          "column": 4,
+          "index": 24660
+        },
+        "end": {
+          "line": 777,
+          "column": 5,
+          "index": 24928
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm",
+        "qxl.dialog.DialogEmbed",
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "statics": {
+    "registerFormElementHandlers": {
+      "jsdoc": {
+        "raw": [
+          " eslint-enable jsdoc/check-param-names "
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 8204
+        },
+        "end": {
+          "line": 279,
+          "column": 5,
+          "index": 8479
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fieldType"
+        },
+        {
+          "name": "handlers"
+        }
+      ],
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_registeredFormElements": {
+      "jsdoc": {
+        "raw": [
+          "* Map of registered form element handlers, keyed by fieldType "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of registered form element handlers, keyed by fieldType</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 8557
+        },
+        "end": {
+          "line": 282,
+          "column": 31,
+          "index": 8584
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_internalFormElements": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 4,
+          "index": 8591
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 9220
+        }
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    }
+  },
+  "properties": {
+    "allowBrowserAutocomplete": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1042
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1117
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allow disabling autocomplete on all text and password fields",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allow disabling autocomplete on all text and password fields</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "formData": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2491
+        }
+      },
+      "json": {
+        "check": "Map",
+        "nullable": true,
+        "event": "changeFormData",
+        "apply": "_applyFormData"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Data to create a form with multiple fields.",
+          "     * So far implemented:",
+          "     *   TextField / TextArea",
+          "     *   ComboBox",
+          "     *   SelectBox",
+          "     *   RadioGroup",
+          "     *   CheckBox",
+          "     *   Spinner",
+          "     *   List",
+          "     *",
+          "     * <pre>",
+          "     * {",
+          "     *  \"username\" : {",
+          "     *     'type'  : \"TextField\",",
+          "     *     'label' : \"User Name\",",
+          "     *     'value' : \"\"",
+          "     *   },",
+          "     *   \"address\" : {",
+          "     *     'type'  : \"TextArea\",",
+          "     *     'label' : \"Address\",",
+          "     *     'lines' : 3",
+          "     *   },",
+          "     *   \"domain\" : {",
+          "     *     'type'  : \"SelectBox\",",
+          "     *     'label' : \"Domain\",",
+          "     *     'value' : 1,",
+          "     *     'options' : [",
+          "     *       { 'label' : \"Company\", 'value' : 0 },",
+          "     *       { 'label' : \"Home\",    'value' : 1 }",
+          "     *     ]",
+          "     *   },",
+          "     *   \"commands\" : {",
+          "     *    'type'  : \"ComboBox\",",
+          "     *     'label' : \"Shell command to execute\",",
+          "     *     'options' : [",
+          "     *       { 'label' : \"ln -s *\" },",
+          "     *       { 'label' : \"rm -Rf /\" }",
+          "     *     ]",
+          "     *   },",
+          "     *   \"quantity\" : {",
+          "     *    'type' : \"Spinner\",",
+          "     *    'label' : \"How many?\",",
+          "     *    'properties' : {",
+          "     *      'minimum' : 1,",
+          "     *      'maximum' : 20,",
+          "     *      'maxWidth' : 100",
+          "     *    }",
+          "     *   }",
+          "     * }",
+          "     * </pre>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data to create a form with multiple fields.\n So far implemented:\n   TextField / TextArea\n   ComboBox\n   SelectBox\n   RadioGroup\n   CheckBox\n   Spinner\n   List\n </p>\n<pre>\n {\n  \"username\" : {\n     'type'  : \"TextField\",\n     'label' : \"User Name\",\n     'value' : \"\"\n   },\n   \"address\" : {\n     'type'  : \"TextArea\",\n     'label' : \"Address\",\n     'lines' : 3\n   },\n   \"domain\" : {\n     'type'  : \"SelectBox\",\n     'label' : \"Domain\",\n     'value' : 1,\n     'options' : [\n       { 'label' : \"Company\", 'value' : 0 },\n       { 'label' : \"Home\",    'value' : 1 }\n     ]\n   },\n   \"commands\" : {\n    'type'  : \"ComboBox\",\n     'label' : \"Shell command to execute\",\n     'options' : [\n       { 'label' : \"ln -s *\" },\n       { 'label' : \"rm -Rf /\" }\n     ]\n   },\n   \"quantity\" : {\n    'type' : \"Spinner\",\n    'label' : \"How many?\",\n    'properties' : {\n      'minimum' : 1,\n      'maximum' : 20,\n      'maxWidth' : 100\n    }\n   }\n }\n </pre>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2550
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2645
+        }
+      },
+      "json": {
+        "check": "qx.core.Object",
+        "nullable": true,
+        "event": "changeModel"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The model of the result data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The model of the result data</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "labelColumnWidth": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2729
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 2857
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": false,
+        "init": 100,
+        "apply": "_applyLabelColumnWidth"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default width of the column with the field labels",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default width of the column with the field labels</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "setupFormRendererFunction": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3103
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3202
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to call to create and configure a form renderer. If null, a",
+          "     * single-column form renderer is automatically instantiated and",
+          "     * configured. The function is passed a single argument, the form object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call to create and configure a form renderer. If null, a\n single-column form renderer is automatically instantiated and\n configured. The function is passed a single argument, the form object.</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "beforeFormFunction": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3507
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3599
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to call just before creating the form's input fields.",
+          "     * This allows additional, non-form widgets to be added. The",
+          "     * function is called two arguments: the container in which the",
+          "     * form fields should be placed, and the form object itself",
+          "     * (this).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call just before creating the form's input fields.\n This allows additional, non-form widgets to be added. The\n function is called two arguments: the container in which the\n form fields should be placed, and the form object itself\n (this).</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "formReadyFunction": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4115
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4247
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true,
+        "event": "formReadyFunctionChanged"
+      },
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * Function to call with the internal form, allowing the user to do things",
+          "     * such as set up a form validator (vs. field validators) on the form. The",
+          "     * function is called with two arguments: the internal qx.ui.form.Form",
+          "     * object, and the current dialog.Form object. An attempt is made to call",
+          "     * the function in the context specified in the form data, but that may",
+          "     * not work properly if the context property is not yet set at the time at",
+          "     * the form is created.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call with the internal form, allowing the user to do things\n such as set up a form validator (vs. field validators) on the form. The\n function is called with two arguments: the internal qx.ui.form.Form\n object, and the current dialog.Form object. An attempt is made to call\n the function in the context specified in the form data, but that may\n not work properly if the context property is not yet set at the time at\n the form is created.</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "afterFormFunction": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4548
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4639
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to call just after creating the form's input fields. This",
+          "     * allows additional, non-form widgets to be added. The function is called",
+          "     * one two arguments: the container in which the form fields should be",
+          "     * placed, and the form object itself (this).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call just after creating the form's input fields. This\n allows additional, non-form widgets to be added. The function is called\n one two arguments: the container in which the form fields should be\n placed, and the form object itself (this).</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "afterButtonsFunction": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 4929
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 5023
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to call just after creating the form's buttons. This allows",
+          "     * additional, additional widgets to be added. The function is called with",
+          "     * two arguments: the container in which the buttons were placed, and the",
+          "     * form object itself (this).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call just after creating the form's buttons. This allows\n additional, additional widgets to be added. The function is called with\n two arguments: the container in which the buttons were placed, and the\n form object itself (this).</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    },
+    "finalizeFunction": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5197
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5287
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * Function to call just after the form is filled with data. The",
+          "     * function is called with one argument: the form object itself",
+          "     * (this).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to call just after the form is filled with data. The\n function is called with one argument: the form object itself\n (this).</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MForm",
+      "appearsIn": [
+        "qxl.dialog.MForm"
+      ]
+    }
+  }
+}

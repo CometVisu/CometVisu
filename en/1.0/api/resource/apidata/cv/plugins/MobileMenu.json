@@ -1,0 +1,493 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/MobileMenu.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 897
+    },
+    "end": {
+      "line": 158,
+      "column": 3,
+      "index": 5014
+    }
+  },
+  "className": "cv.plugins.MobileMenu",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @author alltime84",
+      " * @since 2016",
+      " * @asset(plugins/mobilemenu/*.css)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "alltime84"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2016"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/mobilemenu/*.css"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.HasChildren"
+  ],
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1594
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1833
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getWidgetElements": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1840
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1988
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xmlElement"
+        },
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__navLeft": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 2148
+        },
+        "end": {
+          "line": 65,
+          "column": 19,
+          "index": 2163
+        }
+      },
+      "appearsIn": []
+    },
+    "__isTouchDevice": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2169
+        },
+        "end": {
+          "line": 66,
+          "column": 25,
+          "index": 2190
+        }
+      },
+      "appearsIn": []
+    },
+    "getDomString": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2215
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 3090
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget",
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
+    "_onDomReady": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 3097
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 3200
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_action": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3207
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3557
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "touchScroll": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3564
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 4151
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isTouchDevice": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 4158
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 4438
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getChildrenDomString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the HTML code for the children if this widget",
+          "     *",
+          "     * @param {boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'",
+          "     * @return {string} HTML code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML code for the children if this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} HTML code"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2616
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "noWidgetContainer"
+        }
+      ],
+      "mixin": "cv.ui.common.HasChildren",
+      "appearsIn": [
+        "cv.ui.common.HasChildren"
+      ]
+    },
+    "getChildrenDom": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a collection of html elements of the children",
+          "     * @returns {DocumentFragment}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a collection of html elements of the children</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{DocumentFragment}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3680
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 4105
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.HasChildren",
+      "appearsIn": [
+        "cv.ui.common.HasChildren"
+      ]
+    }
+  },
+  "properties": {
+    "children": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 2032
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2086
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array with child paths",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array with child paths</p>"
+          }
+        ]
+      },
+      "mixin": "cv.ui.common.HasChildren",
+      "appearsIn": [
+        "cv.ui.common.HasChildren"
+      ]
+    },
+    "childWidgets": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2148
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2206
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array with child widget objects",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array with child widget objects</p>"
+          }
+        ]
+      },
+      "mixin": "cv.ui.common.HasChildren",
+      "appearsIn": [
+        "cv.ui.common.HasChildren"
+      ]
+    }
+  }
+}

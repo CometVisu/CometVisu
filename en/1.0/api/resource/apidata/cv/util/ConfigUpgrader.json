@@ -1,0 +1,590 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/ConfigUpgrader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 928
+    },
+    "end": {
+      "line": 662,
+      "column": 3,
+      "index": 25338
+    }
+  },
+  "className": "cv.util.ConfigUpgrader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Upgrade config file to the current library version",
+      " * @since 0.12.0",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Upgrade config file to the current library version</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.12.0"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "members": {
+    "__indentation": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1138
+        },
+        "end": {
+          "line": 34,
+          "column": 20,
+          "index": 1154
+        }
+      },
+      "appearsIn": []
+    },
+    "__log": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1160
+        },
+        "end": {
+          "line": 35,
+          "column": 15,
+          "index": 1171
+        }
+      },
+      "appearsIn": []
+    },
+    "upgrade": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Upgrade config source",
+          "     * @param source {String|Document} content of a config file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Upgrade config source</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String|Document} content of a config file",
+            "paramName": "source",
+            "description": " content of a config file",
+            "type": [
+              "String",
+              "Document"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2512
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": [
+            "String",
+            "Document"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "from7to8Pure": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2519
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 3064
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source"
+        }
+      ],
+      "appearsIn": []
+    },
+    "from8to9Pure": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 3071
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 5571
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getLevel": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 5578
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 5794
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__setVersion": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 5801
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 6023
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "version"
+        },
+        {
+          "name": "isTile"
+        }
+      ],
+      "appearsIn": []
+    },
+    "convertPureToTile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a pure-config file to a tile-config file. Currently only a small amount widgets can be converted",
+          "     * because they have a similar equivalent in the tile-structure. This is the list of converted widgets:",
+          "     *  - Pages",
+          "     *  - Meta-Area (only mappings, stylings and files)",
+          "     *  - Switch (without mappings, stylings)",
+          "     *  - Info",
+          "     *  - Pushbutton (without mappings, stylings)",
+          "     *  - Trigger (without mappings, stylings)",
+          "     *  - Group (only the ones that do not have nowidget=\"true\")",
+          "     *",
+          "     *  Whats not working:",
+          "     *  - Everything that uses templates",
+          "     *  - All other widgets that have not been mentioned above",
+          "     *",
+          "     * @param sourceXml {XMLDocument|string}",
+          "     * @return [{String}, {String}] Error, Result",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a pure-config file to a tile-config file. Currently only a small amount widgets can be converted\n because they have a similar equivalent in the tile-structure. This is the list of converted widgets:</p>\n<ul>\n<li>Pages</li>\n<li>Meta-Area (only mappings, stylings and files)</li>\n<li>Switch (without mappings, stylings)</li>\n<li>Info</li>\n<li>Pushbutton (without mappings, stylings)</li>\n<li>Trigger (without mappings, stylings)</li>\n<li>Group (only the ones that do not have nowidget=\"true\")\nWhats not working:</li>\n<li>Everything that uses templates</li>\n<li>All other widgets that have not been mentioned above</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceXml {XMLDocument|string}",
+            "paramName": "sourceXml",
+            "type": [
+              "XMLDocument",
+              "string"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "[{String}, {String}] Error, Result",
+            "type": "string",
+            "description": ", {String}] Error, Result"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 6802
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 8180
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourceXml",
+          "type": [
+            "XMLDocument",
+            "string"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_convertElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param target {Element}",
+          "     * @param element {Element}",
+          "     * @param options {Object}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element}",
+            "paramName": "target",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element}",
+            "paramName": "element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object}",
+            "paramName": "options",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 8313
+        },
+        "end": {
+          "line": 588,
+          "column": 5,
+          "index": 22901
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Element"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "options",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_copyAttributes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param source {Element}",
+          "     * @param target {Element}",
+          "     * @param converters {Object|null}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {Element}",
+            "paramName": "source",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element}",
+            "paramName": "target",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "converters {Object|null}",
+            "paramName": "converters",
+            "type": [
+              "Object",
+              "null"
+            ]
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 596,
+          "column": 4,
+          "index": 23041
+        },
+        "end": {
+          "line": 610,
+          "column": 5,
+          "index": 23643
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "Element"
+        },
+        {
+          "name": "target",
+          "type": "Element"
+        },
+        {
+          "name": "converters",
+          "type": [
+            "Object",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_copyAddresses": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 612,
+          "column": 4,
+          "index": 23650
+        },
+        "end": {
+          "line": 625,
+          "column": 5,
+          "index": 24126
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses"
+        },
+        {
+          "name": "target"
+        },
+        {
+          "name": "slotName"
+        },
+        {
+          "name": "converters"
+        },
+        {
+          "name": "callback"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_copyLabel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 627,
+          "column": 4,
+          "index": 24133
+        },
+        "end": {
+          "line": 649,
+          "column": 5,
+          "index": 25059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourceLabel"
+        },
+        {
+          "name": "target"
+        },
+        {
+          "name": "slotName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_copyChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param source {Element}",
+          "     * @param target {Element}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {Element}",
+            "paramName": "source",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element}",
+            "paramName": "target",
+            "type": "Element"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 656,
+          "column": 4,
+          "index": 25160
+        },
+        "end": {
+          "line": 660,
+          "column": 5,
+          "index": 25330
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "Element"
+        },
+        {
+          "name": "target",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

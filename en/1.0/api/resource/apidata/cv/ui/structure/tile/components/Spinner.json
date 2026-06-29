@@ -1,0 +1,294 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543950,
+  "lastModifiedIso": "2026-06-29T03:59:03.950Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/Spinner.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 907
+    },
+    "end": {
+      "line": 160,
+      "column": 3,
+      "index": 5319
+    }
+  },
+  "className": "cv.ui.structure.tile.components.Spinner",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows a number value that can be increased and decreased by a defined step width.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows a number value that can be increased and decreased by a defined step width.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "properties": {
+    "stepWidth": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1175
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1232
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "mode": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1239
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1314
+        }
+      },
+      "json": {
+        "check": [
+          "relative",
+          "absolute"
+        ],
+        "init": "absolute"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__decreaseElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1460
+        },
+        "end": {
+          "line": 49,
+          "column": 27,
+          "index": 1483
+        }
+      },
+      "appearsIn": []
+    },
+    "__increaseElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1489
+        },
+        "end": {
+          "line": 50,
+          "column": 27,
+          "index": 1512
+        }
+      },
+      "appearsIn": []
+    },
+    "__decreaseClickHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1518
+        },
+        "end": {
+          "line": 51,
+          "column": 32,
+          "index": 1546
+        }
+      },
+      "appearsIn": []
+    },
+    "__increaseClickHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1552
+        },
+        "end": {
+          "line": 52,
+          "column": 32,
+          "index": 1580
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1587
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 3766
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3773
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 4155
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "onDecrease": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 4162
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 4373
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onIncrease": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 4380
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 4586
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 4593
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 4754
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mappedValue"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "__sendValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4761
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 5092
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "on"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

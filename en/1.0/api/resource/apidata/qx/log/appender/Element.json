@@ -1,0 +1,208 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601917,
+  "lastModifiedIso": "2026-06-29T04:00:01.917Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/Element.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 547
+    },
+    "end": {
+      "line": 122,
+      "column": 3,
+      "index": 3212
+    }
+  },
+  "className": "qx.log.appender.Element",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This appender is used to log to an existing DOM element",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This appender is used to log to an existing DOM element</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 886
+      },
+      "end": {
+        "line": 59,
+        "column": 3,
+        "index": 1968
+      }
+    }
+  },
+  "members": {
+    "__element": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2172
+        },
+        "end": {
+          "line": 68,
+          "column": 19,
+          "index": 2187
+        }
+      },
+      "appearsIn": []
+    },
+    "setElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configures the DOM element to use.",
+          "     *",
+          "     * @param element {Element} DOM element to log to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the DOM element to use.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to log to",
+            "paramName": "element",
+            "description": " DOM element to log to",
+            "type": "qx.log.appender.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2313
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2555
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.log.appender.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the current output.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the current output.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2619
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2752
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Processes a single log entry",
+          "     *",
+          "     * @signature function(entry)",
+          "     * @param entry {Map} The entry to process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes a single log entry</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(entry)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} The entry to process",
+            "paramName": "entry",
+            "description": " The entry to process",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2899
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3204
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "entry",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

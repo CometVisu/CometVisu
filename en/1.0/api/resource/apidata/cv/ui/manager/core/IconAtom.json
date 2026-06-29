@@ -1,0 +1,296 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543942,
+  "lastModifiedIso": "2026-06-29T03:59:03.942Z",
+  "classFilename": "../../source/class/cv/ui/manager/core/IconAtom.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 896
+    },
+    "end": {
+      "line": 156,
+      "column": 3,
+      "index": 4283
+    }
+  },
+  "className": "cv.ui.manager.core.IconAtom",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Atom with cv.ui.manager.viewer.SvgIcon instead of a qx.ui.basic.Image</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.basic.Atom",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1102
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1281
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1429
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1490
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "cv-icon"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1497
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1560
+        }
+      },
+      "json": {
+        "check": "Array",
+        "apply": "_applyModel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_fontIconRegex": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1706
+        },
+        "end": {
+          "line": 60,
+          "column": 24,
+          "index": 1726
+        }
+      },
+      "appearsIn": []
+    },
+    "_iconChildControlName": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1732
+        },
+        "end": {
+          "line": 61,
+          "column": 31,
+          "index": 1759
+        }
+      },
+      "appearsIn": []
+    },
+    "_onTap": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1766
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2011
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyLabel": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2040
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2142
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    },
+    "_applyModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2149
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2363
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIcon": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3121
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    },
+    "_handleIcon": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3128
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3362
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3387
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4275
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

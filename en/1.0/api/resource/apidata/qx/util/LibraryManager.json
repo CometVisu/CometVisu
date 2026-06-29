@@ -1,0 +1,327 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602584,
+  "lastModifiedIso": "2026-06-29T04:00:02.584Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/LibraryManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 584
+    },
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 2117
+    }
+  },
+  "className": "qx.util.LibraryManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides read/write access to library-specific information such as",
+      " * source/resource URIs.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides read/write access to library-specific information such as\n source/resource URIs.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "__libs": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} The libraries used by this application "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} The libraries used by this application"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 756
+        },
+        "end": {
+          "line": 30,
+          "column": 32,
+          "index": 784
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "has": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the library with the given namespace is known to the",
+          "     * application.",
+          "     * @param namespace {String} The library's namespace",
+          "     * @return {Boolean} <code>true</code> if the given library is known",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the library with the given namespace is known to the\n application.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "namespace {String} The library's namespace",
+            "paramName": "namespace",
+            "description": " The library's namespace",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the given library is known",
+            "type": "boolean",
+            "description": "<code>true</code> if the given library is known"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1049
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1128
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "namespace",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getNamespaces": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The namespaces of all libraries known to the application",
+          "     *",
+          "     * @returns {String[]} the namespaces",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The namespaces of all libraries known to the application</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} the namespaces",
+            "type": "String[]",
+            "description": "the namespaces"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1264
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1344
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "get": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the value of an attribute of the given library",
+          "     * @param namespace {String} The library's namespace",
+          "     * @param key {String} Name of the attribute",
+          "     * @return {var|null} The attribute's value or <code>null</code> if it's not defined",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the value of an attribute of the given library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "namespace {String} The library's namespace",
+            "paramName": "namespace",
+            "description": " The library's namespace",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "key {String} Name of the attribute",
+            "paramName": "key",
+            "description": " Name of the attribute",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var|null} The attribute's value or <code>null</code> if it's not defined",
+            "type": "var|null",
+            "description": "The attribute's value or <code>null</code> if it's not defined"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1782
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "namespace",
+          "type": "string"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var|null"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "set": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets an attribute on the given library.",
+          "     *",
+          "     * @param namespace {String} The library's namespace",
+          "     * @param key {String} Name of the attribute",
+          "     * @param value {var} Value of the attribute",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets an attribute on the given library.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "namespace {String} The library's namespace",
+            "paramName": "namespace",
+            "description": " The library's namespace",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "key {String} Name of the attribute",
+            "paramName": "key",
+            "description": " Name of the attribute",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} Value of the attribute",
+            "paramName": "value",
+            "description": " Value of the attribute",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2014
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2109
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "namespace",
+          "type": "string"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    }
+  },
+  "properties": {}
+}

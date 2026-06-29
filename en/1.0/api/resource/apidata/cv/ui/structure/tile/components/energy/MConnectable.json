@@ -1,0 +1,677 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/energy/MConnectable.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 929
+    },
+    "end": {
+      "line": 309,
+      "column": 3,
+      "index": 9867
+    }
+  },
+  "className": "cv.ui.structure.tile.components.energy.MConnectable",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for all SVG based components that can be connected to each other.",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for all SVG based components that can be connected to each other.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1131
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1211
+      }
+    }
+  },
+  "properties": {
+    "connectTo": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1360
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1454
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyConnectTo"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "connectFrom": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1461
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1559
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyConnectFrom"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "connectionPoints": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1566
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1672
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "auto",
+        "apply": "_applyConnectionPoints"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "useConnectionSum": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1679
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1785
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyUseConnectionSum"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_connectorTo": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1931
+        },
+        "end": {
+          "line": 75,
+          "column": 22,
+          "index": 1949
+        }
+      },
+      "appearsIn": []
+    },
+    "_connectorFrom": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1955
+        },
+        "end": {
+          "line": 76,
+          "column": 24,
+          "index": 1975
+        }
+      },
+      "appearsIn": []
+    },
+    "_useConnectionsSumAsValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1981
+        },
+        "end": {
+          "line": 77,
+          "column": 35,
+          "index": 2012
+        }
+      },
+      "appearsIn": []
+    },
+    "_connections": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array<cv.ui.structure.tile.components.energy.PowerEntity>}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2107
+        },
+        "end": {
+          "line": 81,
+          "column": 22,
+          "index": 2125
+        }
+      },
+      "appearsIn": []
+    },
+    "_inverseConnections": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array<cv.ui.structure.tile.components.energy.PowerEntity>}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2220
+        },
+        "end": {
+          "line": 85,
+          "column": 29,
+          "index": 2245
+        }
+      },
+      "appearsIn": []
+    },
+    "addConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an incoming connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an incoming connection from another PowerEntity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+            "paramName": "other",
+            "description": " connected from other to this",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2431
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2684
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addInverseConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an incoming inverse connection from another PowerEntity.",
+          "     * Inverse connection means that the sign of the other entity is flipped for summing all values",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an incoming inverse connection from another PowerEntity.\n Inverse connection means that the sign of the other entity is flipped for summing all values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+            "paramName": "other",
+            "description": " connected from other to this",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2978
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3252
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an incoming connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an incoming connection from another PowerEntity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "other",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3410
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3760
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeInverseConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an incoming inverse connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an incoming inverse connection from another PowerEntity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "other",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3926
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4304
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyUseConnectionSum": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4311
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 4884
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateConnectionsSum": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4891
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 5152
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateDirection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 5159
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5628
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyConnectTo": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5635
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6494
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyConnectFrom": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 6501
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 7197
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourceId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_initConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param source {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     * @param target {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     * @returns {cv.ui.structure.tile.components.svg.Connector}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "source",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          },
+          {
+            "name": "@param",
+            "body": "target {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "target",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.ui.structure.tile.components.svg.Connector}",
+            "type": "cv.ui.structure.tile.components.svg.Connector",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 7455
+        },
+        "end": {
+          "line": 252,
+          "column": 5,
+          "index": 8192
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        },
+        {
+          "name": "target",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "returnType": {
+        "type": "cv.ui.structure.tile.components.svg.Connector"
+      },
+      "appearsIn": []
+    },
+    "_applyConnectionPoints": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4,
+          "index": 8199
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 8918
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 286,
+        "column": 2,
+        "index": 9052
+      },
+      "end": {
+        "line": 308,
+        "column": 3,
+        "index": 9863
+      }
+    }
+  },
+  "statics": {}
+}

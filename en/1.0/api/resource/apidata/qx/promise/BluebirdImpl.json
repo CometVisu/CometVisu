@@ -1,0 +1,107 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601273,
+  "lastModifiedIso": "2026-06-29T04:00:01.273Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/promise/BluebirdImpl.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 13,
+      "column": 0,
+      "index": 217
+    },
+    "end": {
+      "line": 34,
+      "column": 3,
+      "index": 808
+    }
+  },
+  "className": "qx.promise.BluebirdImpl",
+  "jsdoc": {
+    "raw": [
+      " eslint-disable no-global-assign "
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "Bluebird": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The Bluebird Promise class",
+          "     * Always available",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Bluebird Promise class\n Always available</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 20,
+          "column": 4,
+          "index": 371
+        },
+        "end": {
+          "line": 20,
+          "column": 18,
+          "index": 385
+        }
+      },
+      "appearsIn": []
+    },
+    "__attachBluebird": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the Bluebird Promise class is loaded",
+          "     * @param Promise {Class} the Promise class",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the Bluebird Promise class is loaded</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "Promise {Class} the Promise class",
+            "paramName": "Promise",
+            "description": " the Promise class",
+            "type": "Class"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 511
+        },
+        "end": {
+          "line": 32,
+          "column": 5,
+          "index": 800
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "Promise",
+          "type": "Class"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

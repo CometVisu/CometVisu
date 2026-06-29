@@ -1,0 +1,448 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/LimitedRateUpdateAnimator.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 37,
+      "column": 0,
+      "index": 1398
+    },
+    "end": {
+      "line": 192,
+      "column": 3,
+      "index": 6690
+    }
+  },
+  "className": "cv.util.LimitedRateUpdateAnimator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper function to allow widgets animate a displayed property with a",
+      " * limited speed of change to look smoother for the user.",
+      " *",
+      " * This class can either animate a number (e.g. used as a ratio) or a class",
+      " * when it has these methods:",
+      " * * value1.delta(value2)       - return a number that is proportional to the difference",
+      " * * value1.blend(value2,ratio) - return a new value that is the ratio dependent blend",
+      " * * value.copy()               - return a copy of the value",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper function to allow widgets animate a displayed property with a\n limited speed of change to look smoother for the user.\n This class can either animate a number (e.g. used as a ratio) or a class\n when it has these methods:</p>\n<ul>\n<li>value1.delta(value2)       - return a number that is proportional to the difference</li>\n<li>value1.blend(value2,ratio) - return a new value that is the ratio dependent blend</li>\n<li>value.copy()               - return a copy of the value</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "displayFn"
+      },
+      {
+        "name": "context"
+      },
+      {
+        "name": "displayFnParameters"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 2024
+      },
+      "end": {
+        "line": 58,
+        "column": 3,
+        "index": 2241
+      }
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 64,
+        "column": 2,
+        "index": 2384
+      },
+      "end": {
+        "line": 69,
+        "column": 3,
+        "index": 2552
+      }
+    }
+  },
+  "properties": {
+    "linearRateLimit": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2713
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2799
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 2
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "expDampTimeConstant": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2806
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2923
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0.01
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "epsilon": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2930
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0.001
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "displayFn": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 3110
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 3152
+        }
+      },
+      "json": {
+        "check": "Function"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__animationFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3312
+        },
+        "end": {
+          "line": 106,
+          "column": 31,
+          "index": 3339
+        }
+      },
+      "appearsIn": []
+    },
+    "__displayFnContext": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3345
+        },
+        "end": {
+          "line": 107,
+          "column": 33,
+          "index": 3374
+        }
+      },
+      "appearsIn": []
+    },
+    "__displayFnParameters": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3380
+        },
+        "end": {
+          "line": 108,
+          "column": 36,
+          "index": 3412
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3418
+        },
+        "end": {
+          "line": 109,
+          "column": 29,
+          "index": 3443
+        }
+      },
+      "appearsIn": []
+    },
+    "__targetValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3449
+        },
+        "end": {
+          "line": 110,
+          "column": 28,
+          "index": 3473
+        }
+      },
+      "appearsIn": []
+    },
+    "setAnimationSpeed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set animation speed by defining the (typical) maximal range.",
+          "     * An animation of the full ``range`` will require about 0.5 to 1 second",
+          "     * and have a linear as well as an exponential damped part at the end.",
+          "     * The ``epsilon`` can also be stated explicitly or it will be derived",
+          "     * from the ``range``.",
+          "     * @param {Number} range (typical) maximal range for the animation",
+          "     * @param {Number} [epsilon] end the animation when the remaining delta is smaller",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set animation speed by defining the (typical) maximal range.\n An animation of the full <code></code>range<code></code> will require about 0.5 to 1 second\n and have a linear as well as an exponential damped part at the end.\n The <code></code>epsilon<code></code> can also be stated explicitly or it will be derived\n from the <code></code>range<code></code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Number} range (typical) maximal range for the animation",
+            "paramName": "range",
+            "description": "(typical) maximal range for the animation",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{Number} [epsilon] end the animation when the remaining delta is smaller",
+            "paramName": "[epsilon]",
+            "description": "end the animation when the remaining delta is smaller",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3975
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 4374
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "range",
+          "type": "number"
+        },
+        {
+          "name": "epsilon"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setTo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the value to a new value.",
+          "     * @param {Number} targetValue the new value.",
+          "     * @param {Boolean} instant skip animation when true",
+          "     * @param {Boolean} show skip display update when false",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the value to a new value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Number} targetValue the new value.",
+            "paramName": "targetValue",
+            "description": "the new value.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} instant skip animation when true",
+            "paramName": "instant",
+            "description": "skip animation when true",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} show skip display update when false",
+            "paramName": "show",
+            "description": "skip display update when false",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4600
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4945
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetValue",
+          "type": "number"
+        },
+        {
+          "name": "instant",
+          "type": "boolean"
+        },
+        {
+          "name": "show",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__animate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal implementation of the animation and value setting.",
+          "     * @param {DOMHighResTimeStamp} thistime",
+          "     * @param {DOMHighResTimeStamp} lasttime",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal implementation of the animation and value setting.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{DOMHighResTimeStamp} thistime",
+            "paramName": "thistime",
+            "description": "",
+            "type": "DOMHighResTimeStamp"
+          },
+          {
+            "name": "@param",
+            "body": "{DOMHighResTimeStamp} lasttime",
+            "paramName": "lasttime",
+            "description": "",
+            "type": "DOMHighResTimeStamp"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 5141
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 6682
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "thistime",
+          "type": "DOMHighResTimeStamp"
+        },
+        {
+          "name": "lasttime",
+          "type": "DOMHighResTimeStamp"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

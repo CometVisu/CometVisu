@@ -1,0 +1,117 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/elements/Styling.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 944
+    },
+    "end": {
+      "line": 58,
+      "column": 3,
+      "index": 1844
+    }
+  },
+  "className": "cv.ui.structure.tile.elements.Styling",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Styling maps a value to another value that can be used to style a component",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Styling maps a value to another value that can be used to style a component</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.elements.Mapping",
+  "members": {
+    "_applyConnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1192
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1523
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.elements.Mapping",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.Mapping",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "mapValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1621
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        },
+        {
+          "name": "store"
+        },
+        {
+          "name": "params"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.elements.Mapping",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.Mapping"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

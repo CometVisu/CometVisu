@@ -1,0 +1,305 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602965,
+  "lastModifiedIso": "2026-06-29T04:00:02.965Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/root/Page.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 1071
+    },
+    "end": {
+      "line": 170,
+      "column": 3,
+      "index": 4645
+    }
+  },
+  "className": "qx.ui.root.Page",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This widget provides a root widget for popups and tooltips if qooxdoo is used",
+      " * inside a traditional HTML page. Widgets placed into a page will overlay the",
+      " * HTML content.",
+      " *",
+      " * For this reason the widget's layout is initialized with an instance of",
+      " * {@link qx.ui.layout.Basic}. The widget's layout cannot be changed.",
+      " *",
+      " * The page widget does not support paddings and decorators with insets.",
+      " *",
+      " * Note: This widget does not support decorations!",
+      " *",
+      " * If you want to place widgets inside existing DOM elements",
+      " * use {@link qx.ui.root.Inline}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This widget provides a root widget for popups and tooltips if qooxdoo is used\n inside a traditional HTML page. Widgets placed into a page will overlay the\n HTML content.\n For this reason the widget's layout is initialized with an instance of\n {@link qx.ui.layout.Basic}. The widget's layout cannot be changed.\n The page widget does not support paddings and decorators with insets.\n Note: This widget does not support decorations!\n If you want to place widgets inside existing DOM elements\n use {@link qx.ui.root.Inline}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.root.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "doc"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 47,
+        "column": 2,
+        "index": 1385
+      },
+      "end": {
+        "line": 73,
+        "column": 3,
+        "index": 2148
+      }
+    }
+  },
+  "members": {
+    "__timer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2352
+        },
+        "end": {
+          "line": 82,
+          "column": 17,
+          "index": 2365
+        }
+      },
+      "appearsIn": []
+    },
+    "__doc": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2371
+        },
+        "end": {
+          "line": 83,
+          "column": 15,
+          "index": 2382
+        }
+      },
+      "appearsIn": []
+    },
+    "_createContentElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2407
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3159
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3184
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3502
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "__onResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adjust html element size on layout resizes.",
+          "     *",
+          "     * @param e {qx.event.type.Data} event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adjust html element size on layout resizes.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} event object",
+            "paramName": "e",
+            "description": " event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3633
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3876
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "supportsMaximize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the configured layout supports a maximized window",
+          "     * e.g. is a Canvas.",
+          "     *",
+          "     * @return {Boolean} Whether the layout supports maximized windows",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the configured layout supports a maximized window\n e.g. is a Canvas.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the layout supports maximized windows",
+            "type": "boolean",
+            "description": "Whether the layout supports maximized windows"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4067
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4113
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "overriddenFrom": "qx.ui.root.Abstract",
+      "appearsIn": [
+        "qx.ui.root.Abstract",
+        "qx.ui.window.MDesktop"
+      ]
+    },
+    "_applyPadding": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4138
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4408
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 167,
+        "column": 2,
+        "index": 4602
+      },
+      "end": {
+        "line": 169,
+        "column": 3,
+        "index": 4641
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,605 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602849,
+  "lastModifiedIso": "2026-06-29T04:00:02.849Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/dispatch/MouseCapture.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 250,
+      "column": 3,
+      "index": 7147
+    }
+  },
+  "className": "qx.event.dispatch.MouseCapture",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Implementation of the Internet Explorer specific event capturing mode for",
+      " * mouse events http://msdn2.microsoft.com/en-us/library/ms536742.aspx.",
+      " *",
+      " * This class is used internally by {@link qx.event.Manager} to do mouse event",
+      " * capturing.",
+      " *",
+      " * @use(qx.event.handler.Focus)",
+      " * @use(qx.event.handler.Window)",
+      " * @use(qx.event.handler.Capture)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Implementation of the Internet Explorer specific event capturing mode for\n mouse events http://msdn2.microsoft.com/en-us/library/ms536742.aspx.\n This class is used internally by {@link qx.event.Manager} to do mouse event\n capturing.</p>"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.event.handler.Focus"
+      },
+      {
+        "name": "@use",
+        "body": "qx.event.handler.Window"
+      },
+      {
+        "name": "@use",
+        "body": "qx.event.handler.Capture"
+      }
+    ]
+  },
+  "superClass": "qx.event.dispatch.AbstractBubbling",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      },
+      {
+        "name": "registration"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1089
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1457
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this dispatcher "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this dispatcher"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1532
+        },
+        "end": {
+          "line": 43,
+          "column": 50,
+          "index": 1578
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__registration": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1656
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1676
+        }
+      },
+      "appearsIn": []
+    },
+    "__captureElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1682
+        },
+        "end": {
+          "line": 49,
+          "column": 26,
+          "index": 1704
+        }
+      },
+      "appearsIn": []
+    },
+    "__containerCapture": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1710
+        },
+        "end": {
+          "line": 50,
+          "column": 28,
+          "index": 1734
+        }
+      },
+      "appearsIn": []
+    },
+    "__window": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1740
+        },
+        "end": {
+          "line": 51,
+          "column": 18,
+          "index": 1754
+        }
+      },
+      "appearsIn": []
+    },
+    "_getParent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1779
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1837
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        }
+      ],
+      "overriddenFrom": "qx.event.dispatch.AbstractBubbling",
+      "appearsIn": [
+        "qx.event.dispatch.AbstractBubbling"
+      ]
+    },
+    "canDispatchEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 2070
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2185
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "event"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "overriddenFrom": "qx.event.dispatch.AbstractBubbling",
+      "appearsIn": [
+        "qx.event.dispatch.AbstractBubbling",
+        "qx.event.IEventDispatcher"
+      ]
+    },
+    "dispatchEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2210
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2597
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "event"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "overriddenFrom": "qx.event.dispatch.AbstractBubbling",
+      "appearsIn": [
+        "qx.event.dispatch.AbstractBubbling",
+        "qx.core.Object",
+        "qx.event.IEventDispatcher",
+        "qx.core.MEvent"
+      ]
+    },
+    "__captureEvents": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(__captureEvents)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__captureEvents)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2859
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3153
+        }
+      },
+      "appearsIn": []
+    },
+    "activateCapture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the given element as target for event",
+          "     *",
+          "     * @param element {Element} The element which should capture the mouse events.",
+          "     * @param containerCapture {Boolean?true} If true all events originating in",
+          "     *   the container are captured. IF false events originating in the container",
+          "     *   are not captured.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the given element as target for event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The element which should capture the mouse events.",
+            "paramName": "element",
+            "description": " The element which should capture the mouse events.",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "containerCapture {Boolean?true} If true all events originating in\n   the container are captured. IF false events originating in the container\n   are not captured.",
+            "paramName": "containerCapture",
+            "description": " If true all events originating in\n   the container are captured. IF false events originating in the container\n   are not captured.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3697
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4770
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "containerCapture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCaptureElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the element currently capturing events.",
+          "     *",
+          "     * @return {Element|null} The current capture element. This value may be",
+          "     *    null.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the element currently capturing events.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null} The current capture element. This value may be\n    null.",
+            "type": "Element|null",
+            "description": "The current capture element. This value may be\n    null."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4944
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 5007
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "releaseCapture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop capturing of mouse events.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop capturing of mouse events.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5069
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5468
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hasNativeCapture": {
+      "jsdoc": {
+        "raw": [
+          "* Whether the browser should use native mouse capturing "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the browser should use native mouse capturing</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 5540
+        },
+        "end": {
+          "line": 208,
+          "column": 60,
+          "index": 5809
+        }
+      },
+      "appearsIn": []
+    },
+    "nativeSetCapture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the browser supports native mouse capturing, sets the mouse capture to",
+          "     * the object that belongs to the current document.",
+          "     *",
+          "     * Please note that under Windows 7 (but not Windows 8), capturing is",
+          "     * not only applied to mouse events as expected, but also to native pointer events.",
+          "     *",
+          "     * @param element {Element} The capture DOM element",
+          "     * @param containerCapture {Boolean?true} If true all events originating in",
+          "     *   the container are captured. If false events originating in the container",
+          "     *   are not captured.",
+          "     * @signature function(element, containerCapture)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the browser supports native mouse capturing, sets the mouse capture to\n the object that belongs to the current document.\n Please note that under Windows 7 (but not Windows 8), capturing is\n not only applied to mouse events as expected, but also to native pointer events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The capture DOM element",
+            "paramName": "element",
+            "description": " The capture DOM element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "containerCapture {Boolean?true} If true all events originating in\n   the container are captured. If false events originating in the container\n   are not captured.",
+            "paramName": "containerCapture",
+            "description": " If true all events originating in\n   the container are captured. If false events originating in the container\n   are not captured.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element, containerCapture)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 6444
+        },
+        "end": {
+          "line": 229,
+          "column": 6,
+          "index": 6639
+        }
+      },
+      "appearsIn": []
+    },
+    "nativeReleaseCapture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the browser supports native mouse capturing, removes mouse capture",
+          "     * from the object in the current document.",
+          "     *",
+          "     * @param element {Element} The DOM element to release the capture for",
+          "     * @signature function(element)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the browser supports native mouse capturing, removes mouse capture\n from the object in the current document.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} The DOM element to release the capture for",
+            "paramName": "element",
+            "description": " The DOM element to release the capture for",
+            "type": "Element"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(element)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 6905
+        },
+        "end": {
+          "line": 244,
+          "column": 6,
+          "index": 7064
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

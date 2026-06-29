@@ -1,0 +1,146 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603150,
+  "lastModifiedIso": "2026-06-29T04:00:03.150Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tabview/ScrollingPage.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 835
+    },
+    "end": {
+      "line": 54,
+      "column": 3,
+      "index": 1639
+    }
+  },
+  "className": "qx.ui.tabview.ScrollingPage",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A scrolling page uses a `qx.ui.container.Scroll` to make sure that the contents",
+      " * never cause the parent TabView to size outside of it's natural boundaries; a",
+      " * side effect of this is that if you use all `ScrollingPage` and do not use `Page`",
+      " * instances, then the tabview will be very small unless you use a layout which will",
+      " * expand the TabView.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A scrolling page uses a <code>qx.ui.container.Scroll</code> to make sure that the contents\n never cause the parent TabView to size outside of it's natural boundaries; a\n side effect of this is that if you use all <code>ScrollingPage</code> and do not use <code>Page</code>\n instances, then the tabview will be very small unless you use a layout which will\n expand the TabView.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.tabview.Page",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1031
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1281
+      }
+    }
+  },
+  "members": {
+    "__childContainer": {
+      "jsdoc": {
+        "raw": [
+          "* @type{qx.ui.core.Widget} the container that the user's children are added to "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.Widget} the container that the user's children are added to"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1389
+        },
+        "end": {
+          "line": 43,
+          "column": 26,
+          "index": 1411
+        }
+      },
+      "appearsIn": []
+    },
+    "getChildrenContainer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Make sure that children are added to the scrolling container",
+          "     *",
+          "     * @return {qx.ui.core.Widget} the widget to add to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Make sure that children are added to the scrolling container</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} the widget to add to",
+            "type": "qx.ui.core.Widget",
+            "description": "the widget to add to"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1565
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1631
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "overriddenFrom": "qx.ui.tabview.Page",
+      "appearsIn": [
+        "qx.ui.tabview.Page",
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

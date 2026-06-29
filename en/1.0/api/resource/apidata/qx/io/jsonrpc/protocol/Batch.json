@@ -1,0 +1,390 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601240,
+  "lastModifiedIso": "2026-06-29T04:00:01.240Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Batch.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 837
+    },
+    "end": {
+      "line": 103,
+      "column": 3,
+      "index": 2550
+    }
+  },
+  "className": "qx.io.jsonrpc.protocol.Batch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An object representing a JSON-RPC v2.0 batch message object. You can add",
+      " * one or more of the following message objects to the batch:",
+      " *  - {@link qx.io.jsonrpc.protocol.Request}",
+      " *  - {@link qx.io.jsonrpc.protocol.Notification}",
+      " *  - {@link qx.io.jsonrpc.protocol.Result}",
+      " *  - {@link qx.io.jsonrpc.protocol.Error}",
+      " *  @see https://www.jsonrpc.org/specification#batch",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An object representing a JSON-RPC v2.0 batch message object. You can add\n one or more of the following message objects to the batch:</p>\n<ul>\n<li>{@link qx.io.jsonrpc.protocol.Request}</li>\n<li>{@link qx.io.jsonrpc.protocol.Notification}</li>\n<li>{@link qx.io.jsonrpc.protocol.Result}</li>\n<li>{@link qx.io.jsonrpc.protocol.Error}</li>\n</ul>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "https://www.jsonrpc.org/specification#batch"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "batch": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 933
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 976
+        }
+      },
+      "json": {
+        "check": "qx.data.Array"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 985
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1055
+      }
+    }
+  },
+  "members": {
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a request or notification to the batch",
+          "     * @param {qx.io.jsonrpc.protocol.Message} message",
+          "     * @return {qx.io.jsonrpc.protocol.Batch}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a request or notification to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.jsonrpc.protocol.Message} message",
+            "paramName": "message",
+            "description": "",
+            "type": "qx.io.jsonrpc.protocol.Message"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.jsonrpc.protocol.Batch}",
+            "type": "qx.io.jsonrpc.protocol.Batch",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1242
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1438
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "qx.io.jsonrpc.protocol.Message"
+        }
+      ],
+      "returnType": {
+        "type": "qx.io.jsonrpc.protocol.Batch"
+      },
+      "appearsIn": []
+    },
+    "addRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a request to the batch",
+          "     * @param method",
+          "     * @param params",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a request to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method",
+            "paramName": "method",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "params",
+            "paramName": "params",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1538
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1659
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "method"
+        },
+        {
+          "name": "params"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addNotification": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a notification to the batch",
+          "     * @param method",
+          "     * @param params",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a notification to the batch</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method",
+            "paramName": "method",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "params",
+            "paramName": "params",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1764
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "method"
+        },
+        {
+          "name": "params"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPromises": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of the promises of the requests in the batch",
+          "     * @return {qx.Promise[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of the promises of the requests in the batch</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise[]}",
+            "type": "qx.Promise[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2017
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.Promise[]"
+      },
+      "appearsIn": []
+    },
+    "toObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the message as a native object",
+          "     * @return {*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the message as a native object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2193
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2304
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the message as a JSON string",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the message as a JSON string</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2395
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2542
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "statics": {}
+}

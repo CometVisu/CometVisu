@@ -1,0 +1,650 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603182,
+  "lastModifiedIso": "2026-06-29T04:00:03.182Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Shortcut.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 681
+    },
+    "end": {
+      "line": 418,
+      "column": 3,
+      "index": 11164
+    }
+  },
+  "className": "qx.bom.Shortcut",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shortcuts can be used to globally define keyboard shortcuts.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shortcuts can be used to globally define keyboard shortcuts.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "shortcut"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 46,
+        "column": 2,
+        "index": 1385
+      },
+      "end": {
+        "line": 57,
+        "column": 3,
+        "index": 1567
+      }
+    }
+  },
+  "events": {
+    "execute": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the command is executed. Sets the \"data\" property of the event to",
+          "     * the object that issued the command.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the command is executed. Sets the \"data\" property of the event to\n the object that issued the command.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1912
+        },
+        "end": {
+          "line": 70,
+          "column": 33,
+          "index": 1941
+        }
+      }
+    }
+  },
+  "properties": {
+    "enabled": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2214
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2331
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "event": "changeEnabled",
+        "apply": "_applyEnabled"
+      },
+      "jsdoc": {
+        "raw": [
+          "* whether the command should be respected/enabled "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether the command should be respected/enabled</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "shortcut": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2462
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyShortcut",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The command shortcut "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The command shortcut</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "autoRepeat": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2587
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2648
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the execute event should be fired repeatedly if the user keep",
+          "     * the keys pressed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the execute event should be fired repeatedly if the user keep\n the keys pressed.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__modifier": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2909
+        },
+        "end": {
+          "line": 112,
+          "column": 18,
+          "index": 2923
+        }
+      },
+      "appearsIn": []
+    },
+    "__key": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2929
+        },
+        "end": {
+          "line": 113,
+          "column": 13,
+          "index": 2938
+        }
+      },
+      "appearsIn": []
+    },
+    "execute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire the \"execute\" event on this shortcut.",
+          "     *",
+          "     * @param target {Object} Object which issued the execute event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire the \"execute\" event on this shortcut.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Object which issued the execute event",
+            "paramName": "target",
+            "description": " Object which issued the execute event",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3280
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3348
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onKeyDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Key down event handler.",
+          "     *",
+          "     * @param event {qx.event.type.KeySequence} The key event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Key down event handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.KeySequence} The key event object",
+            "paramName": "event",
+            "description": " The key event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3478
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3687
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Key press event handler.",
+          "     *",
+          "     * @param event {qx.event.type.KeySequence} The key event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Key press event handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.KeySequence} The key event object",
+            "paramName": "event",
+            "description": " The key event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3818
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4027
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4252
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 4955
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShortcut": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4,
+          "index": 4984
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 6936
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__matchesKeyEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the given key event matches the shortcut's shortcut",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} the key event object",
+          "     * @return {Boolean} whether the shortcuts shortcut matches the key event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the given key event matches the shortcut's shortcut</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} the key event object",
+            "paramName": "e",
+            "description": " the key event object",
+            "type": "qx.event.type.KeySequence"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the shortcuts shortcut matches the key event",
+            "type": "boolean",
+            "description": "whether the shortcuts shortcut matches the key event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4,
+          "index": 7387
+        },
+        "end": {
+          "line": 307,
+          "column": 5,
+          "index": 8230
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__oldKeyNameToKeyIdentifierMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(__oldKeyNameToKeyIdentifierMap)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__oldKeyNameToKeyIdentifierMap)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 4,
+          "index": 8525
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9129
+        }
+      },
+      "appearsIn": []
+    },
+    "__normalizeKeyIdentifier": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks and normalizes the key identifier.",
+          "     *",
+          "     * @param keyName {String} name of the key.",
+          "     * @return {String} normalized keyIdentifier or \"Unidentified\" if a conversion was not possible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks and normalizes the key identifier.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "keyName {String} name of the key.",
+            "paramName": "keyName",
+            "description": " name of the key.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} normalized keyIdentifier or \"Unidentified\" if a conversion was not possible",
+            "type": "string",
+            "description": "normalized keyIdentifier or \"Unidentified\" if a conversion was not possible"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 9356
+        },
+        "end": {
+          "line": 371,
+          "column": 5,
+          "index": 9985
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the shortcut as string using the currently selected locale.",
+          "     *",
+          "     * @return {String} shortcut",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the shortcut as string using the currently selected locale.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} shortcut",
+            "type": "string",
+            "description": "shortcut"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 10322
+        },
+        "end": {
+          "line": 403,
+          "column": 5,
+          "index": 10835
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.IDisposable",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 412,
+        "column": 2,
+        "index": 11031
+      },
+      "end": {
+        "line": 417,
+        "column": 3,
+        "index": 11160
+      }
+    }
+  },
+  "statics": {}
+}

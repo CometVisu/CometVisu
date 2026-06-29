@@ -1,0 +1,671 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543709,
+  "lastModifiedIso": "2026-06-29T03:59:03.709Z",
+  "classFilename": "../../client/source/class/cv/io/transport/LongPolling.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 832
+    },
+    "end": {
+      "line": 399,
+      "column": 3,
+      "index": 13133
+    }
+  },
+  "className": "cv.io.transport.LongPolling",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "client"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1101
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1229
+      }
+    }
+  },
+  "members": {
+    "watchdog": {
+      "jsdoc": {
+        "raw": [
+          "* @type {cv.io.Watchdog} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.io.Watchdog}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1419
+        },
+        "end": {
+          "line": 46,
+          "column": 18,
+          "index": 1433
+        }
+      },
+      "appearsIn": []
+    },
+    "doRestart": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1439
+        },
+        "end": {
+          "line": 47,
+          "column": 20,
+          "index": 1455
+        }
+      },
+      "appearsIn": []
+    },
+    "xhr": {
+      "jsdoc": {
+        "raw": [
+          " are we currently in a restart, e.g. due to the watchdog?"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1521
+        },
+        "end": {
+          "line": 48,
+          "column": 13,
+          "index": 1530
+        }
+      },
+      "appearsIn": []
+    },
+    "lastIndex": {
+      "jsdoc": {
+        "raw": [
+          " the ongoing AJAX request"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1564
+        },
+        "end": {
+          "line": 49,
+          "column": 17,
+          "index": 1577
+        }
+      },
+      "appearsIn": []
+    },
+    "retryCounter": {
+      "jsdoc": {
+        "raw": [
+          " index returned by the last request"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1621
+        },
+        "end": {
+          "line": 50,
+          "column": 19,
+          "index": 1636
+        }
+      },
+      "appearsIn": []
+    },
+    "retryServerErrorCounter": {
+      "jsdoc": {
+        "raw": [
+          " count the number of retries (reset with each valid response)"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1706
+        },
+        "end": {
+          "line": 51,
+          "column": 30,
+          "index": 1732
+        }
+      },
+      "appearsIn": []
+    },
+    "sessionId": {
+      "jsdoc": {
+        "raw": [
+          " count the number of successive temporary server errors"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1796
+        },
+        "end": {
+          "line": 52,
+          "column": 19,
+          "index": 1811
+        }
+      },
+      "appearsIn": []
+    },
+    "client": {
+      "jsdoc": {
+        "raw": [
+          "* @type {cv.io.Client} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.io.Client}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1849
+        },
+        "end": {
+          "line": 54,
+          "column": 16,
+          "index": 1861
+        }
+      },
+      "appearsIn": []
+    },
+    "running": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1867
+        },
+        "end": {
+          "line": 55,
+          "column": 17,
+          "index": 1880
+        }
+      },
+      "appearsIn": []
+    },
+    "__backendErrorRetryCount": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Number} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1912
+        },
+        "end": {
+          "line": 57,
+          "column": 31,
+          "index": 1939
+        }
+      },
+      "appearsIn": []
+    },
+    "handleSession": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function gets called once the communication is established",
+          "     * and this.client information is available.",
+          "     *",
+          "     * @param args {Array} arguments from the XHR response callback",
+          "     * @param connect {Boolean} whether to start the connection or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function gets called once the communication is established\n and this.client information is available.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {Array} arguments from the XHR response callback",
+            "paramName": "args",
+            "description": " arguments from the XHR response callback",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "connect {Boolean} whether to start the connection or not",
+            "paramName": "connect",
+            "description": " whether to start the connection or not",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2228
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2882
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "args",
+          "type": "Array<any>"
+        },
+        {
+          "name": "connect",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "connect": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2889
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3419
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__startReading": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3426
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3816
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        },
+        {
+          "name": "callback"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleRead": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function gets called once the communication is established",
+          "     * and this.client information is available",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function gets called once the communication is established\n and this.client information is available</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3958
+        },
+        "end": {
+          "line": 232,
+          "column": 5,
+          "index": 8008
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "handleReadStart": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 8015
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 9452
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "handleError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function gets called on an error",
+          "     *",
+          "     *",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function gets called on an error</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 9559
+        },
+        "end": {
+          "line": 329,
+          "column": 6,
+          "index": 11353
+        }
+      },
+      "appearsIn": []
+    },
+    "beforeSend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * manipulates the header of the current ajax query before it will",
+          "     * be sent to the server",
+          "     *",
+          "     * @param xhr {Object} the native XHR object",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>manipulates the header of the current ajax query before it will\n be sent to the server</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xhr {Object} the native XHR object",
+            "paramName": "xhr",
+            "description": " the native XHR object",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 4,
+          "index": 11539
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 11958
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xhr",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "readResendHeaderValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * read the header values of a response and stores them to the",
+          "     * resendHeaders array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>read the header values of a response and stores them to the\n resendHeaders array</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4,
+          "index": 12075
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 12249
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isConnectionRunning": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the connection is still running.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if the connection is still running.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 364,
+          "column": 4,
+          "index": 12321
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 12369
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "restart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the read request, e.g. when the watchdog kicks in",
+          "     *",
+          "     * @param doFullReload {Boolean} reload all data and not only restart connection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the read request, e.g. when the watchdog kicks in</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "doFullReload {Boolean} reload all data and not only restart connection",
+            "paramName": "doFullReload",
+            "description": " reload all data and not only restart connection",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4,
+          "index": 12549
+        },
+        "end": {
+          "line": 381,
+          "column": 5,
+          "index": 12775
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "doFullReload",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "abort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abort the read request properly",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort the read request properly</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4,
+          "index": 12844
+        },
+        "end": {
+          "line": 397,
+          "column": 5,
+          "index": 13125
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

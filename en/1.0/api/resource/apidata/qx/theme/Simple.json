@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603186,
+  "lastModifiedIso": "2026-06-29T04:00:03.186Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/Simple.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 511
+    },
+    "end": {
+      "line": 31,
+      "column": 3,
+      "index": 769
+    }
+  },
+  "className": "qx.theme.Simple",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

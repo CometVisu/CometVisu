@@ -1,0 +1,3577 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602610,
+  "lastModifiedIso": "2026-06-29T04:00:02.610Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/List.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 913
+    },
+    "end": {
+      "line": 520,
+      "column": 3,
+      "index": 13872
+    }
+  },
+  "className": "qx.ui.form.List",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A list of items. Displays an automatically scrolling list for all",
+      " * added {@link qx.ui.form.IListItem} instances (typically this would be instances of",
+      " * {@link qx.ui.form.ListItem} but can also be other Atoms, such as {@link qx.ui.form.CheckBox}).",
+      " * Supports various selection options: single, multi, ...",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A list of items. Displays an automatically scrolling list for all\n added {@link qx.ui.form.IListItem} instances (typically this would be instances of\n {@link qx.ui.form.ListItem} but can also be other Atoms, such as {@link qx.ui.form.CheckBox}).\n Supports various selection options: single, multi, …</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.scroll.AbstractScrollArea",
+  "interfaces": [
+    "qx.ui.core.IMultiSelection",
+    "qx.ui.form.IForm",
+    "qx.ui.form.IField",
+    "qx.ui.form.IModelSelection"
+  ],
+  "mixins": [
+    "qx.ui.core.MRemoteChildrenHandling",
+    "qx.ui.core.MMultiSelectionHandling",
+    "qx.ui.form.MForm",
+    "qx.ui.form.MModelSelection"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "horizontal"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 1559
+      },
+      "end": {
+        "line": 80,
+        "column": 3,
+        "index": 2335
+      }
+    }
+  },
+  "events": {
+    "addItem": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired after a list item was added to the list. The",
+          "     * {@link qx.event.type.Data#getData} method of the event returns the",
+          "     * added item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired after a list item was added to the list. The\n {@link qx.event.type.Data#getData} method of the event returns the\n added item.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2718
+        },
+        "end": {
+          "line": 94,
+          "column": 33,
+          "index": 2747
+        }
+      }
+    },
+    "removeItem": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired after a list item has been removed from the list.",
+          "     * The {@link qx.event.type.Data#getData} method of the event returns the",
+          "     * removed item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired after a list item has been removed from the list.\n The {@link qx.event.type.Data#getData} method of the event returns the\n removed item.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2946
+        },
+        "end": {
+          "line": 101,
+          "column": 36,
+          "index": 2978
+        }
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3210
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3268
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "list"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.AbstractScrollArea",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focusable": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3293
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3348
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3373
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3423
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 100
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.AbstractScrollArea",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3448
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3499
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 200
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.AbstractScrollArea",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3589
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3707
+        }
+      },
+      "json": {
+        "check": [
+          "horizontal",
+          "vertical"
+        ],
+        "init": "vertical",
+        "apply": "_applyOrientation"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the list should be rendered horizontal or vertical.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the list should be rendered horizontal or vertical.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "spacing": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3751
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3858
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applySpacing",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Spacing between the items "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Spacing between the items</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "enableInlineFind": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3937
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4003
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Controls whether the inline-find feature is activated or not "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether the inline-find feature is activated or not</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "readOnly": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4064
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4185
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeReadOnly",
+        "apply": "_applyReadOnly"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the list is read only when enabled "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the list is read only when enabled</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "selectionMode": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2475
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2607
+        }
+      },
+      "json": {
+        "check": [
+          "single",
+          "multi",
+          "additive",
+          "one"
+        ],
+        "init": "single",
+        "apply": "_applySelectionMode"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The selection mode to use.",
+          "     *",
+          "     * For further details please have a look at:",
+          "     * {@link qx.ui.core.selection.Abstract#mode}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The selection mode to use.\n For further details please have a look at:\n {@link qx.ui.core.selection.Abstract#mode}</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "dragSelection": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2838
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2938
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyDragSelection"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enable drag selection (multi selection of items through",
+          "     * dragging the pointer in pressed states).",
+          "     *",
+          "     * Only possible for the selection modes <code>multi</code> and <code>additive</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enable drag selection (multi selection of items through\n dragging the pointer in pressed states).\n Only possible for the selection modes <code>multi</code> and <code>additive</code></p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "quickSelection": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3129
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 3231
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyQuickSelection"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enable quick selection mode, where no tap is needed to change the selection.",
+          "     *",
+          "     * Only possible for the modes <code>single</code> and <code>one</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enable quick selection mode, where no tap is needed to change the selection.\n Only possible for the modes <code>single</code> and <code>one</code>.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    }
+  },
+  "members": {
+    "__pressedString": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4393
+        },
+        "end": {
+          "line": 174,
+          "column": 25,
+          "index": 4414
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastKeyPress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4420
+        },
+        "end": {
+          "line": 175,
+          "column": 24,
+          "index": 4440
+        }
+      },
+      "appearsIn": []
+    },
+    "__content": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.Widget} The children container "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.Widget} The children container"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4507
+        },
+        "end": {
+          "line": 178,
+          "column": 19,
+          "index": 4522
+        }
+      },
+      "appearsIn": []
+    },
+    "SELECTION_MANAGER": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Class} Pointer to the selection manager to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Class} Pointer to the selection manager to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4594
+        },
+        "end": {
+          "line": 181,
+          "column": 54,
+          "index": 4644
+        }
+      },
+      "appearsIn": []
+    },
+    "getChildrenContainer": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 4861
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 4920
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__childrenBindings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 4927
+        },
+        "end": {
+          "line": 194,
+          "column": 28,
+          "index": 4951
+        }
+      },
+      "appearsIn": []
+    },
+    "_onAddChild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle child widget adds on the content pane",
+          "     *",
+          "     * @param e {qx.event.type.Data} the event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle child widget adds on the content pane</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the event instance",
+            "paramName": "e",
+            "description": " the event instance",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5088
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5396
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onRemoveChild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle child widget removes on the content pane",
+          "     *",
+          "     * @param e {qx.event.type.Data} the event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle child widget removes on the content pane</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the event instance",
+            "paramName": "e",
+            "description": " the event instance",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5537
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 5840
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Used to route external <code>keypress</code> events to the list",
+          "     * handling (in fact the manager of the list)",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} KeyPress event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Used to route external <code>keypress</code> events to the list\n handling (in fact the manager of the list)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} KeyPress event",
+            "paramName": "e",
+            "description": " KeyPress event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6242
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6355
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createListItemContainer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This container holds the list item widgets.",
+          "     *",
+          "     * @return {qx.ui.container.Composite} Container for the list item widgets",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This container holds the list item widgets.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite} Container for the list item widgets",
+            "type": "qx.ui.container.Composite",
+            "description": "Container for the list item widgets"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 6710
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 6790
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_applyOrientation": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 7024
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 7752
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySpacing": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 297,
+          "column": 4,
+          "index": 7781
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 7866
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyReadOnly": {
+      "jsdoc": {
+        "raw": [
+          " property readOnly"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7898
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 8693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " override"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 8716
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 9193
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>keypress</code> events.",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} KeyPress event",
+          "     * @return {Boolean} Whether the event was processed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>keypress</code> events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} KeyPress event",
+            "paramName": "e",
+            "description": " KeyPress event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was processed",
+            "type": "boolean",
+            "description": "Whether the event was processed"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 9590
+        },
+        "end": {
+          "line": 380,
+          "column": 5,
+          "index": 9910
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_onKeyInput": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the inline find - if enabled",
+          "     *",
+          "     * @param e {qx.event.type.KeyInput} key input event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the inline find - if enabled</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeyInput} key input event",
+            "paramName": "e",
+            "description": " key input event",
+            "type": "qx.event.type.KeyInput"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 10235
+        },
+        "end": {
+          "line": 423,
+          "column": 5,
+          "index": 11091
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeyInput"
+        }
+      ],
+      "appearsIn": []
+    },
+    "findItemByLabelFuzzy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the given string and tries to find a ListItem",
+          "     * which starts with this string. The search is not case sensitive and the",
+          "     * first found ListItem will be returned. If there could not be found any",
+          "     * qualifying list item, null will be returned.",
+          "     *",
+          "     * @param search {String} The text with which the label of the ListItem should start with",
+          "     * @return {qx.ui.form.ListItem} The found ListItem or null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the given string and tries to find a ListItem\n which starts with this string. The search is not case sensitive and the\n first found ListItem will be returned. If there could not be found any\n qualifying list item, null will be returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "search {String} The text with which the label of the ListItem should start with",
+            "paramName": "search",
+            "description": " The text with which the label of the ListItem should start with",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.ListItem} The found ListItem or null",
+            "type": "qx.ui.form.ListItem",
+            "description": "The found ListItem or null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 11547
+        },
+        "end": {
+          "line": 455,
+          "column": 5,
+          "index": 12219
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "search",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.form.ListItem"
+      },
+      "appearsIn": []
+    },
+    "findItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Find an item by its {@link qx.ui.basic.Atom#getLabel}.",
+          "     *",
+          "     * @param search {String} A label or any item",
+          "     * @param ignoreCase {Boolean?true} description",
+          "     * @return {qx.ui.form.ListItem} The found ListItem or null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Find an item by its {@link qx.ui.basic.Atom#getLabel}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "search {String} A label or any item",
+            "paramName": "search",
+            "description": " A label or any item",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "ignoreCase {Boolean?true} description",
+            "paramName": "ignoreCase",
+            "description": " description",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.ListItem} The found ListItem or null",
+            "type": "qx.ui.form.ListItem",
+            "description": "The found ListItem or null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4,
+          "index": 12477
+        },
+        "end": {
+          "line": 508,
+          "column": 5,
+          "index": 13617
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "ignoreCase",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.form.ListItem"
+      },
+      "appearsIn": []
+    },
+    "__forward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Forward the call with the given function name to the children container",
+          "     *",
+          "     * @param functionName {String} name of the method to forward",
+          "     * @param a1 {var?} first argument of the method to call",
+          "     * @param a2 {var?} second argument of the method to call",
+          "     * @param a3 {var?} third argument of the method to call",
+          "     * @return {var} The return value of the forward method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Forward the call with the given function name to the children container</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionName {String} name of the method to forward",
+            "paramName": "functionName",
+            "description": " name of the method to forward",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "a1 {var?} first argument of the method to call",
+            "paramName": "a1",
+            "description": " first argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a2 {var?} second argument of the method to call",
+            "paramName": "a2",
+            "description": " second argument of the method to call",
+            "optional": true,
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "a3 {var?} third argument of the method to call",
+            "paramName": "a3",
+            "description": " third argument of the method to call",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the forward method",
+            "type": "var",
+            "description": "The return value of the forward method"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1555
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1782
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "functionName",
+          "type": "string"
+        },
+        {
+          "name": "a1",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a2",
+          "type": "var",
+          "optional": true
+        },
+        {
+          "name": "a3",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the children list",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem[]} The children array (Arrays are",
+          "     *   reference types, please do not modify them in-place)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\n   reference types, please do not modify them in-place)",
+            "type": "qx.ui.core.LayoutItem[]",
+            "description": "The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "hasChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains children.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when the widget has children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children.",
+            "type": "boolean",
+            "description": "Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget.",
+          "     *",
+          "     * The supported keys of the layout options map depend on the layout manager",
+          "     * used to position the widget. The options are documented in the class",
+          "     * documentation of each layout manager {@link qx.ui.layout}.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to add.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.\n The supported keys of the layout options map depend on the layout manager\n used to position the widget. The options are documented in the class\n documentation of each layout manager {@link qx.ui.layout}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to add.",
+            "paramName": "child",
+            "description": " the item to add.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2831
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given child item.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to remove",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to remove",
+            "paramName": "child",
+            "description": " the item to remove",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)",
+            "type": "qx.ui.core.Widget",
+            "description": "This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3030
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3097
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all children.",
+          "     * @return {Array} An array containing the removed children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the removed children.",
+            "type": "Array<any>",
+            "description": "An array containing the removed children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3274
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index position of the given item if it is",
+          "     * a child item. Otherwise it returns <code>-1</code>.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to query for",
+          "     * @return {Integer} The index position or <code>-1</code> when",
+          "     *   the given item is no child of this layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given item if it is\n a child item. Otherwise it returns <code>-1</code>.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to query for",
+            "paramName": "child",
+            "description": " the item to query for",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given item is no child of this layout.",
+            "type": "Integer",
+            "description": "The index position or <code>-1</code> when\n   the given item is no child of this layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3909
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a child at the specified index",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param index {Integer} Index, at which the item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child at the specified index\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the item will be inserted",
+            "paramName": "index",
+            "description": " Index, at which the item will be inserted",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4541
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addBefore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item before another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item before another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+            "paramName": "before",
+            "description": " item before the new item will be inserted.",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 5224
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 5324
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "before",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "addAfter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item after another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item after another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add",
+            "paramName": "child",
+            "description": " item to add",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+            "paramName": "after",
+            "description": " item, after which the new item will be inserted",
+            "type": "qx.ui.core.LayoutItem"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item.",
+            "paramName": "options",
+            "description": " Optional layout data for item.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5920
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 6016
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "after",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "removeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the item at the specified index.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param index {Integer} Index of the item to remove.",
+          "     * @return {qx.ui.core.LayoutItem} The removed item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the item at the specified index.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the item to remove.",
+            "paramName": "index",
+            "description": " Index of the item to remove.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The removed item",
+            "type": "qx.ui.core.LayoutItem",
+            "description": "The removed item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6507
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 6578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling"
+    },
+    "__manager": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.selection.Abstract} The selection manager "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.selection.Abstract} The selection manager"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3510
+        },
+        "end": {
+          "line": 116,
+          "column": 19,
+          "index": 3525
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "__inOnSelectionChange": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} used to control recursion in onSelectionChange "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} used to control recursion in onSelectionChange"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3606
+        },
+        "end": {
+          "line": 119,
+          "column": 32,
+          "index": 3634
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param items {null|qx.ui.core.Widget[]} Items to select.",
+          "     * @returns {null|TypeError} The status of this operation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {null|qx.ui.core.Widget[]} Items to select.",
+            "paramName": "items",
+            "description": " Items to select.",
+            "type": [
+              "null",
+              {
+                "type": "qx.ui.core.Widget",
+                "dimensions": 2
+              }
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|TypeError} The status of this operation.",
+            "type": "null|TypeError",
+            "description": "The status of this operation."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 4057
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4599
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": [
+            "null",
+            {
+              "type": "qx.ui.core.Widget",
+              "dimensions": 2
+            }
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "null|TypeError"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @returns {qx.ui.core.Widget[]} The selected widgets or null if there are none.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The selected widgets or null if there are none.",
+            "type": "qx.ui.core.Widget[]",
+            "description": "The selected widgets or null if there are none."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4791
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4853
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4954
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 5013
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "selectAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects all items of the managed object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects all items of the managed object.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 5084
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 5137
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.IMultiSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid selectable item.",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if the item is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the given item is currently selected.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Any valid selectable item.",
+            "paramName": "item",
+            "description": " Any valid selectable item.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the item is selected.",
+            "type": "boolean",
+            "description": "Whether the item is selected."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the item is not a child element.",
+            "type": "Error",
+            "description": " if the item is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 5408
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 5695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "addToSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the given item to the existing selection.",
+          "     *",
+          "     * Use {@link #setSelection} instead if you want to replace",
+          "     * the current selection.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid item.",
+          "     * @throws {Error} if the item is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the given item to the existing selection.\n Use {@link #setSelection} instead if you want to replace\n the current selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Any valid item.",
+            "paramName": "item",
+            "description": " Any valid item.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the item is not a child element.",
+            "type": "Error",
+            "description": " if the item is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 5994
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6270
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.IMultiSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "removeFromSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given item from the selection.",
+          "     *",
+          "     * Use {@link #resetSelection} when you want to clear",
+          "     * the whole selection at once.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid item",
+          "     * @throws {Error} if the item is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the given item from the selection.\n Use {@link #resetSelection} when you want to clear\n the whole selection at once.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Any valid item",
+            "paramName": "item",
+            "description": " Any valid item",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the item is not a child element.",
+            "type": "Error",
+            "description": " if the item is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 6564
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 6851
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.IMultiSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "selectRange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects an item range between two given items.",
+          "     *",
+          "     * @param begin {qx.ui.core.Widget} Item to start with",
+          "     * @param end {qx.ui.core.Widget} Item to end at",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects an item range between two given items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "begin {qx.ui.core.Widget} Item to start with",
+            "paramName": "begin",
+            "description": " Item to start with",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "end {qx.ui.core.Widget} Item to end at",
+            "paramName": "end",
+            "description": " Item to end at",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 7047
+        },
+        "end": {
+          "line": 249,
+          "column": 5,
+          "index": 7128
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "begin",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "end",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once. Also",
+          "     * resets the lead and anchor items and their",
+          "     * styles.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the whole selection at once. Also\n resets the lead and anchor items and their\n styles.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7264
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 7327
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "setSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} Items to select.",
+          "     * @throws {Error} if one of the items is not a child element and if",
+          "     *    the mode is set to <code>single</code> or <code>one</code> and",
+          "     *    the items contains more than one item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces current selection with the given items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.core.Widget[]} Items to select.",
+            "paramName": "items",
+            "description": " Items to select.",
+            "type": "qx.ui.core.Widget[]"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if one of the items is not a child element and if\n    the mode is set to <code>single</code> or <code>one</code> and\n    the items contains more than one item.",
+            "type": "Error",
+            "description": " if one of the items is not a child element and if\n    the mode is set to <code>single</code> or <code>one</code> and\n    the items contains more than one item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7667
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 8581
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "getSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} List of items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of currently selected items.\n Note: The result is only a set of selected items, so the order can\n differ from the sequence in which the items were added.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} List of items.",
+            "type": "qx.ui.core.Widget[]",
+            "description": "List of items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 8860
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 8926
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "getSortedSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items sorted",
+          "     * by their index in the container.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} Sorted list of items",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of currently selected items sorted\n by their index in the container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} Sorted list of items",
+            "type": "qx.ui.core.Widget[]",
+            "description": "Sorted list of items"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 9113
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 9191
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the selection is empty</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the selection is empty",
+            "type": "boolean",
+            "description": "Whether the selection is empty"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4,
+          "index": 9315
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 9389
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "getSelectionContext": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the last selection context.",
+          "     *",
+          "     * @return {String|null} One of <code>tap</code>, <code>quick</code>,",
+          "     *    <code>drag</code> or <code>key</code> or <code>null</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the last selection context.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} One of <code>tap</code>, <code>quick</code>,\n    <code>drag</code> or <code>key</code> or <code>null</code>.",
+            "type": "String|null",
+            "description": "One of <code>tap</code>, <code>quick</code>,\n    <code>drag</code> or <code>key</code> or <code>null</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4,
+          "index": 9606
+        },
+        "end": {
+          "line": 335,
+          "column": 5,
+          "index": 9686
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_getManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internal selection manager. Use this with",
+          "     * caution!",
+          "     *",
+          "     * @return {qx.ui.core.selection.Abstract} The selection manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the internal selection manager. Use this with\n caution!</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.selection.Abstract} The selection manager",
+            "type": "qx.ui.core.selection.Abstract",
+            "description": "The selection manager"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4,
+          "index": 9862
+        },
+        "end": {
+          "line": 345,
+          "column": 5,
+          "index": 9912
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.selection.Abstract"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all elements which are selectable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
+            "paramName": "all",
+            "description": " true for all selectables, false for the\n   selectables the user can interactively select",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The contained items.",
+            "type": "qx.ui.core.Widget[]",
+            "description": "The contained items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 354,
+          "column": 4,
+          "index": 10173
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 10249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "invertSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invert the selection. Select the non selected and deselect the selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Invert the selection. Select the non selected and deselect the selected.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 361,
+          "column": 4,
+          "index": 10352
+        },
+        "end": {
+          "line": 363,
+          "column": 5,
+          "index": 10417
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_getLeadItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current lead item. Generally the item which was last modified",
+          "     * by the user (tapped on etc.)",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The lead item or <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current lead item. Generally the item which was last modified\n by the user (tapped on etc.)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The lead item or <code>null</code>",
+            "type": "qx.ui.core.Widget",
+            "description": "The lead item or <code>null</code>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4,
+          "index": 10634
+        },
+        "end": {
+          "line": 379,
+          "column": 5,
+          "index": 10866
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_applySelectionMode": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 4,
+          "index": 11100
+        },
+        "end": {
+          "line": 390,
+          "column": 5,
+          "index": 11176
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_applyDragSelection": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 11205
+        },
+        "end": {
+          "line": 395,
+          "column": 5,
+          "index": 11281
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_applyQuickSelection": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 11310
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 11388
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_onSelectionChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>changeSelection</code> event on selection manager.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>changeSelection</code> event on selection manager.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Data event",
+            "paramName": "e",
+            "description": " Data event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 11744
+        },
+        "end": {
+          "line": 424,
+          "column": 5,
+          "index": 12108
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MMultiSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MMultiSelectionHandling"
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "__modelSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1376
+        },
+        "end": {
+          "line": 48,
+          "column": 26,
+          "index": 1398
+        }
+      },
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__inSelectionChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 49,
+          "column": 30,
+          "index": 1430
+        }
+      },
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__onModelSelectionChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the selection change of the including class e.g. SelectBox,",
+          "     * List, ...",
+          "     * It sets the new modelSelection via {@link #setModelSelection}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the selection change of the including class e.g. SelectBox,\n List, …\n It sets the new modelSelection via {@link #setModelSelection}.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2327
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__onModelSelectionArrayChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the change of the internal model selection data array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for the change of the internal model selection data array.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2425
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3468
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "getModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns always an array of the models of the selected items. If no",
+          "     * item is selected or no model is given, the array will be empty.",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @return {qx.data.Array} An array of the models of the selected items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns always an array of the models of the selected items. If no\n item is selected or no model is given, the array will be empty.\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.Array} An array of the models of the selected items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3861
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3924
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ]
+    },
+    "setModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the given models in the array and searches for the corresponding",
+          "     * selectables. If an selectable does have that model attached, it will be",
+          "     * selected.",
+          "     *",
+          "     * *Attention:* This method can have a time complexity of O(n^2)!",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @param modelSelection {Array} An array of models, which should be",
+          "     *   selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the given models in the array and searches for the corresponding\n selectables. If an selectable does have that model attached, it will be\n selected.\n<em>Attention:</em> This method can have a time complexity of O(n^2)!\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "modelSelection {Array} An array of models, which should be\n   selected."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4438
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 5064
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "modelSelection"
+        }
+      ],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 517,
+        "column": 2,
+        "index": 13813
+      },
+      "end": {
+        "line": 519,
+        "column": 3,
+        "index": 13868
+      }
+    }
+  },
+  "statics": {}
+}

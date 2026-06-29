@@ -1,0 +1,311 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601280,
+  "lastModifiedIso": "2026-06-29T04:00:01.280Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Boolean.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 557
+    },
+    "end": {
+      "line": 181,
+      "column": 3,
+      "index": 4515
+    }
+  },
+  "className": "qx.ui.table.cellrenderer.Boolean",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A data cell renderer for boolean values.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A data cell renderer for boolean values.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.AbstractImage",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 852
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1258
+      }
+    }
+  },
+  "properties": {
+    "iconTrue": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1535
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1654
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "decoration/table/boolean-true.png",
+        "apply": "_applyIconTrue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The icon used to indicate the true state",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The icon used to indicate the true state</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconFalse": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1726
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1848
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "decoration/table/boolean-false.png",
+        "apply": "_applyIconFalse"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The icon used to indicate the false state",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The icon used to indicate the false state</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__iconUrlTrue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2056
+        },
+        "end": {
+          "line": 83,
+          "column": 23,
+          "index": 2075
+        }
+      },
+      "appearsIn": []
+    },
+    "__iconUrlFalse": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2081
+        },
+        "end": {
+          "line": 84,
+          "column": 25,
+          "index": 2102
+        }
+      },
+      "appearsIn": []
+    },
+    "__aliasManager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2108
+        },
+        "end": {
+          "line": 85,
+          "column": 24,
+          "index": 2128
+        }
+      },
+      "appearsIn": []
+    },
+    "_onChangeTheme": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for theme changes.",
+          "     * @signature function()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for theme changes.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2214
+        },
+        "end": {
+          "line": 97,
+          "column": 6,
+          "index": 2422
+        }
+      },
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    },
+    "_applyIconTrue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2451
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2543
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIconFalse": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2572
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2666
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_identifyImage": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2691
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.AbstractImage",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.AbstractImage"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 172,
+        "column": 2,
+        "index": 4198
+      },
+      "end": {
+        "line": 180,
+        "column": 3,
+        "index": 4511
+      }
+    }
+  },
+  "statics": {}
+}

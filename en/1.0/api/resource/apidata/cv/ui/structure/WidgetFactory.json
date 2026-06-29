@@ -1,0 +1,231 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/structure/WidgetFactory.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 820
+    },
+    "end": {
+      "line": 87,
+      "column": 3,
+      "index": 2760
+    }
+  },
+  "className": "cv.ui.structure.WidgetFactory",
+  "jsdoc": {
+    "raw": [
+      " WidgetFactory.js",
+      " *",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "c": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 1043
+        },
+        "end": {
+          "line": 29,
+          "column": 8,
+          "index": 1047
+        }
+      },
+      "appearsIn": []
+    },
+    "__typeMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map $$type to Classname",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map $$type to Classname</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1100
+        },
+        "end": {
+          "line": 33,
+          "column": 21,
+          "index": 1117
+        }
+      },
+      "appearsIn": []
+    },
+    "registry": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1123
+        },
+        "end": {
+          "line": 34,
+          "column": 16,
+          "index": 1135
+        }
+      },
+      "appearsIn": []
+    },
+    "registerClass": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1142
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1216
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "clazz"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createInstance": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1223
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInstanceById": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1934
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "skipCreation"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInstanceByElement": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2285
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2704
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2711
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2752
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

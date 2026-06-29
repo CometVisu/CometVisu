@@ -1,0 +1,69 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543940,
+  "lastModifiedIso": "2026-06-29T03:59:03.940Z",
+  "classFilename": "../../source/class/cv/ui/common/HasAddress.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 864
+    },
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 1235
+    }
+  },
+  "className": "cv.ui.common.HasAddress",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add the address property to widgets",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add the address property to widgets</p>"
+      }
+    ]
+  },
+  "properties": {
+    "address": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1173
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1227
+        }
+      },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map of addresses (KNX-GA's or openHAB item names) this widget communicates with",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of addresses (KNX-GA's or openHAB item names) this widget communicates with</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "statics": {}
+}

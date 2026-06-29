@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/basic/Icon.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 883
+    },
+    "end": {
+      "line": 25,
+      "column": 3,
+      "index": 960
+    }
+  },
+  "className": "cv.ui.manager.basic.Icon",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper for cometvisu icons to make the usable as Qx-Widget.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper for cometvisu icons to make the usable as Qx-Widget.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

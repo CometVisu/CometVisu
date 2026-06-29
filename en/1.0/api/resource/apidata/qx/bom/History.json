@@ -1,0 +1,845 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602220,
+  "lastModifiedIso": "2026-06-29T04:00:02.220Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/History.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 97,
+      "column": 0,
+      "index": 3808
+    },
+    "end": {
+      "line": 379,
+      "column": 3,
+      "index": 10720
+    }
+  },
+  "className": "qx.bom.History",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A helper for using the browser history in JavaScript Applications without",
+      " * reloading the main page.",
+      " *",
+      " * Adds entries to the browser history and fires a \"request\" event when one of",
+      " * the entries was requested by the user (e.g. by clicking on the back button).",
+      " *",
+      " * This class is an abstract template class. Concrete implementations have to",
+      " * provide implementations for the {@link #_readState} and {@link #_writeState}",
+      " * methods.",
+      " *",
+      " * Browser history support is currently available for Internet Explorer 6/7,",
+      " * Firefox, Opera 9 and WebKit. Safari 2 and older are not yet supported.",
+      " *",
+      " * This module is based on the ideas behind the YUI Browser History Manager",
+      " * by Julien Lecomte (Yahoo), which is described at",
+      " * http://yuiblog.com/blog/2007/02/21/browser-history-manager/. The Yahoo",
+      " * implementation can be found at http://developer.yahoo.com/yui/history/.",
+      " * The original code is licensed under a BSD license",
+      " * (http://developer.yahoo.com/yui/license.txt).",
+      " *",
+      " * @asset(qx/static/blank.html)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A helper for using the browser history in JavaScript Applications without\n reloading the main page.\n Adds entries to the browser history and fires a \"request\" event when one of\n the entries was requested by the user (e.g. by clicking on the back button).\n This class is an abstract template class. Concrete implementations have to\n provide implementations for the {@link #<em>readState} and {@link #</em>writeState}\n methods.\n Browser history support is currently available for Internet Explorer 6/7,\n Firefox, Opera 9 and WebKit. Safari 2 and older are not yet supported.\n This module is based on the ideas behind the YUI Browser History Manager\n by Julien Lecomte (Yahoo), which is described at\n http://yuiblog.com/blog/2007/02/21/browser-history-manager/. The Yahoo\n implementation can be found at http://developer.yahoo.com/yui/history/.\n The original code is licensed under a BSD license\n (http://developer.yahoo.com/yui/license.txt).</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/static/blank.html"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 107,
+        "column": 2,
+        "index": 4081
+      },
+      "end": {
+        "line": 114,
+        "column": 3,
+        "index": 4227
+      }
+    }
+  },
+  "events": {
+    "request": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the user moved in the history. The data property of the event",
+          "     * holds the state, which was passed to {@link #addToHistory}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the user moved in the history. The data property of the event\n holds the state, which was passed to {@link #addToHistory}.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4592
+        },
+        "end": {
+          "line": 127,
+          "column": 33,
+          "index": 4621
+        }
+      }
+    }
+  },
+  "statics": {
+    "SUPPORTS_HASH_CHANGE_EVENT": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the browser supports the 'hashchange' event natively.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the browser supports the 'hashchange' event natively."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4930
+        },
+        "end": {
+          "line": 140,
+          "column": 75,
+          "index": 5001
+        }
+      },
+      "appearsIn": []
+    },
+    "getInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the singleton instance of the history manager.",
+          "     *",
+          "     * @return {History}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the singleton instance of the history manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{History}",
+            "type": "qx.bom.History",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 5114
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 6175
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.History"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "title": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6447
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 6561
+        }
+      },
+      "json": {
+        "check": "String",
+        "event": "changeTitle",
+        "nullable": true,
+        "apply": "_applyTitle"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property holding the current title",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property holding the current title</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "state": {
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 6642
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6756
+        }
+      },
+      "json": {
+        "check": "String",
+        "event": "changeState",
+        "nullable": true,
+        "apply": "_applyState"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property holding the current state of the history.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property holding the current state of the history.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_titles": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 6964
+        },
+        "end": {
+          "line": 222,
+          "column": 17,
+          "index": 6977
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyState": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 7006
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 7068
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setInitialState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Populates the 'state' property with the initial state value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Populates the 'state' property with the initial state value</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 7158
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 7224
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_encode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Encodes the state value into a format suitable as fragment identifier.",
+          "     *",
+          "     * @param value {String} The string to encode",
+          "     * @return {String} The encoded string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Encodes the state value into a format suitable as fragment identifier.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The string to encode",
+            "paramName": "value",
+            "description": " The string to encode",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The encoded string",
+            "type": "string",
+            "description": "The encoded string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 7425
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7557
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_decode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decodes a fragment identifier into a string",
+          "     *",
+          "     * @param value {String} The fragment identifier",
+          "     * @return {String} The decoded fragment identifier",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decodes a fragment identifier into a string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The fragment identifier",
+            "paramName": "value",
+            "description": " The fragment identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The decoded fragment identifier",
+            "type": "string",
+            "description": "The decoded fragment identifier"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7747
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 7879
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_applyTitle": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4,
+          "index": 7908
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 8007
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "title"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addToHistory": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an entry to the browser history.",
+          "     *",
+          "     * @param state {String} a string representing the state of the",
+          "     *          application. This command will be delivered in the data property of",
+          "     *          the \"request\" event.",
+          "     * @param newTitle {String ? null} the page title to set after the history entry",
+          "     *          is done. This title should represent the new state of the application.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an entry to the browser history.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
+            "paramName": "state",
+            "description": " a string representing the state of the\n          application. This command will be delivered in the data property of\n          the \"request\" event.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "newTitle {String ? null} the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
+            "paramName": "newTitle",
+            "description": " the page title to set after the history entry\n          is done. This title should represent the new state of the application.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 8443
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 8767
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        },
+        {
+          "name": "newTitle",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "navigateBack": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Navigates back in the browser history.",
+          "     * Simulates a back button click.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Navigates back in the browser history.\n Simulates a back button click.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 8874
+        },
+        "end": {
+          "line": 307,
+          "column": 5,
+          "index": 9024
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "navigateForward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Navigates forward in the browser history.",
+          "     * Simulates a forward button click.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Navigates forward in the browser history.\n Simulates a forward button click.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 9137
+        },
+        "end": {
+          "line": 321,
+          "column": 5,
+          "index": 9293
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onHistoryLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called on changes to the history using the browser buttons.",
+          "     *",
+          "     * @param state {String} new state of the history",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called on changes to the history using the browser buttons.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} new state of the history",
+            "paramName": "state",
+            "description": " new state of the history",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 9444
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 9638
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_readState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Browser dependent function to read the current state of the history",
+          "     *",
+          "     * @return {String} current state of the browser history",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Browser dependent function to read the current state of the history</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} current state of the browser history",
+            "type": "string",
+            "description": "current state of the browser history"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4,
+          "index": 9804
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 9871
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_writeState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Save a state into the browser history.",
+          "     *",
+          "     * @param state {String} state to save",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Save a state into the browser history.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} state to save",
+            "paramName": "state",
+            "description": " state to save",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4,
+          "index": 9990
+        },
+        "end": {
+          "line": 352,
+          "column": 5,
+          "index": 10063
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setHash": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the fragment identifier of the window URL",
+          "     *",
+          "     * @param value {String} the fragment identifier",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the fragment identifier of the window URL</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} the fragment identifier",
+            "paramName": "value",
+            "description": " the fragment identifier",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 4,
+          "index": 10200
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 10365
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getHash": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the fragment identifier of the top window URL. For gecko browsers we",
+          "     * have to use a regular expression to avoid encoding problems.",
+          "     *",
+          "     * @return {String} the fragment identifier",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the fragment identifier of the top window URL. For gecko browsers we\n have to use a regular expression to avoid encoding problems.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the fragment identifier",
+            "type": "string",
+            "description": "the fragment identifier"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4,
+          "index": 10595
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 10712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  }
+}

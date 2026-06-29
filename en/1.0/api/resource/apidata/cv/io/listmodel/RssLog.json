@@ -1,0 +1,464 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543934,
+  "lastModifiedIso": "2026-06-29T03:59:03.934Z",
+  "classFilename": "../../source/class/cv/io/listmodel/RssLog.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 860
+    },
+    "end": {
+      "line": 286,
+      "column": 3,
+      "index": 7438
+    }
+  },
+  "className": "cv.io.listmodel.RssLog",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data retrieval for RssLog database.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data retrieval for RssLog database.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "cv.io.listmodel.IListModel"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1100
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1171
+      }
+    }
+  },
+  "statics": {
+    "REQUIRES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1313
+        },
+        "end": {
+          "line": 43,
+          "column": 21,
+          "index": 1330
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1482
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1551
+        }
+      },
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "database": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1558
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1653
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyRequestData"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1660
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1753
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyRequestData"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "future": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1760
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1853
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyRequestData"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "limit": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1860
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1975
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "transform": "_parseInt",
+        "apply": "_applyRequestData"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "finished": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2119
+        },
+        "end": {
+          "line": 89,
+          "column": 34,
+          "index": 2149
+        }
+      }
+    },
+    "refresh": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          " this event is sent when the model itself wants to trigger a list refresh."
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2236
+        },
+        "end": {
+          "line": 91,
+          "column": 34,
+          "index": 2266
+        }
+      }
+    }
+  },
+  "members": {
+    "__request": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2412
+        },
+        "end": {
+          "line": 100,
+          "column": 19,
+          "index": 2427
+        }
+      },
+      "appearsIn": []
+    },
+    "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2434
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2557
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRequestData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2564
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 2858
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getRequestData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 2865
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 3308
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getUrl": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3315
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3419
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initRequest": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3426
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 4353
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_convertResponse": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4360
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4435
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__updateModel": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4442
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 5311
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5318
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 5517
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "handleEvent": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5524
+        },
+        "end": {
+          "line": 267,
+          "column": 5,
+          "index": 7039
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "data"
+        },
+        {
+          "name": "model"
+        }
+      ],
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "_sendWithPromise": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 7046
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 7361
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

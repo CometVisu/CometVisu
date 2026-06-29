@@ -1,0 +1,262 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/ActionDispatcher.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 1019
+    },
+    "end": {
+      "line": 134,
+      "column": 3,
+      "index": 3965
+    }
+  },
+  "className": "cv.ui.manager.control.ActionDispatcher",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The ActionDispatcher listens to the events in the 'cv.manager.action' topic and",
+      " * dispatched those events to the currently relevant handler (e.g. the save event to the opened editor).",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The ActionDispatcher listens to the events in the 'cv.manager.action' topic and\n dispatched those events to the currently relevant handler (e.g. the save event to the opened editor).</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1255
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1366
+      }
+    }
+  },
+  "properties": {
+    "focusedWidget": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1514
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1638
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.IActionHandler",
+        "nullable": true,
+        "apply": "_applyFocusedWidget"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "main": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1645
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1714
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.Main",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "updateBarButtons": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1860
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2410
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyFocusedWidget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2417
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2863
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if there is an existing handler for the given actionName.",
+          "     * @param actionName",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if there is an existing handler for the given actionName.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "actionName",
+            "paramName": "actionName",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 3007
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3082
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getHandler": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3089
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3395
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3402
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3730
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 131,
+        "column": 2,
+        "index": 3864
+      },
+      "end": {
+        "line": 133,
+        "column": 3,
+        "index": 3961
+      }
+    }
+  },
+  "statics": {}
+}

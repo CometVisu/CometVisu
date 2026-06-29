@@ -1,0 +1,186 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/widgets/Page.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 969
+    },
+    "end": {
+      "line": 118,
+      "column": 3,
+      "index": 3633
+    }
+  },
+  "className": "cv.ui.structure.tile.widgets.Page",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a new sub-page and adds a corresponding link to the current page.",
+      " *",
+      " * @ignore(InstallTrigger)",
+      " * @author Tobias Bräutigam",
+      " * @since 2021",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a new sub-page and adds a corresponding link to the current page.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "InstallTrigger"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2021"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1088
+      },
+      "end": {
+        "line": 33,
+        "column": 3,
+        "index": 1161
+      }
+    }
+  },
+  "properties": {
+    "visibility": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1309
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1371
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "excluded"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    }
+  },
+  "members": {
+    "_supportsContentVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1533
+        },
+        "end": {
+          "line": 53,
+          "column": 36,
+          "index": 1565
+        }
+      },
+      "appearsIn": []
+    },
+    "_visibleDisplayMode": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1571
+        },
+        "end": {
+          "line": 54,
+          "column": 29,
+          "index": 1596
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1603
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2237
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_applyVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2244
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2959
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    }
+  },
+  "statics": {}
+}

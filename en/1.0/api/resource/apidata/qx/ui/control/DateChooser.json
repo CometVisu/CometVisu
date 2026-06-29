@@ -1,0 +1,1628 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601681,
+  "lastModifiedIso": "2026-06-29T04:00:01.681Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/control/DateChooser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 60,
+      "column": 0,
+      "index": 2704
+    },
+    "end": {
+      "line": 793,
+      "column": 3,
+      "index": 23325
+    }
+  },
+  "className": "qx.ui.control.DateChooser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A *date chooser* is a small calendar including a navigation bar to switch the shown",
+      " * month. It includes a column for the calendar week and shows one month. Selecting",
+      " * a date is as easy as tapping on it.",
+      " *",
+      " * To be conform with all form widgets, the {@link qx.ui.form.IForm} interface",
+      " * is implemented.",
+      " *",
+      " * The following example creates and adds a date chooser to the root element.",
+      " * A listener alerts the user if a new date is selected.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var chooser = new qx.ui.control.DateChooser();",
+      " * this.getRoot().add(chooser, { left : 20, top: 20});",
+      " *",
+      " * chooser.addListener(\"changeValue\", function(e) {",
+      " *   alert(e.getData());",
+      " * });",
+      " * </pre>",
+      " *",
+      " * Additionally to a selection event an execute event is available which is",
+      " * fired by doubletap or tapping the space / enter key. With this event you",
+      " * can for example save the selection and close the date chooser.",
+      " *",
+      " * @childControl navigation-bar {qx.ui.container.Composite} container for the navigation bar controls",
+      " * @childControl last-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last year button",
+      " * @childControl last-year-button {qx.ui.form.Button} button to jump to the last year",
+      " * @childControl last-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last month button",
+      " * @childControl last-month-button {qx.ui.form.Button} button to jump to the last month",
+      " * @childControl next-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next month button",
+      " * @childControl next-month-button {qx.ui.form.Button} button to jump to the next month",
+      " * @childControl next-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next year button",
+      " * @childControl next-year-button {qx.ui.form.Button} button to jump to the next year",
+      " * @childControl month-year-label {qx.ui.basic.Label} shows the current month and year",
+      " * @childControl week {qx.ui.basic.Label} week label (used multiple times)",
+      " * @childControl weekday {qx.ui.basic.Label} weekday label (used multiple times)",
+      " * @childControl day {qx.ui.basic.Label} day label (used multiple times)",
+      " * @childControl date-pane {qx.ui.container.Composite} the pane used to position the week, weekday and day labels",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A <em>date chooser</em> is a small calendar including a navigation bar to switch the shown\n month. It includes a column for the calendar week and shows one month. Selecting\n a date is as easy as tapping on it.\n To be conform with all form widgets, the {@link qx.ui.form.IForm} interface\n is implemented.\n The following example creates and adds a date chooser to the root element.\n A listener alerts the user if a new date is selected.\n </p>\n<pre class='javascript'>\n var chooser = new qx.ui.control.DateChooser();\n this.getRoot().add(chooser, { left : 20, top: 20});\n chooser.addListener(\"changeValue\", function(e) {\n   alert(e.getData());\n });\n </pre>\n<p>Additionally to a selection event an execute event is available which is\n fired by doubletap or tapping the space / enter key. With this event you\n can for example save the selection and close the date chooser.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "navigation-bar {qx.ui.container.Composite} container for the navigation bar controls"
+      },
+      {
+        "name": "@childControl",
+        "body": "last-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last year button"
+      },
+      {
+        "name": "@childControl",
+        "body": "last-year-button {qx.ui.form.Button} button to jump to the last year"
+      },
+      {
+        "name": "@childControl",
+        "body": "last-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the last month button"
+      },
+      {
+        "name": "@childControl",
+        "body": "last-month-button {qx.ui.form.Button} button to jump to the last month"
+      },
+      {
+        "name": "@childControl",
+        "body": "next-month-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next month button"
+      },
+      {
+        "name": "@childControl",
+        "body": "next-month-button {qx.ui.form.Button} button to jump to the next month"
+      },
+      {
+        "name": "@childControl",
+        "body": "next-year-button-tooltip {qx.ui.tooltip.ToolTip} tooltip for the next year button"
+      },
+      {
+        "name": "@childControl",
+        "body": "next-year-button {qx.ui.form.Button} button to jump to the next year"
+      },
+      {
+        "name": "@childControl",
+        "body": "month-year-label {qx.ui.basic.Label} shows the current month and year"
+      },
+      {
+        "name": "@childControl",
+        "body": "week {qx.ui.basic.Label} week label (used multiple times)"
+      },
+      {
+        "name": "@childControl",
+        "body": "weekday {qx.ui.basic.Label} weekday label (used multiple times)"
+      },
+      {
+        "name": "@childControl",
+        "body": "day {qx.ui.basic.Label} day label (used multiple times)"
+      },
+      {
+        "name": "@childControl",
+        "body": "date-pane {qx.ui.container.Composite} the pane used to position the week, weekday and day labels"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "mixins": [
+    "qx.ui.core.MExecutable",
+    "qx.ui.form.MForm"
+  ],
+  "interfaces": [
+    "qx.ui.form.IExecutable",
+    "qx.ui.form.IForm",
+    "qx.ui.form.IDateForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "date"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 76,
+        "column": 2,
+        "index": 3235
+      },
+      "end": {
+        "line": 115,
+        "column": 3,
+        "index": 4454
+      }
+    }
+  },
+  "statics": {
+    "MONTH_YEAR_FORMAT": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {string} The format for the date year label at the top center.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the date year label at the top center."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4750
+        },
+        "end": {
+          "line": 127,
+          "column": 27,
+          "index": 4773
+        }
+      },
+      "appearsIn": []
+    },
+    "WEEKDAY_FORMAT": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {string} The format for the weekday labels (the headers of the date table).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the weekday labels (the headers of the date table)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4885
+        },
+        "end": {
+          "line": 132,
+          "column": 24,
+          "index": 4905
+        }
+      },
+      "appearsIn": []
+    },
+    "WEEK_FORMAT": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {string} The format for the week numbers (the labels of the left column).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{string} The format for the week numbers (the labels of the left column)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 5015
+        },
+        "end": {
+          "line": 137,
+          "column": 21,
+          "index": 5032
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 5264
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 5329
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "datechooser"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 5354
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 5404
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 200
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 5429
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 5480
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 150
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "shownMonth": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5563
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 5678
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "event": "changeShownMonth"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The currently shown month. 0 = january, 1 = february, and so on. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently shown month. 0 = january, 1 = february, and so on.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "shownYear": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 5722
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 5835
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "event": "changeShownYear"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The currently shown year. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The currently shown year.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 6657
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 6787
+        }
+      },
+      "json": {
+        "check": "Date",
+        "nullable": true,
+        "event": "changeValue",
+        "apply": "_applyValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The date value of the widget.",
+          "     *",
+          "     * CAUTION: Date is a reference type. If you call `setValue` with",
+          "     * a Date object, and then change that Date object's value, e.g.,",
+          "     * with `date.setYear()`, and then call `setValue` with that same",
+          "     * Date object, ** the widget will not update **. Instead, you",
+          "     * should instantiate a new Date object with the old (modified)",
+          "     * date object as its initiatializer, and pass that to `setValue`,",
+          "     * e.g.,",
+          "     *",
+          "     * ```",
+          "     * date = new Date();",
+          "     * dateChooser.setValue(date);",
+          "     * // ...some time later...",
+          "     * date = date.setDate(date.getDate() + 1);",
+          "     * // dateChooser.setValue(date);        // This will NOT update the widget",
+          "     * dateChooser.setValue(new Date(date)); // This WILL update the widget",
+          "     * ```",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The date value of the widget.\n CAUTION: Date is a reference type. If you call <code>setValue</code> with\n a Date object, and then change that Date object's value, e.g.,\n with <code>date.setYear()</code>, and then call <code>setValue</code> with that same\n Date object, ** the widget will not update **. Instead, you\n should instantiate a new Date object with the old (modified)\n date object as its initiatializer, and pass that to <code>setValue</code>,\n e.g.,\n <code></code><code>\n date = new Date();\n dateChooser.setValue(date);\n\n date = date.setDate(date.getDate() + 1);\n // dateChooser.setValue(date);\n dateChooser.setValue(new Date(date));\n </code><code></code></p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "minValue": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 6951
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 7059
+        }
+      },
+      "json": {
+        "check": "Date",
+        "nullable": true,
+        "apply": "_applyMinValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The minimal date value of the widget. Dates which are less",
+          "     * than this property value will be shown as disabled (not clickable).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The minimal date value of the widget. Dates which are less\n than this property value will be shown as disabled (not clickable).</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maxValue": {
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 7226
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7334
+        }
+      },
+      "json": {
+        "check": "Date",
+        "nullable": true,
+        "apply": "_applyMaxValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximal date value of the widget. Dates which are greater",
+          "     * than this property value will be shown as disabled (not clickable).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximal date value of the widget. Dates which are greater\n than this property value will be shown as disabled (not clickable).</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "command": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1320
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1455
+        }
+      },
+      "json": {
+        "check": "qx.ui.command.Command",
+        "apply": "_applyCommand",
+        "event": "changeCommand",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A command called if the {@link #execute} method is called, e.g. on a",
+          "     * button tap.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A command called if the {@link #execute} method is called, e.g. on a\n button tap.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    }
+  },
+  "members": {
+    "__weekdayLabelArr": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 7595
+        },
+        "end": {
+          "line": 239,
+          "column": 27,
+          "index": 7618
+        }
+      },
+      "appearsIn": []
+    },
+    "__dayLabelArr": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7624
+        },
+        "end": {
+          "line": 240,
+          "column": 23,
+          "index": 7643
+        }
+      },
+      "appearsIn": []
+    },
+    "__weekLabelArr": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 7649
+        },
+        "end": {
+          "line": 241,
+          "column": 24,
+          "index": 7669
+        }
+      },
+      "appearsIn": []
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 7760
+        },
+        "end": {
+          "line": 249,
+          "column": 5,
+          "index": 7803
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4,
+          "index": 8026
+        },
+        "end": {
+          "line": 405,
+          "column": 5,
+          "index": 13153
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " apply methods"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 13181
+        },
+        "end": {
+          "line": 438,
+          "column": 5,
+          "index": 14194
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMinValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 14201
+        },
+        "end": {
+          "line": 442,
+          "column": 5,
+          "index": 14254
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyMaxValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 4,
+          "index": 14261
+        },
+        "end": {
+          "line": 446,
+          "column": 5,
+          "index": 14314
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerUpDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler which stops the propagation of the tap event if",
+          "     * the navigation bar or calendar headers will be tapped.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer up / down event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler which stops the propagation of the tap event if\n the navigation bar or calendar headers will be tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer up / down event",
+            "paramName": "e",
+            "description": " The pointer up / down event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4,
+          "index": 14732
+        },
+        "end": {
+          "line": 470,
+          "column": 5,
+          "index": 14980
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onNavButtonTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a navigation button has been tapped.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The data event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a navigation button has been tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The data event.",
+            "paramName": "evt",
+            "description": " The data event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4,
+          "index": 15136
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 15865
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDayTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a day has been tapped.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a day has been tapped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event.",
+            "paramName": "evt",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 4,
+          "index": 16002
+        },
+        "end": {
+          "line": 522,
+          "column": 5,
+          "index": 16111
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDayDblTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a day has been double-tapped.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a day has been double-tapped.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 527,
+          "column": 4,
+          "index": 16198
+        },
+        "end": {
+          "line": 529,
+          "column": 5,
+          "index": 16242
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a key was pressed.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a key was pressed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event.",
+            "paramName": "evt",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 536,
+          "column": 4,
+          "index": 16375
+        },
+        "end": {
+          "line": 622,
+          "column": 5,
+          "index": 18302
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "showMonth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows a certain month.",
+          "     *",
+          "     * @param month {Integer ? null} the month to show (0 = january). If not set",
+          "     *      the month will remain the same.",
+          "     * @param year {Integer ? null} the year to show. If not set the year will",
+          "     *      remain the same.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows a certain month.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "month {Integer ? null} the month to show (0 = january). If not set\n      the month will remain the same.",
+            "paramName": "month",
+            "description": " the month to show (0 = january). If not set\n      the month will remain the same.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "year {Integer ? null} the year to show. If not set the year will\n      remain the same.",
+            "paramName": "year",
+            "description": " the year to show. If not set the year will\n      remain the same.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 632,
+          "column": 4,
+          "index": 18595
+        },
+        "end": {
+          "line": 647,
+          "column": 5,
+          "index": 18951
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "month",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "year",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Used to handle the key events.",
+          "     *",
+          "     * @param e {qx.event.type.Data} The event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Used to handle the key events.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The event.",
+            "paramName": "e",
+            "description": " The event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 654,
+          "column": 4,
+          "index": 19082
+        },
+        "end": {
+          "line": 656,
+          "column": 5,
+          "index": 19134
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateDatePane": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the date pane.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the date pane.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 661,
+          "column": 4,
+          "index": 19187
+        },
+        "end": {
+          "line": 767,
+          "column": 5,
+          "index": 22530
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__exceedsLimits": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 769,
+          "column": 4,
+          "index": 22537
+        },
+        "end": {
+          "line": 775,
+          "column": 5,
+          "index": 22819
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "date"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__executableBindingIds": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1663
+        },
+        "end": {
+          "line": 63,
+          "column": 32,
+          "index": 1691
+        }
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "__commandExecuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the command already executed. The protection flag to stop the second command execution.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the command already executed. The protection flag to stop the second command execution."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1837
+        },
+        "end": {
+          "line": 68,
+          "column": 28,
+          "index": 1861
+        }
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "__executeListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1867
+        },
+        "end": {
+          "line": 69,
+          "column": 29,
+          "index": 1892
+        }
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "_bindableProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Set of properties, which will by synced from the command to the",
+          "     *    including widget",
+          "     *",
+          "     * @lint ignoreReferenceField(_bindableProperties)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Set of properties, which will by synced from the command to the\n    including widget"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_bindableProperties)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2087
+        },
+        "end": {
+          "line": 81,
+          "column": 6,
+          "index": 2307
+        }
+      },
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "execute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initiate the execute action.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initiate the execute action.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2366
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2655
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable",
+        "qx.ui.form.IExecutable"
+      ]
+    },
+    "__onCommandExecute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the execute event of the command.",
+          "     *",
+          "     * @param e {qx.event.type.Event} The execute event of the command.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the execute event of the command.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} The execute event of the command."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2810
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3038
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "_applyCommand": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3067
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5000
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.core.MExecutable",
+      "appearsIn": [
+        "qx.ui.core.MExecutable"
+      ]
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "mixin": "qx.ui.form.MForm",
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 784,
+        "column": 2,
+        "index": 23015
+      },
+      "end": {
+        "line": 792,
+        "column": 3,
+        "index": 23321
+      }
+    }
+  }
+}

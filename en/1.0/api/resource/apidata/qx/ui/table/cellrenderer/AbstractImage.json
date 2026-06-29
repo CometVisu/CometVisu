@@ -1,0 +1,507 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600882,
+  "lastModifiedIso": "2026-06-29T04:00:00.882Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/AbstractImage.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 653
+    },
+    "end": {
+      "line": 263,
+      "column": 3,
+      "index": 8097
+    }
+  },
+  "className": "qx.ui.table.cellrenderer.AbstractImage",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A template class for cell renderer, which display images. Concrete",
+      " * implementations must implement the method {@link #_identifyImage}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A template class for cell renderer, which display images. Concrete\n implementations must implement the method {@link #_identifyImage}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.Abstract",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 969
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1208
+      }
+    }
+  },
+  "properties": {
+    "repeat": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2050
+        }
+      },
+      "json": {
+        "check": "[[ ObjectMethod Function ]]",
+        "init": "no-repeat"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to repeat or scale the image.",
+          "     *",
+          "     * @param repeat {String}",
+          "     *   One of",
+          "     *     <code>scale</code>,",
+          "     *     <code>scale-x</code>,",
+          "     *     <code>scale-y</code>,",
+          "     *     <code>repeat</code>,",
+          "     *     <code>repeat-x</code>,",
+          "     *     <code>repeat-y</code>,",
+          "     *     <code>no-repeat</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to repeat or scale the image.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "repeat {String}\n   One of\n     <code>scale</code>,\n     <code>scale-x</code>,\n     <code>scale-y</code>,\n     <code>repeat</code>,\n     <code>repeat-x</code>,\n     <code>repeat-y</code>,\n     <code>no-repeat</code>",
+            "paramName": "repeat",
+            "description": "\n   One of\n     <code>scale</code>,\n     <code>scale-x</code>,\n     <code>scale-y</code>,\n     <code>repeat</code>,\n     <code>repeat-x</code>,\n     <code>repeat-y</code>,\n     <code>no-repeat</code>",
+            "type": "string"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__defaultWidth": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2258
+        },
+        "end": {
+          "line": 89,
+          "column": 22,
+          "index": 2276
+        }
+      },
+      "appearsIn": []
+    },
+    "__defaultHeight": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2282
+        },
+        "end": {
+          "line": 90,
+          "column": 23,
+          "index": 2301
+        }
+      },
+      "appearsIn": []
+    },
+    "__imageData": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2307
+        },
+        "end": {
+          "line": 91,
+          "column": 21,
+          "index": 2324
+        }
+      },
+      "appearsIn": []
+    },
+    "_identifyImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Identifies the Image to show. This is a template method, which must be",
+          "     * implemented by sub classes.",
+          "     *",
+          "     * @abstract",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     * @return {Map} A map having the following attributes:",
+          "     *           <ul>",
+          "     *           <li>",
+          "     *             \"url\": (type string) must be the URL of the image to show.",
+          "     *             The url given must either be managed by the {@link qx.util.ResourceManager}",
+          "     *             or pre-loaded with {@link qx.io.ImageLoader}. This is to make sure that",
+          "     *             the renderer knows the dimensions and the format of the image.",
+          "     *           </li>",
+          "     *           <li>\"imageWidth\": (type int) the width of the image in pixels.</li>",
+          "     *           <li>\"imageHeight\": (type int) the height of the image in pixels.</li>",
+          "     *           <li>\"tooltip\": (type string) must be the image tooltip text.</li>",
+          "     *           </ul>",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Identifies the Image to show. This is a template method, which must be\n implemented by sub classes.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+            "paramName": "cellInfo",
+            "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map having the following attributes:\n           <ul>\n           <li>\n             \"url\": (type string) must be the URL of the image to show.\n             The url given must either be managed by the {@link qx.util.ResourceManager}\n             or pre-loaded with {@link qx.io.ImageLoader}. This is to make sure that\n             the renderer knows the dimensions and the format of the image.\n           </li>\n           <li>\"imageWidth\": (type int) the width of the image in pixels.</li>\n           <li>\"imageHeight\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>",
+            "type": "Map<any, any>",
+            "description": "A map having the following attributes:\n           <ul>\n           <li>\n             \"url\": (type string) must be the URL of the image to show.\n             The url given must either be managed by the {@link qx.util.ResourceManager}\n             or pre-loaded with {@link qx.io.ImageLoader}. This is to make sure that\n             the renderer knows the dimensions and the format of the image.\n           </li>\n           <li>\"imageWidth\": (type int) the width of the image in pixels.</li>\n           <li>\"imageHeight\": (type int) the height of the image in pixels.</li>\n           <li>\"tooltip\": (type string) must be the image tooltip text.</li>\n           </ul>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3432
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3517
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_getImageInfos": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the image infos.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     * @return {Map} Map with an \"url\" attribute (type string)",
+          "     *                 holding the URL of the image to show",
+          "     *                 and a \"tooltip\" attribute",
+          "     *                 (type string) being the tooltip text (or null if none was specified)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieves the image infos.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+            "paramName": "cellInfo",
+            "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "type string) being the tooltip text (or null if none was specified"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3988
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 5107
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__getImageSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute the size of the given image",
+          "     *",
+          "     * @param source {String} the image URL",
+          "     * @return {Map} A map containing the image's <code>width</code> and",
+          "     *    <code>height</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute the size of the given image</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} the image URL",
+            "paramName": "source",
+            "description": " the image URL",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map containing the image's <code>width</code> and\n    <code>height</code>",
+            "type": "Map<any, any>",
+            "description": "A map containing the image's <code>width</code> and\n    <code>height</code>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 5327
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 5991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "createDataCellHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 6016
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 6175
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        },
+        {
+          "name": "htmlArr"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract",
+        "qx.ui.table.ICellRenderer"
+      ]
+    },
+    "_getCellClass": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 6200
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 6296
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    },
+    "_getContentHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 6321
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 7505
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    },
+    "_getCellAttributes": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 7530
+        },
+        "end": {
+          "line": 251,
+          "column": 5,
+          "index": 7852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 260,
+        "column": 2,
+        "index": 8048
+      },
+      "end": {
+        "line": 262,
+        "column": 3,
+        "index": 8093
+      }
+    }
+  },
+  "statics": {}
+}

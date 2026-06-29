@@ -1,0 +1,942 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601577,
+  "lastModifiedIso": "2026-06-29T04:00:01.577Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/ComboBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1072
+    },
+    "end": {
+      "line": 462,
+      "column": 3,
+      "index": 12530
+    }
+  },
+  "className": "qx.ui.form.ComboBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Basically a text fields which allows a selection from a list of",
+      " * preconfigured options. Allows custom user input. Public API is value",
+      " * oriented.",
+      " *",
+      " * To work with selections without custom input the ideal candidates are",
+      " * the {@link SelectBox} or the {@link RadioGroup}.",
+      " *",
+      " * @childControl textfield {qx.ui.form.TextField} textfield component of the combobox",
+      " * @childControl button {qx.ui.form.Button} button to open the list popup",
+      " * @childControl list {qx.ui.form.List} list inside the popup",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Basically a text fields which allows a selection from a list of\n preconfigured options. Allows custom user input. Public API is value\n oriented.\n To work with selections without custom input the ideal candidates are\n the {@link SelectBox} or the {@link RadioGroup}.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "textfield {qx.ui.form.TextField} textfield component of the combobox"
+      },
+      {
+        "name": "@childControl",
+        "body": "button {qx.ui.form.Button} button to open the list popup"
+      },
+      {
+        "name": "@childControl",
+        "body": "list {qx.ui.form.List} list inside the popup"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.AbstractSelectBox",
+  "interfaces": [
+    "qx.ui.form.IStringForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 43,
+        "column": 2,
+        "index": 1383
+      },
+      "end": {
+        "line": 63,
+        "column": 3,
+        "index": 2024
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2252
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2314
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "combobox"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "placeholder": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2499
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2597
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyPlaceholder"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * String value which will be shown as a hint if the field is all of:",
+          "     * unset, unfocused and enabled. Set to null to not show a placeholder",
+          "     * text.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String value which will be shown as a hint if the field is all of:\n unset, unfocused and enabled. Set to null to not show a placeholder\n text.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "changeValue": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Whenever the value is changed this event is fired",
+          "     *",
+          "     *  Event data: The new text value of the field.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whenever the value is changed this event is fired\n  Event data: The new text value of the field.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2929
+        },
+        "end": {
+          "line": 101,
+          "column": 37,
+          "index": 2962
+        }
+      }
+    }
+  },
+  "members": {
+    "__preSelectedItem": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3223
+        },
+        "end": {
+          "line": 111,
+          "column": 27,
+          "index": 3246
+        }
+      },
+      "appearsIn": []
+    },
+    "__onInputId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3252
+        },
+        "end": {
+          "line": 112,
+          "column": 21,
+          "index": 3269
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3298
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3398
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3615
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4683
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4774
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4838
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "tabFocus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4863
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5003
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5028
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5131
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 5170
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 5380
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5419
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 5496
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5535
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5611
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ]
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5833
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 6589
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox"
+      ]
+    },
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the popup's visibility.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the popup's visibility.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer tap event",
+            "paramName": "e",
+            "description": " Pointer tap event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 254,
+          "column": 4,
+          "index": 6716
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 6753
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onListPointerDown": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 6778
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 6841
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox"
+      ]
+    },
+    "_setPreselectedItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply pre-selected item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply pre-selected item</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 6895
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 7335
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onListChangeSelection": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 4,
+          "index": 7360
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 8714
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox"
+      ]
+    },
+    "_onPopupChangeVisibility": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 8739
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 9630
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox"
+      ]
+    },
+    "_onTextFieldChangeValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reacts on value changes of the text field and syncs the",
+          "     * value to the combobox.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reacts on value changes of the text field and syncs the\n value to the combobox.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Change event",
+            "paramName": "e",
+            "description": " Change event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 9803
+        },
+        "end": {
+          "line": 391,
+          "column": 5,
+          "index": 10632
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTextSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current selection.",
+          "     * This method only works if the widget is already created and",
+          "     * added to the document.",
+          "     *",
+          "     * @return {String|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current selection.\n This method only works if the widget is already created and\n added to the document.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null}",
+            "type": "String|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 4,
+          "index": 11031
+        },
+        "end": {
+          "line": 408,
+          "column": 5,
+          "index": 11124
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionLength": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current selection length.",
+          "     * This method only works if the widget is already created and",
+          "     * added to the document.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current selection length.\n This method only works if the widget is already created and\n added to the document.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer|null}",
+            "type": "Integer|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 4,
+          "index": 11326
+        },
+        "end": {
+          "line": 419,
+          "column": 5,
+          "index": 11431
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "setTextSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the selection to the given start and end (zero-based).",
+          "     * If no end value is given the selection will extend to the",
+          "     * end of the textfield's content.",
+          "     * This method only works if the widget is already created and",
+          "     * added to the document.",
+          "     *",
+          "     * @param start {Integer} start of the selection (zero-based)",
+          "     * @param end {Integer} end of the selection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the selection to the given start and end (zero-based).\n If no end value is given the selection will extend to the\n end of the textfield's content.\n This method only works if the widget is already created and\n added to the document.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start {Integer} start of the selection (zero-based)",
+            "paramName": "start",
+            "description": " start of the selection (zero-based)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "end {Integer} end of the selection",
+            "paramName": "end",
+            "description": " end of the selection",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 11843
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 11949
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "Integer"
+        },
+        {
+          "name": "end",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clearTextSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the current selection.",
+          "     * This method only works if the widget is already created and",
+          "     * added to the document.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the current selection.\n This method only works if the widget is already created and\n added to the document.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 441,
+          "column": 4,
+          "index": 12113
+        },
+        "end": {
+          "line": 443,
+          "column": 5,
+          "index": 12203
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "selectAllText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the whole content",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Selects the whole content</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 449,
+          "column": 4,
+          "index": 12266
+        },
+        "end": {
+          "line": 451,
+          "column": 5,
+          "index": 12346
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "resetAllTextSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear any text selection, then select all text",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clear any text selection, then select all text</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 4,
+          "index": 12430
+        },
+        "end": {
+          "line": 460,
+          "column": 5,
+          "index": 12522
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

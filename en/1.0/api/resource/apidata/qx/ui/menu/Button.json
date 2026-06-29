@@ -1,0 +1,126 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601332,
+  "lastModifiedIso": "2026-06-29T04:00:01.332Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menu/Button.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 676
+    },
+    "end": {
+      "line": 103,
+      "column": 3,
+      "index": 2531
+    }
+  },
+  "className": "qx.ui.menu.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The real menu button class which supports a command and an icon. All",
+      " * other features are inherited from the {@link qx.ui.menu.AbstractButton}",
+      " * class.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The real menu button class which supports a command and an icon. All\n other features are inherited from the {@link qx.ui.menu.AbstractButton}\n class.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.menu.AbstractButton",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      },
+      {
+        "name": "command"
+      },
+      {
+        "name": "menu"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1158
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1576
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1804
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1869
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "menu-button"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2290
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2523
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.menu.AbstractButton",
+      "appearsIn": [
+        "qx.ui.menu.AbstractButton"
+      ]
+    }
+  },
+  "statics": {}
+}

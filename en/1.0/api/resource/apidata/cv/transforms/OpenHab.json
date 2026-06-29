@@ -1,0 +1,75 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543939,
+  "lastModifiedIso": "2026-06-29T03:59:03.939Z",
+  "classFilename": "../../source/class/cv/transforms/OpenHab.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 911
+    },
+    "end": {
+      "line": 259,
+      "column": 3,
+      "index": 7137
+    }
+  },
+  "className": "cv.transforms.OpenHab",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Transformations for the openHAB backend",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 2012",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Transformations for the openHAB backend</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2012"
+      }
+    ]
+  },
+  "statics": {
+    "isUndefined": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1107
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1226
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

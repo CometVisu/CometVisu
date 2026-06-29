@@ -1,0 +1,634 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602897,
+  "lastModifiedIso": "2026-06-29T04:00:02.897Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Navigation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1244
+    },
+    "end": {
+      "line": 245,
+      "column": 3,
+      "index": 6617
+    }
+  },
+  "className": "qx.ui.mobile.container.Navigation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The navigation controller includes already a {@link qx.ui.mobile.navigationbar.NavigationBar}",
+      " * and a {@link qx.ui.mobile.container.Composite} container with a {@link qx.ui.mobile.layout.Card} layout.",
+      " * All widgets that implement the {@link qx.ui.mobile.container.INavigation}",
+      " * interface can be added to the container. The added widget provide the title",
+      " * widget and the left/right container, which will be automatically merged into",
+      " * navigation bar.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var container = new qx.ui.mobile.container.Navigation();",
+      " *   this.getRoot(container);",
+      " *   var page = new qx.ui.mobile.page.NavigationPage();",
+      " *   container.add(page);",
+      " *   page.show();",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The navigation controller includes already a {@link qx.ui.mobile.navigationbar.NavigationBar}\n and a {@link qx.ui.mobile.container.Composite} container with a {@link qx.ui.mobile.layout.Card} layout.\n All widgets that implement the {@link qx.ui.mobile.container.INavigation}\n interface can be added to the container. The added widget provide the title\n widget and the left/right container, which will be automatically merged into\n navigation bar.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var container = new qx.ui.mobile.container.Navigation();\n   this.getRoot(container);\n   var page = new qx.ui.mobile.page.NavigationPage();\n   container.add(page);\n   page.show();\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 48,
+        "column": 2,
+        "index": 1534
+      },
+      "end": {
+        "line": 58,
+        "column": 3,
+        "index": 1817
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2044
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2113
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "navigation"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    }
+  },
+  "events": {
+    "update": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the navigation bar gets updated "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the navigation bar gets updated</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2372
+        },
+        "end": {
+          "line": 80,
+          "column": 32,
+          "index": 2400
+        }
+      }
+    }
+  },
+  "members": {
+    "__navigationBar": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2608
+        },
+        "end": {
+          "line": 90,
+          "column": 25,
+          "index": 2629
+        }
+      },
+      "appearsIn": []
+    },
+    "__content": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2635
+        },
+        "end": {
+          "line": 91,
+          "column": 19,
+          "index": 2650
+        }
+      },
+      "appearsIn": []
+    },
+    "__layout": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2656
+        },
+        "end": {
+          "line": 92,
+          "column": 18,
+          "index": 2670
+        }
+      },
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2695
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2883
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.container.Composite",
+      "appearsIn": [
+        "qx.ui.mobile.container.Composite",
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2908
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3101
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "overriddenFrom": "qx.ui.mobile.container.Composite",
+      "appearsIn": [
+        "qx.ui.mobile.container.Composite",
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "getContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content container. Add all your widgets to this container.",
+          "     *",
+          "     * @return {qx.ui.mobile.container.Composite} The content container",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the content container. Add all your widgets to this container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The content container",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": "The content container"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3281
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3330
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "getLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the assigned card layout.",
+          "     * @return {qx.ui.mobile.layout.Card} assigned Card Layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the assigned card layout.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.layout.Card} assigned Card Layout.",
+            "type": "qx.ui.mobile.layout.Card",
+            "description": "assigned Card Layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3458
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3505
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.layout.Card"
+      },
+      "overriddenFrom": "qx.ui.mobile.container.Composite",
+      "appearsIn": [
+        "qx.ui.mobile.container.Composite",
+        "qx.ui.mobile.core.MLayoutHandling"
+      ]
+    },
+    "getNavigationBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the navigation bar.",
+          "     *",
+          "     * @return {qx.ui.mobile.navigationbar.NavigationBar} The navigation bar.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the navigation bar.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.NavigationBar} The navigation bar.",
+            "type": "qx.ui.mobile.navigationbar.NavigationBar",
+            "description": "The navigation bar."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3648
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3709
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.navigationbar.NavigationBar"
+      },
+      "appearsIn": []
+    },
+    "_createContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the content container.",
+          "     *",
+          "     * @return {qx.ui.mobile.container.Composite} The created content container",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the content container.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} The created content container",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": "The created content container"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3857
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 4237
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_onAnimationStart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the \"animationStart\" event on the layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the \"animationStart\" event on the layout.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4321
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4383
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onAnimationEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the \"animationEnd\" event on the layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the \"animationEnd\" event on the layout.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4465
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4528
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onUpdateLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the \"updateLayout\" event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The causing event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the \"updateLayout\" event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The causing event",
+            "paramName": "evt",
+            "description": " The causing event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 4682
+        },
+        "end": {
+          "line": 177,
+          "column": 5,
+          "index": 4877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the navigation bar depending on the set widget.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The widget that should be merged into the navigation bar.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the navigation bar depending on the set widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.mobile.core.Widget} The widget that should be merged into the navigation bar.",
+            "paramName": "widget",
+            "description": " The widget that should be merged into the navigation bar.",
+            "type": "qx.ui.mobile.core.Widget"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5076
+        },
+        "end": {
+          "line": 221,
+          "column": 5,
+          "index": 6019
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createNavigationBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the navigation bar.",
+          "     *",
+          "     * @return {qx.ui.mobile.navigationbar.NavigationBar} The created navigation bar",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the navigation bar.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.navigationbar.NavigationBar} The created navigation bar",
+            "type": "qx.ui.mobile.navigationbar.NavigationBar",
+            "description": "The created navigation bar"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6169
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6260
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.navigationbar.NavigationBar"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 233,
+        "column": 2,
+        "index": 6269
+      },
+      "end": {
+        "line": 244,
+        "column": 3,
+        "index": 6613
+      }
+    }
+  },
+  "statics": {}
+}

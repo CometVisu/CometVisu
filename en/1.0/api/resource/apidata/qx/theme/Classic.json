@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601487,
+  "lastModifiedIso": "2026-06-29T04:00:01.487Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/Classic.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 542
+    },
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 815
+    }
+  },
+  "className": "qx.theme.Classic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Classic Windows Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Classic Windows Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,1271 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601702,
+  "lastModifiedIso": "2026-06-29T04:00:01.702Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Decoration.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 792
+    },
+    "end": {
+      "line": 645,
+      "column": 3,
+      "index": 20262
+    }
+  },
+  "className": "qx.bom.element.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Powerful creation and update features for images used for decoration",
+      " * purposes like for rounded borders, icons, etc.",
+      " *",
+      " * Includes support for image clipping, PNG alpha channel support, additional",
+      " * repeat options like <code>scale-x</code> or <code>scale-y</code>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Powerful creation and update features for images used for decoration\n purposes like for rounded borders, icons, etc.\n Includes support for image clipping, PNG alpha channel support, additional\n repeat options like <code>scale-x</code> or <code>scale-y</code>.</p>"
+      }
+    ]
+  },
+  "statics": {
+    "DEBUG": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether clipping hints should be logged "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether clipping hints should be logged"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1107
+        },
+        "end": {
+          "line": 36,
+          "column": 16,
+          "index": 1119
+        }
+      },
+      "appearsIn": []
+    },
+    "__warnings": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Collect warnings for potential clipped images "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Collect warnings for potential clipped images"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1195
+        },
+        "end": {
+          "line": 39,
+          "column": 18,
+          "index": 1209
+        }
+      },
+      "appearsIn": []
+    },
+    "__alphaFixRepeats": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} List of repeat modes which supports the IE AlphaImageLoader "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} List of repeat modes which supports the IE AlphaImageLoader"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1299
+        },
+        "end": {
+          "line": 51,
+          "column": 6,
+          "index": 1511
+        }
+      },
+      "appearsIn": []
+    },
+    "__repeatToTagname": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Mapping between background repeat and the tag to create "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Mapping between background repeat and the tag to create"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1597
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1787
+        }
+      },
+      "appearsIn": []
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the element to display the given source",
+          "     * with the repeat option.",
+          "     *",
+          "     * @param element {Element} DOM element to update",
+          "     * @param source {String} Any valid URI",
+          "     * @param repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,",
+          "     *   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,",
+          "     *   <code>repeat-y</code>, <code>repeat</code>",
+          "     * @param style {Map} Additional styles to apply",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the element to display the given source\n with the repeat option.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to update",
+            "paramName": "element",
+            "description": " DOM element to update",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "source {String} Any valid URI",
+            "paramName": "source",
+            "description": " Any valid URI",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "paramName": "repeat",
+            "description": " One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "style {Map} Additional styles to apply",
+            "paramName": "style",
+            "description": " Additional styles to apply",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2260
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 4045
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "create": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the HTML for a decorator image element with the given options.",
+          "     *",
+          "     * @param source {String} Any valid URI",
+          "     * @param repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,",
+          "     *   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,",
+          "     *   <code>repeat-y</code>, <code>repeat</code>",
+          "     * @param style {Map} Additional styles to apply",
+          "     * @return {String} Decorator image HTML",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the HTML for a decorator image element with the given options.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} Any valid URI",
+            "paramName": "source",
+            "description": " Any valid URI",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "paramName": "repeat",
+            "description": " One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "style {Map} Additional styles to apply",
+            "paramName": "style",
+            "description": " Additional styles to apply",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Decorator image HTML",
+            "type": "string",
+            "description": "Decorator image HTML"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4501
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 6074
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTagName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translates the given repeat option to a tag name. Useful",
+          "     * for systems which depends on early information of the tag",
+          "     * name to prepare element like {@link qx.html.Image}.",
+          "     *",
+          "     * @param repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,",
+          "     *   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,",
+          "     *   <code>repeat-y</code>, <code>repeat</code>",
+          "     * @param source {String?null} Source used to identify the image format",
+          "     * @return {String} The tag name: <code>div</code> or <code>img</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translates the given repeat option to a tag name. Useful\n for systems which depends on early information of the tag\n name to prepare element like {@link qx.html.Image}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "repeat {String} One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "paramName": "repeat",
+            "description": " One of <code>scale-x</code>, <code>scale-y</code>,\n   <code>scale</code>, <code>repeat</code>, <code>repeat-x</code>,\n   <code>repeat-y</code>, <code>repeat</code>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {String?null} Source used to identify the image format",
+            "paramName": "source",
+            "description": " Source used to identify the image format",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The tag name: <code>div</code> or <code>img</code>",
+            "type": "string",
+            "description": "The tag name: <code>div</code> or <code>img</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 6649
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6937
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAttributes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is used to collect all needed attributes for",
+          "     * the tag name detected by {@link #getTagName}.",
+          "     *",
+          "     * @param source {String} Image source",
+          "     * @param repeat {String} Repeat mode of the image",
+          "     * @param style {Map} Additional styles to apply",
+          "     * @return {String} Markup for image",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is used to collect all needed attributes for\n the tag name detected by {@link #getTagName}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} Image source",
+            "paramName": "source",
+            "description": " Image source",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} Repeat mode of the image",
+            "paramName": "repeat",
+            "description": " Repeat mode of the image",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "style {Map} Additional styles to apply",
+            "paramName": "style",
+            "description": " Additional styles to apply",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Markup for image",
+            "type": "string",
+            "description": "Markup for image"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 7276
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 9038
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__normalizeWidthHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalize the given width and height values",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param width {Integer?null} width as number or null",
+          "     * @param height {Integer?null} height as number or null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalize the given width and height values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer?null} width as number or null",
+            "paramName": "width",
+            "description": " width as number or null",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer?null} height as number or null",
+            "paramName": "height",
+            "description": " height as number or null",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 9283
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 9528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "width",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "height",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getDimension": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the dimension of the image by calling",
+          "     * {@link qx.util.ResourceManager} or {@link qx.io.ImageLoader}",
+          "     * depending on if the image is a managed one.",
+          "     *",
+          "     * @param source {String} image source",
+          "     * @return {Map} dimension of image",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the dimension of the image by calling\n {@link qx.util.ResourceManager} or {@link qx.io.ImageLoader}\n depending on if the image is a managed one.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} image source",
+            "paramName": "source",
+            "description": " image source",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} dimension of image",
+            "type": "Map<any, any>",
+            "description": "dimension of image"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 9813
+        },
+        "end": {
+          "line": 305,
+          "column": 5,
+          "index": 10182
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "processAlphaFix": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get all styles for IE browser which need to load the image",
+          "     * with the help of the AlphaImageLoader",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param repeat {String} repeat mode",
+          "     * @param source {String} image source",
+          "     *",
+          "     * @return {Map} style infos",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get all styles for IE browser which need to load the image\n with the help of the AlphaImageLoader</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} repeat mode",
+            "paramName": "repeat",
+            "description": " repeat mode",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {String} image source",
+            "paramName": "source",
+            "description": " image source",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} style infos",
+            "type": "Map<any, any>",
+            "description": "style infos"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 10492
+        },
+        "end": {
+          "line": 337,
+          "column": 5,
+          "index": 11148
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__processScale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process scaled images.",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param repeat {String} repeat mode",
+          "     * @param source {String} image source",
+          "     *",
+          "     * @return {Map} image URI and style infos",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process scaled images.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} repeat mode",
+            "paramName": "repeat",
+            "description": " repeat mode",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {String} image source",
+            "paramName": "source",
+            "description": " image source",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} image URI and style infos",
+            "type": "Map<any, any>",
+            "description": "image URI and style infos"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4,
+          "index": 11391
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 11698
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__processScaleXScaleY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process images which are either scaled horizontally or",
+          "     * vertically.",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param repeat {String} repeat mode",
+          "     * @param sourceid {String} image resource id",
+          "     *",
+          "     * @return {Map} image URI and style infos",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process images which are either scaled horizontally or\n vertically.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} repeat mode",
+            "paramName": "repeat",
+            "description": " repeat mode",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "sourceid {String} image resource id",
+            "paramName": "sourceid",
+            "description": " image resource id",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} image URI and style infos",
+            "type": "Map<any, any>",
+            "description": "image URI and style infos"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4,
+          "index": 11999
+        },
+        "end": {
+          "line": 426,
+          "column": 5,
+          "index": 13585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "sourceid",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getStylesForClippedScaleX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the style infos for horizontally scaled clipped images.",
+          "     *",
+          "     * @param style {Map} style infos",
+          "     * @param data {Array} image data retrieved from the {@link qx.util.ResourceManager}",
+          "     * @param height {Integer} image height",
+          "     *",
+          "     * @return {Map} style infos and image URI",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the style infos for horizontally scaled clipped images.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style infos",
+            "paramName": "style",
+            "description": " style infos",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "data {Array} image data retrieved from the {@link qx.util.ResourceManager}",
+            "paramName": "data",
+            "description": " image data retrieved from the {@link qx.util.ResourceManager}",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} image height",
+            "paramName": "height",
+            "description": " image height",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} style infos and image URI",
+            "type": "Map<any, any>",
+            "description": "style infos and image URI"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 437,
+          "column": 4,
+          "index": 13913
+        },
+        "end": {
+          "line": 458,
+          "column": 5,
+          "index": 14633
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "data",
+          "type": "Array<any>"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getStylesForClippedScaleY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the style infos for vertically scaled clipped images.",
+          "     *",
+          "     * @param style {Map} style infos",
+          "     * @param data {Array} image data retrieved from the {@link qx.util.ResourceManager}",
+          "     * @param width {Integer} image width",
+          "     *",
+          "     * @return {Map} style infos and image URI",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the style infos for vertically scaled clipped images.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style infos",
+            "paramName": "style",
+            "description": " style infos",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "data {Array} image data retrieved from the {@link qx.util.ResourceManager}",
+            "paramName": "data",
+            "description": " image data retrieved from the {@link qx.util.ResourceManager}",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} image width",
+            "paramName": "width",
+            "description": " image width",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} style infos and image URI",
+            "type": "Map<any, any>",
+            "description": "style infos and image URI"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 4,
+          "index": 14957
+        },
+        "end": {
+          "line": 490,
+          "column": 5,
+          "index": 15670
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "data",
+          "type": "Array<any>"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__processRepeats": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process repeated images.",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param repeat {String} repeat mode",
+          "     * @param sourceid {String} image resource id",
+          "     *",
+          "     * @return {Map} image URI and style infos",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process repeated images.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} repeat mode",
+            "paramName": "repeat",
+            "description": " repeat mode",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "sourceid {String} image resource id",
+            "paramName": "sourceid",
+            "description": " image resource id",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} image URI and style infos",
+            "type": "Map<any, any>",
+            "description": "image URI and style infos"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 501,
+          "column": 4,
+          "index": 15922
+        },
+        "end": {
+          "line": 585,
+          "column": 5,
+          "index": 18473
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        },
+        {
+          "name": "sourceid",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getStylesForSingleRepeat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate all style infos for single repeated images",
+          "     *",
+          "     * @param style {Map} style information",
+          "     * @param repeat {String} repeat mode",
+          "     * @param source {String} image source",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generate all style infos for single repeated images</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "style {Map} style information",
+            "paramName": "style",
+            "description": " style information",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "repeat {String} repeat mode",
+            "paramName": "repeat",
+            "description": " repeat mode",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {String} image source",
+            "paramName": "source",
+            "description": " image source",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 594,
+          "column": 4,
+          "index": 18691
+        },
+        "end": {
+          "line": 625,
+          "column": 5,
+          "index": 19758
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "repeat",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__checkForPotentialClippedImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Output a warning if the image can be clipped.",
+          "     *",
+          "     * @param source {String} image source",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Output a warning if the image can be clipped.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} image source",
+            "paramName": "source",
+            "description": " image source",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 632,
+          "column": 4,
+          "index": 19884
+        },
+        "end": {
+          "line": 643,
+          "column": 5,
+          "index": 20254
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

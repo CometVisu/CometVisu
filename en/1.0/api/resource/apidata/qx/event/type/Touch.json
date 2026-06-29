@@ -1,0 +1,1043 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603318,
+  "lastModifiedIso": "2026-06-29T04:00:03.318Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Touch.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 717
+    },
+    "end": {
+      "line": 289,
+      "column": 3,
+      "index": 9597
+    }
+  },
+  "className": "qx.event.type.Touch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Touch event object.",
+      " *",
+      " * For more information see:",
+      " *     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchEventClassReference/TouchEvent/TouchEvent.html",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Touch event object.\n For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchEventClassReference/TouchEvent/TouchEvent.html</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Dom",
+  "members": {
+    "_cloneNativeEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1007
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2169
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nativeEvent"
+        },
+        {
+          "name": "clone"
+        }
+      ],
+      "overriddenFrom": "qx.event.type.Dom",
+      "appearsIn": [
+        "qx.event.type.Dom",
+        "qx.event.type.Native"
+      ]
+    },
+    "stop": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2194
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2238
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.type.Event",
+      "appearsIn": [
+        "qx.event.type.Event"
+      ]
+    },
+    "getAllTouches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of native Touch objects representing all current",
+          "     * touches on the document.",
+          "     * Returns an empty array for the \"touchend\" event.",
+          "     *",
+          "     * @return {Object[]} Array of touch objects. For more information see:",
+          "     *     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of native Touch objects representing all current\n touches on the document.\n Returns an empty array for the \"touchend\" event.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+            "type": "Object[]",
+            "description": "Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2636
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2694
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "getTargetTouches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of native Touch objects representing all touches",
+          "     * associated with the event target element.",
+          "     * Returns an empty array for the \"touchend\" event.",
+          "     *",
+          "     * @return {Object[]} Array of touch objects. For more information see:",
+          "     *     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of native Touch objects representing all touches\n associated with the event target element.\n Returns an empty array for the \"touchend\" event.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+            "type": "Object[]",
+            "description": "Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 3109
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3176
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "getChangedTargetTouches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of native Touch objects representing all touches of",
+          "     * the target element that changed in this event.",
+          "     *",
+          "     * On the \"touchstart\" event the array contains all touches that were",
+          "     * added to the target element.",
+          "     * On the \"touchmove\" event the array contains all touches that were",
+          "     * moved on the target element.",
+          "     * On the \"touchend\" event the array contains all touches that used",
+          "     * to be on the target element.",
+          "     *",
+          "     * @return {Object[]} Array of touch objects. For more information see:",
+          "     *     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of native Touch objects representing all touches of\n the target element that changed in this event.\n On the \"touchstart\" event the array contains all touches that were\n added to the target element.\n On the \"touchmove\" event the array contains all touches that were\n moved on the target element.\n On the \"touchend\" event the array contains all touches that used\n to be on the target element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html",
+            "type": "Object[]",
+            "description": "Array of touch objects. For more information see:\n     https://developer.apple.com/library/safari/#documentation/UserExperience/Reference/TouchClassReference/Touch/Touch.html"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3877
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3952
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "isMultiTouch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether more than one touch is associated with the event target",
+          "     * element.",
+          "     *",
+          "     * @return {Boolean} Is multi-touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether more than one touch is associated with the event target\n element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Is multi-touch",
+            "type": "boolean",
+            "description": "Is multi-touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 4116
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 4196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getScale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance between two fingers since the start of the event.",
+          "     * The distance is a multiplier of the initial distance.",
+          "     * Initial value: 1.0.",
+          "     * Gestures:",
+          "     * < 1.0, pinch close / zoom out.",
+          "     * > 1.0, pinch open / to zoom in.",
+          "     *",
+          "     * @return {Float} The scale distance between two fingers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the distance between two fingers since the start of the event.\n The distance is a multiplier of the initial distance.\n Initial value: 1.0.\n Gestures:\n &lt; 1.0, pinch close / zoom out.</p>\n<blockquote>\n  <p>1.0, pinch open / to zoom in.</p>\n</blockquote>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Float} The scale distance between two fingers",
+            "type": "Float",
+            "description": "The scale distance between two fingers"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4548
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 4599
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Float"
+      },
+      "appearsIn": []
+    },
+    "getRotation": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the delta of the rotation since the start of the event, in degrees.",
+          "     * Initial value is 0.0",
+          "     * Clockwise > 0",
+          "     * Counter-clockwise < 0.",
+          "     *",
+          "     * @return {Float} The rotation delta",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the delta of the rotation since the start of the event, in degrees.\n Initial value is 0.0\n Clockwise &gt; 0\n Counter-clockwise &lt; 0.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Float} The rotation delta",
+            "type": "Float",
+            "description": "The rotation delta"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 4833
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 5013
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Float"
+      },
+      "appearsIn": []
+    },
+    "getDelta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array with the calculated delta coordinates of all active touches,",
+          "     * relative to the position on <code>touchstart</code> event.",
+          "     *",
+          "     * @return {Array} an array with objects for each active touch which contains the delta as <code>x</code> and",
+          "     * <code>y</code>, the touch identifier as <code>identifier</code> and the movement axis as <code>axis</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array with the calculated delta coordinates of all active touches,\n relative to the position on <code>touchstart</code> event.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} an array with objects for each active touch which contains the delta as <code>x</code> and\n <code>y</code>, the touch identifier as <code>identifier</code> and the movement axis as <code>axis</code>.",
+            "type": "Array<any>",
+            "description": "an array with objects for each active touch which contains the delta as <code>x</code> and\n <code>y</code>, the touch identifier as <code>identifier</code> and the movement axis as <code>axis</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 5423
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 5474
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getDocumentLeft": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal position at which the event occurred relative to the",
+          "     * left of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The horizontal position of the touch in the document.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the horizontal position at which the event occurred relative to the\n left of the document. This property takes into account any scrolling of\n the page.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The horizontal position of the touch in the document.",
+            "type": "Integer",
+            "description": "The horizontal position of the touch in the document."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5827
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 5923
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getDocumentTop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical position at which the event occurred relative to the",
+          "     * top of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The vertical position of the touch in the document.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the vertical position at which the event occurred relative to the\n top of the document. This property takes into account any scrolling of\n the page.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The vertical position of the touch in the document.",
+            "type": "Integer",
+            "description": "The vertical position of the touch in the document."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 6271
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 6366
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScreenLeft": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The horizontal position of the touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the horizontal coordinate at which the event occurred relative to\n the origin of the screen coordinate system.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The horizontal position of the touch",
+            "type": "Integer",
+            "description": "The horizontal position of the touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 6655
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 6751
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScreenTop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The vertical position of the touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the vertical coordinate at which the event occurred relative to\n the origin of the screen coordinate system.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The vertical position of the touch",
+            "type": "Integer",
+            "description": "The vertical position of the touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 7036
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 7131
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getViewportLeft": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the the horizontal coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The horizontal position of the touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the the horizontal coordinate at which the event occurred relative\n to the viewport.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The horizontal position of the touch",
+            "type": "Integer",
+            "description": "The horizontal position of the touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 7394
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 7492
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getViewportTop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} The vertical position of the touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the vertical coordinate at which the event occurred relative\n to the viewport.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The vertical position of the touch",
+            "type": "Integer",
+            "description": "The vertical position of the touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 7747
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 7844
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getIdentifier": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the unique identifier for a certain touch object.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object",
+          "     * @return {Integer} Unique identifier of the touch object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the unique identifier for a certain touch object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Unique identifier of the touch object",
+            "type": "Integer",
+            "description": "Unique identifier of the touch object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 8071
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 8170
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__getEventSpecificTouch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an event specific touch on the target element. This function is",
+          "     * used as the \"touchend\" event only offers Touch objects in the",
+          "     * changedTouches array.",
+          "     *",
+          "     * @param touchIndex {Integer ? 0} The index of the Touch object to",
+          "     *     retrieve",
+          "     * @return {Object} A native Touch object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an event specific touch on the target element. This function is\n used as the \"touchend\" event only offers Touch objects in the\n changedTouches array.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "touchIndex {Integer ? 0} The index of the Touch object to\n     retrieve",
+            "paramName": "touchIndex",
+            "description": " The index of the Touch object to\n     retrieve",
+            "optional": true,
+            "defaultValue": "0",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} A native Touch object",
+            "type": "Record<any, any>",
+            "description": "A native Touch object"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4,
+          "index": 8515
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 8673
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "touchIndex",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getEventSpecificTouches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the event specific touches on the target element. This function",
+          "     * is used as the \"touchend\" event only offers Touch objects in the",
+          "     * changedTouches array.",
+          "     *",
+          "     * @return {Object[]} Array of native Touch objects",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the event specific touches on the target element. This function\n is used as the \"touchend\" event only offers Touch objects in the\n changedTouches array.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]} Array of native Touch objects",
+            "type": "Object[]",
+            "description": "Array of native Touch objects"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 8939
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 9111
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "_isTouchEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicates if the event occurs during the \"touchend\" phase. Needed to",
+          "     * determine the event specific touches. Override this method if you derive",
+          "     * from this class and want to indicate that the specific event occurred",
+          "     * during the \"touchend\" phase.",
+          "     *",
+          "     * @return {Boolean} Whether the event occurred during the \"touchend\" phase",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates if the event occurs during the \"touchend\" phase. Needed to\n determine the event specific touches. Override this method if you derive\n from this class and want to indicate that the specific event occurred\n during the \"touchend\" phase.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event occurred during the \"touchend\" phase",
+            "type": "boolean",
+            "description": "Whether the event occurred during the \"touchend\" phase"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 9490
+        },
+        "end": {
+          "line": 287,
+          "column": 5,
+          "index": 9589
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

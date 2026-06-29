@@ -1,0 +1,441 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601880,
+  "lastModifiedIso": "2026-06-29T04:00:01.880Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/renderer/Double.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 551
+    },
+    "end": {
+      "line": 180,
+      "column": 3,
+      "index": 4999
+    }
+  },
+  "className": "qx.ui.form.renderer.Double",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Double column renderer for {@link qx.ui.form.Form}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Double column renderer for {@link qx.ui.form.Form}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.renderer.AbstractRenderer",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "form"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 2,
+        "index": 650
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 968
+      }
+    }
+  },
+  "members": {
+    "_row": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 988
+        },
+        "end": {
+          "line": 38,
+          "column": 11,
+          "index": 995
+        }
+      },
+      "appearsIn": []
+    },
+    "_buttonRow": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1001
+        },
+        "end": {
+          "line": 39,
+          "column": 20,
+          "index": 1017
+        }
+      },
+      "appearsIn": []
+    },
+    "_onFormChange": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1042
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1219
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.form.renderer.AbstractRenderer",
+      "appearsIn": [
+        "qx.ui.form.renderer.AbstractRenderer"
+      ]
+    },
+    "addItems": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a group of form items with the corresponding names. The names are",
+          "     * displayed as label.",
+          "     * The title is optional and is used as grouping for the given form",
+          "     * items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} An array of form items to render.",
+          "     * @param names {String[]} An array of names for the form items.",
+          "     * @param title {String?} A title of the group you are adding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a group of form items with the corresponding names. The names are\n displayed as label.\n The title is optional and is used as grouping for the given form\n items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.core.Widget[]} An array of form items to render.",
+            "paramName": "items",
+            "description": " An array of form items to render.",
+            "type": "qx.ui.core.Widget[]"
+          },
+          {
+            "name": "@param",
+            "body": "names {String[]} An array of names for the form items.",
+            "paramName": "names",
+            "description": " An array of names for the form items.",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "title {String?} A title of the group you are adding.",
+            "paramName": "title",
+            "description": " A title of the group you are adding.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1651
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2580
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        },
+        {
+          "name": "names",
+          "type": "String[]"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.renderer.AbstractRenderer",
+      "appearsIn": [
+        "qx.ui.form.renderer.AbstractRenderer",
+        "qx.ui.form.renderer.IFormRenderer"
+      ]
+    },
+    "addButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a button the form renderer. All buttons will be added in a",
+          "     * single row at the bottom of the form.",
+          "     *",
+          "     * @param button {qx.ui.form.Button} The button to add.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a button the form renderer. All buttons will be added in a\n single row at the bottom of the form.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "button {qx.ui.form.Button} The button to add.",
+            "paramName": "button",
+            "description": " The button to add.",
+            "type": "qx.ui.form.Button"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2786
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3349
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.form.Button"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.renderer.AbstractRenderer",
+      "appearsIn": [
+        "qx.ui.form.renderer.AbstractRenderer",
+        "qx.ui.form.renderer.IFormRenderer"
+      ]
+    },
+    "getLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set layout for configuration.",
+          "     *",
+          "     * @return {qx.ui.layout.Grid} The grid layout of the widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the set layout for configuration.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.layout.Grid} The grid layout of the widget.",
+            "type": "qx.ui.layout.Grid",
+            "description": "The grid layout of the widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3494
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3545
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "_createLabel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a label for the given form item.",
+          "     *",
+          "     * @param name {String} The content of the label without the",
+          "     *   trailing * and :",
+          "     * @param item {qx.ui.core.Widget} The item, which has the required state.",
+          "     * @return {qx.ui.basic.Label} The label for the given item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a label for the given form item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The content of the label without the\n   trailing * and :",
+            "paramName": "name",
+            "description": " The content of the label without the\n   trailing * and :",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The item, which has the required state.",
+            "paramName": "item",
+            "description": " The item, which has the required state.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.basic.Label} The label for the given item.",
+            "type": "qx.ui.basic.Label",
+            "description": "The label for the given item."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3858
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4080
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "_createHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a header label for the form groups.",
+          "     *",
+          "     * @param title {String} Creates a header label.",
+          "     * @return {qx.ui.basic.Label} The header for the form groups.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a header label for the form groups.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "title {String} Creates a header label.",
+            "paramName": "title",
+            "description": " Creates a header label.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.basic.Label} The header for the form groups.",
+            "type": "qx.ui.basic.Label",
+            "description": "The header for the form groups."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4281
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.basic.Label"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 172,
+        "column": 2,
+        "index": 4773
+      },
+      "end": {
+        "line": 179,
+        "column": 3,
+        "index": 4995
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

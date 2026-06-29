@@ -1,0 +1,255 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602877,
+  "lastModifiedIso": "2026-06-29T04:00:02.877Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MTransition.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 46,
+      "column": 0,
+      "index": 1174
+    },
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 3645
+    }
+  },
+  "className": "qx.ui.decoration.MTransition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin responsible for setting the css transition properties of a widget",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " *",
+      " * Keep in mind that this is not supported by all browsers:",
+      " *",
+      " * * Firefox 16+",
+      " * * IE 10+",
+      " * * Edge",
+      " * * Safari 6.1+",
+      " * * Opera 12.10+",
+      " * * Chrome 26+",
+      " *",
+      " * It is possible to define transitions by setting an",
+      " * array containing the needed values as the property value.",
+      " * In case multiple values are specified, the values of the properties",
+      " * are repeated until all match in length.",
+      " *",
+      " * An example:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       transitionProperty: ['top','left']",
+      " *       transitionDuration: '1s'",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin responsible for setting the css transition properties of a widget\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 16+</li>\n<li>IE 10+</li>\n<li>Edge</li>\n<li>Safari 6.1+</li>\n<li>Opera 12.10+</li>\n<li><p>Chrome 26+\nIt is possible to define transitions by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       transitionProperty: ['top','left']\n       transitionDuration: '1s'\n     }\n   }\n </pre>"
+      }
+    ]
+  },
+  "properties": {
+    "transitionProperty": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1275
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1356
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "* transition property "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition property</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "transitionDuration": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1394
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1475
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "* transition duration "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition duration</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "transitionTimingFunction": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1597
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "* transition delay "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition delay</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "transitionDelay": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1632
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1710
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "* transition delay "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>transition delay</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_styleTransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the box shadow styles in place to the",
+          "     * given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes a styles map and adds the box shadow styles in place to the\n given map. This is the needed behavior for\n {@link qx.ui.decoration.Decorator}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Map} A map to add the styles.",
+            "paramName": "styles",
+            "description": " A map to add the styles.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1975
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3352
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTransition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3381
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 3637
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

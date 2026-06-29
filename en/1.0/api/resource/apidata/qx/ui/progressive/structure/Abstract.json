@@ -1,0 +1,203 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600831,
+  "lastModifiedIso": "2026-06-29T04:00:00.831Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/structure/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 499
+    },
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 1984
+    }
+  },
+  "className": "qx.ui.progressive.structure.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract structure definition for Progressive",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract structure definition for Progressive</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "pane"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 961
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1290
+      }
+    }
+  },
+  "members": {
+    "__container": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1310
+        },
+        "end": {
+          "line": 51,
+          "column": 21,
+          "index": 1327
+        }
+      },
+      "appearsIn": []
+    },
+    "__pane": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1333
+        },
+        "end": {
+          "line": 52,
+          "column": 16,
+          "index": 1345
+        }
+      },
+      "appearsIn": []
+    },
+    "applyStructure": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the structure typically defined in the constructor to the",
+          "     * Progressive.",
+          "     *",
+          "     * @param progressive {qx.ui.progressive.Progressive}",
+          "     *   The Progressive to which the structure is to be applied.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the structure typically defined in the constructor to the\n Progressive.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "progressive {qx.ui.progressive.Progressive}\n   The Progressive to which the structure is to be applied.",
+            "paramName": "progressive",
+            "description": "\n   The Progressive to which the structure is to be applied.",
+            "type": "qx.ui.progressive.Progressive"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1590
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1680
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "progressive",
+          "type": "qx.ui.progressive.Progressive"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPane": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the pane in which this Progressive renders.",
+          "     *",
+          "     * @return {qx.ui.core.Widget}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the pane in which this Progressive renders.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget}",
+            "type": "qx.ui.core.Widget",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1800
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1843
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 75,
+        "column": 2,
+        "index": 1852
+      },
+      "end": {
+        "line": 81,
+        "column": 3,
+        "index": 1980
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

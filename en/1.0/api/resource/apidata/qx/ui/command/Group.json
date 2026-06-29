@@ -1,0 +1,404 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602191,
+  "lastModifiedIso": "2026-06-29T04:00:02.191Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/command/Group.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 14,
+      "column": 0,
+      "index": 324
+    },
+    "end": {
+      "line": 167,
+      "column": 3,
+      "index": 4017
+    }
+  },
+  "className": "qx.ui.command.Group",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Registrar for commands to be able to group them.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Registrar for commands to be able to group them.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 17,
+        "column": 2,
+        "index": 394
+      },
+      "end": {
+        "line": 20,
+        "column": 3,
+        "index": 445
+      }
+    }
+  },
+  "properties": {
+    "active": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 539
+        },
+        "end": {
+          "line": 30,
+          "column": 5,
+          "index": 624
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "apply": "_applyActive"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Activates or deactivates all commands in group.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activates or deactivates all commands in group.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_cmds": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 648
+        },
+        "end": {
+          "line": 34,
+          "column": 15,
+          "index": 659
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyActive": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 688
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 807
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a command with a key to the group.",
+          "     *",
+          "     * @param key {String} Key to be able to addresses the command",
+          "     * @param command {qx.ui.command.Command} Command",
+          "     *",
+          "     * @return {Boolean} <code>false</code> if key already added before",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a command with a key to the group.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Key to be able to addresses the command",
+            "paramName": "key",
+            "description": " Key to be able to addresses the command",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "command {qx.ui.command.Command} Command",
+            "paramName": "command",
+            "description": " Command",
+            "type": "qx.ui.command.Command"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if key already added before",
+            "type": "boolean",
+            "description": "<code>false</code> if key already added before"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1276
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2086
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "type": "qx.ui.command.Command"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "get": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a command by key.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {qx.ui.command.Command|null} Corresponding command instance or null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a command by key.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Key which addresses the command",
+            "paramName": "key",
+            "description": " Key which addresses the command",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
+            "type": "qx.ui.command.Command|null",
+            "description": "Corresponding command instance or null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2298
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 2787
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.command.Command|null"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "has": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if a command is registered by key.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> if a command is registered by a key",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if a command is registered by key.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Key which addresses the command",
+            "paramName": "key",
+            "description": " Key which addresses the command",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> if a command is registered by a key",
+            "type": "boolean",
+            "description": "Returns <code>true</code> if a command is registered by a key"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3025
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3198
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a command by key from group. Returns the command.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {qx.ui.command.Command|null} Corresponding command instance or null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a command by key from group. Returns the command.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} Key which addresses the command",
+            "paramName": "key",
+            "description": " Key which addresses the command",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
+            "type": "qx.ui.command.Command|null",
+            "description": "Corresponding command instance or null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3442
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 3965
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.command.Command|null"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 164,
+        "column": 2,
+        "index": 3974
+      },
+      "end": {
+        "line": 166,
+        "column": 3,
+        "index": 4013
+      }
+    }
+  },
+  "statics": {}
+}

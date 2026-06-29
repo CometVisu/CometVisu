@@ -1,0 +1,213 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601985,
+  "lastModifiedIso": "2026-06-29T04:00:01.985Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Factory.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 600
+    },
+    "end": {
+      "line": 156,
+      "column": 3,
+      "index": 4691
+    }
+  },
+  "className": "qx.html.Factory",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Factory class used to create Virtual DOM instances by JSX support",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Factory class used to create Virtual DOM instances by JSX support</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2,
+        "index": 687
+      },
+      "end": {
+        "line": 66,
+        "column": 3,
+        "index": 1873
+      }
+    }
+  },
+  "members": {
+    "__factoriesByTagName": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1893
+        },
+        "end": {
+          "line": 69,
+          "column": 30,
+          "index": 1919
+        }
+      },
+      "appearsIn": []
+    },
+    "registerFactory": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers a factory; a factory is either a class, or a function which is",
+          "     * called with the parameters (tagName {String}, styles{Map?}, attributes {Map?}), and",
+          "     * which is expected to return an {Element}",
+          "     *",
+          "     * @param tagName {String} the name of the tag",
+          "     * @param factory {Class|Function} the function used to create instances for that tagName",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers a factory; a factory is either a class, or a function which is\n called with the parameters (tagName {String}, styles{Map?}, attributes {Map?}), and\n which is expected to return an {Element}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagName {String} the name of the tag",
+            "paramName": "tagName",
+            "description": " the name of the tag",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "factory {Class|Function} the function used to create instances for that tagName",
+            "paramName": "factory",
+            "description": " the function used to create instances for that tagName",
+            "type": [
+              "Class",
+              "Function"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2313
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2568
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        },
+        {
+          "name": "factory",
+          "type": [
+            "Class",
+            "Function"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "createElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to create an {Element}",
+          "     *",
+          "     * @param tagName {String} the name of the tag",
+          "     * @param attributes {Map?} the attributes to create (including style etc)",
+          "     * @return {qx.html.Node}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to create an {Element}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tagName {String} the name of the tag",
+            "paramName": "tagName",
+            "description": " the name of the tag",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map?} the attributes to create (including style etc)",
+            "paramName": "attributes",
+            "description": " the attributes to create (including style etc)",
+            "optional": true,
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Node}",
+            "type": "qx.html.Node",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2795
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4683
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Node"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

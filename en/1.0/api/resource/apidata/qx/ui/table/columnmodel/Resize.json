@@ -1,0 +1,1053 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603088,
+  "lastModifiedIso": "2026-06-29T04:00:03.088Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/columnmodel/Resize.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 583
+    },
+    "end": {
+      "line": 345,
+      "column": 3,
+      "index": 9550
+    }
+  },
+  "className": "qx.ui.table.columnmodel.Resize",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A table column model that automatically resizes columns based on a",
+      " * selected behavior.",
+      " *",
+      " * @see qx.ui.table.columnmodel.Basic",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A table column model that automatically resizes columns based on a\n selected behavior.</p>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "qx.ui.table.columnmodel.Basic"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.columnmodel.Basic",
+  "mixins": [
+    "qx.locale.MTranslation"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 902
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1284
+      }
+    }
+  },
+  "properties": {
+    "behavior": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1786
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1968
+        }
+      },
+      "json": {
+        "check": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+        "nullable": true,
+        "apply": "_applyBehavior",
+        "event": "changeBehavior"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The behavior to use.",
+          "     *",
+          "     * The provided behavior must extend {@link qx.ui.table.columnmodel.resizebehavior.Abstract} and",
+          "     * implement the <i>onAppear</i>, <i>onTableWidthChanged</i>,",
+          "     * <i>onColumnWidthChanged</i> and <i>onVisibilityChanged</i>methods.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The behavior to use.\n The provided behavior must extend {@link qx.ui.table.columnmodel.resizebehavior.Abstract} and\n implement the <i>onAppear</i>, <i>onTableWidthChanged</i>,\n <i>onColumnWidthChanged</i> and <i>onVisibilityChanged</i>methods.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__bAppeared": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2176
+        },
+        "end": {
+          "line": 78,
+          "column": 21,
+          "index": 2193
+        }
+      },
+      "appearsIn": []
+    },
+    "__bInProgress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2199
+        },
+        "end": {
+          "line": 79,
+          "column": 23,
+          "index": 2218
+        }
+      },
+      "appearsIn": []
+    },
+    "__table": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2224
+        },
+        "end": {
+          "line": 80,
+          "column": 17,
+          "index": 2237
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyBehavior": {
+      "jsdoc": {
+        "raw": [
+          " Behavior modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2269
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2535
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the column model.",
+          "     *",
+          "     * @param numColumns {Integer} the number of columns the model should have.",
+          "     * @param table {qx.ui.table.Table}",
+          "     *   The table which this model is used for. This allows us access to",
+          "     *   other aspects of the table, as the <i>behavior</i> sees fit.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the column model.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "numColumns {Integer} the number of columns the model should have.",
+            "paramName": "numColumns",
+            "description": " the number of columns the model should have.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "table {qx.ui.table.Table}\n   The table which this model is used for. This allows us access to\n   other aspects of the table, as the <i>behavior</i> sees fit.",
+            "paramName": "table",
+            "description": "\n   The table which this model is used for. This allows us access to\n   other aspects of the table, as the <i>behavior</i> sees fit.",
+            "type": "qx.ui.table.Table"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2866
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 4241
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "numColumns",
+          "type": "Integer"
+        },
+        {
+          "name": "table",
+          "type": "qx.ui.table.Table"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.columnmodel.Basic",
+      "appearsIn": [
+        "qx.ui.table.columnmodel.Basic"
+      ]
+    },
+    "getTable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the table widget",
+          "     *",
+          "     * @return {qx.ui.table.Table} the table widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the table widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.Table} the table widget",
+            "type": "qx.ui.table.Table",
+            "description": "the table widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4351
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4396
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.Table"
+      },
+      "appearsIn": []
+    },
+    "_addResetColumnWidthButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reset the column widths to their \"onappear\" defaults.",
+          "     *",
+          "     * @param event {qx.event.type.Data}",
+          "     *   The \"columnVisibilityMenuCreateEnd\" event indicating that the menu is",
+          "     *   being generated.  The data is a map containing properties <i>table</i>",
+          "     *   and <i>menu</i>.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reset the column widths to their \"onappear\" defaults.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\n   The \"columnVisibilityMenuCreateEnd\" event indicating that the menu is\n   being generated.  The data is a map containing properties <i>table</i>\n   and <i>menu</i>.",
+            "paramName": "event",
+            "description": "\n   The \"columnVisibilityMenuCreateEnd\" event indicating that the menu is\n   being generated.  The data is a map containing properties <i>table</i>\n   and <i>menu</i>.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4720
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 5243
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onappear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the \"appear\" event.",
+          "     *",
+          "     * @param event {qx.event.type.Event}",
+          "     *   The \"onappear\" event object.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the \"appear\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event}\n   The \"onappear\" event object.",
+            "paramName": "event",
+            "description": "\n   The \"onappear\" event object.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5405
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTableWidthChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the \"tableWidthChanged\" event.",
+          "     *",
+          "     * @param event {qx.event.type.Event}",
+          "     *   The \"onwindowresize\" event object.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the \"tableWidthChanged\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event}\n   The \"onwindowresize\" event object.",
+            "paramName": "event",
+            "description": "\n   The \"onwindowresize\" event object.",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6238
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 6749
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onverticalscrollbarchanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the \"verticalScrollBarChanged\" event.",
+          "     *",
+          "     * @param event {qx.event.type.Data}",
+          "     *   The \"verticalScrollBarChanged\" event object.  The data is a boolean",
+          "     *   indicating whether a vertical scroll bar is now present.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the \"verticalScrollBarChanged\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\n   The \"verticalScrollBarChanged\" event object.  The data is a boolean\n   indicating whether a vertical scroll bar is now present.",
+            "paramName": "event",
+            "description": "\n   The \"verticalScrollBarChanged\" event object.  The data is a boolean\n   indicating whether a vertical scroll bar is now present.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 7033
+        },
+        "end": {
+          "line": 277,
+          "column": 5,
+          "index": 7837
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_oncolumnwidthchanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the \"widthChanged\" event.",
+          "     *",
+          "     * @param event {qx.event.type.Data}",
+          "     *   The \"widthChanged\" event object.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the \"widthChanged\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\n   The \"widthChanged\" event object.",
+            "paramName": "event",
+            "description": "\n   The \"widthChanged\" event object.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 4,
+          "index": 8008
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 8522
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onvisibilitychanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the \"visibilityChanged\" event.",
+          "     *",
+          "     * @param event {qx.event.type.Data}",
+          "     *   The \"visibilityChanged\" event object.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the \"visibilityChanged\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Data}\n   The \"visibilityChanged\" event object.",
+            "paramName": "event",
+            "description": "\n   The \"visibilityChanged\" event object.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 8703
+        },
+        "end": {
+          "line": 329,
+          "column": 5,
+          "index": 9214
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "tr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message",
+          "     * Mark the message for translation.",
+          "     *",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message\n Mark the message for translation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1068
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1347
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": [
+        "qx.locale.MTranslation"
+      ],
+      "mixin": "qx.locale.MTranslation"
+    },
+    "trn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 2020
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2333
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": [
+        "qx.locale.MTranslation"
+      ],
+      "mixin": "qx.locale.MTranslation"
+    },
+    "trc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message with translation hint",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a message with translation hint\n Mark the messages for translation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "messageId {String} message id (may contain format strings)",
+            "paramName": "messageId",
+            "description": " message id (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2802
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 3089
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": [
+        "qx.locale.MTranslation"
+      ],
+      "mixin": "qx.locale.MTranslation"
+    },
+    "trnc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message with translation hint",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translate a plural message with translation hint\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
+            "paramName": "hint",
+            "description": " hint for the translator of the message. Will be included in the .po file.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
+            "paramName": "singularMessageId",
+            "description": " message id of the singular form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
+            "paramName": "pluralMessageId",
+            "description": " message id of the plural form (may contain format strings)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+            "paramName": "count",
+            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "varargs {Object?} variable number of arguments applied to the format string",
+            "paramName": "varargs",
+            "description": " variable number of arguments applied to the format string",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|LocalizedString} The translated message or localized string",
+            "type": "String|LocalizedString",
+            "description": "The translated message or localized string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3886
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4207
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": [
+        "qx.locale.MTranslation"
+      ],
+      "mixin": "qx.locale.MTranslation"
+    },
+    "marktr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark the message for translation but return the original message.",
+          "     *",
+          "     * @param messageId {String} the message ID",
+          "     * @return {String} messageId",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mark the message for translation but return the original message.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "messageId {String} the message ID",
+            "paramName": "messageId",
+            "description": " the message ID",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} messageId",
+            "type": "string",
+            "description": "messageId"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 4392
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4670
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.locale.MTranslation"
+      ],
+      "mixin": "qx.locale.MTranslation"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 338,
+        "column": 2,
+        "index": 9414
+      },
+      "end": {
+        "line": 344,
+        "column": 3,
+        "index": 9546
+      }
+    }
+  },
+  "statics": {}
+}

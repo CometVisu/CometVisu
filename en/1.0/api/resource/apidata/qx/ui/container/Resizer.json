@@ -1,0 +1,1081 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603089,
+  "lastModifiedIso": "2026-06-29T04:00:03.089Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/container/Resizer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 52,
+      "column": 0,
+      "index": 1416
+    },
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 1809
+    }
+  },
+  "className": "qx.ui.container.Resizer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Resizer is a resizable container widget.",
+      " *",
+      " * It allows to be resized (not moved), normally in",
+      " * the right and/or bottom directions. It is an alternative to splitters.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var resizer = new qx.ui.container.Resizer().set({",
+      " *     width: 200,",
+      " *     height: 100",
+      " *   });",
+      " *",
+      " *   resizer.setLayout(new qx.ui.layout.Canvas());",
+      " *   var text = new qx.ui.form.TextArea(\"Resize me\\nI'm resizable\");",
+      " *   resizer.add(text, {edge: 0});",
+      " *",
+      " *   this.getRoot().add(resizer);",
+      " * </pre>",
+      " *",
+      " * This example creates a resizer, configures it with a canvas layout and",
+      " * adds a text area to it.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/resizer.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Resizer is a resizable container widget.\n It allows to be resized (not moved), normally in\n the right and/or bottom directions. It is an alternative to splitters.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var resizer = new qx.ui.container.Resizer().set({\n     width: 200,\n     height: 100\n   });\n   resizer.setLayout(new qx.ui.layout.Canvas());\n   var text = new qx.ui.form.TextArea(\"Resize me\\nI'm resizable\");\n   resizer.add(text, {edge: 0});\n   this.getRoot().add(resizer);\n </pre>\n<p>This example creates a resizer, configures it with a canvas layout and\n adds a text area to it.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/resizer.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "mixins": [
+    "qx.ui.core.MResizable"
+  ],
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1740
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1801
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "resizer"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "resizableTop": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1925
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1987
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the top edge is resizable "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the top edge is resizable</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "resizableRight": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2041
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the right edge is resizable "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the right edge is resizable</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "resizableBottom": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2160
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2225
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the bottom edge is resizable "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the bottom edge is resizable</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "resizableLeft": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2278
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2341
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the left edge is resizable "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the left edge is resizable</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "resizable": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2442
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2610
+        }
+      },
+      "json": {
+        "group": [
+          "resizableTop",
+          "resizableRight",
+          "resizableBottom",
+          "resizableLeft"
+        ],
+        "mode": "shorthand"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property group to configure the resize behaviour for all edges at once",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property group to configure the resize behaviour for all edges at once</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "resizeSensitivity": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2663
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2727
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 5
+      },
+      "jsdoc": {
+        "raw": [
+          "* The tolerance to activate resizing "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The tolerance to activate resizing</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "useResizeFrame": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2815
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2879
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether a frame replacement should be used during the resize sequence "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a frame replacement should be used during the resize sequence</p>"
+          }
+        ]
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    }
+  },
+  "members": {
+    "__dragDropHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3140
+        },
+        "end": {
+          "line": 118,
+          "column": 27,
+          "index": 3163
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3169
+        },
+        "end": {
+          "line": 119,
+          "column": 23,
+          "index": 3188
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3194
+        },
+        "end": {
+          "line": 120,
+          "column": 24,
+          "index": 3214
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeLeft": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3220
+        },
+        "end": {
+          "line": 121,
+          "column": 22,
+          "index": 3238
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeTop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3244
+        },
+        "end": {
+          "line": 122,
+          "column": 21,
+          "index": 3261
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeStart": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3267
+        },
+        "end": {
+          "line": 123,
+          "column": 23,
+          "index": 3286
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeRange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3292
+        },
+        "end": {
+          "line": 124,
+          "column": 23,
+          "index": 3311
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "RESIZE_TOP": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3318
+        },
+        "end": {
+          "line": 126,
+          "column": 17,
+          "index": 3331
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "RESIZE_BOTTOM": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3337
+        },
+        "end": {
+          "line": 127,
+          "column": 20,
+          "index": 3353
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "RESIZE_LEFT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3359
+        },
+        "end": {
+          "line": 128,
+          "column": 18,
+          "index": 3373
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "RESIZE_RIGHT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3379
+        },
+        "end": {
+          "line": 129,
+          "column": 19,
+          "index": 3394
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "_getResizeFrame": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget, which draws the resize/move frame. The resize frame is",
+          "     * shared by all widgets and is added to the root widget.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The resize frame",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget, which draws the resize/move frame. The resize frame is\n shared by all widgets and is added to the root widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The resize frame"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3811
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4116
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__showResizeFrame": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates, shows and syncs the frame with the widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates, shows and syncs the frame with the widget.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4198
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4541
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__computeResizeResult": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the new boundaries at each interval",
+          "     * of the resize sequence.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Last pointer event",
+          "     * @return {Map} A map with the computed boundaries",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the new boundaries at each interval\n of the resize sequence.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Last pointer event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with the computed boundaries"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 4965
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 6888
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__resizeCursors": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps internal states to cursor symbols to use",
+          "     *",
+          "     * @lint ignoreReferenceField(__resizeCursors)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps internal states to cursor symbols to use"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__resizeCursors)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 265,
+          "column": 4,
+          "index": 7034
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 7231
+        }
+      },
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__computeResizeMode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the internally stored resize mode",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Last pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the internally stored resize mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Last pointer event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 7369
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8120
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__computeResizeActive": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for computing the proper resize action based on the",
+          "     * given parameters.",
+          "     *",
+          "     * @param location {Map} The current location of the widget.",
+          "     * @param pointerLeft {Integer} The left position of the pointer.",
+          "     * @param pointerTop {Integer} The top position of the pointer.",
+          "     * @param pointerTolerance {Integer} The desired distance to the edge.",
+          "     * @return {Integer} The resize active number.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for computing the proper resize action based on the\n given parameters.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "location {Map} The current location of the widget."
+          },
+          {
+            "name": "@param",
+            "body": "pointerLeft {Integer} The left position of the pointer."
+          },
+          {
+            "name": "@param",
+            "body": "pointerTop {Integer} The top position of the pointer."
+          },
+          {
+            "name": "@param",
+            "body": "pointerTolerance {Integer} The desired distance to the edge."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The resize active number."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 8579
+        },
+        "end": {
+          "line": 363,
+          "column": 5,
+          "index": 9932
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "location"
+        },
+        {
+          "name": "pointerLeft"
+        },
+        {
+          "name": "pointerTop"
+        },
+        {
+          "name": "pointerTolerance"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__onResizePointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer down event",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer down event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 4,
+          "index": 10280
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 11618
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__onResizePointerUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer up event",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer up event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 11761
+        },
+        "end": {
+          "line": 478,
+          "column": 5,
+          "index": 12793
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__onResizeLoseCapture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>losecapture</code> event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} Lose capture event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>losecapture</code> event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Lose capture event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4,
+          "index": 12938
+        },
+        "end": {
+          "line": 502,
+          "column": 5,
+          "index": 13343
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__onResizePointerMove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer move event",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer move event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 509,
+          "column": 4,
+          "index": 13488
+        },
+        "end": {
+          "line": 561,
+          "column": 5,
+          "index": 14988
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    },
+    "__onResizePointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer out event",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} The pointer event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer out event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} The pointer event instance"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 15132
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 15527
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MResizable",
+      "appearsIn": [
+        "qx.ui.core.MResizable"
+      ]
+    }
+  },
+  "statics": {}
+}

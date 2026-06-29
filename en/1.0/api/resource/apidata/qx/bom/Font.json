@@ -1,0 +1,1108 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602031,
+  "lastModifiedIso": "2026-06-29T04:00:02.031Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Font.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 680
+    },
+    "end": {
+      "line": 402,
+      "column": 3,
+      "index": 10092
+    }
+  },
+  "className": "qx.bom.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A wrapper for CSS font styles. Fond objects can be applied to instances",
+      " * of {@link qx.html.Element}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A wrapper for CSS font styles. Fond objects can be applied to instances\n of {@link qx.html.Element}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "size"
+      },
+      {
+        "name": "family"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1059
+      },
+      "end": {
+        "line": 61,
+        "column": 3,
+        "index": 1478
+      }
+    }
+  },
+  "statics": {
+    "fromString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a typical CSS font definition string to an font object",
+          "     *",
+          "     * Example string: <code>bold italic 20px Arial</code>",
+          "     *",
+          "     * @param str {String} the CSS string",
+          "     * @return {qx.bom.Font} the created instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a typical CSS font definition string to an font object\n Example string: <code>bold italic 20px Arial</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the CSS string",
+            "paramName": "str",
+            "description": " the CSS string",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.Font} the created instance",
+            "type": "qx.bom.Font",
+            "description": "the created instance"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1934
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2758
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Font"
+      },
+      "appearsIn": []
+    },
+    "fromConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a map property definition into a font object.",
+          "     *",
+          "     * @param config {Map} map of property values",
+          "     * @return {qx.bom.Font} the created instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a map property definition into a font object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "config {Map} map of property values",
+            "paramName": "config",
+            "description": " map of property values",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.Font} the created instance",
+            "type": "qx.bom.Font",
+            "description": "the created instance"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 2950
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3055
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Font"
+      },
+      "appearsIn": []
+    },
+    "__defaultStyles": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Default (empty) CSS styles "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Default (empty) CSS styles"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3112
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3333
+        }
+      },
+      "appearsIn": []
+    },
+    "getDefaultStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map of all properties in empty state.",
+          "     *",
+          "     * This is useful for resetting previously configured",
+          "     * font styles.",
+          "     *",
+          "     * @return {Map} Default styles",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map of all properties in empty state.\n This is useful for resetting previously configured\n font styles.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Default styles",
+            "type": "Map<any, any>",
+            "description": "Default styles"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3539
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3600
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "size": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 3853
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 3938
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applySize"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The font size (Unit: pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The font size (Unit: pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "lineHeight": {
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4089
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4185
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "apply": "_applyLineHeight"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The line height as scaling factor of the default line height. A value",
+          "     * of 1 corresponds to the default line height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The line height as scaling factor of the default line height. A value\n of 1 corresponds to the default line height</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "comparisonString": {
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 4459
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 4546
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Characters that are used to test if the font has loaded properly. These",
+          "     * default to \"WEei\" in `qx.bom.webfont.Validator` and can be overridden",
+          "     * for certain cases like icon fonts that do not provide the predefined",
+          "     * characters.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Characters that are used to test if the font has loaded properly. These\n default to \"WEei\" in <code>qx.bom.webfont.Validator</code> and can be overridden\n for certain cases like icon fonts that do not provide the predefined\n characters.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "version": {
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5105
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 5318
+        }
+      },
+      "json": {
+        "check": "[[ ObjectMethod Function ]]",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Version identifier that is appended to the URL to be loaded. Fonts",
+          "     * that are defined thru themes may be managed by the resource manager.",
+          "     * In this case updated fonts persist due to aggressive fontface caching",
+          "     * of some browsers. To get around this, set the `version` property to",
+          "     * the version of your font. It will be appended to the CSS URL and forces",
+          "     * the browser to re-validate.",
+          "     *",
+          "     * The version needs to be URL friendly, so only characters, numbers,",
+          "     * dash and dots are allowed here.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Version identifier that is appended to the URL to be loaded. Fonts\n that are defined thru themes may be managed by the resource manager.\n In this case updated fonts persist due to aggressive fontface caching\n of some browsers. To get around this, set the <code>version</code> property to\n the version of your font. It will be appended to the CSS URL and forces\n the browser to re-validate.\n The version needs to be URL friendly, so only characters, numbers,\n dash and dots are allowed here.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "family": {
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 5367
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5454
+        }
+      },
+      "json": {
+        "check": "Array",
+        "nullable": true,
+        "apply": "_applyFamily"
+      },
+      "jsdoc": {
+        "raw": [
+          "* A sorted list of font families "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A sorted list of font families</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "bold": {
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 5497
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 5582
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyBold"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the font is bold "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the font is bold</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "italic": {
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 5627
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 5716
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyItalic"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the font is italic "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the font is italic</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "decoration": {
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 5768
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 5897
+        }
+      },
+      "json": {
+        "check": [
+          "underline",
+          "line-through",
+          "overline"
+        ],
+        "nullable": true,
+        "apply": "_applyDecoration"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The text decoration for this font "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text decoration for this font</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "color": {
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 5944
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 6029
+        }
+      },
+      "json": {
+        "check": "Color",
+        "nullable": true,
+        "apply": "_applyColor"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The text color for this font "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text color for this font</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "textShadow": {
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 6077
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 6173
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "_applyTextShadow"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The text shadow for this font "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text shadow for this font</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "weight": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 6300
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 6388
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "_applyWeight"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The weight property of the font as opposed to just setting it to 'bold' by setting the bold property to true "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The weight property of the font as opposed to just setting it to 'bold' by setting the bold property to true</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "letterSpacing": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 6439
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 6542
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyLetterSpacing"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The Letter Spacing (Unit: pixel) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Letter Spacing (Unit: pixel)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "fontName": {
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 6738
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 6830
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyFontName"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This specifies the name of the font defined in Manifest.json in `provides.fonts` - setting it will",
+          "     * copy the values from the Manifest into this font definition",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This specifies the name of the font defined in Manifest.json in <code>provides.fonts</code> - setting it will\n copy the values from the Manifest into this font definition</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__lookupMap": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 7038
+        },
+        "end": {
+          "line": 288,
+          "column": 21,
+          "index": 7055
+        }
+      },
+      "appearsIn": []
+    },
+    "loadComplete": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by the theme manager when all the properties to be set, have been set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by the theme manager when all the properties to be set, have been set</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 7162
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 7201
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applySize": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4,
+          "index": 7230
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 7332
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLineHeight": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7339
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 7442
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFamily": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 7471
+        },
+        "end": {
+          "line": 328,
+          "column": 5,
+          "index": 8154
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFontName": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 8183
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 8662
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyBold": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4,
+          "index": 8691
+        },
+        "end": {
+          "line": 353,
+          "column": 5,
+          "index": 8815
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyItalic": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4,
+          "index": 8844
+        },
+        "end": {
+          "line": 359,
+          "column": 5,
+          "index": 8971
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDecoration": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 9000
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 9106
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyColor": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 4,
+          "index": 9135
+        },
+        "end": {
+          "line": 373,
+          "column": 5,
+          "index": 9326
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyWeight": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 4,
+          "index": 9355
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 9430
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTextShadow": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4,
+          "index": 9459
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 9561
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLetterSpacing": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 9590
+        },
+        "end": {
+          "line": 388,
+          "column": 5,
+          "index": 9706
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a map of all CSS styles, which will be applied to the widget. Only",
+          "     * the styles which are set are returned.",
+          "     *",
+          "     * @return {Map} Map containing the current styles. The keys are property",
+          "     * names which can directly be used with the <code>set</code> method of each",
+          "     * widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a map of all CSS styles, which will be applied to the widget. Only\n the styles which are set are returned.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the current styles. The keys are property\n names which can directly be used with the <code>set</code> method of each\n widget.",
+            "type": "Map<any, any>",
+            "description": "Map containing the current styles. The keys are property\n names which can directly be used with the <code>set</code> method of each\n widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 10034
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 10084
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  }
+}

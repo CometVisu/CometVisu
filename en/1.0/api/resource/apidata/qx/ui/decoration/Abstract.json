@@ -1,0 +1,316 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600810,
+  "lastModifiedIso": "2026-06-29T04:00:00.810Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 808
+    },
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2170
+    }
+  },
+  "className": "qx.ui.decoration.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class acts as abstract class for all decorators. It offers the",
+      " * properties for the insets handling. Each decorator has to define its own",
+      " * default insets by implementing the template method",
+      " * (http://en.wikipedia.org/wiki/Template_Method) <code>_getDefaultInsets</code>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class acts as abstract class for all decorators. It offers the\n properties for the insets handling. Each decorator has to define its own\n default insets by implementing the template method\n (http://en.wikipedia.org/wiki/Template_Method) <code>_getDefaultInsets</code></p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.decoration.IDecorator"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "members": {
+    "__insets": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 963
+        },
+        "end": {
+          "line": 31,
+          "column": 18,
+          "index": 977
+        }
+      },
+      "appearsIn": []
+    },
+    "_getDefaultInsets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abstract method. Should return a map containing the default insets of",
+          "     * the decorator. This could look like this:",
+          "     * <pre>",
+          "     * return {",
+          "     *   top : 0,",
+          "     *   right : 0,",
+          "     *   bottom : 0,",
+          "     *   left : 0",
+          "     * };",
+          "     * </pre>",
+          "     * @return {Map} Map containing the insets.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abstract method. Should return a map containing the default insets of\n the decorator. This could look like this:\n </p>\n<pre>\n return {\n   top : 0,\n   right : 0,\n   bottom : 0,\n   left : 0\n };\n </pre>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the insets.",
+            "type": "Map<any, any>",
+            "description": "Map containing the insets."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1304
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1381
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_isInitialized": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abstract method. Should return an boolean value if the decorator is",
+          "     * already initialized or not.",
+          "     * @return {Boolean} True, if the decorator is initialized.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abstract method. Should return an boolean value if the decorator is\n already initialized or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} True, if the decorator is initialized.",
+            "type": "boolean",
+            "description": "True, if the decorator is initialized."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1578
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1652
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_resetInsets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the insets.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the insets.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1701
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1751
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getInsets": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1790
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1924
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator"
+      ]
+    },
+    "getStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the decorator's styles.",
+          "     *",
+          "     * @return {Map} Map of decoration styles",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the decorator's styles.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of decoration styles"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 774
+        },
+        "end": {
+          "line": 31,
+          "column": 18,
+          "index": 788
+        }
+      },
+      "type": "function",
+      "params": [],
+      "abstract": true,
+      "fromInterface": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator"
+      ]
+    },
+    "getPadding": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the configured padding minus the border width.",
+          "     * @return {Map} Map of top, right, bottom and left padding values",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the configured padding minus the border width.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map of top, right, bottom and left padding values"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 944
+        },
+        "end": {
+          "line": 37,
+          "column": 19,
+          "index": 959
+        }
+      },
+      "type": "function",
+      "params": [],
+      "abstract": true,
+      "fromInterface": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 82,
+        "column": 2,
+        "index": 2124
+      },
+      "end": {
+        "line": 84,
+        "column": 3,
+        "index": 2166
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

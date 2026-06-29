@@ -1,0 +1,186 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602812,
+  "lastModifiedIso": "2026-06-29T04:00:02.812Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/core/MLayoutHandling.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 837
+    },
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 2305
+    }
+  },
+  "className": "qx.ui.mobile.core.MLayoutHandling",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin exposes all methods to manage the layout manager of a widget.",
+      " * It can only be included into instances of {@link Widget}.",
+      " *",
+      " * To optimize the method calls the including widget should call the method",
+      " * {@link #remap} in its defer function. This will map the protected",
+      " * methods to the public ones and save one method call for each function.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin exposes all methods to manage the layout manager of a widget.\n It can only be included into instances of {@link Widget}.\n To optimize the method calls the including widget should call the method\n {@link #remap} in its defer function. This will map the protected\n methods to the public ones and save one method call for each function.</p>"
+      }
+    ]
+  },
+  "members": {
+    "setLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set a layout manager for the widget. A a layout manager can only be connected",
+          "     * with one widget. Reset the connection with a previous widget first, if you",
+          "     * like to use it in another widget instead.",
+          "     *",
+          "     * @param layout {qx.ui.mobile.layout.Abstract} The new layout or",
+          "     *     <code>null</code> to reset the layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set a layout manager for the widget. A a layout manager can only be connected\n with one widget. Reset the connection with a previous widget first, if you\n like to use it in another widget instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {qx.ui.mobile.layout.Abstract} The new layout or\n     <code>null</code> to reset the layout.",
+            "paramName": "layout",
+            "description": " The new layout or\n     <code>null</code> to reset the layout.",
+            "type": "qx.ui.mobile.layout.Abstract"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1452
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1508
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout",
+          "type": "qx.ui.mobile.layout.Abstract"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.mobile.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget's layout manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.layout.Abstract} The widget's layout manager",
+            "type": "qx.ui.mobile.layout.Abstract",
+            "description": "The widget's layout manager"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1652
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1703
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.layout.Abstract"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "remap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mapping of protected methods to public.",
+          "     * This omits an additional function call when using these methods. Call",
+          "     * this methods in the defer block of the including class.",
+          "     *",
+          "     * @param members {Map} The including classes members map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of protected methods to public.\n This omits an additional function call when using these methods. Call\n this methods in the defer block of the including class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "members {Map} The including classes members map",
+            "paramName": "members",
+            "description": " The including classes members map",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2183
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2297
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "members",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

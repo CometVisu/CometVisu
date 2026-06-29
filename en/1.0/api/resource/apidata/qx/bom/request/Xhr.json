@@ -1,0 +1,2890 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603414,
+  "lastModifiedIso": "2026-06-29T04:00:03.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/request/Xhr.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 78,
+      "column": 0,
+      "index": 2077
+    },
+    "end": {
+      "line": 1236,
+      "column": 3,
+      "index": 34273
+    }
+  },
+  "className": "qx.bom.request.Xhr",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A wrapper of the XMLHttpRequest host object (or equivalent). The interface is",
+      " * similar to <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>.",
+      " *",
+      " * Hides browser inconsistencies and works around bugs found in popular",
+      " * implementations.",
+      " *",
+      " * <div class=\"desktop\">",
+      " * Example:",
+      " *",
+      " * <pre class=\"javascript\">",
+      " *  var req = new qx.bom.request.Xhr();",
+      " *  req.onload = function() {",
+      " *    // Handle data received",
+      " *    req.responseText;",
+      " *  }",
+      " *",
+      " *  req.open(\"GET\", url);",
+      " *  req.send();",
+      " * </pre>",
+      " *",
+      " * Example for binary data:",
+      " *",
+      " * <pre class=\"javascript\">",
+      " *  var req = new qx.bom.request.Xhr();",
+      " *  req.onload = function() {",
+      " *    // Handle data received",
+      " *    var blob = req.response;",
+      " *    img.src = URL.createObjectURL(blob);",
+      " *  }",
+      " *",
+      " *  req.open(\"GET\", url);",
+      " *  req.responseType = \"blob\";",
+      " *  req.send();",
+      " * </pre>",
+      "",
+      " * </div>",
+      " *",
+      " * @ignore(XDomainRequest)",
+      " * @ignore(qx.event, qx.event.GlobalError.*)",
+      " *",
+      " * @require(qx.bom.request.Xhr#open)",
+      " * @require(qx.bom.request.Xhr#send)",
+      " * @require(qx.bom.request.Xhr#on)",
+      " * @require(qx.bom.request.Xhr#onreadystatechange)",
+      " * @require(qx.bom.request.Xhr#onload)",
+      " * @require(qx.bom.request.Xhr#onloadend)",
+      " * @require(qx.bom.request.Xhr#onerror)",
+      " * @require(qx.bom.request.Xhr#onabort)",
+      " * @require(qx.bom.request.Xhr#ontimeout)",
+      " * @require(qx.bom.request.Xhr#setRequestHeader)",
+      " * @require(qx.bom.request.Xhr#getAllResponseHeaders)",
+      " * @require(qx.bom.request.Xhr#getRequest)",
+      " * @require(qx.bom.request.Xhr#overrideMimeType)",
+      " * @require(qx.bom.request.Xhr#dispose)",
+      " * @require(qx.bom.request.Xhr#isDisposed)",
+      " *",
+      " * @group (IO)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A wrapper of the XMLHttpRequest host object (or equivalent). The interface is\n similar to <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>.\n Hides browser inconsistencies and works around bugs found in popular\n implementations.\n </p>\n<div class=\"desktop\">\n Example:\n <pre class=\"javascript\">\n  var req = new qx.bom.request.Xhr();\n  req.onload = function() {\n\n    req.responseText;\n  }\n  req.open(\"GET\", url);\n  req.send();\n </pre>\n Example for binary data:\n <pre class=\"javascript\">\n  var req = new qx.bom.request.Xhr();\n  req.onload = function() {\n\n    var blob = req.response;\n    img.src = URL.createObjectURL(blob);\n  }\n  req.open(\"GET\", url);\n  req.responseType = \"blob\";\n  req.send();\n </pre>\n </div>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "XDomainRequest"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.event, qx.event.GlobalError.*"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#open"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#send"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#on"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#onreadystatechange"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#onload"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#onloadend"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#onerror"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#onabort"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#ontimeout"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#setRequestHeader"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#getAllResponseHeaders"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#getRequest"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#overrideMimeType"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#dispose"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#isDisposed"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "IO"
+      }
+    ]
+  },
+  "superClass": "Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 82,
+        "column": 2,
+        "index": 2178
+      },
+      "end": {
+        "line": 115,
+        "column": 3,
+        "index": 3276
+      }
+    }
+  },
+  "statics": {
+    "UNSENT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3296
+        },
+        "end": {
+          "line": 118,
+          "column": 13,
+          "index": 3305
+        }
+      },
+      "appearsIn": []
+    },
+    "OPENED": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3311
+        },
+        "end": {
+          "line": 119,
+          "column": 13,
+          "index": 3320
+        }
+      },
+      "appearsIn": []
+    },
+    "HEADERS_RECEIVED": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3326
+        },
+        "end": {
+          "line": 120,
+          "column": 23,
+          "index": 3345
+        }
+      },
+      "appearsIn": []
+    },
+    "LOADING": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3351
+        },
+        "end": {
+          "line": 121,
+          "column": 14,
+          "index": 3361
+        }
+      },
+      "appearsIn": []
+    },
+    "DONE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3367
+        },
+        "end": {
+          "line": 122,
+          "column": 11,
+          "index": 3374
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "readystatechange": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired at ready state changes. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired at ready state changes.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3438
+        },
+        "end": {
+          "line": 127,
+          "column": 42,
+          "index": 3476
+        }
+      }
+    },
+    "error": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired on error. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired on error.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3510
+        },
+        "end": {
+          "line": 130,
+          "column": 31,
+          "index": 3537
+        }
+      }
+    },
+    "loadend": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired at loadend. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired at loadend.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3573
+        },
+        "end": {
+          "line": 133,
+          "column": 33,
+          "index": 3602
+        }
+      }
+    },
+    "timeout": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired on timeouts. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired on timeouts.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3639
+        },
+        "end": {
+          "line": 136,
+          "column": 33,
+          "index": 3668
+        }
+      }
+    },
+    "abort": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the request is aborted. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the request is aborted.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3721
+        },
+        "end": {
+          "line": 139,
+          "column": 31,
+          "index": 3748
+        }
+      }
+    },
+    "load": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired on successful retrieval. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired on successful retrieval.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3797
+        },
+        "end": {
+          "line": 142,
+          "column": 30,
+          "index": 3823
+        }
+      }
+    },
+    "progress": {
+      "type": "qx.bom.request.Xhr",
+      "jsdoc": {
+        "raw": [
+          "* Fired on progress. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired on progress.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3860
+        },
+        "end": {
+          "line": 145,
+          "column": 34,
+          "index": 3890
+        }
+      }
+    }
+  },
+  "members": {
+    "readyState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} Ready state.",
+          "     *",
+          "     * States can be:",
+          "     * UNSENT:           0,",
+          "     * OPENED:           1,",
+          "     * HEADERS_RECEIVED: 2,",
+          "     * LOADING:          3,",
+          "     * DONE:             4",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Ready state.\n States can be:\n UNSENT:           0,\n OPENED:           1,\n HEADERS_RECEIVED: 2,\n LOADING:          3,\n DONE:             4"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4321
+        },
+        "end": {
+          "line": 165,
+          "column": 17,
+          "index": 4334
+        }
+      },
+      "appearsIn": []
+    },
+    "responseText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The response of the request as text.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The response of the request as text."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 4416
+        },
+        "end": {
+          "line": 170,
+          "column": 20,
+          "index": 4432
+        }
+      },
+      "appearsIn": []
+    },
+    "response": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} The response of the request as a Document object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} The response of the request as a Document object."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4527
+        },
+        "end": {
+          "line": 175,
+          "column": 18,
+          "index": 4541
+        }
+      },
+      "appearsIn": []
+    },
+    "responseXML": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} The response of the request as object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} The response of the request as object."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4625
+        },
+        "end": {
+          "line": 180,
+          "column": 21,
+          "index": 4642
+        }
+      },
+      "appearsIn": []
+    },
+    "status": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} The HTTP status code.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} The HTTP status code."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4709
+        },
+        "end": {
+          "line": 185,
+          "column": 13,
+          "index": 4718
+        }
+      },
+      "appearsIn": []
+    },
+    "statusText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The HTTP status text.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The HTTP status text."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 4785
+        },
+        "end": {
+          "line": 190,
+          "column": 18,
+          "index": 4799
+        }
+      },
+      "appearsIn": []
+    },
+    "responseType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The response Type to use in the request",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The response Type to use in the request"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 4884
+        },
+        "end": {
+          "line": 195,
+          "column": 20,
+          "index": 4900
+        }
+      },
+      "appearsIn": []
+    },
+    "timeout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} Timeout limit in milliseconds.",
+          "     *",
+          "     * 0 (default) means no timeout. Not supported for synchronous requests.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} Timeout limit in milliseconds.\n 0 (default) means no timeout. Not supported for synchronous requests."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 5059
+        },
+        "end": {
+          "line": 201,
+          "column": 14,
+          "index": 5069
+        }
+      },
+      "appearsIn": []
+    },
+    "progress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} Wrapper to store data of the progress event which contains the keys",
+          "       <code>lengthComputable</code>, <code>loaded</code> and <code>total</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} Wrapper to store data of the progress event which contains the keys\n       <code>lengthComputable</code>, <code>loaded</code> and <code>total</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 5263
+        },
+        "end": {
+          "line": 207,
+          "column": 18,
+          "index": 5277
+        }
+      },
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes (prepares) request.",
+          "     *",
+          "     * @ignore(XDomainRequest)",
+          "     *",
+          "     * @param method {String?\"GET\"}",
+          "     *  The HTTP method to use.",
+          "     * @param url {String}",
+          "     *  The URL to which to send the request.",
+          "     * @param async {Boolean?true}",
+          "     *  Whether or not to perform the operation asynchronously.",
+          "     * @param user {String?null}",
+          "     *  Optional user name to use for authentication purposes.",
+          "     * @param password {String?null}",
+          "     *  Optional password to use for authentication purposes.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes (prepares) request.</p>"
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "XDomainRequest"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String?\"GET\"}\n  The HTTP method to use.",
+            "paramName": "method",
+            "description": "\n  The HTTP method to use.",
+            "optional": true,
+            "defaultValue": "\"GET\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "url {String}\n  The URL to which to send the request.",
+            "paramName": "url",
+            "description": "\n  The URL to which to send the request.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "async {Boolean?true}\n  Whether or not to perform the operation asynchronously.",
+            "paramName": "async",
+            "description": "\n  Whether or not to perform the operation asynchronously.",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "user {String?null}\n  Optional user name to use for authentication purposes.",
+            "paramName": "user",
+            "description": "\n  Optional user name to use for authentication purposes.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "password {String?null}\n  Optional password to use for authentication purposes.",
+            "paramName": "password",
+            "description": "\n  Optional password to use for authentication purposes.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 5819
+        },
+        "end": {
+          "line": 379,
+          "column": 5,
+          "index": 10999
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"GET\""
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "async",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        },
+        {
+          "name": "user",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setRequestHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets an HTTP request header to be used by the request.",
+          "     *",
+          "     * Note: The request must be initialized before using this method.",
+          "     *",
+          "     * @param key {String}",
+          "     *  The name of the header whose value is to be set.",
+          "     * @param value {String}",
+          "     *  The value to set as the body of the header.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets an HTTP request header to be used by the request.\n Note: The request must be initialized before using this method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String}\n  The name of the header whose value is to be set.",
+            "paramName": "key",
+            "description": "\n  The name of the header whose value is to be set.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {String}\n  The value to set as the body of the header.",
+            "paramName": "value",
+            "description": "\n  The value to set as the body of the header.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Xhr} Self for chaining.",
+            "type": "qx.bom.request.Xhr",
+            "description": "Self for chaining."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 392,
+          "column": 4,
+          "index": 11389
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 11757
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends request.",
+          "     *",
+          "     * @param data {String|Document?null}",
+          "     *  Optional data to send.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sends request.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {String|Document?null}\n  Optional data to send.",
+            "paramName": "data",
+            "description": "\n  Optional data to send.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": [
+              "String",
+              "Document"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Xhr} Self for chaining.",
+            "type": "qx.bom.request.Xhr",
+            "description": "Self for chaining."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 416,
+          "column": 4,
+          "index": 11937
+        },
+        "end": {
+          "line": 511,
+          "column": 5,
+          "index": 15251
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": [
+            "String",
+            "Document"
+          ],
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "abort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abort request - i.e. cancels any network activity.",
+          "     *",
+          "     * Note:",
+          "     *  On Windows 7 every browser strangely skips the loading phase",
+          "     *  when this method is called (because readyState never gets 3).",
+          "     *",
+          "     *  So keep this in mind if you rely on the phases which are",
+          "     *  passed through. They will be \"opened\", \"sent\", \"abort\"",
+          "     *  instead of normally \"opened\", \"sent\", \"loading\", \"abort\".",
+          "     *",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort request - i.e. cancels any network activity.\n Note:\n  On Windows 7 every browser strangely skips the loading phase\n  when this method is called (because readyState never gets 3).\n  So keep this in mind if you rely on the phases which are\n  passed through. They will be \"opened\", \"sent\", \"abort\"\n  instead of normally \"opened\", \"sent\", \"loading\", \"abort\".</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Xhr} Self for chaining.",
+            "type": "qx.bom.request.Xhr",
+            "description": "Self for chaining."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 526,
+          "column": 4,
+          "index": 15754
+        },
+        "end": {
+          "line": 536,
+          "column": 5,
+          "index": 16019
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "_emit": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to emit events and call the callback methods.",
+          "     * @param event {String} The name of the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to emit events and call the callback methods.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {String} The name of the event.",
+            "paramName": "event",
+            "description": " The name of the event.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 542,
+          "column": 4,
+          "index": 16154
+        },
+        "end": {
+          "line": 547,
+          "column": 5,
+          "index": 16283
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onreadystatechange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event that fires at every state change.",
+          "     *",
+          "     * Replace with custom method to get informed about the communication progress.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event that fires at every state change.\n Replace with custom method to get informed about the communication progress.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 4,
+          "index": 16466
+        },
+        "end": {
+          "line": 554,
+          "column": 27,
+          "index": 16489
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"load\" that is fired on successful retrieval.",
+          "     *",
+          "     * Note: This handler is called even when the HTTP status indicates an error.",
+          "     *",
+          "     * Replace with custom method to listen to the \"load\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"load\" that is fired on successful retrieval.\n Note: This handler is called even when the HTTP status indicates an error.\n Replace with custom method to listen to the \"load\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 563,
+          "column": 4,
+          "index": 16754
+        },
+        "end": {
+          "line": 563,
+          "column": 15,
+          "index": 16765
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onloadend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"loadend\" that is fired on retrieval.",
+          "     *",
+          "     * Note: This handler is called even when a network error (or similar)",
+          "     * occurred.",
+          "     *",
+          "     * Replace with custom method to listen to the \"loadend\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"loadend\" that is fired on retrieval.\n Note: This handler is called even when a network error (or similar)\n occurred.\n Replace with custom method to listen to the \"loadend\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 573,
+          "column": 4,
+          "index": 17035
+        },
+        "end": {
+          "line": 573,
+          "column": 18,
+          "index": 17049
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onerror": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"error\" that is fired on a network error.",
+          "     *",
+          "     * Replace with custom method to listen to the \"error\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"error\" that is fired on a network error.\n Replace with custom method to listen to the \"error\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 580,
+          "column": 4,
+          "index": 17222
+        },
+        "end": {
+          "line": 580,
+          "column": 16,
+          "index": 17234
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onabort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"abort\" that is fired when request",
+          "     * is aborted.",
+          "     *",
+          "     * Replace with custom method to listen to the \"abort\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"abort\" that is fired when request\n is aborted.\n Replace with custom method to listen to the \"abort\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 588,
+          "column": 4,
+          "index": 17419
+        },
+        "end": {
+          "line": 588,
+          "column": 16,
+          "index": 17431
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "ontimeout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"timeout\" that is fired when timeout",
+          "     * interval has passed.",
+          "     *",
+          "     * Replace with custom method to listen to the \"timeout\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"timeout\" that is fired when timeout\n interval has passed.\n Replace with custom method to listen to the \"timeout\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 596,
+          "column": 4,
+          "index": 17629
+        },
+        "end": {
+          "line": 596,
+          "column": 18,
+          "index": 17643
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onprogress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for XHR event \"progress\".",
+          "     *",
+          "     * Replace with custom method to listen to the \"progress\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for XHR event \"progress\".\n Replace with custom method to listen to the \"progress\" event.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 4,
+          "index": 17789
+        },
+        "end": {
+          "line": 603,
+          "column": 19,
+          "index": 17804
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "on": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an event listener for the given event name.",
+          "     *",
+          "     * @param name {String} The name of the event to listen to.",
+          "     * @param listener {Function} The function to execute when the event is fired",
+          "     * @param ctx {var?} The context of the listener.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an event listener for the given event name.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The name of the event to listen to.",
+            "paramName": "name",
+            "description": " The name of the event to listen to.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The function to execute when the event is fired",
+            "paramName": "listener",
+            "description": " The function to execute when the event is fired",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "ctx {var?} The context of the listener.",
+            "paramName": "ctx",
+            "description": " The context of the listener.",
+            "optional": true,
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Xhr} Self for chaining.",
+            "type": "qx.bom.request.Xhr",
+            "description": "Self for chaining."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 613,
+          "column": 4,
+          "index": 18144
+        },
+        "end": {
+          "line": 616,
+          "column": 5,
+          "index": 18239
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "ctx",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "getResponseHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a single response header from response.",
+          "     *",
+          "     * @param header {String}",
+          "     *  Key of the header to get the value from.",
+          "     * @return {String}",
+          "     *  Response header.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a single response header from response.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "header {String}\n  Key of the header to get the value from.",
+            "paramName": "header",
+            "description": "\n  Key of the header to get the value from.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n  Response header.",
+            "type": "string",
+            "description": "  Response header."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 626,
+          "column": 4,
+          "index": 18448
+        },
+        "end": {
+          "line": 637,
+          "column": 5,
+          "index": 18716
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "header",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAllResponseHeaders": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get all response headers from response.",
+          "     *",
+          "     * @return {String} All response headers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get all response headers from response.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} All response headers.",
+            "type": "string",
+            "description": "All response headers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 644,
+          "column": 4,
+          "index": 18839
+        },
+        "end": {
+          "line": 655,
+          "column": 5,
+          "index": 19103
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "overrideMimeType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Overrides the MIME type returned by the server",
+          "     * and must be called before @send()@.",
+          "     *",
+          "     * Note:",
+          "     *",
+          "     * * IE doesn't support this method so in this case an Error is thrown.",
+          "     * * after calling this method @getResponseHeader(\"Content-Type\")@",
+          "     *   may return the original (Firefox 23, IE 10, Safari 6) or",
+          "     *   the overridden content type (Chrome 28+, Opera 15+).",
+          "     *",
+          "     *",
+          "     * @param mimeType {String} The mimeType for overriding.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Overrides the MIME type returned by the server\n and must be called before @send()@.\n Note:</p>\n<ul>\n<li>IE doesn't support this method so in this case an Error is thrown.</li>\n<li>after calling this method @getResponseHeader(\"Content-Type\")@\nmay return the original (Firefox 23, IE 10, Safari 6) or\nthe overridden content type (Chrome 28+, Opera 15+).</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mimeType {String} The mimeType for overriding.",
+            "paramName": "mimeType",
+            "description": " The mimeType for overriding.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.request.Xhr} Self for chaining.",
+            "type": "qx.bom.request.Xhr",
+            "description": "Self for chaining."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 672,
+          "column": 4,
+          "index": 19655
+        },
+        "end": {
+          "line": 682,
+          "column": 5,
+          "index": 19943
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mimeType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "getRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get wrapped native XMLHttpRequest (or equivalent).",
+          "     *",
+          "     * Can be XMLHttpRequest or ActiveX.",
+          "     *",
+          "     * @return {Object} XMLHttpRequest or equivalent.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get wrapped native XMLHttpRequest (or equivalent).\n Can be XMLHttpRequest or ActiveX.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} XMLHttpRequest or equivalent.",
+            "type": "Record<any, any>",
+            "description": "XMLHttpRequest or equivalent."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 691,
+          "column": 4,
+          "index": 20133
+        },
+        "end": {
+          "line": 693,
+          "column": 5,
+          "index": 20184
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "dispose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose object and wrapped native XHR.",
+          "     * @return {Boolean} <code>true</code> if the object was successfully disposed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose object and wrapped native XHR.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the object was successfully disposed",
+            "type": "boolean",
+            "description": "<code>true</code> if the object was successfully disposed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 705,
+          "column": 4,
+          "index": 20524
+        },
+        "end": {
+          "line": 741,
+          "column": 5,
+          "index": 21452
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
+    },
+    "isDisposed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the request has already beed disposed.",
+          "     * @return {Boolean} <code>true</code>, if the request has been disposed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if the request has already beed disposed.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the request has been disposed.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the request has been disposed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 747,
+          "column": 4,
+          "index": 21608
+        },
+        "end": {
+          "line": 749,
+          "column": 5,
+          "index": 21660
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_createNativeXhr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create XMLHttpRequest (or equivalent).",
+          "     *",
+          "     * @return {Object} XMLHttpRequest or equivalent.",
+          "     *",
+          "     * @ignore(XMLHttpRequest)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create XMLHttpRequest (or equivalent).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} XMLHttpRequest or equivalent.",
+            "type": "Record<any, any>",
+            "description": "XMLHttpRequest or equivalent."
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "XMLHttpRequest"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 764,
+          "column": 4,
+          "index": 22019
+        },
+        "end": {
+          "line": 776,
+          "column": 5,
+          "index": 22332
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_getProtocol": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get protocol of requested URL.",
+          "     *",
+          "     * @return {String} The used protocol.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get protocol of requested URL.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The used protocol.",
+            "type": "string",
+            "description": "The used protocol."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 783,
+          "column": 4,
+          "index": 22443
+        },
+        "end": {
+          "line": 796,
+          "column": 5,
+          "index": 22771
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__nativeXhr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} XMLHttpRequest or equivalent.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} XMLHttpRequest or equivalent."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 807,
+          "column": 4,
+          "index": 23035
+        },
+        "end": {
+          "line": 807,
+          "column": 21,
+          "index": 23052
+        }
+      },
+      "appearsIn": []
+    },
+    "__async": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether request is async.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether request is async."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 812,
+          "column": 4,
+          "index": 23124
+        },
+        "end": {
+          "line": 812,
+          "column": 17,
+          "index": 23137
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeReadyStateChangeBound": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Function} Bound __onNativeReadyStateChange handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound __onNativeReadyStateChange handler."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 817,
+          "column": 4,
+          "index": 23226
+        },
+        "end": {
+          "line": 817,
+          "column": 41,
+          "index": 23263
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeAbortBound": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Function} Bound __onNativeAbort handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound __onNativeAbort handler."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 822,
+          "column": 4,
+          "index": 23341
+        },
+        "end": {
+          "line": 822,
+          "column": 30,
+          "index": 23367
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeProgressBound": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Function} Bound __onNativeProgress handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound __onNativeProgress handler."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 827,
+          "column": 4,
+          "index": 23448
+        },
+        "end": {
+          "line": 827,
+          "column": 33,
+          "index": 23477
+        }
+      },
+      "appearsIn": []
+    },
+    "__onUnloadBound": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Function} Bound __onUnload handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound __onUnload handler."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 832,
+          "column": 4,
+          "index": 23550
+        },
+        "end": {
+          "line": 832,
+          "column": 25,
+          "index": 23571
+        }
+      },
+      "appearsIn": []
+    },
+    "__onTimeoutBound": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Function} Bound __onTimeout handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} Bound __onTimeout handler."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 837,
+          "column": 4,
+          "index": 23645
+        },
+        "end": {
+          "line": 837,
+          "column": 26,
+          "index": 23667
+        }
+      },
+      "appearsIn": []
+    },
+    "__send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Send flag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Send flag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 842,
+          "column": 4,
+          "index": 23723
+        },
+        "end": {
+          "line": 842,
+          "column": 16,
+          "index": 23735
+        }
+      },
+      "appearsIn": []
+    },
+    "__url": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} Requested URL",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} Requested URL"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 847,
+          "column": 4,
+          "index": 23794
+        },
+        "end": {
+          "line": 847,
+          "column": 15,
+          "index": 23805
+        }
+      },
+      "appearsIn": []
+    },
+    "__abort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Abort flag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Abort flag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 852,
+          "column": 4,
+          "index": 23862
+        },
+        "end": {
+          "line": 852,
+          "column": 17,
+          "index": 23875
+        }
+      },
+      "appearsIn": []
+    },
+    "__timeout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Timeout flag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Timeout flag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 857,
+          "column": 4,
+          "index": 23934
+        },
+        "end": {
+          "line": 857,
+          "column": 19,
+          "index": 23949
+        }
+      },
+      "appearsIn": []
+    },
+    "__disposed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether object has been disposed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether object has been disposed."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 862,
+          "column": 4,
+          "index": 24029
+        },
+        "end": {
+          "line": 862,
+          "column": 20,
+          "index": 24045
+        }
+      },
+      "appearsIn": []
+    },
+    "__timerId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} ID of timeout timer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Number} ID of timeout timer."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 867,
+          "column": 4,
+          "index": 24111
+        },
+        "end": {
+          "line": 867,
+          "column": 19,
+          "index": 24126
+        }
+      },
+      "appearsIn": []
+    },
+    "__openError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Error} Error thrown on open, if any.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Error} Error thrown on open, if any."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 872,
+          "column": 4,
+          "index": 24200
+        },
+        "end": {
+          "line": 872,
+          "column": 21,
+          "index": 24217
+        }
+      },
+      "appearsIn": []
+    },
+    "__conditional": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Conditional get flag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Conditional get flag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 877,
+          "column": 4,
+          "index": 24284
+        },
+        "end": {
+          "line": 877,
+          "column": 23,
+          "index": 24303
+        }
+      },
+      "appearsIn": []
+    },
+    "__dataTypeWhiteList": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array} Whitelist with all allowed data types for the request payload",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Whitelist with all allowed data types for the request payload"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 882,
+          "column": 4,
+          "index": 24409
+        },
+        "end": {
+          "line": 882,
+          "column": 29,
+          "index": 24434
+        }
+      },
+      "appearsIn": []
+    },
+    "__initNativeXhr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Init native XHR.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Init native XHR.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 887,
+          "column": 4,
+          "index": 24481
+        },
+        "end": {
+          "line": 923,
+          "column": 5,
+          "index": 25537
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onNativeAbort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Track native abort.",
+          "     *",
+          "     * In case the end user cancels the request by other",
+          "     * means than calling abort().",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Track native abort.\n In case the end user cancels the request by other\n means than calling abort().</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 931,
+          "column": 4,
+          "index": 25686
+        },
+        "end": {
+          "line": 937,
+          "column": 5,
+          "index": 25866
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onNativeProgress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Track native progress event.",
+          "     @param e {Event} The native progress event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Track native progress event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} The native progress event.",
+            "paramName": "e",
+            "description": " The native progress event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 943,
+          "column": 4,
+          "index": 25974
+        },
+        "end": {
+          "line": 948,
+          "column": 5,
+          "index": 26168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onNativeReadyStateChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle native onreadystatechange.",
+          "     *",
+          "     * Calls user-defined function onreadystatechange on each",
+          "     * state change and syncs the XHR status properties.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle native onreadystatechange.\n Calls user-defined function onreadystatechange on each\n state change and syncs the XHR status properties.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 956,
+          "column": 4,
+          "index": 26358
+        },
+        "end": {
+          "line": 1037,
+          "column": 5,
+          "index": 28816
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__readyStateChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle readystatechange. Called internally when readyState is changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle readystatechange. Called internally when readyState is changed.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1042,
+          "column": 4,
+          "index": 28917
+        },
+        "end": {
+          "line": 1054,
+          "column": 5,
+          "index": 29362
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__readyStateChangeDone": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle readystatechange. Called internally by",
+          "     * {@link #__readyStateChange} when readyState is DONE.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle readystatechange. Called internally by\n {@link #__readyStateChange} when readyState is DONE.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1060,
+          "column": 4,
+          "index": 29498
+        },
+        "end": {
+          "line": 1089,
+          "column": 5,
+          "index": 30320
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__isNetworkError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for network error.",
+          "     *",
+          "     * @return {Boolean} Whether a network error occurred.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check for network error.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether a network error occurred.",
+            "type": "boolean",
+            "description": "Whether a network error occurred."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1096,
+          "column": 4,
+          "index": 30441
+        },
+        "end": {
+          "line": 1112,
+          "column": 5,
+          "index": 30974
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__onTimeout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle faked timeout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle faked timeout.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1117,
+          "column": 4,
+          "index": 31026
+        },
+        "end": {
+          "line": 1133,
+          "column": 5,
+          "index": 31486
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__normalizeStatus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalize status property across browsers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalize status property across browsers.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1138,
+          "column": 4,
+          "index": 31559
+        },
+        "end": {
+          "line": 1169,
+          "column": 5,
+          "index": 32548
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__normalizeResponseXML": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalize responseXML property across browsers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalize responseXML property across browsers.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1174,
+          "column": 4,
+          "index": 32626
+        },
+        "end": {
+          "line": 1194,
+          "column": 5,
+          "index": 33342
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onUnload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for native unload event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for native unload event.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1199,
+          "column": 4,
+          "index": 33405
+        },
+        "end": {
+          "line": 1206,
+          "column": 5,
+          "index": 33543
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__supportsManyRequests": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to determine whether browser supports reusing the",
+          "     * same native XHR to send more requests.",
+          "     * @return {Boolean} <code>true</code> if request object reuse is supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to determine whether browser supports reusing the\n same native XHR to send more requests.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if request object reuse is supported",
+            "type": "boolean",
+            "description": "<code>true</code> if request object reuse is supported"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1213,
+          "column": 4,
+          "index": 33763
+        },
+        "end": {
+          "line": 1221,
+          "column": 5,
+          "index": 34030
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__checkDisposed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Throw when already disposed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Throw when already disposed.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1226,
+          "column": 4,
+          "index": 34089
+        },
+        "end": {
+          "line": 1230,
+          "column": 5,
+          "index": 34196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,0 +1,53 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602912,
+  "lastModifiedIso": "2026-06-29T04:00:02.912Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/headfoot/Null.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 499
+    },
+    "end": {
+      "line": 31,
+      "column": 3,
+      "index": 694
+    }
+  },
+  "className": "qx.ui.progressive.headfoot.Null",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A null header/footer.  This is not displayed.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A null header/footer.  This is not displayed.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.headfoot.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 2,
+        "index": 602
+      },
+      "end": {
+        "line": 30,
+        "column": 3,
+        "index": 690
+      }
+    }
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

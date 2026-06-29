@@ -1,0 +1,1987 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603066,
+  "lastModifiedIso": "2026-06-29T04:00:03.066Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Registration.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 793
+    },
+    "end": {
+      "line": 581,
+      "column": 3,
+      "index": 20049
+    }
+  },
+  "className": "qx.event.Registration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper for browser generic event handling.",
+      " *",
+      " * Supported events differ from target to target. Generally the handlers",
+      " * in {@link qx.event.handler} defines the available features.",
+      " *",
+      " * @require(qx.event.Manager)",
+      " * @require(qx.dom.Node)",
+      " * @require(qx.lang.Function)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper for browser generic event handling.\n Supported events differ from target to target. Generally the handlers\n in {@link qx.event.handler} defines the available features.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.Manager"
+      },
+      {
+        "name": "@require",
+        "body": "qx.dom.Node"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.Function"
+      }
+    ]
+  },
+  "statics": {
+    "__managers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Static list of all instantiated event managers. The key is the qooxdoo",
+          "     * hash value of the corresponding window",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Static list of all instantiated event managers. The key is the qooxdoo\n hash value of the corresponding window</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1177
+        },
+        "end": {
+          "line": 42,
+          "column": 18,
+          "index": 1191
+        }
+      },
+      "appearsIn": []
+    },
+    "getManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get an instance of the event manager, which can handle events for the",
+          "     * given target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @return {qx.event.Manager} The event manger for the target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an instance of the event manager, which can handle events for the\n given target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.Manager} The event manger for the target.",
+            "type": "qx.event.Manager",
+            "description": "The event manger for the target."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1439
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2164
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.Manager"
+      },
+      "appearsIn": []
+    },
+    "removeManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a manager for a specific window from the list.",
+          "     *",
+          "     * Normally only used when the manager gets disposed through",
+          "     * an unload event of the attached window.",
+          "     *",
+          "     * @param mgr {qx.event.Manager} The manager to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a manager for a specific window from the list.\n Normally only used when the manager gets disposed through\n an unload event of the attached window.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mgr {qx.event.Manager} The manager to remove",
+            "paramName": "mgr",
+            "description": " The manager to remove",
+            "type": "qx.event.Manager"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2434
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mgr",
+          "type": "qx.event.Manager"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an event listener to a DOM target. The event listener is passed an",
+          "     * instance of {@link qx.event.type.Event} containing all relevant information",
+          "     * about the event as parameter.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Name of the event e.g. \"click\", \"keydown\", ...",
+          "     * @param listener {Function} Event listener function",
+          "     * @param self {Object ? null} Reference to the 'this' variable inside",
+          "     *         the event listener. When not given, the corresponding dispatcher",
+          "     *         usually falls back to a default, which is the target",
+          "     *         by convention. Note this is not a strict requirement, i.e.",
+          "     *         custom dispatchers can follow a different strategy.",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event. The default is",
+          "     *         to attach the event handler to the bubbling phase.",
+          "     * @return {var} An opaque id, which can be used to remove the event listener",
+          "     *         using the {@link #removeListenerById} method.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an event listener to a DOM target. The event listener is passed an\n instance of {@link qx.event.type.Event} containing all relevant information\n about the event as parameter.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event e.g. \"click\", \"keydown\", ...",
+            "paramName": "type",
+            "description": " Name of the event e.g. \"click\", \"keydown\", ...",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} Event listener function",
+            "paramName": "listener",
+            "description": " Event listener function",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
+            "type": "var",
+            "description": "An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3664
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3859
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an event listener from an event target.",
+          "     *",
+          "     * Note: All registered event listeners will automatically at page unload",
+          "     *   so it is not necessary to detach events in the destructor.",
+          "     *",
+          "     * @param target {Object} The event target",
+          "     * @param type {String} Name of the event",
+          "     * @param listener {Function} The pointer to the event listener",
+          "     * @param self {Object ? null} Reference to the 'this' variable inside",
+          "     *         the event listener.",
+          "     * @param capture {Boolean} Whether to remove the event listener of",
+          "     *    the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the event was removed. Return <code>false</code> if",
+          "     *    the event was already removed before.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an event listener from an event target.\n Note: All registered event listeners will automatically at page unload\n   so it is not necessary to detach events in the destructor.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event",
+            "paramName": "type",
+            "description": " Name of the event",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} The pointer to the event listener",
+            "paramName": "listener",
+            "description": " The pointer to the event listener",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener.",
+            "paramName": "self",
+            "description": " Reference to the 'this' variable inside\n         the event listener.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to remove the event listener of\n    the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to remove the event listener of\n    the bubbling or of the capturing phase.",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed. Return <code>false</code> if\n    the event was already removed before.",
+            "type": "boolean",
+            "description": "Whether the event was removed. Return <code>false</code> if\n    the event was already removed before."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 4622
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 4823
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeListenerById": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an event listener from an event target by an id returned by",
+          "     * {@link #addListener}",
+          "     *",
+          "     * @param target {Object} The event target",
+          "     * @param id {var} The id returned by {@link #addListener}",
+          "     * @return {Boolean} Whether the event was removed. Return <code>false</code> if",
+          "     *    the event was already removed before.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an event listener from an event target by an id returned by\n {@link #addListener}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target",
+            "paramName": "target",
+            "description": " The event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "id {var} The id returned by {@link #addListener}",
+            "paramName": "id",
+            "description": " The id returned by {@link #addListener}",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed. Return <code>false</code> if\n    the event was already removed before.",
+            "type": "boolean",
+            "description": "Whether the event was removed. Return <code>false</code> if\n    the event was already removed before."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 5199
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 5306
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "id",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeAllListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all event listeners, which are attached to the given event target.",
+          "     *",
+          "     * @param target {Object} The event target to remove all event listeners from.",
+          "     * @return {Boolean} Whether the events were existant and were removed successfully.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all event listeners, which are attached to the given event target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target to remove all event listeners from.",
+            "paramName": "target",
+            "description": " The event target to remove all event listeners from.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the events were existant and were removed successfully.",
+            "type": "boolean",
+            "description": "Whether the events were existant and were removed successfully."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5589
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 5688
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "deleteAllListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for deleting the listeners map used during shutdown.",
+          "     *",
+          "     * @param target {Object} The event target to delete the internal map for",
+          "     *    all event listeners.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for deleting the listeners map used during shutdown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} The event target to delete the internal map for\n    all event listeners.",
+            "paramName": "target",
+            "description": " The event target to delete the internal map for\n    all event listeners.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5927
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 6092
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether there are one or more listeners for an event type",
+          "     * registered at the target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} The event type",
+          "     * @param capture {Boolean ? false} Whether to check for listeners of",
+          "     *         the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the target has event listeners of the given type.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether there are one or more listeners for an event type\n registered at the target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} The event type",
+            "paramName": "type",
+            "description": " The event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean ? false} Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "paramName": "capture",
+            "description": " Whether to check for listeners of\n         the bubbling or of the capturing phase.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the target has event listeners of the given type.",
+            "type": "boolean",
+            "description": "Whether the target has event listeners of the given type."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 6534
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 6649
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "serializeListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a serialized array of all events attached on the given target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @return {Map[]} Array of maps where everyone contains the keys:",
+          "     *   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a serialized array of all events attached on the given target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>.",
+            "type": "Map[]",
+            "description": "Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 6975
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 7074
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "createEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get an event instance of the given class, which can be dispatched using",
+          "     * an event manager. The created events must be initialized using",
+          "     * {@link qx.event.type.Event#init}.",
+          "     *",
+          "     * @param type {String} The type of the event to create",
+          "     * @param clazz {Object?qx.event.type.Event} The event class to use",
+          "     * @param args {Array?null} Array which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {qx.event.type.Event} An instance of the given class.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an event instance of the given class, which can be dispatched using\n an event manager. The created events must be initialized using\n {@link qx.event.type.Event#init}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The type of the event to create",
+            "paramName": "type",
+            "description": " The type of the event to create",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Object?qx.event.type.Event} The event class to use",
+            "paramName": "clazz",
+            "description": " The event class to use",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Array which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Array which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.type.Event} An instance of the given class.",
+            "type": "qx.event.type.Event",
+            "description": "An instance of the given class."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 7595
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 8424
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Event"
+      },
+      "appearsIn": []
+    },
+    "dispatchEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatch an event object on the given target.",
+          "     *",
+          "     * It is normally better to use {@link #fireEvent} because it uses",
+          "     * the event pooling and is quite handy otherwise as well. After dispatching",
+          "     * the event object will be pooled for later reuse or disposed.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param event {qx.event.type.Event} The event object to dispatch. The event",
+          "     *       object must be obtained using {@link #createEvent} and initialized",
+          "     *       using {@link qx.event.type.Event#init}.",
+          "     * @return {Boolean|qx.Promise} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatch an event object on the given target.\n It is normally better to use {@link #fireEvent} because it uses\n the event pooling and is quite handy otherwise as well. After dispatching\n the event object will be pooled for later reuse or disposed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "event {qx.event.type.Event} The event object to dispatch. The event\n       object must be obtained using {@link #createEvent} and initialized\n       using {@link qx.event.type.Event#init}.",
+            "paramName": "event",
+            "description": " The event object to dispatch. The event\n       object must be obtained using {@link #createEvent} and initialized\n       using {@link qx.event.type.Event#init}.",
+            "type": "qx.event.type.Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean|qx.Promise",
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 9145
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 9248
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "__fireEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Event} the event",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} the event",
+            "type": "Event",
+            "description": "the event"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 9672
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 10565
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    },
+    "fireEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target.",
+          "     *",
+          "     * Note about Promises in v6.0: this method has changed to return either a boolean (true if the",
+          "     * event was prevented) or a promise which will evaluate to the same thing; this is",
+          "     * because events are now asynchronous and preventDefault is inherently synchronous.",
+          "     * However, although this changing in the return type is conspicuous it does not necessarily",
+          "     * introduce a backwards compatibility issue because the \"truthy\" nature of the return",
+          "     * is preserved.  Code which needs to take care of asynchronous issues will need to change,",
+          "     * but that was necessary anyway, and it is rare to use the return value of this method (only",
+          "     * one class in Qooxdoo used it).",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Boolean|qx.Promise} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target.\n Note about Promises in v6.0: this method has changed to return either a boolean (true if the\n event was prevented) or a promise which will evaluate to the same thing; this is\n because events are now asynchronous and preventDefault is inherently synchronous.\n However, although this changing in the return type is conspicuous it does not necessarily\n introduce a backwards compatibility issue because the \"truthy\" nature of the return\n is preserved.  Code which needs to take care of asynchronous issues will need to change,\n but that was necessary anyway, and it is rare to use the return value of this method (only\n one class in Qooxdoo used it).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "Boolean|qx.Promise",
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 11803
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 12900
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "fireEventAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target; equivalent to fireEvent, except that it",
+          "     * always returns a promise",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {qx.Promise} a promise aggregated from the event handlers;",
+          "     * \tif the default was prevented, the promise is rejected",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target; equivalent to fireEvent, except that it\n always returns a promise</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n \tif the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": "a promise aggregated from the event handlers;\n \tif the default was prevented, the promise is rejected"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4,
+          "index": 13499
+        },
+        "end": {
+          "line": 390,
+          "column": 5,
+          "index": 13833
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "__fireNonBubblingEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target.",
+          "     * The event dispatched with this method does never bubble! Use only if you",
+          "     * are sure that bubbling is not required.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Event} the event",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} the event",
+            "type": "Event",
+            "description": "the event"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4,
+          "index": 14384
+        },
+        "end": {
+          "line": 424,
+          "column": 5,
+          "index": 15027
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    },
+    "fireNonBubblingEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target.",
+          "     * The event dispatched with this method does never bubble! Use only if you",
+          "     * are sure that bubbling is not required.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Boolean} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
+            "type": "boolean",
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 15677
+        },
+        "end": {
+          "line": 446,
+          "column": 5,
+          "index": 15896
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fireNonBubblingEventAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on the given target.",
+          "     * The event dispatched with this method does never bubble! Use only if you",
+          "     * are sure that bubbling is not required.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {qx.Promise} a promise aggregated from the event handlers;",
+          "     * \tif the default was prevented, the promise is rejected",
+          "     * @see #createEvent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an event object and dispatch it on the given target.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object} Any valid event target",
+            "paramName": "target",
+            "description": " Any valid event target",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Event type to fire",
+            "paramName": "type",
+            "description": " Event type to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {Class?qx.event.type.Event} The event class",
+            "paramName": "clazz",
+            "description": " The event class",
+            "optional": true,
+            "defaultValue": "qx.event.type.Event",
+            "type": "Class"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
+            "paramName": "args",
+            "description": " Arguments, which will be passed to\n       the event's init method.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} a promise aggregated from the event handlers;\n \tif the default was prevented, the promise is rejected",
+            "type": "qx.Promise",
+            "description": "a promise aggregated from the event handlers;\n \tif the default was prevented, the promise is rejected"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "#createEvent"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4,
+          "index": 16550
+        },
+        "end": {
+          "line": 476,
+          "column": 6,
+          "index": 17024
+        }
+      },
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "PRIORITY_FIRST": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Highest priority. Used by handlers and dispatchers. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Highest priority. Used by handlers and dispatchers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4,
+          "index": 17325
+        },
+        "end": {
+          "line": 485,
+          "column": 26,
+          "index": 17347
+        }
+      },
+      "appearsIn": []
+    },
+    "PRIORITY_NORMAL": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Default priority. Used by handlers and dispatchers. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Default priority. Used by handlers and dispatchers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 488,
+          "column": 4,
+          "index": 17433
+        },
+        "end": {
+          "line": 488,
+          "column": 22,
+          "index": 17451
+        }
+      },
+      "appearsIn": []
+    },
+    "PRIORITY_LAST": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Lowest priority. Used by handlers and dispatchers. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Lowest priority. Used by handlers and dispatchers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 491,
+          "column": 4,
+          "index": 17536
+        },
+        "end": {
+          "line": 491,
+          "column": 24,
+          "index": 17556
+        }
+      },
+      "appearsIn": []
+    },
+    "__handlers": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Array} Contains all known event handlers "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Contains all known event handlers"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 17830
+        },
+        "end": {
+          "line": 500,
+          "column": 18,
+          "index": 17844
+        }
+      },
+      "appearsIn": []
+    },
+    "addHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register an event handler.",
+          "     *",
+          "     * @param handler {qx.event.IEventHandler} Event handler to add",
+          "     * @throws {Error} if the handler does not have the IEventHandler interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register an event handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "handler {qx.event.IEventHandler} Event handler to add",
+            "paramName": "handler",
+            "description": " Event handler to add",
+            "type": "qx.event.IEventHandler"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the handler does not have the IEventHandler interface.",
+            "type": "Error",
+            "description": " if the handler does not have the IEventHandler interface."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 508,
+          "column": 4,
+          "index": 18057
+        },
+        "end": {
+          "line": 524,
+          "column": 5,
+          "index": 18460
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handler",
+          "type": "qx.event.IEventHandler"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHandlers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of registered event handlers.",
+          "     *",
+          "     * @return {qx.event.IEventHandler[]} registered event handlers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of registered event handlers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.IEventHandler[]} registered event handlers",
+            "type": "qx.event.IEventHandler[]",
+            "description": "registered event handlers"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 18606
+        },
+        "end": {
+          "line": 533,
+          "column": 5,
+          "index": 18657
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.event.IEventHandler[]"
+      },
+      "appearsIn": []
+    },
+    "__dispatchers": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Array} Contains all known event dispatchers "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} Contains all known event dispatchers"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 542,
+          "column": 4,
+          "index": 18937
+        },
+        "end": {
+          "line": 542,
+          "column": 21,
+          "index": 18954
+        }
+      },
+      "appearsIn": []
+    },
+    "addDispatcher": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register an event dispatcher.",
+          "     *",
+          "     * @param dispatcher {qx.event.IEventDispatcher} Event dispatcher to add",
+          "     * @param priority {Integer} One of",
+          "     * {@link qx.event.Registration#PRIORITY_FIRST},",
+          "     * {@link qx.event.Registration#PRIORITY_NORMAL}",
+          "     *       or {@link qx.event.Registration#PRIORITY_LAST}.",
+          "     * @throws {Error} if the dispatcher does not have the IEventHandler interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register an event dispatcher.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dispatcher {qx.event.IEventDispatcher} Event dispatcher to add",
+            "paramName": "dispatcher",
+            "description": " Event dispatcher to add",
+            "type": "qx.event.IEventDispatcher"
+          },
+          {
+            "name": "@param",
+            "body": "priority {Integer} One of\n {@link qx.event.Registration#PRIORITY_FIRST},\n {@link qx.event.Registration#PRIORITY_NORMAL}\n       or {@link qx.event.Registration#PRIORITY_LAST}.",
+            "paramName": "priority",
+            "description": " One of\n {@link qx.event.Registration#PRIORITY_FIRST},\n {@link qx.event.Registration#PRIORITY_NORMAL}\n       or {@link qx.event.Registration#PRIORITY_LAST}.",
+            "type": "Integer"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if the dispatcher does not have the IEventHandler interface.",
+            "type": "Error",
+            "description": " if the dispatcher does not have the IEventHandler interface."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 554,
+          "column": 4,
+          "index": 19389
+        },
+        "end": {
+          "line": 570,
+          "column": 5,
+          "index": 19826
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dispatcher",
+          "type": "qx.event.IEventDispatcher"
+        },
+        {
+          "name": "priority",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDispatchers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of registered event dispatchers.",
+          "     *",
+          "     * @return {qx.event.IEventDispatcher[]} all registered event dispatcher",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of registered event dispatchers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.IEventDispatcher[]} all registered event dispatcher",
+            "type": "qx.event.IEventDispatcher[]",
+            "description": "all registered event dispatcher"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 577,
+          "column": 4,
+          "index": 19984
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 20041
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.event.IEventDispatcher[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

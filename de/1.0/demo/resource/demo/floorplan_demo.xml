@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <building name="MyBuilding" orientation="45">
+  <floor name="Underground" height="2.44">
+   <nodes>
+    <node id="1"  x="0.0"  y="0.0"  />
+    <node id="2"  x="5.0"  y="0.0"  />
+    <node id="3"  x="10.0" y="0.0"  />
+    <node id="4"  x="10.0" y="10.0" />
+    <node id="5"  x="5.0"  y="10.0" />
+    <node id="6"  x="0.0"  y="10.0" />
+   </nodes>
+   <walls>
+    <wall start="1"  end="2"  thickness=".24" texture="wall" />
+    <wall start="2"  end="3"  thickness=".24" >
+      <hole id="window01" distance="0.5" width="0.88" paparet="0.6" lintel="0.5" />
+      <hole id="window11" distance="2.5" width="0.88" paparet="0.6" lintel="0.5" />
+    </wall>
+    <wall start="3"  end="4"  thickness=".24" >
+      <hole id="window02" distance="0.5" width="0.88" paparet="1.6" lintel="0.0" />
+    </wall>
+    <wall start="4"  end="5"  thickness=".24" />
+    <wall start="5"  end="6"  thickness=".24" />
+    <wall start="6"  end="1"  thickness=".24" texture="wall" />
+    <wall start="2"  end="5"  thickness=".24" >
+      <hole id="door02" distance="0.5" width="0.88" paparet="0.0" lintel="0.2" />
+    </wall>
+   </walls>
+   <rooms>
+    <room name="Room1">
+     <zone name="all" onclick="alert('Bad')">
+      <corner nodeid="1" />
+      <corner nodeid="2" />
+      <corner nodeid="5" />
+      <corner nodeid="6" />
+     </zone>
+    </room>
+    <room name="Room2">
+     <zone name="all" onclick="alert('Kind')">
+      <corner nodeid="2" />
+      <corner nodeid="3" />
+      <corner nodeid="4" />
+      <corner nodeid="5" />
+     </zone>
+    </room>
+   </rooms>
+  </floor>
+  <floor name="Ground" height="2.44">
+   <nodes>
+    <node id="100"  x="0"  y="0"  />
+    <node id="101"  x="0"  y="5"  />
+    <node id="102"  x="0"  y="10" />
+    <node id="103"  x="10" y="10" />
+    <node id="104"  x="10" y="5"  />
+    <node id="105"  x="10" y="0"  />
+   </nodes>
+   <walls>
+    <wall start="100"  end="101"  thickness=".24" texture="wall" >
+      <hole id="window100" distance="0.3" width="1.385" paparet="1.13" lintel="0.3" />
+    </wall>
+    <wall start="101"  end="102"  thickness=".24" texture="wall" >
+      <hole id="window101" distance="0.05" width="0.76" paparet="1.13" lintel="0.3" />
+    </wall>
+    <wall start="102"  end="103"  thickness=".24" >
+      <hole id="window102" distance="0.7" width="2.01" paparet="0.485" lintel="0.3" />
+    </wall>
+    <wall start="103"  end="104"  thickness=".24" >
+      <hole id="door100" distance="4.37" width="1.01" paparet="0.0" lintel="0.3" />
+    </wall>
+    <wall start="104"  end="105"  thickness=".24" >
+      <hole id="window104" distance="0.5" width="1.26" paparet="0.6" lintel="0.3" />
+    </wall>
+    <wall start="105"  end="100"  thickness=".24" >
+      <hole id="door101" distance="0.05" width="1.01" paparet="0.0" lintel="0.3" />
+    </wall>
+    <wall start="101"  end="104"  thickness=".24" >
+      <hole id="door102" distance="0.37" width="2.25" paparet="0.0" lintel="0.3" />
+    </wall>
+   </walls>
+   <rooms>
+    <room name="Bad EG">
+     <zone name="all" onclick="alert('Bad EG')">
+      <corner nodeid="100" />
+      <corner nodeid="101" />
+      <corner nodeid="104" />
+      <corner nodeid="105" />
+     </zone>
+    </room>
+   </rooms>
+  </floor>
+  <textures>
+    <texture id="wall" src="./textures/Wand.jpg" width="1" height="1" />
+    <texture id="ground" src="./textures/BodenGrau_1_3.jpg" width="1" height="1" />
+  </textures>
+ </building>

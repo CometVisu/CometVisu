@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543939,
+  "lastModifiedIso": "2026-06-29T03:59:03.939Z",
+  "classFilename": "../../source/class/cv/theme/dark/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 839
+    },
+    "end": {
+      "line": 131,
+      "column": 3,
+      "index": 4057
+    }
+  },
+  "className": "cv.theme.dark.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Font definitions",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Font definitions</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.tangible.Font",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

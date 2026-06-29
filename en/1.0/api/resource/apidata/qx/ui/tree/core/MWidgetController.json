@@ -1,0 +1,928 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602887,
+  "lastModifiedIso": "2026-06-29T04:00:02.887Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/core/MWidgetController.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 613
+    },
+    "end": {
+      "line": 306,
+      "column": 3,
+      "index": 8503
+    }
+  },
+  "className": "qx.ui.tree.core.MWidgetController",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The mixin controls the binding between model and item.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The mixin controls the binding between model and item.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2,
+        "index": 670
+      },
+      "end": {
+        "line": 28,
+        "column": 3,
+        "index": 715
+      }
+    }
+  },
+  "properties": {
+    "labelPath": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 871
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 933
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the property, where the value for the tree node/leaf label",
+          "     * is stored in the model classes.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the property, where the value for the tree node/leaf label\n is stored in the model classes.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconPath": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1056
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1117
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as an icon.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as an icon.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "labelOptions": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1294
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1336
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the label binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the label binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconOptions": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1512
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1553
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the icon binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the icon binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "childProperty": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1834
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the property, where the children are stored in the model.",
+          "     * Instead of the {@link #labelPath} must the child property a direct",
+          "     * property form the model instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the property, where the children are stored in the model.\n Instead of the {@link #labelPath} must the child property a direct\n property form the model instance.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1998
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2085
+        }
+      },
+      "json": {
+        "event": "changeDelegate",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object, which can have one or more functions defined by the",
+          "     * {@link qx.ui.tree.core.IVirtualTreeDelegate} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegation object, which can have one or more functions defined by the\n {@link qx.ui.tree.core.IVirtualTreeDelegate} interface.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__boundItems": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Array} which contains the bounded items "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array} which contains the bounded items"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2167
+        },
+        "end": {
+          "line": 88,
+          "column": 22,
+          "index": 2185
+        }
+      },
+      "appearsIn": []
+    },
+    "bindDefaultProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding the default properties from the model to the",
+          "     * target widget. The used default properties  depends on the passed item.",
+          "     *",
+          "     * This method should only be called in the {@link IVirtualTreeDelegate#bindItem}",
+          "     * function implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used node or",
+          "     *   leaf.",
+          "     * @param index {Integer} The index of the item (node or leaf).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding the default properties from the model to the\n target widget. The used default properties  depends on the passed item.\n This method should only be called in the {@link IVirtualTreeDelegate#bindItem}\n function implemented by the {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The internally created and used node or\n   leaf.",
+            "paramName": "item",
+            "description": " The internally created and used node or\n   leaf.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the item (node or leaf).",
+            "paramName": "index",
+            "description": " The index of the item (node or leaf).",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2690
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3830
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindProperty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the model to the target",
+          "     * widget.",
+          "     *",
+          "     * This method should only be called in the {@link IVirtualTreeDelegate#bindItem}",
+          "     * function implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param sourcePath {String | null} The path to the property in the model.",
+          "     *   If you use an empty string, the whole model item will be bound.",
+          "     * @param targetProperty {String} The name of the property in the target widget.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param targetWidget {qx.ui.core.Widget} The target widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding a given property from the model to the target\n widget.\n This method should only be called in the {@link IVirtualTreeDelegate#bindItem}\n function implemented by the {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourcePath {String | null} The path to the property in the model.\n   If you use an empty string, the whole model item will be bound.",
+            "paramName": "sourcePath",
+            "description": " The path to the property in the model.\n   If you use an empty string, the whole model item will be bound.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "targetProperty {String} The name of the property in the target widget.",
+            "paramName": "targetProperty",
+            "description": " The name of the property in the target widget.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map | null} The options to use for the binding.",
+            "paramName": "options",
+            "description": " The options to use for the binding.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "targetWidget {qx.ui.core.Widget} The target widget.",
+            "paramName": "targetWidget",
+            "description": " The target widget.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the current binding.",
+            "paramName": "index",
+            "description": " The index of the current binding.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4549
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 4864
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourcePath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "targetWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindPropertyReverse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the target widget to",
+          "     * the model.",
+          "     * This method should only be called in the",
+          "     * {@link qx.ui.tree.core.IVirtualTreeDelegate#bindItem} function implemented by the",
+          "     * {@link #delegate} property.",
+          "     *",
+          "     * @param targetPath {String | null} The path to the property in the model.",
+          "     * @param sourceProperty {String} The name of the property in the target.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param sourceWidget {qx.ui.core.Widget} The source widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding a given property from the target widget to\n the model.\n This method should only be called in the\n {@link qx.ui.tree.core.IVirtualTreeDelegate#bindItem} function implemented by the\n {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetPath {String | null} The path to the property in the model.",
+            "paramName": "targetPath",
+            "description": " The path to the property in the model.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "sourceProperty {String} The name of the property in the target.",
+            "paramName": "sourceProperty",
+            "description": " The name of the property in the target.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map | null} The options to use for the binding.",
+            "paramName": "options",
+            "description": " The options to use for the binding.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "sourceWidget {qx.ui.core.Widget} The source widget.",
+            "paramName": "sourceWidget",
+            "description": " The source widget.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the current binding.",
+            "paramName": "index",
+            "description": " The index of the current binding.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5519
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetPath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeBindings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all bindings from all bounded items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all bindings from all bounded items.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5951
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 6112
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_bindItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given item and index.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used item.",
+          "     * @param index {Integer} The index of the item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets up the binding for the given item and index.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The internally created and used item.",
+            "paramName": "item",
+            "description": " The internally created and used item.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the item.",
+            "paramName": "index",
+            "description": " The index of the item.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6329
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 6580
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_removeBindingsFrom": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the binding of the given item.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The item which the binding should be",
+          "     *   removed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the binding of the given item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} The item which the binding should be\n   removed.",
+            "paramName": "item",
+            "description": " The item which the binding should be\n   removed.",
+            "type": "qx.ui.core.Widget"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6750
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 7156
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getBindPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to create the path for binding.",
+          "     *",
+          "     * @param index {Integer} The index of the item.",
+          "     * @param path {String|null} The path to the property.",
+          "     * @return {String} The binding path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to create the path for binding.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the item.",
+            "paramName": "index",
+            "description": " The index of the item.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "path {String|null} The path to the property.",
+            "paramName": "path",
+            "description": " The path to the property.",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The binding path",
+            "type": "string",
+            "description": "The binding path"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 7392
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 7569
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "path",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__addBinding": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to save the binding for the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to save binding.",
+          "     * @param id {var} the id from the binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to save the binding for the widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} widget to save binding.",
+            "paramName": "widget",
+            "description": " widget to save binding.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "id {var} the id from the binding.",
+            "paramName": "id",
+            "description": " the id from the binding.",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 7769
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 8020
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getBindings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which returns all bound id from the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to get all binding.",
+          "     * @return {Array} all bound id's.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method which returns all bound id from the widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} widget to get all binding.",
+            "paramName": "widget",
+            "description": " widget to get all binding.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} all bound id's.",
+            "type": "Array<any>",
+            "description": "all bound id's."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 8222
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 8444
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 303,
+        "column": 2,
+        "index": 8453
+      },
+      "end": {
+        "line": 305,
+        "column": 3,
+        "index": 8499
+      }
+    }
+  },
+  "statics": {}
+}

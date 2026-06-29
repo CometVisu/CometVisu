@@ -1,0 +1,282 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602569,
+  "lastModifiedIso": "2026-06-29T04:00:02.569Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/menu/Layout.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 598
+    },
+    "end": {
+      "line": 187,
+      "column": 3,
+      "index": 5040
+    }
+  },
+  "className": "qx.ui.menu.Layout",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Layouter used by the qooxdoo menu's to render their buttons",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Layouter used by the qooxdoo menu's to render their buttons</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.ui.layout.VBox",
+  "properties": {
+    "columnSpacing": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 931
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1026
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Spacing between each cell on the menu buttons "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Spacing between each cell on the menu buttons</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "spanColumn": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1241
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1355
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 1,
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a column and which column should automatically span",
+          "     * when the following cell is empty. Spanning may be disabled",
+          "     * through setting this property to <code>null</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a column and which column should automatically span\n when the following cell is empty. Spanning may be disabled\n through setting this property to <code>null</code>.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconColumnWidth": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1424
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1544
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Default icon column width if no icons are rendered "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default icon column width if no icons are rendered</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "arrowColumnWidth": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1618
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1739
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "themeable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Default arrow column width if no sub menus are rendered "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default arrow column width if no sub menus are rendered</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__columnSizes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1947
+        },
+        "end": {
+          "line": 78,
+          "column": 23,
+          "index": 1966
+        }
+      },
+      "appearsIn": []
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2189
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4383
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.layout.VBox",
+      "appearsIn": [
+        "qx.ui.layout.VBox",
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "getColumnSizes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the column sizes detected during the pre-layout phase",
+          "     *",
+          "     * @return {Array} List of all column widths",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the column sizes detected during the pre-layout phase</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} List of all column widths",
+            "type": "Array<any>",
+            "description": "List of all column widths"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4726
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 4791
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 184,
+        "column": 2,
+        "index": 4989
+      },
+      "end": {
+        "line": 186,
+        "column": 3,
+        "index": 5036
+      }
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,476 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/upload/MDragUpload.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1133
+    },
+    "end": {
+      "line": 343,
+      "column": 3,
+      "index": 10692
+    }
+  },
+  "className": "cv.ui.manager.upload.MDragUpload",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add upload via drag&drop feature to this widget. The including widget must have a",
+      " * \"upload-dropbox\" childcontrol or add",
+      " *  <pre class=\"javascript\">",
+      " *   if (!control) {",
+      "        control = this._createMDragUploadChildControlImpl(id);",
+      "      }",
+      " *   </pre>",
+      " *   to their own _createChildControlImpl method",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add upload via drag&amp;drop feature to this widget. The including widget must have a\n \"upload-dropbox\" childcontrol or add\n  </p>\n<pre class=\"javascript\">\n   if (!control) {\n        control = this._createMDragUploadChildControlImpl(id);\n      }\n   </pre>\n<p>to their own _createChildControlImpl method</p>"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1376
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1801
+      }
+    }
+  },
+  "properties": {
+    "uploadMode": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 2010
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2105
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "__applyUploadMode"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "uploadHint": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2112
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 2169
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "onHtml5Drop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles HTML5 drop events (dropping external files on dom element)",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles HTML5 drop events (dropping external files on dom element)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2430
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2536
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "uploadFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Uploads the dropped file to the correct folder:",
+          "     * - config files to the resources/config folder",
+          "     * - accepted media files to the resources/config/media folder",
+          "     * @param file {File}",
+          "     * @param replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Uploads the dropped file to the correct folder:</p>\n<ul>\n<li>config files to the resources/config folder</li>\n<li>accepted media files to the resources/config/media folder</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {File}",
+            "paramName": "file",
+            "type": "File"
+          },
+          {
+            "name": "@param",
+            "body": "replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones",
+            "paramName": "replaceFile",
+            "description": " optional, if set this files content gets replaced with the uploaded ones",
+            "optional": true,
+            "type": "cv.ui.manager.model.FileItem"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2891
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3632
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "File"
+        },
+        {
+          "name": "replaceFile",
+          "type": "cv.ui.manager.model.FileItem",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasDroppableFile": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3639
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3710
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFiles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extracts acceptable files from event",
+          "     * @param ev {Event}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extracts acceptable files from event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3818
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4638
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__hasEmptyInfo": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4845
+        },
+        "end": {
+          "line": 160,
+          "column": 24,
+          "index": 4865
+        }
+      },
+      "appearsIn": []
+    },
+    "_boundOnStop": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4871
+        },
+        "end": {
+          "line": 161,
+          "column": 22,
+          "index": 4889
+        }
+      },
+      "appearsIn": []
+    },
+    "__syncBounds": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4896
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 5186
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createMDragUploadChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5211
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 6983
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onStopDragging": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6990
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 7150
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStartDragListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4,
+          "index": 7269
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 8203
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDragListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 8322
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 10092
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__applyUploadMode": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 10121
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 10684
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

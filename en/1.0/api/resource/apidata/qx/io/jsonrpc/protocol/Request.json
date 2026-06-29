@@ -1,0 +1,315 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603075,
+  "lastModifiedIso": "2026-06-29T04:00:03.075Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Request.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 562
+    },
+    "end": {
+      "line": 98,
+      "column": 3,
+      "index": 2391
+    }
+  },
+  "className": "qx.io.jsonrpc.protocol.Request",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A JSON-RPC v2.0 request object",
+      " *",
+      " * @see https://www.jsonrpc.org/specification#request_object",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A JSON-RPC v2.0 request object</p>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "https://www.jsonrpc.org/specification#request_object"
+      }
+    ]
+  },
+  "superClass": "qx.io.jsonrpc.protocol.Notification",
+  "statics": {
+    "__current_request_id": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Static counter for all request ids",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Static counter for all request ids</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 736
+        },
+        "end": {
+          "line": 30,
+          "column": 27,
+          "index": 759
+        }
+      },
+      "appearsIn": []
+    },
+    "getCurrentId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current request id",
+          "     * @returns {Number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current request id</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 845
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 933
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "resetId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the request id to zero",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the request id to zero</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1073
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "id": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1153
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1256
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The integer id of the request",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The integer id of the request</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "method"
+      },
+      {
+        "name": "params"
+      },
+      {
+        "name": "id"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 66,
+        "column": 2,
+        "index": 1490
+      },
+      "end": {
+        "line": 73,
+        "column": 3,
+        "index": 1713
+      }
+    }
+  },
+  "members": {
+    "__promise": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1733
+        },
+        "end": {
+          "line": 76,
+          "column": 19,
+          "index": 1748
+        }
+      },
+      "appearsIn": []
+    },
+    "getPromise": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for promise which resolves with the result to the request, if successful",
+          "     * @return {qx.Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for promise which resolves with the result to the request, if successful</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise}",
+            "type": "qx.Promise",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 1886
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 1935
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "handleTransportException": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines how an exception during transport is handled. Standard",
+          "     * behavior is to reject the request's promise with that exception.",
+          "     * Classes inheriting from this class might handle it differently, i.e.",
+          "     * by allowing the transport to retry after a timeout occurred.",
+          "     * @param {qx.io.exception.Transport} exception",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines how an exception during transport is handled. Standard\n behavior is to reject the request's promise with that exception.\n Classes inheriting from this class might handle it differently, i.e.\n by allowing the transport to retry after a timeout occurred.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.exception.Transport} exception",
+            "paramName": "exception",
+            "description": "",
+            "type": "qx.io.exception.Transport"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2300
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2383
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "exception",
+          "type": "qx.io.exception.Transport"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

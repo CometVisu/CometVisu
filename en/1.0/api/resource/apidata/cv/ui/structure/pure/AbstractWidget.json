@@ -1,0 +1,1476 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/AbstractWidget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 972
+    },
+    "end": {
+      "line": 449,
+      "column": 3,
+      "index": 13332
+    }
+  },
+  "className": "cv.ui.structure.pure.AbstractWidget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class defines all the building blocks for a Visu in the \"Pure\" design",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class defines all the building blocks for a Visu in the \"Pure\" design</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractBasicWidget",
+  "mixins": [
+    "cv.ui.common.HasStyling"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1280
+      },
+      "end": {
+        "line": 67,
+        "column": 3,
+        "index": 2649
+      }
+    }
+  },
+  "properties": {
+    "anonymous": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2897
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2957
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If true this widget does not automatically apply any listeners",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If true this widget does not automatically apply any listeners</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "flavour": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2964
+        },
+        "end": {
+          "line": 83,
+          "column": 58,
+          "index": 3018
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "layout": {
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 3024
+        },
+        "end": {
+          "line": 84,
+          "column": 47,
+          "index": 3067
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 3073
+        },
+        "end": {
+          "line": 85,
+          "column": 56,
+          "index": 3125
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "bindClickToWidget": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 3131
+        },
+        "end": {
+          "line": 86,
+          "column": 56,
+          "index": 3183
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "mapping": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 3189
+        },
+        "end": {
+          "line": 87,
+          "column": 48,
+          "index": 3233
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "align": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 3239
+        },
+        "end": {
+          "line": 88,
+          "column": 46,
+          "index": 3281
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "classes": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 3287
+        },
+        "end": {
+          "line": 89,
+          "column": 58,
+          "index": 3341
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "style": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 3347
+        },
+        "end": {
+          "line": 90,
+          "column": 40,
+          "index": 3383
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "colspan": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 3389
+        },
+        "end": {
+          "line": 91,
+          "column": 69,
+          "index": 3454
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 6,
+        "transform": "string2number"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "colspanM": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 3460
+        },
+        "end": {
+          "line": 92,
+          "column": 70,
+          "index": 3526
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 6,
+        "transform": "string2number"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "colspanS": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3532
+        },
+        "end": {
+          "line": 93,
+          "column": 70,
+          "index": 3598
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 6,
+        "transform": "string2number"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "rowspanClass": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 3604
+        },
+        "end": {
+          "line": 94,
+          "column": 47,
+          "index": 3647
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "containerClass": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 3653
+        },
+        "end": {
+          "line": 95,
+          "column": 55,
+          "index": 3704
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "visible": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3710
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3828
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeVisible",
+        "apply": "_applyVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "responsive": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3835
+        },
+        "end": {
+          "line": 103,
+          "column": 49,
+          "index": 3880
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "styling": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 1021
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 1099
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.common.HasStyling"
+      ],
+      "mixin": "cv.ui.common.HasStyling"
+    }
+  },
+  "events": {
+    "domReady": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 4038
+        },
+        "end": {
+          "line": 112,
+          "column": 35,
+          "index": 4069
+        }
+      }
+    }
+  },
+  "members": {
+    "$$domReady": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 4229
+        },
+        "end": {
+          "line": 121,
+          "column": 20,
+          "index": 4245
+        }
+      },
+      "appearsIn": []
+    },
+    "__pointerDownElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4251
+        },
+        "end": {
+          "line": 122,
+          "column": 30,
+          "index": 4277
+        }
+      },
+      "appearsIn": []
+    },
+    "__pointerDownTime": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 4283
+        },
+        "end": {
+          "line": 123,
+          "column": 27,
+          "index": 4306
+        }
+      },
+      "appearsIn": []
+    },
+    "_skipNextEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4312
+        },
+        "end": {
+          "line": 124,
+          "column": 24,
+          "index": 4332
+        }
+      },
+      "appearsIn": []
+    },
+    "__longPressTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 4338
+        },
+        "end": {
+          "line": 125,
+          "column": 26,
+          "index": 4360
+        }
+      },
+      "appearsIn": []
+    },
+    "__pointerDownPoint": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 4366
+        },
+        "end": {
+          "line": 126,
+          "column": 28,
+          "index": 4390
+        }
+      },
+      "appearsIn": []
+    },
+    "__deferredParentInit": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4396
+        },
+        "end": {
+          "line": 127,
+          "column": 30,
+          "index": 4422
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyVisible": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 4451
+        },
+        "end": {
+          "line": 130,
+          "column": 32,
+          "index": 4479
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getResponsiveLayout": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4486
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 5225
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
+    },
+    "string2number": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property transformaon helper",
+          "     * @param value {String}",
+          "     * @return {Number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property transformaon helper</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String}",
+            "paramName": "value",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 5337
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 5397
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "downaction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default action for pointerdown events, does nothing but can be overridden",
+          "     * by subclasses",
+          "     * @param ev {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default action for pointerdown events, does nothing but can be overridden\n by subclasses</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event} pointerdown event",
+            "paramName": "ev",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 5565
+        },
+        "end": {
+          "line": 172,
+          "column": 21,
+          "index": 5582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default action for tap events, does nothing but can be overridden",
+          "     * by subclasses",
+          "     * @param ev {Event} tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default action for tap events, does nothing but can be overridden\n by subclasses</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event} tap event",
+            "paramName": "ev",
+            "description": " tap event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5734
+        },
+        "end": {
+          "line": 179,
+          "column": 17,
+          "index": 5747
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDomFinished": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Triggered by the <code>setup.dom.finished</code> bus event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Triggered by the <code>setup.dom.finished</code> bus event</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5836
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 6015
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onDomReady": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when all widgets are available in the DOM tree",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when all widgets are available in the DOM tree</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 6099
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 6256
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getActor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the widgets actor element",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the widgets actor element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 6344
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 6573
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getValueElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the widgets value element",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the widgets value element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 6661
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 6817
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getWidgetElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the widgets widget element",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the widgets widget element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 6906
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 7064
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getInteractionElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the element which should be used to attach listeners too.",
+          "     * Unsually this would be the actor but if bindClickToWidget is true",
+          "     * it would be the DomElement (aka widget-container)",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the element which should be used to attach listeners too.\n Unsually this would be the actor but if bindClickToWidget is true\n it would be the DomElement (aka widget-container)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 7314
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7427
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "initListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the widgets listeners",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the widgets listeners</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7490
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 7821
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_cancelEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 7828
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7907
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerDown": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7914
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 9112
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__abort": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 305,
+          "column": 4,
+          "index": 9119
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 9520
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerMove": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 4,
+          "index": 9527
+        },
+        "end": {
+          "line": 339,
+          "column": 5,
+          "index": 10159
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerUp": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 341,
+          "column": 4,
+          "index": 10166
+        },
+        "end": {
+          "line": 370,
+          "column": 5,
+          "index": 11161
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addElementListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a listener to the widgets interaction element",
+          "     * @param type {String} event type to listen to",
+          "     * @param callback {Function} called when the event occurs",
+          "     * @param context {Object} this context for the callback",
+          "     * @return {var} the listener id",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a listener to the widgets interaction element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} event type to listen to",
+            "paramName": "type",
+            "description": " event type to listen to",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} called when the event occurs",
+            "paramName": "callback",
+            "description": " called when the event occurs",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} this context for the callback",
+            "paramName": "context",
+            "description": " this context for the callback",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the listener id",
+            "type": "var",
+            "description": "the listener id"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4,
+          "index": 11454
+        },
+        "end": {
+          "line": 389,
+          "column": 5,
+          "index": 11807
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeElementListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove a listener from the widgets interaction element",
+          "     * @param type {String} event type",
+          "     * @param callback {Function}",
+          "     * @param context {Object} this context",
+          "     * @return {Boolean} Whether the event was removed..",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove a listener from the widgets interaction element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function}",
+            "paramName": "callback",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} this context",
+            "paramName": "context",
+            "description": " this context",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event was removed..",
+            "type": "boolean",
+            "description": "Whether the event was removed.."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 12066
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 12367
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDomString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the DOM string for this widget",
+          "     *",
+          "     * @return {String} The widgets DOM representation as string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the DOM string for this widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The widgets DOM representation as string",
+            "type": "string",
+            "description": "The widgets DOM representation as string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 4,
+          "index": 12510
+        },
+        "end": {
+          "line": 425,
+          "column": 5,
+          "index": 12743
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
+    "_getInnerDomString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the inner DOM string for this widget",
+          "     * @return {String} HTML code as string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the inner DOM string for this widget</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML code as string",
+            "type": "string",
+            "description": "HTML code as string"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 12861
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 12906
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "applyStyling": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1259
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1914
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.HasStyling"
+      ],
+      "mixin": "cv.ui.common.HasStyling"
+    },
+    "_findValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1921
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2746
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "findExact"
+        },
+        {
+          "name": "element"
+        },
+        {
+          "name": "styling"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.HasStyling"
+      ],
+      "mixin": "cv.ui.common.HasStyling"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 441,
+        "column": 2,
+        "index": 13054
+      },
+      "end": {
+        "line": 448,
+        "column": 3,
+        "index": 13328
+      }
+    }
+  },
+  "statics": {}
+}

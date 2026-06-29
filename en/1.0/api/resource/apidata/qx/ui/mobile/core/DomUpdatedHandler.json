@@ -1,0 +1,422 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601878,
+  "lastModifiedIso": "2026-06-29T04:00:01.878Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/core/DomUpdatedHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 676
+    },
+    "end": {
+      "line": 175,
+      "column": 3,
+      "index": 4519
+    }
+  },
+  "className": "qx.ui.mobile.core.DomUpdatedHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides the <code>domupdated</code> event. The event is",
+      " * delegated to all widget instances that have a",
+      " * listener for the <code>domupdated</code> event registered.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides the <code>domupdated</code> event. The event is\n delegated to all widget instances that have a\n listener for the <code>domupdated</code> event registered.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1106
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1295
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1551
+        },
+        "end": {
+          "line": 59,
+          "column": 51,
+          "index": 1598
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1650
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1694
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1779
+        },
+        "end": {
+          "line": 67,
+          "column": 28,
+          "index": 1803
+        }
+      },
+      "appearsIn": []
+    },
+    "__instances": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Stores all domUpdated manager instances "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Stores all domUpdated manager instances"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1873
+        },
+        "end": {
+          "line": 70,
+          "column": 19,
+          "index": 1888
+        }
+      },
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Informs all handlers. Useful after massive DOM manipulations e.g.",
+          "     * through {@link qx.ui.mobile.core.Widget}.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Informs all handlers. Useful after massive DOM manipulations e.g.\n through {@link qx.ui.mobile.core.Widget}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2040
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2158
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2366
+        },
+        "end": {
+          "line": 92,
+          "column": 19,
+          "index": 2381
+        }
+      },
+      "appearsIn": []
+    },
+    "__targets": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2387
+        },
+        "end": {
+          "line": 93,
+          "column": 19,
+          "index": 2402
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2646
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2739
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2778
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2976
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3015
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called by all DOM tree modifying routines",
+          "     * to inform the widgets.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called by all DOM tree modifying routines\n to inform the widgets.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3564
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3907
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 159,
+        "column": 2,
+        "index": 4103
+      },
+      "end": {
+        "line": 164,
+        "column": 3,
+        "index": 4261
+      }
+    }
+  },
+  "properties": {}
+}

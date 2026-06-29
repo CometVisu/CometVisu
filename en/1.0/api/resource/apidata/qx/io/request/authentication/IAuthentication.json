@@ -1,0 +1,83 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602274,
+  "lastModifiedIso": "2026-06-29T04:00:02.274Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/request/authentication/IAuthentication.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 532
+    },
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 930
+    }
+  },
+  "className": "qx.io.request.authentication.IAuthentication",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface of an authentication delegate.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface of an authentication delegate.</p>"
+      }
+    ]
+  },
+  "members": {
+    "getAuthHeaders": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Headers to include in request for authentication purposes.",
+          "     *",
+          "     * @return {Map[]} Array of maps. Each map represent a header and",
+          "     *          must have the properties <code>key</code> and <code>value</code>",
+          "     *         with a value of type string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Headers to include in request for authentication purposes.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of maps. Each map represent a header and\n          must have the properties <code>key</code> and <code>value</code>\n         with a value of type string.",
+            "type": "Map[]",
+            "description": "Array of maps. Each map represent a header and\n          must have the properties <code>key</code> and <code>value</code>\n         with a value of type string."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 903
+        },
+        "end": {
+          "line": 31,
+          "column": 23,
+          "index": 922
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

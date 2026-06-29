@@ -1,0 +1,291 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543940,
+  "lastModifiedIso": "2026-06-29T03:59:03.940Z",
+  "classFilename": "../../source/class/cv/ui/common/HasAnimatedButton.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 146,
+      "column": 3,
+      "index": 4478
+    }
+  },
+  "className": "cv.ui.common.HasAnimatedButton",
+  "jsdoc": {
+    "raw": [
+      " HasAnimatedButton.js",
+      " *",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2,
+        "index": 1020
+      },
+      "end": {
+        "line": 28,
+        "column": 3,
+        "index": 1103
+      }
+    }
+  },
+  "members": {
+    "__olid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1259
+        },
+        "end": {
+          "line": 36,
+          "column": 16,
+          "index": 1271
+        }
+      },
+      "appearsIn": []
+    },
+    "__ilid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1277
+        },
+        "end": {
+          "line": 37,
+          "column": 16,
+          "index": 1289
+        }
+      },
+      "appearsIn": []
+    },
+    "__downTarget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1295
+        },
+        "end": {
+          "line": 38,
+          "column": 22,
+          "index": 1313
+        }
+      },
+      "appearsIn": []
+    },
+    "__initListeners": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1320
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__getActors": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1635
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "buttonPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button press animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button press animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event",
+            "paramName": "event",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2167
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2881
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__updateButtons": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2888
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3371
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "buttons"
+        },
+        {
+          "name": "pressed"
+        }
+      ],
+      "appearsIn": []
+    },
+    "buttonReleased": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button unpress animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerup event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button unpress animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerup event",
+            "paramName": "event",
+            "description": " pointerup event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3643
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 143,
+        "column": 2,
+        "index": 4369
+      },
+      "end": {
+        "line": 145,
+        "column": 3,
+        "index": 4474
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

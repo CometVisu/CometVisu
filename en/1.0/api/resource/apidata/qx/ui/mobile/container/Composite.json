@@ -1,0 +1,733 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601606,
+  "lastModifiedIso": "2026-06-29T04:00:01.606Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Composite.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 46,
+      "column": 0,
+      "index": 1332
+    },
+    "end": {
+      "line": 80,
+      "column": 3,
+      "index": 2256
+    }
+  },
+  "className": "qx.ui.mobile.container.Composite",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Composite is a generic container widget.",
+      " *",
+      " * It exposes all methods to set layouts and to manage child widgets",
+      " * as public methods. You must configure this widget with a layout manager to",
+      " * define the way the widget's children are positioned.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   // create the composite",
+      " *   var composite = new qx.ui.mobile.container.Composite();",
+      " *",
+      " *   composite.setLayout(new qx.ui.mobile.layout.HBox());",
+      " *",
+      " *   // add some children",
+      " *   composite.add(new qx.ui.mobile.basic.Label(\"Name: \"), {flex:1});",
+      " *   composite.add(new qx.ui.mobile.form.TextField());",
+      " *",
+      " *   this.getRoot().add(composite);",
+      " * </pre>",
+      " *",
+      " * This example horizontally groups a label and text field by using a",
+      " * Composite configured with a horizontal box layout as a container.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Composite is a generic container widget.\n It exposes all methods to set layouts and to manage child widgets\n as public methods. You must configure this widget with a layout manager to\n define the way the widget's children are positioned.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var composite = new qx.ui.mobile.container.Composite();\n   composite.setLayout(new qx.ui.mobile.layout.HBox());\n\n   composite.add(new qx.ui.mobile.basic.Label(\"Name: \"), {flex:1});\n   composite.add(new qx.ui.mobile.form.TextField());\n   this.getRoot().add(composite);\n </pre>\n<p>This example horizontally groups a label and text field by using a\n Composite configured with a horizontal box layout as a container.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
+  "mixins": [
+    "qx.ui.mobile.core.MChildrenHandling",
+    "qx.ui.mobile.core.MLayoutHandling"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "layout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 2,
+        "index": 1836
+      },
+      "end": {
+        "line": 68,
+        "column": 3,
+        "index": 1926
+      }
+    }
+  },
+  "members": {
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the children list",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} The children array (Arrays are",
+          "     *   reference types, please do not modify them in-place)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1290
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1345
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "hasChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains children.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when the widget has children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1556
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index position of the given widget if it is",
+          "     * a child widget. Otherwise it returns <code>-1</code>.",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} the widget to query for",
+          "     * @return {Integer} The index position or <code>-1</code> when",
+          "     *   the given widget is no child of this layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given widget if it is\n a child widget. Otherwise it returns <code>-1</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to query for"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given widget is no child of this layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1896
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1953
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget.",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} the widget to add.",
+          "     * @param layoutProperties {Map?null} Optional layout data for widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to add."
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2149
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2227
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "layoutProperties"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a child widget at the specified index",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} widget to add",
+          "     * @param index {Integer} Index, at which the widget will be inserted",
+          "     * @param options {Map?null} Optional layout data for widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child widget at the specified index</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} widget to add"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the widget will be inserted"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2500
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "index"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "addBefore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a widget before another already inserted widget",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} Widget to add",
+          "     * @param before {qx.ui.core.Widget} Widget before the new widget will be inserted.",
+          "     * @param layoutProperties {Map?null} Optional layout data for widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a widget before another already inserted widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} Widget to add"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.Widget} Widget before the new widget will be inserted."
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2884
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2990
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "before"
+        },
+        {
+          "name": "layoutProperties"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "addAfter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a widget after another already inserted widget",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} Widget to add",
+          "     * @param after {qx.ui.core.Widget} Widget, after which the new widget will be inserted",
+          "     * @param layoutProperties {Map?null} Optional layout data for widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a widget after another already inserted widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} Widget to add"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.Widget} Widget, after which the new widget will be inserted"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?null} Optional layout data for widget."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 3299
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3401
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "after"
+        },
+        {
+          "name": "layoutProperties"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given child widget.",
+          "     *",
+          "     * @param child {qx.ui.core.Widget} the widget to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.Widget} the widget to remove"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3530
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "removeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the widget at the specified index.",
+          "     *",
+          "     * @param index {Integer} Index of the widget to remove.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the widget at the specified index.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the widget to remove."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3718
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3770
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "removeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3821
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3865
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.mobile.core.MChildrenHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling"
+      ]
+    },
+    "setLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set a layout manager for the widget. A a layout manager can only be connected",
+          "     * with one widget. Reset the connection with a previous widget first, if you",
+          "     * like to use it in another widget instead.",
+          "     *",
+          "     * @param layout {qx.ui.mobile.layout.Abstract} The new layout or",
+          "     *     <code>null</code> to reset the layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set a layout manager for the widget. A a layout manager can only be connected\n with one widget. Reset the connection with a previous widget first, if you\n like to use it in another widget instead.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {qx.ui.mobile.layout.Abstract} The new layout or\n     <code>null</code> to reset the layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1452
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1508
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MLayoutHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MLayoutHandling"
+      ]
+    },
+    "getLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.mobile.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget's layout manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.layout.Abstract} The widget's layout manager"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1652
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1703
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.mobile.core.MLayoutHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MLayoutHandling"
+      ]
+    }
+  },
+  "statics": {
+    "remap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mapping of protected methods to public.",
+          "     * This omits an additional function call when using these methods. Call",
+          "     * this methods in the defer block of the including class.",
+          "     *",
+          "     * @param members {Map} The including classes members map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping of protected methods to public.\n This omits an additional function call when using these methods. Call\n this methods in the defer block of the including class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "members {Map} The including classes members map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2183
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2297
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "members"
+        }
+      ],
+      "mixin": "qx.ui.mobile.core.MLayoutHandling",
+      "appearsIn": [
+        "qx.ui.mobile.core.MChildrenHandling",
+        "qx.ui.mobile.core.MLayoutHandling"
+      ]
+    }
+  },
+  "properties": {}
+}

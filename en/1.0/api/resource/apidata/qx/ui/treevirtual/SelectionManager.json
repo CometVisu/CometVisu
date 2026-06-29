@@ -1,0 +1,315 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603165,
+  "lastModifiedIso": "2026-06-29T04:00:03.165Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/treevirtual/SelectionManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 717
+    },
+    "end": {
+      "line": 205,
+      "column": 3,
+      "index": 6594
+    }
+  },
+  "className": "qx.ui.treevirtual.SelectionManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A selection manager. This is a helper class that handles all selection",
+      " * related events and updates a SelectionModel.",
+      " * <p>",
+      " * This Selection Manager differs from its superclass in that we do not want",
+      " * rows to be selected when moving around with the keyboard.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A selection manager. This is a helper class that handles all selection\n related events and updates a SelectionModel.\n <p>\n This Selection Manager differs from its superclass in that we do not want\n rows to be selected when moving around with the keyboard.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.selection.Manager",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "table"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 920
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 982
+      }
+    }
+  },
+  "members": {
+    "__table": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1002
+        },
+        "end": {
+          "line": 40,
+          "column": 17,
+          "index": 1015
+        }
+      },
+      "appearsIn": []
+    },
+    "getTable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the table being managed",
+          "     *",
+          "     * @return {qx.ui.table.Table}",
+          "     *   Table being managed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the table being managed</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.Table}\n   Table being managed",
+            "type": "qx.ui.table.Table",
+            "description": "   Table being managed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1151
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.Table"
+      },
+      "appearsIn": []
+    },
+    "_handleSelectEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles a select event.  First we determine if the click was on the",
+          "     * open/close button and toggle the opened/closed state as necessary.",
+          "     * Then, if the click was not on the open/close button or if the table's",
+          "     * \"openCloseClickSelectsRow\" property so indicates, call our superclass to",
+          "     * handle the actual row selection.",
+          "     *",
+          "     * @param index {Integer} the index the event is pointing at.",
+          "     * @param evt {Map} the mouse event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles a select event.  First we determine if the click was on the\n open/close button and toggle the opened/closed state as necessary.\n Then, if the click was not on the open/close button or if the table's\n \"openCloseClickSelectsRow\" property so indicates, call our superclass to\n handle the actual row selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} the index the event is pointing at.",
+            "paramName": "index",
+            "description": " the index the event is pointing at.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "evt {Map} the mouse event.",
+            "paramName": "evt",
+            "description": " the mouse event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1679
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 5567
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.selection.Manager",
+      "appearsIn": [
+        "qx.ui.table.selection.Manager"
+      ]
+    },
+    "_handleExtendedClick": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle a mouse click event that is not normally handled by the simple",
+          "     * tree.  This is intended for more sophisticated trees where clicks in",
+          "     * different places, e.g. on various icons or on the label itself, should",
+          "     * be handled specially.",
+          "     *",
+          "     * @param tree {qx.ui.treevirtual.TreeVirtual}",
+          "     *   The tree on which the event has occurred.",
+          "     *",
+          "     * @param evt {Map}",
+          "     *   The mouse event.  Of particular interest is evt.getViewportLeft()",
+          "     *   which is the horizontal offset from the left border of the click.",
+          "     *",
+          "     * @param node {Map}",
+          "     *   The node which the tree row is displaying",
+          "     *",
+          "     * @param left {Integer}",
+          "     *   The offset from the left, of the beginning of the tree column.",
+          "     *",
+          "     * @return {Boolean}",
+          "     *   <i>true</i> if the row should be prevented from being selected;",
+          "     *   <i>false</i> otherwise.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle a mouse click event that is not normally handled by the simple\n tree.  This is intended for more sophisticated trees where clicks in\n different places, e.g. on various icons or on the label itself, should\n be handled specially.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tree {qx.ui.treevirtual.TreeVirtual}\n   The tree on which the event has occurred.",
+            "paramName": "tree",
+            "description": "\n   The tree on which the event has occurred.",
+            "type": "qx.ui.treevirtual.TreeVirtual"
+          },
+          {
+            "name": "@param",
+            "body": "evt {Map}\n   The mouse event.  Of particular interest is evt.getViewportLeft()\n   which is the horizontal offset from the left border of the click.",
+            "paramName": "evt",
+            "description": "\n   The mouse event.  Of particular interest is evt.getViewportLeft()\n   which is the horizontal offset from the left border of the click.",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "node {Map}\n   The node which the tree row is displaying",
+            "paramName": "node",
+            "description": "\n   The node which the tree row is displaying",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer}\n   The offset from the left, of the beginning of the tree column.",
+            "paramName": "left",
+            "description": "\n   The offset from the left, of the beginning of the tree column.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n   <i>true</i> if the row should be prevented from being selected;\n   <i>false</i> otherwise.",
+            "type": "boolean",
+            "description": "   <i>true</i> if the row should be prevented from being selected;\n   <i>false</i> otherwise."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6469
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 6540
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tree",
+          "type": "qx.ui.treevirtual.TreeVirtual"
+        },
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "node",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "left",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 202,
+        "column": 2,
+        "index": 6549
+      },
+      "end": {
+        "line": 204,
+        "column": 3,
+        "index": 6590
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

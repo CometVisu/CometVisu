@@ -1,0 +1,148 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602355,
+  "lastModifiedIso": "2026-06-29T04:00:02.355Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Image.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 567
+    },
+    "end": {
+      "line": 93,
+      "column": 3,
+      "index": 2390
+    }
+  },
+  "className": "qx.ui.progressive.renderer.table.cell.Image",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Table Cell Boolean Renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Table Cell Boolean Renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.renderer.table.cell.Icon",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "width"
+      },
+      {
+        "name": "height"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 874
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1145
+      }
+    }
+  },
+  "members": {
+    "_imageWidth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1165
+        },
+        "end": {
+          "line": 51,
+          "column": 21,
+          "index": 1182
+        }
+      },
+      "appearsIn": []
+    },
+    "_imageHeight": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1188
+        },
+        "end": {
+          "line": 52,
+          "column": 22,
+          "index": 1206
+        }
+      },
+      "appearsIn": []
+    },
+    "_getDefaultImageData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1213
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1352
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_identifyImage": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2382
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Icon",
+      "appearsIn": [
+        "qx.ui.progressive.renderer.table.cell.Icon"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

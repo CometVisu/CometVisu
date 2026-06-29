@@ -1,0 +1,268 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603074,
+  "lastModifiedIso": "2026-06-29T04:00:03.074Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/graphql/protocol/Request.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 741
+    },
+    "end": {
+      "line": 93,
+      "column": 3,
+      "index": 2472
+    }
+  },
+  "className": "qx.io.graphql.protocol.Request",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An Object modelling a GraphQL request based on the GraphQL language",
+      " * (see http://spec.graphql.org/draft/#sec-Language) usually sent as JSON via",
+      " * a HTTP request (https://graphql.org/learn/serving-over-http)",
+      " * @experimental The API might change. Feedback is appreciated.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An Object modelling a GraphQL request based on the GraphQL language\n (see http://spec.graphql.org/draft/#sec-Language) usually sent as JSON via\n a HTTP request (https://graphql.org/learn/serving-over-http)</p>"
+      }
+    ],
+    "@experimental": [
+      {
+        "name": "@experimental",
+        "body": "The API might change. Feedback is appreciated."
+      }
+    ]
+  },
+  "superClass": "qx.io.graphql.protocol.Message",
+  "properties": {
+    "operationName": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 975
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1077
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeOperationName"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * An optional field that only needs to be provided if multiple operations are present in the query",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>An optional field that only needs to be provided if multiple operations are present in the query</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "query": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1177
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "init": "",
+        "event": "changeQuery"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The query as a string which will be parsed and executed on the server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The query as a string which will be parsed and executed on the server</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "variables": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1371
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1551
+        }
+      },
+      "json": {
+        "check": "qx.core.Object",
+        "nullable": true,
+        "event": "changeVariables",
+        "transform": "_transformVariables",
+        "validate": "_validateVariables"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A qooxdoo object that maps variable names to variable values",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A qooxdoo object that maps variable names to variable values</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          " overriden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1592
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1684
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.io.graphql.protocol.Message",
+      "appearsIn": [
+        "qx.io.graphql.protocol.Message",
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    },
+    "_jsonReplacer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1691
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_transformVariables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms the variables object to a qooxdoo model. Called automaticaly",
+          "     * when the variables property is set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transforms the variables object to a qooxdoo model. Called automaticaly\n when the variables property is set.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2239
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_validateVariables": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2246
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2464
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

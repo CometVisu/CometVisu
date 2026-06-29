@@ -1,0 +1,226 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603322,
+  "lastModifiedIso": "2026-06-29T04:00:03.322Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Track.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 777
+    },
+    "end": {
+      "line": 80,
+      "column": 3,
+      "index": 2196
+    }
+  },
+  "className": "qx.module.event.Track",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,",
+      " * meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or",
+      " * touchscreen).",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
+  "statics": {
+    "TYPES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 901
+        },
+        "end": {
+          "line": 33,
+          "column": 20,
+          "index": 917
+        }
+      },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 924
+        },
+        "end": {
+          "line": 35,
+          "column": 30,
+          "index": 950
+        }
+      },
+      "appearsIn": []
+    },
+    "getDelta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map with the calculated delta coordinates and axis,",
+          "     * relative to the position on <code>trackstart</code> event.",
+          "     *",
+          "     * @return {Map} a map with contains the delta as <code>x</code> and",
+          "     * <code>y</code> and the movement axis as <code>axis</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map with the calculated delta coordinates and axis,\n relative to the position on <code>trackstart</code> event.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>.",
+            "type": "Map<any, any>",
+            "description": "a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1254
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1307
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": "Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2058
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

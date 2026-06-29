@@ -1,0 +1,380 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/tree/VirtualFsItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 878
+    },
+    "end": {
+      "line": 184,
+      "column": 3,
+      "index": 4819
+    }
+  },
+  "className": "cv.ui.manager.tree.VirtualFsItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Widget for filesystem items in a virtual tree.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Widget for filesystem items in a virtual tree.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.tree.VirtualTreeItem",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1116
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1182
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "fs-tree-item"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.tree.VirtualTreeItem",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "editing": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1189
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1277
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyEditing"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1284
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1362
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeName"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "temporary": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1369
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1461
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyTemporary"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "status": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1468
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1566
+        }
+      },
+      "json": {
+        "check": [
+          "valid",
+          "error"
+        ],
+        "nullable": true,
+        "apply": "_applyStatus"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyEditing": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1712
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2331
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTemporary": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2337
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2484
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2509
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3286
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.tree.VirtualTreeItem",
+      "appearsIn": [
+        "qx.ui.tree.VirtualTreeItem",
+        "qx.ui.form.MModelProperty"
+      ]
+    },
+    "_applyStatus": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3293
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3602
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDrop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle drop events",
+          "     * @param ev {Event}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle drop events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3692
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3751
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__cancelEditing": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3758
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3874
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onKeypress": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3881
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4075
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4100
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.ui.tree.core.AbstractItem",
+      "appearsIn": [
+        "qx.ui.tree.core.AbstractItem",
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

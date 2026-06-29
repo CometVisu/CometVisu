@@ -1,0 +1,227 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/String.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 813
+    },
+    "end": {
+      "line": 75,
+      "column": 3,
+      "index": 2398
+    }
+  },
+  "className": "cv.util.String",
+  "jsdoc": {
+    "raw": [
+      " String.js",
+      " *",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "__elem": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 1021
+        },
+        "end": {
+          "line": 29,
+          "column": 16,
+          "index": 1033
+        }
+      },
+      "appearsIn": []
+    },
+    "decodeHtmlEntities": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decode HTML entities like &amp; to &",
+          "     * @param str {String} string to decode",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decode HTML entities like &amp; to &amp;</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to decode",
+            "paramName": "str",
+            "description": " string to decode",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1168
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1358
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "htmlStringToDomElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clean the string that contains HTML code and convert it to a DOM element",
+          "     * @param str {String} string to decode",
+          "     * @return {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clean the string that contains HTML code and convert it to a DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} string to decode",
+            "paramName": "str",
+            "description": " string to decode",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element}",
+            "type": "Element",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "sprintf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert in string values as the well known sprint() function of other",
+          "     * programming languages does.",
+          "     * When a malformation happens a generic string is returned and a warning",
+          "     * is shown on the console.",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Insert in string values as the well known sprint() function of other\n programming languages does.\n When a malformation happens a generic string is returned and a warning\n is shown on the console.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 2115
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2390
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

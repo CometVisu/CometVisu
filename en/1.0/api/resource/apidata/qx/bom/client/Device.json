@@ -1,0 +1,436 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601831,
+  "lastModifiedIso": "2026-06-29T04:00:01.831Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Device.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 771
+    },
+    "end": {
+      "line": 155,
+      "column": 3,
+      "index": 4859
+    }
+  },
+  "className": "qx.bom.client.Device",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The class is responsible for device detection. This is specially useful",
+      " * if you are on a mobile device.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The class is responsible for device detection. This is specially useful\n if you are on a mobile device.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "statics": {
+    "__ids": {
+      "jsdoc": {
+        "raw": [
+          "* Maps user agent names to device IDs "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maps user agent names to device IDs</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 881
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1137
+        }
+      },
+      "appearsIn": []
+    },
+    "getName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the name of the current device if detectable. It falls back to",
+          "     * <code>pc</code> if the detection for other devices fails.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The string of the device found.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the name of the current device if detectable. It falls back to\n <code>pc</code> if the detection for other devices fails.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The string of the device found.",
+            "type": "string",
+            "description": "The string of the device found."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1383
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1745
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines on what type of device the application is running.",
+          "     * Valid values are: \"mobile\", \"tablet\" or \"desktop\".",
+          "     * @return {String} The device type name of determined device.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines on what type of device the application is running.\n Valid values are: \"mobile\", \"tablet\" or \"desktop\".</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The device type name of determined device.",
+            "type": "string",
+            "description": "The device type name of determined device."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1962
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2052
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "detectDeviceType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the device type, based on given userAgentString.",
+          "     *",
+          "     * @param userAgentString {String} userAgent parameter, needed for decision.",
+          "     * @return {String} The device type name of determined device: \"mobile\",\"desktop\",\"tablet\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the device type, based on given userAgentString.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "userAgentString {String} userAgent parameter, needed for decision.",
+            "paramName": "userAgentString",
+            "description": " userAgent parameter, needed for decision.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The device type name of determined device: \"mobile\",\"desktop\",\"tablet\"",
+            "type": "string",
+            "description": "The device type name of determined device: \"mobile\",\"desktop\",\"tablet\""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2322
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2593
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "userAgentString",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "detectMobileDevice": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects if a device is a mobile phone. (Tablets excluded.)",
+          "     * @param userAgentString {String} userAgent parameter, needed for decision.",
+          "     * @return {Boolean} Flag which indicates whether it is a mobile device.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects if a device is a mobile phone. (Tablets excluded.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "userAgentString {String} userAgent parameter, needed for decision.",
+            "paramName": "userAgentString",
+            "description": " userAgent parameter, needed for decision.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Flag which indicates whether it is a mobile device.",
+            "type": "boolean",
+            "description": "Flag which indicates whether it is a mobile device."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2840
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3077
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "userAgentString",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "detectTabletDevice": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects if a device is a tablet device.",
+          "     * @param userAgentString {String} userAgent parameter, needed for decision.",
+          "     * @return {Boolean} Flag which indicates whether it is a tablet device.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects if a device is a tablet device.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "userAgentString {String} userAgent parameter, needed for decision.",
+            "paramName": "userAgentString",
+            "description": " userAgent parameter, needed for decision.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Flag which indicates whether it is a tablet device.",
+            "type": "boolean",
+            "description": "Flag which indicates whether it is a tablet device."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3305
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3833
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "userAgentString",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDevicePixelRatio": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the device's pixel ratio. Returns 1 if detection is not possible.",
+          "     *",
+          "     * @return {Number} The device's pixel ratio",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the device's pixel ratio. Returns 1 if detection is not possible.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The device's pixel ratio",
+            "type": "number",
+            "description": "The device's pixel ratio"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3993
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4147
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getTouch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects if either touch events or pointer events are supported.",
+          "     * Additionally it checks if touch is enabled for pointer events.",
+          "     *",
+          "     * @return {Boolean} <code>true</code>, if the device supports touch",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects if either touch events or pointer events are supported.\n Additionally it checks if touch is enabled for pointer events.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the device supports touch",
+            "type": "boolean",
+            "description": "<code>true</code>, if the device supports touch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4391
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4562
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

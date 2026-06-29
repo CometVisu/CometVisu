@@ -1,0 +1,424 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543951,
+  "lastModifiedIso": "2026-06-29T03:59:03.951Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/elements/Address.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 937
+    },
+    "end": {
+      "line": 285,
+      "column": 3,
+      "index": 10496
+    }
+  },
+  "className": "cv.ui.structure.tile.elements.Address",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Address element that connect a widget/component to the backend.",
+      " *",
+      " *  @author Tobias Bräutigam",
+      " *  @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Address element that connect a widget/component to the backend.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.elements.AbstractCustomElement",
+  "members": {
+    "__lastValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1199
+        },
+        "end": {
+          "line": 35,
+          "column": 21,
+          "index": 1216
+        }
+      },
+      "appearsIn": []
+    },
+    "__transformedValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1222
+        },
+        "end": {
+          "line": 36,
+          "column": 28,
+          "index": 1246
+        }
+      },
+      "appearsIn": []
+    },
+    "_stateUpdateTarget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1252
+        },
+        "end": {
+          "line": 37,
+          "column": 28,
+          "index": 1276
+        }
+      },
+      "appearsIn": []
+    },
+    "__sendStateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1282
+        },
+        "end": {
+          "line": 38,
+          "column": 28,
+          "index": 1306
+        }
+      },
+      "appearsIn": []
+    },
+    "getAddress": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1313
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1380
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyConnected": {
+      "jsdoc": {
+        "raw": [
+          " so the backend's initial full-state fetch stores the state for non-start-page elements."
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1568
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1992
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1999
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 5889
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 5896
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 6085
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "resend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 6092
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 6476
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "fireStateUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.",
+          "     * @param address {String} address",
+          "     * @param state {variant} state to send",
+          "     * @param force {boolean} if true, the event is fired even if the state has not changed since the last update",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} address",
+            "paramName": "address",
+            "description": " address",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "state {variant} state to send",
+            "paramName": "state",
+            "description": " state to send",
+            "type": "variant"
+          },
+          {
+            "name": "@param",
+            "body": "force {boolean} if true, the event is fired even if the state has not changed since the last update",
+            "paramName": "force",
+            "description": " if true, the event is fired even if the state has not changed since the last update",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6807
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 9547
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "variant"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRead": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @return {boolean} true if this is a read address",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} true if this is a read address",
+            "type": "boolean",
+            "description": "true if this is a read address"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 9633
+        },
+        "end": {
+          "line": 252,
+          "column": 5,
+          "index": 9710
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isWrite": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @return {boolean} true if this is a write address",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean} true if this is a write address",
+            "type": "boolean",
+            "description": "true if this is a write address"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4,
+          "index": 9797
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 9874
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 9881
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 9937
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 267,
+        "column": 2,
+        "index": 9946
+      },
+      "end": {
+        "line": 273,
+        "column": 3,
+        "index": 10277
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

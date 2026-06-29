@@ -1,0 +1,1792 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543947,
+  "lastModifiedIso": "2026-06-29T03:59:03.947Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/MultiTrigger.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 1065
+    },
+    "end": {
+      "line": 153,
+      "column": 3,
+      "index": 4947
+    }
+  },
+  "className": "cv.ui.structure.pure.MultiTrigger",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds a widget with multiple buttons to the visu.",
+      " * Thus, e.g. change the operating mode of the heating system",
+      " * (Comfort -> Night -> Absent -> Frost protection) or create scene functions.",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 2012",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds a widget with multiple buttons to the visu.\n Thus, e.g. change the operating mode of the heating system\n (Comfort -&gt; Night -&gt; Absent -&gt; Frost protection) or create scene functions.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2012"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Operate",
+    "cv.ui.common.Update",
+    "cv.ui.common.HasAnimatedButton"
+  ],
+  "properties": {
+    "showstatus": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1415
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1476
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "elementsPerLine": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1483
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1544
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 2
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "buttonConfiguration": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1551
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1624
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1217
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1298
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {var} the incoming value after transformation, mapping and formatting",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation, mapping and formatting"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "basicValue": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1380
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1438
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {var} the incoming value after transformation",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{var} the incoming value after transformation"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "format": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1503
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1578
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Format to apply to incoming values",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format to apply to incoming values</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "address": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1173
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1227
+        }
+      },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map of addresses (KNX-GA's or openHAB item names) this widget communicates with",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of addresses (KNX-GA's or openHAB item names) this widget communicates with</p>"
+          }
+        ]
+      },
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate",
+        "cv.ui.common.HasAddress"
+      ]
+    }
+  },
+  "members": {
+    "_getInnerDomString": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1802
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2875
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "getActors": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2882
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2980
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_processIncomingValue": {
+      "jsdoc": {
+        "raw": [
+          " overridden, only transform the value, do not apply it to DOM"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 3055
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 3148
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the incoming data from the backend for this widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the incoming data from the backend for this widget</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 3237
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 4100
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getActionValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value that should be send to backend after the action has been triggered",
+          "     * @param event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the value that should be send to backend after the action has been triggered</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event",
+            "paramName": "event",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4231
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4501
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "initListeners": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4526
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4840
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Action performed when the widget got clicked, sends data to the backend",
+          "     *",
+          "     * @param event {Event} tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Action performed when the widget got clicked, sends data to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} tap event",
+            "paramName": "event",
+            "description": " tap event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ],
+      "mixin": "cv.ui.common.Operate"
+    },
+    "downaction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles pointerdown events",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles pointerdown events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event",
+            "paramName": "event",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1778
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ],
+      "mixin": "cv.ui.common.Operate"
+    },
+    "sendToBackend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given value to all writeable addresses known to this widget",
+          "     *",
+          "     * @param value {any} value to send",
+          "     * @param filter {Function} optional filter function for addresses",
+          "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
+          "     *          that were sent on the bus. When the encoding of the new value",
+          "     *          to send is equal to the currentBusValues a transmission will",
+          "     *          be suppressed. The object is a hash with the encoding as a key",
+          "     *          for the encoded value",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given value to all writeable addresses known to this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {any} value to send",
+            "paramName": "value",
+            "description": " value to send",
+            "type": "any"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function} optional filter function for addresses",
+            "paramName": "filter",
+            "description": " optional filter function for addresses",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
+            "paramName": "currentBusValues",
+            "description": " optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the object/hash of encoded values that were sent last time",
+            "type": "Record<any, any>",
+            "description": "the object/hash of encoded values that were sent last time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2603
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "any"
+        },
+        {
+          "name": "filter",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "currentBusValues",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": [
+        "cv.ui.common.Operate"
+      ],
+      "mixin": "cv.ui.common.Operate"
+    },
+    "_initOnCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1550
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "__initUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1557
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the incoming data, update the shown value and the stylings",
+          "     *",
+          "     * @param address {String} Address of the incoming value",
+          "     * @param data {String} the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value",
+            "paramName": "address",
+            "description": " Address of the incoming value",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value",
+            "paramName": "data",
+            "description": " the incoming value",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2408
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "processIncomingValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "update3d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Description",
+          "     *",
+          "     * @param ev {var}",
+          "     * @param data {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}",
+            "paramName": "ev",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}",
+            "paramName": "data",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3200
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3664
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "var"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "formatValueCache": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3409
+        },
+        "end": {
+          "line": 123,
+          "column": 26,
+          "index": 3431
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "applyTransform": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decode the given data with the addresses transform",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB-item name",
+          "     * @param data {var} value to be decoded",
+          "     * @return {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decode the given data with the addresses transform</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB-item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB-item name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {var} value to be decoded",
+            "paramName": "data",
+            "description": " value to be decoded",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var}",
+            "type": "var",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3643
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "applyMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the given mapping to the value",
+          "     *",
+          "     * @param value {var} value to be mapped",
+          "     * @param mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used",
+          "     * @return {var} the mapped value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the given mapping to the value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to be mapped",
+            "paramName": "value",
+            "description": " value to be mapped",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used",
+            "paramName": "mappingName",
+            "description": " mapping name, if not set the <code>mapping</code> property value is used",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the mapped value",
+            "type": "var",
+            "description": "the mapped value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4120
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4307
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "mappingName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "getNextMappedValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Look up the entry for <code>value</code> in the mapping <code>this_map</code> and",
+          "     * return the next value in the list (including wrap around).",
+          "     *",
+          "     * @param value {var} value to look up",
+          "     * @param this_map {String} mapping name",
+          "     * @return {var} the next mapped value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Look up the entry for <code>value</code> in the mapping <code>this_map</code> and\n return the next value in the list (including wrap around).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} value to look up",
+            "paramName": "value",
+            "description": " value to look up",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "this_map {String} mapping name",
+            "paramName": "this_map",
+            "description": " mapping name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the next mapped value",
+            "type": "var",
+            "description": "the next mapped value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4623
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4883
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "this_map",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "applyFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Format the given value according to the defined format.",
+          "     * If no format is defined the value will not be changed.",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param value {var} value to be formatted",
+          "     * @return {var} the formatted value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Format the given value according to the defined format.\n If no format is defined the value will not be changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": " KNX-GA or openHAB item name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {var} value to be formatted",
+            "paramName": "value",
+            "description": " value to be formatted",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} the formatted value",
+            "type": "var",
+            "description": "the formatted value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 5186
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 5628
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "defaultValueHandling": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default value handling for most of the widgets.",
+          "     * This method applies the transform, mapping, format and styling to the value.",
+          "     *",
+          "     * @param {string} address - KNX-GA or openHAB item name",
+          "     * @param {*} data - value to be processes",
+          "     * @return {*} the processed value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default value handling for most of the widgets.\n This method applies the transform, mapping, format and styling to the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} address - KNX-GA or openHAB item name",
+            "paramName": "address",
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{*} data - value to be processes",
+            "paramName": "data",
+            "description": "- value to be processes",
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} the processed value",
+            "type": "*",
+            "description": "the processed value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5948
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 7206
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "*"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "defaultValue2DOM": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method to handle all special cases for the value. The might come from",
+          "     * the mapping where it can be quite complex as it can contain icons.",
+          "     * @param {(*|*[])} value - the value, or an array of values, that will be inserted",
+          "     * @param {HTMLElement} targetElement - the element where `value` will be added to",
+          "     * @param {Function?} modifyFn - callback function that modifies the DOM",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method to handle all special cases for the value. The might come from\n the mapping where it can be quite complex as it can contain icons.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{(*|*[])} value - the value, or an array of values, that will be inserted",
+            "paramName": "value",
+            "description": "- the value, or an array of values, that will be inserted",
+            "type": [
+              "(*",
+              {
+                "type": "*",
+                "dimensions": 2
+              }
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "{HTMLElement} targetElement - the element where <code>value</code> will be added to",
+            "paramName": "targetElement",
+            "description": "- the element where <code>value</code> will be added to",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "@param",
+            "body": "{Function?} modifyFn - callback function that modifies the DOM",
+            "paramName": "modifyFn",
+            "description": "- callback function that modifies the DOM",
+            "optional": true,
+            "type": "Function"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7736
+        },
+        "end": {
+          "line": 267,
+          "column": 5,
+          "index": 8236
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "(*",
+            {
+              "type": "*",
+              "dimensions": 2
+            }
+          ]
+        },
+        {
+          "name": "targetElement",
+          "type": "HTMLElement"
+        },
+        {
+          "name": "modifyFn",
+          "type": "Function",
+          "optional": true
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "defaultUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default update function, processes the incoming value and applies it to the DOM value element.",
+          "     *",
+          "     * @param {string} ga - KNX-GA or openHAB item name",
+          "     * @param {*} data - the raw value from the bus",
+          "     * @param {HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used",
+          "     * @return {*} - value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default update function, processes the incoming value and applies it to the DOM value element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} ga - KNX-GA or openHAB item name",
+            "paramName": "ga",
+            "description": "- KNX-GA or openHAB item name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{*} data - the raw value from the bus",
+            "paramName": "data",
+            "description": "- the raw value from the bus",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{HTMLElement?} passedElement - the element to update, if not given {@link getDomElement()} is used",
+            "paramName": "passedElement",
+            "description": "- the element to update, if not given {@link getDomElement()} is used",
+            "optional": true,
+            "type": "HTMLElement"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} - value",
+            "type": "*",
+            "description": "- value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 8616
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 9322
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ga",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "*"
+        },
+        {
+          "name": "passedElement",
+          "type": "HTMLElement",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "_applyValueToDom": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function which updates the DOM element with the given value",
+          "     * @param {HTMLElement} targetElement - element to update",
+          "     * @param {*} value - value to add to the element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal function which updates the DOM element with the given value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{HTMLElement} targetElement - element to update",
+            "paramName": "targetElement",
+            "description": "- element to update",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "@param",
+            "body": "{*} value - value to add to the element",
+            "paramName": "value",
+            "description": "- value to add to the element",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4,
+          "index": 9537
+        },
+        "end": {
+          "line": 312,
+          "column": 5,
+          "index": 9942
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetElement",
+          "type": "HTMLElement"
+        },
+        {
+          "name": "value",
+          "type": "*"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "__olid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1259
+        },
+        "end": {
+          "line": 36,
+          "column": 16,
+          "index": 1271
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "__ilid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1277
+        },
+        "end": {
+          "line": 37,
+          "column": 16,
+          "index": 1289
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "__downTarget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1295
+        },
+        "end": {
+          "line": 38,
+          "column": 22,
+          "index": 1313
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "__initListeners": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1320
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "__getActors": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1635
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "buttonPressed": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button press animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button press animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event",
+            "paramName": "event",
+            "description": " pointerdown event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2167
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2881
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "__updateButtons": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2888
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3371
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "buttons"
+        },
+        {
+          "name": "pressed"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    },
+    "buttonReleased": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button unpress animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerup event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an action handling that shows a button unpress animation.\n When the action is not set, it will be searched for - so that widgets\n with bind<em>click</em>to_widget will also work.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerup event",
+            "paramName": "event",
+            "description": " pointerup event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3643
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.common.HasAnimatedButton"
+      ],
+      "mixin": "cv.ui.common.HasAnimatedButton"
+    }
+  },
+  "statics": {
+    "applyMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the given mapping to the value",
+          "     *",
+          "     * @param {*} value - value to be mapped",
+          "     * @param {string} mappingName - mapping name, if not set the <code>mapping</code> property value is used",
+          "     * @return {*} the mapped value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the given mapping to the value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} value - value to be mapped",
+            "paramName": "value",
+            "description": "- value to be mapped",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{string} mappingName - mapping name, if not set the <code>mapping</code> property value is used",
+            "paramName": "mappingName",
+            "description": "- mapping name, if not set the <code>mapping</code> property value is used",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} the mapped value",
+            "type": "*",
+            "description": "the mapped value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1996
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "*"
+        },
+        {
+          "name": "mappingName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    }
+  }
+}

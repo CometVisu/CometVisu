@@ -1,0 +1,276 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602927,
+  "lastModifiedIso": "2026-06-29T04:00:02.927Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Object.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 572
+    },
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2323
+    }
+  },
+  "className": "qx.event.handler.Object",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides qooxdoo object event support.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides qooxdoo object event support.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler"
+  ],
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 934
+        },
+        "end": {
+          "line": 35,
+          "column": 49,
+          "index": 979
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1031
+        },
+        "end": {
+          "line": 38,
+          "column": 25,
+          "index": 1052
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1112
+        },
+        "end": {
+          "line": 41,
+          "column": 54,
+          "index": 1162
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1247
+        },
+        "end": {
+          "line": 44,
+          "column": 28,
+          "index": 1271
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1716
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1815
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1854
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1937
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1976
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2061
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    }
+  },
+  "properties": {}
+}

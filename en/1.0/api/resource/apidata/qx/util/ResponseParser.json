@@ -1,0 +1,347 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603105,
+  "lastModifiedIso": "2026-06-29T04:00:03.105Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/ResponseParser.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 663
+    },
+    "end": {
+      "line": 160,
+      "column": 3,
+      "index": 4507
+    }
+  },
+  "className": "qx.util.ResponseParser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Parsers for parsing response strings (especially for XHR).",
+      " *",
+      " * Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>.",
+      " *",
+      " * @require(qx.util.ResponseParser#parse)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Parsers for parsing response strings (especially for XHR).\n Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.util.ResponseParser#parse"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "parser"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 786
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 877
+      }
+    }
+  },
+  "statics": {
+    "PARSER": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Map of parser functions. Parsers defined here can be",
+          "     * referenced symbolically, e.g. with {@link #setParser}.",
+          "     *",
+          "     * Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Map of parser functions. Parsers defined here can be\n referenced symbolically, e.g. with {@link #setParser}.\n Known parsers are: <code>\"json\"</code> and <code>\"xml\"</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1124
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1209
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__parser": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1233
+        },
+        "end": {
+          "line": 50,
+          "column": 18,
+          "index": 1247
+        }
+      },
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns given response parsed with parser",
+          "     * determined by {@link #_getParser}.",
+          "     *",
+          "     * @param response {String} response (e.g JSON/XML string)",
+          "     * @param contentType {String} contentType (e.g. 'application/json')",
+          "     * @return {String|Object} The parsed response of the request.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns given response parsed with parser\n determined by {@link #_getParser}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {String} response (e.g JSON/XML string)",
+            "paramName": "response",
+            "description": " response (e.g JSON/XML string)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "contentType {String} contentType (e.g. 'application/json')",
+            "paramName": "contentType",
+            "description": " contentType (e.g. 'application/json')",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|Object} The parsed response of the request.",
+            "type": "String|Object",
+            "description": "The parsed response of the request."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1571
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1818
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": "string"
+        },
+        {
+          "name": "contentType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|Object"
+      },
+      "appearsIn": []
+    },
+    "setParser": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set parser used to parse response once request has",
+          "     * completed successfully.",
+          "     *",
+          "     * Usually, the parser is correctly inferred from the",
+          "     * content type of the response. This method allows to force the",
+          "     * parser being used, e.g. if the content type returned from",
+          "     * the backend is wrong or the response needs special parsing.",
+          "     *",
+          "     * Parser most typically used can be referenced symbolically.",
+          "     * To cover edge cases, a function can be given. When parsing",
+          "     * the response, this function is called with the raw response as",
+          "     * first argument.",
+          "     *",
+          "     * @param parser {String|Function}",
+          "     *",
+          "     * Can be:",
+          "     *",
+          "     * <ul>",
+          "     *   <li>A parser defined in {@link qx.util.ResponseParser#PARSER},",
+          "     *       referenced by string.</li>",
+          "     *   <li>The function to invoke.",
+          "     *       Receives the raw response as argument.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @return {Function} The parser function",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set parser used to parse response once request has\n completed successfully.\n Usually, the parser is correctly inferred from the\n content type of the response. This method allows to force the\n parser being used, e.g. if the content type returned from\n the backend is wrong or the response needs special parsing.\n Parser most typically used can be referenced symbolically.\n To cover edge cases, a function can be given. When parsing\n the response, this function is called with the raw response as\n first argument.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parser {String|Function}\n Can be:\n <ul>\n   <li>A parser defined in {@link qx.util.ResponseParser#PARSER},\n       referenced by string.</li>\n   <li>The function to invoke.\n       Receives the raw response as argument.</li>\n </ul>",
+            "paramName": "parser",
+            "description": "\n Can be:\n <ul>\n   <li>A parser defined in {@link qx.util.ResponseParser#PARSER},\n       referenced by string.</li>\n   <li>The function to invoke.\n       Receives the raw response as argument.</li>\n </ul>",
+            "type": [
+              "String",
+              "Function"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The parser function",
+            "type": "((...args: any[]) => any)",
+            "description": "The parser function"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2787
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3209
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parser",
+          "type": [
+            "String",
+            "Function"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "_getParser": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the parser.",
+          "     *",
+          "     * If not defined explicitly using {@link #setParser},",
+          "     * the parser is inferred from the content type.",
+          "     *",
+          "     * Override this method to extend the list of content types",
+          "     * being handled.",
+          "     *",
+          "     * @param contentType {String}",
+          "     * @return {Function|null} The parser function or <code>null</code> if the",
+          "     * content type is undetermined.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the parser.\n If not defined explicitly using {@link #setParser},\n the parser is inferred from the content type.\n Override this method to extend the list of content types\n being handled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "contentType {String}",
+            "paramName": "contentType",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function|null} The parser function or <code>null</code> if the\n content type is undetermined.",
+            "type": "Function|null",
+            "description": "The parser function or <code>null</code> if the\n content type is undetermined."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3633
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4499
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "contentType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Function|null"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

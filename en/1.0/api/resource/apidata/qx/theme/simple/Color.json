@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601530,
+  "lastModifiedIso": "2026-06-29T04:00:01.530Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Color.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 518
+    },
+    "end": {
+      "line": 117,
+      "column": 3,
+      "index": 3246
+    }
+  },
+  "className": "qx.theme.simple.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

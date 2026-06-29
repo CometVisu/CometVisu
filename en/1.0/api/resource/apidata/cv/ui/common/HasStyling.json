@@ -1,0 +1,122 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543940,
+  "lastModifiedIso": "2026-06-29T03:59:03.940Z",
+  "classFilename": "../../source/class/cv/ui/common/HasStyling.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 817
+    },
+    "end": {
+      "line": 93,
+      "column": 3,
+      "index": 2754
+    }
+  },
+  "className": "cv.ui.common.HasStyling",
+  "jsdoc": {
+    "raw": [
+      " HasStyling.js",
+      " *",
+      " * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "properties": {
+    "styling": {
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 1021
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 1099
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "applyStyling": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1259
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1914
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_findValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1921
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2746
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "findExact"
+        },
+        {
+          "name": "element"
+        },
+        {
+          "name": "styling"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,1805 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600799,
+  "lastModifiedIso": "2026-06-29T04:00:00.799Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/media/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 653
+    },
+    "end": {
+      "line": 500,
+      "column": 3,
+      "index": 11634
+    }
+  },
+  "className": "qx.bom.media.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * Media element. Other media types can derive from this class.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of to free resources",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Media element. Other media types can derive from this class.\n NOTE: Instances of this class must be disposed of to free resources</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "media"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 836
+      },
+      "end": {
+        "line": 93,
+        "column": 3,
+        "index": 2452
+      }
+    }
+  },
+  "events": {
+    "play": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the media starts to play "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the media starts to play</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2620
+        },
+        "end": {
+          "line": 99,
+          "column": 31,
+          "index": 2647
+        }
+      }
+    },
+    "pause": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the media is paused "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the media is paused</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2696
+        },
+        "end": {
+          "line": 102,
+          "column": 32,
+          "index": 2724
+        }
+      }
+    },
+    "timeupdate": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the current time of the media has changed "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the current time of the media has changed</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2795
+        },
+        "end": {
+          "line": 105,
+          "column": 37,
+          "index": 2828
+        }
+      }
+    },
+    "ended": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the media has finished to play "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the media has finished to play</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2888
+        },
+        "end": {
+          "line": 108,
+          "column": 32,
+          "index": 2916
+        }
+      }
+    },
+    "volumechange": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the volume property is changed "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the volume property is changed</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2976
+        },
+        "end": {
+          "line": 111,
+          "column": 39,
+          "index": 3011
+        }
+      }
+    },
+    "loadeddata": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the media is loaded enough to start play"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the media is loaded enough to start play</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3080
+        },
+        "end": {
+          "line": 114,
+          "column": 37,
+          "index": 3113
+        }
+      }
+    },
+    "loadedmetadata": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the media is loaded enough to start play"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the media is loaded enough to start play</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3182
+        },
+        "end": {
+          "line": 117,
+          "column": 41,
+          "index": 3219
+        }
+      }
+    }
+  },
+  "members": {
+    "_media": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3243
+        },
+        "end": {
+          "line": 121,
+          "column": 16,
+          "index": 3255
+        }
+      },
+      "appearsIn": []
+    },
+    "_hasLoop": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3261
+        },
+        "end": {
+          "line": 122,
+          "column": 19,
+          "index": 3276
+        }
+      },
+      "appearsIn": []
+    },
+    "_loopId": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3282
+        },
+        "end": {
+          "line": 123,
+          "column": 17,
+          "index": 3295
+        }
+      },
+      "appearsIn": []
+    },
+    "getMediaObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the media object, so that you can add it to the DOM.",
+          "     *",
+          "     * @return {Object} the native media object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the media object, so that you can add it to the DOM.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the native media object",
+            "type": "Record<any, any>",
+            "description": "the native media object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3441
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3491
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "play": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts playback of the media.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts playback of the media.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3551
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3741
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "pause": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pauses playback of the media.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pauses playback of the media.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3801
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3843
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isPaused": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the media is paused or not.",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the media is paused or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 3943
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 3994
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isEnded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the media is ended or not.",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the media is ended or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4093
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4142
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the id of the media.",
+          "     *",
+          "     * @param id {String} The new value of id",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the id of the media.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} The new value of id",
+            "paramName": "id",
+            "description": " The new value of id",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4251
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4295
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the id of the media.",
+          "     *",
+          "     * @return {String} the id of the media element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the id of the media.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the id of the media element",
+            "type": "string",
+            "description": "the id of the media element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4410
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4454
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "canPlayType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the browser can play the file format.",
+          "     *",
+          "     * @param type {String} the file format",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the browser can play the file format.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} the file format",
+            "paramName": "type",
+            "description": " the file format",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4606
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 4675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setVolume": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the current playback volume, as a number in the range 0.0 to 1.0,",
+          "     * where 0.0 is the quietest and 1.0 the loudest.",
+          "     *",
+          "     * @param volume {Number} 0.0 - 1.0",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the current playback volume, as a number in the range 0.0 to 1.0,\n where 0.0 is the quietest and 1.0 the loudest.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "volume {Number} 0.0 - 1.0",
+            "paramName": "volume",
+            "description": " 0.0 - 1.0",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 4877
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 4937
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "volume",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getVolume": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the current playback volume, as a number in the range 0.0 to 1.0,",
+          "     * where 0.0 is the quietest and 1.0 the loudest.",
+          "     *",
+          "     * @return {Number} 0.0 - 1.0",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the current playback volume, as a number in the range 0.0 to 1.0,\n where 0.0 is the quietest and 1.0 the loudest.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} 0.0 - 1.0",
+            "type": "number",
+            "description": "0.0 - 1.0"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5133
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5185
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "setMuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the media element to mute.",
+          "     *",
+          "     * @param muted {Boolean} new value for mute",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the media element to mute.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "muted {Boolean} new value for mute",
+            "paramName": "muted",
+            "description": " new value for mute",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 5303
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 5359
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "muted",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isMuted": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the media element is muted or not",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the media element is muted or not</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 5465
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 5514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDuration": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the duration of the loaded media file.",
+          "     *",
+          "     * @return {Number} the duration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the duration of the loaded media file.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the duration",
+            "type": "number",
+            "description": "the duration"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4,
+          "index": 5632
+        },
+        "end": {
+          "line": 246,
+          "column": 5,
+          "index": 5688
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "setCurrentTime": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value of current time.",
+          "     *",
+          "     * @param value {Number} the new value of current time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value of current time.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} the new value of current time",
+            "paramName": "value",
+            "description": " the new value of current time",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 5816
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 5884
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCurrentTime": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets current time of the playback.",
+          "     *",
+          "     * @return {Number} the current time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets current time of the playback.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the current time",
+            "type": "number",
+            "description": "the current time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 5997
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 6059
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "setSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the source url of the media file.",
+          "     *",
+          "     * @param source {String} the source url to the media file.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the source url of the media file.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} the source url to the media file.",
+            "paramName": "source",
+            "description": " the source url to the media file.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 6199
+        },
+        "end": {
+          "line": 273,
+          "column": 5,
+          "index": 6256
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the source url of the media file.",
+          "     *",
+          "     * @return {String} the source url to the media file.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the source url of the media file.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the source url to the media file.",
+            "type": "string",
+            "description": "the source url to the media file."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 6390
+        },
+        "end": {
+          "line": 282,
+          "column": 5,
+          "index": 6439
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setSourceObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the source object of the media file.",
+          "     *",
+          "     * @param sourceObject {MediaStream} the source media stream.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the source object of the media file.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourceObject {MediaStream} the source media stream.",
+            "paramName": "sourceObject",
+            "description": " the source media stream.",
+            "type": "MediaStream"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4,
+          "index": 6584
+        },
+        "end": {
+          "line": 291,
+          "column": 5,
+          "index": 6665
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourceObject",
+          "type": "MediaStream"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSourceObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the source object of the media file.",
+          "     *",
+          "     * @return {MediaStream|null} the source stream object to the media file, if it exists.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the source object of the media file.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{MediaStream|null} the source stream object to the media file, if it exists.",
+            "type": "MediaStream|null",
+            "description": "the source stream object to the media file, if it exists."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4,
+          "index": 6836
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 6897
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "MediaStream|null"
+      },
+      "appearsIn": []
+    },
+    "hasControls": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the media element shows its controls.",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the media element shows its controls.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 7007
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 7063
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "showControls": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the controls of the media element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the controls of the media element.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 7134
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 7191
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hideControls": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the controls of the media element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hides the controls of the media element.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 7262
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 7320
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setAutoplay": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Plays the media directly when it is loaded / the page is loaded.",
+          "     *",
+          "     *  @param autoplay {Boolean} To autoplay or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Plays the media directly when it is loaded / the page is loaded.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "autoplay {Boolean} To autoplay or not",
+            "paramName": "autoplay",
+            "description": " To autoplay or not",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 7475
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 7543
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "autoplay",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAutoplay": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the media is played directly when it is loaded / the page is loaded.",
+          "     *",
+          "     *  @return {Boolean} if autoplay is on or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the media is played directly when it is loaded / the page is loaded.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} if autoplay is on or not",
+            "type": "boolean",
+            "description": "if autoplay is on or not"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4,
+          "index": 7708
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 7764
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setPreload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hints how much buffering the media resource will likely need.",
+          "     *",
+          "     * @param preload {String} One of the following values:",
+          "     *  \"none\": Hints to the user agent that either the author does not expect",
+          "     *  the user to need the media resource, or that the server wants to minimize",
+          "     *  unnecessary traffic.",
+          "     *  \"metadata\": Hints to the user agent that the author does not expect the",
+          "     *  user to need the media resource, but that fetching the resource metadata",
+          "     *  (dimensions, first frame, track list, duration, etc) is reasonable.",
+          "     *  \"auto\": Hints to the user agent that the user agent can put the user's needs",
+          "     *  first without risk to the server, up to and including optimistically",
+          "     *  downloading the entire resource.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hints how much buffering the media resource will likely need.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "preload {String} One of the following values:\n  \"none\": Hints to the user agent that either the author does not expect\n  the user to need the media resource, or that the server wants to minimize\n  unnecessary traffic.\n  \"metadata\": Hints to the user agent that the author does not expect the\n  user to need the media resource, but that fetching the resource metadata\n  (dimensions, first frame, track list, duration, etc) is reasonable.\n  \"auto\": Hints to the user agent that the user agent can put the user's needs\n  first without risk to the server, up to and including optimistically\n  downloading the entire resource.",
+            "paramName": "preload",
+            "description": " One of the following values:\n  \"none\": Hints to the user agent that either the author does not expect\n  the user to need the media resource, or that the server wants to minimize\n  unnecessary traffic.\n  \"metadata\": Hints to the user agent that the author does not expect the\n  user to need the media resource, but that fetching the resource metadata\n  (dimensions, first frame, track list, duration, etc) is reasonable.\n  \"auto\": Hints to the user agent that the user agent can put the user's needs\n  first without risk to the server, up to and including optimistically\n  downloading the entire resource.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4,
+          "index": 8553
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 8788
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "preload",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPreload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns how much buffering the media resource will likely need.",
+          "     *",
+          "     * @return {String} hint how much buffering the media resource needs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns how much buffering the media resource will likely need.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} hint how much buffering the media resource needs",
+            "type": "string",
+            "description": "hint how much buffering the media resource needs"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4,
+          "index": 8962
+        },
+        "end": {
+          "line": 373,
+          "column": 5,
+          "index": 9016
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setLoop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicates that the media element is to seek back to the start of the media resource upon reaching the end.",
+          "     *",
+          "     * @param value {Boolean} To loop or not.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates that the media element is to seek back to the start of the media resource upon reaching the end.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} To loop or not.",
+            "paramName": "value",
+            "description": " To loop or not.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4,
+          "index": 9206
+        },
+        "end": {
+          "line": 391,
+          "column": 5,
+          "index": 9568
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isLoop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the media element is to seek back to the start of the media resource upon reaching the end.",
+          "     *",
+          "     * @return {Boolean} if loop is on or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the media element is to seek back to the start of the media resource upon reaching the end.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} if loop is on or not",
+            "type": "boolean",
+            "description": "if loop is on or not"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 9751
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 9800
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_handlePlayEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Play event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Play event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4,
+          "index": 9850
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 9906
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handlePauseEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pause event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pause event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 412,
+          "column": 4,
+          "index": 9957
+        },
+        "end": {
+          "line": 414,
+          "column": 5,
+          "index": 10015
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleTimeUpdateEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Time Update event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Time Update event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4,
+          "index": 10072
+        },
+        "end": {
+          "line": 421,
+          "column": 5,
+          "index": 10140
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleEndedEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Ended event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Ended event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 426,
+          "column": 4,
+          "index": 10191
+        },
+        "end": {
+          "line": 428,
+          "column": 5,
+          "index": 10249
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleVolumeChangeEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Volume Change event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Volume Change event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 433,
+          "column": 4,
+          "index": 10308
+        },
+        "end": {
+          "line": 435,
+          "column": 5,
+          "index": 10380
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleLoadedDataEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loaded Data event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loaded Data event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 10437
+        },
+        "end": {
+          "line": 442,
+          "column": 5,
+          "index": 10505
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleLoadedMetaDataEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loaded Metadata event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loaded Metadata event handler.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 10566
+        },
+        "end": {
+          "line": 449,
+          "column": 5,
+          "index": 10642
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "dispose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose this object",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose this object</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 981
+        },
+        "end": {
+          "line": 33,
+          "column": 16,
+          "index": 993
+        }
+      },
+      "type": "function",
+      "params": [],
+      "abstract": true,
+      "fromInterface": "qx.core.IDisposable",
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.IDisposable"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 452,
+        "column": 2,
+        "index": 10651
+      },
+      "end": {
+        "line": 499,
+        "column": 3,
+        "index": 11630
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

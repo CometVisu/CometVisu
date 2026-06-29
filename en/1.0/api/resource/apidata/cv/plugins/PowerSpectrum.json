@@ -1,0 +1,1193 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/PowerSpectrum.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 1261
+    },
+    "end": {
+      "line": 636,
+      "column": 3,
+      "index": 15813
+    }
+  },
+  "className": "cv.plugins.PowerSpectrum",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The powerspectrum plugin and widget creates a graph to show the power",
+      " * spectral data that the Enertex Smartmeter can send on the KNX bus.",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 0.10.0",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.canvas.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.resize.min.js)",
+      " * @asset(plugins/diagram/dep/flot/jquery.flot.navigate.min.js)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The powerspectrum plugin and widget creates a graph to show the power\n spectral data that the Enertex Smartmeter can send on the KNX bus.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.canvas.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.resize.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/diagram/dep/flot/jquery.flot.navigate.min.js"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Update"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1531
+      },
+      "end": {
+        "line": 53,
+        "column": 3,
+        "index": 1916
+      }
+    }
+  },
+  "statics": {
+    "CURRENT": {
+      "jsdoc": {
+        "raw": [
+          " Constants"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2089
+        },
+        "end": {
+          "line": 62,
+          "column": 14,
+          "index": 2099
+        }
+      },
+      "appearsIn": []
+    },
+    "VOLTAGE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2105
+        },
+        "end": {
+          "line": 63,
+          "column": 14,
+          "index": 2115
+        }
+      },
+      "appearsIn": []
+    },
+    "limitEN50160_1999": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 2121
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2587
+        }
+      },
+      "appearsIn": []
+    },
+    "limitEN61000_3_2": {
+      "jsdoc": {
+        "raw": [
+          " limit for voltage in ratio"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2628
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3082
+        }
+      },
+      "appearsIn": []
+    },
+    "referenceSin": {
+      "jsdoc": {
+        "raw": [
+          " limit for current in Ampere"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3124
+        },
+        "end": {
+          "line": 120,
+          "column": 30,
+          "index": 3150
+        }
+      },
+      "appearsIn": []
+    },
+    "fixLimits": {
+      "jsdoc": {
+        "raw": [
+          " fix limits for better displaying"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3197
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3265
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "entry"
+        },
+        {
+          "name": "index"
+        },
+        {
+          "name": "array"
+        }
+      ],
+      "appearsIn": []
+    },
+    "lastShifted": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3271
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3378
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "array"
+        }
+      ],
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3799
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4196
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4203
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5366
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "makeAddressListFn": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 5373
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5534
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        },
+        {
+          "name": "transform"
+        },
+        {
+          "name": "mode"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "displayType": {
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 5700
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 5755
+        }
+      },
+      "json": {
+        "check": [
+          0,
+          1
+        ],
+        "init": 1
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "singlePhase": {
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 5762
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 5824
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "spectrum": {
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 5831
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 5885
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "limitName": {
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 5892
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 5953
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "limit"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "name1": {
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 5960
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 6014
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "L1"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "name2": {
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 6021
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6075
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "L2"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "name3": {
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 6082
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 6136
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "L3"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "curve": {
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 6143
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 6194
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showCurve": {
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 6201
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 6261
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showLegend": {
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 6268
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 6329
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "current": {
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 6336
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 6389
+        }
+      },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "limitColor": {
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 6396
+        },
+        "end": {
+          "line": 285,
+          "column": 5,
+          "index": 6459
+        }
+      },
+      "json": {
+        "check": "Color",
+        "init": "#edc240"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "color1": {
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4,
+          "index": 6466
+        },
+        "end": {
+          "line": 290,
+          "column": 5,
+          "index": 6525
+        }
+      },
+      "json": {
+        "check": "Color",
+        "init": "#afd8f8"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "color2": {
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 6532
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 6591
+        }
+      },
+      "json": {
+        "check": "Color",
+        "init": "#cb4b4b"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "color3": {
+      "location": {
+        "start": {
+          "line": 297,
+          "column": 4,
+          "index": 6598
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 6657
+        }
+      },
+      "json": {
+        "check": "Color",
+        "init": "#4da74d"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__plot": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4,
+          "index": 6817
+        },
+        "end": {
+          "line": 309,
+          "column": 16,
+          "index": 6829
+        }
+      },
+      "appearsIn": []
+    },
+    "__plotCurve": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4,
+          "index": 6835
+        },
+        "end": {
+          "line": 310,
+          "column": 21,
+          "index": 6852
+        }
+      },
+      "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 6859
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 7134
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
+    "_getInnerDomString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4,
+          "index": 7141
+        },
+        "end": {
+          "line": 333,
+          "column": 5,
+          "index": 7455
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_onDomReady": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 7462
+        },
+        "end": {
+          "line": 396,
+          "column": 5,
+          "index": 9102
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_update": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 398,
+          "column": 4,
+          "index": 9109
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 10466
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ga"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setupCurve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setup helper",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Setup helper</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 10509
+        },
+        "end": {
+          "line": 491,
+          "column": 5,
+          "index": 11457
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setupSpectrum": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 492,
+          "column": 4,
+          "index": 11463
+        },
+        "end": {
+          "line": 502,
+          "column": 5,
+          "index": 11687
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateCurve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert a spectrum to a curve",
+          "     * @param input",
+          "     * @param target",
+          "     * @param phase",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert a spectrum to a curve</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "input",
+            "paramName": "input",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "target",
+            "paramName": "target",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "phase",
+            "paramName": "phase",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 510,
+          "column": 4,
+          "index": 11808
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 12284
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "input"
+        },
+        {
+          "name": "target"
+        },
+        {
+          "name": "phase"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createDatasetCurve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Little helper to setup the Flot dataset structure.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Little helper to setup the Flot dataset structure.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 12365
+        },
+        "end": {
+          "line": 566,
+          "column": 5,
+          "index": 13350
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "createDatasetSpectrum": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Little helper to setup the Flot dataset structure.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Little helper to setup the Flot dataset structure.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 571,
+          "column": 4,
+          "index": 13431
+        },
+        "end": {
+          "line": 603,
+          "column": 5,
+          "index": 14617
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initOnCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1550
+        }
+      },
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "__initUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1557
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the incoming data, update the shown value and the stylings",
+          "     *",
+          "     * @param address {String} Address of the incoming value",
+          "     * @param data {String} the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2408
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "processIncomingValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update3d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Description",
+          "     *",
+          "     * @param ev {var}",
+          "     * @param data {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3200
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3664
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    }
+  }
+}

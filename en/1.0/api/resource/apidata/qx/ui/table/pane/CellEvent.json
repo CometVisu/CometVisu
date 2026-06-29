@@ -1,0 +1,227 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601415,
+  "lastModifiedIso": "2026-06-29T04:00:01.415Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/pane/CellEvent.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 590
+    },
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 2498
+    }
+  },
+  "className": "qx.ui.table.pane.CellEvent",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell event instance contains all data for pointer events related to cells in",
+      " * a table.",
+      " *"
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell event instance contains all data for pointer events related to cells in\n a table.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Pointer",
+  "properties": {
+    "row": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 924
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 981
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The table row of the event target "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The table row of the event target</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "column": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1036
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1096
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The table column of the event target "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The table column of the event target</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the event",
+          "     *",
+          "     * @param scroller {qx.ui.table.pane.Scroller} The tables pane scroller",
+          "     * @param me {qx.event.type.Pointer} The original pointer event",
+          "     * @param row {Integer?null} The cell's row index",
+          "     * @param column {Integer?null} The cell's column index",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scroller {qx.ui.table.pane.Scroller} The tables pane scroller",
+            "paramName": "scroller",
+            "description": " The tables pane scroller",
+            "type": "qx.ui.table.pane.Scroller"
+          },
+          {
+            "name": "@param",
+            "body": "me {qx.event.type.Pointer} The original pointer event",
+            "paramName": "me",
+            "description": " The original pointer event",
+            "type": "qx.event.type.Pointer"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer?null} The cell's row index",
+            "paramName": "row",
+            "description": " The cell's row index",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "column {Integer?null} The cell's column index",
+            "paramName": "column",
+            "description": " The cell's column index",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1815
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2294
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scroller",
+          "type": "qx.ui.table.pane.Scroller"
+        },
+        {
+          "name": "me",
+          "type": "qx.event.type.Pointer"
+        },
+        {
+          "name": "row",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "column",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "overriddenFrom": "qx.event.type.Native",
+      "appearsIn": [
+        "qx.event.type.Native",
+        "qx.event.type.Event"
+      ]
+    },
+    "clone": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2319
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2490
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "embryo"
+        }
+      ],
+      "overriddenFrom": "qx.event.type.Native",
+      "appearsIn": [
+        "qx.event.type.Native",
+        "qx.event.type.Event",
+        "qx.core.Object"
+      ]
+    }
+  },
+  "statics": {}
+}

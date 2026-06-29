@@ -1,0 +1,189 @@
+<p>The qx.util.fsm package.
+ Example:
+ </p>
+<pre class="javascript">
+ var fsm;
+ var state;
+ var trans;
+
+ fsm = new qx.util.fsm.FiniteStateMachine("Test machine");
+
+ state = new qx.util.fsm.State(
+
+   "S1",
+
+   {
+
+     "onentry" :
+       function(fsm, event)
+       {
+         alert("Previous state: " + fsm.getPreviousState());
+       };
+
+     "onexit" :
+       function(fsm, event)
+       {
+         alert("Next state: " + fsm.getNextState());
+       };
+
+
+     "autoActionsBeforeOnentry" :
+     {
+
+       "setEnabled" :
+       [
+         {
+
+           "parameters"   : [ true ],
+
+
+
+           "objects" : [ "obj1", "obj2" ]
+
+           "groups"  : [ "group1", "group2" ],
+         }
+       ];
+       "setColor" :
+       [
+         {
+           "parameters" : [ "blue" ]
+           "groups"     : [ "group3", "group4" ],
+           "objects"    : [ "obj3", "obj4" ]
+         }
+       ];
+     };
+
+
+
+
+
+
+     "events" :
+     {
+
+
+
+
+
+       "complete"  : qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE,
+
+
+
+       "interval"  :
+       {
+
+
+
+         "flash"   : "S1_S3_interval_flash",
+
+
+
+         "timeout" : qx.util.fsm.FiniteStateMachine.EventHandling.BLOCKED
+       },
+
+
+       "execute"   :
+       {
+
+
+
+         "ok"      : qx.util.fsm.FiniteStateMachine.EventHandling.PREDICATE
+
+
+
+         "restart" : qx.util.fsm.FiniteStateMachine.EventHandling.BLOCKED
+       }
+
+
+     };
+   });
+
+ fsm.addState(state);
+
+ trans = new qx.util.fsm.Transition(
+
+   "S1_S2_ev1",
+
+   {
+
+     "predicate" :
+       function(fsm, event)
+       {
+         var type = event.getType();
+         if (type == "somethingWeCareAbout")
+         {
+           return true;
+         }
+         else if (type == "somethingToHandleInAnotherState")
+         {
+
+           fsm.postponeEvent(event);
+
+           return null;
+         }
+         else
+         {
+           return false;
+         }
+       },
+
+
+
+
+     "nextState" : qx.util.fsm.FiniteStateMachine.StateChange.POP_STATE_STACK,
+
+     "ontransition"    :
+       function(fsm, event)
+       {
+
+
+         fsm.pushState();
+       }
+   });
+ state.addTransition(trans);
+
+ trans = new qx.util.fsm.Transition(
+   "S1_S1_default",
+   {
+
+     "predicate" :
+       function(fsm, event)
+       {
+
+
+
+
+
+
+         return null;
+       },
+
+     "nextState" : qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE,
+   });
+ state.addTransition(trans);
+
+
+
+
+
+ trans = new qx.util.finitestatememachine.Transition(
+   "S1_S3_interval_flash",
+   {
+
+
+     "predicate" : true,
+
+     "nextState" : "S2",
+
+     "ontransition"    :
+       function(fsm, event)
+       {
+         alert(this.getName() + "ontransition function");
+       }
+   });
+ state.addTransition(trans);
+
+
+
+ fsm.start();
+ </pre>

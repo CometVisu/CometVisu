@@ -1,0 +1,554 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600880,
+  "lastModifiedIso": "2026-06-29T04:00:00.880Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/embed/AbstractIframe.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 658
+    },
+    "end": {
+      "line": 159,
+      "column": 3,
+      "index": 3564
+    }
+  },
+  "className": "qx.ui.embed.AbstractIframe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for iframe widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for iframe widgets.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "source"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 810
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 981
+      }
+    }
+  },
+  "events": {
+    "load": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The \"load\" event is fired after the iframe content has successfully been loaded.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The \"load\" event is fired after the iframe content has successfully been loaded.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1104
+        },
+        "end": {
+          "line": 46,
+          "column": 31,
+          "index": 1131
+        }
+      }
+    },
+    "navigate": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The \"navigate\" event is fired whenever the location of the iframe",
+          "     * changes.",
+          "     *",
+          "     * Useful to track user navigation and internally used to keep the source",
+          "     * property in sync. Only works when the destination source is of same",
+          "     * origin than the page embedding the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The \"navigate\" event is fired whenever the location of the iframe\n changes.\n Useful to track user navigation and internally used to keep the source\n property in sync. Only works when the destination source is of same\n origin than the page embedding the iframe.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1453
+        },
+        "end": {
+          "line": 56,
+          "column": 34,
+          "index": 1483
+        }
+      }
+    }
+  },
+  "properties": {
+    "source": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1559
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1652
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applySource",
+        "init": "about:blank"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Source URL of the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Source URL of the iframe.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "frameName": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1702
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1790
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyFrameName"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Name of the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Name of the iframe.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_getIframeElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the Element wrapper for the iframe",
+          "     *",
+          "     * @abstract",
+          "     * @return {qx.html.Iframe} the iframe element wrapper",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the Element wrapper for the iframe</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.html.Iframe} the iframe element wrapper",
+            "type": "qx.html.Iframe",
+            "description": "the iframe element wrapper"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 1959
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2033
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Iframe"
+      },
+      "appearsIn": []
+    },
+    "_applySource": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2062
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2143
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFrameName": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2172
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2267
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWindow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the DOM window object of an iframe.",
+          "     *",
+          "     * @return {Window} The DOM window object of the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the DOM window object of an iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} The DOM window object of the iframe.",
+            "type": "Window",
+            "description": "The DOM window object of the iframe."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2405
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2475
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Window"
+      },
+      "appearsIn": []
+    },
+    "getDocument": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the DOM document object of an iframe.",
+          "     *",
+          "     * @return {Document} The DOM document object of the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the DOM document object of an iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Document} The DOM document object of the iframe.",
+            "type": "Document",
+            "description": "The DOM document object of the iframe."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2619
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2693
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Document"
+      },
+      "appearsIn": []
+    },
+    "getBody": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the HTML body element of the iframe.",
+          "     *",
+          "     * @return {Element} The DOM node of the <code>body</code> element of the iframe.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the HTML body element of the iframe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The DOM node of the <code>body</code> element of the iframe.",
+            "type": "Element",
+            "description": "The DOM node of the <code>body</code> element of the iframe."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2857
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 2923
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the current name.",
+          "     *",
+          "     * @return {String} The iframe's name.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the current name.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The iframe's name.",
+            "type": "string",
+            "description": "The iframe's name."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3025
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3091
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "reload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reload the contents of the iframe.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reload the contents of the iframe.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3163
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3220
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onNavigate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle user navigation. Sync actual URL of iframe with source property.",
+          "     *",
+          "     * @param e {qx.event.type.Data} navigate event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle user navigation. Sync actual URL of iframe with source property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} navigate event",
+            "paramName": "e",
+            "description": " navigate event",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3381
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 3556
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

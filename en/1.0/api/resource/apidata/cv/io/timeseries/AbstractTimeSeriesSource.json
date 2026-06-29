@@ -1,0 +1,413 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543935,
+  "lastModifiedIso": "2026-06-29T03:59:03.935Z",
+  "classFilename": "../../source/class/cv/io/timeseries/AbstractTimeSeriesSource.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 999
+    },
+    "end": {
+      "line": 181,
+      "column": 3,
+      "index": 4935
+    }
+  },
+  "className": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all time series sources. These classes handle building",
+      " * and processing data from an external time series source to be able",
+      " * to use it in a CometVisu chart component.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all time series sources. These classes handle building\n and processing data from an external time series source to be able\n to use it in a CometVisu chart component.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "resource"
+      },
+      {
+        "name": "chart"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1217
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1335
+      }
+    }
+  },
+  "statics": {
+    "urlRegex": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1477
+        },
+        "end": {
+          "line": 46,
+          "column": 106,
+          "index": 1579
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "config": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1731
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1831
+        }
+      },
+      "json": {
+        "transform": "_parseResourceUrl",
+        "deferredInit": true,
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_chart": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1977
+        },
+        "end": {
+          "line": 68,
+          "column": 16,
+          "index": 1989
+        }
+      },
+      "appearsIn": []
+    },
+    "_initialized": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1995
+        },
+        "end": {
+          "line": 69,
+          "column": 22,
+          "index": 2013
+        }
+      },
+      "appearsIn": []
+    },
+    "_url": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2019
+        },
+        "end": {
+          "line": 70,
+          "column": 14,
+          "index": 2029
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2036
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2146
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_parseResourceUrl": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2153
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2805
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2812
+        },
+        "end": {
+          "line": 101,
+          "column": 14,
+          "index": 2822
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applySeries": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2828
+        },
+        "end": {
+          "line": 102,
+          "column": 21,
+          "index": 2845
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getRequestConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns configuration options for a cv.io.Fetch request",
+          "     * @param start {Date} start time",
+          "     * @param end {Date?} optional end time, if not set its \"now\"",
+          "     * @param series {'hour'|'day'|'week'|'month'|'year'}",
+          "     * @param offset {Number} series offset",
+          "     * @return {{proxy: boolean, options: {}, url: string}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns configuration options for a cv.io.Fetch request</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start {Date} start time",
+            "paramName": "start",
+            "description": " start time",
+            "type": "Date"
+          },
+          {
+            "name": "@param",
+            "body": "end {Date?} optional end time, if not set its \"now\"",
+            "paramName": "end",
+            "description": " optional end time, if not set its \"now\"",
+            "optional": true,
+            "type": "Date"
+          },
+          {
+            "name": "@param",
+            "body": "series {'hour'|'day'|'week'|'month'|'year'}",
+            "paramName": "series",
+            "type": [
+              "'hour'",
+              "'day'",
+              "'week'",
+              "'month'",
+              "'year'"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "offset {Number} series offset",
+            "paramName": "offset",
+            "description": " series offset",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{proxy: boolean, options: {}, url: string}}",
+            "type": "{proxy: boolean, options: {}, url: string}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3197
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3331
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "Date"
+        },
+        {
+          "name": "end",
+          "type": "Date",
+          "optional": true
+        },
+        {
+          "name": "series",
+          "type": [
+            "'hour'",
+            "'day'",
+            "'week'",
+            "'month'",
+            "'year'"
+          ]
+        },
+        {
+          "name": "offset",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "{proxy: boolean, options: {}, url: string}"
+      },
+      "appearsIn": []
+    },
+    "processResponse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3338
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 3386
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTimeRange": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3393
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4682
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_convertTimes": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 4689
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 4927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "time"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

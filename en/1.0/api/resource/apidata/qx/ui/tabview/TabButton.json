@@ -1,0 +1,343 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603258,
+  "lastModifiedIso": "2026-06-29T04:00:03.258Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tabview/TabButton.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 848
+    },
+    "end": {
+      "line": 227,
+      "column": 3,
+      "index": 6313
+    }
+  },
+  "className": "qx.ui.tabview.TabButton",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A TabButton is the tapable part sitting on the {@link qx.ui.tabview.Page}.",
+      " * By tapping on the TabButton the user can set a Page active.",
+      " *",
+      " * @childControl label {qx.ui.basic.Label} label of the tab button",
+      " * @childControl icon {qx.ui.basic.Image} icon of the tab button",
+      " * @childControl close-button {qx.ui.form.Button} close button of the tab button",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A TabButton is the tapable part sitting on the {@link qx.ui.tabview.Page}.\n By tapping on the TabButton the user can set a Page active.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "label {qx.ui.basic.Label} label of the tab button"
+      },
+      {
+        "name": "@childControl",
+        "body": "icon {qx.ui.basic.Image} icon of the tab button"
+      },
+      {
+        "name": "@childControl",
+        "body": "close-button {qx.ui.form.Button} close button of the tab button"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.RadioButton",
+  "interfaces": [
+    "qx.ui.form.IRadioItem"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1154
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1421
+      }
+    }
+  },
+  "events": {
+    "close": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired by {@link qx.ui.tabview.Page} if the close button is tapped.",
+          "     *",
+          "     * Event data: The tab button.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired by {@link qx.ui.tabview.Page} if the close button is tapped.\n Event data: The tab button.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1755
+        },
+        "end": {
+          "line": 62,
+          "column": 31,
+          "index": 1782
+        }
+      }
+    }
+  },
+  "properties": {
+    "showCloseButton": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2069
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2173
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyShowCloseButton"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Indicates if the close button of a TabButton should be shown. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates if the close button of a TabButton should be shown.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2465
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2529
+        }
+      },
+      "overriddenFrom": "qx.ui.form.RadioButton",
+      "appearsIn": [
+        "qx.ui.form.RadioButton",
+        "qx.ui.form.Button",
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyIconPosition": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "    ---------------------------------------------------------------------------",
+          "      WIDGET API",
+          "    ---------------------------------------------------------------------------",
+          "    "
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2728
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4319
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4344
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5305
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onCloseButtonTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires a \"close\" event when the close button is tapped.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires a \"close\" event when the close button is tapped.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 5587
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5655
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyShowCloseButton": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 5880
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 6062
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCenter": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6091
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 6305
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "qx.ui.basic.Atom",
+      "appearsIn": [
+        "qx.ui.basic.Atom"
+      ]
+    }
+  },
+  "statics": {}
+}

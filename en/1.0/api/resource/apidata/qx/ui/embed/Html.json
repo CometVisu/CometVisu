@@ -1,0 +1,561 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602232,
+  "lastModifiedIso": "2026-06-29T04:00:02.232Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/embed/Html.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 38,
+      "column": 0,
+      "index": 993
+    },
+    "end": {
+      "line": 196,
+      "column": 3,
+      "index": 5030
+    }
+  },
+  "className": "qx.ui.embed.Html",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Html widget embeds plain HTML code into the application",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the canvas widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var html = new qx.ui.embed.Html();",
+      " * html.setHtml(\"<h1>Hello World</h1>\");",
+      " * </pre>",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/html.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Html widget embeds plain HTML code into the application\n<em>Example</em>\n Here is a little example of how to use the canvas widget.\n </p>\n<pre class='javascript'>\n var html = new qx.ui.embed.Html();\n html.setHtml(\"<h1>Hello World</h1>\");\n </pre>\n<p><em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/html.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "mixins": [
+    "qx.ui.core.MNativeOverflow"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "html"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 51,
+        "column": 2,
+        "index": 1351
+      },
+      "end": {
+        "line": 57,
+        "column": 3,
+        "index": 1442
+      }
+    }
+  },
+  "properties": {
+    "html": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1707
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1818
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyHtml",
+        "event": "changeHtml",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Any text string which can contain HTML, too "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Any text string which can contain HTML, too</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "cssClass": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2030
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2116
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyCssClass"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The css classname for the html embed.",
+          "     * <b>IMPORTANT</b> Paddings and borders does not work",
+          "     * in the css class. These styles cause conflicts with",
+          "     * the layout engine.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The css classname for the html embed.\n <b>IMPORTANT</b> Paddings and borders does not work\n in the css class. These styles cause conflicts with\n the layout engine.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "selectable": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2141
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2197
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focusable": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2222
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2277
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "overflowX": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 969
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1094
+        }
+      },
+      "json": {
+        "check": [
+          "hidden",
+          "visible",
+          "scroll",
+          "auto"
+        ],
+        "nullable": true,
+        "apply": "_applyOverflowX"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget should have horizontal scrollbars.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should have horizontal scrollbars.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MNativeOverflow"
+      ],
+      "mixin": "qx.ui.core.MNativeOverflow"
+    },
+    "overflowY": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1176
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1301
+        }
+      },
+      "json": {
+        "check": [
+          "hidden",
+          "visible",
+          "scroll",
+          "auto"
+        ],
+        "nullable": true,
+        "apply": "_applyOverflowY"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget should have vertical scrollbars.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should have vertical scrollbars.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MNativeOverflow"
+      ],
+      "mixin": "qx.ui.core.MNativeOverflow"
+    },
+    "overflow": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1355
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1412
+        }
+      },
+      "json": {
+        "group": [
+          "overflowX",
+          "overflowY"
+        ]
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Overflow group property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Overflow group property</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MNativeOverflow"
+      ],
+      "mixin": "qx.ui.core.MNativeOverflow"
+    }
+  },
+  "members": {
+    "getFocusElement": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "    ---------------------------------------------------------------------------",
+          "      WIDGET API",
+          "    ---------------------------------------------------------------------------",
+          "    "
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2677
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2741
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyHtml": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2966
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3387
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCssClass": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3416
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3547
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3572
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 3922
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyFont": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4141
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4530
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyTextColor": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4755
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5022
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyOverflowX": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1642
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1733
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MNativeOverflow"
+      ],
+      "mixin": "qx.ui.core.MNativeOverflow"
+    },
+    "_applyOverflowY": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1853
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MNativeOverflow"
+      ],
+      "mixin": "qx.ui.core.MNativeOverflow"
+    }
+  },
+  "statics": {}
+}

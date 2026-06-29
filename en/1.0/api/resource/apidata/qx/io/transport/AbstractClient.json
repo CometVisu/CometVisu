@@ -1,0 +1,201 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600867,
+  "lastModifiedIso": "2026-06-29T04:00:00.867Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/transport/AbstractClient.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 799
+    },
+    "end": {
+      "line": 121,
+      "column": 3,
+      "index": 3840
+    }
+  },
+  "className": "qx.io.transport.AbstractClient",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides a the base class for all clients that use the",
+      " * transport implementations in this namespace. Since the static method",
+      " * `registerTransport` cannot be inherited by subclasses, they mus proxy it",
+      " * by adding `registerTransport : qx.io.transport.AbstractClient.registerTransport`",
+      " * to their `statics` section.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides a the base class for all clients that use the\n transport implementations in this namespace. Since the static method\n <code>registerTransport</code> cannot be inherited by subclasses, they mus proxy it\n by adding <code>registerTransport : qx.io.transport.AbstractClient.registerTransport</code>\n to their <code>statics</code> section.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "statics": {
+    "registerTransport": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register a transport class for use with uris that match the given",
+          "     * regular expression. The client will use the transport which first",
+          "     * matches, starting with the last added transport",
+          "     * @param {RegExp} uriRegExp",
+          "     *    A regular expression which the URI must match",
+          "     * @param {qx.io.transport.ITransport}  transportClass",
+          "     *    The qooxdoo class implementing the transport",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register a transport class for use with uris that match the given\n regular expression. The client will use the transport which first\n matches, starting with the last added transport</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{RegExp} uriRegExp\n    A regular expression which the URI must match",
+            "paramName": "uriRegExp",
+            "description": "A regular expression which the URI must match",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "{qx.io.transport.ITransport}  transportClass\n    The qooxdoo class implementing the transport",
+            "paramName": "transportClass",
+            "description": "The qooxdoo class implementing the transport",
+            "type": "qx.io.transport.ITransport"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1335
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1964
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uriRegExp",
+          "type": "RegExp"
+        },
+        {
+          "name": "transportClass",
+          "type": "qx.io.transport.ITransport"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "transport": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2035
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2095
+        }
+      },
+      "json": {
+        "check": "qx.io.transport.ITransport"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The transport object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The transport object</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "selectTransport": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given a transport object implementing {@link qx.io.transport.ITransport}",
+          "     * select that transport; if a string URI is passed, select one that has",
+          "     * been registered for that class of URIs.",
+          "     * @param {qx.io.transport.ITransport|String} transportOrUri",
+          "     * @throws qx.io.exception.Transport",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given a transport object implementing {@link qx.io.transport.ITransport}\n select that transport; if a string URI is passed, select one that has\n been registered for that class of URIs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.transport.ITransport|String} transportOrUri",
+            "paramName": "transportOrUri",
+            "description": "",
+            "type": [
+              "qx.io.transport.ITransport",
+              "String"
+            ]
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "qx.io.exception.Transport"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2445
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3832
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "transportOrUri",
+          "type": [
+            "qx.io.transport.ITransport",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

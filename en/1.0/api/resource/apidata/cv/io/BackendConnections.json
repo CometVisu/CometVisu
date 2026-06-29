@@ -1,0 +1,696 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543934,
+  "lastModifiedIso": "2026-06-29T03:59:03.934Z",
+  "classFilename": "../../source/class/cv/io/BackendConnections.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 876
+    },
+    "end": {
+      "line": 541,
+      "column": 3,
+      "index": 18734
+    }
+  },
+  "className": "cv.io.BackendConnections",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Global factory for backend connections.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Global factory for backend connections.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "__clients": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1079
+        },
+        "end": {
+          "line": 31,
+          "column": 17,
+          "index": 1092
+        }
+      },
+      "appearsIn": []
+    },
+    "__activeChangedTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1098
+        },
+        "end": {
+          "line": 32,
+          "column": 30,
+          "index": 1124
+        }
+      },
+      "appearsIn": []
+    },
+    "__disconnectTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1130
+        },
+        "end": {
+          "line": 33,
+          "column": 27,
+          "index": 1153
+        }
+      },
+      "appearsIn": []
+    },
+    "__hasBeenConnected": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1159
+        },
+        "end": {
+          "line": 34,
+          "column": 29,
+          "index": 1184
+        }
+      },
+      "appearsIn": []
+    },
+    "__activeChangeListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1190
+        },
+        "end": {
+          "line": 35,
+          "column": 34,
+          "index": 1220
+        }
+      },
+      "appearsIn": []
+    },
+    "__classListeners": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1226
+        },
+        "end": {
+          "line": 36,
+          "column": 24,
+          "index": 1246
+        }
+      },
+      "appearsIn": []
+    },
+    "__clientClasses": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1252
+        },
+        "end": {
+          "line": 37,
+          "column": 23,
+          "index": 1271
+        }
+      },
+      "appearsIn": []
+    },
+    "addClassLoadedListener": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1278
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "className"
+        },
+        {
+          "name": "callback"
+        }
+      ],
+      "appearsIn": []
+    },
+    "registerClientClass": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1570
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1844
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "Clazz"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRegistered": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1851
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1920
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "initBackendClients": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize all {@link cv.io.IClient} clients for backend communication,",
+          "     * return the default one (for backwards compatibility)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compatibility)</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2082
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4666
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "addBackendClient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *  Add a backend client.",
+          "     * @param name {string}",
+          "     * @param type {string}",
+          "     * @param backendUrl {string}",
+          "     * @param source {string?}",
+          "     * @return {cv.io.IClient}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a backend client.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {string}",
+            "paramName": "name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "type {string}",
+            "paramName": "type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "backendUrl {string}",
+            "paramName": "backendUrl",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "source {string?}",
+            "paramName": "source",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.IClient}",
+            "type": "cv.io.IClient",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4871
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 7236
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "backendUrl",
+          "type": "string"
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "cv.io.IClient"
+      },
+      "appearsIn": []
+    },
+    "removeClient": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 7243
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 7433
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "client"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasClient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a backend by that name is already registered",
+          "     * @param name {String} name of the backend",
+          "     * @return {boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a backend by that name is already registered</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} name of the backend",
+            "paramName": "name",
+            "description": " name of the backend",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 7591
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 7687
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getClient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the backend client by name, if the name is not set the default backend is used.",
+          "     * Usually that is the backend client created by initBackendClients().",
+          "     * @param backendName {String?} name of the backend",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the backend client by name, if the name is not set the default backend is used.\n Usually that is the backend client created by initBackendClients().</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String?} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7932
+        },
+        "end": {
+          "line": 257,
+          "column": 5,
+          "index": 8623
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getClientByType": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 8630
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 9044
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getClients": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 9051
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 9100
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "initSystemBackend": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 9107
+        },
+        "end": {
+          "line": 290,
+          "column": 5,
+          "index": 9518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "startInitialRequests": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start retrieving data from backend",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start retrieving data from backend</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 9583
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 9730
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "startInitialRequest": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4,
+          "index": 9737
+        },
+        "end": {
+          "line": 311,
+          "column": 5,
+          "index": 10190
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onActiveChanged": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 10197
+        },
+        "end": {
+          "line": 363,
+          "column": 5,
+          "index": 12116
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_checkBackendConnection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 12123
+        },
+        "end": {
+          "line": 403,
+          "column": 5,
+          "index": 13385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateClientScope": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4,
+          "index": 13392
+        },
+        "end": {
+          "line": 411,
+          "column": 5,
+          "index": 13602
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_handleClientError": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 13609
+        },
+        "end": {
+          "line": 539,
+          "column": 5,
+          "index": 18726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "errorCode"
+        },
+        {
+          "name": "varargs"
+        },
+        {
+          "name": "sourceName"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

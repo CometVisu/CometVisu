@@ -1,0 +1,456 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543950,
+  "lastModifiedIso": "2026-06-29T03:59:03.950Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/energy/EnergyEntity.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 891
+    },
+    "end": {
+      "line": 197,
+      "column": 3,
+      "index": 5704
+    }
+  },
+  "className": "cv.ui.structure.tile.components.energy.EnergyEntity",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * TextValue for energy entities.",
+      " *",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>TextValue for energy entities.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.svg.TextValue",
+  "mixins": [
+    "cv.ui.structure.tile.components.energy.MEntity"
+  ],
+  "statics": {
+    "typeSettings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1220
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1862
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "direction": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2015
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2131
+        }
+      },
+      "json": {
+        "check": [
+          "incoming",
+          "outgoing",
+          "none"
+        ],
+        "init": "none",
+        "apply": "_applyDirection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "unit": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2138
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2224
+        }
+      },
+      "json": {
+        "check": [
+          "Wh",
+          "kWh"
+        ],
+        "init": "kWh",
+        "apply": "_applyUnit"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "type": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1104
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1249
+        }
+      },
+      "json": {
+        "check": [
+          "pv",
+          "battery",
+          "grid",
+          "house",
+          "charger",
+          "heatpump",
+          "consumer"
+        ],
+        "nullable": true,
+        "apply": "_applyType"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    },
+    "foregroundColor": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1256
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1362
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyForegroundColor"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    }
+  },
+  "members": {
+    "_autoFormat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2369
+        },
+        "end": {
+          "line": 90,
+          "column": 21,
+          "index": 2386
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyType": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2393
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2668
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2675
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3087
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.TextValue",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.TextValue",
+        "cv.ui.structure.tile.components.Value",
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_applyUnit": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3094
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3594
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDirection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3601
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4788
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "direction"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyOffsetY": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4795
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4897
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.TextValue",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.TextValue"
+      ]
+    },
+    "_applyScale": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4904
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 5002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scale"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.svg.TextValue",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.TextValue"
+      ]
+    },
+    "__updateDirectionPosition": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5009
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 5338
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_noValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1508
+        },
+        "end": {
+          "line": 53,
+          "column": 18,
+          "index": 1522
+        }
+      },
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    },
+    "hasNoValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1529
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1577
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    },
+    "preMappingHook": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1584
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    },
+    "_applyForegroundColor": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1739
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1910
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.structure.tile.components.energy.MEntity",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.energy.MEntity"
+      ]
+    }
+  }
+}

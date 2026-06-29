@@ -1,0 +1,252 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603253,
+  "lastModifiedIso": "2026-06-29T04:00:03.253Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/style/Stylesheet.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 593
+    },
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 1757
+    }
+  },
+  "className": "qx.ui.style.Stylesheet",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Global class which handles the single stylesheet used for qx.desktop.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Global class which handles the single stylesheet used for qx.desktop.</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2,
+        "index": 687
+      },
+      "end": {
+        "line": 30,
+        "column": 3,
+        "index": 794
+      }
+    }
+  },
+  "members": {
+    "__rules": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 814
+        },
+        "end": {
+          "line": 33,
+          "column": 17,
+          "index": 827
+        }
+      },
+      "appearsIn": []
+    },
+    "__sheet": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 833
+        },
+        "end": {
+          "line": 34,
+          "column": 17,
+          "index": 846
+        }
+      },
+      "appearsIn": []
+    },
+    "addRule": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a rule to the global stylesheet.",
+          "     * @param selector {String} The CSS selector to add the rule for.",
+          "     * @param css {String} The rule's content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a rule to the global stylesheet.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} The CSS selector to add the rule for.",
+            "paramName": "selector",
+            "description": " The CSS selector to add the rule for.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "css {String} The rule's content.",
+            "paramName": "css",
+            "description": " The rule's content.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1031
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1218
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        },
+        {
+          "name": "css",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasRule": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if a rule exists.",
+          "     * @param selector {String} The selector to check.",
+          "     * @return {Boolean} <code>true</code> if the rule exists",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if a rule exists.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} The selector to check.",
+            "paramName": "selector",
+            "description": " The selector to check.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if the rule exists",
+            "type": "boolean",
+            "description": "<code>true</code> if the rule exists"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1389
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1465
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeRule": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the rule for the given selector.",
+          "     * @param selector {String} The selector to identify the rule.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the rule for the given selector.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} The selector to identify the rule.",
+            "paramName": "selector",
+            "description": " The selector to identify the rule.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1749
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

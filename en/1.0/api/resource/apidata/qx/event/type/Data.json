@@ -1,0 +1,331 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601656,
+  "lastModifiedIso": "2026-06-29T04:00:01.656Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Data.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 573
+    },
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 2749
+    }
+  },
+  "className": "qx.event.type.Data",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Event object for data holding event or data changes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Event object for data holding event or data changes.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Event",
+  "members": {
+    "__data": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 846
+        },
+        "end": {
+          "line": 33,
+          "column": 16,
+          "index": 858
+        }
+      },
+      "appearsIn": []
+    },
+    "__old": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 864
+        },
+        "end": {
+          "line": 34,
+          "column": 15,
+          "index": 875
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes an event object.",
+          "     *",
+          "     * @param data {var} The event's new data",
+          "     * @param old {var?null} The event's old data (optional)",
+          "     * @param cancelable {Boolean?false} Whether or not an event can have its default",
+          "     *     action prevented. The default action can either be the browser's",
+          "     *     default action of a native event (e.g. open the context menu on a",
+          "     *     right click) or the default action of a qooxdoo class (e.g. close",
+          "     *     the window widget). The default action can be prevented by calling",
+          "     *     {@link qx.event.type.Event#preventDefault}",
+          "     * @return {qx.event.type.Data} the initialized instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes an event object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} The event's new data",
+            "paramName": "data",
+            "description": " The event's new data",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var?null} The event's old data (optional)",
+            "paramName": "old",
+            "description": " The event's old data (optional)",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.type.Data} the initialized instance.",
+            "type": "qx.event.type.Data",
+            "description": "the initialized instance."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1558
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1701
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "cancelable",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Data"
+      },
+      "overriddenFrom": "qx.event.type.Event",
+      "appearsIn": [
+        "qx.event.type.Event"
+      ]
+    },
+    "clone": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a copy of this object",
+          "     *",
+          "     * @param embryo {qx.event.type.Data?null} Optional event class, which will",
+          "     *     be configured using the data of this event instance. The event must be",
+          "     *     an instance of this event class. If the data is <code>null</code>,",
+          "     *     a new pooled instance is created.",
+          "     * @return {qx.event.type.Data} a copy of this object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a copy of this object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "embryo {qx.event.type.Data?null} Optional event class, which will\n     be configured using the data of this event instance. The event must be\n     an instance of this event class. If the data is <code>null</code>,\n     a new pooled instance is created.",
+            "paramName": "embryo",
+            "description": " Optional event class, which will\n     be configured using the data of this event instance. The event must be\n     an instance of this event class. If the data is <code>null</code>,\n     a new pooled instance is created.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "qx.event.type.Data"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.type.Data} a copy of this object",
+            "type": "qx.event.type.Data",
+            "description": "a copy of this object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2107
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2255
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "embryo",
+          "type": "qx.event.type.Data",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Data"
+      },
+      "overriddenFrom": "qx.event.type.Event",
+      "appearsIn": [
+        "qx.event.type.Event",
+        "qx.core.Object"
+      ]
+    },
+    "getData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The new data of the event sending this data event.",
+          "     * The return data type is the same as the event data type.",
+          "     *",
+          "     * @return {var} The new data of the event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The new data of the event sending this data event.\n The return data type is the same as the event data type.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The new data of the event",
+            "type": "var",
+            "description": "The new data of the event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2454
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2497
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getOldData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The old data of the event sending this data event.",
+          "     * The return data type is the same as the event data type.",
+          "     *",
+          "     * @return {var} The old data of the event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The old data of the event sending this data event.\n The return data type is the same as the event data type.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The old data of the event",
+            "type": "var",
+            "description": "The old data of the event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2696
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2741
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

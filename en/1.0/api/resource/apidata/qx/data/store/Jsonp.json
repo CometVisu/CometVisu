@@ -1,0 +1,172 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602508,
+  "lastModifiedIso": "2026-06-29T04:00:02.508Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/store/Jsonp.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 909
+    },
+    "end": {
+      "line": 109,
+      "column": 3,
+      "index": 3051
+    }
+  },
+  "className": "qx.data.store.Jsonp",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * The JSONP data store is a specialization of {@link qx.data.store.Json}. It",
+      " * differs in the type of transport used ({@link qx.io.request.Jsonp}). In",
+      " * order to fulfill requirements of the JSONP service, the method",
+      " * {@link #setCallbackParam} can be used.",
+      " *",
+      " * Please note that the upgrade notices described in {@link qx.data.store.Json}",
+      " * also apply to this class.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The JSONP data store is a specialization of {@link qx.data.store.Json}. It\n differs in the type of transport used ({@link qx.io.request.Jsonp}). In\n order to fulfill requirements of the JSONP service, the method\n {@link #setCallbackParam} can be used.\n Please note that the upgrade notices described in {@link qx.data.store.Json}\n also apply to this class.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.data.store.Json",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      },
+      {
+        "name": "delegate"
+      },
+      {
+        "name": "callbackParam"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1326
+      },
+      "end": {
+        "line": 47,
+        "column": 3,
+        "index": 1486
+      }
+    }
+  },
+  "properties": {
+    "callbackParam": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1658
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1748
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "callback",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the callback parameter of the service. See",
+          "     * {@link qx.bom.request.Jsonp#setCallbackParam} for more details.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the callback parameter of the service. See\n {@link qx.bom.request.Jsonp#setCallbackParam} for more details.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "callbackName": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1946
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2011
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the callback function. See",
+          "     * {@link qx.bom.request.Jsonp#setCallbackName} for more details.",
+          "     *",
+          "     * Note: Ignored when legacy transport is used.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the callback function. See\n {@link qx.bom.request.Jsonp#setCallbackName} for more details.\n Note: Ignored when legacy transport is used.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_createRequest": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2053
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3043
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "overriddenFrom": "qx.data.store.Json",
+      "appearsIn": [
+        "qx.data.store.Json"
+      ]
+    }
+  },
+  "statics": {}
+}

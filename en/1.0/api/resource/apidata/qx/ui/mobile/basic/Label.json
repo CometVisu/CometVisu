@@ -1,0 +1,313 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602558,
+  "lastModifiedIso": "2026-06-29T04:00:02.558Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/basic/Label.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 799
+    },
+    "end": {
+      "line": 154,
+      "column": 3,
+      "index": 3477
+    }
+  },
+  "className": "qx.ui.mobile.basic.Label",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The label widget displays a text or HTML content.",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var label = new qx.ui.mobile.basic.Label(\"Hello World\");",
+      " *",
+      " *   this.getRoot().add(label);",
+      " * </pre>",
+      " *",
+      " * This example create a widget to display the label.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The label widget displays a text or HTML content.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var label = new qx.ui.mobile.basic.Label(\"Hello World\");\n   this.getRoot().add(label);\n </pre>\n<p>This example create a widget to display the label.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 46,
+        "column": 2,
+        "index": 1148
+      },
+      "end": {
+        "line": 60,
+        "column": 3,
+        "index": 1477
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1705
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1769
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "label"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1831
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 1963
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "_applyValue",
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Text or HTML content to display",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Text or HTML content to display</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "anonymous": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 1988
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2043
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "wrap": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2121
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2202
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyWrap"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controls whether text wrap is activated or not.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether text wrap is activated or not.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2432
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2491
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyWrap": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2520
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2669
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 2805
+        },
+        "end": {
+          "line": 138,
+          "column": 6,
+          "index": 3056
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 147,
+        "column": 2,
+        "index": 3252
+      },
+      "end": {
+        "line": 153,
+        "column": 3,
+        "index": 3473
+      }
+    }
+  },
+  "statics": {}
+}

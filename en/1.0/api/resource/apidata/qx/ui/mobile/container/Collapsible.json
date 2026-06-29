@@ -1,0 +1,557 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601511,
+  "lastModifiedIso": "2026-06-29T04:00:01.511Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Collapsible.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 41,
+      "column": 0,
+      "index": 1146
+    },
+    "end": {
+      "line": 193,
+      "column": 3,
+      "index": 5147
+    }
+  },
+  "className": "qx.ui.mobile.container.Collapsible",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a Collapsible widget.",
+      " * It contains a {@link qx.ui.mobile.basic.Label Label} for the header and a {@link qx.ui.mobile.container.Composite Composite}",
+      " * for the content.",
+      " *",
+      " * The visibility of the content composite toggles when user taps on header.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is an example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *  var collapsible = new qx.ui.mobile.container.Collapsible(\"Collapsible Header\");",
+      " *  collapsible.setCombined(false);",
+      " *  collapsible.setCollapsed(false);",
+      " *",
+      " *  var label = new qx.ui.mobile.basic.Label(\"This is the content of the Collapsible.\");",
+      " *  collapsible.add(label);",
+      " *",
+      " * </pre>",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a Collapsible widget.\n It contains a {@link qx.ui.mobile.basic.Label Label} for the header and a {@link qx.ui.mobile.container.Composite Composite}\n for the content.\n The visibility of the content composite toggles when user taps on header.\n<em>Example</em>\n Here is an example of how to use the widget.\n </p>\n<pre class='javascript'>\n  var collapsible = new qx.ui.mobile.container.Collapsible(\"Collapsible Header\");\n  collapsible.setCombined(false);\n  collapsible.setCollapsed(false);\n  var label = new qx.ui.mobile.basic.Label(\"This is the content of the Collapsible.\");\n  collapsible.add(label);\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "title"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 1539
+      },
+      "end": {
+        "line": 71,
+        "column": 3,
+        "index": 1999
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2226
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2296
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "collapsible"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "collapsed": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2350
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2496
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "nullable": false,
+        "apply": "_applyCollapsed",
+        "event": "changeCollapsed"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The collapsed state of this widget. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The collapsed state of this widget.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "combined": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2613
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2702
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyCombined"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Controls whether the Collapsible's content",
+          "        should be visually associated with its headers. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether the Collapsible's content\n        should be visually associated with its headers.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_header": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2909
+        },
+        "end": {
+          "line": 109,
+          "column": 17,
+          "index": 2922
+        }
+      },
+      "appearsIn": []
+    },
+    "_content": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2928
+        },
+        "end": {
+          "line": 110,
+          "column": 18,
+          "index": 2942
+        }
+      },
+      "appearsIn": []
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget to the Collapsible's content composite.",
+          "     * @param child {qx.ui.mobile.core.Widget} the widget to add.",
+          "     * @param layoutProperties {Map?} (default:null) Optional layout data for widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget to the Collapsible's content composite.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.mobile.core.Widget} the widget to add.",
+            "paramName": "child",
+            "description": " the widget to add.",
+            "type": "qx.ui.mobile.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "layoutProperties {Map?} (default:null) Optional layout data for widget.",
+            "paramName": "layoutProperties",
+            "description": " (default:null) Optional layout data for widget.",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3188
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3364
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.mobile.core.Widget"
+        },
+        {
+          "name": "layoutProperties",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "setTitle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the Collapsible's header title.",
+          "     * @param title {String} the Collapsible's title.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Setter for the Collapsible's header title.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "title {String} the Collapsible's title.",
+            "paramName": "title",
+            "description": " the Collapsible's title.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3491
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the Collapsible's header label.",
+          "     * @return {qx.ui.mobile.basic.Label} the header.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the Collapsible's header label.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Label} the header.",
+            "type": "qx.ui.mobile.basic.Label",
+            "description": "the header."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3758
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3804
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "getContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the Collapsible's content composite.",
+          "     * @return {qx.ui.mobile.container.Composite} the content composite.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the Collapsible's content composite.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} the content composite.",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": "the content composite."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3955
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4003
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_createHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the Collapsible's header.",
+          "     * @return {qx.ui.mobile.basic.Label} the label which represents the header.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for the Collapsible's header.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Label} the label which represents the header.",
+            "type": "qx.ui.mobile.basic.Label",
+            "description": "the label which represents the header."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4159
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4323
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "_createContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the Collapsible's content.",
+          "     * @return {qx.ui.mobile.container.Composite} the content composite.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method for the Collapsible's content.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} the content composite.",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": "the content composite."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4472
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4549
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_applyCollapsed": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4578
+        },
+        "end": {
+          "line": 177,
+          "column": 5,
+          "index": 4808
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCombined": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4837
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5001
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 189,
+        "column": 2,
+        "index": 5010
+      },
+      "end": {
+        "line": 192,
+        "column": 3,
+        "index": 5143
+      }
+    }
+  },
+  "statics": {}
+}

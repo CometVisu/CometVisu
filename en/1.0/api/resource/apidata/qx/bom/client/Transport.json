@@ -1,0 +1,217 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603327,
+  "lastModifiedIso": "2026-06-29T04:00:03.327Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Transport.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 805
+    },
+    "end": {
+      "line": 172,
+      "column": 3,
+      "index": 5804
+    }
+  },
+  "className": "qx.bom.client.Transport",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Determines browser-dependent information about the transport layer.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Determines browser-dependent information about the transport layer.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "statics": {
+    "getMaxConcurrentRequestCount": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the maximum number of parallel requests the current browser",
+          "     * supports per host addressed.",
+          "     *",
+          "     * Note that this assumes one connection can support one request at a time",
+          "     * only. Technically, this is not correct when pipelining is enabled (which",
+          "     * it currently is only for IE 8 and Opera). In this case, the number",
+          "     * returned will be too low, as one connection supports multiple pipelined",
+          "     * requests. This is accepted for now because pipelining cannot be",
+          "     * detected from JavaScript and because modern browsers have enough",
+          "     * parallel connections already - it's unlikely an app will require more",
+          "     * than 4 parallel XMLHttpRequests to one server at a time.",
+          "     *",
+          "     * @internal",
+          "     * @return {Integer} Maximum number of parallel requests",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the maximum number of parallel requests the current browser\n supports per host addressed.\n Note that this assumes one connection can support one request at a time\n only. Technically, this is not correct when pipelining is enabled (which\n it currently is only for IE 8 and Opera). In this case, the number\n returned will be too low, as one connection supports multiple pipelined\n requests. This is accepted for now because pipelining cannot be\n detected from JavaScript and because modern browsers have enough\n parallel connections already - it's unlikely an app will require more\n than 4 parallel XMLHttpRequests to one server at a time.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Maximum number of parallel requests",
+            "type": "Integer",
+            "description": "Maximum number of parallel requests"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1870
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3972
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getSsl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the app is loaded with SSL enabled which means via https.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the app runs on https",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the app is loaded with SSL enabled which means via https.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the app runs on https",
+            "type": "boolean",
+            "description": "<code>true</code>, if the app runs on https"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 4168
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 4236
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getXmlHttpRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks what kind of XMLHttpRequest object the browser supports",
+          "     * for the current protocol, if any.",
+          "     *",
+          "     * The standard XMLHttpRequest is preferred over ActiveX XMLHTTP.",
+          "     *",
+          "     * @internal",
+          "     * @return {String}",
+          "     *  <code>\"xhr\"</code>, if the browser provides standard XMLHttpRequest.<br/>",
+          "     *  <code>\"activex\"</code>, if the browser provides ActiveX XMLHTTP.<br/>",
+          "     *  <code>\"\"</code>, if there is not XHR support at all.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks what kind of XMLHttpRequest object the browser supports\n for the current protocol, if any.\n The standard XMLHttpRequest is preferred over ActiveX XMLHTTP.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n  <code>\"xhr\"</code>, if the browser provides standard XMLHttpRequest.<br/>\n  <code>\"activex\"</code>, if the browser provides ActiveX XMLHTTP.<br/>\n  <code>\"\"</code>, if there is not XHR support at all.",
+            "type": "string",
+            "description": "  <code>\"xhr\"</code>, if the browser provides standard XMLHttpRequest.<br/>\n  <code>\"activex\"</code>, if the browser provides ActiveX XMLHTTP.<br/>\n  <code>\"\"</code>, if there is not XHR support at all."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4716
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 5546
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

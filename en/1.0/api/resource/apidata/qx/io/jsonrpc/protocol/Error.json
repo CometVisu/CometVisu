@@ -1,0 +1,147 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601941,
+  "lastModifiedIso": "2026-06-29T04:00:01.941Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Error.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 705
+    },
+    "end": {
+      "line": 65,
+      "column": 3,
+      "index": 1659
+    }
+  },
+  "className": "qx.io.jsonrpc.protocol.Error",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A JSON-RPC v2.0 error message object, which is a response to a {@link qx.io.jsonrpc.protocol.Request},",
+      " * indicating a failure during the processing of the request on the server.",
+      " * @see https://www.jsonrpc.org/specification#error_object",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A JSON-RPC v2.0 error message object, which is a response to a {@link qx.io.jsonrpc.protocol.Request},\n indicating a failure during the processing of the request on the server.</p>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "https://www.jsonrpc.org/specification#error_object"
+      }
+    ]
+  },
+  "superClass": "qx.io.jsonrpc.protocol.Message",
+  "properties": {
+    "id": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 891
+        },
+        "end": {
+          "line": 34,
+          "column": 5,
+          "index": 994
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The integer id of the request",
+          "     * @var {Number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The integer id of the request</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Number}"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "error": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1062
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1176
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The error object",
+          "     * @var {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The error object</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Object}"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "id"
+      },
+      {
+        "name": "code"
+      },
+      {
+        "name": "message"
+      },
+      {
+        "name": "data"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 1338
+      },
+      "end": {
+        "line": 64,
+        "column": 3,
+        "index": 1655
+      }
+    }
+  },
+  "members": {},
+  "statics": {}
+}

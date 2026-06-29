@@ -1,0 +1,378 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603029,
+  "lastModifiedIso": "2026-06-29T04:00:03.029Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/indicator/ProgressBar.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 50,
+      "column": 0,
+      "index": 1459
+    },
+    "end": {
+      "line": 190,
+      "column": 3,
+      "index": 4463
+    }
+  },
+  "className": "qx.ui.indicator.ProgressBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Progress bar is designed to simply display the current % complete",
+      " * for a process.",
+      " *",
+      " * The Value is limited between 0 and Maximum value.",
+      " * It's not allowed to set a Maximum value of 0.  If you set a Maximum value",
+      " * bigger than 0, but smaller than Value, it will be limited to Value.",
+      " *",
+      " * The following example creates and adds a progress bar to the root element.",
+      " * A listener is used to show the user if the value is changed,",
+      " * and another one when the progress is complete.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var pb = new qx.ui.indicator.ProgressBar();",
+      " * this.getRoot().add(pb, { left : 20, top: 20});",
+      " *",
+      " * pb.addListener(\"change\", function(e) {",
+      " *   this.debug(e.getData()); // % complete",
+      " *   this.debug(pb.getValue()); // absolute value",
+      " * });",
+      " *",
+      " * pb.addListener(\"complete\", function(e) {",
+      " *   this.debug(\"complete\");",
+      " * });",
+      " *",
+      " * //set a value",
+      " * pb.setValue(20);",
+      " * </pre>",
+      " *",
+      " * @childControl progress {qx.ui.container.Composite} The progress bar",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Progress bar is designed to simply display the current % complete\n for a process.\n The Value is limited between 0 and Maximum value.\n It's not allowed to set a Maximum value of 0.  If you set a Maximum value\n bigger than 0, but smaller than Value, it will be limited to Value.\n The following example creates and adds a progress bar to the root element.\n A listener is used to show the user if the value is changed,\n and another one when the progress is complete.\n </p>\n<pre class='javascript'>\n var pb = new qx.ui.indicator.ProgressBar();\n this.getRoot().add(pb, { left : 20, top: 20});\n pb.addListener(\"change\", function(e) {\n   this.debug(e.getData());\n   this.debug(pb.getValue());\n });\n pb.addListener(\"complete\", function(e) {\n   this.debug(\"complete\");\n });\n\n pb.setValue(20);\n </pre>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "progress {qx.ui.container.Composite} The progress bar"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      },
+      {
+        "name": "maximum"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 2,
+        "index": 1672
+      },
+      "end": {
+        "line": 71,
+        "column": 3,
+        "index": 1931
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1954
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2019
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "progressbar"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2071
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2163
+        }
+      },
+      "json": {
+        "init": 100,
+        "event": "changeMaximum",
+        "apply": "_applyMaximum"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Maximum value of the progress bar "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum value of the progress bar</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2215
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2299
+        }
+      },
+      "json": {
+        "init": 0,
+        "event": "changeValue",
+        "apply": "_applyValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Current value of the progress bar "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current value of the progress bar</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "complete": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the process is complete (value === maximum value)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the process is complete (value === maximum value)</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2406
+        },
+        "end": {
+          "line": 98,
+          "column": 35,
+          "index": 2437
+        }
+      }
+    },
+    "change": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the % complete value is changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the % complete value is changed.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2511
+        },
+        "end": {
+          "line": 103,
+          "column": 32,
+          "index": 2539
+        }
+      }
+    }
+  },
+  "members": {
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2585
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3057
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMaximum": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3086
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3537
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          "overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3561
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 3877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_changeProgress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the progress bar.",
+          "     *",
+          "     * @param value {Number} future value of progress bar",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the progress bar.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} future value of progress bar",
+            "paramName": "value",
+            "description": " future value of progress bar",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 3997
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 4455
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

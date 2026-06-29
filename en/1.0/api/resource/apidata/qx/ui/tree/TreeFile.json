@@ -1,0 +1,87 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603333,
+  "lastModifiedIso": "2026-06-29T04:00:03.333Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/TreeFile.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 696
+    },
+    "end": {
+      "line": 44,
+      "column": 3,
+      "index": 1005
+    }
+  },
+  "className": "qx.ui.tree.TreeFile",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The tree file is a leaf tree item. It cannot contain any nested tree items.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The tree file is a leaf tree item. It cannot contain any nested tree items.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.tree.core.AbstractTreeItem",
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 802
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 865
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "tree-file"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "_addWidgets": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 907
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 997
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.tree.core.AbstractItem",
+      "appearsIn": [
+        "qx.ui.tree.core.AbstractItem"
+      ]
+    }
+  },
+  "statics": {}
+}

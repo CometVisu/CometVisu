@@ -1,0 +1,128 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602853,
+  "lastModifiedIso": "2026-06-29T04:00:02.853Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/MouseWheel.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 556
+    },
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1181
+    }
+  },
+  "className": "qx.event.type.MouseWheel",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mouse wheel event object.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mouse wheel event object.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Mouse",
+  "members": {
+    "stop": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 669
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 742
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.type.Mouse",
+      "appearsIn": [
+        "qx.event.type.Mouse",
+        "qx.event.type.Event"
+      ]
+    },
+    "getWheelDelta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the amount the wheel has been scrolled",
+          "     *",
+          "     * @param axis {String?} Optional parameter which defines the scroll axis.",
+          "     *   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+          "     * @return {Integer} Scroll wheel movement for the given axis. If no axis",
+          "     *   is given, the y axis is used.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the amount the wheel has been scrolled</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {String?} Optional parameter which defines the scroll axis.\n   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+            "paramName": "axis",
+            "description": " Optional parameter which defines the scroll axis.\n   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Scroll wheel movement for the given axis. If no axis\n   is given, the y axis is used.",
+            "type": "Integer",
+            "description": "Scroll wheel movement for the given axis. If no axis\n   is given, the y axis is used."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1089
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,200 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601337,
+  "lastModifiedIso": "2026-06-29T04:00:01.337Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/Button.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 958
+    },
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 1733
+    }
+  },
+  "className": "qx.ui.mobile.form.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A Button widget.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var button = new qx.ui.mobile.form.Button(\"Hello World\");",
+      " *",
+      " *   button.addListener(\"tap\", function(e) {",
+      " *     alert(\"Button was clicked\");",
+      " *   }, this);",
+      " *",
+      " *   this.getRoot.add(button);",
+      " * </pre>",
+      " *",
+      " * This example creates a button with the label \"Hello World\" and attaches an",
+      " * event listener to the {@link qx.ui.mobile.core.Widget#tap} event.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A Button widget.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var button = new qx.ui.mobile.form.Button(\"Hello World\");\n   button.addListener(\"tap\", function(e) {\n     alert(\"Button was clicked\");\n   }, this);\n   this.getRoot.add(button);\n </pre>\n<p>This example creates a button with the label \"Hello World\" and attaches an\n event listener to the {@link qx.ui.mobile.core.Widget#tap} event.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.basic.Atom",
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1265
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1330
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "button"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.basic.Atom",
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "activatable": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1355
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1412
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value.",
+          "     *",
+          "     * @param value {String} The value to set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1528
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1579
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set value.",
+          "     *",
+          "     * @return {String} The set value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the set value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The set value",
+            "type": "string",
+            "description": "The set value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1677
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1725
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

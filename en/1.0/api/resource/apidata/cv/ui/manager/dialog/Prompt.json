@@ -1,0 +1,61 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543942,
+  "lastModifiedIso": "2026-06-29T03:59:03.942Z",
+  "classFilename": "../../source/class/cv/ui/manager/dialog/Prompt.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 36,
+      "column": 3,
+      "index": 1158
+    }
+  },
+  "className": "cv.ui.manager.dialog.Prompt",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Prompt",
+  "members": {
+    "_createWidgetContent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1041
+        },
+        "end": {
+          "line": 34,
+          "column": 5,
+          "index": 1150
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Prompt",
+      "appearsIn": [
+        "qxl.dialog.Prompt",
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

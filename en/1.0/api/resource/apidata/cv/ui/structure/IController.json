@@ -1,0 +1,633 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/structure/IController.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 909
+    },
+    "end": {
+      "line": 122,
+      "column": 3,
+      "index": 3522
+    }
+  },
+  "className": "cv.ui.structure.IController",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for structure controllers.",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for structure controllers.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "properties": {
+    "renderTarget": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1203
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 1246
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The target this structure should be inserted into as CSS selector string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The target this structure should be inserted into as CSS selector string</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "namespace": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1299
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1339
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Namespace for path ids",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Namespace for path ids</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "getHtmlStructure": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the main HTML structure needed by this structure, this content will be injected to the document",
+          "     * body as innerHTML",
+          "     * @return {String} HTML code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the main HTML structure needed by this structure, this content will be injected to the document\n body as innerHTML</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML code",
+            "type": "string",
+            "description": "HTML code"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1671
+        },
+        "end": {
+          "line": 58,
+          "column": 25,
+          "index": 1692
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "parseBackendSettings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract backend specific settings from the config",
+          "     * @param xml {XMLDocument} loaded config",
+          "     * @return {Boolean} true if backend setting have been parsed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extract backend specific settings from the config</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument} loaded config",
+            "paramName": "xml",
+            "description": " loaded config",
+            "type": "XMLDocument"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if backend setting have been parsed",
+            "type": "boolean",
+            "description": "true if backend setting have been parsed"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1884
+        },
+        "end": {
+          "line": 65,
+          "column": 32,
+          "index": 1912
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "parseSettings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses structure specific settings",
+          "     * @param xml {XMLDocument} loaded config",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses structure specific settings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument} loaded config",
+            "paramName": "xml",
+            "description": " loaded config",
+            "type": "XMLDocument"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2023
+        },
+        "end": {
+          "line": 71,
+          "column": 25,
+          "index": 2044
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "appearsIn": []
+    },
+    "preParse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pre parsing hook, do everything here that is needed before the real parsing process can start",
+          "     * @param xml {XMLDocument}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pre parsing hook, do everything here that is needed before the real parsing process can start</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument}",
+            "paramName": "xml",
+            "type": "XMLDocument"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 77,
+          "column": 26,
+          "index": 2222
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createUI": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate the UI code from the config file",
+          "     * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generate the UI code from the config file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "config {Object} loaded config file usually an XMLDocument but other structures might use different formats",
+            "paramName": "config",
+            "description": " loaded config file usually an XMLDocument but other structures might use different formats",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2415
+        },
+        "end": {
+          "line": 83,
+          "column": 23,
+          "index": 2434
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "doScreenSave": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle fired event from screensaver",
+          "     * @return {Array<string>} Array with addresses",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle fired event from screensaver</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array<string>} Array with addresses",
+            "type": "Array<string>",
+            "description": "Array with addresses"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2552
+        },
+        "end": {
+          "line": 89,
+          "column": 21,
+          "index": 2569
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<string>"
+      },
+      "appearsIn": []
+    },
+    "getInitialAddresses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the addresses needed to update all states on the initially loaded page",
+          "     * @param backendName {string} name of the backend",
+          "     * @return {Array<string>} list of addresses",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the addresses needed to update all states on the initially loaded page</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {string} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array<string>} list of addresses",
+            "type": "Array<string>",
+            "description": "list of addresses"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2781
+        },
+        "end": {
+          "line": 96,
+          "column": 39,
+          "index": 2816
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<string>"
+      },
+      "appearsIn": []
+    },
+    "getInitialPageId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the widget id of the page item initially loaded",
+          "     * @returns {String} widget path like 'id_'...",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the widget id of the page item initially loaded</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} widget path like 'id_'...",
+            "type": "string",
+            "description": "widget path like 'id_'..."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2953
+        },
+        "end": {
+          "line": 102,
+          "column": 31,
+          "index": 2980
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "supports": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check this structure for feature support",
+          "     * @param feature {String} name of the feature ti check, e.g. 'navbar'",
+          "     * @param subfeature {String?} optional name of a sub feature to check",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check this structure for feature support</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "feature {String} name of the feature ti check, e.g. 'navbar'",
+            "paramName": "feature",
+            "description": " name of the feature ti check, e.g. 'navbar'",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "subfeature {String?} optional name of a sub feature to check",
+            "paramName": "subfeature",
+            "description": " optional name of a sub feature to check",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3201
+        },
+        "end": {
+          "line": 109,
+          "column": 36,
+          "index": 3233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "feature",
+          "type": "string"
+        },
+        {
+          "name": "subfeature",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "onHistoryRequest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * handle browser history events that are used to navigate inside the visu",
+          "     * @param anchor {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>handle browser history events that are used to navigate inside the visu</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "anchor {String}",
+            "paramName": "anchor",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3365
+        },
+        "end": {
+          "line": 115,
+          "column": 31,
+          "index": 3392
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "anchor",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateSentryScope": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add UI specific information to the sentry scope, if sentry is enabled",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add UI specific information to the sentry scope, if sentry is enabled</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3492
+        },
+        "end": {
+          "line": 120,
+          "column": 26,
+          "index": 3514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

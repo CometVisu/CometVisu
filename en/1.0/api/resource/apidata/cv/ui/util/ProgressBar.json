@@ -1,0 +1,186 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/ui/util/ProgressBar.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 943
+    },
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2355
+    }
+  },
+  "className": "cv.ui.util.ProgressBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows a progressbar to visualize a state that is completed by x %",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows a progressbar to visualize a state that is completed by x %</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1156
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1216
+      }
+    }
+  },
+  "properties": {
+    "value": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1378
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1458
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyValue"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__domElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1618
+        },
+        "end": {
+          "line": 58,
+          "column": 22,
+          "index": 1636
+        }
+      },
+      "appearsIn": []
+    },
+    "__progressElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1642
+        },
+        "end": {
+          "line": 59,
+          "column": 27,
+          "index": 1665
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1672
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1911
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDomElement": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1918
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1973
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createDomElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1980
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2347
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

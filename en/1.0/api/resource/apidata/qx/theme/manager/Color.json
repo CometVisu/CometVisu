@@ -1,0 +1,294 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601526,
+  "lastModifiedIso": "2026-06-29T04:00:01.526Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/manager/Color.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 545
+    },
+    "end": {
+      "line": 146,
+      "column": 3,
+      "index": 4456
+    }
+  },
+  "className": "qx.theme.manager.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manager for color themes",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manager for color themes</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.util.ValueManager",
+  "properties": {
+    "theme": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 896
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1009
+        }
+      },
+      "json": {
+        "check": "Theme",
+        "nullable": true,
+        "apply": "_applyTheme",
+        "event": "changeTheme"
+      },
+      "jsdoc": {
+        "raw": [
+          "* the currently selected color theme "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the currently selected color theme</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyTheme": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1217
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1524
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__parseColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to take a color stored in the theme and returns the string color value.",
+          "     * In most of the times that means it just returns the string stored in the theme.",
+          "     * It additionally checks if its a valid color at all.",
+          "     *",
+          "     * @param colors {Map} The map of color definitions.",
+          "     * @param name {String} The name of the color to check.",
+          "     * @return {String} The resolved color as string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper to take a color stored in the theme and returns the string color value.\n In most of the times that means it just returns the string stored in the theme.\n It additionally checks if its a valid color at all.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "colors {Map} The map of color definitions.",
+            "paramName": "colors",
+            "description": " The map of color definitions.",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "name {String} The name of the color to check.",
+            "paramName": "name",
+            "description": " The name of the color to check.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The resolved color as string.",
+            "type": "string",
+            "description": "The resolved color as string."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1957
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2651
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "colors",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "resolve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the dynamically interpreted result for the incoming value,",
+          "     * (if available), otherwise returns the original value",
+          "     * @param value {String} Value to resolve",
+          "     * @return {var} either returns the (translated) result of the incoming",
+          "     * value or the value itself",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the dynamically interpreted result for the incoming value,\n (if available), otherwise returns the original value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} Value to resolve",
+            "paramName": "value",
+            "description": " Value to resolve",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} either returns the (translated) result of the incoming\n value or the value itself",
+            "type": "var",
+            "description": "either returns the (translated) result of the incoming\n value or the value itself"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2963
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "overriddenFrom": "qx.util.ValueManager",
+      "appearsIn": [
+        "qx.util.ValueManager"
+      ]
+    },
+    "isDynamic": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a value is interpreted dynamically",
+          "     *",
+          "     * @param value {String} dynamically interpreted identifier",
+          "     * @return {Boolean} returns true if the value is interpreted dynamically",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a value is interpreted dynamically</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} dynamically interpreted identifier",
+            "paramName": "value",
+            "description": " dynamically interpreted identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} returns true if the value is interpreted dynamically",
+            "type": "boolean",
+            "description": "returns true if the value is interpreted dynamically"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3804
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 4448
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "overriddenFrom": "qx.util.ValueManager",
+      "appearsIn": [
+        "qx.util.ValueManager"
+      ]
+    }
+  },
+  "statics": {}
+}

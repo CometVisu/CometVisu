@@ -1,0 +1,349 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543952,
+  "lastModifiedIso": "2026-06-29T03:59:03.952Z",
+  "classFilename": "../../source/class/cv/util/ConfigLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 1081
+    },
+    "end": {
+      "line": 356,
+      "column": 3,
+      "index": 12883
+    }
+  },
+  "className": "cv.util.ConfigLoader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains",
+      " * <include> elements those config parts are loaded and add to the XML-Document.",
+      " *",
+      " * @author Tobias Bräutigam <tbraeutigam@gmail.com>",
+      " * @since 2018",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains\n <include> elements those config parts are loaded and add to the XML-Document.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam <tbraeutigam@gmail.com>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2018"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1292
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1366
+      }
+    }
+  },
+  "members": {
+    "__loadQueue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1522
+        },
+        "end": {
+          "line": 47,
+          "column": 21,
+          "index": 1539
+        }
+      },
+      "appearsIn": []
+    },
+    "__doneCallback": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1545
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1565
+        }
+      },
+      "appearsIn": []
+    },
+    "__doneCallbackContext": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1571
+        },
+        "end": {
+          "line": 49,
+          "column": 31,
+          "index": 1598
+        }
+      },
+      "appearsIn": []
+    },
+    "__xml": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1604
+        },
+        "end": {
+          "line": 50,
+          "column": 15,
+          "index": 1615
+        }
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load a config file",
+          "     * @param callback",
+          "     * @param context",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load a config file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback",
+            "paramName": "callback",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "context",
+            "paramName": "context",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1709
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 7744
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadInclude": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load an include source and replace it with the loaded content",
+          "     * @param includeElem {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load an include source and replace it with the loaded content</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "includeElem {Element}",
+            "paramName": "includeElem",
+            "type": "Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 7872
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 8873
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "includeElem",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkQueue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if everything is loaded and call the callback in this case",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if everything is loaded and call the callback in this case</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 8984
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 9154
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "configError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors that occur during loading ot the config file",
+          "     * @param textStatus {String} error status",
+          "     * @param additionalErrorInfo {String} error message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle errors that occur during loading ot the config file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "textStatus {String} error status",
+            "paramName": "textStatus",
+            "description": " error status",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "additionalErrorInfo {String} error message",
+            "paramName": "additionalErrorInfo",
+            "description": " error message",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 9347
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 12596
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "textStatus",
+          "type": "string"
+        },
+        {
+          "name": "additionalErrorInfo",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 350,
+        "column": 2,
+        "index": 12744
+      },
+      "end": {
+        "line": 355,
+        "column": 3,
+        "index": 12879
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

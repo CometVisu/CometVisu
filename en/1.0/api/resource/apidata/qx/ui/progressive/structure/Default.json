@@ -1,0 +1,266 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601755,
+  "lastModifiedIso": "2026-06-29T04:00:01.755Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/structure/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 490
+    },
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 2927
+    }
+  },
+  "className": "qx.ui.progressive.structure.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Structure definition for Progressive",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Structure definition for Progressive</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.structure.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "header"
+      },
+      {
+        "name": "footer"
+      },
+      {
+        "name": "pane"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1269
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1841
+      }
+    }
+  },
+  "members": {
+    "__header": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1861
+        },
+        "end": {
+          "line": 65,
+          "column": 18,
+          "index": 1875
+        }
+      },
+      "appearsIn": []
+    },
+    "__footer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1881
+        },
+        "end": {
+          "line": 66,
+          "column": 18,
+          "index": 1895
+        }
+      },
+      "appearsIn": []
+    },
+    "__nullHeader": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1901
+        },
+        "end": {
+          "line": 67,
+          "column": 22,
+          "index": 1919
+        }
+      },
+      "appearsIn": []
+    },
+    "__nullFooter": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1925
+        },
+        "end": {
+          "line": 68,
+          "column": 22,
+          "index": 1943
+        }
+      },
+      "appearsIn": []
+    },
+    "applyStructure": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1968
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2340
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "progressive"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.structure.Abstract",
+      "appearsIn": [
+        "qx.ui.progressive.structure.Abstract"
+      ]
+    },
+    "getHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the header",
+          "     *",
+          "     * @return {qx.ui.progressive.headfoot.Abstract}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the header</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.progressive.headfoot.Abstract}",
+            "type": "qx.ui.progressive.headfoot.Abstract",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2448
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2495
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.progressive.headfoot.Abstract"
+      },
+      "appearsIn": []
+    },
+    "getFooter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the footer",
+          "     *",
+          "     * @return {qx.ui.progressive.headfoot.Abstract}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the footer</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.progressive.headfoot.Abstract}",
+            "type": "qx.ui.progressive.headfoot.Abstract",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2603
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2650
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.progressive.headfoot.Abstract"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 101,
+        "column": 2,
+        "index": 2659
+      },
+      "end": {
+        "line": 113,
+        "column": 3,
+        "index": 2923
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

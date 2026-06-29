@@ -1,0 +1,362 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601432,
+  "lastModifiedIso": "2026-06-29T04:00:01.432Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/CellStylesheet.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 619
+    },
+    "end": {
+      "line": 119,
+      "column": 3,
+      "index": 3097
+    }
+  },
+  "className": "qx.ui.virtual.cell.CellStylesheet",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Singleton wrapper for the stylesheet containing the CSS rules for HTML cells.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Singleton wrapper for the stylesheet containing the CSS rules for HTML cells.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 724
+      },
+      "end": {
+        "line": 51,
+        "column": 3,
+        "index": 1280
+      }
+    }
+  },
+  "members": {
+    "__stylesheet": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1300
+        },
+        "end": {
+          "line": 54,
+          "column": 22,
+          "index": 1318
+        }
+      },
+      "appearsIn": []
+    },
+    "__classes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1324
+        },
+        "end": {
+          "line": 55,
+          "column": 19,
+          "index": 1339
+        }
+      },
+      "appearsIn": []
+    },
+    "__styles": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1345
+        },
+        "end": {
+          "line": 56,
+          "column": 18,
+          "index": 1359
+        }
+      },
+      "appearsIn": []
+    },
+    "getStylesheet": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the DOM stylesheet element",
+          "     *",
+          "     * @return {StyleSheet} The DOM stylesheet element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the DOM stylesheet element</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{StyleSheet} The DOM stylesheet element",
+            "type": "StyleSheet",
+            "description": "The DOM stylesheet element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1482
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1537
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "StyleSheet"
+      },
+      "appearsIn": []
+    },
+    "getCssClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the CSS class stored under the given key",
+          "     *",
+          "     * @param key {String} The key under which the class name is stored",
+          "     * @return {String|null} The CSS class stored under the given key or",
+          "     *   <code>null</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the CSS class stored under the given key</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key under which the class name is stored",
+            "paramName": "key",
+            "description": " The key under which the class name is stored",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} The CSS class stored under the given key or\n   <code>null</code>.",
+            "type": "String|null",
+            "description": "The CSS class stored under the given key or\n   <code>null</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1792
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1858
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "computeClassForStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dynamically create a CSS rule for the given style string. The selector is",
+          "     * an unique class name, which is returned. The class is stored under the",
+          "     * given key name and can be queried using {@link #getCssClass}.",
+          "     *",
+          "     * @param key {String} The key under which the class name should be stored",
+          "     * @param styleString {String} A compiled string of CSS rules.",
+          "     * @return {String} The CSS class name.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dynamically create a CSS rule for the given style string. The selector is\n an unique class name, which is returned. The class is stored under the\n given key name and can be queried using {@link #getCssClass}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} The key under which the class name should be stored",
+            "paramName": "key",
+            "description": " The key under which the class name should be stored",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "styleString {String} A compiled string of CSS rules.",
+            "paramName": "styleString",
+            "description": " A compiled string of CSS rules.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The CSS class name.",
+            "type": "string",
+            "description": "The CSS class name."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2306
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 2752
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "styleString",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getNextClassname": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the next unique CSS class name",
+          "     *",
+          "     * @return {String} The next unique CSS class name",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the next unique CSS class name</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The next unique CSS class name",
+            "type": "string",
+            "description": "The next unique CSS class name"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2879
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2982
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__classCounter": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2988
+        },
+        "end": {
+          "line": 113,
+          "column": 21,
+          "index": 3005
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 116,
+        "column": 2,
+        "index": 3014
+      },
+      "end": {
+        "line": 118,
+        "column": 3,
+        "index": 3093
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

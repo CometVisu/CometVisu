@@ -1,0 +1,244 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601568,
+  "lastModifiedIso": "2026-06-29T04:00:01.568Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/selection/Column.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 513
+    },
+    "end": {
+      "line": 112,
+      "column": 3,
+      "index": 2775
+    }
+  },
+  "className": "qx.ui.virtual.selection.Column",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Column selection manager",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Column selection manager</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.selection.Row",
+  "members": {
+    "_getItemCount": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the number of all items in the pane. This number may contain",
+          "     * unselectable items as well.",
+          "     *",
+          "     * @return {Integer} number of items",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the number of all items in the pane. This number may contain\n unselectable items as well.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} number of items",
+            "type": "Integer",
+            "description": "number of items"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 981
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1062
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row"
+      ]
+    },
+    "_getSelectableFromPointerEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1295
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1577
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row",
+        "qx.ui.core.selection.Abstract"
+      ]
+    },
+    "_getRelatedSelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2135
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        },
+        {
+          "name": "relation"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row",
+        "qx.ui.core.selection.Abstract"
+      ]
+    },
+    "_scrollItemIntoView": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2160
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2286
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row",
+        "qx.ui.core.selection.Abstract"
+      ]
+    },
+    "_getSelectableLocationX": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2311
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2604
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row",
+        "qx.ui.core.selection.Abstract"
+      ]
+    },
+    "_getSelectableLocationY": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2629
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2767
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.selection.Row",
+      "appearsIn": [
+        "qx.ui.virtual.selection.Row",
+        "qx.ui.core.selection.Abstract"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

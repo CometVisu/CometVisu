@@ -1,0 +1,212 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600819,
+  "lastModifiedIso": "2026-06-29T04:00:00.819Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/list/renderer/group/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 537
+    },
+    "end": {
+      "line": 75,
+      "column": 3,
+      "index": 1748
+    }
+  },
+  "className": "qx.ui.mobile.list.renderer.group.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all group item renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all group item renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.container.Composite",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "layout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 26,
+        "column": 2,
+        "index": 667
+      },
+      "end": {
+        "line": 29,
+        "column": 3,
+        "index": 736
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 777
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 846
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "group-item"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "selectable": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 907
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1000
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyAttribute"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the row is selectable.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the row is selectable.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "activatable": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1024
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1081
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "reset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets all defined child widgets. Override this method in your custom",
+          "     * list item renderer and reset all widgets displaying data. Needed as the",
+          "     * renderer is used for every row and otherwise data of a different row",
+          "     * might be displayed, when not all data displaying widgets are used for the row.",
+          "     * Gets called automatically by the {@link qx.ui.mobile.list.provider.Provider}.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets all defined child widgets. Override this method in your custom\n list item renderer and reset all widgets displaying data. Needed as the\n renderer is used for every row and otherwise data of a different row\n might be displayed, when not all data displaying widgets are used for the row.\n Gets called automatically by the {@link qx.ui.mobile.list.provider.Provider}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1675
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    },
+    "_getTagName": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1700
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1740
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.core.Widget",
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

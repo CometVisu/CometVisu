@@ -1,0 +1,5638 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603259,
+  "lastModifiedIso": "2026-06-29T04:00:03.259Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/Table.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 825
+    },
+    "end": {
+      "line": 2211,
+      "column": 3,
+      "index": 65094
+    }
+  },
+  "className": "qx.ui.table.Table",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Table",
+      " *",
+      " * A detailed description can be found in the package description",
+      " * {@link qx.ui.table}.",
+      " *",
+      " * @childControl statusbar {qx.ui.basic.Label} label to show the status of the table",
+      " * @childControl column-button {qx.ui.table.columnmenu.Button} button to open the column menu",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Table\n A detailed description can be found in the package description\n {@link qx.ui.table}.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "statusbar {qx.ui.basic.Label} label to show the status of the table"
+      },
+      {
+        "name": "@childControl",
+        "body": "column-button {qx.ui.table.columnmenu.Button} button to open the column menu"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "mixins": [
+    "qx.ui.core.MDragDropScrolling"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "tableModel"
+      },
+      {
+        "name": "custom"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 123,
+        "column": 2,
+        "index": 3756
+      },
+      "end": {
+        "line": 227,
+        "column": 3,
+        "index": 6688
+      }
+    }
+  },
+  "events": {
+    "columnVisibilityMenuCreateStart": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched before adding the column list to the column visibility menu.",
+          "     * The event data is a map with two properties: table and menu.  Listeners",
+          "     * may add additional items to the menu, which appear at the top of the",
+          "     * menu.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched before adding the column list to the column visibility menu.\n The event data is a map with two properties: table and menu.  Listeners\n may add additional items to the menu, which appear at the top of the\n menu.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 7153
+        },
+        "end": {
+          "line": 242,
+          "column": 57,
+          "index": 7206
+        }
+      }
+    },
+    "columnVisibilityMenuCreateEnd": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched after adding the column list to the column visibility menu.",
+          "     * The event data is a map with two properties: table and menu.  Listeners",
+          "     * may add additional items to the menu, which appear at the bottom of the",
+          "     * menu.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched after adding the column list to the column visibility menu.\n The event data is a map with two properties: table and menu.  Listeners\n may add additional items to the menu, which appear at the bottom of the\n menu.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 7478
+        },
+        "end": {
+          "line": 250,
+          "column": 55,
+          "index": 7529
+        }
+      }
+    },
+    "tableWidthChanged": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when the width of the table has changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when the width of the table has changed.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 7611
+        },
+        "end": {
+          "line": 255,
+          "column": 44,
+          "index": 7651
+        }
+      }
+    },
+    "verticalScrollBarChanged": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when updating scrollbars discovers that a vertical scrollbar",
+          "     * is needed when it previously was not, or vice versa.  The data is a",
+          "     * boolean indicating whether a vertical scrollbar is now being used.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when updating scrollbars discovers that a vertical scrollbar\n is needed when it previously was not, or vice versa.  The data is a\n boolean indicating whether a vertical scrollbar is now being used.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 7902
+        },
+        "end": {
+          "line": 262,
+          "column": 50,
+          "index": 7948
+        }
+      }
+    },
+    "cellTap": {
+      "type": "qx.ui.table.pane.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when a data cell has been tapped.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when a data cell has been tapped.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 8023
+        },
+        "end": {
+          "line": 267,
+          "column": 41,
+          "index": 8060
+        }
+      }
+    },
+    "cellDbltap": {
+      "type": "qx.ui.table.pane.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when a data cell has been tapped.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when a data cell has been tapped.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 8135
+        },
+        "end": {
+          "line": 272,
+          "column": 44,
+          "index": 8175
+        }
+      }
+    },
+    "cellContextmenu": {
+      "type": "qx.ui.table.pane.CellEvent",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched when the context menu is needed in a data cell",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched when the context menu is needed in a data cell</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 8263
+        },
+        "end": {
+          "line": 277,
+          "column": 49,
+          "index": 8308
+        }
+      }
+    },
+    "dataEdited": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatched after a cell editor is flushed.",
+          "     *",
+          "     * The data is a map containing this properties:",
+          "     * <ul>",
+          "     *   <li>row</li>",
+          "     *   <li>col</li>",
+          "     *   <li>value</li>",
+          "     *   <li>oldValue</li>",
+          "     * </ul>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispatched after a cell editor is flushed.\n The data is a map containing this properties:\n </p>\n<ul>\n   <li>row</li>\n   <li>col</li>\n   <li>value</li>\n   <li>oldValue</li>\n </ul>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 8561
+        },
+        "end": {
+          "line": 290,
+          "column": 36,
+          "index": 8593
+        }
+      }
+    }
+  },
+  "statics": {
+    "__redirectEvents": {
+      "jsdoc": {
+        "raw": [
+          "* Events that must be redirected to the scrollers. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Events that must be redirected to the scrollers.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 301,
+          "column": 4,
+          "index": 8861
+        },
+        "end": {
+          "line": 301,
+          "column": 71,
+          "index": 8928
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4,
+          "index": 9142
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 9201
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "table"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focusable": {
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9208
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 9263
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "minWidth": {
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 9270
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 9322
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": 50
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "initiallyHiddenColumns": {
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 4,
+          "index": 10055
+        },
+        "end": {
+          "line": 340,
+          "column": 5,
+          "index": 10103
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The list of columns that are initially hidden. This property is set by",
+          "     * the constructor, from the value received in",
+          "     * custom.initiallyHiddenColumns, and is only used when a column model is",
+          "     * initialized. It can be of great benefit in tables with numerous columns",
+          "     * where most are not initially visible. The process of creating the",
+          "     * headers for all of the columns, only to have those columns discarded",
+          "     * shortly thereafter when setColumnVisibility(false) is called, is a",
+          "     * waste of (significant, in some browsers) time. Specifying the",
+          "     * non-visible columns at constructor time can therefore avoid the initial",
+          "     * creation of all of those superfluous widgets.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The list of columns that are initially hidden. This property is set by\n the constructor, from the value received in\n custom.initiallyHiddenColumns, and is only used when a column model is\n initialized. It can be of great benefit in tables with numerous columns\n where most are not initially visible. The process of creating the\n headers for all of the columns, only to have those columns discarded\n shortly thereafter when setColumnVisibility(false) is called, is a\n waste of (significant, in some browsers) time. Specifying the\n non-visible columns at constructor time can therefore avoid the initial\n creation of all of those superfluous widgets.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "selectable": {
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 10462
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 10519
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains content which may be selected by the user.",
+          "     *",
+          "     * If the value set to <code>true</code> the native browser selection can",
+          "     * be used for text selection. But it is normally useful for",
+          "     * forms fields, longer texts/documents, editors, etc.",
+          "     *",
+          "     * Note: This has no effect on Table!",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains content which may be selected by the user.\n If the value set to <code>true</code> the native browser selection can\n be used for text selection. But it is normally useful for\n forms fields, longer texts/documents, editors, etc.\n Note: This has no effect on Table!</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "selectionModel": {
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4,
+          "index": 10558
+        },
+        "end": {
+          "line": 361,
+          "column": 5,
+          "index": 10698
+        }
+      },
+      "json": {
+        "check": "qx.ui.table.selection.Model",
+        "apply": "_applySelectionModel",
+        "event": "changeSelectionModel"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The selection model. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The selection model.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "tableModel": {
+      "location": {
+        "start": {
+          "line": 364,
+          "column": 4,
+          "index": 10733
+        },
+        "end": {
+          "line": 368,
+          "column": 5,
+          "index": 10857
+        }
+      },
+      "json": {
+        "check": "qx.ui.table.ITableModel",
+        "apply": "_applyTableModel",
+        "event": "changeTableModel"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The table model. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The table model.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "rowHeight": {
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4,
+          "index": 10905
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 11048
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 20,
+        "apply": "_applyRowHeight",
+        "event": "changeRowHeight",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The height of the table rows. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The height of the table rows.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "forceLineHeight": {
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4,
+          "index": 11331
+        },
+        "end": {
+          "line": 388,
+          "column": 5,
+          "index": 11396
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Force line height to match row height.  May be disabled if cell",
+          "     * renderers being used wish to render multiple lines of data within a",
+          "     * cell.  (With the default setting, all but the first of multiple lines",
+          "     * of data will not be visible.)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Force line height to match row height.  May be disabled if cell\n renderers being used wish to render multiple lines of data within a\n cell.  (With the default setting, all but the first of multiple lines\n of data will not be visible.)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "headerCellsVisible": {
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4,
+          "index": 11639
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 11771
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyHeaderCellsVisible",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *  Whether the header cells are visible. When setting this to false,",
+          "     *  you'll likely also want to set the {#columnVisibilityButtonVisible}",
+          "     *  property to false as well, to entirely remove the header row.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the header cells are visible. When setting this to false,\n  you'll likely also want to set the {#columnVisibilityButtonVisible}\n  property to false as well, to entirely remove the header row.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "headerCellHeight": {
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 4,
+          "index": 11821
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 12008
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 16,
+        "apply": "_applyHeaderCellHeight",
+        "event": "changeHeaderCellHeight",
+        "nullable": true,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The height of the header cells. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The height of the header cells.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "statusBarVisible": {
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 12057
+        },
+        "end": {
+          "line": 417,
+          "column": 5,
+          "index": 12162
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyStatusBarVisible"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to show the status bar "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to show the status bar</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "additionalStatusBarText": {
+      "location": {
+        "start": {
+          "line": 420,
+          "column": 4,
+          "index": 12241
+        },
+        "end": {
+          "line": 424,
+          "column": 5,
+          "index": 12358
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyAdditionalStatusBarText"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The Statusbartext, set it, if you want some more Information "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Statusbartext, set it, if you want some more Information</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "columnVisibilityButtonVisible": {
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 4,
+          "index": 12421
+        },
+        "end": {
+          "line": 432,
+          "column": 5,
+          "index": 12575
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyColumnVisibilityButtonVisible",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to show the column visibility button "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to show the column visibility button</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "metaColumnCounts": {
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 12749
+        },
+        "end": {
+          "line": 441,
+          "column": 5,
+          "index": 12835
+        }
+      },
+      "json": {
+        "check": "Object",
+        "apply": "_applyMetaColumnCounts"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Integer[]} The number of columns per meta column. If the last array entry is -1,",
+          "     * this meta column will get the remaining columns.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer[]} The number of columns per meta column. If the last array entry is -1,\n this meta column will get the remaining columns."
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "focusCellOnPointerMove": {
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 12992
+        },
+        "end": {
+          "line": 451,
+          "column": 5,
+          "index": 13110
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyFocusCellOnPointerMove"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the focus should moved when the pointer is moved over a cell. If false",
+          "     * the focus is only moved on pointer taps.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the focus should moved when the pointer is moved over a cell. If false\n the focus is only moved on pointer taps.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "rowFocusChangeModifiesSelection": {
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4,
+          "index": 13201
+        },
+        "end": {
+          "line": 459,
+          "column": 5,
+          "index": 13282
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether row focus change by keyboard also modifies selection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether row focus change by keyboard also modifies selection</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "showCellFocusIndicator": {
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4,
+          "index": 13361
+        },
+        "end": {
+          "line": 468,
+          "column": 5,
+          "index": 13478
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowCellFocusIndicator"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the cell focus indicator should be shown",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the cell focus indicator should be shown</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "contextMenuFromDataCellsOnly": {
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 4,
+          "index": 13987
+        },
+        "end": {
+          "line": 483,
+          "column": 5,
+          "index": 14116
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyContextMenuFromDataCellsOnly"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * By default, the \"cellContextmenu\" event is fired only when a data cell",
+          "     * is right-clicked. It is not fired when a right-click occurs in the",
+          "     * empty area of the table below the last data row. By turning on this",
+          "     * property, \"cellContextMenu\" events will also be generated when a",
+          "     * right-click occurs in that empty area. In such a case, row identifier",
+          "     * in the event data will be null, so event handlers can check (row ===",
+          "     * null) to handle this case.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>By default, the \"cellContextmenu\" event is fired only when a data cell\n is right-clicked. It is not fired when a right-click occurs in the\n empty area of the table below the last data row. By turning on this\n property, \"cellContextMenu\" events will also be generated when a\n right-click occurs in that empty area. In such a case, row identifier\n in the event data will be null, so event handlers can check (row ===\n null) to handle this case.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "keepFirstVisibleRowComplete": {
+      "location": {
+        "start": {
+          "line": 489,
+          "column": 4,
+          "index": 14311
+        },
+        "end": {
+          "line": 493,
+          "column": 5,
+          "index": 14438
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyKeepFirstVisibleRowComplete"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the table should keep the first visible row complete. If set to false,",
+          "     * the first row may be rendered partial, depending on the vertical scroll value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the table should keep the first visible row complete. If set to false,\n the first row may be rendered partial, depending on the vertical scroll value.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alwaysUpdateCells": {
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 14685
+        },
+        "end": {
+          "line": 503,
+          "column": 5,
+          "index": 14753
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the table cells should be updated when only the selection or the",
+          "     * focus changed. This slows down the table update but allows to react on a",
+          "     * changed selection or a changed focus in a cell renderer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the table cells should be updated when only the selection or the\n focus changed. This slows down the table update but allows to react on a\n changed selection or a changed focus in a cell renderer.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "resetSelectionOnHeaderTap": {
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4,
+          "index": 15141
+        },
+        "end": {
+          "line": 516,
+          "column": 5,
+          "index": 15264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyResetSelectionOnHeaderTap"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to reset the selection when a header cell is tapped. Since",
+          "     * most data models do not have provisions to retain a selection after",
+          "     * sorting, the default is to reset the selection in this case. Some data",
+          "     * models, however, do have the capability to retain the selection, so",
+          "     * when using those, this property should be set to false.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to reset the selection when a header cell is tapped. Since\n most data models do not have provisions to retain a selection after\n sorting, the default is to reset the selection in this case. Some data\n models, however, do have the capability to retain the selection, so\n when using those, this property should be set to false.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "resetSelectionOnTapBelowRows": {
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4,
+          "index": 15432
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 15562
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyResetSelectionOnTapBelowRows"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to reset the selection when the unpopulated table area is tapped.",
+          "     * The default is false which keeps the behaviour as before",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to reset the selection when the unpopulated table area is tapped.\n The default is false which keeps the behaviour as before</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "minCellEditHeight": {
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 15667
+        },
+        "end": {
+          "line": 536,
+          "column": 5,
+          "index": 15796
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyMinCellEditHeight"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If set then defines the minimum height of the focus indicator when editing",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If set then defines the minimum height of the focus indicator when editing</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "dataRowRenderer": {
+      "location": {
+        "start": {
+          "line": 539,
+          "column": 4,
+          "index": 15856
+        },
+        "end": {
+          "line": 544,
+          "column": 5,
+          "index": 15998
+        }
+      },
+      "json": {
+        "check": "qx.ui.table.IRowRenderer",
+        "nullable": true,
+        "event": "changeDataRowRenderer"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The renderer to use for styling the rows. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The renderer to use for styling the rows.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "cellEditorBlurAction": {
+      "location": {
+        "start": {
+          "line": 549,
+          "column": 4,
+          "index": 16106
+        },
+        "end": {
+          "line": 552,
+          "column": 5,
+          "index": 16201
+        }
+      },
+      "json": {
+        "check": [
+          "nothing",
+          "save",
+          "cancel"
+        ],
+        "init": "nothing"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The action to take when a cell is being edited and the focus moves elsewhere.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The action to take when a cell is being edited and the focus moves elsewhere.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "modalCellEditorPreOpenFunction": {
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 16672
+        },
+        "end": {
+          "line": 572,
+          "column": 5,
+          "index": 16775
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to call when before modal cell editor is opened.",
+          "     *",
+          "     * @signature function(cellEditor, cellInfo)",
+          "     *",
+          "     * @param cellEditor {qx.ui.window.Window}",
+          "     *   The modal window which has been created for this cell editor",
+          "     *",
+          "     * @param cellInfo {Map}",
+          "     *   Information about the cell for which this cell editor was created.",
+          "     *   It contains the following properties:",
+          "     *       col, row, xPos, value",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to call when before modal cell editor is opened.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(cellEditor, cellInfo)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellEditor {qx.ui.window.Window}\n   The modal window which has been created for this cell editor",
+            "paramName": "cellEditor",
+            "description": "\n   The modal window which has been created for this cell editor",
+            "type": "qx.ui.window.Window"
+          },
+          {
+            "name": "@param",
+            "body": "cellInfo {Map}\n   Information about the cell for which this cell editor was created.\n   It contains the following properties:\n       col, row, xPos, value",
+            "paramName": "cellInfo",
+            "description": "\n   Information about the cell for which this cell editor was created.\n   It contains the following properties:\n       col, row, xPos, value",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "excludeScrollerScrollbarsIfNotNeeded": {
+      "location": {
+        "start": {
+          "line": 579,
+          "column": 4,
+          "index": 16963
+        },
+        "end": {
+          "line": 583,
+          "column": 5,
+          "index": 17073
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * By default, all Scrollers' (meta-columns') horizontal scrollbars are",
+          "     * shown if any one is required. Allow not showing any that are not",
+          "     * required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>By default, all Scrollers' (meta-columns') horizontal scrollbars are\n shown if any one is required. Allow not showing any that are not\n required.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newColumnMenu": {
+      "location": {
+        "start": {
+          "line": 588,
+          "column": 4,
+          "index": 17155
+        },
+        "end": {
+          "line": 593,
+          "column": 5,
+          "index": 17277
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a new column menu button.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a new column menu button.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newSelectionManager": {
+      "location": {
+        "start": {
+          "line": 600,
+          "column": 4,
+          "index": 17515
+        },
+        "end": {
+          "line": 605,
+          "column": 5,
+          "index": 17649
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a selection manager.  this allows subclasses of",
+          "     * Table to subclass this internal class.  To take effect, this property must",
+          "     * be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a selection manager.  this allows subclasses of\n Table to subclass this internal class.  To take effect, this property must\n be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newSelectionModel": {
+      "location": {
+        "start": {
+          "line": 612,
+          "column": 4,
+          "index": 17885
+        },
+        "end": {
+          "line": 617,
+          "column": 5,
+          "index": 18015
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a selection model.  this allows subclasses of",
+          "     * Table to subclass this internal class.  To take effect, this property must",
+          "     * be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a selection model.  this allows subclasses of\n Table to subclass this internal class.  To take effect, this property must\n be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newTableColumnModel": {
+      "location": {
+        "start": {
+          "line": 624,
+          "column": 4,
+          "index": 18254
+        },
+        "end": {
+          "line": 629,
+          "column": 5,
+          "index": 18392
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a table column model.  This allows subclasses",
+          "     * of Table to subclass this internal class.  To take effect, this",
+          "     * property must be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a table column model.  This allows subclasses\n of Table to subclass this internal class.  To take effect, this\n property must be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newTablePane": {
+      "location": {
+        "start": {
+          "line": 636,
+          "column": 4,
+          "index": 18623
+        },
+        "end": {
+          "line": 641,
+          "column": 5,
+          "index": 18742
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a table pane.  this allows subclasses of",
+          "     * Table to subclass this internal class.  To take effect, this property",
+          "     * must be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a table pane.  this allows subclasses of\n Table to subclass this internal class.  To take effect, this property\n must be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newTablePaneHeader": {
+      "location": {
+        "start": {
+          "line": 648,
+          "column": 4,
+          "index": 18973
+        },
+        "end": {
+          "line": 653,
+          "column": 5,
+          "index": 19100
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a table pane.  this allows subclasses of",
+          "     * Table to subclass this internal class.  To take effect, this property",
+          "     * must be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a table pane.  this allows subclasses of\n Table to subclass this internal class.  To take effect, this property\n must be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newTablePaneScroller": {
+      "location": {
+        "start": {
+          "line": 660,
+          "column": 4,
+          "index": 19340
+        },
+        "end": {
+          "line": 665,
+          "column": 5,
+          "index": 19471
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a table pane scroller.  this allows",
+          "     * subclasses of Table to subclass this internal class.  To take effect,",
+          "     * this property must be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a table pane scroller.  this allows\n subclasses of Table to subclass this internal class.  To take effect,\n this property must be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newTablePaneModel": {
+      "location": {
+        "start": {
+          "line": 672,
+          "column": 4,
+          "index": 19708
+        },
+        "end": {
+          "line": 677,
+          "column": 5,
+          "index": 19849
+        }
+      },
+      "json": {
+        "check": "Function",
+        "init": "[[ ObjectMethod Function ]]"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function to instantiate a table pane model.  this allows subclasses",
+          "     * of Table to subclass this internal class.  To take effect, this",
+          "     * property must be set before calling the Table constructor.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function to instantiate a table pane model.  this allows subclasses\n of Table to subclass this internal class.  To take effect, this\n property must be set before calling the Table constructor.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "dragScrollThresholdX": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1417
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1485
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 30
+      },
+      "jsdoc": {
+        "raw": [
+          "* The threshold for the x-axis (in pixel) to activate scrolling at the edges. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The threshold for the x-axis (in pixel) to activate scrolling at the edges.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "dragScrollThresholdY": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1579
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1647
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 30
+      },
+      "jsdoc": {
+        "raw": [
+          "* The threshold for the y-axis (in pixel) to activate scrolling at the edges. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The threshold for the y-axis (in pixel) to activate scrolling at the edges.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "dragScrollSlowDownFactor": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1708
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1779
+        }
+      },
+      "json": {
+        "check": "Float",
+        "init": 0.1
+      },
+      "jsdoc": {
+        "raw": [
+          "* The factor for slowing down the scrolling. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The factor for slowing down the scrolling.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    }
+  },
+  "members": {
+    "__focusedCol": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 687,
+          "column": 4,
+          "index": 20057
+        },
+        "end": {
+          "line": 687,
+          "column": 22,
+          "index": 20075
+        }
+      },
+      "appearsIn": []
+    },
+    "__focusedRow": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 688,
+          "column": 4,
+          "index": 20081
+        },
+        "end": {
+          "line": 688,
+          "column": 22,
+          "index": 20099
+        }
+      },
+      "appearsIn": []
+    },
+    "__scrollerParent": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 4,
+          "index": 20106
+        },
+        "end": {
+          "line": 690,
+          "column": 26,
+          "index": 20128
+        }
+      },
+      "appearsIn": []
+    },
+    "__selectionManager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 692,
+          "column": 4,
+          "index": 20135
+        },
+        "end": {
+          "line": 692,
+          "column": 28,
+          "index": 20159
+        }
+      },
+      "appearsIn": []
+    },
+    "__additionalStatusBarText": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 694,
+          "column": 4,
+          "index": 20166
+        },
+        "end": {
+          "line": 694,
+          "column": 35,
+          "index": 20197
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastRowCount": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 695,
+          "column": 4,
+          "index": 20203
+        },
+        "end": {
+          "line": 695,
+          "column": 24,
+          "index": 20223
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastColCount": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 696,
+          "column": 4,
+          "index": 20229
+        },
+        "end": {
+          "line": 696,
+          "column": 24,
+          "index": 20249
+        }
+      },
+      "appearsIn": []
+    },
+    "__internalChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 697,
+          "column": 4,
+          "index": 20255
+        },
+        "end": {
+          "line": 697,
+          "column": 26,
+          "index": 20277
+        }
+      },
+      "appearsIn": []
+    },
+    "__columnMenuButtons": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 699,
+          "column": 4,
+          "index": 20284
+        },
+        "end": {
+          "line": 699,
+          "column": 29,
+          "index": 20309
+        }
+      },
+      "appearsIn": []
+    },
+    "__columnModel": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 700,
+          "column": 4,
+          "index": 20315
+        },
+        "end": {
+          "line": 700,
+          "column": 23,
+          "index": 20334
+        }
+      },
+      "appearsIn": []
+    },
+    "__emptyTableModel": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 701,
+          "column": 4,
+          "index": 20340
+        },
+        "end": {
+          "line": 701,
+          "column": 27,
+          "index": 20363
+        }
+      },
+      "appearsIn": []
+    },
+    "__hadVerticalScrollBar": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 703,
+          "column": 4,
+          "index": 20370
+        },
+        "end": {
+          "line": 703,
+          "column": 32,
+          "index": 20398
+        }
+      },
+      "appearsIn": []
+    },
+    "__timer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 705,
+          "column": 4,
+          "index": 20405
+        },
+        "end": {
+          "line": 705,
+          "column": 17,
+          "index": 20418
+        }
+      },
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 708,
+          "column": 4,
+          "index": 20443
+        },
+        "end": {
+          "line": 737,
+          "column": 5,
+          "index": 21195
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applySelectionModel": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 740,
+          "column": 4,
+          "index": 21227
+        },
+        "end": {
+          "line": 748,
+          "column": 5,
+          "index": 21513
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRowHeight": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 751,
+          "column": 4,
+          "index": 21545
+        },
+        "end": {
+          "line": 757,
+          "column": 5,
+          "index": 21746
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyHeaderCellsVisible": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 760,
+          "column": 4,
+          "index": 21778
+        },
+        "end": {
+          "line": 774,
+          "column": 5,
+          "index": 22261
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyHeaderCellHeight": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 777,
+          "column": 4,
+          "index": 22293
+        },
+        "end": {
+          "line": 783,
+          "column": 5,
+          "index": 22502
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMinCellEditHeight": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 786,
+          "column": 4,
+          "index": 22534
+        },
+        "end": {
+          "line": 792,
+          "column": 5,
+          "index": 22738
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getEmptyTableModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get an empty table model instance to use for this table. Use this table",
+          "     * to configure the table with no table model.",
+          "     *",
+          "     * @return {qx.ui.table.ITableModel} The empty table model",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get an empty table model instance to use for this table. Use this table\n to configure the table with no table model.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.ITableModel} The empty table model",
+            "type": "qx.ui.table.ITableModel",
+            "description": "The empty table model"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 800,
+          "column": 4,
+          "index": 22961
+        },
+        "end": {
+          "line": 807,
+          "column": 5,
+          "index": 23227
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.ITableModel"
+      },
+      "appearsIn": []
+    },
+    "_applyTableModel": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 810,
+          "column": 4,
+          "index": 23259
+        },
+        "end": {
+          "line": 845,
+          "column": 5,
+          "index": 24375
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTableColumnModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the The table column model.",
+          "     *",
+          "     * @return {qx.ui.table.columnmodel.Basic} The table's column model",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the The table column model.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.columnmodel.Basic} The table's column model",
+            "type": "qx.ui.table.columnmodel.Basic",
+            "description": "The table's column model"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 852,
+          "column": 4,
+          "index": 24516
+        },
+        "end": {
+          "line": 880,
+          "column": 5,
+          "index": 25500
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.columnmodel.Basic"
+      },
+      "appearsIn": []
+    },
+    "_applyStatusBarVisible": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 883,
+          "column": 4,
+          "index": 25532
+        },
+        "end": {
+          "line": 893,
+          "column": 5,
+          "index": 25770
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyAdditionalStatusBarText": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 896,
+          "column": 4,
+          "index": 25802
+        },
+        "end": {
+          "line": 899,
+          "column": 5,
+          "index": 25928
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyColumnVisibilityButtonVisible": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 902,
+          "column": 4,
+          "index": 25960
+        },
+        "end": {
+          "line": 908,
+          "column": 5,
+          "index": 26158
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMetaColumnCounts": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 911,
+          "column": 4,
+          "index": 26190
+        },
+        "end": {
+          "line": 1055,
+          "column": 5,
+          "index": 31485
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFocusCellOnPointerMove": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1058,
+          "column": 4,
+          "index": 31517
+        },
+        "end": {
+          "line": 1064,
+          "column": 5,
+          "index": 31736
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShowCellFocusIndicator": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1067,
+          "column": 4,
+          "index": 31768
+        },
+        "end": {
+          "line": 1073,
+          "column": 5,
+          "index": 31987
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyContextMenuFromDataCellsOnly": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1076,
+          "column": 4,
+          "index": 32019
+        },
+        "end": {
+          "line": 1082,
+          "column": 5,
+          "index": 32250
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyKeepFirstVisibleRowComplete": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1085,
+          "column": 4,
+          "index": 32282
+        },
+        "end": {
+          "line": 1091,
+          "column": 5,
+          "index": 32512
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyResetSelectionOnHeaderTap": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1094,
+          "column": 4,
+          "index": 32544
+        },
+        "end": {
+          "line": 1100,
+          "column": 5,
+          "index": 32769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyResetSelectionOnTapBelowRows": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1103,
+          "column": 4,
+          "index": 32801
+        },
+        "end": {
+          "line": 1109,
+          "column": 5,
+          "index": 33032
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSelectionManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the selection manager.",
+          "     *",
+          "     * @return {qx.ui.table.selection.Manager} the selection manager.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the selection manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.selection.Manager} the selection manager.",
+            "type": "qx.ui.table.selection.Manager",
+            "description": "the selection manager."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1116,
+          "column": 4,
+          "index": 33170
+        },
+        "end": {
+          "line": 1118,
+          "column": 5,
+          "index": 33237
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.selection.Manager"
+      },
+      "appearsIn": []
+    },
+    "_getPaneScrollerArr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array containing all TablePaneScrollers in this table.",
+          "     *",
+          "     * @return {qx.ui.table.pane.Scroller[]} all TablePaneScrollers in this table.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array containing all TablePaneScrollers in this table.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.pane.Scroller[]} all TablePaneScrollers in this table.",
+            "type": "qx.ui.table.pane.Scroller[]",
+            "description": "all TablePaneScrollers in this table."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1125,
+          "column": 4,
+          "index": 33423
+        },
+        "end": {
+          "line": 1127,
+          "column": 5,
+          "index": 33502
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.pane.Scroller[]"
+      },
+      "appearsIn": []
+    },
+    "getPaneScroller": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a TablePaneScroller of this table.",
+          "     *",
+          "     * @param metaColumn {Integer} the meta column to get the TablePaneScroller for.",
+          "     * @return {qx.ui.table.pane.Scroller} the qx.ui.table.pane.Scroller.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a TablePaneScroller of this table.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "metaColumn {Integer} the meta column to get the TablePaneScroller for.",
+            "paramName": "metaColumn",
+            "description": " the meta column to get the TablePaneScroller for.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.pane.Scroller} the qx.ui.table.pane.Scroller.",
+            "type": "qx.ui.table.pane.Scroller",
+            "description": "the qx.ui.table.pane.Scroller."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1135,
+          "column": 4,
+          "index": 33741
+        },
+        "end": {
+          "line": 1137,
+          "column": 5,
+          "index": 33829
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaColumn",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.table.pane.Scroller"
+      },
+      "appearsIn": []
+    },
+    "_cleanUpMetaColumns": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cleans up the meta columns.",
+          "     *",
+          "     * @param fromMetaColumn {Integer} the first meta column to clean up. All following",
+          "     *      meta columns will be cleaned up, too. All previous meta columns will",
+          "     *      stay unchanged. If 0 all meta columns will be cleaned up.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cleans up the meta columns.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromMetaColumn {Integer} the first meta column to clean up. All following\n      meta columns will be cleaned up, too. All previous meta columns will\n      stay unchanged. If 0 all meta columns will be cleaned up.",
+            "paramName": "fromMetaColumn",
+            "description": " the first meta column to clean up. All following\n      meta columns will be cleaned up, too. All previous meta columns will\n      stay unchanged. If 0 all meta columns will be cleaned up.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1146,
+          "column": 4,
+          "index": 34133
+        },
+        "end": {
+          "line": 1154,
+          "column": 5,
+          "index": 34389
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromMetaColumn",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the locale has changed.",
+          "     *",
+          "     * @param evt {Event} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the locale has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Event} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1161,
+          "column": 4,
+          "index": 34514
+        },
+        "end": {
+          "line": 1164,
+          "column": 5,
+          "index": 34601
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeTheme": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1167,
+          "column": 4,
+          "index": 34626
+        },
+        "end": {
+          "line": 1173,
+          "column": 5,
+          "index": 34791
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "_onSelectionChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the selection has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the selection has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1180,
+          "column": 4,
+          "index": 34917
+        },
+        "end": {
+          "line": 1188,
+          "column": 5,
+          "index": 35140
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTableModelMetaDataChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the table model meta data has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the table model meta data has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1195,
+          "column": 4,
+          "index": 35278
+        },
+        "end": {
+          "line": 1203,
+          "column": 5,
+          "index": 35519
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTableModelDataChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the table model data has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the table model data has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1210,
+          "column": 4,
+          "index": 35652
+        },
+        "end": {
+          "line": 1221,
+          "column": 5,
+          "index": 35907
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onContextMenuOpen": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1224,
+          "column": 4,
+          "index": 35932
+        },
+        "end": {
+          "line": 1230,
+          "column": 5,
+          "index": 36327
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_updateTableData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * To update the table if the table model has changed and remove selection.",
+          "     *",
+          "     * @param firstRow {Integer} The index of the first row that has changed.",
+          "     * @param lastRow {Integer} The index of the last row that has changed.",
+          "     * @param firstColumn {Integer} The model index of the first column that has changed.",
+          "     * @param lastColumn {Integer} The model index of the last column that has changed.",
+          "     * @param removeStart {Integer ? null} The first index of the interval (including), to remove selection.",
+          "     * @param removeCount {Integer ? null} The count of the interval, to remove selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>To update the table if the table model has changed and remove selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "firstRow {Integer} The index of the first row that has changed.",
+            "paramName": "firstRow",
+            "description": " The index of the first row that has changed.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "lastRow {Integer} The index of the last row that has changed.",
+            "paramName": "lastRow",
+            "description": " The index of the last row that has changed.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "firstColumn {Integer} The model index of the first column that has changed.",
+            "paramName": "firstColumn",
+            "description": " The model index of the first column that has changed.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "lastColumn {Integer} The model index of the last column that has changed.",
+            "paramName": "lastColumn",
+            "description": " The model index of the last column that has changed.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "removeStart {Integer ? null} The first index of the interval (including), to remove selection.",
+            "paramName": "removeStart",
+            "description": " The first index of the interval (including), to remove selection.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "removeCount {Integer ? null} The count of the interval, to remove selection.",
+            "paramName": "removeCount",
+            "description": " The count of the interval, to remove selection.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1242,
+          "column": 4,
+          "index": 36969
+        },
+        "end": {
+          "line": 1298,
+          "column": 5,
+          "index": 38401
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow",
+          "type": "Integer"
+        },
+        {
+          "name": "lastRow",
+          "type": "Integer"
+        },
+        {
+          "name": "firstColumn",
+          "type": "Integer"
+        },
+        {
+          "name": "lastColumn",
+          "type": "Integer"
+        },
+        {
+          "name": "removeStart",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "removeCount",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onScrollY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a TablePaneScroller has been scrolled vertically.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a TablePaneScroller has been scrolled vertically.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1305,
+          "column": 4,
+          "index": 38550
+        },
+        "end": {
+          "line": 1318,
+          "column": 5,
+          "index": 38928
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyPress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when a key was pressed.",
+          "     *",
+          "     * @param evt {qx.event.type.KeySequence} the event.",
+          "     * @deprecated {6.0} please use _onKeyDown instead!",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when a key was pressed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.KeySequence} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "qx.event.type.KeySequence"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": "{6.0} please use _onKeyDown instead!"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1326,
+          "column": 4,
+          "index": 39124
+        },
+        "end": {
+          "line": 1340,
+          "column": 5,
+          "index": 39552
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when on key down event",
+          "     *",
+          "     * @param evt {qx.event.type.KeySequence} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when on key down event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.KeySequence} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1346,
+          "column": 4,
+          "index": 39690
+        },
+        "end": {
+          "line": 1477,
+          "column": 5,
+          "index": 43207
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFocusChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the table gets the focus.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the table gets the focus.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1484,
+          "column": 4,
+          "index": 43332
+        },
+        "end": {
+          "line": 1490,
+          "column": 5,
+          "index": 43515
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onColVisibilityChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the visibility of a column has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the visibility of a column has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1497,
+          "column": 4,
+          "index": 43654
+        },
+        "end": {
+          "line": 1515,
+          "column": 5,
+          "index": 44169
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onColWidthChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the width of a column has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the width of a column has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1522,
+          "column": 4,
+          "index": 44303
+        },
+        "end": {
+          "line": 1532,
+          "column": 5,
+          "index": 44624
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onColOrderChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the column order has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the column order has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {Map} the event.",
+            "paramName": "evt",
+            "description": " the event.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1539,
+          "column": 4,
+          "index": 44753
+        },
+        "end": {
+          "line": 1549,
+          "column": 5,
+          "index": 45079
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTablePaneScrollerAtPageX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the TablePaneScroller at a certain x position in the page. If there is",
+          "     * no TablePaneScroller at this position, null is returned.",
+          "     *",
+          "     * @param pageX {Integer} the position in the page to check (in pixels).",
+          "     * @return {qx.ui.table.pane.Scroller} the TablePaneScroller or null.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the TablePaneScroller at a certain x position in the page. If there is\n no TablePaneScroller at this position, null is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pageX {Integer} the position in the page to check (in pixels).",
+            "paramName": "pageX",
+            "description": " the position in the page to check (in pixels).",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.pane.Scroller} the TablePaneScroller or null.",
+            "type": "qx.ui.table.pane.Scroller",
+            "description": "the TablePaneScroller or null."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1558,
+          "column": 4,
+          "index": 45407
+        },
+        "end": {
+          "line": 1561,
+          "column": 5,
+          "index": 45571
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pageX",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.table.pane.Scroller"
+      },
+      "appearsIn": []
+    },
+    "setFocusedCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the currently focused cell. A value of <code>null</code> hides the",
+          "     * focus cell.",
+          "     *",
+          "     * @param col {Integer?null} the model index of the focused cell's column.",
+          "     * @param row {Integer?null} the model index of the focused cell's row.",
+          "     * @param scrollVisible {Boolean ? false} whether to scroll the new focused cell",
+          "     *          visible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the currently focused cell. A value of <code>null</code> hides the\n focus cell.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer?null} the model index of the focused cell's column.",
+            "paramName": "col",
+            "description": " the model index of the focused cell's column.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer?null} the model index of the focused cell's row.",
+            "paramName": "row",
+            "description": " the model index of the focused cell's row.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "scrollVisible {Boolean ? false} whether to scroll the new focused cell\n          visible.",
+            "paramName": "scrollVisible",
+            "description": " whether to scroll the new focused cell\n          visible.",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1572,
+          "column": 4,
+          "index": 45964
+        },
+        "end": {
+          "line": 1600,
+          "column": 5,
+          "index": 46822
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "row",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "scrollVisible",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets (clears) the current selection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets (clears) the current selection</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1605,
+          "column": 4,
+          "index": 46890
+        },
+        "end": {
+          "line": 1607,
+          "column": 5,
+          "index": 46963
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "resetCellFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the focused cell.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the focused cell.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1612,
+          "column": 4,
+          "index": 47018
+        },
+        "end": {
+          "line": 1614,
+          "column": 5,
+          "index": 47088
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFocusedColumn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the column of the currently focused cell.",
+          "     *",
+          "     * @return {Integer} the model index of the focused cell's column.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the column of the currently focused cell.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the model index of the focused cell's column.",
+            "type": "Integer",
+            "description": "the model index of the focused cell's column."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1621,
+          "column": 4,
+          "index": 47246
+        },
+        "end": {
+          "line": 1623,
+          "column": 5,
+          "index": 47304
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getFocusedRow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the row of the currently focused cell.",
+          "     *",
+          "     * @return {Integer} the model index of the focused cell's column.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the row of the currently focused cell.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the model index of the focused cell's column.",
+            "type": "Integer",
+            "description": "the model index of the focused cell's column."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1630,
+          "column": 4,
+          "index": 47459
+        },
+        "end": {
+          "line": 1632,
+          "column": 5,
+          "index": 47514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "highlightFocusedRow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Select whether the focused row is highlighted",
+          "     *",
+          "     * @param bHighlight {Boolean}",
+          "     *   Flag indicating whether the focused row should be highlighted.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Select whether the focused row is highlighted</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "bHighlight {Boolean}\n   Flag indicating whether the focused row should be highlighted.",
+            "paramName": "bHighlight",
+            "description": "\n   Flag indicating whether the focused row should be highlighted.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1641,
+          "column": 4,
+          "index": 47711
+        },
+        "end": {
+          "line": 1643,
+          "column": 5,
+          "index": 47816
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "bHighlight",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clearFocusedRowHighlight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the highlighting of the current focus row.",
+          "     *",
+          "     * This is used to temporarily remove the highlighting of the currently",
+          "     * focused row, and is expected to be used most typically by adding a",
+          "     * listener on the \"pointerout\" event, so that the focus highlighting is",
+          "     * suspended when the pointer leaves the table:",
+          "     *",
+          "     *     table.addListener(\"pointerout\", table.clearFocusedRowHighlight);",
+          "     *",
+          "     * @param evt {qx.event.type.Pointer} Incoming pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the highlighting of the current focus row.\n This is used to temporarily remove the highlighting of the currently\n focused row, and is expected to be used most typically by adding a\n listener on the \"pointerout\" event, so that the focus highlighting is\n suspended when the pointer leaves the table:\n     table.addListener(\"pointerout\", table.clearFocusedRowHighlight);</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Pointer} Incoming pointer event",
+            "paramName": "evt",
+            "description": " Incoming pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1657,
+          "column": 4,
+          "index": 48337
+        },
+        "end": {
+          "line": 1677,
+          "column": 5,
+          "index": 48942
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "moveFocusedCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Moves the focus.",
+          "     *",
+          "     * @param deltaX {Integer} The delta by which the focus should be moved on the x axis.",
+          "     * @param deltaY {Integer} The delta by which the focus should be moved on the y axis.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Moves the focus.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "deltaX {Integer} The delta by which the focus should be moved on the x axis.",
+            "paramName": "deltaX",
+            "description": " The delta by which the focus should be moved on the x axis.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "deltaY {Integer} The delta by which the focus should be moved on the y axis.",
+            "paramName": "deltaY",
+            "description": " The delta by which the focus should be moved on the y axis.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1685,
+          "column": 4,
+          "index": 49178
+        },
+        "end": {
+          "line": 1718,
+          "column": 5,
+          "index": 50119
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "deltaX",
+          "type": "Integer"
+        },
+        {
+          "name": "deltaY",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollCellVisible": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls a cell visible.",
+          "     *",
+          "     * @param col {Integer} the model index of the column the cell belongs to.",
+          "     * @param row {Integer} the model index of the row the cell belongs to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls a cell visible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} the model index of the column the cell belongs to.",
+            "paramName": "col",
+            "description": " the model index of the column the cell belongs to.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer} the model index of the row the cell belongs to.",
+            "paramName": "row",
+            "description": " the model index of the row the cell belongs to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1726,
+          "column": 4,
+          "index": 50335
+        },
+        "end": {
+          "line": 1745,
+          "column": 5,
+          "index": 50988
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isEditing": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether currently a cell is editing.",
+          "     *",
+          "     * @return {var} whether currently a cell is editing.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether currently a cell is editing.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} whether currently a cell is editing.",
+            "type": "var",
+            "description": "whether currently a cell is editing."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1752,
+          "column": 4,
+          "index": 51128
+        },
+        "end": {
+          "line": 1759,
+          "column": 5,
+          "index": 51408
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "startEditing": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts editing the currently focused cell. Does nothing if already editing",
+          "     * or if the column is not editable.",
+          "     *",
+          "     * @return {Boolean} whether editing was started",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts editing the currently focused cell. Does nothing if already editing\n or if the column is not editable.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether editing was started",
+            "type": "boolean",
+            "description": "whether editing was started"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1767,
+          "column": 4,
+          "index": 51614
+        },
+        "end": {
+          "line": 1776,
+          "column": 5,
+          "index": 51932
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "stopEditing": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops editing and writes the editor's value to the model.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops editing and writes the editor's value to the model.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1781,
+          "column": 4,
+          "index": 52020
+        },
+        "end": {
+          "line": 1787,
+          "column": 5,
+          "index": 52277
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "cancelEditing": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops editing without writing the editor's value to the model.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops editing without writing the editor's value to the model.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1792,
+          "column": 4,
+          "index": 52370
+        },
+        "end": {
+          "line": 1798,
+          "column": 5,
+          "index": 52631
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "updateContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the table content of every attached table pane.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the table content of every attached table pane.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1803,
+          "column": 4,
+          "index": 52716
+        },
+        "end": {
+          "line": 1808,
+          "column": 5,
+          "index": 52911
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "blockHeaderElements": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Activates the blocker widgets on all column headers and the",
+          "     * column button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activates the blocker widgets on all column headers and the\n column button</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1814,
+          "column": 4,
+          "index": 53022
+        },
+        "end": {
+          "line": 1820,
+          "column": 5,
+          "index": 53305
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "unblockHeaderElements": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deactivates the blocker widgets on all column headers and the",
+          "     * column button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deactivates the blocker widgets on all column headers and the\n column button</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1826,
+          "column": 4,
+          "index": 53418
+        },
+        "end": {
+          "line": 1832,
+          "column": 5,
+          "index": 53689
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getMetaColumnAtPageX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the meta column at a certain x position in the page. If there is no",
+          "     * meta column at this position, -1 is returned.",
+          "     *",
+          "     * @param pageX {Integer} the position in the page to check (in pixels).",
+          "     * @return {Integer} the index of the meta column or -1.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the meta column at a certain x position in the page. If there is no\n meta column at this position, -1 is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pageX {Integer} the position in the page to check (in pixels).",
+            "paramName": "pageX",
+            "description": " the position in the page to check (in pixels).",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the index of the meta column or -1.",
+            "type": "Integer",
+            "description": "the index of the meta column or -1."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1841,
+          "column": 4,
+          "index": 53990
+        },
+        "end": {
+          "line": 1853,
+          "column": 5,
+          "index": 54299
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pageX",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getMetaColumnAtColumnX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the meta column a column is shown in. If the column is not shown at",
+          "     * all, -1 is returned.",
+          "     *",
+          "     * @param visXPos {Integer} the visible x position of the column.",
+          "     * @return {Integer} the meta column the column is shown in.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the meta column a column is shown in. If the column is not shown at\n all, -1 is returned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "visXPos {Integer} the visible x position of the column.",
+            "paramName": "visXPos",
+            "description": " the visible x position of the column.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the meta column the column is shown in.",
+            "type": "Integer",
+            "description": "the meta column the column is shown in."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1862,
+          "column": 4,
+          "index": 54575
+        },
+        "end": {
+          "line": 1876,
+          "column": 5,
+          "index": 54935
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "visXPos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_updateStatusBar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the text shown in the status bar.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the text shown in the status bar.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1881,
+          "column": 4,
+          "index": 55007
+        },
+        "end": {
+          "line": 1916,
+          "column": 5,
+          "index": 55942
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateScrollerWidths": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the widths of all scrollers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the widths of all scrollers.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1921,
+          "column": 4,
+          "index": 56009
+        },
+        "end": {
+          "line": 1934,
+          "column": 5,
+          "index": 56525
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateScrollBarVisibility": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the visibility of the scrollbars in the meta columns.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the visibility of the scrollbars in the meta columns.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1939,
+          "column": 4,
+          "index": 56617
+        },
+        "end": {
+          "line": 2026,
+          "column": 5,
+          "index": 59760
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initColumnMenu": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the column menu",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the column menu</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 2031,
+          "column": 4,
+          "index": 59817
+        },
+        "end": {
+          "line": 2078,
+          "column": 5,
+          "index": 61292
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createColumnVisibilityCheckBoxHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a handler for a check box of the column visibility menu.",
+          "     *",
+          "     * @param col {Integer} the model index of column to create the handler for.",
+          "     * @return {Function} The created event handler.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a handler for a check box of the column visibility menu.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} the model index of column to create the handler for.",
+            "paramName": "col",
+            "description": " the model index of column to create the handler for.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} The created event handler.",
+            "type": "((...args: any[]) => any)",
+            "description": "The created event handler."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 2086,
+          "column": 4,
+          "index": 61528
+        },
+        "end": {
+          "line": 2091,
+          "column": 5,
+          "index": 61730
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "setColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the width of a column.",
+          "     *",
+          "     * @param col {Integer} the model index of column.",
+          "     * @param width {Integer} the new width in pixels.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the width of a column.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} the model index of column.",
+            "paramName": "col",
+            "description": " the model index of column.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} the new width in pixels.",
+            "paramName": "width",
+            "description": " the new width in pixels.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 2099,
+          "column": 4,
+          "index": 61905
+        },
+        "end": {
+          "line": 2101,
+          "column": 5,
+          "index": 62000
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resize event handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resize event handler</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 2106,
+          "column": 4,
+          "index": 62051
+        },
+        "end": {
+          "line": 2110,
+          "column": 5,
+          "index": 62190
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "addListener": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 2113,
+          "column": 4,
+          "index": 62215
+        },
+        "end": {
+          "line": 2125,
+          "column": 5,
+          "index": 62726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "listener"
+        },
+        {
+          "name": "self"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MEvent"
+      ]
+    },
+    "removeListener": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 2128,
+          "column": 4,
+          "index": 62751
+        },
+        "end": {
+          "line": 2136,
+          "column": 5,
+          "index": 63094
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "listener"
+        },
+        {
+          "name": "self"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MEvent"
+      ]
+    },
+    "removeListenerById": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 2139,
+          "column": 4,
+          "index": 63119
+        },
+        "end": {
+          "line": 2152,
+          "column": 5,
+          "index": 63610
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MEvent"
+      ]
+    },
+    "destroy": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 2154,
+          "column": 4,
+          "index": 63617
+        },
+        "end": {
+          "line": 2157,
+          "column": 5,
+          "index": 63722
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__dragScrollTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 76,
+          "column": 27,
+          "index": 2010
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "__xDirs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2016
+        },
+        "end": {
+          "line": 77,
+          "column": 17,
+          "index": 2029
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "__yDirs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2035
+        },
+        "end": {
+          "line": 78,
+          "column": 17,
+          "index": 2048
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_findScrollableParent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the first scrollable parent (in the parent chain).",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The widget to start from.",
+          "     * @return {qx.ui.core.Widget} A scrollable widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the first scrollable parent (in the parent chain).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.LayoutItem} The widget to start from.",
+            "paramName": "widget",
+            "description": " The widget to start from.",
+            "type": "qx.ui.core.LayoutItem"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} A scrollable widget.",
+            "type": "qx.ui.core.Widget",
+            "description": "A scrollable widget."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2269
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2559
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_isScrollable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget is scrollable.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to check.",
+          "     * @return {Boolean} Whether the widget is scrollable.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget is scrollable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "widget {qx.ui.core.Widget} The widget to check.",
+            "paramName": "widget",
+            "description": " The widget to check.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the widget is scrollable.",
+            "type": "boolean",
+            "description": "Whether the widget is scrollable."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2751
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2893
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_getBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the bounds of the given scrollable.",
+          "     *",
+          "     * @param scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+          "     * @return {Map} A map with all four bounds (e.g. {\"left\":0, \"top\":20, \"right\":0, \"bottom\":80}).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the bounds of the given scrollable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+            "paramName": "scrollable",
+            "description": " Scrollable which has scrollbar child controls.",
+            "type": "qx.ui.core.Widget"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map with all four bounds (e.g. {\"left\":0, \"top\":20, \"right\":0, \"bottom\":80}).",
+            "type": "Map<any, any>",
+            "description": "A map with all four bounds (e.g. {\"left\":0, \"top\":20, \"right\":0, \"bottom\":80})."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3164
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3475
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollable",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_getEdgeType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the edge type or null if the pointer isn't within one of the thresholds.",
+          "     *",
+          "     * @param diff {Map} Difference map with all for edgeTypes.",
+          "     * @param thresholdX {Number} x-axis threshold.",
+          "     * @param thresholdY {Number} y-axis threshold.",
+          "     * @return {String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the edge type or null if the pointer isn't within one of the thresholds.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "diff {Map} Difference map with all for edgeTypes.",
+            "paramName": "diff",
+            "description": " Difference map with all for edgeTypes.",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "thresholdX {Number} x-axis threshold.",
+            "paramName": "thresholdX",
+            "description": " x-axis threshold.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "thresholdY {Number} y-axis threshold.",
+            "paramName": "thresholdY",
+            "description": " y-axis threshold.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+            "type": "string",
+            "description": "One of the four edgeTypes ('left', 'right', 'top', 'bottom')."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3844
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4283
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "diff",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "thresholdX",
+          "type": "number"
+        },
+        {
+          "name": "thresholdY",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_getAxis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the axis ('x' or 'y') by the edge type.",
+          "     *",
+          "     * @param edgeType {String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+          "     * @throws {Error} If edgeType is not one of the distinct four ones.",
+          "     * @return {String} Returns 'y' or 'x'.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the axis ('x' or 'y') by the edge type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "edgeType {String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+            "paramName": "edgeType",
+            "description": " One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+            "type": "string"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} If edgeType is not one of the distinct four ones.",
+            "type": "Error",
+            "description": " If edgeType is not one of the distinct four ones."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Returns 'y' or 'x'.",
+            "type": "string",
+            "description": "Returns 'y' or 'x'."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4576
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4934
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "edgeType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_getThresholdByEdgeType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the threshold amount by edge type.",
+          "     *",
+          "     * @param edgeType {String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+          "     * @return {Number} The threshold of the x or y axis.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the threshold amount by edge type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "edgeType {String} One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+            "paramName": "edgeType",
+            "description": " One of the four edgeTypes ('left', 'right', 'top', 'bottom').",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The threshold of the x or y axis.",
+            "type": "number",
+            "description": "The threshold of the x or y axis."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5163
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5415
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "edgeType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_isScrollbarVisible": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the scrollbar is visible.",
+          "     *",
+          "     * @param scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+          "     * @param axis {String} Can be 'y' or 'x'.",
+          "     * @return {Boolean} Whether the scrollbar is visible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the scrollbar is visible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+            "paramName": "scrollable",
+            "description": " Scrollable which has scrollbar child controls.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "axis {String} Can be 'y' or 'x'.",
+            "paramName": "axis",
+            "description": " Can be 'y' or 'x'.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the scrollbar is visible.",
+            "type": "boolean",
+            "description": "Whether the scrollbar is visible."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5684
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5906
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollable",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "axis",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_isScrollbarExceedingMaxPos": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the scrollbar is exceeding it's maximum position.",
+          "     *",
+          "     * @param scrollbar {qx.ui.core.scroll.IScrollBar} Scrollbar to check.",
+          "     * @param axis {String} Can be 'y' or 'x'.",
+          "     * @param amount {Number} Amount to scroll which may be negative.",
+          "     * @return {Boolean} Whether the amount will exceed the scrollbar max position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the scrollbar is exceeding it's maximum position.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollbar {qx.ui.core.scroll.IScrollBar} Scrollbar to check.",
+            "paramName": "scrollbar",
+            "description": " Scrollbar to check.",
+            "type": "qx.ui.core.scroll.IScrollBar"
+          },
+          {
+            "name": "@param",
+            "body": "axis {String} Can be 'y' or 'x'.",
+            "paramName": "axis",
+            "description": " Can be 'y' or 'x'.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "amount {Number} Amount to scroll which may be negative.",
+            "paramName": "amount",
+            "description": " Amount to scroll which may be negative.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the amount will exceed the scrollbar max position.",
+            "type": "boolean",
+            "description": "Whether the amount will exceed the scrollbar max position."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6277
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollbar",
+          "type": "qx.ui.core.scroll.IScrollBar"
+        },
+        {
+          "name": "axis",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_calculateThresholdExceedance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the threshold exceedance (which may be negative).",
+          "     *",
+          "     * @param diff {Number} Difference value of one edgeType.",
+          "     * @param threshold {Number} x-axis or y-axis threshold.",
+          "     * @return {Number} Threshold exceedance amount (positive or negative).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the threshold exceedance (which may be negative).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "diff {Number} Difference value of one edgeType.",
+            "paramName": "diff",
+            "description": " Difference value of one edgeType.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "threshold {Number} x-axis or y-axis threshold.",
+            "paramName": "threshold",
+            "description": " x-axis or y-axis threshold.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Threshold exceedance amount (positive or negative).",
+            "type": "number",
+            "description": "Threshold exceedance amount (positive or negative)."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 6818
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6965
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "diff",
+          "type": "number"
+        },
+        {
+          "name": "threshold",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_calculateScrollAmount": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the scroll amount (which may be negative).",
+          "     * The amount is influenced by the scrollbar size (bigger = faster)",
+          "     * the exceedanceAmount (bigger = faster) and the slowDownFactor.",
+          "     *",
+          "     * @param scrollbarSize {Number} Size of the scrollbar.",
+          "     * @param exceedanceAmount {Number} Threshold exceedance amount (positive or negative).",
+          "     * @return {Number} Scroll amount (positive or negative).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the scroll amount (which may be negative).\n The amount is influenced by the scrollbar size (bigger = faster)\n the exceedanceAmount (bigger = faster) and the slowDownFactor.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollbarSize {Number} Size of the scrollbar.",
+            "paramName": "scrollbarSize",
+            "description": " Size of the scrollbar.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "exceedanceAmount {Number} Threshold exceedance amount (positive or negative).",
+            "paramName": "exceedanceAmount",
+            "description": " Threshold exceedance amount (positive or negative).",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Scroll amount (positive or negative).",
+            "type": "number",
+            "description": "Scroll amount (positive or negative)."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 7412
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 7615
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollbarSize",
+          "type": "number"
+        },
+        {
+          "name": "exceedanceAmount",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "_scrollBy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the given scrollable on the given axis for the given amount.",
+          "     *",
+          "     * @param scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+          "     * @param axis {String} Can be 'y' or 'x'.",
+          "     * @param exceedanceAmount {Number} Threshold exceedance amount (positive or negative).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the given scrollable on the given axis for the given amount.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollable {qx.ui.core.Widget} Scrollable which has scrollbar child controls.",
+            "paramName": "scrollable",
+            "description": " Scrollable which has scrollbar child controls.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "axis {String} Can be 'y' or 'x'.",
+            "paramName": "axis",
+            "description": " Can be 'y' or 'x'.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "exceedanceAmount {Number} Threshold exceedance amount (positive or negative).",
+            "paramName": "exceedanceAmount",
+            "description": " Threshold exceedance amount (positive or negative).",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7952
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 8474
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollable",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "axis",
+          "type": "string"
+        },
+        {
+          "name": "exceedanceAmount",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "__onDrag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the drag event.",
+          "     *",
+          "     * @param e {qx.event.type.Drag} The drag event instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the drag event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Drag} The drag event instance.",
+            "paramName": "e",
+            "description": " The drag event instance.",
+            "type": "qx.event.type.Drag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4,
+          "index": 8801
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 10921
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Drag"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    },
+    "__onDragend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the dragend event.",
+          "     *",
+          "     * @param e {qx.event.type.Drag} The drag event instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the dragend event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Drag} The drag event instance.",
+            "paramName": "e",
+            "description": " The drag event instance.",
+            "type": "qx.event.type.Drag"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 11057
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 11162
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Drag"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MDragDropScrolling"
+      ],
+      "mixin": "qx.ui.core.MDragDropScrolling"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 2166,
+        "column": 2,
+        "index": 63918
+      },
+      "end": {
+        "line": 2210,
+        "column": 3,
+        "index": 65090
+      }
+    }
+  }
+}

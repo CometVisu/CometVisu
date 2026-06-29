@@ -1,0 +1,154 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602777,
+  "lastModifiedIso": "2026-06-29T04:00:02.777Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Message.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 555
+    },
+    "end": {
+      "line": 48,
+      "column": 3,
+      "index": 1044
+    }
+  },
+  "className": "qx.io.jsonrpc.protocol.Message",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The base class for all JSON-RPC v2.0 object except {@link qx.io.jsonrpc.protocol.Batch}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The base class for all JSON-RPC v2.0 object except {@link qx.io.jsonrpc.protocol.Batch}</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "jsonrpc": {
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 653
+        },
+        "end": {
+          "line": 28,
+          "column": 5,
+          "index": 710
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "2.0"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Serialize to JSON string",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serialize to JSON string</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 806
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 870
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    },
+    "toObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Serialize to a native javascript object",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Serialize to a native javascript object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 964
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1036
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

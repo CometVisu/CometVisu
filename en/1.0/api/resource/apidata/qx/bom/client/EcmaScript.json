@@ -1,0 +1,1655 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601904,
+  "lastModifiedIso": "2026-06-29T04:00:01.904Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/EcmaScript.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 733
+    },
+    "end": {
+      "line": 496,
+      "column": 3,
+      "index": 13421
+    }
+  },
+  "className": "qx.bom.client.EcmaScript",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The main purpose of this class to hold all checks about ECMAScript.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The main purpose of this class to hold all checks about ECMAScript.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "statics": {
+    "getStackTrace": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the name of the Error object property that holds stack trace",
+          "     * information or null if the client does not provide any.",
+          "     *",
+          "     * @internal",
+          "     * @return {String|null} <code>stack</code>, <code>stacktrace</code> or",
+          "     * <code>null</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the name of the Error object property that holds stack trace\n information or null if the client does not provide any.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} <code>stack</code>, <code>stacktrace</code> or\n <code>null</code>",
+            "type": "String|null",
+            "description": "<code>stack</code>, <code>stacktrace</code> or\n <code>null</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1080
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1486
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getMutationObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'MutationObserver' is supported.",
+          "     * @internal",
+          "     * @ignore(MutationObserver)",
+          "     * @return {Boolean} <code>true</code>, if MutationObserver is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'MutationObserver' is supported.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "MutationObserver"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if MutationObserver is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if MutationObserver is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1687
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayIndexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'indexOf' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'indexOf' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1942
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2007
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayLastIndexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'lastIndexOf' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'lastIndexOf' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2184
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2257
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayForEach": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'forEach' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'forEach' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2430
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2495
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'filter' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'filter' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2667
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2730
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'map' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'map' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2899
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2956
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArraySome": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'some' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'some' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3126
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3185
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayFind": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'find' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'find' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3355
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3414
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayFindIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'findIndex' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'findIndex' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3589
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3658
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayEvery": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'every' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'every' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3829
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayReduce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'reduce' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'reduce' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4062
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 4125
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayReduceRight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'reduceRight' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'reduceRight' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4302
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 4375
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getArrayIncludes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'includes' is supported on the Array object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'includes' is supported on the Array object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4549
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4616
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getErrorToString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'toString' is supported on the Error object and",
+          "     * its working as expected.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'toString' is supported on the Error object and\n its working as expected.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4825
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 4988
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getFunctionBind": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'bind' is supported on the Function object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'bind' is supported on the Function object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5161
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5246
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAsyncFunction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if creating async functions are supported",
+          "     *",
+          "     * @lint ignoreDeprecated(alert, eval)",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if async functions are supported",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if creating async functions are supported</p>"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(alert, eval)"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if async functions are supported",
+            "type": "boolean",
+            "description": "<code>true</code>, if async functions are supported"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5476
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5677
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getObjectKeys": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'keys' is supported on the Object object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'keys' is supported on the Object object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5848
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5899
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getObjectValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'values' is supported on the Object object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'values' is supported on the Object object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 6072
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 6127
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getObjectIs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'is' is supported on the Object object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'is' is supported on the Object object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 6296
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6343
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getObjectAssign": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'assign' is supported on the Object object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'assign' is supported on the Object object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 244,
+          "column": 4,
+          "index": 6516
+        },
+        "end": {
+          "line": 246,
+          "column": 5,
+          "index": 6571
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDateNow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'now' is supported on the Date object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'now' is supported on the Date object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 6739
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6784
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDateParse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'parse' is supported on the Date object and whether it",
+          "     * supports ISO-8601 parsing. Additionally it checks if 'parse' takes",
+          "     * ISO-8601 date strings without timezone specifier and treats them as",
+          "     * local (as per specification)",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method supports ISO-8601",
+          "     *   dates.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'parse' is supported on the Date object and whether it\n supports ISO-8601 parsing. Additionally it checks if 'parse' takes\n ISO-8601 date strings without timezone specifier and treats them as\n local (as per specification)</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method supports ISO-8601\n   dates.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method supports ISO-8601\n   dates."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 7173
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 7445
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getStringStartsWith": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'startsWith' is supported on the String object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'startsWith' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 7622
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 7715
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getStringEndsWith": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'endsWith' is supported on the String object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'endsWith' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 7890
+        },
+        "end": {
+          "line": 292,
+          "column": 5,
+          "index": 7979
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getStringTrim": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'trim' is supported on the String object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'trim' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 8150
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 8231
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getStringCodePointAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'codePointAt' is supported on the String object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'codePointAt' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 8409
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 8504
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getStringFromCodePoint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'fromCodePoint' is supported on the String object.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code>, if the method is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'fromCodePoint' is supported on the String object.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 8684
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 8753
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getBigInt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'BigInt' type is supported.",
+          "     * @internal",
+          "     * @ignore(BigInt)",
+          "     * @return {Boolean} <code>true</code>, if BigInt is available.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'BigInt' type is supported.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "BigInt"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if BigInt is available.",
+            "type": "boolean",
+            "description": "<code>true</code>, if BigInt is available."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 327,
+          "column": 4,
+          "index": 8929
+        },
+        "end": {
+          "line": 329,
+          "column": 5,
+          "index": 8992
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getBigIntToLocaleString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if 'toLocaleString' is supported on the BigInt object and whether",
+          "     * it actually works",
+          "     * @internal",
+          "     * @ignore(BigInt)",
+          "     * @ignore(BigInt.prototype.toLocaleString)",
+          "     * @return {Boolean} <code>true</code>, if the method is supported and",
+          "     *   works at least rudimentary.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if 'toLocaleString' is supported on the BigInt object and whether\n it actually works</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "BigInt"
+          },
+          {
+            "name": "@ignore",
+            "body": "BigInt.prototype.toLocaleString"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code>, if the method is supported and\n   works at least rudimentary.",
+            "type": "boolean",
+            "description": "<code>true</code>, if the method is supported and\n   works at least rudimentary."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 4,
+          "index": 9320
+        },
+        "end": {
+          "line": 348,
+          "column": 5,
+          "index": 9630
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPromiseNative": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether Native promises are available",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether Native promises are available</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 9705
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 9870
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getEpsilon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether Native promises are available",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether Native promises are available</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 9945
+        },
+        "end": {
+          "line": 365,
+          "column": 5,
+          "index": 10027
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

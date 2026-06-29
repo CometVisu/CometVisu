@@ -1,0 +1,100 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601442,
+  "lastModifiedIso": "2026-06-29T04:00:01.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/CheckBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 584
+    },
+    "end": {
+      "line": 69,
+      "column": 3,
+      "index": 1694
+    }
+  },
+  "className": "qx.ui.table.celleditor.CheckBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * For editing boolean data in a checkbox. It is advisable to use this in",
+      " * conjunction with {@link qx.ui.table.cellrenderer.Boolean}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>For editing boolean data in a checkbox. It is advisable to use this in\n conjunction with {@link qx.ui.table.cellrenderer.Boolean}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.ICellEditorFactory"
+  ],
+  "members": {
+    "createCellEditor": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 942
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1556
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    },
+    "getCellEditorValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1595
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1686
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellEditor"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601547,
+  "lastModifiedIso": "2026-06-29T04:00:01.547Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/ColorDark.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 433
+    },
+    "end": {
+      "line": 119,
+      "column": 3,
+      "index": 3240
+    }
+  },
+  "className": "qx.theme.indigo.ColorDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Indigo dark color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Indigo dark color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,1200 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603304,
+  "lastModifiedIso": "2026-06-29T04:00:03.304Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/embed/ThemedIframe.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 48,
+      "column": 0,
+      "index": 1496
+    },
+    "end": {
+      "line": 484,
+      "column": 3,
+      "index": 12722
+    }
+  },
+  "className": "qx.ui.embed.ThemedIframe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Container widget for internal frames (iframes) with qooxdoo scroll bar and",
+      " * size hint support.",
+      " *",
+      " * An iframe can display any HTML page inside the widget. Note that custom",
+      " * scroll bars do only work if the iframe's source points to the same domain",
+      " * as the application.",
+      " *",
+      " * @childControl iframe {qx.ui.embed.Iframe} embedded iframe component",
+      " * @childControl scrollbar-x {qx.ui.core.scroll.ScrollBar} horizontal scrollbar",
+      " * @childControl scrollbar-y {qx.ui.core.scroll.ScrollBar} vertical scrollbar",
+      " * @childControl corner {qx.ui.core.Widget} corner widget where no scrollbar is shown",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget:",
+      " *",
+      " * <pre class='javascript'>",
+      " * var document = this.getRoot();",
+      " * var iframe = new qx.ui.embed.ThemedIframe(\"frame.html\");",
+      " * document.add(iframe);",
+      " * </pre>",
+      " *",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/themediframe.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Container widget for internal frames (iframes) with qooxdoo scroll bar and\n size hint support.\n An iframe can display any HTML page inside the widget. Note that custom\n scroll bars do only work if the iframe's source points to the same domain\n as the application.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "iframe {qx.ui.embed.Iframe} embedded iframe component"
+      },
+      {
+        "name": "@childControl",
+        "body": "scrollbar-x {qx.ui.core.scroll.ScrollBar} horizontal scrollbar"
+      },
+      {
+        "name": "@childControl",
+        "body": "scrollbar-y {qx.ui.core.scroll.ScrollBar} vertical scrollbar"
+      },
+      {
+        "name": "@childControl",
+        "body": "corner {qx.ui.core.Widget} corner widget where no scrollbar is shown\n*Example*\n Here is a little example of how to use the widget:\n <pre class='javascript'>\n var document = this.getRoot();\n var iframe = new qx.ui.embed.ThemedIframe(\"frame.html\");\n document.add(iframe);\n </pre>\n*External Documentation*\n <a href='http://qooxdoo.org/docs/#desktop/widget/themediframe.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.embed.AbstractIframe",
+  "mixins": [
+    "qx.ui.core.scroll.MRoll"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "source"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 52,
+        "column": 2,
+        "index": 1619
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1859
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1900
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1964
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "scrollarea"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "scrollbarX": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2244
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2375
+        }
+      },
+      "json": {
+        "check": [
+          "auto",
+          "on",
+          "off"
+        ],
+        "init": "auto",
+        "themeable": true,
+        "apply": "_updateScrollbars"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The policy, when the horizontal scrollbar should be shown.",
+          "     * <ul>",
+          "     *   <li><b>auto</b>: Show scrollbar on demand</li>",
+          "     *   <li><b>on</b>: Always show the scrollbar</li>",
+          "     *   <li><b>off</b>: Never show the scrollbar</li>",
+          "     * </ul>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The policy, when the horizontal scrollbar should be shown.\n </p>\n<ul>\n   <li><b>auto</b>: Show scrollbar on demand</li>\n   <li><b>on</b>: Always show the scrollbar</li>\n   <li><b>off</b>: Never show the scrollbar</li>\n </ul>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "scrollbarY": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2655
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2786
+        }
+      },
+      "json": {
+        "check": [
+          "auto",
+          "on",
+          "off"
+        ],
+        "init": "auto",
+        "themeable": true,
+        "apply": "_updateScrollbars"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The policy, when the horizontal scrollbar should be shown.",
+          "     * <ul>",
+          "     *   <li><b>auto</b>: Show scrollbar on demand</li>",
+          "     *   <li><b>on</b>: Always show the scrollbar</li>",
+          "     *   <li><b>off</b>: Never show the scrollbar</li>",
+          "     * </ul>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The policy, when the horizontal scrollbar should be shown.\n </p>\n<ul>\n   <li><b>auto</b>: Show scrollbar on demand</li>\n   <li><b>on</b>: Always show the scrollbar</li>\n   <li><b>off</b>: Never show the scrollbar</li>\n </ul>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "scrollbar": {
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2873
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2933
+        }
+      },
+      "json": {
+        "group": [
+          "scrollbarX",
+          "scrollbarY"
+        ]
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Group property, to set the overflow of both scroll bars.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Group property, to set the overflow of both scroll bars.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "scrollByDrag": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 984
+        },
+        "end": {
+          "line": 34,
+          "column": 5,
+          "index": 1047
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    }
+  },
+  "members": {
+    "__iframeSize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2957
+        },
+        "end": {
+          "line": 110,
+          "column": 22,
+          "index": 2975
+        }
+      },
+      "appearsIn": []
+    },
+    "__iframeObserverId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2981
+        },
+        "end": {
+          "line": 111,
+          "column": 28,
+          "index": 3005
+        }
+      },
+      "appearsIn": []
+    },
+    "_getIframeElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3030
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3122
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.embed.AbstractIframe",
+      "appearsIn": [
+        "qx.ui.embed.AbstractIframe"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3147
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 4412
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onIframeLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the iframe's load event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the iframe's load event</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4681
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4917
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onIframeResize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for resize event of the iframe widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for resize event of the iframe widget.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 5000
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5057
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_disableScollbars": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hide all scrollbars and stop observing the iframe document",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hide all scrollbars and stop observing the iframe document</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 5146
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5347
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_addRollListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach roll listener to the iframe",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Attach roll listener to the iframe</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5412
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5778
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_startIframeObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start observing size changes of the iframe document",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start observing size changes of the iframe document</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 5860
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 6150
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopIframeObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop observing size changes of the iframe document",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop observing size changes of the iframe document</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6231
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6458
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onIframeObserverInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler, which is called periodically to update the scroll bars",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler, which is called periodically to update the scroll bars</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 6558
+        },
+        "end": {
+          "line": 271,
+          "column": 5,
+          "index": 7015
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_preventIframeScrolling": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Try to hide native scrollbars in the iframe",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Try to hide native scrollbars in the iframe</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 7089
+        },
+        "end": {
+          "line": 288,
+          "column": 5,
+          "index": 7491
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateScrollbars": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recompute scrollbar visibility and positions based on the iframe's",
+          "     * document size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Recompute scrollbar visibility and positions based on the iframe's\n document size</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 7609
+        },
+        "end": {
+          "line": 363,
+          "column": 5,
+          "index": 9599
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getIframeSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute the size of the iframe body",
+          "     *",
+          "     * @return {Object|null} A map with the body size or <code>null</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compute the size of the iframe body</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|null} A map with the body size or <code>null</code>.",
+            "type": "Object|null",
+            "description": "A map with the body size or <code>null</code>."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4,
+          "index": 9748
+        },
+        "end": {
+          "line": 382,
+          "column": 5,
+          "index": 10050
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object|null"
+      },
+      "appearsIn": []
+    },
+    "_updateCornerWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update visibility of the corner widget based on the visibility of the",
+          "     * scrollbars",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update visibility of the corner widget based on the visibility of the\n scrollbars</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 4,
+          "index": 10168
+        },
+        "end": {
+          "line": 397,
+          "column": 5,
+          "index": 10433
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_configureScrollbar": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configures the given scrollbar",
+          "     *",
+          "     * @param scrollbarId {String} child control id of the scrollbar to",
+          "     *   configure",
+          "     * @param show {Boolean} whether the scrollbar should be visible",
+          "     * @param containerSize {Integer} size of the container widget",
+          "     * @param contentSize {Integer} size of the iframe's document",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configures the given scrollbar</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scrollbarId {String} child control id of the scrollbar to\n   configure",
+            "paramName": "scrollbarId",
+            "description": " child control id of the scrollbar to\n   configure",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "show {Boolean} whether the scrollbar should be visible",
+            "paramName": "show",
+            "description": " whether the scrollbar should be visible",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "containerSize {Integer} size of the container widget",
+            "paramName": "containerSize",
+            "description": " size of the container widget",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "contentSize {Integer} size of the iframe's document",
+            "paramName": "contentSize",
+            "description": " size of the iframe's document",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 10794
+        },
+        "end": {
+          "line": 431,
+          "column": 5,
+          "index": 11461
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scrollbarId",
+          "type": "string"
+        },
+        {
+          "name": "show",
+          "type": "boolean"
+        },
+        {
+          "name": "containerSize",
+          "type": "Integer"
+        },
+        {
+          "name": "contentSize",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onScrollBarX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the scroll event of the horizontal scrollbar",
+          "     *",
+          "     * @param e {qx.event.type.Data} The scroll event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the scroll event of the horizontal scrollbar</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The scroll event object",
+            "paramName": "e",
+            "description": " The scroll event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 11622
+        },
+        "end": {
+          "line": 440,
+          "column": 5,
+          "index": 11681
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onScrollBarY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the scroll event of the vertical scrollbar",
+          "     *",
+          "     * @param e {qx.event.type.Data} The scroll event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the scroll event of the vertical scrollbar</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} The scroll event object",
+            "paramName": "e",
+            "description": " The scroll event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 11840
+        },
+        "end": {
+          "line": 449,
+          "column": 5,
+          "index": 11899
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollToX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the iframe's content to the given left coordinate",
+          "     *",
+          "     * @param x {Integer} The vertical position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the iframe's content to the given left coordinate</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "x {Integer} The vertical position to scroll to.",
+            "paramName": "x",
+            "description": " The vertical position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 456,
+          "column": 4,
+          "index": 12056
+        },
+        "end": {
+          "line": 463,
+          "column": 5,
+          "index": 12264
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "x",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollToY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the iframe's content to the given top coordinate",
+          "     *",
+          "     * @param y {Integer} The horizontal position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the iframe's content to the given top coordinate</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "y {Integer} The horizontal position to scroll to.",
+            "paramName": "y",
+            "description": " The horizontal position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 470,
+          "column": 4,
+          "index": 12422
+        },
+        "end": {
+          "line": 477,
+          "column": 5,
+          "index": 12631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "y",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_cancelRoll": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1071
+        },
+        "end": {
+          "line": 38,
+          "column": 21,
+          "index": 1088
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    },
+    "_addRollHandling": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Responsible for adding the event listener needed for scroll handling.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Responsible for adding the event listener needed for scroll handling.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1188
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1339
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    },
+    "_removeRollHandling": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Responsible for removing the event listener needed for scroll handling.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Responsible for removing the event listener needed for scroll handling.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1441
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1601
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    },
+    "_onPointerDownForRoll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the pointerdown event which simply stops the momentum scrolling.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the pointerdown event which simply stops the momentum scrolling.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} pointerdown event",
+            "paramName": "e",
+            "description": " pointerdown event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1773
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1848
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    },
+    "_onRoll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Roll event handler",
+          "     *",
+          "     * @param e {qx.event.type.Roll} Roll event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Roll event handler</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Roll} Roll event",
+            "paramName": "e",
+            "description": " Roll event",
+            "type": "qx.event.type.Roll"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1952
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3886
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Roll"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.scroll.MRoll"
+      ],
+      "mixin": "qx.ui.core.scroll.MRoll"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 480,
+        "column": 2,
+        "index": 12640
+      },
+      "end": {
+        "line": 483,
+        "column": 3,
+        "index": 12718
+      }
+    }
+  },
+  "statics": {}
+}

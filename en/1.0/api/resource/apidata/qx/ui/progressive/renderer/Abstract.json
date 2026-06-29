@@ -1,0 +1,188 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600825,
+  "lastModifiedIso": "2026-06-29T04:00:00.825Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 488
+    },
+    "end": {
+      "line": 77,
+      "column": 3,
+      "index": 2321
+    }
+  },
+  "className": "qx.ui.progressive.renderer.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract renderer for Progressive.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract renderer for Progressive.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "members": {
+    "render": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Render the provided element in the renderer's unique way.",
+          "     *",
+          "     * @param state {qx.ui.progressive.State}",
+          "     *   Data relevant to the current rendering session.",
+          "     *",
+          "     * @param element {Object}",
+          "     *   An object containing at least the following members:",
+          "     *   <dl>",
+          "     *     <dt>",
+          "     *       renderer</dt>",
+          "     *     <dd>",
+          "     *       The name of a renderer.  That name is used by {@link",
+          "     *       qx.ui.progressive.Progressive} to select the renderer to be used",
+          "     *       to render this element.  The name should match one provided to",
+          "     *       {@link qx.ui.progressive.Progressive#addRenderer}.",
+          "     *     </dd>",
+          "     *",
+          "     *     <dt>",
+          "     *       data",
+          "     *     </dt>",
+          "     *     <dd>",
+          "     *       The data to be passed to the renderer.  The data may be of any",
+          "     *       type that the renderer knows how to render.",
+          "     *     </dd>",
+          "     *   </dl>",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Render the provided element in the renderer's unique way.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {qx.ui.progressive.State}\n   Data relevant to the current rendering session.",
+            "paramName": "state",
+            "description": "\n   Data relevant to the current rendering session.",
+            "type": "qx.ui.progressive.State"
+          },
+          {
+            "name": "@param",
+            "body": "element {Object}\n   An object containing at least the following members:\n   <dl>\n     <dt>\n       renderer</dt>\n     <dd>\n       The name of a renderer.  That name is used by {@link\n       qx.ui.progressive.Progressive} to select the renderer to be used\n       to render this element.  The name should match one provided to\n       {@link qx.ui.progressive.Progressive#addRenderer}.\n     </dd>\n     <dt>\n       data\n     </dt>\n     <dd>\n       The data to be passed to the renderer.  The data may be of any\n       type that the renderer knows how to render.\n     </dd>\n   </dl>",
+            "paramName": "element",
+            "description": "\n   An object containing at least the following members:\n   <dl>\n     <dt>\n       renderer</dt>\n     <dd>\n       The name of a renderer.  That name is used by {@link\n       qx.ui.progressive.Progressive} to select the renderer to be used\n       to render this element.  The name should match one provided to\n       {@link qx.ui.progressive.Progressive#addRenderer}.\n     </dd>\n     <dt>\n       data\n     </dt>\n     <dd>\n       The data to be passed to the renderer.  The data may be of any\n       type that the renderer knows how to render.\n     </dd>\n   </dl>",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1520
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1597
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "qx.ui.progressive.State"
+        },
+        {
+          "name": "element",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "join": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Join this renderer to its {@link qx.ui.progressive.Progressive}.",
+          "     *",
+          "     * @param progressive {qx.ui.progressive.Progressive}",
+          "     *   The Progressive object to which we are being joined.",
+          "     *",
+          "     * @param name {String}",
+          "     *   The name by which the data model will reference this renderer.  This",
+          "     *   is important to know in order to access the appropriate member of the",
+          "     *   {@link qx.ui.progressive.State}'s renderer array.  That array is",
+          "     *   accessed from the renderer by",
+          "     *   state.getRendererData()[element.renderer] where element.renderer will",
+          "     *   be the name provided here.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Join this renderer to its {@link qx.ui.progressive.Progressive}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "progressive {qx.ui.progressive.Progressive}\n   The Progressive object to which we are being joined.",
+            "paramName": "progressive",
+            "description": "\n   The Progressive object to which we are being joined.",
+            "type": "qx.ui.progressive.Progressive"
+          },
+          {
+            "name": "@param",
+            "body": "name {String}\n   The name by which the data model will reference this renderer.  This\n   is important to know in order to access the appropriate member of the\n   {@link qx.ui.progressive.State}'s renderer array.  That array is\n   accessed from the renderer by\n   state.getRendererData()[element.renderer] where element.renderer will\n   be the name provided here.",
+            "paramName": "name",
+            "description": "\n   The name by which the data model will reference this renderer.  This\n   is important to know in order to access the appropriate member of the\n   {@link qx.ui.progressive.State}'s renderer array.  That array is\n   accessed from the renderer by\n   state.getRendererData()[element.renderer] where element.renderer will\n   be the name provided here.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2239
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2313
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "progressive",
+          "type": "qx.ui.progressive.Progressive"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

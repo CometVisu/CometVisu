@@ -1,0 +1,2159 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602895,
+  "lastModifiedIso": "2026-06-29T04:00:02.895Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/promise/NativeWrapper.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 718
+    },
+    "end": {
+      "line": 738,
+      "column": 3,
+      "index": 29309
+    }
+  },
+  "className": "qx.promise.NativeWrapper",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper around a native promise, adding some extra helpful methods which are found in Bluebird.js,",
+      " * such as .map, .reduce, .filter, and many more.",
+      " *",
+      " * @ignore(AggregateError)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper around a native promise, adding some extra helpful methods which are found in Bluebird.js,\n such as .map, .reduce, .filter, and many more.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "AggregateError"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "arg0"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1027
+      },
+      "end": {
+        "line": 44,
+        "column": 3,
+        "index": 1251
+      }
+    }
+  },
+  "members": {
+    "__context": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} The context that this promise is bound to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} The context that this promise is bound to"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1351
+        },
+        "end": {
+          "line": 50,
+          "column": 19,
+          "index": 1366
+        }
+      },
+      "appearsIn": []
+    },
+    "bind": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new promise just like this one, but with a context set",
+          "     * @see",
+          "     * @param {Object} context",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a new promise just like this one, but with a context set</p>"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Object} context",
+            "paramName": "context",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1520
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1651
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {},
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding"
+      ]
+    },
+    "then": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as for Native Promise",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as for Native Promise</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1751
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2061
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "onResolved"
+        },
+        {
+          "name": "onRejected"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "catch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as for Native Promise",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as for Native Promise</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2161
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2351
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handler"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "spread": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as for Native Promise",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as for Native Promise</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2451
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2546
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fulfilledHandler"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "finally": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as for Native Promise",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as for Native Promise</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2646
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2840
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handler"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "cancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Due to the high complexity of implementing this feature, it is not supported in qx.promise.NativeWrapper",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Due to the high complexity of implementing this feature, it is not supported in qx.promise.NativeWrapper</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2975
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3094
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "all": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Note: Only call when this promise will resolve to an array",
+          "     * Same as Promise.all, but passed with the array that this promise resolves to",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Note: Only call when this promise will resolve to an array\n Same as Promise.all, but passed with the array that this promise resolves to</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3310
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3388
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "race": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Note: Only call when this promise will resolve to an array",
+          "     * Same as Promise.race, but passed with the array that this promise resolves to",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Note: Only call when this promise will resolve to an array\n Same as Promise.race, but passed with the array that this promise resolves to</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3605
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3669
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "any": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Note: Only call when this promise will resolve to an array",
+          "     * Same as Promise.any, but passed with the array that this promise resolves to",
+          "     * @returns {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Note: Only call when this promise will resolve to an array\n Same as Promise.any, but passed with the array that this promise resolves to</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3885
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3947
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "some": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.some} except that it iterates over the value of this promise, when",
+          "     * it is fulfilled; return a promise that is fulfilled as soon as count promises are fulfilled",
+          "     * in the array. The fulfillment value is an array with count values in the order they were fulfilled.",
+          "     *",
+          "     * @param count {Integer}",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.some} except that it iterates over the value of this promise, when\n it is fulfilled; return a promise that is fulfilled as soon as count promises are fulfilled\n in the array. The fulfillment value is an array with count values in the order they were fulfilled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "count {Integer}",
+            "paramName": "count",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4369
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4445
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "count",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "each": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.each} except that it iterates over the value of this promise, when",
+          "     * it is fulfilled; iterates over the values with the given <code>iterator</code> function with the signature",
+          "     * <code>(value, index, length)</code> where <code>value</code> is the resolved value. Iteration happens",
+          "     * serially. If any promise is rejected the returned promise is rejected as well.",
+          "     *",
+          "     * Resolves to the original array unmodified, this method is meant to be used for side effects. If the iterator",
+          "     * function returns a promise or a thenable, then the result of the promise is awaited, before continuing with",
+          "     * next iteration.",
+          "     *",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.each} except that it iterates over the value of this promise, when\n it is fulfilled; iterates over the values with the given <code>iterator</code> function with the signature\n <code>(value, index, length)</code> where <code>value</code> is the resolved value. Iteration happens\n serially. If any promise is rejected the returned promise is rejected as well.\n Resolves to the original array unmodified, this method is meant to be used for side effects. If the iterator\n function returns a promise or a thenable, then the result of the promise is awaited, before continuing with\n next iteration.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 5290
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 5372
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "filter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.filter} except that it iterates over the value of this promise, when it is fulfilled;",
+          "     * iterates over all the values into an array and filter the array to another using the given filterer function.",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param options {Object?} options; can be:",
+          "     *  <code>concurrency</code> max nuber of simultaneous filters, default is <code>Infinity</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.filter} except that it iterates over the value of this promise, when it is fulfilled;\n iterates over all the values into an array and filter the array to another using the given filterer function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object?} options; can be:\n  <code>concurrency</code> max nuber of simultaneous filters, default is <code>Infinity</code>",
+            "paramName": "options",
+            "description": " options; can be:\n  <code>concurrency</code> max nuber of simultaneous filters, default is <code>Infinity</code>",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 6004
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 6108
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "map": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.map} except that it iterates over the value of this promise, when it is fulfilled;",
+          "     * iterates over all the values into an array and map the array to another using the given mapper function.",
+          "     *",
+          "     * Promises returned by the mapper function are awaited for and the returned promise doesn't fulfill",
+          "     * until all mapped promises have fulfilled as well. If any promise in the array is rejected, or",
+          "     * any promise returned by the mapper function is rejected, the returned promise is rejected as well.",
+          "     *",
+          "     * The mapper function for a given item is called as soon as possible, that is, when the promise",
+          "     * for that item's index in the input array is fulfilled. This doesn't mean that the result array",
+          "     * has items in random order, it means that .map can be used for concurrency coordination unlike",
+          "     * .all.",
+          "     *",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param options {Object?} * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.map} except that it iterates over the value of this promise, when it is fulfilled;\n iterates over all the values into an array and map the array to another using the given mapper function.\n Promises returned by the mapper function are awaited for and the returned promise doesn't fulfill\n until all mapped promises have fulfilled as well. If any promise in the array is rejected, or\n any promise returned by the mapper function is rejected, the returned promise is rejected as well.\n The mapper function for a given item is called as soon as possible, that is, when the promise\n for that item's index in the input array is fulfilled. This doesn't mean that the result array\n has items in random order, it means that .map can be used for concurrency coordination unlike\n .all.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object?} * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+            "paramName": "options",
+            "description": " * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 7310
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 7408
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "mapSeries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.mapSeries} except that it iterates over the value of this promise, when",
+          "     * it is fulfilled; iterates over all the values into an array and iterate over the array serially,",
+          "     * in-order.",
+          "     *",
+          "     * Returns a promise for an array that contains the values returned by the iterator function in their",
+          "     * respective positions. The iterator won't be called for an item until its previous item, and the",
+          "     * promise returned by the iterator for that item are fulfilled. This results in a mapSeries kind of",
+          "     * utility but it can also be used simply as a side effect iterator similar to Array#forEach.",
+          "     *",
+          "     * If any promise in the input array is rejected or any promise returned by the iterator function is",
+          "     * rejected, the result will be rejected as well.",
+          "     *",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.mapSeries} except that it iterates over the value of this promise, when\n it is fulfilled; iterates over all the values into an array and iterate over the array serially,\n in-order.\n Returns a promise for an array that contains the values returned by the iterator function in their\n respective positions. The iterator won't be called for an item until its previous item, and the\n promise returned by the iterator for that item are fulfilled. This results in a mapSeries kind of\n utility but it can also be used simply as a side effect iterator similar to Array#forEach.\n If any promise in the input array is rejected or any promise returned by the iterator function is\n rejected, the result will be rejected as well.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 8394
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 8504
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "reduce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Same as {@link qx.promise.NativeWrapper.reduce} except that it iterates over the value of this promise, when",
+          "     * it is fulfilled; iterates over all the values in the <code>Iterable</code> into an array and",
+          "     * reduce the array to a value using the given reducer function.",
+          "     *",
+          "     * If the reducer function returns a promise, then the result of the promise is awaited, before",
+          "     * continuing with next iteration. If any promise in the array is rejected or a promise returned",
+          "     * by the reducer function is rejected, the result is rejected as well.",
+          "     *",
+          "     * If initialValue is undefined (or a promise that resolves to undefined) and the iterable contains",
+          "     * only 1 item, the callback will not be called and the iterable's single item is returned. If the",
+          "     * iterable is empty, the callback will not be called and initialValue is returned (which may be",
+          "     * undefined).",
+          "     *",
+          "     * qx.promise.NativeWrapper.reduce will start calling the reducer as soon as possible, this is why you might want to",
+          "     * use it over qx.promise.NativeWrapper.all (which awaits for the entire array before you can call Array#reduce on it).",
+          "     *",
+          "     * @param reducer {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param initialValue {Object?} optional initial value",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Same as {@link qx.promise.NativeWrapper.reduce} except that it iterates over the value of this promise, when\n it is fulfilled; iterates over all the values in the <code>Iterable</code> into an array and\n reduce the array to a value using the given reducer function.\n If the reducer function returns a promise, then the result of the promise is awaited, before\n continuing with next iteration. If any promise in the array is rejected or a promise returned\n by the reducer function is rejected, the result is rejected as well.\n If initialValue is undefined (or a promise that resolves to undefined) and the iterable contains\n only 1 item, the callback will not be called and the iterable's single item is returned. If the\n iterable is empty, the callback will not be called and initialValue is returned (which may be\n undefined).\n qx.promise.NativeWrapper.reduce will start calling the reducer as soon as possible, this is why you might want to\n use it over qx.promise.NativeWrapper.all (which awaits for the entire array before you can call Array#reduce on it).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "reducer {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "reducer",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "initialValue {Object?} optional initial value",
+            "paramName": "initialValue",
+            "description": " optional initial value",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 9879
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 9991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "reducer",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "initialValue",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "__setContext": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param {Object} context",
+          "     * @returns {qx.promise.NativeWrapper} this object to support chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Object} context",
+            "paramName": "context",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper} this object to support chaining",
+            "type": "qx.promise.NativeWrapper",
+            "description": "this object to support chaining"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 10127
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 10207
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "__wrap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wraps a promise in a qx.promise.NativeWrapper",
+          "     * @param {Promise} promise",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wraps a promise in a qx.promise.NativeWrapper</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Promise} promise",
+            "paramName": "promise",
+            "description": "",
+            "type": "Promise<any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 10348
+        },
+        "end": {
+          "line": 277,
+          "column": 5,
+          "index": 10605
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "promise",
+          "type": "Promise<any>"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "resolve": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a Promise object that is resolved with the given value. If the value is a thenable (i.e.",
+          "     * has a then method), the returned promise will \"follow\" that thenable, adopting its eventual",
+          "     * state; otherwise the returned promise will be fulfilled with the value. Generally, if you",
+          "     * don't know if a value is a promise or not, Promise.resolve(value) it instead and work with",
+          "     * the return value as a promise.",
+          "     *",
+          "     * @param value {Object}",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a Promise object that is resolved with the given value. If the value is a thenable (i.e.\n has a then method), the returned promise will \"follow\" that thenable, adopting its eventual\n state; otherwise the returned promise will be fulfilled with the value. Generally, if you\n don't know if a value is a promise or not, Promise.resolve(value) it instead and work with\n the return value as a promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Object}",
+            "paramName": "value",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 11141
+        },
+        "end": {
+          "line": 290,
+          "column": 5,
+          "index": 11233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "reject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a Promise object that is rejected with the given reason.",
+          "     * @param reason {Object?} Reason why this Promise rejected. A warning is generated if not instanceof Error. If undefined, a default Error is used.",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a Promise object that is rejected with the given reason.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "reason {Object?} Reason why this Promise rejected. A warning is generated if not instanceof Error. If undefined, a default Error is used.",
+            "paramName": "reason",
+            "description": " Reason why this Promise rejected. A warning is generated if not instanceof Error. If undefined, a default Error is used.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 297,
+          "column": 4,
+          "index": 11522
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 11614
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "reason",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "allOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a promise that resolves when all of the promises in the object properties have resolved,",
+          "     * or rejects with the reason of the first passed promise that rejects.  The result of each property",
+          "     * is placed back in the object, replacing the promise.  Note that non-promise values are untouched.",
+          "     *",
+          "     * @param value {var} An object",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a promise that resolves when all of the promises in the object properties have resolved,\n or rejects with the reason of the first passed promise that rejects.  The result of each property\n is placed back in the object, replacing the promise.  Note that non-promise values are untouched.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} An object",
+            "paramName": "value",
+            "description": " An object",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4,
+          "index": 12036
+        },
+        "end": {
+          "line": 327,
+          "column": 5,
+          "index": 12630
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "all": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a promise that resolves when all of the promises in the iterable argument have resolved,",
+          "     * or rejects with the reason of the first passed promise that rejects.  Note that non-promise values",
+          "     * are untouched.",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a promise that resolves when all of the promises in the iterable argument have resolved,\n or rejects with the reason of the first passed promise that rejects.  Note that non-promise values\n are untouched.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 13005
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 13171
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "race": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves",
+          "     * or rejects, with the value or reason from that promise.",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a promise that resolves or rejects as soon as one of the promises in the iterable resolves\n or rejects, with the value or reason from that promise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 13476
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 13668
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "any": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Like Promise.some, with 1 as count. However, if the promise fulfills, the fulfillment value is not an",
+          "     * array of 1 but the value directly.",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Like Promise.some, with 1 as count. However, if the promise fulfills, the fulfillment value is not an\n array of 1 but the value directly.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4,
+          "index": 14103
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 14293
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "some": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an Iterable (arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix",
+          "     * of promises and values), iterate over all the values in the Iterable into an array and return a promise",
+          "     * that is fulfilled as soon as count promises are fulfilled in the array. The fulfillment value is an",
+          "     * array with count values in the order they were fulfilled.",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param count {Integer}",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an Iterable (arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix\n of promises and values), iterate over all the values in the Iterable into an array and return a promise\n that is fulfilled as soon as count promises are fulfilled in the array. The fulfillment value is an\n array with count values in the order they were fulfilled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "count {Integer}",
+            "paramName": "count",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 14860
+        },
+        "end": {
+          "line": 418,
+          "column": 5,
+          "index": 15836
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "each": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Iterate over an array, or a promise of an array, which contains promises (or a mix of promises and values)",
+          "     * with the given <code>iterator</code> function with the signature <code>(value, index, length)</code> where",
+          "     * <code>value</code> is the resolved value of a respective promise in the input array. Iteration happens",
+          "     * serially. If any promise in the input array is rejected the returned promise is rejected as well.",
+          "     *",
+          "     * Resolves to the original array unmodified, this method is meant to be used for side effects. If the iterator",
+          "     * function returns a promise or a thenable, then the result of the promise is awaited, before continuing with",
+          "     * next iteration.",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Iterate over an array, or a promise of an array, which contains promises (or a mix of promises and values)\n with the given <code>iterator</code> function with the signature <code>(value, index, length)</code> where\n <code>value</code> is the resolved value of a respective promise in the input array. Iteration happens\n serially. If any promise in the input array is rejected the returned promise is rejected as well.\n Resolves to the original array unmodified, this method is meant to be used for side effects. If the iterator\n function returns a promise or a thenable, then the result of the promise is awaited, before continuing with\n next iteration.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 16772
+        },
+        "end": {
+          "line": 445,
+          "column": 5,
+          "index": 17116
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "filter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an Iterable(arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix of",
+          "     * promises and values), iterate over all the values in the Iterable into an array and filter the array to",
+          "     * another using the given filterer function.",
+          "     *",
+          "     * It is essentially an efficient shortcut for doing a .map and then Array#filter:",
+          "     * <pre>",
+          "     *   qx.promise.NativeWrapper.map(valuesToBeFiltered, function(value, index, length) {",
+          "     *       return Promise.all([filterer(value, index, length), value]);",
+          "     *   }).then(function(values) {",
+          "     *       return values.filter(function(stuff) {",
+          "     *           return stuff[0] == true",
+          "     *       }).map(function(stuff) {",
+          "     *           return stuff[1];",
+          "     *       });",
+          "     *   });",
+          "     * </pre>",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param options {Object?} Either:",
+          "     *   A native object with one key: <code>concurrency</code>: max number of simultaneous filters, default is <code>Infinity</code>",
+          "     * Or: any other object, in which case this will be the context for the iterator",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an Iterable(arrays are Iterable), or a promise of an Iterable, which produces promises (or a mix of\n promises and values), iterate over all the values in the Iterable into an array and filter the array to\n another using the given filterer function.\n It is essentially an efficient shortcut for doing a .map and then Array#filter:\n </p>\n<pre>\n   qx.promise.NativeWrapper.map(valuesToBeFiltered, function(value, index, length) {\n       return Promise.all([filterer(value, index, length), value]);\n   }).then(function(values) {\n       return values.filter(function(stuff) {\n           return stuff[0] == true\n       }).map(function(stuff) {\n           return stuff[1];\n       });\n   });\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object?} Either:\n   A native object with one key: <code>concurrency</code>: max number of simultaneous filters, default is <code>Infinity</code>\n Or: any other object, in which case this will be the context for the iterator",
+            "paramName": "options",
+            "description": " Either:\n   A native object with one key: <code>concurrency</code>: max number of simultaneous filters, default is <code>Infinity</code>\n Or: any other object, in which case this will be the context for the iterator",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 472,
+          "column": 4,
+          "index": 18398
+        },
+        "end": {
+          "line": 494,
+          "column": 5,
+          "index": 19164
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "map": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an",
+          "     * <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate over",
+          "     * all the values in the <code>Iterable</code> into an array and map the array to another using",
+          "     * the given mapper function.",
+          "     *",
+          "     * Promises returned by the mapper function are awaited for and the returned promise doesn't fulfill",
+          "     * until all mapped promises have fulfilled as well. If any promise in the array is rejected, or",
+          "     * any promise returned by the mapper function is rejected, the returned promise is rejected as well.",
+          "     *",
+          "     * The mapper function for a given item is called as soon as possible, that is, when the promise",
+          "     * for that item's index in the input array is fulfilled. This doesn't mean that the result array",
+          "     * has items in random order, it means that .map can be used for concurrency coordination unlike",
+          "     * .all.",
+          "     *",
+          "     * A common use of Promise.map is to replace the .push+Promise.all boilerplate:",
+          "     *",
+          "     * <pre>",
+          "     *   var promises = [];",
+          "     *   for (var i = 0; i < fileNames.length; ++i) {",
+          "     *       promises.push(fs.readFileAsync(fileNames[i]));",
+          "     *   }",
+          "     *   qx.promise.NativeWrapper.all(promises).then(function() {",
+          "     *       console.log(\"done\");",
+          "     *   });",
+          "     *",
+          "     *   // Using Promise.map:",
+          "     *   qx.promise.NativeWrapper.map(fileNames, function(fileName) {",
+          "     *       // Promise.map awaits for returned promises as well.",
+          "     *       return fs.readFileAsync(fileName);",
+          "     *   }).then(function() {",
+          "     *       console.log(\"done\");",
+          "     *   });",
+          "     * </pre>",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param options {Object?} * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an\n <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate over\n all the values in the <code>Iterable</code> into an array and map the array to another using\n the given mapper function.\n Promises returned by the mapper function are awaited for and the returned promise doesn't fulfill\n until all mapped promises have fulfilled as well. If any promise in the array is rejected, or\n any promise returned by the mapper function is rejected, the returned promise is rejected as well.\n The mapper function for a given item is called as soon as possible, that is, when the promise\n for that item's index in the input array is fulfilled. This doesn't mean that the result array\n has items in random order, it means that .map can be used for concurrency coordination unlike\n .all.\n A common use of Promise.map is to replace the .push+Promise.all boilerplate:\n </p>\n<pre>\n   var promises = [];\n   for (var i = 0; i < fileNames.length; ++i) {\n       promises.push(fs.readFileAsync(fileNames[i]));\n   }\n   qx.promise.NativeWrapper.all(promises).then(function() {\n       console.log(\"done\");\n   });\n\n   qx.promise.NativeWrapper.map(fileNames, function(fileName) {\n\n       return fs.readFileAsync(fileName);\n   }).then(function() {\n       console.log(\"done\");\n   });\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object?} * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+            "paramName": "options",
+            "description": " * A native object with one key: <code>concurrency</code>: max number of simultaneous maps, default is <code>Infinity</code>",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 536,
+          "column": 4,
+          "index": 21214
+        },
+        "end": {
+          "line": 550,
+          "column": 5,
+          "index": 21748
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "mapSeries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an <code>Iterable</code>(arrays are <code>Iterable</code>), or a promise of an",
+          "     * <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate over",
+          "     * all the values in the <code>Iterable</code> into an array and iterate over the array serially,",
+          "     * in-order.",
+          "     *",
+          "     * Returns a promise for an array that contains the values returned by the iterator function in their",
+          "     * respective positions. The iterator won't be called for an item until its previous item, and the",
+          "     * promise returned by the iterator for that item are fulfilled. This results in a mapSeries kind of",
+          "     * utility but it can also be used simply as a side effect iterator similar to Array#forEach.",
+          "     *",
+          "     * If any promise in the input array is rejected or any promise returned by the iterator function is",
+          "     * rejected, the result will be rejected as well.",
+          "     *",
+          "     * Example where .mapSeries(the instance method) is used for iterating with side effects:",
+          "     *",
+          "     * <pre>",
+          "     * // Source: http://jakearchibald.com/2014/es7-async-functions/",
+          "     * function loadStory() {",
+          "     *   return getJSON('story.json')",
+          "     *     .then(function(story) {",
+          "     *       addHtmlToPage(story.heading);",
+          "     *       return story.chapterURLs.map(getJSON);",
+          "     *     })",
+          "     *     .mapSeries(function(chapter) { addHtmlToPage(chapter.html); })",
+          "     *     .then(function() { addTextToPage(\"All done\"); })",
+          "     *     .catch(function(err) { addTextToPage(\"Argh, broken: \" + err.message); })",
+          "     *     .then(function() { document.querySelector('.spinner').style.display = 'none'; });",
+          "     * }",
+          "     * </pre>",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param iterator {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an <code>Iterable</code>(arrays are <code>Iterable</code>), or a promise of an\n <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate over\n all the values in the <code>Iterable</code> into an array and iterate over the array serially,\n in-order.\n Returns a promise for an array that contains the values returned by the iterator function in their\n respective positions. The iterator won't be called for an item until its previous item, and the\n promise returned by the iterator for that item are fulfilled. This results in a mapSeries kind of\n utility but it can also be used simply as a side effect iterator similar to Array#forEach.\n If any promise in the input array is rejected or any promise returned by the iterator function is\n rejected, the result will be rejected as well.\n Example where .mapSeries(the instance method) is used for iterating with side effects:\n </p>\n<pre>\n\n function loadStory() {\n   return getJSON('story.json')\n     .then(function(story) {\n       addHtmlToPage(story.heading);\n       return story.chapterURLs.map(getJSON);\n     })\n     .mapSeries(function(chapter) { addHtmlToPage(chapter.html); })\n     .then(function() { addTextToPage(\"All done\"); })\n     .catch(function(err) { addTextToPage(\"Argh, broken: \" + err.message); })\n     .then(function() { document.querySelector('.spinner').style.display = 'none'; });\n }\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "iterator {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "iterator",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 587,
+          "column": 4,
+          "index": 23614
+        },
+        "end": {
+          "line": 618,
+          "column": 5,
+          "index": 24445
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "reduce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an",
+          "     * <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate",
+          "     * over all the values in the <code>Iterable</code> into an array and reduce the array to a",
+          "     * value using the given reducer function.",
+          "     *",
+          "     * If the reducer function returns a promise, then the result of the promise is awaited, before",
+          "     * continuing with next iteration. If any promise in the array is rejected or a promise returned",
+          "     * by the reducer function is rejected, the result is rejected as well.",
+          "     *",
+          "     * Read given files sequentially while summing their contents as an integer. Each file contains",
+          "     * just the text 10.",
+          "     *",
+          "     * <pre>",
+          "     *   qx.promise.NativeWrapper.reduce([\"file1.txt\", \"file2.txt\", \"file3.txt\"], function(total, fileName) {",
+          "     *       return fs.readFileAsync(fileName, \"utf8\").then(function(contents) {",
+          "     *           return total + parseInt(contents, 10);",
+          "     *       });",
+          "     *   }, 0).then(function(total) {",
+          "     *       //Total is 30",
+          "     *   });",
+          "     * </pre>",
+          "     *",
+          "     * If initialValue is undefined (or a promise that resolves to undefined) and the iterable contains",
+          "     * only 1 item, the callback will not be called and the iterable's single item is returned. If the",
+          "     * iterable is empty, the callback will not be called and initialValue is returned (which may be",
+          "     * undefined).",
+          "     *",
+          "     * Promise.reduce will start calling the reducer as soon as possible, this is why you might want to",
+          "     * use it over Promise.all (which awaits for the entire array before you can call Array#reduce on it).",
+          "     *",
+          "     * @param iterable {Iterable} An iterable object, such as an Array",
+          "     * @param reducer {Function} the callback, with <code>(value, index, length)</code>",
+          "     * @param initialValue {Object?} optional initial value",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an <code>Iterable</code> (arrays are <code>Iterable</code>), or a promise of an\n <code>Iterable</code>, which produces promises (or a mix of promises and values), iterate\n over all the values in the <code>Iterable</code> into an array and reduce the array to a\n value using the given reducer function.\n If the reducer function returns a promise, then the result of the promise is awaited, before\n continuing with next iteration. If any promise in the array is rejected or a promise returned\n by the reducer function is rejected, the result is rejected as well.\n Read given files sequentially while summing their contents as an integer. Each file contains\n just the text 10.\n </p>\n<pre>\n   qx.promise.NativeWrapper.reduce([\"file1.txt\", \"file2.txt\", \"file3.txt\"], function(total, fileName) {\n       return fs.readFileAsync(fileName, \"utf8\").then(function(contents) {\n           return total + parseInt(contents, 10);\n       });\n   }, 0).then(function(total) {\n\n   });\n </pre>\n<p>If initialValue is undefined (or a promise that resolves to undefined) and the iterable contains\n only 1 item, the callback will not be called and the iterable's single item is returned. If the\n iterable is empty, the callback will not be called and initialValue is returned (which may be\n undefined).\n Promise.reduce will start calling the reducer as soon as possible, this is why you might want to\n use it over Promise.all (which awaits for the entire array before you can call Array#reduce on it).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterable {Iterable} An iterable object, such as an Array",
+            "paramName": "iterable",
+            "description": " An iterable object, such as an Array",
+            "type": "Iterable"
+          },
+          {
+            "name": "@param",
+            "body": "reducer {Function} the callback, with <code>(value, index, length)</code>",
+            "paramName": "reducer",
+            "description": " the callback, with <code>(value, index, length)</code>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "initialValue {Object?} optional initial value",
+            "paramName": "initialValue",
+            "description": " optional initial value",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 656,
+          "column": 4,
+          "index": 26413
+        },
+        "end": {
+          "line": 689,
+          "column": 5,
+          "index": 27381
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterable",
+          "type": "Iterable"
+        },
+        {
+          "name": "reducer",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "initialValue",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    },
+    "method": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a new function that wraps the given function fn. The new function will always return a promise that is",
+          "     * fulfilled with the original functions return values or rejected with thrown exceptions from the original function.",
+          "     * @param cb {Function}",
+          "     * @return {Function}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a new function that wraps the given function fn. The new function will always return a promise that is\n fulfilled with the original functions return values or rejected with thrown exceptions from the original function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cb {Function}",
+            "paramName": "cb",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}",
+            "type": "((...args: any[]) => any)",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 697,
+          "column": 4,
+          "index": 27698
+        },
+        "end": {
+          "line": 702,
+          "column": 5,
+          "index": 27853
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cb",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "props": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Like .all but for object properties or Maps* entries instead of iterated values. Returns a promise that",
+          "     * is fulfilled when all the properties of the object or the Map's' values** are fulfilled. The promise's",
+          "     * fulfillment value is an object or a Map with fulfillment values at respective keys to the original object",
+          "     * or a Map. If any promise in the object or Map rejects, the returned promise is rejected with the rejection",
+          "     * reason.",
+          "     *",
+          "     * If object is a trusted Promise, then it will be treated as a promise for object rather than for its",
+          "     * properties. All other objects (except Maps) are treated for their properties as is returned by",
+          "     * Object.keys - the object's own enumerable properties.",
+          "     *",
+          "     * @param input {Object} An Object",
+          "     * @return {qx.promise.NativeWrapper}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Like .all but for object properties or Maps* entries instead of iterated values. Returns a promise that\n is fulfilled when all the properties of the object or the Map's' values** are fulfilled. The promise's\n fulfillment value is an object or a Map with fulfillment values at respective keys to the original object\n or a Map. If any promise in the object or Map rejects, the returned promise is rejected with the rejection\n reason.\n If object is a trusted Promise, then it will be treated as a promise for object rather than for its\n properties. All other objects (except Maps) are treated for their properties as is returned by\n Object.keys - the object's own enumerable properties.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "input {Object} An Object",
+            "paramName": "input",
+            "description": " An Object",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.promise.NativeWrapper}",
+            "type": "qx.promise.NativeWrapper",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 718,
+          "column": 4,
+          "index": 28704
+        },
+        "end": {
+          "line": 736,
+          "column": 5,
+          "index": 29301
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "input",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.promise.NativeWrapper"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

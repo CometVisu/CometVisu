@@ -1,0 +1,2220 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543946,
+  "lastModifiedIso": "2026-06-29T03:59:03.946Z",
+  "classFilename": "../../source/class/cv/ui/manager/viewer/Folder.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 874
+    },
+    "end": {
+      "line": 452,
+      "column": 3,
+      "index": 12816
+    }
+  },
+  "className": "cv.ui.manager.viewer.Folder",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Displays folder content in an explorer like view.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Displays folder content in an explorer like view.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.viewer.AbstractViewer",
+  "interfaces": [
+    "qx.ui.core.ISingleSelection",
+    "qx.ui.form.IModelSelection"
+  ],
+  "mixins": [
+    "qx.ui.core.MSingleSelectionHandling",
+    "qx.ui.core.MRemoteChildrenHandling",
+    "qx.ui.form.MModelSelection",
+    "cv.ui.manager.control.MFileEventHandler"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "noToolbar"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1346
+      },
+      "end": {
+        "line": 63,
+        "column": 3,
+        "index": 2143
+      }
+    }
+  },
+  "statics": {
+    "SUPPORTED_FILES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2285
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2405
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": []
+    },
+    "TITLE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2411
+        },
+        "end": {
+          "line": 75,
+          "column": 46,
+          "index": 2453
+        }
+      },
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "ICON": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2459
+        },
+        "end": {
+          "line": 76,
+          "column": 52,
+          "index": 2507
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "addItem": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired after a list item was added to the list. The",
+          "     * {@link qx.event.type.Data#getData} method of the event returns the",
+          "     * added item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired after a list item was added to the list. The\n {@link qx.event.type.Data#getData} method of the event returns the\n added item.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2832
+        },
+        "end": {
+          "line": 90,
+          "column": 33,
+          "index": 2861
+        }
+      }
+    },
+    "removeItem": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired after a list item has been removed from the list.",
+          "     * The {@link qx.event.type.Data#getData} method of the event returns the",
+          "     * removed item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This event is fired after a list item has been removed from the list.\n The {@link qx.event.type.Data#getData} method of the event returns the\n removed item.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 3060
+        },
+        "end": {
+          "line": 97,
+          "column": 36,
+          "index": 3092
+        }
+      }
+    }
+  },
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3244
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3313
+        }
+      },
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "permanentFilter": {
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3320
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3416
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true,
+        "apply": "_onFilter"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showTextFilter": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3423
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3524
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowTextFilter"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "labelConverter": {
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 3531
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3600
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "disableScrolling": {
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3607
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3713
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyDisableScrolling"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "viewMode": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3720
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3821
+        }
+      },
+      "json": {
+        "check": [
+          "list",
+          "preview"
+        ],
+        "init": "list",
+        "event": "changeViewMode"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_controller": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3966
+        },
+        "end": {
+          "line": 147,
+          "column": 21,
+          "index": 3983
+        }
+      },
+      "appearsIn": []
+    },
+    "_isImageRegex": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3989
+        },
+        "end": {
+          "line": 148,
+          "column": 23,
+          "index": 4008
+        }
+      },
+      "appearsIn": []
+    },
+    "_newItem": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4014
+        },
+        "end": {
+          "line": 149,
+          "column": 18,
+          "index": 4028
+        }
+      },
+      "appearsIn": []
+    },
+    "_getItems": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4035
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4111
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_isAllowEmptySelection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4118
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 4169
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_defaultLabelConverter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4176
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4458
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getDelegate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 4465
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 6113
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onFsItemRightClick": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 6120
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 6692
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDblTap": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 6699
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 6946
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 6953
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 7909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "appearsIn": [
+        "cv.ui.manager.viewer.AbstractViewer"
+      ]
+    },
+    "_handleFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4,
+          "index": 7916
+        },
+        "end": {
+          "line": 330,
+          "column": 5,
+          "index": 9319
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShowTextFilter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 9326
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 9445
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFilter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 336,
+          "column": 4,
+          "index": 9452
+        },
+        "end": {
+          "line": 345,
+          "column": 5,
+          "index": 9882
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getChildrenContainer": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 347,
+          "column": 4,
+          "index": 9889
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 9962
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onAddChild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle child widget adds on the content pane",
+          "     *",
+          "     * @param e {qx.event.type.Data} the event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle child widget adds on the content pane</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the event instance",
+            "paramName": "e",
+            "description": " the event instance",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4,
+          "index": 10100
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 10172
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onRemoveChild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle child widget removes on the content pane",
+          "     *",
+          "     * @param e {qx.event.type.Data} the event instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle child widget removes on the content pane</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} the event instance",
+            "paramName": "e",
+            "description": " the event instance",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 10313
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 10391
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 369,
+          "column": 4,
+          "index": 10398
+        },
+        "end": {
+          "line": 375,
+          "column": 5,
+          "index": 10533
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDisableScrolling": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 377,
+          "column": 4,
+          "index": 10540
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 10945
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4,
+          "index": 10970
+        },
+        "end": {
+          "line": 439,
+          "column": 5,
+          "index": 12511
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.viewer.AbstractViewer",
+      "appearsIn": [
+        "cv.ui.manager.viewer.AbstractViewer",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__manager": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.SingleSelectionManager} the single selection manager "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.SingleSelectionManager} the single selection manager"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1691
+        },
+        "end": {
+          "line": 56,
+          "column": 19,
+          "index": 1706
+        }
+      },
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param item {null|qx.ui.core.Widget} Item to set as selected value.",
+          "     * @returns {null|TypeError} The status of this operation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {null|qx.ui.core.Widget} Item to set as selected value."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|TypeError} The status of this operation."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2142
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2496
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|qx.ui.core.Widget} The currently selected widget or null if there is none."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2699
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2773
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2874
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2937
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "getSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} List of items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of currently selected items.\n Note: The result is only a set of selected items, so the order can\n differ from the sequence in which the items were added.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} List of items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3216
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3386
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "setSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} Items to select.",
+          "     * @throws {Error} if one of the items is not a child element and if",
+          "     *    items contains more than one elements.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces current selection with the given items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.core.Widget[]} Items to select."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if one of the items is not a child element and if\n    items contains more than one elements."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3653
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4077
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items"
+        }
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the whole selection at once.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4143
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4210
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid selectable item.",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if one of the items is not a child element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the given item is currently selected.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.core.Widget} Any valid selectable item."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the item is selected."
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if one of the items is not a child element."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4489
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 4564
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the selection is empty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the selection is empty."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4690
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all elements which are selectable.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget[]} The contained items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5030
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 5111
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "all"
+        }
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "_onChangeSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>changeSelected</code> event on single",
+          "     * selection manager.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event listener for <code>changeSelected</code> event on single\n selection manager.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Data event."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5481
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 5843
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "__getManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the selection manager if it is already exists, otherwise creates",
+          "     * the manager.",
+          "     *",
+          "     * @return {qx.ui.core.SingleSelectionManager} Single selection manager.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the selection manager if it is already exists, otherwise creates\n the manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.SingleSelectionManager} Single selection manager."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6049
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6736
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MSingleSelectionHandling",
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ]
+    },
+    "__forward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Forward the call with the given function name to the children container",
+          "     *",
+          "     * @param functionName {String} name of the method to forward",
+          "     * @param a1 {var?} first argument of the method to call",
+          "     * @param a2 {var?} second argument of the method to call",
+          "     * @param a3 {var?} third argument of the method to call",
+          "     * @return {var} The return value of the forward method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Forward the call with the given function name to the children container</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "functionName {String} name of the method to forward"
+          },
+          {
+            "name": "@param",
+            "body": "a1 {var?} first argument of the method to call"
+          },
+          {
+            "name": "@param",
+            "body": "a2 {var?} second argument of the method to call"
+          },
+          {
+            "name": "@param",
+            "body": "a3 {var?} third argument of the method to call"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The return value of the forward method"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1555
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1782
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "functionName"
+        },
+        {
+          "name": "a1"
+        },
+        {
+          "name": "a2"
+        },
+        {
+          "name": "a3"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "getChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the children list",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem[]} The children array (Arrays are",
+          "     *   reference types, please do not modify them in-place)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the children list</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem[]} The children array (Arrays are\n   reference types, please do not modify them in-place)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "hasChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget contains children.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when the widget has children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget contains children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code> when the widget has children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "add": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget.",
+          "     *",
+          "     * The supported keys of the layout options map depend on the layout manager",
+          "     * used to position the widget. The options are documented in the class",
+          "     * documentation of each layout manager {@link qx.ui.layout}.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to add.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a new child widget.\n The supported keys of the layout options map depend on the layout manager\n used to position the widget. The options are documented in the class\n documentation of each layout manager {@link qx.ui.layout}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to add."
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2831
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given child item.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to remove",
+          "     * @return {qx.ui.core.Widget} This object (for chaining support)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the given child item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to remove"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} This object (for chaining support)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3030
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3097
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "removeAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all children.",
+          "     * @return {Array} An array containing the removed children.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove all children.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} An array containing the removed children."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3274
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index position of the given item if it is",
+          "     * a child item. Otherwise it returns <code>-1</code>.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} the item to query for",
+          "     * @return {Integer} The index position or <code>-1</code> when",
+          "     *   the given item is no child of this layout.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the index position of the given item if it is\n a child item. Otherwise it returns <code>-1</code>.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} the item to query for"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The index position or <code>-1</code> when\n   the given item is no child of this layout."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3909
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "addAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a child at the specified index",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param index {Integer} Index, at which the item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a child at the specified index\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add"
+          },
+          {
+            "name": "@param",
+            "body": "index {Integer} Index, at which the item will be inserted"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4541
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "index"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "addBefore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item before another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param before {qx.ui.core.LayoutItem} item before the new item will be inserted.",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item before another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add"
+          },
+          {
+            "name": "@param",
+            "body": "before {qx.ui.core.LayoutItem} item before the new item will be inserted."
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 5224
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 5324
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "before"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "addAfter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an item after another already inserted item",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param child {qx.ui.core.LayoutItem} item to add",
+          "     * @param after {qx.ui.core.LayoutItem} item, after which the new item will be inserted",
+          "     * @param options {Map?null} Optional layout data for item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add an item after another already inserted item\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {qx.ui.core.LayoutItem} item to add"
+          },
+          {
+            "name": "@param",
+            "body": "after {qx.ui.core.LayoutItem} item, after which the new item will be inserted"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} Optional layout data for item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5920
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 6016
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        },
+        {
+          "name": "after"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "removeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the item at the specified index.",
+          "     *",
+          "     * This method works on the widget's children list. Some layout managers",
+          "     * (e.g. {@link qx.ui.layout.HBox}) use the children order as additional",
+          "     * layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})",
+          "     * ignore the children order for the layout process.",
+          "     *",
+          "     * @param index {Integer} Index of the item to remove.",
+          "     * @return {qx.ui.core.LayoutItem} The removed item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove the item at the specified index.\n This method works on the widget's children list. Some layout managers\n (e.g. {@link qx.ui.layout.HBox}) use the children order as additional\n layout information. Other layout manager (e.g. {@link qx.ui.layout.Grid})\n ignore the children order for the layout process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} Index of the item to remove."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem} The removed item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6507
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 6578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "mixin": "qx.ui.core.MRemoteChildrenHandling",
+      "appearsIn": [
+        "qx.ui.core.MRemoteChildrenHandling"
+      ]
+    },
+    "__modelSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1376
+        },
+        "end": {
+          "line": 48,
+          "column": 26,
+          "index": 1398
+        }
+      },
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__inSelectionChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 49,
+          "column": 30,
+          "index": 1430
+        }
+      },
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__onModelSelectionChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the selection change of the including class e.g. SelectBox,",
+          "     * List, ...",
+          "     * It sets the new modelSelection via {@link #setModelSelection}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the selection change of the including class e.g. SelectBox,\n List, …\n It sets the new modelSelection via {@link #setModelSelection}.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2327
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "__onModelSelectionArrayChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the change of the internal model selection data array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for the change of the internal model selection data array.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2425
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3468
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ]
+    },
+    "getModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns always an array of the models of the selected items. If no",
+          "     * item is selected or no model is given, the array will be empty.",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @return {qx.data.Array} An array of the models of the selected items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns always an array of the models of the selected items. If no\n item is selected or no model is given, the array will be empty.\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.Array} An array of the models of the selected items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3861
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3924
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ]
+    },
+    "setModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the given models in the array and searches for the corresponding",
+          "     * selectables. If an selectable does have that model attached, it will be",
+          "     * selected.",
+          "     *",
+          "     * *Attention:* This method can have a time complexity of O(n^2)!",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @param modelSelection {Array} An array of models, which should be",
+          "     *   selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the given models in the array and searches for the corresponding\n selectables. If an selectable does have that model attached, it will be\n selected.\n<em>Attention:</em> This method can have a time complexity of O(n^2)!\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "modelSelection {Array} An array of models, which should be\n   selected."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4438
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 5064
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "modelSelection"
+        }
+      ],
+      "mixin": "qx.ui.form.MModelSelection",
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ]
+    },
+    "_disableFileEvents": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 45,
+          "column": 29,
+          "index": 1644
+        }
+      },
+      "appearsIn": [
+        "cv.ui.manager.control.MFileEventHandler"
+      ],
+      "mixin": "cv.ui.manager.control.MFileEventHandler"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 447,
+        "column": 2,
+        "index": 12645
+      },
+      "end": {
+        "line": 451,
+        "column": 3,
+        "index": 12812
+      }
+    }
+  }
+}

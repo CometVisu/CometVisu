@@ -1,0 +1,101 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603242,
+  "lastModifiedIso": "2026-06-29T04:00:03.242Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/String.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 557
+    },
+    "end": {
+      "line": 43,
+      "column": 3,
+      "index": 1067
+    }
+  },
+  "className": "qx.ui.table.cellrenderer.String",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The string data cell renderer. All it does is escape the incoming String",
+      " * values.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The string data cell renderer. All it does is escape the incoming String\n values.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.Conditional",
+  "members": {
+    "_getContentHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 878
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 968
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Default",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Default",
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    },
+    "_getCellClass": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Default",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Default",
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

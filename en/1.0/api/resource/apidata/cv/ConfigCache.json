@@ -1,0 +1,448 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543932,
+  "lastModifiedIso": "2026-06-29T03:59:03.932Z",
+  "classFilename": "../../source/class/cv/ConfigCache.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 914
+    },
+    "end": {
+      "line": 328,
+      "column": 3,
+      "index": 11622
+    }
+  },
+  "className": "cv.ConfigCache",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles caches for cometvisu configs",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.10.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles caches for cometvisu configs</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "_cacheKey": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1122
+        },
+        "end": {
+          "line": 35,
+          "column": 21,
+          "index": 1139
+        }
+      },
+      "appearsIn": []
+    },
+    "_parseCacheData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1145
+        },
+        "end": {
+          "line": 36,
+          "column": 25,
+          "index": 1166
+        }
+      },
+      "appearsIn": []
+    },
+    "_valid": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1172
+        },
+        "end": {
+          "line": 37,
+          "column": 16,
+          "index": 1184
+        }
+      },
+      "appearsIn": []
+    },
+    "replayCache": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1190
+        },
+        "end": {
+          "line": 38,
+          "column": 21,
+          "index": 1207
+        }
+      },
+      "appearsIn": []
+    },
+    "__initPromise": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1213
+        },
+        "end": {
+          "line": 39,
+          "column": 23,
+          "index": 1232
+        }
+      },
+      "appearsIn": []
+    },
+    "failed": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1238
+        },
+        "end": {
+          "line": 40,
+          "column": 16,
+          "index": 1250
+        }
+      },
+      "appearsIn": []
+    },
+    "DB": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1256
+        },
+        "end": {
+          "line": 41,
+          "column": 12,
+          "index": 1264
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1271
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "dump": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2776
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 3410
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
+    },
+    "restore": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3417
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 7737
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 7744
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 7934
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 7941
+        },
+        "end": {
+          "line": 246,
+          "column": 5,
+          "index": 9130
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isCached": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if there is an existing cache for the current config file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if there is an existing cache for the current config file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 9231
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 9693
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isValid": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 9700
+        },
+        "end": {
+          "line": 287,
+          "column": 5,
+          "index": 10403
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
+    },
+    "toHash": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4,
+          "index": 10410
+        },
+        "end": {
+          "line": 291,
+          "column": 5,
+          "index": 10501
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 10508
+        },
+        "end": {
+          "line": 302,
+          "column": 5,
+          "index": 10975
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "configSuffix"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hashCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param string",
+          "     * @see http://stackoverflow.com/q/7616461/940217",
+          "     * @return {number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "string",
+            "paramName": "string",
+            "type": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "http://stackoverflow.com/q/7616461/940217"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4,
+          "index": 11097
+        },
+        "end": {
+          "line": 326,
+          "column": 5,
+          "index": 11614
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

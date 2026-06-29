@@ -1,0 +1,358 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/FormRenderer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 745
+    },
+    "end": {
+      "line": 155,
+      "column": 3,
+      "index": 4736
+    }
+  },
+  "className": "qxl.dialog.FormRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A single row renderer for {@link qx.ui.form.Form}, adapted",
+      " * for the {@link qxl.dialog.Form} widget. Main difference is that",
+      " * the form allows text-only labels without a corresponding form",
+      " * element which can serve, for example, for explanatory text.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A single row renderer for {@link qx.ui.form.Form}, adapted\n for the {@link qxl.dialog.Form} widget. Main difference is that\n the form allows text-only labels without a corresponding form\n element which can serve, for example, for explanatory text.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.renderer.Single",
+  "interfaces": [
+    "qx.ui.form.renderer.IFormRenderer"
+  ],
+  "properties": {
+    "labelSuffix": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 963
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 1020
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": ":"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The text that is displayed after the label",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text that is displayed after the label</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.renderer.AbstractRenderer"
+      ]
+    },
+    "requiredSuffix": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1145
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1240
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "<span style='color:#e5004b'>*</span>"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The text that is displayed after the label and the label suffix",
+          "     * if a field is mandatory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text that is displayed after the label and the label suffix\n if a field is mandatory</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.renderer.AbstractRenderer"
+      ]
+    }
+  },
+  "members": {
+    "_row": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1265
+        },
+        "end": {
+          "line": 46,
+          "column": 11,
+          "index": 1272
+        }
+      },
+      "overriddenFrom": "qx.ui.form.renderer.Single",
+      "appearsIn": [
+        "qx.ui.form.renderer.Single"
+      ]
+    },
+    "_buttonRow": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1278
+        },
+        "end": {
+          "line": 47,
+          "column": 20,
+          "index": 1294
+        }
+      },
+      "overriddenFrom": "qx.ui.form.renderer.Single",
+      "appearsIn": [
+        "qx.ui.form.renderer.Single"
+      ]
+    },
+    "addItems": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a group of form items with the corresponding names. The names are",
+          "     * displayed as label.",
+          "     * The title is optional and is used as grouping for the given form",
+          "     * items. Additionally, this renderer supports label-only fields.",
+          "     * @param items {qx.ui.core.Widget[]} An array of form items to render.",
+          "     * @param names {String[]} An array of names for the form items.",
+          "     * @param title {String?} A title of the group you are adding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a group of form items with the corresponding names. The names are\n displayed as label.\n The title is optional and is used as grouping for the given form\n items. Additionally, this renderer supports label-only fields.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.core.Widget[]} An array of form items to render.",
+            "paramName": "items",
+            "description": " An array of form items to render.",
+            "type": "qx.ui.core.Widget[]"
+          },
+          {
+            "name": "@param",
+            "body": "names {String[]} An array of names for the form items.",
+            "paramName": "names",
+            "description": " An array of names for the form items.",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "title {String?} A title of the group you are adding.",
+            "paramName": "title",
+            "description": " A title of the group you are adding.",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1775
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3423
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        },
+        {
+          "name": "names",
+          "type": "String[]"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.renderer.Single",
+      "appearsIn": [
+        "qx.ui.form.renderer.Single",
+        "qx.ui.form.renderer.IFormRenderer",
+        "qx.ui.form.renderer.AbstractRenderer",
+        "qx.ui.form.renderer.IFormRenderer"
+      ]
+    },
+    "_createWidgetForRadioGroup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the items of the given RadioGroup and adds the to a Composite.",
+          "     * @param group {qx.ui.form.RadioGroup} The RadioGroup which needs to be",
+          "     *   added.",
+          "     * @return {qx.ui.container.Composite} A composite containing the items of",
+          "     *   the RadioGroup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the items of the given RadioGroup and adds the to a Composite.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.form.RadioGroup} The RadioGroup which needs to be\n   added.",
+            "paramName": "group",
+            "description": " The RadioGroup which needs to be\n   added.",
+            "type": "qx.ui.form.RadioGroup"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite} A composite containing the items of\n   the RadioGroup.",
+            "type": "qx.ui.container.Composite",
+            "description": "A composite containing the items of\n   the RadioGroup."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3719
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "group",
+          "type": "qx.ui.form.RadioGroup"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_createHBoxForRadioGroup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the items of the given RadioGroup and adds the to a Composite.",
+          "     * The composite has a HBox layout so the RadioButtons will be alligned",
+          "     * horizontally. This is only useful for a small number of RadioButtons",
+          "     * such as 2 or 3 buttons with labels.",
+          "     * @param group {qx.ui.form.RadioGroup} The RadioGroup which needs to be",
+          "     *   added.",
+          "     * @return {qx.ui.container.Composite} A composite containing the items of",
+          "     *   the RadioGroup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Takes the items of the given RadioGroup and adds the to a Composite.\n The composite has a HBox layout so the RadioButtons will be alligned\n horizontally. This is only useful for a small number of RadioButtons\n such as 2 or 3 buttons with labels.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "group {qx.ui.form.RadioGroup} The RadioGroup which needs to be\n   added.",
+            "paramName": "group",
+            "description": " The RadioGroup which needs to be\n   added.",
+            "type": "qx.ui.form.RadioGroup"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite} A composite containing the items of\n   the RadioGroup.",
+            "type": "qx.ui.container.Composite",
+            "description": "A composite containing the items of\n   the RadioGroup."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4469
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "group",
+          "type": "qx.ui.form.RadioGroup"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.container.Composite"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

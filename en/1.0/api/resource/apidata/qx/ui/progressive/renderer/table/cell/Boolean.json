@@ -1,0 +1,254 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601276,
+  "lastModifiedIso": "2026-06-29T04:00:01.276Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/renderer/table/cell/Boolean.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 602
+    },
+    "end": {
+      "line": 186,
+      "column": 3,
+      "index": 5183
+    }
+  },
+  "className": "qx.ui.progressive.renderer.table.cell.Boolean",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Table Cell Boolean Renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Table Cell Boolean Renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.renderer.table.cell.Icon",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 726
+      },
+      "end": {
+        "line": 41,
+        "column": 3,
+        "index": 1040
+      }
+    }
+  },
+  "properties": {
+    "allowToggle": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1257
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1319
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to add code which will toggle the checkbox on/off.  (There is",
+          "     * not yet code here to generate an event when this occurs, so it's not",
+          "     * yet very useful.)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to add code which will toggle the checkbox on/off.  (There is\n not yet code here to generate an event when this occurs, so it's not\n yet very useful.)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_iconUrlTrue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1343
+        },
+        "end": {
+          "line": 56,
+          "column": 22,
+          "index": 1361
+        }
+      },
+      "appearsIn": []
+    },
+    "_iconUrlFalse": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1367
+        },
+        "end": {
+          "line": 57,
+          "column": 23,
+          "index": 1386
+        }
+      },
+      "appearsIn": []
+    },
+    "_resolveImages": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resolve the boolean images using the alias and resource manager.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resolve the boolean images using the alias and resource manager.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1481
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1961
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getDefaultImageData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1968
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2078
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_identifyImage": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2103
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Icon",
+      "appearsIn": [
+        "qx.ui.progressive.renderer.table.cell.Icon"
+      ]
+    },
+    "_getCellStyle": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 4751
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 4847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "overriddenFrom": "qx.ui.progressive.renderer.table.cell.Icon",
+      "appearsIn": [
+        "qx.ui.progressive.renderer.table.cell.Icon",
+        "qx.ui.progressive.renderer.table.cell.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 176,
+        "column": 2,
+        "index": 4856
+      },
+      "end": {
+        "line": 185,
+        "column": 3,
+        "index": 5179
+      }
+    }
+  },
+  "statics": {}
+}

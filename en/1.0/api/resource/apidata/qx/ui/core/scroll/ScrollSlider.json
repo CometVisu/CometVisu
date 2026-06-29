@@ -1,0 +1,131 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603152,
+  "lastModifiedIso": "2026-06-29T04:00:03.152Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/scroll/ScrollSlider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 650
+    },
+    "end": {
+      "line": 70,
+      "column": 3,
+      "index": 1822
+    }
+  },
+  "className": "qx.ui.core.scroll.ScrollSlider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Minimal modified version of the {@link qx.ui.form.Slider} to be",
+      " * used by {@link qx.ui.core.scroll.ScrollBar}.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Minimal modified version of the {@link qx.ui.form.Slider} to be\n used by {@link qx.ui.core.scroll.ScrollBar}.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.Slider",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "orientation"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 750
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 940
+      }
+    }
+  },
+  "members": {
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 978
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1307
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.Slider",
+      "appearsIn": [
+        "qx.ui.form.Slider",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "getSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1332
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1814
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "compute"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.LayoutItem",
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

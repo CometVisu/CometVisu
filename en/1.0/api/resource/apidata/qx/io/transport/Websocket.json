@@ -1,0 +1,288 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603386,
+  "lastModifiedIso": "2026-06-29T04:00:03.386Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/transport/Websocket.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 6,
+      "column": 0,
+      "index": 140
+    },
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 2592
+    }
+  },
+  "className": "qx.io.transport.Websocket",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An implementation of a WebSocket transport",
+      " * @see https://developer.mozilla.org/de/docs/Web/API/WebSocket",
+      " * @ignore(WebSocket)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An implementation of a WebSocket transport</p>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "https://developer.mozilla.org/de/docs/Web/API/WebSocket"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "WebSocket"
+      }
+    ]
+  },
+  "superClass": "qx.io.transport.AbstractTransport",
+  "interfaces": [
+    "qx.io.transport.ITransport"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 15,
+        "column": 2,
+        "index": 367
+      },
+      "end": {
+        "line": 17,
+        "column": 3,
+        "index": 403
+      }
+    }
+  },
+  "members": {
+    "__tranportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {WebSocket}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{WebSocket}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 23,
+          "column": 4,
+          "index": 464
+        },
+        "end": {
+          "line": 23,
+          "column": 24,
+          "index": 484
+        }
+      },
+      "appearsIn": []
+    },
+    "getTransportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the object which implements the transport on the",
+          "     * underlying level, so that transport-specific configuration",
+          "     * can be done on it.",
+          "     *",
+          "     * @return {WebSocket}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object which implements the transport on the\n underlying level, so that transport-specific configuration\n can be done on it.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{WebSocket}",
+            "type": "WebSocket",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 697
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 858
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "WebSocket"
+      },
+      "appearsIn": [
+        "qx.io.transport.ITransport"
+      ]
+    },
+    "send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transport the given message to the endpoint",
+          "     *",
+          "     * @param {String} message",
+          "     *",
+          "     * @return {qx.Promise} Promise that resolves (with no data)",
+          "     * when the message has been successfully sent out, and rejects",
+          "     * when there is an error or a cancellation up to that point.",
+          "     * @ignore(fetch)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transport the given message to the endpoint</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} message",
+            "paramName": "message",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point.",
+            "type": "qx.Promise",
+            "description": "Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point."
+          }
+        ],
+        "@ignore": [
+          {
+            "name": "@ignore",
+            "body": "fetch"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1198
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1463
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": [
+        "qx.io.transport.ITransport"
+      ]
+    },
+    "_createTransportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method to create a websocket object.",
+          "     * @return {WebSocket}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method to create a websocket object.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{WebSocket}",
+            "type": "WebSocket",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1565
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2402
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "WebSocket"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 89,
+        "column": 2,
+        "index": 2411
+      },
+      "end": {
+        "line": 92,
+        "column": 3,
+        "index": 2492
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

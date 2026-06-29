@@ -1,0 +1,332 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/viewer/AbstractViewer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 897
+    },
+    "end": {
+      "line": 106,
+      "column": 3,
+      "index": 2772
+    }
+  },
+  "className": "cv.ui.manager.viewer.AbstractViewer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for all widgets that can display file items.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for all widgets that can display file items.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "cv.ui.manager.editor.IEditor",
+    "cv.ui.manager.IActionHandler"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1208
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1284
+      }
+    }
+  },
+  "properties": {
+    "file": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1565
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_applyFile",
+        "event": "changeFile"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "external": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1707
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1766
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>External viewers just open the file in a new frame but to not show a new tab in the manager for the opened file</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1773
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1856
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeReady"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    }
+  },
+  "members": {
+    "canHandleAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2002
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2047
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "handleAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2053
+        },
+        "end": {
+          "line": 76,
+          "column": 21,
+          "index": 2070
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "configureButton": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2076
+        },
+        "end": {
+          "line": 77,
+          "column": 30,
+          "index": 2102
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "unConfigureButton": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2108
+        },
+        "end": {
+          "line": 78,
+          "column": 32,
+          "index": 2136
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.manager.IActionHandler"
+      ]
+    },
+    "save": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2142
+        },
+        "end": {
+          "line": 79,
+          "column": 13,
+          "index": 2151
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "getCurrentContent": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2157
+        },
+        "end": {
+          "line": 80,
+          "column": 26,
+          "index": 2179
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "_applyFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2186
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2248
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2273
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2764
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

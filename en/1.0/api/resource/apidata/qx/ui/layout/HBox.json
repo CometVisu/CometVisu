@@ -1,0 +1,528 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602206,
+  "lastModifiedIso": "2026-06-29T04:00:02.206Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/layout/HBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 92,
+      "column": 0,
+      "index": 3464
+    },
+    "end": {
+      "line": 557,
+      "column": 3,
+      "index": 15804
+    }
+  },
+  "className": "qx.ui.layout.HBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A horizontal box layout.",
+      " *",
+      " * The horizontal box layout lays out widgets in a horizontal row, from left",
+      " * to right.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Minimum and maximum dimensions",
+      " * * Prioritized growing/shrinking (flex)",
+      " * * Margins (with horizontal collapsing)",
+      " * * Auto sizing (ignoring percent values)",
+      " * * Percent widths (not relevant for size hint)",
+      " * * Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)",
+      " * * Horizontal spacing (collapsed with margins)",
+      " * * Reversed children layout (from last to first)",
+      " * * Vertical children stretching (respecting size hints)",
+      " *",
+      " * *Item Properties*",
+      " *",
+      " * <ul>",
+      " * <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container",
+      " *   distributes remaining empty space among its children. If items are made",
+      " *   flexible, they can grow or shrink accordingly. Their relative flex values",
+      " *   determine how the items are being resized, i.e. the larger the flex ratio",
+      " *   of two items, the larger the resizing of the first item compared to the",
+      " *   second.",
+      " *",
+      " *   If there is only one flex item in a layout container, its actual flex",
+      " *   value is not relevant. To disallow items to become flexible, set the",
+      " *   flex value to zero.",
+      " * </li>",
+      " * <li><strong>flexShrink</strong> <em>(Boolean)</em>: Only valid if `flex` is",
+      " *    set to a non-zero value, `flexShrink` tells the layout to force the child",
+      " *    widget to shink if there is not enough space available for all of the children.",
+      " *    This is used in scenarios such as when the child insists that it has a `minWidth`",
+      " *    but there simply is not enough space to support that minimum width, so the",
+      " *    overflow has to be cut off.  This setting allows the container to pick",
+      " *    which children are able to have their `minWidth` sacrificed.  Without this",
+      " *    setting, one oversized child can force later children out of view, regardless",
+      " *    of `flex` settings",
+      " * </li>",
+      " * <li><strong>width</strong> <em>(String)</em>: Allows to define a percent",
+      " *   width for the item. The width in percent, if specified, is used instead",
+      " *   of the width defined by the size hint. The minimum and maximum width still",
+      " *   takes care of the element's limits. It has no influence on the layout's",
+      " *   size hint. Percent values are mostly useful for widgets which are sized by",
+      " *   the outer hierarchy.",
+      " * </li>",
+      " * </ul>",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the HBox layout.",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var layout = new qx.ui.layout.HBox();",
+      " * layout.setSpacing(4); // apply spacing",
+      " *",
+      " * var container = new qx.ui.container.Composite(layout);",
+      " *",
+      " * container.add(new qx.ui.core.Widget());",
+      " * container.add(new qx.ui.core.Widget());",
+      " * container.add(new qx.ui.core.Widget());",
+      " * </pre>",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>",
+      " * and links to demos for this layout.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A horizontal box layout.\n The horizontal box layout lays out widgets in a horizontal row, from left\n to right.\n<em>Features</em></p>\n<ul>\n<li>Minimum and maximum dimensions</li>\n<li>Prioritized growing/shrinking (flex)</li>\n<li>Margins (with horizontal collapsing)</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li>Percent widths (not relevant for size hint)</li>\n<li>Alignment (child property {@link qx.ui.core.LayoutItem#alignX} is ignored)</li>\n<li>Horizontal spacing (collapsed with margins)</li>\n<li>Reversed children layout (from last to first)</li>\n<li><p>Vertical children stretching (respecting size hints)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container\n   distributes remaining empty space among its children. If items are made\n   flexible, they can grow or shrink accordingly. Their relative flex values\n   determine how the items are being resized, i.e. the larger the flex ratio\n   of two items, the larger the resizing of the first item compared to the\n   second.\n   If there is only one flex item in a layout container, its actual flex\n   value is not relevant. To disallow items to become flexible, set the\n   flex value to zero.\n </li>\n <li><strong>flexShrink</strong> <em>(Boolean)</em>: Only valid if <code>flex</code> is\n    set to a non-zero value, <code>flexShrink</code> tells the layout to force the child\n    widget to shink if there is not enough space available for all of the children.\n    This is used in scenarios such as when the child insists that it has a <code>minWidth</code>\n    but there simply is not enough space to support that minimum width, so the\n    overflow has to be cut off.  This setting allows the container to pick\n    which children are able to have their <code>minWidth</code> sacrificed.  Without this\n    setting, one oversized child can force later children out of view, regardless\n    of <code>flex</code> settings\n </li>\n <li><strong>width</strong> <em>(String)</em>: Allows to define a percent\n   width for the item. The width in percent, if specified, is used instead\n   of the width defined by the size hint. The minimum and maximum width still\n   takes care of the element's limits. It has no influence on the layout's\n   size hint. Percent values are mostly useful for widgets which are sized by\n   the outer hierarchy.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the HBox layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.HBox();\n layout.setSpacing(4);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n </pre>\n<p><em>External Documentation</em>\n See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>\n and links to demos for this layout.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.layout.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "spacing"
+      },
+      {
+        "name": "alignX"
+      },
+      {
+        "name": "separator"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 107,
+        "column": 2,
+        "index": 4033
+      },
+      "end": {
+        "line": 121,
+        "column": 3,
+        "index": 4266
+      }
+    }
+  },
+  "properties": {
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4674
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4785
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "init": "left",
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of the whole children block. The horizontal",
+          "     * alignment of the child is completely ignored in HBoxes (",
+          "     * {@link qx.ui.core.LayoutItem#alignX}).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of the whole children block. The horizontal\n alignment of the child is completely ignored in HBoxes (\n {@link qx.ui.core.LayoutItem#alignX}).</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4920
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 5030
+        }
+      },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom"
+        ],
+        "init": "top",
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of each child. Can be overridden through",
+          "     * {@link qx.ui.core.LayoutItem#alignY}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of each child. Can be overridden through\n {@link qx.ui.core.LayoutItem#alignY}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "spacing": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 5088
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 5177
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Horizontal spacing between two children "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal spacing between two children</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "separator": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 5238
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 5338
+        }
+      },
+      "json": {
+        "check": "Decorator",
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Separator lines to use between the objects "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Separator lines to use between the objects</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "reversed": {
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5427
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 5517
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyReversed"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the actual children list should be laid out in reversed order. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the actual children list should be laid out in reversed order.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__widths": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5725
+        },
+        "end": {
+          "line": 180,
+          "column": 18,
+          "index": 5739
+        }
+      },
+      "appearsIn": []
+    },
+    "__flexs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 5745
+        },
+        "end": {
+          "line": 181,
+          "column": 17,
+          "index": 5758
+        }
+      },
+      "appearsIn": []
+    },
+    "__enableFlex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 5764
+        },
+        "end": {
+          "line": 182,
+          "column": 22,
+          "index": 5782
+        }
+      },
+      "appearsIn": []
+    },
+    "__children": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5788
+        },
+        "end": {
+          "line": 183,
+          "column": 20,
+          "index": 5804
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyReversed": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 6029
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 6211
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__rebuildCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rebuilds caches for flex and percent layout properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rebuilds caches for flex and percent layout properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 6296
+        },
+        "end": {
+          "line": 251,
+          "column": 5,
+          "index": 7623
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "verifyLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 7846
+        },
+        "end": {
+          "line": 278,
+          "column": 6,
+          "index": 8426
+        }
+      },
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 8451
+        },
+        "end": {
+          "line": 466,
+          "column": 5,
+          "index": 13535
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "availWidth"
+        },
+        {
+          "name": "availHeight"
+        },
+        {
+          "name": "padding"
+        }
+      ],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 4,
+          "index": 13560
+        },
+        "end": {
+          "line": 545,
+          "column": 5,
+          "index": 15529
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 554,
+        "column": 2,
+        "index": 15725
+      },
+      "end": {
+        "line": 556,
+        "column": 3,
+        "index": 15800
+      }
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,565 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543709,
+  "lastModifiedIso": "2026-06-29T03:59:03.709Z",
+  "classFilename": "../../client/source/class/cv/io/transport/Sse.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 842
+    },
+    "end": {
+      "line": 192,
+      "column": 3,
+      "index": 5318
+    }
+  },
+  "className": "cv.io.transport.Sse",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(EventSource)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "EventSource"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "client"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1105
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1188
+      }
+    }
+  },
+  "members": {
+    "running": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1346
+        },
+        "end": {
+          "line": 46,
+          "column": 18,
+          "index": 1360
+        }
+      },
+      "appearsIn": []
+    },
+    "sessionId": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1366
+        },
+        "end": {
+          "line": 47,
+          "column": 19,
+          "index": 1381
+        }
+      },
+      "appearsIn": []
+    },
+    "client": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1387
+        },
+        "end": {
+          "line": 48,
+          "column": 16,
+          "index": 1399
+        }
+      },
+      "appearsIn": []
+    },
+    "eventSource": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1405
+        },
+        "end": {
+          "line": 49,
+          "column": 21,
+          "index": 1422
+        }
+      },
+      "appearsIn": []
+    },
+    "__additionalTopics": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1428
+        },
+        "end": {
+          "line": 50,
+          "column": 28,
+          "index": 1452
+        }
+      },
+      "appearsIn": []
+    },
+    "handleSession": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function gets called once the communication is established",
+          "     * and session information is available",
+          "     *",
+          "     * @param args {Array} arguments from the XHR response callback",
+          "     * @param connect {Boolean} whether to start the connection or not",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function gets called once the communication is established\n and session information is available</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {Array} arguments from the XHR response callback",
+            "paramName": "args",
+            "description": " arguments from the XHR response callback",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "connect {Boolean} whether to start the connection or not",
+            "paramName": "connect",
+            "description": " whether to start the connection or not",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1735
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2126
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "args",
+          "type": "Array<any>"
+        },
+        {
+          "name": "connect",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "connect": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Establish the SSE connection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Establish the SSE connection</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2185
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 3113
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "handleMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle messages send from server as Server-Sent-Event",
+          "     * @param e",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle messages send from server as Server-Sent-Event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e",
+            "paramName": "e",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3213
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "appearsIn": []
+    },
+    "dispatchTopicMessage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3421
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3681
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic"
+        },
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": []
+    },
+    "subscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribe to SSE events of a certain topic",
+          "     * @param topic {String}",
+          "     * @param callback {Function}",
+          "     * @param context {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribe to SSE events of a certain topic</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "topic {String}",
+            "paramName": "topic",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function}",
+            "paramName": "callback",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}",
+            "paramName": "context",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3848
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4149
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addRecordedEventListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 4156
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4419
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "topic"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors",
+          "     * @param e",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle errors</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e",
+            "paramName": "e",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 4479
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4667
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isConnectionRunning": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the connection is still running.",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if the connection is still running.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4771
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4883
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "restart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the read request",
+          "     * @param doFullReload",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the read request</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "doFullReload",
+            "paramName": "doFullReload",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4965
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 5128
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "doFullReload"
+        }
+      ],
+      "appearsIn": []
+    },
+    "abort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abort the read request properly",
+          "     *",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Abort the read request properly</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 5204
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 5310
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

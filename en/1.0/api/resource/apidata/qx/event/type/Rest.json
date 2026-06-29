@@ -1,0 +1,370 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603107,
+  "lastModifiedIso": "2026-06-29T04:00:03.107Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Rest.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 510
+    },
+    "end": {
+      "line": 100,
+      "column": 3,
+      "index": 2724
+    }
+  },
+  "className": "qx.event.type.Rest",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Rest event object.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Rest event object.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Data",
+  "properties": {
+    "request": {
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 650
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 711
+        }
+      },
+      "json": {
+        "check": "qx.io.request.AbstractRequest"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The request of the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The request of the event.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "action": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 778
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 815
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The action that invoked the request.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The action that invoked the request.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "phase": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 871
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 907
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The phase of the request.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The phase of the request.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "id": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 960
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 993
+        }
+      },
+      "json": {
+        "check": "Number"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The id of the request.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The id of the request.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes an event object.",
+          "     *",
+          "     * @param data {var} Then event's new data",
+          "     * @param old {var?null} The event's old data",
+          "     * @param cancelable {Boolean?false} Whether or not an event can have its default",
+          "     *  action prevented. The default action can either be the browser's",
+          "     *  default action of a native event (e.g. open the context menu on a",
+          "     *  right click) or the default action of a qooxdoo class (e.g. close",
+          "     *  the window widget). The default action can be prevented by calling",
+          "     *  {@link qx.event.type.Event#preventDefault}",
+          "     * @param request {qx.io.request.AbstractRequest} The associated request.",
+          "     * @param action {String} The associated action.",
+          "     * @param phase {String} The associated phase.",
+          "     * @return {qx.event.type.Data} The initialized instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes an event object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {var} Then event's new data",
+            "paramName": "data",
+            "description": " Then event's new data",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "old {var?null} The event's old data",
+            "paramName": "old",
+            "description": " The event's old data",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n  action prevented. The default action can either be the browser's\n  default action of a native event (e.g. open the context menu on a\n  right click) or the default action of a qooxdoo class (e.g. close\n  the window widget). The default action can be prevented by calling\n  {@link qx.event.type.Event#preventDefault}",
+            "paramName": "cancelable",
+            "description": " Whether or not an event can have its default\n  action prevented. The default action can either be the browser's\n  default action of a native event (e.g. open the context menu on a\n  right click) or the default action of a qooxdoo class (e.g. close\n  the window widget). The default action can be prevented by calling\n  {@link qx.event.type.Event#preventDefault}",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "request {qx.io.request.AbstractRequest} The associated request.",
+            "paramName": "request",
+            "description": " The associated request.",
+            "type": "qx.io.request.AbstractRequest"
+          },
+          {
+            "name": "@param",
+            "body": "action {String} The associated action.",
+            "paramName": "action",
+            "description": " The associated action.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "phase {String} The associated phase.",
+            "paramName": "phase",
+            "description": " The associated phase.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.type.Data} The initialized instance.",
+            "type": "qx.event.type.Data",
+            "description": "The initialized instance."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1850
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2115
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "cancelable",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "request",
+          "type": "qx.io.request.AbstractRequest"
+        },
+        {
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "name": "phase",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Data"
+      },
+      "overriddenFrom": "qx.event.type.Data",
+      "appearsIn": [
+        "qx.event.type.Data",
+        "qx.event.type.Event"
+      ]
+    },
+    "clone": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a copy of this object",
+          "     *",
+          "     * @param embryo {qx.event.type.Data?null} Optional event class, which will",
+          "     *  be configured using the data of this event instance. The event must be",
+          "     *  an instance of this event class. If the data is <code>null</code>,",
+          "     *  a new pooled instance is created.",
+          "     * @return {qx.event.type.Data} A copy of this object.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a copy of this object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "embryo {qx.event.type.Data?null} Optional event class, which will\n  be configured using the data of this event instance. The event must be\n  an instance of this event class. If the data is <code>null</code>,\n  a new pooled instance is created.",
+            "paramName": "embryo",
+            "description": " Optional event class, which will\n  be configured using the data of this event instance. The event must be\n  an instance of this event class. If the data is <code>null</code>,\n  a new pooled instance is created.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "qx.event.type.Data"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.event.type.Data} A copy of this object.",
+            "type": "qx.event.type.Data",
+            "description": "A copy of this object."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2513
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2716
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "embryo",
+          "type": "qx.event.type.Data",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Data"
+      },
+      "overriddenFrom": "qx.event.type.Data",
+      "appearsIn": [
+        "qx.event.type.Data",
+        "qx.event.type.Event",
+        "qx.core.Object"
+      ]
+    }
+  },
+  "statics": {}
+}

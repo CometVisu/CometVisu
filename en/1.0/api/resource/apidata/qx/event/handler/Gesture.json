@@ -1,0 +1,827 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602160,
+  "lastModifiedIso": "2026-06-29T04:00:02.160Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Gesture.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 560
+    },
+    "end": {
+      "line": 287,
+      "column": 3,
+      "index": 7156
+    }
+  },
+  "className": "qx.event.handler.Gesture",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Unified gesture event handler.",
+      " *",
+      " * @require(qx.event.handler.Pointer)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Unified gesture event handler.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Pointer"
+      }
+    ]
+  },
+  "superClass": "qx.event.handler.GestureCore",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 776
+        },
+        "end": {
+          "line": 30,
+          "column": 51,
+          "index": 823
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 875
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1067
+        }
+      },
+      "appearsIn": []
+    },
+    "GESTURE_EVENTS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1074
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1185
+        }
+      },
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1245
+        },
+        "end": {
+          "line": 56,
+          "column": 44,
+          "index": 1349
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1434
+        },
+        "end": {
+          "line": 59,
+          "column": 27,
+          "index": 1457
+        }
+      },
+      "appearsIn": []
+    },
+    "EVENT_CLASSES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1464
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1828
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 80,
+        "column": 2,
+        "index": 1956
+      },
+      "end": {
+        "line": 87,
+        "column": 3,
+        "index": 2180
+      }
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2200
+        },
+        "end": {
+          "line": 90,
+          "column": 19,
+          "index": 2215
+        }
+      },
+      "appearsIn": []
+    },
+    "__window": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2221
+        },
+        "end": {
+          "line": 91,
+          "column": 18,
+          "index": 2235
+        }
+      },
+      "appearsIn": []
+    },
+    "__root": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 92,
+          "column": 16,
+          "index": 2253
+        }
+      },
+      "appearsIn": []
+    },
+    "__listener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2259
+        },
+        "end": {
+          "line": 93,
+          "column": 20,
+          "index": 2275
+        }
+      },
+      "appearsIn": []
+    },
+    "__onDblClickWrapped": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2281
+        },
+        "end": {
+          "line": 94,
+          "column": 29,
+          "index": 2306
+        }
+      },
+      "appearsIn": []
+    },
+    "__fireRollWrapped": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2312
+        },
+        "end": {
+          "line": 95,
+          "column": 27,
+          "index": 2335
+        }
+      },
+      "appearsIn": []
+    },
+    "getWindow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the internal __window object",
+          "     * @return {Window} DOM window instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for the internal __window object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Window} DOM window instance",
+            "type": "qx.event.handler.Window",
+            "description": "DOM window instance"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2449
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 2496
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.event.handler.Window"
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2535
+        },
+        "end": {
+          "line": 106,
+          "column": 35,
+          "index": 2566
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2605
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2688
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2727
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2812
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_initObserver": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 2837
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4076
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "checkAndFireGesture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a gesture was made and fires the gesture event.",
+          "     *",
+          "     * @param pointerEvent {qx.event.type.Pointer} Pointer event",
+          "     * @param type {String ? null} type of the event",
+          "     * @param target {Element ? null} event target",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if a gesture was made and fires the gesture event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pointerEvent {qx.event.type.Pointer} Pointer event",
+            "paramName": "pointerEvent",
+            "description": " Pointer event",
+            "type": "qx.event.type.Pointer"
+          },
+          {
+            "name": "@param",
+            "body": "type {String ? null} type of the event",
+            "paramName": "type",
+            "description": " type of the event",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element ? null} event target",
+            "paramName": "target",
+            "description": " event target",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4340
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 4556
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pointerEvent",
+          "type": "qx.event.type.Pointer"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "target",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "_stopObserver": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4581
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5322
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "_hasIntermediaryHandler": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 5347
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 5507
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        }
+      ],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "_fireEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire a touch event with the given parameters",
+          "     *",
+          "     * @param domEvent {Event} DOM event",
+          "     * @param type {String ? null} type of the event",
+          "     * @param target {Element ? null} event target",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire a touch event with the given parameters</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} DOM event",
+            "paramName": "domEvent",
+            "description": " DOM event",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "type {String ? null} type of the event",
+            "paramName": "type",
+            "description": " type of the event",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "target {Element ? null} event target",
+            "paramName": "target",
+            "description": " event target",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Element"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 5734
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6407
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "target",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore"
+      ]
+    },
+    "dispose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose this object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dispose this object</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 6457
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 6656
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.handler.GestureCore",
+      "appearsIn": [
+        "qx.event.handler.GestureCore",
+        "qx.core.IDisposable",
+        "qx.core.IDisposable"
+      ]
+    },
+    "__callBase": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Call overridden method.",
+          "     *",
+          "     * @param method {String} Name of the overridden method.",
+          "     * @param args {Array} Arguments.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Call overridden method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "method {String} Name of the overridden method.",
+            "paramName": "method",
+            "description": " Name of the overridden method.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Array} Arguments.",
+            "paramName": "args",
+            "description": " Arguments.",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 6816
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 6926
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

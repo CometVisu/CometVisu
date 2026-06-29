@@ -1,0 +1,556 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602950,
+  "lastModifiedIso": "2026-06-29T04:00:02.950Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Orientation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 40,
+      "column": 0,
+      "index": 969
+    },
+    "end": {
+      "line": 240,
+      "column": 3,
+      "index": 6687
+    }
+  },
+  "className": "qx.event.handler.Orientation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides a handler for the orientation event.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides a handler for the orientation event.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 2,
+        "index": 1415
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1575
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1831
+        },
+        "end": {
+          "line": 72,
+          "column": 51,
+          "index": 1878
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1930
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 1981
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2041
+        },
+        "end": {
+          "line": 80,
+          "column": 54,
+          "index": 2091
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2176
+        },
+        "end": {
+          "line": 83,
+          "column": 27,
+          "index": 2199
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2407
+        },
+        "end": {
+          "line": 93,
+          "column": 19,
+          "index": 2422
+        }
+      },
+      "appearsIn": []
+    },
+    "__window": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2428
+        },
+        "end": {
+          "line": 94,
+          "column": 18,
+          "index": 2442
+        }
+      },
+      "appearsIn": []
+    },
+    "__nativeEventType": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2448
+        },
+        "end": {
+          "line": 95,
+          "column": 27,
+          "index": 2471
+        }
+      },
+      "appearsIn": []
+    },
+    "_currentOrientation": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2477
+        },
+        "end": {
+          "line": 96,
+          "column": 29,
+          "index": 2502
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2508
+        },
+        "end": {
+          "line": 97,
+          "column": 27,
+          "index": 2531
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2775
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2850
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2889
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2972
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3011
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3096
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "_initObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the native orientation change event listeners.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes the native orientation change event listeners.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3380
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4044
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnects the native orientation change event listeners.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Disconnects the native orientation change event listeners.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4328
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4512
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onNative": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the native orientation change event.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} The touch event from the browser.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the native orientation change event.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The touch event from the browser.",
+            "paramName": "domEvent",
+            "description": " The touch event from the browser.",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4904
+        },
+        "end": {
+          "line": 195,
+          "column": 6,
+          "index": 5469
+        }
+      },
+      "appearsIn": []
+    },
+    "_onOrientationChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the detection of an orientation change.",
+          "     * @param domEvent {Event} The touch event from the browser.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the detection of an orientation change.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The touch event from the browser.",
+            "paramName": "domEvent",
+            "description": " The touch event from the browser.",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 5616
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 6148
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 226,
+        "column": 2,
+        "index": 6344
+      },
+      "end": {
+        "line": 229,
+        "column": 3,
+        "index": 6429
+      }
+    }
+  },
+  "properties": {}
+}

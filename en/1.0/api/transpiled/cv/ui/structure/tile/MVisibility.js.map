@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "construct",
+    "_observeVisibility",
+    "statics",
+    "observer",
+    "properties",
+    "visible",
+    "check",
+    "init",
+    "event",
+    "members",
+    "_element",
+    "cv",
+    "ui",
+    "structure",
+    "tile",
+    "MVisibility",
+    "IntersectionObserver",
+    "entries",
+    "forEach",
+    "entry",
+    "target",
+    "_instance",
+    "setVisible",
+    "isIntersecting",
+    "root",
+    "document",
+    "querySelector",
+    "observe",
+    "warn",
+    "_unobserveVisibility",
+    "unobserve",
+    "destruct"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/source/class/cv/ui/structure/tile/MVisibility.js"
+  ],
+  "sourcesContent": [
+    "/* MVisibility.js\n *\n * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Detects dom elements visibility\n * @ignore(IntersectionObserver)\n */\nqx.Mixin.define('cv.ui.structure.tile.MVisibility', {\n  /*\n  ***********************************************\n    CONSTRUCTOR\n  ***********************************************\n  */\n  construct() {\n    this._observeVisibility();\n  },\n\n  /*\n  ***********************************************\n    STATICS\n  ***********************************************\n  */\n  statics: {\n    observer: null\n  },\n\n  /*\n  ***********************************************\n    PROPERTIES\n  ***********************************************\n  */\n  properties: {\n    visible: {\n      check: 'Boolean',\n      init: false,\n      event: 'changeVisible'\n    }\n  },\n\n  /*\n  ***********************************************\n    MEMBERS\n  ***********************************************\n  */\n  members: {\n    _observeVisibility() {\n      if (this._element) {\n        if (!cv.ui.structure.tile.MVisibility.observer) {\n          cv.ui.structure.tile.MVisibility.observer = new IntersectionObserver(entries => {\n            entries.forEach(entry => {\n              if (entry.target._instance) {\n                entry.target._instance.setVisible(entry.isIntersecting);\n              }\n            });\n          }, {\n            root: document.querySelector('body > main')\n          });\n        }\n        cv.ui.structure.tile.MVisibility.observer.observe(this._element);\n      } else {\n        this.warn('no element to observe defined');\n      }\n    },\n    _unobserveVisibility() {\n      if (this._element) {\n        cv.ui.structure.tile.MVisibility.observer.unobserve(this._element);\n      }\n    }\n  },\n\n  destruct() {\n    this._unobserveVisibility();\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,kCAAkC,EAAE;IAClD;AACF;AACA;AACA;AACA;IACEC,SAAS,WAATA,SAASA,CAAA,EAAG;MACV,IAAI,CAACC,kBAAkB,CAAC,CAAC;IAC3B,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPC,QAAQ,EAAE;IACZ,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,UAAU,EAAE;MACVC,OAAO,EAAE;QACPC,KAAK,EAAE,SAAS;QAChBC,IAAI,EAAE,KAAK;QACXC,KAAK,EAAE;MACT;IACF,CAAC;IAED;AACF;AACA;AACA;AACA;IACEC,OAAO,EAAE;MACPR,kBAAkB,WAAlBA,kBAAkBA,CAAA,EAAG;QACnB,IAAI,IAAI,CAACS,QAAQ,EAAE;UACjB,IAAI,CAACC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,WAAW,CAACZ,QAAQ,EAAE;YAC9CQ,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,WAAW,CAACZ,QAAQ,GAAG,IAAIa,oBAAoB,CAAC,UAAAC,OAAO,EAAI;cAC9EA,OAAO,CAACC,OAAO,CAAC,UAAAC,KAAK,EAAI;gBACvB,IAAIA,KAAK,CAACC,MAAM,CAACC,SAAS,EAAE;kBAC1BF,KAAK,CAACC,MAAM,CAACC,SAAS,CAACC,UAAU,CAACH,KAAK,CAACI,cAAc,CAAC;gBACzD;cACF,CAAC,CAAC;YACJ,CAAC,EAAE;cACDC,IAAI,EAAEC,QAAQ,CAACC,aAAa,CAAC,aAAa;YAC5C,CAAC,CAAC;UACJ;UACAf,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,WAAW,CAACZ,QAAQ,CAACwB,OAAO,CAAC,IAAI,CAACjB,QAAQ,CAAC;QAClE,CAAC,MAAM;UACL,IAAI,CAACkB,IAAI,CAAC,+BAA+B,CAAC;QAC5C;MACF,CAAC;MACDC,oBAAoB,WAApBA,oBAAoBA,CAAA,EAAG;QACrB,IAAI,IAAI,CAACnB,QAAQ,EAAE;UACjBC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,WAAW,CAACZ,QAAQ,CAAC2B,SAAS,CAAC,IAAI,CAACpB,QAAQ,CAAC;QACpE;MACF;IACF,CAAC;IAEDqB,QAAQ,WAARA,QAAQA,CAAA,EAAG;MACT,IAAI,CAACF,oBAAoB,CAAC,CAAC;IAC7B;EACF,CAAC,CAAC;EAzFFlB,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,WAAW,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

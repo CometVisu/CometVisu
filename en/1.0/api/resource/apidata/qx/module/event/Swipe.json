@@ -1,0 +1,446 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603255,
+  "lastModifiedIso": "2026-06-29T04:00:03.255Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Swipe.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 776
+    },
+    "end": {
+      "line": 132,
+      "column": 3,
+      "index": 3152
+    }
+  },
+  "className": "qx.module.event.Swipe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the swipe gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>",
+      " * meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or",
+      " * touchscreen).",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the swipe gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
+  "statics": {
+    "TYPES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 900
+        },
+        "end": {
+          "line": 33,
+          "column": 20,
+          "index": 916
+        }
+      },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 923
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1067
+        }
+      },
+      "appearsIn": []
+    },
+    "getStartTime": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the start time of the performed swipe.",
+          "     *",
+          "     * @return {Integer} the start time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the start time of the performed swipe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the start time",
+            "type": "Integer",
+            "description": "the start time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1191
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1258
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getDuration": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the duration the performed swipe took.",
+          "     *",
+          "     * @return {Integer} the duration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the duration the performed swipe took.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the duration",
+            "type": "Integer",
+            "description": "the duration"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1380
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1445
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getAxis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the performed swipe was on the x or y axis.",
+          "     *",
+          "     * @return {String} \"x\"/\"y\" axis",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the performed swipe was on the x or y axis.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} \"x\"/\"y\" axis",
+            "type": "string",
+            "description": "\"x\"/\"y\" axis"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1579
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1636
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getDirection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the direction of the performed swipe in reference to the axis.",
+          "     * y = up / down",
+          "     * x = left / right",
+          "     *",
+          "     * @return {String} the direction",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the direction of the performed swipe in reference to the axis.\n y = up / down\n x = left / right</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the direction",
+            "type": "string",
+            "description": "the direction"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1827
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1894
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVelocity": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the velocity of the performed swipe.",
+          "     *",
+          "     * @return {Number} the velocity",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the velocity of the performed swipe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the velocity",
+            "type": "number",
+            "description": "the velocity"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2078
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDistance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance of the performed swipe.",
+          "     *",
+          "     * @return {Integer} the distance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the distance of the performed swipe.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the distance",
+            "type": "Integer",
+            "description": "the distance"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2198
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2263
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": "Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2575
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3014
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

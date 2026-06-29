@@ -1,0 +1,36 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601709,
+  "lastModifiedIso": "2026-06-29T04:00:01.709Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/classic/Decoration.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 829
+    },
+    "end": {
+      "line": 560,
+      "column": 3,
+      "index": 11649
+    }
+  },
+  "className": "qx.theme.classic.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The classic qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The classic qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

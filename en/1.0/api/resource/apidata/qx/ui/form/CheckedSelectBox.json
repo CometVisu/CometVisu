@@ -1,0 +1,1508 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601450,
+  "lastModifiedIso": "2026-06-29T04:00:01.450Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/CheckedSelectBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 802
+    },
+    "end": {
+      "line": 484,
+      "column": 3,
+      "index": 12107
+    }
+  },
+  "className": "qx.ui.form.CheckedSelectBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A form widget which allows multiple selection with a drop down checked list.",
+      " *",
+      " * @childControl spacer {qx.ui.core.Spacer} flexible spacer widget",
+      " * @childControl atom {qx.ui.basic.Atom} shows the text and icon of the content",
+      " * @childControl arrow {qx.ui.basic.Image} shows the arrow to open the popup",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A form widget which allows multiple selection with a drop down checked list.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "spacer {qx.ui.core.Spacer} flexible spacer widget"
+      },
+      {
+        "name": "@childControl",
+        "body": "atom {qx.ui.basic.Atom} shows the text and icon of the content"
+      },
+      {
+        "name": "@childControl",
+        "body": "arrow {qx.ui.basic.Image} shows the arrow to open the popup"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.AbstractSelectBox",
+  "interfaces": [
+    "qx.ui.core.IMultiSelection",
+    "qx.ui.form.IModelSelection",
+    "qx.ui.form.IField"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1000
+      },
+      "end": {
+        "line": 53,
+        "column": 3,
+        "index": 1604
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1627
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1698
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "checked-selectbox"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "events": {
+    "changeSelection": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Event for psuedo property selection "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event for psuedo property selection</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 64,
+          "column": 41,
+          "index": 1805
+        }
+      }
+    },
+    "changeChecked": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Event for psuedo property checked "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event for psuedo property checked</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1857
+        },
+        "end": {
+          "line": 67,
+          "column": 39,
+          "index": 1892
+        }
+      }
+    },
+    "changeValue": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Event for psuedo property value "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event for psuedo property value</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1942
+        },
+        "end": {
+          "line": 70,
+          "column": 37,
+          "index": 1975
+        }
+      }
+    },
+    "changeModelSelection": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Event for psuedo property modelSelection "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event for psuedo property modelSelection</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2034
+        },
+        "end": {
+          "line": 73,
+          "column": 46,
+          "index": 2076
+        }
+      }
+    },
+    "attachResultsTag": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when a tag widget is added to the results; data is a map containing:",
+          "     * `tagWidget` - the tag widget being added",
+          "     * `item` - the item in the list that is checked",
+          "     * `itemModel` - the model item that backs the item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a tag widget is added to the results; data is a map containing:\n <code>tagWidget</code> - the tag widget being added\n <code>item</code> - the item in the list that is checked\n <code>itemModel</code> - the model item that backs the item</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2331
+        },
+        "end": {
+          "line": 80,
+          "column": 42,
+          "index": 2369
+        }
+      }
+    },
+    "detachResultsTag": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when a tag widget is removed from the results; data is a map containing:",
+          "     * `tagWidget` - the tag widget being added",
+          "     * `item` - the item in the list that is checked",
+          "     * `itemModel` - the model item that backs the item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when a tag widget is removed from the results; data is a map containing:\n <code>tagWidget</code> - the tag widget being added\n <code>item</code> - the item in the list that is checked\n <code>itemModel</code> - the model item that backs the item</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2628
+        },
+        "end": {
+          "line": 87,
+          "column": 42,
+          "index": 2666
+        }
+      }
+    }
+  },
+  "members": {
+    "__modelSelection": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.data.Array} the modelSelection psuedo property "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.data.Array} the modelSelection psuedo property"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2758
+        },
+        "end": {
+          "line": 92,
+          "column": 26,
+          "index": 2780
+        }
+      },
+      "appearsIn": []
+    },
+    "__atomsOnDisplay": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.basic.Atom[]} atoms used to show the selection "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.basic.Atom[]} atoms used to show the selection"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2858
+        },
+        "end": {
+          "line": 95,
+          "column": 26,
+          "index": 2880
+        }
+      },
+      "appearsIn": []
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2970
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3013
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3053
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 4570
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.form.IField"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4640
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4692
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.form.IField"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4762
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4817
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.form.IField"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4887
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 4936
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IField"
+      ]
+    },
+    "getChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for psuedo property \"checked\"",
+          "     *",
+          "     * @return {qx.ui.form.IListItem[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for psuedo property \"checked\"</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.IListItem[]}",
+            "type": "qx.ui.form.IListItem[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4,
+          "index": 5050
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 5126
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.IListItem[]"
+      },
+      "appearsIn": []
+    },
+    "setChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for psuedo property \"checked\"",
+          "     *",
+          "     * @param checked {qx.ui.form.IListItem[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Setter for psuedo property \"checked\"</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "checked {qx.ui.form.IListItem[]}",
+            "paramName": "checked",
+            "type": "qx.ui.form.IListItem[]"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5247
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 5330
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "checked",
+          "type": "qx.ui.form.IListItem[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reset for psuedo property \"checked\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reset for psuedo property \"checked\"</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5396
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5469
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5549
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5627
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "setSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 5707
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 5788
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 5868
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 5943
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 6023
+        },
+        "end": {
+          "line": 246,
+          "column": 5,
+          "index": 6157
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 6237
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 6331
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "getSelectables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 6411
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 6492
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.ISingleSelection"
+      ]
+    },
+    "selectAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.IMultiSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 6571
+        },
+        "end": {
+          "line": 271,
+          "column": 5,
+          "index": 6677
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.IMultiSelection"
+      ]
+    },
+    "addToSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.IMultiSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 6756
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 6988
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.IMultiSelection"
+      ]
+    },
+    "removeFromSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.IMultiSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 7067
+        },
+        "end": {
+          "line": 296,
+          "column": 5,
+          "index": 7274
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.IMultiSelection"
+      ]
+    },
+    "setModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IModelSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.form.IModelSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7353
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 7450
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IModelSelection"
+      ]
+    },
+    "getModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IModelSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.form.IModelSelection"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4,
+          "index": 7529
+        },
+        "end": {
+          "line": 312,
+          "column": 5,
+          "index": 7592
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IModelSelection"
+      ]
+    },
+    "__onModelSelectionChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the modelSelection array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes to the modelSelection array</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 7676
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 8211
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAllNoneExecute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the All/None button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the All/None button</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 339,
+          "column": 4,
+          "index": 8279
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 8517
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onListChangeChecked": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the list's checked array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes to the list's checked array</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 8601
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 10450
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener method for \"pointerover\" event",
+          "     * <ul>",
+          "     * <li>Adds state \"hovered\"</li>",
+          "     * <li>Removes \"abandoned\" and adds \"pressed\" state (if \"abandoned\" state is set)</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener method for \"pointerover\" event\n </p>\n<ul>\n <li>Adds state \"hovered\"</li>\n <li>Removes \"abandoned\" and adds \"pressed\" state (if \"abandoned\" state is set)</li>\n </ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer event",
+            "paramName": "e",
+            "description": " Pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 4,
+          "index": 10734
+        },
+        "end": {
+          "line": 432,
+          "column": 5,
+          "index": 10995
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener method for \"pointerout\" event",
+          "     * <ul>",
+          "     * <li>Removes \"hovered\" state</li>",
+          "     * <li>Adds \"abandoned\" and removes \"pressed\" state (if \"pressed\" state is set)</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener method for \"pointerout\" event\n </p>\n<ul>\n <li>Removes \"hovered\" state</li>\n <li>Adds \"abandoned\" and removes \"pressed\" state (if \"pressed\" state is set)</li>\n </ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer event",
+            "paramName": "e",
+            "description": " Pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 443,
+          "column": 4,
+          "index": 11279
+        },
+        "end": {
+          "line": 454,
+          "column": 5,
+          "index": 11540
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the popup's visibility.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggles the popup's visibility.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Pointer event",
+            "paramName": "e",
+            "description": " Pointer event",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 4,
+          "index": 11663
+        },
+        "end": {
+          "line": 463,
+          "column": 5,
+          "index": 11699
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 4,
+          "index": 11739
+        },
+        "end": {
+          "line": 482,
+          "column": 5,
+          "index": 12099
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
+      "appearsIn": [
+        "qx.ui.form.AbstractSelectBox"
+      ]
+    }
+  },
+  "statics": {}
+}

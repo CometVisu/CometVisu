@@ -1,0 +1,582 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543943,
+  "lastModifiedIso": "2026-06-29T03:59:03.943Z",
+  "classFilename": "../../source/class/cv/ui/manager/form/FileTabItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 866
+    },
+    "end": {
+      "line": 255,
+      "column": 3,
+      "index": 6264
+    }
+  },
+  "className": "cv.ui.manager.form.FileTabItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @asset(decoration/tabview/close.gif)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "decoration/tabview/close.gif"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.form.IModel"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1110
+      },
+      "end": {
+        "line": 41,
+        "column": 3,
+        "index": 1429
+      }
+    }
+  },
+  "events": {
+    "close": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1569
+        },
+        "end": {
+          "line": 49,
+          "column": 31,
+          "index": 1596
+        }
+      }
+    },
+    "action": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* (Fired by {@link qx.ui.form.List}) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>(Fired by {@link qx.ui.form.List})</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1649
+        },
+        "end": {
+          "line": 52,
+          "column": 33,
+          "index": 1678
+        }
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1830
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1898
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "open-file-item"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1905
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2021
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "dereference": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2181
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "transform": "_transformFilename",
+        "event": "changeLabel",
+        "apply": "_applyLabel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2188
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2272
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyIcon"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "permanent": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2279
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2371
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyPermanent"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "modified": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2378
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2465
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyLabel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "closeable": {
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2472
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 2563
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyCloseable"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "writeable": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2570
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2657
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyLabel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2941
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3049
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer over event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer over event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3121
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3177
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_transformFilename": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3184
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3288
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the pointer out event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the pointer out event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3359
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 3417
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyPermanent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3424
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3504
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCloseable": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3511
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 3624
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 3631
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 3812
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIcon": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 3819
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4021
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLabel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4028
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 4869
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onClose": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 4876
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 4988
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 5013
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 5978
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 251,
+        "column": 2,
+        "index": 6112
+      },
+      "end": {
+        "line": 254,
+        "column": 3,
+        "index": 6260
+      }
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,87 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602360,
+  "lastModifiedIso": "2026-06-29T04:00:02.360Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/ImageDark.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 691
+    },
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 3823
+    }
+  },
+  "className": "qx.theme.indigo.ImageDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mapping class for all images used in the Indigo dark theme.",
+      " *",
+      " * @asset(qx/decoration/Simple/*)",
+      " * @asset(qx/static/blank.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mapping class for all images used in the Indigo dark theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/decoration/Simple/*"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/static/blank.png"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "URLS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Holds a map containing all the URL to the images.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Holds a map containing all the URL to the images.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 872
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 3815
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

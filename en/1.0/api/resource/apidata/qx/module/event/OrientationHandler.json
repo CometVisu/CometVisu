@@ -1,0 +1,178 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602953,
+  "lastModifiedIso": "2026-06-29T04:00:02.953Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/OrientationHandler.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 708
+    },
+    "end": {
+      "line": 91,
+      "column": 3,
+      "index": 2485
+    }
+  },
+  "className": "qx.module.event.OrientationHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Orientation handler which is responsible for registering and unregistering a",
+      " * {@link qx.event.handler.OrientationCore} handler for each given element.",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Orientation handler which is responsible for registering and unregistering a\n {@link qx.event.handler.OrientationCore} handler for each given element.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
+  "statics": {
+    "TYPES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of events that require an orientation handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of events that require an orientation handler</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 859
+        },
+        "end": {
+          "line": 32,
+          "column": 32,
+          "index": 887
+        }
+      },
+      "appearsIn": []
+    },
+    "register": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an orientation handler for the given window when an",
+          "     * orientationchange event listener is attached to it",
+          "     *",
+          "     * @param element {Window} DOM Window",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates an orientation handler for the given window when an\n orientationchange event listener is attached to it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Window} DOM Window",
+            "paramName": "element",
+            "description": " DOM Window",
+            "type": "Window"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1084
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the orientation event handler from the element if there are no more",
+          "     * orientationchange event listeners attached to it",
+          "     * @param element {Element} DOM element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the orientation event handler from the element if there are no more\n orientationchange event listeners attached to it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element",
+            "paramName": "element",
+            "description": " DOM element",
+            "type": "Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2345
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

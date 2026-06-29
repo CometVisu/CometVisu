@@ -1,0 +1,1562 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602831,
+  "lastModifiedIso": "2026-06-29T04:00:02.831Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/treevirtual/MNode.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 592
+    },
+    "end": {
+      "line": 448,
+      "column": 3,
+      "index": 15486
+    }
+  },
+  "className": "qx.ui.treevirtual.MNode",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utility functions for working with nodes.  These methods allow reference",
+      " * to a node by either the object itself or the object's node id.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utility functions for working with nodes.  These methods allow reference\n to a node by either the object itself or the object's node id.</p>"
+      }
+    ]
+  },
+  "members": {
+    "nodeGet": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a node object given its node id.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node to have its opened/closed state toggled.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.).",
+          "     *",
+          "     * @return {Object}",
+          "     *   If the nodeReference is a node object itself, that same node object",
+          "     *   is returned (identity).  Otherwise, the node object is looked up",
+          "     *   using the specified node id.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a node object given its node id.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node to have its opened/closed state toggled.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.).",
+            "paramName": "nodeReference",
+            "description": "\n   The node to have its opened/closed state toggled.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.).",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}\n   If the nodeReference is a node object itself, that same node object\n   is returned (identity).  Otherwise, the node object is looked up\n   using the specified node id.",
+            "type": "Record<any, any>",
+            "description": "   If the nodeReference is a node object itself, that same node object\n   is returned (identity).  Otherwise, the node object is looked up\n   using the specified node id."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1199
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1503
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "nodeToggleOpened": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggle the opened state of the node: if the node is opened, close",
+          "     * it; if it is closed, open it.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node to have its opened/closed state toggled.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggle the opened state of the node: if the node is opened, close\n it; if it is closed, open it.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node to have its opened/closed state toggled.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node to have its opened/closed state toggled.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1907
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2384
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeSetState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set state attributes of a tree node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which attributes are being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param attributes {Map}",
+          "     *   Map with the node properties to be set.  The map may contain any of",
+          "     *   the properties described in",
+          "     *   {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set state attributes of a tree node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which attributes are being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which attributes are being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map}\n   Map with the node properties to be set.  The map may contain any of\n   the properties described in\n   {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+            "paramName": "attributes",
+            "description": "\n   Map with the node properties to be set.  The map may contain any of\n   the properties described in\n   {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2924
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3301
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "attributes",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeSetLabel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the label for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the label is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param label {String}",
+          "     *   The new label for the specified node",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the label for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the label is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the label is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "label {String}\n   The new label for the specified node",
+            "paramName": "label",
+            "description": "\n   The new label for the specified node",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3703
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3803
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetLabel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the label for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the label is being retrieved.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {String}",
+          "     *   The label for the specified node",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the label for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the label is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the label is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   The label for the specified node",
+            "type": "string",
+            "description": "   The label for the specified node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 4195
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 4301
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "nodeSetSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the selected state for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the selected state is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param b {Boolean}",
+          "     *   The new selected state for the specified node.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the selected state for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the selected state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the selected state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "b {Boolean}\n   The new selected state for the specified node.",
+            "paramName": "b",
+            "description": "\n   The new selected state for the specified node.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4728
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 4827
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "b",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the selected state for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the selected state is being retrieved.  The node",
+          "     *   can be represented either by the node object, or the node id (as",
+          "     *   would have been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {Boolean}",
+          "     *   The selected state for the specified node.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the selected state for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the selected state is being retrieved.  The node\n   can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the selected state is being retrieved.  The node\n   can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n   The selected state for the specified node.",
+            "type": "boolean",
+            "description": "   The selected state for the specified node."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 5248
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 5361
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "nodeOpenAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens all nodes in the tree with minimal redraw",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens all nodes in the tree with minimal redraw</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 5439
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 5667
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "nodeCloseAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Closes all nodes in the tree with minimal redraw",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Closes all nodes in the tree with minimal redraw</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5746
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 5976
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_nodeSetOpenedInternal": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal call to set the opened state for a node. (Note that this method has no effect",
+          "     * if the requested state is the same as the current state.)",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the opened state is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param opened {Boolean}",
+          "     *   The new opened state for the specified node.",
+          "     *",
+          "     * @param cascade {Boolean}",
+          "     *   Whether to descend the tree changing opened state of all children",
+          "     *",
+          "     * @param isRecursed {Boolean?}",
+          "     *   For internal use when cascading to determine outer level and call setData",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal call to set the opened state for a node. (Note that this method has no effect\n if the requested state is the same as the current state.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "opened {Boolean}\n   The new opened state for the specified node.",
+            "paramName": "opened",
+            "description": "\n   The new opened state for the specified node.",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "cascade {Boolean}\n   Whether to descend the tree changing opened state of all children",
+            "paramName": "cascade",
+            "description": "\n   Whether to descend the tree changing opened state of all children",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "isRecursed {Boolean?}\n   For internal use when cascading to determine outer level and call setData",
+            "paramName": "isRecursed",
+            "description": "\n   For internal use when cascading to determine outer level and call setData",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6754
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 7604
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "opened",
+          "type": "boolean"
+        },
+        {
+          "name": "cascade",
+          "type": "boolean"
+        },
+        {
+          "name": "isRecursed",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeSetOpened": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the opened state for a node.  (Note that this method has no effect",
+          "     * if the requested state is the same as the current state.)",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the opened state is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param opened {Boolean}",
+          "     *   The new opened state for the specified node.",
+          "     *",
+          "     * @param cascade {Boolean}",
+          "     *   Whether to descend the tree changing opened state of all children",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the opened state for a node.  (Note that this method has no effect\n if the requested state is the same as the current state.)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the opened state is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "opened {Boolean}\n   The new opened state for the specified node.",
+            "paramName": "opened",
+            "description": "\n   The new opened state for the specified node.",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "cascade {Boolean}\n   Whether to descend the tree changing opened state of all children",
+            "paramName": "cascade",
+            "description": "\n   Whether to descend the tree changing opened state of all children",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 8239
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 8366
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "opened",
+          "type": "boolean"
+        },
+        {
+          "name": "cascade",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetOpened": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the opened state for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the opened state is being retrieved.  The node can",
+          "     *   be represented either by the node object, or the node id (as would",
+          "     *   have been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {Boolean}",
+          "     *   The opened state for the specified node.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the opened state for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the opened state is being retrieved.  The node can\n   be represented either by the node object, or the node id (as would\n   have been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the opened state is being retrieved.  The node can\n   be represented either by the node object, or the node id (as would\n   have been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n   The opened state for the specified node.",
+            "type": "boolean",
+            "description": "   The opened state for the specified node."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 8781
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 8890
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "nodeSetHideOpenClose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the hideOpenClose state for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the hideOpenClose state is being set.  The node",
+          "     *   can be represented either by the node object, or the node id (as",
+          "     *   would have been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param b {Boolean}",
+          "     *   The new hideOpenClose state for the specified node.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the hideOpenClose state for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the hideOpenClose state is being set.  The node\n   can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the hideOpenClose state is being set.  The node\n   can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "b {Boolean}\n   The new hideOpenClose state for the specified node.",
+            "paramName": "b",
+            "description": "\n   The new hideOpenClose state for the specified node.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4,
+          "index": 9332
+        },
+        "end": {
+          "line": 285,
+          "column": 5,
+          "index": 9441
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "b",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetHideOpenClose": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the hideOpenClose state for a node.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the hideOpenClose state is being retrieved.  The",
+          "     *   node can be represented either by the node object, or the node id (as",
+          "     *   would have been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {Boolean}",
+          "     *   The new hideOpenClose state for the specified node.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the hideOpenClose state for a node.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the hideOpenClose state is being retrieved.  The\n   node can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the hideOpenClose state is being retrieved.  The\n   node can be represented either by the node object, or the node id (as\n   would have been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n   The new hideOpenClose state for the specified node.",
+            "type": "boolean",
+            "description": "   The new hideOpenClose state for the specified node."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4,
+          "index": 9881
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 10004
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "nodeSetIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the icon for a node when in its unselected (normal) state.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the icon is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param path {String}",
+          "     *   The path to the icon to be used when the node is not selected",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the icon for a node when in its unselected (normal) state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the icon is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the icon is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "path {String}\n   The path to the icon to be used when the node is not selected",
+            "paramName": "path",
+            "description": "\n   The path to the icon to be used when the node is not selected",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4,
+          "index": 10466
+        },
+        "end": {
+          "line": 317,
+          "column": 5,
+          "index": 10562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the icon for a node when in its unselected (normal) state.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the icon is being retrieved.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {String}",
+          "     *   The path to the icon to be used when the node is not selected, if a",
+          "     *   path has been previously provided (i.e. not using the default icon).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the icon for a node when in its unselected (normal) state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the icon is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the icon is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   The path to the icon to be used when the node is not selected, if a\n   path has been previously provided (i.e. not using the default icon).",
+            "type": "string",
+            "description": "   The path to the icon to be used when the node is not selected, if a\n   path has been previously provided (i.e. not using the default icon)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 11103
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 11207
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "nodeSetSelectedIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the icon for a node when in its selected state.",
+          "     * <p>",
+          "     * NOTE: As of 13 Mar 2009, this feature is disabled by default, by",
+          "     *       virtue of the fact that the tree's \"alwaysUpdateCells\" property",
+          "     *       has a setting of 'false' now instead of 'true'. Setting this",
+          "     *       property to true allows the icon to change upon selection, but",
+          "     *       causes problems such as single clicks not always selecting a",
+          "     *       row, and, in IE, double click operations failing",
+          "     *       completely. (For more information, see bugs 605 and 2021.) To",
+          "     *       re-enable the option to have an unique icon that is displayed",
+          "     *       when the node is selected, issue",
+          "     *       <code>tree.setAlwaysUpdateCells(true);</code>",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the icon is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param path {String}",
+          "     *   The path to the icon to be used when the node is selected",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the icon for a node when in its selected state.\n <p>\n NOTE: As of 13 Mar 2009, this feature is disabled by default, by\n       virtue of the fact that the tree's \"alwaysUpdateCells\" property\n       has a setting of 'false' now instead of 'true'. Setting this\n       property to true allows the icon to change upon selection, but\n       causes problems such as single clicks not always selecting a\n       row, and, in IE, double click operations failing\n       completely. (For more information, see bugs 605 and 2021.) To\n       re-enable the option to have an unique icon that is displayed\n       when the node is selected, issue\n       <code>tree.setAlwaysUpdateCells(true);</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the icon is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the icon is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "path {String}\n   The path to the icon to be used when the node is selected",
+            "paramName": "path",
+            "description": "\n   The path to the icon to be used when the node is selected",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 4,
+          "index": 12355
+        },
+        "end": {
+          "line": 361,
+          "column": 5,
+          "index": 12467
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetSelectedIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the icon for a node when in its selected state.",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the icon is being retrieved.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {String}",
+          "     *   The path to the icon to be used when the node is selected, if a path",
+          "     *   has been previously provided (i.e. not using the default icon).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the icon for a node when in its selected state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the icon is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the icon is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   The path to the icon to be used when the node is selected, if a path\n   has been previously provided (i.e. not using the default icon).",
+            "type": "string",
+            "description": "   The path to the icon to be used when the node is selected, if a path\n   has been previously provided (i.e. not using the default icon)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 4,
+          "index": 12993
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 13113
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "nodeSetCellStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the cell style for a node",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the cell style is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param style {String}",
+          "     *   The CSS style to be applied for the tree column cell for this node,",
+          "     *   if a style has been previously provided (i.e. not using the default",
+          "     *   style).",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the cell style for a node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the cell style is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the cell style is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "style {String}\n   The CSS style to be applied for the tree column cell for this node,\n   if a style has been previously provided (i.e. not using the default\n   style).",
+            "paramName": "style",
+            "description": "\n   The CSS style to be applied for the tree column cell for this node,\n   if a style has been previously provided (i.e. not using the default\n   style).",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4,
+          "index": 13650
+        },
+        "end": {
+          "line": 397,
+          "column": 5,
+          "index": 13758
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "style",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetCellStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the cell style for a node",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the cell style is being retrieved.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {String}",
+          "     *   The CSS style being applied for the tree column cell for this node.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the cell style for a node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the cell style is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the cell style is being retrieved.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   The CSS style being applied for the tree column cell for this node.",
+            "type": "string",
+            "description": "   The CSS style being applied for the tree column cell for this node."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 4,
+          "index": 14194
+        },
+        "end": {
+          "line": 413,
+          "column": 5,
+          "index": 14308
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "nodeSetLabelStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the label style for a node",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the label style is being set.  The node can be",
+          "     *   represented either by the node object, or the node id (as would have",
+          "     *   been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @param style {String}",
+          "     *   The CSS style to be applied for the label for this node.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the label style for a node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the label style is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the label style is being set.  The node can be\n   represented either by the node object, or the node id (as would have\n   been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "style {String}\n   The CSS style to be applied for the label for this node.",
+            "paramName": "style",
+            "description": "\n   The CSS style to be applied for the label for this node.",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 4,
+          "index": 14741
+        },
+        "end": {
+          "line": 429,
+          "column": 5,
+          "index": 14851
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        },
+        {
+          "name": "style",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "nodeGetLabelStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the label style for a node",
+          "     *",
+          "     * @param nodeReference {Object | Integer}",
+          "     *   The node for which the label style is being retrieved.  The node can",
+          "     *   be represented either by the node object, or the node id (as would",
+          "     *   have been returned by addBranch(), addLeaf(), etc.)",
+          "     *",
+          "     * @return {String}",
+          "     *   The CSS style being applied for the label for this node, if a style",
+          "     *   has been previously provided (i.e. not using the default style).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the label style for a node</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "nodeReference {Object | Integer}\n   The node for which the label style is being retrieved.  The node can\n   be represented either by the node object, or the node id (as would\n   have been returned by addBranch(), addLeaf(), etc.)",
+            "paramName": "nodeReference",
+            "description": "\n   The node for which the label style is being retrieved.  The node can\n   be represented either by the node object, or the node id (as would\n   have been returned by addBranch(), addLeaf(), etc.)",
+            "type": [
+              "Object",
+              "Integer"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}\n   The CSS style being applied for the label for this node, if a style\n   has been previously provided (i.e. not using the default style).",
+            "type": "string",
+            "description": "   The CSS style being applied for the label for this node, if a style\n   has been previously provided (i.e. not using the default style)."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 443,
+          "column": 4,
+          "index": 15363
+        },
+        "end": {
+          "line": 446,
+          "column": 5,
+          "index": 15478
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeReference",
+          "type": [
+            "Object",
+            "Integer"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

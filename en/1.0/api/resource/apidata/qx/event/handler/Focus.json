@@ -1,0 +1,1948 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602020,
+  "lastModifiedIso": "2026-06-29T04:00:02.020Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Focus.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 38,
+      "column": 0,
+      "index": 1195
+    },
+    "end": {
+      "line": 1577,
+      "column": 3,
+      "index": 43157
+    }
+  },
+  "className": "qx.event.handler.Focus",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This handler is used to normalize all focus/activation requirements",
+      " * and normalize all cross browser quirks in this area.",
+      " *",
+      " * Notes:",
+      " *",
+      " * * Webkit and Opera (before 9.5) do not support tabIndex for all elements",
+      " * (See also: https://bugs.webkit.org/show_bug.cgi?id=7138)",
+      " *",
+      " * * TabIndex is normally 0, which means all naturally focusable elements are focusable.",
+      " * * TabIndex > 0 means that the element is focusable and tabable",
+      " * * TabIndex < 0 means that the element, even if naturally possible, is not focusable.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * @use(qx.event.dispatch.DomBubbling)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This handler is used to normalize all focus/activation requirements\n and normalize all cross browser quirks in this area.\n Notes:</p>\n<ul>\n<li>Webkit and Opera (before 9.5) do not support tabIndex for all elements\n(See also: https://bugs.webkit.org/show_bug.cgi?id=7138)</li>\n<li>TabIndex is normally 0, which means all naturally focusable elements are focusable.</li>\n<li>TabIndex &gt; 0 means that the element is focusable and tabable</li>\n<li>TabIndex &lt; 0 means that the element, even if naturally possible, is not focusable.\nNOTE: Instances of this class must be disposed of after use</li>\n</ul>"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.event.dispatch.DomBubbling"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 55,
+        "column": 2,
+        "index": 1676
+      },
+      "end": {
+        "line": 77,
+        "column": 3,
+        "index": 2330
+      }
+    }
+  },
+  "properties": {
+    "active": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2574
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2639
+        }
+      },
+      "json": {
+        "apply": "_applyActive",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The active DOM element "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The active DOM element</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "focus": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2681
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2744
+        }
+      },
+      "json": {
+        "apply": "_applyFocus",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The focused DOM element "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The focused DOM element</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3004
+        },
+        "end": {
+          "line": 107,
+          "column": 51,
+          "index": 3051
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3103
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3234
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3319
+        },
+        "end": {
+          "line": 120,
+          "column": 27,
+          "index": 3342
+        }
+      },
+      "appearsIn": []
+    },
+    "FOCUSABLE_ELEMENTS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} See: http://msdn.microsoft.com/en-us/library/ms534654(VS.85).aspx",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} See: http://msdn.microsoft.com/en-us/library/ms534654(VS.85).aspx"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3450
+        },
+        "end": {
+          "line": 165,
+          "column": 6,
+          "index": 4130
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__onNativeMouseDownWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4338
+        },
+        "end": {
+          "line": 175,
+          "column": 36,
+          "index": 4370
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeMouseUpWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4376
+        },
+        "end": {
+          "line": 176,
+          "column": 34,
+          "index": 4406
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocusWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4412
+        },
+        "end": {
+          "line": 177,
+          "column": 32,
+          "index": 4440
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeBlurWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4446
+        },
+        "end": {
+          "line": 178,
+          "column": 31,
+          "index": 4473
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeDragGestureWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 4479
+        },
+        "end": {
+          "line": 179,
+          "column": 38,
+          "index": 4513
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeSelectStartWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4519
+        },
+        "end": {
+          "line": 180,
+          "column": 38,
+          "index": 4553
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocusInWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4559
+        },
+        "end": {
+          "line": 181,
+          "column": 34,
+          "index": 4589
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocusOutWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4595
+        },
+        "end": {
+          "line": 182,
+          "column": 35,
+          "index": 4626
+        }
+      },
+      "appearsIn": []
+    },
+    "__previousFocus": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 4632
+        },
+        "end": {
+          "line": 183,
+          "column": 25,
+          "index": 4653
+        }
+      },
+      "appearsIn": []
+    },
+    "__previousActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4659
+        },
+        "end": {
+          "line": 184,
+          "column": 26,
+          "index": 4681
+        }
+      },
+      "appearsIn": []
+    },
+    "__down": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4687
+        },
+        "end": {
+          "line": 185,
+          "column": 14,
+          "index": 4697
+        }
+      },
+      "appearsIn": []
+    },
+    "__up": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 4703
+        },
+        "end": {
+          "line": 186,
+          "column": 12,
+          "index": 4711
+        }
+      },
+      "appearsIn": []
+    },
+    "__needsScrollFix": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4717
+        },
+        "end": {
+          "line": 187,
+          "column": 27,
+          "index": 4740
+        }
+      },
+      "appearsIn": []
+    },
+    "__relatedTarget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 4746
+        },
+        "end": {
+          "line": 188,
+          "column": 25,
+          "index": 4767
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 5011
+        },
+        "end": {
+          "line": 197,
+          "column": 35,
+          "index": 5042
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5081
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 5164
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5203
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5288
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Focuses the given DOM element",
+          "     *",
+          "     * @param element {Element} DOM element to focus",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Focuses the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to focus",
+            "paramName": "element",
+            "description": " DOM element to focus",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5615
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6855
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "activate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Activates the given DOM element",
+          "     *",
+          "     * @param element {Element} DOM element to activate",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activates the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to activate",
+            "paramName": "element",
+            "description": " DOM element to activate",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 6980
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 7036
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "blur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Blurs the given DOM element",
+          "     *",
+          "     * @param element {Element} DOM element to focus",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Blurs the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to focus",
+            "paramName": "element",
+            "description": " DOM element to focus",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 7154
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 7389
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deactivate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deactivates the given DOM element",
+          "     *",
+          "     * @param element {Element} DOM element to activate",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deactivates the given DOM element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to activate",
+            "paramName": "element",
+            "description": " DOM element to activate",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 7516
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 7621
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "tryActivate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tries to activate the given element. This checks whether",
+          "     * the activation is allowed first.",
+          "     *",
+          "     * @param element {Element} DOM element to activate",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to activate the given element. This checks whether\n the activation is allowed first.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element to activate",
+            "paramName": "element",
+            "description": " DOM element to activate",
+            "type": "qx.event.handler.Element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7811
+        },
+        "end": {
+          "line": 307,
+          "column": 5,
+          "index": 7958
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__fireEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shorthand to fire events from within this class.",
+          "     *",
+          "     * @param target {Element} DOM element which is the target",
+          "     * @param related {Element} DOM element which is the related target",
+          "     * @param type {String} Name of the event to fire",
+          "     * @param bubbles {Boolean} Whether the event should bubble",
+          "     * @return {qx.Promise?} a promise, if one or more of the event handlers returned a promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shorthand to fire events from within this class.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} DOM element which is the target",
+            "paramName": "target",
+            "description": " DOM element which is the target",
+            "type": "qx.event.handler.Element"
+          },
+          {
+            "name": "@param",
+            "body": "related {Element} DOM element which is the related target",
+            "paramName": "related",
+            "description": " DOM element which is the related target",
+            "type": "qx.event.handler.Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} Name of the event to fire",
+            "paramName": "type",
+            "description": " Name of the event to fire",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "bubbles {Boolean} Whether the event should bubble",
+            "paramName": "bubbles",
+            "description": " Whether the event should bubble",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} a promise, if one or more of the event handlers returned a promise",
+            "type": "qx.Promise?",
+            "description": "a promise, if one or more of the event handlers returned a promise"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 324,
+          "column": 4,
+          "index": 8581
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 8865
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.event.handler.Element"
+        },
+        {
+          "name": "related",
+          "type": "qx.event.handler.Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "bubbles",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    },
+    "_windowFocused": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the window is focused currently "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the window is focused currently"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4,
+          "index": 9146
+        },
+        "end": {
+          "line": 343,
+          "column": 24,
+          "index": 9166
+        }
+      },
+      "appearsIn": []
+    },
+    "__doWindowBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper for native event listeners to react on window blur",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for native event listeners to react on window blur</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4,
+          "index": 9254
+        },
+        "end": {
+          "line": 355,
+          "column": 5,
+          "index": 9520
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__doWindowFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper for native event listeners to react on window focus",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper for native event listeners to react on window focus</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 4,
+          "index": 9609
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 9878
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes event listeners.",
+          "     *",
+          "     * @signature function()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initializes event listeners.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 380,
+          "column": 4,
+          "index": 10170
+        },
+        "end": {
+          "line": 706,
+          "column": 6,
+          "index": 18567
+        }
+      },
+      "appearsIn": []
+    },
+    "_stopObserver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnects event listeners.",
+          "     *",
+          "     * @signature function()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Disconnects event listeners.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 713,
+          "column": 4,
+          "index": 18662
+        },
+        "end": {
+          "line": 893,
+          "column": 6,
+          "index": 23024
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeDragGesture": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>draggesture</code> event",
+          "     * supported by gecko. Used to stop native drag and drop when",
+          "     * selection is disabled.",
+          "     *",
+          "     * @see https://developer.mozilla.org/en-US/docs/Drag_and_Drop",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>draggesture</code> event\n supported by gecko. Used to stop native drag and drop when\n selection is disabled.</p>"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "https://developer.mozilla.org/en-US/docs/Drag_and_Drop"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 910,
+          "column": 4,
+          "index": 23560
+        },
+        "end": {
+          "line": 921,
+          "column": 5,
+          "index": 23909
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocusIn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>DOMFocusIn</code> or <code>focusin</code>",
+          "     * depending on the client's engine.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>DOMFocusIn</code> or <code>focusin</code>\n depending on the client's engine.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 930,
+          "column": 4,
+          "index": 24142
+        },
+        "end": {
+          "line": 1003,
+          "column": 5,
+          "index": 26490
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocusOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>DOMFocusOut</code> or <code>focusout</code>",
+          "     * depending on the client's engine.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>DOMFocusOut</code> or <code>focusout</code>\n depending on the client's engine.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1012,
+          "column": 4,
+          "index": 26725
+        },
+        "end": {
+          "line": 1085,
+          "column": 5,
+          "index": 28967
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>blur</code>.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>blur</code>.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1093,
+          "column": 4,
+          "index": 29130
+        },
+        "end": {
+          "line": 1123,
+          "column": 5,
+          "index": 30098
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>focus</code>.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>focus</code>.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1131,
+          "column": 4,
+          "index": 30262
+        },
+        "end": {
+          "line": 1171,
+          "column": 5,
+          "index": 31495
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeMouseDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>mousedown</code>.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>mousedown</code>.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1179,
+          "column": 4,
+          "index": 31663
+        },
+        "end": {
+          "line": 1277,
+          "column": 5,
+          "index": 34969
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeMouseUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>mouseup</code>.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>mouseup</code>.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1285,
+          "column": 4,
+          "index": 35135
+        },
+        "end": {
+          "line": 1322,
+          "column": 5,
+          "index": 36237
+        }
+      },
+      "appearsIn": []
+    },
+    "__getCorrectFocusTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fix for bug #9331.",
+          "     *",
+          "     * @signature function(target)",
+          "     * @param target {Element} element to check",
+          "     * @return {Element} return correct target (in case of compound input controls should always return textfield);",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fix for bug #9331.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} element to check",
+            "paramName": "target",
+            "description": " element to check",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} return correct target (in case of compound input controls should always return textfield);",
+            "type": "qx.event.handler.Element",
+            "description": "return correct target (in case of compound input controls should always return textfield);"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1331,
+          "column": 4,
+          "index": 36492
+        },
+        "end": {
+          "line": 1353,
+          "column": 5,
+          "index": 37274
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "__fixFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fix for bug #2602.",
+          "     *",
+          "     * @signature function(target)",
+          "     * @param target {Element} target element from mouse up event",
+          "     * @return {Element} Element to activate;",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fix for bug #2602.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(target)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} target element from mouse up event",
+            "paramName": "target",
+            "description": " target element from mouse up event",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} Element to activate;",
+            "type": "qx.event.handler.Element",
+            "description": "Element to activate;"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1362,
+          "column": 4,
+          "index": 37477
+        },
+        "end": {
+          "line": 1376,
+          "column": 5,
+          "index": 37834
+        }
+      },
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "__onNativeSelectStart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Native event listener for <code>selectstart</code>.",
+          "     *",
+          "     *@signature function(domEvent)",
+          "     * @param domEvent {Event} Native event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Native event listener for <code>selectstart</code>.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(domEvent)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} Native event",
+            "paramName": "domEvent",
+            "description": " Native event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1384,
+          "column": 4,
+          "index": 38003
+        },
+        "end": {
+          "line": 1402,
+          "column": 5,
+          "index": 38558
+        }
+      },
+      "appearsIn": []
+    },
+    "__isFocusable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given element is focusable. This is perfectly modeled to the",
+          "     * browsers behavior and this way may differ in the various clients.",
+          "     *",
+          "     * @param el {Element} DOM Element to query",
+          "     * @return {Boolean} Whether the element is focusable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given element is focusable. This is perfectly modeled to the\n browsers behavior and this way may differ in the various clients.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} DOM Element to query",
+            "paramName": "el",
+            "description": " DOM Element to query",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the element is focusable",
+            "type": "boolean",
+            "description": "Whether the element is focusable"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1417,
+          "column": 4,
+          "index": 39043
+        },
+        "end": {
+          "line": 1429,
+          "column": 5,
+          "index": 39350
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__findFocusableElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the next focusable parent element of an activated DOM element.",
+          "     *",
+          "     * @param el {Element} Element to start lookup with.",
+          "     * @return {Element|null} The next focusable element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the next focusable parent element of an activated DOM element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} Element to start lookup with.",
+            "paramName": "el",
+            "description": " Element to start lookup with.",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null} The next focusable element.",
+            "type": "Element|null",
+            "description": "The next focusable element."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1437,
+          "column": 4,
+          "index": 39573
+        },
+        "end": {
+          "line": 1454,
+          "column": 5,
+          "index": 40036
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "__findActivatableElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the next activatable element. May be the element itself.",
+          "     * Works a bit different than the method {@link #__findFocusableElement}",
+          "     * as it looks up for a parent which is has a keep focus flag. When",
+          "     * there is such a parent it returns null otherwise the original",
+          "     * incoming element.",
+          "     *",
+          "     * @param el {Element} Element to start lookup with.",
+          "     * @return {Element} The next activatable element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the next activatable element. May be the element itself.\n Works a bit different than the method {@link #__findFocusableElement}\n as it looks up for a parent which is has a keep focus flag. When\n there is such a parent it returns null otherwise the original\n incoming element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "el {Element} Element to start lookup with.",
+            "paramName": "el",
+            "description": " Element to start lookup with.",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The next activatable element.",
+            "type": "qx.event.handler.Element",
+            "description": "The next activatable element."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1466,
+          "column": 4,
+          "index": 40493
+        },
+        "end": {
+          "line": 1478,
+          "column": 5,
+          "index": 40736
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "__isSelectable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given el (or its content) should be selectable",
+          "     * by the user.",
+          "     *",
+          "     * @param node {Element} Node to start lookup with",
+          "     * @return {Boolean} Whether the content is selectable.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the given el (or its content) should be selectable\n by the user.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node {Element} Node to start lookup with",
+            "paramName": "node",
+            "description": " Node to start lookup with",
+            "type": "qx.event.handler.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the content is selectable.",
+            "type": "boolean",
+            "description": "Whether the content is selectable."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1487,
+          "column": 4,
+          "index": 40967
+        },
+        "end": {
+          "line": 1498,
+          "column": 5,
+          "index": 41224
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.event.handler.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_applyActive": {
+      "jsdoc": {
+        "raw": [
+          " apply routine"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1507,
+          "column": 4,
+          "index": 41457
+        },
+        "end": {
+          "line": 1520,
+          "column": 5,
+          "index": 41825
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFocus": {
+      "jsdoc": {
+        "raw": [
+          " apply routine"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1523,
+          "column": 4,
+          "index": 41853
+        },
+        "end": {
+          "line": 1541,
+          "column": 5,
+          "index": 42290
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1550,
+        "column": 2,
+        "index": 42486
+      },
+      "end": {
+        "line": 1560,
+        "column": 3,
+        "index": 42700
+      }
+    }
+  }
+}

@@ -1,0 +1,1552 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543938,
+  "lastModifiedIso": "2026-06-29T03:59:03.938Z",
+  "classFilename": "../../source/class/cv/plugins/tr064/CallList.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 1122
+    },
+    "end": {
+      "line": 497,
+      "column": 3,
+      "index": 15090
+    }
+  },
+  "className": "cv.plugins.tr064.CallList",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The TR-064 plugin and widget creates a interface to routers that are",
+      " * configured by the TR-064 protocol, like the well known Fritz!Box routers.",
+      " *",
+      " * The protocol is described at: https://avm.de/service/schnittstellen/",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 0.11.0",
+      " * @asset(plugins/tr064/*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The TR-064 plugin and widget creates a interface to routers that are\n configured by the TR-064 protocol, like the well known Fritz!Box routers.\n The protocol is described at: https://avm.de/service/schnittstellen/</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/tr064/*"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Refresh",
+    "cv.ui.common.Update"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1401
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1567
+      }
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 2137
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2568
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2575
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3870
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__forceImgReload": {
+      "jsdoc": {
+        "raw": [
+          " based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7041
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "events": {
+    "tr064ListRefreshed": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4014
+        },
+        "end": {
+          "line": 122,
+          "column": 45,
+          "index": 4055
+        }
+      }
+    }
+  },
+  "properties": {
+    "device": {
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 4251
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 4304
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "max": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4311
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4360
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "columns": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4367
+        },
+        "end": {
+          "line": 141,
+          "column": 32,
+          "index": 4395
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAM": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4401
+        },
+        "end": {
+          "line": 142,
+          "column": 28,
+          "index": 4425
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMColor": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4431
+        },
+        "end": {
+          "line": 143,
+          "column": 33,
+          "index": 4460
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMwait": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4466
+        },
+        "end": {
+          "line": 144,
+          "column": 32,
+          "index": 4494
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMwaitColor": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4500
+        },
+        "end": {
+          "line": 145,
+          "column": 37,
+          "index": 4533
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMplay": {
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4539
+        },
+        "end": {
+          "line": 146,
+          "column": 32,
+          "index": 4567
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMplayColor": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4573
+        },
+        "end": {
+          "line": 147,
+          "column": 37,
+          "index": 4606
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMstop": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4612
+        },
+        "end": {
+          "line": 148,
+          "column": 32,
+          "index": 4640
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "TAMstopColor": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4646
+        },
+        "end": {
+          "line": 149,
+          "column": 37,
+          "index": 4679
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeIncoming": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4685
+        },
+        "end": {
+          "line": 150,
+          "column": 37,
+          "index": 4718
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeIncomingColor": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4724
+        },
+        "end": {
+          "line": 151,
+          "column": 42,
+          "index": 4762
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeMissed": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 4768
+        },
+        "end": {
+          "line": 152,
+          "column": 35,
+          "index": 4799
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeMissedColor": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4805
+        },
+        "end": {
+          "line": 153,
+          "column": 40,
+          "index": 4841
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeOutgoing": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4847
+        },
+        "end": {
+          "line": 154,
+          "column": 37,
+          "index": 4880
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeOutgoingColor": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4886
+        },
+        "end": {
+          "line": 155,
+          "column": 42,
+          "index": 4924
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeActiveIncoming": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4930
+        },
+        "end": {
+          "line": 156,
+          "column": 43,
+          "index": 4969
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeActiveIncomingColor": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4975
+        },
+        "end": {
+          "line": 157,
+          "column": 48,
+          "index": 5019
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeRejectedIncoming": {
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 5025
+        },
+        "end": {
+          "line": 158,
+          "column": 45,
+          "index": 5066
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeRejectedIncomingColor": {
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 5072
+        },
+        "end": {
+          "line": 159,
+          "column": 50,
+          "index": 5118
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeActiveOutgoing": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 5124
+        },
+        "end": {
+          "line": 160,
+          "column": 43,
+          "index": 5163
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeActiveOutgoingColor": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 5169
+        },
+        "end": {
+          "line": 161,
+          "column": 48,
+          "index": 5213
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeUnknown": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 5219
+        },
+        "end": {
+          "line": 162,
+          "column": 36,
+          "index": 5251
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "typeUnknownColor": {
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 5257
+        },
+        "end": {
+          "line": 163,
+          "column": 41,
+          "index": 5294
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1550
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1603
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "cachecontrol": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1673
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "full"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "restartOnVisible": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1680
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1786
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyRestartOnVisible"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "members": {
+    "__calllistUri": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 5454
+        },
+        "end": {
+          "line": 172,
+          "column": 21,
+          "index": 5471
+        }
+      },
+      "appearsIn": []
+    },
+    "__calllistList": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 5477
+        },
+        "end": {
+          "line": 173,
+          "column": 29,
+          "index": 5502
+        }
+      },
+      "appearsIn": []
+    },
+    "__refreshingCalllist": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 5508
+        },
+        "end": {
+          "line": 174,
+          "column": 31,
+          "index": 5535
+        }
+      },
+      "appearsIn": []
+    },
+    "__TAMeventAttached": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prevent warning \"Reference values are shared across all instances\"",
+          "     * as the keys are unique a share doesn't matter:",
+          "     * @lint ignoreReferenceField(__TAMeventAttached)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prevent warning \"Reference values are shared across all instances\"\n as the keys are unique a share doesn't matter:</p>"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__TAMeventAttached)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5739
+        },
+        "end": {
+          "line": 180,
+          "column": 28,
+          "index": 5763
+        }
+      },
+      "appearsIn": []
+    },
+    "_getInnerDomString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 5770
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 5913
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_setupRefreshAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 5919
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 6187
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_update": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 6193
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 6312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_displayCalllist": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 6319
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 9287
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getCallListURI": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fetch the TR-064 resource",
+          "     *   /upnp/control/x_contact urn:dslforum-org:service:X_AVM-DE_OnTel:1",
+          "     *   GetCallList",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fetch the TR-064 resource\n   /upnp/control/x<em>contact urn:dslforum-org:service:X</em>AVM-DE_OnTel:1\n   GetCallList</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4,
+          "index": 9439
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 10918
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "refreshCalllist": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 4,
+          "index": 10925
+        },
+        "end": {
+          "line": 413,
+          "column": 5,
+          "index": 13180
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__playTAM": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The EventListener for click on the TAM button.",
+          "     * @param element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The EventListener for click on the TAM button.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element",
+            "paramName": "element",
+            "type": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 419,
+          "column": 4,
+          "index": 13279
+        },
+        "end": {
+          "line": 451,
+          "column": 5,
+          "index": 14094
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__TAMwait": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 453,
+          "column": 4,
+          "index": 14101
+        },
+        "end": {
+          "line": 463,
+          "column": 5,
+          "index": 14329
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__TAMplay": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 465,
+          "column": 4,
+          "index": 14336
+        },
+        "end": {
+          "line": 475,
+          "column": 5,
+          "index": 14564
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__TAMstop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4,
+          "index": 14571
+        },
+        "end": {
+          "line": 487,
+          "column": 5,
+          "index": 14799
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_timer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 74,
+          "column": 16,
+          "index": 1960
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__timerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1966
+        },
+        "end": {
+          "line": 75,
+          "column": 19,
+          "index": 1981
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__setup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 2001
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__lastRun": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2007
+        },
+        "end": {
+          "line": 77,
+          "column": 19,
+          "index": 2022
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 78,
+          "column": 24,
+          "index": 2048
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartOnVisible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 79,
+          "column": 29,
+          "index": 2079
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_applyRestartOnVisible": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2086
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_maintainTimerState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the while invisible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the while invisible</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3528
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "setupRefreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3535
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "refreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4897
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_initOnCreate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1530
+        },
+        "end": {
+          "line": 48,
+          "column": 24,
+          "index": 1550
+        }
+      },
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "__initUpdater": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1557
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the incoming data, update the shown value and the stylings",
+          "     *",
+          "     * @param address {String} Address of the incoming value",
+          "     * @param data {String} the incoming value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the incoming data, update the shown value and the stylings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} Address of the incoming value"
+          },
+          {
+            "name": "@param",
+            "body": "data {String} the incoming value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2408
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "processIncomingValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    },
+    "update3d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Description",
+          "     *",
+          "     * @param ev {var}",
+          "     * @param data {var}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {var}"
+          },
+          {
+            "name": "@param",
+            "body": "data {var}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3200
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3664
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "mixin": "cv.ui.common.Update",
+      "appearsIn": [
+        "cv.ui.common.Update"
+      ]
+    }
+  }
+}

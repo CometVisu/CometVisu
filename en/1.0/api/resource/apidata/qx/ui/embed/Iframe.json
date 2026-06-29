@@ -1,0 +1,722 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602327,
+  "lastModifiedIso": "2026-06-29T04:00:02.327Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/embed/Iframe.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 48,
+      "column": 0,
+      "index": 1372
+    },
+    "end": {
+      "line": 451,
+      "column": 3,
+      "index": 11695
+    }
+  },
+  "className": "qx.ui.embed.Iframe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Container widget for internal frames (iframes).",
+      " * An iframe can display any HTML page inside the widget.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var document = this.getRoot();",
+      " * var iframe = new qx.ui.embed.Iframe(\"http://www.qooxdoo.org\");",
+      " * document.add(iframe);",
+      " * </pre>",
+      " *",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/iframe.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " *",
+      " *",
+      " * *Notes*",
+      " * When modifying this file, note that the test qx.test.ui.embed.Iframe.testSyncSourceAfterDOMMove",
+      " * has been disabled under Chrome because of problems with Travis and Github.  Changes to this file",
+      " * should be tested manually against that test.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Container widget for internal frames (iframes).\n An iframe can display any HTML page inside the widget.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n var document = this.getRoot();\n var iframe = new qx.ui.embed.Iframe(\"http://www.qooxdoo.org\");\n document.add(iframe);\n </pre>\n<p><em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/iframe.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a>\n<em>Notes</em>\n When modifying this file, note that the test qx.test.ui.embed.Iframe.testSyncSourceAfterDOMMove\n has been disabled under Chrome because of problems with Travis and Github.  Changes to this file\n should be tested manually against that test.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.embed.AbstractIframe",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "source"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 61,
+        "column": 2,
+        "index": 1744
+      },
+      "end": {
+        "line": 149,
+        "column": 3,
+        "index": 4092
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4133
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4193
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "iframe"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "nativeContextMenu": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4392
+        },
+        "end": {
+          "line": 167,
+          "column": 5,
+          "index": 4456
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to show the frame's native context menu.",
+          "     *",
+          "     * Note: This only works if the iframe source is served from the same domain",
+          "     * as the main application.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to show the frame's native context menu.\n Note: This only works if the iframe source is served from the same domain\n as the main application.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "nativeHelp": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4786
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 4880
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyNativeHelp"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the user presses F1 in IE by default the onhelp event is fired and",
+          "     * IE’s help window is opened. Setting this property to <code>false</code>",
+          "     * prevents this behavior.",
+          "     *",
+          "     * Note: This only works if the iframe source is served from the same domain",
+          "     * as the main application.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If the user presses F1 in IE by default the onhelp event is fired and\n IE’s help window is opened. Setting this property to <code>false</code>\n prevents this behavior.\n Note: This only works if the iframe source is served from the same domain\n as the main application.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "scrollbar": {
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 4953
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 5083
+        }
+      },
+      "json": {
+        "check": [
+          "auto",
+          "no",
+          "yes"
+        ],
+        "nullable": true,
+        "themeable": true,
+        "apply": "_applyScrollbar"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget should have scrollbars.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the widget should have scrollbars.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__source": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 5291
+        },
+        "end": {
+          "line": 201,
+          "column": 18,
+          "index": 5305
+        }
+      },
+      "appearsIn": []
+    },
+    "__blockerElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5311
+        },
+        "end": {
+          "line": 202,
+          "column": 26,
+          "index": 5333
+        }
+      },
+      "appearsIn": []
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5358
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 5769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "width"
+        },
+        {
+          "name": "height"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "_createContentElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5794
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 5960
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_getIframeElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 5985
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 6051
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.embed.AbstractIframe",
+      "appearsIn": [
+        "qx.ui.embed.AbstractIframe"
+      ]
+    },
+    "_createBlockerElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates <div> element which is aligned over iframe node to avoid losing pointer events.",
+          "     *",
+          "     * @return {Object} Blocker element node",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates <div> element which is aligned over iframe node to avoid losing pointer events.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Blocker element node",
+            "type": "Record<any, any>",
+            "description": "Blocker element node"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 6221
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 6383
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_onIframeLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reacts on native load event and redirects it to the widget.",
+          "     *",
+          "     * @param e {qx.event.type.Event} Native load event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reacts on native load event and redirects it to the widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} Native load event",
+            "paramName": "e",
+            "description": " Native load event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 6536
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 6730
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "block": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cover the iframe with a transparent blocker div element. This prevents",
+          "     * pointer or key events to be handled by the iframe. To release the blocker",
+          "     * use {@link #release}.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cover the iframe with a transparent blocker div element. This prevents\n pointer or key events to be handled by the iframe. To release the blocker\n use {@link #release}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 7137
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7210
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "release": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Release the blocker set by {@link #block}.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Release the blocker set by {@link #block}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 278,
+          "column": 4,
+          "index": 7290
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 7364
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyNativeContextMenu": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4,
+          "index": 7588
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 8367
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_onNativeContextMenu": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the <code>contextmenu</code> event from showing the native context menu",
+          "     *",
+          "     * @param e {qx.event.type.Mouse} The event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the <code>contextmenu</code> event from showing the native context menu</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Mouse} The event object",
+            "paramName": "e",
+            "description": " The event object",
+            "type": "qx.event.type.Mouse"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 8537
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 8594
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Mouse"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNativeHelp": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 8623
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 9385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_syncSourceAfterDOMMove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the iframe element is out of sync. This can happen in Firefox",
+          "     * if the iframe is moved around and the source is changed right after.",
+          "     * The root cause is that Firefox is reloading the iframe when its position",
+          "     * in DOM has changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the iframe element is out of sync. This can happen in Firefox\n if the iframe is moved around and the source is changed right after.\n The root cause is that Firefox is reloading the iframe when its position\n in DOM has changed.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4,
+          "index": 9670
+        },
+        "end": {
+          "line": 394,
+          "column": 5,
+          "index": 10410
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyScrollbar": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 397,
+          "column": 4,
+          "index": 10439
+        },
+        "end": {
+          "line": 399,
+          "column": 5,
+          "index": 10534
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setLayoutParent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 402,
+          "column": 4,
+          "index": 10559
+        },
+        "end": {
+          "line": 412,
+          "column": 5,
+          "index": 10875
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parent"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget",
+        "qx.ui.core.LayoutItem"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 421,
+        "column": 2,
+        "index": 11071
+      },
+      "end": {
+        "line": 450,
+        "column": 3,
+        "index": 11691
+      }
+    }
+  },
+  "statics": {}
+}

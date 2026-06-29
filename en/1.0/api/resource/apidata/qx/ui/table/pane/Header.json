@@ -1,0 +1,770 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602210,
+  "lastModifiedIso": "2026-06-29T04:00:02.210Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/pane/Header.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 505
+    },
+    "end": {
+      "line": 332,
+      "column": 3,
+      "index": 9078
+    }
+  },
+  "className": "qx.ui.table.pane.Header",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows the header of a table.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows the header of a table.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "paneScroller"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 880
+      },
+      "end": {
+        "line": 45,
+        "column": 3,
+        "index": 1157
+      }
+    }
+  },
+  "members": {
+    "__paneScroller": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1361
+        },
+        "end": {
+          "line": 54,
+          "column": 24,
+          "index": 1381
+        }
+      },
+      "appearsIn": []
+    },
+    "__moveFeedback": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1387
+        },
+        "end": {
+          "line": 55,
+          "column": 24,
+          "index": 1407
+        }
+      },
+      "appearsIn": []
+    },
+    "__lastPointerOverColumn": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 56,
+          "column": 33,
+          "index": 1442
+        }
+      },
+      "appearsIn": []
+    },
+    "__blocker": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1448
+        },
+        "end": {
+          "line": 57,
+          "column": 19,
+          "index": 1463
+        }
+      },
+      "appearsIn": []
+    },
+    "getPaneScroller": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the TablePaneScroller this header belongs to.",
+          "     *",
+          "     * @return {qx.ui.table.pane.Scroller} the TablePaneScroller.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the TablePaneScroller this header belongs to.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.pane.Scroller} the TablePaneScroller.",
+            "type": "qx.ui.table.pane.Scroller",
+            "description": "the TablePaneScroller."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1679
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.pane.Scroller"
+      },
+      "appearsIn": []
+    },
+    "getTable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the table this header belongs to.",
+          "     *",
+          "     * @return {qx.ui.table.Table} the table.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the table this header belongs to.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.Table} the table.",
+            "type": "qx.ui.table.Table",
+            "description": "the table."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1804
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1867
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.table.Table"
+      },
+      "appearsIn": []
+    },
+    "getBlocker": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the blocker of the header.",
+          "     *",
+          "     * @return {qx.ui.core.Blocker} the blocker.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the blocker of the header.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Blocker} the blocker.",
+            "type": "qx.ui.core.Blocker",
+            "description": "the blocker."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 1988
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2037
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Blocker"
+      },
+      "appearsIn": []
+    },
+    "onColOrderChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called the column order has changed.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called the column order has changed.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2126
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2186
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onPaneModelChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the pane model has changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the pane model has changed.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2271
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2332
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onTableModelMetaDataChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the table model meta data has changed.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the table model meta data has changed.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2435
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2501
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setColumnWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the column width. This overrides the width from the column model.",
+          "     *",
+          "     * @param col {Integer}",
+          "     *   The column to change the width for.",
+          "     *",
+          "     * @param width {Integer}",
+          "     *   The new width.",
+          "     *",
+          "     * @param isPointerAction {Boolean}",
+          "     *   <i>true</i> if the column width is being changed as a result of a",
+          "     *   pointer drag in the header; false or undefined otherwise.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the column width. This overrides the width from the column model.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer}\n   The column to change the width for.",
+            "paramName": "col",
+            "description": "\n   The column to change the width for.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer}\n   The new width.",
+            "paramName": "width",
+            "description": "\n   The new width.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "isPointerAction {Boolean}\n   <i>true</i> if the column width is being changed as a result of a\n   pointer drag in the header; false or undefined otherwise.",
+            "paramName": "isPointerAction",
+            "description": "\n   <i>true</i> if the column width is being changed as a result of a\n   pointer drag in the header; false or undefined otherwise.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2939
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3110
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "isPointerAction",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setPointerOverColumn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the column the pointer is currently over.",
+          "     *",
+          "     * @param col {Integer} the model index of the column the pointer is currently over or",
+          "     *      null if the pointer is over no column.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the column the pointer is currently over.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} the model index of the column the pointer is currently over or\n      null if the pointer is over no column.",
+            "paramName": "col",
+            "description": " the model index of the column the pointer is currently over or\n      null if the pointer is over no column.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3336
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 3831
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHeaderWidgetAtColumn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the header widget for the given column",
+          "     *",
+          "     * @param col {Integer} The column number",
+          "     * @return {qx.ui.table.headerrenderer.HeaderCell} The header cell widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the header widget for the given column</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} The column number",
+            "paramName": "col",
+            "description": " The column number",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.table.headerrenderer.HeaderCell} The header cell widget",
+            "type": "qx.ui.table.headerrenderer.HeaderCell",
+            "description": "The header cell widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4035
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4182
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.table.headerrenderer.HeaderCell"
+      },
+      "appearsIn": []
+    },
+    "showColumnMoveFeedback": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the feedback shown while a column is moved by the user.",
+          "     *",
+          "     * @param col {Integer} the model index of the column to show the move feedback for.",
+          "     * @param x {Integer} the x position the left side of the feedback should have",
+          "     *      (in pixels, relative to the left side of the header).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the feedback shown while a column is moved by the user.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "col {Integer} the model index of the column to show the move feedback for.",
+            "paramName": "col",
+            "description": " the model index of the column to show the move feedback for.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "x {Integer} the x position the left side of the feedback should have\n      (in pixels, relative to the left side of the header).",
+            "paramName": "x",
+            "description": " the x position the left side of the feedback should have\n      (in pixels, relative to the left side of the header).",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4519
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5679
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        },
+        {
+          "name": "x",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hideColumnMoveFeedback": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the feedback shown while a column is moved by the user.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hides the feedback shown while a column is moved by the user.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5771
+        },
+        "end": {
+          "line": 221,
+          "column": 5,
+          "index": 5927
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isShowingColumnMoveFeedback": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the column move feedback is currently shown.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> whether the column move feedback is",
+          "     *    currently shown, <code>false</code> otherwise.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the column move feedback is currently shown.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> whether the column move feedback is\n    currently shown, <code>false</code> otherwise.",
+            "type": "boolean",
+            "description": "<code>true</code> whether the column move feedback is\n    currently shown, <code>false</code> otherwise."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 6161
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 6240
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_updateContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the content of the header.",
+          "     *",
+          "     * @param completeUpdate {Boolean} if true a complete update is performed. On a",
+          "     *      complete update all header widgets are recreated.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the content of the header.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "completeUpdate {Boolean} if true a complete update is performed. On a\n      complete update all header widgets are recreated.",
+            "paramName": "completeUpdate",
+            "description": " if true a complete update is performed. On a\n      complete update all header widgets are recreated.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6458
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 8526
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "completeUpdate",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_cleanUpCells": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cleans up all header cells.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cleans up all header cells.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 8591
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 8788
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 328,
+        "column": 2,
+        "index": 8984
+      },
+      "end": {
+        "line": 331,
+        "column": 3,
+        "index": 9074
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

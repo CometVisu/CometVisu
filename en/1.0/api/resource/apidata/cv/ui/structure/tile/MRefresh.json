@@ -1,0 +1,355 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543949,
+  "lastModifiedIso": "2026-06-29T03:59:03.949Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MRefresh.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 943
+    },
+    "end": {
+      "line": 168,
+      "column": 3,
+      "index": 4994
+    }
+  },
+  "className": "cv.ui.structure.tile.MRefresh",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.</p>"
+      }
+    ]
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 1123
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1495
+      }
+    }
+  },
+  "properties": {
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1643
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1726
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyRefresh"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": []
+    },
+    "_refreshTimer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1897
+        },
+        "end": {
+          "line": 60,
+          "column": 23,
+          "index": 1916
+        }
+      },
+      "appearsIn": []
+    },
+    "_lastRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1922
+        },
+        "end": {
+          "line": 61,
+          "column": 22,
+          "index": 1940
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1947
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2545
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onVisibilityChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2552
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2696
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__doRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3719
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3934
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 161,
+        "column": 2,
+        "index": 4765
+      },
+      "end": {
+        "line": 167,
+        "column": 3,
+        "index": 4990
+      }
+    }
+  },
+  "statics": {}
+}

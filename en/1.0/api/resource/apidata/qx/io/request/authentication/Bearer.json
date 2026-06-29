@@ -1,0 +1,123 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601242,
+  "lastModifiedIso": "2026-06-29T04:00:01.242Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/request/authentication/Bearer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 562
+    },
+    "end": {
+      "line": 46,
+      "column": 3,
+      "index": 1121
+    }
+  },
+  "className": "qx.io.request.authentication.Bearer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Bearer (token) authentication.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Bearer (token) authentication.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.io.request.authentication.IAuthentication"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "token"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 765
+      },
+      "end": {
+        "line": 33,
+        "column": 3,
+        "index": 819
+      }
+    }
+  },
+  "members": {
+    "__credentials": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 839
+        },
+        "end": {
+          "line": 36,
+          "column": 23,
+          "index": 858
+        }
+      },
+      "appearsIn": []
+    },
+    "getAuthHeaders": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Headers to include for bearer (token) authentication.",
+          "     * @return {Map} Map containing the authentication credentials",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Headers to include for bearer (token) authentication.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map containing the authentication credentials",
+            "type": "Map<any, any>",
+            "description": "Map containing the authentication credentials"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1009
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1113
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": [
+        "qx.io.request.authentication.IAuthentication"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

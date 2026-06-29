@@ -1,0 +1,164 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601580,
+  "lastModifiedIso": "2026-06-29T04:00:01.580Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/ComboBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 510
+    },
+    "end": {
+      "line": 111,
+      "column": 3,
+      "index": 2806
+    }
+  },
+  "className": "qx.ui.table.celleditor.ComboBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell editor factory creating combo boxes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell editor factory creating combo boxes.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.ICellEditorFactory"
+  ],
+  "properties": {
+    "validationFunction": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 861
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 952
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * function that validates the result",
+          "     * the function will be called with the new value and the old value and is",
+          "     * supposed to return the value that is set as the table value.",
+          "     *"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>function that validates the result\n the function will be called with the new value and the old value and is\n supposed to return the value that is set as the table value.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "listData": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1019
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1097
+        }
+      },
+      "json": {
+        "check": "Array",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* array of data to construct ListItem widgets with "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>array of data to construct ListItem widgets with</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "createCellEditor": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1153
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2325
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    },
+    "getCellEditorValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementations"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2365
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2798
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellEditor"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    }
+  },
+  "statics": {}
+}

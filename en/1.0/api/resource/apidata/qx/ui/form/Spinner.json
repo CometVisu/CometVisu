@@ -1,0 +1,2264 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603226,
+  "lastModifiedIso": "2026-06-29T04:00:03.226Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/Spinner.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 57,
+      "column": 0,
+      "index": 1915
+    },
+    "end": {
+      "line": 809,
+      "column": 3,
+      "index": 22595
+    }
+  },
+  "className": "qx.ui.form.Spinner",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A *spinner* is a control that allows you to adjust a numerical value,",
+      " * typically within an allowed range. An obvious example would be to specify the",
+      " * month of a year as a number in the range 1 - 12.",
+      " *",
+      " * To do so, a spinner encompasses a field to display the current value (a",
+      " * textfield) and controls such as up and down buttons to change that value. The",
+      " * current value can also be changed by editing the display field directly, or",
+      " * using mouse wheel and cursor keys.",
+      " *",
+      " * An optional {@link #numberFormat} property allows you to control the format of",
+      " * how a value can be entered and will be displayed.",
+      " *",
+      " * A brief, but non-trivial example:",
+      " *",
+      " * <pre class='javascript'>",
+      " * var s = new qx.ui.form.Spinner();",
+      " * s.set({",
+      " *   maximum: 3000,",
+      " *   minimum: -3000",
+      " * });",
+      " * var nf = new qx.util.format.NumberFormat();",
+      " * nf.setMaximumFractionDigits(2);",
+      " * s.setNumberFormat(nf);",
+      " * </pre>",
+      " *",
+      " * A spinner instance without any further properties specified in the",
+      " * constructor or a subsequent *set* command will appear with default",
+      " * values and behaviour.",
+      " *",
+      " * @childControl textfield {qx.ui.form.TextField} holds the current value of the spinner",
+      " * @childControl upbutton {qx.ui.form.Button} button to increase the value",
+      " * @childControl downbutton {qx.ui.form.Button} button to decrease the value",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A <em>spinner</em> is a control that allows you to adjust a numerical value,\n typically within an allowed range. An obvious example would be to specify the\n month of a year as a number in the range 1 - 12.\n To do so, a spinner encompasses a field to display the current value (a\n textfield) and controls such as up and down buttons to change that value. The\n current value can also be changed by editing the display field directly, or\n using mouse wheel and cursor keys.\n An optional {@link #numberFormat} property allows you to control the format of\n how a value can be entered and will be displayed.\n A brief, but non-trivial example:\n </p>\n<pre class='javascript'>\n var s = new qx.ui.form.Spinner();\n s.set({\n   maximum: 3000,\n   minimum: -3000\n });\n var nf = new qx.util.format.NumberFormat();\n nf.setMaximumFractionDigits(2);\n s.setNumberFormat(nf);\n </pre>\n<p>A spinner instance without any further properties specified in the\n constructor or a subsequent <em>set</em> command will appear with default\n values and behaviour.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "textfield {qx.ui.form.TextField} holds the current value of the spinner"
+      },
+      {
+        "name": "@childControl",
+        "body": "upbutton {qx.ui.form.Button} button to increase the value"
+      },
+      {
+        "name": "@childControl",
+        "body": "downbutton {qx.ui.form.Button} button to decrease the value"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "interfaces": [
+    "qx.ui.form.INumberForm",
+    "qx.ui.form.IRange",
+    "qx.ui.form.IForm"
+  ],
+  "mixins": [
+    "qx.ui.core.MContentPadding",
+    "qx.ui.form.MForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "min"
+      },
+      {
+        "name": "value"
+      },
+      {
+        "name": "max"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 74,
+        "column": 2,
+        "index": 2442
+      },
+      "end": {
+        "line": 126,
+        "column": 3,
+        "index": 3861
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4089
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4150
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "spinner"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "focusable": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4175
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 4230
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "singleStep": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4312
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4368
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": {
+        "raw": [
+          "* The amount to increment on each event (keypress or pointerdown) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The amount to increment on each event (keypress or pointerdown)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "pageStep": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4443
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 4498
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 10
+      },
+      "jsdoc": {
+        "raw": [
+          "* The amount to increment on each pageup/pagedown keypress "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The amount to increment on each pageup/pagedown keypress</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "minimum": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4550
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4663
+        }
+      },
+      "json": {
+        "check": "Number",
+        "apply": "_applyMinimum",
+        "init": 0,
+        "event": "changeMinimum"
+      },
+      "jsdoc": {
+        "raw": [
+          "* minimal value of the Range object "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>minimal value of the Range object</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4707
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 4853
+        }
+      },
+      "json": {
+        "check": "this._checkValue(value)",
+        "nullable": true,
+        "apply": "_applyValue",
+        "init": 0,
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The value of the spinner. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The value of the spinner.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4905
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 5020
+        }
+      },
+      "json": {
+        "check": "Number",
+        "apply": "_applyMaximum",
+        "init": 100,
+        "event": "changeMaximum"
+      },
+      "jsdoc": {
+        "raw": [
+          "* maximal value of the Range object "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>maximal value of the Range object</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "wrap": {
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 5075
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5157
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyWrap"
+      },
+      "jsdoc": {
+        "raw": [
+          "* whether the value should wrap around "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>whether the value should wrap around</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "editable": {
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 5240
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 5329
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyEditable"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Controls whether the textfield of the spinner is editable or not "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls whether the textfield of the spinner is editable or not</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "numberFormat": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 5399
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 5520
+        }
+      },
+      "json": {
+        "check": "qx.util.format.NumberFormat",
+        "apply": "_applyNumberFormat",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Controls the display of the number in the textfield "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controls the display of the number in the textfield</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowShrinkY": {
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 5545
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 5604
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.LayoutItem"
+      ]
+    },
+    "contentPaddingTop": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1146
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1270
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Top padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Top padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingRight": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1322
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1448
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Right padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Right padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingBottom": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Bottom padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Bottom padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPaddingLeft": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1679
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1804
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Left padding of the content pane "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Left padding of the content pane</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "contentPadding": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2270
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2486
+        }
+      },
+      "json": {
+        "group": [
+          "contentPaddingTop",
+          "contentPaddingRight",
+          "contentPaddingBottom",
+          "contentPaddingLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',",
+          "     * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'",
+          "     * at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',\n 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'\n at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    }
+  },
+  "members": {
+    "__lastValidValue": {
+      "jsdoc": {
+        "raw": [
+          "* Saved last value in case invalid text is entered "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saved last value in case invalid text is entered</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5872
+        },
+        "end": {
+          "line": 220,
+          "column": 26,
+          "index": 5894
+        }
+      },
+      "appearsIn": []
+    },
+    "__pageUpMode": {
+      "jsdoc": {
+        "raw": [
+          "* Whether the page-up button has been pressed "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the page-up button has been pressed</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 5956
+        },
+        "end": {
+          "line": 223,
+          "column": 23,
+          "index": 5975
+        }
+      },
+      "appearsIn": []
+    },
+    "__pageDownMode": {
+      "jsdoc": {
+        "raw": [
+          "* Whether the page-down button has been pressed "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the page-down button has been pressed</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 6039
+        },
+        "end": {
+          "line": 226,
+          "column": 25,
+          "index": 6060
+        }
+      },
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 6283
+        },
+        "end": {
+          "line": 268,
+          "column": 5,
+          "index": 7399
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_getFilterRegExp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the regular expression used as the text field's filter",
+          "     *",
+          "     * @return {RegExp} The filter RegExp.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the regular expression used as the text field's filter</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{RegExp} The filter RegExp.",
+            "type": "RegExp",
+            "description": "The filter RegExp."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 7542
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 8502
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "RegExp"
+      },
+      "appearsIn": []
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4,
+          "index": 8593
+        },
+        "end": {
+          "line": 313,
+          "column": 5,
+          "index": 8657
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "tabFocus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 8682
+        },
+        "end": {
+          "line": 321,
+          "column": 5,
+          "index": 8822
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_applyMinimum": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the minimum property.",
+          "     *",
+          "     * It sets the value of the spinner to the maximum of the current spinner",
+          "     * value and the given min property value.",
+          "     *",
+          "     * @param value {Number} The new value of the min property",
+          "     * @param old {Number} The old value of the min property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the minimum property.\n It sets the value of the spinner to the maximum of the current spinner\n value and the given min property value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} The new value of the min property",
+            "paramName": "value",
+            "description": " The new value of the min property",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "old {Number} The old value of the min property",
+            "paramName": "old",
+            "description": " The old value of the min property",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 4,
+          "index": 9350
+        },
+        "end": {
+          "line": 348,
+          "column": 5,
+          "index": 9584
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        },
+        {
+          "name": "old",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMaximum": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the maximum property.",
+          "     *",
+          "     * It sets the value of the spinner to the minimum of the current spinner",
+          "     * value and the given max property value.",
+          "     *",
+          "     * @param value {Number} The new value of the max property",
+          "     * @param old {Number} The old value of the max property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the maximum property.\n It sets the value of the spinner to the minimum of the current spinner\n value and the given max property value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} The new value of the max property",
+            "paramName": "value",
+            "description": " The new value of the max property",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "old {Number} The old value of the max property",
+            "paramName": "old",
+            "description": " The old value of the max property",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 4,
+          "index": 9917
+        },
+        "end": {
+          "line": 369,
+          "column": 5,
+          "index": 10151
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        },
+        {
+          "name": "old",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4,
+          "index": 10176
+        },
+        "end": {
+          "line": 376,
+          "column": 5,
+          "index": 10278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_checkValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the value being applied is allowed.",
+          "     *",
+          "     * If you override this to change the allowed type, you will also",
+          "     * want to override {@link #_applyValue}, {@link #_applyMinimum},",
+          "     * {@link #_applyMaximum}, {@link #_countUp}, {@link #_countDown}, and",
+          "     * {@link #_onTextChange} methods as those cater specifically to numeric",
+          "     * values.",
+          "     *",
+          "     * @param value {var}",
+          "     *   The value being set",
+          "     * @return {Boolean}",
+          "     *   <i>true</i> if the value is allowed;",
+          "     *   <i>false> otherwise.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check whether the value being applied is allowed.\n If you override this to change the allowed type, you will also\n want to override {@link #<em>applyValue}, {@link #</em>applyMinimum},\n {@link #<em>applyMaximum}, {@link #</em>countUp}, {@link #<em>countDown}, and\n {@link #</em>onTextChange} methods as those cater specifically to numeric\n values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var}\n   The value being set",
+            "paramName": "value",
+            "description": "\n   The value being set",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n   <i>true</i> if the value is allowed;\n   <i>false> otherwise.",
+            "type": "boolean",
+            "description": "   <i>true</i> if the value is allowed;\n   <i>false> otherwise."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 10835
+        },
+        "end": {
+          "line": 399,
+          "column": 5,
+          "index": 10995
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the value property.",
+          "     *",
+          "     * It disables / enables the buttons and handles the wrap around.",
+          "     *",
+          "     * @param value {Number} The new value of the spinner",
+          "     * @param old {Number} The former value of the spinner",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the value property.\n It disables / enables the buttons and handles the wrap around.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} The new value of the spinner",
+            "paramName": "value",
+            "description": " The new value of the spinner",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "old {Number} The former value of the spinner",
+            "paramName": "old",
+            "description": " The former value of the spinner",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 11264
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 11786
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        },
+        {
+          "name": "old",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEditable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the editable property.<br/>",
+          "     * It sets the textfield of the spinner to not read only.",
+          "     *",
+          "     * @param value {Boolean} The new value of the editable property",
+          "     * @param old {Boolean} The former value of the editable property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the editable property.<br/>\n It sets the textfield of the spinner to not read only.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} The new value of the editable property",
+            "paramName": "value",
+            "description": " The new value of the editable property",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "old {Boolean} The former value of the editable property",
+            "paramName": "old",
+            "description": " The former value of the editable property",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4,
+          "index": 12070
+        },
+        "end": {
+          "line": 442,
+          "column": 5,
+          "index": 12232
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "old",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyWrap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the wrap property.<br/>",
+          "     * Enables all buttons if the wrapping is enabled.",
+          "     *",
+          "     * @param value {Boolean} The new value of the wrap property",
+          "     * @param old {Boolean} The former value of the wrap property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the wrap property.<br/>\n Enables all buttons if the wrapping is enabled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} The new value of the wrap property",
+            "paramName": "value",
+            "description": " The new value of the wrap property",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "old {Boolean} The former value of the wrap property",
+            "paramName": "old",
+            "description": " The former value of the wrap property",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 451,
+          "column": 4,
+          "index": 12497
+        },
+        "end": {
+          "line": 453,
+          "column": 5,
+          "index": 12556
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "old",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNumberFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply routine for the numberFormat property.<br/>",
+          "     * When setting a number format, the display of the",
+          "     * value in the text-field will be changed immediately.",
+          "     *",
+          "     * @param value {Boolean} The new value of the numberFormat property",
+          "     * @param old {Boolean} The former value of the numberFormat property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply routine for the numberFormat property.<br/>\n When setting a number format, the display of the\n value in the text-field will be changed immediately.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean} The new value of the numberFormat property",
+            "paramName": "value",
+            "description": " The new value of the numberFormat property",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "old {Boolean} The former value of the numberFormat property",
+            "paramName": "old",
+            "description": " The former value of the numberFormat property",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 463,
+          "column": 4,
+          "index": 12906
+        },
+        "end": {
+          "line": 485,
+          "column": 5,
+          "index": 13485
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "old",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getContentPaddingTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the element, to which the content padding should be applied.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The content padding target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the element, to which the content padding should be applied.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The content padding target.",
+            "type": "qx.ui.core.Widget",
+            "description": "The content padding target."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 492,
+          "column": 4,
+          "index": 13654
+        },
+        "end": {
+          "line": 494,
+          "column": 5,
+          "index": 13736
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "_updateButtons": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks the min and max values, disables / enables the",
+          "     * buttons and handles the wrap around.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks the min and max values, disables / enables the\n buttons and handles the wrap around.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 13864
+        },
+        "end": {
+          "line": 530,
+          "column": 5,
+          "index": 14806
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onKeyDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback for \"keyDown\" event.<br/>",
+          "     * Controls the interval mode (\"single\" or \"page\")",
+          "     * and the interval increase by detecting \"Up\"/\"Down\"",
+          "     * and \"PageUp\"/\"PageDown\" keys.<br/>",
+          "     * The corresponding button will be pressed.",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} keyDown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback for \"keyDown\" event.<br/>\n Controls the interval mode (\"single\" or \"page\")\n and the interval increase by detecting \"Up\"/\"Down\"\n and \"PageUp\"/\"PageDown\" keys.<br/>\n The corresponding button will be pressed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} keyDown event",
+            "paramName": "e",
+            "description": " keyDown event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 547,
+          "column": 4,
+          "index": 15340
+        },
+        "end": {
+          "line": 596,
+          "column": 5,
+          "index": 16675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback for \"keyUp\" event.<br/>",
+          "     * Detecting \"Up\"/\"Down\" and \"PageUp\"/\"PageDown\" keys.<br/>",
+          "     * Releases the button and disabled the page mode, if necessary.",
+          "     *",
+          "     * @param e {qx.event.type.KeySequence} keyUp event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback for \"keyUp\" event.<br/>\n Detecting \"Up\"/\"Down\" and \"PageUp\"/\"PageDown\" keys.<br/>\n Releases the button and disabled the page mode, if necessary.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeySequence} keyUp event",
+            "paramName": "e",
+            "description": " keyUp event",
+            "type": "qx.event.type.KeySequence"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 605,
+          "column": 4,
+          "index": 16934
+        },
+        "end": {
+          "line": 625,
+          "column": 5,
+          "index": 17454
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.KeySequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onRoll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback method for the \"roll\" event.<br/>",
+          "     * Increments or decrements the value of the spinner.",
+          "     *",
+          "     * @param e {qx.event.type.Roll} roll event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback method for the \"roll\" event.<br/>\n Increments or decrements the value of the spinner.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Roll} roll event",
+            "paramName": "e",
+            "description": " roll event",
+            "type": "qx.event.type.Roll"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 639,
+          "column": 4,
+          "index": 17842
+        },
+        "end": {
+          "line": 652,
+          "column": 5,
+          "index": 18111
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Roll"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTextChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback method for the \"change\" event of the textfield.",
+          "     *",
+          "     * @param e {qx.event.type.Event} text change event or blur event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback method for the \"change\" event of the textfield.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Event} text change event or blur event",
+            "paramName": "e",
+            "description": " text change event or blur event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4,
+          "index": 18275
+        },
+        "end": {
+          "line": 697,
+          "column": 5,
+          "index": 19446
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback method for the locale Manager's \"changeLocale\" event.",
+          "     *",
+          "     * @param ev {qx.event.type.Event} locale change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback method for the locale Manager's \"changeLocale\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {qx.event.type.Event} locale change event",
+            "paramName": "ev",
+            "description": " locale change event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 705,
+          "column": 4,
+          "index": 19606
+        },
+        "end": {
+          "line": 712,
+          "column": 5,
+          "index": 19929
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeNumberFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback method for the number format's \"changeNumberFormat\" event.",
+          "     *",
+          "     * @param ev {qx.event.type.Event} number format change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback method for the number format's \"changeNumberFormat\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {qx.event.type.Event} number format change event",
+            "paramName": "ev",
+            "description": " number format change event",
+            "type": "qx.event.type.Event"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 719,
+          "column": 4,
+          "index": 20100
+        },
+        "end": {
+          "line": 723,
+          "column": 5,
+          "index": 20316
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_countUp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the spinner is in page mode and counts either the single",
+          "     * or page Step up.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the spinner is in page mode and counts either the single\n or page Step up.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 736,
+          "column": 4,
+          "index": 20643
+        },
+        "end": {
+          "line": 752,
+          "column": 5,
+          "index": 21116
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_countDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the spinner is in page mode and counts either the single",
+          "     * or page Step down.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the spinner is in page mode and counts either the single\n or page Step down.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 759,
+          "column": 4,
+          "index": 21246
+        },
+        "end": {
+          "line": 775,
+          "column": 5,
+          "index": 21723
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "gotoValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalizes the incoming value to be in the valid range and",
+          "     * applies it to the {@link #value} afterwards.",
+          "     *",
+          "     * @param value {Number} Any number",
+          "     * @return {Number} The normalized number",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalizes the incoming value to be in the valid range and\n applies it to the {@link #value} afterwards.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Number} Any number",
+            "paramName": "value",
+            "description": " Any number",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The normalized number",
+            "type": "number",
+            "description": "The normalized number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 784,
+          "column": 4,
+          "index": 21957
+        },
+        "end": {
+          "line": 788,
+          "column": 5,
+          "index": 22090
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 791,
+          "column": 4,
+          "index": 22115
+        },
+        "end": {
+          "line": 794,
+          "column": 5,
+          "index": 22218
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "__contentPaddingSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2915
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3125
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "__contentPaddingThemedSetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the themed setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingThemedSetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the themed setter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingThemedSetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3313
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3553
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "__contentPaddingResetter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the resetter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingResetter)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Maps property names of content padding to the resetter of the padding"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__contentPaddingResetter)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3732
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3952
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "_applyContentPadding": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3981
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MContentPadding"
+      ],
+      "mixin": "qx.ui.core.MContentPadding"
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 797,
+        "column": 2,
+        "index": 22227
+      },
+      "end": {
+        "line": 808,
+        "column": 3,
+        "index": 22591
+      }
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,518 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603365,
+  "lastModifiedIso": "2026-06-29T04:00:03.365Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/layout/VBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 82,
+      "column": 0,
+      "index": 2783
+    },
+    "end": {
+      "line": 539,
+      "column": 3,
+      "index": 15064
+    }
+  },
+  "className": "qx.ui.layout.VBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A vertical box layout.",
+      " *",
+      " * The vertical box layout lays out widgets in a vertical column, from top",
+      " * to bottom.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Minimum and maximum dimensions",
+      " * * Prioritized growing/shrinking (flex)",
+      " * * Margins (with vertical collapsing)",
+      " * * Auto sizing (ignoring percent values)",
+      " * * Percent heights (not relevant for size hint)",
+      " * * Alignment (child property {@link qx.ui.core.LayoutItem#alignY} is ignored)",
+      " * * Vertical spacing (collapsed with margins)",
+      " * * Reversed children layout (from last to first)",
+      " * * Horizontal children stretching (respecting size hints)",
+      " *",
+      " * *Item Properties*",
+      " *",
+      " * <ul>",
+      " * <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container",
+      " *   distributes remaining empty space among its children. If items are made",
+      " *   flexible, they can grow or shrink accordingly. Their relative flex values",
+      " *   determine how the items are being resized, i.e. the larger the flex ratio",
+      " *   of two items, the larger the resizing of the first item compared to the",
+      " *   second.",
+      " *",
+      " *   If there is only one flex item in a layout container, its actual flex",
+      " *   value is not relevant. To disallow items to become flexible, set the",
+      " *   flex value to zero.",
+      " * </li>",
+      " * <li><strong>height</strong> <em>(String)</em>: Allows to define a percent",
+      " *   height for the item. The height in percent, if specified, is used instead",
+      " *   of the height defined by the size hint. The minimum and maximum height still",
+      " *   takes care of the element's limits. It has no influence on the layout's",
+      " *   size hint. Percent values are mostly useful for widgets which are sized by",
+      " *   the outer hierarchy.",
+      " * </li>",
+      " * </ul>",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the vertical box layout.",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var layout = new qx.ui.layout.VBox();",
+      " * layout.setSpacing(4); // apply spacing",
+      " *",
+      " * var container = new qx.ui.container.Composite(layout);",
+      " *",
+      " * container.add(new qx.ui.core.Widget());",
+      " * container.add(new qx.ui.core.Widget());",
+      " * container.add(new qx.ui.core.Widget());",
+      " * </pre>",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>",
+      " * and links to demos for this layout.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A vertical box layout.\n The vertical box layout lays out widgets in a vertical column, from top\n to bottom.\n<em>Features</em></p>\n<ul>\n<li>Minimum and maximum dimensions</li>\n<li>Prioritized growing/shrinking (flex)</li>\n<li>Margins (with vertical collapsing)</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li>Percent heights (not relevant for size hint)</li>\n<li>Alignment (child property {@link qx.ui.core.LayoutItem#alignY} is ignored)</li>\n<li>Vertical spacing (collapsed with margins)</li>\n<li>Reversed children layout (from last to first)</li>\n<li><p>Horizontal children stretching (respecting size hints)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>flex</strong> <em>(Integer)</em>: The flexibility of a layout item determines how the container\n   distributes remaining empty space among its children. If items are made\n   flexible, they can grow or shrink accordingly. Their relative flex values\n   determine how the items are being resized, i.e. the larger the flex ratio\n   of two items, the larger the resizing of the first item compared to the\n   second.\n   If there is only one flex item in a layout container, its actual flex\n   value is not relevant. To disallow items to become flexible, set the\n   flex value to zero.\n </li>\n <li><strong>height</strong> <em>(String)</em>: Allows to define a percent\n   height for the item. The height in percent, if specified, is used instead\n   of the height defined by the size hint. The minimum and maximum height still\n   takes care of the element's limits. It has no influence on the layout's\n   size hint. Percent values are mostly useful for widgets which are sized by\n   the outer hierarchy.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the vertical box layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.VBox();\n layout.setSpacing(4);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n container.add(new qx.ui.core.Widget());\n </pre>\n<p><em>External Documentation</em>\n See <a href='https://qooxdoo.org/documentation/#/desktop/layout/box.md'>extended documentation</a>\n and links to demos for this layout.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.layout.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "spacing"
+      },
+      {
+        "name": "alignY"
+      },
+      {
+        "name": "separator"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 97,
+        "column": 2,
+        "index": 3354
+      },
+      "end": {
+        "line": 111,
+        "column": 3,
+        "index": 3587
+      }
+    }
+  },
+  "properties": {
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3991
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 4101
+        }
+      },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom"
+        ],
+        "init": "top",
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of the whole children block. The vertical",
+          "     * alignment of the child is completely ignored in VBoxes (",
+          "     * {@link qx.ui.core.LayoutItem#alignY}).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of the whole children block. The vertical\n alignment of the child is completely ignored in VBoxes (\n {@link qx.ui.core.LayoutItem#alignY}).</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4238
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4349
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "init": "left",
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of each child. Can be overridden through",
+          "     * {@link qx.ui.core.LayoutItem#alignX}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of each child. Can be overridden through\n {@link qx.ui.core.LayoutItem#alignX}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "spacing": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4405
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4494
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Vertical spacing between two children "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical spacing between two children</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "separator": {
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4555
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4655
+        }
+      },
+      "json": {
+        "check": "Decorator",
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Separator lines to use between the objects "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Separator lines to use between the objects</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "reversed": {
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4744
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4834
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyReversed"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the actual children list should be laid out in reversed order. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the actual children list should be laid out in reversed order.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__heights": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 5042
+        },
+        "end": {
+          "line": 170,
+          "column": 19,
+          "index": 5057
+        }
+      },
+      "appearsIn": []
+    },
+    "__flexs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5063
+        },
+        "end": {
+          "line": 171,
+          "column": 17,
+          "index": 5076
+        }
+      },
+      "appearsIn": []
+    },
+    "__enableFlex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 5082
+        },
+        "end": {
+          "line": 172,
+          "column": 22,
+          "index": 5100
+        }
+      },
+      "appearsIn": []
+    },
+    "__children": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 5106
+        },
+        "end": {
+          "line": 173,
+          "column": 20,
+          "index": 5122
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyReversed": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 5347
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 5529
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__rebuildCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rebuilds caches for flex and percent layout properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rebuilds caches for flex and percent layout properties</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4,
+          "index": 5614
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 6951
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "verifyLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 7174
+        },
+        "end": {
+          "line": 269,
+          "column": 6,
+          "index": 7770
+        }
+      },
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 7795
+        },
+        "end": {
+          "line": 452,
+          "column": 5,
+          "index": 12829
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "availWidth"
+        },
+        {
+          "name": "availHeight"
+        },
+        {
+          "name": "padding"
+        }
+      ],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 455,
+          "column": 4,
+          "index": 12854
+        },
+        "end": {
+          "line": 527,
+          "column": 5,
+          "index": 14788
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 536,
+        "column": 2,
+        "index": 14984
+      },
+      "end": {
+        "line": 538,
+        "column": 3,
+        "index": 15060
+      }
+    }
+  },
+  "statics": {}
+}

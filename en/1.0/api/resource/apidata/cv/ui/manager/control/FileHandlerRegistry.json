@@ -1,0 +1,416 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/FileHandlerRegistry.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 894
+    },
+    "end": {
+      "line": 293,
+      "column": 3,
+      "index": 10088
+    }
+  },
+  "className": "cv.ui.manager.control.FileHandlerRegistry",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Central registry for all available file editors/viewers.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Central registry for all available file editors/viewers.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1133
+      },
+      "end": {
+        "line": 80,
+        "column": 3,
+        "index": 2623
+      }
+    }
+  },
+  "members": {
+    "__registry": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2765
+        },
+        "end": {
+          "line": 88,
+          "column": 20,
+          "index": 2781
+        }
+      },
+      "appearsIn": []
+    },
+    "__defaults": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2787
+        },
+        "end": {
+          "line": 89,
+          "column": 20,
+          "index": 2803
+        }
+      },
+      "appearsIn": []
+    },
+    "registerFileHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers an editor for a specific file, that is identified by the given selector.",
+          "     * @param selector {String|RegExp|Class|Function|null} filename-/path or regular expression. If null this is a special handler that must be loaded manually (like cv.ui.manager.Start)",
+          "     * @param clazz {qx.ui.core.Widget} widget class that handles those type of files",
+          "     * @param options {Map?} additional options to store in the registry",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers an editor for a specific file, that is identified by the given selector.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String|RegExp|Class|Function|null} filename-/path or regular expression. If null this is a special handler that must be loaded manually (like cv.ui.manager.Start)",
+            "paramName": "selector",
+            "description": " filename-/path or regular expression. If null this is a special handler that must be loaded manually (like cv.ui.manager.Start)",
+            "type": [
+              "String",
+              "RegExp",
+              "Class",
+              "Function",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "clazz {qx.ui.core.Widget} widget class that handles those type of files",
+            "paramName": "clazz",
+            "description": " widget class that handles those type of files",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?} additional options to store in the registry",
+            "paramName": "options",
+            "description": " additional options to store in the registry",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 3262
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4694
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": [
+            "String",
+            "RegExp",
+            "Class",
+            "Function",
+            "null"
+          ]
+        },
+        {
+          "name": "clazz",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFileHandler": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4701
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 6589
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFileHandlerById": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4,
+          "index": 6596
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 6674
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "handlerId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasFileHandler": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6681
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 6934
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setDefault": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark the handler with the given classname as default for the selector-id and all others with the same selector id not,",
+          "     * @param selector {RegExp}",
+          "     * @param clazz {qx.Class}",
+          "     * @param noTemporaryFiles {Boolean} flag to prevent this default editor from being used to open temporary files.",
+          "     * @param noReadOnlyFiles {Boolean} fleag to prevent this default editor from being used to open file that are not writeable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mark the handler with the given classname as default for the selector-id and all others with the same selector id not,</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {RegExp}",
+            "paramName": "selector",
+            "type": "RegExp"
+          },
+          {
+            "name": "@param",
+            "body": "clazz {qx.Class}",
+            "paramName": "clazz",
+            "type": "qx.Class"
+          },
+          {
+            "name": "@param",
+            "body": "noTemporaryFiles {Boolean} flag to prevent this default editor from being used to open temporary files.",
+            "paramName": "noTemporaryFiles",
+            "description": " flag to prevent this default editor from being used to open temporary files.",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "noReadOnlyFiles {Boolean} fleag to prevent this default editor from being used to open file that are not writeable",
+            "paramName": "noReadOnlyFiles",
+            "description": " fleag to prevent this default editor from being used to open file that are not writeable",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 7393
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 7815
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "RegExp"
+        },
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "noTemporaryFiles",
+          "type": "boolean"
+        },
+        {
+          "name": "noReadOnlyFiles",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangesDefaultConfigEditor": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 7822
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 8231
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__canHandle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 8238
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 8967
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAllFileHandlers": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 8974
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 9513
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 278,
+        "column": 2,
+        "index": 9647
+      },
+      "end": {
+        "line": 292,
+        "column": 3,
+        "index": 10084
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

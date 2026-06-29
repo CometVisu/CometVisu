@@ -1,0 +1,778 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601143,
+  "lastModifiedIso": "2026-06-29T04:00:01.143Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/basic/Atom.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 48,
+      "column": 0,
+      "index": 1376
+    },
+    "end": {
+      "line": 326,
+      "column": 3,
+      "index": 8393
+    }
+  },
+  "className": "qx.ui.basic.Atom",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A multi-purpose widget, which combines a label with an icon.",
+      " *",
+      " * The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text",
+      " * combination in different ways.",
+      " *",
+      " * This is useful for all types of buttons, tooltips, ...",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var atom = new qx.ui.basic.Atom(\"Icon Right\", \"icon/32/actions/go-next.png\");",
+      " *   this.getRoot().add(atom);",
+      " * </pre>",
+      " *",
+      " * This example creates an atom with the label \"Icon Right\" and an icon.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/atom.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " *",
+      " *",
+      " * @childControl label {qx.ui.basic.Label} label part of the atom",
+      " * @childControl icon {qx.ui.basic.Image} icon part of the atom",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A multi-purpose widget, which combines a label with an icon.\n The intended purpose of qx.ui.basic.Atom is to easily align the common icon-text\n combination in different ways.\n This is useful for all types of buttons, tooltips, …\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var atom = new qx.ui.basic.Atom(\"Icon Right\", \"icon/32/actions/go-next.png\");\n   this.getRoot().add(atom);\n </pre>\n<p>This example creates an atom with the label \"Icon Right\" and an icon.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/atom.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "label {qx.ui.basic.Label} label part of the atom"
+      },
+      {
+        "name": "@childControl",
+        "body": "icon {qx.ui.basic.Image} icon part of the atom"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.Widget",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 61,
+        "column": 2,
+        "index": 1729
+      },
+      "end": {
+        "line": 77,
+        "column": 3,
+        "index": 2044
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2272
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2330
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "atom"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2404
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2518
+        }
+      },
+      "json": {
+        "apply": "_applyLabel",
+        "nullable": true,
+        "check": "String",
+        "event": "changeLabel"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The label/caption/text of the qx.ui.basic.Atom instance "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The label/caption/text of the qx.ui.basic.Atom instance</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "rich": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2833
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2915
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyRich"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Switches between rich HTML and text content. The text mode (<code>false</code>) supports",
+          "     * advanced features like ellipsis when the available space is not",
+          "     * enough. HTML mode (<code>true</code>) supports multi-line content and all the",
+          "     * markup features of HTML content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Switches between rich HTML and text content. The text mode (<code>false</code>) supports\n advanced features like ellipsis when the available space is not\n enough. HTML mode (<code>true</code>) supports multi-line content and all the\n markup features of HTML content.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2998
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3132
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyIcon",
+        "nullable": true,
+        "themeable": true,
+        "event": "changeIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Any URI String supported by qx.ui.basic.Image to display an icon "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Any URI String supported by qx.ui.basic.Image to display an icon</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "gap": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3203
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3351
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": false,
+        "event": "changeGap",
+        "apply": "_applyGap",
+        "themeable": true,
+        "init": 4
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The space between the icon and the label",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The space between the icon and the label</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "show": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3477
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3651
+        }
+      },
+      "json": {
+        "init": "both",
+        "check": [
+          "both",
+          "label",
+          "icon"
+        ],
+        "themeable": true,
+        "inheritable": true,
+        "apply": "_applyShow",
+        "event": "changeShow"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configure the visibility of the sub elements/widgets.",
+          "     * Possible values: both, label, icon",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configure the visibility of the sub elements/widgets.\n Possible values: both, label, icon</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconPosition": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3833
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4109
+        }
+      },
+      "json": {
+        "init": "left",
+        "check": [
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "top-left",
+          "bottom-left",
+          "top-right",
+          "bottom-right"
+        ],
+        "themeable": true,
+        "apply": "_applyIconPosition"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The position of the icon in relation to the text.",
+          "     * Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The position of the icon in relation to the text.\n Only useful/needed if text and icon is configured and 'show' is configured as 'both' (default)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "center": {
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4681
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 4790
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "themeable": true,
+        "apply": "_applyCenter"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the content should be rendered centrally when to much space",
+          "     * is available. Enabling this property centers in both axis. The behavior",
+          "     * when disabled of the centering depends on the {@link #iconPosition} property.",
+          "     * If the icon position is <code>left</code> or <code>right</code>, the X axis",
+          "     * is not centered, only the Y axis. If the icon position is <code>top</code>",
+          "     * or <code>bottom</code>, the Y axis is not centered. In case of e.g. an",
+          "     * icon position of <code>top-left</code> no axis is centered.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the content should be rendered centrally when to much space\n is available. Enabling this property centers in both axis. The behavior\n when disabled of the centering depends on the {@link #iconPosition} property.\n If the icon position is <code>left</code> or <code>right</code>, the X axis\n is not centered, only the Y axis. If the icon position is <code>top</code>\n or <code>bottom</code>, the Y axis is not centered. In case of e.g. an\n icon position of <code>top-left</code> no axis is centered.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 5069
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5880
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_forwardStates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_forwardStates)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 5971
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 6035
+        }
+      },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_handleLabel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the visibility of the label",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the visibility of the label</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 6101
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 6297
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the visibility of the icon",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the visibility of the icon</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 6362
+        },
+        "end": {
+          "line": 249,
+          "column": 5,
+          "index": 6555
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyLabel": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 6584
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 6756
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyRich": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 262,
+          "column": 4,
+          "index": 6785
+        },
+        "end": {
+          "line": 267,
+          "column": 5,
+          "index": 6927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIcon": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 6956
+        },
+        "end": {
+          "line": 277,
+          "column": 5,
+          "index": 7123
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShow": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 7152
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 7235
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__safeSetPropertyOnLayout": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 7242
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 7800
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "propertyName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyGap": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7829
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 7905
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIconPosition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 7934
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 8028
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyCenter": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 8057
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 8139
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 8164
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 8385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,491 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600839,
+  "lastModifiedIso": "2026-06-29T04:00:00.839Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/columnmodel/resizebehavior/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 533
+    },
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 4458
+    }
+  },
+  "className": "qx.ui.table.columnmodel.resizebehavior.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An abstract resize behavior.  All resize behaviors should extend this",
+      " * class.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An abstract resize behavior.  All resize behaviors should extend this\n class.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "members": {
+    "_setNumColumns": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the ResizeTableColumnModel is initialized, and upon loading of",
+          "     * a new TableModel, to allow the Resize Behaviors to know how many columns",
+          "     * are in use.",
+          "     *",
+          "     * @abstract",
+          "     * @param numColumns {Integer} The number of columns in use.",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the ResizeTableColumnModel is initialized, and upon loading of\n a new TableModel, to allow the Resize Behaviors to know how many columns\n are in use.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "numColumns {Integer} The number of columns in use.",
+            "paramName": "numColumns",
+            "description": " The number of columns in use.",
+            "type": "Integer"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1190
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1277
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "numColumns",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onAppear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the table has first been rendered.",
+          "     *",
+          "     * @abstract",
+          "     * @param event {var} The <i>onappear</i> event object.",
+          "     * @param forceRefresh {Boolean?false} Whether a refresh should be forced",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the table has first been rendered.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>onappear</i> event object.",
+            "paramName": "event",
+            "description": " The <i>onappear</i> event object.",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "forceRefresh {Boolean?false} Whether a refresh should be forced",
+            "paramName": "forceRefresh",
+            "description": " Whether a refresh should be forced",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1570
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1654
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "var"
+        },
+        {
+          "name": "forceRefresh",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onTableWidthChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the table width changes due to either a window size change",
+          "     * or a parent object changing size causing the table to change size.",
+          "     *",
+          "     * @abstract",
+          "     * @param event {var} The <i>tableWidthChanged</i> event object.",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the table width changes due to either a window size change\n or a parent object changing size causing the table to change size.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>tableWidthChanged</i> event object.",
+            "paramName": "event",
+            "description": " The <i>tableWidthChanged</i> event object.",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1976
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2068
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onVerticalScrollBarChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the use of vertical scroll bar in the table changes, either",
+          "     * from present to not present, or vice versa.",
+          "     *",
+          "     * @abstract",
+          "     * @param event {var} The <i>verticalScrollBarChanged</i> event object.  This event has data,",
+          "     *     obtained via event.getValue(), which is a boolean indicating whether a",
+          "     *     vertical scroll bar is now present.",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the use of vertical scroll bar in the table changes, either\n from present to not present, or vice versa.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>verticalScrollBarChanged</i> event object.  This event has data,\n     obtained via event.getValue(), which is a boolean indicating whether a\n     vertical scroll bar is now present.",
+            "paramName": "event",
+            "description": " The <i>verticalScrollBarChanged</i> event object.  This event has data,\n     obtained via event.getValue(), which is a boolean indicating whether a\n     vertical scroll bar is now present.",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2526
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2632
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onColumnWidthChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when a column width is changed.",
+          "     *",
+          "     * @abstract",
+          "     * @param event {var} The <i>widthChanged</i> event object.  This event has data, obtained via",
+          "     *     event.getValue(), which is an object with three properties: the column",
+          "     *     which changed width (data.col), the old width (data.oldWidth) and the new",
+          "     *     width (data.newWidth).",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a column width is changed.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>widthChanged</i> event object.  This event has data, obtained via\n     event.getValue(), which is an object with three properties: the column\n     which changed width (data.col), the old width (data.oldWidth) and the new\n     width (data.newWidth).",
+            "paramName": "event",
+            "description": " The <i>widthChanged</i> event object.  This event has data, obtained via\n     event.getValue(), which is an object with three properties: the column\n     which changed width (data.col), the old width (data.oldWidth) and the new\n     width (data.newWidth).",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 3079
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 3173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onVisibilityChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when a column visibility is changed.",
+          "     *",
+          "     * @abstract",
+          "     * @param event {var} The <i>visibilityChanged</i> event object.  This event has data, obtained",
+          "     *     via event.getValue(), which is an object with two properties: the column",
+          "     *     which changed width (data.col) and the new visibility of the column",
+          "     *     (data.visible).",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when a column visibility is changed.</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {var} The <i>visibilityChanged</i> event object.  This event has data, obtained\n     via event.getValue(), which is an object with two properties: the column\n     which changed width (data.col) and the new visibility of the column\n     (data.visible).",
+            "paramName": "event",
+            "description": " The <i>visibilityChanged</i> event object.  This event has data, obtained\n     via event.getValue(), which is an object with two properties: the column\n     which changed width (data.col) and the new visibility of the column\n     (data.visible).",
+            "type": "var"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} the abstract function warning.",
+            "type": "Error",
+            "description": " the abstract function warning."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3615
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3707
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getAvailableWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the inner width available to columns in the table.",
+          "     *",
+          "     * @return {Integer} The available width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determine the inner width available to columns in the table.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The available width",
+            "type": "Integer",
+            "description": "The available width"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3850
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 4450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

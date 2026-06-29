@@ -1,0 +1,1113 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543949,
+  "lastModifiedIso": "2026-06-29T03:59:03.949Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/List.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 55,
+      "column": 0,
+      "index": 2001
+    },
+    "end": {
+      "line": 522,
+      "column": 3,
+      "index": 18458
+    }
+  },
+  "className": "cv.ui.structure.tile.components.List",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generates a list of items. A &lt;template&gt;-element defines the content of the list-items and a model is used to",
+      " * generate those items and apply the models content to the list-items.",
+      " * It allows custom Javascript code in a &lt;script&gt;-Element to fill the model or address-Elements as model source.",
+      " * The model can be refreshed in a time defined interval, which is set by the 'refresh' attribute.",
+      " *",
+      " * @widgetexample <settings>",
+      " *    <caption>Example list</caption>",
+      " *    <screenshot name=\"list_simple\"/>",
+      " *  </settings>",
+      "    <cv-list refresh=\"10\">",
+      "      <model>",
+      "        <script><![CDATA[",
+      "         for (let i = 0; i < Math.round(Math.random()*10); i++) {",
+      "           model.push({",
+      "             label: 'This is list item no ' + i,",
+      "             subLabel: 'Sublabel number ' + i",
+      "           })",
+      "         }",
+      "         ]]>",
+      "         </script>",
+      "       </model>",
+      "       <template>",
+      "         <li>",
+      "           <label class=\"primary\">${label}</label>",
+      "           <label class=\"secondary\">${subLabel}</label>",
+      "         </li>",
+      "       </template>",
+      "       <template when=\"empty\">",
+      "         <li>",
+      "           <label class=\"primary\">Model is empty!</label>",
+      "         </li>",
+      "       </template>",
+      "   </cv-list>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generates a list of items. A &lt;template&gt;-element defines the content of the list-items and a model is used to\n generate those items and apply the models content to the list-items.\n It allows custom Javascript code in a &lt;script&gt;-Element to fill the model or address-Elements as model source.\n The model can be refreshed in a time defined interval, which is set by the 'refresh' attribute.</p>"
+      }
+    ],
+    "@widgetexample": [
+      {
+        "name": "@widgetexample",
+        "body": "<settings>\n    <caption>Example list</caption>\n    <screenshot name=\"list_simple\"/>\n  </settings>\n    <cv-list refresh=\"10\">\n      <model>\n        <script><![CDATA[\n         for (let i = 0; i < Math.round(Math.random()*10); i++) {\n           model.push({\n             label: 'This is list item no ' + i,\n             subLabel: 'Sublabel number ' + i\n           })\n         }\n         ]]>\n         </script>\n       </model>\n       <template>\n         <li>\n           <label class=\"primary\">${label}</label>\n           <label class=\"secondary\">${subLabel}</label>\n         </li>\n       </template>\n       <template when=\"empty\">\n         <li>\n           <label class=\"primary\">Model is empty!</label>\n         </li>\n       </template>\n   </cv-list>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "mixins": [
+    "cv.ui.structure.tile.MVisibility",
+    "cv.ui.structure.tile.MRefresh",
+    "cv.ui.structure.tile.MFullscreen"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 68,
+        "column": 2,
+        "index": 2377
+      },
+      "end": {
+        "line": 71,
+        "column": 3,
+        "index": 2456
+      }
+    }
+  },
+  "properties": {
+    "value": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2604
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2653
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": []
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "visible": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1520
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1643
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1726
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyRefresh"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "fullscreen": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1014
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1142
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "__applyFullscreen",
+        "event": "changeFullscreen"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    }
+  },
+  "members": {
+    "_target": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2799
+        },
+        "end": {
+          "line": 91,
+          "column": 17,
+          "index": 2812
+        }
+      },
+      "appearsIn": []
+    },
+    "_timer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2818
+        },
+        "end": {
+          "line": 92,
+          "column": 16,
+          "index": 2830
+        }
+      },
+      "appearsIn": []
+    },
+    "_model": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2836
+        },
+        "end": {
+          "line": 93,
+          "column": 16,
+          "index": 2848
+        }
+      },
+      "appearsIn": []
+    },
+    "_getModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2854
+        },
+        "end": {
+          "line": 94,
+          "column": 19,
+          "index": 2869
+        }
+      },
+      "appearsIn": []
+    },
+    "_filterModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2875
+        },
+        "end": {
+          "line": 95,
+          "column": 22,
+          "index": 2893
+        }
+      },
+      "appearsIn": []
+    },
+    "_sortModel": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2899
+        },
+        "end": {
+          "line": 96,
+          "column": 20,
+          "index": 2915
+        }
+      },
+      "appearsIn": []
+    },
+    "_limit": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2921
+        },
+        "end": {
+          "line": 97,
+          "column": 16,
+          "index": 2933
+        }
+      },
+      "appearsIn": []
+    },
+    "_modelInstance": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2939
+        },
+        "end": {
+          "line": 98,
+          "column": 24,
+          "index": 2959
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2966
+        },
+        "end": {
+          "line": 290,
+          "column": 5,
+          "index": 10450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "onStateUpdate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 10457
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 10884
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "_applyValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 10891
+        },
+        "end": {
+          "line": 312,
+          "column": 5,
+          "index": 11036
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "refresh": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 11043
+        },
+        "end": {
+          "line": 492,
+          "column": 5,
+          "index": 17859
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 494,
+          "column": 4,
+          "index": 17866
+        },
+        "end": {
+          "line": 496,
+          "column": 5,
+          "index": 17927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem"
+        },
+        {
+          "name": "entry"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_observeVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1666
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_refreshTimer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1897
+        },
+        "end": {
+          "line": 60,
+          "column": 23,
+          "index": 1916
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_lastRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1922
+        },
+        "end": {
+          "line": 61,
+          "column": 22,
+          "index": 1940
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_applyRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1947
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2545
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__onVisibilityChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2552
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2696
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__doRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3719
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3934
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__uuid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1288
+        },
+        "end": {
+          "line": 45,
+          "column": 16,
+          "index": 1300
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__popupAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1306
+        },
+        "end": {
+          "line": 46,
+          "column": 24,
+          "index": 1326
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__button": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1332
+        },
+        "end": {
+          "line": 47,
+          "column": 18,
+          "index": 1346
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1352
+        },
+        "end": {
+          "line": 48,
+          "column": 23,
+          "index": 1371
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddressStateUpdateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 49,
+          "column": 41,
+          "index": 1414
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileClosedHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1420
+        },
+        "end": {
+          "line": 50,
+          "column": 29,
+          "index": 1445
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1469
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "getUuid": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1476
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1604
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "getPopupAddress": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1611
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1775
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__applyFullscreen": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1782
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "_initFullscreenSwitch": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2180
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 4018
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__cleanupFullscreenBindings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4025
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4516
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "_buttonFactory": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4523
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "icon"
+        },
+        {
+          "name": "classes"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 504,
+        "column": 2,
+        "index": 18061
+      },
+      "end": {
+        "line": 510,
+        "column": 3,
+        "index": 18238
+      }
+    }
+  },
+  "statics": {
+    "observer": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1266
+        },
+        "end": {
+          "line": 40,
+          "column": 18,
+          "index": 1280
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    }
+  }
+}

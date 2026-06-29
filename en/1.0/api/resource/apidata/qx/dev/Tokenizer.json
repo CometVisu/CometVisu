@@ -1,0 +1,183 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603313,
+  "lastModifiedIso": "2026-06-29T04:00:03.313Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/Tokenizer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 263,
+      "column": 3,
+      "index": 8172
+    }
+  },
+  "className": "qx.dev.Tokenizer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple JavaScript tokenizer used to print syntax highlighted",
+      " * JavaScript code.",
+      " *",
+      " * Based on Public Domain code by Christopher Diggins",
+      " * http://www.cdiggins.com/tokenizer.html",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple JavaScript tokenizer used to print syntax highlighted\n JavaScript code.\n Based on Public Domain code by Christopher Diggins\n http://www.cdiggins.com/tokenizer.html</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "tokenizeJavaScript": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tokenizes a string of JavaScript code.",
+          "     *",
+          "     * @param javaScriptText {String} String of JavaScript code to tokenize",
+          "     * @return {Map[]} Array of tokens. A token is a map with the fields",
+          "     *   <code>type</code> containing the token type and <code>value</code>,",
+          "     *   which contains the string value of the token from the input string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tokenizes a string of JavaScript code.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "javaScriptText {String} String of JavaScript code to tokenize",
+            "paramName": "javaScriptText",
+            "description": " String of JavaScript code to tokenize",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} Array of tokens. A token is a map with the fields\n   <code>type</code> containing the token type and <code>value</code>,\n   which contains the string value of the token from the input string.",
+            "type": "Map[]",
+            "description": "Array of tokens. A token is a map with the fields\n   <code>type</code> containing the token type and <code>value</code>,\n   which contains the string value of the token from the input string."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1276
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 6046
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "javaScriptText",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "javaScriptToHtml": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a colored HTML string for a string of JavaScript code.",
+          "     * The colored elements are placed in <code>span</code> elements",
+          "     * with class names corresponding to the token types. The returned code",
+          "     * should be placed into <code>pre</code> tags to preserve the",
+          "     * indentation.",
+          "     *",
+          "     * @param javaScriptText {String} String of JavaScript code to tokenize",
+          "     * @param forPreTag {Boolean ? false} Whatever the HTML should be generated",
+          "     *   for a pre tag or not",
+          "     * @return {String} HTML fragment with the colored JavaScript code.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a colored HTML string for a string of JavaScript code.\n The colored elements are placed in <code>span</code> elements\n with class names corresponding to the token types. The returned code\n should be placed into <code>pre</code> tags to preserve the\n indentation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "javaScriptText {String} String of JavaScript code to tokenize",
+            "paramName": "javaScriptText",
+            "description": " String of JavaScript code to tokenize",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "forPreTag {Boolean ? false} Whatever the HTML should be generated\n   for a pre tag or not",
+            "paramName": "forPreTag",
+            "description": " Whatever the HTML should be generated\n   for a pre tag or not",
+            "optional": true,
+            "defaultValue": "false",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} HTML fragment with the colored JavaScript code.",
+            "type": "string",
+            "description": "HTML fragment with the colored JavaScript code."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 6635
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 8164
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "javaScriptText",
+          "type": "string"
+        },
+        {
+          "name": "forPreTag",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

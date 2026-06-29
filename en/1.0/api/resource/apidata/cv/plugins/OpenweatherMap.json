@@ -1,0 +1,944 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543937,
+  "lastModifiedIso": "2026-06-29T03:59:03.937Z",
+  "classFilename": "../../source/class/cv/plugins/OpenweatherMap.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1335
+    },
+    "end": {
+      "line": 240,
+      "column": 3,
+      "index": 5958
+    }
+  },
+  "className": "cv.plugins.OpenweatherMap",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This plugins integrates OpenWeatherMap data.",
+      " *",
+      " * @author Stefan Borchert (stefan@borchert.cc)",
+      " * @author Matthias",
+      " * @since 0.9.0",
+      " * @asset(plugins/openweathermap/owm_core.js)",
+      " * @asset(plugins/openweathermap/owm_basic_style.css)",
+      " * @asset(plugins/openweathermap/owm_weathericon.css)",
+      " * @asset(plugins/openweathermap/font/weathericons-regular-webfont.eot)",
+      " * @asset(plugins/openweathermap/font/weathericons-regular-webfont.woff)",
+      " * @asset(plugins/openweathermap/font/weathericons-regular-webfont.ttf)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This plugins integrates OpenWeatherMap data.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Stefan Borchert (stefan@borchert.cc)"
+      },
+      {
+        "name": "@author",
+        "body": "Matthias"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.9.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/owm_core.js"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/owm_basic_style.css"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/owm_weathericon.css"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/font/weathericons-regular-webfont.eot"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/font/weathericons-regular-webfont.woff"
+      },
+      {
+        "name": "@asset",
+        "body": "plugins/openweathermap/font/weathericons-regular-webfont.ttf"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Refresh"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1605
+      },
+      "end": {
+        "line": 64,
+        "column": 3,
+        "index": 2151
+      }
+    }
+  },
+  "statics": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} extracted data from config element as key/value map",
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2721
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 3035
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3042
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3422
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__forceImgReload": {
+      "jsdoc": {
+        "raw": [
+          " based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7041
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "properties": {
+    "cssClass": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3588
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3649
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lang": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3656
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3713
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "owID": {
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3720
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3777
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "q": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3784
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3838
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lat": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3845
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 3901
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "lon": {
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3908
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3964
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "units": {
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 3971
+        },
+        "end": {
+          "line": 155,
+          "column": 5,
+          "index": 4029
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "type": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4036
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4093
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "forecast24hItems": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4100
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4169
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "forecastDailyhItems": {
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4176
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4248
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showSunrise": {
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 4255
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 4319
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "detailItems": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4326
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4390
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "appid": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4397
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 4455
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "description": {
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4462
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 4526
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1550
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1603
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "cachecontrol": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1673
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "full"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "restartOnVisible": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1680
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1786
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyRestartOnVisible"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "members": {
+    "__options": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 4686
+        },
+        "end": {
+          "line": 199,
+          "column": 19,
+          "index": 4701
+        }
+      },
+      "appearsIn": []
+    },
+    "_beforePropsApplied": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 4708
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 4789
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractBasicWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractBasicWidget"
+      ]
+    },
+    "_getInnerDomString": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 4796
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 5110
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.pure.AbstractWidget",
+      "appearsIn": [
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "_setupRefreshAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5117
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 5362
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_refreshAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 5369
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 5480
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_timer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 74,
+          "column": 16,
+          "index": 1960
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__timerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1966
+        },
+        "end": {
+          "line": 75,
+          "column": 19,
+          "index": 1981
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__setup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 2001
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__lastRun": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2007
+        },
+        "end": {
+          "line": 77,
+          "column": 19,
+          "index": 2022
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 78,
+          "column": 24,
+          "index": 2048
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartOnVisible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 79,
+          "column": 29,
+          "index": 2079
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_applyRestartOnVisible": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2086
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_maintainTimerState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the while invisible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the while invisible</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3528
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "setupRefreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3535
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "refreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4897
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  }
+}

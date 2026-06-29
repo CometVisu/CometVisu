@@ -1,0 +1,536 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543950,
+  "lastModifiedIso": "2026-06-29T03:59:03.950Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/Slider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 846
+    },
+    "end": {
+      "line": 242,
+      "column": 3,
+      "index": 6975
+    }
+  },
+  "className": "cv.ui.structure.tile.components.Slider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows a range slider.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows a range slider.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "properties": {
+    "stepWidth": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1113
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1200
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 5,
+        "apply": "_applyStepWidth"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "min": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1207
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1282
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_applyMin"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "max": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1289
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1366
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 100,
+        "apply": "_applyMax"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "showValue": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1373
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1464
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowValue"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "throttleInterval": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1471
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1574
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 250,
+        "apply": "_applyThrottleInterval"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__throttled": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1720
+        },
+        "end": {
+          "line": 69,
+          "column": 21,
+          "index": 1737
+        }
+      },
+      "appearsIn": []
+    },
+    "__input": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1743
+        },
+        "end": {
+          "line": 70,
+          "column": 17,
+          "index": 1756
+        }
+      },
+      "appearsIn": []
+    },
+    "__decreaseElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 71,
+          "column": 27,
+          "index": 1785
+        }
+      },
+      "appearsIn": []
+    },
+    "__increaseElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1791
+        },
+        "end": {
+          "line": 72,
+          "column": 27,
+          "index": 1814
+        }
+      },
+      "appearsIn": []
+    },
+    "__inputHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1820
+        },
+        "end": {
+          "line": 73,
+          "column": 24,
+          "index": 1840
+        }
+      },
+      "appearsIn": []
+    },
+    "__decreaseClickHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1846
+        },
+        "end": {
+          "line": 74,
+          "column": 32,
+          "index": 1874
+        }
+      },
+      "appearsIn": []
+    },
+    "__increaseClickHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1880
+        },
+        "end": {
+          "line": 75,
+          "column": 32,
+          "index": 1908
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1915
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4136
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4143
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4668
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_applyThrottleInterval": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4675
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 5001
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMin": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 5008
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5120
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMax": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 5127
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 5239
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStepWidth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 5246
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 5365
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShowValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5372
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 5768
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 5775
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 6085
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mappedValue"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "onInput": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 6092
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 6153
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onDecrease": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 6160
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 6282
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onIncrease": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 6289
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6411
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__sendValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6418
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 6749
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "on"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

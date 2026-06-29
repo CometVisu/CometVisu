@@ -1,0 +1,976 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601894,
+  "lastModifiedIso": "2026-06-29T04:00:01.894Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Drawer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1536
+    },
+    "end": {
+      "line": 496,
+      "column": 3,
+      "index": 14056
+    }
+  },
+  "className": "qx.ui.mobile.container.Drawer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a drawer widget inside the given parent widget. The parent widget can",
+      " * be assigned as a constructor argument. If no parent is set, the application's",
+      " * root will be assumed as parent. A drawer widget can be assigned to left, right,",
+      " * top or bottom edge of its parent by property <code>orientation</code>. The drawer floats",
+      " * in on <code>show()</code> and floats out on <code>hide()</code>. Additionally the drawer is shown by",
+      " * swiping in reverse direction on the parent edge to where the drawer is placed",
+      " * to: Orientation: <code>left</code>, Swipe: <code>right</code> on parents edge: Drawer is shown etc.",
+      " * The drawer is hidden when user taps the parent area outside of the drawer.",
+      " * This behaviour can be deactivated by the property <code>hideOnParentTap</code>.",
+      " *",
+      " * <pre class='javascript'>",
+      " *",
+      " *  var drawer = new qx.ui.mobile.container.Drawer();",
+      " *  drawer.setOrientation(\"right\");",
+      " *  drawer.setTapOffset(100);",
+      " *",
+      " *  var button = new qx.ui.mobile.form.Button(\"A Button\");",
+      " *  drawer.add(button);",
+      " * </pre>",
+      " *",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a drawer widget inside the given parent widget. The parent widget can\n be assigned as a constructor argument. If no parent is set, the application's\n root will be assumed as parent. A drawer widget can be assigned to left, right,\n top or bottom edge of its parent by property <code>orientation</code>. The drawer floats\n in on <code>show()</code> and floats out on <code>hide()</code>. Additionally the drawer is shown by\n swiping in reverse direction on the parent edge to where the drawer is placed\n to: Orientation: <code>left</code>, Swipe: <code>right</code> on parents edge: Drawer is shown etc.\n The drawer is hidden when user taps the parent area outside of the drawer.\n This behaviour can be deactivated by the property <code>hideOnParentTap</code>.\n </p>\n<pre class='javascript'>\n  var drawer = new qx.ui.mobile.container.Drawer();\n  drawer.setOrientation(\"right\");\n  drawer.setTapOffset(100);\n  var button = new qx.ui.mobile.form.Button(\"A Button\");\n  drawer.add(button);\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "parent"
+      },
+      {
+        "name": "layout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 57,
+        "column": 2,
+        "index": 2090
+      },
+      "end": {
+        "line": 88,
+        "column": 3,
+        "index": 2874
+      }
+    }
+  },
+  "events": {
+    "resize": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the drawer changes its size.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the drawer changes its size.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 3139
+        },
+        "end": {
+          "line": 100,
+          "column": 32,
+          "index": 3167
+        }
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3398
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3463
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "drawer"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "orientation": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3634
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3730
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "left",
+        "apply": "_applyOrientation"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Property for setting the orientation of the drawer.",
+          "     * Allowed values are: <code>left</code>,<code>right</code>,<code>top</code>,<code>bottom</code> "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Property for setting the orientation of the drawer.\n Allowed values are: <code>left</code>,<code>right</code>,<code>top</code>,<code>bottom</code></p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "size": {
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3940
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 4043
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 300,
+        "apply": "_applySize",
+        "event": "resize"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The size of the drawer in <code>px</code>. This value is interpreted as width if",
+          "     * orientation is <code>left | right</code>, as height if orientation is",
+          "     * <code>top | bottom</code>. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The size of the drawer in <code>px</code>. This value is interpreted as width if\n orientation is <code>left | right</code>, as height if orientation is\n <code>top | bottom</code>.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "hideOnParentTap": {
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4141
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4206
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Indicates whether the drawer should hide when the parent area of it is tapped.  "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates whether the drawer should hide when the parent area of it is tapped.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "hideOnBack": {
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4321
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 4381
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicates whether the drawer should hide when a back action appear form a key event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicates whether the drawer should hide when a back action appear form a key event.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "tapOffset": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4488
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4545
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 20
+      },
+      "jsdoc": {
+        "raw": [
+          "* Sets the size of the tapping area, where the drawer reacts on swipes for opening itself. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the size of the tapping area, where the drawer reacts on swipes for opening itself.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "transitionDuration": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4633
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4741
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 500,
+        "apply": "_applyTransitionDuration"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The duration time of the transition between shown/hidden state in ms. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The duration time of the transition between shown/hidden state in ms.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "positionZ": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4815
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4918
+        }
+      },
+      "json": {
+        "check": [
+          "above",
+          "below"
+        ],
+        "init": "above",
+        "apply": "_applyPositionZ"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Sets the drawer zIndex position relative to its parent. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the drawer zIndex position relative to its parent.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__pointerStartPosition": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 5125
+        },
+        "end": {
+          "line": 174,
+          "column": 32,
+          "index": 5153
+        }
+      },
+      "appearsIn": []
+    },
+    "__parent": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 5159
+        },
+        "end": {
+          "line": 175,
+          "column": 18,
+          "index": 5173
+        }
+      },
+      "appearsIn": []
+    },
+    "__transitionEnabled": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 5179
+        },
+        "end": {
+          "line": 176,
+          "column": 29,
+          "index": 5204
+        }
+      },
+      "appearsIn": []
+    },
+    "__inTransition": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 5210
+        },
+        "end": {
+          "line": 177,
+          "column": 24,
+          "index": 5230
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyOrientation": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5259
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 5463
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPositionZ": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 5492
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 5706
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applySize": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5735
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 6093
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTransitionDuration": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6122
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 6210
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "show": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the drawer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the drawer.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 6258
+        },
+        "end": {
+          "line": 276,
+          "column": 5,
+          "index": 7885
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.core.Widget",
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "hide": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the drawer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Hides the drawer.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 7933
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 9110
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.core.Widget",
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "forceHide": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Strict way to hide this drawer. Removes the blocker from the parent,",
+          "     * and hides the drawer without any animation. Should be called when drawer's",
+          "     * parent is animated and drawer should hide immediately.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Strict way to hide this drawer. Removes the blocker from the parent,\n and hides the drawer without any animation. Should be called when drawer's\n parent is animated and drawer should hide immediately.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 9353
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9621
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isHidden": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4,
+          "index": 9646
+        },
+        "end": {
+          "line": 346,
+          "column": 5,
+          "index": 9705
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.core.Widget",
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "_enableTransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enables the transition on this drawer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enables the transition on this drawer.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 9774
+        },
+        "end": {
+          "line": 357,
+          "column": 5,
+          "index": 9986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_disableTransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disables the transition on this drawer.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Disables the transition on this drawer.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 10056
+        },
+        "end": {
+          "line": 368,
+          "column": 5,
+          "index": 10217
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getTransitionTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the target widget which is responsible for the transition handling.",
+          "     * @return {qx.ui.mobile.core.Widget} the transition target widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the target widget which is responsible for the transition handling.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.core.Widget} the transition target widget.",
+            "type": "qx.ui.mobile.core.Widget",
+            "description": "the transition target widget."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 374,
+          "column": 4,
+          "index": 10395
+        },
+        "end": {
+          "line": 380,
+          "column": 5,
+          "index": 10543
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "toggleVisibility": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggle the visibility of the drawer.",
+          "     * @return {Boolean} the new visibility state.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggle the visibility of the drawer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} the new visibility state.",
+            "type": "boolean",
+            "description": "the new visibility state."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 10661
+        },
+        "end": {
+          "line": 394,
+          "column": 5,
+          "index": 10824
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_onBack": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles a back event which appears on the application.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The back event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles a back event which appears on the application.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The back event.",
+            "paramName": "evt",
+            "description": " The back event.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4,
+          "index": 10971
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 11176
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onParentPointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles a tap on drawers' root.",
+          "     * @param evt {qx.module.event.Pointer} Handled pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles a tap on drawers' root.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.module.event.Pointer} Handled pointer event.",
+            "paramName": "evt",
+            "description": " Handled pointer event.",
+            "type": "qx.module.event.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 11305
+        },
+        "end": {
+          "line": 439,
+          "column": 5,
+          "index": 12231
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.module.event.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onParentSwipe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles a swipe on layout parent.",
+          "     * @param evt {qx.module.event.Pointer} Handled pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles a swipe on layout parent.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.module.event.Pointer} Handled pointer event.",
+            "paramName": "evt",
+            "description": " Handled pointer event.",
+            "type": "qx.module.event.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 4,
+          "index": 12362
+        },
+        "end": {
+          "line": 476,
+          "column": 5,
+          "index": 13619
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.module.event.Pointer"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 479,
+        "column": 2,
+        "index": 13628
+      },
+      "end": {
+        "line": 495,
+        "column": 3,
+        "index": 14052
+      }
+    }
+  },
+  "statics": {}
+}

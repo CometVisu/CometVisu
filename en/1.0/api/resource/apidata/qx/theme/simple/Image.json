@@ -1,0 +1,87 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602347,
+  "lastModifiedIso": "2026-06-29T04:00:02.347Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Image.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 776
+    },
+    "end": {
+      "line": 104,
+      "column": 3,
+      "index": 3880
+    }
+  },
+  "className": "qx.theme.simple.Image",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mapping class for all images used in the simple theme.",
+      " *",
+      " * @asset(qx/decoration/Simple/*)",
+      " * @asset(qx/static/blank.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mapping class for all images used in the simple theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/decoration/Simple/*"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/static/blank.png"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "URLS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Holds a map containing all the URL to the images.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Holds a map containing all the URL to the images.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 953
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 3872
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

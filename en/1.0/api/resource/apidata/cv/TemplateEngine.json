@@ -1,0 +1,845 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543932,
+  "lastModifiedIso": "2026-06-29T03:59:03.932Z",
+  "classFilename": "../../source/class/cv/TemplateEngine.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 832
+    },
+    "end": {
+      "line": 582,
+      "column": 3,
+      "index": 18477
+    }
+  },
+  "className": "cv.TemplateEngine",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2,
+        "index": 921
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1568
+      }
+    }
+  },
+  "properties": {
+    "partsLoaded": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1651
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1776
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyLoaded",
+        "event": "changePartsLoaded"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the loading state of the parts",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the loading state of the parts</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "scriptsLoaded": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1845
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1938
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyLoaded"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the loading state of the scripts",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the loading state of the scripts</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "ready": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2106
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2218
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeReady",
+        "apply": "_applyReady"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the initialization state of the TemplateEngine. It gets true when all",
+          "     * external stuff (parts, scripts, etc.) has been loaded.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the initialization state of the TemplateEngine. It gets true when all\n external stuff (parts, scripts, etc.) has been loaded.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "currentPage": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2225
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2338
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.IPage",
+        "nullable": true,
+        "event": "changeCurrentPage"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "domFinished": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2345
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2475
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyDomFinished",
+        "event": "changeDomFinished"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "commands": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2482
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2556
+        }
+      },
+      "json": {
+        "check": "qx.ui.command.Group",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "highlightedWidget": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2589
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2699
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyHighlightedWidget"
+      },
+      "jsdoc": {
+        "raw": [
+          " highlight a widget"
+        ]
+      },
+      "appearsIn": []
+    },
+    "configSource": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2706
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2811
+        }
+      },
+      "json": {
+        "check": "XMLDocument",
+        "nullable": true,
+        "apply": "_applyConfigSource"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "configHash": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2818
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 2881
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "defaults": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Structure where a design can set a default value that a widget or plugin",
+          "     * can use.",
+          "     * This is especially important for design relevant information like colors",
+          "     * that can not be set though CSS.",
+          "     *",
+          "     * Usage: this.defaults.plugin.foo = {bar: 'baz'};",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Structure where a design can set a default value that a widget or plugin\n can use.\n This is especially important for design relevant information like colors\n that can not be set though CSS.\n Usage: this.defaults.plugin.foo = {bar: 'baz'};</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3336
+        },
+        "end": {
+          "line": 132,
+          "column": 18,
+          "index": 3350
+        }
+      },
+      "appearsIn": []
+    },
+    "pluginsToLoadCount": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3357
+        },
+        "end": {
+          "line": 134,
+          "column": 25,
+          "index": 3378
+        }
+      },
+      "appearsIn": []
+    },
+    "__partQueue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3385
+        },
+        "end": {
+          "line": 136,
+          "column": 21,
+          "index": 3402
+        }
+      },
+      "appearsIn": []
+    },
+    "_domFinishedQueue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3408
+        },
+        "end": {
+          "line": 137,
+          "column": 27,
+          "index": 3431
+        }
+      },
+      "appearsIn": []
+    },
+    "lazyPlugins": {
+      "jsdoc": {
+        "raw": [
+          " plugins that do not need to be loaded to proceed with the initial setup"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3517
+        },
+        "end": {
+          "line": 140,
+          "column": 21,
+          "index": 3534
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyConfigSource": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3541
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3725
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadParts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load parts (e.g. plugins, structure)",
+          "     *",
+          "     * @param parts {String[]|String} parts to load",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load parts (e.g. plugins, structure)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parts {String[]|String} parts to load",
+            "paramName": "parts",
+            "description": " parts to load",
+            "type": [
+              {
+                "type": "String",
+                "dimensions": 2
+              },
+              "String"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3851
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6368
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parts",
+          "type": [
+            {
+              "type": "String",
+              "dimensions": 2
+            },
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyReady": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 6397
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6483
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLoaded": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 6512
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 6697
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDomFinished": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 6726
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 7216
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "executeWhenDomFinished": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a callback to a queue which is executed after DOM has been rendered",
+          "     * @param callback {Function}",
+          "     * @param context {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a callback to a queue which is executed after DOM has been rendered</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function}",
+            "paramName": "callback",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}",
+            "paramName": "context",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7384
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 7668
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Read basic settings and detect and load the structure for this config to do the rest.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Read basic settings and detect and load the structure for this config to do the rest.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 7784
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 11260
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "generateManifest": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 368,
+          "column": 4,
+          "index": 11267
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 12743
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setupUI": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Main setup to get everything running and show the initial UI page.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Main setup to get everything running and show the initial UI page.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 405,
+          "column": 4,
+          "index": 12840
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 13221
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "startScreensaver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the screensaver if a screensave time is set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the screensaver if a screensave time is set</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 420,
+          "column": 4,
+          "index": 13301
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 13820
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyHighlightedWidget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 4,
+          "index": 13827
+        },
+        "end": {
+          "line": 448,
+          "column": 5,
+          "index": 14216
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "selectDesign": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 450,
+          "column": 4,
+          "index": 14223
+        },
+        "end": {
+          "line": 553,
+          "column": 5,
+          "index": 17757
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__showFatalError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Display a message when the setup goes wrong and can't be recovered by",
+          "     * the CometVisu itself.",
+          "     * @param message {string}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Display a message when the setup goes wrong and can't be recovered by\n the CometVisu itself.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {string}",
+            "paramName": "message",
+            "type": "string"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 561,
+          "column": 4,
+          "index": 17933
+        },
+        "end": {
+          "line": 571,
+          "column": 5,
+          "index": 18273
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 579,
+        "column": 2,
+        "index": 18407
+      },
+      "end": {
+        "line": 581,
+        "column": 3,
+        "index": 18473
+      }
+    }
+  },
+  "statics": {}
+}

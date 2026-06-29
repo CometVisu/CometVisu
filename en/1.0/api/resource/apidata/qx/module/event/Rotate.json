@@ -1,0 +1,222 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603122,
+  "lastModifiedIso": "2026-06-29T04:00:03.122Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Rotate.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 593
+    },
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 1914
+    }
+  },
+  "className": "qx.module.event.Rotate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the rotate gesture.",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the rotate gesture.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
+  "statics": {
+    "TYPES": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of event types to be normalized</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 718
+        },
+        "end": {
+          "line": 31,
+          "column": 21,
+          "index": 735
+        }
+      },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 742
+        },
+        "end": {
+          "line": 33,
+          "column": 30,
+          "index": 768
+        }
+      },
+      "appearsIn": []
+    },
+    "getAngle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a number with the current calculated angle between the primary and secondary active pointers.",
+          "     *",
+          "     * @return {Number} the angle of the two active pointers.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a number with the current calculated angle between the primary and secondary active pointers.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} the angle of the two active pointers.",
+            "type": "number",
+            "description": "the angle of the two active pointers."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 969
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1022
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manipulates the native event object, adding methods if they're not\n already present</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} Native event object",
+            "paramName": "event",
+            "description": " Native event object",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "element {Element} DOM element the listener was attached to",
+            "paramName": "element",
+            "description": " DOM element the listener was attached to",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Event} Normalized event object",
+            "type": "Event",
+            "description": "Normalized event object"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1334
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1775
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

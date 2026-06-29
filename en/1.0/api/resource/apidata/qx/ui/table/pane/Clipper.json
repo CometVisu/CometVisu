@@ -1,0 +1,148 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601508,
+  "lastModifiedIso": "2026-06-29T04:00:01.508Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/pane/Clipper.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 539
+    },
+    "end": {
+      "line": 49,
+      "column": 3,
+      "index": 1208
+    }
+  },
+  "className": "qx.ui.table.pane.Clipper",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Clipping area for the table header and table pane.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Clipping area for the table header and table pane.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 2,
+        "index": 625
+      },
+      "end": {
+        "line": 28,
+        "column": 3,
+        "index": 703
+      }
+    }
+  },
+  "members": {
+    "scrollToX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the element's content to the given left coordinate",
+          "     *",
+          "     * @param value {Integer} The vertical position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the element's content to the given left coordinate</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The vertical position to scroll to.",
+            "paramName": "value",
+            "description": " The vertical position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 878
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 958
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollToY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the element's content to the given top coordinate",
+          "     *",
+          "     * @param value {Integer} The horizontal position to scroll to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scrolls the element's content to the given top coordinate</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The horizontal position to scroll to.",
+            "paramName": "value",
+            "description": " The horizontal position to scroll to.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1121
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1200
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

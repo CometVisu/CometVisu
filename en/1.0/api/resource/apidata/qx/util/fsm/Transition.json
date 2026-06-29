@@ -1,0 +1,651 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603326,
+  "lastModifiedIso": "2026-06-29T04:00:03.326Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/fsm/Transition.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 525
+    },
+    "end": {
+      "line": 413,
+      "column": 3,
+      "index": 13625
+    }
+  },
+  "className": "qx.util.fsm.Transition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Create a new possible transition from one state to another.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Create a new possible transition from one state to another.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "transitionName"
+      },
+      {
+        "name": "transitionInfo"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 128,
+        "column": 2,
+        "index": 5269
+      },
+      "end": {
+        "line": 199,
+        "column": 3,
+        "index": 7113
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 7187
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 7244
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of this transition",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of this transition</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "predicate": {
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 7535
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 7649
+        }
+      },
+      "json": {
+        "init": "[[ ObjectMethod Function ]]",
+        "transform": "__transformPredicate"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The predicate function for this transition.  This is documented in the",
+          "     * constructor, and is typically provided through the constructor's",
+          "     * transitionInfo object, but it is also possible (but highly NOT",
+          "     * recommended) to change this dynamically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The predicate function for this transition.  This is documented in the\n constructor, and is typically provided through the constructor's\n transitionInfo object, but it is also possible (but highly NOT\n recommended) to change this dynamically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "nextState": {
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7995
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 8123
+        }
+      },
+      "json": {
+        "init": "qx.util.fsm.FiniteStateMachine.StateChange.CURRENT_STATE",
+        "transform": "__transformNextState"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The state to transition to, if the predicate determines that this",
+          "     * transition is acceptable.  This is documented in the constructor, and",
+          "     * is typically provided through the constructor's transitionInfo object,",
+          "     * but it is also possible (but highly NOT recommended) to change this",
+          "     * dynamically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The state to transition to, if the predicate determines that this\n transition is acceptable.  This is documented in the constructor, and\n is typically provided through the constructor's transitionInfo object,\n but it is also possible (but highly NOT recommended) to change this\n dynamically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "autoActionsBeforeOntransition": {
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 8460
+        },
+        "end": {
+          "line": 246,
+          "column": 5,
+          "index": 8585
+        }
+      },
+      "json": {
+        "init": "[[ ObjectMethod Function ]]",
+        "transform": "__transformAutoActionsBeforeOntransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Automatic actions to take prior to calling the transition's",
+          "     * ontransition function.  This is documented in the constructor, and is",
+          "     * typically provided through the constructor's transitionInfo object, but",
+          "     * it is also possible (but highly NOT recommended) to change this",
+          "     * dynamically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Automatic actions to take prior to calling the transition's\n ontransition function.  This is documented in the constructor, and is\n typically provided through the constructor's transitionInfo object, but\n it is also possible (but highly NOT recommended) to change this\n dynamically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "autoActionsAfterOntransition": {
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 8931
+        },
+        "end": {
+          "line": 258,
+          "column": 5,
+          "index": 9054
+        }
+      },
+      "json": {
+        "init": "[[ ObjectMethod Function ]]",
+        "transform": "__transformAutoActionsAfterOntransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Automatic actions to take immediately after calling the transition's",
+          "     * ontransition function.  This is documented in the constructor, and is",
+          "     * typically provided through the constructor's transitionInfo object, but",
+          "     * it is also possible (but highly NOT recommended) to change this",
+          "     * dynamically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Automatic actions to take immediately after calling the transition's\n ontransition function.  This is documented in the constructor, and is\n typically provided through the constructor's transitionInfo object, but\n it is also possible (but highly NOT recommended) to change this\n dynamically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "ontransition": {
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 9351
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 9442
+        }
+      },
+      "json": {
+        "init": "[[ ObjectMethod Function ]]",
+        "transform": "__transformOntransition"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The function run when the transition is accepted.  This is documented",
+          "     * in the constructor, and is typically provided through the constructor's",
+          "     * transitionInfo object, but it is also possible (but highly NOT",
+          "     * recommended) to change this dynamically.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The function run when the transition is accepted.  This is documented\n in the constructor, and is typically provided through the constructor's\n transitionInfo object, but it is also possible (but highly NOT\n recommended) to change this dynamically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__transformPredicate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validate the predicate. Converts all incoming values to functions.",
+          "     *",
+          "     * @param value {var} incoming value",
+          "     * @return {Function} predicate function",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Validate the predicate. Converts all incoming values to functions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} incoming value",
+            "paramName": "value",
+            "description": " incoming value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} predicate function",
+            "type": "((...args: any[]) => any)",
+            "description": "predicate function"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 279,
+          "column": 4,
+          "index": 9649
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 10372
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__transformNextState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal transform method",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @return {Function} the final value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal transform method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} the final value",
+            "type": "((...args: any[]) => any)",
+            "description": "the final value"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4,
+          "index": 10517
+        },
+        "end": {
+          "line": 336,
+          "column": 5,
+          "index": 11489
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__transformAutoActionsBeforeOntransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal transform method",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @return {Function} the final value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal transform method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} the final value",
+            "type": "((...args: any[]) => any)",
+            "description": "the final value"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4,
+          "index": 11634
+        },
+        "end": {
+          "line": 350,
+          "column": 5,
+          "index": 11850
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__transformAutoActionsAfterOntransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal transform method",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @return {Function} the final value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal transform method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} the final value",
+            "type": "((...args: any[]) => any)",
+            "description": "the final value"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4,
+          "index": 11995
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 12209
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__transformOntransition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal transform method",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @return {Function} the final value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal transform method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} Current value",
+            "paramName": "value",
+            "description": " Current value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function} the final value",
+            "type": "((...args: any[]) => any)",
+            "description": "the final value"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4,
+          "index": 12354
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 12902
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__bindIfFunction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If given a function, bind it to a specified context.",
+          "     *",
+          "     * @param f {Function|var}",
+          "     *   The (possibly) function to be bound to the specified context.",
+          "     *",
+          "     * @param context {Object}",
+          "     *   The context to bind the function to.",
+          "     *",
+          "     * @return {Function}",
+          "     *   If f was a function, the return value is f wrapped such that it will",
+          "     *   be called in the specified context. Otherwise, f is returned",
+          "     *   unaltered.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If given a function, bind it to a specified context.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "f {Function|var}\n   The (possibly) function to be bound to the specified context.",
+            "paramName": "f",
+            "description": "\n   The (possibly) function to be bound to the specified context.",
+            "type": [
+              "Function",
+              "var"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "context {Object}\n   The context to bind the function to.",
+            "paramName": "context",
+            "description": "\n   The context to bind the function to.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}\n   If f was a function, the return value is f wrapped such that it will\n   be called in the specified context. Otherwise, f is returned\n   unaltered.",
+            "type": "((...args: any[]) => any)",
+            "description": "   If f was a function, the return value is f wrapped such that it will\n   be called in the specified context. Otherwise, f is returned\n   unaltered."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 4,
+          "index": 13379
+        },
+        "end": {
+          "line": 411,
+          "column": 5,
+          "index": 13617
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "f",
+          "type": [
+            "Function",
+            "var"
+          ]
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

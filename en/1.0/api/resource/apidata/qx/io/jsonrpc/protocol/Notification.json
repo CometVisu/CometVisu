@@ -1,0 +1,108 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602910,
+  "lastModifiedIso": "2026-06-29T04:00:02.910Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/jsonrpc/protocol/Notification.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 564
+    },
+    "end": {
+      "line": 47,
+      "column": 3,
+      "index": 1024
+    }
+  },
+  "className": "qx.io.jsonrpc.protocol.Notification",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A JSON-RPC v2.0 notification object",
+      " * @see https://www.jsonrpc.org/specification#request_object",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A JSON-RPC v2.0 notification object</p>"
+      }
+    ],
+    "@see": [
+      {
+        "name": "@see",
+        "body": "https://www.jsonrpc.org/specification#request_object"
+      }
+    ]
+  },
+  "superClass": "qx.io.jsonrpc.protocol.Message",
+  "properties": {
+    "method": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 683
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 743
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "params": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 750
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 827
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "method"
+      },
+      {
+        "name": "params"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 43,
+        "column": 2,
+        "index": 935
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1020
+      }
+    }
+  },
+  "members": {},
+  "statics": {}
+}

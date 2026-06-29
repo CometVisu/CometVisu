@@ -1,0 +1,312 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543935,
+  "lastModifiedIso": "2026-06-29T03:59:03.935Z",
+  "classFilename": "../../source/class/cv/io/rest/Client.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 312,
+      "column": 3,
+      "index": 9542
+    }
+  },
+  "className": "cv.io.rest.Client",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "BASE_URL": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1021
+        },
+        "end": {
+          "line": 32,
+          "column": 18,
+          "index": 1035
+        }
+      },
+      "appearsIn": []
+    },
+    "__configFile": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1041
+        },
+        "end": {
+          "line": 33,
+          "column": 22,
+          "index": 1059
+        }
+      },
+      "appearsIn": []
+    },
+    "__dirClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1065
+        },
+        "end": {
+          "line": 34,
+          "column": 21,
+          "index": 1082
+        }
+      },
+      "appearsIn": []
+    },
+    "__dpClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1088
+        },
+        "end": {
+          "line": 35,
+          "column": 20,
+          "index": 1104
+        }
+      },
+      "appearsIn": []
+    },
+    "__callbacks": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1110
+        },
+        "end": {
+          "line": 36,
+          "column": 19,
+          "index": 1125
+        }
+      },
+      "appearsIn": []
+    },
+    "AUTH_REQUIRED": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1131
+        },
+        "end": {
+          "line": 37,
+          "column": 24,
+          "index": 1151
+        }
+      },
+      "appearsIn": []
+    },
+    "getBaseUrl": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1158
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1538
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "checkAuth": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1545
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "req"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getConfigClient": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2066
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3321
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFsClient": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3328
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5742
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDataProviderClient": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 5749
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 6997
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_enableSync": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 7004
+        },
+        "end": {
+          "line": 292,
+          "column": 5,
+          "index": 8821
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "client"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSaveSuccess": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 8828
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 9179
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSaveError": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 4,
+          "index": 9186
+        },
+        "end": {
+          "line": 310,
+          "column": 5,
+          "index": 9534
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

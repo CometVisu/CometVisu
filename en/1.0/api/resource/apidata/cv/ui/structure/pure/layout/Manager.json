@@ -1,0 +1,473 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543948,
+  "lastModifiedIso": "2026-06-29T03:59:03.948Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/layout/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 339,
+      "column": 3,
+      "index": 13658
+    }
+  },
+  "className": "cv.ui.structure.pure.layout.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " "
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "lastBodyWidth": {
+      "jsdoc": {
+        "raw": [
+          " use to recognize if the screen width has crossed the maxMobileScreenWidth"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1132
+        },
+        "end": {
+          "line": 32,
+          "column": 20,
+          "index": 1148
+        }
+      },
+      "appearsIn": []
+    },
+    "currentPageUnavailableWidth": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1154
+        },
+        "end": {
+          "line": 33,
+          "column": 35,
+          "index": 1185
+        }
+      },
+      "appearsIn": []
+    },
+    "currentPageUnavailableHeight": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1191
+        },
+        "end": {
+          "line": 34,
+          "column": 36,
+          "index": 1223
+        }
+      },
+      "appearsIn": []
+    },
+    "currentPageNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1229
+        },
+        "end": {
+          "line": 35,
+          "column": 37,
+          "index": 1262
+        }
+      },
+      "appearsIn": []
+    },
+    "oldWidth": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1268
+        },
+        "end": {
+          "line": 36,
+          "column": 16,
+          "index": 1280
+        }
+      },
+      "appearsIn": []
+    },
+    "LAYOUT_MODE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 38,
+          "column": 26,
+          "index": 1309
+        }
+      },
+      "appearsIn": []
+    },
+    "COLSPAN_CLASS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1316
+        },
+        "end": {
+          "line": 40,
+          "column": 23,
+          "index": 1335
+        }
+      },
+      "appearsIn": []
+    },
+    "getCurrentPageNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1342
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1932
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getColspanClass": {
+      "jsdoc": {
+        "raw": [
+          " return S, M or L depening on the passed width"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1992
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 2206
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
+    },
+    "adjustColumns": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2213
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2497
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "updateNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2504
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3236
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getAvailableWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the available width for a the currently visible page",
+          "     * the available width is calculated by subtracting the following elements widths (if they are visible) from the body width",
+          "     * - Left-Navbar",
+          "     * - Right-Navbar",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>return the available width for a the currently visible page\n the available width is calculated by subtracting the following elements widths (if they are visible) from the body width</p>\n<ul>\n<li>Left-Navbar</li>\n<li>Right-Navbar</li>\n</ul>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3497
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 6028
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getAvailableHeight": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the available height for a the currently visible page",
+          "     * the available height is calculated by subtracting the following elements heights (if they are visible) from the window height",
+          "     * - Top-Navigation",
+          "     * - Top-Navbar",
+          "     * - Bottom-Navbar",
+          "     * - Statusbar",
+          "     *",
+          "     * Notice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases",
+          "     *         because the value of main.position().top is not reliable all the time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>return the available height for a the currently visible page\n the available height is calculated by subtracting the following elements heights (if they are visible) from the window height</p>\n<ul>\n<li>Top-Navigation</li>\n<li>Top-Navbar</li>\n<li>Bottom-Navbar</li>\n<li>Statusbar\nNotice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases\n     because the value of main.position().top is not reliable all the time</li>\n</ul>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 6565
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 9022
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "rowspanClass": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 9029
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 9161
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowspan"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWidgetColspan": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 9168
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 9510
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayoutSuffix": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 9517
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 9762
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
+    },
+    "applyColumnWidths": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * applies the correct width to the widgets corresponding to the given colspan setting",
+          "     *",
+          "     * @param selector {String?} only update elements found by the given selector",
+          "     * @param includeNavbars {Boolean?} also update navbar elements (default: true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>applies the correct width to the widgets corresponding to the given colspan setting</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String?} only update elements found by the given selector",
+            "paramName": "selector",
+            "description": " only update elements found by the given selector",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "includeNavbars {Boolean?} also update navbar elements (default: true)",
+            "paramName": "includeNavbars",
+            "description": " also update navbar elements (default: true)",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 10049
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 12991
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "includeNavbars",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "__applyWidthClass": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 12998
+        },
+        "end": {
+          "line": 337,
+          "column": 5,
+          "index": 13650
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem"
+        },
+        {
+          "name": "widthClassSuffix"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

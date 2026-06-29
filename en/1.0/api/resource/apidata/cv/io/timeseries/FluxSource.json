@@ -1,0 +1,285 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543935,
+  "lastModifiedIso": "2026-06-29T03:59:03.935Z",
+  "classFilename": "../../source/class/cv/io/timeseries/FluxSource.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 861
+    },
+    "end": {
+      "line": 204,
+      "column": 3,
+      "index": 7402
+    }
+  },
+  "className": "cv.io.timeseries.FluxSource",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handle queries to an InfluxDB over the flux API",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handle queries to an InfluxDB over the flux API</p>"
+      }
+    ]
+  },
+  "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "members": {
+    "_backendUrl": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1103
+        },
+        "end": {
+          "line": 31,
+          "column": 21,
+          "index": 1120
+        }
+      },
+      "appearsIn": []
+    },
+    "_baseRequestConfig": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1126
+        },
+        "end": {
+          "line": 32,
+          "column": 28,
+          "index": 1150
+        }
+      },
+      "appearsIn": []
+    },
+    "_queryTemplate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1156
+        },
+        "end": {
+          "line": 33,
+          "column": 24,
+          "index": 1176
+        }
+      },
+      "appearsIn": []
+    },
+    "_isInline": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1182
+        },
+        "end": {
+          "line": 34,
+          "column": 19,
+          "index": 1197
+        }
+      },
+      "appearsIn": []
+    },
+    "isInline": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1204
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 1251
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1258
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 4725
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "setQueryTemplate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4732
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4804
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "template"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getAgWindowEveryForSeries": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 4811
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 5123
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "series"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getRequestConfig": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 5130
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 6374
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        },
+        {
+          "name": "series"
+        }
+      ],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "processResponse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts response from openHAB persistence service",
+          "     * @param response {String}",
+          "     * @returns {(number|number)[][]|*[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts response from openHAB persistence service</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "response {String}",
+            "paramName": "response",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{(number|number)[][]|*[]}",
+            "type": "(number|number)[][]|*[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 6529
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 7394
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "(number|number)[][]|*[]"
+      },
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

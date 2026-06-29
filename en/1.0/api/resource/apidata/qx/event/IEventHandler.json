@@ -1,0 +1,399 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602309,
+  "lastModifiedIso": "2026-06-29T04:00:02.309Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/IEventHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 615
+    },
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 2802
+    }
+  },
+  "className": "qx.event.IEventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Event handler Interface.",
+      " *",
+      " * All custom event handler like mouse or keyboard event handler must implement",
+      " * this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Event handler Interface.\n All custom event handler like mouse or keyboard event handler must implement\n this interface.</p>"
+      }
+    ]
+  },
+  "statics": {
+    "TARGET_DOMNODE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a dom node "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The event target must be a dom node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 743
+        },
+        "end": {
+          "line": 28,
+          "column": 21,
+          "index": 760
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_WINDOW": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a window object "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The event target must be a window object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 835
+        },
+        "end": {
+          "line": 31,
+          "column": 20,
+          "index": 851
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_OBJECT": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a qooxdoo object "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The event target must be a qooxdoo object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 927
+        },
+        "end": {
+          "line": 34,
+          "column": 20,
+          "index": 943
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_DOCUMENT": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a document node "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The event target must be a document node"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1018
+        },
+        "end": {
+          "line": 37,
+          "column": 22,
+          "index": 1036
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the event handler can handle events of the given type. If the",
+          "     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>",
+          "     * with the value <code>true</code> this function is not called. Whether the",
+          "     * handler can handle the event is them only determined by the static variables",
+          "     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.",
+          "     *",
+          "     * @param target {var} The target to, which the event handler should",
+          "     *     be attached",
+          "     * @param type {String} event type",
+          "     * @return {Boolean} Whether the event handler can handle events of the",
+          "     *     given type.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the event handler can handle events of the given type. If the\n event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>\n with the value <code>true</code> this function is not called. Whether the\n handler can handle the event is them only determined by the static variables\n <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The target to, which the event handler should\n     be attached",
+            "paramName": "target",
+            "description": " The target to, which the event handler should\n     be attached",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the event handler can handle events of the\n     given type.",
+            "type": "boolean",
+            "description": "Whether the event handler can handle events of the\n     given type."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1713
+        },
+        "end": {
+          "line": 54,
+          "column": 35,
+          "index": 1744
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is added using {@link qx.event.Manager#addListener}.",
+          "     *",
+          "     * @param target {var} The target to, which the event handler should",
+          "     *     be attached",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time an event listener, for one of the\n supported events, is added using {@link qx.event.Manager#addListener}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The target to, which the event handler should\n     be attached",
+            "paramName": "target",
+            "description": " The target to, which the event handler should\n     be attached",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2194
+        },
+        "end": {
+          "line": 66,
+          "column": 43,
+          "index": 2233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is removed by using {@link qx.event.Manager#removeListener}",
+          "     * and no other event listener is listening on this type.",
+          "     *",
+          "     * @param target {var} The target from, which the event handler should",
+          "     *     be removed",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called each time an event listener, for one of the\n supported events, is removed by using {@link qx.event.Manager#removeListener}\n and no other event listener is listening on this type.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {var} The target from, which the event handler should\n     be removed",
+            "paramName": "target",
+            "description": " The target from, which the event handler should\n     be removed",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} event type",
+            "paramName": "type",
+            "description": " event type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "paramName": "capture",
+            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2753
+        },
+        "end": {
+          "line": 79,
+          "column": 45,
+          "index": 2794
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

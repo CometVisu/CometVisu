@@ -1,0 +1,269 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603415,
+  "lastModifiedIso": "2026-06-29T04:00:03.415Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/transport/Xhr.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 10,
+      "column": 0,
+      "index": 403
+    },
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 4516
+    }
+  },
+  "className": "qx.io.transport.Xhr",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The implementation of a HTTP Transport using the {@link qx.io.request} API,",
+      " * so any special configuration of the HTTP request must be done on the",
+      " * underlying implementation of {@link qx.io.request.AbstractRequest}.",
+      " *",
+      " * The assumption is that the payload will be JSON in both request and response.",
+      " * If that is not what you want, override the {@link #_createTransportImpl()} method.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The implementation of a HTTP Transport using the {@link qx.io.request} API,\n so any special configuration of the HTTP request must be done on the\n underlying implementation of {@link qx.io.request.AbstractRequest}.\n The assumption is that the payload will be JSON in both request and response.\n If that is not what you want, override the {@link #_createTransportImpl()} method.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.io.transport.AbstractTransport",
+  "interfaces": [
+    "qx.io.transport.ITransport"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 19,
+        "column": 2,
+        "index": 622
+      },
+      "end": {
+        "line": 21,
+        "column": 3,
+        "index": 658
+      }
+    }
+  },
+  "members": {
+    "__tranportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal implementation of the transport",
+          "     * @var {qx.io.request.Xhr}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal implementation of the transport</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.io.request.Xhr}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 774
+        },
+        "end": {
+          "line": 28,
+          "column": 24,
+          "index": 794
+        }
+      },
+      "appearsIn": []
+    },
+    "getTransportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the object which implements the transport on the",
+          "     * underlying level, so that transport-specific configuration",
+          "     * can be done on it. Note that since in the HTTP transport,",
+          "     * this object cannot be reused, it will return a new object",
+          "     * each time which will be used in the immediately next request.",
+          "     *",
+          "     * @return {qx.io.request.Xhr}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the object which implements the transport on the\n underlying level, so that transport-specific configuration\n can be done on it. Note that since in the HTTP transport,\n this object cannot be reused, it will return a new object\n each time which will be used in the immediately next request.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.request.Xhr}",
+            "type": "qx.io.request.Xhr",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1188
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1305
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.request.Xhr"
+      },
+      "appearsIn": [
+        "qx.io.transport.ITransport"
+      ]
+    },
+    "send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transport the given message to the endpoint",
+          "     *",
+          "     * @param {String} message",
+          "     *",
+          "     * @return {qx.Promise} Promise that resolves (with no data)",
+          "     * when the message has been successfully sent out, and rejects",
+          "     * when there is an error or a cancellation up to that point.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transport the given message to the endpoint</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} message",
+            "paramName": "message",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point.",
+            "type": "qx.Promise",
+            "description": "Promise that resolves (with no data)\n when the message has been successfully sent out, and rejects\n when there is an error or a cancellation up to that point."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1623
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 3424
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": [
+        "qx.io.transport.ITransport"
+      ]
+    },
+    "_createTransportImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method to create a request object. By default, a POST",
+          "     * request will be made, and the expected response type will be",
+          "     * \"application/json\", but differently to the standard behavior,",
+          "     * the response will not be parsed into a javascript object.",
+          "     *",
+          "     * Classes extending this one may override this method to obtain",
+          "     * a Request object with different parameters and/or different",
+          "     * authentication settings. The object must be a subclass of {@link",
+          "     * qx.io.request.AbstractRequest} or implement its public API.",
+          "     *",
+          "     * @return {qx.io.request.Xhr}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Factory method to create a request object. By default, a POST\n request will be made, and the expected response type will be\n \"application/json\", but differently to the standard behavior,\n the response will not be parsed into a javascript object.\n Classes extending this one may override this method to obtain\n a Request object with different parameters and/or different\n authentication settings. The object must be a subclass of {@link\n qx.io.request.AbstractRequest} or implement its public API.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.request.Xhr}",
+            "type": "qx.io.request.Xhr",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4042
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4416
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.request.Xhr"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

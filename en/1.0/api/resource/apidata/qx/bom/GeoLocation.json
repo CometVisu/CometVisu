@@ -1,0 +1,442 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602156,
+  "lastModifiedIso": "2026-06-29T04:00:02.156Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/GeoLocation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 959
+    },
+    "end": {
+      "line": 153,
+      "column": 3,
+      "index": 4407
+    }
+  },
+  "className": "qx.bom.GeoLocation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * GeoLocation provides access to geographical location information",
+      " * associated with the hosting device.",
+      " *",
+      " * For more information see:",
+      " * http://www.w3.org/TR/geolocation-API/",
+      " *",
+      " * This class does not need to be disposed, but you would obviously call",
+      " * stopWatchPosition() to top watching and free up resources consumed",
+      " * by startWatchPosition().  The destructor will do this for you, if",
+      " * you call dispose()",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>GeoLocation provides access to geographical location information\n associated with the hosting device.\n For more information see:\n http://www.w3.org/TR/geolocation-API/\n This class does not need to be disposed, but you would obviously call\n stopWatchPosition() to top watching and free up resources consumed\n by startWatchPosition().  The destructor will do this for you, if\n you call dispose()</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1049
+      },
+      "end": {
+        "line": 41,
+        "column": 3,
+        "index": 1113
+      }
+    }
+  },
+  "events": {
+    "position": {
+      "type": "qx.event.type.GeoPosition",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the position is updated "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the position is updated</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1178
+        },
+        "end": {
+          "line": 45,
+          "column": 41,
+          "index": 1215
+        }
+      }
+    },
+    "error": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when an error occurs "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an error occurs</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1260
+        },
+        "end": {
+          "line": 48,
+          "column": 31,
+          "index": 1287
+        }
+      }
+    }
+  },
+  "members": {
+    "_watchId": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1311
+        },
+        "end": {
+          "line": 52,
+          "column": 18,
+          "index": 1325
+        }
+      },
+      "appearsIn": []
+    },
+    "_geolocation": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1331
+        },
+        "end": {
+          "line": 53,
+          "column": 22,
+          "index": 1349
+        }
+      },
+      "appearsIn": []
+    },
+    "getCurrentPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the current position and calls the \"position\" event.",
+          "     *",
+          "     * @param enableHighAccuracy {Boolean} provide the best possible results",
+          "     * @param timeout {Integer} maximum time in ms that is allowed to pass from",
+          "     * the call to getCurrentPosition() or watchPosition() until the corresponding",
+          "     * callback is invoked.",
+          "     * @param maximumAge {Integer} cache the position for a specified time.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieves the current position and calls the \"position\" event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "enableHighAccuracy {Boolean} provide the best possible results",
+            "paramName": "enableHighAccuracy",
+            "description": " provide the best possible results",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "timeout {Integer} maximum time in ms that is allowed to pass from\n the call to getCurrentPosition() or watchPosition() until the corresponding\n callback is invoked.",
+            "paramName": "timeout",
+            "description": " maximum time in ms that is allowed to pass from\n the call to getCurrentPosition() or watchPosition() until the corresponding\n callback is invoked.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maximumAge {Integer} cache the position for a specified time.",
+            "paramName": "maximumAge",
+            "description": " cache the position for a specified time.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1793
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "enableHighAccuracy",
+          "type": "boolean"
+        },
+        {
+          "name": "timeout",
+          "type": "Integer"
+        },
+        {
+          "name": "maximumAge",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "startWatchPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts to watch the position. Calls the \"position\" event, when the position changed.",
+          "     *",
+          "     * @param enableHighAccuracy {Boolean} provide the best possible results",
+          "     * @param timeout {Integer} maximum time in ms that is allowed to pass from",
+          "     * the call to getCurrentPosition() or watchPosition() until the corresponding",
+          "     * callback is invoked.",
+          "     * @param maximumAge {Integer} cache the position for a specified time.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts to watch the position. Calls the \"position\" event, when the position changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "enableHighAccuracy {Boolean} provide the best possible results",
+            "paramName": "enableHighAccuracy",
+            "description": " provide the best possible results",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "timeout {Integer} maximum time in ms that is allowed to pass from\n the call to getCurrentPosition() or watchPosition() until the corresponding\n callback is invoked.",
+            "paramName": "timeout",
+            "description": " maximum time in ms that is allowed to pass from\n the call to getCurrentPosition() or watchPosition() until the corresponding\n callback is invoked.",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "maximumAge {Integer} cache the position for a specified time.",
+            "paramName": "maximumAge",
+            "description": " cache the position for a specified time.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3268
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3762
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "enableHighAccuracy",
+          "type": "boolean"
+        },
+        {
+          "name": "timeout",
+          "type": "Integer"
+        },
+        {
+          "name": "maximumAge",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "stopWatchPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops watching the position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops watching the position.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3821
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3974
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_successHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Success handler.",
+          "     *",
+          "     * @param position {Object} position event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Success handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Object} position event",
+            "paramName": "position",
+            "description": " position event",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4075
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 4181
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_errorHandler": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The Error handler.",
+          "     *",
+          "     * @param error {Object} error event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Error handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "error {Object} error event",
+            "paramName": "error",
+            "description": " error event",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4278
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4348
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "error",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 150,
+        "column": 2,
+        "index": 4357
+      },
+      "end": {
+        "line": 152,
+        "column": 3,
+        "index": 4403
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

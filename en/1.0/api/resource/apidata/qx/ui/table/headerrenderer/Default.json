@@ -1,0 +1,206 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601762,
+  "lastModifiedIso": "2026-06-29T04:00:01.762Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/headerrenderer/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 544
+    },
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 3251
+    }
+  },
+  "className": "qx.ui.table.headerrenderer.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default header cell renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default header cell renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.IHeaderRenderer"
+  ],
+  "statics": {
+    "STATE_SORTED": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The state which will be set for header cells of sorted columns.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The state which will be set for header cells of sorted columns."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 972
+        },
+        "end": {
+          "line": 37,
+          "column": 26,
+          "index": 994
+        }
+      },
+      "appearsIn": []
+    },
+    "STATE_SORTED_ASCENDING": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The state which will be set when sorting is ascending.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} The state which will be set when sorting is ascending."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1094
+        },
+        "end": {
+          "line": 42,
+          "column": 45,
+          "index": 1135
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "toolTip": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1422
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1500
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * ToolTip to show if the pointer hovers of the icon",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>ToolTip to show if the pointer hovers of the icon</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "createHeaderCell": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1726
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1893
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IHeaderRenderer"
+      ]
+    },
+    "updateHeaderCell": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1918
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3243
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo"
+        },
+        {
+          "name": "cellWidget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.IHeaderRenderer"
+      ]
+    }
+  }
+}

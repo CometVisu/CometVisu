@@ -1,0 +1,60 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/IFileEventHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 835
+    },
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 1070
+    }
+  },
+  "className": "cv.ui.manager.control.IFileEventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "members": {
+    "_handleFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 1039
+        },
+        "end": {
+          "line": 30,
+          "column": 27,
+          "index": 1062
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

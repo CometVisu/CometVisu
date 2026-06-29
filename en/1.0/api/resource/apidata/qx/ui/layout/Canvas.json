@@ -1,0 +1,219 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601387,
+  "lastModifiedIso": "2026-06-29T04:00:01.387Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/layout/Canvas.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 83,
+      "column": 0,
+      "index": 3404
+    },
+    "end": {
+      "line": 389,
+      "column": 3,
+      "index": 12477
+    }
+  },
+  "className": "qx.ui.layout.Canvas",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Canvas is an extended Basic layout.",
+      " *",
+      " * It is possible to position a widget relative to the right or bottom edge of",
+      " * the available space. It further supports stretching between left and right",
+      " * or top and bottom e.g. <code>left=20</code> and <code>right=20</code> would",
+      " * keep a margin of 20 pixels to both edges. The Canvas layout has support for",
+      " * percent dimensions and locations.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Pixel dimensions and locations",
+      " * * Percent dimensions and locations",
+      " * * Stretching between left+right and top+bottom",
+      " * * Minimum and maximum dimensions",
+      " * * Children are automatically shrunk to their minimum dimensions if not enough space is available",
+      " * * Auto sizing (ignoring percent values)",
+      " * * Margins (also negative ones)",
+      " *",
+      " * *Item Properties*",
+      " *",
+      " * <ul>",
+      " * <li><strong>left</strong> <em>(Integer|String)</em>: The left coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>",
+      " * <li><strong>top</strong> <em>(Integer|String)</em>: The top coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>",
+      " * <li><strong>right</strong> <em>(Integer|String)</em>: The right coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>",
+      " * <li><strong>bottom</strong> <em>(Integer|String)</em>: The bottom coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>",
+      " * <li><strong>edge</strong> <em>(Integer|String)</em>: The coordinate in pixels or as a percent string to be used for all four edges.",
+      " * <li><strong>width</strong> <em>(String)</em>: A percent width e.g. <code>40%</code>.</li>",
+      " * <li><strong>height</strong> <em>(String)</em>: A percent height e.g. <code>60%</code>.</li>",
+      " * </ul>",
+      " *",
+      " * *Notes*",
+      " *",
+      " * <ul>",
+      " * <li>Stretching (<code>left</code>-><code>right</code> or <code>top</code>-><code>bottom</code>)",
+      " *   has a higher priority than the preferred dimensions</li>",
+      " * <li>Stretching has a lower priority than the min/max dimensions.</li>",
+      " * <li>Percent values have no influence on the size hint of the layout.</li>",
+      " * </ul>",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the canvas layout.",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var container = new qx.ui.container.Composite(new qx.ui.layout.Canvas());",
+      " *",
+      " * // simple positioning",
+      " * container.add(new qx.ui.core.Widget(), {top: 10, left: 10});",
+      " *",
+      " * // stretch vertically with 10 pixel distance to the parent's top",
+      " * // and bottom border",
+      " * container.add(new qx.ui.core.Widget(), {top: 10, left: 10, bottom: 10});",
+      " *",
+      " * // percent positioning and size",
+      " * container.add(new qx.ui.core.Widget(), {left: \"50%\", top: \"50%\", width: \"25%\", height: \"40%\"});",
+      " * </pre>",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='https://qooxdoo.org/documentation/#/desktop/layout/canvas.md'>",
+      " * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Canvas is an extended Basic layout.\n It is possible to position a widget relative to the right or bottom edge of\n the available space. It further supports stretching between left and right\n or top and bottom e.g. <code>left=20</code> and <code>right=20</code> would\n keep a margin of 20 pixels to both edges. The Canvas layout has support for\n percent dimensions and locations.\n<em>Features</em></p>\n<ul>\n<li>Pixel dimensions and locations</li>\n<li>Percent dimensions and locations</li>\n<li>Stretching between left+right and top+bottom</li>\n<li>Minimum and maximum dimensions</li>\n<li>Children are automatically shrunk to their minimum dimensions if not enough space is available</li>\n<li>Auto sizing (ignoring percent values)</li>\n<li><p>Margins (also negative ones)\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>left</strong> <em>(Integer|String)</em>: The left coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>\n <li><strong>top</strong> <em>(Integer|String)</em>: The top coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>\n <li><strong>right</strong> <em>(Integer|String)</em>: The right coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>\n <li><strong>bottom</strong> <em>(Integer|String)</em>: The bottom coordinate in pixel or as a percent string e.g. <code>20</code> or <code>30%</code>.</li>\n <li><strong>edge</strong> <em>(Integer|String)</em>: The coordinate in pixels or as a percent string to be used for all four edges.\n <li><strong>width</strong> <em>(String)</em>: A percent width e.g. <code>40%</code>.</li>\n <li><strong>height</strong> <em>(String)</em>: A percent height e.g. <code>60%</code>.</li>\n </ul>\n<p><em>Notes</em>\n </p>\n<ul>\n <li>Stretching (<code>left</code>-><code>right</code> or <code>top</code>-><code>bottom</code>)\n   has a higher priority than the preferred dimensions</li>\n <li>Stretching has a lower priority than the min/max dimensions.</li>\n <li>Percent values have no influence on the size hint of the layout.</li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the canvas layout.\n </p>\n<pre class=\"javascript\">\n var container = new qx.ui.container.Composite(new qx.ui.layout.Canvas());\n\n container.add(new qx.ui.core.Widget(), {top: 10, left: 10});\n\n\n container.add(new qx.ui.core.Widget(), {top: 10, left: 10, bottom: 10});\n\n container.add(new qx.ui.core.Widget(), {left: \"50%\", top: \"50%\", width: \"25%\", height: \"40%\"});\n </pre>\n<p><em>External Documentation</em>\n <a href='https://qooxdoo.org/documentation/#/desktop/layout/canvas.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.layout.Abstract",
+  "properties": {
+    "desktop": {
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 3929
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3987
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If desktop mode is active, the children's minimum sizes are ignored",
+          "     * by the layout calculation. This is necessary to prevent the desktop",
+          "     * from growing if e.g. a window is moved beyond the edge of the desktop",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If desktop mode is active, the children's minimum sizes are ignored\n by the layout calculation. This is necessary to prevent the desktop\n from growing if e.g. a window is moved beyond the edge of the desktop</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "verifyLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 4411
+        },
+        "end": {
+          "line": 155,
+          "column": 6,
+          "index": 5492
+        }
+      },
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 5517
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 10408
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "availWidth"
+        },
+        {
+          "name": "availHeight"
+        },
+        {
+          "name": "padding"
+        }
+      ],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 4,
+          "index": 10433
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 12469
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
+    }
+  },
+  "statics": {}
+}

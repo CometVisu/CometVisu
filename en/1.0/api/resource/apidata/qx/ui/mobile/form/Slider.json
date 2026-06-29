@@ -1,0 +1,2618 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603219,
+  "lastModifiedIso": "2026-06-29T04:00:03.219Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/Slider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1196
+    },
+    "end": {
+      "line": 435,
+      "column": 3,
+      "index": 11033
+    }
+  },
+  "className": "qx.ui.mobile.form.Slider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Slider widget provides horizontal slider.",
+      " *",
+      " * The Slider is the classic widget for controlling a bounded value.",
+      " * It lets the user move a slider handle along a horizontal",
+      " * groove and translates the handle's position into an integer value",
+      " * within the defined range.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *    var slider= new qx.ui.mobile.form.Slider().set({",
+      " *       minimum : 0,",
+      " *       maximum : 10,",
+      " *       step : 2",
+      " *     });",
+      " *     slider.addListener(\"changeValue\", handler, this);",
+      " *",
+      " *   this.getRoot.add(slider);",
+      " * </pre>",
+      " *",
+      " * This example creates a slider and attaches an",
+      " * event listener to the {@link #changeValue} event.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Slider widget provides horizontal slider.\n The Slider is the classic widget for controlling a bounded value.\n It lets the user move a slider handle along a horizontal\n groove and translates the handle's position into an integer value\n within the defined range.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n    var slider= new qx.ui.mobile.form.Slider().set({\n       minimum : 0,\n       maximum : 10,\n       step : 2\n     });\n     slider.addListener(\"changeValue\", handler, this);\n   this.getRoot.add(slider);\n </pre>\n<p>This example creates a slider and attaches an\n event listener to the {@link #changeValue} event.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
+  "mixins": [
+    "qx.ui.mobile.form.MValue",
+    "qx.ui.form.MForm",
+    "qx.ui.form.MModelProperty",
+    "qx.ui.mobile.form.MState"
+  ],
+  "interfaces": [
+    "qx.ui.form.IForm",
+    "qx.ui.form.IModel",
+    "qx.ui.form.INumberForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 56,
+        "column": 2,
+        "index": 1488
+      },
+      "end": {
+        "line": 62,
+        "column": 3,
+        "index": 1604
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1645
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1710
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "slider"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "minimum": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1841
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1949
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_refresh",
+        "event": "changeMinimum"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The minimum slider value (may be negative). This value must be smaller",
+          "     * than {@link #maximum}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The minimum slider value (may be negative). This value must be smaller\n than {@link #maximum}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2079
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2189
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 100,
+        "apply": "_refresh",
+        "event": "changeMaximum"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum slider value (may be negative). This value must be larger",
+          "     * than {@link #minimum}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum slider value (may be negative). This value must be larger\n than {@link #minimum}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "step": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2316
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2393
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "event": "changeStep"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The amount to increment on each event. Typically corresponds",
+          "     * to the user moving the knob.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The amount to increment on each event. Typically corresponds\n to the user moving the knob.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "reverseDirection": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2567
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2659
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_refresh"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reverses the display direction of the slider knob. If true, the maxmium of",
+          "     * the slider is on the left side and minimum on the right side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reverses the display direction of the slider knob. If true, the maxmium of\n the slider is on the left side and minimum on the right side.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "displayValue": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2809
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 2944
+        }
+      },
+      "json": {
+        "init": "percent",
+        "check": [
+          "value",
+          "percent"
+        ],
+        "nullable": true,
+        "apply": "_applyDisplayValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adjusts which slider value should be displayed inside the knob.",
+          "     * If <code>null</code> no value will be displayed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adjusts which slider value should be displayed inside the knob.\n If <code>null</code> no value will be displayed.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "liveUpdate": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2809
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2870
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the {@link #changeValue} event should be fired on every key",
+          "     * input. If set to true, the changeValue event is equal to the",
+          "     * {@link #input} event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the {@link #changeValue} event should be fired on every key\n input. If set to true, the changeValue event is equal to the\n {@link #input} event.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 993
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1104
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1174
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag signaling if a widget is required.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1362
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1484
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1612
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "model": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1367
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1483
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Model property for storing additional information for the including",
+          "     * object. It can act as value property on form items for example.",
+          "     *",
+          "     * Be careful using that property as this is used for the",
+          "     * {@link qx.ui.form.MModelSelection} it has some restrictions:",
+          "     *",
+          "     * * Don't use equal models in one widget using the",
+          "     *     {@link qx.ui.form.MModelSelection}.",
+          "     *",
+          "     * * Avoid setting only some model properties if the widgets are added to",
+          "     *     a {@link qx.ui.form.MModelSelection} widget.",
+          "     *",
+          "     * Both restrictions result of the fact, that the set models are deputies",
+          "     * for their widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Model property for storing additional information for the including\n object. It can act as value property on form items for example.\n Be careful using that property as this is used for the\n {@link qx.ui.form.MModelSelection} it has some restrictions:</p>\n<ul>\n<li>Don't use equal models in one widget using the\n {@link qx.ui.form.MModelSelection}.</li>\n<li>Avoid setting only some model properties if the widgets are added to\n a {@link qx.ui.form.MModelSelection} widget.\nBoth restrictions result of the fact, that the set models are deputies\nfor their widget.</li>\n</ul>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ],
+      "mixin": "qx.ui.form.MModelProperty"
+    }
+  },
+  "members": {
+    "_knobElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 2968
+        },
+        "end": {
+          "line": 126,
+          "column": 22,
+          "index": 2986
+        }
+      },
+      "appearsIn": []
+    },
+    "_containerElementWidth": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 2992
+        },
+        "end": {
+          "line": 127,
+          "column": 32,
+          "index": 3020
+        }
+      },
+      "appearsIn": []
+    },
+    "_containerElementLeft": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3026
+        },
+        "end": {
+          "line": 128,
+          "column": 31,
+          "index": 3053
+        }
+      },
+      "appearsIn": []
+    },
+    "_pixelPerStep": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3059
+        },
+        "end": {
+          "line": 129,
+          "column": 23,
+          "index": 3078
+        }
+      },
+      "appearsIn": []
+    },
+    "__value": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3084
+        },
+        "end": {
+          "line": 130,
+          "column": 14,
+          "index": 3094
+        }
+      },
+      "appearsIn": []
+    },
+    "nextValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Increments the current value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Increments the current value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3154
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3228
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "previousValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decrements the current value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decrements the current value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3288
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3366
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createContainerElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3391
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3559
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.core.Widget",
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "_createKnobElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the knob element.",
+          "     *",
+          "     * @return {Element} The created knob element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the knob element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The created knob element",
+            "type": "Element",
+            "description": "The created knob element"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 3672
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 3743
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "_registerEventListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers all needed event listener.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers all needed event listener.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 3810
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 4293
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_unregisterEventListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unregisters all needed event listener.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unregisters all needed event listener.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4362
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 4902
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes the slider and the knob position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Refreshes the slider and the knob position.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 4976
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 5055
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateSizes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates all internal sizes of the slider.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates all internal sizes of the slider.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5127
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 5524
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the <code>pointerdown</code> event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Pointer} The pointer event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the <code>pointerdown</code> event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Pointer} The pointer event.",
+            "paramName": "evt",
+            "description": " The pointer event.",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 5692
+        },
+        "end": {
+          "line": 241,
+          "column": 5,
+          "index": 5938
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTrack": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the <code>track</code> event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Track} The track event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the <code>track</code> event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Track} The track event.",
+            "paramName": "evt",
+            "description": " The track event.",
+            "type": "qx.event.type.Track"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 248,
+          "column": 4,
+          "index": 6096
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 6291
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Track"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current position of the knob.",
+          "     *",
+          "     * @param documentLeft {Integer} The left position of the knob",
+          "     * @return {Integer} The current position of the container element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current position of the knob.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "documentLeft {Integer} The left position of the knob",
+            "paramName": "documentLeft",
+            "description": " The left position of the knob",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The current position of the container element.",
+            "type": "Integer",
+            "description": "The current position of the container element."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4,
+          "index": 6509
+        },
+        "end": {
+          "line": 263,
+          "column": 5,
+          "index": 6599
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "documentLeft",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getKnobElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the knob DOM element.",
+          "     *",
+          "     * @return {Element} The knob DOM element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the knob DOM element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element} The knob DOM element.",
+            "type": "Element",
+            "description": "The knob DOM element."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 6713
+        },
+        "end": {
+          "line": 278,
+          "column": 5,
+          "index": 6946
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "_setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value of this slider.",
+          "     * It is called by setValue method of qx.ui.mobile.form.MValue mixin",
+          "     * @param value {Integer} the new value of the slider",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value of this slider.\n It is called by setValue method of qx.ui.mobile.form.MValue mixin</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} the new value of the slider",
+            "paramName": "value",
+            "description": " the new value of the slider",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 7138
+        },
+        "end": {
+          "line": 288,
+          "column": 5,
+          "index": 7248
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the value [true/false] of this slider.",
+          "     * It is called by getValue method of qx.ui.mobile.form.MValue mixin",
+          "     * @return {Integer} the value of the slider",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the value [true/false] of this slider.\n It is called by getValue method of qx.ui.mobile.form.MValue mixin</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the value of the slider",
+            "type": "Integer",
+            "description": "the value of the slider"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 7444
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 7490
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_updateKnobPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the knob position based on the current value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the knob position based on the current value.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7574
+        },
+        "end": {
+          "line": 328,
+          "column": 5,
+          "index": 8282
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDisplayValue": {
+      "jsdoc": {
+        "raw": [
+          " Property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 8311
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 8484
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_valueToPercent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given value to percent.",
+          "     *",
+          "     * @param value {Integer} The value to convert",
+          "     * @return {Integer} The value in percent",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given value to percent.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The value to convert",
+            "paramName": "value",
+            "description": " The value to convert",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The value in percent",
+            "type": "Integer",
+            "description": "The value in percent"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 4,
+          "index": 8655
+        },
+        "end": {
+          "line": 357,
+          "column": 5,
+          "index": 8943
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_positionToValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given position to the corresponding value.",
+          "     *",
+          "     * @param position {Integer} The position to convert",
+          "     * @return {Integer} The converted value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given position to the corresponding value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} The position to convert",
+            "paramName": "position",
+            "description": " The position to convert",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The converted value",
+            "type": "Integer",
+            "description": "The converted value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 9138
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 9522
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_percentToPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given percent to the position of the knob.",
+          "     *",
+          "     * @param width {Integer} The width of the slider container element",
+          "     * @param percent {Integer} The percent to convert",
+          "     * @return {Integer} The position of the knob",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given percent to the position of the knob.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer} The width of the slider container element",
+            "paramName": "width",
+            "description": " The width of the slider container element",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "percent {Integer} The percent to convert",
+            "paramName": "percent",
+            "description": " The percent to convert",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The position of the knob",
+            "type": "Integer",
+            "description": "The position of the knob"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 9792
+        },
+        "end": {
+          "line": 388,
+          "column": 5,
+          "index": 9872
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "percent",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_limitValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Limits a value to the set {@link #minimum} and {@link #maximum} properties.",
+          "     *",
+          "     * @param value {Integer} The value to limit",
+          "     * @return {Integer} The limited value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Limits a value to the set {@link #minimum} and {@link #maximum} properties.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Integer} The value to limit",
+            "paramName": "value",
+            "description": " The value to limit",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The limited value",
+            "type": "Integer",
+            "description": "The limited value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 396,
+          "column": 4,
+          "index": 10077
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 10223
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getPixelPerStep": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the number of pixels per step.",
+          "     *",
+          "     * @param width {Integer} The width of the slider container element",
+          "     * @return {Integer} The pixels per step",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the number of pixels per step.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer} The width of the slider container element",
+            "paramName": "width",
+            "description": " The width of the slider container element",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The pixels per step",
+            "type": "Integer",
+            "description": "The pixels per step"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 10415
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 10492
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getOverallSteps": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the overall number of steps.",
+          "     *",
+          "     * @return {Integer} The number of steps",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the overall number of steps.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The number of steps",
+            "type": "Integer",
+            "description": "The number of steps"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 4,
+          "index": 10610
+        },
+        "end": {
+          "line": 419,
+          "column": 5,
+          "index": 10684
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getRange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the range between {@link #maximum} and {@link #minimum}.",
+          "     *",
+          "     * @return {Integer} The range between {@link #maximum} and {@link #minimum}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the range between {@link #maximum} and {@link #minimum}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The range between {@link #maximum} and {@link #minimum}",
+            "type": "Integer",
+            "description": "The range between {@link #maximum} and {@link #minimum}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 426,
+          "column": 4,
+          "index": 10866
+        },
+        "end": {
+          "line": 428,
+          "column": 5,
+          "index": 10937
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__oldValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3078
+        },
+        "end": {
+          "line": 114,
+          "column": 20,
+          "index": 3094
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__inputTimeoutHandle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3100
+        },
+        "end": {
+          "line": 115,
+          "column": 30,
+          "index": 3126
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__hasFocus": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3132
+        },
+        "end": {
+          "line": 116,
+          "column": 20,
+          "index": 3148
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_convertValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the incoming value.",
+          "     *",
+          "     * @param value {var} The value to convert",
+          "     * @return {var} The converted value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the incoming value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to convert",
+            "paramName": "value",
+            "description": " The value to convert",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The converted value",
+            "type": "var",
+            "description": "The converted value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3302
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3511
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>focus</code> event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>focus</code> event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3579
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3627
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>blur</code> event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>blur</code> event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3694
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3742
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "hasFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether this widget has focus or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether this widget has focus or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> or <code>false</code>",
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 3883
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3931
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value.",
+          "     *",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4027
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.INumberForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set value.",
+          "     *",
+          "     * @return {var} The set value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the set value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The set value",
+            "type": "var",
+            "description": "The set value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4407
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4539
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.INumberForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4587
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4634
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.INumberForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onChangeContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #changeValue} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the {@link #changeValue} event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event, containing the changed content.",
+            "paramName": "evt",
+            "description": " The event, containing the changed content.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 4819
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 4913
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onInput": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #input} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the {@link #input} event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event, containing the changed content.",
+            "paramName": "evt",
+            "description": " The event, containing the changed content.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5092
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 5383
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_getCaretPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the caret position of this widget.",
+          "     * @return {Integer} the caret position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the caret position of this widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the caret position.",
+            "type": "Integer",
+            "description": "the caret position."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 5501
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 5763
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_setCaretPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the caret position on this widget.",
+          "     * @param position {Integer} the caret position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the caret position on this widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} the caret position.",
+            "paramName": "position",
+            "description": " the caret position.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 5886
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6193
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__fireChangeValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires the {@link #changeValue} event.",
+          "     *",
+          "     * @param value {var} The current value to fire.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires the {@link #changeValue} event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The current value to fire.",
+            "paramName": "value",
+            "description": " The current value to fire.",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 6321
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6482
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "__onChangeLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locale change event handler</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function(e)"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2013
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2607
+        }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1527
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1588
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ],
+      "mixin": "qx.ui.form.MModelProperty"
+    },
+    "__states": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The states of the element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The states of the element</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 4,
+          "index": 446
+        },
+        "end": {
+          "line": 17,
+          "column": 18,
+          "index": 460
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ],
+      "mixin": "qx.ui.mobile.form.MState"
+    },
+    "addState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a state to the element",
+          "     * @param state {String} the state to be added",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a state to the element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be added",
+            "paramName": "state",
+            "description": " the state to be added",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 4,
+          "index": 576
+        },
+        "end": {
+          "line": 30,
+          "column": 5,
+          "index": 737
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ],
+      "mixin": "qx.ui.mobile.form.MState"
+    },
+    "hasState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the element has the state passed as argument",
+          "     * @param state {String} the state to be checked",
+          "     * @return {Boolean} true if the element has the state, false if it doesn't.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the element has the state passed as argument</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be checked",
+            "paramName": "state",
+            "description": " the state to be checked",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the element has the state, false if it doesn't.",
+            "type": "boolean",
+            "description": "true if the element has the state, false if it doesn't."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 968
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1052
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ],
+      "mixin": "qx.ui.mobile.form.MState"
+    },
+    "removeState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a state from the element",
+          "     * @param state {String} the state to be removed",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a state from the element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "state {String} the state to be removed",
+            "paramName": "state",
+            "description": " the state to be removed",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1175
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1316
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ],
+      "mixin": "qx.ui.mobile.form.MState"
+    },
+    "replaceState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces a state of the element with a new state.",
+          "     * If the element doesn't have the state to be removed, then th new state will",
+          "     * just be added.",
+          "     * @param oldState {String} the state to be replaced",
+          "     * @param newState {String} the state to get injected in the oldState's place",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces a state of the element with a new state.\n If the element doesn't have the state to be removed, then th new state will\n just be added.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "oldState {String} the state to be replaced",
+            "paramName": "oldState",
+            "description": " the state to be replaced",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "newState {String} the state to get injected in the oldState's place",
+            "paramName": "newState",
+            "description": " the state to get injected in the oldState's place",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1647
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1935
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "oldState",
+          "type": "string"
+        },
+        {
+          "name": "newState",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ],
+      "mixin": "qx.ui.mobile.form.MState"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 431,
+        "column": 2,
+        "index": 10946
+      },
+      "end": {
+        "line": 434,
+        "column": 3,
+        "index": 11029
+      }
+    }
+  },
+  "statics": {}
+}

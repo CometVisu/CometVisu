@@ -1,0 +1,323 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602248,
+  "lastModifiedIso": "2026-06-29T04:00:02.248Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/layer/HtmlCellSpan.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 598
+    },
+    "end": {
+      "line": 187,
+      "column": 3,
+      "index": 5332
+    }
+  },
+  "className": "qx.ui.virtual.layer.HtmlCellSpan",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An extended HtmlCell layer, which adds the possibility to specify row and",
+      " * column spans for specific cells.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An extended HtmlCell layer, which adds the possibility to specify row and\n column spans for specific cells.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.layer.HtmlCell",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "htmlCellProvider"
+      },
+      {
+        "name": "rowConfig"
+      },
+      {
+        "name": "columnConfig"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 34,
+        "column": 2,
+        "index": 1092
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1287
+      }
+    }
+  },
+  "members": {
+    "setCellSpan": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the row and column span for a specific cell",
+          "     *",
+          "     * @param row {PositiveInteger} The cell's row",
+          "     * @param column {PositiveInteger} The cell's column",
+          "     * @param rowSpan {PositiveInteger} The number of rows the cells spans",
+          "     * @param columnSpan {PositiveInteger} The number of columns the cells spans",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the row and column span for a specific cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "row {PositiveInteger} The cell's row",
+            "paramName": "row",
+            "description": " The cell's row",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "column {PositiveInteger} The cell's column",
+            "paramName": "column",
+            "description": " The cell's column",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "rowSpan {PositiveInteger} The number of rows the cells spans",
+            "paramName": "rowSpan",
+            "description": " The number of rows the cells spans",
+            "type": "PositiveInteger"
+          },
+          {
+            "name": "@param",
+            "body": "columnSpan {PositiveInteger} The number of columns the cells spans",
+            "paramName": "columnSpan",
+            "description": " The number of columns the cells spans",
+            "type": "PositiveInteger"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1833
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2126
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "column",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "rowSpan",
+          "type": "PositiveInteger"
+        },
+        {
+          "name": "columnSpan",
+          "type": "PositiveInteger"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__renderCell": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Renders a cell",
+          "     *",
+          "     * @param htmlArr {String[]} the output array",
+          "     * @param row {Integer} The cell's row index",
+          "     * @param column {Integer} The cell's column index",
+          "     * @param left {Integer} The cell's CSS left position (in pixel)",
+          "     * @param top {Integer} The cell's CSS top position (in pixel)",
+          "     * @param width {Integer} The cell's width",
+          "     * @param height {Integer} The cell's height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Renders a cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "htmlArr {String[]} the output array",
+            "paramName": "htmlArr",
+            "description": " the output array",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "row {Integer} The cell's row index",
+            "paramName": "row",
+            "description": " The cell's row index",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "column {Integer} The cell's column index",
+            "paramName": "column",
+            "description": " The cell's column index",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "left {Integer} The cell's CSS left position (in pixel)",
+            "paramName": "left",
+            "description": " The cell's CSS left position (in pixel)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} The cell's CSS top position (in pixel)",
+            "paramName": "top",
+            "description": " The cell's CSS top position (in pixel)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} The cell's width",
+            "paramName": "width",
+            "description": " The cell's width",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} The cell's height",
+            "paramName": "height",
+            "description": " The cell's height",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2564
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3217
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "htmlArr",
+          "type": "String[]"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_fullUpdate": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3242
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5074
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow"
+        },
+        {
+          "name": "firstColumn"
+        },
+        {
+          "name": "rowSizes"
+        },
+        {
+          "name": "columnSizes"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.layer.HtmlCell",
+      "appearsIn": [
+        "qx.ui.virtual.layer.HtmlCell",
+        "qx.ui.virtual.layer.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 184,
+        "column": 2,
+        "index": 5270
+      },
+      "end": {
+        "line": 186,
+        "column": 3,
+        "index": 5328
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

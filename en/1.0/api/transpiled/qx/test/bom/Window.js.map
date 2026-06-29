@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "test",
+    "bom",
+    "Window"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/Window.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Alexander Steitz (aback)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.bom.Window\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    // Disabling tests for native window because every browser has a popup\n    // blocker enabled. As long as we do not have special setup test machines\n    // these tests will fail. Adding a try ... catch block won't helper either\n    // since we do not want to blur the test results\n    /*testOpen : function()\n    {\n      var win = qx.bom.Window.open(\"http://qooxdoo.org\");\n      this.assertFalse(win.closed);\n      win.close();\n    },\n     testClose : function()\n    {\n      var win = qx.bom.Window.open(\"http://qooxdoo.org\");\n      qx.bom.Window.close(win);\n      this.assertTrue(qx.bom.Window.isClosed(win));\n    },\n     testIsClosed : function()\n    {\n      var win = qx.bom.Window.open(\"http://qooxdoo.org\");\n      this.assertFalse(qx.bom.Window.isClosed(win));\n      win.close();\n       var win2 = qx.bom.Window.open(\"http://qooxdoo.org\");\n      win2.close();\n      this.assertTrue(qx.bom.Window.isClosed(win2));\n    }*/\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oBAAoB,EAAE;IACpCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACP;MACA;MACA;MACA;MACA;AACJ;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;IApBI;EAsBJ,CAAC,CAAC;EAhDFV,EAAE,CAACW,IAAI,CAACC,GAAG,CAACC,MAAM,CAACV,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

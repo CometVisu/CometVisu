@@ -1,0 +1,497 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603308,
+  "lastModifiedIso": "2026-06-29T04:00:03.308Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/TimerManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 73,
+      "column": 0,
+      "index": 2153
+    },
+    "end": {
+      "line": 296,
+      "column": 3,
+      "index": 9681
+    }
+  },
+  "className": "qx.util.TimerManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Timer manipulation for handling multiple timed callbacks with the use of",
+      " * only a single native timer object.",
+      " *",
+      " * Use of these timers is via the methods start() and stop().  Examples:",
+      " * <pre class='javascript'>",
+      " * var timer = qx.util.TimerManager.getInstance();",
+      " *",
+      " * // Start a 5-second recurrent timer.",
+      " * // Note that the first expiration is after 3 seconds",
+      " * // (last parameter is 3000) but each subsequent expiration is",
+      " * // at 5 second intervals.",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Recurrent 5-second timer: \" + timerId);",
+      " *             },",
+      " *             5000,",
+      " *             this,",
+      " *             null,",
+      " *             3000);",
+      " *",
+      " * // Start a 1-second one-shot timer",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"One-shot 1-second timer: \" + timerId);",
+      " *             },",
+      " *             0,",
+      " *             this,",
+      " *             null,",
+      " *             1000);",
+      " *",
+      " * // Start a 2-second recurrent timer that stops itself after",
+      " * // three iterations",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Recurrent 2-second timer with limit 3:\" +",
+      " *                          timerId);",
+      " *               if (++userData.count == 3)",
+      " *               {",
+      " *                 this.debug(\"Stopping recurrent 2-second timer\");",
+      " *                 timer.stop(timerId);",
+      " *               }",
+      " *             },",
+      " *             2000,",
+      " *             this,",
+      " *             { count : 0 });",
+      " *",
+      " * // Start an immediate one-shot timer",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Immediate one-shot timer: \" + timerId);",
+      " *             });",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Timer manipulation for handling multiple timed callbacks with the use of\n only a single native timer object.\n Use of these timers is via the methods start() and stop().  Examples:\n </p>\n<pre class='javascript'>\n var timer = qx.util.TimerManager.getInstance();\n\n\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 5-second timer: \" + timerId);\n             },\n             5000,\n             this,\n             null,\n             3000);\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"One-shot 1-second timer: \" + timerId);\n             },\n             0,\n             this,\n             null,\n             1000);\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 2-second timer with limit 3:\" +\n                          timerId);\n               if (++userData.count == 3)\n               {\n                 this.debug(\"Stopping recurrent 2-second timer\");\n                 timer.stop(timerId);\n               }\n             },\n             2000,\n             this,\n             { count : 0 });\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Immediate one-shot timer: \" + timerId);\n             });\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "__timerQueue": {
+      "jsdoc": {
+        "raw": [
+          "* Time-ordered queue of timers "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Time-ordered queue of timers</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2300
+        },
+        "end": {
+          "line": 79,
+          "column": 20,
+          "index": 2316
+        }
+      },
+      "appearsIn": []
+    },
+    "__timerData": {
+      "jsdoc": {
+        "raw": [
+          "* Saved data for each timer "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saved data for each timer</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2360
+        },
+        "end": {
+          "line": 82,
+          "column": 19,
+          "index": 2375
+        }
+      },
+      "appearsIn": []
+    },
+    "__timerId": {
+      "jsdoc": {
+        "raw": [
+          "* Next timer id value is determined by incrementing this "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Next timer id value is determined by incrementing this</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2448
+        },
+        "end": {
+          "line": 85,
+          "column": 16,
+          "index": 2460
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__timerListenerActive": {
+      "jsdoc": {
+        "raw": [
+          "* Whether we're currently listening on the interval timer event "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether we're currently listening on the interval timer event</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2557
+        },
+        "end": {
+          "line": 90,
+          "column": 32,
+          "index": 2585
+        }
+      },
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start a new timer",
+          "     *",
+          "     * @param callback {Function}",
+          "     *   Function to be called upon expiration of the timer.  The function is",
+          "     *   passed these parameters:",
+          "     *   <dl>",
+          "     *     <dt>userData</dt>",
+          "     *       <dd>The user data provided to the start() method</dd>",
+          "     *     <dt>timerId</dt>",
+          "     *       <dd>The timer id, as was returned by the start() method</dd>",
+          "     *   </dl>",
+          "     *",
+          "     * @param recurTime {Integer|null}",
+          "     *   If null, the timer will not recur.  Once the callback function",
+          "     *   returns the first time, the timer will be removed from the timer",
+          "     *   queue.  If non-null, upon return from the callback function, the",
+          "     *   timer will be reset to this number of milliseconds.",
+          "     *",
+          "     * @param context {qx.core.Object|null}",
+          "     *   Context (this) the callback function is called with.  If not",
+          "     *   provided, this Timer singleton object is used.",
+          "     *",
+          "     * @param userData {var}",
+          "     *   Data which is passed to the callback function upon timer expiry",
+          "     *",
+          "     * @param initialTime {Integer|null}",
+          "     *   Milliseconds before the callback function is called the very first",
+          "     *   time.  If not specified and recurTime is specified, then recurTime",
+          "     *   will be used as initialTime; otherwise initialTime will default",
+          "     *   to zero.",
+          "     *",
+          "     * @return {Integer}",
+          "     *   The timer id of this unique timer.  It may be provided to the stop()",
+          "     *   method to cancel a timer before expiration.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start a new timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {Function}\n   Function to be called upon expiration of the timer.  The function is\n   passed these parameters:\n   <dl>\n     <dt>userData</dt>\n       <dd>The user data provided to the start() method</dd>\n     <dt>timerId</dt>\n       <dd>The timer id, as was returned by the start() method</dd>\n   </dl>",
+            "paramName": "callback",
+            "description": "\n   Function to be called upon expiration of the timer.  The function is\n   passed these parameters:\n   <dl>\n     <dt>userData</dt>\n       <dd>The user data provided to the start() method</dd>\n     <dt>timerId</dt>\n       <dd>The timer id, as was returned by the start() method</dd>\n   </dl>",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "recurTime {Integer|null}\n   If null, the timer will not recur.  Once the callback function\n   returns the first time, the timer will be removed from the timer\n   queue.  If non-null, upon return from the callback function, the\n   timer will be reset to this number of milliseconds.",
+            "paramName": "recurTime",
+            "description": "\n   If null, the timer will not recur.  Once the callback function\n   returns the first time, the timer will be removed from the timer\n   queue.  If non-null, upon return from the callback function, the\n   timer will be reset to this number of milliseconds.",
+            "type": [
+              "Integer",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "context {qx.core.Object|null}\n   Context (this) the callback function is called with.  If not\n   provided, this Timer singleton object is used.",
+            "paramName": "context",
+            "description": "\n   Context (this) the callback function is called with.  If not\n   provided, this Timer singleton object is used.",
+            "type": [
+              "qx.core.Object",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "userData {var}\n   Data which is passed to the callback function upon timer expiry",
+            "paramName": "userData",
+            "description": "\n   Data which is passed to the callback function upon timer expiry",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "initialTime {Integer|null}\n   Milliseconds before the callback function is called the very first\n   time.  If not specified and recurTime is specified, then recurTime\n   will be used as initialTime; otherwise initialTime will default\n   to zero.",
+            "paramName": "initialTime",
+            "description": "\n   Milliseconds before the callback function is called the very first\n   time.  If not specified and recurTime is specified, then recurTime\n   will be used as initialTime; otherwise initialTime will default\n   to zero.",
+            "type": [
+              "Integer",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}\n   The timer id of this unique timer.  It may be provided to the stop()\n   method to cancel a timer before expiration.",
+            "type": "Integer",
+            "description": "   The timer id of this unique timer.  It may be provided to the stop()\n   method to cancel a timer before expiration."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4080
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "recurTime",
+          "type": [
+            "Integer",
+            "null"
+          ]
+        },
+        {
+          "name": "context",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        },
+        {
+          "name": "userData",
+          "type": "var"
+        },
+        {
+          "name": "initialTime",
+          "type": [
+            "Integer",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "stop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop a running timer",
+          "     *",
+          "     * @param timerId {Integer}",
+          "     *   A timer id previously returned by start()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop a running timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "timerId {Integer}\n   A timer id previously returned by start()",
+            "paramName": "timerId",
+            "description": "\n   A timer id previously returned by start()",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 5050
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 5994
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "timerId",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__insertNewTimer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert a timer on the time-ordered list of active timers.",
+          "     *",
+          "     * @param expireAt {Integer}",
+          "     *   Milliseconds from now when this timer should expire",
+          "     *",
+          "     * @param timerId {Integer}",
+          "     *   Id of the timer to be time-ordered",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Insert a timer on the time-ordered list of active timers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "expireAt {Integer}\n   Milliseconds from now when this timer should expire",
+            "paramName": "expireAt",
+            "description": "\n   Milliseconds from now when this timer should expire",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "timerId {Integer}\n   Id of the timer to be time-ordered",
+            "paramName": "timerId",
+            "description": "\n   Id of the timer to be time-ordered",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 6273
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 7609
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "expireAt",
+          "type": "Integer"
+        },
+        {
+          "name": "timerId",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__processQueue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the queue of timers.  Call the registered callback function for",
+          "     * any timer which has expired.  If the timer is marked as recurrent, the",
+          "     * timer is restarted with the recurrent timeout following completion of",
+          "     * the callback function.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Process the queue of timers.  Call the registered callback function for\n any timer which has expired.  If the timer is marked as recurrent, the\n timer is restarted with the recurrent timeout following completion of\n the callback function.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 7903
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 9673
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

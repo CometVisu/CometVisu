@@ -1,0 +1,174 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543943,
+  "lastModifiedIso": "2026-06-29T03:59:03.943Z",
+  "classFilename": "../../source/class/cv/ui/manager/form/Option.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 872
+    },
+    "end": {
+      "line": 80,
+      "column": 3,
+      "index": 1898
+    }
+  },
+  "className": "cv.ui.manager.form.Option",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Option model for a VirtualComboBox / -SelectBox",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Option model for a VirtualComboBox / -SelectBox</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "label"
+      },
+      {
+        "name": "icon"
+      },
+      {
+        "name": "value"
+      },
+      {
+        "name": "hints"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1074
+      },
+      "end": {
+        "line": 45,
+        "column": 3,
+        "index": 1330
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1478
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1593
+        }
+      },
+      "json": {
+        "check": [
+          "default",
+          "group",
+          "state",
+          "error"
+        ],
+        "init": "default",
+        "event": "changeType"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1600
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1664
+        }
+      },
+      "json": {
+        "check": "String",
+        "event": "changeLabel"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1671
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1732
+        }
+      },
+      "json": {
+        "event": "changeIcon",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1739
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1825
+        }
+      },
+      "json": {
+        "check": "String",
+        "event": "changeValue",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "hints": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1832
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 1890
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "statics": {}
+}

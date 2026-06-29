@@ -1,0 +1,391 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543942,
+  "lastModifiedIso": "2026-06-29T03:59:03.942Z",
+  "classFilename": "../../source/class/cv/ui/manager/editor/Config.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 863
+    },
+    "end": {
+      "line": 304,
+      "column": 3,
+      "index": 9491
+    }
+  },
+  "className": "cv.ui.manager.editor.Config",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Editor for the (hidden) configuration.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Editor for the (hidden) configuration.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.editor.AbstractEditor",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1088
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1285
+      }
+    }
+  },
+  "statics": {
+    "TITLE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1427
+        },
+        "end": {
+          "line": 45,
+          "column": 55,
+          "index": 1478
+        }
+      },
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1630
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1700
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "cv-editor-config"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "members": {
+    "_model": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1846
+        },
+        "end": {
+          "line": 66,
+          "column": 16,
+          "index": 1858
+        }
+      },
+      "appearsIn": []
+    },
+    "_listController": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1864
+        },
+        "end": {
+          "line": 67,
+          "column": 25,
+          "index": 1885
+        }
+      },
+      "appearsIn": []
+    },
+    "__initialSectionCount": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1891
+        },
+        "end": {
+          "line": 68,
+          "column": 28,
+          "index": 1915
+        }
+      },
+      "appearsIn": []
+    },
+    "_initClient": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1922
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2587
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor"
+      ]
+    },
+    "_loadFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2594
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2697
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor"
+      ]
+    },
+    "_onModelValueChange": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2704
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3835
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyContent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3860
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 4408
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor"
+      ]
+    },
+    "getCurrentContent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4433
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 4492
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor",
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "_onDeleteSection": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4499
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4758
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__checkForModification": {
+      "jsdoc": {
+        "raw": [
+          " compare current controller model with the loaded config content"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4836
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 5259
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 5266
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 7442
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor",
+        "cv.ui.manager.editor.IEditor"
+      ]
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 7467
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 9282
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 301,
+        "column": 2,
+        "index": 9416
+      },
+      "end": {
+        "line": 303,
+        "column": 3,
+        "index": 9487
+      }
+    }
+  }
+}

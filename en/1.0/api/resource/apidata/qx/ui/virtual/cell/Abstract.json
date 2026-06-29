@@ -1,0 +1,458 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600843,
+  "lastModifiedIso": "2026-06-29T04:00:00.843Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 681
+    },
+    "end": {
+      "line": 110,
+      "column": 3,
+      "index": 3112
+    }
+  },
+  "className": "qx.ui.virtual.cell.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for HTML based cell renderer.",
+      " *",
+      " * HTML cell renderer are used to construct an HTML string, which is used to",
+      " * render the cell.",
+      " *",
+      " * @require(qx.bom.Stylesheet)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for HTML based cell renderer.\n HTML cell renderer are used to construct an HTML string, which is used to\n render the cell.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.Stylesheet"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.virtual.cell.ICell"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 818
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 931
+      }
+    }
+  },
+  "members": {
+    "getCssClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the css classes for the cell",
+          "     *",
+          "     * @param value {var} The cell's data value",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     * @return {String} Space separated list of CSS classes",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the css classes for the cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The cell's data value",
+            "paramName": "value",
+            "description": " The cell's data value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Space separated list of CSS classes",
+            "type": "string",
+            "description": "Space separated list of CSS classes"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1205
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1265
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAttributes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the element attributes for the cell",
+          "     *",
+          "     * @param value {var} The cell's data value",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     * @return {String} Compiled string of cell attributes. e.g.",
+          "     *   <code>'tabIndex=\"1\" readonly=\"false\"'</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the element attributes for the cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The cell's data value",
+            "paramName": "value",
+            "description": " The cell's data value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Compiled string of cell attributes. e.g.\n   <code>'tabIndex=\"1\" readonly=\"false\"'</code>",
+            "type": "string",
+            "description": "Compiled string of cell attributes. e.g.\n   <code>'tabIndex=\"1\" readonly=\"false\"'</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1592
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1645
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the CSS styles for the cell",
+          "     *",
+          "     * @param value {var} The cell's data value",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     * @return {String} Compiled string of CSS styles. e.g.",
+          "     *   <code>'color=\"red; padding: 10px'</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the CSS styles for the cell</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The cell's data value",
+            "paramName": "value",
+            "description": " The cell's data value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Compiled string of CSS styles. e.g.\n   <code>'color=\"red; padding: 10px'</code>",
+            "type": "string",
+            "description": "Compiled string of CSS styles. e.g.\n   <code>'color=\"red; padding: 10px'</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1955
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2004
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getInsets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the cell's insets. Insets are the sum of the cell's padding and",
+          "     * border width.",
+          "     *",
+          "     * @param value {var} The cell's data value",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     * @return {Integer[]} An array containing the sum of horizontal insets at index",
+          "     *   <code>0</code> and the sum of vertical insets at index <code>1</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the cell's insets. Insets are the sum of the cell's padding and\n border width.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The cell's data value",
+            "paramName": "value",
+            "description": " The cell's data value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer[]} An array containing the sum of horizontal insets at index\n   <code>0</code> and the sum of vertical insets at index <code>1</code>.",
+            "type": "Integer[]",
+            "description": "An array containing the sum of horizontal insets at index\n   <code>0</code> and the sum of vertical insets at index <code>1</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2426
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2479
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Integer[]"
+      },
+      "appearsIn": []
+    },
+    "getContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get cell'S HTML content",
+          "     *",
+          "     * @param value {var} The cell's data value",
+          "     * @param states {Object} A map containing the cell's state names as map keys.",
+          "     * @return {String} The cell's content as HTML fragment.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get cell'S HTML content</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The cell's data value",
+            "paramName": "value",
+            "description": " The cell's data value",
+            "type": "var"
+          },
+          {
+            "name": "@param",
+            "body": "states {Object} A map containing the cell's state names as map keys.",
+            "paramName": "states",
+            "description": " A map containing the cell's state names as map keys.",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The cell's content as HTML fragment.",
+            "type": "string",
+            "description": "The cell's content as HTML fragment."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2732
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2785
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getCellProperties": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2792
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 3104
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "states"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.virtual.cell.ICell"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

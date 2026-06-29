@@ -1,0 +1,346 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603389,
+  "lastModifiedIso": "2026-06-29T04:00:03.389Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Wheel.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 536
+    },
+    "end": {
+      "line": 198,
+      "column": 3,
+      "index": 5529
+    }
+  },
+  "className": "qx.util.Wheel",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Util for mouse wheel normalization.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Util for mouse wheel normalization.</p>"
+      }
+    ]
+  },
+  "statics": {
+    "MAXSCROLL": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximal measured scroll wheel delta.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximal measured scroll wheel delta.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 673
+        },
+        "end": {
+          "line": 28,
+          "column": 19,
+          "index": 688
+        }
+      },
+      "appearsIn": []
+    },
+    "MINSCROLL": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The minimal measured scroll wheel delta.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The minimal measured scroll wheel delta.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 776
+        },
+        "end": {
+          "line": 34,
+          "column": 19,
+          "index": 791
+        }
+      },
+      "appearsIn": []
+    },
+    "FACTOR": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The normalization factor for the speed calculation.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The normalization factor for the speed calculation.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 890
+        },
+        "end": {
+          "line": 40,
+          "column": 13,
+          "index": 899
+        }
+      },
+      "appearsIn": []
+    },
+    "IS_TOUCHPAD": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the Wheel actually a touchpad ?",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is the Wheel actually a touchpad ?</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 981
+        },
+        "end": {
+          "line": 46,
+          "column": 22,
+          "index": 999
+        }
+      },
+      "appearsIn": []
+    },
+    "getDelta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the amount the wheel has been scrolled",
+          "     *",
+          "     * @param domEvent {Event} The native wheel event.",
+          "     * @param axis {String?} Optional parameter which defines the scroll axis.",
+          "     *   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+          "     * @return {Integer} Scroll wheel movement for the given axis. If no axis",
+          "     *   is given, the y axis is used.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the amount the wheel has been scrolled</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "domEvent {Event} The native wheel event.",
+            "paramName": "domEvent",
+            "description": " The native wheel event.",
+            "type": "Event"
+          },
+          {
+            "name": "@param",
+            "body": "axis {String?} Optional parameter which defines the scroll axis.\n   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+            "paramName": "axis",
+            "description": " Optional parameter which defines the scroll axis.\n   The value can either be <code>\"x\"</code> or <code>\"y\"</code>.",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} Scroll wheel movement for the given axis. If no axis\n   is given, the y axis is used.",
+            "type": "Integer",
+            "description": "Scroll wheel movement for the given axis. If no axis\n   is given, the y axis is used."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1401
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3440
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "axis",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__normalize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalizer for the mouse wheel data.",
+          "     *",
+          "     * @param delta {Number} The mouse delta.",
+          "     * @return {Number} The normalized delta value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalizer for the mouse wheel data.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delta {Number} The mouse delta.",
+            "paramName": "delta",
+            "description": " The mouse delta.",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The normalized delta value",
+            "type": "number",
+            "description": "The normalized delta value"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3611
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4920
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delta",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__recalculateMultiplicator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recalculates the factor with which the calculated delta is normalized.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Recalculates the factor with which the calculated delta is normalized.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 5021
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 5521
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

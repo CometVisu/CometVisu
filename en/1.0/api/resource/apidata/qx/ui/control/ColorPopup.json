@@ -1,0 +1,902 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601554,
+  "lastModifiedIso": "2026-06-29T04:00:01.554Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/control/ColorPopup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 1337
+    },
+    "end": {
+      "line": 488,
+      "column": 3,
+      "index": 13475
+    }
+  },
+  "className": "qx.ui.control.ColorPopup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A popup which contains palettes of colors and the possibility to open the",
+      " * Colorselector to choose a color.",
+      " *",
+      " * @childControl field {qx.ui.core.Widget} shows preset colors",
+      " * @childControl auto-button {qx.ui.form.Button} automatic button",
+      " * @childControl selector-button {qx.ui.form.Button} button to open the color selector",
+      " * @childControl preview-pane {qx.ui.groupbox.GroupBox} group box to show the old and the new color",
+      " * @childControl selected-preview {qx.ui.container.Composite} show the selected color",
+      " * @childControl current-preview {qx.ui.container.Composite} show the current color",
+      " * @childControl colorselector-okbutton {qx.ui.form.Button} button of the colorselector",
+      " * @childControl colorselector-cancelbutton {qx.ui.form.Button} button of the colorselector",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A popup which contains palettes of colors and the possibility to open the\n Colorselector to choose a color.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "field {qx.ui.core.Widget} shows preset colors"
+      },
+      {
+        "name": "@childControl",
+        "body": "auto-button {qx.ui.form.Button} automatic button"
+      },
+      {
+        "name": "@childControl",
+        "body": "selector-button {qx.ui.form.Button} button to open the color selector"
+      },
+      {
+        "name": "@childControl",
+        "body": "preview-pane {qx.ui.groupbox.GroupBox} group box to show the old and the new color"
+      },
+      {
+        "name": "@childControl",
+        "body": "selected-preview {qx.ui.container.Composite} show the selected color"
+      },
+      {
+        "name": "@childControl",
+        "body": "current-preview {qx.ui.container.Composite} show the current color"
+      },
+      {
+        "name": "@childControl",
+        "body": "colorselector-okbutton {qx.ui.form.Button} button of the colorselector"
+      },
+      {
+        "name": "@childControl",
+        "body": "colorselector-cancelbutton {qx.ui.form.Button} button of the colorselector"
+      }
+    ]
+  },
+  "superClass": "qx.ui.popup.Popup",
+  "interfaces": [
+    "qx.ui.form.IColorForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 2,
+        "index": 1641
+      },
+      "end": {
+        "line": 56,
+        "column": 3,
+        "index": 1959
+      }
+    }
+  },
+  "properties": {
+    "appearance": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2187
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2251
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "colorpopup"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.popup.Popup",
+        "qx.ui.core.Widget"
+      ]
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2306
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2397
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyValue",
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The hex value of the selected color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The hex value of the selected color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "red": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2460
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2560
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "event": "changeRed"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The numeric red value of the selected color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The numeric red value of the selected color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "green": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2625
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2729
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "event": "changeGreen"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The numeric green value of the selected color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The numeric green value of the selected color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "blue": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2793
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2895
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "event": "changeBlue"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The numeric blue value of the selected color. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The numeric blue value of the selected color.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__minZIndex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3156
+        },
+        "end": {
+          "line": 110,
+          "column": 20,
+          "index": 3172
+        }
+      },
+      "appearsIn": []
+    },
+    "__boxes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3178
+        },
+        "end": {
+          "line": 111,
+          "column": 17,
+          "index": 3191
+        }
+      },
+      "appearsIn": []
+    },
+    "__colorSelectorWindow": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3197
+        },
+        "end": {
+          "line": 112,
+          "column": 31,
+          "index": 3224
+        }
+      },
+      "appearsIn": []
+    },
+    "__colorSelector": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3230
+        },
+        "end": {
+          "line": 113,
+          "column": 25,
+          "index": 3251
+        }
+      },
+      "appearsIn": []
+    },
+    "__buttonBar": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3257
+        },
+        "end": {
+          "line": 114,
+          "column": 21,
+          "index": 3274
+        }
+      },
+      "appearsIn": []
+    },
+    "__recentTableId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3280
+        },
+        "end": {
+          "line": 115,
+          "column": 29,
+          "index": 3305
+        }
+      },
+      "appearsIn": []
+    },
+    "__fieldNumber": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3311
+        },
+        "end": {
+          "line": 116,
+          "column": 21,
+          "index": 3328
+        }
+      },
+      "appearsIn": []
+    },
+    "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3353
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createBoxes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the GroupBoxes containing the colored fields.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the GroupBoxes containing the colored fields.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 5663
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 6243
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createColorSelector": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the ColorSelector and adds buttons.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the ColorSelector and adds buttons.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6317
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 7087
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " Property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 7312
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7735
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_rotatePreviousColors": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the most recent selected color to the \"Recent colors\" list.",
+          "     * If this list is full, the first color will be removed before inserting",
+          "     * the new one.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the most recent selected color to the \"Recent colors\" list.\n If this list is full, the first color will be removed before inserting\n the new one.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 7928
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 8781
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onFieldPointerDown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of pointerdown event on a color field. Sets the ColorPoup's value",
+          "     * to field's color value and paint the preview pane.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Incoming event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of pointerdown event on a color field. Sets the ColorPoup's value\n to field's color value and paint the preview pane.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Incoming event object",
+            "paramName": "e",
+            "description": " Incoming event object",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 9208
+        },
+        "end": {
+          "line": 329,
+          "column": 5,
+          "index": 9398
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFieldPointerOver": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of pointermove event on a color field. Sets preview pane's",
+          "     * background color to the field's color value.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Incoming event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of pointermove event on a color field. Sets preview pane's\n background color to the field's color value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Incoming event object",
+            "paramName": "e",
+            "description": " Incoming event object",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 9617
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9765
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFieldPointerOut": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of pointerout event on a color field. Reset the preview pane's",
+          "     * background color to the old color value.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Incoming event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of pointerout event on a color field. Reset the preview pane's\n background color to the old color value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Pointer} Incoming event object",
+            "paramName": "e",
+            "description": " Incoming event object",
+            "type": "qx.event.type.Pointer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 9984
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 10350
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAutomaticBtnExecute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of execute event on the \"cancel\" button.",
+          "     * Hides the ColorPopup and resets it's color value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of execute event on the \"cancel\" button.\n Hides the ColorPopup and resets it's color value.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 4,
+          "index": 10487
+        },
+        "end": {
+          "line": 369,
+          "column": 5,
+          "index": 10565
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onSelectorButtonExecute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of execute event on the \"Open ColorSelector\" button.",
+          "     * Opens a ColorSelector widget and hides the ColorPopup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of execute event on the \"Open ColorSelector\" button.\n Opens a ColorSelector widget and hides the ColorPopup.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 4,
+          "index": 10719
+        },
+        "end": {
+          "line": 395,
+          "column": 5,
+          "index": 11210
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onColorSelectorOk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of execute event on the \"OK\" button.",
+          "     * Hides the ColorPopup and sets it's color value to the selected color.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of execute event on the \"OK\" button.\n Hides the ColorPopup and sets it's color value to the selected color.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4,
+          "index": 11363
+        },
+        "end": {
+          "line": 412,
+          "column": 5,
+          "index": 11630
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onColorSelectorCancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener of execute event on the \"Cancel\" button.",
+          "     * Hides the ColorPopup.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener of execute event on the \"Cancel\" button.\n Hides the ColorPopup.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 11739
+        },
+        "end": {
+          "line": 420,
+          "column": 5,
+          "index": 11813
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onChangeVisibility": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for visibility changes.",
+          "     * Sets preview pane's background color to the current color,",
+          "     * when the popup is visible.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Incoming event object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener for visibility changes.\n Sets preview pane's background color to the current color,\n when the popup is visible.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.Data} Incoming event object",
+            "paramName": "e",
+            "description": " Incoming event object",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 429,
+          "column": 4,
+          "index": 12042
+        },
+        "end": {
+          "line": 443,
+          "column": 5,
+          "index": 12556
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_tables": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @lint ignoreReferenceField(_tables)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(_tables)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 448,
+          "column": 4,
+          "index": 12622
+        },
+        "end": {
+          "line": 471,
+          "column": 5,
+          "index": 13059
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 480,
+        "column": 2,
+        "index": 13255
+      },
+      "end": {
+        "line": 487,
+        "column": 3,
+        "index": 13471
+      }
+    }
+  },
+  "statics": {}
+}

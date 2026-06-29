@@ -1,0 +1,3341 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602594,
+  "lastModifiedIso": "2026-06-29T04:00:02.594Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/List.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 57,
+      "column": 0,
+      "index": 1945
+    },
+    "end": {
+      "line": 1125,
+      "column": 3,
+      "index": 35239
+    }
+  },
+  "className": "qx.data.controller.List",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * <h2>List Controller</h2>",
+      " *",
+      " * *General idea*",
+      " * The list controller is responsible for synchronizing every list like widget",
+      " * with a data array. It does not matter if the array contains atomic values",
+      " * like strings of complete objects where one property holds the value for",
+      " * the label and another property holds the icon url. You can even use converters",
+      " * that make the label show a text corresponding to the icon, by binding both",
+      " * label and icon to the same model property and converting one of them.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Synchronize the model and the target",
+      " * * Label and icon are bindable",
+      " * * Takes care of the selection",
+      " * * Passes on the options used by {@link qx.data.SingleValueBinding#bind}",
+      " *",
+      " * *Usage*",
+      " *",
+      " * As model, only {@link qx.data.Array}s do work. The currently supported",
+      " * targets are",
+      " *",
+      " * * {@link qx.ui.form.SelectBox}",
+      " * * {@link qx.ui.form.List}",
+      " * * {@link qx.ui.form.ComboBox}",
+      " *",
+      " * All the properties like model, target or any property path is bindable.",
+      " * Especially the model is nice to bind to another selection for example.",
+      " * The controller itself can only work if it has a model and a target set. The",
+      " * rest of the properties may be empty.",
+      " *",
+      " * *Cross reference*",
+      " *",
+      " * * If you want to bind single values, use {@link qx.data.controller.Object}",
+      " * * If you want to bind a tree widget, use {@link qx.data.controller.Tree}",
+      " * * If you want to bind a form widget, use {@link qx.data.controller.Form}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<h2>List Controller</h2>\n<p><em>General idea</em>\n The list controller is responsible for synchronizing every list like widget\n with a data array. It does not matter if the array contains atomic values\n like strings of complete objects where one property holds the value for\n the label and another property holds the icon url. You can even use converters\n that make the label show a text corresponding to the icon, by binding both\n label and icon to the same model property and converting one of them.\n<em>Features</em></p>\n<ul>\n<li>Synchronize the model and the target</li>\n<li>Label and icon are bindable</li>\n<li>Takes care of the selection</li>\n<li>Passes on the options used by {@link qx.data.SingleValueBinding#bind}\n<em>Usage</em>\nAs model, only {@link qx.data.Array}s do work. The currently supported\ntargets are</li>\n<li>{@link qx.ui.form.SelectBox}</li>\n<li>{@link qx.ui.form.List}</li>\n<li>{@link qx.ui.form.ComboBox}\nAll the properties like model, target or any property path is bindable.\nEspecially the model is nice to bind to another selection for example.\nThe controller itself can only work if it has a model and a target set. The\nrest of the properties may be empty.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n<li>If you want to bind a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "mixins": [
+    "qx.data.controller.MSelection"
+  ],
+  "interfaces": [
+    "qx.data.controller.ISelection"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "model"
+      },
+      {
+        "name": "target"
+      },
+      {
+        "name": "labelPath"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 78,
+        "column": 2,
+        "index": 2662
+      },
+      "end": {
+        "line": 99,
+        "column": 3,
+        "index": 3182
+      }
+    }
+  },
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3469
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3619
+        }
+      },
+      "json": {
+        "check": "qx.data.IListData",
+        "apply": "_applyModel",
+        "event": "changeModel",
+        "nullable": true,
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Data array containing the data which should be shown in the list. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data array containing the data which should be shown in the list.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "target": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3683
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3820
+        }
+      },
+      "json": {
+        "apply": "_applyTarget",
+        "event": "changeTarget",
+        "nullable": true,
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The target widget which should show the data. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The target widget which should show the data.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "labelPath": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3999
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 4093
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyLabelPath",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as a label. This is only needed if objects are stored in the model.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as a label. This is only needed if objects are stored in the model.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconPath": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4311
+        },
+        "end": {
+          "line": 145,
+          "column": 5,
+          "index": 4403
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyIconPath",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as an icon. This is only needed if objects are stored in the model",
+          "     * and if the icon should be shown.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as an icon. This is only needed if objects are stored in the model\n and if the icon should be shown.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "labelOptions": {
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4580
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4657
+        }
+      },
+      "json": {
+        "apply": "_applyLabelOptions",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the label binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the label binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "iconOptions": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4833
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4908
+        }
+      },
+      "json": {
+        "apply": "_applyIconOptions",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the icon binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the icon binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 5055
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 5173
+        }
+      },
+      "json": {
+        "apply": "_applyDelegate",
+        "event": "changeDelegate",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object, which can have one or more functions defined by the",
+          "     * {@link IControllerDelegate} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegation object, which can have one or more functions defined by the\n {@link IControllerDelegate} interface.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowNull": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5258
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 5405
+        }
+      },
+      "json": {
+        "apply": "_applyAllowNull",
+        "event": "changeAllowNull",
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a special \"null\" value is included in the list",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether a special \"null\" value is included in the list</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "nullValueTitle": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5474
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 5633
+        }
+      },
+      "json": {
+        "apply": "_applyNullValueTitle",
+        "event": "changeNullValueTitle",
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Title for the special null value entry",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Title for the special null value entry</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "nullValueIcon": {
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 5701
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5857
+        }
+      },
+      "json": {
+        "apply": "_applyNullValueIcon",
+        "event": "changeNullValueIcon",
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Icon for the special null value entry",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Icon for the special null value entry</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "selection": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1905
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2034
+        }
+      },
+      "json": {
+        "check": "qx.data.Array",
+        "event": "changeSelection",
+        "apply": "_applySelection"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Data array containing the selected model objects. This property can be",
+          "     * manipulated directly which means that a push to the selection will also",
+          "     * select the corresponding element in the target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data array containing the selected model objects. This property can be\n manipulated directly which means that a push to the selection will also\n select the corresponding element in the target.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "allowSelectionNotInModel": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2768
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2866
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If set to true, the selection property will be allowed to have items which are not in the model property.",
+          "     * If the model property changes, this will not cause the selection property to be reset.",
+          "     *",
+          "     * If the selection property contains items which are not in the model property,",
+          "     * the selection of the target widget (e.g. qx.ui.form.SelectBox) will only be the items that are both in this controller's model property",
+          "     * and in this controller's selection property.",
+          "     *",
+          "     * This is useful when it is undesirable to reset the selection when the model changes,",
+          "     * because if the selection is bound to a business object,",
+          "     * data in the business object may be overwritten.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If set to true, the selection property will be allowed to have items which are not in the model property.\n If the model property changes, this will not cause the selection property to be reset.\n If the selection property contains items which are not in the model property,\n the selection of the target widget (e.g. qx.ui.form.SelectBox) will only be the items that are both in this controller's model property\n and in this controller's selection property.\n This is useful when it is undesirable to reset the selection when the model changes,\n because if the selection is bound to a business object,\n data in the business object may be overwritten.</p>"
+          }
+        ]
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    }
+  },
+  "members": {
+    "__changeModelListenerId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener ID for the 'change' event of property `model`",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Listener ID for the 'change' event of property <code>model</code></p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 5959
+        },
+        "end": {
+          "line": 214,
+          "column": 33,
+          "index": 5988
+        }
+      },
+      "appearsIn": []
+    },
+    "__lookupTable": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 5994
+        },
+        "end": {
+          "line": 215,
+          "column": 23,
+          "index": 6013
+        }
+      },
+      "appearsIn": []
+    },
+    "__onUpdate": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 6019
+        },
+        "end": {
+          "line": 216,
+          "column": 20,
+          "index": 6035
+        }
+      },
+      "appearsIn": []
+    },
+    "__boundProperties": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6041
+        },
+        "end": {
+          "line": 217,
+          "column": 27,
+          "index": 6064
+        }
+      },
+      "appearsIn": []
+    },
+    "__boundPropertiesReverse": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6070
+        },
+        "end": {
+          "line": 218,
+          "column": 34,
+          "index": 6100
+        }
+      },
+      "appearsIn": []
+    },
+    "__syncTargetSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 6106
+        },
+        "end": {
+          "line": 219,
+          "column": 31,
+          "index": 6133
+        }
+      },
+      "appearsIn": []
+    },
+    "__syncModelSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 6139
+        },
+        "end": {
+          "line": 220,
+          "column": 30,
+          "index": 6165
+        }
+      },
+      "appearsIn": []
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the filter and the target. This could be used if the filter",
+          "     * uses an additional parameter which changes the filter result.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the filter and the target. This could be used if the filter\n uses an additional parameter which changes the filter result.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 6524
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 6636
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDelegate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If a new delegate is set, it applies the stored configuration for the",
+          "     * list items to the already created list items once.",
+          "     *",
+          "     * @param value {qx.core.Object|null} The new delegate.",
+          "     * @param old {qx.core.Object|null} The old delegate.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If a new delegate is set, it applies the stored configuration for the\n list items to the already created list items once.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.core.Object|null} The new delegate.",
+            "paramName": "value",
+            "description": " The new delegate.",
+            "type": [
+              "qx.core.Object",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.core.Object|null} The old delegate.",
+            "paramName": "old",
+            "description": " The old delegate.",
+            "type": [
+              "qx.core.Object",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 7114
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 7301
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIconOptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the icon options has been changed.",
+          "     * It invokes a renewing of all set bindings.",
+          "     *",
+          "     * @param value {Map|null} The new icon options.",
+          "     * @param old {Map|null} The old icon options.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the icon options has been changed.\n It invokes a renewing of all set bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Map|null} The new icon options.",
+            "paramName": "value",
+            "description": " The new icon options.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {Map|null} The old icon options.",
+            "paramName": "old",
+            "description": " The old icon options.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 7564
+        },
+        "end": {
+          "line": 279,
+          "column": 5,
+          "index": 7976
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "Map",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLabelOptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the label options has been changed.",
+          "     * It invokes a renewing of all set bindings.",
+          "     *",
+          "     * @param value {Map|null} The new label options.",
+          "     * @param old {Map|null} The old label options.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the label options has been changed.\n It invokes a renewing of all set bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Map|null} The new label options.",
+            "paramName": "value",
+            "description": " The new label options.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {Map|null} The old label options.",
+            "paramName": "old",
+            "description": " The old label options.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 8242
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 8655
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "Map",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIconPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the icon path has been changed.",
+          "     * It invokes a renewing of all set bindings.",
+          "     *",
+          "     * @param value {String|null} The new icon path.",
+          "     * @param old {String|null} The old icon path.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the icon path has been changed.\n It invokes a renewing of all set bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|null} The new icon path.",
+            "paramName": "value",
+            "description": " The new icon path.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} The old icon path.",
+            "paramName": "old",
+            "description": " The old icon path.",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 8915
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 8979
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyLabelPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the label path has been changed.",
+          "     * It invokes a renewing of all set bindings.",
+          "     *",
+          "     * @param value {String|null} The new label path.",
+          "     * @param old {String|null} The old label path.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the label path has been changed.\n It invokes a renewing of all set bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|null} The new label path.",
+            "paramName": "value",
+            "description": " The new label path.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} The old label path.",
+            "paramName": "old",
+            "description": " The old label path.",
+            "type": [
+              "String",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4,
+          "index": 9242
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 9307
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyAllowNull": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the `allowNull` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply method for the <code>allowNull</code> property</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 9379
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 9448
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNullValueTitle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the `allowNull` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply method for the <code>allowNull</code> property</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 9520
+        },
+        "end": {
+          "line": 339,
+          "column": 5,
+          "index": 9594
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNullValueIcon": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the `allowNull` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply method for the <code>allowNull</code> property</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4,
+          "index": 9666
+        },
+        "end": {
+          "line": 346,
+          "column": 5,
+          "index": 9739
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__refreshModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes the model, uses when the model and target are not changing but the appearance",
+          "     * and bindings may need to be updated",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Refreshes the model, uses when the model and target are not changing but the appearance\n and bindings may need to be updated</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 9900
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 10004
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the model has been changed. It",
+          "     * removes all the listeners from the old model and adds the needed",
+          "     * listeners to the new model. It also invokes the initial filling of the",
+          "     * target widgets if there is a target set.",
+          "     *",
+          "     * @param value {qx.data.Array|null} The new model array.",
+          "     * @param old {qx.data.Array|null} The old model array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the model has been changed. It\n removes all the listeners from the old model and adds the needed\n listeners to the new model. It also invokes the initial filling of the\n target widgets if there is a target set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.data.Array|null} The new model array.",
+            "paramName": "value",
+            "description": " The new model array.",
+            "type": [
+              "qx.data.Array",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.data.Array|null} The old model array.",
+            "paramName": "old",
+            "description": " The old model array.",
+            "type": [
+              "qx.data.Array",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 367,
+          "column": 4,
+          "index": 10429
+        },
+        "end": {
+          "line": 431,
+          "column": 5,
+          "index": 12529
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.data.Array",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.data.Array",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if the target has been changed.",
+          "     * When the target changes, every binding needs to be reset and the old",
+          "     * target needs to be cleaned up. If there is a model, the target will be",
+          "     * filled with the data of the model.",
+          "     *",
+          "     * @param value {qx.ui.core.Widget|null} The new target.",
+          "     * @param old {qx.ui.core.Widget|null} The old target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method which will be called if the target has been changed.\n When the target changes, every binding needs to be reset and the old\n target needs to be cleaned up. If there is a model, the target will be\n filled with the data of the model.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.ui.core.Widget|null} The new target.",
+            "paramName": "value",
+            "description": " The new target.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.ui.core.Widget|null} The old target.",
+            "paramName": "old",
+            "description": " The old target.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 442,
+          "column": 4,
+          "index": 12948
+        },
+        "end": {
+          "line": 473,
+          "column": 5,
+          "index": 13859
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__inChangeModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the change event of the model. If the model changes,",
+          "     * Only the selection needs to be changed. The change of the data will",
+          "     * be done by the binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the change event of the model. If the model changes,\n Only the selection needs to be changed. The change of the data will\n be done by the binding.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4,
+          "index": 14261
+        },
+        "end": {
+          "line": 485,
+          "column": 26,
+          "index": 14283
+        }
+      },
+      "appearsIn": []
+    },
+    "__changeModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the changeModel of the model. Updates the controller.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the changeModel of the model. Updates the controller.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 14385
+        },
+        "end": {
+          "line": 505,
+          "column": 5,
+          "index": 14907
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "syncWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal method used to sync the selection. The controller uses the",
+          "     * widget queue to schedule the selection update. An asynchronous handling of",
+          "     * the selection is needed because the bindings (event listeners for the",
+          "     * binding) need to be executed before the selection is updated.",
+          "     * @internal",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal method used to sync the selection. The controller uses the\n widget queue to schedule the selection update. An asynchronous handling of\n the selection is needed because the bindings (event listeners for the\n binding) need to be executed before the selection is updated.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 514,
+          "column": 4,
+          "index": 15250
+        },
+        "end": {
+          "line": 522,
+          "column": 5,
+          "index": 15506
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__changeModelLength": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the changeLength of the model. If the length changes",
+          "     * of the model, either ListItems need to be removed or added to the target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the changeLength of the model. If the length changes\n of the model, either ListItems need to be removed or added to the target.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 528,
+          "column": 4,
+          "index": 15688
+        },
+        "end": {
+          "line": 571,
+          "column": 5,
+          "index": 17015
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__moveChangeListenerAtTheEnd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which removes and adds the change listener of the",
+          "     * controller to the model. This is sometimes necessary to ensure that the",
+          "     * listener of the controller is executed as the last listener of the chain.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method which removes and adds the change listener of the\n controller to the model. This is sometimes necessary to ensure that the\n listener of the controller is executed as the last listener of the chain.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 578,
+          "column": 4,
+          "index": 17269
+        },
+        "end": {
+          "line": 590,
+          "column": 5,
+          "index": 17699
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a ListItem and delegates the configure method if a delegate is",
+          "     * set and the needed function (configureItem) is available.",
+          "     *",
+          "     * @return {qx.ui.form.ListItem} The created and configured ListItem.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a ListItem and delegates the configure method if a delegate is\n set and the needed function (configureItem) is available.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.ListItem} The created and configured ListItem.",
+            "type": "qx.ui.form.ListItem",
+            "description": "The created and configured ListItem."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 4,
+          "index": 18141
+        },
+        "end": {
+          "line": 617,
+          "column": 5,
+          "index": 18612
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.ListItem"
+      },
+      "appearsIn": []
+    },
+    "__addItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper to add ListItems to the target including the creation",
+          "     * of the binding.",
+          "     *",
+          "     * @param index {Number} The index of the item to add.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper to add ListItems to the target including the creation\n of the binding.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the item to add.",
+            "paramName": "index",
+            "description": " The index of the item to add.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 625,
+          "column": 4,
+          "index": 18801
+        },
+        "end": {
+          "line": 632,
+          "column": 5,
+          "index": 19046
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__removeItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper to remove ListItems from the target. Also the binding",
+          "     * will be removed properly.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper to remove ListItems from the target. Also the binding\n will be removed properly.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 638,
+          "column": 4,
+          "index": 19179
+        },
+        "end": {
+          "line": 650,
+          "column": 5,
+          "index": 19598
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getVisibleModels": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all models currently visible by the list. This method is only",
+          "     * useful if you use the filter via the {@link #delegate}.",
+          "     *",
+          "     * @return {qx.data.Array} A new data array container all the models",
+          "     *   which representation items are currently visible.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all models currently visible by the list. This method is only\n useful if you use the filter via the {@link #delegate}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.Array} A new data array container all the models\n   which representation items are currently visible.",
+            "type": "qx.data.Array",
+            "description": "A new data array container all the models\n   which representation items are currently visible."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4,
+          "index": 19900
+        },
+        "end": {
+          "line": 670,
+          "column": 5,
+          "index": 20229
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "_bindListItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given ListItem and index.",
+          "     *",
+          "     * @param item {qx.ui.form.ListItem} The internally created and used",
+          "     *   ListItem.",
+          "     * @param index {Number} The index of the ListItem.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets up the binding for the given ListItem and index.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.form.ListItem} The internally created and used\n   ListItem.",
+            "paramName": "item",
+            "description": " The internally created and used\n   ListItem.",
+            "type": "qx.ui.form.ListItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the ListItem.",
+            "paramName": "index",
+            "description": " The index of the ListItem.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4,
+          "index": 20663
+        },
+        "end": {
+          "line": 700,
+          "column": 5,
+          "index": 21312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.ListItem"
+        },
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindDefaultProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding the default properties (label, icon and model)",
+          "     * from the model to the target widget.",
+          "     *",
+          "     * This method should only be called in the",
+          "     * {@link qx.data.controller.IControllerDelegate#bindItem} function",
+          "     * implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param item {qx.ui.form.ListItem} The internally created and used",
+          "     *   ListItem.",
+          "     * @param index {Number} The index of the ListItem.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding the default properties (label, icon and model)\n from the model to the target widget.\n This method should only be called in the\n {@link qx.data.controller.IControllerDelegate#bindItem} function\n implemented by the {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.form.ListItem} The internally created and used\n   ListItem.",
+            "paramName": "item",
+            "description": " The internally created and used\n   ListItem.",
+            "type": "qx.ui.form.ListItem"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the ListItem.",
+            "paramName": "index",
+            "description": " The index of the ListItem.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 714,
+          "column": 4,
+          "index": 21795
+        },
+        "end": {
+          "line": 737,
+          "column": 5,
+          "index": 22297
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.ListItem"
+        },
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindProperty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the model to the target",
+          "     * widget.",
+          "     * This method should only be called in the",
+          "     * {@link qx.data.controller.IControllerDelegate#bindItem} function",
+          "     * implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param sourcePath {String | null} The path to the property in the model.",
+          "     *   If you use an empty string, the whole model item will be bound.",
+          "     * @param targetProperty {String} The name of the property in the target",
+          "     *   widget.",
+          "     * @param options {Map | null} The options used by",
+          "     *   {@link qx.data.SingleValueBinding#bind} to use for the binding.",
+          "     * @param targetWidget {qx.ui.core.Widget} The target widget.",
+          "     * @param index {Number} The index of the current binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding a given property from the model to the target\n widget.\n This method should only be called in the\n {@link qx.data.controller.IControllerDelegate#bindItem} function\n implemented by the {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sourcePath {String | null} The path to the property in the model.\n   If you use an empty string, the whole model item will be bound.",
+            "paramName": "sourcePath",
+            "description": " The path to the property in the model.\n   If you use an empty string, the whole model item will be bound.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "targetProperty {String} The name of the property in the target\n   widget.",
+            "paramName": "targetProperty",
+            "description": " The name of the property in the target\n   widget.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map | null} The options used by\n   {@link qx.data.SingleValueBinding#bind} to use for the binding.",
+            "paramName": "options",
+            "description": " The options used by\n   {@link qx.data.SingleValueBinding#bind} to use for the binding.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "targetWidget {qx.ui.core.Widget} The target widget.",
+            "paramName": "targetWidget",
+            "description": " The target widget.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the current binding.",
+            "paramName": "index",
+            "description": " The index of the current binding.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 755,
+          "column": 4,
+          "index": 23099
+        },
+        "end": {
+          "line": 782,
+          "column": 5,
+          "index": 24196
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourcePath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "targetWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindPropertyReverse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the target widget to",
+          "     * the model.",
+          "     * This method should only be called in the",
+          "     * {@link qx.data.controller.IControllerDelegate#bindItem} function",
+          "     * implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param targetPath {String | null} The path to the property in the model.",
+          "     * @param sourcePath {String} The name of the property in the target.",
+          "     * @param options {Map | null} The options to use by",
+          "     *   {@link qx.data.SingleValueBinding#bind} for the binding.",
+          "     * @param sourceWidget {qx.ui.core.Widget} The source widget.",
+          "     * @param index {Number} The index of the current binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for binding a given property from the target widget to\n the model.\n This method should only be called in the\n {@link qx.data.controller.IControllerDelegate#bindItem} function\n implemented by the {@link #delegate} property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "targetPath {String | null} The path to the property in the model.",
+            "paramName": "targetPath",
+            "description": " The path to the property in the model.",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "sourcePath {String} The name of the property in the target.",
+            "paramName": "sourcePath",
+            "description": " The name of the property in the target.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map | null} The options to use by\n   {@link qx.data.SingleValueBinding#bind} for the binding.",
+            "paramName": "options",
+            "description": " The options to use by\n   {@link qx.data.SingleValueBinding#bind} for the binding.",
+            "type": [
+              "Map",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "sourceWidget {qx.ui.core.Widget} The source widget.",
+            "paramName": "sourceWidget",
+            "description": " The source widget.",
+            "type": "qx.ui.core.Widget"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the current binding.",
+            "paramName": "index",
+            "description": " The index of the current binding.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 798,
+          "column": 4,
+          "index": 24900
+        },
+        "end": {
+          "line": 812,
+          "column": 5,
+          "index": 25516
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetPath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "sourcePath",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onBindingSet": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method which will be called on the invoke of every binding. It takes",
+          "     * care of the selection on the change of the binding.",
+          "     *",
+          "     * @param index {Number} The index of the current binding.",
+          "     * @param sourceObject {qx.core.Object} The source object of the binding.",
+          "     * @param targetObject {qx.core.Object} The target object of the binding.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method which will be called on the invoke of every binding. It takes\n care of the selection on the change of the binding.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Number} The index of the current binding.",
+            "paramName": "index",
+            "description": " The index of the current binding.",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "sourceObject {qx.core.Object} The source object of the binding.",
+            "paramName": "sourceObject",
+            "description": " The source object of the binding.",
+            "type": "qx.core.Object"
+          },
+          {
+            "name": "@param",
+            "body": "targetObject {qx.core.Object} The target object of the binding.",
+            "paramName": "targetObject",
+            "description": " The target object of the binding.",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 822,
+          "column": 4,
+          "index": 25900
+        },
+        "end": {
+          "line": 835,
+          "column": 5,
+          "index": 26433
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "sourceObject",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "targetObject",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_removeBindingsFrom": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper method to remove the binding of the given item.",
+          "     *",
+          "     * @param item {Number} The item of which the binding which should",
+          "     *   be removed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to remove the binding of the given item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {Number} The item of which the binding which should\n   be removed.",
+            "paramName": "item",
+            "description": " The item of which the binding which should\n   be removed.",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 843,
+          "column": 4,
+          "index": 26626
+        },
+        "end": {
+          "line": 868,
+          "column": 5,
+          "index": 27548
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__renewBindings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper method to renew all set bindings.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper method to renew all set bindings.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 873,
+          "column": 4,
+          "index": 27628
+        },
+        "end": {
+          "line": 891,
+          "column": 5,
+          "index": 28242
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_setConfigureItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method for applying the delegate It checks if a configureItem",
+          "     * is set end invokes the initial process to apply the given function.",
+          "     *",
+          "     * @param value {Object} The new delegate.",
+          "     * @param old {Object} The old delegate.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for applying the delegate It checks if a configureItem\n is set end invokes the initial process to apply the given function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Object} The new delegate.",
+            "paramName": "value",
+            "description": " The new delegate.",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "old {Object} The old delegate.",
+            "paramName": "old",
+            "description": " The old delegate.",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 905,
+          "column": 4,
+          "index": 28712
+        },
+        "end": {
+          "line": 916,
+          "column": 5,
+          "index": 29036
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "old",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setBindItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method for applying the delegate It checks if a bindItem",
+          "     * is set end invokes the initial process to apply the given function.",
+          "     *",
+          "     * @param value {Object} The new delegate.",
+          "     * @param old {Object} The old delegate.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for applying the delegate It checks if a bindItem\n is set end invokes the initial process to apply the given function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Object} The new delegate.",
+            "paramName": "value",
+            "description": " The new delegate.",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "old {Object} The old delegate.",
+            "paramName": "old",
+            "description": " The old delegate.",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 925,
+          "column": 4,
+          "index": 29304
+        },
+        "end": {
+          "line": 938,
+          "column": 5,
+          "index": 29687
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "old",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setCreateItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method for applying the delegate It checks if a createItem",
+          "     * is set end invokes the initial process to apply the given function.",
+          "     *",
+          "     * @param value {Object} The new delegate.",
+          "     * @param old {Object} The old delegate.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method for applying the delegate It checks if a createItem\n is set end invokes the initial process to apply the given function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Object} The new delegate.",
+            "paramName": "value",
+            "description": " The new delegate.",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "old {Object} The old delegate.",
+            "paramName": "old",
+            "description": " The old delegate.",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 947,
+          "column": 4,
+          "index": 29957
+        },
+        "end": {
+          "line": 975,
+          "column": 5,
+          "index": 30693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "old",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-Method for setting the filter. It removes all bindings,",
+          "     * check if the length has changed and adds or removes the items in the",
+          "     * target. After that, the bindings will be set up again and the selection",
+          "     * will be updated.",
+          "     *",
+          "     * @param value {Function|null} The new filter function.",
+          "     * @param old {Function|null} The old filter function.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-Method for setting the filter. It removes all bindings,\n check if the length has changed and adds or removes the items in the\n target. After that, the bindings will be set up again and the selection\n will be updated.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Function|null} The new filter function.",
+            "paramName": "value",
+            "description": " The new filter function.",
+            "type": [
+              "Function",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "old {Function|null} The old filter function.",
+            "paramName": "old",
+            "description": " The old filter function.",
+            "type": [
+              "Function",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 986,
+          "column": 4,
+          "index": 31091
+        },
+        "end": {
+          "line": 1049,
+          "column": 5,
+          "index": 33005
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Function",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "Function",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__removeFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This helper is responsible for removing the filter and setting the",
+          "     * controller to a valid state without a filtering.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This helper is responsible for removing the filter and setting the\n controller to a valid state without a filtering.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1055,
+          "column": 4,
+          "index": 33158
+        },
+        "end": {
+          "line": 1067,
+          "column": 5,
+          "index": 33618
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__buildUpLookupTable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method which builds up the index lookup for the filter feature.",
+          "     * If no filter is set, the lookup table will be a 1:1 mapping.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method which builds up the index lookup for the filter feature.\n If no filter is set, the lookup table will be a 1:1 mapping.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1078,
+          "column": 4,
+          "index": 33981
+        },
+        "end": {
+          "line": 1099,
+          "column": 5,
+          "index": 34560
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__lookup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function for accessing the lookup table.",
+          "     *",
+          "     * @param index {Integer} The index of the lookup table.",
+          "     * @return {Number} Item index from lookup table",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function for accessing the lookup table.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} The index of the lookup table.",
+            "paramName": "index",
+            "description": " The index of the lookup table.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} Item index from lookup table",
+            "type": "number",
+            "description": "Item index from lookup table"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1107,
+          "column": 4,
+          "index": 34752
+        },
+        "end": {
+          "line": 1109,
+          "column": 5,
+          "index": 34815
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_modifingSelection": {
+      "jsdoc": {
+        "raw": [
+          " set the semaphore-like variable for the selection change"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3845
+        },
+        "end": {
+          "line": 109,
+          "column": 25,
+          "index": 3866
+        }
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__selectionListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3872
+        },
+        "end": {
+          "line": 110,
+          "column": 31,
+          "index": 3899
+        }
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__selectionArrayListenerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3905
+        },
+        "end": {
+          "line": 111,
+          "column": 36,
+          "index": 3937
+        }
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__ownSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3943
+        },
+        "end": {
+          "line": 112,
+          "column": 24,
+          "index": 3963
+        }
+      },
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param selection {qx.data.IListData|null} List data to select as value.",
+          "     * @return {null} The status of this operation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selection {qx.data.IListData|null} List data to select as value."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null} The status of this operation."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 4200
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 4371
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selection"
+        }
+      ],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @return {qx.data.IListData} The current selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.IListData} The current selection."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4535
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4587
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4688
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 4737
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "syncSelectionWithModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes any items from the selection property that are not in the model property.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes any items from the selection property that are not in the model property.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4849
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 5184
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_applySelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method for setting a new selection array. Only the change listener",
+          "     * will be removed from the old array and added to the new.",
+          "     *",
+          "     * @param value {qx.data.Array} The new data array for the selection.",
+          "     * @param old {qx.data.Array|null} The old data array for the selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply-method for setting a new selection array. Only the change listener\n will be removed from the old array and added to the new.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.data.Array} The new data array for the selection."
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.data.Array|null} The old data array for the selection."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 5704
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 6276
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__changeSelectionArray": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the change of the data array holding the selection.",
+          "     * If a change is in the selection array, the selection update will be",
+          "     * invoked.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for the change of the data array holding the selection.\n If a change is in the selection array, the selection update will be\n invoked.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6662
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 6725
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_changeTargetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for a change in the target selection.",
+          "     * If the selection in the target has changed, the selected model objects",
+          "     * will be found and added to the selection array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for a change in the target selection.\n If the selection in the target has changed, the selected model objects\n will be found and added to the selection array.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 206,
+          "column": 4,
+          "index": 6940
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 8211
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_addChangeTargetListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which should be called by the classes including this",
+          "     * Mixin when the target changes.",
+          "     * Removes the 'changeSelection' listener from the old target",
+          "     * and add a new one to the new target;",
+          "     *",
+          "     * @param value {qx.ui.core.Widget|null} The new target.",
+          "     * @param old {qx.ui.core.Widget|null} The old target.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method which should be called by the classes including this\n Mixin when the target changes.\n Removes the 'changeSelection' listener from the old target\n and add a new one to the new target;</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {qx.ui.core.Widget|null} The new target."
+          },
+          {
+            "name": "@param",
+            "body": "old {qx.ui.core.Widget|null} The old target."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 8774
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 9418
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_updateSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method for updating the selection. It checks for the case of single or",
+          "     * multi selection and after that checks if the selection in the selection",
+          "     * array is the same as in the target widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Method for updating the selection. It checks for the case of single or\n multi selection and after that checks if the selection in the selection\n array is the same as in the target widget.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 9648
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 12259
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__targetSupportsMultiSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-method returning true, if the target supports multi selection.",
+          "     * @return {Boolean} true, if the target supports multi selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-method returning true, if the target supports multi selection.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if the target supports multi selection."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 4,
+          "index": 12430
+        },
+        "end": {
+          "line": 366,
+          "column": 5,
+          "index": 12632
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__targetSupportsSingleSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-method returning true, if the target supports single selection.",
+          "     * @return {Boolean} true, if the target supports single selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-method returning true, if the target supports single selection.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if the target supports single selection."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 372,
+          "column": 4,
+          "index": 12805
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 13009
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__selectItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for selecting an item in the target. The item to select",
+          "     * is defined by a given model item.",
+          "     *",
+          "     * @param item {qx.core.Object} A model element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for selecting an item in the target. The item to select\n is defined by a given model item.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.core.Object} A model element."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 13212
+        },
+        "end": {
+          "line": 400,
+          "column": 5,
+          "index": 13769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "__getSelectableForModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list item storing the given model in its model property.",
+          "     *",
+          "     * @param model {var} The representing model of a selectable.",
+          "     * @return {Object|null} List item or <code>null</code> if none was found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list item storing the given model in its model property.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "model {var} The representing model of a selectable."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|null} List item or <code>null</code> if none was found"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 408,
+          "column": 4,
+          "index": 14019
+        },
+        "end": {
+          "line": 420,
+          "column": 5,
+          "index": 14414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "model"
+        }
+      ],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_startSelectionModification": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method signaling that currently the selection of the target is",
+          "     * in change. That will block the change of the internal selection.",
+          "     * {@link #_endSelectionModification}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that currently the selection of the target is\n in change. That will block the change of the internal selection.\n {@link #_endSelectionModification}</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 427,
+          "column": 4,
+          "index": 14628
+        },
+        "end": {
+          "line": 429,
+          "column": 5,
+          "index": 14698
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_endSelectionModification": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method signaling that the internal changing of the targets",
+          "     * selection is over.",
+          "     * {@link #_startSelectionModification}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method signaling that the internal changing of the targets\n selection is over.\n {@link #_startSelectionModification}</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4,
+          "index": 14864
+        },
+        "end": {
+          "line": 438,
+          "column": 5,
+          "index": 14969
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    },
+    "_inSelectionModification": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for checking the state of the selection modification.",
+          "     * {@link #_startSelectionModification}",
+          "     * {@link #_endSelectionModification}",
+          "     * @return {Boolean} <code>true</code> if selection modification is active",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper-Method for checking the state of the selection modification.\n {@link #<em>startSelectionModification}\n {@link #</em>endSelectionModification}</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> if selection modification is active"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 446,
+          "column": 4,
+          "index": 15232
+        },
+        "end": {
+          "line": 448,
+          "column": 5,
+          "index": 15308
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.data.controller.MSelection",
+      "appearsIn": [
+        "qx.data.controller.MSelection"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1118,
+        "column": 2,
+        "index": 35015
+      },
+      "end": {
+        "line": 1124,
+        "column": 3,
+        "index": 35235
+      }
+    }
+  },
+  "statics": {}
+}

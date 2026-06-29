@@ -1,0 +1,588 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602114,
+  "lastModifiedIso": "2026-06-29T04:00:02.114Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/Form.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1403
+    },
+    "end": {
+      "line": 403,
+      "column": 3,
+      "index": 12737
+    }
+  },
+  "className": "qx.data.controller.Form",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * <h2>Form Controller</h2>",
+      " *",
+      " * *General idea*",
+      " *",
+      " * The form controller is responsible for connecting a form with a model. If no",
+      " * model is given, a model can be created. This created model will fit exactly",
+      " * to the given form and can be used for serialization. All the connections",
+      " * between the form items and the model are handled by an internal",
+      " * {@link qx.data.controller.Object}.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Connect a form to a model (bidirectional)",
+      " * * Create a model for a given form",
+      " *",
+      " * *Usage*",
+      " *",
+      " * The controller only works if both a controller and a model are set.",
+      " * Creating a model will automatically set the created model.",
+      " *",
+      " * *Cross reference*",
+      " *",
+      " * * If you want to bind single values, use {@link qx.data.controller.Object}",
+      " * * If you want to bind a list like widget, use {@link qx.data.controller.List}",
+      " * * If you want to bind a tree widget, use {@link qx.data.controller.Tree}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<h2>Form Controller</h2>\n<p><em>General idea</em>\n The form controller is responsible for connecting a form with a model. If no\n model is given, a model can be created. This created model will fit exactly\n to the given form and can be used for serialization. All the connections\n between the form items and the model are handled by an internal\n {@link qx.data.controller.Object}.\n<em>Features</em></p>\n<ul>\n<li>Connect a form to a model (bidirectional)</li>\n<li>Create a model for a given form\n<em>Usage</em>\nThe controller only works if both a controller and a model are set.\nCreating a model will automatically set the created model.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "model"
+      },
+      {
+        "name": "target"
+      },
+      {
+        "name": "selfUpdate"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 59,
+        "column": 2,
+        "index": 2056
+      },
+      "end": {
+        "line": 72,
+        "column": 3,
+        "index": 2304
+      }
+    }
+  },
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2407
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2554
+        }
+      },
+      "json": {
+        "check": "qx.core.Object",
+        "apply": "_applyModel",
+        "event": "changeModel",
+        "nullable": true,
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Data object containing the data which should be shown in the target. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Data object containing the data which should be shown in the target.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "target": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2618
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2787
+        }
+      },
+      "json": {
+        "check": "qx.ui.form.Form",
+        "apply": "_applyTarget",
+        "event": "changeTarget",
+        "nullable": true,
+        "dereference": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The target widget which should show the data. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The target widget which should show the data.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__objectController": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2811
+        },
+        "end": {
+          "line": 96,
+          "column": 28,
+          "index": 2835
+        }
+      },
+      "appearsIn": []
+    },
+    "__bindingOptions": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2841
+        },
+        "end": {
+          "line": 97,
+          "column": 26,
+          "index": 2863
+        }
+      },
+      "appearsIn": []
+    },
+    "addBindingOptions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The form controller uses for setting up the bindings the fundamental",
+          "     * binding layer, the {@link qx.data.SingleValueBinding}. To achieve a",
+          "     * binding in both directions, two bindings are needed. With this method,",
+          "     * you have the opportunity to set the options used for the bindings.",
+          "     *",
+          "     * @param name {String} The name of the form item for which the options",
+          "     *   should be used.",
+          "     * @param model2target {Map} Options map used for the binding from model",
+          "     *   to target. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     * @param target2model {Map} Options map used for the binding from target",
+          "     *   to model. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The form controller uses for setting up the bindings the fundamental\n binding layer, the {@link qx.data.SingleValueBinding}. To achieve a\n binding in both directions, two bindings are needed. With this method,\n you have the opportunity to set the options used for the bindings.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} The name of the form item for which the options\n   should be used.",
+            "paramName": "name",
+            "description": " The name of the form item for which the options\n   should be used.",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "model2target {Map} Options map used for the binding from model\n   to target. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
+            "paramName": "model2target",
+            "description": " Options map used for the binding from model\n   to target. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "target2model {Map} Options map used for the binding from target\n   to model. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
+            "paramName": "target2model",
+            "description": " Options map used for the binding from target\n   to model. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3675
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4464
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "model2target",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "target2model",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and sets a model using the {@link qx.data.marshal.Json} object.",
+          "     * Remember that this method can only work if the form is set. The created",
+          "     * model will fit exactly that form. Changing the form or adding an item to",
+          "     * the form will need a new model creation.",
+          "     *",
+          "     * @param includeBubbleEvents {Boolean} Whether the model should support",
+          "     *   the bubbling of change events or not.",
+          "     * @return {qx.core.Object} The created model.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and sets a model using the {@link qx.data.marshal.Json} object.\n Remember that this method can only work if the form is set. The created\n model will fit exactly that form. Changing the form or adding an item to\n the form will need a new model creation.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "includeBubbleEvents {Boolean} Whether the model should support\n   the bubbling of change events or not.",
+            "paramName": "includeBubbleEvents",
+            "description": " Whether the model should support\n   the bubbling of change events or not.",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object} The created model.",
+            "type": "qx.core.Object",
+            "description": "The created model."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4955
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 6641
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "includeBubbleEvents",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "updateModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Responsible for syncing the data from entered in the form to the model.",
+          "     * Please keep in mind that this method only works if you create the form",
+          "     * controller with <code>selfUpdate</code> parameter set to true. Otherwise,",
+          "     * this method will do nothing because updates will be synced automatically",
+          "     * on every change.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Responsible for syncing the data from entered in the form to the model.\n Please keep in mind that this method only works if you create the form\n controller with <code>selfUpdate</code> parameter set to true. Otherwise,\n this method will do nothing because updates will be synced automatically\n on every change.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 7006
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7711
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyTarget": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 7738
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 8104
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 8131
+        },
+        "end": {
+          "line": 286,
+          "column": 5,
+          "index": 9386
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__setUpBinding": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for setting up the bindings using",
+          "     * {@link qx.data.controller.Object#addTarget}. All bindings are set",
+          "     * up bidirectional.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for setting up the bindings using\n {@link qx.data.controller.Object#addTarget}. All bindings are set\n up bidirectional.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 9564
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 11109
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__tearDownBinding": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for removing all set up bindings using",
+          "     * {@link qx.data.controller.Object#removeTarget}.",
+          "     *",
+          "     * @param oldTarget {qx.ui.form.Form} The form which has been removed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal helper for removing all set up bindings using\n {@link qx.data.controller.Object#removeTarget}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "oldTarget {qx.ui.form.Form} The form which has been removed.",
+            "paramName": "oldTarget",
+            "description": " The form which has been removed.",
+            "type": "qx.ui.form.Form"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4,
+          "index": 11331
+        },
+        "end": {
+          "line": 372,
+          "column": 5,
+          "index": 11856
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "oldTarget",
+          "type": "qx.ui.form.Form"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isModelSelectable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the given item implements",
+          "     * {@link qx.ui.core.ISingleSelection} and",
+          "     * {@link qx.ui.form.IModelSelection}.",
+          "     *",
+          "     * @param item {qx.ui.form.IForm} The form item to check.",
+          "     *",
+          "     * @return {Boolean} true, if given item fits.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the given item implements\n {@link qx.ui.core.ISingleSelection} and\n {@link qx.ui.form.IModelSelection}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {qx.ui.form.IForm} The form item to check.",
+            "paramName": "item",
+            "description": " The form item to check.",
+            "type": "qx.ui.form.IForm"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true, if given item fits.",
+            "type": "boolean",
+            "description": "true, if given item fits."
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 12145
+        },
+        "end": {
+          "line": 388,
+          "column": 5,
+          "index": 12358
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IForm"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 397,
+        "column": 2,
+        "index": 12558
+      },
+      "end": {
+        "line": 402,
+        "column": 3,
+        "index": 12733
+      }
+    }
+  },
+  "statics": {}
+}

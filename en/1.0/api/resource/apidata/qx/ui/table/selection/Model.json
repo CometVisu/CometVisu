@@ -1,0 +1,1402 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602840,
+  "lastModifiedIso": "2026-06-29T04:00:02.840Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/selection/Model.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 536
+    },
+    "end": {
+      "line": 576,
+      "column": 3,
+      "index": 17124
+    }
+  },
+  "className": "qx.ui.table.selection.Model",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A selection model.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A selection model.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 802
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1022
+      }
+    }
+  },
+  "events": {
+    "changeSelection": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the selection has changed. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the selection has changed.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1273
+        },
+        "end": {
+          "line": 50,
+          "column": 42,
+          "index": 1311
+        }
+      }
+    }
+  },
+  "statics": {
+    "NO_SELECTION": {
+      "jsdoc": {
+        "raw": [
+          "* @type {int} The selection mode \"none\". Nothing can ever be selected. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{int} The selection mode \"none\". Nothing can ever be selected."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1599
+        },
+        "end": {
+          "line": 61,
+          "column": 19,
+          "index": 1614
+        }
+      },
+      "appearsIn": []
+    },
+    "SINGLE_SELECTION": {
+      "jsdoc": {
+        "raw": [
+          "* @type {int} The selection mode \"single\". This mode only allows one selected item. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{int} The selection mode \"single\". This mode only allows one selected item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1714
+        },
+        "end": {
+          "line": 64,
+          "column": 23,
+          "index": 1733
+        }
+      },
+      "appearsIn": []
+    },
+    "SINGLE_INTERVAL_SELECTION": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {int} The selection mode \"single interval\". This mode only allows one",
+          "     * continuous interval of selected items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{int} The selection mode \"single interval\". This mode only allows one\n continuous interval of selected items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1885
+        },
+        "end": {
+          "line": 70,
+          "column": 32,
+          "index": 1913
+        }
+      },
+      "appearsIn": []
+    },
+    "MULTIPLE_INTERVAL_SELECTION": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {int} The selection mode \"multiple interval\". This mode only allows any",
+          "     * selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{int} The selection mode \"multiple interval\". This mode only allows any\n selection."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2039
+        },
+        "end": {
+          "line": 76,
+          "column": 34,
+          "index": 2069
+        }
+      },
+      "appearsIn": []
+    },
+    "MULTIPLE_INTERVAL_SELECTION_TOGGLE": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {int} The selection mode \"multiple interval\". This mode only allows any",
+          "     * selection. The difference with the previous one, is that multiple",
+          "     * selection is eased. A tap on an item, toggles its selection state.",
+          "     * On the other hand, MULTIPLE_INTERVAL_SELECTION does this behavior only",
+          "     * when Ctrl-tapping an item.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{int} The selection mode \"multiple interval\". This mode only allows any\n selection. The difference with the previous one, is that multiple\n selection is eased. A tap on an item, toggles its selection state.\n On the other hand, MULTIPLE_INTERVAL_SELECTION does this behavior only\n when Ctrl-tapping an item."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2436
+        },
+        "end": {
+          "line": 85,
+          "column": 41,
+          "index": 2473
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "selectionMode": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2944
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 3202
+        }
+      },
+      "json": {
+        "init": 2,
+        "check": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "apply": "_applySelectionMode"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the selection mode. Valid values are {@link #NO_SELECTION},",
+          "     * {@link #SINGLE_SELECTION}, {@link #SINGLE_INTERVAL_SELECTION},",
+          "     * {@link #MULTIPLE_INTERVAL_SELECTION} and",
+          "     * {@link #MULTIPLE_INTERVAL_SELECTION_TOGGLE}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the selection mode. Valid values are {@link #NO<em>SELECTION},\n {@link #SINGLE</em>SELECTION}, {@link #SINGLE<em>INTERVAL</em>SELECTION},\n {@link #MULTIPLE<em>INTERVAL</em>SELECTION} and\n {@link #MULTIPLE<em>INTERVAL</em>SELECTION_TOGGLE}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__hadChangeEventInBatchMode": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3410
+        },
+        "end": {
+          "line": 116,
+          "column": 37,
+          "index": 3443
+        }
+      },
+      "appearsIn": []
+    },
+    "__anchorSelectionIndex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3449
+        },
+        "end": {
+          "line": 117,
+          "column": 32,
+          "index": 3477
+        }
+      },
+      "appearsIn": []
+    },
+    "__leadSelectionIndex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3483
+        },
+        "end": {
+          "line": 118,
+          "column": 30,
+          "index": 3509
+        }
+      },
+      "appearsIn": []
+    },
+    "__selectedRangeArr": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3515
+        },
+        "end": {
+          "line": 119,
+          "column": 28,
+          "index": 3539
+        }
+      },
+      "appearsIn": []
+    },
+    "_applySelectionMode": {
+      "jsdoc": {
+        "raw": [
+          " selectionMode property modifier"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3585
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3656
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selectionMode"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setBatchMode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * Activates / Deactivates batch mode. In batch mode, no change events will be thrown but",
+          "     * will be collected instead. When batch mode is turned off again and any events have",
+          "     * been collected, one event is thrown to inform the listeners.",
+          "     *",
+          "     * This method supports nested calling, i. e. batch mode can be turned more than once.",
+          "     * In this case, batch mode will not end until it has been turned off once for each",
+          "     * turning on.",
+          "     *",
+          "     * @param batchMode {Boolean} true to activate batch mode, false to deactivate",
+          "     * @return {Boolean} true if batch mode is active, false otherwise",
+          "     * @throws {Error} if batch mode is turned off once more than it has been turned on",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Activates / Deactivates batch mode. In batch mode, no change events will be thrown but\n will be collected instead. When batch mode is turned off again and any events have\n been collected, one event is thrown to inform the listeners.\n This method supports nested calling, i. e. batch mode can be turned more than once.\n In this case, batch mode will not end until it has been turned off once for each\n turning on.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "batchMode {Boolean} true to activate batch mode, false to deactivate",
+            "paramName": "batchMode",
+            "description": " true to activate batch mode, false to deactivate",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if batch mode is active, false otherwise",
+            "type": "boolean",
+            "description": "true if batch mode is active, false otherwise"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{Error} if batch mode is turned off once more than it has been turned on",
+            "type": "Error",
+            "description": " if batch mode is turned off once more than it has been turned on"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4392
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4902
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "batchMode",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasBatchMode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * Returns whether batch mode is active. See setter for a description of batch mode.",
+          "     *",
+          "     * @return {Boolean} true if batch mode is active, false otherwise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether batch mode is active. See setter for a description of batch mode.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if batch mode is active, false otherwise",
+            "type": "boolean",
+            "description": "true if batch mode is active, false otherwise"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 5099
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 5165
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAnchorSelectionIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the first argument of the last call to {@link #setSelectionInterval()},",
+          "     * {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.",
+          "     *",
+          "     * @return {Integer} the anchor selection index.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the first argument of the last call to {@link #setSelectionInterval()},\n {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the anchor selection index.",
+            "type": "Integer",
+            "description": "the anchor selection index."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 5413
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 5488
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_setAnchorSelectionIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the anchor selection index. Only use this function, if you want manipulate",
+          "     * the selection manually.",
+          "     *",
+          "     * @param index {Integer} the index to set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the anchor selection index. Only use this function, if you want manipulate\n the selection manually.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} the index to set.",
+            "paramName": "index",
+            "description": " the index to set.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 5684
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5766
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLeadSelectionIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the second argument of the last call to {@link #setSelectionInterval()},",
+          "     * {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.",
+          "     *",
+          "     * @return {Integer} the lead selection index.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the second argument of the last call to {@link #setSelectionInterval()},\n {@link #addSelectionInterval()} or {@link #removeSelectionInterval()}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the lead selection index.",
+            "type": "Integer",
+            "description": "the lead selection index."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 6013
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 6084
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_setLeadSelectionIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the lead selection index. Only use this function, if you want manipulate",
+          "     * the selection manually.",
+          "     *",
+          "     * @param index {Integer} the index to set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the lead selection index. Only use this function, if you want manipulate\n the selection manually.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} the index to set.",
+            "paramName": "index",
+            "description": " the index to set.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 6278
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6356
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getSelectedRangeArr": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array that holds all the selected ranges of the table. Each",
+          "     * entry is a map holding information about the \"minIndex\" and \"maxIndex\" of the",
+          "     * selection range.",
+          "     *",
+          "     * @return {Map[]} array with all the selected ranges.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array that holds all the selected ranges of the table. Each\n entry is a map holding information about the \"minIndex\" and \"maxIndex\" of the\n selection range.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} array with all the selected ranges.",
+            "type": "Map[]",
+            "description": "array with all the selected ranges."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6632
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 6700
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets (clears) the selection.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets (clears) the selection.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 6761
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6900
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} whether the selection is empty.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the selection is empty.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the selection is empty.",
+            "type": "boolean",
+            "description": "whether the selection is empty."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 7034
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 7110
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectedCount": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the number of selected items.",
+          "     *",
+          "     * @return {Integer} the number of selected items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the number of selected items.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the number of selected items.",
+            "type": "Integer",
+            "description": "the number of selected items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 7240
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 7508
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "isSelectedIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether an index is selected.",
+          "     *",
+          "     * @param index {Integer} the index to check.",
+          "     * @return {Boolean} whether the index is selected.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether an index is selected.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "index {Integer} the index to check.",
+            "paramName": "index",
+            "description": " the index to check.",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} whether the index is selected.",
+            "type": "boolean",
+            "description": "whether the index is selected."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 7689
+        },
+        "end": {
+          "line": 273,
+          "column": 5,
+          "index": 7961
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectedRanges": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the selected ranges as an array. Each array element has a",
+          "     * <code>minIndex</code> and a <code>maxIndex</code> property.",
+          "     *",
+          "     * @return {Map[]} the selected ranges.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the selected ranges as an array. Each array element has a\n <code>minIndex</code> and a <code>maxIndex</code> property.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map[]} the selected ranges.",
+            "type": "Map[]",
+            "description": "the selected ranges."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 8175
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 8604
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "iterateSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls an iterator function for each selected index.",
+          "     *",
+          "     * Usage Example:",
+          "     * <pre class='javascript'>",
+          "     * var selectedRowData = [];",
+          "     * mySelectionModel.iterateSelection(function(index) {",
+          "     *   selectedRowData.push(myTableModel.getRowData(index));",
+          "     * });",
+          "     * </pre>",
+          "     *",
+          "     * @param iterator {Function} the function to call for each selected index.",
+          "     *          Gets the current index as parameter.",
+          "     * @param object {var ? null} the object to use when calling the handler.",
+          "     *          (this object will be available via \"this\" in the iterator)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calls an iterator function for each selected index.\n Usage Example:\n </p>\n<pre class='javascript'>\n var selectedRowData = [];\n mySelectionModel.iterateSelection(function(index) {\n   selectedRowData.push(myTableModel.getRowData(index));\n });\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "iterator {Function} the function to call for each selected index.\n          Gets the current index as parameter.",
+            "paramName": "iterator",
+            "description": " the function to call for each selected index.\n          Gets the current index as parameter.",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "this object will be available via \"this\" in the iterator"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 312,
+          "column": 4,
+          "index": 9220
+        },
+        "end": {
+          "line": 322,
+          "column": 5,
+          "index": 9528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "iterator",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setSelectionInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the selected interval. This will clear the former selection.",
+          "     *",
+          "     * @param fromIndex {Integer} the first index of the selection (including).",
+          "     * @param toIndex {Integer} the last index of the selection (including).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the selected interval. This will clear the former selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromIndex {Integer} the first index of the selection (including).",
+            "paramName": "fromIndex",
+            "description": " the first index of the selection (including).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "toIndex {Integer} the last index of the selection (including).",
+            "paramName": "toIndex",
+            "description": " the last index of the selection (including).",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 9788
+        },
+        "end": {
+          "line": 369,
+          "column": 5,
+          "index": 10851
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "toIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addSelectionInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a selection interval to the current selection.",
+          "     *",
+          "     * @param fromIndex {Integer} the first index of the selection (including).",
+          "     * @param toIndex {Integer} the last index of the selection (including).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a selection interval to the current selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromIndex {Integer} the first index of the selection (including).",
+            "paramName": "fromIndex",
+            "description": " the first index of the selection (including).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "toIndex {Integer} the last index of the selection (including).",
+            "paramName": "toIndex",
+            "description": " the last index of the selection (including).",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 377,
+          "column": 4,
+          "index": 11097
+        },
+        "end": {
+          "line": 394,
+          "column": 5,
+          "index": 11639
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "toIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeSelectionInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an interval from the current selection.",
+          "     *",
+          "     * @param fromIndex {Integer} the first index of the interval (including).",
+          "     * @param toIndex {Integer} the last index of the interval (including).",
+          "     * @param rowsRemoved {Boolean?} rows were removed that caused this selection to change.",
+          "     *   If rows were removed, move the selections over so the same rows are selected as before.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an interval from the current selection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromIndex {Integer} the first index of the interval (including).",
+            "paramName": "fromIndex",
+            "description": " the first index of the interval (including).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "toIndex {Integer} the last index of the interval (including).",
+            "paramName": "toIndex",
+            "description": " the last index of the interval (including).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "rowsRemoved {Boolean?} rows were removed that caused this selection to change.\n   If rows were removed, move the selections over so the same rows are selected as before.",
+            "paramName": "rowsRemoved",
+            "description": " rows were removed that caused this selection to change.\n   If rows were removed, move the selections over so the same rows are selected as before.",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4,
+          "index": 12069
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 14177
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "toIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "rowsRemoved",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "_resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets (clears) the selection, but doesn't inform the listeners.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets (clears) the selection, but doesn't inform the listeners.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 477,
+          "column": 4,
+          "index": 14272
+        },
+        "end": {
+          "line": 481,
+          "column": 5,
+          "index": 14411
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_addSelectionInterval": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a selection interval to the current selection, but doesn't inform",
+          "     * the listeners.",
+          "     *",
+          "     * @param fromIndex {Integer} the first index of the selection (including).",
+          "     * @param toIndex {Integer} the last index of the selection (including).",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a selection interval to the current selection, but doesn't inform\n the listeners.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromIndex {Integer} the first index of the selection (including).",
+            "paramName": "fromIndex",
+            "description": " the first index of the selection (including).",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "toIndex {Integer} the last index of the selection (including).",
+            "paramName": "toIndex",
+            "description": " the last index of the selection (including).",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 14698
+        },
+        "end": {
+          "line": 533,
+          "column": 5,
+          "index": 15998
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "toIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_dumpRanges": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Logs the current ranges for debug purposes.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Logs the current ranges for debug purposes.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4,
+          "index": 16106
+        },
+        "end": {
+          "line": 549,
+          "column": 5,
+          "index": 16371
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_fireChangeSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires the \"changeSelection\" event to all registered listeners. If the selection model",
+          "     * currently is in batch mode, only one event will be thrown when batch mode is ended.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires the \"changeSelection\" event to all registered listeners. If the selection model\n currently is in batch mode, only one event will be thrown when batch mode is ended.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 556,
+          "column": 4,
+          "index": 16585
+        },
+        "end": {
+          "line": 564,
+          "column": 5,
+          "index": 16872
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 573,
+        "column": 2,
+        "index": 17068
+      },
+      "end": {
+        "line": 575,
+        "column": 3,
+        "index": 17120
+      }
+    }
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/upload/UploadMgr.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 912
+    },
+    "end": {
+      "line": 250,
+      "column": 3,
+      "index": 7767
+    }
+  },
+  "className": "cv.ui.manager.upload.UploadMgr",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Extend {com.zenesis.qx.upload.UploadMgr} to allow files to e uploaded via HTML5 drop",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Extend {com.zenesis.qx.upload.UploadMgr} to allow files to e uploaded via HTML5 drop</p>"
+      }
+    ]
+  },
+  "superClass": "com.zenesis.qx.upload.UploadMgr",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "widget"
+      },
+      {
+        "name": "uploadUrl"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1136
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 1218
+      }
+    }
+  },
+  "statics": {
+    "LAST_ID": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1360
+        },
+        "end": {
+          "line": 42,
+          "column": 14,
+          "index": 1370
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "multiple": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1522
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1577
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "com.zenesis.qx.upload.UploadMgr"
+      ]
+    },
+    "folder": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1584
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1698
+        }
+      },
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_updateUploadUrl"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "filename": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1705
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1766
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "force": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1773
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1829
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_updateUploadUrl": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1853
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2085
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2092
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5438
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getUniqueFileId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allocates a unique ID",
+          "     *",
+          "     * @return {Number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allocates a unique ID</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 5521
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 5602
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "forceUpload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Re-upload a file in forced mode",
+          "     * @param file {com.zenesis.qx.upload.File}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Re-upload a file in forced mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {com.zenesis.qx.upload.File}",
+            "paramName": "file",
+            "type": "com.zenesis.qx.upload.File"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5712
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 6162
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "com.zenesis.qx.upload.File"
+        }
+      ],
+      "appearsIn": []
+    },
+    "uploadFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Upload file directly to the backend",
+          "     *",
+          "     * @param bomFile {File}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Upload file directly to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "bomFile {File}",
+            "paramName": "bomFile",
+            "type": "File"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6264
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 6918
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "bomFile",
+          "type": "File"
+        }
+      ],
+      "appearsIn": []
+    },
+    "replaceFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replace content of existing file with the upload",
+          "     * @param bomFile {File}",
+          "     * @param replacedFile {cv.ui.manager.model.FileItem}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replace content of existing file with the upload</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "bomFile {File}",
+            "paramName": "bomFile",
+            "type": "File"
+          },
+          {
+            "name": "@param",
+            "body": "replacedFile {cv.ui.manager.model.FileItem}",
+            "paramName": "replacedFile",
+            "type": "cv.ui.manager.model.FileItem"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 7084
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7759
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "bomFile",
+          "type": "File"
+        },
+        {
+          "name": "replacedFile",
+          "type": "cv.ui.manager.model.FileItem"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

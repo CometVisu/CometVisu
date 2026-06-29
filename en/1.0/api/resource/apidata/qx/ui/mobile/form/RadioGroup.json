@@ -1,0 +1,57 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603061,
+  "lastModifiedIso": "2026-06-29T04:00:03.061Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/RadioGroup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1072
+    },
+    "end": {
+      "line": 44,
+      "column": 3,
+      "index": 1157
+    }
+  },
+  "className": "qx.ui.mobile.form.RadioGroup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Radio button group for mobile usage.",
+      " *",
+      " * *Example*",
+      " *",
+      " * <pre class='javascript'>",
+      " *    var form = new qx.ui.mobile.form.Form();",
+      " *",
+      " *    var radio1 = new qx.ui.mobile.form.RadioButton();",
+      " *    var radio2 = new qx.ui.mobile.form.RadioButton();",
+      " *    var radio3 = new qx.ui.mobile.form.RadioButton();",
+      " *",
+      " *    var radiogroup = new qx.ui.mobile.form.RadioGroup(radio1, radio2, radio3);",
+      "",
+      " *    form.add(radio1, \"Germany\");",
+      " *    form.add(radio2, \"UK\");",
+      " *    form.add(radio3, \"USA\");",
+      " *",
+      " *    this.getRoot.add(new qx.ui.mobile.form.renderer.Single(form));",
+      " * </pre>",
+      " *",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Radio button group for mobile usage.\n<em>Example</em>\n </p>\n<pre class='javascript'>\n    var form = new qx.ui.mobile.form.Form();\n    var radio1 = new qx.ui.mobile.form.RadioButton();\n    var radio2 = new qx.ui.mobile.form.RadioButton();\n    var radio3 = new qx.ui.mobile.form.RadioButton();\n    var radiogroup = new qx.ui.mobile.form.RadioGroup(radio1, radio2, radio3);\n    form.add(radio1, \"Germany\");\n    form.add(radio2, \"UK\");\n    form.add(radio3, \"USA\");\n    this.getRoot.add(new qx.ui.mobile.form.renderer.Single(form));\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.RadioGroup",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

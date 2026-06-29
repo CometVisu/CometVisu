@@ -1,0 +1,131 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602373,
+  "lastModifiedIso": "2026-06-29T04:00:02.373Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IModelSelection.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 611
+    },
+    "end": {
+      "line": 47,
+      "column": 3,
+      "index": 1295
+    }
+  },
+  "className": "qx.ui.form.IModelSelection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This interface should be used in all objects managing a set of items",
+      " * implementing {@link qx.ui.form.IModel}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This interface should be used in all objects managing a set of items\n implementing {@link qx.ui.form.IModel}.</p>"
+      }
+    ]
+  },
+  "members": {
+    "setModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tries to set the selection using the given array containing the",
+          "     * representative models for the selectables.",
+          "     *",
+          "     * @param value {Array} An array of models.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to set the selection using the given array containing the\n representative models for the selectables.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Array} An array of models.",
+            "paramName": "value",
+            "description": " An array of models.",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1056
+        },
+        "end": {
+          "line": 37,
+          "column": 31,
+          "index": 1083
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getModelSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of the selected models.",
+          "     *",
+          "     * @return {qx.data.Array} An array containing the models of the currently selected",
+          "     *   items.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of the selected models.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.data.Array} An array containing the models of the currently selected\n   items.",
+            "type": "qx.data.Array",
+            "description": "An array containing the models of the currently selected\n   items."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1265
+        },
+        "end": {
+          "line": 45,
+          "column": 26,
+          "index": 1287
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

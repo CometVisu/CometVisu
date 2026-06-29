@@ -1,0 +1,2430 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602573,
+  "lastModifiedIso": "2026-06-29T04:00:02.573Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/LayoutItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 633
+    },
+    "end": {
+      "line": 949,
+      "column": 3,
+      "index": 25791
+    }
+  },
+  "className": "qx.ui.core.LayoutItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The base class of all items, which should be laid out using a layout manager",
+      " * {@link qx.ui.layout.Abstract}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The base class of all items, which should be laid out using a layout manager\n {@link qx.ui.layout.Abstract}.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 725
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1010
+      }
+    }
+  },
+  "properties": {
+    "minWidth": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1562
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1697
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided minimal width.",
+          "     *",
+          "     * Also take a look at the related properties {@link #width} and {@link #maxWidth}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The user provided minimal width.\n Also take a look at the related properties {@link #width} and {@link #maxWidth}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1956
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2116
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "event": "changeWidth",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>LayoutItem</code>'s preferred width.",
+          "     *",
+          "     * The computed width may differ from the given width due to",
+          "     * stretching. Also take a look at the related properties",
+          "     * {@link #minWidth} and {@link #maxWidth}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The <code>LayoutItem</code>'s preferred width.\n The computed width may differ from the given width due to\n stretching. Also take a look at the related properties\n {@link #minWidth} and {@link #maxWidth}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maxWidth": {
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2274
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2409
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided maximal width.",
+          "     *",
+          "     * Also take a look at the related properties {@link #width} and {@link #minWidth}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The user provided maximal width.\n Also take a look at the related properties {@link #width} and {@link #minWidth}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "minHeight": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2570
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2706
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided minimal height.",
+          "     *",
+          "     * Also take a look at the related properties {@link #height} and {@link #maxHeight}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The user provided minimal height.\n Also take a look at the related properties {@link #height} and {@link #maxHeight}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2951
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3113
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "event": "changeHeight",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The item's preferred height.",
+          "     *",
+          "     * The computed height may differ from the given height due to",
+          "     * stretching. Also take a look at the related properties",
+          "     * {@link #minHeight} and {@link #maxHeight}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The item's preferred height.\n The computed height may differ from the given height due to\n stretching. Also take a look at the related properties\n {@link #minHeight} and {@link #maxHeight}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maxHeight": {
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3274
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 3410
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided maximum height.",
+          "     *",
+          "     * Also take a look at the related properties {@link #height} and {@link #minHeight}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The user provided maximum height.\n Also take a look at the related properties {@link #height} and {@link #minHeight}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowGrowX": {
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3660
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3776
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the item can grow horizontally. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item can grow horizontally.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowShrinkX": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3836
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 3954
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the item can shrink horizontally. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item can shrink horizontally.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowGrowY": {
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4010
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4126
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the item can grow vertically. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item can grow vertically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowShrinkY": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4184
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 4302
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the item can shrink vertically. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item can shrink vertically.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowStretchX": {
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4370
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 4484
+        }
+      },
+      "json": {
+        "group": [
+          "allowGrowX",
+          "allowShrinkX"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Growing and shrinking in the horizontal direction "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Growing and shrinking in the horizontal direction</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowStretchY": {
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4550
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 4664
+        }
+      },
+      "json": {
+        "group": [
+          "allowGrowY",
+          "allowShrinkY"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Growing and shrinking in the vertical direction "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Growing and shrinking in the vertical direction</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginTop": {
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4897
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 5005
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (top) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (top)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginRight": {
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5052
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5162
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (right) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (right)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginBottom": {
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 5210
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5321
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (bottom) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (bottom)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginLeft": {
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 5367
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 5476
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (left) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (left)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "margin": {
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 5895
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 6030
+        }
+      },
+      "json": {
+        "group": [
+          "marginTop",
+          "marginRight",
+          "marginBottom",
+          "marginLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'margin' property is a shorthand property for setting 'marginTop',",
+          "     * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'margin' property is a shorthand property for setting 'marginTop',\n 'marginRight', 'marginBottom' and 'marginLeft' at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alignX": {
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 6566
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 6695
+        }
+      },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "nullable": true,
+        "apply": "_applyAlign",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of the item in the parent layout.",
+          "     *",
+          "     * Note: Item alignment is only supported by {@link LayoutItem} layouts where",
+          "     * it would have a visual effect. Except for {@link Spacer}, which provides",
+          "     * blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Horizontal alignment of the item in the parent layout.\n Note: Item alignment is only supported by {@link LayoutItem} layouts where\n it would have a visual effect. Except for {@link Spacer}, which provides\n blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "alignY": {
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 7042
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 7183
+        }
+      },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom",
+          "baseline"
+        ],
+        "nullable": true,
+        "apply": "_applyAlign",
+        "themeable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of the item in the parent layout.",
+          "     *",
+          "     * Note: Item alignment is only supported by {@link LayoutItem} layouts where",
+          "     * it would have a visual effect. Except for {@link Spacer}, which provides",
+          "     * blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Vertical alignment of the item in the parent layout.\n Note: Item alignment is only supported by {@link LayoutItem} layouts where\n it would have a visual effect. Except for {@link Spacer}, which provides\n blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_onChangeTheme": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the dynamic theme change.",
+          "     * @signature function()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for the dynamic theme change.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 7744
+        },
+        "end": {
+          "line": 310,
+          "column": 6,
+          "index": 8342
+        }
+      },
+      "appearsIn": []
+    },
+    "__computedHeightForWidth": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} The computed height "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} The computed height"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 319,
+          "column": 4,
+          "index": 8592
+        },
+        "end": {
+          "line": 319,
+          "column": 34,
+          "index": 8622
+        }
+      },
+      "appearsIn": []
+    },
+    "__computedLayout": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} The computed size of the layout item "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} The computed size of the layout item"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 8689
+        },
+        "end": {
+          "line": 322,
+          "column": 26,
+          "index": 8711
+        }
+      },
+      "appearsIn": []
+    },
+    "__hasInvalidLayout": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the current layout is valid "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the current layout is valid"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4,
+          "index": 8781
+        },
+        "end": {
+          "line": 325,
+          "column": 28,
+          "index": 8805
+        }
+      },
+      "appearsIn": []
+    },
+    "__sizeHint": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Cached size hint "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Cached size hint"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 8852
+        },
+        "end": {
+          "line": 328,
+          "column": 20,
+          "index": 8868
+        }
+      },
+      "appearsIn": []
+    },
+    "__updateMargin": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the margins have changed and must be updated "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the margins have changed and must be updated"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 8955
+        },
+        "end": {
+          "line": 331,
+          "column": 24,
+          "index": 8975
+        }
+      },
+      "appearsIn": []
+    },
+    "__userBounds": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} user provided bounds of the widget, which override the layout manager "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} user provided bounds of the widget, which override the layout manager"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 4,
+          "index": 9075
+        },
+        "end": {
+          "line": 334,
+          "column": 22,
+          "index": 9093
+        }
+      },
+      "appearsIn": []
+    },
+    "__layoutProperties": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} The item's layout properties "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} The item's layout properties"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 9152
+        },
+        "end": {
+          "line": 337,
+          "column": 28,
+          "index": 9176
+        }
+      },
+      "appearsIn": []
+    },
+    "getBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the computed location and dimension as computed by",
+          "     * the layout manager.",
+          "     *",
+          "     * @return {Map|null} The location and dimensions in pixel",
+          "     *    (if the layout is valid). Contains the keys",
+          "     *    <code>width</code>, <code>height</code>, <code>left</code> and",
+          "     *    <code>top</code>.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the computed location and dimension as computed by\n the layout manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null} The location and dimensions in pixel\n    (if the layout is valid). Contains the keys\n    <code>width</code>, <code>height</code>, <code>left</code> and\n    <code>top</code>.",
+            "type": "Map|null",
+            "description": "The location and dimensions in pixel\n    (if the layout is valid). Contains the keys\n    <code>width</code>, <code>height</code>, <code>left</code> and\n    <code>top</code>."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 348,
+          "column": 4,
+          "index": 9513
+        },
+        "end": {
+          "line": 350,
+          "column": 5,
+          "index": 9597
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "clearSeparators": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reconfigure number of separators",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reconfigure number of separators</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 355,
+          "column": 4,
+          "index": 9660
+        },
+        "end": {
+          "line": 357,
+          "column": 5,
+          "index": 9709
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "renderSeparator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Renders a separator between two children",
+          "     *",
+          "     * @param separator {String|qx.ui.decoration.IDecorator} The separator to render",
+          "     * @param bounds {Map} Contains the left and top coordinate and the width and height",
+          "     *    of the separator to render.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Renders a separator between two children</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "separator {String|qx.ui.decoration.IDecorator} The separator to render",
+            "paramName": "separator",
+            "description": " The separator to render",
+            "type": [
+              "String",
+              "qx.ui.decoration.IDecorator"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "bounds {Map} Contains the left and top coordinate and the width and height\n    of the separator to render.",
+            "paramName": "bounds",
+            "description": " Contains the left and top coordinate and the width and height\n    of the separator to render.",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 4,
+          "index": 9999
+        },
+        "end": {
+          "line": 368,
+          "column": 5,
+          "index": 10065
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "separator",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        },
+        {
+          "name": "bounds",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Used by the layout engine to apply coordinates and dimensions.",
+          "     *",
+          "     * @param left {Integer} Any integer value for the left position,",
+          "     *   always in pixels",
+          "     * @param top {Integer} Any integer value for the top position,",
+          "     *   always in pixels",
+          "     * @param width {Integer} Any positive integer value for the width,",
+          "     *   always in pixels",
+          "     * @param height {Integer} Any positive integer value for the height,",
+          "     *   always in pixels",
+          "     * @return {Map} A map of which layout sizes changed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Used by the layout engine to apply coordinates and dimensions.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "left {Integer} Any integer value for the left position,\n   always in pixels",
+            "paramName": "left",
+            "description": " Any integer value for the left position,\n   always in pixels",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} Any integer value for the top position,\n   always in pixels",
+            "paramName": "top",
+            "description": " Any integer value for the top position,\n   always in pixels",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} Any positive integer value for the width,\n   always in pixels",
+            "paramName": "width",
+            "description": " Any positive integer value for the width,\n   always in pixels",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} Any positive integer value for the height,\n   always in pixels",
+            "paramName": "height",
+            "description": " Any positive integer value for the height,\n   always in pixels",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} A map of which layout sizes changed.",
+            "type": "Map<any, any>",
+            "description": "A map of which layout sizes changed."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 10611
+        },
+        "end": {
+          "line": 464,
+          "column": 5,
+          "index": 13318
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "isExcluded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item should be excluded from the layout",
+          "     *",
+          "     * @return {Boolean} Should the item be excluded by the layout",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item should be excluded from the layout</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Should the item be excluded by the layout",
+            "type": "boolean",
+            "description": "Should the item be excluded by the layout"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 471,
+          "column": 4,
+          "index": 13474
+        },
+        "end": {
+          "line": 473,
+          "column": 5,
+          "index": 13514
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasValidLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the layout of this item (to layout the children)",
+          "     * is valid.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the layout of this item (to layout the children)\n is valid.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Returns <code>true</code>",
+            "type": "boolean",
+            "description": "Returns <code>true</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 481,
+          "column": 4,
+          "index": 13676
+        },
+        "end": {
+          "line": 483,
+          "column": 5,
+          "index": 13739
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "scheduleLayoutUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicate that the item has layout changes and propagate this information",
+          "     * up the item hierarchy.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Indicate that the item has layout changes and propagate this information\n up the item hierarchy.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 13879
+        },
+        "end": {
+          "line": 492,
+          "column": 5,
+          "index": 13950
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "invalidateLayoutCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by the layout manager to mark this item's layout as invalid.",
+          "     * This function should clear all layout relevant caches.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by the layout manager to mark this item's layout as invalid.\n This function should clear all layout relevant caches.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 498,
+          "column": 4,
+          "index": 14110
+        },
+        "end": {
+          "line": 503,
+          "column": 5,
+          "index": 14255
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSizeHint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A size hint computes the dimensions of a widget. It returns",
+          "     * the recommended dimensions as well as the min and max dimensions.",
+          "     * The min and max values already respect the stretching properties.",
+          "     *",
+          "     * <h3>Wording</h3>",
+          "     * <ul>",
+          "     * <li>User value: Value defined by the widget user, using the size properties</li>",
+          "     *",
+          "     * <li>Layout value: The value computed by {@link qx.ui.core.Widget#_getContentHint}</li>",
+          "     * </ul>",
+          "     *",
+          "     * <h3>Algorithm</h3>",
+          "     * <ul>",
+          "     * <li>minSize: If the user min size is not null, the user value is taken,",
+          "     *     otherwise the layout value is used.</li>",
+          "     *",
+          "     * <li>(preferred) size: If the user value is not null the user value is used,",
+          "     *     otherwise the layout value is used.</li>",
+          "     *",
+          "     * <li>max size: Same as the preferred size.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param compute {Boolean?true} Automatically compute size hint if currently not",
+          "     *   cached?",
+          "     * @return {Map} The map with the preferred width/height and the allowed",
+          "     *   minimum and maximum values in cases where shrinking or growing",
+          "     *   is required.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A size hint computes the dimensions of a widget. It returns\n the recommended dimensions as well as the min and max dimensions.\n The min and max values already respect the stretching properties.\n </p>\n<h3>Wording</h3>\n<ul>\n <li>User value: Value defined by the widget user, using the size properties</li>\n <li>Layout value: The value computed by {@link qx.ui.core.Widget#_getContentHint}</li>\n </ul>\n<h3>Algorithm</h3>\n<ul>\n <li>minSize: If the user min size is not null, the user value is taken,\n     otherwise the layout value is used.</li>\n <li>(preferred) size: If the user value is not null the user value is used,\n     otherwise the layout value is used.</li>\n <li>max size: Same as the preferred size.</li>\n </ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "compute {Boolean?true} Automatically compute size hint if currently not\n   cached?",
+            "paramName": "compute",
+            "description": " Automatically compute size hint if currently not\n   cached?",
+            "optional": true,
+            "defaultValue": "true",
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required.",
+            "type": "Map<any, any>",
+            "description": "The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 534,
+          "column": 4,
+          "index": 15409
+        },
+        "end": {
+          "line": 588,
+          "column": 5,
+          "index": 16659
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "compute",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the size hint of the layout item.",
+          "     *",
+          "     * @return {Map} The map with the preferred width/height and the allowed",
+          "     *   minimum and maximum values.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Computes the size hint of the layout item.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values.",
+            "type": "Map<any, any>",
+            "description": "The map with the preferred width/height and the allowed\n   minimum and maximum values."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 596,
+          "column": 4,
+          "index": 16853
+        },
+        "end": {
+          "line": 614,
+          "column": 5,
+          "index": 17366
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_hasHeightForWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item supports height for width.",
+          "     *",
+          "     * @return {Boolean} Whether the item supports height for width",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item supports height for width.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the item supports height for width",
+            "type": "boolean",
+            "description": "Whether the item supports height for width"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 621,
+          "column": 4,
+          "index": 17515
+        },
+        "end": {
+          "line": 627,
+          "column": 5,
+          "index": 17672
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getHeightForWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * If an item wants to trade height for width it has to implement this",
+          "     * method and return the preferred height of the item if it is resized to",
+          "     * the given width. This function returns <code>null</code> if the item",
+          "     * do not support height for width.",
+          "     *",
+          "     * @param width {Integer} The computed width",
+          "     * @return {Integer} The desired height",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If an item wants to trade height for width it has to implement this\n method and return the preferred height of the item if it is resized to\n the given width. This function returns <code>null</code> if the item\n do not support height for width.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer} The computed width",
+            "paramName": "width",
+            "description": " The computed width",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} The desired height",
+            "type": "Integer",
+            "description": "The desired height"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 638,
+          "column": 4,
+          "index": 18064
+        },
+        "end": {
+          "line": 645,
+          "column": 5,
+          "index": 18261
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getLayout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the widget's layout manager.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.layout.Abstract} The widget's layout manager",
+            "type": "qx.ui.layout.Abstract",
+            "description": "The widget's layout manager"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 652,
+          "column": 4,
+          "index": 18398
+        },
+        "end": {
+          "line": 654,
+          "column": 5,
+          "index": 18437
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Abstract"
+      },
+      "appearsIn": []
+    },
+    "_applyMargin": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 657,
+          "column": 4,
+          "index": 18466
+        },
+        "end": {
+          "line": 664,
+          "column": 5,
+          "index": 18626
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyAlign": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 667,
+          "column": 4,
+          "index": 18655
+        },
+        "end": {
+          "line": 672,
+          "column": 5,
+          "index": 18779
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDimension": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 675,
+          "column": 4,
+          "index": 18808
+        },
+        "end": {
+          "line": 677,
+          "column": 5,
+          "index": 18874
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyStretching": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 680,
+          "column": 4,
+          "index": 18903
+        },
+        "end": {
+          "line": 682,
+          "column": 5,
+          "index": 18970
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hasUserBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether user bounds are set on this layout item",
+          "     *",
+          "     * @return {Boolean} Whether user bounds are set on this layout item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether user bounds are set on this layout item</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether user bounds are set on this layout item",
+            "type": "boolean",
+            "description": "Whether user bounds are set on this layout item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 695,
+          "column": 4,
+          "index": 19337
+        },
+        "end": {
+          "line": 697,
+          "column": 5,
+          "index": 19394
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setUserBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set user bounds of the widget. Widgets with user bounds are sized and",
+          "     * positioned manually and are ignored by any layout manager.",
+          "     *",
+          "     * @param left {Integer} left position (relative to the parent)",
+          "     * @param top {Integer} top position (relative to the parent)",
+          "     * @param width {Integer} width of the layout item",
+          "     * @param height {Integer} height of the layout item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set user bounds of the widget. Widgets with user bounds are sized and\n positioned manually and are ignored by any layout manager.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "left {Integer} left position (relative to the parent)",
+            "paramName": "left",
+            "description": " left position (relative to the parent)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "top {Integer} top position (relative to the parent)",
+            "paramName": "top",
+            "description": " top position (relative to the parent)",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "width {Integer} width of the layout item",
+            "paramName": "width",
+            "description": " width of the layout item",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} height of the layout item",
+            "paramName": "height",
+            "description": " height of the layout item",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 708,
+          "column": 4,
+          "index": 19813
+        },
+        "end": {
+          "line": 724,
+          "column": 5,
+          "index": 20174
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetUserBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear the user bounds. After this call the layout item is laid out by",
+          "     * the layout manager again.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clear the user bounds. After this call the layout item is laid out by\n the layout manager again.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 731,
+          "column": 4,
+          "index": 20314
+        },
+        "end": {
+          "line": 742,
+          "column": 5,
+          "index": 20568
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__emptyProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Empty storage pool",
+          "     *",
+          "     * @lint ignoreReferenceField(__emptyProperties)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Empty storage pool"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreReferenceField(__emptyProperties)"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 755,
+          "column": 4,
+          "index": 20888
+        },
+        "end": {
+          "line": 755,
+          "column": 25,
+          "index": 20909
+        }
+      },
+      "appearsIn": []
+    },
+    "setLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores the given layout properties",
+          "     *",
+          "     * @param props {Map} Incoming layout property data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stores the given layout properties</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "props {Map} Incoming layout property data",
+            "paramName": "props",
+            "description": " Incoming layout property data",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 762,
+          "column": 4,
+          "index": 21037
+        },
+        "end": {
+          "line": 786,
+          "column": 5,
+          "index": 21596
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns currently stored layout properties",
+          "     *",
+          "     * @return {Map} Returns a map of layout properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns currently stored layout properties</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Returns a map of layout properties",
+            "type": "Map<any, any>",
+            "description": "Returns a map of layout properties"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 793,
+          "column": 4,
+          "index": 21732
+        },
+        "end": {
+          "line": 795,
+          "column": 5,
+          "index": 21825
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "clearLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all stored layout properties.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes all stored layout properties.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 801,
+          "column": 4,
+          "index": 21900
+        },
+        "end": {
+          "line": 803,
+          "column": 5,
+          "index": 21969
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "updateLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Should be executed on every change of layout properties.",
+          "     *",
+          "     * This also includes \"virtual\" layout properties like margin or align",
+          "     * when they have an effect on the parent and not on the widget itself.",
+          "     *",
+          "     * This method is always executed on the parent not on the",
+          "     * modified widget itself.",
+          "     *",
+          "     * @param props {Map?null} Optional map of known layout properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Should be executed on every change of layout properties.\n This also includes \"virtual\" layout properties like margin or align\n when they have an effect on the parent and not on the widget itself.\n This method is always executed on the parent not on the\n modified widget itself.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "props {Map?null} Optional map of known layout properties",
+            "paramName": "props",
+            "description": " Optional map of known layout properties",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 816,
+          "column": 4,
+          "index": 22393
+        },
+        "end": {
+          "line": 836,
+          "column": 5,
+          "index": 23007
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getApplicationRoot": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the application root",
+          "     *",
+          "     * @return {qx.ui.root.Abstract} The currently used root",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the application root</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.root.Abstract} The currently used root",
+            "type": "qx.ui.root.Abstract",
+            "description": "The currently used root"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 849,
+          "column": 4,
+          "index": 23333
+        },
+        "end": {
+          "line": 851,
+          "column": 5,
+          "index": 23415
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.root.Abstract"
+      },
+      "appearsIn": []
+    },
+    "getLayoutParent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the items parent. Even if the item has been added to a",
+          "     * layout, the parent is always a child of the containing item. The parent",
+          "     * item may be <code>null</code>.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The parent.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the items parent. Even if the item has been added to a\n layout, the parent is always a child of the containing item. The parent\n item may be <code>null</code>.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget|null} The parent.",
+            "type": "qx.ui.core.Widget|null",
+            "description": "The parent."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 860,
+          "column": 4,
+          "index": 23680
+        },
+        "end": {
+          "line": 862,
+          "column": 5,
+          "index": 23741
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "setLayoutParent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the parent",
+          "     *",
+          "     * @param parent {qx.ui.core.Widget|null} The new parent.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the parent</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parent {qx.ui.core.Widget|null} The new parent.",
+            "paramName": "parent",
+            "description": " The new parent.",
+            "type": [
+              "qx.ui.core.Widget",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 869,
+          "column": 4,
+          "index": 23855
+        },
+        "end": {
+          "line": 876,
+          "column": 5,
+          "index": 24032
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parent",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRootWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item is a root item and directly connected to",
+          "     * the DOM.",
+          "     *",
+          "     * @return {Boolean} Whether the item a root item",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the item is a root item and directly connected to\n the DOM.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether the item a root item",
+            "type": "boolean",
+            "description": "Whether the item a root item"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 884,
+          "column": 4,
+          "index": 24197
+        },
+        "end": {
+          "line": 886,
+          "column": 5,
+          "index": 24239
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getRoot": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the root item. The root item is the item which",
+          "     * is directly inserted into an existing DOM node at HTML level.",
+          "     * This is often the BODY element of a typical web page.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The root item (if available)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the root item. The root item is the item which\n is directly inserted into an existing DOM node at HTML level.\n This is often the BODY element of a typical web page.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget} The root item (if available)",
+            "type": "qx.ui.core.Widget",
+            "description": "The root item (if available)"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 895,
+          "column": 4,
+          "index": 24525
+        },
+        "end": {
+          "line": 907,
+          "column": 5,
+          "index": 24727
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "clone": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 916,
+          "column": 4,
+          "index": 24947
+        },
+        "end": {
+          "line": 925,
+          "column": 5,
+          "index": 25151
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 934,
+        "column": 2,
+        "index": 25347
+      },
+      "end": {
+        "line": 948,
+        "column": 3,
+        "index": 25787
+      }
+    }
+  },
+  "statics": {}
+}

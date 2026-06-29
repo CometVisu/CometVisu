@@ -1,0 +1,372 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543941,
+  "lastModifiedIso": "2026-06-29T03:59:03.941Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/FileController.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 937
+    },
+    "end": {
+      "line": 375,
+      "column": 3,
+      "index": 12631
+    }
+  },
+  "className": "cv.ui.manager.control.FileController",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The FileController is responsible for all file operations, like config check, move, replace, delete etc.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The FileController is responsible for all file operations, like config check, move, replace, delete etc.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1171
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1256
+      }
+    }
+  },
+  "members": {
+    "__fsClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1398
+        },
+        "end": {
+          "line": 43,
+          "column": 20,
+          "index": 1414
+        }
+      },
+      "appearsIn": []
+    },
+    "rename": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1421
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3187
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "newName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "move": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Move file to another path",
+          "     * @param file {cv.ui.manager.model.FileItem} file to move",
+          "     * @param target {String} new path of the file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Move file to another path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {cv.ui.manager.model.FileItem} file to move",
+            "paramName": "file",
+            "description": " file to move",
+            "type": "cv.ui.manager.model.FileItem"
+          },
+          {
+            "name": "@param",
+            "body": "target {String} new path of the file",
+            "paramName": "target",
+            "description": " new path of the file",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3357
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 4081
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "cv.ui.manager.model.FileItem"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "restore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restore file from trash by moving it out of the trash to the old path",
+          "     * @param file {cv.ui.manager.model.FileItem} file to restore",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restore file from trash by moving it out of the trash to the old path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {cv.ui.manager.model.FileItem} file to restore",
+            "paramName": "file",
+            "description": " file to restore",
+            "type": "cv.ui.manager.model.FileItem"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 4247
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 7076
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "cv.ui.manager.model.FileItem"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__moveFile": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 7083
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 7822
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "target"
+        }
+      ],
+      "appearsIn": []
+    },
+    "delete": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 7829
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 9180
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__doDelete": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 271,
+          "column": 4,
+          "index": 9187
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 10645
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
+    },
+    "download": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4,
+          "index": 10652
+        },
+        "end": {
+          "line": 320,
+          "column": 5,
+          "index": 11047
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    },
+    "validate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 11054
+        },
+        "end": {
+          "line": 331,
+          "column": 5,
+          "index": 11379
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__validateConfig": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4,
+          "index": 11386
+        },
+        "end": {
+          "line": 364,
+          "column": 5,
+          "index": 12449
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 372,
+        "column": 2,
+        "index": 12583
+      },
+      "end": {
+        "line": 374,
+        "column": 3,
+        "index": 12627
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

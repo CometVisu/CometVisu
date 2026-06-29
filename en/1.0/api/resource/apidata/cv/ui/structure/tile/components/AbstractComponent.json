@@ -1,0 +1,1116 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543949,
+  "lastModifiedIso": "2026-06-29T03:59:03.949Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/AbstractComponent.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 866
+    },
+    "end": {
+      "line": 526,
+      "column": 3,
+      "index": 16471
+    }
+  },
+  "className": "cv.ui.structure.tile.components.AbstractComponent",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all components.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all components.</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.elements.AbstractCustomElement",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1149
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1254
+      }
+    }
+  },
+  "properties": {
+    "value": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1402
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1511
+        }
+      },
+      "json": {
+        "apply": "_applyValue",
+        "nullable": true,
+        "event": "changeValue"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "styleClass": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1518
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1647
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyStyleClass",
+        "event": "changeStyleClass"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "enabled": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1654
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1741
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyEnabled"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "visibility": {
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1748
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1903
+        }
+      },
+      "json": {
+        "check": [
+          "visible",
+          "excluded",
+          "hidden"
+        ],
+        "init": "visible",
+        "apply": "_applyVisibility",
+        "event": "changeVisibility"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "widget": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1993
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2050
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * True if this tile is the content of a template based widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>True if this tile is the content of a template based widget</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "inPopup": {
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2124
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2182
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * True if this tile is the content of a popup",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>True if this tile is the content of a popup</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "dateFormats": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2328
+        },
+        "end": {
+          "line": 94,
+          "column": 19,
+          "index": 2343
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_writeAddresses": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2489
+        },
+        "end": {
+          "line": 103,
+          "column": 25,
+          "index": 2510
+        }
+      },
+      "appearsIn": []
+    },
+    "_readAddresses": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2516
+        },
+        "end": {
+          "line": 104,
+          "column": 24,
+          "index": 2536
+        }
+      },
+      "appearsIn": []
+    },
+    "_headerFooterParent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2542
+        },
+        "end": {
+          "line": 105,
+          "column": 29,
+          "index": 2567
+        }
+      },
+      "appearsIn": []
+    },
+    "_preMappingHooks": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2573
+        },
+        "end": {
+          "line": 106,
+          "column": 26,
+          "index": 2595
+        }
+      },
+      "appearsIn": []
+    },
+    "_tileElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2601
+        },
+        "end": {
+          "line": 107,
+          "column": 22,
+          "index": 2619
+        }
+      },
+      "appearsIn": []
+    },
+    "__mobileReplacements": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2625
+        },
+        "end": {
+          "line": 108,
+          "column": 30,
+          "index": 2651
+        }
+      },
+      "appearsIn": []
+    },
+    "__stateUpdateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2657
+        },
+        "end": {
+          "line": 109,
+          "column": 30,
+          "index": 2683
+        }
+      },
+      "appearsIn": []
+    },
+    "_store": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {Map} value store for addresses to be able to use them e.g. in mapping formulas",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Map} value store for addresses to be able to use them e.g. in mapping formulas"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2798
+        },
+        "end": {
+          "line": 114,
+          "column": 16,
+          "index": 2810
+        }
+      },
+      "appearsIn": []
+    },
+    "_checkEnvironment": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2817
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3438
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getTileParent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3445
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3888
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3895
+        },
+        "end": {
+          "line": 221,
+          "column": 5,
+          "index": 6064
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_postInit": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 6071
+        },
+        "end": {
+          "line": 232,
+          "column": 7,
+          "index": 6412
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "__updateAttributes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6419
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 6665
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 6672
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 6968
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
+      "appearsIn": [
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "appendToHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Append the given element to a header inside the widget this component is a direct child of.",
+          "     * If the header does not exist yet, it will be created.",
+          "     * Does nothing when this component is no direct child of a widget.",
+          "     * @param element {HTMLElement}",
+          "     * @param align {String} center (default), left or right",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Append the given element to a header inside the widget this component is a direct child of.\n If the header does not exist yet, it will be created.\n Does nothing when this component is no direct child of a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {HTMLElement}",
+            "paramName": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "@param",
+            "body": "align {String} center (default), left or right",
+            "paramName": "align",
+            "description": " center (default), left or right",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7320
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 8044
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "HTMLElement"
+        },
+        {
+          "name": "align",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHeader": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the header or an element inside it, if the selector is not empty",
+          "     * @param selector {String} css selector",
+          "     * @return {Element|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the header or an element inside it, if the selector is not empty</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} css selector",
+            "paramName": "selector",
+            "description": " css selector",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null}",
+            "type": "Element|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 8219
+        },
+        "end": {
+          "line": 292,
+          "column": 5,
+          "index": 8594
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "appendToFooter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Append the given element to a footer inside the widget this component is a direct child of.",
+          "     * If the footer does not exist yet, it will be created.",
+          "     * Does nothing when this component is no direct child of a widget.",
+          "     * @param element {HTMLElement}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Append the given element to a footer inside the widget this component is a direct child of.\n If the footer does not exist yet, it will be created.\n Does nothing when this component is no direct child of a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {HTMLElement}",
+            "paramName": "element",
+            "type": "HTMLElement"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4,
+          "index": 8885
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 9221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "HTMLElement"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFooter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the footer or an element inside it, if the selector is not empty",
+          "     * @param selector {String} css selector",
+          "     * @return {Element|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the footer or an element inside it, if the selector is not empty</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "selector {String} css selector",
+            "paramName": "selector",
+            "description": " css selector",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null}",
+            "type": "Element|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9396
+        },
+        "end": {
+          "line": 327,
+          "column": 5,
+          "index": 9771
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "registerPreMappingHook": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register hook function {Function(value: number) : number} that is called before the mapping gets applied.",
+          "     * It must return a number that is used as a new value for mapping.",
+          "     * @param callback {{(value: number) : number}}",
+          "     * @param context {object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register hook function {Function(value: number) : number} that is called before the mapping gets applied.\n It must return a number that is used as a new value for mapping.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {{(value: number) : number}}",
+            "paramName": "callback",
+            "description": "}",
+            "type": "{(value: number) : number"
+          },
+          {
+            "name": "@param",
+            "body": "context {object}",
+            "paramName": "context",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 10062
+        },
+        "end": {
+          "line": 340,
+          "column": 5,
+          "index": 10278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "{(value: number) : number"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregisterPreMappingHook": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unregister pre-mapping hook",
+          "     * @param callback {{(value: number) : number}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unregister pre-mapping hook</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "callback {{(value: number) : number}}",
+            "paramName": "callback",
+            "description": "}",
+            "type": "{(value: number) : number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 346,
+          "column": 4,
+          "index": 10388
+        },
+        "end": {
+          "line": 348,
+          "column": 5,
+          "index": 10514
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "{(value: number) : number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_mapValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 350,
+          "column": 4,
+          "index": 10521
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 10946
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_formatValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 362,
+          "column": 4,
+          "index": 10953
+        },
+        "end": {
+          "line": 377,
+          "column": 5,
+          "index": 11723
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getStyleClass": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 379,
+          "column": 4,
+          "index": 11730
+        },
+        "end": {
+          "line": 384,
+          "column": 5,
+          "index": 12004
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyValue": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 387,
+          "column": 4,
+          "index": 12033
+        },
+        "end": {
+          "line": 398,
+          "column": 5,
+          "index": 12454
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateValue": {
+      "jsdoc": {
+        "raw": [
+          " needs to be implemented by inheriting classes"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4,
+          "index": 12514
+        },
+        "end": {
+          "line": 401,
+          "column": 39,
+          "index": 12549
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mappedValue"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyStyleClass": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4,
+          "index": 12578
+        },
+        "end": {
+          "line": 412,
+          "column": 5,
+          "index": 12815
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 414,
+          "column": 4,
+          "index": 12822
+        },
+        "end": {
+          "line": 436,
+          "column": 5,
+          "index": 13618
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 13625
+        },
+        "end": {
+          "line": 456,
+          "column": 5,
+          "index": 14105
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onStateUpdate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the incoming data from the backend for this widget",
+          "     *",
+          "     * @param ev {CustomEvent} stateUpdate event fired from a cv-address component",
+          "     * @return {Boolean} true of the update has been handled",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the incoming data from the backend for this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {CustomEvent} stateUpdate event fired from a cv-address component",
+            "paramName": "ev",
+            "description": " stateUpdate event fired from a cv-address component",
+            "type": "CustomEvent"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true of the update has been handled",
+            "type": "boolean",
+            "description": "true of the update has been handled"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 464,
+          "column": 4,
+          "index": 14345
+        },
+        "end": {
+          "line": 511,
+          "column": 5,
+          "index": 16093
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "CustomEvent"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 519,
+        "column": 2,
+        "index": 16227
+      },
+      "end": {
+        "line": 525,
+        "column": 3,
+        "index": 16467
+      }
+    }
+  }
+}

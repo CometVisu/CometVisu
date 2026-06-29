@@ -1,0 +1,327 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602708,
+  "lastModifiedIso": "2026-06-29T04:00:02.708Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/window/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 530
+    },
+    "end": {
+      "line": 169,
+      "column": 3,
+      "index": 4418
+    }
+  },
+  "className": "qx.ui.window.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default window manager implementation",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default window manager implementation</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.window.IWindowManager"
+  ],
+  "members": {
+    "__desktop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 842
+        },
+        "end": {
+          "line": 33,
+          "column": 19,
+          "index": 857
+        }
+      },
+      "appearsIn": []
+    },
+    "setDesktop": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 896
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1197
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "desktop"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.window.IWindowManager"
+      ]
+    },
+    "getDesktop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the connected desktop",
+          "     *",
+          "     * @return {qx.ui.window.IDesktop} The desktop",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the connected desktop</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.window.IDesktop} The desktop",
+            "type": "qx.ui.window.IDesktop",
+            "description": "The desktop"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1315
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1364
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.window.IDesktop"
+      },
+      "appearsIn": []
+    },
+    "changeActiveWindow": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1403
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1607
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "active"
+        },
+        {
+          "name": "oldActive"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.window.IWindowManager"
+      ]
+    },
+    "_minZIndex": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Minimum zIndex to start with for windows "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Minimum zIndex to start with for windows"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1682
+        },
+        "end": {
+          "line": 70,
+          "column": 19,
+          "index": 1697
+        }
+      },
+      "appearsIn": []
+    },
+    "updateStack": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1736
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 1926
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.window.IWindowManager"
+      ]
+    },
+    "syncWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called during the flush of the",
+          "     * {@link qx.ui.core.queue.Widget widget queue}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is called during the flush of the\n {@link qx.ui.core.queue.Widget widget queue}.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2055
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3654
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "bringToFront": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3693
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3908
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "win"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.window.IWindowManager"
+      ]
+    },
+    "sendToBack": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3947
+        },
+        "end": {
+          "line": 157,
+          "column": 5,
+          "index": 4163
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "win"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.window.IWindowManager"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 166,
+        "column": 2,
+        "index": 4359
+      },
+      "end": {
+        "line": 168,
+        "column": 3,
+        "index": 4414
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

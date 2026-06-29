@@ -1,0 +1,220 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/InputElement.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 1,
+      "column": 0,
+      "index": 0
+    },
+    "end": {
+      "line": 106,
+      "column": 3,
+      "index": 3110
+    }
+  },
+  "className": "com.zenesis.qx.upload.InputElement",
+  "jsdoc": null,
+  "superClass": "qx.html.Element",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "widget"
+      },
+      {
+        "name": "name"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 4,
+        "column": 2,
+        "index": 86
+      },
+      "end": {
+        "line": 60,
+        "column": 3,
+        "index": 2132
+      }
+    }
+  },
+  "properties": {
+    "acceptUpload": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2155
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2274
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "_applyAcceptUpload"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "multiple": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2281
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2395
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false,
+        "apply": "_applyMultiple"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "directory": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2402
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2518
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false,
+        "apply": "_applyDirectory"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__relatedWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2543
+        },
+        "end": {
+          "line": 86,
+          "column": 25,
+          "index": 2564
+        }
+      },
+      "appearsIn": []
+    },
+    "getWidget": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2571
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2625
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyAcceptUpload": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2632
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2773
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyDirectory": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2779
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMultiple": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2954
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3100
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

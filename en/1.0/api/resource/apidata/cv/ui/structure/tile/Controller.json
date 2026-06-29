@@ -1,0 +1,1456 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543948,
+  "lastModifiedIso": "2026-06-29T03:59:03.948Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/Controller.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 43,
+      "column": 0,
+      "index": 1989
+    },
+    "end": {
+      "line": 696,
+      "column": 3,
+      "index": 24507
+    }
+  },
+  "className": "cv.ui.structure.tile.Controller",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Controller for the 'tile' structure.",
+      " *",
+      " * This structure is based on web-components and does not need a parser to work.",
+      " * The config file is directly attached to the document body.",
+      " * The widgets in this structure register a customElement and the browser automatically creates instances",
+      " * of this widgets once the customElement is added to the body.",
+      " *",
+      " * The basic structure is a set of pages that contain a list of tiles.",
+      " * Each tile contains a grid of 3 rows and 3 columns. The components can be added to a cell of that grid",
+      " * but also can spread over more than one cell by using row-/column spanning.",
+      " *",
+      " * This structure provides some tiles with a pre-defined content, e.g. a <cv-switch> which",
+      " * contains of a button in the middle of the tile and a primary- and secondary label in the third row.",
+      " *",
+      " * Those pre-defined tiles are provided by a <template> (@see https://developer.mozilla.org/de/docs/Web/HTML/Element/template)",
+      " * User are able to define own templates for re-usable tiles if they need one that this structure does not provide.",
+      " *",
+      " * @asset(structures/tile/*)",
+      " * @author Tobias Bräutigam",
+      " * @since 2022",
+      " * @ignore(IntersectionObserver)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Controller for the 'tile' structure.\n This structure is based on web-components and does not need a parser to work.\n The config file is directly attached to the document body.\n The widgets in this structure register a customElement and the browser automatically creates instances\n of this widgets once the customElement is added to the body.\n The basic structure is a set of pages that contain a list of tiles.\n Each tile contains a grid of 3 rows and 3 columns. The components can be added to a cell of that grid\n but also can spread over more than one cell by using row-/column spanning.\n This structure provides some tiles with a pre-defined content, e.g. a <cv-switch> which\n contains of a button in the middle of the tile and a primary- and secondary label in the third row.\n Those pre-defined tiles are provided by a <template> (@see https://developer.mozilla.org/de/docs/Web/HTML/Element/template)\n User are able to define own templates for re-usable tiles if they need one that this structure does not provide.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "structures/tile/*"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "IntersectionObserver"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "interfaces": [
+    "cv.ui.structure.IController"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 53,
+        "column": 2,
+        "index": 2260
+      },
+      "end": {
+        "line": 66,
+        "column": 3,
+        "index": 2905
+      }
+    }
+  },
+  "statics": {
+    "PREFIX": {
+      "jsdoc": {
+        "raw": [
+          " prefix for all custom components uses/provided by this structure"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 3119
+        },
+        "end": {
+          "line": 75,
+          "column": 17,
+          "index": 3132
+        }
+      },
+      "appearsIn": []
+    },
+    "__MAP": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 3138
+        },
+        "end": {
+          "line": 76,
+          "column": 13,
+          "index": 3147
+        }
+      },
+      "appearsIn": []
+    },
+    "__I": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 3153
+        },
+        "end": {
+          "line": 77,
+          "column": 11,
+          "index": 3160
+        }
+      },
+      "appearsIn": []
+    },
+    "MAPPING_PARAM_REGEX": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 3167
+        },
+        "end": {
+          "line": 79,
+          "column": 44,
+          "index": 3207
+        }
+      },
+      "appearsIn": []
+    },
+    "register": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 3214
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 3303
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "webComponentName"
+        },
+        {
+          "name": "qxClass"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onComponentCreated": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 3310
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 3766
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "renderTarget": {
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3991
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 4062
+        }
+      },
+      "json": {
+        "check": "Element",
+        "init": "document.body"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The target this structure should be inserted into",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The target this structure should be inserted into</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "namespace": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 4115
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 4171
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Namespace for path ids",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Namespace for path ids</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "scrolled": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 4178
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 4268
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyScrolled"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__HTML_STRUCT": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4414
+        },
+        "end": {
+          "line": 134,
+          "column": 23,
+          "index": 4433
+        }
+      },
+      "appearsIn": []
+    },
+    "__mappings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4439
+        },
+        "end": {
+          "line": 135,
+          "column": 20,
+          "index": 4455
+        }
+      },
+      "appearsIn": []
+    },
+    "__stylings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 4461
+        },
+        "end": {
+          "line": 136,
+          "column": 20,
+          "index": 4477
+        }
+      },
+      "appearsIn": []
+    },
+    "_templateWidgets": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 4483
+        },
+        "end": {
+          "line": 137,
+          "column": 26,
+          "index": 4505
+        }
+      },
+      "appearsIn": []
+    },
+    "__templates": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4511
+        },
+        "end": {
+          "line": 138,
+          "column": 21,
+          "index": 4528
+        }
+      },
+      "appearsIn": []
+    },
+    "__mainScrollElement": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 4534
+        },
+        "end": {
+          "line": 139,
+          "column": 29,
+          "index": 4559
+        }
+      },
+      "appearsIn": []
+    },
+    "__mainScrollHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 4565
+        },
+        "end": {
+          "line": 140,
+          "column": 29,
+          "index": 4590
+        }
+      },
+      "appearsIn": []
+    },
+    "__themeMediaQuery": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4596
+        },
+        "end": {
+          "line": 141,
+          "column": 27,
+          "index": 4619
+        }
+      },
+      "appearsIn": []
+    },
+    "__themeChangeHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4625
+        },
+        "end": {
+          "line": 142,
+          "column": 30,
+          "index": 4651
+        }
+      },
+      "appearsIn": []
+    },
+    "__visibilityObserver": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4657
+        },
+        "end": {
+          "line": 143,
+          "column": 30,
+          "index": 4683
+        }
+      },
+      "appearsIn": []
+    },
+    "getHtmlStructure": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4690
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4749
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "supports": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4756
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4813
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "feature"
+        },
+        {
+          "name": "subfeature"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "initLayout": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4820
+        },
+        "end": {
+          "line": 153,
+          "column": 19,
+          "index": 4835
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__gotoStartPage": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4842
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 5068
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onHistoryRequest": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 5075
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 5170
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "anchor"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "scrollToPage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 5177
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 6627
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pageId"
+        },
+        {
+          "name": "skipHistory"
+        }
+      ],
+      "appearsIn": []
+    },
+    "parseBackendSettings": {
+      "jsdoc": {
+        "raw": [
+          " not needed, backend parse/init themselves"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 6683
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 6736
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "parseSettings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses structure specific settings",
+          "     * @param config {XMLDocument} loaded config",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses structure specific settings</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "config {XMLDocument} loaded config",
+            "paramName": "config",
+            "description": " loaded config",
+            "type": "XMLDocument"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6850
+        },
+        "end": {
+          "line": 320,
+          "column": 5,
+          "index": 11347
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config",
+          "type": "XMLDocument"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "_applyScrolled": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 11354
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 11740
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "preParse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pre parsing hook, do everything here that is needed before the real parsing process can start",
+          "     * @param xml {XMLDocument}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pre parsing hook, do everything here that is needed before the real parsing process can start</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument}",
+            "paramName": "xml",
+            "type": "XMLDocument"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 338,
+          "column": 4,
+          "index": 11896
+        },
+        "end": {
+          "line": 372,
+          "column": 5,
+          "index": 13464
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "createUI": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate the UI code from the config file",
+          "     * @param config {Object} loaded config file usually an XMLDocument but other structures might use different formats",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generate the UI code from the config file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "config {Object} loaded config file usually an XMLDocument but other structures might use different formats",
+            "paramName": "config",
+            "description": " loaded config file usually an XMLDocument but other structures might use different formats",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 4,
+          "index": 13657
+        },
+        "end": {
+          "line": 379,
+          "column": 5,
+          "index": 13681
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "observeVisibility": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4,
+          "index": 13688
+        },
+        "end": {
+          "line": 399,
+          "column": 5,
+          "index": 14499
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__detachMainScrollListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 401,
+          "column": 4,
+          "index": 14506
+        },
+        "end": {
+          "line": 407,
+          "column": 5,
+          "index": 14784
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__detachThemeChangeListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 14791
+        },
+        "end": {
+          "line": 419,
+          "column": 5,
+          "index": 15317
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__disconnectVisibilityObserver": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 421,
+          "column": 4,
+          "index": 15324
+        },
+        "end": {
+          "line": 426,
+          "column": 5,
+          "index": 15501
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "translate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 428,
+          "column": 4,
+          "index": 15508
+        },
+        "end": {
+          "line": 478,
+          "column": 5,
+          "index": 17524
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "doc"
+        },
+        {
+          "name": "rememberKeys"
+        },
+        {
+          "name": "useKeys"
+        }
+      ],
+      "appearsIn": []
+    },
+    "doScreenSave": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle fired event from screensaver",
+          "     * @return {Array<string>} Array with addresses",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle fired event from screensaver</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array<string>} Array with addresses",
+            "type": "Array<string>",
+            "description": "Array with addresses"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 484,
+          "column": 4,
+          "index": 17642
+        },
+        "end": {
+          "line": 488,
+          "column": 5,
+          "index": 17795
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<string>"
+      },
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "getInitialAddresses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the addresses needed to update all states on the initially loaded page",
+          "     * @param backendName {String} name of the backend",
+          "     * @return {Array<String>} list of addresses",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the addresses needed to update all states on the initially loaded page</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "backendName {String} name of the backend",
+            "paramName": "backendName",
+            "description": " name of the backend",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array<String>} list of addresses",
+            "type": "Array<String>",
+            "description": "list of addresses"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 495,
+          "column": 4,
+          "index": 18007
+        },
+        "end": {
+          "line": 517,
+          "column": 5,
+          "index": 18880
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<String>"
+      },
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "getInitialPageId": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the widget id of the page item initially loaded",
+          "     * @returns {String} widget path like 'id_'...",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the widget id of the page item initially loaded</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} widget path like 'id_'...",
+            "type": "string",
+            "description": "widget path like 'id_'..."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 523,
+          "column": 4,
+          "index": 19017
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 19146
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    },
+    "addMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param name {String} mapping name",
+          "     * @param mapping {cv.ui.structure.tile.elements.Mapping}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} mapping name",
+            "paramName": "name",
+            "description": " mapping name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "mapping {cv.ui.structure.tile.elements.Mapping}",
+            "paramName": "mapping",
+            "type": "cv.ui.structure.tile.elements.Mapping"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 533,
+          "column": 4,
+          "index": 19279
+        },
+        "end": {
+          "line": 538,
+          "column": 5,
+          "index": 19419
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "mapping",
+          "type": "cv.ui.structure.tile.elements.Mapping"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeMapping": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4,
+          "index": 19426
+        },
+        "end": {
+          "line": 544,
+          "column": 5,
+          "index": 19528
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "mapValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 546,
+          "column": 4,
+          "index": 19535
+        },
+        "end": {
+          "line": 562,
+          "column": 5,
+          "index": 20199
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mappingName"
+        },
+        {
+          "name": "value"
+        },
+        {
+          "name": "store"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addStyling": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param name {String} styling name",
+          "     * @param styling {cv.ui.structure.tile.elements.Styling}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} styling name",
+            "paramName": "name",
+            "description": " styling name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "styling {cv.ui.structure.tile.elements.Styling}",
+            "paramName": "styling",
+            "type": "cv.ui.structure.tile.elements.Styling"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 20325
+        },
+        "end": {
+          "line": 573,
+          "column": 5,
+          "index": 20465
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "styling",
+          "type": "cv.ui.structure.tile.elements.Styling"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeStyling": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 575,
+          "column": 4,
+          "index": 20472
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 20574
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "styleValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 581,
+          "column": 4,
+          "index": 20581
+        },
+        "end": {
+          "line": 586,
+          "column": 5,
+          "index": 20818
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "stylingName"
+        },
+        {
+          "name": "value"
+        },
+        {
+          "name": "store"
+        }
+      ],
+      "appearsIn": []
+    },
+    "parseLabel": {
+      "jsdoc": {
+        "raw": [
+          " for compatibility with pure controller"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 589,
+          "column": 4,
+          "index": 20871
+        },
+        "end": {
+          "line": 591,
+          "column": 5,
+          "index": 20908
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onChangeLocale": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 4,
+          "index": 20915
+        },
+        "end": {
+          "line": 595,
+          "column": 5,
+          "index": 20990
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "enablePullToRefresh": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 597,
+          "column": 4,
+          "index": 20997
+        },
+        "end": {
+          "line": 639,
+          "column": 5,
+          "index": 22581
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isTemplateWidget": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 641,
+          "column": 4,
+          "index": 22588
+        },
+        "end": {
+          "line": 643,
+          "column": 5,
+          "index": 22669
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "registerTemplates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers customElements for all templates in the given xml that are direct children of a <templates structure=\"tile\"> element",
+          "     * @param xml {XMLDocument}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Registers customElements for all templates in the given xml that are direct children of a <templates structure=\"tile\"> element</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument}",
+            "paramName": "xml",
+            "type": "XMLDocument"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 649,
+          "column": 4,
+          "index": 22858
+        },
+        "end": {
+          "line": 669,
+          "column": 5,
+          "index": 23748
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateSentryScope": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 670,
+          "column": 4,
+          "index": 23754
+        },
+        "end": {
+          "line": 675,
+          "column": 5,
+          "index": 23949
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.IController"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 690,
+        "column": 2,
+        "index": 24269
+      },
+      "end": {
+        "line": 695,
+        "column": 3,
+        "index": 24503
+      }
+    }
+  }
+}

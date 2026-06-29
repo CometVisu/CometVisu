@@ -1,0 +1,570 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601586,
+  "lastModifiedIso": "2026-06-29T04:00:01.586Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/command/Command.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 838
+    },
+    "end": {
+      "line": 177,
+      "column": 3,
+      "index": 4786
+    }
+  },
+  "className": "qx.ui.command.Command",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Commands can be used to globally define keyboard shortcuts. They could",
+      " * also be used to assign an execution of a command sequence to multiple",
+      " * widgets. It is possible to use the same Command in a MenuButton and",
+      " * ToolBarButton for example.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Commands can be used to globally define keyboard shortcuts. They could\n also be used to assign an execution of a command sequence to multiple\n widgets. It is possible to use the same Command in a MenuButton and\n ToolBarButton for example.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "shortcut"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 2,
+        "index": 1281
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1509
+      }
+    }
+  },
+  "events": {
+    "execute": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the command is executed. Sets the \"data\" property of the",
+          "     * event to the object that issued the command.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the command is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1671
+        },
+        "end": {
+          "line": 53,
+          "column": 33,
+          "index": 1700
+        }
+      }
+    }
+  },
+  "properties": {
+    "active": {
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1933
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 2047
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "event": "changeActive",
+        "apply": "_applyActive"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the command should be activated. If 'false' execute event",
+          "     * wouldn't fire. This property will be used by command groups when",
+          "     * activating/deactivating all commands of the group."
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the command should be activated. If 'false' execute event\n wouldn't fire. This property will be used by command groups when\n activating/deactivating all commands of the group.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "enabled": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2353
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2470
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "event": "changeEnabled",
+        "apply": "_applyEnabled"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the command should be respected/enabled. If 'false' execute event",
+          "     * wouldn't fire. If value of property {@link qx.ui.command.Command#active}",
+          "     * is 'false', enabled value can be set but has no effect until",
+          "     * {@link qx.ui.command.Command#active} will be set to 'true'."
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the command should be respected/enabled. If 'false' execute event\n wouldn't fire. If value of property {@link qx.ui.command.Command#active}\n is 'false', enabled value can be set but has no effect until\n {@link qx.ui.command.Command#active} will be set to 'true'.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "shortcut": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2521
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2613
+        }
+      },
+      "json": {
+        "check": "String",
+        "apply": "_applyShortcut",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* The command shortcut as a string "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The command shortcut as a string</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "label": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2700
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2786
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeLabel"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The label, which will be set in all connected widgets (if available) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The label, which will be set in all connected widgets (if available)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "icon": {
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2872
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2956
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The icon, which will be set in all connected widgets (if available) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The icon, which will be set in all connected widgets (if available)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "toolTipText": {
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3069
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3167
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeToolTipText"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The tooltip text, which will be set in all connected",
+          "     * widgets (if available)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The tooltip text, which will be set in all connected\n widgets (if available)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "value": {
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3220
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3283
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The value of the connected widgets "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The value of the connected widgets</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "menu": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3369
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3462
+        }
+      },
+      "json": {
+        "check": "qx.ui.menu.Menu",
+        "nullable": true,
+        "event": "changeMenu"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The menu, which will be set in all connected widgets (if available) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The menu, which will be set in all connected widgets (if available)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_shortcut": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3486
+        },
+        "end": {
+          "line": 124,
+          "column": 19,
+          "index": 3501
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyActive": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3530
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3779
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3808
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3916
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyShortcut": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3945
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4015
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "execute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire the \"execute\" event on this command. If property",
+          "     * <code>active</code> and <code>enabled</code> set to",
+          "     * <code>true</code>.",
+          "     * @param target {Object?} Object which issued the execute event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fire the \"execute\" event on this command. If property\n <code>active</code> and <code>enabled</code> set to\n <code>true</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Object?} Object which issued the execute event",
+            "paramName": "target",
+            "description": " Object which issued the execute event",
+            "optional": true,
+            "type": "Object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4253
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4382
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the used shortcut as string using the currently selected locale.",
+          "     *",
+          "     * @return {String} shortcut",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the used shortcut as string using the currently selected locale.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} shortcut",
+            "type": "string",
+            "description": "shortcut"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4525
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4652
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 173,
+        "column": 2,
+        "index": 4661
+      },
+      "end": {
+        "line": 176,
+        "column": 3,
+        "index": 4782
+      }
+    }
+  },
+  "statics": {}
+}

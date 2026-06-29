@@ -1,0 +1,49 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602640,
+  "lastModifiedIso": "2026-06-29T04:00:02.640Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIconsOutlined.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 649
+    },
+    "end": {
+      "line": 26,
+      "column": 67,
+      "index": 716
+    }
+  },
+  "className": "qx.theme.iconfont.LoadMaterialIconsOutlined",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @usefont(MaterialIconsOutlined)",
+      " * @deprecated use the `@usefont` directive directly in your code",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "MaterialIconsOutlined"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "use the <code>@usefont</code> directive directly in your code"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

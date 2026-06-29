@@ -1,0 +1,55 @@
+.rsslog_inline {
+  padding-left:0.15em;
+}
+
+.rsslog_inline>ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rsslog_popup>ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rsslog_popup > ul > li {
+  line-height: 2em;
+}
+
+.rsslogBody {
+  clear: left;
+}
+
+.rsslogeven  {
+  color: #CCCCCC;
+}
+
+.rsslogodd {
+  color: #888888;
+}
+
+.rsslog_popup > ul > .rsslogRow {
+  font-size: 100%;
+}
+
+.rsslog_ack {
+  text-decoration: line-through;
+}
+
+.rsslog_separator {
+  border-top-style: double;
+  border-color: #DDDDDD;
+}
+
+.rsslog_prevday {
+}
+
+.rsslog_futureodd {
+  color: #ff9300;
+}
+
+.rsslog_futureeven {
+  color: #cc7600;
+}

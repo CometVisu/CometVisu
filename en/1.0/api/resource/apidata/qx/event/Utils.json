@@ -1,0 +1,761 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705603352,
+  "lastModifiedIso": "2026-06-29T04:00:03.352Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Utils.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 55,
+      "column": 0,
+      "index": 2124
+    },
+    "end": {
+      "line": 353,
+      "column": 3,
+      "index": 11131
+    }
+  },
+  "className": "qx.event.Utils",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utility methods which implement a fast, psuedo-promises mechanism used by event handlers",
+      " * and dispatchers.",
+      " *",
+      " * Event handlers are allowed to return instances of `qx.Promise`, in which case the event",
+      " * queue is suspended until the promise is resolved.  The simplest way to handle this would be",
+      " * to convert the result of every event handler into a `qx.Promise` via `qx.Promise.resolve`,",
+      " * but given that by far the majority of event handlers do not return promises, this could add",
+      " * a significant overhead; the static methods in this class allow the event handlers to be",
+      " * triggered and only when a `qx.Promise` is returned from a handler does the event dispatch",
+      " * mechanism switch to using promise to suspend the event queue.",
+      " *",
+      " * To use this, the calling code simply creates an empty object (i.e. `var tracker = {};`)",
+      " * which is then passed to `qx.event.Utils.then`, for example:",
+      " *",
+      " * <code>",
+      " * var tracker = {};",
+      " * Utils.then(tracker, function() { ... });",
+      " * Utils.then(tracker, function() { ... });",
+      " * Utils.then(tracker, function() { ... });",
+      " * Utils.catch(tracker, function() { ... });",
+      " * </code>",
+      " *",
+      " * Following with the morphing nature of this class, the return type will be either the value",
+      " * returned from the event handlers, or a promise which evaluates to that value.",
+      " *",
+      " * When events are aborted (eg via `event.stopPropagation()`) that causes the promise (if there",
+      " * is one) to be rejected.",
+      " *",
+      " * Note that this class is not a replacement for promises and has its limitations because it",
+      " * has been built for the express purposes of the event dispatchers.",
+      " *",
+      " * @internal",
+      " * @ignore(qx.Promise)",
+      " * @ignore(Promise)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utility methods which implement a fast, psuedo-promises mechanism used by event handlers\n and dispatchers.\n Event handlers are allowed to return instances of <code>qx.Promise</code>, in which case the event\n queue is suspended until the promise is resolved.  The simplest way to handle this would be\n to convert the result of every event handler into a <code>qx.Promise</code> via <code>qx.Promise.resolve</code>,\n but given that by far the majority of event handlers do not return promises, this could add\n a significant overhead; the static methods in this class allow the event handlers to be\n triggered and only when a <code>qx.Promise</code> is returned from a handler does the event dispatch\n mechanism switch to using promise to suspend the event queue.\n To use this, the calling code simply creates an empty object (i.e. <code>var tracker = {};</code>)\n which is then passed to <code>qx.event.Utils.then</code>, for example:\n <code>\n var tracker = {};\n Utils.then(tracker, function() { ... });\n Utils.then(tracker, function() { ... });\n Utils.then(tracker, function() { ... });\n Utils.catch(tracker, function() { ... });\n </code>\n Following with the morphing nature of this class, the return type will be either the value\n returned from the event handlers, or a promise which evaluates to that value.\n When events are aborted (eg via <code>event.stopPropagation()</code>) that causes the promise (if there\n is one) to be rejected.\n Note that this class is not a replacement for promises and has its limitations because it\n has been built for the express purposes of the event dispatchers.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.Promise"
+      },
+      {
+        "name": "@ignore",
+        "body": "Promise"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "ABORT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 2204
+        },
+        "end": {
+          "line": 59,
+          "column": 39,
+          "index": 2239
+        }
+      },
+      "appearsIn": []
+    },
+    "track": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Evaluates a value, and adds it to the tracker",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param fn {Function|Object?} if a function, it's evaluated as a `then`, otherwise",
+          "     *  it's encapulated in a function for `then`",
+          "     * @return {qx.Promise|Object?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Evaluates a value, and adds it to the tracker</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "fn {Function|Object?} if a function, it's evaluated as a <code>then</code>, otherwise\n  it's encapulated in a function for <code>then</code>",
+            "paramName": "fn",
+            "description": " if a function, it's evaluated as a <code>then</code>, otherwise\n  it's encapulated in a function for <code>then</code>",
+            "optional": true,
+            "type": [
+              "Function",
+              "Object"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|Object?}",
+            "type": "qx.Promise|Object?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2547
+        },
+        "end": {
+          "line": 86,
+          "column": 6,
+          "index": 3014
+        }
+      },
+      "returnType": {
+        "type": "qx.Promise|Object?"
+      },
+      "appearsIn": []
+    },
+    "__push": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to store a promise in a tracker",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param newPromise {qx.Promise} the new promise",
+          "     * @return {qx.Promise} the new promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to store a promise in a tracker</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "newPromise {qx.Promise} the new promise",
+            "paramName": "newPromise",
+            "description": " the new promise",
+            "type": "qx.Promise"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} the new promise",
+            "type": "qx.Promise",
+            "description": "the new promise"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 3245
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3674
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "newPromise",
+          "type": "qx.Promise"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "then": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Equivalent of `promise.then()`",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param fn {Function} the function to call when previous promises are complete",
+          "     * @return {qx.Promise?} the new promise, or the return value from `fn` if no promises are in use",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Equivalent of <code>promise.then()</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "fn {Function} the function to call when previous promises are complete",
+            "paramName": "fn",
+            "description": " the function to call when previous promises are complete",
+            "type": "((...args: any[]) => any)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} the new promise, or the return value from <code>fn</code> if no promises are in use",
+            "type": "qx.Promise?",
+            "description": "the new promise, or the return value from <code>fn</code> if no promises are in use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 3979
+        },
+        "end": {
+          "line": 171,
+          "column": 6,
+          "index": 5509
+        }
+      },
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    },
+    "__thenPromise": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to append a promise after the current one",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param newPromise {qx.Promise} the new promise",
+          "     * @return {qx.Promise} the new promise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to append a promise after the current one</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "newPromise {qx.Promise} the new promise",
+            "paramName": "newPromise",
+            "description": " the new promise",
+            "type": "qx.Promise"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} the new promise",
+            "type": "qx.Promise",
+            "description": "the new promise"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 5750
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 6090
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "newPromise",
+          "type": "qx.Promise"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "reject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rejects the tracker, aborting the promise if there is one.  The caller should stop",
+          "     * immediately because if promises are not in use and exception is not thrown.",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @return {qx.Promise?} the last promise or the value returned by the catcher",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rejects the tracker, aborting the promise if there is one.  The caller should stop\n immediately because if promises are not in use and exception is not thrown.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} the last promise or the value returned by the catcher",
+            "type": "qx.Promise?",
+            "description": "the last promise or the value returned by the catcher"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 6426
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 6738
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    },
+    "__addCatcher": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method that adds a catcher to the tracker",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method that adds a catcher to the tracker</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 6874
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 7219
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__catcher": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is added with `.catch` to every promise created; because this is added",
+          "     * all the way up the promise chain to ensure that it catches everything, this method",
+          "     * supresses multiple invocations (i.e. ignores everything except the first)",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method is added with <code>.catch</code> to every promise created; because this is added\n all the way up the promise chain to ensure that it catches everything, this method\n supresses multiple invocations (i.e. ignores everything except the first)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7560
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7767
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "err"
+        }
+      ],
+      "appearsIn": []
+    },
+    "catch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Equivalent to `.catch()`; note that unlike promises, this method must be called *before*",
+          "     * `.then()` so that it is able to handle rejections when promises are not in use; this is",
+          "     * because `Promise.catch` only catches rejections from previous promises, but because promises",
+          "     * are *always* asynchronous the `.catch` goes at the end.  For synchronous, this is nt possible",
+          "     * so `Utils.catch` must go before `Utils.then`",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param fn {Function} the function to call",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Equivalent to <code>.catch()</code>; note that unlike promises, this method must be called <em>before</em>\n <code>.then()</code> so that it is able to handle rejections when promises are not in use; this is\n because <code>Promise.catch</code> only catches rejections from previous promises, but because promises\n are <em>always</em> asynchronous the <code>.catch</code> goes at the end.  For synchronous, this is nt possible\n so <code>Utils.catch</code> must go before <code>Utils.then</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "fn {Function} the function to call",
+            "paramName": "fn",
+            "description": " the function to call",
+            "type": "((...args: any[]) => any)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 8340
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 8855
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "fn",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "callListener": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls a listener, converting propagationStopped into a rejection",
+          "     *",
+          "     * @param tracker {Object} the tracker object",
+          "     * @param listener {Function} the event handler",
+          "     * @param context {Object?} the `this` for the event handler",
+          "     * @param event {Event} the event being fired",
+          "     * @returns {qx.Promise?} the result of the handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calls a listener, converting propagationStopped into a rejection</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tracker {Object} the tracker object",
+            "paramName": "tracker",
+            "description": " the tracker object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "listener {Function} the event handler",
+            "paramName": "listener",
+            "description": " the event handler",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} the <code>this</code> for the event handler",
+            "paramName": "context",
+            "description": " the <code>this</code> for the event handler",
+            "optional": true,
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "event {Event} the event being fired",
+            "paramName": "event",
+            "description": " the event being fired",
+            "type": "Event"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} the result of the handler",
+            "type": "qx.Promise?",
+            "description": "the result of the handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 9230
+        },
+        "end": {
+          "line": 303,
+          "column": 5,
+          "index": 9521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tracker",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    },
+    "series": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Provides a handy way to iterate over an array which at any point could",
+          "     * become asynchronous",
+          "     *",
+          "     * @param arr {Array} an array to interate over",
+          "     * @param fn {Function?} the function to call, with parameters (item, index)",
+          "     * @param ignoreAbort {Boolean?} whether to ignore the \"ABORT\" return value",
+          "     * @return {qx.Promise|Object?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provides a handy way to iterate over an array which at any point could\n become asynchronous</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "arr {Array} an array to interate over",
+            "paramName": "arr",
+            "description": " an array to interate over",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "fn {Function?} the function to call, with parameters (item, index)",
+            "paramName": "fn",
+            "description": " the function to call, with parameters (item, index)",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "ignoreAbort {Boolean?} whether to ignore the \"ABORT\" return value",
+            "paramName": "ignoreAbort",
+            "description": " whether to ignore the \"ABORT\" return value",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise|Object?}",
+            "type": "qx.Promise|Object?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 9905
+        },
+        "end": {
+          "line": 351,
+          "column": 6,
+          "index": 11123
+        }
+      },
+      "returnType": {
+        "type": "qx.Promise|Object?"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

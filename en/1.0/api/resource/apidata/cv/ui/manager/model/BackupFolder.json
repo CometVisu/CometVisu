@@ -1,0 +1,140 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543944,
+  "lastModifiedIso": "2026-06-29T03:59:03.944Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/BackupFolder.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 830
+    },
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 3211
+    }
+  },
+  "className": "cv.ui.manager.model.BackupFolder",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.model.FileItem",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1074
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1218
+      }
+    }
+  },
+  "members": {
+    "_onFilesSystemMessage": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1360
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1727
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getBackupFiles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list of existing backup files for the given file.",
+          "     * @param file {cv.ui.manager.model.FileItem}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list of existing backup files for the given file.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "file {cv.ui.manager.model.FileItem}",
+            "paramName": "file",
+            "type": "cv.ui.manager.model.FileItem"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1869
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2966
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "cv.ui.manager.model.FileItem"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 98,
+        "column": 2,
+        "index": 3100
+      },
+      "end": {
+        "line": 100,
+        "column": 3,
+        "index": 3207
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

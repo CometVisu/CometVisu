@@ -1,0 +1,308 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.core.Environment": {
+        "defer": "load",
+        "require": true
+      },
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.test.ui.LayoutTestCase": {
+        "require": true
+      },
+      "qx.dev.unit.MRequirements": {
+        "require": true
+      },
+      "qx.dev.unit.MMock": {
+        "require": true
+      },
+      "qx.bom.client.Browser": {
+        "require": true
+      },
+      "qx.ui.container.Composite": {},
+      "qx.ui.layout.Grow": {},
+      "qx.ui.basic.Label": {},
+      "qx.bom.Font": {},
+      "qx.ui.form.TextField": {},
+      "qx.lang.Array": {},
+      "qx.locale.Manager": {}
+    },
+    "environment": {
+      "provided": [],
+      "required": {
+        "browser.name": {
+          "className": "qx.bom.client.Browser"
+        },
+        "browser.version": {
+          "className": "qx.bom.client.Browser"
+        }
+      }
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+     * Fabian Jakobs (fjakobs)
+  
+  ************************************************************************ */
+
+  /**
+   * @asset(qx/test/webfonts/*)
+   */
+
+  qx.Class.define("qx.test.ui.basic.Label", {
+    extend: qx.test.ui.LayoutTestCase,
+    include: [qx.dev.unit.MRequirements, qx.dev.unit.MMock],
+    members: {
+      hasWebFontSupport: function hasWebFontSupport() {
+        var browser = qx.core.Environment.get("browser.name");
+        var version = qx.core.Environment.get("browser.version");
+        if (browser == "firefox" && version < 3.5 || browser == "opera" && version < 10) {
+          return false;
+        }
+        return true;
+      },
+      tearDown: function tearDown() {
+        qx.test.ui.basic.Label.superclass.prototype.tearDown.call(this);
+        this.getSandbox().restore();
+      },
+      testHeightForWidth: function testHeightForWidth() {
+        var container = new qx.ui.container.Composite(new qx.ui.layout.Grow());
+        this.getRoot().add(container);
+        var label = new qx.ui.basic.Label("juhu kinners juhu kinners juhu kinners juhu kinners juhu kinners juhu kinners ").set({
+          rich: true
+        });
+        container.add(label);
+        this.flush();
+        var width = label.getBounds().width;
+        this.assertEquals(width, container.getBounds().width);
+        container.setWidth(10);
+        this.flush();
+        container.resetWidth();
+        this.flush();
+        this.assertEquals(width, label.getBounds().width);
+        container.destroy();
+      },
+      testSelectableSetOnCreate: function testSelectableSetOnCreate() {
+        var l = new qx.ui.basic.Label().set({
+          selectable: true
+        });
+        this.getRoot().add(l);
+        this.flush();
+        this.assertEquals("on", l.getContentElement().getDomElement().getAttribute("qxselectable"));
+        l.destroy();
+      },
+      testSelectableUnSetOnCreate: function testSelectableUnSetOnCreate() {
+        var l = new qx.ui.basic.Label().set({
+          selectable: false
+        });
+        this.getRoot().add(l);
+        this.flush();
+        this.assertEquals("off", l.getContentElement().getDomElement().getAttribute("qxselectable"));
+        l.destroy();
+      },
+      testSelectableSet: function testSelectableSet() {
+        var l = new qx.ui.basic.Label();
+        l.setSelectable(true);
+        this.getRoot().add(l);
+        this.flush();
+        this.assertEquals("on", l.getContentElement().getDomElement().getAttribute("qxselectable"));
+        l.destroy();
+      },
+      testSelectableUnset: function testSelectableUnset() {
+        var l = new qx.ui.basic.Label();
+        l.setSelectable(false);
+        this.getRoot().add(l);
+        this.flush();
+        this.assertEquals("off", l.getContentElement().getDomElement().getAttribute("qxselectable"));
+        l.destroy();
+      },
+      testWrapSet: function testWrapSet() {
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setWrap(true);
+        this.assertEquals("normal", l.getContentElement().getStyle("whiteSpace"));
+        l.dispose();
+      },
+      testTextAlign: function testTextAlign() {
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setTextAlign("justify");
+        this.assertEquals("justify", l.getContentElement().getStyle("textAlign"));
+        l.dispose();
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setTextAlign("right");
+        this.assertEquals("right", l.getContentElement().getStyle("textAlign"));
+        l.dispose();
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setTextAlign("left");
+        this.assertEquals("left", l.getContentElement().getStyle("textAlign"));
+        l.dispose();
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setTextAlign("center");
+        this.assertEquals("center", l.getContentElement().getStyle("textAlign"));
+        l.dispose();
+      },
+      testWrapNotSet: function testWrapNotSet() {
+        var l = new qx.ui.basic.Label();
+        l.setRich(true);
+        l.setWrap(false);
+        this.assertEquals("nowrap", l.getContentElement().getStyle("whiteSpace"));
+        l.dispose();
+      },
+      testApplyFontColorAndTextColor: function testApplyFontColorAndTextColor() {
+        var font1 = new qx.bom.Font();
+        font1.setColor("#FF0000");
+        var label1 = new qx.ui.basic.Label("test 1");
+        label1.setTextColor("#00FF00");
+        label1.setFont(font1);
+        this.getRoot().add(label1);
+        this.flush();
+        this.assertEquals("#00FF00", label1.getContentElement().getStyle("color"), "Color property should have more priority than font color.");
+        label1.destroy();
+        font1.dispose();
+      },
+      testBuddy: function testBuddy() {
+        var label = new qx.ui.basic.Label();
+        var textfield1 = new qx.ui.form.TextField();
+        var textfield2 = new qx.ui.form.TextField();
+
+        // set first text field as buddy
+        label.setBuddy(textfield1);
+
+        // label and textfield1 must have the same binding
+        this.assertEquals(1, label.getBindings().length, "There must be one binding!");
+        this.assertEquals(1, textfield1.getBindings().length, "There must be one binding!");
+        this.assertTrue(qx.lang.Array.equals(label.getBindings()[0], textfield1.getBindings()[0]), "label and textfield1 must have the same binding");
+
+        // change the buddy of label to textfield2
+        label.setBuddy(textfield2);
+
+        // textfield1 must not have a binding anymore
+        this.assertEquals(0, textfield1.getBindings().length, "There is still a binding!");
+
+        // label and textfield2 must have the same binding
+        this.assertEquals(1, label.getBindings().length, "There must be one binding!");
+        this.assertEquals(1, textfield2.getBindings().length, "There must be one binding!");
+        this.assertTrue(qx.lang.Array.equals(label.getBindings()[0], textfield2.getBindings()[0]), "label and textfield1 must have the same binding");
+        label.dispose();
+      },
+      testLocaleInitialization: function testLocaleInitialization() {
+        var label = new qx.ui.basic.Label();
+        var localeManager = qx.locale.Manager.getInstance();
+        localeManager.addTranslation("en", {
+          TEST: "EN"
+        });
+        localeManager.addTranslation("de", {
+          TEST: "DE"
+        });
+        localeManager.setLocale("en");
+        var test = qx.locale.Manager.tr("TEST");
+        localeManager.setLocale("de");
+        label.setValue(test);
+        this.assertEquals("DE", label.getContentElement().getValue(), "label must have the current locale set");
+      },
+      /**
+       * Test for issue #9564: Translated string as property init value causes
+       * invalid calculation of label width.
+       *
+       * This test reproduces the issue where a LocalizedString created before
+       * translations are loaded (typical for property init values) causes the
+       * label to calculate its width based on the untranslated message ID
+       * instead of the actual translated text.
+       */
+      testTranslatedStringPropertyInitWidth: function testTranslatedStringPropertyInitWidth() {
+        this.require(["qx.dynlocale"]);
+        var localeManager = qx.locale.Manager.getInstance();
+
+        // Save the current locale to restore it later
+        var originalLocale = localeManager.getLocale();
+        try {
+          // Set up a translation with a short message ID and a long translation
+          var shortMsgId = "ISSUE_9564_TEST_MESSAGE";
+          var longTranslation = "This is a very long translated string that should be much wider than the message ID";
+          localeManager.setLocale("en");
+
+          // IMPORTANT: Create LocalizedString BEFORE the translation is loaded
+          // This simulates the typical scenario where tr() is called in a property init
+          var localizedStr = qx.locale.Manager.tr(shortMsgId);
+
+          // At this point, localizedStr contains the message ID as fallback text
+          // because the translation hasn't been loaded yet
+          this.assertEquals(shortMsgId, localizedStr.toString(), "LocalizedString should contain message ID before translation is loaded");
+
+          // NOW load the translation (simulating translations loading after class definition)
+          localeManager.addTranslation("en", _defineProperty({}, shortMsgId, longTranslation));
+
+          // Create two labels for comparison
+          // Label 1: Uses the LocalizedString directly (simulates property init)
+          var labelWithLocalizedString = new qx.ui.basic.Label();
+          labelWithLocalizedString.setValue(localizedStr);
+
+          // Label 2: Uses the plain translated string for comparison
+          var labelWithPlainString = new qx.ui.basic.Label(longTranslation);
+
+          // Add both labels to the root
+          this.getRoot().add(labelWithLocalizedString);
+          this.getRoot().add(labelWithPlainString);
+
+          // Flush to ensure layout is calculated
+          this.flush();
+
+          // Trigger the changeLocale event to simulate the fix for issue #9564
+          // In a real application, this is automatically triggered by qx.bom.Lifecycle.onReady()
+          // but in the test context, we need to trigger it manually
+          localeManager.fireDataEvent("changeLocale", localeManager.getLocale());
+
+          // Flush again to apply the changes from the changeLocale event
+          this.flush();
+
+          // Both labels should display the same translated text
+          this.assertEquals(longTranslation, labelWithLocalizedString.getContentElement().getValue(), "Label with LocalizedString should display the translated text");
+          this.assertEquals(longTranslation, labelWithPlainString.getContentElement().getValue(), "Label with plain string should display the translated text");
+
+          // Get the bounds of both labels
+          var boundsWithLocalizedString = labelWithLocalizedString.getBounds();
+          var boundsWithPlainString = labelWithPlainString.getBounds();
+
+          // Both labels should have the same width since they display the same text
+          // This is the core assertion for issue #9564
+          // In the buggy version, labelWithLocalizedString would have a width based on
+          // the short message ID, not the long translated text
+          this.assertEquals(boundsWithPlainString.width, boundsWithLocalizedString.width, "Label with LocalizedString should have the same width as label with plain translated string. Expected: " + boundsWithPlainString.width + ", Actual: " + boundsWithLocalizedString.width);
+
+          // Clean up
+          labelWithLocalizedString.destroy();
+          labelWithPlainString.destroy();
+        } finally {
+          // Restore the original locale
+          localeManager.setLocale(originalLocale);
+        }
+      }
+    }
+  });
+  qx.test.ui.basic.Label.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=Label.js.map?dt=1782705787335

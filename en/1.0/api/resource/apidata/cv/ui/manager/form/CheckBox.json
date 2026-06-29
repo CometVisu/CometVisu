@@ -1,0 +1,94 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543943,
+  "lastModifiedIso": "2026-06-29T03:59:03.943Z",
+  "classFilename": "../../source/class/cv/ui/manager/form/CheckBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 826
+    },
+    "end": {
+      "line": 55,
+      "column": 3,
+      "index": 1616
+    }
+  },
+  "className": "cv.ui.manager.form.CheckBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.CheckBox",
+  "members": {
+    "_onExecute": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1045
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1396
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.ToggleButton",
+      "appearsIn": [
+        "qx.ui.form.ToggleButton"
+      ]
+    },
+    "_applyValue": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1403
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1608
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "overriddenFrom": "qx.ui.form.CheckBox",
+      "appearsIn": [
+        "qx.ui.form.CheckBox",
+        "qx.ui.form.ToggleButton"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,293 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543945,
+  "lastModifiedIso": "2026-06-29T03:59:03.945Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/schema/Choice.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 861
+    },
+    "end": {
+      "line": 203,
+      "column": 3,
+      "index": 6577
+    }
+  },
+  "className": "cv.ui.manager.model.schema.Choice",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * a single choice.",
+      " * may be recursive",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>a single choice.\n may be recursive</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.model.schema.Base",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "node"
+      },
+      {
+        "name": "schema"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 1088
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1160
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1308
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1362
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "choice"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    }
+  },
+  "members": {
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * parse a list of elements in this group.",
+          "     * Group is allowed (all|choice|sequence)? as per the definition.",
+          "     * We do all of those (except for 'all')",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>parse a list of elements in this group.\n Group is allowed (all|choice|sequence)? as per the definition.\n We do all of those (except for 'all')</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1686
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2798
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "getRequiredElements": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2823
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2980
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "getRegex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a regex (string) describing this choice",
+          "     *",
+          "     * @param   separator   string  the string used to separate different elements, e.g. ';'",
+          "     * @param   nocapture   bool    when set to true non capturing groups are used",
+          "     * @return  string  regex",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get a regex (string) describing this choice</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "separator   string  the string used to separate different elements, e.g. ';'"
+          },
+          {
+            "name": "@param",
+            "body": "nocapture   bool    when set to true non capturing groups are used"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "string  regex"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3267
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 4464
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "separator"
+        },
+        {
+          "name": "nocapture"
+        }
+      ],
+      "returnType": {},
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "getBoundsForElementName": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4471
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4728
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "childName"
+        }
+      ],
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    },
+    "getAllowedElementsSorting": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the sorting of the allowed elements.",
+          "     * For a choice, all elements have the same sorting, so they will all have the",
+          "     * same sortnumber",
+          "     *",
+          "     * Warning: this only works if any element can have only ONE position in the parent.",
+          "     *",
+          "     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)",
+          "     * @return  object              list of allowed elements, with their sort-number as value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the sorting of the allowed elements.\n For a choice, all elements have the same sorting, so they will all have the\n same sortnumber\n Warning: this only works if any element can have only ONE position in the parent.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "sortnumber  integer the sortnumber of a parent (only used when recursive)"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object              list of allowed elements, with their sort-number as value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 5192
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 6569
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sortnumber"
+        }
+      ],
+      "returnType": {},
+      "overriddenFrom": "cv.ui.manager.model.schema.Base",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
+    }
+  },
+  "statics": {}
+}

@@ -1,0 +1,340 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543934,
+  "lastModifiedIso": "2026-06-29T03:59:03.934Z",
+  "classFilename": "../../source/class/cv/io/listmodel/FritzCallList.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 937
+    },
+    "end": {
+      "line": 195,
+      "column": 3,
+      "index": 5455
+    }
+  },
+  "className": "cv.io.listmodel.FritzCallList",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data retrieval for FritzBox calllists retrieves via TR64 (using the same PHP backend as the TR64 plugin).",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data retrieval for FritzBox calllists retrieves via TR64 (using the same PHP backend as the TR64 plugin).</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "cv.io.listmodel.IListModel"
+  ],
+  "mixins": [
+    "cv.util.MStringTransforms"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1222
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1293
+      }
+    }
+  },
+  "events": {
+    "refresh": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          " this event is sent when the model itself wants to trigger a list refresh."
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1514
+        },
+        "end": {
+          "line": 45,
+          "column": 34,
+          "index": 1544
+        }
+      }
+    }
+  },
+  "statics": {
+    "REQUIRES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1690
+        },
+        "end": {
+          "line": 54,
+          "column": 21,
+          "index": 1707
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "model": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1859
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1928
+        }
+      },
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "device": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1935
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2017
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyDevice"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "max": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2024
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2103
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "transform": "_parseInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__calllistUri": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2249
+        },
+        "end": {
+          "line": 87,
+          "column": 23,
+          "index": 2268
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyDevice": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2275
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2381
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2388
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3698
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3705
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 5330
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "handleEvent": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 5337
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5378
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.listmodel.IListModel"
+      ]
+    },
+    "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1153
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseFloat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1421
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    },
+    "_parseBoolean": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1685
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1873
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "mixin": "cv.util.MStringTransforms",
+      "appearsIn": [
+        "cv.util.MStringTransforms"
+      ]
+    }
+  }
+}

@@ -1,0 +1,577 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601748,
+  "lastModifiedIso": "2026-06-29T04:00:01.748Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/list/renderer/group/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 55,
+      "column": 0,
+      "index": 1503
+    },
+    "end": {
+      "line": 182,
+      "column": 3,
+      "index": 4538
+    }
+  },
+  "className": "qx.ui.mobile.list.renderer.group.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default group renderer. Used as the default renderer by the",
+      " * {@link qx.ui.mobile.list.provider.Provider}. Configure the renderer",
+      " * by setting the {@link qx.ui.mobile.list.List#delegate} property.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   // Create the list with a delegate that",
+      " *   // configures the list item.",
+      " *   var list = new qx.ui.mobile.list.List({",
+      " *     configureItem: function(item, data, row)",
+      " *     {",
+      " *       item.setImage(\"path/to/image.png\");",
+      " *       item.setTitle(data.title);",
+      " *       item.setSubtitle(data.subtitle);",
+      " *     },",
+      " *",
+      " *     configureGroupItem: function(item, data, group) {",
+      " *       item.setTitle(group + \" \" + data.title);",
+      " *     },",
+      " *",
+      " *     group: function(data, row) {",
+      " *      return {",
+      " *       title: row < 4 ? \"Selectable\" : \"Unselectable\"",
+      " *     };",
+      " *    }",
+      " *  });",
+      " * </pre>",
+      " *",
+      " * This example creates a list with a delegate that configures the list items and groups with",
+      " * the given data.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default group renderer. Used as the default renderer by the\n {@link qx.ui.mobile.list.provider.Provider}. Configure the renderer\n by setting the {@link qx.ui.mobile.list.List#delegate} property.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n\n   var list = new qx.ui.mobile.list.List({\n     configureItem: function(item, data, row)\n     {\n       item.setImage(\"path/to/image.png\");\n       item.setTitle(data.title);\n       item.setSubtitle(data.subtitle);\n     },\n     configureGroupItem: function(item, data, group) {\n       item.setTitle(group + \" \" + data.title);\n     },\n     group: function(data, row) {\n      return {\n       title: row < 4 ? \"Selectable\" : \"Unselectable\"\n     };\n    }\n  });\n </pre>\n<p>This example creates a list with a delegate that configures the list items and groups with\n the given data.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.list.renderer.group.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "layout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 58,
+        "column": 2,
+        "index": 1621
+      },
+      "end": {
+        "line": 67,
+        "column": 3,
+        "index": 1780
+      }
+    }
+  },
+  "members": {
+    "__image": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1800
+        },
+        "end": {
+          "line": 70,
+          "column": 17,
+          "index": 1813
+        }
+      },
+      "appearsIn": []
+    },
+    "__title": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1819
+        },
+        "end": {
+          "line": 71,
+          "column": 17,
+          "index": 1832
+        }
+      },
+      "appearsIn": []
+    },
+    "__rightContainer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1838
+        },
+        "end": {
+          "line": 72,
+          "column": 26,
+          "index": 1860
+        }
+      },
+      "appearsIn": []
+    },
+    "getImageWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the image widget which is used for this renderer.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Image} The image widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the image widget which is used for this renderer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Image} The image widget",
+            "type": "qx.ui.mobile.basic.Image",
+            "description": "The image widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2014
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2065
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Image"
+      },
+      "appearsIn": []
+    },
+    "getTitleWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the title widget which is used for this renderer.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Label} The title widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the title widget which is used for this renderer.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Label} The title widget",
+            "type": "qx.ui.mobile.basic.Label",
+            "description": "The title widget"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2219
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2270
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "setImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the source of the image widget.",
+          "     *",
+          "     * @param source {String} The source to set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the source of the image widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "source {String} The source to set",
+            "paramName": "source",
+            "description": " The source to set",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2392
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2454
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setTitle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value of the title widget.",
+          "     *",
+          "     * @param title {String} The value to set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value of the title widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "title {String} The value to set",
+            "paramName": "title",
+            "description": " The value to set",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2573
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 2745
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setGroup": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the data attribute <code></code>",
+          "     * @param groupTitle {String} the title of the group",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Setter for the data attribute <code></code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "groupTitle {String} the title of the group",
+            "paramName": "groupTitle",
+            "description": " the title of the group",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2876
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 2956
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "groupTitle",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inits the widgets for the renderer.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inits the widgets for the renderer.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3029
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3319
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_createRightContainer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns the right container composite. Override this to adapt the widget code.",
+          "     *",
+          "     * @return {qx.ui.mobile.container.Composite} the right container.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and returns the right container composite. Override this to adapt the widget code.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.container.Composite} the right container.",
+            "type": "qx.ui.mobile.container.Composite",
+            "description": "the right container."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3518
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3648
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_createImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns the image widget. Override this to adapt the widget code.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Image} the image widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and returns the image widget. Override this to adapt the widget code.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Image} the image widget.",
+            "type": "qx.ui.mobile.basic.Image",
+            "description": "the image widget."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3823
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 3992
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Image"
+      },
+      "appearsIn": []
+    },
+    "_createTitle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns the title widget. Override this to adapt the widget code.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Label} the title widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates and returns the title widget. Override this to adapt the widget code.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.mobile.basic.Label} the title widget.",
+            "type": "qx.ui.mobile.basic.Label",
+            "description": "the title widget."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4167
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4332
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "reset": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4357
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4441
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.list.renderer.group.Abstract",
+      "appearsIn": [
+        "qx.ui.mobile.list.renderer.group.Abstract",
+        "qx.core.Object",
+        "qx.core.MProperty"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 179,
+        "column": 2,
+        "index": 4450
+      },
+      "end": {
+        "line": 181,
+        "column": 3,
+        "index": 4534
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,211 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602245,
+  "lastModifiedIso": "2026-06-29T04:00:02.245Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/layer/HtmlCell.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 656
+    },
+    "end": {
+      "line": 136,
+      "column": 3,
+      "index": 3761
+    }
+  },
+  "className": "qx.ui.virtual.layer.HtmlCell",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The HtmlCell layer renders each cell with custom HTML markup. The concrete",
+      " * markup for each cell is provided by a cell provider.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The HtmlCell layer renders each cell with custom HTML markup. The concrete\n markup for each cell is provided by a cell provider.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.virtual.layer.Abstract",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "htmlCellProvider"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 888
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1163
+      }
+    }
+  },
+  "members": {
+    "_getCellSizeStyle": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the cell size taking the box model into account",
+          "     *",
+          "     * @param width {Integer} The cell's (border-box) width in pixel",
+          "     * @param height {Integer} The cell's (border-box) height in pixel",
+          "     * @param insetX {Integer} The cell's horizontal insets, i.e. the sum of",
+          "     *    horizontal paddings and borders",
+          "     * @param insetY {Integer} The cell's vertical insets, i.e. the sum of",
+          "     *    vertical paddings and borders",
+          "     * @return {String} The CSS style string for the cell size",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the cell size taking the box model into account</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Integer} The cell's (border-box) width in pixel",
+            "paramName": "width",
+            "description": " The cell's (border-box) width in pixel",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "height {Integer} The cell's (border-box) height in pixel",
+            "paramName": "height",
+            "description": " The cell's (border-box) height in pixel",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "insetX {Integer} The cell's horizontal insets, i.e. the sum of\n    horizontal paddings and borders",
+            "paramName": "insetX",
+            "description": " The cell's horizontal insets, i.e. the sum of\n    horizontal paddings and borders",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "insetY {Integer} The cell's vertical insets, i.e. the sum of\n    vertical paddings and borders",
+            "paramName": "insetY",
+            "description": " The cell's vertical insets, i.e. the sum of\n    vertical paddings and borders",
+            "type": "Integer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The CSS style string for the cell size",
+            "type": "string",
+            "description": "The CSS style string for the cell size"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1886
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2195
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        },
+        {
+          "name": "insetX",
+          "type": "Integer"
+        },
+        {
+          "name": "insetY",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_fullUpdate": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2220
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3514
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow"
+        },
+        {
+          "name": "firstColumn"
+        },
+        {
+          "name": "rowSizes"
+        },
+        {
+          "name": "columnSizes"
+        }
+      ],
+      "overriddenFrom": "qx.ui.virtual.layer.Abstract",
+      "appearsIn": [
+        "qx.ui.virtual.layer.Abstract"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 133,
+        "column": 2,
+        "index": 3710
+      },
+      "end": {
+        "line": 135,
+        "column": 3,
+        "index": 3757
+      }
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

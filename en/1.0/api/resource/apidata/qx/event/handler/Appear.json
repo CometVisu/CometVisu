@@ -1,0 +1,462 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705600988,
+  "lastModifiedIso": "2026-06-29T04:00:00.988Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Appear.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 651
+    },
+    "end": {
+      "line": 202,
+      "column": 3,
+      "index": 5414
+    }
+  },
+  "className": "qx.event.handler.Appear",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class supports <code>appear</code> and <code>disappear</code> events",
+      " * on DOM level.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class supports <code>appear</code> and <code>disappear</code> events\n on DOM level.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.event.IEventHandler",
+    "qx.core.IDisposable"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1092
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1269
+      }
+    }
+  },
+  "statics": {
+    "PRIORITY": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Priority of this handler"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1525
+        },
+        "end": {
+          "line": 59,
+          "column": 51,
+          "index": 1572
+        }
+      },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Supported event types"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1690
+        }
+      },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Which target check to use"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1750
+        },
+        "end": {
+          "line": 68,
+          "column": 55,
+          "index": 1801
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} Whether the method \"canHandleEvent\" must be called"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1886
+        },
+        "end": {
+          "line": 71,
+          "column": 27,
+          "index": 1909
+        }
+      },
+      "appearsIn": []
+    },
+    "__instances": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} Stores all appear manager instances "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} Stores all appear manager instances"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1975
+        },
+        "end": {
+          "line": 74,
+          "column": 19,
+          "index": 1990
+        }
+      },
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes all appear handlers. Useful after massive DOM manipulations e.g.",
+          "     * through qx.html.Element.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Refreshes all appear handlers. Useful after massive DOM manipulations e.g.\n through qx.html.Element.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2134
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2252
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2460
+        },
+        "end": {
+          "line": 96,
+          "column": 19,
+          "index": 2475
+        }
+      },
+      "appearsIn": []
+    },
+    "__targets": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2481
+        },
+        "end": {
+          "line": 97,
+          "column": 19,
+          "index": 2496
+        }
+      },
+      "appearsIn": []
+    },
+    "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2740
+        },
+        "end": {
+          "line": 106,
+          "column": 35,
+          "index": 2771
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2810
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3090
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3129
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3390
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
+      "appearsIn": [
+        "qx.event.IEventHandler"
+      ]
+    },
+    "refresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method should be called by all DOM tree modifying routines",
+          "     * to check the registered nodes for changes.",
+          "     *",
+          "     * @return {qx.Promise?} a promise, if one or more of the event handlers returned one",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method should be called by all DOM tree modifying routines\n to check the registered nodes for changes.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise?} a promise, if one or more of the event handlers returned one",
+            "type": "qx.Promise?",
+            "description": "a promise, if one or more of the event handlers returned one"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3824
+        },
+        "end": {
+          "line": 177,
+          "column": 5,
+          "index": 4814
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.Promise?"
+      },
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 186,
+        "column": 2,
+        "index": 5010
+      },
+      "end": {
+        "line": 191,
+        "column": 3,
+        "index": 5156
+      }
+    }
+  },
+  "properties": {}
+}

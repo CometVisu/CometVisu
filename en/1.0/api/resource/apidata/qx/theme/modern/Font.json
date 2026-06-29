@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602045,
+  "lastModifiedIso": "2026-06-29T04:00:02.045Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/modern/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 543
+    },
+    "end": {
+      "line": 94,
+      "column": 3,
+      "index": 2993
+    }
+  },
+  "className": "qx.theme.modern.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The modern font theme.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The modern font theme.</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

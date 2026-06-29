@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601711,
+  "lastModifiedIso": "2026-06-29T04:00:01.711Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Decoration.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 535
+    },
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 1784
+    }
+  },
+  "className": "qx.theme.indigo.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The indigo qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The indigo qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.simple.Decoration",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

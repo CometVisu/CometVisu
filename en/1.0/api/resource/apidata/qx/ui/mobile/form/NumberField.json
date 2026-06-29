@@ -1,0 +1,1235 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602921,
+  "lastModifiedIso": "2026-06-29T04:00:02.921Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/NumberField.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 725
+    },
+    "end": {
+      "line": 120,
+      "column": 3,
+      "index": 2949
+    }
+  },
+  "className": "qx.ui.mobile.form.NumberField",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The NumberField is a single-line number input field. It uses HTML5 input field type",
+      " * \"number\" and the attribute \"min\" ,\"max\" and \"step\". The attributes can be used",
+      " * for form validation {@link qx.ui.form.validation.Manager}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The NumberField is a single-line number input field. It uses HTML5 input field type\n \"number\" and the attribute \"min\" ,\"max\" and \"step\". The attributes can be used\n for form validation {@link qx.ui.form.validation.Manager}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.form.Input",
+  "mixins": [
+    "qx.ui.mobile.form.MValue",
+    "qx.ui.mobile.form.MText"
+  ],
+  "interfaces": [
+    "qx.ui.form.IStringForm"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 2,
+        "index": 1171
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1206
+      }
+    }
+  },
+  "properties": {
+    "defaultCssClass": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1433
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1504
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": "number-field"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
+    },
+    "minimum": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1639
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1726
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": "",
+        "apply": "_onChangeMinimum"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The minimum text field value (may be negative). This value must be smaller",
+          "     * than {@link #minimum}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The minimum text field value (may be negative). This value must be smaller\n than {@link #minimum}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maximum": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1860
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1947
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": "",
+        "apply": "_onChangeMaximum"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum text field value (may be negative). This value must be larger",
+          "     * than {@link #maximum}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum text field value (may be negative). This value must be larger\n than {@link #maximum}.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "step": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2016
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2097
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": "",
+        "apply": "_onChangeStep"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The amount to increment on each event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The amount to increment on each event.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "liveUpdate": {
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2809
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2870
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the {@link #changeValue} event should be fired on every key",
+          "     * input. If set to true, the changeValue event is equal to the",
+          "     * {@link #input} event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the {@link #changeValue} event should be fired on every key\n input. If set to true, the changeValue event is equal to the\n {@link #input} event.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "maxLength": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1310
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1431
+        }
+      },
+      "json": {
+        "check": "PositiveInteger",
+        "nullable": true,
+        "apply": "_applyMaxLength"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maximal number of characters that can be entered in the input field.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximal number of characters that can be entered in the input field.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    },
+    "placeholder": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1629
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1745
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyPlaceholder"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * String value which will be shown as a hint if the field is all of:",
+          "     * unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder",
+          "     * text.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>String value which will be shown as a hint if the field is all of:\n unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder\n text.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    },
+    "readOnly": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1794
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1906
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyAttribute"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the field is read only "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the field is read only</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    }
+  },
+  "members": {
+    "_getType": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2323
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2364
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.mobile.form.Input",
+      "appearsIn": [
+        "qx.ui.mobile.form.Input"
+      ]
+    },
+    "_onChangeStep": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when changed the property step.",
+          "     * Delegates value change on DOM element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when changed the property step.\n Delegates value change on DOM element.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2479
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2553
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeMaximum": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when changed the property maximum.",
+          "     * Delegates value change on DOM element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when changed the property maximum.\n Delegates value change on DOM element.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2671
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2747
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeMinimum": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when changed the property minimum.",
+          "     * Delegates value change on DOM element.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when changed the property minimum.\n Delegates value change on DOM element.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2865
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 2941
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__oldValue": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3078
+        },
+        "end": {
+          "line": 114,
+          "column": 20,
+          "index": 3094
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__inputTimeoutHandle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3100
+        },
+        "end": {
+          "line": 115,
+          "column": 30,
+          "index": 3126
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__hasFocus": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3132
+        },
+        "end": {
+          "line": 116,
+          "column": 20,
+          "index": 3148
+        }
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_convertValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the incoming value.",
+          "     *",
+          "     * @param value {var} The value to convert",
+          "     * @return {var} The converted value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the incoming value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to convert",
+            "paramName": "value",
+            "description": " The value to convert",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The converted value",
+            "type": "var",
+            "description": "The converted value"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3302
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3511
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>focus</code> event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>focus</code> event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3579
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3627
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onBlur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>blur</code> event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handler for <code>blur</code> event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3694
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3742
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "hasFocus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether this widget has focus or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether this widget has focus or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> or <code>false</code>",
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 3883
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3931
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value.",
+          "     *",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to set",
+            "paramName": "value",
+            "description": " The value to set",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 4027
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set value.",
+          "     *",
+          "     * @return {var} The set value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the set value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var} The set value",
+            "type": "var",
+            "description": "The set value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4407
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4539
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4587
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4634
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue",
+        "qx.ui.form.IStringForm",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onChangeContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #changeValue} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the {@link #changeValue} event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event, containing the changed content.",
+            "paramName": "evt",
+            "description": " The event, containing the changed content.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 4819
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 4913
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_onInput": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #input} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler. Called when the {@link #input} event occurs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "evt {qx.event.type.Data} The event, containing the changed content.",
+            "paramName": "evt",
+            "description": " The event, containing the changed content.",
+            "type": "qx.event.type.Data"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5092
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 5383
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_getCaretPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the caret position of this widget.",
+          "     * @return {Integer} the caret position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the caret position of this widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} the caret position.",
+            "type": "Integer",
+            "description": "the caret position."
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 5501
+        },
+        "end": {
+          "line": 228,
+          "column": 5,
+          "index": 5763
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_setCaretPosition": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the caret position on this widget.",
+          "     * @param position {Integer} the caret position.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the caret position on this widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "position {Integer} the caret position.",
+            "paramName": "position",
+            "description": " the caret position.",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 5886
+        },
+        "end": {
+          "line": 243,
+          "column": 5,
+          "index": 6193
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "__fireChangeValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires the {@link #changeValue} event.",
+          "     *",
+          "     * @param value {var} The current value to fire.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fires the {@link #changeValue} event.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The current value to fire.",
+            "paramName": "value",
+            "description": " The current value to fire.",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 6321
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6482
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MValue"
+      ],
+      "mixin": "qx.ui.mobile.form.MValue"
+    },
+    "_applyMaxLength": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2136
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2217
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    },
+    "_applyPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2246
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2562
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Points the focus of the form to this widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Points the focus of the form to this widget.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2637
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2872
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    },
+    "blur": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the focus from this widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the focus from this widget.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2938
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3085
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.mobile.form.MText"
+      ],
+      "mixin": "qx.ui.mobile.form.MText"
+    }
+  },
+  "statics": {}
+}

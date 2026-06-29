@@ -1,0 +1,211 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705602316,
+  "lastModifiedIso": "2026-06-29T04:00:02.316Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/renderer/IFormRenderer.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 626
+    },
+    "end": {
+      "line": 48,
+      "column": 3,
+      "index": 1685
+    }
+  },
+  "className": "qx.ui.form.renderer.IFormRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This interface defines the necessary features a form renderer should have.",
+      " * Keep in mind that all renderes has to be widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This interface defines the necessary features a form renderer should have.\n Keep in mind that all renderes has to be widgets.</p>"
+      }
+    ]
+  },
+  "members": {
+    "addItems": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a group of form items with the corresponding names. The names should",
+          "     * be displayed as hint for the user what to do with the form item.",
+          "     * The title is optional and can be used as grouping for the given form",
+          "     * items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} An array of form items to render.",
+          "     * @param names {String[]} An array of names for the form items.",
+          "     * @param title {String?} A title of the group you are adding.",
+          "     * @param itemsOptions {Array?null} The added additional data.",
+          "     * @param headerOptions {Map?null} The options map as defined by the form",
+          "     *   for the current group header.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a group of form items with the corresponding names. The names should\n be displayed as hint for the user what to do with the form item.\n The title is optional and can be used as grouping for the given form\n items.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "items {qx.ui.core.Widget[]} An array of form items to render.",
+            "paramName": "items",
+            "description": " An array of form items to render.",
+            "type": "qx.ui.core.Widget[]"
+          },
+          {
+            "name": "@param",
+            "body": "names {String[]} An array of names for the form items.",
+            "paramName": "names",
+            "description": " An array of names for the form items.",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "title {String?} A title of the group you are adding.",
+            "paramName": "title",
+            "description": " A title of the group you are adding.",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "itemsOptions {Array?null} The added additional data.",
+            "paramName": "itemsOptions",
+            "description": " The added additional data.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "headerOptions {Map?null} The options map as defined by the form\n   for the current group header.",
+            "paramName": "headerOptions",
+            "description": " The options map as defined by the form\n   for the current group header.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1363
+        },
+        "end": {
+          "line": 37,
+          "column": 65,
+          "index": 1424
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        },
+        {
+          "name": "names",
+          "type": "String[]"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "itemsOptions",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "headerOptions",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a button the form renderer.",
+          "     *",
+          "     * @param button {qx.ui.form.Button} A button which should be added to",
+          "     *   the form.",
+          "     * @param options {Map?null} The added additional data.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a button the form renderer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "button {qx.ui.form.Button} A button which should be added to\n   the form.",
+            "paramName": "button",
+            "description": " A button which should be added to\n   the form.",
+            "type": "qx.ui.form.Button"
+          },
+          {
+            "name": "@param",
+            "body": "options {Map?null} The added additional data.",
+            "paramName": "options",
+            "description": " The added additional data.",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1648
+        },
+        "end": {
+          "line": 46,
+          "column": 33,
+          "index": 1677
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,0 +1,243 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601496,
+  "lastModifiedIso": "2026-06-29T04:00:01.496Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/graphql/Client.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 898
+    },
+    "end": {
+      "line": 122,
+      "column": 3,
+      "index": 4075
+    }
+  },
+  "className": "qx.io.graphql.Client",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides a simple GraphQl client (https://graphql.org/).",
+      " * For transport, it is based on internally on the fetch API",
+      " * (https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)",
+      " * which, if needed, must be directly configured via the `init` parameter of the",
+      " * constructor, until a more generalized qx.io API has been developed.",
+      " * @experimental The API might change. Feedback is appreciated.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides a simple GraphQl client (https://graphql.org/).\n For transport, it is based on internally on the fetch API\n (https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)\n which, if needed, must be directly configured via the <code>init</code> parameter of the\n constructor, until a more generalized qx.io API has been developed.</p>"
+      }
+    ],
+    "@experimental": [
+      {
+        "name": "@experimental",
+        "body": "The API might change. Feedback is appreciated."
+      }
+    ]
+  },
+  "superClass": "qx.io.transport.AbstractClient",
+  "statics": {
+    "registerTransport": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1000
+        },
+        "end": {
+          "line": 31,
+          "column": 71,
+          "index": 1067
+        }
+      },
+      "appearsIn": [
+        "qx.io.transport.AbstractClient"
+      ]
+    }
+  },
+  "events": {
+    "error": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event fired when a request results in an error. Event data is an instance of",
+          "     * {@link qx.io.exception.Transport}, {@link qx.io.exception.Protocol},",
+          "     * or {@link qx.io.exception.Cancel}.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event fired when a request results in an error. Event data is an instance of\n {@link qx.io.exception.Transport}, {@link qx.io.exception.Protocol},\n or {@link qx.io.exception.Cancel}.</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1308
+        },
+        "end": {
+          "line": 40,
+          "column": 31,
+          "index": 1335
+        }
+      }
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "transportOrUri"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 49,
+        "column": 2,
+        "index": 1686
+      },
+      "end": {
+        "line": 52,
+        "column": 3,
+        "index": 1772
+      }
+    }
+  },
+  "members": {
+    "send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given GraphQl query. See https://graphql.org/learn/queries/",
+          "     *",
+          "     * @param {qx.io.graphql.protocol.Request} request The GraphQl request object.",
+          "     * @return {qx.Promise} Promise that resolves with the data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given GraphQl query. See https://graphql.org/learn/queries/</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.graphql.protocol.Request} request The GraphQl request object.",
+            "paramName": "request",
+            "description": "The GraphQl request object.",
+            "type": "qx.io.graphql.protocol.Request"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.Promise} Promise that resolves with the data",
+            "type": "qx.Promise",
+            "description": "Promise that resolves with the data"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 2038
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 3075
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "request",
+          "type": "qx.io.graphql.protocol.Request"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "_handleErrors": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle the errors reported by the GraphQL endpoint. The response",
+          "     * can contain several errors, but we can only throw one of them.",
+          "     * However, we can fire an event for each error, which might be useful",
+          "     * if they are to be logged. The errors that are thrown or fired as",
+          "     * event data contain the original response object in the `data` property",
+          "     *",
+          "     * @param {qx.io.graphql.protocol.Response} response The response object",
+          "     * @return {qx.io.exception.Protocol}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle the errors reported by the GraphQL endpoint. The response\n can contain several errors, but we can only throw one of them.\n However, we can fire an event for each error, which might be useful\n if they are to be logged. The errors that are thrown or fired as\n event data contain the original response object in the <code>data</code> property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.io.graphql.protocol.Response} response The response object",
+            "paramName": "response",
+            "description": "The response object",
+            "type": "qx.io.graphql.protocol.Response"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.exception.Protocol}",
+            "type": "qx.io.exception.Protocol",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 3591
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 4011
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": "qx.io.graphql.protocol.Response"
+        }
+      ],
+      "returnType": {
+        "type": "qx.io.exception.Protocol"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

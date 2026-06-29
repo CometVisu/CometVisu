@@ -1,0 +1,254 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705601897,
+  "lastModifiedIso": "2026-06-29T04:00:01.897Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/celleditor/Dynamic.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 802
+    },
+    "end": {
+      "line": 145,
+      "column": 3,
+      "index": 4392
+    }
+  },
+  "className": "qx.ui.table.celleditor.Dynamic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell editor factory which can dynamically exchange the cell editor",
+      " * based on information retrieved at runtime. This is useful when different",
+      " * rows in a column should have different cellEditors based on cell content",
+      " * or row meta data. A typical example would be a spreadsheet that has different",
+      " * kind of data in one column.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell editor factory which can dynamically exchange the cell editor\n based on information retrieved at runtime. This is useful when different\n rows in a column should have different cellEditors based on cell content\n or row meta data. A typical example would be a spreadsheet that has different\n kind of data in one column.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "interfaces": [
+    "qx.ui.table.ICellEditorFactory"
+  ],
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "cellEditorFactoryFunction"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1247
+      },
+      "end": {
+        "line": 48,
+        "column": 3,
+        "index": 1437
+      }
+    }
+  },
+  "properties": {
+    "cellEditorFactoryFunction": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2239
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2337
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function that returns a cellEditorFactory instance which will be",
+          "     * used for the row that is currently being edited. The function is",
+          "     * defined like this:",
+          "     * <pre class=\"javascript\">",
+          "     * myTable.getTableColumnModel().setCellEditorFactory(function(cellInfo){",
+          "     *   // based on the cellInfo map or other information, return the",
+          "     *   // appropriate cellEditorFactory",
+          "     *   if (cellInfo.row == 5)",
+          "     *     return new qx.ui.table.celleditor.CheckBox;",
+          "     *   else",
+          "     *     return new qx.ui.table.celleditor.TextField;",
+          "     * });",
+          "     * </pre>",
+          "     *"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function that returns a cellEditorFactory instance which will be\n used for the row that is currently being edited. The function is\n defined like this:\n </p>\n<pre class=\"javascript\">\n myTable.getTableColumnModel().setCellEditorFactory(function(cellInfo){\n\n\n   if (cellInfo.row == 5)\n     return new qx.ui.table.celleditor.CheckBox;\n   else\n     return new qx.ui.table.celleditor.TextField;\n });\n </pre>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__cellEditorFactory": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2545
+        },
+        "end": {
+          "line": 86,
+          "column": 29,
+          "index": 2570
+        }
+      },
+      "appearsIn": []
+    },
+    "__infos": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2576
+        },
+        "end": {
+          "line": 87,
+          "column": 17,
+          "index": 2589
+        }
+      },
+      "appearsIn": []
+    },
+    "createCellEditor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the cell editor based on the cellEditorFactory instance",
+          "     * returned by the function stored in the cellEditorFactoryFunction",
+          "     * property. Passes the cellInfo map to the function.",
+          "     *",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *      create.",
+          "     * @return {qx.ui.core.Widget}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the cell editor based on the cellEditorFactory instance\n returned by the function stored in the cellEditorFactoryFunction\n property. Passes the cellInfo map to the function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
+            "paramName": "cellInfo",
+            "description": " A map containing the information about the cell to\n      create.",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.Widget}",
+            "type": "qx.ui.core.Widget",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2955
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3546
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    },
+    "getCellEditorValue": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3585
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 4139
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellEditor"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.table.ICellEditorFactory"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 142,
+        "column": 2,
+        "index": 4335
+      },
+      "end": {
+        "line": 144,
+        "column": 3,
+        "index": 4388
+      }
+    }
+  },
+  "statics": {}
+}

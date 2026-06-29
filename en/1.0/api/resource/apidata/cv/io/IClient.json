@@ -1,0 +1,1402 @@
+{
+  "version": 0.3,
+  "lastModified": 1782705543709,
+  "lastModifiedIso": "2026-06-29T03:59:03.709Z",
+  "classFilename": "../../client/source/class/cv/io/IClient.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 872
+    },
+    "end": {
+      "line": 236,
+      "column": 3,
+      "index": 6958
+    }
+  },
+  "className": "cv.io.IClient",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface all CometVisu-Client must implement.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface all CometVisu-Client must implement.</p>"
+      }
+    ]
+  },
+  "properties": {
+    "connected": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 1056
+        },
+        "end": {
+          "line": 34,
+          "column": 5,
+          "index": 1148
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeConnected"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "server": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1225
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1314
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changedServer"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The server the client is currently speaking to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The server the client is currently speaking to</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "dataReceived": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1439
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1502
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * needed to be able to check if the incoming update is the initial answer or a successing update",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>needed to be able to check if the incoming update is the initial answer or a successing update</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1571
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1628
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name this client is registered for",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name this client is registered for</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "getBackend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current backend configuration",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current backend configuration</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1860
+        },
+        "end": {
+          "line": 72,
+          "column": 19,
+          "index": 1875
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the backend type",
+          "     * @return {string} e.g. openhab, mqtt or knxd",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the backend type</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} e.g. openhab, mqtt or knxd",
+            "type": "string",
+            "description": "e.g. openhab, mqtt or knxd"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1981
+        },
+        "end": {
+          "line": 78,
+          "column": 16,
+          "index": 1993
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "hasProvider": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true, when the backend provides a special data provider for this kind of data",
+          "     * @param name {String}",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true, when the backend provides a special data provider for this kind of data</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String}",
+            "paramName": "name",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2162
+        },
+        "end": {
+          "line": 85,
+          "column": 24,
+          "index": 2182
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getProviderUrl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * URL to the provided data",
+          "     * @param name",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>URL to the provided data</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name",
+            "paramName": "name",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2280
+        },
+        "end": {
+          "line": 92,
+          "column": 27,
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getProviderData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the provided data directly from client, return null when not implemented",
+          "     * @param name {String}",
+          "     * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+          "     * @return {Promise<variant>|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the provided data directly from client, return null when not implemented</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String}",
+            "paramName": "name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<variant>|null}",
+            "type": "Promise<variant>|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2559
+        },
+        "end": {
+          "line": 100,
+          "column": 47,
+          "index": 2602
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "format",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<variant>|null"
+      },
+      "appearsIn": []
+    },
+    "getProviderConvertFunction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.",
+          "     * @param name {String}",
+          "     * @param format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mapping function the convert the data from the backend to a format the CometVisu data provider consumer can process.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String}",
+            "paramName": "name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
+            "paramName": "format",
+            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2856
+        },
+        "end": {
+          "line": 107,
+          "column": 47,
+          "index": 2899
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "format",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setInitialAddresses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set a subset of addresses the client should request initially (e.g. the ones one the start page).",
+          "     * This can be used to increase the init state loading speed by sending an initial request with a smaller",
+          "     * subset of addresses to the backend and send the rest later.",
+          "     * @param addresses {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set a subset of addresses the client should request initially (e.g. the ones one the start page).\n This can be used to increase the init state loading speed by sending an initial request with a smaller\n subset of addresses to the backend and send the rest later.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "addresses {Array}",
+            "paramName": "addresses",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3236
+        },
+        "end": {
+          "line": 115,
+          "column": 37,
+          "index": 3269
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "subscribe": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribe to the addresses in the parameter. The second parameter",
+          "     * (filter) is optional",
+          "     *",
+          "     * @param addresses {Array<String>} addresses to subscribe to",
+          "     * @param filters {Array?} Filters",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Subscribe to the addresses in the parameter. The second parameter\n (filter) is optional</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "addresses {Array<String>} addresses to subscribe to",
+            "paramName": "addresses",
+            "description": " addresses to subscribe to",
+            "type": "Array<String>"
+          },
+          {
+            "name": "@param",
+            "body": "filters {Array?} Filters",
+            "paramName": "filters",
+            "description": " Filters",
+            "optional": true,
+            "type": "Array"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3512
+        },
+        "end": {
+          "line": 125,
+          "column": 36,
+          "index": 3544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array<String>"
+        },
+        {
+          "name": "filters",
+          "type": "Array",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "addSubscription": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a single subscription",
+          "     * @param address {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add a single subscription</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String}",
+            "paramName": "address",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3631
+        },
+        "end": {
+          "line": 131,
+          "column": 31,
+          "index": 3658
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "login": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function starts the communication by a login and then runs the",
+          "     * ongoing communication task",
+          "     *",
+          "     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription",
+          "     *                            to addresses (default: false)",
+          "     * @param credentials {Map} map with \"username\" and \"password\" (optional)",
+          "     * @param callback {Function} call this function when login is done",
+          "     * @param context {Object} context for the callback (this)",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function starts the communication by a login and then runs the\n ongoing communication task</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "loginOnly {Boolean} if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
+            "paramName": "loginOnly",
+            "description": " if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "credentials {Map} map with \"username\" and \"password\" (optional)",
+            "paramName": "credentials",
+            "description": " map with \"username\" and \"password\" (optional)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} call this function when login is done",
+            "paramName": "callback",
+            "description": " call this function when login is done",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object} context for the callback (this)",
+            "paramName": "context",
+            "description": " context for the callback (this)",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4177
+        },
+        "end": {
+          "line": 144,
+          "column": 55,
+          "index": 4228
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loginOnly",
+          "type": "boolean"
+        },
+        {
+          "name": "credentials",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "authorize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Authorize a Request by adding the necessary headers.",
+          "     * @param req {qx.io.request.Xhr}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Authorize a Request by adding the necessary headers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "req {qx.io.request.Xhr}",
+            "paramName": "req",
+            "type": "qx.io.request.Xhr"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4349
+        },
+        "end": {
+          "line": 150,
+          "column": 21,
+          "index": 4366
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "req",
+          "type": "qx.io.request.Xhr"
+        }
+      ],
+      "appearsIn": []
+    },
+    "canAuthorize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Client is able to authorize a request, by knowing the credentials",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Client is able to authorize a request, by knowing the credentials</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4487
+        },
+        "end": {
+          "line": 156,
+          "column": 21,
+          "index": 4504
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getResourcePath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the relative path to a resource on the currently used backend",
+          "     *",
+          "     * @param name {String} Name of the resource (e.g. login, read, write, chart)",
+          "     * @param params {Map?} optional data needed to generate the resource path",
+          "     * @return {String|null} relative path to the resource, returns `null` when the backend does not provide that resource",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>return the relative path to a resource on the currently used backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
+            "paramName": "name",
+            "description": " Name of the resource (e.g. login, read, write, chart)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "params {Map?} optional data needed to generate the resource path",
+            "paramName": "params",
+            "description": " optional data needed to generate the resource path",
+            "optional": true,
+            "type": "Map"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|null} relative path to the resource, returns <code>null</code> when the backend does not provide that resource",
+            "type": "String|null",
+            "description": "relative path to the resource, returns <code>null</code> when the backend does not provide that resource"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4894
+        },
+        "end": {
+          "line": 165,
+          "column": 36,
+          "index": 4926
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "setResourcePath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the relative path to a resource on the currently used backend",
+          "     * @param name {String} Name of the resource (e.g. login, read, write, chart)",
+          "     * @param path {String} relative path to the resource",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the relative path to a resource on the currently used backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
+            "paramName": "name",
+            "description": " Name of the resource (e.g. login, read, write, chart)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} relative path to the resource",
+            "paramName": "path",
+            "description": " relative path to the resource",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 172,
+          "column": 4,
+          "index": 5162
+        },
+        "end": {
+          "line": 172,
+          "column": 34,
+          "index": 5192
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasCustomChartsDataProcessor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This client provides an own processor for charts data",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This client provides an own processor for charts data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5301
+        },
+        "end": {
+          "line": 178,
+          "column": 37,
+          "index": 5334
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "processChartsData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle",
+          "     * @param data {any}",
+          "     * @param config {{scaling: number, offset: number}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {any}",
+            "paramName": "data",
+            "type": "any"
+          },
+          {
+            "name": "@param",
+            "body": "config {{scaling: number, offset: number}}",
+            "paramName": "config",
+            "description": "}",
+            "type": "{scaling: number, offset: number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 5557
+        },
+        "end": {
+          "line": 185,
+          "column": 38,
+          "index": 5591
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "any"
+        },
+        {
+          "name": "config",
+          "type": "{scaling: number, offset: number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function sends a value",
+          "     * @param address {String} address to send the value to",
+          "     * @param value {String} value to send",
+          "     * @param options {Object} optional options, depending on backend",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This function sends a value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "address {String} address to send the value to",
+            "paramName": "address",
+            "description": " address to send the value to",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {String} value to send",
+            "paramName": "value",
+            "description": " value to send",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "options {Object} optional options, depending on backend",
+            "paramName": "options",
+            "description": " optional options, depending on backend",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 5829
+        },
+        "end": {
+          "line": 194,
+          "column": 37,
+          "index": 5862
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLastError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the last recorded error",
+          "     *",
+          "     * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the last recorded error</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
+            "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 201,
+          "column": 4,
+          "index": 6042
+        },
+        "end": {
+          "line": 201,
+          "column": 21,
+          "index": 6059
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*"
+      },
+      "appearsIn": []
+    },
+    "restart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the connection",
+          "     * @param full",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restart the connection</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "full",
+            "paramName": "full",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 207,
+          "column": 4,
+          "index": 6131
+        },
+        "end": {
+          "line": 207,
+          "column": 20,
+          "index": 6147
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "full"
+        }
+      ],
+      "appearsIn": []
+    },
+    "terminate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called directly before the page gets unloaded. Can be used to disconnect correctly.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called directly before the page gets unloaded. Can be used to disconnect correctly.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 6261
+        },
+        "end": {
+          "line": 212,
+          "column": 18,
+          "index": 6275
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "update": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle the incoming state updates. This method is not implemented by the client itself.",
+          "     * It is injected by the project using the client.",
+          "     * @param json",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle the incoming state updates. This method is not implemented by the client itself.\n It is injected by the project using the client.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "json",
+            "paramName": "json",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 219,
+          "column": 4,
+          "index": 6467
+        },
+        "end": {
+          "line": 219,
+          "column": 19,
+          "index": 6482
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "json"
+        }
+      ],
+      "appearsIn": []
+    },
+    "record": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to record client communication with backend",
+          "     * @param type {String} type of event to record",
+          "     * @param data {Object} data to record",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to record client communication with backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} type of event to record",
+            "paramName": "type",
+            "description": " type of event to record",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object} data to record",
+            "paramName": "data",
+            "description": " data to record",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 6669
+        },
+        "end": {
+          "line": 226,
+          "column": 25,
+          "index": 6690
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "showError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to provide an error handler for client errors",
+          "     * @param type {Number} one of cv.io.Client.ERROR_CODES",
+          "     * @param message {String} detailed error message",
+          "     * @param args",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Can be overridden to provide an error handler for client errors</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {Number} one of cv.io.Client.ERROR_CODES",
+            "paramName": "type",
+            "description": " one of cv.io.Client.ERROR_CODES",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "message {String} detailed error message",
+            "paramName": "message",
+            "description": " detailed error message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args",
+            "paramName": "args",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6917
+        },
+        "end": {
+          "line": 234,
+          "column": 37,
+          "index": 6950
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "number"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "args"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}
