@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *AbstractFsApi* | **checkEnvironment** | **GET** /fs/check | Check filesystem environment (access rights, etc)
 *AbstractFsApi* | **create** | **POST** /fs | Create a new file or folder on the host
 *AbstractFsApi* | **delete** | **DELETE** /fs | Deletes a file/folder
+*AbstractFsApi* | **copy** | **PUT** /fs/copy | Copy folder or file to a new place
 *AbstractFsApi* | **move** | **PUT** /fs/move | Move folder or file to a new place
 *AbstractFsApi* | **read** | **GET** /fs | Return directory listing or file content
 *AbstractFsApi* | **update** | **PUT** /fs | Update an existing file

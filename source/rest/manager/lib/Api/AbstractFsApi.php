@@ -91,6 +91,26 @@ abstract class AbstractFsApi
     }
 
     /**
+     * PUT copy
+     * Summary: Copy folder or file to a new place
+     *
+     * @param ServerRequestInterface $request  Request
+     * @param ResponseInterface      $response Response
+     * @param array|null             $args     Path arguments
+     *
+     * @return ResponseInterface
+     * @throws HttpNotImplementedException to force implementation class to override this method
+     */
+    public function copy(ServerRequestInterface $request, ResponseInterface $response, array $args)
+    {
+        $queryParams = $request->getQueryParams();
+        $src = (key_exists('src', $queryParams)) ? $queryParams['src'] : null;
+        $target = (key_exists('target', $queryParams)) ? $queryParams['target'] : null;
+        $message = "How about implementing copy as a PUT method in OpenAPIServer\Api\FsApi class?";
+        throw new HttpNotImplementedException($request, $message);
+    }
+
+    /**
      * POST create
      * Summary: Create a new file or folder on the host
      *

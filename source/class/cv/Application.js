@@ -934,7 +934,7 @@ qx.Class.define('cv.Application', {
 
       const notification = {
         topic: 'cv.error.' + sequence,
-        target: cv.ui.PopupHandler,
+        target: 'popup',
         title: qx.locale.Manager.tr('An error occured'),
         message: this.__formatErrorPopupMessage(exString || ex.stack),
         severity: 'urgent',
@@ -1445,6 +1445,62 @@ qx.Class.define('cv.Application', {
               );
             }
             this.setManagerChecked(true);
+
+            if (env.custom_visu_config_xsd_missing === true && !localStorage.getItem('cv.custom_visu_config_xsd_missing')) {
+              this.warn('custom_visu_config.xsd is missing, using default one as fallback');
+              cv.Config.enableCache = false; // avoid caching the popup notification
+
+              const notification = {
+                topic: 'cv.info.custom_visu_config_xsd_missing',
+                target: 'popup',
+                title: qx.locale.Manager.tr('Missing file "custom_visu_config.xsd"'),
+                message: qx.locale.Manager.tr(
+                  'The file "custom_visu_config.xsd" is missing in your config-folder. Do you want to create a default file now? This file is needed for full tile-config validation support.'
+                ),
+                unique: true,
+                actions: {
+                  link: [
+                    {
+                      title: qx.locale.Manager.tr('Ignore'),
+                      type: 'ignore',
+                      action(ev) {
+                        if (qx.core.Environment.get('html.storage.local')) {
+                          localStorage.setItem('cv.custom_visu_config_xsd_missing', 'true');
+                        }
+                      },
+                      needsConfirmation: false
+                    },
+                    {
+                      title: qx.locale.Manager.tr('Yes'),
+                      type: 'copy',
+                      action(ev) {
+                         cv.io.rest.Client.getFsClient().copySync(
+                          { src: 'resource/custom_visu_config.xsd', target: 'custom_visu_config.xsd', force: false},
+                          function (err) {
+                            if (err) {
+                              this.error('Failed to copy default custom_visu_config.xsd', err);
+                            }
+                          },
+                          this
+                        );
+                      },
+                      needsConfirmation: false
+                    }
+                  ]
+                }
+              };
+              if (cv.TemplateEngine.getInstance().isDomFinished()) {
+                cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+              } else {
+                qx.event.message.Bus.subscribe(
+                  'setup.dom.finished',
+                  function () {
+                    cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+                  },
+                  this
+                );
+              }
+            }
 
             if (window.Sentry) {
               if ('server_release' in env) {

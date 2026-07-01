@@ -7,16 +7,16 @@ const chokidar = require('chokidar');
 const { exec } = require('child_process');
 const { AbstractCompileHandler } = require('../AbstractCompileHandler');
 const { CvBuildTarget } = require('./BuildTarget');
-const types = require("@babel/types");
+const types = require('@babel/types');
 
 // because the qx compiler does not handle files in the root resource folder well
 // we add them here
 const additionalResources = [
   'visu_config*.xsd',
+  'custom_visu_config.xsd',
   'hidden-schema.json',
   'cometvisu_management.css',
   'config/visu_config*.xml',
-  'config/custom_visu_config.xsd',
   'config/media/*templates*.xml',
   'config/hidden.php'
 ];
@@ -51,36 +51,40 @@ const deleteBefore = [
  */
 function collapseMemberExpression(node) {
   var done = false;
+  /**
+   *
+   * @param node
+   */
   function doCollapse(node) {
-    if (node.type == "ThisExpression") {
-      return "this";
+    if (node.type == 'ThisExpression') {
+      return 'this';
     }
-    if (node.type == "Super") {
-      return "super";
+    if (node.type == 'Super') {
+      return 'super';
     }
-    if (node.type == "Identifier") {
+    if (node.type == 'Identifier') {
       return node.name;
     }
-    if (node.type == "ArrayExpression") {
+    if (node.type == 'ArrayExpression') {
       var result = [];
       node.elements.forEach(element => result.push(doCollapse(element)));
       return result;
     }
-    if (node.type != "MemberExpression") {
-      return "(" + node.type + ")";
+    if (node.type != 'MemberExpression') {
+      return '(' + node.type + ')';
     }
     if (types.isIdentifier(node.object)) {
       let str = node.object.name;
       if (node.property.name) {
-        str += "." + node.property.name;
+        str += '.' + node.property.name;
       } else {
         done = true;
       }
       return str;
     }
     var str;
-    if (node.object.type == "ArrayExpression") {
-      str = "[]";
+    if (node.object.type == 'ArrayExpression') {
+      str = '[]';
     } else {
       str = doCollapse(node.object);
     }
@@ -91,7 +95,7 @@ function collapseMemberExpression(node) {
     if (node.computed) {
       done = true;
     } else if (node.property.name) {
-      str += "." + node.property.name;
+      str += '.' + node.property.name;
     } else {
       done = true;
     }
@@ -162,16 +166,16 @@ class CvCompileHandler extends AbstractCompileHandler {
   _onCompilingClass(ev) {
     const data = ev.getData();
     const className = data.classFile.getClassName();
-    if (className.startsWith('cv.ui.structure.tile.components.')
-      || className.startsWith('cv.ui.structure.tile.elements.')
-      || className.startsWith('cv.ui.structure.tile.widgets.')) {
+    if (className.startsWith('cv.ui.structure.tile.components.') ||
+      className.startsWith('cv.ui.structure.tile.elements.') ||
+      className.startsWith('cv.ui.structure.tile.widgets.')) {
       // this is a terrible hack to get rid of this warning from the babel compiler:
       //    Unexpected termination when testing for unresolved symbols, node type ClassProperty
       // it is caused by the static observedAttributes = ... line in the QxConnector class
       // All the hack does is appending "ClassProperty: 1" to "DO_NOT_WARN_TYPES"
       const plugin = data.classFile._babelClassPlugins();
       const t = data.classFile;
-      plugin.Compiler.visitor.Identifier = (path) => {
+      plugin.Compiler.visitor.Identifier = path => {
         path.node.name = t.encodePrivate(path.node.name, true, path.loc);
 
         // These are AST node types which do not cause undefined references for the identifier,
@@ -236,8 +240,8 @@ class CvCompileHandler extends AbstractCompileHandler {
         while (root) {
           let parentType = root.parentPath.node.type;
           if (
-            parentType == "MemberExpression" ||
-            parentType == "OptionalMemberExpression"
+            parentType == 'MemberExpression' ||
+            parentType == 'OptionalMemberExpression'
           ) {
             root = root.parentPath;
             continue;
@@ -246,23 +250,23 @@ class CvCompileHandler extends AbstractCompileHandler {
             return;
           }
           if (!DO_NOT_WARN_TYPES[parentType]) {
-            t.addMarker("testForUnresolved", path.node.loc, parentType);
+            t.addMarker('testForUnresolved', path.node.loc, parentType);
           }
           break;
         }
 
         let name = collapseMemberExpression(root.node);
-        if (name.startsWith("(")) {
+        if (name.startsWith('(')) {
           return;
         }
-        let members = name.split(".");
+        let members = name.split('.');
         t.addReference(members, root.node.loc);
       };
       data.classFile._babelClassPlugins = () => plugin;
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
+   
   _onCompiledClass(ev) {
     const data = ev.getData();
     if (data.classFile.getClassName() === 'cv.Application') {

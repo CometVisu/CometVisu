@@ -3,3 +3,5 @@ visu_*
 
 # but keep default configs
 !visu_config.xml
+
+custom_visu_config.xsd

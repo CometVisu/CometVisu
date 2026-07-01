@@ -38,6 +38,17 @@ class FileHandler
             throw new Exception("File already exists", 406);
         } else {
             FileHandler::saveFile($file, $content, $hash);
+            if (str_contains($file, "visu_config") && str_ends_with($file, ".xml") && str_contains($content, "visu_config_tile.xsd")) {
+                // make sure that the custom_visu_config.xsd file is copied to the config folder, so that the manager can create a default file if it is missing
+                $apiConfig = include "config.php";
+                $customVisuConfigXsd = $apiConfig->resourcesDir . "/custom_visu_config.xsd";
+                if (file_exists($customVisuConfigXsd)) {
+                    $target = $apiConfig->configDir . "/custom_visu_config.xsd";
+                    if (!file_exists($target)) {
+                        copy($customVisuConfigXsd, $target);
+                    }
+                }
+            }
         }
     }
 
@@ -58,6 +69,15 @@ class FileHandler
     {
         try {
             return rename($sourcePath, $targetPath);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), 405);
+        }
+    }
+
+    public static function copy($sourcePath, $targetPath)
+    {
+        try {
+            return copy($sourcePath, $targetPath);
         } catch (Exception $e) {
             throw new Exception($e->getMessage(), 405);
         }
