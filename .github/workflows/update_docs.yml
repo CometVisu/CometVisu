@@ -17,6 +17,9 @@ on:
       - '*'
 env:
   NODE_VERSION: '24'
+concurrency:
+  group: update-docs-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   cancel:
     name: 'Cancel Previous Runs'
