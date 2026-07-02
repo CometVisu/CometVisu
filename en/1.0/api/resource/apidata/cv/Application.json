@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782705543932,
-  "lastModifiedIso": "2026-06-29T03:59:03.932Z",
+  "lastModified": 1782966943245,
+  "lastModifiedIso": "2026-07-02T04:35:43.245Z",
   "classFilename": "../../source/class/cv/Application.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1062
     },
     "end": {
-      "line": 1582,
+      "line": 1583,
       "column": 3,
-      "index": 52912
+      "index": 52997
     }
   },
   "className": "cv.Application",
@@ -1756,9 +1756,9 @@
           "index": 44345
         },
         "end": {
-          "line": 1525,
+          "line": 1526,
           "column": 5,
-          "index": 51199
+          "index": 51284
         }
       },
       "type": "function",
@@ -1770,14 +1770,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1527,
+          "line": 1528,
           "column": 4,
-          "index": 51206
+          "index": 51291
         },
         "end": {
-          "line": 1533,
+          "line": 1534,
           "column": 5,
-          "index": 51390
+          "index": 51475
         }
       },
       "type": "function",
@@ -1805,14 +1805,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1538,
+          "line": 1539,
           "column": 4,
-          "index": 51459
+          "index": 51544
         },
         "end": {
-          "line": 1580,
+          "line": 1581,
           "column": 5,
-          "index": 52904
+          "index": 52989
         }
       },
       "type": "function",

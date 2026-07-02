@@ -1507,6 +1507,8 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
               _this11.setManagerChecked(true);
               if (env.custom_visu_config_xsd_missing === true && !localStorage.getItem('cv.custom_visu_config_xsd_missing')) {
                 _this11.warn('custom_visu_config.xsd is missing, using default one as fallback');
+                cv.Config.enableCache = false; // avoid caching the popup notification
+
                 var notification = {
                   topic: 'cv.info.custom_visu_config_xsd_missing',
                   target: 'popup',
@@ -1616,4 +1618,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1782705764857
+//# sourceMappingURL=Application.js.map?dt=1782967136180

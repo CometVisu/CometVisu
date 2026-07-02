@@ -110,4 +110,4 @@
   qx.test.performance.widget.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1782705786656
+//# sourceMappingURL=AbstractWidget.js.map?dt=1782967156231

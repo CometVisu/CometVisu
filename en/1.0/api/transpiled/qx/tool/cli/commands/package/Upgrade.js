@@ -226,4 +226,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Upgrade.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Upgrade.js.map?dt=1782705793211
+//# sourceMappingURL=Upgrade.js.map?dt=1782967162244
