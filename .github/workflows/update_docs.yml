@@ -21,15 +21,6 @@ concurrency:
   group: update-docs-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  cancel:
-    name: 'Cancel Previous Runs'
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: styfle/cancel-workflow-action@0.8.0
-        with:
-          access_token: ${{ github.token }}
-
   deploy-docs:
     name: "Generate and publish manual and API-viewer"
     if: github.repository == 'CometVisu/CometVisu'
