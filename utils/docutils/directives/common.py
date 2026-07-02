@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+# copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -31,8 +31,7 @@ if sys.version_info[0] < 3:
 
 gettext.install('messages', **kwargs)
 
-schema = Schema(os.path.join(root_dir, config.get("DEFAULT", "schema-file")))
-
+pure_schema = Schema(os.path.join(root_dir, config.get("DEFAULT", "schema-file")))
 
 class BaseDirective(Directive):
     locale = 'en'
@@ -42,6 +41,7 @@ class BaseDirective(Directive):
         self.type_mapping = {
             'boolean': "*true* %s *false*" % _('or'),
             'string': _('string'),
+            'token': _('string'),
             'decimal': _('decimal'),
             'uri': _('uri'),
             'addr': _('addr'),
@@ -63,16 +63,19 @@ class BaseXsdDirective(BaseDirective):
         return 0, 0, self.content_offset, statemachine.StringList(content.splitlines())
 
     def normalize_values(self, values):
+        values = [r"\*" if x == "*" else x for x in values]
         if len(values) <= 1:
             res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
             res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
         return res
 
-    def normalize_type(self, type):
-        if type[0:4] == "xsd:":
-            type = type[4:]
-        res = self.type_mapping[type] if type in self.type_mapping else type
+    def normalize_type(self, type_name):
+        if type_name is None:
+            return ""
+        if type_name[0:4] == "xsd:":
+            type_name = type_name[4:]
+        res = self.type_mapping[type_name] if type_name in self.type_mapping else type_name
         return res
 
     def get_name(self, name):
@@ -82,8 +85,10 @@ class BaseXsdDirective(BaseDirective):
         self.state.nested_parse(sl, self.content_offset, cnode)
         return nodes.label(name, '', *cnode)
 
-    def generate_table(self, element_name, include_name=False, mandatory=False):
+    def generate_table(self, element_name, structure_name="pure", include_name=False, mandatory=False):
         table_body = []
+        schema = pure_schema
+
         attributes = schema.get_widget_attributes(element_name)
         if include_name:
             rowspan = len(attributes)-1
@@ -91,29 +96,22 @@ class BaseXsdDirective(BaseDirective):
         for attr in attributes:
             if 'name' in attr.attrib:
                 name = attr.get('name')
-                atype, values, enums = schema.get_attribute_type(attr)
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is not None:
-                    description = re.sub("\n\s+", " ", description.text).strip()
-                elif enums is not None:
-                    description = self.get_description(enums)
-                else:
-                    description = ''
+                atype, values, enums, description = schema.get_attribute_type(attr, self.locale)
+                if len(description) == 0 and enums is not None:
+                    description = self.get_description(enums, schema)
             elif 'ref' in attr.attrib:
                 name = attr.get('ref')
                 type_def = schema.get_attribute(name)
-                atype, values, enums = schema.get_attribute_type(type_def)
+                atype, values, enums, description = schema.get_attribute_type(type_def, self.locale)
                 # check if there is some documentation here
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is None:
-                    # check the referenced definition for documentation as fallback
-                    description = schema.get_node_documentation(type_def, self.locale)
-                if description is not None:
-                    description = re.sub("\n\s+", " ", description.text).strip()
-                elif enums is not None:
-                    description = self.get_description(enums)
-                else:
-                    description = ''
+                if len(description) == 0:
+                    description = schema.get_node_documentation(attr, self.locale)
+                    if description is not None:
+                        description = re.sub(r"\n\s+", " ", description.text).strip()
+                    elif enums is not None:
+                        description = self.get_description(enums, schema)
+                    else:
+                        description = ''
 
             #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
@@ -154,7 +152,7 @@ class BaseXsdDirective(BaseDirective):
 
         return table_node
 
-    def get_description(self, enums):
+    def get_description(self, enums, schema):
         tmp_doc = ""
         enum_doc_found = False
         for enum_node in enums:
@@ -167,14 +165,16 @@ class BaseXsdDirective(BaseDirective):
         else:
             return ""
 
-    def generate_complex_table(self, element_name, include_name=False, mandatory=False, element_type=None,
-                               table_body=None, sub_run=False, parent=None):
+    def generate_complex_table(self, element_name, structure_name="pure", include_name=False, mandatory=False, element_type=None,
+                               table_body=None, sub_run=False, parent=None, node=None, depth=-1, level=0, exclude_attributes=[]):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
 
+        schema = pure_schema
+
         if not element_name == "#text":
-            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name)
+            attributes = schema.get_widget_attributes(element_type if element_type is not None else element_name, type_node=node)
             elements = schema.get_widget_elements(element_type if element_type is not None else element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
@@ -183,25 +183,25 @@ class BaseXsdDirective(BaseDirective):
             for attr in attributes:
                 if 'name' in attr.attrib:
                     name = attr.get('name')
-                    atype, values, enums = schema.get_attribute_type(attr)
-                    description = schema.get_node_documentation(attr, self.locale)
-                    if description is not None:
-                        description = description.text
-                    elif enums is not None:
-                        description = self.get_description(enums)
-                    else:
-                        description = ''
+                    if name in exclude_attributes:
+                        continue
+                    atype, values, enums, description = schema.get_attribute_type(attr, self.locale)
+                    if len(description) == 0 and enums is not None:
+                        description = self.get_description(enums, schema)
                 elif 'ref' in attr.attrib:
                     name = attr.get('ref')
+                    if name in exclude_attributes:
+                        continue
                     type_def = schema.get_attribute(name)
-                    atype, values, enums = schema.get_attribute_type(type_def)
-                    description = schema.get_node_documentation(type_def, self.locale)
-                    if description is not None:
-                        description = description.text
-                    elif enums is not None:
-                        description = self.get_description(enums)
-                    else:
-                        description = ''
+                    atype, values, enums, description = schema.get_attribute_type(type_def, self.locale)
+                    if len(description) == 0:
+                        description = schema.get_node_documentation(attr, self.locale)
+                        if description is not None:
+                            description = re.sub(r"\n\s+", " ", description.text).strip()
+                        elif enums is not None:
+                            description = self.get_description(enums, schema)
+                        else:
+                            description = ''
 
                 #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
@@ -240,10 +240,10 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         sub_parent = element_name
                     #no recursions
-                    if sub_type != element_type:
+                    if sub_type != element_type and (depth < 0 or depth < level):
                         self.generate_complex_table(name, include_name=include_name,
                                                     mandatory=mandatory, table_body=table_body, element_type=sub_type,
-                                                    sub_run=True, parent=sub_parent)
+                                                    sub_run=True, parent=sub_parent, depth=depth, level=level+1, exclude_attributes=[])
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+# copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -51,13 +51,13 @@ class ApiDocDirective(Directive):
 
     def init_part_translations(self):
         self.part_translations = {
-            'since': _("Available since version"),
+            'since': _("Available since"),
             'author': _('Author')
         }
 
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
-        t = gettext.translation('messages', localedir=os.path.join(root_dir, config.get("DEFAULT", "locale")), languages=[self.locale], codeset='utf-8')
+        t = gettext.translation('messages', localedir=os.path.join(root_dir, config.get("DEFAULT", "locale")), languages=[self.locale])
         t.install(**kwargs)
 
         self.init_part_translations()

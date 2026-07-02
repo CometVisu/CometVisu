@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+# copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -17,7 +17,7 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from docutils import nodes
-from common import BaseXsdDirective, schema
+from common import BaseXsdDirective, pure_schema
 
 
 class ElementsInformationDirective(BaseXsdDirective):
@@ -31,9 +31,12 @@ class ElementsInformationDirective(BaseXsdDirective):
     @since 0.10.0
     """
     required_arguments = 1
-    optional_arguments = 0
+    optional_arguments = 2
     final_argument_whitespace = True
-    option_spec = {}
+    option_spec = {
+        'depth': int,
+        'exclude-attributes': str
+    }
     has_content = False
 
     def make_title(self, element):
@@ -53,13 +56,26 @@ class ElementsInformationDirective(BaseXsdDirective):
         self.init_locale()
 
         element_name = self.arguments[0]
+        structure_name = self.arguments[1] if len(self.arguments) > 1 else "pure"
+        schema = pure_schema
+        depth = int(self.options['depth']) if 'depth' in self.options else -1
+        exclude_attributes = str(self.options['exclude-attributes']).split(',') if 'exclude-attributes' in self.options else []
         res_nodes = []
         for element in schema.get_widget_elements(element_name):
-            name = element.get("name")
-            elem_type = element.get('type')
-            mandatory = element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0
-            table_node = self.generate_complex_table(name, include_name=True, mandatory=mandatory, parent=element_name, element_type=elem_type)
-            if table_node is not None:
-                res_nodes.append(table_node)
+            if not isinstance(element, tuple):
+                name = element.get("name")
+                elem_type = element.get('type')
+                mandatory = element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0
+                table_node = self.generate_complex_table(name,
+                                                         node=element,
+                                                         structure_name=structure_name,
+                                                         include_name=True,
+                                                         mandatory=mandatory,
+                                                         parent=element_name,
+                                                         element_type=elem_type,
+                                                         depth=depth,
+                                                         exclude_attributes=exclude_attributes)
+                if table_node is not None:
+                    res_nodes.append(table_node)
 
         return res_nodes
