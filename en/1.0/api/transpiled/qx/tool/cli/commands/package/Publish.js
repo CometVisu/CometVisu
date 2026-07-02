@@ -718,4 +718,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Publish.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Publish.js.map?dt=1782705793034
+//# sourceMappingURL=Publish.js.map?dt=1782967162081

@@ -1699,4 +1699,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1782705770473
+//# sourceMappingURL=Chart.js.map?dt=1782967141291

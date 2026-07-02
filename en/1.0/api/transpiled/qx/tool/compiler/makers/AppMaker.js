@@ -387,4 +387,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.makers.AppMaker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppMaker.js.map?dt=1782705794251
+//# sourceMappingURL=AppMaker.js.map?dt=1782967163219
