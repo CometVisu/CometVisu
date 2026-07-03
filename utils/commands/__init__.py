@@ -27,13 +27,14 @@ if sys.version_info[0] < 3:
 
 gettext.install('messages', **kwargs)
 
+config = configparser.ConfigParser()
+root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
+config.read(os.path.join(root_dir, 'utils', 'config.ini'))
 
 class Command(object):
 
     def __init__(self):
-        self.config = configparser.ConfigParser()
-        self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
-        self.config.read(os.path.join(self.root_dir, 'utils', 'config.ini'))
+        self.config = config
 
     def init_locale(self, lang):
         t = gettext.translation('messages', localedir=self.config.get("DEFAULT", "locale"), languages=[lang])

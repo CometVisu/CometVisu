@@ -39,7 +39,7 @@ import re
 from lxml import etree
 from packaging.version import Version
 from argparse import ArgumentParser
-from . import Command
+from . import Command, config, root_dir
 from utils.commands.scaffolding import Scaffolder
 from dotenv import dotenv_values
 
@@ -51,8 +51,6 @@ except ImportError:
     # Python 3
     import html
 
-root_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-
 class DocParser:
     """
     Parse an existing rst file, recognize placeholder section and allow
@@ -60,29 +58,28 @@ class DocParser:
     """
 
     def __init__(self, widget=None, plugin=None):
-        self.config = configparser.ConfigParser()
-        self.config.read(os.path.join(root_dir, 'utils', 'config.ini'))
+        config = config
         self.sections = {}
         self.lines = []
         self.replacements = {}
         self.name = widget if widget is not None else plugin
         self.is_plugin = True if plugin is not None else False
         if self.is_plugin:
-            self.file = os.path.join(self.config.get("manual-en", "plugins"), self.name.lower(), "index.rst")
+            self.file = os.path.join(config.get("manual-en", "plugins"), self.name.lower(), "index.rst")
         else:
-            self.file = os.path.join(self.config.get("manual-en", "widgets"), self.name.lower(), "index.rst")
+            self.file = os.path.join(config.get("manual-en", "widgets"), self.name.lower(), "index.rst")
 
     def init(self):
         if not self.is_plugin:
             if not os.path.exists(self.file):
-                if os.path.exists(self.config.get("manual-en", "widget-template")):
+                if os.path.exists(config.get("manual-en", "widget-template")):
                     # fallback to template
                     scaffolder = Scaffolder()
                     scaffolder.generate("en", self.name, None)
 
         else:
             if not os.path.exists(self.file):
-                if os.path.exists(self.config.get("manual-en", "plugin-template")):
+                if os.path.exists(config.get("manual-en", "plugin-template")):
                     # fallback to template
                     scaffolder = Scaffolder()
                     scaffolder.generate("en", None, self.name)
@@ -148,7 +145,7 @@ class DocGenerator(Command):
 
     def _get_source_version(self):
         if self._source_version is None:
-            with open(os.path.join(self.root_dir, "package.json")) as data_file:
+            with open(os.path.join(root_dir, "package.json")) as data_file:
                 data = json.load(data_file)
                 self._source_version = data['version']
         return self._source_version
@@ -187,15 +184,14 @@ class DocGenerator(Command):
 
         # check if sources exist for this language
         section = "manual-%s" % language
-        target_type = self.config.get(section, "target-type")
+        target_type = config.get(section, "target-type")
 
-        source_dir = os.path.join(self.root_dir, self.config.get(section, "source"))
+        source_dir = os.path.join(root_dir, config.get(section, "source"))
         if target_dir is None:
-            target_dir = os.path.join(self.root_dir, self.config.get(section, "target"))
+            target_dir = os.path.join(root_dir, config.get(section, "target"))
         else:
-            target_dir = os.path.join(self.root_dir, target_dir)
-        target_dir = target_dir.replace("<version>", self._get_doc_target_path() if target_version is None else target_version)
-
+            target_dir = os.path.join(root_dir, target_dir)
+        
         if spelling:
             # check if german dictionary is available
             if "de_DE" not in enchant.list_languages():
@@ -209,7 +205,7 @@ class DocGenerator(Command):
             total_count = 0
             sphinx_build(*args, _out=lambda l: self._handle_spellcheck(l, total_fails), _env=build_env)
             for file, fails in total_fails.items():
-                rel_file = file[len(self.root_dir)+1:]
+                rel_file = file[len(root_dir)+1:]
                 total_count += len(fails)
                 print("\n%s (%s failures):" % (rel_file, len(fails)))
                 longest_word = 0
@@ -236,7 +232,7 @@ class DocGenerator(Command):
             shutil.rmtree(target_dir)
 
             # delete old screenshot control files
-            shot_control_dir = os.path.join(self.root_dir, "cache", "widget_examples", screenshot_build)
+            shot_control_dir = os.path.join(root_dir, "cache", "widget_examples", screenshot_build)
             if os.path.exists(shot_control_dir):
                 print("deleting old screenshot control files in '%s'" % shot_control_dir)
                 shutil.rmtree(shot_control_dir)
@@ -284,11 +280,11 @@ class DocGenerator(Command):
         if branch == "develop":
             # handle develop builds:
             print('detected development build')
-            symlinkname = self.config.get("DEFAULT", "develop-version-mapping")
+            symlinkname = config.get("DEFAULT", "develop-version-mapping")
         elif branch == "master":
             # handle releases:
             print('detected build of most recent version of master branch')
-            symlinkname = self.config.get("DEFAULT", "most-recent-version-mapping")
+            symlinkname = config.get("DEFAULT", "most-recent-version-mapping")
         else:
             print("skip creating symlinks in branch %s" % branch)
 
@@ -332,8 +328,8 @@ class DocGenerator(Command):
 
             # add parser widgets if defined
 
-            for parser in self.config.get("manual-en", "parsers-doc-source").split(","):
-                parser_path = os.path.join(self.config.get("manual-en", "parsers-path"), "%s.js" % parser)
+            for parser in config.get("manual-en", "parsers-doc-source").split(","):
+                parser_path = os.path.join(config.get("manual-en", "parsers-path"), "%s.js" % parser)
                 if os.path.exists(parser_path):
                     source_files.append((parser, parser_path))
                 else:
@@ -341,7 +337,7 @@ class DocGenerator(Command):
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
-            api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "resource", "apiviewer", "examples")
+            api_screenshot_dir = os.path.join(config.get("api", "target"), "resource", "apiviewer", "examples")
 
             with io.open(file, mode="r", encoding="utf-8") as f:
                 content = {
@@ -499,9 +495,9 @@ class DocGenerator(Command):
 
         regex = re.compile(r"^\| :doc:`([^<]+)<([^>]+)>`\s+\|\s+([^\|]+).*$")
         section = "manual-%s" % lang
-        image_prefix = self.config.get(section, "images").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
-        link_prefix = self.config.get(section, "html").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
-        with codecs.open(os.path.join(self.config.get(section, "widgets"), "index.rst"), encoding='utf-8') as f:
+        image_prefix = config.get(section, "images")
+        link_prefix = config.get(section, "html")
+        with codecs.open(os.path.join(config.get(section, "widgets"), "index.rst"), encoding='utf-8') as f:
             for line in f.readlines():
                 match = regex.match(line)
                 if match is not None:
@@ -510,7 +506,7 @@ class DocGenerator(Command):
                     widget_rst = None
                     screenshot_folder = None
                     ref = match.group(2).strip()
-                    link = os.path.join(self.config.get(section, "widgets"), ref)
+                    link = os.path.join(config.get(section, "widgets"), ref)
                     is_plugin = 'plugins/' in ref
 
                     if os.path.exists(link+".rst"):
@@ -611,7 +607,7 @@ class DocGenerator(Command):
 
                 # saving versions to json file
                 try:
-                    with open(self.config.get("DEFAULT", "versions-file-%s" % lang_dir), "w+") as f:
+                    with open(config.get("DEFAULT", "versions-file-%s" % lang_dir), "w+") as f:
                         f.write(dumps({
                             "versions": versions+special_versions,
                             "symlinks": symlinks
@@ -631,6 +627,9 @@ class DocGenerator(Command):
 
         parser.add_argument("--target", dest="target",
                             help="Target dir for generation")
+        
+        parser.add_argument("--doc-dir", dest="doc_dir",
+                            help="Override the doc-dir from config.ini")
 
         parser.add_argument("--browser", "-b", dest="browser", default="chrome",
                             help="[DEPRECATED] Browser option is ignored. Playwright uses Chromium.")
@@ -650,7 +649,12 @@ class DocGenerator(Command):
         parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
         parser.add_argument("--verbose", "-v", dest="verbose", action="store_true", help="verbose output")
 
-        options = parser.parse_args(args)
+        options = parser.parse_args(args)    
+
+        if options.doc_dir is not None:
+            config.set("DEFAULT", "doc-dir", options.doc_dir)
+
+        config.set("DEFAULT", "version", options.target_version if options.target_version is not None else self._get_doc_version())
 
         if options.features:
             widgets = {}
@@ -662,7 +666,7 @@ class DocGenerator(Command):
                 'widgets': [widgets[i] for i in sorted(widgets)],
                 'plugins': [plugins[i] for i in sorted(plugins)]
             }
-            with open(self.config.get("DEFAULT", "features-file"), 'w') as f:
+            with open(config.get("DEFAULT", "features-file"), 'w') as f:
                 yaml.safe_dump(features, f,
                                default_flow_style=False,
                                encoding='utf-8',
@@ -678,25 +682,23 @@ class DocGenerator(Command):
             print(self._get_doc_target_path())
 
         elif options.process_versions:
-            self.process_versions(self.config.get("DEFAULT", "doc-dir"))
+            self.process_versions(config.get("DEFAULT", "doc-dir"))
 
         elif options.from_source:
-            self.from_source(self.config.get("manual-en", "widgets-path"))
-            self.from_source(self.config.get("manual-en", "plugins-path"), plugin=True)
+            self.from_source(config.get("manual-en", "widgets-path"))
+            self.from_source(config.get("manual-en", "plugins-path"), plugin=True)
 
         elif options.move_apiviewer:
             # move to the correct dir
-            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
-            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
-            shutil.move(self.config.get("api", "generator_target"), target_dir)
+            target_dir = options.target if options.target is not None else os.path.join(root_dir, config.get("api", "target"))
+            shutil.move(config.get("api", "generator_target"), target_dir)
 
         elif options.move_apiviewer_screenshots:
             # move to the correct dir
-            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
-            target_dir = target_dir.replace("<version>", options.target_version if options.target_version is not None else self._get_doc_version())
-            screenshots_dir = self.config.get("api", "screenshots-path")
+            target_dir = options.target if options.target is not None else os.path.join(root_dir, config.get("api", "target"))
+            screenshots_dir = config.get("api", "screenshots-path")
             screenshots_parent_dir = "/".join(screenshots_dir.split("/")[0:-1])
-            shutil.move(os.path.join(self.config.get("api", "generator_target"), screenshots_dir), os.path.join(target_dir, screenshots_parent_dir))
+            shutil.move(os.path.join(config.get("api", "generator_target"), screenshots_dir), os.path.join(target_dir, screenshots_parent_dir))
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force,
