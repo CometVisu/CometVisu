@@ -98,6 +98,10 @@ def store_redirect_map():
     for src in sorted(redirect_map):
         source += '%s|%s\n' % (src, redirect_map[src])
 
+    try:
+        os.makedirs(os.path.dirname(redirect_file))
+    except FileExistsError:
+        pass
     with open(redirect_file, "w") as f:
         f.write(source)
 
