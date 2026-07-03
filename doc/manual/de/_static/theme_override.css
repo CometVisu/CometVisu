@@ -218,8 +218,18 @@
     color: var(--cv-text-primary) !important;
 }
 
+/* The RTD theme fills the whole expanded/current entry (not just the link)
+   with a light gray background (#e3e3e3). Override it so the first expanded
+   sub-level of the sidebar keeps the dark theme and stays readable. */
+.wy-menu-vertical li.current,
+.wy-menu-vertical li.on {
+    background-color: var(--cv-bg-surface) !important;
+}
+
 .wy-menu-vertical li.current > a,
-.wy-menu-vertical li.current a:hover {
+.wy-menu-vertical li.current a:hover,
+.wy-menu-vertical li.on a,
+.wy-menu-vertical li.on a:hover {
     background-color: var(--cv-bg-card) !important;
     border-left-color: var(--cv-primary) !important;
     color: var(--cv-text-primary) !important;
