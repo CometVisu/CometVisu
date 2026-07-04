@@ -655,8 +655,7 @@ class DocGenerator(Command):
             config.set("DEFAULT", "doc-dir", options.doc_dir)
 
         config.set("DEFAULT", "version", options.target_version if options.target_version is not None else self._get_doc_version())
-        print("using version %s" % config.get("DEFAULT", "version"))
-
+        
         if options.features:
             widgets = {}
             plugins = {}
