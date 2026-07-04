@@ -290,16 +290,16 @@ class DocGenerator(Command):
 
         if '' != symlinkname:
             symlinktarget = os.path.join(target_dir, "..")
-            print("setting symlink '%s' to '%s'" % (symlinkname, symlinktarget))
             cwd = os.getcwd()
             os.chdir(os.path.join(symlinktarget, ".."))
+            print("setting symlink '%s' to '%s'" % (symlinkname, os.path.relpath(symlinktarget)))
             try:
                 os.remove(symlinkname)
             except Exception as e:
-                print(str(e))
+                pass
             ls = sh.Command("ls")
-            print(ls("-la"))
             os.symlink(os.path.relpath(symlinktarget), symlinkname)
+            print(ls("-la"))
             os.chdir(cwd)
 
     def from_source(self, path, plugin=False):
