@@ -9,7 +9,8 @@ const additionalResources = [
   'qxl/apiviewer/lib/sunlight.javascript-min.js',
   'qxl/apiviewer/lib/sunlight.xml-min.js',
   'qxl/apiviewer/lib/sunlight-min.js',
-  'qxl/apiviewer/css/sunlight.default.css'
+  'qxl/apiviewer/css/sunlight.default.css',
+  'qxl/apiviewer/css/apiviewer-dark.css'
 ];
 
 class ApiCompileHandler extends AbstractCompileHandler {
@@ -58,8 +59,8 @@ class ApiCompileHandler extends AbstractCompileHandler {
     let command = this._compilerApi.getCommand();
     command.addListener('made', () => this._onMade());
     command.addListener('compiledClass', this._onCompiledClass, this);
-    command.addListener("writtenMetaData", async () => {
-      const metaDir = path.join(targetDir, '..', 'meta')
+    command.addListener('writtenMetaData', async () => {
+      const metaDir = path.join(targetDir, '..', 'meta');
       // write parsed jsdoc to metadata before the apiviewer compiler reads these
       for (const data of this._cvSourceFiles) {
         const jsonFile = path.join(metaDir, ...data.classname.split('.')) + '.json';
@@ -148,7 +149,7 @@ class ApiCompileHandler extends AbstractCompileHandler {
         this._cvSourceFiles.push({
           classname: data.classFile.getClassName(),
           jsdoc: jsdoc['@description']
-        })
+        });
       }
     }
   }

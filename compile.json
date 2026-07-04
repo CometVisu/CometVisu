@@ -154,7 +154,7 @@
       }
     },
     {
-      "class": "cv.theme.apiviewer.Application",
+      "class": "qxl.apiviewer.Application",
       "theme": "cv.theme.ApiViewer",
       "name": "apiviewer",
       "title": "CometVisu API Viewer",

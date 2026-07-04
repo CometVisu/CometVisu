@@ -1,12 +1,19 @@
-/* dark.css
+/* apiviewer-dark.css
  *
  * Overrides for qxl.apiviewer's hardcoded "apiviewer.css" stylesheet so the
  * plain-HTML parts of the API Viewer (rendered directly as DOM/innerHTML,
  * bypassing the qooxdoo theme system) match the dark CometVisu homepage
  * theme instead of the default light colors.
  *
- * Loaded after apiviewer.css by cv.theme.apiviewer.Application, so equal
- * specificity rules defined here win the cascade.
+ * apiviewer.css is injected by qxl.apiviewer.Application's constructor via
+ * qx.bom.Stylesheet.includeFile(), which appends its <link> to <head> at
+ * runtime - i.e. *after* this statically linked stylesheet. Since these
+ * rules therefore come earlier in the cascade, every declaration needs
+ * !important to reliably win over apiviewer.css's (mostly non-important)
+ * rules regardless of load order. Where apiviewer.css itself already uses
+ * !important (the item-protected/-private/-internal row backgrounds), the
+ * selector specificity is additionally boosted so the tie is broken in our
+ * favor as well.
  *
  * Color reference (see website static/css/style.css):
  *   --primary:        #ff8000  (CometVisu orange)
@@ -28,16 +35,16 @@ div.ClassViewer {
 }
 
 .content a {
-  color: #ff8000;
+  color: #ff8000 !important;
 }
 
 .content a:hover,
 .content a:active {
-  color: #ffb347;
+  color: #ffb347 !important;
 }
 
 .content h1 a {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .content h1,
@@ -46,17 +53,17 @@ div.ClassViewer {
 .content h4,
 .content h5,
 .content h6 {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .content h2.warning {
-  color: #ff6b6b;
+  color: #ff6b6b !important;
 }
 
 .content b,
 .content strong,
 .content th {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* ==============================================
@@ -64,11 +71,11 @@ div.ClassViewer {
 ============================================== */
 
 #header h1 {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 #header .version {
-  color: #a0a0a0;
+  color: #a0a0a0 !important;
 }
 
 /* ==============================================
@@ -76,12 +83,12 @@ div.ClassViewer {
 ============================================== */
 
 #legend {
-  background: #1a1a1a;
-  color: #d0d0d0;
+  background: #1a1a1a !important;
+  color: #d0d0d0 !important;
 }
 
 #legend tr td {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #333333 !important;
 }
 
 /* ==============================================
@@ -90,17 +97,17 @@ div.ClassViewer {
 
 .content code,
 .content pre {
-  background: #0d0d0d;
-  color: #e0e0e0;
-  border: 1px solid #333333;
+  background: #0d0d0d !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #333333 !important;
 }
 
 .comment {
-  color: #8fa8ff;
+  color: #8fa8ff !important;
 }
 
 .string {
-  color: #7ed957;
+  color: #7ed957 !important;
 }
 
 /* ==============================================
@@ -108,17 +115,17 @@ div.ClassViewer {
 ============================================== */
 
 .ClassViewer h1 span.type {
-  color: #ff8000;
+  color: #ff8000 !important;
 }
 
 .ClassViewer div.class-description {
-  background: #1a1a1a;
-  border: 1px solid #333333;
-  color: #e0e0e0;
+  background: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+  color: #e0e0e0 !important;
 }
 
 .ClassViewer div.class-description em {
-  color: #ff8000;
+  color: #ff8000 !important;
 }
 
 /* ==============================================
@@ -126,33 +133,36 @@ div.ClassViewer {
 ============================================== */
 
 .ClassViewer table.info tr {
-  background: #1a1a1a;
-  color: #e0e0e0;
+  background: #1a1a1a !important;
+  color: #e0e0e0 !important;
 }
 
 .ClassViewer table.info tr.marked {
-  background: #402400;
+  background: #402400 !important;
 }
 
-.ClassViewer table.info tr.item-protected {
+/* apiviewer.css also uses !important for these three, so the selector
+   specificity is boosted (class repeated) to win the tie regardless of
+   the order the two stylesheets end up in the DOM. */
+.ClassViewer table.info tr.item-protected.item-protected {
   background: #332b12 !important;
 }
 
-.ClassViewer table.info tr.item-private {
+.ClassViewer table.info tr.item-private.item-private {
   background: #3a1f20 !important;
 }
 
-.ClassViewer table.info tr.item-internal {
+.ClassViewer table.info tr.item-internal.item-internal {
   background: #332022 !important;
 }
 
 .ClassViewer table.info tr td {
-  border-top: 3px solid #0d0d0d;
+  border-top: 3px solid #0d0d0d !important;
 }
 
 .ClassViewer table.info td.type,
 .ClassViewer table.info td.type a {
-  color: #ff8000;
+  color: #ff8000 !important;
 }
 
 /* ==============================================
@@ -161,7 +171,7 @@ div.ClassViewer {
 
 .ClassViewer span.method-signature,
 .ClassViewer span.method-signature a {
-  color: #ff8000;
+  color: #ff8000 !important;
 }
 
 /* ==============================================
@@ -169,14 +179,14 @@ div.ClassViewer {
 ============================================== */
 
 .ClassViewer div.item-detail-headline {
-  color: #ffb347;
+  color: #ffb347 !important;
 }
 
 .ClassViewer div.item-detail-error {
-  color: #ff6b6b;
+  color: #ff6b6b !important;
 }
 
 .ClassViewer span.item-deprecated,
 .ClassViewer span.item-deprecated * {
-  color: #8fa8c4;
+  color: #8fa8c4 !important;
 }

@@ -281,9 +281,9 @@ class DocGenerator(Command):
             # handle develop builds:
             print('detected development build')
             symlinkname = config.get("DEFAULT", "develop-version-mapping")
-        elif branch == "master":
+        elif branch == "master" or branch == "main" or branch == "demo-changes":
             # handle releases:
-            print('detected build of most recent version of master branch')
+            print('detected build of most recent version of master/main branch')
             symlinkname = config.get("DEFAULT", "most-recent-version-mapping")
         else:
             print("skip creating symlinks in branch %s" % branch)
@@ -655,6 +655,7 @@ class DocGenerator(Command):
             config.set("DEFAULT", "doc-dir", options.doc_dir)
 
         config.set("DEFAULT", "version", options.target_version if options.target_version is not None else self._get_doc_version())
+        print("using version %s" % config.get("DEFAULT", "version"))
 
         if options.features:
             widgets = {}
