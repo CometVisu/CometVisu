@@ -1,0 +1,182 @@
+/* dark.css
+ *
+ * Overrides for qxl.apiviewer's hardcoded "apiviewer.css" stylesheet so the
+ * plain-HTML parts of the API Viewer (rendered directly as DOM/innerHTML,
+ * bypassing the qooxdoo theme system) match the dark CometVisu homepage
+ * theme instead of the default light colors.
+ *
+ * Loaded after apiviewer.css by cv.theme.apiviewer.Application, so equal
+ * specificity rules defined here win the cascade.
+ *
+ * Color reference (see website static/css/style.css):
+ *   --primary:        #ff8000  (CometVisu orange)
+ *   --secondary:       #ffb347  (light orange)
+ *   --bg-dark:         #0d0d0d
+ *   --bg-card:         #1a1a1a
+ *   --bg-elevated:     #242424
+ *   --text-primary:    #ffffff
+ *   --text-secondary:  #a0a0a0
+ *   --border-color:    #333333
+ */
+
+/* ==============================================
+    OVERALL CONTENT - base text color & links
+============================================== */
+
+div.ClassViewer {
+  color: #d0d0d0 !important;
+}
+
+.content a {
+  color: #ff8000;
+}
+
+.content a:hover,
+.content a:active {
+  color: #ffb347;
+}
+
+.content h1 a {
+  color: #ffffff;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  color: #ffffff;
+}
+
+.content h2.warning {
+  color: #ff6b6b;
+}
+
+.content b,
+.content strong,
+.content th {
+  color: #ffffff;
+}
+
+/* ==============================================
+    HEADER (TOP)
+============================================== */
+
+#header h1 {
+  color: #ffffff;
+}
+
+#header .version {
+  color: #a0a0a0;
+}
+
+/* ==============================================
+    LEGEND (BOTTOM-LEFT)
+============================================== */
+
+#legend {
+  background: #1a1a1a;
+  color: #d0d0d0;
+}
+
+#legend tr td {
+  border-bottom: 1px solid #333333;
+}
+
+/* ==============================================
+    SOURCE CODE
+============================================== */
+
+.content code,
+.content pre {
+  background: #0d0d0d;
+  color: #e0e0e0;
+  border: 1px solid #333333;
+}
+
+.comment {
+  color: #8fa8ff;
+}
+
+.string {
+  color: #7ed957;
+}
+
+/* ==============================================
+    CLASS VIEWER: CLASS DESCRIPTION
+============================================== */
+
+.ClassViewer h1 span.type {
+  color: #ff8000;
+}
+
+.ClassViewer div.class-description {
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  color: #e0e0e0;
+}
+
+.ClassViewer div.class-description em {
+  color: #ff8000;
+}
+
+/* ==============================================
+    CLASS VIEWER: INFO TABLE
+============================================== */
+
+.ClassViewer table.info tr {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.ClassViewer table.info tr.marked {
+  background: #402400;
+}
+
+.ClassViewer table.info tr.item-protected {
+  background: #332b12 !important;
+}
+
+.ClassViewer table.info tr.item-private {
+  background: #3a1f20 !important;
+}
+
+.ClassViewer table.info tr.item-internal {
+  background: #332022 !important;
+}
+
+.ClassViewer table.info tr td {
+  border-top: 3px solid #0d0d0d;
+}
+
+.ClassViewer table.info td.type,
+.ClassViewer table.info td.type a {
+  color: #ff8000;
+}
+
+/* ==============================================
+    CLASS VIEWER: METHOD SIGNATURE
+============================================== */
+
+.ClassViewer span.method-signature,
+.ClassViewer span.method-signature a {
+  color: #ff8000;
+}
+
+/* ==============================================
+    CLASS VIEWER: ITEM DETAILS
+============================================== */
+
+.ClassViewer div.item-detail-headline {
+  color: #ffb347;
+}
+
+.ClassViewer div.item-detail-error {
+  color: #ff6b6b;
+}
+
+.ClassViewer span.item-deprecated,
+.ClassViewer span.item-deprecated * {
+  color: #8fa8c4;
+}
