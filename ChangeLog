@@ -3,7 +3,7 @@
 1.0.0
 =====
 
-### v1.0.0-RC1
+### v1.0.0-RC1 
 
 - [#1453](https://github.com/CometVisu/CometVisu/pull/1453) Merge develop into master for 1.0.0-beta1 (@ChristianMayer)
 - [#1452](https://github.com/CometVisu/CometVisu/pull/1452) Fix sourcemaps + some tile improvements (@peuter)
