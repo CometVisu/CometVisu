@@ -65,6 +65,10 @@ qx.Class.define('cv.Application', {
     // check HTTP server by requesting a small file
     const xhr = new qx.io.request.Xhr('version');
     xhr.set({ method: 'GET'});
+    // The version file is plain text (e.g. "0.13.0-dev"), but some proxies
+    // serve it with an XML content type. Force a text parser so the response
+    // body is never parsed as XML (→ "XML-Verarbeitungsfehler").
+    xhr.setParser(response => response);
 
     const check = e => {
       const req = e.getTarget();
