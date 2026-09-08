@@ -205,6 +205,16 @@ javascript
 fullscreen
 previewlabels
 gridcolor
+gridwidth
+gridopacity
+borderwidth
+linewidth
+topleft
+topright
+bottomleft
+bottomright
+colours
+honoured
 legendposition
 tooltip
 timeformat

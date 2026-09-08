@@ -96,13 +96,13 @@ Bild als Vorgabe:
 ===============  ==========  ======================================================
 Attribut         Vorgabe     wirkt auf
 ===============  ==========  ======================================================
-``gridwidth``    ``1``       Gitterlinien, Achsenlinien und Tickmarken
+``gridwidth``    ``1``       Gitterlinien, Achsenlinien und Teilstriche
 ``gridopacity``  ``0.4``     die Deckkraft der Gitterlinien, 0 bis 1
 ``borderwidth``  ``1``       den Rahmen um die Zeichenfläche
 ``linewidth``    s. unten    die Graphen samt Balken- und Punktumrissen
 ===============  ==========  ======================================================
 
-``gridopacity`` betrifft nur die Gitterlinien; Rahmen, Achsen und Tickmarken sind immer deckend.
+``gridopacity`` betrifft nur die Gitterlinien; Rahmen, Achsen und Teilstriche sind immer deckend.
 
 Ohne ``linewidth`` zeichnet diagram2 seine Linien mit 1,5 und die Umrisse von Balken und Punkten
 mit 1 — also genau wie bisher; ein gesetzter Wert gilt für alle drei.

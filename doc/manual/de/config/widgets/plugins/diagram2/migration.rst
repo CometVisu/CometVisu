@@ -47,7 +47,7 @@ Attribute stellen das um; ohne sie bleibt es beim bisherigen Bild.
 ===============  ==========  ===========================================  =============
 Attribut         Vorgabe     wirkt auf                                    Wert für v1
 ===============  ==========  ===========================================  =============
-``gridwidth``    ``1``       Gitterlinien, Achsenlinien, Tickmarken       ``1``
+``gridwidth``    ``1``       Gitterlinien, Achsenlinien, Teilstriche       ``1``
 ``gridopacity``  ``0.4``     Deckkraft der Gitterlinien, 0 bis 1          ``1``
 ``borderwidth``  ``1``       Rahmen um die Zeichenfläche                  ``2``
 ``linewidth``    s. unten    Graphen samt Balken- und Punktumrissen       ``2``

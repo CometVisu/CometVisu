@@ -538,6 +538,14 @@ series
 period
 Sekundens
 gridcolor
+gridwidth
+gridopacity
+borderwidth
+linewidth
+demo
+flot
+jQuery
+Skripte
 both
 inline
 legendposition
