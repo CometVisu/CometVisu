@@ -62,7 +62,7 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.5",
     "globals": "^17.6.0",
-    "grunt": "^1.6.2",
+    "grunt": "^1.6.3",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-compress": "^2.0.0",
