@@ -189,6 +189,13 @@
     {
       "type": "source",
       "outputPath": "compiled/source",
+      "fonts": {
+        "fontTypes": [
+          "woff2",
+          "woff",
+          "ttf"
+        ]
+      },
       "application-types": [
         "browser"
       ],
@@ -207,6 +214,13 @@
         "browser"
       ],
       "outputPath": "compiled/build",
+      "fonts": {
+        "fontTypes": [
+          "woff2",
+          "woff",
+          "ttf"
+        ]
+      },
       "environment": {
         "cv.build": "build",
         "cv.sentry": true,
