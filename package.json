@@ -84,7 +84,7 @@
     "mustache": "^4.2.0",
     "prettier": "^3.8.3",
     "selenium-webdriver": "^4.44.0",
-    "sharp": "^0.35.0",
+    "sharp": "^0.35.4",
     "xml-js": "^1.6.11"
   },
   "dependencies": {
