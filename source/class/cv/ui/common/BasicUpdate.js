@@ -63,6 +63,73 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
   ******************************************************
   */
   statics: {
+    /** cache for {@link replaceMissingFormatValues}, keyed by format string and missing positions */
+    __formatWithPlaceholders: {},
+
+    /**
+     * Shown instead of a value that has not been received yet. It is the same marker
+     * {@link cv.util.String#sprintf} already returns when formatting fails.
+     */
+    MISSING_VALUE_PLACEHOLDER: '-',
+
+    /**
+     * The placeholder syntax of sprintf-js, taken from its own source (1.0.3) so that every case it
+     * accepts is recognized here as well. The leading alternative keeps a literal "%%" from being
+     * treated as a placeholder.
+     *
+     * This is a copy and can therefore drift apart when sprintf-js changes - 1.1.x for example added
+     * the conversion characters "t", "T" and "v". The spec of this mixin compares the expression
+     * against the parser of the installed sprintf-js, so such a change fails the tests. When that
+     * happens, align this expression with the "placeholder" regex of the new version.
+     */
+    PLACEHOLDER_REGEX: /%%|%(?:([1-9]\d*)\$|\(([^)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijosuxX])/,
+
+    /**
+     * A fresh global regex for the placeholder syntax. A global regex keeps its own lastIndex, so a
+     * shared instance would make callers depend on each other's search progress.
+     *
+     * @return {RegExp} a copy of {@link cv.ui.common.BasicUpdate#PLACEHOLDER_REGEX} with the g flag
+     */
+    placeholderRegex() {
+      return new RegExp(cv.ui.common.BasicUpdate.PLACEHOLDER_REGEX.source, 'g');
+    },
+
+    /**
+     * Replace those placeholders of a format string whose value is still missing by a literal
+     * placeholder text. The values of a widget's addresses arrive one by one, so a format that
+     * refers to several of them would otherwise make sprintf throw until the last value was
+     * received - substituting the value itself is no option, because the numeric conversions of
+     * sprintf only accept real numbers.
+     *
+     * @param {string} format - the format string
+     * @param {Array} values - the values by argument position, index 0 holds the format
+     * @param {string} placeholder - text to show instead of a missing value
+     * @return {string} the format string to hand to sprintf
+     */
+    replaceMissingFormatValues(format, values, placeholder) {
+      const missing = [];
+      const regex = cv.ui.common.BasicUpdate.placeholderRegex();
+      let match = regex.exec(format);
+      while (match !== null) {
+        if (match[1] !== undefined && values[parseInt(match[1], 10)] === undefined) {
+          missing.push(match[1]);
+        }
+        match = regex.exec(format);
+      }
+      if (missing.length === 0) {
+        return format;
+      }
+
+      const cache = cv.ui.common.BasicUpdate.__formatWithPlaceholders;
+      const key = JSON.stringify([format, placeholder, missing]);
+      if (cache[key] === undefined) {
+        cache[key] = format.replace(cv.ui.common.BasicUpdate.placeholderRegex(), (found, position) =>
+          position !== undefined && missing.includes(position) ? placeholder : found
+        );
+      }
+      return cache[key];
+    },
+
     /**
      * Apply the given mapping to the value
      *
@@ -175,16 +242,27 @@ qx.Mixin.define('cv.ui.common.BasicUpdate', {
      * @return {var} the formatted value
      */
     applyFormat(address, value) {
-      if (this.getFormat()) {
+      const format = this.getFormat();
+      if (format) {
         if (!this.formatValueCache) {
-          this.formatValueCache = [this.getFormat()];
+          this.formatValueCache = [format];
         }
 
         const argListPos = this.getAddress() && this.getAddress()[address] ? this.getAddress()[address].formatPos : 1;
 
         this.formatValueCache[argListPos] = value;
 
-        return cv.util.String.sprintf.apply(this, this.formatValueCache);
+        // Show the values that are already known and a placeholder for the ones still missing. The
+        // rewritten format must not replace the cached one, otherwise the next update would run the
+        // replacement on an already substituted format.
+        const args = this.formatValueCache.slice();
+        args[0] = cv.ui.common.BasicUpdate.replaceMissingFormatValues(
+          format,
+          this.formatValueCache,
+          cv.ui.common.BasicUpdate.MISSING_VALUE_PLACEHOLDER
+        );
+
+        return cv.util.String.sprintf.apply(this, args);
       }
       return value;
     },
