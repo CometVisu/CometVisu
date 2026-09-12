@@ -62,6 +62,17 @@ MQTT
 Damit die CometVisu ein MQTT-Teilnehmer ist, wird ein MQTT Broker benötigt
 der über WebSocket ansprechbar ist.
 
+ioBroker
+~~~~~~~~
+
+Für den Datenaustausch wird ein ioBroker-Server mit Websocket-Schnittstelle
+benötigt: entweder der Web-Adapter (``iobroker.web``) oder der "Web socket"
+Adapter (``iobroker.ws``, mindestens Version 5.0.2). Die CometVisu lädt die
+passende Programmbibliothek von diesem Server, es spielt daher keine Rolle,
+welches Protokoll er dafür verwendet. Für die Anzeige von Diagrammen bzw.
+Verlaufsdaten wird zusätzlich der SQL-Adapter (``iobroker.sql``, mindestens
+Version 4.1.1) benötigt.
+
 Backend konfigurieren
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -89,17 +100,18 @@ Backend-Parameter mit übergeben. Dies ist bei Verwendung des offiziellen
 Docker-Images der CometVisu leicht durch das Setzen entsprechender
 ``ENVIRONMENT`` Parameter erreichbar
 
-=============================== ================ ===========
-HTTP Header                     ``ENVIRONMENT``  Bedeutung
-------------------------------- ---------------- -----------
-X-CometVisu-Backend-Name        BACKEND_NAME     Name wie ``knxd``, ``openhab`` oder ``mqtt``
-X-CometVisu-Backend-KNXD-Url    BACKEND_KNXD     URL für die knxd Login-Ressource
-X-CometVisu-Backend-MQTT-Url    BACKEND_MQTT     URL für die MQTT Login-Ressource
-X-CometVisu-Backend-OpenHAB-Url BACKEND_OPENHAB  openHAB: Pfad zur REST-API
-X-CometVisu-Backend-LoginUrl    CGI_URL_PATH     Veraltet: URL für die knxd oder openHAB Login-Ressource
-X-CometVisu-Backend-User        BACKEND_USERNAME Veraltet: Benutzername, wenn für openHAB benötigt
-X-CometVisu-Backend-Pass        BACKEND_PASSWORD Veraltet: Passwort, wenn für openHAB benötigt
-=============================== ================ ===========
+================================ ================ ===========
+HTTP Header                      ``ENVIRONMENT``  Bedeutung
+-------------------------------- ---------------- -----------
+X-CometVisu-Backend-Name         BACKEND_NAME     Name wie ``knxd``, ``openhab``, ``iobroker`` oder ``mqtt``
+X-CometVisu-Backend-KNXD-Url     BACKEND_KNXD     URL für die knxd Login-Ressource
+X-CometVisu-Backend-MQTT-Url     BACKEND_MQTT     URL für die MQTT Login-Ressource
+X-CometVisu-Backend-ioBroker-Url BACKEND_IOBROKER URL für die ioBroker websocket API
+X-CometVisu-Backend-OpenHAB-Url  BACKEND_OPENHAB  openHAB: Pfad zur REST-API
+X-CometVisu-Backend-LoginUrl     CGI_URL_PATH     Veraltet: URL für die knxd oder openHAB Login-Ressource
+X-CometVisu-Backend-User         BACKEND_USERNAME Veraltet: Benutzername, wenn für openHAB benötigt
+X-CometVisu-Backend-Pass         BACKEND_PASSWORD Veraltet: Passwort, wenn für openHAB benötigt
+================================ ================ ===========
 
 .. warning::
 
@@ -112,17 +124,18 @@ Konfigurationsdatei
 Im alles umschließenden ``<pages>``-Element können die entsprechenden Parameter
 als Attribut gesetzt werden:
 
-=================== ===========
-Attribut            Bedeutung
-------------------- -----------
-backend             Name wie ``knxd``, ``openhab`` oder ``mqtt``
-backend-knxd-url    URL für die knxd Login-Ressource
-backend-mqtt-url    URL für die MQTT Login-Ressource
-backend-openhab-url openHAB: Pfad zur REST-API
-backend-url         Veraltet: URL für die openHAB Verbindung
-username            Veraltet: Benutzername, wenn für openHAB benötigt
-password            Veraltet: Passwort, wenn für openHAB benötigt
-=================== ===========
+==================== ===========
+Attribut             Bedeutung
+-------------------- -----------
+backend              Name wie ``knxd``, ``openhab`` oder ``mqtt``
+backend-knxd-url     URL für die knxd Login-Ressource
+backend-mqtt-url     URL für die MQTT Login-Ressource
+backend-iobroker-url URL für die ioBroker websocket API
+backend-openhab-url  openHAB: Pfad zur REST-API
+backend-url          Veraltet: URL für die openHAB Verbindung
+username             Veraltet: Benutzername, wenn für openHAB benötigt
+password             Veraltet: Passwort, wenn für openHAB benötigt
+==================== ===========
 
 Beispiel:
 

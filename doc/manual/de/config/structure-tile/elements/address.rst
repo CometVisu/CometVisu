@@ -149,6 +149,11 @@ OpenHab
 
 .. backend-transform:: OH
 
+ioBroker
+........
+
+.. backend-transform:: IOB
+
 MQTT
 ....
 
