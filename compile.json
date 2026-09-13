@@ -193,7 +193,7 @@
         "browser"
       ],
       "babelOptions": {
-        "targets": "chrome >= 141, android >= 141, safari >= 26.0, edge >= 141, firefox >= 143chrome >= 141, ChromeAndroid >= 141, iOS >= 26.0, safari >= 26.0, edge >= 141, firefox >= 143, opera >= 123"
+        "targets": "chrome >= 141, ChromeAndroid >= 141, iOS >= 26.0, safari >= 26.0, edge >= 141, firefox >= 143, opera >= 123"
       },
       "environment": {
         "cv.build": "source",
