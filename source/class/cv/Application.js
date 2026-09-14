@@ -1072,7 +1072,13 @@ qx.Class.define('cv.Application', {
         if (this._isCached) {
           // load settings
           this.debug('using cache');
-          cv.ConfigCache.restore();
+          try {
+            // must be awaited, the restored configSettings are needed by the backend client initialization
+            await cv.ConfigCache.restore();
+          } catch (e) {
+            this.error('restoring the config cache failed, parsing the config instead:', e);
+            this._isCached = false;
+          }
         }
         // initialize NotificationCenter
         cv.ui.NotificationCenter.getInstance();
