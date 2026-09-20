@@ -54,7 +54,7 @@ qx.Class.define('cv.plugins.Timeout', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse(xml, path, flavour, pageType) {
-      return cv.parser.pure.WidgetParser.parseElement(
+      const data = cv.parser.pure.WidgetParser.parseElement(
         this,
         xml,
         path,
@@ -62,6 +62,11 @@ qx.Class.define('cv.plugins.Timeout', {
         pageType,
         this.getAttributeToPropertyMappings()
       );
+      // This widget has no DOM element, so it would not be created when the config is restored
+      // from the cache (in that case widgets are created on demand from the DOM) and the timer
+      // would never be started. Therefore it must be initialized explicitly when the cache is used.
+      data.$$initOnCacheLoad = true;
+      return data;
     },
 
     getAttributeToPropertyMappings() {
