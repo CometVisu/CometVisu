@@ -1281,20 +1281,24 @@ qx.Class.define('cv.Application', {
         engine.loadParts(partPlugins);
 
         if (standalonePlugins.length > 0) {
+          const queueStandalonePlugins = () => {
+            allPluginsQueued = true;
+            this.debug('loading standalone plugins');
+            cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+
+            if (partsLoaded) {
+              cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            }
+          };
+
           // load standalone plugins after the structure parts has been loaded
           // because they need the classes provided by it
           if (this.getStructureLoaded()) {
-            cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+            queueStandalonePlugins();
           } else {
             const lid = this.addListener('changeStructureLoaded', ev => {
               if (ev.getData() === true) {
-                allPluginsQueued = true;
-                this.debug('loading standalone plugins');
-                cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
-
-                if (partsLoaded) {
-                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                }
+                queueStandalonePlugins();
                 this.removeListenerById(lid);
               }
             });
