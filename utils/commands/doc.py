@@ -184,6 +184,9 @@ class DocGenerator(Command):
 
         sphinx_build = sh.Command("sphinx-build")
         build_env = os.environ.copy()
+        # propagate a possibly overridden doc-dir (--doc-dir) to the sphinx subprocess,
+        # as it re-reads utils/config.ini from disk and would otherwise lose the override
+        build_env["CV_DOC_DIR"] = self.config.get("DEFAULT", "doc-dir")
 
         # check if sources exist for this language
         section = "manual-%s" % language

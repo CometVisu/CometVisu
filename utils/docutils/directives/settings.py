@@ -23,3 +23,8 @@ root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file_
 
 config = configparser.ConfigParser()
 config.read(os.path.join(root_dir, 'utils', 'config.ini'))
+
+# allow overriding the doc-dir globally via environment variable (e.g. set by
+# the doc command when called with --doc-dir)
+if os.environ.get("CV_DOC_DIR"):
+    config.set("DEFAULT", "doc-dir", os.environ["CV_DOC_DIR"])
