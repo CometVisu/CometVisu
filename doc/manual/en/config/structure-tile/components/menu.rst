@@ -17,7 +17,7 @@ This component creates a navigation menu from a model. Currently the following m
 Navigation menu from page structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ../_static/tile-nav-menu.png
+.. figure:: ../_static/tile-nav-menu.webp
 
     Navigation menu from page structure
 
