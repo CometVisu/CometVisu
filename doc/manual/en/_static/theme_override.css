@@ -235,6 +235,10 @@
     background-color: var(--cv-bg-elevated) !important;
 }
 
+.wy-menu-vertical li.current {
+    background: #31313d !important;
+}
+
 .wy-menu-vertical li.current a {
     border-right-color: var(--cv-border-color) !important;
 }
