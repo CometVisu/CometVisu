@@ -244,7 +244,7 @@ class WidgetExampleDirective(SphinxDirective):
         return res_nodes
 
     def create_figure(self, shot, parse_result, hide_source):
-        reference = "_static/%s.png" % shot['name']
+        reference = "_static/%s.webp" % shot['name']
         options = dict(uri=reference)
         if 'caption' in shot:
             options['alt'] = shot['caption']

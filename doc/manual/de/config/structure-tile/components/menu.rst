@@ -28,7 +28,7 @@ Navigationsmenü aus Seitenstruktur
             <screenshot name="tile-nav-menu-mobile-closed" screen-width="400">
                 <caption>Menü auf kleinen Bildschirmen, geschlossen</caption>
             </screenshot>
-            <screenshot name="tile-nav-menu-mobile-open" screen-width="400" clickpath="cv-menu > a.menu" waitfor="cv-menu.responsive li">
+            <screenshot name="tile-nav-menu-mobile-open" screen-width="400" clickpath="cv-menu > div.link.menu" waitfor="cv-menu.responsive li">
                 <caption>Menü auf kleinen Bildschirmen, geöffnet</caption>
             </screenshot>
         </settings>

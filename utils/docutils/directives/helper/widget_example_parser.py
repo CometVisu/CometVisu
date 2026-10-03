@@ -322,7 +322,7 @@ class WidgetExampleParser:
                 if i % 2 == 0:
                     classes += " last"
                 text += '<div class="%s">' % classes
-                text += '<img id="%s" src="resource/apiviewer/examples/%s.png"' % (shot['name'], shot['name'])
+                text += '<img id="%s" src="resource/apiviewer/examples/%s.webp"' % (shot['name'], shot['name'])
                 if 'caption' in shot:
                     text += ' alt="%s" title="%s"/>' % (shot['caption'].decode('utf-8'), shot['caption'].decode('utf-8'))
                     text += '<label for="'+shot['name']+'">'+shot['caption']+'</label>'

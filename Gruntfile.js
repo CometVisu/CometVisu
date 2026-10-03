@@ -24,6 +24,8 @@ function setMimeType() {
       res.setHeader('Content-Type', 'text/javascript');
     } else if (url.endsWith('.png')) {
       res.setHeader('Content-Type', 'image/png');
+    } else if (url.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
     } else if (url.endsWith('.html')) {
       res.setHeader('Content-Type', 'text/html');
     }
