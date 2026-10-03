@@ -235,8 +235,13 @@
     background-color: var(--cv-bg-elevated) !important;
 }
 
+.wy-menu-vertical li.toctree-l3.current > a,
+.wy-menu-vertical li.toctree-l3.current li a {
+    background-color: var(--cv-bg-elevated) !important;
+}
+
 .wy-menu-vertical li.current {
-    background: #31313d !important;
+    background: var(--cv-bg-surface) !important;
 }
 
 .wy-menu-vertical li.current a {
