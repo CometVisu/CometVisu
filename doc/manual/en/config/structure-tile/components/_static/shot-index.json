@@ -66,5 +66,7 @@
     "cv-value-progress": "85ec659ab77eea73b2e7a57ace7c6c78",
     "cv-value-progress-round": "8ee9a318e4cad6975d7ed6be12c9fa66",
     "cv-value-progress-semi-round": "b43b83b3cb705640b366c6a1e7d934d1",
-    "cv-value-progress-semi-round-color": "b518ea6a9a94abb80387c961aae0eeea"
+    "cv-value-progress-semi-round-color": "b518ea6a9a94abb80387c961aae0eeea",
+    "tile-nav-menu-mobile-closed": "3f65d7b4e26fb8120a5a531082a92332",
+    "tile-nav-menu-mobile-open": "63aa1285d9969ff7c5686b13e146634a"
 }
