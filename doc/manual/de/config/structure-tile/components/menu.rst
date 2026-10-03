@@ -17,7 +17,7 @@ Diese Komponente erzeugt ein Navigationsmenü aus einem Modell. Momentan sind fo
 Navigationsmenü aus Seitenstruktur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ../_static/tile-nav-menu.png
+.. figure:: ../_static/tile-nav-menu.webp
 
     Navigationsmenü aus Seitenstruktur
 
