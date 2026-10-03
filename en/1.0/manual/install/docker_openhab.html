@@ -9,7 +9,7 @@
   <title>Installing on an Ubuntu system with openHAB and Docker &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/install/docker_openhab.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="Installation on a Debian System with openHAB" href="openhab.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../#features">Features</a></li>
+            <li><a href="../../../#customization">Customization</a></li>
+            <li><a href="../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -135,7 +162,7 @@ The above items are all that is required to get up and running successfully.</p>
 <span class="go">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
 
 <span class="gp"># </span>add<span class="w"> </span>Docker<span class="w"> </span>repository<span class="w"> </span>key
-<span class="go">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span>
+<span class="go">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span>
 
 <span class="gp"># </span>Update<span class="w"> </span>again
 <span class="go">sudo apt-get update</span>
@@ -159,28 +186,28 @@ The above items are all that is required to get up and running successfully.</p>
 <span class="go">sudo nano resource/config/visu_config.xml</span>
 </pre></div>
 </div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;pure&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;../visu_config.xsd&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="w"> </span><span class="na">design=</span><span class="s">"pure"</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">"../visu_config.xsd"</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">"8"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;statusbar&gt;</span>
-<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">            &lt;img src=&quot;resource/icons/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
-<span class="cp">            -&lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
-<span class="cp">            -&lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">"html"</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            &lt;img src="resource/icons/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;</span>
+<span class="cp">            -&lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</span>
+<span class="cp">            -&lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;!edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">            - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">"html"</span><span class="w"> </span><span class="na">condition=</span><span class="s">"!edit"</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">"config"</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href="edit_config.html"&gt;Edit&lt;/a&gt;</span>
 <span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="w"> </span><span class="na">condition=</span><span class="s">&quot;edit&quot;</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">            - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">"html"</span><span class="w"> </span><span class="na">condition=</span><span class="s">"edit"</span><span class="w"> </span><span class="na">hrefextend=</span><span class="s">"all"</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href="."&gt;normal Mode&lt;/a&gt;</span>
 <span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">        - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
-<span class="cp">        &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
+<span class="w">    </span><span class="nt">&lt;status</span><span class="w"> </span><span class="na">type=</span><span class="s">"html"</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">        - &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</span>
+<span class="cp">        &lt;div style="float:right;padding-right:0.5em"&gt;Version: SVN&lt;/div&gt;</span>
 <span class="cp">        ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/statusbar&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
-<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Start page&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">"Start page"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/page&gt;</span>
 <span class="nt">&lt;/pages&gt;</span>
 </pre></div>
@@ -202,20 +229,20 @@ sudo<span class="w"> </span>nano<span class="w"> </span>docker-compose.yaml
 
 <span class="c"># example content to configure the docker container to use openHAB as backend</span>
 
-version:<span class="w"> </span><span class="s1">&#39;3.4&#39;</span>
+version:<span class="w"> </span><span class="s1">'3.4'</span>
 services:
 <span class="w">    </span>cometvisu:
-<span class="w">        </span>image:<span class="w"> </span><span class="s2">&quot;cometvisu/cometvisu:latest&quot;</span>
+<span class="w">        </span>image:<span class="w"> </span><span class="s2">"cometvisu/cometvisu:latest"</span>
 <span class="w">        </span>restart:<span class="w"> </span>always
 <span class="w">        </span>ports:
 <span class="w">        </span>-<span class="w"> </span><span class="m">80</span>:80
 <span class="w">        </span>volumes:
 <span class="w">            </span>-<span class="w"> </span>./resource/config:/var/www/html/resource/config
 <span class="w">        </span>environment:
-<span class="w">            </span>BACKEND_NAME:<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
-<span class="w">            </span>BACKEND_OPENHAB:<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
-<span class="w">            </span>BACKEND_PROXY_SOURCE:<span class="w"> </span><span class="s2">&quot;/rest&quot;</span>
-<span class="w">            </span>BACKEND_PROXY_TARGET:<span class="w"> </span><span class="s2">&quot;http://&lt;IP-Openhab2&gt;:8080/rest&quot;</span>
+<span class="w">            </span>BACKEND_NAME:<span class="w"> </span><span class="s2">"openhab"</span>
+<span class="w">            </span>BACKEND_OPENHAB:<span class="w"> </span><span class="s2">"/rest/"</span>
+<span class="w">            </span>BACKEND_PROXY_SOURCE:<span class="w"> </span><span class="s2">"/rest"</span>
+<span class="w">            </span>BACKEND_PROXY_TARGET:<span class="w"> </span><span class="s2">"http://&lt;IP-Openhab2&gt;:8080/rest"</span>
 </pre></div>
 </div>
 <div class="admonition hint">
@@ -229,7 +256,7 @@ services:
 <span class="go">docker-compose ps</span>
 
 <span class="gp"># </span>find<span class="w"> </span>out<span class="w"> </span>the<span class="w"> </span>IP<span class="w"> </span>address<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>docker<span class="w"> </span>container,<span class="w"> </span>&lt;name&gt;<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>replaced<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>correct<span class="w"> </span>container<span class="w"> </span>name
-<span class="go">docker inspect -f &#39;{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39; &lt;name&gt;</span>
+<span class="go">docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' &lt;name&gt;</span>
 </pre></div>
 </div>
 <p>You can access the CometVisu in your browser with the URL <code class="docutils literal notranslate"><span class="pre">http://&lt;container-IP&gt;:</span></code>.</p>

@@ -9,7 +9,7 @@
   <title>Developer version on the Wiregate &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/install/install-dev.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="Installation on Raspberry PI" href="raspberry.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../#features">Features</a></li>
+            <li><a href="../../../#customization">Customization</a></li>
+            <li><a href="../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -250,7 +277,7 @@ git<span class="w"> </span>clone<span class="w"> </span>git://github.com/&lt;A
 </pre></div>
 </div>
 <p>The result should now be a text similar to this:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Klone<span class="w"> </span>nach<span class="w"> </span><span class="s1">&#39;CometVisuGit&#39;</span>...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Klone<span class="w"> </span>nach<span class="w"> </span><span class="s1">'CometVisuGit'</span>...
 remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">20347</span>,<span class="w"> </span><span class="k">done</span>.
 remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5220</span>/5220<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
 remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">20347</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">14950</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">20280</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">14905</span><span class="o">)</span>

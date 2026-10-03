@@ -112,11 +112,17 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           defaultBackendName: cv.data.Model.getInstance().getDefaultBackendName()
         });
       },
+      /**
+       * Restore the cached config. The caller must wait for the returned promise, everything
+       * that reads cv.Config.configSettings (e.g. the backend client initialization) races
+       * against it otherwise.
+       * @return {Promise}
+       */
       restore: function restore() {
         var _this = this;
         var body = document.querySelector('body');
         var model = cv.data.Model.getInstance();
-        this.getData().then(function (cache) {
+        return this.getData().then(function (cache) {
           cv.Config.configSettings = cache.configSettings;
 
           // restore icons
@@ -342,4 +348,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ConfigCache.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ConfigCache.js.map?dt=1782967173785
+//# sourceMappingURL=ConfigCache.js.map?dt=1791028210018

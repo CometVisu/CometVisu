@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943248,
-  "lastModifiedIso": "2026-07-02T04:35:43.248Z",
+  "lastModified": 1791028034601,
+  "lastModifiedIso": "2026-10-03T11:47:14.601Z",
   "classFilename": "../../source/class/cv/io/timeseries/RRDSource.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 838
     },
     "end": {
-      "line": 83,
+      "line": 88,
       "column": 3,
-      "index": 2685
+      "index": 2914
     }
   },
   "className": "cv.io.timeseries.RRDSource",
@@ -32,7 +32,7 @@
   },
   "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
   "members": {
-    "_backendUrl": {
+    "_fileName": {
       "jsdoc": null,
       "access": "protected",
       "location": {
@@ -43,25 +43,25 @@
         },
         "end": {
           "line": 31,
-          "column": 21,
-          "index": 1096
+          "column": 19,
+          "index": 1094
         }
       },
       "appearsIn": []
     },
-    "_baseRequestConfig": {
+    "_params": {
       "jsdoc": null,
       "access": "protected",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1102
+          "index": 1100
         },
         "end": {
           "line": 32,
-          "column": 28,
-          "index": 1126
+          "column": 17,
+          "index": 1113
         }
       },
       "appearsIn": []
@@ -73,12 +73,12 @@
         "start": {
           "line": 33,
           "column": 4,
-          "index": 1132
+          "index": 1119
         },
         "end": {
           "line": 33,
           "column": 24,
-          "index": 1152
+          "index": 1139
         }
       },
       "appearsIn": []
@@ -90,12 +90,12 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1158
+          "index": 1145
         },
         "end": {
           "line": 34,
           "column": 21,
-          "index": 1175
+          "index": 1162
         }
       },
       "appearsIn": []
@@ -107,12 +107,12 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 1181
+          "index": 1168
         },
         "end": {
           "line": 35,
           "column": 28,
-          "index": 1205
+          "index": 1192
         }
       },
       "appearsIn": []
@@ -124,12 +124,12 @@
         "start": {
           "line": 36,
           "column": 4,
-          "index": 1211
+          "index": 1198
         },
         "end": {
           "line": 36,
           "column": 22,
-          "index": 1229
+          "index": 1216
         }
       },
       "appearsIn": []
@@ -141,12 +141,12 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1236
+          "index": 1223
         },
         "end": {
-          "line": 66,
+          "line": 56,
           "column": 5,
-          "index": 2263
+          "index": 1913
         }
       },
       "type": "function",
@@ -157,18 +157,62 @@
       ]
     },
     "getRequestConfig": {
-      "jsdoc": null,
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build the request config, resolving the base URL from the backend client",
+          "     * at call time so that it reflects the current backend.baseURL (which may",
+          "     * have been updated by the login response after construction).",
+          "     * @param start",
+          "     * @param end",
+          "     * @param series",
+          "     * @param offset",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Build the request config, resolving the base URL from the backend client\n at call time so that it reflects the current backend.baseURL (which may\n have been updated by the login response after construction).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start",
+            "paramName": "start",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "end",
+            "paramName": "end",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "series",
+            "paramName": "series",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "offset",
+            "paramName": "offset",
+            "type": ""
+          }
+        ]
+      },
       "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 67,
           "column": 4,
-          "index": 2270
+          "index": 2243
         },
         "end": {
-          "line": 77,
+          "line": 82,
           "column": 5,
-          "index": 2614
+          "index": 2843
         }
       },
       "type": "function",
@@ -196,14 +240,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 84,
           "column": 4,
-          "index": 2621
+          "index": 2850
         },
         "end": {
-          "line": 81,
+          "line": 86,
           "column": 5,
-          "index": 2677
+          "index": 2906
         }
       },
       "type": "function",

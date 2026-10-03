@@ -433,4 +433,4 @@
   qx.data.controller.MSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MSelection.js.map?dt=1782967145868
+//# sourceMappingURL=MSelection.js.map?dt=1791028193689

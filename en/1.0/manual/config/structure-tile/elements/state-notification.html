@@ -9,7 +9,7 @@
   <title>State notifications &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/elements/state-notification.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="CSS-Style" href="style.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -120,12 +147,12 @@ So it is sufficient to use them like this:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Simple example that shows a message in the message center when the living room light is switched on.</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-state-notification</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span><span class="w"> </span><span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-state-notification</span><span class="w"> </span><span class="na">target=</span><span class="s">"notificationCenter"</span><span class="w"> </span><span class="na">unique=</span><span class="s">"true"</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nt">&lt;title-template&gt;</span>Living<span class="w"> </span>room<span class="nt">&lt;/title-template&gt;</span>
 <span class="w">        </span><span class="nt">&lt;message-template&gt;</span>switched<span class="w"> </span>on<span class="w"> </span>at<span class="w"> </span>{{<span class="w"> </span>time<span class="w"> </span>}}<span class="nt">&lt;/message-template&gt;</span>
 <span class="w">        </span><span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
 <span class="w">        </span><span class="nt">&lt;addresses&gt;</span>
-<span class="w">            </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:switch"</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/addresses&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-state-notification&gt;</span>
 <span class="w">    </span>...
@@ -139,12 +166,12 @@ of the new <a class="reference internal" href="backend.html#tile-backend-system"
 to change their priority. If you only want to switch on the above example manually, you can do this by
 assigning an ID (<code class="docutils literal notranslate"><span class="pre">id=&quot;lightLR&quot;</span></code>) and deactivating the notification first (<code class="docutils literal notranslate"><span class="pre">enabled=&quot;false&quot;</span></code>):</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-state-notification</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;lightLR&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;notificationCenter&quot;</span><span class="w"> </span><span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">enabled=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-state-notification</span><span class="w"> </span><span class="na">id=</span><span class="s">"lightLR"</span><span class="w"> </span><span class="na">target=</span><span class="s">"notificationCenter"</span><span class="w"> </span><span class="na">unique=</span><span class="s">"true"</span><span class="w"> </span><span class="na">enabled=</span><span class="s">"false"</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nt">&lt;title-template&gt;</span>Living<span class="w"> </span>room<span class="nt">&lt;/title-template&gt;</span>
 <span class="w">        </span><span class="nt">&lt;message-template&gt;</span>switched<span class="w"> </span>on<span class="w"> </span>at<span class="w"> </span>{{<span class="w"> </span>time<span class="w"> </span>}}<span class="nt">&lt;/message-template&gt;</span>
 <span class="w">        </span><span class="nt">&lt;condition&gt;</span>1<span class="nt">&lt;/condition&gt;</span>
 <span class="w">        </span><span class="nt">&lt;addresses&gt;</span>
-<span class="w">            </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:switch"</span><span class="nt">&gt;</span>Light_FF_Living<span class="nt">&lt;/address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/addresses&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-state-notification&gt;</span>
 <span class="w">    </span>...
@@ -153,16 +180,16 @@ assigning an ID (<code class="docutils literal notranslate"><span class="pre">id
 </div>
 <p>Now you can insert a <a class="reference internal" href="../widgets/switch.html#tile-switch"><span class="std std-ref">Switch</span></a> at any point in the config to switch the notification on:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Notification&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-notification-off-line<span class="nt">&lt;/entry&gt;</span>
-<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-notification-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">"Notification"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"0"</span><span class="nt">&gt;</span>ri-notification-off-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>ri-notification-line<span class="nt">&lt;/entry&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
-<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;Notification&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>notification:lightLR:enabled<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-notification-line<span class="nt">&lt;/cv-icon&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>Light<span class="w"> </span>LR<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">mapping=</span><span class="s">"Notification"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">backend=</span><span class="s">"system"</span><span class="nt">&gt;</span>notification:lightLR:enabled<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">"icon"</span><span class="nt">&gt;</span>ri-notification-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"secondaryLabel"</span><span class="nt">&gt;</span>Light<span class="w"> </span>LR<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>
@@ -171,16 +198,16 @@ The address is composed of the always required prefix <code class="docutils lite
 and the attribute to be changed <code class="docutils literal notranslate"><span class="pre">enabled</span></code>.
 If you want to change the priority of the notification, you can do so with the following switch:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;NotificationSeverity&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;urgent&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
-<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">"NotificationSeverity"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"urgent"</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"normal"</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
 <span class="nt">&lt;/cv-meta&gt;</span>
 ...
-<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;NotificationSeverity&quot;</span><span class="w"> </span><span class="na">on-value=</span><span class="s">&quot;urgent&quot;</span><span class="w"> </span><span class="na">off-value=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>notification:lightLR:severity<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-alert-line<span class="nt">&lt;/cv-icon&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;secondaryLabel&quot;</span><span class="nt">&gt;</span>Light<span class="w"> </span>LR<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">styling=</span><span class="s">"NotificationSeverity"</span><span class="w"> </span><span class="na">on-value=</span><span class="s">"urgent"</span><span class="w"> </span><span class="na">off-value=</span><span class="s">"normal"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">backend=</span><span class="s">"system"</span><span class="nt">&gt;</span>notification:lightLR:severity<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">"icon"</span><span class="nt">&gt;</span>ri-alert-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"secondaryLabel"</span><span class="nt">&gt;</span>Light<span class="w"> </span>LR<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-switch&gt;</span>
 </pre></div>
 </div>

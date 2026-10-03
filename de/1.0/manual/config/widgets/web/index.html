@@ -9,7 +9,7 @@
   <title>Das Web Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/widgets/web/index.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Video Widget" href="../video/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -370,8 +397,8 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <p><span class="caption-text">Web, einfaches Beispiel</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;web</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;/source/web.html&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;620px&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;300px&quot;</span><span class="w"> </span><span class="na">frameborder=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">background=</span><span class="s">&quot;black&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;20&quot;</span><span class="nt">&gt;</span>
-<span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;web</span><span class="w"> </span><span class="na">src=</span><span class="s">"/source/web.html"</span><span class="w"> </span><span class="na">width=</span><span class="s">"620px"</span><span class="w"> </span><span class="na">height=</span><span class="s">"300px"</span><span class="w"> </span><span class="na">frameborder=</span><span class="s">"false"</span><span class="w"> </span><span class="na">background=</span><span class="s">"black"</span><span class="w"> </span><span class="na">refresh=</span><span class="s">"20"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"6"</span><span class="nt">/&gt;</span>
 <span class="w">  </span><span class="nt">&lt;label&gt;</span>Web<span class="w"> </span>widget<span class="w"> </span>example<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/web&gt;</span>
 </pre></div>

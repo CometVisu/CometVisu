@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943249,
-  "lastModifiedIso": "2026-07-02T04:35:43.249Z",
+  "lastModified": 1791028034602,
+  "lastModifiedIso": "2026-10-03T11:47:14.602Z",
   "classFilename": "../../source/class/cv/plugins/diagram/AbstractDiagram.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 3026
     },
     "end": {
-      "line": 959,
+      "line": 972,
       "column": 3,
-      "index": 29937
+      "index": 30560
     }
   },
   "className": "cv.plugins.diagram.AbstractDiagram",
@@ -1307,9 +1307,9 @@
           "index": 18707
         },
         "end": {
-          "line": 638,
+          "line": 651,
           "column": 5,
-          "index": 20145
+          "index": 20768
         }
       },
       "type": "function",
@@ -1321,14 +1321,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 640,
+          "line": 653,
           "column": 4,
-          "index": 20152
+          "index": 20775
         },
         "end": {
-          "line": 798,
+          "line": 811,
           "column": 5,
-          "index": 24938
+          "index": 25561
         }
       },
       "type": "function",
@@ -1344,14 +1344,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 800,
+          "line": 813,
           "column": 4,
-          "index": 24945
+          "index": 25568
         },
         "end": {
-          "line": 837,
+          "line": 850,
           "column": 5,
-          "index": 26247
+          "index": 26870
         }
       },
       "type": "function",
@@ -1370,14 +1370,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 839,
+          "line": 852,
           "column": 4,
-          "index": 26254
+          "index": 26877
         },
         "end": {
-          "line": 928,
+          "line": 941,
           "column": 5,
-          "index": 29073
+          "index": 29696
         }
       },
       "type": "function",
@@ -1797,14 +1797,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 936,
+        "line": 949,
         "column": 2,
-        "index": 29221
+        "index": 29844
       },
       "end": {
-        "line": 940,
+        "line": 953,
         "column": 3,
-        "index": 29314
+        "index": 29937
       }
     }
   }

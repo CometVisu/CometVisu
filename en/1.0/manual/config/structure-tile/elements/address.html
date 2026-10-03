@@ -9,7 +9,7 @@
   <title>Addresses - communication with the backend &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/elements/address.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="Plugin" href="../components/plugin.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -203,20 +230,20 @@ It is even possible to be connected to multiple backends of the same type at the
 Each configured <a class="reference internal" href="backend.html#tile-element-backend"><span class="std std-ref">Backend</span></a> has a unique name, which is set by the <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute.
 If this is not specified, the name corresponds to the value of the <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute.
 So if you have defined the following 3 backends:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;si&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mqtt-broker&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">"openhab"</span><span class="w"> </span><span class="na">username=</span><span class="s">"..."</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">"si"</span><span class="w"> </span><span class="na">default=</span><span class="s">"true"</span><span class="w"> </span><span class="na">type=</span><span class="s">"simulated"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">"mqtt-broker"</span><span class="w"> </span><span class="na">type=</span><span class="s">"mqtt"</span><span class="w"> </span><span class="na">uri=</span><span class="s">"ws://mqtt:9001/"</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>you can use them in the <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code> elements in the following way:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Default backend --&gt;</span>
-<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1001&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1001"</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 
 <span class="cm">&lt;!-- openHAB backend --&gt;</span>
-<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:switch&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;openhab&quot;</span><span class="nt">&gt;</span>Switch_Item<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:switch"</span><span class="w"> </span><span class="na">backend=</span><span class="s">"openhab"</span><span class="nt">&gt;</span>Switch_Item<span class="nt">&lt;/cv-address&gt;</span>
 
 <span class="cm">&lt;!-- MQTT backend --&gt;</span>
-<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;mqtt-broker&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
+<span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"MQTT:number"</span><span class="w"> </span><span class="na">backend=</span><span class="s">"mqtt-broker"</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -236,7 +263,7 @@ widgets/components.</p>
 If a 1 is sent, the tile will be shown again.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;show-exclude&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"show-exclude"</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;cv-widget&gt;</span>
 </pre></div>
@@ -248,7 +275,7 @@ If a 1 is sent, the tile will be shown again.</p>
 to user interactions such as mouse clicks.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;enabled&quot;</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"enabled"</span><span class="nt">&gt;</span>1/0/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
@@ -262,11 +289,11 @@ use that to mark the widget as outdated if it has been too long since the last u
 <figure class="align-default">
 <img alt="../../../_images/cv-info-outdated.png" src="../../../_images/cv-info-outdated.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%.2f&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:9.001&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;tileAddress&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:10.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;last-update:120&quot;</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Living<span class="w"> </span>room<span class="nt">&lt;/span&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;unit&quot;</span><span class="nt">&gt;</span>°C<span class="nt">&lt;/span&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">"%.2f"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:9.001"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"tileAddress"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:10.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"last-update:120"</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"label"</span><span class="nt">&gt;</span>Living<span class="w"> </span>room<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"unit"</span><span class="nt">&gt;</span>°C<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-info&gt;</span>
 </pre></div>
 </div>
@@ -276,7 +303,7 @@ the widget will be marked as obsolete.</p>
 you just have to leave out the slot attribute from the example.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:10.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;last-update:120&quot;</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:10.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"last-update:120"</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
 <span class="nt">&lt;/cv-widget&gt;</span>
 </pre></div>
@@ -980,15 +1007,15 @@ to new communication participants on the MQTT.</p></td>
 <h4>Example:<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
 <p>To address a numeric value at the topic <code class="docutils literal notranslate"><span class="pre">/topic/baz</span></code> that is transmitted in a JSON like</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;foo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
-<span class="w">    </span><span class="p">{</span><span class="nt">&quot;bar&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"foo"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"bar"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="nt">"bar"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>the <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code> element would look like this:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;MQTT:number&quot;</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;foo[1].bar&quot;</span><span class="w"> </span><span class="na">retain=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"MQTT:number"</span><span class="w"> </span><span class="na">selector=</span><span class="s">"foo[1].bar"</span><span class="w"> </span><span class="na">retain=</span><span class="s">"true"</span><span class="nt">&gt;</span>/topic/baz<span class="nt">&lt;/cv-address&gt;</span>
 </pre></div>
 </div>
 </section>

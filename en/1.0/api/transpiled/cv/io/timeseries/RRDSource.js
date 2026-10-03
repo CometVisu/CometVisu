@@ -8,7 +8,8 @@
       "cv.io.timeseries.AbstractTimeSeriesSource": {
         "require": true
       },
-      "qx.util.format.DateFormat": {}
+      "qx.util.format.DateFormat": {},
+      "cv.io.BackendConnections": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -41,8 +42,8 @@
     ***********************************************
     */
     members: {
-      _backendUrl: null,
-      _baseRequestConfig: null,
+      _fileName: null,
+      _params: null,
       _queryTemplate: null,
       _timeFormat: null,
       _defaultResolution: null,
@@ -53,38 +54,43 @@
         this._defaultResolution = 300;
         this._defaultFunc = 'AVERAGE';
         if (resourceConf) {
-          var fileName = resourceConf.name;
-          this._baseRequestConfig = {
-            url: "/cgi-bin/rrdfetch?rrd=".concat(fileName, ".rrd"),
-            proxy: false,
-            options: {}
-          };
-          for (var key in resourceConf.params) {
-            this._baseRequestConfig.url += "&".concat(key, "=").concat(resourceConf.params[key]);
+          this._fileName = resourceConf.name;
+          this._params = Object.assign({}, resourceConf.params);
+          if (!Object.prototype.hasOwnProperty.call(this._params, 'res')) {
+            this._params.res = this._defaultResolution;
           }
-          if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'res')) {
-            this._baseRequestConfig.url += "&res=".concat(this._defaultResolution);
-          }
-          if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'ds')) {
-            this._baseRequestConfig.url += "&ds=".concat(this._defaultFunc);
+          if (!Object.prototype.hasOwnProperty.call(this._params, 'ds')) {
+            this._params.ds = this._defaultFunc;
           }
         } else {
-          this._baseRequestConfig = {
-            url: '',
-            proxy: false,
-            options: {}
-          };
+          this._fileName = '';
+          this._params = {};
         }
       },
+      /**
+       * Build the request config, resolving the base URL from the backend client
+       * at call time so that it reflects the current backend.baseURL (which may
+       * have been updated by the login response after construction).
+       * @param start
+       * @param end
+       * @param series
+       * @param offset
+       */
       getRequestConfig: function getRequestConfig(start, end, series, offset) {
-        var config = Object.assign({}, this._baseRequestConfig);
-        var rrdStart = "now-".concat(offset + 1).concat(series);
-        var rrdEnd = 'now';
-        if (offset > 0) {
-          rrdEnd = "now-".concat(offset).concat(series);
+        var client = cv.io.BackendConnections.getClient();
+        var baseUrl = client ? client.getResourcePath('rrd') : '/cgi-bin/rrdfetch';
+        var url = "".concat(baseUrl, "?rrd=").concat(this._fileName, ".rrd");
+        for (var key in this._params) {
+          url += "&".concat(key, "=").concat(this._params[key]);
         }
-        config.url += "&start=".concat(rrdStart, "&end=").concat(rrdEnd);
-        return config;
+        var rrdStart = "now-".concat(offset + 1).concat(series);
+        var rrdEnd = offset > 0 ? "now-".concat(offset).concat(series) : 'now';
+        url += "&start=".concat(rrdStart, "&end=").concat(rrdEnd);
+        return {
+          url: url,
+          proxy: false,
+          options: {}
+        };
       },
       processResponse: function processResponse(response) {
         return response;
@@ -94,4 +100,4 @@
   cv.io.timeseries.RRDSource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RRDSource.js.map?dt=1782967136721
+//# sourceMappingURL=RRDSource.js.map?dt=1791028188237

@@ -9,7 +9,7 @@
   <title>Image &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/components/image.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Value" href="value.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -114,7 +141,7 @@ automatisiert neu geladen werden.</p>
 <figure class="align-default">
 <img alt="../../../_images/cv-image.png" src="../../../_images/cv-image.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/icons/comet_128_ff8000.png&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">src=</span><span class="s">"resource/icons/comet_128_ff8000.png"</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Die Größe des Bilds entspricht immer der Kachel in der das Bild benutzt wird, d.h. das Bild füllt die Kachel komplett
@@ -122,8 +149,8 @@ aus ohne verzerrt zu werden.</p>
 <p>Bei einem Klick auf das Bild wird es aktualisiert. Zusätzlich kann über das optionale <code class="docutils literal notranslate"><span class="pre">refresh</span></code>-Attribut
 festgelegt werden in welchem Interval in Sekunden das Bild neu geladen wird.
 Ebenso kann das Aktualisieren des Bildes durch eingehende Daten vom Backend ausgelöst werden.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;http://webcam/snapshot.jpeg&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;refresh&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">src=</span><span class="s">"http://webcam/snapshot.jpeg"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"refresh"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-image&gt;</span>
 </pre></div>
 </div>
@@ -137,14 +164,14 @@ man das <code class="docutils literal notranslate"><span class="pre">proxy</span
 Dafür muss ein neuer Eintrag in der Sektion angelegt werden, der Schlüssel kann beliebig gewählt werden
 und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck eingetragen der für diese URL gültig ist.</p>
 <p>Beispiel mit exakter URL:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://webcam/snapshot.jpeg&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://webcam/snapshot.jpeg"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Beispiel mit regulärem Ausdruck (beginnt und endet mit „/“), welcher alle URLs erlaubt, die „webcam“ enthalten:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/^.+webcam\/.*$/&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/^.+webcam\/.*$/"</span>
 <span class="p">}</span>
 </pre></div>
 </div>

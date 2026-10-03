@@ -564,7 +564,9 @@
         var popupDiagram = qx.dom.Element.create('div', {
           "class": 'diagram',
           id: this.getPath() + '_big',
-          style: 'height: 90%'
+          // fills the content area of the popup, the spacing comes from its padding.
+          // margin has to be set because .popup div in designglobals.css defines 4px
+          style: 'height: 100%; width: 100%; margin: 0'
         });
         this._init = true;
         var popup = cv.ui.PopupHandler.showPopup('diagram', {
@@ -585,10 +587,17 @@
           }
         });
         var parent = popupDiagram.parentNode;
+        // Equal spacing on all sides: a percentage padding refers to the width on the top
+        // and bottom as well, so it is the same value everywhere. "margin: auto" only
+        // centered horizontally, at the top and bottom it computes to 0. display: flex
+        // makes the diagram sit exactly at the content box.
         Object.entries({
           height: '100%',
-          width: '95%',
-          margin: 'auto'
+          width: '100%',
+          margin: '0',
+          padding: '2.5%',
+          boxSizing: 'border-box',
+          display: 'flex'
         }).forEach(function (key_value) {
           parent.style[key_value[0]] = key_value[1];
         });
@@ -911,4 +920,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1782967137654
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1791028188787

@@ -9,7 +9,7 @@
   <title>Das Timeout Plugin &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/widgets/plugins/timeout/index.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Strftime Plugin" href="../strftime/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../../.." class="cv-nav-logo">
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -165,23 +192,23 @@ festgelegten Timeouts ohne Aktivität wird die angegebene Seite der Visualisieru
 <p>Das Plugin muss im &lt;meta&gt;-tag unter den Plugins aufgelistet sein. Im einem page-widget ist der
 Code <code class="docutils literal notranslate"><span class="pre">&lt;timeout</span> <span class="pre">time=&quot;60&quot;</span> <span class="pre">target=&quot;Main1&quot;/&gt;</span></code> einzutragen.</p>
 <p>Nachstehend ein vollständiges Config-File für eine Visualisierungsseite mit Timeout-Plugin.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
-<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">design=</span><span class="s">&quot;metal&quot;</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;./visu_config.xsd&quot;</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">&quot;8&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;</span>
+<span class="nt">&lt;pages</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="w"> </span><span class="na">design=</span><span class="s">"metal"</span><span class="w"> </span><span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">"./visu_config.xsd"</span><span class="w"> </span><span class="na">lib_version=</span><span class="s">"8"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">        </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">            </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;timeout&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"timeout"</span><span class="nt">/&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/meta&gt;</span>
-<span class="w">    </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Main1&quot;</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;timeout</span><span class="w"> </span><span class="na">time=</span><span class="s">&quot;60&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Main1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">"Main1"</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">"false"</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">"false"</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;timeout</span><span class="w"> </span><span class="na">time=</span><span class="s">"60"</span><span class="w"> </span><span class="na">target=</span><span class="s">"Main1"</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">"left"</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"2"</span><span class="nt">/&gt;</span>
 <span class="w">            </span><span class="nt">&lt;label&gt;</span>Seite<span class="w"> </span>Main<span class="nt">&lt;/label&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/text&gt;</span>
-<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Seite2&quot;</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
-<span class="w">            </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
-<span class="w">                </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">colspan-m=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">colspan-s=</span><span class="s">&quot;12&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">"Seite2"</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">"false"</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">"false"</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"2"</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;text</span><span class="w"> </span><span class="na">align=</span><span class="s">"left"</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"2"</span><span class="w"> </span><span class="na">colspan-m=</span><span class="s">"6"</span><span class="w"> </span><span class="na">colspan-s=</span><span class="s">"12"</span><span class="nt">/&gt;</span>
 <span class="w">                </span><span class="nt">&lt;label&gt;</span>Seite2<span class="nt">&lt;/label&gt;</span>
 <span class="w">            </span><span class="nt">&lt;/text&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/page&gt;</span>

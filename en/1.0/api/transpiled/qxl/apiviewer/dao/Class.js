@@ -83,12 +83,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _mixins: null,
       _loadingPromise: null,
       _loaded: false,
-      __P_815_0: null,
+      __P_816_0: null,
       /**
        * retrieves the meta file name + path
        */
       getMetaFile: function getMetaFile() {
-        return this.__P_815_0;
+        return this.__P_816_0;
       },
       /**
        * Loads the class
@@ -106,10 +106,10 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return _regenerator().w(function (_context) {
               while (1) switch (_context.p = _context.n) {
                 case 0:
-                  _this.__P_815_0 = qxl.apiviewer.ClassLoader.getBaseUri() + _this._className.replace(/\./g, "/") + ".json";
+                  _this.__P_816_0 = qxl.apiviewer.ClassLoader.getBaseUri() + _this._className.replace(/\./g, "/") + ".json";
                   _context.p = 1;
                   _context.n = 2;
-                  return qxl.apiviewer.RequestUtil.get(_this.__P_815_0);
+                  return qxl.apiviewer.RequestUtil.get(_this.__P_816_0);
                 case 2:
                   content = _context.v;
                   _context.n = 4;
@@ -117,7 +117,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 case 3:
                   _context.p = 3;
                   _t = _context.v;
-                  _this.error("Couldn't load file: " + _this.__P_815_0 + " " + _t.message);
+                  _this.error("Couldn't load file: " + _this.__P_816_0 + " " + _t.message);
                 case 4:
                   meta = JSON.parse(content);
                   _context.n = 5;
@@ -132,8 +132,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return _ref.apply(this, arguments);
           };
         }();
-        this.__P_815_1 = loadImpl();
-        return this.__P_815_1;
+        this.__P_816_1 = loadImpl();
+        return this.__P_816_1;
       },
       isLoaded: function isLoaded() {
         return this._loaded;
@@ -839,4 +839,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1782967175933
+//# sourceMappingURL=Class.js.map?dt=1791028211272

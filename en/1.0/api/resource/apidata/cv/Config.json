@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943245,
-  "lastModifiedIso": "2026-07-02T04:35:43.245Z",
+  "lastModified": 1791028034599,
+  "lastModifiedIso": "2026-10-03T11:47:14.599Z",
   "classFilename": "../../source/class/cv/Config.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 896
     },
     "end": {
-      "line": 519,
+      "line": 540,
       "column": 3,
-      "index": 14202
+      "index": 14998
     }
   },
   "className": "cv.Config",
@@ -1440,6 +1440,59 @@
       },
       "type": "function",
       "params": [],
+      "appearsIn": []
+    },
+    "enableErrorReporting": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enable error reporting with Sentry if it was requested and the Sentry SDK",
+          "     * was loaded completely.",
+          "     *",
+          "     * A partially loaded SDK (e.g. when only the rewriteframes bundle was",
+          "     * loaded) creates an incomplete `window.Sentry` object that lacks the core",
+          "     * API (like `setTag`). In that case error reporting is disabled instead of",
+          "     * crashing the whole startup with a TypeError.",
+          "     *",
+          "     * @param enabled {Boolean} whether error reporting was requested",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Enable error reporting with Sentry if it was requested and the Sentry SDK\n was loaded completely.\n A partially loaded SDK (e.g. when only the rewriteframes bundle was\n loaded) creates an incomplete <code>window.Sentry</code> object that lacks the core\n API (like <code>setTag</code>). In that case error reporting is disabled instead of\n crashing the whole startup with a TypeError.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "enabled {Boolean} whether error reporting was requested",
+            "paramName": "enabled",
+            "description": " whether error reporting was requested",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 9757
+        },
+        "end": {
+          "line": 402,
+          "column": 5,
+          "index": 10521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "enabled",
+          "type": "boolean"
+        }
+      ],
       "appearsIn": []
     }
   },

@@ -9,7 +9,7 @@
   <title>RRD introduction &amp; examples &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/rrd_examples.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="Notifications" href="notifications.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../#features">Features</a></li>
+            <li><a href="../../../#customization">Customization</a></li>
+            <li><a href="../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -145,7 +172,7 @@ or an <a class="reference external" href="CometVisu/rrdtool">RRDtool with patche
 standard available)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@Traumhaus:/var/www/rrd#<span class="w"> </span>cat<span class="w"> </span>/etc/crontab
 <span class="c1"># /etc/crontab: system-wide crontab</span>
-<span class="c1"># Unlike any other crontab you don&#39;t have to run the &#39;crontab&#39;</span>
+<span class="c1"># Unlike any other crontab you don't have to run the 'crontab'</span>
 <span class="c1"># command to install the new version when you edit this file</span>
 <span class="c1"># and files in /etc/cron.d. These files also have username fields,</span>
 <span class="c1"># that none of the other crontabs do.</span>

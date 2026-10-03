@@ -167,6 +167,12 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       xhr.set({
         method: 'GET'
       });
+      // The version file is plain text (e.g. "0.13.0-dev"), but some proxies
+      // serve it with an XML content type. Force a text parser so the response
+      // body is never parsed as XML (→ "XML-Verarbeitungsfehler").
+      xhr.setParser(function (response) {
+        return response;
+      });
       var check = function check(e) {
         var req = e.getTarget();
         var header = req.getResponseHeader('Server');
@@ -1126,9 +1132,9 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                   cv.io.Client.stopAll();
                 });
                 qx.bom.Lifecycle.onReady(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-                  var configLoader;
+                  var configLoader, _t3;
                   return _regenerator().w(function (_context7) {
-                    while (1) switch (_context7.n) {
+                    while (1) switch (_context7.p = _context7.n) {
                       case 0:
                         // init notification router
                         cv.core.notifications.Router.getInstance();
@@ -1142,11 +1148,24 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                       case 1:
                         _this0._isCached = _context7.v;
                       case 2:
-                        if (_this0._isCached) {
-                          // load settings
-                          _this0.debug('using cache');
-                          cv.ConfigCache.restore();
+                        if (!_this0._isCached) {
+                          _context7.n = 6;
+                          break;
                         }
+                        // load settings
+                        _this0.debug('using cache');
+                        _context7.p = 3;
+                        _context7.n = 4;
+                        return cv.ConfigCache.restore();
+                      case 4:
+                        _context7.n = 6;
+                        break;
+                      case 5:
+                        _context7.p = 5;
+                        _t3 = _context7.v;
+                        _this0.error('restoring the config cache failed, parsing the config instead:', _t3);
+                        _this0._isCached = false;
+                      case 6:
                         // initialize NotificationCenter
                         cv.ui.NotificationCenter.getInstance();
                         cv.ui.ToastManager.getInstance();
@@ -1154,10 +1173,10 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                           configLoader = new cv.util.ConfigLoader();
                           configLoader.load(_this0.bootstrap, _this0);
                         }
-                      case 3:
+                      case 7:
                         return _context7.a(2);
                     }
-                  }, _callee7);
+                  }, _callee7, null, [[3, 5]]);
                 })));
 
                 // reaction on browser back button
@@ -1365,19 +1384,23 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           // load part plugins
           engine.loadParts(partPlugins);
           if (standalonePlugins.length > 0) {
+            var queueStandalonePlugins = function queueStandalonePlugins() {
+              allPluginsQueued = true;
+              _this10.debug('loading standalone plugins');
+              cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+              if (partsLoaded) {
+                cv.util.ScriptLoader.getInstance().setAllQueued(true);
+              }
+            };
+
             // load standalone plugins after the structure parts has been loaded
             // because they need the classes provided by it
             if (this.getStructureLoaded()) {
-              cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+              queueStandalonePlugins();
             } else {
               var lid = this.addListener('changeStructureLoaded', function (ev) {
                 if (ev.getData() === true) {
-                  allPluginsQueued = true;
-                  _this10.debug('loading standalone plugins');
-                  cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
-                  if (partsLoaded) {
-                    cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                  }
+                  queueStandalonePlugins();
                   _this10.removeListenerById(lid);
                 }
               });
@@ -1618,4 +1641,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1782967136180
+//# sourceMappingURL=Application.js.map?dt=1791028187912

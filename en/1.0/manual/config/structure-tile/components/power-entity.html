@@ -9,7 +9,7 @@
   <title>Power entity &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/components/power-entity.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="Color" href="color.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -166,14 +193,14 @@ color scheme, icon and special mapping for the value. These presets are bound to
 </tbody>
 </table>
 <p>The following example:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;pv&quot;</span><span class="nt">&gt;</span>
-<span class="w">   </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">type=</span><span class="s">"pv"</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-power-entity&gt;</span>
 </pre></div>
 </div>
 <p>is the same as:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-weather_sun&quot;</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;tile-pv-power&quot;</span><span class="w"> </span><span class="na">mapping=</span><span class="s">&quot;tile-kilo-watts&quot;</span><span class="nt">&gt;</span>
-<span class="w">   </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-weather_sun"</span><span class="w"> </span><span class="na">styling=</span><span class="s">"tile-pv-power"</span><span class="w"> </span><span class="na">mapping=</span><span class="s">"tile-kilo-watts"</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-svg-round-value&gt;</span>
 </pre></div>
 </div>
@@ -185,10 +212,10 @@ not equal to 0 will be displayed next to the icon.</p>
 <figure class="align-default">
 <img alt="../../../_images/cv-power-entity-multiple.png" src="../../../_images/cv-power-entity-multiple.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;pv&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;+&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:12.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:12.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">type=</span><span class="s">"pv"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">"+"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:12.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:12.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/3<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-address-group&gt;</span>
 <span class="nt">&lt;/cv-power-entity&gt;</span>
 </pre></div>

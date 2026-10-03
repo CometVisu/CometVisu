@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943256,
-  "lastModifiedIso": "2026-07-02T04:35:43.256Z",
+  "lastModified": 1791028034609,
+  "lastModifiedIso": "2026-10-03T11:47:14.609Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/Image.js",
   "type": "class",
   "location": {
@@ -1027,14 +1027,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 190,
           "column": 4,
-          "index": 3409
+          "index": 6535
         },
         "end": {
-          "line": 123,
+          "line": 190,
           "column": 26,
-          "index": 3431
+          "index": 6557
         }
       },
       "appearsIn": [
@@ -1088,14 +1088,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 198,
           "column": 4,
-          "index": 3643
+          "index": 6769
         },
         "end": {
-          "line": 137,
+          "line": 204,
           "column": 5,
-          "index": 3854
+          "index": 6980
         }
       },
       "type": "function",
@@ -1164,14 +1164,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 146,
+          "line": 213,
           "column": 4,
-          "index": 4120
+          "index": 7246
         },
         "end": {
-          "line": 151,
+          "line": 218,
           "column": 5,
-          "index": 4307
+          "index": 7433
         }
       },
       "type": "function",
@@ -1241,14 +1241,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 228,
           "column": 4,
-          "index": 4623
+          "index": 7749
         },
         "end": {
-          "line": 167,
+          "line": 234,
           "column": 5,
-          "index": 4883
+          "index": 8009
         }
       },
       "type": "function",
@@ -1317,14 +1317,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 177,
+          "line": 244,
           "column": 4,
-          "index": 5186
+          "index": 8312
         },
         "end": {
-          "line": 190,
+          "line": 268,
           "column": 5,
-          "index": 5628
+          "index": 9261
         }
       },
       "type": "function",
@@ -1393,14 +1393,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 278,
           "column": 4,
-          "index": 5948
+          "index": 9581
         },
         "end": {
-          "line": 240,
+          "line": 318,
           "column": 5,
-          "index": 7206
+          "index": 10839
         }
       },
       "type": "function",
@@ -1474,14 +1474,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 253,
+          "line": 331,
           "column": 4,
-          "index": 7736
+          "index": 11369
         },
         "end": {
-          "line": 267,
+          "line": 345,
           "column": 5,
-          "index": 8236
+          "index": 11869
         }
       },
       "type": "function",
@@ -1566,14 +1566,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 277,
+          "line": 355,
           "column": 4,
-          "index": 8616
+          "index": 12249
         },
         "end": {
-          "line": 294,
+          "line": 372,
           "column": 5,
-          "index": 9322
+          "index": 12955
         }
       },
       "type": "function",
@@ -1636,14 +1636,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 301,
+          "line": 379,
           "column": 4,
-          "index": 9537
+          "index": 13170
         },
         "end": {
-          "line": 312,
+          "line": 390,
           "column": 5,
-          "index": 9942
+          "index": 13575
         }
       },
       "type": "function",
@@ -1695,6 +1695,251 @@
       ],
       "mixin": "cv.ui.common.Refresh"
     },
+    "__formatWithPlaceholders": {
+      "jsdoc": {
+        "raw": [
+          "* cache for {@link replaceMissingFormatValues}, keyed by format string and missing positions "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for {@link replaceMissingFormatValues}, keyed by format string and missing positions</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1840
+        },
+        "end": {
+          "line": 67,
+          "column": 32,
+          "index": 1868
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "MISSING_VALUE_PLACEHOLDER": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shown instead of a value that has not been received yet. It is the same marker",
+          "     * {@link cv.util.String#sprintf} already returns when formatting fails.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shown instead of a value that has not been received yet. It is the same marker\n {@link cv.util.String#sprintf} already returns when formatting fails.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 73,
+          "column": 34,
+          "index": 2084
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "PLACEHOLDER_REGEX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The placeholder syntax of sprintf-js, taken from its own source (1.0.3) so that every case it",
+          "     * accepts is recognized here as well. The leading alternative keeps a literal \"%%\" from being",
+          "     * treated as a placeholder.",
+          "     *",
+          "     * This is a copy and can therefore drift apart when sprintf-js changes - 1.1.x for example added",
+          "     * the conversion characters \"t\", \"T\" and \"v\". The spec of this mixin compares the expression",
+          "     * against the parser of the installed sprintf-js, so such a change fails the tests. When that",
+          "     * happens, align this expression with the \"placeholder\" regex of the new version.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The placeholder syntax of sprintf-js, taken from its own source (1.0.3) so that every case it\n accepts is recognized here as well. The leading alternative keeps a literal \"%%\" from being\n treated as a placeholder.\n This is a copy and can therefore drift apart when sprintf-js changes - 1.1.x for example added\n the conversion characters \"t\", \"T\" and \"v\". The spec of this mixin compares the expression\n against the parser of the installed sprintf-js, so such a change fails the tests. When that\n happens, align this expression with the \"placeholder\" regex of the new version.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2733
+        },
+        "end": {
+          "line": 85,
+          "column": 109,
+          "index": 2838
+        }
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "placeholderRegex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A fresh global regex for the placeholder syntax. A global regex keeps its own lastIndex, so a",
+          "     * shared instance would make callers depend on each other's search progress.",
+          "     *",
+          "     * @return {RegExp} a copy of {@link cv.ui.common.BasicUpdate#PLACEHOLDER_REGEX} with the g flag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A fresh global regex for the placeholder syntax. A global regex keeps its own lastIndex, so a\n shared instance would make callers depend on each other's search progress.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{RegExp} a copy of {@link cv.ui.common.BasicUpdate#PLACEHOLDER_REGEX} with the g flag",
+            "type": "RegExp",
+            "description": "a copy of {@link cv.ui.common.BasicUpdate#PLACEHOLDER_REGEX} with the g flag"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3152
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3259
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "RegExp"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
+    "replaceMissingFormatValues": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replace those placeholders of a format string whose value is still missing by a literal",
+          "     * placeholder text. The values of a widget's addresses arrive one by one, so a format that",
+          "     * refers to several of them would otherwise make sprintf throw until the last value was",
+          "     * received - substituting the value itself is no option, because the numeric conversions of",
+          "     * sprintf only accept real numbers.",
+          "     *",
+          "     * @param {string} format - the format string",
+          "     * @param {Array} values - the values by argument position, index 0 holds the format",
+          "     * @param {string} placeholder - text to show instead of a missing value",
+          "     * @return {string} the format string to hand to sprintf",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replace those placeholders of a format string whose value is still missing by a literal\n placeholder text. The values of a widget's addresses arrive one by one, so a format that\n refers to several of them would otherwise make sprintf throw until the last value was\n received - substituting the value itself is no option, because the numeric conversions of\n sprintf only accept real numbers.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} format - the format string",
+            "paramName": "format",
+            "description": "- the format string",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Array} values - the values by argument position, index 0 holds the format",
+            "paramName": "values",
+            "description": "- the values by argument position, index 0 holds the format",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "{string} placeholder - text to show instead of a missing value",
+            "paramName": "placeholder",
+            "description": "- text to show instead of a missing value",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string} the format string to hand to sprintf",
+            "type": "string",
+            "description": "the format string to hand to sprintf"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3988
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 4857
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "format",
+          "type": "string"
+        },
+        {
+          "name": "values",
+          "type": "Array<any>"
+        },
+        {
+          "name": "placeholder",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "cv.ui.common.Update",
+        "cv.ui.common.BasicUpdate"
+      ],
+      "mixin": "cv.ui.common.Update"
+    },
     "applyMapping": {
       "jsdoc": {
         "raw": [
@@ -1740,14 +1985,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 73,
+          "line": 140,
           "column": 4,
-          "index": 1996
+          "index": 5122
         },
         "end": {
-          "line": 114,
+          "line": 181,
           "column": 5,
-          "index": 3249
+          "index": 6375
         }
       },
       "type": "function",

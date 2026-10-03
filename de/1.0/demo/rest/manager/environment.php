@@ -85,7 +85,7 @@ function tile_config_exists() {
   $files = glob('../../resource/config/visu_config*.xml');
   for ($i = 0; $i < count($files); $i++) {
     $xml = simplexml_load_file($files[$i]);
-    if ($xml->getName() === 'config') {
+    if ($xml !== false && $xml->getName() === 'config') {
       return true;
     }
   }

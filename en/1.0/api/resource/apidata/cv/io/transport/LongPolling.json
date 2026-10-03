@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943039,
-  "lastModifiedIso": "2026-07-02T04:35:43.039Z",
+  "lastModified": 1791028034353,
+  "lastModifiedIso": "2026-10-03T11:47:14.353Z",
   "classFilename": "../../client/source/class/cv/io/transport/LongPolling.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 832
     },
     "end": {
-      "line": 399,
+      "line": 472,
       "column": 3,
-      "index": 13133
+      "index": 16176
     }
   },
   "className": "cv.io.transport.LongPolling",
@@ -278,6 +278,67 @@
       },
       "appearsIn": []
     },
+    "__visibilityHandler": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Function|null} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function|null}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1978
+        },
+        "end": {
+          "line": 59,
+          "column": 29,
+          "index": 2003
+        }
+      },
+      "appearsIn": []
+    },
+    "MAX_RETRY_COUNTER": {
+      "jsdoc": {
+        "raw": [
+          "* Maximum retry counter value to prevent unbounded growth",
+          "     * when the tab is backgrounded for extended periods. "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maximum retry counter value to prevent unbounded growth\n when the tab is backgrounded for extended periods.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2135
+        },
+        "end": {
+          "line": 63,
+          "column": 25,
+          "index": 2156
+        }
+      },
+      "appearsIn": []
+    },
     "handleSession": {
       "jsdoc": {
         "raw": [
@@ -315,14 +376,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 72,
           "column": 4,
-          "index": 2228
+          "index": 2445
         },
         "end": {
-          "line": 82,
+          "line": 88,
           "column": 5,
-          "index": 2882
+          "index": 3099
         }
       },
       "type": "function",
@@ -343,14 +404,47 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 84,
+          "line": 90,
           "column": 4,
-          "index": 2889
+          "index": 3106
         },
         "end": {
-          "line": 100,
+          "line": 117,
           "column": 5,
-          "index": 3419
+          "index": 4234
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onVisibilityChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle document visibility changes. When the page becomes visible",
+          "     * again after being in a background tab, force a connection restart",
+          "     * to recover from any throttled or broken long-polling requests.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle document visibility changes. When the page becomes visible\n again after being in a background tab, force a connection restart\n to recover from any throttled or broken long-polling requests.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4473
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 4711
         }
       },
       "type": "function",
@@ -362,14 +456,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 102,
+          "line": 131,
           "column": 4,
-          "index": 3426
+          "index": 4718
         },
         "end": {
-          "line": 114,
+          "line": 143,
           "column": 5,
-          "index": 3816
+          "index": 5108
         }
       },
       "type": "function",
@@ -401,14 +495,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 149,
           "column": 4,
-          "index": 3958
+          "index": 5250
         },
         "end": {
-          "line": 232,
+          "line": 265,
           "column": 5,
-          "index": 8008
+          "index": 9654
         }
       },
       "type": "function",
@@ -420,14 +514,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 267,
           "column": 4,
-          "index": 8015
+          "index": 9661
         },
         "end": {
-          "line": 272,
+          "line": 305,
           "column": 5,
-          "index": 9452
+          "index": 11098
         }
       },
       "type": "function",
@@ -462,14 +556,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 280,
+          "line": 313,
           "column": 4,
-          "index": 9559
+          "index": 11205
         },
         "end": {
-          "line": 329,
+          "line": 381,
           "column": 6,
-          "index": 11353
+          "index": 13804
         }
       },
       "appearsIn": []
@@ -504,14 +598,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 338,
+          "line": 390,
           "column": 4,
-          "index": 11539
+          "index": 13990
         },
         "end": {
-          "line": 349,
+          "line": 401,
           "column": 5,
-          "index": 11958
+          "index": 14409
         }
       },
       "type": "function",
@@ -541,14 +635,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 355,
+          "line": 407,
           "column": 4,
-          "index": 12075
+          "index": 14526
         },
         "end": {
-          "line": 359,
+          "line": 411,
           "column": 5,
-          "index": 12249
+          "index": 14700
         }
       },
       "type": "function",
@@ -560,6 +654,8 @@
         "raw": [
           "*",
           "     * Check if the connection is still running.",
+          "     *",
+          "     * @return {Boolean} true if the transport is actively running",
           "     "
         ],
         "@description": [
@@ -567,23 +663,34 @@
             "name": "@description",
             "body": "<p>Check if the connection is still running.</p>"
           }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if the transport is actively running",
+            "type": "boolean",
+            "description": "true if the transport is actively running"
+          }
         ]
       },
       "access": "public",
       "location": {
         "start": {
-          "line": 364,
+          "line": 418,
           "column": 4,
-          "index": 12321
+          "index": 14846
         },
         "end": {
-          "line": 366,
+          "line": 420,
           "column": 5,
-          "index": 12369
+          "index": 14911
         }
       },
       "type": "function",
       "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
       "appearsIn": []
     },
     "restart": {
@@ -614,14 +721,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 373,
+          "line": 427,
           "column": 4,
-          "index": 12549
+          "index": 15091
         },
         "end": {
-          "line": 381,
+          "line": 435,
           "column": 5,
-          "index": 12775
+          "index": 15317
         }
       },
       "type": "function",
@@ -651,19 +758,35 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 387,
+          "line": 441,
           "column": 4,
-          "index": 12844
+          "index": 15386
         },
         "end": {
-          "line": 397,
+          "line": 451,
           "column": 5,
-          "index": 13125
+          "index": 15667
         }
       },
       "type": "function",
       "params": [],
       "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 459,
+        "column": 2,
+        "index": 15813
+      },
+      "end": {
+        "line": 471,
+        "column": 3,
+        "index": 16172
+      }
     }
   },
   "statics": {},

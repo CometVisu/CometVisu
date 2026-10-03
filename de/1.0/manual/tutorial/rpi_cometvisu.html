@@ -9,7 +9,7 @@
   <title>Raspberry Pi: CometVisu in Docker installieren &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/tutorial/rpi_cometvisu.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Raspberry Pi: Docker installieren" href="rpi_docker.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../de/#features">Features</a></li>
+            <li><a href="../../../de/#customization">Anpassung</a></li>
+            <li><a href="../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -275,7 +302,7 @@ dann wäre das Image <code class="docutils literal notranslate"><span class="pre
 </pre></div>
 </div>
 <p>Zum ersten mal wird der CometVisu-Server nun gestartet mit:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">CometVisu</span> <span class="o">-</span><span class="n">e</span> <span class="n">KNX_INTERFACE</span><span class="o">=</span><span class="s1">&#39;iptn:192.168.0.35:3700&#39;</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">v</span> <span class="n">CometVisuConfig</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">config</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">CometVisu</span> <span class="o">-</span><span class="n">e</span> <span class="n">KNX_INTERFACE</span><span class="o">=</span><span class="s1">'iptn:192.168.0.35:3700'</span> <span class="o">--</span><span class="n">restart</span> <span class="n">unless</span><span class="o">-</span><span class="n">stopped</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="o">-</span><span class="n">v</span> <span class="n">CometVisuConfig</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">config</span> <span class="n">cometvisu</span><span class="o">/</span><span class="n">cometvisu</span><span class="p">:</span><span class="n">latest</span>
 </pre></div>
 </div>
 <p>Die Bedeutung der einzelnen Bestandteile in diesem Befehl sind:</p>

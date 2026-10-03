@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943256,
-  "lastModifiedIso": "2026-07-02T04:35:43.256Z",
+  "lastModified": 1791028034609,
+  "lastModifiedIso": "2026-10-03T11:47:14.609Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/NavBar.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1010
     },
     "end": {
-      "line": 235,
+      "line": 238,
       "column": 3,
-      "index": 6922
+      "index": 6968
     }
   },
   "className": "cv.ui.structure.pure.NavBar",
@@ -397,9 +397,9 @@
           "index": 2194
         },
         "end": {
-          "line": 180,
+          "line": 183,
           "column": 5,
-          "index": 5544
+          "index": 5590
         }
       },
       "type": "function",
@@ -417,14 +417,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 190,
+          "line": 193,
           "column": 4,
-          "index": 5722
+          "index": 5768
         },
         "end": {
-          "line": 190,
+          "line": 193,
           "column": 20,
-          "index": 5738
+          "index": 5784
         }
       },
       "type": "function",
@@ -439,14 +439,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 195,
           "column": 4,
-          "index": 5745
+          "index": 5791
         },
         "end": {
-          "line": 196,
+          "line": 199,
           "column": 5,
-          "index": 5894
+          "index": 5940
         }
       },
       "type": "function",
@@ -462,14 +462,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 199,
+          "line": 202,
           "column": 4,
-          "index": 5919
+          "index": 5965
         },
         "end": {
-          "line": 228,
+          "line": 231,
           "column": 5,
-          "index": 6720
+          "index": 6766
         }
       },
       "type": "function",

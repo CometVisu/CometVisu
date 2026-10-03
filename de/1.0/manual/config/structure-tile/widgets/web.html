@@ -9,7 +9,7 @@
   <title>Das Web Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/web.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Link Widget" href="link.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -123,7 +150,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link to this heading"></a></h2>
 <p>Das Web-Widget dient zu Anzeige einer externen Webseite. Optional kann diese Seite in regelmäßigen Abständen
 automatisiert neu geladen werden.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-web</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;http://www.google.de&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;120&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;width: 100%; min-height: 600px;&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-web</span><span class="w"> </span><span class="na">src=</span><span class="s">"http://www.google.de"</span><span class="w"> </span><span class="na">refresh=</span><span class="s">"120"</span><span class="w"> </span><span class="na">style=</span><span class="s">"width: 100%; min-height: 600px;"</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Über das optionale <code class="docutils literal notranslate"><span class="pre">refresh</span></code>-Attribut kann festgelegt werden in welchem Interval in Sekunden die Seite neu geladen wird.
@@ -134,14 +161,14 @@ man das <code class="docutils literal notranslate"><span class="pre">proxy</span
 Dafür muss ein neuer Eintrag in der Sektion angelegt werden, der Schlüssel kann beliebig gewählt werden
 und als Wert wird entweder die komplette URL oder ein regulärer Ausdruck eingetragen der für diese URL gültig ist.</p>
 <p>Beispiel mit exakter URL:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.google.de&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.de"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Beispiel mit regulärem Ausdruck (beginnt und endet mit „/“), welcher alle URLs erlaubt, die „google“ enthalten:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/^.+google\/.*$/&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/^.+google\/.*$/"</span>
 <span class="p">}</span>
 </pre></div>
 </div>

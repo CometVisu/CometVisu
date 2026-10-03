@@ -9,7 +9,7 @@
   <title>Installation auf einem Debian System mit openHAB &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/install/openhab.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Entwicklerversion auf dem Wiregate" href="install-dev.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../de/#features">Features</a></li>
+            <li><a href="../../../de/#customization">Anpassung</a></li>
+            <li><a href="../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -140,8 +167,8 @@ eingetragen werden).</p>
 <span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/error.log
 <span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/access.log<span class="w"> </span>combined
 
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">&quot;/rest/&quot;</span>
-<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">&quot;openhab&quot;</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-OpenHAB-Url<span class="w"> </span><span class="s2">"/rest/"</span>
+<span class="w">    </span><span class="nb">Header</span><span class="w"> </span>set<span class="w"> </span>X-CometVisu-Backend-Name<span class="w"> </span><span class="s2">"openhab"</span>
 
 <span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span><span class="sx">/rest</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest
 <span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>http://&lt;openhab&gt;:8080/rest<span class="w"> </span><span class="sx">/rest</span>

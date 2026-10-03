@@ -33,9 +33,25 @@ a, img {
  * Default height for all icons
  */
 .icon {
-  height: 2em;
-  width: 2em;
-  font-size: 1.55em;
+  /* The icons are glyphs of an icon font. width/height do not apply to a non replaced
+     inline element, so the element is made inline-block to keep the 2em x 1.9em box of
+     the surrounding text that the SVG icons had. All lengths here are relative to the
+     font-size of this rule.
+
+     The font-size is chosen so that the glyphs are drawn at the size of the artwork of
+     those SVG icons, which did not fill their box. The icon font normalizes all glyphs
+     to the em box while the SVG artwork did not, so this can only match on average.
+
+     The font has an ascent of ~0.995em and no descent, so the glyph sits at the top of
+     the line box. line-height = height - 0.034em moves the baseline down far enough to
+     center the drawn glyph in the box, like the SVG icons were centered. */
+  display: inline-block;
+  font-size: 1.39em;
+  width: 1.439em;
+  height: 1.367em;
+  line-height: 1.333em;
+  text-align: center;
+  vertical-align: middle;
 }
 .tree-icon {
   height: 20px;
@@ -639,8 +655,11 @@ button.ui-slider-handle {
 .popup_close {
   position: absolute;
   z-index: 100002;
-  right: 1em;
-  top: -0.8em;
+  /* has to stay inside the popup: since "make popup scrollable on small screens" .popup
+     is a scroll container (overflow-y: auto) and clips everything reaching beyond its
+     edges. Before that the X was placed on the upper border with top: -0.8em. */
+  top: 0.3em;
+  right: 0.3em;
   width: 1.2em;
   text-align: center;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
@@ -657,11 +676,6 @@ button.ui-slider-handle {
   border: 1px solid #fff;
 }
 
-.popup div {
-  margin: 4px;
-  max-height: 60vh;
-}
-
 .popup div.head {
   border-bottom: 1px solid;
   color: white;
@@ -669,6 +683,9 @@ button.ui-slider-handle {
 
 .popup .main {
   overflow-y: auto;
+  /* bound only the scrolling content area, so a scrollbar appears just when the
+     content is too tall, not for every popup */
+  max-height: 80vh;
 }
 
 .popup iframe {

@@ -120,6 +120,18 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         this.setBackend(cv.io.Client.backends['default']);
       }
       this.backendLoginUrl = backendLoginUrl;
+
+      // When a backend URL is explicitly provided, derive the initial baseURL
+      // from it so that resource URLs (rrd, read, write) are correct even before
+      // the login response is processed. backendLoginUrl is the full path to the
+      // login resource (e.g. "/proxy/visugit/cgi-bin/l"), so strip the last
+      // segment to get the base path (e.g. "/proxy/visugit/cgi-bin/").
+      // The login response's c.baseURL will override this if it differs
+      // (handled in handleLogin()).
+      if (backendLoginUrl) {
+        var lastSlash = backendLoginUrl.lastIndexOf('/');
+        this.backend.baseURL = lastSlash >= 0 ? backendLoginUrl.substring(0, lastSlash + 1) : backendLoginUrl + '/';
+      }
       this.addresses = [];
       this.initialAddresses = [];
       this.filters = [];
@@ -743,4 +755,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1782967173639
+//# sourceMappingURL=Client.js.map?dt=1791028209934

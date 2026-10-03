@@ -9,7 +9,7 @@
   <title>Das Link Plugin &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/widgets/plugins/link/index.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Gauge Plugin" href="../gauge/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../../.." class="cv-nav-logo">
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -132,10 +159,10 @@ im selben oder einem neuen Fenster geöffnet wird.</p>
 <div class="code-block-caption"><span class="caption-text">Öffnet Google in einem neuen Fenster</span><a class="headerlink" href="#offnet-google-in-einem-neuen-fenster" title="Link to this code"></a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
-<span class="w">  </span><span class="nt">&lt;plugins&gt;&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;link&quot;</span><span class="nt">/&gt;&lt;/plugins&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugins&gt;&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"link"</span><span class="nt">/&gt;&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://www.google.de&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Google&quot;</span><span class="w"> </span><span class="na">newWindow=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">"https://www.google.de"</span><span class="w"> </span><span class="na">text=</span><span class="s">"Google"</span><span class="w"> </span><span class="na">newWindow=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </div>

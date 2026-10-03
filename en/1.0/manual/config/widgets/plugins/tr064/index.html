@@ -9,7 +9,7 @@
   <title>The tr064 Plugin &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/widgets/plugins/tr064/index.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="The timeout plugin" href="../timeout/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../../.." class="cv-nav-logo">
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../../#features">Features</a></li>
+            <li><a href="../../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -510,14 +537,14 @@ set to UTF-8 mode must be used.</p>
 </div>
 <p>The minimale example code for the calllist widget to create the shown
 screenshot is:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"tr064"</span><span class="w"> </span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
-<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;TR-064&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;calllist</span><span class="w"> </span><span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">"TR-064"</span><span class="w"> </span><span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;calllist</span><span class="w"> </span><span class="na">device=</span><span class="s">"fritzbox"</span><span class="nt">&gt;</span>
 <span class="w">        </span><span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/calllist&gt;</span>
 <span class="nt">&lt;/page&gt;</span>
@@ -532,11 +559,11 @@ screenshot is:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
 <span class="w">    </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tr064&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"tr064"</span><span class="nt">/&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="nt">&lt;/meta&gt;</span>
 ...
-<span class="nt">&lt;calllist</span><span class="w"> </span><span class="na">device=</span><span class="s">&quot;fritzbox&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;calllist</span><span class="w"> </span><span class="na">device=</span><span class="s">"fritzbox"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;label&gt;</span>calllist<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/calllist&gt;</span>
 </pre></div>
@@ -598,9 +625,9 @@ can be accessed by the <a class="reference internal" href="../../../manager.html
 <p>Apart from the manager it is possible to edit the file <code class="docutils literal notranslate"><span class="pre">config/hidden.php</span></code>
 manually and add a line like:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?php
-// File for configurations that shouldn&#39;t be shared with the user
+// File for configurations that shouldn't be shared with the user
 $hidden = array(
-  &#39;fritzbox&#39; =&gt; array(&#39;uri&#39; =&gt; &#39;https://192.168.0.1:49443/&#39;, &#39;user&#39; =&gt; &#39;CometVisuTestUser&#39;, &#39;pass&#39; =&gt; &#39;pa3bvNM4j9z4&#39;)
+  'fritzbox' =&gt; array('uri' =&gt; 'https://192.168.0.1:49443/', 'user' =&gt; 'CometVisuTestUser', 'pass' =&gt; 'pa3bvNM4j9z4')
 );
 ?&gt;
 </pre></div>

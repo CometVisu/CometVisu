@@ -9,7 +9,7 @@
   <title>Raspberry Pi: Vorbereitung &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/tutorial/rpi_prequesites.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Tutorials" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../de/#features">Features</a></li>
+            <li><a href="../../../de/#customization">Anpassung</a></li>
+            <li><a href="../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -345,8 +372,8 @@ installiert werden, z.B. für <a class="reference external" href="https://de.wik
 </div>
 <p>Auch kann dieser nun konfiguriert werden, z.B. wenn bei <cite>vim</cite> die Mausintegration
 über das Terminal stören sollte:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;set mouse=&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vim</span><span class="o">/</span><span class="n">vimrc</span><span class="o">.</span><span class="n">local</span>
-<span class="n">echo</span> <span class="s2">&quot;set ttymouse=&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vim</span><span class="o">/</span><span class="n">vimrc</span><span class="o">.</span><span class="n">local</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">"set mouse="</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vim</span><span class="o">/</span><span class="n">vimrc</span><span class="o">.</span><span class="n">local</span>
+<span class="n">echo</span> <span class="s2">"set ttymouse="</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vim</span><span class="o">/</span><span class="n">vimrc</span><span class="o">.</span><span class="n">local</span>
 </pre></div>
 </div>
 </section>
@@ -356,9 +383,9 @@ installiert werden, z.B. für <a class="reference external" href="https://de.wik
 Abkürzungen etabliert, die noch in der Datei <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> aktiviert werden
 müssen. Hierzu öffnet man diese Datei im Editor (z.B. mit <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">~/.bashrc</span></code>)
 und Passt, relativ am Ende, die Zeilen an auf:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ll</span><span class="o">=</span><span class="s1">&#39;ls -alF&#39;</span>
-<span class="n">alias</span> <span class="n">la</span><span class="o">=</span><span class="s1">&#39;ls -A&#39;</span>
-<span class="n">alias</span> <span class="n">l</span><span class="o">=</span><span class="s1">&#39;ls -CF&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alias</span> <span class="n">ll</span><span class="o">=</span><span class="s1">'ls -alF'</span>
+<span class="n">alias</span> <span class="n">la</span><span class="o">=</span><span class="s1">'ls -A'</span>
+<span class="n">alias</span> <span class="n">l</span><span class="o">=</span><span class="s1">'ls -CF'</span>
 </pre></div>
 </div>
 <p>Im Terminal kann so nun über <code class="docutils literal notranslate"><span class="pre">ll</span></code> mit entsprechend bunter Hervorhebung der

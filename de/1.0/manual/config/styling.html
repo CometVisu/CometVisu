@@ -9,7 +9,7 @@
   <title>Styling &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/styling.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Mapping" href="mapping.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../de/#features">Features</a></li>
+            <li><a href="../../../de/#customization">Anpassung</a></li>
+            <li><a href="../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -194,18 +221,18 @@ enthalten sind:</p>
 <p>Die Farben können je nach Design abweichen.</p>
 </div>
 <p>Mit diesem styling wird 0 (oft AUS) in grün und 1 (oft AN) in rot dargestellt.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;GreenRed&quot;</span><span class="nt">&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">"GreenRed"</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"0"</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/styling&gt;</span>
 </pre></div>
 </div>
 <p>Um ein Element mit den entgegen gesetzten Farben darzustellen, muss der
 folgende style tag erstellt werden. Jetzt hat das Element bei einem Wert
 von 0 die Farbe rot.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Red_Green&quot;</span><span class="nt">&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">"Red_Green"</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"0"</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/styling&gt;</span>
 </pre></div>
 </div>
@@ -217,10 +244,10 @@ Im folgenden Beispiel wie folgt:</p>
 <li><p>der Wert 0: lila</p></li>
 <li><p>Werte größer 0: rot</p></li>
 </ul>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;BluePurpleRed&quot;</span><span class="nt">&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;-100&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>blue<span class="nt">&lt;/entry&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>purple<span class="nt">&lt;/entry&gt;</span>
-<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">range_max=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;styling</span><span class="w"> </span><span class="na">name=</span><span class="s">"BluePurpleRed"</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">"-100"</span><span class="w"> </span><span class="na">range_max=</span><span class="s">"0"</span><span class="nt">&gt;</span>blue<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">"0"</span><span class="nt">&gt;</span>purple<span class="nt">&lt;/entry&gt;</span>
+<span class="w">   </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range_min=</span><span class="s">"0"</span><span class="w"> </span><span class="na">range_max=</span><span class="s">"100"</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
 <span class="nt">&lt;/styling&gt;</span>
 </pre></div>
 </div>

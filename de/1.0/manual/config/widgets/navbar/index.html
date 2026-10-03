@@ -9,7 +9,7 @@
   <title>Das Navbar Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/widgets/navbar/index.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Include Widget" href="../include/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -242,75 +269,75 @@ PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewende
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;meta&gt;</span>
 <span class="w">      </span><span class="nt">&lt;plugins&gt;</span>
-<span class="w">          </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;strftime&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"strftime"</span><span class="nt">/&gt;</span>
 <span class="w">      </span><span class="nt">&lt;/plugins&gt;</span>
 <span class="w">  </span><span class="nt">&lt;/meta&gt;</span>
-<span class="w">  </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Uebersicht&quot;</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">shownavbar-left=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-<span class="w">      </span><span class="nt">&lt;navbar</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;top&quot;</span><span class="nt">&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Uebersicht&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_home&quot;</span><span class="nt">/&gt;</span>Startseite<span class="nt">&lt;/label&gt;</span>
+<span class="w">  </span><span class="nt">&lt;page</span><span class="w"> </span><span class="na">name=</span><span class="s">"Uebersicht"</span><span class="w"> </span><span class="na">showtopnavigation=</span><span class="s">"false"</span><span class="w"> </span><span class="na">showfooter=</span><span class="s">"false"</span><span class="w"> </span><span class="na">shownavbar-top=</span><span class="s">"true"</span><span class="w"> </span><span class="na">shownavbar-left=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;navbar</span><span class="w"> </span><span class="na">position=</span><span class="s">"top"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Uebersicht"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_home"</span><span class="nt">/&gt;</span>Startseite<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
 <span class="w">          </span><span class="nt">&lt;line&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;0.07&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"0.07"</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/line&gt;</span>
 <span class="w">          </span><span class="nt">&lt;line&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/line&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Erdgeschoß&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_building_s_eg&quot;</span><span class="nt">/&gt;</span>Erdgeschoß<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Erdgeschoß"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_building_s_eg"</span><span class="nt">/&gt;</span>Erdgeschoß<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Obergeschoß&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_building_s_og&quot;</span><span class="nt">/&gt;</span>Obergeschoß<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Obergeschoß"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_building_s_og"</span><span class="nt">/&gt;</span>Obergeschoß<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Kellergeschoß&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_building_s_kg&quot;</span><span class="nt">/&gt;</span>Kellergeschoß<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Kellergeschoß"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_building_s_kg"</span><span class="nt">/&gt;</span>Kellergeschoß<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
 <span class="w">          </span><span class="nt">&lt;line&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/line&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Technik&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sani_boiler_temp&quot;</span><span class="nt">/&gt;</span>Technik<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Technik"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"sani_boiler_temp"</span><span class="nt">/&gt;</span>Technik<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Wetter&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;weather_sun&quot;</span><span class="nt">/&gt;</span>Wetter<span class="nt">&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Wetter"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"1"</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"weather_sun"</span><span class="nt">/&gt;</span>Wetter<span class="nt">&lt;/label&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/pagejump&gt;</span>
 <span class="w">          </span><span class="nt">&lt;line&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/line&gt;</span>
-<span class="w">          </span><span class="nt">&lt;strftime</span><span class="w"> </span><span class="na">lang=</span><span class="s">&quot;de&quot;</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%A, %d. %B %Y %H:%M:%S&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;strftime</span><span class="w"> </span><span class="na">lang=</span><span class="s">"de"</span><span class="w"> </span><span class="na">format=</span><span class="s">"%A, %d. %B %Y %H:%M:%S"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"0"</span><span class="nt">/&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/strftime&gt;</span>
 <span class="w">      </span><span class="nt">&lt;/navbar&gt;</span>
-<span class="w">      </span><span class="nt">&lt;navbar</span><span class="w"> </span><span class="na">position=</span><span class="s">&quot;left&quot;</span><span class="w"> </span><span class="na">dynamic=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;180px&quot;</span><span class="nt">&gt;</span>
-<span class="w">          </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Kueche&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Küche&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;scene_cooking&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;navbar</span><span class="w"> </span><span class="na">position=</span><span class="s">"left"</span><span class="w"> </span><span class="na">dynamic=</span><span class="s">"true"</span><span class="w"> </span><span class="na">width=</span><span class="s">"180px"</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"Küche"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Kueche"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Küche"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"scene_cooking"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Esszimmer&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Esszimmer&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sani_solar&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Esszimmer"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Esszimmer"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"sani_solar"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Wohnzimmer&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;scene_living&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Wohnzimmer"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Wohnzimmer"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"scene_living"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Arbeitszimmer&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Arbeitszimmer&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;it_pc&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Arbeitszimmer"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Arbeitszimmer"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"it_pc"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/group&gt;</span>
-<span class="w">          </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Quick Links&quot;</span><span class="nt">&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Beschattung&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Beschattung&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;fts_shutter&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">          </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"Quick Links"</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Beschattung"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Beschattung"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"fts_shutter"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Alarmanlage&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Alarmanlage&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;secur_alarm&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Alarmanlage"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Alarmanlage"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"secur_alarm"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
-<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;Wartung&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Wartung&quot;</span><span class="nt">&gt;</span>
-<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_building_control&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">              </span><span class="nt">&lt;pagejump</span><span class="w"> </span><span class="na">target=</span><span class="s">"Wartung"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Wartung"</span><span class="nt">&gt;</span>
+<span class="w">                  </span><span class="nt">&lt;label&gt;&lt;icon</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_building_control"</span><span class="nt">/&gt;&lt;/label&gt;</span>
 <span class="w">              </span><span class="nt">&lt;/pagejump&gt;</span>
 <span class="w">          </span><span class="nt">&lt;/group&gt;</span>
 <span class="w">      </span><span class="nt">&lt;/navbar&gt;</span>

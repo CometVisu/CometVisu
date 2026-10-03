@@ -125,6 +125,9 @@
         //   When during a valid swipe the direction is reversed the fading
         //   action is also reverted.
         var content = document.body.querySelector('#centerContainer');
+        if (!content) {
+          return;
+        }
         content.addEventListener('touchstart', function (evt) {
           var touches = evt.touches[0];
           var pPH = cv.Application.structureController.pagePartsHandler;
@@ -227,4 +230,4 @@
   cv.ui.structure.pure.NavBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavBar.js.map?dt=1782967140280
+//# sourceMappingURL=NavBar.js.map?dt=1791028190305

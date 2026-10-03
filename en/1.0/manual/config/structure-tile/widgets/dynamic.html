@@ -9,7 +9,7 @@
   <title>The dynamic widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/widgets/dynamic.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="The web widget" href="web.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -129,18 +156,18 @@ by an online translation service.</p>
 to display the display elements of a room on an overview page when you are currently in this room.
 For this you need a <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code> element, which contains information about the room you are currently in and a
 <code class="docutils literal notranslate"><span class="pre">&lt;cv-group&gt;</span></code> for this room.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;start&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dashboard&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-dashboard-line&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">"start"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Dashboard"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"ri-dashboard-line"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-dynamic&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Living]&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Livingroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Dining]&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Diningroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:String&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>Presence<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Living]"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Livingroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Dining]"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Diningroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:String"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>Presence<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-dynamic&gt;</span>
 <span class="nt">&lt;/cv-page&gt;</span>
-<span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;floorplan&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Rooms&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-control_building_empty&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Living&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-scene_livingroom&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">"floorplan"</span><span class="w"> </span><span class="na">name=</span><span class="s">"Rooms"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-control_building_empty"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-group</span><span class="w"> </span><span class="na">name=</span><span class="s">"Living"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-scene_livingroom"</span><span class="nt">&gt;</span>
 <span class="w">        </span>...
 <span class="w">    </span><span class="nt">&lt;/cv-group&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dining&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-scene_dinner&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-group</span><span class="w"> </span><span class="na">name=</span><span class="s">"Dining"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-scene_dinner"</span><span class="nt">&gt;</span>
 <span class="w">       </span>...
 <span class="w">    </span><span class="nt">&lt;/cv-group&gt;</span>
 <span class="nt">&lt;/cv-page&gt;</span>
@@ -156,8 +183,8 @@ then you can display the copy of this group as automatically opened by changing 
 <p>If you do not want to copy the entire group but only its content, you can adjust the <code class="docutils literal notranslate"><span class="pre">selector</span></code> of the <code class="docutils literal notranslate"><span class="pre">&lt;cv-ref&gt;</span></code> element as follows.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-dynamic&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Living] &gt; *:not(summary)&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Livingroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Dining] &gt; *:not(summary)&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Diningroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Living] &gt; *:not(summary)"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Livingroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Dining] &gt; *:not(summary)"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Diningroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
 <span class="w">    </span>...
 <span class="nt">&lt;/cv-dynamic&gt;</span>
 ...
@@ -170,9 +197,9 @@ This is available in the “system” backend at the address <code class="docuti
 This way you can display parts of the visualization only for certain clients.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-dynamic&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Living]&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Tablet_Livingroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">&quot;#floorplan &gt; cv-group[name=Dining]&quot;</span><span class="w"> </span><span class="na">when=</span><span class="s">&quot;Tablet_Diningroom&quot;</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">&quot;cv-group&quot;</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">&quot;open:true&quot;</span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:String&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="nt">&gt;</span>client:id<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Living]"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Tablet_Livingroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-ref</span><span class="w"> </span><span class="na">selector=</span><span class="s">"#floorplan &gt; cv-group[name=Dining]"</span><span class="w"> </span><span class="na">when=</span><span class="s">"Tablet_Diningroom"</span><span class="w"> </span><span class="na">modify-selector=</span><span class="s">"cv-group"</span><span class="w"> </span><span class="na">modify-attribute=</span><span class="s">"open:true"</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:String"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">backend=</span><span class="s">"system"</span><span class="nt">&gt;</span>client:id<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-dynamic&gt;</span>
 ...
 </pre></div>

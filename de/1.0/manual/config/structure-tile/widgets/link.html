@@ -9,7 +9,7 @@
   <title>Das Link Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/link.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das Energy Widget" href="energy.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -132,16 +159,16 @@ Es besteht aus einem Icon und einem optionalen Text.</p>
 <figure class="align-default">
 <img alt="../../../_images/cv-link.png" src="../../../_images/cv-link.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://www.google.de&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="nt">&gt;</span>ri-google-fill<span class="nt">&lt;/cv-icon&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/span&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-link</span><span class="w"> </span><span class="na">href=</span><span class="s">"https://www.google.de"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">slot=</span><span class="s">"icon"</span><span class="nt">&gt;</span>ri-google-fill<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"label"</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-link&gt;</span>
 </pre></div>
 </div>
 <p>Als alternative kann auch ein Bild verwendet werden:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://www.google.de&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;icon&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resources/config/media/image.png&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/span&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-link</span><span class="w"> </span><span class="na">href=</span><span class="s">"https://www.google.de"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-image</span><span class="w"> </span><span class="na">slot=</span><span class="s">"icon"</span><span class="w"> </span><span class="na">src=</span><span class="s">"resources/config/media/image.png"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"label"</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/span&gt;</span>
 <span class="nt">&lt;/cv-link&gt;</span>
 </pre></div>
 </div>

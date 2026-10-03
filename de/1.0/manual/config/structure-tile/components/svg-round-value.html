@@ -9,7 +9,7 @@
   <title>SVG round value &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/components/svg-round-value.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Energy entity" href="energy-entity.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -122,8 +149,8 @@ Funktional ähnelt diese Komponente der <a class="reference internal" href="valu
 <figure class="align-default">
 <img alt="../../../_images/cv-svg-round-value.png" src="../../../_images/cv-svg-round-value.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-measure_battery_100&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-measure_battery_100"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-svg-round-value&gt;</span>
 </pre></div>
 </div>
@@ -131,9 +158,9 @@ Funktional ähnelt diese Komponente der <a class="reference internal" href="valu
 <figure class="align-default">
 <img alt="../../../_images/cv-svg-round-progress.png" src="../../../_images/cv-svg-round-progress.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-measure_battery_100&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;progress&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-measure_battery_100"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"progress"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-svg-round-value&gt;</span>
 </pre></div>
 </div>
@@ -141,9 +168,9 @@ Funktional ähnelt diese Komponente der <a class="reference internal" href="valu
 <figure class="align-default">
 <img alt="../../../_images/cv-svg-round-colored.png" src="../../../_images/cv-svg-round-colored.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-measure_battery_100&quot;</span><span class="w"> </span><span class="na">background-color=</span><span class="s">&quot;black&quot;</span><span class="w"> </span><span class="na">foreground-color=</span><span class="s">&quot;red&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">target=</span><span class="s">&quot;progress&quot;</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-svg-round-value</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-measure_battery_100"</span><span class="w"> </span><span class="na">background-color=</span><span class="s">"black"</span><span class="w"> </span><span class="na">foreground-color=</span><span class="s">"red"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">target=</span><span class="s">"progress"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-svg-round-value&gt;</span>
 </pre></div>
 </div>

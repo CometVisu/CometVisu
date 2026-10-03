@@ -138,8 +138,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this._element.appendChild(rootList);
           if (model === 'pages') {
             // add hamburger menu
-            var ham = document.createElement('a');
-            ham.href = '#';
+            var ham = document.createElement('div');
+            ham.classList.add('link');
             ham.classList.add('menu');
             ham.onclick = function (event) {
               return _this._onHamburgerMenu(event);
@@ -289,14 +289,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       _onSwipe: function _onSwipe(ev) {
         if (ev.getDirection() === 'left') {
           // goto next if there is one
-          var next = this._element.querySelector('li.active + li > a');
+          var next = this._element.querySelector('li.active + li > .link');
           if (next) {
             next.click();
           }
         } else {
           var current = this._element.querySelector('li.active');
           if (current && current.previousElementSibling && current.previousElementSibling.tagName.toLowerCase() === 'li') {
-            var prev = current.previousElementSibling.querySelector(':scope > a');
+            var prev = current.previousElementSibling.querySelector(':scope > .link');
             if (prev) {
               prev.click();
             }
@@ -375,9 +375,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
             var pageName = page.getAttribute('name') || '';
             var pageIcon = page.getAttribute('icon') || '';
             var li = document.createElement('li');
-            var a = document.createElement('a');
-            a.setAttribute('href', '#' + pageId);
+            var a = document.createElement('div');
+            a.classList.add('link');
             a.setAttribute('data-page-id', pageId);
+            a.addEventListener('click', function (ev) {
+              cv.Application.structureController.scrollToPage(pageId);
+              ev.stopPropagation();
+              ev.preventDefault();
+            });
             if (pageIcon) {
               var i = document.createElement('i');
               i.classList.add(pageIcon);
@@ -398,12 +403,6 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               details.classList.add('details');
               var summary = document.createElement('div');
               summary.classList.add('summary');
-              a.setAttribute('href', '#');
-              a.addEventListener('click', function (ev) {
-                cv.Application.structureController.scrollToPage(pageId);
-                ev.stopPropagation();
-                ev.preventDefault();
-              });
               var _pageIcon = page.getAttribute('icon') || '';
               if (page.querySelector(':scope > *:not(cv-page)')) {
                 // only add this as link, when this page has real content
@@ -474,7 +473,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         } finally {
           _iterator5.f();
         }
-        var _iterator6 = _createForOfIteratorHelper(this._element.querySelectorAll("a[data-page-id=\"".concat(pageElement.id, "\"]"))),
+        var _iterator6 = _createForOfIteratorHelper(this._element.querySelectorAll(".link[data-page-id=\"".concat(pageElement.id, "\"]"))),
           _step6;
         try {
           for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
@@ -532,4 +531,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1782967141649
+//# sourceMappingURL=Menu.js.map?dt=1791028191055

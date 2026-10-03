@@ -88,7 +88,12 @@
       client: null,
       running: null,
       /** @type {Number} */
-      __P_799_0: 0,
+      __P_800_0: 0,
+      /** @type {Function|null} */
+      __P_800_1: null,
+      /** Maximum retry counter value to prevent unbounded growth
+       * when the tab is backgrounded for extended periods. */
+      MAX_RETRY_COUNTER: 10,
       /**
        * This function gets called once the communication is established
        * and this.client information is available.
@@ -114,6 +119,17 @@
       },
       connect: function connect() {
         this.running = true;
+
+        // Register a visibility change listener to recover from background tab
+        // suspension. Browsers heavily throttle setTimeout/setInterval in
+        // background tabs, so the watchdog and retry timers can be delayed
+        // by minutes. This handler ensures an immediate restart when the
+        // user returns to the tab.
+        if (!this.__P_800_1 && typeof document !== 'undefined' && document.addEventListener) {
+          this.__P_800_1 = this.__P_800_2.bind(this);
+          document.addEventListener('visibilitychange', this.__P_800_1);
+        }
+
         // send first request
 
         var data = [];
@@ -126,10 +142,21 @@
           data = this.client.buildRequest();
           successCallback = this.handleRead;
         }
-        this.__P_799_1(data, successCallback);
+        this.__P_800_3(data, successCallback);
         this.watchdog.start(5);
       },
-      __P_799_1: function __P_799_1(data, callback) {
+      /**
+       * Handle document visibility changes. When the page becomes visible
+       * again after being in a background tab, force a connection restart
+       * to recover from any throttled or broken long-polling requests.
+       */
+      __P_800_2: function __P_800_2() {
+        if (document.visibilityState === 'visible' && this.running) {
+          this.info('Page became visible - restarting connection to recover from background tab suspension');
+          this.restart();
+        }
+      },
+      __P_800_3: function __P_800_3(data, callback) {
         data !== null && data !== void 0 ? data : data = this.client.buildRequest();
         callback !== null && callback !== void 0 ? callback : callback = this.handleRead;
         data.t = 0;
@@ -165,9 +192,12 @@
         if (this.doRestart || !json && this.lastIndex === -1) {
           this.client.setDataReceived(false);
           if (this.running) {
-            // retry initial request
+            // cap retryCounter to prevent unbounded growth when the tab
+            // stays in background for extended periods (each timeout
+            // increments the counter without a successful response to reset it)
+            this.retryCounter = Math.min(this.retryCounter, this.MAX_RETRY_COUNTER);
             var delay = 100 * Math.pow(this.retryCounter, 2);
-            this.retryCounter++;
+            this.retryCounter = Math.min(this.retryCounter + 1, this.MAX_RETRY_COUNTER);
             if (this.doRestart) {
               // planned restart, only inform user
               this.info("restarting XHR read requests in ".concat(delay, " ms as planned"));
@@ -179,7 +209,7 @@
               this.watchdog.start(5);
             }
             qx.event.Timer.once(function () {
-              this.__P_799_1();
+              this.__P_800_3();
               this.watchdog.ping(true);
             }, this, delay);
           }
@@ -188,18 +218,18 @@
         if (json && Object.prototype.hasOwnProperty.call(json, 'error')) {
           // Backend returned an error response (e.g. {"error":"Read failed"})
           this.error('Backend error: ' + json.error, JSON.stringify(json));
-          this.__P_799_0++;
-          if (this.__P_799_0 === 1) {
+          this.__P_800_0++;
+          if (this.__P_800_0 === 1) {
             // First failure: restart silently
             this.restart();
             return;
           }
           var maxRetries = this.client.backend.maxRetries || 3;
-          if (this.__P_799_0 <= maxRetries) {
+          if (this.__P_800_0 <= maxRetries) {
             // Show self-healing notification (will auto-resolve on successful reconnect)
             this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, json);
             // Restart with exponential backoff delay
-            var _delay = 1000 * Math.pow(2, this.__P_799_0 - 2);
+            var _delay = 1000 * Math.pow(2, this.__P_800_0 - 2);
             this.watchdog.stop();
             qx.event.Timer.once(function () {
               this.restart();
@@ -223,8 +253,10 @@
           data = json.d;
           this.readResendHeaderValues();
           this.client.update(data);
-          this.__P_799_0 = 0; // reset on success
-          this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
+          if (this.__P_800_0 > 0) {
+            this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
+          }
+          this.__P_800_0 = 0; // reset on success
           this.retryCounter = 0;
           this.client.setDataReceived(true);
           this.client.setConnected(true);
@@ -232,7 +264,6 @@
         this.retryServerErrorCounter = 0; // server has successfully responded
         if (this.running) {
           // keep the requests going
-          this.retryCounter++;
           data = this.client.buildRequest();
           data.i = this.lastIndex;
           var url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
@@ -289,6 +320,18 @@
         qx: function qx(ev) {
           var req = ev.getTarget();
           var status = req.getStatus();
+
+          // Status 0 indicates an aborted connection (timeout, network error).
+          // Treat it like a connection loss: trigger an immediate restart,
+          // as waiting for the watchdog adds unnecessary latency and can
+          // lead to a zombie state if the watchdog timing is unlucky.
+          if (status === 0 && this.running && !this.doRestart) {
+            this.info('Connection timeout (status 0) detected - restarting');
+            req.serverErrorHandled = true;
+            this.restart();
+            return;
+          }
+
           // check for temporary server errors and retry a few times
           if ([408, 444, 499, 502, 503, 504].indexOf(status) >= 0 && this.retryServerErrorCounter < this.client.backend.maxRetries) {
             this.info("Temporary connection problem (status: ".concat(status, ") - retry count: ").concat(this.retryServerErrorCounter));
@@ -304,6 +347,13 @@
           }
         },
         jquery: function jquery(xhr, str, excptObj) {
+          // Status 0 indicates an aborted connection (timeout, network error).
+          if (xhr.status === 0 && this.running && !this.doRestart) {
+            this.info('Connection timeout (status 0) detected - restarting');
+            this.restart();
+            return;
+          }
+
           // ignore error when connection is irrelevant
           if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
             var readyState = 'UNKNOWN';
@@ -359,9 +409,11 @@
       },
       /**
        * Check if the connection is still running.
+       *
+       * @return {Boolean} true if the transport is actively running
        */
       isConnectionRunning: function isConnectionRunning() {
-        return true;
+        return this.running === true;
       },
       /**
        * Restart the read request, e.g. when the watchdog kicks in
@@ -391,9 +443,26 @@
           }
         }
       }
+    },
+    /*
+    ******************************************************
+      DESTRUCT
+    ******************************************************
+    */
+    destruct: function destruct() {
+      // Remove the visibility change listener to prevent leaks
+      if (this.__P_800_1) {
+        document.removeEventListener('visibilitychange', this.__P_800_1);
+        this.__P_800_1 = null;
+      }
+      this.watchdog.stop();
+      if (this.xhr && this.xhr.abort) {
+        this.xhr.abort();
+        this.xhr = null;
+      }
     }
   });
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1782967175412
+//# sourceMappingURL=LongPolling.js.map?dt=1791028210980

@@ -9,7 +9,7 @@
   <title>Address-Gruppen - Rechnen mit Address-Werten &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/elements/address-group.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Adressen - die Kommunikation mit dem Backend" href="address.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -123,9 +150,9 @@ Wert kann dann in einem Widget angezeigt werden.</p>
 wird ein leeres Ergebnis weitergemeldet. In diesen Fall wird dem <code class="docutils literal notranslate"><span class="pre">&lt;cv-address-group&gt;</span></code> das Attribut
 <code class="docutils literal notranslate"><span class="pre">data-valid=&quot;false&quot;</span></code> hinzugefügt.</p>
 </div>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;+&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/1<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">"+"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/1<span class="nt">&lt;/cv-address&gt;</span>
 <span class="nt">&lt;/cv-address-group&gt;</span>
 </pre></div>
 </div>
@@ -135,15 +162,15 @@ und Division <code class="docutils literal notranslate"><span class="pre">operat
 <p>Durch Verschachtelung können auch komplexere Berechnungen vorgenommen werden. So kann z.B.
 das Ergebnis der Formel <code class="docutils literal notranslate"><span class="pre">round(100.0</span> <span class="pre">*</span> <span class="pre">(1/1/0</span> <span class="pre">-</span> <span class="pre">1/1/1)</span> <span class="pre">/</span> <span class="pre">(1/1/2</span> <span class="pre">+</span> <span class="pre">1/1/0))</span></code>
 in einem <a class="reference internal" href="../widgets/info.html#tile-info"><span class="std std-ref">Info-Widget</span></a> dargestellt werden.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="na">round=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">factor=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;-&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/1<span class="nt">&lt;/cv-address&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">operator=</span><span class="s">"/"</span><span class="w"> </span><span class="na">round=</span><span class="s">"true"</span><span class="w"> </span><span class="na">factor=</span><span class="s">"100"</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">"-"</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/1<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/cv-address-group&gt;</span>
-<span class="w">        </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">&quot;+&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/1/2<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address-group</span><span class="w"> </span><span class="na">operator=</span><span class="s">"+"</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/1/2<span class="nt">&lt;/cv-address&gt;</span>
 <span class="w">        </span><span class="nt">&lt;/cv-address-group&gt;</span>
 <span class="w">    </span><span class="nt">&lt;/cv-address-group&gt;</span>
 <span class="nt">&lt;cv-info&gt;</span>

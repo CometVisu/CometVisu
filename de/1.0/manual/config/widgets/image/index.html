@@ -9,7 +9,7 @@
   <title>Das Image Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/widgets/image/index.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="Das NotificationCenterBadge Widget" href="../notificationcenterbadge/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -489,7 +516,7 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das Image Widget aus dem oben gezeigten Screenshot erzeugt:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;icons/comet_128_ff8000.png&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span><span class="w"> </span><span class="na">src=</span><span class="s">"icons/comet_128_ff8000.png"</span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -500,7 +527,7 @@ Eigenschaften einfügt:</p>
 <figure class="align-default">
 <img alt="../../../_images/image_complete.png" src="../../../_images/image_complete.png" />
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;icons/comet_128_ff8000.png&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;300px&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;200px&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image</span><span class="w"> </span><span class="na">src=</span><span class="s">"icons/comet_128_ff8000.png"</span><span class="w"> </span><span class="na">width=</span><span class="s">"300px"</span><span class="w"> </span><span class="na">height=</span><span class="s">"200px"</span><span class="w"> </span><span class="na">refresh=</span><span class="s">"300"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;label&gt;</span>Beschreibung<span class="w"> </span>der<span class="w"> </span>Grafik<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/image&gt;</span>
 </pre></div>
@@ -509,7 +536,7 @@ Eigenschaften einfügt:</p>
 von langen Texten nicht ermöglicht, ist diese Variante eher für die Alternativen Backends gedacht.
 Dieses Beispiel nutzt ein openHAB-Item.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;image&gt;</span>
-<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:string&quot;</span><span class="nt">&gt;</span>CovertArt<span class="nt">&lt;/address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"OH:string"</span><span class="nt">&gt;</span>CovertArt<span class="nt">&lt;/address&gt;</span>
 <span class="nt">&lt;/image&gt;</span>
 </pre></div>
 </div>

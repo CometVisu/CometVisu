@@ -9,7 +9,7 @@
   <title>Einrichten einer VM mit Visual Studio Code &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=8073742d" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/colab/howto-vm.html"/>
@@ -27,7 +27,34 @@
     <link rel="prev" title="TODO’s" href="todos.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../.." class="cv-nav-logo">
+            <img src="../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../de/#features">Features</a></li>
+            <li><a href="../../../de/#customization">Anpassung</a></li>
+            <li><a href="../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../en/" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -196,10 +223,10 @@ Unter Einstellungen (Symbol in VS Code links unten) -&gt; Settings wählen. Es �
 <p>Die folgenden Parameter stehen per default auf „onType“ bzw. „true“. Mit folgenden Einstellungen wird das Preview nur mehr beim
 Speichern der aktuellen Datei und erneutem Aufrufen des Previews aktualisiert:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>//<span class="w"> </span>Whether<span class="w"> </span>the<span class="w"> </span>linter<span class="w"> </span>is<span class="w"> </span>run<span class="w"> </span>on<span class="w"> </span>save<span class="w"> </span>or<span class="w"> </span>on<span class="w"> </span><span class="nb">type</span><span class="w"> </span>or<span class="w"> </span>disabled.
-<span class="s2">&quot;restructuredtext.linter.run&quot;</span>:<span class="w"> </span><span class="s2">&quot;onSave&quot;</span>,
+<span class="s2">"restructuredtext.linter.run"</span>:<span class="w"> </span><span class="s2">"onSave"</span>,
 
 //<span class="w"> </span>Flag<span class="w"> </span>to<span class="w"> </span>control<span class="w"> </span>whether<span class="w"> </span>text<span class="w"> </span>changed<span class="w"> </span>event<span class="w"> </span>triggers<span class="w"> </span>preview<span class="w"> </span>update.
-<span class="s2">&quot;restructuredtext.updateOnTextChanged&quot;</span>:<span class="w"> </span><span class="s2">&quot;false&quot;</span>,
+<span class="s2">"restructuredtext.updateOnTextChanged"</span>:<span class="w"> </span><span class="s2">"false"</span>,
 </pre></div>
 </div>
 <p>Dazu die beiden Parameter in der Datei settings.json im Cometvisu Projekt (Verzeichnis .vscode) einfügen.

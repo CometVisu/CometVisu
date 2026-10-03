@@ -9,7 +9,7 @@
   <title>The web widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/widgets/web.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="The link widget" href="link.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -122,7 +149,7 @@ by an online translation service.</p>
 <section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>The web widget is used to display an external website. Optionally, this page can be automatically reloaded at regular intervals.</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-web</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;http://www.google.de&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;120&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;width: 100%; min-height: 600px;&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-web</span><span class="w"> </span><span class="na">src=</span><span class="s">"http://www.google.de"</span><span class="w"> </span><span class="na">refresh=</span><span class="s">"120"</span><span class="w"> </span><span class="na">style=</span><span class="s">"width: 100%; min-height: 600px;"</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>With the optional <code class="docutils literal notranslate"><span class="pre">refresh</span></code> attribute, you can specify the interval in seconds at which the page is reloaded.
@@ -132,14 +159,14 @@ For this purpose, the URL must be added to the “proxy.whitelist” section of 
 For this, a new entry must be created in the section, the key can be chosen arbitrarily
 and as a value either the complete URL or a regular expression is entered which is valid for this URL.</p>
 <p>Example with exact URL:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.google.de&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.de"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Example with regular expression (starts and ends with “/”) which allows all URLs containing “google”:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;proxy.whitelist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/^.+google\/.*$/&quot;</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"proxy.whitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/^.+google\/.*$/"</span>
 <span class="p">}</span>
 </pre></div>
 </div>

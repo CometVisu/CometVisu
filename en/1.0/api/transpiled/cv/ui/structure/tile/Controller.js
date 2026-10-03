@@ -270,6 +270,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               }
               parentElement = parentElement.parentElement;
             }
+            if (window.self !== window.top) {
+              // no history management in iframes
+              skipHistory = true;
+            }
             if (skipHistory === undefined) {
               var headline = page.getAttribute('name');
               var pageTitle = 'CometVisu';
@@ -1118,4 +1122,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1782967140881
+//# sourceMappingURL=Controller.js.map?dt=1791028190647

@@ -76,7 +76,12 @@
        * @return {Map} extracted data from config element as key/value map
        */
       parse: function parse(xml, path, flavour, pageType) {
-        return cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        var data = cv.parser.pure.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        // This widget has no DOM element, so it would not be created when the config is restored
+        // from the cache (in that case widgets are created on demand from the DOM) and the timer
+        // would never be started. Therefore it must be initialized explicitly when the cache is used.
+        data.$$initOnCacheLoad = true;
+        return data;
       },
       getAttributeToPropertyMappings: function getAttributeToPropertyMappings() {
         return {
@@ -198,4 +203,4 @@
   cv.plugins.Timeout.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Timeout.js.map?dt=1782967137555
+//# sourceMappingURL=Timeout.js.map?dt=1791028188730

@@ -9,7 +9,7 @@
   <title>The status-chart widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/widgets/status-chart.html"/>
@@ -26,7 +26,34 @@
     <link rel="prev" title="The small status widget" href="small-status.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../.." class="cv-nav-logo">
+            <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -136,11 +163,11 @@ in which the chart is displayed in full size with the axes.</p>
 <p><span class="caption-text">Status with background chart.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-status-chart</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d&quot;</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;color: #f2495c&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%d Wh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;hour&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%H:%M&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:7.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span>Current<span class="w"> </span>power<span class="w"> </span>consumption<span class="nt">&lt;/span&gt;</span>
-<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;unit&quot;</span><span class="nt">&gt;</span>W<span class="nt">&lt;/span&gt;</span>
-<span class="w">    </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;dataset&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;grid withdrawal&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">curve=</span><span class="s">&quot;step&quot;</span><span class="nt">/&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-status-chart</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d"</span><span class="w"> </span><span class="na">style=</span><span class="s">"color: #f2495c"</span><span class="w"> </span><span class="na">y-format=</span><span class="s">"%d Wh"</span><span class="w"> </span><span class="na">series=</span><span class="s">"hour"</span><span class="w"> </span><span class="na">x-format=</span><span class="s">"%H:%M"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:7.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"title"</span><span class="nt">&gt;</span>Current<span class="w"> </span>power<span class="w"> </span>consumption<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">"unit"</span><span class="nt">&gt;</span>W<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">slot=</span><span class="s">"dataset"</span><span class="w"> </span><span class="na">src=</span><span class="s">"openhab://Meter_Energy_Grid_Import_Today"</span><span class="w"> </span><span class="na">title=</span><span class="s">"grid withdrawal"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">show-area=</span><span class="s">"true"</span><span class="w"> </span><span class="na">curve=</span><span class="s">"step"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/cv-status-chart&gt;</span>
 </pre></div>
 </div>

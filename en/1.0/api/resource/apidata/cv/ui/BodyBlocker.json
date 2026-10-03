@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1782966943251,
-  "lastModifiedIso": "2026-07-02T04:35:43.251Z",
+  "lastModified": 1791028034604,
+  "lastModifiedIso": "2026-10-03T11:47:14.604Z",
   "classFilename": "../../source/class/cv/ui/BodyBlocker.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 855
     },
     "end": {
-      "line": 95,
+      "line": 97,
       "column": 3,
-      "index": 3009
+      "index": 3052
     }
   },
   "className": "cv.ui.BodyBlocker",
@@ -35,9 +35,9 @@
         "index": 1084
       },
       "end": {
-        "line": 36,
+        "line": 37,
         "column": 3,
-        "index": 1235
+        "index": 1327
       }
     }
   },
@@ -47,14 +47,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 4,
-          "index": 1391
+          "index": 1483
         },
         "end": {
-          "line": 44,
+          "line": 45,
           "column": 16,
-          "index": 1403
+          "index": 1495
         }
       },
       "appearsIn": []
@@ -64,14 +64,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 45,
+          "line": 46,
           "column": 4,
-          "index": 1409
+          "index": 1501
         },
         "end": {
-          "line": 45,
+          "line": 46,
           "column": 20,
-          "index": 1425
+          "index": 1517
         }
       },
       "appearsIn": []
@@ -81,14 +81,31 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 46,
+          "line": 47,
           "column": 4,
-          "index": 1431
+          "index": 1523
         },
         "end": {
-          "line": 46,
+          "line": 47,
           "column": 19,
-          "index": 1446
+          "index": 1538
+        }
+      },
+      "appearsIn": []
+    },
+    "__selectors": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1544
+        },
+        "end": {
+          "line": 48,
+          "column": 21,
+          "index": 1561
         }
       },
       "appearsIn": []
@@ -127,14 +144,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 54,
           "column": 4,
-          "index": 1605
+          "index": 1720
         },
         "end": {
-          "line": 62,
+          "line": 64,
           "column": 5,
-          "index": 2011
+          "index": 2102
         }
       },
       "type": "function",
@@ -158,14 +175,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 64,
+          "line": 66,
           "column": 4,
-          "index": 2018
+          "index": 2109
         },
         "end": {
-          "line": 86,
+          "line": 88,
           "column": 5,
-          "index": 2861
+          "index": 2904
         }
       },
       "type": "function",
@@ -184,14 +201,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 88,
+          "line": 90,
           "column": 4,
-          "index": 2868
+          "index": 2911
         },
         "end": {
-          "line": 93,
+          "line": 95,
           "column": 5,
-          "index": 3001
+          "index": 3044
         }
       },
       "type": "function",
