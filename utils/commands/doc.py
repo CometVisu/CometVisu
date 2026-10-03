@@ -648,9 +648,14 @@ class DocGenerator(Command):
         parser.add_argument("--target-version", dest="target_version", help="version target subdir, this option overrides the auto-detection")
         parser.add_argument("--get-target-version", dest="get_target_version", action="store_true", help="returns version target subdir")
         parser.add_argument("--spelling", dest="spelling", action="store_true", help="check spelling")
+        parser.add_argument("--doc-dir", dest="doc_dir", help="directory for documentation output")
         parser.add_argument("--verbose", "-v", dest="verbose", action="store_true", help="verbose output")
 
+
         options = parser.parse_args(args)
+
+        if options.doc_dir is not None:
+            self.config.set("DEFAULT", "doc-dir", options.doc_dir)
 
         if options.features:
             widgets = {}
