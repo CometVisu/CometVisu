@@ -262,4 +262,4 @@
   cv.ui.manager.tree.VirtualElementItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualElementItem.js.map?dt=1791028190008
+//# sourceMappingURL=VirtualElementItem.js.map?dt=1791111968790

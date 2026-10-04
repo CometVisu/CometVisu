@@ -63,4 +63,4 @@
   cv.svg.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1791028210788
+//# sourceMappingURL=Element.js.map?dt=1791112006305

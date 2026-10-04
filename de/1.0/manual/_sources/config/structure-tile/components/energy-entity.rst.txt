@@ -21,37 +21,37 @@ Es existieren folgende Energy entity Typen:
 
 .. list-table::
 
-    * - .. figure:: _static/cv-energy-entity-pv.png
+    * - .. figure:: _static/cv-energy-entity-pv.webp
 
         ``type="pv"``
 
-      - .. figure:: _static/cv-energy-entity-battery-in.png
+      - .. figure:: _static/cv-energy-entity-battery-in.webp
 
         ``type="battery" direction="incoming"``
 
-      - .. figure:: _static/cv-energy-entity-grid-in.png
+      - .. figure:: _static/cv-energy-entity-grid-in.webp
 
         ``type="grid" direction="incoming"``
 
     * -
 
-      - .. figure:: _static/cv-energy-entity-battery-out.png
+      - .. figure:: _static/cv-energy-entity-battery-out.webp
 
         ``type="battery" direction="outgoing"``
 
-      - .. figure:: _static/cv-energy-entity-grid-out.png
+      - .. figure:: _static/cv-energy-entity-grid-out.webp
 
         ``type="grid" direction="outgoing"``
 
-    * - .. figure:: _static/cv-energy-entity-charger.png
+    * - .. figure:: _static/cv-energy-entity-charger.webp
 
         ``type="charger"``
 
-      - .. figure:: _static/cv-energy-entity-consumer.png
+      - .. figure:: _static/cv-energy-entity-consumer.webp
 
         ``type="consumer"``
 
-      - .. figure:: _static/cv-energy-entity-heatpump.png
+      - .. figure:: _static/cv-energy-entity-heatpump.webp
 
         ``type="heatpump"``
 

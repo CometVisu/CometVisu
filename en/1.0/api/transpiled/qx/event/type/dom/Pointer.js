@@ -300,4 +300,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.event.type.dom.Pointer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pointer.js.map?dt=1791028195564
+//# sourceMappingURL=Pointer.js.map?dt=1791111978727

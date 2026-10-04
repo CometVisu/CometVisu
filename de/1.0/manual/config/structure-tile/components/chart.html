@@ -9,7 +9,7 @@
   <title>Chart &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/components/chart.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/components/chart.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -140,7 +141,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Dazu muss das Chart-Element mindestens ein <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> Kind-Element enthalten.
 Für jedes <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> wird in dem Chart z.B. eine Linie eingezeichnet.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-chart-temp.png" src="../../../_images/cv-chart-temp.png" />
+<img alt="../../../_images/cv-chart-temp.webp" src="../../../_images/cv-chart-temp.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">"2x1"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -260,13 +261,13 @@ Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:</p>
 <h3>Weitere Beispiele<a class="headerlink" href="#weitere-beispiele" title="Link to this heading"></a></h3>
 <p>Es ist auch möglich mehrere Linien in einem Chart darzustellen und diese farblich von einander abzugrenzen.</p>
 <figure class="align-default" id="id1">
-<img alt="Zwei Linien in einem Chart." src="../../../_images/cv-chart-pv.png" />
+<img alt="Zwei Linien in einem Chart." src="../../../_images/cv-chart-pv.webp" />
 <figcaption>
 <p><span class="caption-text">Zwei Linien in einem Chart.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id2">
-<img alt="Tooltip mit Einzelwert." src="../../../_images/cv-chart-pv-tooltip.png" />
+<img alt="Tooltip mit Einzelwert." src="../../../_images/cv-chart-pv-tooltip.webp" />
 <figcaption>
 <p><span class="caption-text">Tooltip mit Einzelwert.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -286,7 +287,7 @@ Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:</p>
 <p>Die rote Linie zeigt den täglichen Bezug aus dem Stromnetz in kWh und der orange Bereich stellt dem die täglich PV-Produktion in kWh gegenüber.</p>
 <p>Das Chart-Element bietet auch die Möglichkeit ein Balkendiagramm darzustellen:</p>
 <figure class="align-default" id="id3">
-<img alt="Zwei Balken in einem Chart." src="../../../_images/cv-chart-pv-bar.png" />
+<img alt="Zwei Balken in einem Chart." src="../../../_images/cv-chart-pv-bar.webp" />
 <figcaption>
 <p><span class="caption-text">Zwei Balken in einem Chart.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
@@ -307,13 +308,13 @@ Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:</p>
 dem <code class="docutils literal notranslate"><span class="pre">selection</span></code>-Attribut freischalten. Dieses kann man mit einer Komma-separierten Listen der erlaubten Zeitserien
 füllen, oder einfach mit <code class="docutils literal notranslate"><span class="pre">all</span></code> for alle.</p>
 <figure class="align-default" id="id4">
-<img alt="Zeitserienauswahl mit Navigation." src="../../../_images/cv-chart-pv-nav.png" />
+<img alt="Zeitserienauswahl mit Navigation." src="../../../_images/cv-chart-pv-nav.webp" />
 <figcaption>
 <p><span class="caption-text">Zeitserienauswahl mit Navigation.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
-<img alt="Zeitserienauswahl geöffnet" src="../../../_images/cv-chart-pv-nav-open.png" />
+<img alt="Zeitserienauswahl geöffnet" src="../../../_images/cv-chart-pv-nav-open.webp" />
 <figcaption>
 <p><span class="caption-text">Zeitserienauswahl geöffnet</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
@@ -334,7 +335,7 @@ füllen, oder einfach mit <code class="docutils literal notranslate"><span class
 ausblenden (<code class="docutils literal notranslate"><span class="pre">show-grid=&quot;false&quot;</span></code>), den Bereich unterhalb der Linie mit einem Gradienten ausblenden lassen (<code class="docutils literal notranslate"><span class="pre">gradient=&quot;true&quot;</span></code>)
 oder auch die Linienfarbe ändern (<code class="docutils literal notranslate"><span class="pre">line-color=&quot;#FFFF00&quot;</span></code>).</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-chart-temp-alt.png" src="../../../_images/cv-chart-temp-alt.png" />
+<img alt="../../../_images/cv-chart-temp-alt.webp" src="../../../_images/cv-chart-temp-alt.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">"2x1"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -354,7 +355,7 @@ Mit einer vertikalen Linie kann eine bestimmte Zeit markiert werden (z.B. die ak
 Mit einer horizontalen Linie kann ein bestimmter Wert markiert werden (z.B. ein Schwellwert), oder auch ein Durchschnitts-,
 Höchst- oder Tiefstwert.</p>
 <figure class="align-default" id="id6">
-<img alt="Chart mit horizontalen Linien." src="../../../_images/cv-chart-pv-h-lines.png" />
+<img alt="Chart mit horizontalen Linien." src="../../../_images/cv-chart-pv-h-lines.webp" />
 <figcaption>
 <p><span class="caption-text">Chart mit horizontalen Linien.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
@@ -400,7 +401,7 @@ Weitere Werte für <code class="docutils literal notranslate"><span class="pre">
 <p><strong>Vertikale Linien</strong></p>
 <p>Bei den vertikalen Linien können momentan nur fixe Werte angegeben werden.</p>
 <figure class="align-default" id="id7">
-<img alt="Chart mit vertikaler Linie." src="../../../_images/cv-chart-pv-v-lines.png" />
+<img alt="Chart mit vertikaler Linie." src="../../../_images/cv-chart-pv-v-lines.webp" />
 <figcaption>
 <p><span class="caption-text">Chart mit vertikaler Linie.</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>

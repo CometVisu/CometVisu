@@ -159,8 +159,9 @@
         actor += '</div>';
         return actor;
       },
-      _update: function _update(address, value) {
+      _update: function _update(address, data) {
         var imageChild = this.getDomElement().querySelector('img');
+        var value = this.applyTransform(address, data);
         if (this.getUpdateType() === 'show') {
           if (value === 0) {
             imageChild.style.display = 'none';
@@ -204,4 +205,4 @@
   cv.ui.structure.pure.ImageTrigger.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageTrigger.js.map?dt=1791028190266
+//# sourceMappingURL=ImageTrigger.js.map?dt=1791111969326

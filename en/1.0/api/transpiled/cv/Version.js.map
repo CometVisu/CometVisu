@@ -23,7 +23,7 @@
     "/home/runner/work/CometVisu/CometVisu/source/class/cv/Version.js"
   ],
   "sourcesContent": [
-    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: '9de113facfaeea7dab000868a209a7f33e2257dd',\n    BRANCH: 'develop',\n    VERSION: '1.0.0-dev',\n    LIBRARY_VERSION_PURE: 9,\n    LIBRARY_VERSION_TILE: 1,\n    DATE: '2026-10-03T11:48:04.696Z',\n    TAGS: { \n    }\n  }\n});    \n"
+    "\nqx.Class.define('cv.Version', {\n  type: 'static',\n\n  statics: {\n    REV: 'a20cdeda3d118a45496ecb1e031b3697d29f8e2e',\n    BRANCH: 'develop',\n    VERSION: '1.0.0-dev',\n    LIBRARY_VERSION_PURE: 9,\n    LIBRARY_VERSION_TILE: 1,\n    DATE: '2026-10-04T11:03:36.608Z',\n    TAGS: { \n    }\n  }\n});    \n"
   ],
   "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAChDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,YAAY,EAAE;IAC5BC,IAAI,EAAE,QAAQ;IAEdC,OAAO,EAAE;MACPC,GAAG,EAAE,0CAA0C;MAC/CC,MAAM,EAAE,SAAS;MACjBC,OAAO,EAAE,WAAW;MACpBC,oBAAoB,EAAE,CAAC;MACvBC,oBAAoB,EAAE,CAAC;MACvBC,IAAI,EAAE,0BAA0B;MAChCC,IAAI,EAAE,CACN;IACF;EACF,CAAC,CAAC;EAdFC,EAAE,CAACC,OAAO,CAACb,aAAa,GAAGA,aAAa;AAAC",
   "ignoreList": []

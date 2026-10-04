@@ -9,7 +9,7 @@
   <title>Das Energy Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/energy.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/widgets/energy.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -160,7 +161,7 @@ und deren Flussrichtung für folgende Typen an: Photovoltaik-Inverter, Batteries
 und den Hauptstromzähler. Diese Elemente werden eingeblendet, sofern man eine <code class="docutils literal notranslate"><span class="pre">&lt;cv-address&gt;</span></code> für
 den entsprechenden Slot hinzufügt. Ein komplettes Beispiel würde so aussehen:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-energy-full.png" src="../../../_images/cv-energy-full.png" />
+<img alt="../../../_images/cv-energy-full.webp" src="../../../_images/cv-energy-full.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"pv-power"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:12.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/27<span class="nt">&lt;/cv-address&gt;</span>
@@ -182,7 +183,7 @@ Diese werden als CSS-Variablen definiert und können somit einfach durch einen <
 geändert werden.</p>
 <p>Wenn man nun z.B. keine Wallbox und keinen Batteriespeicher hat, werden diese Werte nicht angezeigt:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-energy-partial.png" src="../../../_images/cv-energy-partial.png" />
+<img alt="../../../_images/cv-energy-partial.webp" src="../../../_images/cv-energy-partial.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"pv-power"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:12.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/27<span class="nt">&lt;/cv-address&gt;</span>
@@ -204,7 +205,7 @@ hinzugefügt wird sobald es mindestens ein anderes Element gibt ist das Haus in 
 <p>Als einfaches Beispiel soll nun ein Balkonkraftwerk und der Hauptstromzähler angezeigt werden. Da dies, zusammen mit
 dem Haus, nur 3 Elemente sind, genügt hier ein Widget mit halber Höhe <code class="docutils literal notranslate"><span class="pre">size=&quot;1x0.5&quot;</span></code>.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-energy-simple.png" src="../../../_images/cv-energy-simple.png" />
+<img alt="../../../_images/cv-energy-simple.webp" src="../../../_images/cv-energy-simple.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy</span><span class="w"> </span><span class="na">size=</span><span class="s">"1x0.5"</span><span class="w"> </span><span class="na">rows=</span><span class="s">"1"</span><span class="w"> </span><span class="na">view-box=</span><span class="s">"0 0 3 1"</span><span class="w"> </span><span class="na">house-row=</span><span class="s">"0"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">type=</span><span class="s">"pv"</span><span class="w"> </span><span class="na">connect-to=</span><span class="s">"house"</span><span class="w"> </span><span class="na">row=</span><span class="s">"0"</span><span class="w"> </span><span class="na">column=</span><span class="s">"0"</span><span class="nt">&gt;</span>
@@ -254,7 +255,7 @@ Hauptzähler dargestellt werden. Noch dazu sollen nun nicht nur die aktuellen Le
 des aktuellen Tages dargestellt werden, inkl. dem Eigenverbrauchswert und dem Autarkiegrad.
 Dazu wird das Widget vergrößert und mit 6 Spalten versehen.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-energy-complex1.png" src="../../../_images/cv-energy-complex1.png" />
+<img alt="../../../_images/cv-energy-complex1.webp" src="../../../_images/cv-energy-complex1.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy</span><span class="w"> </span><span class="na">size=</span><span class="s">"2x1"</span><span class="w"> </span><span class="na">columns=</span><span class="s">"6"</span><span class="w"> </span><span class="na">view-box=</span><span class="s">"0 0 6 3"</span><span class="w"> </span><span class="na">house-row=</span><span class="s">"2"</span><span class="w"> </span><span class="na">center-x=</span><span class="s">"false"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-power-entity</span><span class="w"> </span><span class="na">id=</span><span class="s">"battery-pv"</span><span class="w"> </span><span class="na">type=</span><span class="s">"pv"</span><span class="w"> </span><span class="na">icon=</span><span class="s">"knxuf-scene_solar_panel"</span><span class="w"> </span><span class="na">connect-to=</span><span class="s">"battery"</span><span class="w"> </span><span class="na">row=</span><span class="s">"0"</span><span class="w"> </span><span class="na">column=</span><span class="s">"0"</span><span class="nt">&gt;</span>
@@ -340,14 +341,14 @@ Die Tageswerte sind durch scrollen innerhalb des Widgets erreichbar.</p>
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default" id="id1">
-<img alt="Initiale Ansicht" src="../../../_images/cv-energy-complex-left.png" />
+<img alt="Initiale Ansicht" src="../../../_images/cv-energy-complex-left.webp" />
 <figcaption>
 <p><span class="caption-text">Initiale Ansicht</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id2">
-<img alt="Ansicht nach Klick auf rechten Rand" src="../../../_images/cv-energy-complex-right.png" />
+<img alt="Ansicht nach Klick auf rechten Rand" src="../../../_images/cv-energy-complex-right.webp" />
 <figcaption>
 <p><span class="caption-text">Ansicht nach Klick auf rechten Rand</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -371,14 +372,14 @@ Durch einen Doppelklick kommt man immer wieder zurück zur initialen Ansicht.</p
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default" id="id3">
-<img alt="Initiale Ansicht" src="../../../_images/cv-energy-complex-fsc.png" />
+<img alt="Initiale Ansicht" src="../../../_images/cv-energy-complex-fsc.webp" />
 <figcaption>
 <p><span class="caption-text">Initiale Ansicht</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id4">
-<img alt="Vollbildansicht (verkleinert)" src="../../../_images/cv-energy-complex-fsc-open.png" />
+<img alt="Vollbildansicht (verkleinert)" src="../../../_images/cv-energy-complex-fsc-open.webp" />
 <figcaption>
 <p><span class="caption-text">Vollbildansicht (verkleinert)</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>

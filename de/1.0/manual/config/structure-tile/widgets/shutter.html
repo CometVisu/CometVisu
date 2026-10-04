@@ -9,7 +9,7 @@
   <title>Das Shutter Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/shutter.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/widgets/shutter.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -159,7 +160,7 @@ Mit den drei Buttons lässt sich die Rolllade hoch-, runter fahren oder stoppen.
 Die Buttons werden in der mittleren Zeile angezeigt, die Position in der obersten und in der
 untersten Zeile kann man z.B. den Namen/den Ort der Rolllade anzeigen.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-shutter.png" src="../../../_images/cv-shutter.png" />
+<img alt="../../../_images/cv-shutter.webp" src="../../../_images/cv-shutter.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-shutter&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"downAddress"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.008"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"write"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
@@ -177,7 +178,7 @@ Wird kein <code class="docutils literal notranslate"><span class="pre">&lt;cv-ad
 <p>Um die aktuelle Position der Rolllade darzustellen wird eine zusätzliche, optionale <code class="docutils literal notranslate"><span class="pre">&lt;cv-address</span> <span class="pre">slot=&quot;positionAddress&quot;</span></code>
 benötigt.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-shutter-no-stop.png" src="../../../_images/cv-shutter-no-stop.png" />
+<img alt="../../../_images/cv-shutter-no-stop.webp" src="../../../_images/cv-shutter-no-stop.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-shutter&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"downAddress"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.008"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"write"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>

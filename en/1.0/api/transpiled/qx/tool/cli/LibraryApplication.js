@@ -48,4 +48,4 @@
   qx.tool.cli.LibraryApplication.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LibraryApplication.js.map?dt=1791028202393
+//# sourceMappingURL=LibraryApplication.js.map?dt=1791111991048

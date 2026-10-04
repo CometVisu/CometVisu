@@ -852,4 +852,4 @@
   qx.event.handler.GestureCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GestureCore.js.map?dt=1791028195210
+//# sourceMappingURL=GestureCore.js.map?dt=1791111978062

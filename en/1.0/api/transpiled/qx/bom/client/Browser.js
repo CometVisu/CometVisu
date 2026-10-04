@@ -218,4 +218,4 @@
   qx.bom.client.Browser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browser.js.map?dt=1791028192569
+//# sourceMappingURL=Browser.js.map?dt=1791111973278

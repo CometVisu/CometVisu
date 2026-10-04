@@ -395,4 +395,4 @@
   qx.ui.mobile.form.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1791028207335
+//# sourceMappingURL=Slider.js.map?dt=1791112000039

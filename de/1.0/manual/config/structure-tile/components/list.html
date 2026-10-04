@@ -9,7 +9,7 @@
   <title>List &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/components/list.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/components/list.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -141,7 +142,7 @@ Datenmodell, welches einen Eintrag mit Daten für jedes Element in der Liste ent
 den HTML-Code für die jeweiligen Listen-Elemente definiert. Die List-Komponente erzeugt nun ein HTML-Element, basierend
 auf dem Template und füllt dieses mit den Daten aus einem Eintrag des Datenmodells.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-js-list.png" src="../../../_images/cv-js-list.png" />
+<img alt="../../../_images/cv-js-list.webp" src="../../../_images/cv-js-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -251,7 +252,7 @@ komplexeren Code zu benutzen und das Modell z.B. aus externen Quellen zu laden.<
 ins Modell übertragen werden. Innerhalb der Templates können natürlich auch beliebige Komponenten benutzt werden.
 Hier wird ein <code class="docutils literal notranslate"><span class="pre">cv-listitem</span></code> benutzt, welches einen bedienbaren :ref:Button &lt;tile-component-button&gt;` neben einem Text anzeigt.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-data-list.png" src="../../../_images/cv-data-list.png" />
+<img alt="../../../_images/cv-data-list.webp" src="../../../_images/cv-data-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>
@@ -316,14 +317,14 @@ definieren (<code class="docutils literal notranslate"><span class="pre">&lt;tem
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default" id="id1">
-<img alt="Modell mit Einträgen" src="../../../_images/cv-backend-list.png" />
+<img alt="Modell mit Einträgen" src="../../../_images/cv-backend-list.webp" />
 <figcaption>
 <p><span class="caption-text">Modell mit Einträgen</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id2">
-<img alt="Leeres Modell" src="../../../_images/cv-backend-list-empty.png" />
+<img alt="Leeres Modell" src="../../../_images/cv-backend-list-empty.webp" />
 <figcaption>
 <p><span class="caption-text">Leeres Modell</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -410,7 +411,7 @@ nicht benutzt werden.</p>
 </div>
 <p>Beispiel zur Anzeige der Anruferliste aus dem tr064-Plugin:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-tr064plugin-list.png" src="../../../_images/cv-tr064plugin-list.png" />
+<img alt="../../../_images/cv-tr064plugin-list.webp" src="../../../_images/cv-tr064plugin-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -436,7 +437,7 @@ nicht benutzt werden.</p>
 </div>
 <p>Beispiel zur Anzeige der Eintrage aus dem RssLog-Plugin:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rsslogplugin-list.png" src="../../../_images/cv-rsslogplugin-list.png" />
+<img alt="../../../_images/cv-rsslogplugin-list.webp" src="../../../_images/cv-rsslogplugin-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -461,7 +462,7 @@ das Datum in dem gewünschten Format auszugeben: <a class="reference internal" h
 <p>Dieses Modell unterstützt auch einige weitere Features des RssLog-Plugins: Mapping und das Bestätigen oder Löschen eines
 Eintrags.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rsslogplugin-list-features.png" src="../../../_images/cv-rsslogplugin-list-features.png" />
+<img alt="../../../_images/cv-rsslogplugin-list-features.webp" src="../../../_images/cv-rsslogplugin-list-features.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>

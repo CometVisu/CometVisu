@@ -9,7 +9,7 @@
   <title>Das RTC Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/rtc.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/widgets/rtc.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -160,7 +161,7 @@ und bietet die Möglichkeit diese zu ändern, ebenso kann mit dem Widget der Bet
 Für die Soll-Temperatur kommt ein <a class="reference internal" href="../components/spinner.html#tile-component-spinner"><span class="std std-ref">Spinner</span></a> zum Einsatz und für den Modus ein
 <a class="reference internal" href="../components/select.html#tile-component-select"><span class="std std-ref">Select</span></a>.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rtc.png" src="../../../_images/cv-rtc.png" />
+<img alt="../../../_images/cv-rtc.webp" src="../../../_images/cv-rtc.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-rtc&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"hvacAddress"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:20.102"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
@@ -175,7 +176,7 @@ Für die Soll-Temperatur kommt ein <a class="reference internal" href="../compon
 so kann man eine zusätzliche <code class="docutils literal notranslate"><span class="pre">temperatureAddress</span></code> mit dem Target <code class="docutils literal notranslate"><span class="pre">show-hide</span></code> und einem speziellen <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">Mapping</span></a>
 angeben.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rtc-notemp.png" src="../../../_images/cv-rtc-notemp.png" />
+<img alt="../../../_images/cv-rtc-notemp.webp" src="../../../_images/cv-rtc-notemp.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>
@@ -199,7 +200,7 @@ angeben.</p>
 <code class="docutils literal notranslate"><span class="pre">format</span></code> angibt. So kann z.B. das Widget auf Fahrenheit umgestellt werden mit: <code class="docutils literal notranslate"><span class="pre">&lt;cv-rtc</span> <span class="pre">min=&quot;0&quot;</span> <span class="pre">max=&quot;100&quot;</span> <span class="pre">format=&quot;%d</span> <span class="pre">′F&quot;&gt;</span></code>.</p>
 <p>Falls eine Steuerung des Betriebsmodus nicht möglich sein, kann stattdessen die Ist-Temperatur angezeigt werden.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rtc-no-hvac.png" src="../../../_images/cv-rtc-no-hvac.png" />
+<img alt="../../../_images/cv-rtc-no-hvac.webp" src="../../../_images/cv-rtc-no-hvac.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-rtc</span><span class="w"> </span><span class="na">format=</span><span class="s">"%.1f"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"measuredTemperatureAddress"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:9.001"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>

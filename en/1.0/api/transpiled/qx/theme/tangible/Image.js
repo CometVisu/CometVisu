@@ -105,4 +105,4 @@
   qx.theme.tangible.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1791028202308
+//# sourceMappingURL=Image.js.map?dt=1791111990894

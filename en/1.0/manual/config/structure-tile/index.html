@@ -9,7 +9,7 @@
   <title>Basic structure &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=b931039c" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/index.html"/>
@@ -18,7 +18,7 @@
       <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../_static/versions.js?v=17c2187a"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -30,7 +30,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../.." class="cv-nav-logo">
+        <a href="../../../../.." class="cv-nav-logo">
             <img src="../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -40,13 +40,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../#features">Features</a></li>
-            <li><a href="../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../#features">Features</a></li>
+            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../news/" class="cv-nav-news">News</a></li>
             <li><a href="../../" class="cv-nav-active">Documentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../de/" class="cv-lang-switch">DE</a>
+                <a href="../../../../../de/1.0/manual/config/structure-tile/index.html" class="cv-lang-switch">DE</a>
                 
             </li>
         </ul>
@@ -223,7 +224,7 @@ bars or widgets that show global status, such as the number of open windows or t
 <p>For compact mobile layouts, navigation elements in these fixed areas can be configured with <code class="docutils literal notranslate"><span class="pre">hide-on-scroll=&quot;true&quot;</span></code>.
 Then they fade out while the content in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> is scrolled and reappear again at the top of the page.</p>
 <figure class="align-default" id="id1">
-<img alt="Basic structure with all optional areas available" src="../../_images/tile-ui-structure.png" />
+<img alt="Basic structure with all optional areas available" src="../../_images/tile-ui-structure.webp" />
 <figcaption>
 <p><span class="caption-text">Basic structure with all optional areas available</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
@@ -278,7 +279,7 @@ contains a page for each room on this floor.</p>
 </pre></div>
 </div>
 <figure class="align-default">
-<img alt="../../_images/tile-nav-menu.png" src="../../_images/tile-nav-menu.png" />
+<img alt="../../_images/tile-nav-menu.webp" src="../../_images/tile-nav-menu.webp" />
 </figure>
 <p>In the <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code> sections, a  <a class="reference internal" href="components/breadcrumbs.html#tile-component-breadcrumbs"><span class="std std-ref">breadcrumb menu</span></a> can also be added with <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
 This allows you to quickly jump back to higher-level pages.</p>
@@ -288,7 +289,7 @@ This allows you to quickly jump back to higher-level pages.</p>
 </pre></div>
 </div>
 <figure class="align-default">
-<img alt="../../_images/tile-nav-breadcrumb.png" src="../../_images/tile-nav-breadcrumb.png" />
+<img alt="../../_images/tile-nav-breadcrumb.webp" src="../../_images/tile-nav-breadcrumb.webp" />
 </figure>
 <p>On touch devices, the tile structure also supports pull-to-refresh.
 If the content in <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> is already at the top, pulling down reloads the current page.</p>
@@ -307,75 +308,75 @@ or operating a roller shutter.</p>
 <col style="width: 70.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.webp"><img alt="../../_images/cv-switch-on.webp" src="../../_images/cv-switch-on.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">The switch widget</span></a>
 simple switch, button or trigger</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.webp"><img alt="../../_images/cv-dimmer.webp" src="../../_images/cv-dimmer.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">The dimmer widget</span></a>
 Switch with additional slider to set a percentage</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.webp"><img alt="../../_images/cv-shutter.webp" src="../../_images/cv-shutter.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">The shutter widget</span></a>
 Button for up/down/stop to control a shutter</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.webp"><img alt="../../_images/cv-info.webp" src="../../_images/cv-info.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">The info widget</span></a>
 Representation of a value in different ways</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.webp"><img alt="../../_images/cv-status.webp" src="../../_images/cv-status.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">The status widget</span></a>
 Status display at half tile height</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.webp"><img alt="../../_images/cv-small-status.webp" src="../../_images/cv-small-status.webp" style="width: 60px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">The small status widget</span></a>
 Status display in button size</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.webp"><img alt="../../_images/cv-status-chart.webp" src="../../_images/cv-status-chart.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">The status-chart widget</span></a>
 Status widget with chart in the background</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.webp"><img alt="../../_images/cv-rtc.webp" src="../../_images/cv-rtc.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">The RTC widget</span></a>
 Room temperature control with settings for HVAC and
 a set point temperature</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.webp"><img alt="../../_images/cv-media-player.webp" src="../../_images/cv-media-player.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">The media-player widget</span></a>
 Control a media player with start/stop,
 next &amp; previous and a volume control</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.webp"><img alt="../../_images/cv-widget-pair.webp" src="../../_images/cv-widget-pair.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">The widget-pair</span></a>
 Allows two tiles to be displayed at half height</p></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" />
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.webp"><img alt="../../_images/cv-energy-full.webp" src="../../_images/cv-energy-full.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/energy.html#tile-energy"><span class="std std-ref">The energy widget</span></a>
 Visualizes energy flow inside a house</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.png"><img alt="../../_images/cv-link.png" src="../../_images/cv-link.png" style="width: 150px;" />
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-link.webp"><img alt="../../_images/cv-link.webp" src="../../_images/cv-link.webp" style="width: 150px;" />
 </a>
 </td>
 <td><p><a class="reference internal" href="widgets/link.html#tile-link"><span class="std std-ref">The link widget</span></a>
@@ -402,7 +403,7 @@ of a new widget takes place in a <code class="docutils literal notranslate"><spa
 The content in the tiles is arranged in a maximum of 3 rows with 3 columns each, similar here
 how in tables a content element can occupy several rows and/or columns.</p>
 <figure class="align-default">
-<img alt="../../_images/tile-grid.png" src="../../_images/tile-grid.png" />
+<img alt="../../_images/tile-grid.webp" src="../../_images/tile-grid.webp" />
 </figure>
 <p>The <a class="reference internal" href="#tile-components"><span class="std std-ref">components</span></a> provided by the tile structure can be freely placed within the cells of a tile.
 Examples of these components include simple text, a <a class="reference internal" href="components/button.html#tile-component-button"><span class="std std-ref">Button</span></a>,

@@ -108,4 +108,4 @@
   qx.ui.core.ColumnData.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColumnData.js.map?dt=1791028205336
+//# sourceMappingURL=ColumnData.js.map?dt=1791111996379

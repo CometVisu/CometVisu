@@ -59,4 +59,4 @@
   qx.tool.compiler.jsdoc.ChildControlParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ChildControlParser.js.map?dt=1791028203978
+//# sourceMappingURL=ChildControlParser.js.map?dt=1791111993647

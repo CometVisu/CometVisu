@@ -84,4 +84,4 @@
   qx.ui.mobile.navigationbar.NavigationBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NavigationBar.js.map?dt=1791028207498
+//# sourceMappingURL=NavigationBar.js.map?dt=1791112000339

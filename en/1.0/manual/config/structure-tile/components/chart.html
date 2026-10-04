@@ -9,7 +9,7 @@
   <title>Chart &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=b931039c" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/components/chart.html"/>
@@ -18,7 +18,7 @@
       <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -30,7 +30,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -40,13 +40,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../#features">Features</a></li>
-            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../../#features">Features</a></li>
+            <li><a href="../../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../../news/" class="cv-nav-news">News</a></li>
             <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                <a href="../../../../../../de/1.0/manual/config/structure-tile/components/chart.html" class="cv-lang-switch">DE</a>
                 
             </li>
         </ul>
@@ -140,7 +141,7 @@ by an online translation service.</p>
 For this, the chart element must contain at least one <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> child element.
 For each <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> a line is drawn in the chart.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-chart-temp.png" src="../../../_images/cv-chart-temp.png" />
+<img alt="../../../_images/cv-chart-temp.webp" src="../../../_images/cv-chart-temp.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">"2x1"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -264,13 +265,13 @@ The creation and integration of this plugin consists of 3 steps:</p>
 <h3>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h3>
 <p>It is also possible to display multiple lines in a chart and to color them differently.</p>
 <figure class="align-default" id="id1">
-<img alt="Two lines in one chart." src="../../../_images/cv-chart-pv.png" />
+<img alt="Two lines in one chart." src="../../../_images/cv-chart-pv.webp" />
 <figcaption>
 <p><span class="caption-text">Two lines in one chart.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id2">
-<img alt="Tooltip with single values." src="../../../_images/cv-chart-pv-tooltip.png" />
+<img alt="Tooltip with single values." src="../../../_images/cv-chart-pv-tooltip.webp" />
 <figcaption>
 <p><span class="caption-text">Tooltip with single values.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -290,7 +291,7 @@ The creation and integration of this plugin consists of 3 steps:</p>
 <p>The red line shows the daily withdrawal from the power grid in kWh and the orange area shows the daily PV production in kWh.</p>
 <p>The chart element also offers the possibility to display a bar chart:</p>
 <figure class="align-default" id="id3">
-<img alt="Two bars in one chart." src="../../../_images/cv-chart-pv-bar.png" />
+<img alt="Two bars in one chart." src="../../../_images/cv-chart-pv-bar.webp" />
 <figcaption>
 <p><span class="caption-text">Two bars in one chart.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
@@ -310,13 +311,13 @@ The creation and integration of this plugin consists of 3 steps:</p>
 <p>If you want to switch to other time series and navigate within the currently selected one, you can unlock these with
 the <code class="docutils literal notranslate"><span class="pre">selection</span></code> attribute. This can be filled with a comma-separated list of allowed time series, or simply with <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p>
 <figure class="align-default" id="id4">
-<img alt="Time series selection." src="../../../_images/cv-chart-pv-nav.png" />
+<img alt="Time series selection." src="../../../_images/cv-chart-pv-nav.webp" />
 <figcaption>
 <p><span class="caption-text">Time series selection.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
-<img alt="Opened time series selection" src="../../../_images/cv-chart-pv-nav-open.png" />
+<img alt="Opened time series selection" src="../../../_images/cv-chart-pv-nav-open.webp" />
 <figcaption>
 <p><span class="caption-text">Opened time series selection</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
@@ -336,7 +337,7 @@ the <code class="docutils literal notranslate"><span class="pre">selection</span
 <p>There are various options to influence the display of the chart. For example, you can hide the lines in the background
 (<code class="docutils literal notranslate"><span class="pre">show-grid=&quot;false&quot;</span></code>), hide the area below the line with a gradient (<code class="docutils literal notranslate"><span class="pre">gradient=&quot;true&quot;</span></code>) or change the line color (<code class="docutils literal notranslate"><span class="pre">line-color=&quot;#FFFF00&quot;</span></code>).</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-chart-temp-alt.png" src="../../../_images/cv-chart-temp-alt.png" />
+<img alt="../../../_images/cv-chart-temp-alt.webp" src="../../../_images/cv-chart-temp-alt.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">"2x1"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -355,7 +356,7 @@ the <code class="docutils literal notranslate"><span class="pre">selection</span
 With a vertical line, a certain time can be marked (e.g. the current time or midnight).
 With a horizontal line, a certain value can be marked (e.g. a threshold), or an average, maximum or minimum value.</p>
 <figure class="align-default" id="id6">
-<img alt="Chart with horizontal lines." src="../../../_images/cv-chart-pv-h-lines.png" />
+<img alt="Chart with horizontal lines." src="../../../_images/cv-chart-pv-h-lines.webp" />
 <figcaption>
 <p><span class="caption-text">Chart with horizontal lines.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
@@ -401,7 +402,7 @@ Other values for <code class="docutils literal notranslate"><span class="pre">va
 <p><strong>Vertical lines</strong></p>
 <p>The vertical lines allow only fixed value.</p>
 <figure class="align-default" id="id7">
-<img alt="Chart with vertical line" src="../../../_images/cv-chart-pv-v-lines.png" />
+<img alt="Chart with vertical line" src="../../../_images/cv-chart-pv-v-lines.webp" />
 <figcaption>
 <p><span class="caption-text">Chart with vertical line</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>

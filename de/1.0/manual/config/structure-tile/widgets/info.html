@@ -9,7 +9,7 @@
   <title>Das Info Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/info.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/widgets/info.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -158,7 +159,7 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 Es kann z.B. genutzt werden um Temperaturen oder Verbrauchswerte darzustellen.
 Für die Darstellung des Werts wird ein <a class="reference internal" href="../components/value.html#tile-component-value"><span class="std std-ref">Value</span></a> genutzt.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-info.png" src="../../../_images/cv-info.png" />
+<img alt="../../../_images/cv-info.webp" src="../../../_images/cv-info.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">"%.2f"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:9.001"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
@@ -173,7 +174,7 @@ Zusätzlich kann eine Einheit für den Werte mit <code class="docutils literal n
 <p>Es ist also auch möglich die Einheit über die Formatierung mit anzugeben, dann steht sie neben dem Wert und nicht
 darunter.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-info-format.png" src="../../../_images/cv-info-format.png" />
+<img alt="../../../_images/cv-info-format.webp" src="../../../_images/cv-info-format.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">"%.1f°C"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:9.001"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
@@ -184,7 +185,7 @@ darunter.</p>
 <p>Es ist natürlich auch mögliche eine der anderen Darstellungsformen der <a class="reference internal" href="../components/value.html#tile-component-value"><span class="std std-ref">Value</span></a>
 zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-info-progress.png" src="../../../_images/cv-info-progress.png" />
+<img alt="../../../_images/cv-info-progress.webp" src="../../../_images/cv-info-progress.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-info</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
@@ -197,14 +198,14 @@ zu benutzen. Um Zahlen darzustellen bietet sich z.B. ein Fortschrittsbalken an.<
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default" id="id1">
-<img alt="Fenster geschlossen" src="../../../_images/cv-info-icon-closed.png" />
+<img alt="Fenster geschlossen" src="../../../_images/cv-info-icon-closed.webp" />
 <figcaption>
 <p><span class="caption-text">Fenster geschlossen</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id2">
-<img alt="Fenster geöffnet" src="../../../_images/cv-info-icon-opened.png" />
+<img alt="Fenster geöffnet" src="../../../_images/cv-info-icon-opened.webp" />
 <figcaption>
 <p><span class="caption-text">Fenster geöffnet</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>

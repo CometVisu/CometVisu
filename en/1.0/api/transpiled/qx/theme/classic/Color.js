@@ -125,4 +125,4 @@
   qx.theme.classic.Color.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Color.js.map?dt=1791028201951
+//# sourceMappingURL=Color.js.map?dt=1791111990240

@@ -609,4 +609,4 @@
   qxl.apiviewer.ui.SearchView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SearchView.js.map?dt=1791028211218
+//# sourceMappingURL=SearchView.js.map?dt=1791112007092

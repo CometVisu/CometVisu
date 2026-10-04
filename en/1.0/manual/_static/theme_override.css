@@ -183,7 +183,7 @@
     --cv-bg-card: #1a1a25;
     --cv-bg-elevated: #222230;
     
-    --cv-text-primary: #ffffff;
+    --cv-text-primary: #b7b7cb;
     --cv-text-secondary: #a0a0b0;
     --cv-text-muted: #606070;
     
@@ -233,6 +233,15 @@
 .wy-menu-vertical li.toctree-l2.current > a,
 .wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
     background-color: var(--cv-bg-elevated) !important;
+}
+
+.wy-menu-vertical li.toctree-l3.current > a,
+.wy-menu-vertical li.toctree-l3.current li a {
+    background-color: var(--cv-bg-elevated) !important;
+}
+
+.wy-menu-vertical li.current {
+    background: var(--cv-bg-surface) !important;
 }
 
 .wy-menu-vertical li.current a {
@@ -538,6 +547,12 @@ kbd, .kbd {
     margin: auto 0;
 }
 
+.rst-content :not(dl.option-list)>:not(dt):not(kbd):not(.kbd)>.kbd, .rst-content :not(dl.option-list)>:not(dt):not(kbd):not(.kbd)>kbd {
+    color: var(--cv-text-primary);
+    background-color: var(--cv-bg-card);
+    border: 1px solid var(--cv-border-color);
+}
+
 /* Paragraphs and text */
 .rst-content p {
     color: var(--cv-text-primary);
@@ -588,4 +603,9 @@ kbd, .kbd {
     background-color: var(--cv-bg-card) !important;
     border-color: var(--cv-border-color) !important;
     color: var(--cv-text-primary) !important;
+}
+
+/* Footnotes: place all content (code blocks, lists, ...) in the text column, not only paragraphs */
+html.writer-html5 .rst-content aside.footnote > :not(.label):not(.backrefs) {
+    grid-column: 4 / 5;
 }

@@ -65,4 +65,4 @@
   qx.io.request.authentication.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1791028196151
+//# sourceMappingURL=Basic.js.map?dt=1791111979785

@@ -225,4 +225,4 @@
   qx.ui.mobile.container.Navigation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Navigation.js.map?dt=1791028207001
+//# sourceMappingURL=Navigation.js.map?dt=1791111999494

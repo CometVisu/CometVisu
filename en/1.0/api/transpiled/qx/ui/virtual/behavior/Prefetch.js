@@ -195,4 +195,4 @@
   qx.ui.virtual.behavior.Prefetch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Prefetch.js.map?dt=1791028208906
+//# sourceMappingURL=Prefetch.js.map?dt=1791112002910

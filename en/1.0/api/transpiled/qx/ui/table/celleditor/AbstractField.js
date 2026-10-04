@@ -93,4 +93,4 @@
   qx.ui.table.celleditor.AbstractField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractField.js.map?dt=1791028207925
+//# sourceMappingURL=AbstractField.js.map?dt=1791112001134

@@ -87,4 +87,4 @@
   qx.test.mobile.dialog.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1791028199523
+//# sourceMappingURL=Menu.js.map?dt=1791111985906

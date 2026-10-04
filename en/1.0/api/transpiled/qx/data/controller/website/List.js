@@ -243,4 +243,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.data.controller.website.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1791028193733
+//# sourceMappingURL=List.js.map?dt=1791111975356

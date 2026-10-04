@@ -725,4 +725,4 @@
   qx.ui.menu.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1791028206848
+//# sourceMappingURL=Menu.js.map?dt=1791111999215

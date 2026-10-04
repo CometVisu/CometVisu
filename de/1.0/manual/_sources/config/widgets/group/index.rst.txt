@@ -12,12 +12,12 @@ Mit dem Group-Widget können mehrere Widgets mit einem Rahmen gruppiert werden. 
 andererseits kann damit die automatische Anordnung der widgets (zB beim Drehen des Anzeigegerätes vom Hoch- 
 ins Querformat) beeinflusst werden. 
 
-.. figure:: _static/group_simple.png
+.. figure:: _static/group_simple.webp
 
 Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem 
 Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.
 
-.. figure:: _static/group_nowidget.png
+.. figure:: _static/group_nowidget.webp
 
 
 Einstellungen

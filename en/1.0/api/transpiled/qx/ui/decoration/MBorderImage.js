@@ -259,4 +259,4 @@
   qx.ui.decoration.MBorderImage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBorderImage.js.map?dt=1791028205847
+//# sourceMappingURL=MBorderImage.js.map?dt=1791111997352

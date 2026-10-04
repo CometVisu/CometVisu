@@ -54,4 +54,4 @@
   qx.ui.virtual.core.IHtmlCellProvider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IHtmlCellProvider.js.map?dt=1791028209007
+//# sourceMappingURL=IHtmlCellProvider.js.map?dt=1791112003103

@@ -109,4 +109,4 @@
   qx.test.core.PropertyHelper.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PropertyHelper.js.map?dt=1791028198100
+//# sourceMappingURL=PropertyHelper.js.map?dt=1791111983235

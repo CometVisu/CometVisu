@@ -9,7 +9,7 @@
   <title>Value &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/components/value.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/components/value.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -149,7 +150,7 @@ bis hin zu Fortschrittsbalken.</p>
 <h3>Text<a class="headerlink" href="#text" title="Link to this heading"></a></h3>
 <p>Die einfachste Variante ist es den Wert einfach als Text anzuzeigen.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-value-label.png" src="../../../_images/cv-value-label.png" />
+<img alt="../../../_images/cv-value-label.webp" src="../../../_images/cv-value-label.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-value</span><span class="w"> </span><span class="na">format=</span><span class="s">"%d%%"</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:5.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"read"</span><span class="nt">&gt;</span>1/4/2<span class="nt">&lt;/cv-address&gt;</span>
@@ -172,7 +173,7 @@ kein Wert angezeigt.</p>
 </pre></div>
 </div>
 <figure class="align-default">
-<img alt="../../../_images/cv-value-label-primary.png" src="../../../_images/cv-value-label-primary.png" />
+<img alt="../../../_images/cv-value-label-primary.webp" src="../../../_images/cv-value-label-primary.webp" />
 </figure>
 <p>Zusätzlich kann man die Text-Größe einstellen, ebenfalls über einen zusätzlichen Eintrag in das <code class="docutils literal notranslate"><span class="pre">class</span></code>-Attribut.
 Es stehen folgende Möglichkeiten zur Verfügung: <code class="docutils literal notranslate"><span class="pre">medium</span></code> und <code class="docutils literal notranslate"><span class="pre">large</span></code>. Wobei medium kleiner als die Standardgröße ist
@@ -181,7 +182,7 @@ und large größer.</p>
 </pre></div>
 </div>
 <figure class="align-default">
-<img alt="../../../_images/cv-value-label-large.png" src="../../../_images/cv-value-label-large.png" />
+<img alt="../../../_images/cv-value-label-large.webp" src="../../../_images/cv-value-label-large.webp" />
 </figure>
 </section>
 <section id="icon">
@@ -196,11 +197,11 @@ funktionieren würden.</p>
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default">
-<img alt="../../../_images/cv-value-icon-off.png" src="../../../_images/cv-value-icon-off.png" />
+<img alt="../../../_images/cv-value-icon-off.webp" src="../../../_images/cv-value-icon-off.webp" />
 </figure>
 </td>
 <td><figure class="align-default">
-<img alt="../../../_images/cv-value-icon-on.png" src="../../../_images/cv-value-icon-on.png" />
+<img alt="../../../_images/cv-value-icon-on.webp" src="../../../_images/cv-value-icon-on.webp" />
 </figure>
 </td>
 </tr>
@@ -230,7 +231,7 @@ funktionieren würden.</p>
 <p>Um einen Fortschritt anzuzeigen gibt es zwei Darstellungsmöglichkeiten: einen horizontalen Fortschrittsbalken oder
 eine runden oder halb-runden Fortschrittsbalken.</p>
 <figure class="align-default" id="id1">
-<img alt="horizontaler Fortschrittsbalken" src="../../../_images/cv-value-progress.png" />
+<img alt="horizontaler Fortschrittsbalken" src="../../../_images/cv-value-progress.webp" />
 <figcaption>
 <p><span class="caption-text">horizontaler Fortschrittsbalken</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
@@ -242,7 +243,7 @@ eine runden oder halb-runden Fortschrittsbalken.</p>
 </pre></div>
 </div>
 <figure class="align-default" id="id2">
-<img alt="runder Fortschrittsbalken" src="../../../_images/cv-value-progress-round.png" />
+<img alt="runder Fortschrittsbalken" src="../../../_images/cv-value-progress-round.webp" />
 <figcaption>
 <p><span class="caption-text">runder Fortschrittsbalken</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -254,7 +255,7 @@ eine runden oder halb-runden Fortschrittsbalken.</p>
 </pre></div>
 </div>
 <figure class="align-default" id="id3">
-<img alt="halb-runder Fortschrittsbalken" src="../../../_images/cv-value-progress-semi-round.png" />
+<img alt="halb-runder Fortschrittsbalken" src="../../../_images/cv-value-progress-semi-round.webp" />
 <figcaption>
 <p><span class="caption-text">halb-runder Fortschrittsbalken</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
@@ -266,7 +267,7 @@ eine runden oder halb-runden Fortschrittsbalken.</p>
 </pre></div>
 </div>
 <figure class="align-default" id="id4">
-<img alt="halb-runder Fortschrittsbalken mit anderer Farbe" src="../../../_images/cv-value-progress-semi-round-color.png" />
+<img alt="halb-runder Fortschrittsbalken mit anderer Farbe" src="../../../_images/cv-value-progress-semi-round-color.webp" />
 <figcaption>
 <p><span class="caption-text">halb-runder Fortschrittsbalken mit anderer Farbe</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>

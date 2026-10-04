@@ -97,4 +97,4 @@
   qx.test.mobile.layout.VBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VBox.js.map?dt=1791028199956
+//# sourceMappingURL=VBox.js.map?dt=1791111986113

@@ -162,4 +162,4 @@
   qx.ui.progressive.renderer.table.Widths.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Widths.js.map?dt=1791028207672
+//# sourceMappingURL=Widths.js.map?dt=1791112000667

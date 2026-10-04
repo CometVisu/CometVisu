@@ -9,7 +9,7 @@
   <title>Das Switch Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=c8d00f07" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/1.0/manual/config/structure-tile/widgets/switch.html"/>
@@ -19,7 +19,7 @@
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../../../_static/translations.js?v=9bf55d28"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -31,7 +31,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -41,13 +41,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../de/#features">Features</a></li>
-            <li><a href="../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
             <li><a href="../../../" class="cv-nav-active">Dokumentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../en/" class="cv-lang-switch">EN</a>
+                <a href="../../../../../../en/1.0/manual/config/structure-tile/widgets/switch.html" class="cv-lang-switch">EN</a>
                 
             </li>
         </ul>
@@ -172,10 +173,10 @@ der Türöffner eingeschaltet und beim Loslassen des Buttons wird der Türöffne
 wird eine schreibende und eine lesende Adresse benötigt (kann auch die selbe sein).
 Bei jeden Klick wird zwischen den beiden Zuständen (an / aus) umgeschaltet.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-switch-off.png" src="../../../_images/cv-switch-off.png" />
+<img alt="../../../_images/cv-switch-off.webp" src="../../../_images/cv-switch-off.webp" />
 </figure>
 <figure class="align-default">
-<img alt="../../../_images/cv-switch-on.png" src="../../../_images/cv-switch-on.png" />
+<img alt="../../../_images/cv-switch-on.webp" src="../../../_images/cv-switch-on.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
@@ -191,7 +192,7 @@ Bei jeden Klick wird zwischen den beiden Zuständen (an / aus) umgeschaltet.</p>
 benötigt daher nur eine schreibende Adresse mit einem fixen Wert <code class="docutils literal notranslate"><span class="pre">mode=&quot;write&quot;</span> <span class="pre">value=&quot;1&quot;</span></code>.
 Dieser Wert wird auch für das Mapping / Styling benutzt, sofern angegeben.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-trigger.png" src="../../../_images/cv-trigger.png" />
+<img alt="../../../_images/cv-trigger.webp" src="../../../_images/cv-trigger.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"write"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
@@ -209,7 +210,7 @@ der Wert des <code class="docutils literal notranslate"><span class="pre">value<
 den Wert <code class="docutils literal notranslate"><span class="pre">1</span></code> beim Drücken des Buttons an das Backend und eine &lt;cv-address&gt; mit <code class="docutils literal notranslate"><span class="pre">mode=&quot;write&quot;</span> <span class="pre">value=&quot;0&quot;</span> <span class="pre">on=&quot;up&quot;</span></code> schickt
 den Wert <code class="docutils literal notranslate"><span class="pre">0</span></code> beim Loslassen des Buttons.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-pushbutton.png" src="../../../_images/cv-pushbutton.png" />
+<img alt="../../../_images/cv-pushbutton.webp" src="../../../_images/cv-pushbutton.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">"address"</span><span class="w"> </span><span class="na">transform=</span><span class="s">"DPT:1.001"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"write"</span><span class="w"> </span><span class="na">value=</span><span class="s">"1"</span><span class="w"> </span><span class="na">on=</span><span class="s">"down"</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
@@ -229,7 +230,7 @@ Der Fortschrittsbalken dient hier aber nur der Information und kann selbst nicht
 Für den Fortschrittsbalken muss nur eine zusätzliches <code class="docutils literal notranslate"><span class="pre">&lt;cv-address</span> <span class="pre">slot=&quot;address&quot;</span></code> Element mit <code class="docutils literal notranslate"><span class="pre">mode=&quot;read&quot;</span></code>
 und <code class="docutils literal notranslate"><span class="pre">target=&quot;progress&quot;</span></code> hinzugefügt werden. Der Fortschrittsbalken kann Werte zwischen 0 und 100 darstellen.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-progress.png" src="../../../_images/cv-progress.png" />
+<img alt="../../../_images/cv-progress.webp" src="../../../_images/cv-progress.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>

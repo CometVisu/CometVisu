@@ -119,7 +119,11 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         var element = this._element;
         var style = document.querySelector(':root').style;
         var hasFixedRadius = element.hasAttribute('radius');
-        var radius = this.__P_85_4 = element.getAttribute('radius') || parseInt(style.getPropertyValue('--tileCellWidth')) || 56;
+        var cellHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tileCellHeight'));
+        var getRadius = function getRadius(cellWidth) {
+          return Math.min(cellWidth, cellHeight || cellWidth);
+        };
+        var radius = this.__P_85_4 = element.getAttribute('radius') || getRadius(parseFloat(style.getPropertyValue('--tileCellWidth')) || 56);
         var strokeWidth = element.getAttribute('stroke') || 8;
         var normalizedRadius = this.__P_85_3 = radius - strokeWidth / 2;
         this.__P_85_1 = normalizedRadius * 2 * Math.PI;
@@ -201,9 +205,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         this.__P_85_7 = radius * 2 - strokeWidth * 2 - 24;
         if (!hasFixedRadius) {
           qx.event.message.Bus.subscribe('cv.design.tile.cellWidthChanged', function (ev) {
-            _this.__P_85_4 = ev.getData();
+            _this.__P_85_4 = getRadius(ev.getData());
             _this.__P_85_3 = _this.__P_85_4 - strokeWidth / 2;
             _this.__P_85_1 = _this.__P_85_3 * 2 * Math.PI;
+            _this.__P_85_7 = _this.__P_85_4 * 2 - strokeWidth * 2 - 24;
             height = type === 'semiCircle' ? _this.__P_85_4 : _this.__P_85_4 * 2;
             var svg = element.querySelector(':scope > svg');
             svg.setAttribute('height', '' + height);
@@ -224,6 +229,9 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
               }
             }
             _this._applyProgress(_this.isPropertyInitialized('progress') ? _this.getProgress() : 0);
+            if (_this.__P_85_5 && _this.__P_85_5.textContent) {
+              _this._fitText();
+            }
           });
         }
         // Apply any progress value that was set before _init() created the SVG
@@ -337,4 +345,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.RoundProgress.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RoundProgress.js.map?dt=1791028191116
+//# sourceMappingURL=RoundProgress.js.map?dt=1791111970914

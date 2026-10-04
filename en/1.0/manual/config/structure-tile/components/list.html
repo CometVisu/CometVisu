@@ -9,7 +9,7 @@
   <title>List &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=84e46ad0" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=b931039c" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/1.0/manual/config/structure-tile/components/list.html"/>
@@ -18,7 +18,7 @@
       <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../../_static/versions.js?v=9e0fad37"></script>
+      <script src="../../../_static/versions.js?v=17c2187a"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -30,7 +30,7 @@
 <!-- CometVisu Website Navigation -->
 <nav class="cv-website-navbar">
     <div class="cv-nav-container">
-        <a href="../../../../.." class="cv-nav-logo">
+        <a href="../../../../../.." class="cv-nav-logo">
             <img src="../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
             <span class="cv-logo-text">CometVisu</span>
         </a>
@@ -40,13 +40,14 @@
             <span></span>
         </button>
         <ul class="cv-nav-menu">
-            <li><a href="../../../../../#features">Features</a></li>
-            <li><a href="../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../../#features">Features</a></li>
+            <li><a href="../../../../../../#customization">Customization</a></li>
+            <li><a href="../../../../../../news/" class="cv-nav-news">News</a></li>
             <li><a href="../../../" class="cv-nav-active">Documentation</a></li>
             <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
             <li class="cv-nav-lang">
                 
-                <a href="../../../../de/" class="cv-lang-switch">DE</a>
+                <a href="../../../../../../de/1.0/manual/config/structure-tile/components/list.html" class="cv-lang-switch">DE</a>
                 
             </li>
         </ul>
@@ -140,7 +141,7 @@ by an online translation service.</p>
 entry with data for each element in the list and a template that defines the HTML code for the respective list elements.
 The List component now creates an HTML element based on the template and fills it with the data from an entry in the data model.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-js-list.png" src="../../../_images/cv-js-list.png" />
+<img alt="../../../_images/cv-js-list.webp" src="../../../_images/cv-js-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -248,7 +249,7 @@ A simple example of a script-based model has already been given above. Of course
 transferred to the model. Within the templates, of course, any components can be used. Here a <code class="docutils literal notranslate"><span class="pre">cv-listitem</span></code> is used,
 which displays an operable :ref:Button &lt;tile-component-button&gt;` next to a text.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-data-list.png" src="../../../_images/cv-data-list.png" />
+<img alt="../../../_images/cv-data-list.webp" src="../../../_images/cv-data-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>
@@ -312,14 +313,14 @@ Sorting is also possible.</p>
 <table class="image-float docutils align-default">
 <tbody>
 <tr class="row-odd"><td><figure class="align-default" id="id1">
-<img alt="Model with entries" src="../../../_images/cv-backend-list.png" />
+<img alt="Model with entries" src="../../../_images/cv-backend-list.webp" />
 <figcaption>
 <p><span class="caption-text">Model with entries</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </td>
 <td><figure class="align-default" id="id2">
-<img alt="Empty model" src="../../../_images/cv-backend-list-empty.png" />
+<img alt="Empty model" src="../../../_images/cv-backend-list-empty.webp" />
 <figcaption>
 <p><span class="caption-text">Empty model</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
@@ -405,7 +406,7 @@ If the CometVisu is delivered by the openHAB web server, this is not the case an
 </div>
 <p>Example to display the call list from the tr064 plugin:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-tr064plugin-list.png" src="../../../_images/cv-tr064plugin-list.png" />
+<img alt="../../../_images/cv-tr064plugin-list.webp" src="../../../_images/cv-tr064plugin-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -431,7 +432,7 @@ If the CometVisu is delivered by the openHAB web server, this is not the case an
 </div>
 <p>Example to display the entries from the RssLog plugin:</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rsslogplugin-list.png" src="../../../_images/cv-rsslogplugin-list.png" />
+<img alt="../../../_images/cv-rsslogplugin-list.webp" src="../../../_images/cv-rsslogplugin-list.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
 <span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
@@ -455,7 +456,7 @@ to output the date in the desired format: <a class="reference internal" href="#t
 </div>
 <p>This model supports some additional features of the RssLog plugin: Mapping and confirming or deleting an entry.</p>
 <figure class="align-default">
-<img alt="../../../_images/cv-rsslogplugin-list-features.png" src="../../../_images/cv-rsslogplugin-list-features.png" />
+<img alt="../../../_images/cv-rsslogplugin-list-features.webp" src="../../../_images/cv-rsslogplugin-list-features.webp" />
 </figure>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;cv-meta&gt;</span>

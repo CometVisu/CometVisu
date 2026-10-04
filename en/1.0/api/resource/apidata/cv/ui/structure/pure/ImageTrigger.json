@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1791028034609,
-  "lastModifiedIso": "2026-10-03T11:47:14.609Z",
+  "lastModified": 1791111755838,
+  "lastModifiedIso": "2026-10-04T11:02:35.838Z",
   "classFilename": "../../source/class/cv/ui/structure/pure/ImageTrigger.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 3051
     },
     "end": {
-      "line": 164,
+      "line": 165,
       "column": 3,
-      "index": 5968
+      "index": 6023
     }
   },
   "className": "cv.ui.structure.pure.ImageTrigger",
@@ -492,9 +492,9 @@
           "index": 4588
         },
         "end": {
-          "line": 142,
+          "line": 143,
           "column": 5,
-          "index": 5448
+          "index": 5503
         }
       },
       "type": "function",
@@ -503,7 +503,7 @@
           "name": "address"
         },
         {
-          "name": "value"
+          "name": "data"
         }
       ],
       "appearsIn": []
@@ -513,14 +513,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 144,
+          "line": 145,
           "column": 4,
-          "index": 5455
+          "index": 5510
         },
         "end": {
-          "line": 151,
+          "line": 152,
           "column": 5,
-          "index": 5726
+          "index": 5781
         }
       },
       "type": "function",
@@ -536,14 +536,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 154,
           "column": 4,
-          "index": 5733
+          "index": 5788
         },
         "end": {
-          "line": 158,
+          "line": 159,
           "column": 5,
-          "index": 5861
+          "index": 5916
         }
       },
       "type": "function",
