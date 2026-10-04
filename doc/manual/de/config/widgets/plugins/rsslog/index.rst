@@ -38,7 +38,7 @@ Durch einen Klick auf die Log-Liste öffnet sich ein Pop-Up-Fenster. In diesem
 können noch mehr Einträge sichtbar sein und es ist - bei der interaktiven
 Variante - möglich die einzelnen Zeilen zu bestätigen.
 
-.. figure:: _static/rsslog_simple_mapping.png
+.. figure:: _static/rsslog_simple_mapping.webp
 
 Einstellungen
 -------------

@@ -539,8 +539,8 @@ body {
         }
 
         &.screenshots {
-            /* white background for screenshots of widgets with border radius */
-            background-color: white;
+            /* no background for screenshots of widgets with border radius */
+            background-color: transparent;
 
             cv-round-progress {
                 svg[type="circle"] {
@@ -1126,8 +1126,8 @@ body {
         }
 
         &.screenshots {
-            /* white background for screenshots of widgets with border radius */
-            background-color: white;
+            /* no background for screenshots of widgets with border radius */
+            background-color: transparent;
         }
 
         .clickable {

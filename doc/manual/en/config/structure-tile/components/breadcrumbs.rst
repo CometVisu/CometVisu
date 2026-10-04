@@ -9,7 +9,7 @@ The breadcrumbs component generates a navigation path to the currently visible :
 It is typically placed in the ``<header>`` or ``<footer>`` together with a :ref:`menu <tile-component-menu>` and updates automatically
 whenever the current page changes.
 
-.. figure:: ../_static/tile-nav-breadcrumb.png
+.. figure:: ../_static/tile-nav-breadcrumb.webp
 
     Breadcrumb navigation for the current page.
 

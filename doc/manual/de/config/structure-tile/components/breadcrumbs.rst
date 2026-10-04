@@ -9,7 +9,7 @@ Die Breadcrumbs-Komponente erzeugt einen Navigationspfad zur aktuell sichtbaren 
 Sie wird typischerweise zusammen mit einem :ref:`Menü <tile-component-menu>` im ``<header>`` oder ``<footer>`` eingesetzt
 und aktualisiert sich automatisch, sobald sich die aktuelle Seite ändert.
 
-.. figure:: ../_static/tile-nav-breadcrumb.png
+.. figure:: ../_static/tile-nav-breadcrumb.webp
 
     Breadcrumb-Navigation der aktuell geöffneten Seite.
 
