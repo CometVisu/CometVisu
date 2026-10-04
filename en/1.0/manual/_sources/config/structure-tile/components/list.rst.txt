@@ -87,7 +87,7 @@ Formatting a date
 If a date value is present in the model, it can be formatted accordingly.
 Assuming the date value is present in the model under the name ``published``, it can then be output formatted as follows
 be used ``<div>${published|dd.MM.yyyy HH:mm}</div>``. The date format is separated from the variable name by a ``|``.
-A list of possible format entries can be found here: `DateFormat <https://www.cometvisu.org/CometVisu/en/latest/api/#qx.util.format.DateFormat>`_
+A list of possible format entries can be found here: `DateFormat <https://www.cometvisu.org//api/#qx.util.format.DateFormat>`_
 
 Sending data on selection
 ^^^^^^^^^^^^^^^^^^^^^^^^^

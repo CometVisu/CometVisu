@@ -39,7 +39,7 @@
     */
     statics: {
       MAP: {
-        '_base': 'https://www.cometvisu.org/CometVisu/',
+        '_base': 'https://www.cometvisu.org/',
         'address': '/develop/manual/config/address.html#address',
         'audio': '/develop/manual/config/widgets/audio/index.html#audio',
         'bashrc': '/develop/manual/tutorial/rpi_prequesites.html#bashrc',
@@ -191,4 +191,4 @@
   cv.ui.manager.model.schema.DocumentationMapping.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DocumentationMapping.js.map?dt=1791111968556
+//# sourceMappingURL=DocumentationMapping.js.map?dt=1791120255497

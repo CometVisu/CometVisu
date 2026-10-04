@@ -234,4 +234,4 @@
   cv.ui.manager.model.schema.Sequence.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sequence.js.map?dt=1791111968672
+//# sourceMappingURL=Sequence.js.map?dt=1791120255598

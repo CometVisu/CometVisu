@@ -378,7 +378,7 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
             // documentation only exists in 'de' and 'en'
             language = 'en';
           }
-          window.open("https://www.cometvisu.org/CometVisu/".concat(language, "/").concat(baseVersion, "/manual/").concat(relPath));
+          window.open("https://www.cometvisu.org/docs/".concat(language, "/").concat(baseVersion, "/manual/").concat(relPath));
           event.stopPropagation();
         } else {
           if (!this._writeAddresses) {
@@ -481,4 +481,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.components.Button.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Button.js.map?dt=1791111970236
+//# sourceMappingURL=Button.js.map?dt=1791120256951

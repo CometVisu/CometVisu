@@ -66,4 +66,4 @@
   cv.ui.manager.model.Message.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Message.js.map?dt=1791111968191
+//# sourceMappingURL=Message.js.map?dt=1791120255211

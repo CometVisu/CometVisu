@@ -123,4 +123,4 @@
   qx.core.MProperty.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MProperty.js.map?dt=1791111974783
+//# sourceMappingURL=MProperty.js.map?dt=1791120261138

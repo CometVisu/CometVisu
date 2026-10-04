@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "$id": "https://www.cometvisu.org/CometVisu/schemas/0.12/hidden-schema.json",
+  "$id": "https://www.cometvisu.org/schemas/0.12/hidden-schema.json",
 
   "type": "object",
   "patternProperties": {

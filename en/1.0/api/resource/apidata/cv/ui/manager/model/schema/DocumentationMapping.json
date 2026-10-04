@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1791111755836,
-  "lastModifiedIso": "2026-10-04T11:02:35.836Z",
+  "lastModified": 1791120018889,
+  "lastModifiedIso": "2026-10-04T13:20:18.889Z",
   "classFilename": "../../source/class/cv/ui/manager/model/schema/DocumentationMapping.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 41,
       "column": 3,
-      "index": 1577
+      "index": 1572
     }
   },
   "className": "cv.ui.manager.model.schema.DocumentationMapping",
@@ -45,7 +45,7 @@
         "end": {
           "line": 39,
           "column": 5,
-          "index": 1569
+          "index": 1564
         }
       },
       "appearsIn": []

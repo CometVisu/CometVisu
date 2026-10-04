@@ -146,4 +146,4 @@
   qx.ui.list.core.IListDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListDelegate.js.map?dt=1791111999022
+//# sourceMappingURL=IListDelegate.js.map?dt=1791120283747

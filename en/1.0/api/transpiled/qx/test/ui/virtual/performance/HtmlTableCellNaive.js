@@ -48,4 +48,4 @@
   qx.test.ui.virtual.performance.HtmlTableCellNaive.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=HtmlTableCellNaive.js.map?dt=1791111989584
+//# sourceMappingURL=HtmlTableCellNaive.js.map?dt=1791120274882

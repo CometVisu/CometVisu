@@ -120,4 +120,4 @@
   qx.test.ui.selection.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1791111988718
+//# sourceMappingURL=Stack.js.map?dt=1791120274073

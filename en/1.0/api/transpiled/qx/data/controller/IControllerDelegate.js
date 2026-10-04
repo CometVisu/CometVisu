@@ -84,4 +84,4 @@
   qx.data.controller.IControllerDelegate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IControllerDelegate.js.map?dt=1791111975178
+//# sourceMappingURL=IControllerDelegate.js.map?dt=1791120261490

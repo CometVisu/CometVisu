@@ -297,7 +297,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 validate: true,
                 allowComments: true,
                 schemas: [{
-                  uri: 'https://www.cometvisu.org/CometVisu/schemas/' + baseVersion + '/hidden-schema.json',
+                  uri: 'https://www.cometvisu.org/schemas/' + baseVersion + '/hidden-schema.json',
                   fileMatch: ['hidden.php'],
                   schema: schema
                 }]
@@ -619,4 +619,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1791111967445
+//# sourceMappingURL=Source.js.map?dt=1791120254520

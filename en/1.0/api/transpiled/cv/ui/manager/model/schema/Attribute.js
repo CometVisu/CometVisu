@@ -175,4 +175,4 @@
   cv.ui.manager.model.schema.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1791111968488
+//# sourceMappingURL=Attribute.js.map?dt=1791120255438

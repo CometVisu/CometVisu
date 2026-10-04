@@ -56,4 +56,4 @@
   cv.parser.pure.widgets.DesignToggle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DesignToggle.js.map?dt=1791111965668
+//# sourceMappingURL=DesignToggle.js.map?dt=1791120252890

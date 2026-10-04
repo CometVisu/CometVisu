@@ -104,4 +104,4 @@
   qx.io.graphql.protocol.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1791111979258
+//# sourceMappingURL=Request.js.map?dt=1791120265228

@@ -475,4 +475,4 @@
   cv.ui.structure.pure.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1791111969054
+//# sourceMappingURL=AbstractWidget.js.map?dt=1791120255910
