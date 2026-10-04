@@ -547,6 +547,12 @@ kbd, .kbd {
     margin: auto 0;
 }
 
+.rst-content :not(dl.option-list)>:not(dt):not(kbd):not(.kbd)>.kbd, .rst-content :not(dl.option-list)>:not(dt):not(kbd):not(.kbd)>kbd {
+    color: var(--cv-text-primary);
+    background-color: var(--cv-bg-card);
+    border: 1px solid var(--cv-border-color);
+}
+
 /* Paragraphs and text */
 .rst-content p {
     color: var(--cv-text-primary);
@@ -597,4 +603,9 @@ kbd, .kbd {
     background-color: var(--cv-bg-card) !important;
     border-color: var(--cv-border-color) !important;
     color: var(--cv-text-primary) !important;
+}
+
+/* Footnotes: place all content (code blocks, lists, ...) in the text column, not only paragraphs */
+html.writer-html5 .rst-content aside.footnote > :not(.label):not(.backrefs) {
+    grid-column: 4 / 5;
 }

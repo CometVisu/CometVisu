@@ -279,21 +279,21 @@ eines Presets können durch die Werte aus der Konfiguration übersteuert werden.
 .. widget-example::
 
         <settings>
-            <screenshot name="roundbar_presets" sleep="400">
+            <screenshot name="roundbar_presets" sleep="1000">
                 <caption>Preset "A", "B" und "bridge"</caption>
                 <data address="3/3/1">35.8</data>
             </screenshot>
         </settings>
         <group nowidget="true">
-            <roundbar preset="A">
+            <roundbar preset="A" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>
-            <roundbar preset="B">
+            <roundbar preset="B" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>
-            <roundbar preset="bridge">
+            <roundbar preset="bridge" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>

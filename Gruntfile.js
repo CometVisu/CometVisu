@@ -6,28 +6,36 @@ var fs = require('fs');
 
 var mocks = [];
 
+function getMimeType(url) {
+  if (url.endsWith('.xml')) {
+    return 'application/xml;charset=UTF-8';
+  } else if (url.endsWith('.json')) {
+    return 'application/json';
+  } else if (url.endsWith('.svg')) {
+    return 'image/svg+xml';
+  } else if (url.endsWith('.css')) {
+    return 'text/css';
+  } else if (url.endsWith('.js')) {
+    return 'text/javascript';
+  } else if (url.endsWith('.png')) {
+    return 'image/png';
+  } else if (url.endsWith('.webp')) {
+    return 'image/webp';
+  } else if (url.endsWith('.html')) {
+    return 'text/html';
+  }
+  return '';
+}
+
 /**
  *
  */
 function setMimeType() {
   return function(req, res, next) {
     const url = req.url.split('?')[0];
-    if (url.endsWith('.xml')) {
-      res.setHeader('Content-Type', 'application/xml;charset=UTF-8');
-    } else if (url.endsWith('.json')) {
-      res.setHeader('Content-Type', 'application/json');
-    } else if (url.endsWith('.svg')) {
-      res.setHeader('Content-Type', 'image/svg+xml');
-    } else if (url.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
-    } else if (url.endsWith('.js')) {
-      res.setHeader('Content-Type', 'text/javascript');
-    } else if (url.endsWith('.png')) {
-      res.setHeader('Content-Type', 'image/png');
-    } else if (url.endsWith('.webp')) {
-      res.setHeader('Content-Type', 'image/webp');
-    } else if (url.endsWith('.html')) {
-      res.setHeader('Content-Type', 'text/html');
+    const mimeType = getMimeType(url);
+    if (mimeType) {
+      res.setHeader('Content-Type', mimeType);
     }
     next();
   };
@@ -111,15 +119,9 @@ function mock(verbose) {
       console.log('\u001b[31;1mWARNING: PHP file without mock detected! Most likely you need to provide a fixture! Requested URL: "' + req.url + '"\u001b[0m');
     }
     if (mockedResponse) {
-      let mimeType = 'text/plain';
+      let mimeType = getMimeType(url) || 'text/plain';
       if (Object.prototype.hasOwnProperty.call(mockedResponse, 'mimeType')) {
         mimeType = mockedResponse.mimeType;
-      } else if (url.endsWith('.xml')) {
-        mimeType = 'text/xml;charset=UTF-8';
-      } else if (url.endsWith('.json')) {
-        mimeType = 'application/json';
-      } else if (url.endsWith('.svg')) {
-        mimeType = 'image/svg+xml';
       }
       res.writeHead(200, {'Content-Type': mimeType});
       if (verbose) {
