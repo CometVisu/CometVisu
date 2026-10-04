@@ -986,7 +986,7 @@ qx.Class.define('cv.Application', {
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
           link =
-            ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+            ' <a href="https://cometvisu.org/docs/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr('Action recording') + link,
@@ -1010,7 +1010,7 @@ qx.Class.define('cv.Application', {
           link = '';
           if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
             link =
-              ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+              ' <a href="https://cometvisu.org/docs/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
             title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,

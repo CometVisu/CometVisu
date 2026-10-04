@@ -294,7 +294,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
     expect(upAddress.dispatchEvent).toHaveBeenCalledOnceWith(jasmine.any(CustomEvent));
   });
 
-  it('should create a button with a loc-link', function() {
+  it('should create a button with a doc-link', function() {
     const element = this.createTileWidgetWithComponent('cv-button',
       { 'doc-link': 'test' },
       ''
@@ -305,7 +305,7 @@ describe('testing the <cv-button> component of the tile structure', () => {
     expect(window.open).toHaveBeenCalled();
     const url = window.open.calls.argsFor(0)[0];
 
-    expect(url.startsWith('https://www.cometvisu.org/CometVisu/')).toBeTruthy();
+    expect(url.startsWith('https://www.cometvisu.org/docs/')).toBeTruthy();
     expect(url.endsWith('/manual/test')).toBeTruthy();
   });
 

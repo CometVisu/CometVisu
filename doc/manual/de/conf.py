@@ -70,7 +70,7 @@ if match:
 
 html_theme = 'cv_theme'
 html_theme_options = {
-    'canonical_url': ('https://www.cometvisu.org/CometVisu/%s/%s/manual/' % (language, versionpath) )
+    'canonical_url': ('https://www.cometvisu.org/docs/%s/%s/manual/' % (language, versionpath) )
 }
 html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template')]
 html_title = "CometVisu"
