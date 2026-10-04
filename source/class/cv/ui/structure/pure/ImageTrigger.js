@@ -115,8 +115,9 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       return actor;
     },
 
-    _update(address, value) {
+    _update(address, data) {
       const imageChild = this.getDomElement().querySelector('img');
+      const value = this.applyTransform(address, data);
       if (this.getUpdateType() === 'show') {
         if (value === 0) {
           imageChild.style.display = 'none';

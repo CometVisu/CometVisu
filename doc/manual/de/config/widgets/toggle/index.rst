@@ -18,7 +18,7 @@ Das Toggle Widget fügt der Visu eine Schaltfläche hinzu, mit der zwischen vers
 werden kann. In der einfachsten Variante lässt sich damit eine EIN/AUS Funktionen realisieren.
 Jedoch sind auch mehrere Schaltzustände möglich, um z.B. zwischen den KONNEX Betriebsarten zu wechseln.
 
-.. figure:: _static/toggle_simple.png
+.. figure:: _static/toggle_simple.webp
 
 Einstellungen
 -------------

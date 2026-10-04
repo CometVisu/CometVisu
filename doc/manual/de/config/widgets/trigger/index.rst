@@ -17,7 +17,7 @@ Beschreibung
 Der Trigger fügt der Visu eine Schaltfläche hinzu, die einen Wert für einen normalen (kurzen) Tastendruck und darüber hinaus,
 einen zweiten Wert für einen langen Tastendruck senden kann (wenn konfiguriert).
 
-.. figure:: _static/trigger1.png
+.. figure:: _static/trigger1.webp
 
 Einstellungen
 -------------
