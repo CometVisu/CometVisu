@@ -4,8 +4,8 @@ Addresses - the communication with the backend
 ==============================================
 
 Most widgets require one or more ``address`` elements for the communication
-with the backend to get the information from the KNX bus, OpenHAB or MQTT.
-The content of the element is the address itself, the attributes control
+with the backend to get the information from the KNX bus, OpenHAB, ioBroker or
+MQTT. The content of the element is the address itself, the attributes control
 the behavior:
 
 ============= ==================================================================
@@ -34,6 +34,11 @@ OpenHab
 .......
 
 .. backend-transform:: OH
+
+ioBroker
+........
+
+.. backend-transform:: IOB
 
 MQTT
 ....

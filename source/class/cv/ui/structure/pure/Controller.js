@@ -117,6 +117,9 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
           defaultBackendName = 'mqtt';
         }
       }
+      if (pagesElement.getAttribute('backend-iobroker-url') !== null) {
+        settings.backendIoBrokerUrl = pagesElement.getAttribute('backend-iobroker-url');
+      }
       if (pagesElement.getAttribute('backend-openhab-url') !== null) {
         settings.backendOpenHABUrl = pagesElement.getAttribute('backend-openhab-url');
         if (!defaultBackendName) {
