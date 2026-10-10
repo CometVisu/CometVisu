@@ -318,4 +318,4 @@
   qx.ui.core.MMovable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MMovable.js.map?dt=1791120281537
+//# sourceMappingURL=MMovable.js.map?dt=1791666737637

@@ -56,4 +56,4 @@
   qx.test.MAppearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MAppearance.js.map?dt=1791120267547
+//# sourceMappingURL=MAppearance.js.map?dt=1791666722744

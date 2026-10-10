@@ -38,4 +38,4 @@
   qx.theme.icon.Oxygen.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Oxygen.js.map?dt=1791120275507
+//# sourceMappingURL=Oxygen.js.map?dt=1791666731343

@@ -49,4 +49,4 @@
   qx.tool.config.Manifest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manifest.js.map?dt=1791120280082
+//# sourceMappingURL=Manifest.js.map?dt=1791666735868

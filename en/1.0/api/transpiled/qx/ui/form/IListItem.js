@@ -77,4 +77,4 @@
   qx.ui.form.IListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListItem.js.map?dt=1791120282694
+//# sourceMappingURL=IListItem.js.map?dt=1791666738909

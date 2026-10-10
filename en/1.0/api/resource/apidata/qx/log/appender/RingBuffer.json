@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1791120097285,
-  "lastModifiedIso": "2026-10-04T13:21:37.285Z",
+  "lastModified": 1791666549917,
+  "lastModifiedIso": "2026-10-10T21:09:09.917Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/RingBuffer.js",
   "type": "bootstrap",
   "location": {

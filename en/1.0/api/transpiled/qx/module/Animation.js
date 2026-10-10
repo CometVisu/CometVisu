@@ -311,4 +311,4 @@
   qx.module.Animation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Animation.js.map?dt=1791120266449
+//# sourceMappingURL=Animation.js.map?dt=1791666721609

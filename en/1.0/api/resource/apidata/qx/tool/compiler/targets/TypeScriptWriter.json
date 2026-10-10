@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1791120097433,
-  "lastModifiedIso": "2026-10-04T13:21:37.433Z",
+  "lastModified": 1791666550145,
+  "lastModifiedIso": "2026-10-10T21:09:10.145Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/TypeScriptWriter.js",
   "type": "class",
   "location": {

@@ -2024,4 +2024,4 @@
   qx.ui.table.pane.Scroller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Scroller.js.map?dt=1791120286344
+//# sourceMappingURL=Scroller.js.map?dt=1791666742830
