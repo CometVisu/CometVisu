@@ -111,6 +111,9 @@ qx.Class.define('cv.ui.structure.pure.NavBar', {
       //   When during a valid swipe the direction is reversed the fading
       //   action is also reverted.
       const content = document.body.querySelector('#centerContainer');
+      if (!content) {
+        return;
+      }
       content.addEventListener(
         'touchstart',
         function (evt) {

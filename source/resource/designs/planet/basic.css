@@ -740,8 +740,6 @@ position: relative;
 
 .popup_close {
   position: absolute;
-  right: 2rem;
-  top: -0.5rem;
   width: 2.0rem;
   height: 1.5rem;
   text-align: center;

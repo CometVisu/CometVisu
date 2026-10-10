@@ -65,7 +65,7 @@ beizubehalten.
 Die notwendigen Schritte sind: *Volumes* → *Add Volume* → Name: ``CometVisuConfig`` → *Create the Volume*
 
 .. figure:: _static/portainer_volume_add.png
-   :scale: 50 %
+   :scale: 50%
 
    Volume im Portainer anlegen
 
@@ -123,7 +123,7 @@ Unter *Containers* → *Add Container*
       verwendete Port ersichtlich:
 
       .. figure:: _static/timberwolf_knx_port.png
-          :scale: 50 %
+          :scale: 50%
 
       Sollte der Port von ``3700`` abweichen, so ist die Umgebungsvariable
       ``KNX_INTERFACE`` entsprechend anzupassen, in diesem Beispiel auf den
@@ -132,22 +132,22 @@ Unter *Containers* → *Add Container*
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
-   :scale: 50 %
+   :width: 100%
 
    Container im Portainer anlegen
 
 .. figure:: _static/portainer_container_volumes_add.png
-   :scale: 50 %
+   :width: 100%
 
    Container *Volumes* im Portainer konfigurieren
 
 .. figure:: _static/portainer_container_env_add.png
-   :scale: 50 %
+   :width: 100%
 
    Container *Env* im Portainer konfigurieren
 
 .. figure:: _static/portainer_container_restart_add.png
-   :scale: 50 %
+   :width: 100%
 
    Container *Restart policy* im Portainer konfigurieren
 
@@ -163,7 +163,7 @@ In der Timberwolf Oberfläche: *Einstellungen* → *Remotezugriff* → *Reverse 
 Über *Add* bestätigen.
 
 .. figure:: _static/timberwolf_proxy_add.png
-   :scale: 50 %
+   :scale: 50%
 
    Timberwolf Proxy-Eintrag hinzufügen
 
@@ -186,7 +186,7 @@ den Benutzernamen und das Passwort für die lokale Installation in Erfahrung
 zu bringen.
 
 .. figure:: _static/timberwolf_influx.png
-   :scale: 50 %
+   :scale: 50%
 
    Timberwolf InfluxDB Credentials
 
@@ -204,7 +204,7 @@ ist nun ein Eintrag mit diesen Eigenschaften anzulegen:
   - ``selfsigned``: ``true``
 
 .. figure:: _static/timberwolf_influx_manager.png
-   :scale: 50 %
+   :scale: 50%
 
    Timberwolf InfluxDB Credentials im Manager
 
@@ -231,7 +231,7 @@ Mit *Actions* → *Deploy the Container* wird der Container nun durch die
 neueste Version ersetzt.
 
 .. figure:: _static/portainer_container_replace.png
-   :scale: 50 %
+   :scale: 50%
 
    Container im Portainer durch eine neue Version ersetzen
 
@@ -252,7 +252,7 @@ Durch markieren des zu löschenden Images (zu erkennen am Label *Unused* und
 dem entsprechenden Tag) kann über *Remove* das Image entfernt werden.
 
 .. figure:: _static/portainer_image_remove.png
-   :scale: 50 %
+   :width: 100%
 
    Portainer Dialog um ein Image zu löschen
 

@@ -28,8 +28,8 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
   ***********************************************
   */
   members: {
-    _backendUrl: null,
-    _baseRequestConfig: null,
+    _fileName: null,
+    _params: null,
     _queryTemplate: null,
     _timeFormat: null,
     _defaultResolution: null,
@@ -41,39 +41,44 @@ qx.Class.define('cv.io.timeseries.RRDSource', {
       this._defaultResolution = 300;
       this._defaultFunc = 'AVERAGE';
       if (resourceConf) {
-        let fileName = resourceConf.name;
-        this._baseRequestConfig = {
-          url: `/cgi-bin/rrdfetch?rrd=${fileName}.rrd`,
-          proxy: false,
-          options: {}
-        };
-        for (const key in resourceConf.params) {
-          this._baseRequestConfig.url += `&${key}=${resourceConf.params[key]}`;
+        this._fileName = resourceConf.name;
+        this._params = Object.assign({}, resourceConf.params);
+        if (!Object.prototype.hasOwnProperty.call(this._params, 'res')) {
+          this._params.res = this._defaultResolution;
         }
-        if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'res')) {
-          this._baseRequestConfig.url += `&res=${this._defaultResolution}`;
-        }
-        if (!Object.prototype.hasOwnProperty.call(resourceConf.params, 'ds')) {
-          this._baseRequestConfig.url += `&ds=${this._defaultFunc}`;
+        if (!Object.prototype.hasOwnProperty.call(this._params, 'ds')) {
+          this._params.ds = this._defaultFunc;
         }
       } else {
-        this._baseRequestConfig = {
-          url: '',
-          proxy: false,
-          options: {}
-        };
+        this._fileName = '';
+        this._params = {};
       }
     },
 
+    /**
+     * Build the request config, resolving the base URL from the backend client
+     * at call time so that it reflects the current backend.baseURL (which may
+     * have been updated by the login response after construction).
+     * @param start
+     * @param end
+     * @param series
+     * @param offset
+     */
     getRequestConfig(start, end, series, offset) {
-      const config = Object.assign({}, this._baseRequestConfig);
-      let rrdStart = `now-${offset+1}${series}`;
-      let rrdEnd = 'now';
-      if (offset > 0) {
-        rrdEnd = `now-${offset}${series}`;
+      const client = cv.io.BackendConnections.getClient();
+      const baseUrl = client ? client.getResourcePath('rrd') : '/cgi-bin/rrdfetch';
+      let url = `${baseUrl}?rrd=${this._fileName}.rrd`;
+      for (const key in this._params) {
+        url += `&${key}=${this._params[key]}`;
       }
-      config.url += `&start=${rrdStart}&end=${rrdEnd}`;
-      return config;
+      const rrdStart = `now-${offset + 1}${series}`;
+      const rrdEnd = offset > 0 ? `now-${offset}${series}` : 'now';
+      url += `&start=${rrdStart}&end=${rrdEnd}`;
+      return {
+        url: url,
+        proxy: false,
+        options: {}
+      };
     },
 
     processResponse(response) {

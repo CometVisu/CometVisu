@@ -14,7 +14,7 @@ einem bedienbaren Widget (z.B. :ref:`Switch <switch>` oder :ref:`Trigger <trigge
 Anwendungsfall: Wenn man eine Gruppe von Lichtern hat, kann man mit diesem Widget diese Gruppe schalten
 und gleichzeitig die Anzahl der eingeschalteten Lampen anzeigen.
 
-.. figure:: _static/infoaction_lights.png
+.. figure:: _static/infoaction_lights.webp
 
 
 Einstellungen

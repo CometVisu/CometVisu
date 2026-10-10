@@ -33,6 +33,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
     this.__uniques = [];
     this.setBlockerOpacity(0.5);
     this.setBlockerColor('#000000');
+    this.__selectors = ['#centerContainer', '#navbarTop', '#top', '#navbarBottom', 'main'];
   },
 
   /*
@@ -44,6 +45,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
     __body: null,
     __counters: null,
     __uniques: null,
+    __selectors: null,
 
     /**
      * @param topic {String} topic of the message related to this blocker
@@ -56,7 +58,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
       } else if (!unique) {
         this.__counters[topic]++;
       }
-      document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+      document.querySelectorAll(this.__selectors.join(', ')).forEach(function (elem) {
         elem.classList.add('blurred');
       });
     },
@@ -69,7 +71,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
             delete this.__counters[topic];
             if (Object.keys(this.__counters).length === 0) {
               super.unblock();
-              document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+              document.querySelectorAll(this.__selectors.join(', ')).forEach(function (elem) {
                 elem.classList.remove('blurred');
               });
             }
@@ -79,7 +81,7 @@ qx.Class.define('cv.ui.BodyBlocker', {
         // not topic given unblock all
         this.__counters = {};
         super.unblock();
-        document.querySelectorAll('#centerContainer, #navbarTop, #top, #navbarBottom').forEach(function (elem) {
+        document.querySelectorAll(this.__selectors.join(', ')).forEach(function (elem) {
           elem.classList.remove('blurred');
         });
       }

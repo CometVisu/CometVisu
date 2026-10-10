@@ -55,6 +55,12 @@ qx.Class.define('cv.io.transport.LongPolling', {
     running: null,
     /** @type {Number} */
     __backendErrorRetryCount: 0,
+    /** @type {Function|null} */
+    __visibilityHandler: null,
+
+    /** Maximum retry counter value to prevent unbounded growth
+     * when the tab is backgrounded for extended periods. */
+    MAX_RETRY_COUNTER: 10,
 
     /**
      * This function gets called once the communication is established
@@ -83,6 +89,17 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     connect() {
       this.running = true;
+
+      // Register a visibility change listener to recover from background tab
+      // suspension. Browsers heavily throttle setTimeout/setInterval in
+      // background tabs, so the watchdog and retry timers can be delayed
+      // by minutes. This handler ensures an immediate restart when the
+      // user returns to the tab.
+      if (!this.__visibilityHandler && typeof document !== 'undefined' && document.addEventListener) {
+        this.__visibilityHandler = this.__onVisibilityChange.bind(this);
+        document.addEventListener('visibilitychange', this.__visibilityHandler);
+      }
+
       // send first request
 
       let data = [];
@@ -97,6 +114,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
       }
       this.__startReading(data, successCallback);
       this.watchdog.start(5);
+    },
+
+    /**
+     * Handle document visibility changes. When the page becomes visible
+     * again after being in a background tab, force a connection restart
+     * to recover from any throttled or broken long-polling requests.
+     */
+    __onVisibilityChange() {
+      if (document.visibilityState === 'visible' && this.running) {
+        this.info('Page became visible - restarting connection to recover from background tab suspension');
+        this.restart();
+      }
     },
 
     __startReading(data, callback) {
@@ -138,9 +167,12 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.doRestart || (!json && this.lastIndex === -1)) {
         this.client.setDataReceived(false);
         if (this.running) {
-          // retry initial request
+          // cap retryCounter to prevent unbounded growth when the tab
+          // stays in background for extended periods (each timeout
+          // increments the counter without a successful response to reset it)
+          this.retryCounter = Math.min(this.retryCounter, this.MAX_RETRY_COUNTER);
           const delay = 100 * Math.pow(this.retryCounter, 2);
-          this.retryCounter++;
+          this.retryCounter = Math.min(this.retryCounter + 1, this.MAX_RETRY_COUNTER);
           if (this.doRestart) {
             // planned restart, only inform user
             this.info(`restarting XHR read requests in ${delay} ms as planned`);
@@ -211,8 +243,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
         data = json.d;
         this.readResendHeaderValues();
         this.client.update(data);
+        if (this.__backendErrorRetryCount > 0) {
+          this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
+        }
         this.__backendErrorRetryCount = 0; // reset on success
-        this.client.showError(cv.io.Client.ERROR_CODES.BACKEND_ERROR, null); // clear self-healing notification
         this.retryCounter = 0;
         this.client.setDataReceived(true);
         this.client.setConnected(true);
@@ -221,7 +255,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.retryServerErrorCounter = 0; // server has successfully responded
       if (this.running) {
         // keep the requests going
-        this.retryCounter++;
         data = this.client.buildRequest();
         data.i = this.lastIndex;
         const url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
@@ -281,6 +314,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
       qx(ev) {
         const req = ev.getTarget();
         const status = req.getStatus();
+
+        // Status 0 indicates an aborted connection (timeout, network error).
+        // Treat it like a connection loss: trigger an immediate restart,
+        // as waiting for the watchdog adds unnecessary latency and can
+        // lead to a zombie state if the watchdog timing is unlucky.
+        if (status === 0 && this.running && !this.doRestart) {
+          this.info('Connection timeout (status 0) detected - restarting');
+          req.serverErrorHandled = true;
+          this.restart();
+          return;
+        }
+
         // check for temporary server errors and retry a few times
         if (
           [408, 444, 499, 502, 503, 504].indexOf(status) >= 0 &&
@@ -300,6 +345,13 @@ qx.Class.define('cv.io.transport.LongPolling', {
         }
       },
       jquery(xhr, str, excptObj) {
+        // Status 0 indicates an aborted connection (timeout, network error).
+        if (xhr.status === 0 && this.running && !this.doRestart) {
+          this.info('Connection timeout (status 0) detected - restarting');
+          this.restart();
+          return;
+        }
+
         // ignore error when connection is irrelevant
         if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
           let readyState = 'UNKNOWN';
@@ -360,9 +412,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     /**
      * Check if the connection is still running.
+     *
+     * @return {Boolean} true if the transport is actively running
      */
     isConnectionRunning() {
-      return true;
+      return this.running === true;
     },
 
     /**
@@ -394,6 +448,25 @@ qx.Class.define('cv.io.transport.LongPolling', {
           this.client.backend.hooks.onClose.bind(this);
         }
       }
+    }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCT
+  ******************************************************
+  */
+  destruct() {
+    // Remove the visibility change listener to prevent leaks
+    if (this.__visibilityHandler) {
+      document.removeEventListener('visibilitychange', this.__visibilityHandler);
+      this.__visibilityHandler = null;
+    }
+
+    this.watchdog.stop();
+    if (this.xhr && this.xhr.abort) {
+      this.xhr.abort();
+      this.xhr = null;
     }
   }
 });

@@ -88,7 +88,7 @@ Datum formatieren
 Sofern in dem Modell ein Datumswert vorhanden ist, kann dieser entsprechend formatiert ausgegeben werden.
 Angenommen der Datumswert ist im Modell unter dem Namen ``published`` vorhanden, so kann dann im Template folgendes
 benutzt werden ``<div>${published|dd.MM.yyyy HH:mm}</div>``. Das Datumsformat wird durch ein ``|`` vom Variablennamen getrennt.
-Eine Liste der möglichen Format-Einträge gibt es hier: `DateFormat <https://www.cometvisu.org/CometVisu/en/latest/api/#qx.util.format.DateFormat>`_
+Eine Liste der möglichen Format-Einträge gibt es hier: `DateFormat <https://www.cometvisu.org/api/#qx.util.format.DateFormat>`_
 
 Daten senden bei Selektion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

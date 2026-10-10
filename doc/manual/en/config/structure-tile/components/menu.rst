@@ -17,7 +17,7 @@ This component creates a navigation menu from a model. Currently the following m
 Navigation menu from page structure
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: ../_static/tile-nav-menu.png
+.. figure:: ../_static/tile-nav-menu.webp
 
     Navigation menu from page structure
 
@@ -28,7 +28,7 @@ Navigation menu from page structure
             <screenshot name="tile-nav-menu-mobile-closed" screen-width="400">
                 <caption>Menu on small screens, closed</caption>
             </screenshot>
-            <screenshot name="tile-nav-menu-mobile-open" screen-width="400" clickpath="cv-menu > a.menu" waitfor="cv-menu.responsive li">
+            <screenshot name="tile-nav-menu-mobile-open" screen-width="400" clickpath="cv-menu > div.link.menu" waitfor="cv-menu.responsive li">
                 <caption>Menu on small screens, opened</caption>
             </screenshot>
         </settings>

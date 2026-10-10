@@ -359,7 +359,7 @@ qx.Class.define('cv.ui.structure.tile.components.Button', {
           // documentation only exists in 'de' and 'en'
           language = 'en';
         }
-        window.open(`https://www.cometvisu.org/CometVisu/${language}/${baseVersion}/manual/${relPath}`);
+        window.open(`https://www.cometvisu.org/docs/${language}/${baseVersion}/manual/${relPath}`);
         event.stopPropagation();
       } else {
         if (!this._writeAddresses) {

@@ -15,7 +15,7 @@ Der Pushbutton fügt der Visu eine Schaltfläche hinzu, mit der beim Drücken un
 Wert gesendet werden kann. Beispielsweise beim Drücken EIN und beim Loslassen AUS.
 Damit kann man z.B. mit einem Schaltaktor einen mechanischen Taster simulieren um das Garagentor zu öffnen.
 
-.. figure:: _static/pushbutton_simple.png
+.. figure:: _static/pushbutton_simple.webp
 
 Einstellungen
 -------------

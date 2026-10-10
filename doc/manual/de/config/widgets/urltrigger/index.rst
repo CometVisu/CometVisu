@@ -12,7 +12,7 @@ Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im 
 URL öffnet. Hierbei handelt es sich um eine reine Abfrage, d.H die abgefragten Daten werden nicht genutzt.
 
 
-.. figure:: _static/urltrigger_simple.png
+.. figure:: _static/urltrigger_simple.webp
 
 
 Einstellungen

@@ -26,6 +26,8 @@ import socket
 import errno
 import json
 import shutil
+import platform
+import re
 from sh import npm
 
 from socketserver import ThreadingMixIn
@@ -70,6 +72,11 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
 
     user_dir = os.getcwd()+"/."+browser
 
+    os_name = platform.system()
+
+    if os_name == "Darwin":
+        os_name = "macos"
+
     try:
         shutil.rmtree(user_dir)
     except OSError:
@@ -78,6 +85,11 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
     if browser not in ["firefox", "chrome"]:
         print("browser %s not yet supported, falling back to chrome" % browser)
         browser = "chrome"
+
+    selenium = sh.Command('./node_modules/selenium-webdriver/bin/%s/selenium-manager' % os_name.lower())
+    res = selenium("--browser", browser)
+    browser_path = res.split("Browser path: ")[1].strip()
+    start_browser = sh.Command(browser_path)
 
     if "chrome" in browser:
         flags = [
@@ -92,7 +104,6 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             flags.append("--user-agent=%s" % user_agent)
 
         flags.append("--app=%s" % url)
-        return sh.google_chrome(*flags, _bg=True)
 
     elif "firefox" in browser:
         os.makedirs(user_dir)
@@ -112,7 +123,10 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
         ]
         if open_devtools is True:
             flags.append("--devtools")
-        return sh.firefox(*flags, _bg=True)
+    else:
+        raise Exception("browser %s not yet supported" % browser)
+    
+    return start_browser(*flags, _bg=True)
 
 
 def get_server(host="", port=9000, next_attempts=0):

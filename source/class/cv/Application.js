@@ -65,6 +65,10 @@ qx.Class.define('cv.Application', {
     // check HTTP server by requesting a small file
     const xhr = new qx.io.request.Xhr('version');
     xhr.set({ method: 'GET'});
+    // The version file is plain text (e.g. "0.13.0-dev"), but some proxies
+    // serve it with an XML content type. Force a text parser so the response
+    // body is never parsed as XML (→ "XML-Verarbeitungsfehler").
+    xhr.setParser(response => response);
 
     const check = e => {
       const req = e.getTarget();
@@ -982,7 +986,7 @@ qx.Class.define('cv.Application', {
       if (!cv.Config.reporting) {
         if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
           link =
-            ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+            ' <a href="https://cometvisu.org/docs/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
         }
         notification.actions.optionGroup.options.push({
           title: qx.locale.Manager.tr('Action recording') + link,
@@ -1006,7 +1010,7 @@ qx.Class.define('cv.Application', {
           link = '';
           if (qx.locale.Manager.getInstance().getLanguage() === 'de') {
             link =
-              ' <a href="https://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
+              ' <a href="https://cometvisu.org/docs/de/latest/manual/config/url-params.html#reportErrors" target="_blank" title="Hilfe">(?)</a>';
           }
           notification.actions.optionGroup.options.push({
             title: qx.locale.Manager.tr('Error reporting (on sentry.io)') + link,
@@ -1068,7 +1072,13 @@ qx.Class.define('cv.Application', {
         if (this._isCached) {
           // load settings
           this.debug('using cache');
-          cv.ConfigCache.restore();
+          try {
+            // must be awaited, the restored configSettings are needed by the backend client initialization
+            await cv.ConfigCache.restore();
+          } catch (e) {
+            this.error('restoring the config cache failed, parsing the config instead:', e);
+            this._isCached = false;
+          }
         }
         // initialize NotificationCenter
         cv.ui.NotificationCenter.getInstance();
@@ -1271,20 +1281,24 @@ qx.Class.define('cv.Application', {
         engine.loadParts(partPlugins);
 
         if (standalonePlugins.length > 0) {
+          const queueStandalonePlugins = () => {
+            allPluginsQueued = true;
+            this.debug('loading standalone plugins');
+            cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+
+            if (partsLoaded) {
+              cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            }
+          };
+
           // load standalone plugins after the structure parts has been loaded
           // because they need the classes provided by it
           if (this.getStructureLoaded()) {
-            cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
+            queueStandalonePlugins();
           } else {
             const lid = this.addListener('changeStructureLoaded', ev => {
               if (ev.getData() === true) {
-                allPluginsQueued = true;
-                this.debug('loading standalone plugins');
-                cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
-
-                if (partsLoaded) {
-                  cv.util.ScriptLoader.getInstance().setAllQueued(true);
-                }
+                queueStandalonePlugins();
                 this.removeListenerById(lid);
               }
             });

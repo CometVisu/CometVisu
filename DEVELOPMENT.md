@@ -124,7 +124,7 @@ If there have been changes in submodules of the project you have to run `git sub
 Other useful resources you may find useful during development are:
 
 * The Qooxdoo-Documentation (only the core part): http://www.qooxdoo.org/current/
-* The API: http://cometvisu.org/CometVisu/en/latest/api/
+* The API: http://cometvisu.org/api/
 
 Running tests
 -------------

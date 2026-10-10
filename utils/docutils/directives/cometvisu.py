@@ -29,7 +29,7 @@ from backend_transform import BackendTransformDirective
 from settings import config, root_dir
 from __init__ import Version
 
-references = {"_base": "https://www.cometvisu.org/CometVisu/"}
+references = {"_base": "https://www.cometvisu.org/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_target_path())
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))

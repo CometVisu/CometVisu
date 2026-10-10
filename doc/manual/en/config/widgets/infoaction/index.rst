@@ -18,7 +18,7 @@ and control the whole group in one widget.
 
 .. ###END-WIDGET-DESCRIPTION###
 
-.. figure:: _static/infoaction_lights.png
+.. figure:: _static/infoaction_lights.webp
 
 Settings
 --------
@@ -114,4 +114,3 @@ for the InfoAction widget.
      </switch>
     </widgetaction>
    </infoaction>
-

@@ -32,7 +32,7 @@ A click on the log list opens a popup screen. In this screen you can see
 more entries and it is possible - for the interactive version - to confirm
 entries.
 
-.. figure:: _static/rsslog_simple_mapping.png
+.. figure:: _static/rsslog_simple_mapping.webp
 
 Settings
 --------

@@ -32,12 +32,12 @@ This would be in use with e.g. one :doc:`Switch-Widget <widgets/switch/index>`
 
 Instead of 0 and 1:
 
-.. figure:: widgets/switch/_static/switch.png
+.. figure:: widgets/switch/_static/switch.webp
    :alt: Simple Switch
 
 Show on and off:
 
-.. figure:: widgets/switch/_static/switch_mapping.png
+.. figure:: widgets/switch/_static/switch_mapping.webp
    :alt: Switch with mapping
 
 The color can be determined by the definition of :doc:`styling <styling>`.
@@ -72,7 +72,7 @@ Thus, when used with e.g. one :doc:`Switch-Widget <widgets/switch/index>`
 
 instead of 0 and 1:
 
-.. figure:: widgets/switch/_static/switch.png
+.. figure:: widgets/switch/_static/switch.webp
     :alt: switch.png
 
     Simple  Switch

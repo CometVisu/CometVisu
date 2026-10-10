@@ -13,6 +13,7 @@ const sharp = require('sharp');
 const CometVisuMockup = require('../source/test/playwright/pages/Mock');
 const CometVisuEditorMockup = require('../source/test/playwright/pages/EditorMock');
 const CometVisuDemo = require('../source/test/playwright/pages/Demo');
+const TYPE = 'webp'; // file type for screenshots
 
 /**
  * Log to stdout (visible in Playwright output)
@@ -83,43 +84,39 @@ function createDir(dir) {
 
 /**
  * Crop and optionally resize an image
- * @param srcFile
+ * @param imageBuffer
+ * @param targetFile
  * @param size
  * @param location
  * @param targetWidth
  * @param targetHeight
  */
-async function cropImage(srcFile, size, location, targetWidth, targetHeight) {
-  try {
-    const image = sharp(srcFile);
-    const metadata = await image.metadata();
-    
-    // Get device pixel ratio (assume 1 for headless)
-    const dpr = 1;
-    
-    // Calculate crop region
-    const cropX = Math.max(0, Math.round(location.x * dpr));
-    const cropY = Math.max(0, Math.round(location.y * dpr));
-    const cropWidth = Math.min(Math.round(size.width * dpr), metadata.width - cropX);
-    const cropHeight = Math.min(Math.round(size.height * dpr), metadata.height - cropY);
-    
-    let pipeline = image.extract({
-      left: cropX,
-      top: cropY,
-      width: cropWidth,
-      height: cropHeight
-    });
-    
-    // Resize if target dimensions are specified
-    if (targetWidth && targetHeight) {
-      pipeline = pipeline.resize(targetWidth, targetHeight);
-    }
-    
-    await pipeline.toFile(srcFile + '.tmp');
-    fs.renameSync(srcFile + '.tmp', srcFile);
-  } catch (error) {
-    logError('Error cropping image:', error.message);
+async function cropImage(imageBuffer, targetFile, size, location, targetWidth, targetHeight) {
+  const image = sharp(imageBuffer);
+  const metadata = await image.metadata();
+
+  // Get device pixel ratio (assume 1 for headless)
+  const dpr = 1;
+
+  // Calculate crop region
+  const cropX = Math.max(0, Math.round(location.x * dpr));
+  const cropY = Math.max(0, Math.round(location.y * dpr));
+  const cropWidth = Math.min(Math.round(size.width * dpr), metadata.width - cropX);
+  const cropHeight = Math.min(Math.round(size.height * dpr), metadata.height - cropY);
+
+  let pipeline = image.extract({
+    left: cropX,
+    top: cropY,
+    width: cropWidth,
+    height: cropHeight
+  });
+
+  // Resize if target dimensions are specified
+  if (targetWidth && targetHeight) {
+    pipeline = pipeline.resize(targetWidth, targetHeight);
   }
+
+  await pipeline.toFormat(TYPE).toFile(targetFile);
 }
 
 /**
@@ -163,8 +160,8 @@ function saveShotIndex() {
       if (shotIndex[dir]) {
         // Clean up entries for non-existent files
         const existingFiles = fs.readdirSync(dir)
-          .filter(file => file.endsWith('.png'))
-          .map(file => file.replace('.png', ''));
+          .filter(file => file.endsWith(`.${TYPE}`))
+          .map(file => file.replace(`.${TYPE}`, ''));
         
         for (const file in shotIndex[dir]) {
           if (!existingFiles.includes(file)) {
@@ -251,7 +248,7 @@ function needsScreenshots(filePath) {
  * @param screenshotDir
  */
 function needsScreenshot(name, hash, screenshotDir) {
-  const imgPath = path.join(screenshotDir, name + '.png');
+  const imgPath = path.join(screenshotDir, `${name}.${TYPE}`);
   
   // File doesn't exist
   if (!fs.existsSync(imgPath)) {
@@ -506,7 +503,7 @@ test.describe('Screenshot Generation', () => {
       let allSkipped = true;
 
       const checkExists = (setting, screenshotDir) => {
-        const imgPath = path.join(screenshotDir, setting.name + '.png');
+        const imgPath = path.join(screenshotDir, `${setting.name}.${TYPE}`);
         const cacheKey = `${screenshotDir}/${setting.name}`;
         
         // Check if already created in this session
@@ -804,14 +801,26 @@ test.describe('Screenshot Generation', () => {
             }
 
             // Take screenshot
-            const imgFile = path.join(screenshotDir, setting.name + '.png');
+            const imgFile = path.join(screenshotDir, `${setting.name}.${TYPE}`);
             
             if (config.verbose) {
               log(`Creating screenshot: ${setting.name} (${locale})`);
             }
 
-            // Take full page screenshot
-            await page.screenshot({ path: imgFile, fullPage: false });
+            await page.addStyleTag({
+              content: `
+                html,
+                body {
+                  background: transparent !important;
+                }
+              `
+            });
+
+            // Playwright returns PNG data; Sharp encodes the cropped image as WebP.
+            const imageBuffer = await page.screenshot({
+              fullPage: false,
+              omitBackground: true
+            });
 
             // Crop to element
             let scaledWidth; 
@@ -822,7 +831,7 @@ test.describe('Screenshot Generation', () => {
               scaledHeight = Math.round(size.height * scale);
             }
 
-            await cropImage(imgFile, size, location, scaledWidth, scaledHeight);
+            await cropImage(imageBuffer, imgFile, size, location, scaledWidth, scaledHeight);
 
             // Update shot index
             if (setting.hash) {

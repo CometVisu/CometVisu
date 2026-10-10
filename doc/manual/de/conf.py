@@ -42,7 +42,8 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     version = data['version']
 
 # read versions file
-versions_file = os.path.join(root_dir, 'out', language, 'versions.json')
+doc_dir = os.environ["CV_DOC_DIR"] if os.environ.get("CV_DOC_DIR") else "out"    
+versions_file = os.path.join(root_dir, doc_dir, language, 'versions.json')
 versions = []
 if os.path.exists(versions_file):
     with open(versions_file) as f:
@@ -70,7 +71,7 @@ if match:
 
 html_theme = 'cv_theme'
 html_theme_options = {
-    'canonical_url': ('https://www.cometvisu.org/CometVisu/%s/%s/manual/' % (language, versionpath) )
+    'canonical_url': ('https://www.cometvisu.org/docs/%s/%s/manual/' % (language, versionpath) )
 }
 html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template')]
 html_title = "CometVisu"
@@ -78,17 +79,19 @@ html_title = "CometVisu"
 html_logo = os.path.join(root_dir, "source", "resource", "icons", "comet_webapp_icon_android_48.png")
 #html_favicon = None
 html_static_path = ['_static']
+html_js_files = ["versions.js"]
+html_css_files = ["theme_override.css"]
 html_domain_indices = False
 html_use_index = True
 html_show_sphinx = False
 htmlhelp_basename = 'CometVisu'
 html_show_sourcelink = False
 
-if len(versions):
-    html_context = {
-        'versions': versions,
-        'current_version': version
-    }
+html_context = {
+    'versions': versions,
+    'current_version': version,
+    'version_path': versionpath
+}
 
 # -- Options for LaTeX output --------------------------------------------------
 
@@ -209,7 +212,6 @@ code_add_python_path = ["../py"]
 
 
 def setup(app):
-    app.add_css_file('theme_override.css')
     app.add_config_value('releaselevel', '', 'env')
 
     from sphinx.util.texescape import tex_replacements

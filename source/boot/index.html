@@ -48,6 +48,12 @@
           }
           check();
         };
+        scriptTag.onerror = () => {
+          if (Object.prototype.hasOwnProperty.call(waiting, url)) {
+            delete waiting[url];
+          }
+          check();
+        };
         document.head.appendChild(scriptTag);
       });
     };
@@ -85,6 +91,9 @@
         '${resourcePath}sentry/bundle.tracing.min.js',
         '${resourcePath}sentry/rewriteframes.min.js',
         function () {
+        if (!window.Sentry || typeof Sentry.init !== 'function') {
+          return;
+        }
         Sentry.init({
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',

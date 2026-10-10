@@ -19,72 +19,72 @@ enthalten sind:
 
     <table style="text-align:center; margin-bottom:20px" border="1" rules="all">
     <tbody><tr>
-    <th style="background:#ffffff; width:150px" align="left"> grey
+    <th style="width:150px" align="left"> grey
     </th>
     <td style="background:#808080; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> cyan
+    <th style="width:150px" align="left"> cyan
     </th>
     <td style="background:#00ffff; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> green
+    <th style="width:150px" align="left"> green
     </th>
     <td style="background:#008000; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> lime
+    <th style="width:150px" align="left"> lime
     </th>
     <td style="background:#00ff00; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> red
+    <th style="width:150px" align="left"> red
     </th>
     <td style="background:#ff0000; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> blue
+    <th style="width:150px" align="left"> blue
     </th>
     <td style="background:#0000ff; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> fuchsia
+    <th style="width:150px" align="left"> fuchsia
     </th>
     <td style="background:#ff00ff; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> black
+    <th style="width:150px" align="left"> black
     </th>
     <td style="background:#000000; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> maroon
+    <th style="width:150px" align="left"> maroon
     </th>
     <td style="background:#800000; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> olive
+    <th style="width:150px" align="left"> olive
     </th>
     <td style="background:#808000; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> purple
+    <th style="width:150px" align="left"> purple
     </th>
     <td style="background:#800080; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> silver
+    <th style="width:150px" align="left"> silver
     </th>
     <td style="background:#c0c0c0; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> white
+    <th style="width:150px" align="left"> white
     </th>
     <td style="background:#ffffff; width:200px" align="center">
     </td></tr>
     <tr>
-    <th style="background:#ffffff; width:150px" align="left"> yellow
+    <th style="width:150px" align="left"> yellow
     </th>
     <td style="background:#ffff00; width:200px" align="center">
     </td></tr></tbody></table>

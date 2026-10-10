@@ -15,7 +15,7 @@ Beschreibung
 
 Das strftime-Plugin fügt der Visuseite eine formatierbare Datums- und Uhrzeit-Anzeige hinzu.
 
-.. figure:: _static/strftime_simple.png
+.. figure:: _static/strftime_simple.webp
 
 
 Einstellungen

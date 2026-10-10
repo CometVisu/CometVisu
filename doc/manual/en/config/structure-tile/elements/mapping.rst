@@ -114,10 +114,10 @@ Using this with a :ref:`Switch-Widget <tile-switch>` would show different icons,
 .. list-table::
     :class: image-float
 
-    * - .. figure:: _static/cv-switch-mapping-off.png
+    * - .. figure:: _static/cv-switch-mapping-off.webp
             :alt: Switch off
 
-      - .. figure:: _static/cv-switch-mapping-on.png
+      - .. figure:: _static/cv-switch-mapping-on.webp
             :alt: Switch on
 
 The color of the icons is controlled via the styling.

@@ -7,7 +7,7 @@ The easiest way to install the CometVisu on the `Timberwolf <https://wiregate.de
 supplied app.
 
 .. figure:: _static/timberwolf_app.png
-   :scale: 50 %
+   :scale: 50%
 
    Selection of the CometVisu app on the Timberwolf user interface
 
@@ -18,7 +18,7 @@ Update
 ------
 
 .. figure:: _static/timberwolf_installed_app.png
-   :scale: 50 %
+   :scale: 50%
 
    Installed CometVisu app
 
@@ -56,7 +56,7 @@ Necessary steps are: *Volumes* → *Add Volume* → Name:
 ``CometVisuConfig`` → *Create the Volume*
 
 .. figure:: _static/portainer_volume_add.png
-   :scale: 50 %
+   :width: 100%
 
    Create Volume with Portainer
 
@@ -111,7 +111,7 @@ Under: *Containers* → *Add Container*
       Timberwolf it can be looked up at *Settings* → *KNX* → *Interfaced*:
 
       .. figure:: _static/timberwolf_knx_port.png
-          :scale: 50 %
+          :scale: 50%
 
       Should it be different to the default of ``3700`` then the environment
       variable ``KNX_INTERFACE`` should be changed accordingly, in this
@@ -120,22 +120,22 @@ Under: *Containers* → *Add Container*
   - Restart policy: ``Unless stopped``
 
 .. figure:: _static/portainer_container_add.png
-   :scale: 50 %
+   :width: 100%
 
    Create Container at Portainer
 
 .. figure:: _static/portainer_container_volumes_add.png
-   :scale: 50 %
+   :width: 100%
 
    Configure Container *Volumes* at Portainer
 
 .. figure:: _static/portainer_container_env_add.png
-   :scale: 50 %
+   :width: 100%
 
    Configure Container *Env* at Portainer
 
 .. figure:: _static/portainer_container_restart_add.png
-   :scale: 50 %
+   :width: 100%
 
    Configure Container *Restart policy* at Portainer
 
@@ -152,7 +152,7 @@ At the Timberwolf Frontend:
 Accept with *Add*
 
 .. figure:: _static/timberwolf_proxy_add.png
-   :scale: 50 %
+   :scale: 50%
 
    Add Timberwolf Proxy-Entry
 
@@ -190,7 +190,7 @@ In the :ref:`hidden configuration <hidden-config>` of the
   - ``selfsigned``: ``true``
 
 .. figure:: _static/timberwolf_influx_manager.png
-   :scale: 50 %
+   :scale: 50%
 
    Timberwolf InfluxDB credentials in the manager
 
@@ -217,7 +217,7 @@ series, then under *Volumes* the config path from
 with the latest version.
 
 .. figure:: _static/portainer_container_replace.png
-   :scale: 50 %
+   :scale: 50%
 
    Replace Container at Portainer with a new version
 
@@ -238,7 +238,7 @@ By marking the image to be deleted (recognizable by the label
 *Unused* and the corresponding tag) the image can be removed with *Remove*.
 
 .. figure:: _static/portainer_image_remove.png
-   :scale: 50 %
+   :width: 100%
 
    Portainer Dialog to remove an image
 

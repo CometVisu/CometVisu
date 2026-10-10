@@ -266,15 +266,15 @@ configuration file.
             </screenshot>
         </settings>
         <group nowidget="true">
-            <roundbar preset="A">
+            <roundbar preset="A" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>
-            <roundbar preset="B">
+            <roundbar preset="B" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>
-            <roundbar preset="bridge">
+            <roundbar preset="bridge" format="%.1f">
                 <layout colspan="2" rowspan="2"/>
                 <address transform="DPT:9.001" mode="read">3/3/1</address>
             </roundbar>

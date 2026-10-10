@@ -54,7 +54,7 @@
     "@types/d3": "^7.4.3",
     "chmodr": "^2.0.2",
     "deasync": "^0.1.31",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "eslint": "^10.3.0",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.2.2",
@@ -62,7 +62,7 @@
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.5",
     "globals": "^17.6.0",
-    "grunt": "^1.6.2",
+    "grunt": "^1.6.3",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-compress": "^2.0.0",
@@ -84,7 +84,7 @@
     "mustache": "^4.2.0",
     "prettier": "^3.8.3",
     "selenium-webdriver": "^4.44.0",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.4",
     "xml-js": "^1.6.11"
   },
   "dependencies": {

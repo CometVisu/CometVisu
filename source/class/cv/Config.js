@@ -368,6 +368,37 @@ qx.Class.define('cv.Config', {
 
     getDesign() {
       return this.clientDesign || this.configSettings.clientDesign;
+    },
+
+    /**
+     * Enable error reporting with Sentry if it was requested and the Sentry SDK
+     * was loaded completely.
+     *
+     * A partially loaded SDK (e.g. when only the rewriteframes bundle was
+     * loaded) creates an incomplete `window.Sentry` object that lacks the core
+     * API (like `setTag`). In that case error reporting is disabled instead of
+     * crashing the whole startup with a TypeError.
+     *
+     * @param enabled {Boolean} whether error reporting was requested
+     */
+    enableErrorReporting(enabled) {
+      if (enabled !== true) {
+        return;
+      }
+      if (!window.Sentry || typeof window.Sentry.setTag !== 'function') {
+        // Sentry SDK not (fully) loaded - degrade gracefully
+        this.sentryEnabled = false;
+        return;
+      }
+      this.sentryEnabled = true;
+      // generate unique transactionId and set as Sentry tag
+      this.transactionId = Math.random().toString(36).substr(2, 9);
+      window.Sentry.setTag('transaction_id', this.transactionId);
+      window.Sentry.setTag('build.date', cv.Version.DATE);
+      window.Sentry.setTag('build.branch', cv.Version.BRANCH);
+      Object.keys(cv.Version.TAGS).forEach(function (tag) {
+        window.Sentry.setTag(tag, cv.Version.TAGS[tag]);
+      });
     }
   },
 
@@ -405,17 +436,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.reportErrors) {
-      if (window.Sentry) {
-        cv.Config.sentryEnabled = true;
-        // generate unique transactionId and set as Sentry tag
-        cv.Config.transactionId = Math.random().toString(36).substr(2, 9);
-        Sentry.setTag('transaction_id', cv.Config.transactionId);
-        Sentry.setTag('build.date', cv.Version.DATE);
-        Sentry.setTag('build.branch', cv.Version.BRANCH);
-        Object.keys(cv.Version.TAGS).forEach(function (tag) {
-          Sentry.setTag(tag, cv.Version.TAGS[tag]);
-        });
-      }
+      cv.Config.enableErrorReporting(true);
     }
 
     // store for later usage
