@@ -3,7 +3,7 @@
 1.0.0
 =====
 
-### v1.0.0-RC4
+### v1.0.0 and v1.0.0-RC4
 
 - [#1503](https://github.com/CometVisu/CometVisu/pull/1503) docs: fix screenshots, layout and styling problems… (@peuter)
 - [#1502](https://github.com/CometVisu/CometVisu/pull/1502) Fix rounding error creating nasty long numbers (@ChristianMayer)
