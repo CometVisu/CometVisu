@@ -1,0 +1,2471 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547832,
+  "lastModifiedIso": "2026-10-15T16:42:27.832Z",
+  "classFilename": "../../source/class/cv/plugins/diagram2/Plot.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1203
+    },
+    "end": {
+      "line": 1253,
+      "column": 3,
+      "index": 45253
+    }
+  },
+  "className": "cv.plugins.diagram2.Plot",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Draws the graphs of a diagram2 widget with d3.",
+      " *",
+      " * One instance owns the svg inside the given element and redraws itself whenever that element",
+      " * changes its size. The interface follows the plot object of the flot based diagram plugin",
+      " * closely - create it once, hand in the data, draw - so that the widget around it stays the same.",
+      " *",
+      " * @ignore(d3)",
+      " * @ignore(ResizeObserver)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Draws the graphs of a diagram2 widget with d3.\n One instance owns the svg inside the given element and redraws itself whenever that element\n changes its size. The interface follows the plot object of the flot based diagram plugin\n closely - create it once, hand in the data, draw - so that the widget around it stays the same.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      },
+      {
+        "name": "@ignore",
+        "body": "ResizeObserver"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "element"
+      },
+      {
+        "name": "options"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1564
+      },
+      "end": {
+        "line": 67,
+        "column": 3,
+        "index": 2325
+      }
+    }
+  },
+  "events": {
+    "rangeChanged": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* the visible time range has been changed by the user, data for it should be loaded "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the visible time range has been changed by the user, data for it should be loaded</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2558
+        },
+        "end": {
+          "line": 76,
+          "column": 38,
+          "index": 2592
+        }
+      }
+    }
+  },
+  "statics": {
+    "COLORS": {
+      "jsdoc": {
+        "raw": [
+          "* the palette flot uses for series without a configured color "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the palette flot uses for series without a configured color</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2809
+        },
+        "end": {
+          "line": 86,
+          "column": 67,
+          "index": 2872
+        }
+      },
+      "appearsIn": []
+    },
+    "BACKGROUND": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2879
+        },
+        "end": {
+          "line": 88,
+          "column": 25,
+          "index": 2900
+        }
+      },
+      "appearsIn": []
+    },
+    "LEGEND_BACKGROUND": {
+      "jsdoc": {
+        "raw": [
+          "* the legend background of the flot based diagram, at its default opacity of 0.85 "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the legend background of the flot based diagram, at its default opacity of 0.85</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2997
+        },
+        "end": {
+          "line": 90,
+          "column": 47,
+          "index": 3040
+        }
+      },
+      "appearsIn": []
+    },
+    "LEGEND_BOX_BORDER": {
+      "jsdoc": {
+        "raw": [
+          "* flot draws this border around the color box of a legend entry "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>flot draws this border around the color box of a legend entry</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 3120
+        },
+        "end": {
+          "line": 93,
+          "column": 29,
+          "index": 3145
+        }
+      },
+      "appearsIn": []
+    },
+    "LABEL_COLOR": {
+      "jsdoc": {
+        "raw": [
+          "* flot draws the tick labels in this color, in a font one step smaller than the widget "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>flot draws the tick labels in this color, in a font one step smaller than the widget</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 3248
+        },
+        "end": {
+          "line": 96,
+          "column": 26,
+          "index": 3270
+        }
+      },
+      "appearsIn": []
+    },
+    "AXIS_TITLE_SIZE": {
+      "jsdoc": {
+        "raw": [
+          "* the size jquery.flot.axislabels.js uses for the title of an axis "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the size jquery.flot.axislabels.js uses for the title of an axis</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 3353
+        },
+        "end": {
+          "line": 99,
+          "column": 23,
+          "index": 3372
+        }
+      },
+      "appearsIn": []
+    },
+    "PLOT_PADDING": {
+      "jsdoc": {
+        "raw": [
+          "* the room every side keeps between the outermost label and the edge of the diagram "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the room every side keeps between the outermost label and the edge of the diagram</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3472
+        },
+        "end": {
+          "line": 102,
+          "column": 19,
+          "index": 3487
+        }
+      },
+      "appearsIn": []
+    },
+    "AXIS_GAP": {
+      "jsdoc": {
+        "raw": [
+          "* what flot keeps between two axes on the same side, its grid.axisMargin "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>what flot keeps between two axes on the same side, its grid.axisMargin</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 3576
+        },
+        "end": {
+          "line": 105,
+          "column": 15,
+          "index": 3587
+        }
+      },
+      "appearsIn": []
+    },
+    "TOOLTIP_BACKGROUND": {
+      "jsdoc": {
+        "raw": [
+          "* what the designs give the tooltip of the flot based diagram "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>what the designs give the tooltip of the flot based diagram</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3665
+        },
+        "end": {
+          "line": 108,
+          "column": 30,
+          "index": 3691
+        }
+      },
+      "appearsIn": []
+    },
+    "TOOLTIP_BORDER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 3697
+        },
+        "end": {
+          "line": 109,
+          "column": 26,
+          "index": 3719
+        }
+      },
+      "appearsIn": []
+    },
+    "TOOLTIP_COLOR": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3725
+        },
+        "end": {
+          "line": 110,
+          "column": 28,
+          "index": 3749
+        }
+      },
+      "appearsIn": []
+    },
+    "FILL_OPACITY": {
+      "jsdoc": {
+        "raw": [
+          "* flot draws the area below a filled line with 40% of the line color "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>flot draws the area below a filled line with 40% of the line color</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3834
+        },
+        "end": {
+          "line": 113,
+          "column": 21,
+          "index": 3851
+        }
+      },
+      "appearsIn": []
+    },
+    "ZOOM_AMOUNT": {
+      "jsdoc": {
+        "raw": [
+          "* the zoom step of the flot navigate plugin "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the zoom step of the flot navigate plugin</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3911
+        },
+        "end": {
+          "line": 116,
+          "column": 20,
+          "index": 3927
+        }
+      },
+      "appearsIn": []
+    },
+    "AUTOSCALE_MARGIN": {
+      "jsdoc": {
+        "raw": [
+          "* flots autoscaleMargin for value axes: 2% of the span above and below the data "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>flots autoscaleMargin for value axes: 2% of the span above and below the data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 4023
+        },
+        "end": {
+          "line": 119,
+          "column": 26,
+          "index": 4045
+        }
+      },
+      "appearsIn": []
+    },
+    "GRID_WIDTH": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default stroke widths. flot is heavier here: it draws its grid lines with 1 as well,",
+          "     * but the frame around the plotting area with grid.borderWidth 2 and every graph with",
+          "     * lines.lineWidth 2 - bars and points included. The attributes gridwidth, borderwidth and",
+          "     * linewidth reach those values.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default stroke widths. flot is heavier here: it draws its grid lines with 1 as well,\n but the frame around the plotting area with grid.borderWidth 2 and every graph with\n lines.lineWidth 2 - bars and points included. The attributes gridwidth, borderwidth and\n linewidth reach those values.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4387
+        },
+        "end": {
+          "line": 127,
+          "column": 17,
+          "index": 4400
+        }
+      },
+      "appearsIn": []
+    },
+    "BORDER_WIDTH": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4406
+        },
+        "end": {
+          "line": 128,
+          "column": 19,
+          "index": 4421
+        }
+      },
+      "appearsIn": []
+    },
+    "LINE_WIDTH": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 4427
+        },
+        "end": {
+          "line": 129,
+          "column": 19,
+          "index": 4442
+        }
+      },
+      "appearsIn": []
+    },
+    "OUTLINE_WIDTH": {
+      "jsdoc": {
+        "raw": [
+          "* the outline of bars and points has always been thinner than the line of a graph "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the outline of bars and points has always been thinner than the line of a graph</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 4539
+        },
+        "end": {
+          "line": 131,
+          "column": 20,
+          "index": 4555
+        }
+      },
+      "appearsIn": []
+    },
+    "GRID_OPACITY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * How solid the grid lines are drawn. The flot based diagram uses the full grid color - its",
+          "     * own default of 22% alpha never applies, because the plugin sets grid.tickColor itself - so",
+          "     * gridopacity 1 is the value that matches it.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How solid the grid lines are drawn. The flot based diagram uses the full grid color - its\n own default of 22% alpha never applies, because the plugin sets grid.tickColor itself - so\n gridopacity 1 is the value that matches it.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4824
+        },
+        "end": {
+          "line": 138,
+          "column": 21,
+          "index": 4841
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_element": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 4987
+        },
+        "end": {
+          "line": 147,
+          "column": 18,
+          "index": 5001
+        }
+      },
+      "appearsIn": []
+    },
+    "_options": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 5007
+        },
+        "end": {
+          "line": 148,
+          "column": 18,
+          "index": 5021
+        }
+      },
+      "appearsIn": []
+    },
+    "_series": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 5027
+        },
+        "end": {
+          "line": 149,
+          "column": 17,
+          "index": 5040
+        }
+      },
+      "appearsIn": []
+    },
+    "_svg": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 5046
+        },
+        "end": {
+          "line": 150,
+          "column": 14,
+          "index": 5056
+        }
+      },
+      "appearsIn": []
+    },
+    "_content": {
+      "jsdoc": {
+        "raw": [
+          "* everything draw() creates lives in here, the catching surface stays outside of it "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>everything draw() creates lives in here, the catching surface stays outside of it</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 5155
+        },
+        "end": {
+          "line": 152,
+          "column": 18,
+          "index": 5169
+        }
+      },
+      "appearsIn": []
+    },
+    "_capture": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 5175
+        },
+        "end": {
+          "line": 153,
+          "column": 18,
+          "index": 5189
+        }
+      },
+      "appearsIn": []
+    },
+    "_legend": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 5195
+        },
+        "end": {
+          "line": 154,
+          "column": 17,
+          "index": 5208
+        }
+      },
+      "appearsIn": []
+    },
+    "_tooltip": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5214
+        },
+        "end": {
+          "line": 155,
+          "column": 18,
+          "index": 5228
+        }
+      },
+      "appearsIn": []
+    },
+    "_marker": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 5234
+        },
+        "end": {
+          "line": 156,
+          "column": 17,
+          "index": 5247
+        }
+      },
+      "appearsIn": []
+    },
+    "_observer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 5253
+        },
+        "end": {
+          "line": 157,
+          "column": 19,
+          "index": 5268
+        }
+      },
+      "appearsIn": []
+    },
+    "_layout": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 5274
+        },
+        "end": {
+          "line": 158,
+          "column": 17,
+          "index": 5287
+        }
+      },
+      "appearsIn": []
+    },
+    "__canvas": {
+      "jsdoc": {
+        "raw": [
+          "* canvas and context used to measure the width of a label "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>canvas and context used to measure the width of a label</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 5360
+        },
+        "end": {
+          "line": 160,
+          "column": 18,
+          "index": 5374
+        }
+      },
+      "appearsIn": []
+    },
+    "__context": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 161,
+          "column": 4,
+          "index": 5380
+        },
+        "end": {
+          "line": 161,
+          "column": 19,
+          "index": 5395
+        }
+      },
+      "appearsIn": []
+    },
+    "_view": {
+      "jsdoc": {
+        "raw": [
+          "* the time range the user has panned or zoomed to, in milliseconds "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the time range the user has panned or zoomed to, in milliseconds</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 5477
+        },
+        "end": {
+          "line": 163,
+          "column": 15,
+          "index": 5488
+        }
+      },
+      "appearsIn": []
+    },
+    "_yViews": {
+      "jsdoc": {
+        "raw": [
+          "* the value ranges the user has zoomed to, by axis number "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the value ranges the user has zoomed to, by axis number</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 5561
+        },
+        "end": {
+          "line": 165,
+          "column": 17,
+          "index": 5574
+        }
+      },
+      "appearsIn": []
+    },
+    "setData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces the data of the diagram. It is drawn by the next draw().",
+          "     * @param series {Array} one entry per graph",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replaces the data of the diagram. It is drawn by the next draw().</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "series {Array} one entry per graph",
+            "paramName": "series",
+            "description": " one entry per graph",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5719
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 5825
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "series",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The data currently shown.",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The data currently shown.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5904
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 5948
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getView": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The time range the user has panned or zoomed to, null while the diagram shows its data as",
+          "     * it came in.",
+          "     * @return {Array|null} start and end in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The time range the user has panned or zoomed to, null while the diagram shows its data as\n it came in.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array|null} start and end in milliseconds",
+            "type": "Array|null",
+            "description": "start and end in milliseconds"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 6145
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 6187
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array|null"
+      },
+      "appearsIn": []
+    },
+    "draw": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Draws everything: grid, axes, graphs and legend. Doing nothing while the element has no",
+          "     * size is intended - the resize observer calls again as soon as it has one.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Draws everything: grid, axes, graphs and legend. Doing nothing while the element has no\n size is intended - the resize observer calls again as soon as it has one.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 6386
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 7098
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "shutdown": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Drops the observer and the elements. The widget calls this when its popup closes.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Drops the observer and the elements. The widget calls this when its popup closes.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 7210
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 7624
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__build": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the svg, the legend and the tooltip inside the container.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the svg, the legend and the tooltip inside the container.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 7720
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 10617
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__bindGestures": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Panning and zooming, the way the flot based diagram does it: drag to pan, double click and",
+          "     * the wheel to zoom, one finger to pan and two fingers to zoom on a touch screen. d3-zoom",
+          "     * recognizes all of that, sets touch-action itself and registers its wheel listener as active -",
+          "     * hand written listeners could not do that reliably on iOS. Only the arithmetic stays here:",
+          "     * the difference to the previous transform becomes a pan or a zoom of the visible range.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Panning and zooming, the way the flot based diagram does it: drag to pan, double click and\n the wheel to zoom, one finger to pan and two fingers to zoom on a touch screen. d3-zoom\n recognizes all of that, sets touch-action itself and registers its wheel listener as active -\n hand written listeners could not do that reliably on iOS. Only the arithmetic stays here:\n the difference to the previous transform becomes a pan or a zoom of the visible range.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4,
+          "index": 11125
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 13265
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__zoomAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Zooms around a point, exactly like flots navigate plugin: the value under the pointer stays",
+          "     * where it is and the visible range shrinks to 1/amount.",
+          "     * @param px {Number} distance from the left edge of the diagram",
+          "     * @param amount {Number} bigger than 1 zooms in",
+          "     * @param py {Number?} distance from the top edge, for the value axes",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Zooms around a point, exactly like flots navigate plugin: the value under the pointer stays\n where it is and the visible range shrinks to 1/amount.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "px {Number} distance from the left edge of the diagram",
+            "paramName": "px",
+            "description": " distance from the left edge of the diagram",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "amount {Number} bigger than 1 zooms in",
+            "paramName": "amount",
+            "description": " bigger than 1 zooms in",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "py {Number?} distance from the top edge, for the value axes",
+            "paramName": "py",
+            "description": " distance from the top edge, for the value axes",
+            "optional": true,
+            "type": "Number"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 13646
+        },
+        "end": {
+          "line": 423,
+          "column": 5,
+          "index": 15012
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "px",
+          "type": "number"
+        },
+        {
+          "name": "amount",
+          "type": "number"
+        },
+        {
+          "name": "py",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "__panBy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Moves the visible range by a distance in pixels.",
+          "     * @param dx {Number} horizontal distance",
+          "     * @param dy {Number} vertical distance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Moves the visible range by a distance in pixels.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dx {Number} horizontal distance",
+            "paramName": "dx",
+            "description": " horizontal distance",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "dy {Number} vertical distance",
+            "paramName": "dy",
+            "description": " vertical distance",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 430,
+          "column": 4,
+          "index": 15181
+        },
+        "end": {
+          "line": 456,
+          "column": 5,
+          "index": 16090
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dx",
+          "type": "number"
+        },
+        {
+          "name": "dy",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__fireRange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tells the widget which range is shown now, so that it can load the data for it.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tells the widget which range is shown now, so that it can load the data for it.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 461,
+          "column": 4,
+          "index": 16200
+        },
+        "end": {
+          "line": 465,
+          "column": 5,
+          "index": 16317
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__axes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The y axes of the widget, with an implicit one when the configuration has none.",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The y axes of the widget, with an implicit one when the configuration has none.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 471,
+          "column": 4,
+          "index": 16450
+        },
+        "end": {
+          "line": 482,
+          "column": 5,
+          "index": 16868
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__number": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A configured number, or null when it is not one. The parser hands the values on as",
+          "     * strings, an empty attribute must not become a 0.",
+          "     * @param value {var}",
+          "     * @return {Number|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A configured number, or null when it is not one. The parser hands the values on as\n strings, an empty attribute must not become a 0.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var}",
+            "paramName": "value",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number|null}",
+            "type": "Number|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 17092
+        },
+        "end": {
+          "line": 497,
+          "column": 5,
+          "index": 17306
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "appearsIn": []
+    },
+    "__layout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scales, margins and formats for the current size.",
+          "     * @param width {Number}",
+          "     * @param height {Number}",
+          "     * @param axes {Array}",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scales, margins and formats for the current size.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "width {Number}",
+            "paramName": "width",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "height {Number}",
+            "paramName": "height",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "axes {Array}",
+            "paramName": "axes",
+            "type": "Array<any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 506,
+          "column": 4,
+          "index": 17493
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 20914
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "number"
+        },
+        {
+          "name": "height",
+          "type": "number"
+        },
+        {
+          "name": "axes",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__domain": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The value range of one axis: what is configured, otherwise what the data of its graphs",
+          "     * needs.",
+          "     * @param axis {Map}",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The value range of one axis: what is configured, otherwise what the data of its graphs\n needs.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 587,
+          "column": 4,
+          "index": 21093
+        },
+        "end": {
+          "line": 643,
+          "column": 5,
+          "index": 22820
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__timeDomain": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The time range of all graphs, the last hour while there is no data yet.",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The time range of all graphs, the last hour while there is no data yet.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 649,
+          "column": 4,
+          "index": 22945
+        },
+        "end": {
+          "line": 677,
+          "column": 5,
+          "index": 23656
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__valueTicks": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The tick values of a value axis. With a configured number of decimals the steps must not be",
+          "     * finer than that, otherwise two ticks would carry the same label - flot enlarges the step for",
+          "     * the same reason.",
+          "     * @param axis {Map}",
+          "     * @param count {Number} how many ticks would fit",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The tick values of a value axis. With a configured number of decimals the steps must not be\n finer than that, otherwise two ticks would carry the same label - flot enlarges the step for\n the same reason.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "count {Number} how many ticks would fit",
+            "paramName": "count",
+            "description": " how many ticks would fit",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 687,
+          "column": 4,
+          "index": 24004
+        },
+        "end": {
+          "line": 705,
+          "column": 5,
+          "index": 24705
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "count",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__valueFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Formats a value the way the axis asks for: the configured number of decimals and its unit.",
+          "     * @param axis {Map}",
+          "     * @return {Function}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Formats a value the way the axis asks for: the configured number of decimals and its unit.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}",
+            "type": "((...args: any[]) => any)",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 712,
+          "column": 4,
+          "index": 24877
+        },
+        "end": {
+          "line": 720,
+          "column": 5,
+          "index": 25103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__xFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The formatter for the labels of the time axis: the configured pattern, otherwise the one",
+          "     * flot would choose for this tick distance. flot always writes 24 hour times unless the",
+          "     * configuration asks for a twelve hour clock, which the diagrams never do.",
+          "     * @param scale {Function} the time scale",
+          "     * @param ticks {Number} how many ticks are asked for",
+          "     * @return {Function}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The formatter for the labels of the time axis: the configured pattern, otherwise the one\n flot would choose for this tick distance. flot always writes 24 hour times unless the\n configuration asks for a twelve hour clock, which the diagrams never do.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scale {Function} the time scale",
+            "paramName": "scale",
+            "description": " the time scale",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "ticks {Number} how many ticks are asked for",
+            "paramName": "ticks",
+            "description": " how many ticks are asked for",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}",
+            "type": "((...args: any[]) => any)",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 730,
+          "column": 4,
+          "index": 25525
+        },
+        "end": {
+          "line": 760,
+          "column": 5,
+          "index": 26427
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scale",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "ticks",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__timeFormat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A date formatter for a strftime like pattern, the same placeholders flot understands.",
+          "     * @param pattern {String}",
+          "     * @return {Function}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A date formatter for a strftime like pattern, the same placeholders flot understands.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pattern {String}",
+            "paramName": "pattern",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}",
+            "type": "((...args: any[]) => any)",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 767,
+          "column": 4,
+          "index": 26600
+        },
+        "end": {
+          "line": 771,
+          "column": 5,
+          "index": 26737
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pattern",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__drawGrid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 773,
+          "column": 4,
+          "index": 26744
+        },
+        "end": {
+          "line": 816,
+          "column": 5,
+          "index": 28256
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__drawFrame": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The border of the plotting area. It is drawn after the graphs, otherwise a series whose",
+          "     * first or last point sits on the edge would paint over it. An svg stroke straddles the edge,",
+          "     * so the border is inset by half its width and stays inside - flot draws it on -bw/2 for the",
+          "     * same reason.",
+          "     * @param layout {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The border of the plotting area. It is drawn after the graphs, otherwise a series whose\n first or last point sits on the edge would paint over it. An svg stroke straddles the edge,\n so the border is inset by half its width and stays inside - flot draws it on -bw/2 for the\n same reason.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {Map}",
+            "paramName": "layout",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 825,
+          "column": 4,
+          "index": 28618
+        },
+        "end": {
+          "line": 841,
+          "column": 5,
+          "index": 29282
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__drawAxes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 843,
+          "column": 4,
+          "index": 29289
+        },
+        "end": {
+          "line": 899,
+          "column": 5,
+          "index": 31653
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__axisWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * How much room the labels of an axis need. An estimate by character count is enough, the",
+          "     * numbers are short and the exact metrics would cost a layout pass.",
+          "     * @param axis {Map}",
+          "     * @return {Number} width in pixels",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How much room the labels of an axis need. An estimate by character count is enough, the\n numbers are short and the exact metrics would cost a layout pass.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} width in pixels",
+            "type": "number",
+            "description": "width in pixels"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 907,
+          "column": 4,
+          "index": 31909
+        },
+        "end": {
+          "line": 912,
+          "column": 5,
+          "index": 32168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__titleSpace": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * How much room the title of an axis takes beside the tick labels: the height of the rotated",
+          "     * line - the box of a text is about 1.2 em high - plus the gap to the labels.",
+          "     * @return {Map} height of the rotated line and the room it occupies",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How much room the title of an axis takes beside the tick labels: the height of the rotated\n line - the box of a text is about 1.2 em high - plus the gap to the labels.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} height of the rotated line and the room it occupies",
+            "type": "Map<any, any>",
+            "description": "height of the rotated line and the room it occupies"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 919,
+          "column": 4,
+          "index": 32445
+        },
+        "end": {
+          "line": 923,
+          "column": 5,
+          "index": 32600
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__labelSize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The size of the tick labels. flot renders its text one step smaller than the widget font,",
+          "     * so the labels grow and shrink with the design.",
+          "     * @return {Number} size in pixels",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The size of the tick labels. flot renders its text one step smaller than the widget font,\n so the labels grow and shrink with the design.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} size in pixels",
+            "type": "number",
+            "description": "size in pixels"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 930,
+          "column": 4,
+          "index": 32813
+        },
+        "end": {
+          "line": 934,
+          "column": 5,
+          "index": 32984
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__hasTopTick": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the topmost tick of an axis carries a label at the very top of the diagram. Only",
+          "     * then room has to be kept free above the plotting area.",
+          "     * @param axis {Map}",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the topmost tick of an axis carries a label at the very top of the diagram. Only\n then room has to be kept free above the plotting area.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 942,
+          "column": 4,
+          "index": 33215
+        },
+        "end": {
+          "line": 950,
+          "column": 5,
+          "index": 33483
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__textWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * How wide a label really is. Estimating it by character count leaves unused room at the",
+          "     * left and right of the diagram, which the top and bottom do not have. Measured the way",
+          "     * cv.ui.structure.tile.components.RoundProgress does it, on a canvas in memory.",
+          "     * @param text {String}",
+          "     * @param size {Number} font size in pixels",
+          "     * @return {Number} width in pixels",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>How wide a label really is. Estimating it by character count leaves unused room at the\n left and right of the diagram, which the top and bottom do not have. Measured the way\n cv.ui.structure.tile.components.RoundProgress does it, on a canvas in memory.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "text {String}",
+            "paramName": "text",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "size {Number} font size in pixels",
+            "paramName": "size",
+            "description": " font size in pixels",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} width in pixels",
+            "type": "number",
+            "description": "width in pixels"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 960,
+          "column": 4,
+          "index": 33894
+        },
+        "end": {
+          "line": 970,
+          "column": 5,
+          "index": 34347
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__drawYAxis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Draws one y axis. The bundled d3 only has axisLeft, so both sides are drawn here and",
+          "     * look exactly alike.",
+          "     * @param layout {Map}",
+          "     * @param axis {Map}",
+          "     * @param x {Number} where the axis line sits",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Draws one y axis. The bundled d3 only has axisLeft, so both sides are drawn here and\n look exactly alike.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "layout {Map}",
+            "paramName": "layout",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "axis {Map}",
+            "paramName": "axis",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "x {Number} where the axis line sits",
+            "paramName": "x",
+            "description": " where the axis line sits",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 979,
+          "column": 4,
+          "index": 34591
+        },
+        "end": {
+          "line": 1024,
+          "column": 5,
+          "index": 36564
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "axis",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "x",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__drawSeries": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1026,
+          "column": 4,
+          "index": 36571
+        },
+        "end": {
+          "line": 1114,
+          "column": 5,
+          "index": 40334
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getColor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The color of a graph: the configured one, otherwise the next one of the palette.",
+          "     * @param entry {Map} graph",
+          "     * @param index {Number} position in the data",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The color of a graph: the configured one, otherwise the next one of the palette.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "entry {Map} graph",
+            "paramName": "entry",
+            "description": " graph",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "index {Number} position in the data",
+            "paramName": "index",
+            "description": " position in the data",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1122,
+          "column": 4,
+          "index": 40551
+        },
+        "end": {
+          "line": 1126,
+          "column": 5,
+          "index": 40698
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "entry",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__drawLegend": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1129,
+          "column": 4,
+          "index": 40706
+        },
+        "end": {
+          "line": 1173,
+          "column": 5,
+          "index": 42570
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onPointerMove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shows the value of the graph point closest to the pointer.",
+          "     * @param event {Event} pointer event on the svg",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shows the value of the graph point closest to the pointer.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointer event on the svg",
+            "paramName": "event",
+            "description": " pointer event on the svg",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1179,
+          "column": 4,
+          "index": 42712
+        },
+        "end": {
+          "line": 1232,
+          "column": 5,
+          "index": 44858
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__hideTooltip": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1234,
+          "column": 4,
+          "index": 44865
+        },
+        "end": {
+          "line": 1241,
+          "column": 5,
+          "index": 45052
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1249,
+        "column": 2,
+        "index": 45186
+      },
+      "end": {
+        "line": 1252,
+        "column": 3,
+        "index": 45249
+      }
+    }
+  },
+  "properties": {}
+}

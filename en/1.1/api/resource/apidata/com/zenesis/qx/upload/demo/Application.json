@@ -1,0 +1,105 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/demo/Application.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 935
+    },
+    "end": {
+      "line": 547,
+      "column": 3,
+      "index": 15928
+    }
+  },
+  "className": "com.zenesis.qx.upload.demo.Application",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the main application class of your custom application",
+      " * \"com.zenesis.qx.upload\"",
+      " *",
+      " * @asset(com/zenesis/qx/upload/*)",
+      " * @asset(qx/icon/Oxygen/22/actions/*)",
+      " *",
+      " * @ignore(saveAs)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the main application class of your custom application\n \"com.zenesis.qx.upload\"</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "com/zenesis/qx/upload/*"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/22/actions/*"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "saveAs"
+      }
+    ]
+  },
+  "superClass": "qx.application.Standalone",
+  "members": {
+    "main": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method contains the initial application code and gets called",
+          "     * during startup of the application",
+          "     *",
+          "     * @lint ignoreDeprecated(alert)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method contains the initial application code and gets called\n during startup of the application</p>"
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreDeprecated(alert)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 545,
+          "column": 5,
+          "index": 15918
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.AbstractGui",
+      "appearsIn": [
+        "qx.application.AbstractGui",
+        "qx.application.IApplication"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

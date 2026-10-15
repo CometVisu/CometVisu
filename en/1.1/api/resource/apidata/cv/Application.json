@@ -1,0 +1,1823 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547825,
+  "lastModifiedIso": "2026-10-15T16:42:27.825Z",
+  "classFilename": "../../source/class/cv/Application.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 1062
+    },
+    "end": {
+      "line": 1597,
+      "column": 3,
+      "index": 53586
+    }
+  },
+  "className": "cv.Application",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the main application class of the CometVisu.",
+      " *",
+      " * @asset(demo/*)",
+      " * @asset(designs/*)",
+      " * @asset(icons/*)",
+      " * @asset(libs/source-map.min.js)",
+      " * @asset(sentry/*)",
+      " * @asset(test/*)",
+      " *",
+      " * @require(qx.bom.Html,cv.ui.PopupHandler)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the main application class of the CometVisu.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "demo/*"
+      },
+      {
+        "name": "@asset",
+        "body": "designs/*"
+      },
+      {
+        "name": "@asset",
+        "body": "icons/*"
+      },
+      {
+        "name": "@asset",
+        "body": "libs/source-map.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "sentry/*"
+      },
+      {
+        "name": "@asset",
+        "body": "test/*"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.Html,cv.ui.PopupHandler"
+      }
+    ]
+  },
+  "superClass": "qx.application.Native",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1260
+      },
+      "end": {
+        "line": 93,
+        "column": 3,
+        "index": 3332
+      }
+    }
+  },
+  "statics": {
+    "consoleCommands": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3490
+        },
+        "end": {
+          "line": 101,
+          "column": 23,
+          "index": 3509
+        }
+      },
+      "appearsIn": []
+    },
+    "__commandManager": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 3515
+        },
+        "end": {
+          "line": 102,
+          "column": 26,
+          "index": 3537
+        }
+      },
+      "appearsIn": []
+    },
+    "structureController": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controller from the loaded structure injects itself here when loaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Controller from the loaded structure injects itself here when loaded</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3635
+        },
+        "end": {
+          "line": 106,
+          "column": 29,
+          "index": 3660
+        }
+      },
+      "appearsIn": []
+    },
+    "_relResourcePath": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3666
+        },
+        "end": {
+          "line": 107,
+          "column": 26,
+          "index": 3688
+        }
+      },
+      "appearsIn": []
+    },
+    "_fullResourcePath": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3694
+        },
+        "end": {
+          "line": 108,
+          "column": 27,
+          "index": 3717
+        }
+      },
+      "appearsIn": []
+    },
+    "getRelativeResourcePath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the path to the resources.",
+          "     * As it is a directory, it will end with a '/'.",
+          "     * @param fullPath {boolean?} Get the full path when true",
+          "     * @return {string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the path to the resources.\n As it is a directory, it will end with a '/'.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fullPath {boolean?} Get the full path when true",
+            "paramName": "fullPath",
+            "description": " Get the full path when true",
+            "optional": true,
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3917
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4697
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fullPath",
+          "type": "boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "createClient": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Client factory method -> create a client",
+          "     * @param {...any} args",
+          "     * @return {cv.io.Client|cv.io.Mockup}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Client factory method -&gt; create a client</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{...any} args",
+            "paramName": "args",
+            "description": "",
+            "type": "...any"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.Client|cv.io.Mockup}",
+            "type": "cv.io.Client|cv.io.Mockup",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 4839
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5679
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "returnType": {
+        "type": "cv.io.Client|cv.io.Mockup"
+      },
+      "appearsIn": []
+    },
+    "registerConsoleCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register shortcuts to useful commands the user can execute in the browser console",
+          "     * @param shortcutName {String} command name used to install the command in the global namespace",
+          "     * @param command {Function} command to execute",
+          "     * @param help {String} some documentation about the command",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register shortcuts to useful commands the user can execute in the browser console</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "shortcutName {String} command name used to install the command in the global namespace",
+            "paramName": "shortcutName",
+            "description": " command name used to install the command in the global namespace",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "command {Function} command to execute",
+            "paramName": "command",
+            "description": " command to execute",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "help {String} some documentation about the command",
+            "paramName": "help",
+            "description": " some documentation about the command",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 6009
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 6246
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "shortcutName",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "help",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "root": {
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 6412
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 6446
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "structureLoaded": {
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 6517
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 6659
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeStructureLoaded",
+        "apply": "_applyStructureLoaded"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * true when structure part has been loaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>true when structure part has been loaded</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "commandManager": {
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 6666
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 6757
+        }
+      },
+      "json": {
+        "check": "qx.ui.command.GroupManager",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "active": {
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 6764
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6849
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeActive"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "inManager": {
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 6856
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6948
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyInManager"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "managerDisabled": {
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 6955
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 7059
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeManagerDisabled"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "managerDisabledReason": {
+      "location": {
+        "start": {
+          "line": 226,
+          "column": 4,
+          "index": 7066
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7140
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "managerChecked": {
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7147
+        },
+        "end": {
+          "line": 235,
+          "column": 5,
+          "index": 7249
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyManagerChecked"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "mobile": {
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7318
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 7433
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeMobile",
+        "apply": "_applyMobile"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mobile device detection (small screen)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Mobile device detection (small screen)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "serverChecked": {
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 7440
+        },
+        "end": {
+          "line": 251,
+          "column": 5,
+          "index": 7541
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "serverCheckedChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "servedByOpenhab": {
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7548
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 7614
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "serverHasPhpSupport": {
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4,
+          "index": 7621
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 7734
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "serverHasPhpSupportChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "serverPhpVersion": {
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 7741
+        },
+        "end": {
+          "line": 267,
+          "column": 5,
+          "index": 7810
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "server": {
+      "location": {
+        "start": {
+          "line": 269,
+          "column": 4,
+          "index": 7817
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7876
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_blocker": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 8084
+        },
+        "end": {
+          "line": 282,
+          "column": 18,
+          "index": 8098
+        }
+      },
+      "appearsIn": []
+    },
+    "__appReady": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 283,
+          "column": 4,
+          "index": 8104
+        },
+        "end": {
+          "line": 283,
+          "column": 20,
+          "index": 8120
+        }
+      },
+      "appearsIn": []
+    },
+    "__errorNotificationSequence": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 284,
+          "column": 4,
+          "index": 8126
+        },
+        "end": {
+          "line": 284,
+          "column": 34,
+          "index": 8156
+        }
+      },
+      "appearsIn": []
+    },
+    "_isCached": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 8162
+        },
+        "end": {
+          "line": 285,
+          "column": 19,
+          "index": 8177
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceMapConsumers": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 4,
+          "index": 8183
+        },
+        "end": {
+          "line": 286,
+          "column": 30,
+          "index": 8209
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceMapLibraryPromise": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4,
+          "index": 8215
+        },
+        "end": {
+          "line": 287,
+          "column": 35,
+          "index": 8246
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceMapSupportUnavailable": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 8252
+        },
+        "end": {
+          "line": 288,
+          "column": 40,
+          "index": 8288
+        }
+      },
+      "appearsIn": []
+    },
+    "block": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggle the {@link qx.bom.Blocker} visibility",
+          "     * @param val {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Toggle the {@link qx.bom.Blocker} visibility</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "val {Boolean}",
+            "paramName": "val",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 8391
+        },
+        "end": {
+          "line": 305,
+          "column": 5,
+          "index": 8722
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMobile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 8729
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 9046
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isReady": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9053
+        },
+        "end": {
+          "line": 318,
+          "column": 5,
+          "index": 9100
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyManagerChecked": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 320,
+          "column": 4,
+          "index": 9107
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 9284
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "main": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method contains the initial application code and gets called",
+          "     * during startup of the application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method contains the initial application code and gets called\n during startup of the application</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 9421
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 12628
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.Native",
+      "appearsIn": [
+        "qx.application.Native",
+        "qx.application.IApplication"
+      ]
+    },
+    "hideManager": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 417,
+          "column": 4,
+          "index": 12635
+        },
+        "end": {
+          "line": 425,
+          "column": 5,
+          "index": 12968
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "showManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()",
+          "     * @param data {String|Map} path of file that action should executed on or a Map of options",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "action {String} manager event that can be handled by cv.ui.manager.Main._onManagerEvent()",
+            "paramName": "action",
+            "description": " manager event that can be handled by cv.ui.manager.Main._onManagerEvent()",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {String|Map} path of file that action should executed on or a Map of options",
+            "paramName": "data",
+            "description": " path of file that action should executed on or a Map of options",
+            "type": [
+              "String",
+              "Map"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 13191
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 14597
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": [
+            "String",
+            "Map"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyInManager": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 4,
+          "index": 14604
+        },
+        "end": {
+          "line": 485,
+          "column": 5,
+          "index": 15006
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "showConfigErrors": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4,
+          "index": 15013
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 15854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "configName"
+        },
+        {
+          "name": "options"
+        }
+      ],
+      "appearsIn": []
+    },
+    "validateConfig": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 514,
+          "column": 4,
+          "index": 15861
+        },
+        "end": {
+          "line": 599,
+          "column": 5,
+          "index": 18582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "configName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__formatErrorPopupMessage": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 601,
+          "column": 4,
+          "index": 18589
+        },
+        "end": {
+          "line": 603,
+          "column": 5,
+          "index": 18674
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isMappableStackFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 605,
+          "column": 4,
+          "index": 18681
+        },
+        "end": {
+          "line": 610,
+          "column": 5,
+          "index": 18893
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fileName"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__parseStackFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 612,
+          "column": 4,
+          "index": 18900
+        },
+        "end": {
+          "line": 649,
+          "column": 5,
+          "index": 19859
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "line"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__normalizeResourceUrl": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 651,
+          "column": 4,
+          "index": 19866
+        },
+        "end": {
+          "line": 657,
+          "column": 5,
+          "index": 20028
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getSourceMapUrl": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4,
+          "index": 20035
+        },
+        "end": {
+          "line": 663,
+          "column": 5,
+          "index": 20190
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scriptUrl"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__simplifyMappedSource": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 665,
+          "column": 4,
+          "index": 20197
+        },
+        "end": {
+          "line": 688,
+          "column": 5,
+          "index": 20949
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source"
+        },
+        {
+          "name": "scriptUrl"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isFrameworkMappedSource": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 4,
+          "index": 20956
+        },
+        "end": {
+          "line": 692,
+          "column": 5,
+          "index": 21105
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "source"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__formatGeneratedFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 694,
+          "column": 4,
+          "index": 21112
+        },
+        "end": {
+          "line": 710,
+          "column": 5,
+          "index": 21755
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "frame"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__ensureSourceMapSupport": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 712,
+          "column": 4,
+          "index": 21762
+        },
+        "end": {
+          "line": 731,
+          "column": 5,
+          "index": 22548
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__loadSourceMapConsumer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 733,
+          "column": 4,
+          "index": 22555
+        },
+        "end": {
+          "line": 740,
+          "column": 5,
+          "index": 22918
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scriptUrl"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getSourceMapConsumer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 742,
+          "column": 4,
+          "index": 22925
+        },
+        "end": {
+          "line": 764,
+          "column": 5,
+          "index": 23716
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scriptUrl"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__mapStackFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 766,
+          "column": 4,
+          "index": 23723
+        },
+        "end": {
+          "line": 796,
+          "column": 5,
+          "index": 24794
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "frame"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__mapErrorStack": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 798,
+          "column": 4,
+          "index": 24801
+        },
+        "end": {
+          "line": 860,
+          "column": 5,
+          "index": 26777
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ex"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__updateGlobalErrorNotification": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 862,
+          "column": 4,
+          "index": 26784
+        },
+        "end": {
+          "line": 873,
+          "column": 5,
+          "index": 27331
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ex"
+        },
+        {
+          "name": "exString"
+        },
+        {
+          "name": "notification"
+        },
+        {
+          "name": "sequence"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__globalErrorHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 875,
+          "column": 4,
+          "index": 27338
+        },
+        "end": {
+          "line": 1026,
+          "column": 5,
+          "index": 32951
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ex"
+        }
+      ],
+      "appearsIn": []
+    },
+    "throwError": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1028,
+          "column": 4,
+          "index": 32958
+        },
+        "end": {
+          "line": 1035,
+          "column": 6,
+          "index": 33177
+        }
+      },
+      "appearsIn": []
+    },
+    "_onResize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1037,
+          "column": 4,
+          "index": 33184
+        },
+        "end": {
+          "line": 1041,
+          "column": 5,
+          "index": 33337
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyStructureLoaded": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1043,
+          "column": 4,
+          "index": 33344
+        },
+        "end": {
+          "line": 1051,
+          "column": 5,
+          "index": 33648
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal initialization method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Internal initialization method</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1056,
+          "column": 4,
+          "index": 33709
+        },
+        "end": {
+          "line": 1103,
+          "column": 5,
+          "index": 35356
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "bootstrap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the content",
+          "     * @param xml {Document} XML configuration retrieved from backend",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize the content</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Document} XML configuration retrieved from backend",
+            "paramName": "xml",
+            "description": " XML configuration retrieved from backend",
+            "type": "Document"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1109,
+          "column": 4,
+          "index": 35479
+        },
+        "end": {
+          "line": 1198,
+          "column": 5,
+          "index": 39095
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Document"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadStyles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load CSS styles",
+          "     * @param styles {Array?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load CSS styles</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "styles {Array?}",
+            "paramName": "styles",
+            "optional": true,
+            "type": "Array"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1204,
+          "column": 4,
+          "index": 39171
+        },
+        "end": {
+          "line": 1217,
+          "column": 5,
+          "index": 39645
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Array",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadScripts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load Javascript source files",
+          "     * @param scripts {Array?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load Javascript source files</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "scripts {Array?}",
+            "paramName": "scripts",
+            "optional": true,
+            "type": "Array"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1223,
+          "column": 4,
+          "index": 39735
+        },
+        "end": {
+          "line": 1230,
+          "column": 5,
+          "index": 39955
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scripts",
+          "type": "Array",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadPlugins": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load plugins",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load plugins</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1235,
+          "column": 4,
+          "index": 39998
+        },
+        "end": {
+          "line": 1320,
+          "column": 5,
+          "index": 42948
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__constraintFails": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1322,
+          "column": 4,
+          "index": 42955
+        },
+        "end": {
+          "line": 1375,
+          "column": 5,
+          "index": 44927
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "serverVersionId"
+        },
+        {
+          "name": "constraint"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkBackend": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1377,
+          "column": 4,
+          "index": 44934
+        },
+        "end": {
+          "line": 1540,
+          "column": 5,
+          "index": 51873
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "close": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1542,
+          "column": 4,
+          "index": 51880
+        },
+        "end": {
+          "line": 1548,
+          "column": 5,
+          "index": 52064
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.Native",
+      "appearsIn": [
+        "qx.application.Native",
+        "qx.application.IApplication"
+      ]
+    },
+    "registerServiceWorker": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Install the service-worker if possible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Install the service-worker if possible</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1553,
+          "column": 4,
+          "index": 52133
+        },
+        "end": {
+          "line": 1595,
+          "column": 5,
+          "index": 53578
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

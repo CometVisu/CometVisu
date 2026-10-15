@@ -1,0 +1,358 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/XhrHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1251
+    },
+    "end": {
+      "line": 263,
+      "column": 3,
+      "index": 8108
+    }
+  },
+  "className": "com.zenesis.qx.upload.XhrHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Implementation of AbstractHandler that uses XMLHttpRequest; this is based on",
+      " * work at http://valums.com/ajax-upload/.",
+      " *",
+      " * Call com.zenesis.qx.upload.XhrHandler.isSupported() to check whether this",
+      " * class can be used (otherwise use FormHandler)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Implementation of AbstractHandler that uses XMLHttpRequest; this is based on\n work at http://valums.com/ajax-upload/.\n Call com.zenesis.qx.upload.XhrHandler.isSupported() to check whether this\n class can be used (otherwise use FormHandler)</p>"
+      }
+    ]
+  },
+  "superClass": "com.zenesis.qx.upload.AbstractHandler",
+  "members": {
+    "addBlob": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1758
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "blob"
+        },
+        {
+          "name": "params"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_createFile": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1797
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2490
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "input"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_doUpload": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2529
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 7002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_doCancel": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 7041
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 7248
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    }
+  },
+  "statics": {
+    "__withCredentials": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 7273
+        },
+        "end": {
+          "line": 228,
+          "column": 28,
+          "index": 7297
+        }
+      },
+      "appearsIn": []
+    },
+    "isSupported": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this handler is support on the current browser",
+          "     *",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether this handler is support on the current browser</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 7423
+        },
+        "end": {
+          "line": 245,
+          "column": 5,
+          "index": 7726
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "requireMultipartFormData"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setWithCredentials": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth",
+          "     * cookies)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth\n cookies)</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 7845
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7915
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isWithCredentials": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth",
+          "     * cookies)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to set XMLHttpRequest.withCredentials (used for CORS uploads wth\n cookies)</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 8034
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 8098
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

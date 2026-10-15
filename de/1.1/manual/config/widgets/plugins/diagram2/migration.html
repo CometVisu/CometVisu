@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umstieg von diagram auf diagram2 &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/theme_override.css?v=c8d00f07" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/docs/de/1.1/manual/config/widgets/plugins/diagram2/migration.html"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=245627df"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/translations.js?v=9bf55d28"></script>
+      <script src="../../../../_static/versions.js?v=17c2187a"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../../genindex.html" />
+    <link rel="search" title="Suche" href="../../../../search.html" />
+    <link rel="next" title="Das Diagram2_Info Plugin" href="../diagram2_info/index.html" />
+    <link rel="prev" title="Das Diagram2 Plugin" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+<!-- CometVisu Website Navigation -->
+<nav class="cv-website-navbar">
+    <div class="cv-nav-container">
+        <a href="../../../../../../.." class="cv-nav-logo">
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" alt="CometVisu Logo" class="cv-logo-img">
+            <span class="cv-logo-text">CometVisu</span>
+        </a>
+        <button class="cv-nav-toggle" aria-label="Toggle navigation" onclick="this.parentElement.parentElement.classList.toggle('nav-open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="cv-nav-menu">
+            <li><a href="../../../../../../../de/#features">Features</a></li>
+            <li><a href="../../../../../../../de/#customization">Anpassung</a></li>
+            <li><a href="../../../../../../../de/news/" class="cv-nav-news">Aktuelles</a></li>
+            <li><a href="../../../../" class="cv-nav-active">Dokumentation</a></li>
+            <li><a href="https://github.com/CometVisu/CometVisu" target="_blank" rel="noopener">GitHub</a></li>
+            <li class="cv-nav-lang">
+                
+                <a href="../../../../../../../en/1.1/manual/config/widgets/plugins/diagram2/migration.html" class="cv-lang-switch">EN</a>
+                
+            </li>
+        </ul>
+    </div>
+</nav>
+ 
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Konfiguration der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../manager.html">Der CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../editor.html">Grafischer Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hidden-config.html">Versteckte Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#pure-struktur">Pure-Struktur</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../xml-format.html">XML-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#navigationselemente-in-der-pure-struktur">Navigationselemente in der Pure-Struktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#anderung-der-metal-designs">Änderung der Metal-Designs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#elemente-fur-konvertierung-und-formatierung">Elemente für Konvertierung und Formatierung</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../../index.html#widgets-in-der-pure-struktur">Widgets in der Pure-Struktur</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../address.html">Adressen - die Kommunikation mit dem Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#pure-struktur-beispiele">Pure-Struktur - Beispiele</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../index.html#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../index.html#tile-struktur">Tile-Struktur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../devel/index.html">Informationen für Entwickler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Konfiguration der CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Bedienbare Widgets</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Das Diagram2 Plugin</a></li>
+      <li class="breadcrumb-item active">Umstieg von <code class="docutils literal notranslate"><span class="pre">diagram</span></code> auf <code class="docutils literal notranslate"><span class="pre">diagram2</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<section id="umstieg-von-diagram-auf-diagram2">
+<span id="diagram2-migration"></span><h1>Umstieg von <code class="docutils literal notranslate"><span class="pre">diagram</span></code> auf <code class="docutils literal notranslate"><span class="pre">diagram2</span></code><a class="headerlink" href="#umstieg-von-diagram-auf-diagram2" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">diagram2</span></code> versteht dieselbe Konfiguration wie das ältere <a class="reference internal" href="../diagram/index.html#diagram"><span class="std std-ref">Das Diagram Plugin</span></a>-Plugin. Für den Umstieg
+werden die Elemente umbenannt, das Plugin eingebunden und — wenn die Diagramme genau wie vorher
+aussehen sollen — drei Strichstärken gesetzt.</p>
+<section id="schritt-1-plugin-einbinden">
+<h2>Schritt 1: Plugin einbinden<a class="headerlink" href="#schritt-1-plugin-einbinden" title="Link to this heading"></a></h2>
+<p>Im <code class="docutils literal notranslate"><span class="pre">&lt;meta&gt;</span></code>-Bereich der <strong>Hauptkonfiguration</strong> (nicht in einer eingebundenen Teildatei):</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;plugins&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"diagram"</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;plugin</span><span class="w"> </span><span class="na">name=</span><span class="s">"diagram2"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/plugins&gt;</span>
+</pre></div>
+</div>
+<p>Beide Plugins dürfen nebeneinander stehen. Das ist beim Umstellen praktisch: dasselbe Diagramm
+einmal als <code class="docutils literal notranslate"><span class="pre">&lt;diagram&gt;</span></code> und einmal als <code class="docutils literal notranslate"><span class="pre">&lt;diagram2&gt;</span></code> in dieselbe Seite gesetzt, lassen sich
+Achsen, Farben und Beschriftung direkt vergleichen. Ist alles umgestellt, kann der Eintrag
+<code class="docutils literal notranslate"><span class="pre">diagram</span></code> entfallen.</p>
+</section>
+<section id="schritt-2-elemente-umbenennen">
+<h2>Schritt 2: Elemente umbenennen<a class="headerlink" href="#schritt-2-elemente-umbenennen" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>alt</p></th>
+<th class="head"><p>neu</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;diagram&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;diagram2&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;diagram_info&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;diagram2_info&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Alle Attribute und Kind-Elemente bleiben unverändert — <code class="docutils literal notranslate"><span class="pre">series</span></code>, <code class="docutils literal notranslate"><span class="pre">period</span></code>, <code class="docutils literal notranslate"><span class="pre">legend</span></code>,
+<code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;axis&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;rrd&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;influx&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;openhab&gt;</span></code> und der Rest werden genauso
+gelesen wie vorher.</p>
+</section>
+<section id="schritt-3-strichstarken-und-gitterfarbe-fur-das-aussehen-von-diagram">
+<h2>Schritt 3: Strichstärken und Gitterfarbe für das Aussehen von <code class="docutils literal notranslate"><span class="pre">diagram</span></code><a class="headerlink" href="#schritt-3-strichstarken-und-gitterfarbe-fur-das-aussehen-von-diagram" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">diagram2</span></code> zeichnet ab Werk feiner und mit blasserem Gitter als das flot-basierte Diagramm. Vier
+Attribute stellen das um; ohne sie bleibt es beim bisherigen Bild.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribut</p></th>
+<th class="head"><p>Vorgabe</p></th>
+<th class="head"><p>wirkt auf</p></th>
+<th class="head"><p>Wert für v1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gridwidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Gitterlinien, Achsenlinien, Teilstriche</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gridopacity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.4</span></code></p></td>
+<td><p>Deckkraft der Gitterlinien, 0 bis 1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">borderwidth</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Rahmen um die Zeichenfläche</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">linewidth</span></code></p></td>
+<td><ol class="loweralpha simple" start="19">
+<li><p>unten</p></li>
+</ol>
+</td>
+<td><p>Graphen samt Balken- und Punktumrissen</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">diagram</span></code> zeichnet seine Gitterlinien in voller <code class="docutils literal notranslate"><span class="pre">gridcolor</span></code>. Das ist leicht zu verwechseln:
+flot selbst würde sie mit 22 % Deckkraft zeichnen, das alte Plugin setzt aber <code class="docutils literal notranslate"><span class="pre">grid.tickColor</span></code>
+ausdrücklich auf die Gitterfarbe, sodass die Regel dort nie greift. <code class="docutils literal notranslate"><span class="pre">gridopacity=&quot;1&quot;</span></code> trifft
+dieses Bild.</p>
+<p>Ohne <code class="docutils literal notranslate"><span class="pre">linewidth</span></code> bleibt es beim bisherigen Bild von diagram2: Linien 1,5, Umrisse von Balken und
+Punkten 1. Ein gesetzter Wert gilt für alle drei.</p>
+<p><code class="docutils literal notranslate"><span class="pre">gridwidth</span></code> steht bereits auf dem Wert von <code class="docutils literal notranslate"><span class="pre">diagram</span></code> — flot zeichnet seine Gitterlinien
+ebenfalls mit 1 und nur den Rahmen kräftiger. Für das gewohnte Bild genügen also drei Angaben:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram2</span><span class="w"> </span><span class="na">series=</span><span class="s">"day"</span><span class="w"> </span><span class="na">period=</span><span class="s">"3"</span><span class="w"> </span><span class="na">borderwidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">linewidth=</span><span class="s">"2"</span><span class="w"> </span><span class="na">gridopacity=</span><span class="s">"1"</span><span class="w"> </span><span class="na">popup=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;layout</span><span class="w"> </span><span class="na">colspan=</span><span class="s">"12"</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">"6"</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">unit=</span><span class="s">" °C"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Temperatur"</span><span class="w"> </span><span class="na">decimals=</span><span class="s">"1"</span><span class="nt">&gt;</span>temperature<span class="nt">&lt;/axis&gt;</span>
+<span class="w">  </span><span class="nt">&lt;influx</span><span class="w"> </span><span class="na">measurement=</span><span class="s">"haus/temperatur"</span><span class="w"> </span><span class="na">color=</span><span class="s">"#FF0000"</span><span class="w"> </span><span class="na">label=</span><span class="s">"Aussen [°C]"</span><span class="w"> </span><span class="na">yaxis=</span><span class="s">"temperature"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/diagram2&gt;</span>
+</pre></div>
+</div>
+<p>Die Werte gelten für ein Diagramm als Ganzes, nicht je Datenreihe, und für <code class="docutils literal notranslate"><span class="pre">&lt;diagram2_info&gt;</span></code>
+genauso.</p>
+</section>
+<section id="was-auch-mit-diesen-werten-anders-bleibt">
+<h2>Was auch mit diesen Werten anders bleibt<a class="headerlink" href="#was-auch-mit-diesen-werten-anders-bleibt" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>popup wird ausgewertet.</strong> <code class="docutils literal notranslate"><span class="pre">diagram</span></code> öffnet die Vollbildansicht immer, <code class="docutils literal notranslate"><span class="pre">diagram2</span></code> nur bei
+<code class="docutils literal notranslate"><span class="pre">popup=&quot;true&quot;</span></code>. Ohne das Attribut ist das Widget nicht anklickbar. Wer das alte Verhalten
+will, setzt es überall dort, wo bisher ein Popup aufging.</p></li>
+<li><p><strong>Einheiten erscheinen jetzt.</strong> <code class="docutils literal notranslate"><span class="pre">diagram2</span></code> hängt die <code class="docutils literal notranslate"><span class="pre">unit</span></code> einer Achse an die
+Achsenbeschriftung und an den Wert im Tooltip. <code class="docutils literal notranslate"><span class="pre">diagram</span></code> liest das Attribut zwar, zeigt es aber
+weder an der Achse noch im Tooltip. Wer das gewohnte Bild behalten will, <strong>entfernt ``unit`` aus
+den ``&lt;axis&gt;``-Elementen</strong>; die Einheit lässt sich stattdessen in den Achsentitel schreiben
+(<code class="docutils literal notranslate"><span class="pre">label=&quot;Temperatur</span> <span class="pre">[°C]&quot;</span></code>).</p></li>
+<li><p><strong>Punkte sind kleiner.</strong> Bei <code class="docutils literal notranslate"><span class="pre">style=&quot;points&quot;</span></code> zeichnet <code class="docutils literal notranslate"><span class="pre">diagram</span></code> Kreise mit 3 px Radius,
+<code class="docutils literal notranslate"><span class="pre">diagram2</span></code> mit 2 px. <code class="docutils literal notranslate"><span class="pre">linewidth</span></code> betrifft nur den Umriss, nicht den Radius.</p></li>
+<li><p><strong>``zoomYAxis`` wirkt auf beide Gesten.</strong> In <code class="docutils literal notranslate"><span class="pre">diagram</span></code> steuert das Attribut nur das Zoomen; das
+Ziehen verschiebt die Werteachsen dort immer mit. In <code class="docutils literal notranslate"><span class="pre">diagram2</span></code> bleibt die Werteachse ohne
+<code class="docutils literal notranslate"><span class="pre">zoomYAxis=&quot;true&quot;</span></code> bei beiden Gesten stehen. Wer das gewohnte Verhalten will, setzt das
+Attribut überall dort, wo im Popup gezogen wird.</p></li>
+<li><p><strong>Die Zeitachse dünnt aus.</strong> Wird der Platz knapp, lässt <code class="docutils literal notranslate"><span class="pre">diagram2</span></code> Beschriftungen weg;
+<code class="docutils literal notranslate"><span class="pre">diagram</span></code> lässt sie überlappen.</p></li>
+<li><p><strong>Gezeichnet wird mit D3</strong> statt mit flot. jQuery und die acht flot-Skripte werden für
+<code class="docutils literal notranslate"><span class="pre">diagram2</span></code> nicht geladen.</p></li>
+</ul>
+<p>Achsen, Legende, Tooltip, Farbreihenfolge, die 2 % Luft über und unter den Graphen, <code class="docutils literal notranslate"><span class="pre">refresh</span></code>
+und alle Datenquellen verhalten sich gleich.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Das Diagram2 Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../diagram2_info/index.html" class="btn btn-neutral float-right" title="Das Diagram2_Info Plugin" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2026 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023-2026, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versionen">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 1.1.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versionen</dt>
+        
+        <dd><a href="../../../../../../0.10/manual">0.10.2</a>
+        </dd>
+        
+        <dd><a href="../../../../../../0.11/manual">0.11.2</a>
+        </dd>
+        
+        <dd><a href="../../../../../../0.12/manual">0.12.6</a>
+        </dd>
+        
+        <dd><a href="../../../../../../1.0/manual">1.0.0</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

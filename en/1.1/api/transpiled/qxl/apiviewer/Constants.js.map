@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "statics",
+    "PRIMITIVES",
+    "undefined",
+    "arguments",
+    "varargs",
+    "Boolean",
+    "String",
+    "Number",
+    "Integer",
+    "PositiveNumber",
+    "PositiveInteger",
+    "Float",
+    "Double",
+    "Color",
+    "Error",
+    "RegExp",
+    "Array",
+    "Map",
+    "Function",
+    "Date",
+    "Node",
+    "Element",
+    "Document",
+    "Window",
+    "Event",
+    "MDC_LINKS",
+    "Font",
+    "qxl",
+    "apiviewer",
+    "Constants"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/qx_packages/qooxdoo_qxl_apiviewer_v2_0_1/source/class/qxl/apiviewer/Constants.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qxl.apiviewer.Constants\", {\n  extend: qx.core.Object,\n\n  statics: {\n    /** {Map} The primitive types. These types will not be shown with links. */\n    PRIMITIVES: {\n      var: true,\n      void: true,\n      undefined: true,\n      arguments: true,\n      null: true,\n      varargs: true,\n\n      Boolean: true,\n      String: true,\n\n      Number: true,\n      Integer: true,\n      PositiveNumber: true,\n      PositiveInteger: true,\n      Float: true,\n      Double: true,\n\n      Color: true,\n\n      Error: true,\n      RegExp: true,\n\n      Object: true,\n      Array: true,\n      Map: true,\n\n      Function: true,\n      Date: true,\n      Node: true,\n      Element: true,\n      Document: true,\n      Window: true,\n      Event: true\n    },\n\n    MDC_LINKS: {\n      Event: \"https://developer.mozilla.org/en/DOM/event\",\n      Window: \"https://developer.mozilla.org/en/DOM/window\",\n      Document: \"https://developer.mozilla.org/en/DOM/document\",\n      Element: \"https://developer.mozilla.org/en/DOM/element\",\n      Node: \"https://developer.mozilla.org/en/DOM/node\",\n      Date: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date\",\n      Function: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function\",\n      Array: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array\",\n      Object: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object\",\n      Map: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object\",\n      RegExp: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp\",\n      Error: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error\",\n      Number: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number\",\n      Boolean: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean\",\n      String: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String\",\n      undefined: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/undefined\",\n      arguments: \"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/arguments\",\n      Font: \"https://developer.mozilla.org/en/CSS/font\",\n      Color: \"https://developer.mozilla.org/en/CSS/color\"\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,OAAO,EAAE;MACP;MACAC,UAAU,EAAE;QACV,OAAK,IAAI;QACT,QAAM,IAAI;QACVC,SAAS,EAAE,IAAI;QACfC,SAAS,EAAE,IAAI;QACf,QAAM,IAAI;QACVC,OAAO,EAAE,IAAI;QAEbC,OAAO,EAAE,IAAI;QACbC,MAAM,EAAE,IAAI;QAEZC,MAAM,EAAE,IAAI;QACZC,OAAO,EAAE,IAAI;QACbC,cAAc,EAAE,IAAI;QACpBC,eAAe,EAAE,IAAI;QACrBC,KAAK,EAAE,IAAI;QACXC,MAAM,EAAE,IAAI;QAEZC,KAAK,EAAE,IAAI;QAEXC,KAAK,EAAE,IAAI;QACXC,MAAM,EAAE,IAAI;QAEZhB,MAAM,EAAE,IAAI;QACZiB,KAAK,EAAE,IAAI;QACXC,GAAG,EAAE,IAAI;QAETC,QAAQ,EAAE,IAAI;QACdC,IAAI,EAAE,IAAI;QACVC,IAAI,EAAE,IAAI;QACVC,OAAO,EAAE,IAAI;QACbC,QAAQ,EAAE,IAAI;QACdC,MAAM,EAAE,IAAI;QACZC,KAAK,EAAE;MACT,CAAC;MAEDC,SAAS,EAAE;QACTD,KAAK,EAAE,4CAA4C;QACnDD,MAAM,EAAE,6CAA6C;QACrDD,QAAQ,EAAE,+CAA+C;QACzDD,OAAO,EAAE,8CAA8C;QACvDD,IAAI,EAAE,2CAA2C;QACjDD,IAAI,EAAE,2EAA2E;QACjFD,QAAQ,EAAE,+EAA+E;QACzFF,KAAK,EAAE,4EAA4E;QACnFjB,MAAM,EAAE,6EAA6E;QACrFkB,GAAG,EAAE,6EAA6E;QAClFF,MAAM,EAAE,6EAA6E;QACrFD,KAAK,EAAE,4EAA4E;QACnFP,MAAM,EAAE,6EAA6E;QACrFF,OAAO,EAAE,8EAA8E;QACvFC,MAAM,EAAE,6EAA6E;QACrFJ,SAAS,EAAE,gFAAgF;QAC3FC,SAAS,EAAE,yFAAyF;QACpGuB,IAAI,EAAE,2CAA2C;QACjDb,KAAK,EAAE;MACT;IACF;EACF,CAAC,CAAC;EA/DFc,GAAG,CAACC,SAAS,CAACC,SAAS,CAACnC,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

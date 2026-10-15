@@ -1,0 +1,69 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/theme/icon/Oxygen.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 862
+    },
+    "end": {
+      "line": 39,
+      "column": 3,
+      "index": 1357
+    }
+  },
+  "className": "qxl.dialog.theme.icon.Oxygen",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Oxygen icons",
+      " *",
+      " * @asset(qx/icon/Oxygen/22/actions/dialog-cancel.png)",
+      " * @asset(qx/icon/Oxygen/22/actions/dialog-ok.png)",
+      " * @asset(qx/icon/Oxygen/48/status/dialog-information.png)",
+      " * @asset(qx/icon/Oxygen/48/status/dialog-error.png)",
+      " * @asset(qx/icon/Oxygen/48/status/dialog-warning.png)",
+      " * @asset(qx/icon/Oxygen/16/apps/office-calendar.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Oxygen icons</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/22/actions/dialog-cancel.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/22/actions/dialog-ok.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/48/status/dialog-information.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/48/status/dialog-error.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/48/status/dialog-warning.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Oxygen/16/apps/office-calendar.png"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

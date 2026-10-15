@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "fonts",
+    "size",
+    "family",
+    "color",
+    "fontName",
+    "bold",
+    "headline",
+    "small",
+    "monospace",
+    "theme",
+    "tangible",
+    "Font"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/Font.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n  Tangible Theme for Qooxdoo\n\n  Copyright:\n     2018 IT'IS Foundation\n     2020 Tobi Oetiker\n\n  License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n  Authors:\n    * Tobias Oetiker (oetiker)\n\n  Origin:\n    This theme is based in large parts on the osparc.theme\n\n************************************************************************ */\n\n/**\n * The simple qooxdoo font theme.\n *\n * @usefont(Roboto)\n * @usefont(Roboto Mono)\n */\nqx.Theme.define(\"qx.theme.tangible.Font\", {\n  fonts: {\n    default: {\n      size: 14,\n      family: [\"sans-serif\"],\n      color: \"text-primary-on-surface\",\n      fontName: \"Roboto\"\n    },\n\n    bold: {\n      size: 14,\n      family: [\"sans-serif\"],\n      bold: true,\n      color: \"text-primary-on-surface\",\n      fontName: \"Roboto\"\n    },\n\n    headline: {\n      size: 24,\n      family: [\"sans-serif\"],\n      color: \"text-primary-on-surface\",\n      fontName: \"Roboto\"\n    },\n\n    small: {\n      size: 12,\n      family: [\"sans-serif\"],\n      color: \"text-primary-on-surface\",\n      fontName: \"Roboto\"\n    },\n\n    monospace: {\n      size: 14,\n      family: [\"monospace\"],\n      color: \"text-primary-on-surface\",\n      fontName: \"Roboto Mono\"\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,KAAK,EAAE;MACL,WAAS;QACPC,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,YAAY,CAAC;QACtBC,KAAK,EAAE,yBAAyB;QAChCC,QAAQ,EAAE;MACZ,CAAC;MAEDC,IAAI,EAAE;QACJJ,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,YAAY,CAAC;QACtBG,IAAI,EAAE,IAAI;QACVF,KAAK,EAAE,yBAAyB;QAChCC,QAAQ,EAAE;MACZ,CAAC;MAEDE,QAAQ,EAAE;QACRL,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,YAAY,CAAC;QACtBC,KAAK,EAAE,yBAAyB;QAChCC,QAAQ,EAAE;MACZ,CAAC;MAEDG,KAAK,EAAE;QACLN,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,YAAY,CAAC;QACtBC,KAAK,EAAE,yBAAyB;QAChCC,QAAQ,EAAE;MACZ,CAAC;MAEDI,SAAS,EAAE;QACTP,IAAI,EAAE,EAAE;QACRC,MAAM,EAAE,CAAC,WAAW,CAAC;QACrBC,KAAK,EAAE,yBAAyB;QAChCC,QAAQ,EAAE;MACZ;IACF;EACF,CAAC,CAAC;EAhEFV,EAAE,CAACe,KAAK,CAACC,QAAQ,CAACC,IAAI,CAACd,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

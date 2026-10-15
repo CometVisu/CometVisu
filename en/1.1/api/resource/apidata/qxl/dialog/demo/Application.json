@@ -1,0 +1,695 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/demo/Application.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 558
+    },
+    "end": {
+      "line": 1012,
+      "column": 3,
+      "index": 28222
+    }
+  },
+  "className": "qxl.dialog.demo.Application",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * qxl.dialog demo",
+      " * @asset(dialog/*)",
+      " * @require(qxl.dialog.Dialog)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>qxl.dialog demo</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "dialog/*"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qxl.dialog.Dialog"
+      }
+    ]
+  },
+  "superClass": "qx.application.Standalone",
+  "members": {
+    "main": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method contains the initial application code and gets called",
+          "     * during startup of the application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method contains the initial application code and gets called\n during startup of the application</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 976
+        },
+        "end": {
+          "line": 202,
+          "column": 5,
+          "index": 5305
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.AbstractGui",
+      "appearsIn": [
+        "qx.application.AbstractGui",
+        "qx.application.IApplication"
+      ]
+    },
+    "_replaceOwnedObject": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 5312
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5731
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "owner"
+        },
+        {
+          "name": "obj"
+        },
+        {
+          "name": "id"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createAlert": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5738
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 5975
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createWarning": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 5982
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 6163
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createError": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 6170
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 6330
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createConfirm": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 6337
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 6776
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createPrompt": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 6783
+        },
+        "end": {
+          "line": 269,
+          "column": 5,
+          "index": 7212
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createDialogChain": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Example for nested callbacks",
+          "     * @param caption",
+          "     * @param button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Example for nested callbacks</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "caption",
+            "paramName": "caption",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "button",
+            "paramName": "button",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 7314
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 8496
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createSelect": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Offer a selection of choices to the user",
+          "     * @param caption",
+          "     * @param button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Offer a selection of choices to the user</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "caption",
+            "paramName": "caption",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "button",
+            "paramName": "button",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 313,
+          "column": 4,
+          "index": 8610
+        },
+        "end": {
+          "line": 331,
+          "column": 5,
+          "index": 9246
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createForm": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4,
+          "index": 9253
+        },
+        "end": {
+          "line": 422,
+          "column": 5,
+          "index": 11571
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createFormEmbedded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 424,
+          "column": 4,
+          "index": 11578
+        },
+        "end": {
+          "line": 546,
+          "column": 5,
+          "index": 14940
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createTabbedFormEmbedded": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 548,
+          "column": 4,
+          "index": 14947
+        },
+        "end": {
+          "line": 722,
+          "column": 5,
+          "index": 19777
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createWizard": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 724,
+          "column": 4,
+          "index": 19784
+        },
+        "end": {
+          "line": 848,
+          "column": 5,
+          "index": 23297
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createLogin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a sample login widget",
+          "     * @param caption",
+          "     * @param button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a sample login widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "caption",
+            "paramName": "caption",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "button",
+            "paramName": "button",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 855,
+          "column": 4,
+          "index": 23400
+        },
+        "end": {
+          "line": 880,
+          "column": 5,
+          "index": 24376
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        },
+        {
+          "name": "button"
+        }
+      ],
+      "appearsIn": []
+    },
+    "checkCredentials": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sample asyncronous function for checking credentials that takes the",
+          "     * username, password and a callback function as parameters. After performing",
+          "     * the authentication, the callback is called with the result, which should",
+          "     * be undefined or null if successful, and the error message if the",
+          "     * authentication failed. If the problem was not the authentication, but some",
+          "     * other exception, you could pass an error object.",
+          "     * @param username {String}",
+          "     * @param password {String}",
+          "     * @param callback {Function} The callback function that needs to be called with",
+          "     * (err, data) as arguments",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sample asyncronous function for checking credentials that takes the\n username, password and a callback function as parameters. After performing\n the authentication, the callback is called with the result, which should\n be undefined or null if successful, and the error message if the\n authentication failed. If the problem was not the authentication, but some\n other exception, you could pass an error object.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "username {String}",
+            "paramName": "username",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "password {String}",
+            "paramName": "password",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function} The callback function that needs to be called with\n (err, data) as arguments",
+            "paramName": "callback",
+            "description": " The callback function that needs to be called with\n (err, data) as arguments",
+            "type": "((...args: any[]) => any)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 894,
+          "column": 4,
+          "index": 25027
+        },
+        "end": {
+          "line": 900,
+          "column": 5,
+          "index": 25243
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "name": "password",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "finalCallback": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sample final callback to react on the result of the authentication",
+          "     * @param err {String|Error|undefined|null}",
+          "     * @param data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sample final callback to react on the result of the authentication</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "err {String|Error|undefined|null}",
+            "paramName": "err",
+            "type": [
+              "String",
+              "Error",
+              "undefined",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "data",
+            "paramName": "data",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 907,
+          "column": 4,
+          "index": 25407
+        },
+        "end": {
+          "line": 920,
+          "column": 5,
+          "index": 25887
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "err",
+          "type": [
+            "String",
+            "Error",
+            "undefined",
+            "null"
+          ]
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createProgress": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 922,
+          "column": 4,
+          "index": 25894
+        },
+        "end": {
+          "line": 948,
+          "column": 5,
+          "index": 26541
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createProgressWithLog": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 950,
+          "column": 4,
+          "index": 26548
+        },
+        "end": {
+          "line": 1010,
+          "column": 5,
+          "index": 28212
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "caption"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

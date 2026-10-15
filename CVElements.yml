@@ -14,6 +14,20 @@
     "en": "/en/develop/manual/config/widgets/plugins/diagram/index.html"
   "name": "Diagram"
 - "description":
+    "de": "Diagramme auf D3-Basis, Nachfolger von Diagram"
+    "en": "D3 based graphs, the successor of Diagram."
+  "manual":
+    "de": "/de/develop/manual/config/widgets/plugins/diagram2/index.html"
+    "en": "/en/develop/manual/config/widgets/plugins/diagram2/index.html"
+  "name": "Diagram2"
+- "description":
+    "de": "Informations-Anzeige, die beim Klick ein Diagram2 öffnet"
+    "en": "Information display that opens a Diagram2 when you click on it."
+  "manual":
+    "de": "/de/develop/manual/config/widgets/plugins/diagram2_info/index.html"
+    "en": "/en/develop/manual/config/widgets/plugins/diagram2_info/index.html"
+  "name": "Diagram2_Info"
+- "description":
     "de": "Informations-Anzeige, die beim Klick ein Diagramm öffnet"
   "manual":
     "de": "/de/develop/manual/config/widgets/plugins/diagram_info/index.html"

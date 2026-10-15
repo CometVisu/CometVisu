@@ -1,0 +1,3012 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547843,
+  "lastModifiedIso": "2026-10-15T16:42:27.843Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/Chart.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 912
+    },
+    "end": {
+      "line": 1567,
+      "column": 3,
+      "index": 52518
+    }
+  },
+  "className": "cv.ui.structure.tile.components.Chart",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows an chart.",
+      " * @asset(libs/d3.min.js)",
+      " * @asset(libs/d3.min.js.map)",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows an chart.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "libs/d3.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "libs/d3.min.js.map"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "mixins": [
+    "cv.ui.structure.tile.MVisibility",
+    "cv.ui.structure.tile.MRefresh",
+    "cv.ui.structure.tile.MResize",
+    "cv.ui.structure.tile.MFullscreen"
+  ],
+  "statics": {
+    "ChartCounter": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1334
+        },
+        "end": {
+          "line": 42,
+          "column": 19,
+          "index": 1349
+        }
+      },
+      "appearsIn": []
+    },
+    "DEFAULT_ASPECT_RATIO": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1355
+        },
+        "end": {
+          "line": 43,
+          "column": 33,
+          "index": 1384
+        }
+      },
+      "appearsIn": []
+    },
+    "TF": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1390
+        },
+        "end": {
+          "line": 44,
+          "column": 12,
+          "index": 1398
+        }
+      },
+      "appearsIn": []
+    },
+    "JS_LOADED": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1405
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1644
+        }
+      },
+      "appearsIn": []
+    },
+    "CONFIG": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1651
+        },
+        "end": {
+          "line": 53,
+          "column": 16,
+          "index": 1663
+        }
+      },
+      "appearsIn": []
+    },
+    "observer": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1266
+        },
+        "end": {
+          "line": 40,
+          "column": 18,
+          "index": 1280
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    }
+  },
+  "properties": {
+    "currentSeries": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1815
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1946
+        }
+      },
+      "json": {
+        "check": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year"
+        ],
+        "init": "day",
+        "apply": "_applyCurrentSeries"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "currentPeriod": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1953
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2046
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "__updateTimeRange"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "startTime": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2053
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2108
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "endTime": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2115
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2168
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "minY": {
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2174
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2289
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "apply": "__updateYRange",
+        "event": "changeMinY"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "maxY": {
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2295
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2410
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true,
+        "apply": "__updateYRange",
+        "event": "changeMaxY"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "marginTop": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2455
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2573
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 12,
+        "apply": "_applyMargin",
+        "event": "changeMarginTop"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (top) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (top)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginRight": {
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2620
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2742
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 24,
+        "apply": "_applyMargin",
+        "event": "changeMarginRight"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (right) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (right)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginBottom": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2790
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 2914
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 20,
+        "apply": "_applyMargin",
+        "event": "changeMarginBottom"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (bottom) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (bottom)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "marginLeft": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 2960
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3080
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 24,
+        "apply": "_applyMargin",
+        "event": "changeMarginLeft"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Margin of the widget (left) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Margin of the widget (left)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "margin": {
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3499
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3611
+        }
+      },
+      "json": {
+        "group": [
+          "marginTop",
+          "marginRight",
+          "marginBottom",
+          "marginLeft"
+        ],
+        "mode": "shorthand"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'margin' property is a shorthand property for setting 'marginTop',",
+          "     * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The 'margin' property is a shorthand property for setting 'marginTop',\n 'marginRight', 'marginBottom' and 'marginLeft' at the same time.\n If four values are specified they apply to top, right, bottom and left respectively.\n If there is only one value, it applies to all sides, if there are two or three,\n the missing values are taken from the opposite side.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "width": {
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3618
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3726
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 392,
+        "apply": "_applySize",
+        "event": "changeWidth"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "height": {
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3733
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3843
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 192,
+        "apply": "_applySize",
+        "event": "changeHeight"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "aspectRatio": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3850
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 3915
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": "[[ BinaryExpression ]]"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "inBackground": {
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 3922
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 3985
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "xAxis": {
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 3992
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4093
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.tile.components.chart.XAxis",
+        "event": "changeXAxis"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "yAxis": {
+      "location": {
+        "start": {
+          "line": 169,
+          "column": 4,
+          "index": 4099
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4200
+        }
+      },
+      "json": {
+        "check": "cv.ui.structure.tile.components.chart.YAxis",
+        "event": "changeYAxis"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "visible": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1520
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1643
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1726
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyRefresh"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "resizeTarget": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1562
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1663
+        }
+      },
+      "json": {
+        "check": "Element",
+        "nullable": true,
+        "apply": "_applyResizeTarget"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MResize"
+      ],
+      "mixin": "cv.ui.structure.tile.MResize"
+    },
+    "fullscreen": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1014
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 1142
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "__applyFullscreen",
+        "event": "changeFullscreen"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    }
+  },
+  "members": {
+    "_id": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4346
+        },
+        "end": {
+          "line": 181,
+          "column": 13,
+          "index": 4355
+        }
+      },
+      "appearsIn": []
+    },
+    "_downloadedImage": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4361
+        },
+        "end": {
+          "line": 182,
+          "column": 26,
+          "index": 4383
+        }
+      },
+      "appearsIn": []
+    },
+    "_url": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 4389
+        },
+        "end": {
+          "line": 183,
+          "column": 14,
+          "index": 4399
+        }
+      },
+      "appearsIn": []
+    },
+    "_headers": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4405
+        },
+        "end": {
+          "line": 184,
+          "column": 18,
+          "index": 4419
+        }
+      },
+      "appearsIn": []
+    },
+    "_request": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4425
+        },
+        "end": {
+          "line": 185,
+          "column": 18,
+          "index": 4439
+        }
+      },
+      "appearsIn": []
+    },
+    "_loaded": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 186,
+          "column": 4,
+          "index": 4445
+        },
+        "end": {
+          "line": 186,
+          "column": 17,
+          "index": 4458
+        }
+      },
+      "appearsIn": []
+    },
+    "_datasets": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 4464
+        },
+        "end": {
+          "line": 187,
+          "column": 19,
+          "index": 4479
+        }
+      },
+      "appearsIn": []
+    },
+    "_initializing": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 4485
+        },
+        "end": {
+          "line": 188,
+          "column": 23,
+          "index": 4504
+        }
+      },
+      "appearsIn": []
+    },
+    "_navigationEnabled": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 4510
+        },
+        "end": {
+          "line": 189,
+          "column": 28,
+          "index": 4534
+        }
+      },
+      "appearsIn": []
+    },
+    "__toolTipTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 4540
+        },
+        "end": {
+          "line": 190,
+          "column": 24,
+          "index": 4560
+        }
+      },
+      "appearsIn": []
+    },
+    "__showTooltip": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 191,
+          "column": 4,
+          "index": 4566
+        },
+        "end": {
+          "line": 191,
+          "column": 24,
+          "index": 4586
+        }
+      },
+      "appearsIn": []
+    },
+    "__debouncedOnResize": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 4592
+        },
+        "end": {
+          "line": 192,
+          "column": 29,
+          "index": 4617
+        }
+      },
+      "appearsIn": []
+    },
+    "__resizeTimeout": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4,
+          "index": 4623
+        },
+        "end": {
+          "line": 193,
+          "column": 25,
+          "index": 4644
+        }
+      },
+      "appearsIn": []
+    },
+    "__startTs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 4650
+        },
+        "end": {
+          "line": 194,
+          "column": 19,
+          "index": 4665
+        }
+      },
+      "appearsIn": []
+    },
+    "__endTs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 4671
+        },
+        "end": {
+          "line": 195,
+          "column": 17,
+          "index": 4684
+        }
+      },
+      "appearsIn": []
+    },
+    "__autoHeightForFullscreen": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 4690
+        },
+        "end": {
+          "line": 196,
+          "column": 36,
+          "index": 4722
+        }
+      },
+      "appearsIn": []
+    },
+    "__fullscreenRenderFrame": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4728
+        },
+        "end": {
+          "line": 197,
+          "column": 33,
+          "index": 4757
+        }
+      },
+      "appearsIn": []
+    },
+    "__pendingReconnectClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4,
+          "index": 4763
+        },
+        "end": {
+          "line": 198,
+          "column": 34,
+          "index": 4793
+        }
+      },
+      "appearsIn": []
+    },
+    "__pendingReconnectListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 4799
+        },
+        "end": {
+          "line": 199,
+          "column": 36,
+          "index": 4831
+        }
+      },
+      "appearsIn": []
+    },
+    "_yFormat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 4837
+        },
+        "end": {
+          "line": 200,
+          "column": 18,
+          "index": 4851
+        }
+      },
+      "appearsIn": []
+    },
+    "_tooltipIndicator": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "    * @type {d3.Selection}",
+          "    "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{d3.Selection}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 4900
+        },
+        "end": {
+          "line": 205,
+          "column": 27,
+          "index": 4923
+        }
+      },
+      "appearsIn": []
+    },
+    "_svg": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {d3.Selection}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{d3.Selection}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 4973
+        },
+        "end": {
+          "line": 209,
+          "column": 14,
+          "index": 4983
+        }
+      },
+      "appearsIn": []
+    },
+    "_tooltip": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {HTMLElement}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{HTMLElement}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 5032
+        },
+        "end": {
+          "line": 213,
+          "column": 18,
+          "index": 5046
+        }
+      },
+      "appearsIn": []
+    },
+    "_titleString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5090
+        },
+        "end": {
+          "line": 217,
+          "column": 22,
+          "index": 5108
+        }
+      },
+      "appearsIn": []
+    },
+    "data": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {cv.ui.structure.tile.components.chart.Data}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{cv.ui.structure.tile.components.chart.Data}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 5188
+        },
+        "end": {
+          "line": 221,
+          "column": 14,
+          "index": 5198
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 5205
+        },
+        "end": {
+          "line": 488,
+          "column": 5,
+          "index": 15196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "getXPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 490,
+          "column": 4,
+          "index": 15203
+        },
+        "end": {
+          "line": 496,
+          "column": 5,
+          "index": 15403
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "i"
+        },
+        {
+          "name": "isValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getYPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 498,
+          "column": 4,
+          "index": 15410
+        },
+        "end": {
+          "line": 503,
+          "column": 5,
+          "index": 15582
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "i"
+        },
+        {
+          "name": "isValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMinYPos": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 505,
+          "column": 4,
+          "index": 15589
+        },
+        "end": {
+          "line": 507,
+          "column": 5,
+          "index": 15653
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applySize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 509,
+          "column": 4,
+          "index": 15660
+        },
+        "end": {
+          "line": 513,
+          "column": 5,
+          "index": 15865
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyMargin": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 515,
+          "column": 4,
+          "index": 15872
+        },
+        "end": {
+          "line": 515,
+          "column": 21,
+          "index": 15889
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__updateYRange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 517,
+          "column": 4,
+          "index": 15896
+        },
+        "end": {
+          "line": 532,
+          "column": 5,
+          "index": 16344
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_initAxes": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 534,
+          "column": 4,
+          "index": 16351
+        },
+        "end": {
+          "line": 624,
+          "column": 5,
+          "index": 19817
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initChartContent": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 626,
+          "column": 4,
+          "index": 19824
+        },
+        "end": {
+          "line": 679,
+          "column": 5,
+          "index": 21495
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onLocaleChanged": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 681,
+          "column": 4,
+          "index": 21502
+        },
+        "end": {
+          "line": 689,
+          "column": 5,
+          "index": 21821
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onStateUpdate": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 691,
+          "column": 4,
+          "index": 21828
+        },
+        "end": {
+          "line": 707,
+          "column": 5,
+          "index": 22450
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent"
+      ]
+    },
+    "_onSeriesPrev": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 709,
+          "column": 4,
+          "index": 22457
+        },
+        "end": {
+          "line": 711,
+          "column": 5,
+          "index": 22536
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onSeriesChange": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 713,
+          "column": 4,
+          "index": 22543
+        },
+        "end": {
+          "line": 722,
+          "column": 5,
+          "index": 22869
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "select"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSeriesNext": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 724,
+          "column": 4,
+          "index": 22876
+        },
+        "end": {
+          "line": 729,
+          "column": 5,
+          "index": 23039
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "refresh": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 731,
+          "column": 4,
+          "index": 23046
+        },
+        "end": {
+          "line": 739,
+          "column": 5,
+          "index": 23237
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_refreshData": {
+      "jsdoc": {
+        "raw": [
+          " triggered after a change os series or period"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 742,
+          "column": 4,
+          "index": 23296
+        },
+        "end": {
+          "line": 757,
+          "column": 5,
+          "index": 23759
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyCurrentSeries": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 759,
+          "column": 4,
+          "index": 23766
+        },
+        "end": {
+          "line": 776,
+          "column": 5,
+          "index": 24411
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "series"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__updateTimeRange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 779,
+          "column": 4,
+          "index": 24423
+        },
+        "end": {
+          "line": 834,
+          "column": 5,
+          "index": 26483
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_loadData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 836,
+          "column": 4,
+          "index": 26490
+        },
+        "end": {
+          "line": 882,
+          "column": 5,
+          "index": 27925
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onSuccess": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 884,
+          "column": 4,
+          "index": 27932
+        },
+        "end": {
+          "line": 892,
+          "column": 5,
+          "index": 28237
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "chartData"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__cleanupReconnectListener": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 894,
+          "column": 4,
+          "index": 28244
+        },
+        "end": {
+          "line": 900,
+          "column": 5,
+          "index": 28568
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onRendered": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 902,
+          "column": 4,
+          "index": 28575
+        },
+        "end": {
+          "line": 932,
+          "column": 5,
+          "index": 29477
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "chartData"
+        },
+        {
+          "name": "retries"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__handleFullscreenChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 934,
+          "column": 4,
+          "index": 29484
+        },
+        "end": {
+          "line": 958,
+          "column": 5,
+          "index": 30230
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isFullscreen"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getSize": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 960,
+          "column": 4,
+          "index": 30237
+        },
+        "end": {
+          "line": 990,
+          "column": 5,
+          "index": 31763
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "multiTimeFormat": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 992,
+          "column": 4,
+          "index": 31770
+        },
+        "end": {
+          "line": 1016,
+          "column": 5,
+          "index": 32990
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getSvgElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get svg element selection (create if not exists)",
+          "     * @param parent d3.selection of the parent this element should be a child of",
+          "     * @param nodeName {String} Element name",
+          "     * @param classes {Array<String>} array of css classes used to identify this element",
+          "     * @param attributes {Map<String, String>?} set these attributes if the element has to be created, when it already exists these are ignored",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get svg element selection (create if not exists)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "parent d3.selection of the parent this element should be a child of"
+          },
+          {
+            "name": "@param",
+            "body": "nodeName {String} Element name",
+            "paramName": "nodeName",
+            "description": " Element name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "classes {Array<String>} array of css classes used to identify this element",
+            "paramName": "classes",
+            "description": " array of css classes used to identify this element",
+            "type": "Array<String>"
+          },
+          {
+            "name": "@param",
+            "body": "attributes {Map<String, String>?} set these attributes if the element has to be created, when it already exists these are ignored",
+            "paramName": "attributes",
+            "description": " set these attributes if the element has to be created, when it already exists these are ignored",
+            "optional": true,
+            "type": "Map<String, String>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1026,
+          "column": 4,
+          "index": 33445
+        },
+        "end": {
+          "line": 1037,
+          "column": 5,
+          "index": 33838
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "parent"
+        },
+        {
+          "name": "nodeName",
+          "type": "string"
+        },
+        {
+          "name": "classes",
+          "type": "Array<String>"
+        },
+        {
+          "name": "attributes",
+          "type": "Map<String, String>",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSvgElement": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1039,
+          "column": 4,
+          "index": 33845
+        },
+        "end": {
+          "line": 1041,
+          "column": 5,
+          "index": 34002
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeName"
+        },
+        {
+          "name": "classes"
+        },
+        {
+          "name": "attributes"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDataset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1043,
+          "column": 4,
+          "index": 34009
+        },
+        "end": {
+          "line": 1045,
+          "column": 5,
+          "index": 34066
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_render": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1047,
+          "column": 4,
+          "index": 34073
+        },
+        "end": {
+          "line": 1066,
+          "column": 5,
+          "index": 34637
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_renderChart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param data",
+          "     * @param {Boolean} single Add a single data point to the chart",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data",
+            "paramName": "data",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} single Add a single data point to the chart",
+            "paramName": "single",
+            "description": "Add a single data point to the chart",
+            "type": "boolean"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1073,
+          "column": 4,
+          "index": 34763
+        },
+        "end": {
+          "line": 1147,
+          "column": 5,
+          "index": 37314
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        },
+        {
+          "name": "single",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addLines": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1149,
+          "column": 4,
+          "index": 37321
+        },
+        "end": {
+          "line": 1285,
+          "column": 5,
+          "index": 42778
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPointerEntered": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1287,
+          "column": 4,
+          "index": 42785
+        },
+        "end": {
+          "line": 1294,
+          "column": 5,
+          "index": 42996
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerLeft": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1296,
+          "column": 4,
+          "index": 43003
+        },
+        "end": {
+          "line": 1306,
+          "column": 5,
+          "index": 43249
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__activateTooltip": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1308,
+          "column": 4,
+          "index": 43256
+        },
+        "end": {
+          "line": 1326,
+          "column": 5,
+          "index": 43863
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        },
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerMoved": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1328,
+          "column": 4,
+          "index": 43870
+        },
+        "end": {
+          "line": 1397,
+          "column": 5,
+          "index": 46886
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        },
+        {
+          "name": "center"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSvg": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1399,
+          "column": 4,
+          "index": 46893
+        },
+        "end": {
+          "line": 1401,
+          "column": 5,
+          "index": 46962
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDatasetOpacity": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.",
+          "     * The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.",
+          "     * Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.",
+          "     * Returns null if the attribute is not present or the value is invalid.",
+          "     *",
+          "     * @returns {string|null} The opacity as a hexadecimal string, or null if not set or invalid.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieves the dataset opacity as a hexadecimal string based on the 'dataset-opacity' attribute.\n The attribute value should be an integer between 0 and 99 (inclusive), representing the opacity percentage.\n Converts the percentage to a value between 0x00 and 0xFF (0-255) and returns it as a hexadecimal string.\n Returns null if the attribute is not present or the value is invalid.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string|null} The opacity as a hexadecimal string, or null if not set or invalid.",
+            "type": "string|null",
+            "description": "The opacity as a hexadecimal string, or null if not set or invalid."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1411,
+          "column": 4,
+          "index": 47497
+        },
+        "end": {
+          "line": 1419,
+          "column": 5,
+          "index": 47857
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string|null"
+      },
+      "appearsIn": []
+    },
+    "__updateTitle": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1421,
+          "column": 4,
+          "index": 47864
+        },
+        "end": {
+          "line": 1429,
+          "column": 5,
+          "index": 48166
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_seriesToShort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts series to a shot string that is shown in a select box",
+          "     * @param series",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts series to a shot string that is shown in a select box</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "series",
+            "paramName": "series",
+            "type": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1436,
+          "column": 4,
+          "index": 48296
+        },
+        "end": {
+          "line": 1454,
+          "column": 5,
+          "index": 48719
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "series"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_shownDateRange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert the currently shown date range into a human-readable string",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convert the currently shown date range into a human-readable string</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1460,
+          "column": 4,
+          "index": 48833
+        },
+        "end": {
+          "line": 1499,
+          "column": 5,
+          "index": 50427
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getWeekNumber": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1501,
+          "column": 4,
+          "index": 50434
+        },
+        "end": {
+          "line": 1509,
+          "column": 5,
+          "index": 50858
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "d"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_disconnected": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1511,
+          "column": 4,
+          "index": 50869
+        },
+        "end": {
+          "line": 1531,
+          "column": 5,
+          "index": 51595
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
+      "appearsIn": [
+        "cv.ui.structure.tile.components.AbstractComponent",
+        "cv.ui.structure.tile.elements.AbstractCustomElement"
+      ]
+    },
+    "_observeVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1666
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "_unobserveVisibility": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2309
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2450
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MVisibility"
+      ],
+      "mixin": "cv.ui.structure.tile.MVisibility"
+    },
+    "__application": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1872
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1891
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_refreshTimer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1897
+        },
+        "end": {
+          "line": 60,
+          "column": 23,
+          "index": 1916
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_lastRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1922
+        },
+        "end": {
+          "line": 61,
+          "column": 22,
+          "index": 1940
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_applyRefresh": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1947
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2545
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__onVisibilityChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2552
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2696
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__onApplicationActiveChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2854
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isRefreshAllowed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2861
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__isAppActive": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2993
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__resumeRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 3090
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3606
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__pauseRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3613
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3712
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "__doRefresh": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3719
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3934
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "setDebouncedRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.",
+          "     * The refresh method must be implemented by the class including this mixin.",
+          "     *",
+          "     * The debounced refresh can then be called with this.debouncedRefresh();",
+          "     * @param delay {number} delay in milliseconds",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a debounced refresh method (created with qx.util.Function.debounce) that is called after the given delay.\n The refresh method must be implemented by the class including this mixin.\n The debounced refresh can then be called with this.debouncedRefresh();</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "delay {number} delay in milliseconds",
+            "paramName": "delay",
+            "description": " delay in milliseconds",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4295
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "number"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MRefresh"
+      ],
+      "mixin": "cv.ui.structure.tile.MRefresh"
+    },
+    "_observer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {ResizeObserver}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{ResizeObserver}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1854
+        },
+        "end": {
+          "line": 69,
+          "column": 19,
+          "index": 1869
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MResize"
+      ],
+      "mixin": "cv.ui.structure.tile.MResize"
+    },
+    "_applyResizeTarget": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1876
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 2071
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "oldElement"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MResize"
+      ],
+      "mixin": "cv.ui.structure.tile.MResize"
+    },
+    "__uuid": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1288
+        },
+        "end": {
+          "line": 45,
+          "column": 16,
+          "index": 1300
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__popupAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1306
+        },
+        "end": {
+          "line": 46,
+          "column": 24,
+          "index": 1326
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__button": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1332
+        },
+        "end": {
+          "line": 47,
+          "column": 18,
+          "index": 1346
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddress": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1352
+        },
+        "end": {
+          "line": 48,
+          "column": 23,
+          "index": 1371
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileAddressStateUpdateHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 49,
+          "column": 41,
+          "index": 1414
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileClosedHandler": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1420
+        },
+        "end": {
+          "line": 50,
+          "column": 29,
+          "index": 1445
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__tileWidget": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 51,
+          "column": 22,
+          "index": 1469
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "getUuid": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1476
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1604
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "getPopupAddress": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1611
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1775
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__applyFullscreen": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1782
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "_initFullscreenSwitch": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2180
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 4018
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "__cleanupFullscreenBindings": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 4025
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 4516
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    },
+    "_buttonFactory": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 4523
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "icon"
+        },
+        {
+          "name": "classes"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MFullscreen"
+      ],
+      "mixin": "cv.ui.structure.tile.MFullscreen"
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 1539,
+        "column": 2,
+        "index": 51729
+      },
+      "end": {
+        "line": 1555,
+        "column": 3,
+        "index": 52297
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "Error",
+    "tool",
+    "compiler",
+    "TargetError"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/TargetError.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n *\n *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python\n *    toolchain\n *\n *    https://github.com/qooxdoo/qooxdoo-compiler\n *\n *    Copyright:\n *      3033 Derrell Lipman\n *\n *    License:\n *      MIT: https://opensource.org/licenses/MIT\n *\n *      This software is provided under the same licensing terms as Qooxdoo,\n *      please see the LICENSE file in the Qooxdoo project's top-level directory\n *      for details.\n *\n *    Authors:\n *      * Derrell Lipman (@derrell)\n *\n * ************************************************************************/\n\nqx.Class.define(\"qx.tool.compiler.TargetError\", {\n  //  extend : qx.type.BaseError\n  extend: Error\n});\n"
+  ],
+  "mappings": ";;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8BAA8B,EAAE;IAC9C;IACAC,MAAM,EAAEC;EACV,CAAC,CAAC;EAzBFP,EAAE,CAACQ,IAAI,CAACC,QAAQ,CAACC,WAAW,CAACP,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

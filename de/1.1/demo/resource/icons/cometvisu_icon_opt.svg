@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   style="enable-background:new"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 487.76357 560.68528"
+   height="560.6853"
+   width="487.76358">
+  <title
+     id="title4474">CometVisu Icon</title>
+  <defs
+     id="defs4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>CometVisu Icon</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nd/3.0/" />
+        <dc:date>13.03.2016</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Christian Mayer</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>cometvisu.org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>CC-BY-ND</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:description>The icon for the CometVisu.
+
+It may be used in by anyone to give informations about the CometVisu. This is not considered a violation of the ND terms. The colour of the icon is also allowed to be changed, #ff8000 is the preferred colour.</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nd/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-84.942149,-63.22472)"
+     style="display:inline"
+     id="layer2">
+    <path
+       id="path4154"
+       d="M 185.86807,603.85449 C 86.625033,652.981 51.697638,820.33798 142.43151,909.93072 c 90.73387,89.59274 256.75425,58.15899 306.07622,-43.43656 -60.27958,48.91717 -175.01881,49.73879 -244.45691,-18.18275 -69.4381,-67.92153 -67.9372,-187.01233 -18.18275,-244.45692 z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       transform="translate(0,-343.70079)" />
+    <path
+       id="path4156"
+       d="m 236.3757,578.60068 c -94.95434,47.47718 -95.18146,190.16811 -24.24367,260.61936 70.9378,70.45125 213.60404,68.3883 264.65997,-22.22336 0,0 90.03878,-121.05746 90.91373,-405.07117 C 538.27611,514.80022 482.89471,753.56411 354.56355,755.37738 225.27318,757.2042 236.3757,578.60068 236.3757,578.60068 Z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       transform="translate(0,-343.70079)" />
+    <path
+       d="m 460.61601,165.3202 -23.25966,4.8429 -4.41692,23.49237 -4.8429,-23.25966 -23.49237,-4.41691 23.25966,-4.8429 4.41692,-23.49238 4.84266,23.25944 z"
+       id="path5014"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <path
+       d="m 533.08218,129.51467 -23.25966,4.8429 -4.41692,23.49237 -4.8429,-23.25966 -23.49237,-4.41691 23.25966,-4.8429 4.41692,-23.49238 4.84266,23.25944 z"
+       id="path5014-4"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <path
+       d="m 508.79792,182.0426 -23.25966,4.8429 -4.41692,23.49237 -4.8429,-23.25966 -23.49237,-4.41691 23.25966,-4.8429 4.41692,-23.49238 4.84266,23.25944 z"
+       id="path5014-4-7"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    <path
+       id="rect4656-6"
+       d="m 252.28632,227.59602 24.1236,-0.0117 0,126.11914 158.35156,0 0,-126.11914 24.10129,-0.0106 -103.10574,-51.55918 z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.3655895;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.36558951, 1.09676854;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+  </g>
+</svg>

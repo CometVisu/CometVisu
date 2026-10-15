@@ -1,0 +1,49 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082602288,
+  "lastModifiedIso": "2026-10-15T16:43:22.288Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIconsTwoTone.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 647
+    },
+    "end": {
+      "line": 26,
+      "column": 66,
+      "index": 713
+    }
+  },
+  "className": "qx.theme.iconfont.LoadMaterialIconsTwoTone",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @usefont(MaterialIconsTwoTone)",
+      " * @deprecated use the `@usefont` directive directly in your code",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "MaterialIconsTwoTone"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "use the <code>@usefont</code> directive directly in your code"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

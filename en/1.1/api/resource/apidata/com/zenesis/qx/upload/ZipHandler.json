@@ -1,0 +1,289 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/ZipHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 923
+    },
+    "end": {
+      "line": 98,
+      "column": 3,
+      "index": 2621
+    }
+  },
+  "className": "com.zenesis.qx.upload.ZipHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(JSZip)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "JSZip"
+      }
+    ]
+  },
+  "superClass": "com.zenesis.qx.upload.AbstractHandler",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "uploader"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 1029
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1105
+      }
+    }
+  },
+  "members": {
+    "generateAsync": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1125
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1223
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "options"
+        },
+        {
+          "name": "onUpdate"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addBlob": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1262
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1616
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "blob"
+        },
+        {
+          "name": "params"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_createFile": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1655
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2347
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "input"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_doUpload": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2386
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2522
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "_doCancel": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2561
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2593
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "overriddenFrom": "com.zenesis.qx.upload.AbstractHandler",
+      "appearsIn": [
+        "com.zenesis.qx.upload.AbstractHandler"
+      ]
+    },
+    "__zip": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2600
+        },
+        "end": {
+          "line": 96,
+          "column": 15,
+          "index": 2611
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

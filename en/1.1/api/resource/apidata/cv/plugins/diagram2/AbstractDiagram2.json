@@ -1,0 +1,2549 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547831,
+  "lastModifiedIso": "2026-10-15T16:42:27.831Z",
+  "classFilename": "../../source/class/cv/plugins/diagram2/AbstractDiagram2.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 60,
+      "column": 0,
+      "index": 2945
+    },
+    "end": {
+      "line": 982,
+      "column": 3,
+      "index": 32365
+    }
+  },
+  "className": "cv.plugins.diagram2.AbstractDiagram2",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Diagrams drawn with d3, the successor of the flot based diagram plugin.",
+      " *",
+      " * The configuration is the one of the old plugin, only the widget names differ, so that both",
+      " * can be used side by side while this one is being completed.",
+      " *",
+      " * <h4>widgets:</h4>",
+      " * <ul>",
+      " *   <li>diagram2</li>",
+      " *   <li>diagram2_info</li>",
+      " * </ul>",
+      " *",
+      " * <h4>attributes (per diagram):</h4>",
+      " * <ul>",
+      " *   <li>series:               optional, \"hour\", \"day\" (default), \"week\", \"month\", \"year\"</li>",
+      " *   <li>period:               optional, number of \"series\" to be shown</li>",
+      " *   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>",
+      " *   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>",
+      " *   <li>gridwidth:            optional, stroke width of grid lines, axes and ticks, default 1</li>",
+      " *   <li>gridopacity:          optional, how solid the grid lines are, 0 to 1, default 0.4</li>",
+      " *   <li>borderwidth:          optional, stroke width of the frame around the plot, default 1</li>",
+      " *   <li>linewidth:            optional, stroke width of the graphs, 1.5 for lines and 1 for",
+      " *                             bar and point outlines when not set</li>",
+      " *   <li>width, height:        optional, width and height of \"inline\"-diagram</li>",
+      " *   <li>previewlabels:        optional, show labels on \"inline\"-diagram</li>",
+      " *   <li>popup:                optional, make diagram clickable and open popup</li>",
+      " *   <li>legend:               optional, \"none\", \"both\", \"inline\", \"popup\" select display of legend</li>",
+      " *   <li>title:                optional, diagram title (overrides label-content)</li>",
+      " * </ul>",
+      " *",
+      " * <h4>attributes (per graph):</h4>",
+      " * <ul>",
+      " *   <li>style:                optional, \"lines\" (default), \"bars\", \"points\" select graph type</li>",
+      " *   <li>fill:                 optional, true or false - fill the space under the line / within the bar</li>",
+      " *   <li>barWidth:             optional, width of bars in milliseconds (bar style graphs)</li>",
+      " *   <li>align:                optional, \"left\", \"center\" (default), \"right\" alignment of bars</li>",
+      " * </ul>",
+      " *",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Diagrams drawn with d3, the successor of the flot based diagram plugin.\n The configuration is the one of the old plugin, only the widget names differ, so that both\n can be used side by side while this one is being completed.\n </p>\n<h4>widgets:</h4>\n<ul>\n   <li>diagram2</li>\n   <li>diagram2_info</li>\n </ul>\n<h4>attributes (per diagram):</h4>\n<ul>\n   <li>series:               optional, \"hour\", \"day\" (default), \"week\", \"month\", \"year\"</li>\n   <li>period:               optional, number of \"series\" to be shown</li>\n   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>\n   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>\n   <li>gridwidth:            optional, stroke width of grid lines, axes and ticks, default 1</li>\n   <li>gridopacity:          optional, how solid the grid lines are, 0 to 1, default 0.4</li>\n   <li>borderwidth:          optional, stroke width of the frame around the plot, default 1</li>\n   <li>linewidth:            optional, stroke width of the graphs, 1.5 for lines and 1 for\n                             bar and point outlines when not set</li>\n   <li>width, height:        optional, width and height of \"inline\"-diagram</li>\n   <li>previewlabels:        optional, show labels on \"inline\"-diagram</li>\n   <li>popup:                optional, make diagram clickable and open popup</li>\n   <li>legend:               optional, \"none\", \"both\", \"inline\", \"popup\" select display of legend</li>\n   <li>title:                optional, diagram title (overrides label-content)</li>\n </ul>\n<h4>attributes (per graph):</h4>\n<ul>\n   <li>style:                optional, \"lines\" (default), \"bars\", \"points\" select graph type</li>\n   <li>fill:                 optional, true or false - fill the space under the line / within the bar</li>\n   <li>barWidth:             optional, width of bars in milliseconds (bar style graphs)</li>\n   <li>align:                optional, \"left\", \"center\" (default), \"right\" alignment of bars</li>\n </ul>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.pure.AbstractWidget",
+  "mixins": [
+    "cv.ui.common.Operate",
+    "cv.ui.common.Refresh"
+  ],
+  "isSingleton": false,
+  "abstract": true,
+  "statics": {
+    "getDefaultClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The designs give the diagram its box through the class of the old widget, e.g.",
+          "     * \".widget.diagram { white-space: nowrap }\" - without it the widget stays at the default",
+          "     * width of 320 pixels. The parser asks this class, because parse() hands it in as the handler.",
+          "     * @param type {String} widget type, diagram2 or diagram2_info",
+          "     * @return {String} classes of the widget element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The designs give the diagram its box through the class of the old widget, e.g.\n \".widget.diagram { white-space: nowrap }\" - without it the widget stays at the default\n width of 320 pixels. The parser asks this class, because parse() hands it in as the handler.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} widget type, diagram2 or diagram2_info",
+            "paramName": "type",
+            "description": " widget type, diagram2 or diagram2_info",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} classes of the widget element",
+            "type": "string",
+            "description": "classes of the widget element"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 3698
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 3883
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @param mappings {Map?} additional attribute to property mappings of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the widgets XML configuration and extracts the given information\n to a simple key/value map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {Element} XML-Element",
+            "paramName": "xml",
+            "description": " XML-Element",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} internal path of the widget",
+            "paramName": "path",
+            "description": " internal path of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "flavour {String} Flavour of the widget",
+            "paramName": "flavour",
+            "description": " Flavour of the widget",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "pageType {String} Page type (2d, 3d, ...)",
+            "paramName": "pageType",
+            "description": " Page type (2d, 3d, ...)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "mappings {Map?} additional attribute to property mappings of the widget",
+            "paramName": "mappings",
+            "description": " additional attribute to property mappings of the widget",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 4310
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 5006
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        },
+        {
+          "name": "mappings",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "numberAttribute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A number out of the configuration: the value the attribute names, the given default when it",
+          "     * is missing, is not a number, is negative or lies above the allowed maximum.",
+          "     * @param value {String|null} attribute value",
+          "     * @param fallback {Number|null} default of this attribute",
+          "     * @param max {Number?} highest allowed value, unbounded when not given",
+          "     * @return {Number|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A number out of the configuration: the value the attribute names, the given default when it\n is missing, is not a number, is negative or lies above the allowed maximum.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String|null} attribute value",
+            "paramName": "value",
+            "description": " attribute value",
+            "type": [
+              "String",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "fallback {Number|null} default of this attribute",
+            "paramName": "fallback",
+            "description": " default of this attribute",
+            "type": [
+              "Number",
+              "null"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "max {Number?} highest allowed value, unbounded when not given",
+            "paramName": "max",
+            "description": " highest allowed value, unbounded when not given",
+            "optional": true,
+            "type": "Number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number|null}",
+            "type": "Number|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 5429
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 5659
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "fallback",
+          "type": [
+            "Number",
+            "null"
+          ]
+        },
+        {
+          "name": "max",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "appearsIn": []
+    },
+    "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 5666
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 7559
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDiagramElements": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads the axes and the data sets out of the widgets XML.",
+          "     * @param xmlElement {Element} XML-Element of the widget",
+          "     * @return {Map} axes and time series of this diagram",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads the axes and the data sets out of the widgets XML.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xmlElement {Element} XML-Element of the widget",
+            "paramName": "xmlElement",
+            "description": " XML-Element of the widget",
+            "type": "Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} axes and time series of this diagram",
+            "type": "Map<any, any>",
+            "description": "axes and time series of this diagram"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 7765
+        },
+        "end": {
+          "line": 277,
+          "column": 5,
+          "index": 11140
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xmlElement",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getInfluxFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Walks the filter elements of an influx data set and builds the query out of them.",
+          "     * @param elem {Element} element holding the filter children",
+          "     * @param type {String} how the children are joined, AND or OR",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Walks the filter elements of an influx data set and builds the query out of them.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "elem {Element} element holding the filter children",
+            "paramName": "elem",
+            "description": " element holding the filter children",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "type {String} how the children are joined, AND or OR",
+            "paramName": "type",
+            "description": " how the children are joined, AND or OR",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 285,
+          "column": 4,
+          "index": 11408
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 12308
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTimeSeriesSource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The time series source of a data set. It is created once and kept on the data set.",
+          "     * @param ts {Map} data set configuration",
+          "     * @return {cv.io.timeseries.AbstractTimeSeriesSource|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The time series source of a data set. It is created once and kept on the data set.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{cv.io.timeseries.AbstractTimeSeriesSource|null}",
+            "type": "cv.io.timeseries.AbstractTimeSeriesSource|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 332,
+          "column": 4,
+          "index": 12531
+        },
+        "end": {
+          "line": 362,
+          "column": 5,
+          "index": 13561
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "cv.io.timeseries.AbstractTimeSeriesSource|null"
+      },
+      "appearsIn": []
+    },
+    "fetchSeries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the values of one data set. Sources that fetch on their own are asked directly,",
+          "     * the others through a request built by them.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param settings {Map} start, end and resolution of the series",
+          "     * @param series {String} name of the series, e.g. \"day\"",
+          "     * @param period {Number} number of series shown",
+          "     * @param res {Number} resolution in seconds",
+          "     * @param refresh {Number} how long a response may be reused, in seconds",
+          "     * @param force {Boolean} ignore what has been cached",
+          "     * @return {Promise} resolves with the [timestamp, value] pairs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Retrieves the values of one data set. Sources that fetch on their own are asked directly,\n the others through a request built by them.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "settings {Map} start, end and resolution of the series",
+            "paramName": "settings",
+            "description": " start, end and resolution of the series",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "series {String} name of the series, e.g. \"day\"",
+            "paramName": "series",
+            "description": " name of the series, e.g. \"day\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "period {Number} number of series shown",
+            "paramName": "period",
+            "description": " number of series shown",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "res {Number} resolution in seconds",
+            "paramName": "res",
+            "description": " resolution in seconds",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "refresh {Number} how long a response may be reused, in seconds",
+            "paramName": "refresh",
+            "description": " how long a response may be reused, in seconds",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "force {Boolean} ignore what has been cached",
+            "paramName": "force",
+            "description": " ignore what has been cached",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} resolves with the [timestamp, value] pairs",
+            "type": "Promise<any>",
+            "description": "resolves with the [timestamp, value] pairs"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 4,
+          "index": 14213
+        },
+        "end": {
+          "line": 412,
+          "column": 5,
+          "index": 15603
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "settings",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "series",
+          "type": "string"
+        },
+        {
+          "name": "period",
+          "type": "number"
+        },
+        {
+          "name": "res",
+          "type": "number"
+        },
+        {
+          "name": "refresh",
+          "type": "number"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "fetchRrd": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads an rrd file. There is no source class for it - the one in cv.io.timeseries pages",
+          "     * through single periods instead of asking for a range - so the url is built the way the flot",
+          "     * based plugin does it: the charts resource of the backend when it offers one, the rrdfetch",
+          "     * endpoint otherwise.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param settings {Map} start, end and resolution of the series",
+          "     * @param res {Number} resolution in seconds",
+          "     * @param refresh {Number} how long a response may be reused, in seconds",
+          "     * @param force {Boolean} ignore what has been cached",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads an rrd file. There is no source class for it - the one in cv.io.timeseries pages\n through single periods instead of asking for a range - so the url is built the way the flot\n based plugin does it: the charts resource of the backend when it offers one, the rrdfetch\n endpoint otherwise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "settings {Map} start, end and resolution of the series",
+            "paramName": "settings",
+            "description": " start, end and resolution of the series",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "res {Number} resolution in seconds",
+            "paramName": "res",
+            "description": " resolution in seconds",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "refresh {Number} how long a response may be reused, in seconds",
+            "paramName": "refresh",
+            "description": " how long a response may be reused, in seconds",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "force {Boolean} ignore what has been cached",
+            "paramName": "force",
+            "description": " ignore what has been cached",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 426,
+          "column": 4,
+          "index": 16267
+        },
+        "end": {
+          "line": 466,
+          "column": 5,
+          "index": 17637
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "settings",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "res",
+          "type": "number"
+        },
+        {
+          "name": "refresh",
+          "type": "number"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "_scaleTsData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the configured time offset and scaling to the raw values.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param tsdata {Array} raw [timestamp, value] pairs",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the configured time offset and scaling to the raw values.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "tsdata {Array} raw [timestamp, value] pairs",
+            "paramName": "tsdata",
+            "description": " raw [timestamp, value] pairs",
+            "type": "Array<any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 474,
+          "column": 4,
+          "index": 17860
+        },
+        "end": {
+          "line": 487,
+          "column": 5,
+          "index": 18616
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "tsdata",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_addNowDatapoint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Repeats the last value at the current time, so that the graph is drawn up to now.",
+          "     * @param tsdata {Array} [timestamp, value] pairs",
+          "     * @param forceNowDatapoint {Boolean}",
+          "     * @return {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Repeats the last value at the current time, so that the graph is drawn up to now.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "tsdata {Array} [timestamp, value] pairs",
+            "paramName": "tsdata",
+            "description": " [timestamp, value] pairs",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "forceNowDatapoint {Boolean}",
+            "paramName": "forceNowDatapoint",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 495,
+          "column": 4,
+          "index": 18847
+        },
+        "end": {
+          "line": 503,
+          "column": 5,
+          "index": 19111
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tsdata",
+          "type": "Array<any>"
+        },
+        {
+          "name": "forceNowDatapoint",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_onSourceError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A data set could not be loaded, tell the user and let the diagram draw the rest.",
+          "     * @param ts {Map} data set configuration",
+          "     * @param err {Error|var} what went wrong",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A data set could not be loaded, tell the user and let the diagram draw the rest.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ts {Map} data set configuration",
+            "paramName": "ts",
+            "description": " data set configuration",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "err {Error|var} what went wrong",
+            "paramName": "err",
+            "description": " what went wrong",
+            "type": [
+              "Error",
+              "var"
+            ]
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 510,
+          "column": 4,
+          "index": 19314
+        },
+        "end": {
+          "line": 523,
+          "column": 5,
+          "index": 19868
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ts",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "err",
+          "type": [
+            "Error",
+            "var"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__forceImgReload": {
+      "jsdoc": {
+        "raw": [
+          " based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url"
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7041
+        },
+        "end": {
+          "line": 242,
+          "column": 5,
+          "index": 7247
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "properties": {
+    "content": {
+      "location": {
+        "start": {
+          "line": 532,
+          "column": 4,
+          "index": 20034
+        },
+        "end": {
+          "line": 535,
+          "column": 5,
+          "index": 20088
+        }
+      },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "title": {
+      "location": {
+        "start": {
+          "line": 537,
+          "column": 4,
+          "index": 20095
+        },
+        "end": {
+          "line": 541,
+          "column": 5,
+          "index": 20181
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyTitle"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "series": {
+      "location": {
+        "start": {
+          "line": 543,
+          "column": 4,
+          "index": 20188
+        },
+        "end": {
+          "line": 546,
+          "column": 5,
+          "index": 20297
+        }
+      },
+      "json": {
+        "check": [
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year",
+          "fullday",
+          "custom"
+        ],
+        "init": "day"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesStart": {
+      "location": {
+        "start": {
+          "line": 548,
+          "column": 4,
+          "index": 20304
+        },
+        "end": {
+          "line": 551,
+          "column": 5,
+          "index": 20371
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "end-month"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesEnd": {
+      "location": {
+        "start": {
+          "line": 553,
+          "column": 4,
+          "index": 20378
+        },
+        "end": {
+          "line": 556,
+          "column": 5,
+          "index": 20437
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "now"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "seriesResolution": {
+      "location": {
+        "start": {
+          "line": 558,
+          "column": 4,
+          "index": 20444
+        },
+        "end": {
+          "line": 561,
+          "column": 5,
+          "index": 20508
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 300
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "forceNowDatapoint": {
+      "location": {
+        "start": {
+          "line": 563,
+          "column": 4,
+          "index": 20515
+        },
+        "end": {
+          "line": 566,
+          "column": 5,
+          "index": 20582
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "period": {
+      "location": {
+        "start": {
+          "line": 568,
+          "column": 4,
+          "index": 20589
+        },
+        "end": {
+          "line": 571,
+          "column": 5,
+          "index": 20641
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendInline": {
+      "location": {
+        "start": {
+          "line": 573,
+          "column": 4,
+          "index": 20648
+        },
+        "end": {
+          "line": 576,
+          "column": 5,
+          "index": 20710
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendPopup": {
+      "location": {
+        "start": {
+          "line": 578,
+          "column": 4,
+          "index": 20717
+        },
+        "end": {
+          "line": 581,
+          "column": 5,
+          "index": 20778
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "legendposition": {
+      "location": {
+        "start": {
+          "line": 583,
+          "column": 4,
+          "index": 20785
+        },
+        "end": {
+          "line": 586,
+          "column": 5,
+          "index": 20864
+        }
+      },
+      "json": {
+        "check": [
+          "nw",
+          "ne",
+          "sw",
+          "se"
+        ],
+        "init": "ne"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "timeformat": {
+      "location": {
+        "start": {
+          "line": 588,
+          "column": 4,
+          "index": 20871
+        },
+        "end": {
+          "line": 591,
+          "column": 5,
+          "index": 20934
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "timeformatTooltip": {
+      "location": {
+        "start": {
+          "line": 593,
+          "column": 4,
+          "index": 20941
+        },
+        "end": {
+          "line": 596,
+          "column": 5,
+          "index": 21019
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "%d.%m.%Y %H:%M"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "zoomYAxis": {
+      "location": {
+        "start": {
+          "line": 598,
+          "column": 4,
+          "index": 21026
+        },
+        "end": {
+          "line": 601,
+          "column": 5,
+          "index": 21086
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "gridcolor": {
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 4,
+          "index": 21093
+        },
+        "end": {
+          "line": 606,
+          "column": 5,
+          "index": 21156
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "#81664B"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "gridwidth": {
+      "location": {
+        "start": {
+          "line": 609,
+          "column": 4,
+          "index": 21231
+        },
+        "end": {
+          "line": 612,
+          "column": 5,
+          "index": 21286
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": {
+        "raw": [
+          "* stroke width of the grid lines, the axes and their ticks "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>stroke width of the grid lines, the axes and their ticks</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "gridopacity": {
+      "location": {
+        "start": {
+          "line": 615,
+          "column": 4,
+          "index": 21389
+        },
+        "end": {
+          "line": 618,
+          "column": 5,
+          "index": 21448
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0.4
+      },
+      "jsdoc": {
+        "raw": [
+          "* how solid the grid lines are drawn, 0 to 1. The flot based diagram draws them with 1 "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>how solid the grid lines are drawn, 0 to 1. The flot based diagram draws them with 1</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "borderwidth": {
+      "location": {
+        "start": {
+          "line": 621,
+          "column": 4,
+          "index": 21517
+        },
+        "end": {
+          "line": 624,
+          "column": 5,
+          "index": 21574
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1
+      },
+      "jsdoc": {
+        "raw": [
+          "* stroke width of the frame around the plotting area "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>stroke width of the frame around the plotting area</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "linewidth": {
+      "location": {
+        "start": {
+          "line": 630,
+          "column": 4,
+          "index": 21766
+        },
+        "end": {
+          "line": 634,
+          "column": 5,
+          "index": 21846
+        }
+      },
+      "json": {
+        "check": "Number",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stroke width of the graphs, their bar and point outlines included. Unset the plot draws",
+          "     * its lines with 1.5 and the outlines with 1, the way it always has.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stroke width of the graphs, their bar and point outlines included. Unset the plot draws\n its lines with 1.5 and the outlines with 1, the way it always has.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "previewlabels": {
+      "location": {
+        "start": {
+          "line": 636,
+          "column": 4,
+          "index": 21853
+        },
+        "end": {
+          "line": 639,
+          "column": 5,
+          "index": 21917
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "popup": {
+      "location": {
+        "start": {
+          "line": 641,
+          "column": 4,
+          "index": 21924
+        },
+        "end": {
+          "line": 644,
+          "column": 5,
+          "index": 21980
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "tooltip": {
+      "location": {
+        "start": {
+          "line": 646,
+          "column": 4,
+          "index": 21987
+        },
+        "end": {
+          "line": 649,
+          "column": 5,
+          "index": 22045
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "refresh": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1550
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1603
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "cachecontrol": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1673
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "full"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "restartOnVisible": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1680
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1786
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyRestartOnVisible"
+      },
+      "jsdoc": null,
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "members": {
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 658,
+          "column": 4,
+          "index": 22205
+        },
+        "end": {
+          "line": 658,
+          "column": 15,
+          "index": 22216
+        }
+      },
+      "appearsIn": []
+    },
+    "popupplot": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 659,
+          "column": 4,
+          "index": 22222
+        },
+        "end": {
+          "line": 659,
+          "column": 19,
+          "index": 22237
+        }
+      },
+      "appearsIn": []
+    },
+    "plot": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 660,
+          "column": 4,
+          "index": 22243
+        },
+        "end": {
+          "line": 660,
+          "column": 14,
+          "index": 22253
+        }
+      },
+      "appearsIn": []
+    },
+    "plotted": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 661,
+          "column": 4,
+          "index": 22259
+        },
+        "end": {
+          "line": 661,
+          "column": 17,
+          "index": 22272
+        }
+      },
+      "appearsIn": []
+    },
+    "_timerPopup": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 662,
+          "column": 4,
+          "index": 22278
+        },
+        "end": {
+          "line": 662,
+          "column": 21,
+          "index": 22295
+        }
+      },
+      "appearsIn": []
+    },
+    "__isPopup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 663,
+          "column": 4,
+          "index": 22301
+        },
+        "end": {
+          "line": 663,
+          "column": 20,
+          "index": 22317
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyTitle": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 666,
+          "column": 4,
+          "index": 22346
+        },
+        "end": {
+          "line": 671,
+          "column": 5,
+          "index": 22490
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setupRefreshAction": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 673,
+          "column": 4,
+          "index": 22497
+        },
+        "end": {
+          "line": 689,
+          "column": 5,
+          "index": 23039
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the refresh timer",
+          "     *",
+          "     * @param timer {qx.event.Timer} stop this timer",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the refresh timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "timer {qx.event.Timer} stop this timer",
+            "paramName": "timer",
+            "description": " stop this timer",
+            "type": "qx.event.Timer"
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 697,
+          "column": 4,
+          "index": 23170
+        },
+        "end": {
+          "line": 701,
+          "column": 5,
+          "index": 23267
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "timer",
+          "type": "qx.event.Timer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_startRefresh": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start the refresh timer",
+          "     *",
+          "     * @param timer {qx.event.Timer} start this timer",
+          "     * @param runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start the refresh timer</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "timer {qx.event.Timer} start this timer",
+            "paramName": "timer",
+            "description": " start this timer",
+            "type": "qx.event.Timer"
+          },
+          {
+            "name": "@param",
+            "body": "runImmediately {Boolean} fire the timers 'interval' event immediately to trigger an refresh right now",
+            "paramName": "runImmediately",
+            "description": " fire the timers 'interval' event immediately to trigger an refresh right now",
+            "type": "boolean"
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 710,
+          "column": 4,
+          "index": 23516
+        },
+        "end": {
+          "line": 719,
+          "column": 5,
+          "index": 23744
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "timer",
+          "type": "qx.event.Timer"
+        },
+        {
+          "name": "runImmediately",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the diagram in a popup, when the configuration asks for one. The flot based plugin",
+          "     * ignores the attribute and always opens, diagram2 follows what the schema documents.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the diagram in a popup, when the configuration asks for one. The flot based plugin\n ignores the attribute and always opens, diagram2 follows what the schema documents.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 725,
+          "column": 4,
+          "index": 23954
+        },
+        "end": {
+          "line": 787,
+          "column": 5,
+          "index": 26038
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getPlotElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element the diagram is drawn into.",
+          "     * @param isPopup {Boolean} the one of the popup or the one in the page",
+          "     * @return {Element|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The element the diagram is drawn into.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "isPopup {Boolean} the one of the popup or the one in the page",
+            "paramName": "isPopup",
+            "description": " the one of the popup or the one in the page",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null}",
+            "type": "Element|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 794,
+          "column": 4,
+          "index": 26213
+        },
+        "end": {
+          "line": 801,
+          "column": 5,
+          "index": 26451
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isPopup",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "initDiagram": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the plot and loads its data. d3 is loaded on the way, so this returns before the",
+          "     * diagram is on screen.",
+          "     * @param isPopup {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the plot and loads its data. d3 is loaded on the way, so this returns before the\n diagram is on screen.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "isPopup {Boolean}",
+            "paramName": "isPopup",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 808,
+          "column": 4,
+          "index": 26631
+        },
+        "end": {
+          "line": 866,
+          "column": 5,
+          "index": 28673
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "isPopup",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSeriesSettings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start, end and resolution of the series to load.",
+          "     * @param view {Array?} time range the user has panned or zoomed to, in milliseconds",
+          "     * @param isInteractive {Boolean?} whether that range should be honoured",
+          "     * @return {Map|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start, end and resolution of the series to load.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "view {Array?} time range the user has panned or zoomed to, in milliseconds",
+            "paramName": "view",
+            "description": " time range the user has panned or zoomed to, in milliseconds",
+            "optional": true,
+            "type": "Array"
+          },
+          {
+            "name": "@param",
+            "body": "isInteractive {Boolean?} whether that range should be honoured",
+            "paramName": "isInteractive",
+            "description": " whether that range should be honoured",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map|null}",
+            "type": "Map|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 874,
+          "column": 4,
+          "index": 28944
+        },
+        "end": {
+          "line": 912,
+          "column": 5,
+          "index": 30268
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "view",
+          "type": "Array",
+          "optional": true
+        },
+        {
+          "name": "isInteractive",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "loadDiagramData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the data of all data sets and hands it to the plot.",
+          "     * @param plot {cv.plugins.diagram2.Plot} where the data is drawn",
+          "     * @param isPopup {Boolean} whether this is the diagram of the popup",
+          "     * @param forceReload {Boolean} ignore what has been cached",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the data of all data sets and hands it to the plot.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "plot {cv.plugins.diagram2.Plot} where the data is drawn",
+            "paramName": "plot",
+            "description": " where the data is drawn",
+            "type": "cv.plugins.diagram2.Plot"
+          },
+          {
+            "name": "@param",
+            "body": "isPopup {Boolean} whether this is the diagram of the popup",
+            "paramName": "isPopup",
+            "description": " whether this is the diagram of the popup",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "forceReload {Boolean} ignore what has been cached",
+            "paramName": "forceReload",
+            "description": " ignore what has been cached",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 920,
+          "column": 4,
+          "index": 30563
+        },
+        "end": {
+          "line": 961,
+          "column": 5,
+          "index": 31947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "plot",
+          "type": "cv.plugins.diagram2.Plot"
+        },
+        {
+          "name": "isPopup",
+          "type": "boolean"
+        },
+        {
+          "name": "forceReload",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "action": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Action performed when the widget got clicked, sends data to the backend",
+          "     *",
+          "     * @param event {Event} tap event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Action performed when the widget got clicked, sends data to the backend</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} tap event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1675
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "downaction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles pointerdown events",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles pointerdown events</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event {Event} pointerdown event"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1778
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1947
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate",
+        "cv.ui.structure.pure.AbstractWidget"
+      ]
+    },
+    "sendToBackend": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given value to all writeable addresses known to this widget",
+          "     *",
+          "     * @param value {any} value to send",
+          "     * @param filter {Function} optional filter function for addresses",
+          "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
+          "     *          that were sent on the bus. When the encoding of the new value",
+          "     *          to send is equal to the currentBusValues a transmission will",
+          "     *          be suppressed. The object is a hash with the encoding as a key",
+          "     *          for the encoded value",
+          "     * @return {Object} the object/hash of encoded values that were sent last time",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Send the given value to all writeable addresses known to this widget</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {any} value to send"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function} optional filter function for addresses"
+          },
+          {
+            "name": "@param",
+            "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the object/hash of encoded values that were sent last time"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2603
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 4060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "filter"
+        },
+        {
+          "name": "currentBusValues"
+        }
+      ],
+      "mixin": "cv.ui.common.Operate",
+      "appearsIn": [
+        "cv.ui.common.Operate"
+      ]
+    },
+    "_timer": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 74,
+          "column": 16,
+          "index": 1960
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__timerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1966
+        },
+        "end": {
+          "line": 75,
+          "column": 19,
+          "index": 1981
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__setup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1987
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 2001
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__lastRun": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2007
+        },
+        "end": {
+          "line": 77,
+          "column": 19,
+          "index": 2022
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartTimer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 78,
+          "column": 24,
+          "index": 2048
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "__restartOnVisible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 79,
+          "column": 29,
+          "index": 2079
+        }
+      },
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_applyRestartOnVisible": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2086
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2186
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "_maintainTimerState": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop the while invisible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop the while invisible</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3528
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "setupRefreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3535
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    },
+    "refreshAction": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4897
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "src"
+        }
+      ],
+      "mixin": "cv.ui.common.Refresh",
+      "appearsIn": [
+        "cv.ui.common.Refresh"
+      ]
+    }
+  },
+  "destruct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 969,
+        "column": 2,
+        "index": 32095
+      },
+      "end": {
+        "line": 981,
+        "column": 3,
+        "index": 32361
+      }
+    }
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/UploadToolbarButton.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 778
+    },
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 942
+    }
+  },
+  "className": "com.zenesis.qx.upload.UploadToolbarButton",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Implementation of an UploadButton",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Implementation of an UploadButton</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.toolbar.Button",
+  "mixins": [
+    "com.zenesis.qx.upload.MUploadButton"
+  ],
+  "members": {
+    "capture": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2351
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2385
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "qx.ui.core.Widget"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "releaseCapture": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2410
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2451
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "qx.ui.core.Widget"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "__params": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 913
+        },
+        "end": {
+          "line": 30,
+          "column": 18,
+          "index": 927
+        }
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "setParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a parameter value to be sent with the file",
+          "     *",
+          "     * @param name",
+          "     *          {String} name of the parameter",
+          "     * @param value",
+          "     *          {String} the value of the parameter, or null to delete a",
+          "     *          previous parameter",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name\n          {String} name of the parameter",
+            "paramName": "name",
+            "description": " name of the parameter",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value\n          {String} the value of the parameter, or null to delete a\n          previous parameter",
+            "paramName": "value",
+            "description": " the value of the parameter, or null to delete a\n          previous parameter",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1206
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1390
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "getParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a parameter value to be sent with the file",
+          "     *",
+          "     * @param name {String} Name of the parameter",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a parameter value to be sent with the file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} Name of the parameter",
+            "paramName": "name",
+            "description": " Name of the parameter",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1627
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "getParamNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of parameter names",
+          "     *",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of parameter names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1722
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1865
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton",
+        "com.zenesis.qx.upload.MParameters"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    }
+  },
+  "statics": {},
+  "properties": {
+    "acceptUpload": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1702
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1821
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeAcceptUpload"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * File types which are acceptable for upload; note that this is not guaranteed",
+          "     * because not all (older) browsers support it, but where available it will",
+          "     * restrict the file open dialog to only allow these file types.",
+          "     *",
+          "     * This value is passed directly through to the input tag's accept attribute, so",
+          "     * the format can be seen here: {@link http://www.w3schools.com/tags/att_input_accept.asp};",
+          "     * in summary, it is a comma separated list of file extensions (with the dot) and/or",
+          "     * MIME types; EG:",
+          "     *",
+          "     * \t.jpg,.png,.gif\t\t\t-- Images",
+          "     * \timage/*,.mp4\t\t\t\t-- Images and *.mp4",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>File types which are acceptable for upload; note that this is not guaranteed\n because not all (older) browsers support it, but where available it will\n restrict the file open dialog to only allow these file types.\n This value is passed directly through to the input tag's accept attribute, so\n the format can be seen here: {@link http://www.w3schools.com/tags/att<em>input</em>accept.asp};\n in summary, it is a comma separated list of file extensions (with the dot) and/or\n MIME types; EG:\n     .jpg,.png,.gif          -- Images\n     image/*,.mp4                -- Images and *.mp4</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "multiple": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1948
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 2062
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "nullable": false,
+        "event": "changeMultiple"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to support multiple files (default=true); this is not supported",
+          "     * on older browsers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to support multiple files (default=true); this is not supported\n on older browsers</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    },
+    "directory": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2192
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2308
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "nullable": false,
+        "event": "changeDirectory"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to support directories only (default=false); this is not supported",
+          "     * on older browsers",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to support directories only (default=false); this is not supported\n on older browsers</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "com.zenesis.qx.upload.MUploadButton"
+      ],
+      "mixin": "com.zenesis.qx.upload.MUploadButton"
+    }
+  }
+}

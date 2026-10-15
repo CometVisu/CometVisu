@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "test",
+    "io",
+    "MAssert",
+    "members",
+    "testPromiseAssertions",
+    "_this",
+    "p1",
+    "Promise",
+    "resolve",
+    "setTimeout",
+    "observePromise",
+    "assertPromisePending",
+    "wait",
+    "assertPromiseFulfilled",
+    "p2",
+    "_",
+    "reject",
+    "assertPromiseRejected",
+    "assertPromiseSettled",
+    "TestMAssert"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/io/TestMAssert.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the javascript framework for coders\n\n   http://qooxdoo.org\n\n   Copyright:\n     2025 qooxdoo contributors\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (cboulanger)\n\n************************************************************************ */\n\n/**\n * Tests for qx.io.jsonrpc.Client with qx.test.io.request.PostMessage transport\n * @ignore(Worker)\n * @ignore(self)\n */\nqx.Class.define(\"qx.test.io.TestMAssert\", {\n  extend: qx.dev.unit.TestCase,\n\n  include: [qx.test.io.MAssert],\n\n  members: {\n\n    /**\n     * Test the promise Assertion API\n     */\n    testPromiseAssertions() {\n      let p1 = new Promise(resolve => setTimeout(resolve, 10));\n      this.observePromise(p1);\n      this.assertPromisePending(p1);\n      this.wait(100, () => this.assertPromiseFulfilled(p1));\n      let p2 = new Promise((_, reject) => setTimeout(reject, 10));\n      this.observePromise(p2);\n      this.wait(100, () => {\n        this.assertPromiseRejected(p2);\n        this.assertPromiseSettled(p2);\n      });\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE,CAACV,EAAE,CAACW,IAAI,CAACC,EAAE,CAACC,OAAO,CAAC;IAE7BC,OAAO,EAAE;MAEP;AACJ;AACA;MACIC,qBAAqB,WAArBA,qBAAqBA,CAAA,EAAG;QAAA,IAAAC,KAAA;QACtB,IAAIC,EAAE,GAAG,IAAIC,OAAO,CAAC,UAAAC,OAAO;UAAA,OAAIC,UAAU,CAACD,OAAO,EAAE,EAAE,CAAC;QAAA,EAAC;QACxD,IAAI,CAACE,cAAc,CAACJ,EAAE,CAAC;QACvB,IAAI,CAACK,oBAAoB,CAACL,EAAE,CAAC;QAC7B,IAAI,CAACM,IAAI,CAAC,GAAG,EAAE;UAAA,OAAMP,KAAI,CAACQ,sBAAsB,CAACP,EAAE,CAAC;QAAA,EAAC;QACrD,IAAIQ,EAAE,GAAG,IAAIP,OAAO,CAAC,UAACQ,CAAC,EAAEC,MAAM;UAAA,OAAKP,UAAU,CAACO,MAAM,EAAE,EAAE,CAAC;QAAA,EAAC;QAC3D,IAAI,CAACN,cAAc,CAACI,EAAE,CAAC;QACvB,IAAI,CAACF,IAAI,CAAC,GAAG,EAAE,YAAM;UACnBP,KAAI,CAACY,qBAAqB,CAACH,EAAE,CAAC;UAC9BT,KAAI,CAACa,oBAAoB,CAACJ,EAAE,CAAC;QAC/B,CAAC,CAAC;MACJ;IACF;EACF,CAAC,CAAC;EA9CFzB,EAAE,CAACW,IAAI,CAACC,EAAE,CAACkB,WAAW,CAAC3B,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

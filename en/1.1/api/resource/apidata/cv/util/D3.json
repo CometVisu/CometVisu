@@ -1,0 +1,226 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547846,
+  "lastModifiedIso": "2026-10-15T16:42:27.846Z",
+  "classFilename": "../../source/class/cv/util/D3.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1132
+    },
+    "end": {
+      "line": 136,
+      "column": 3,
+      "index": 4922
+    }
+  },
+  "className": "cv.util.D3",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Loads the bundled d3 library and applies the locale of the visualisation to it.",
+      " *",
+      " * Everything that draws with d3 waits for {@link cv.util.D3#load}. The script itself is only",
+      " * requested once, no matter how many components ask for it.",
+      " *",
+      " * @asset(libs/d3.min.js)",
+      " * @asset(libs/d3.min.js.map)",
+      " * @ignore(d3)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Loads the bundled d3 library and applies the locale of the visualisation to it.\n Everything that draws with d3 waits for {@link cv.util.D3#load}. The script itself is only\n requested once, no matter how many components ask for it.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "libs/d3.min.js"
+      },
+      {
+        "name": "@asset",
+        "body": "libs/d3.min.js.map"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "d3"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "TF": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The time format locale d3 has been set up with, used to format dates with a pattern.",
+          "     * Available once the promise of load() has resolved.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The time format locale d3 has been set up with, used to format dates with a pattern.\n Available once the promise of load() has resolved.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1488
+        },
+        "end": {
+          "line": 43,
+          "column": 12,
+          "index": 1496
+        }
+      },
+      "appearsIn": []
+    },
+    "__loaded": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1503
+        },
+        "end": {
+          "line": 45,
+          "column": 18,
+          "index": 1517
+        }
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads d3 and localizes it. Repeated calls return the same promise.",
+          "     * @return {Promise} resolves when window.d3 is usable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads d3 and localizes it. Repeated calls return the same promise.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} resolves when window.d3 is usable",
+            "type": "Promise<any>",
+            "description": "resolves when window.d3 is usable"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1673
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1854
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "__include": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the script tag and waits for the library to appear in the window.",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds the script tag and waits for the library to appear in the window.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1980
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2990
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "__localize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the number and date formats of the current locale to d3.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the number and date formats of the current locale to d3.</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 3085
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 4914
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

@@ -1,0 +1,117 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Alert.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 538
+    },
+    "end": {
+      "line": 63,
+      "column": 3,
+      "index": 1625
+    }
+  },
+  "className": "qxl.dialog.Alert",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A dialog that alerts the user to something.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A dialog that alerts the user to something.</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Dialog",
+  "members": {
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 683
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1482
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleEscape": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1522
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1615
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

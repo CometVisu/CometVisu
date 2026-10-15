@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Decoration",
+    "decorations",
+    "button",
+    "style",
+    "radius",
+    "color",
+    "width",
+    "startColor",
+    "endColor",
+    "startColorPosition",
+    "endColorPosition",
+    "test",
+    "manager",
+    "mock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/theme/manager/mock/Decoration.js"
+  ],
+  "sourcesContent": [
+    "qx.Theme.define(\"qx.test.theme.manager.mock.Decoration\", {\n  extend: qx.theme.simple.Decoration,\n\n  decorations: {\n    button: {\n      style: {\n        radius: 10,\n        color: \"border-button\",\n        width: 2,\n        startColor: \"button-start\",\n        endColor: \"button-end\",\n        startColorPosition: 35,\n        endColorPosition: 100\n      }\n    },\n\n    \"test-button-gradient\": {\n      style: {\n        radius: 10,\n        color: \"border-button\",\n        width: 2,\n        startColor: \"red\",\n        endColor: \"blue\"\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,MAAM,CAACC,UAAU;IAElCC,WAAW,EAAE;MACXC,MAAM,EAAE;QACNC,KAAK,EAAE;UACLC,MAAM,EAAE,EAAE;UACVC,KAAK,EAAE,eAAe;UACtBC,KAAK,EAAE,CAAC;UACRC,UAAU,EAAE,cAAc;UAC1BC,QAAQ,EAAE,YAAY;UACtBC,kBAAkB,EAAE,EAAE;UACtBC,gBAAgB,EAAE;QACpB;MACF,CAAC;MAED,sBAAsB,EAAE;QACtBP,KAAK,EAAE;UACLC,MAAM,EAAE,EAAE;UACVC,KAAK,EAAE,eAAe;UACtBC,KAAK,EAAE,CAAC;UACRC,UAAU,EAAE,KAAK;UACjBC,QAAQ,EAAE;QACZ;MACF;IACF;EACF,CAAC,CAAC;EA1BFjB,EAAE,CAACoB,IAAI,CAACb,KAAK,CAACc,OAAO,CAACC,IAAI,CAACb,UAAU,CAACN,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

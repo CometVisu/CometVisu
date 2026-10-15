@@ -1,0 +1,154 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Select.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 567
+    },
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 2889
+    }
+  },
+  "className": "qxl.dialog.Select",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Dialog that offers the user a choice of alternative buttons to select from.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Dialog that offers the user a choice of alternative buttons to select from.</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Dialog",
+  "properties": {
+    "options": {
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 756
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 847
+        }
+      },
+      "json": {
+        "check": "Array",
+        "nullable": false,
+        "event": "changeOptions"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * An array of maps [ { label: \"Foo\", icon : \"icon/22/...\", value : \"foo\" },...]",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>An array of maps [ { label: \"Foo\", icon : \"icon/22/…\", value : \"foo\" },…]</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 933
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2570
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Dialog",
+      "appearsIn": [
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on a button. Calls callback with",
+          "     * the value set in the options map.",
+          "     * @param value {var} The passed value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on a button. Calls callback with\n the value set in the options map.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The passed value",
+            "paramName": "value",
+            "description": " The passed value",
+            "type": "var"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2730
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2879
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

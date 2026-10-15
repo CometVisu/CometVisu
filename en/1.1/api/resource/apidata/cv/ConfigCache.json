@@ -1,0 +1,474 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547825,
+  "lastModifiedIso": "2026-10-15T16:42:27.825Z",
+  "classFilename": "../../source/class/cv/ConfigCache.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 914
+    },
+    "end": {
+      "line": 334,
+      "column": 3,
+      "index": 11881
+    }
+  },
+  "className": "cv.ConfigCache",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles caches for cometvisu configs",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.10.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles caches for cometvisu configs</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "_cacheKey": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1122
+        },
+        "end": {
+          "line": 35,
+          "column": 21,
+          "index": 1139
+        }
+      },
+      "appearsIn": []
+    },
+    "_parseCacheData": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1145
+        },
+        "end": {
+          "line": 36,
+          "column": 25,
+          "index": 1166
+        }
+      },
+      "appearsIn": []
+    },
+    "_valid": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1172
+        },
+        "end": {
+          "line": 37,
+          "column": 16,
+          "index": 1184
+        }
+      },
+      "appearsIn": []
+    },
+    "replayCache": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1190
+        },
+        "end": {
+          "line": 38,
+          "column": 21,
+          "index": 1207
+        }
+      },
+      "appearsIn": []
+    },
+    "__initPromise": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1213
+        },
+        "end": {
+          "line": 39,
+          "column": 23,
+          "index": 1232
+        }
+      },
+      "appearsIn": []
+    },
+    "failed": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1238
+        },
+        "end": {
+          "line": 40,
+          "column": 16,
+          "index": 1250
+        }
+      },
+      "appearsIn": []
+    },
+    "DB": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1256
+        },
+        "end": {
+          "line": 41,
+          "column": 12,
+          "index": 1264
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1271
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "dump": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2776
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 3410
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
+    },
+    "restore": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restore the cached config. The caller must wait for the returned promise, everything",
+          "     * that reads cv.Config.configSettings (e.g. the backend client initialization) races",
+          "     * against it otherwise.",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restore the cached config. The caller must wait for the returned promise, everything\n that reads cv.Config.configSettings (e.g. the backend client initialization) races\n against it otherwise.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 3669
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 7996
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 8003
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 8193
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getData": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 8200
+        },
+        "end": {
+          "line": 252,
+          "column": 5,
+          "index": 9389
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isCached": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if there is an existing cache for the current config file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if there is an existing cache for the current config file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 9490
+        },
+        "end": {
+          "line": 271,
+          "column": 5,
+          "index": 9952
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isValid": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 9959
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 10662
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
+    },
+    "toHash": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 10669
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 10760
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "xml"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 10767
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 11234
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "configSuffix"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hashCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param string",
+          "     * @see http://stackoverflow.com/q/7616461/940217",
+          "     * @return {number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "string",
+            "paramName": "string",
+            "type": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "http://stackoverflow.com/q/7616461/940217"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 315,
+          "column": 4,
+          "index": 11356
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 11873
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

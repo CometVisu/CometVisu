@@ -1,0 +1,267 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082547829,
+  "lastModifiedIso": "2026-10-15T16:42:27.829Z",
+  "classFilename": "../../source/class/cv/io/timeseries/RRDSource.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 838
+    },
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 2914
+    }
+  },
+  "className": "cv.io.timeseries.RRDSource",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handle queries to an RRD",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handle queries to an RRD</p>"
+      }
+    ]
+  },
+  "superClass": "cv.io.timeseries.AbstractTimeSeriesSource",
+  "members": {
+    "_fileName": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1079
+        },
+        "end": {
+          "line": 31,
+          "column": 19,
+          "index": 1094
+        }
+      },
+      "appearsIn": []
+    },
+    "_params": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1100
+        },
+        "end": {
+          "line": 32,
+          "column": 17,
+          "index": 1113
+        }
+      },
+      "appearsIn": []
+    },
+    "_queryTemplate": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1119
+        },
+        "end": {
+          "line": 33,
+          "column": 24,
+          "index": 1139
+        }
+      },
+      "appearsIn": []
+    },
+    "_timeFormat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1145
+        },
+        "end": {
+          "line": 34,
+          "column": 21,
+          "index": 1162
+        }
+      },
+      "appearsIn": []
+    },
+    "_defaultResolution": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1168
+        },
+        "end": {
+          "line": 35,
+          "column": 28,
+          "index": 1192
+        }
+      },
+      "appearsIn": []
+    },
+    "_defaultFunc": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1198
+        },
+        "end": {
+          "line": 36,
+          "column": 22,
+          "index": 1216
+        }
+      },
+      "appearsIn": []
+    },
+    "_init": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1223
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1913
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "getRequestConfig": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build the request config, resolving the base URL from the backend client",
+          "     * at call time so that it reflects the current backend.baseURL (which may",
+          "     * have been updated by the login response after construction).",
+          "     * @param start",
+          "     * @param end",
+          "     * @param series",
+          "     * @param offset",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Build the request config, resolving the base URL from the backend client\n at call time so that it reflects the current backend.baseURL (which may\n have been updated by the login response after construction).</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "start",
+            "paramName": "start",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "end",
+            "paramName": "end",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "series",
+            "paramName": "series",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "offset",
+            "paramName": "offset",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 2243
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2843
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "start"
+        },
+        {
+          "name": "end"
+        },
+        {
+          "name": "series"
+        },
+        {
+          "name": "offset"
+        }
+      ],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    },
+    "processResponse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2850
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2906
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "response"
+        }
+      ],
+      "overriddenFrom": "cv.io.timeseries.AbstractTimeSeriesSource",
+      "appearsIn": [
+        "cv.io.timeseries.AbstractTimeSeriesSource"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

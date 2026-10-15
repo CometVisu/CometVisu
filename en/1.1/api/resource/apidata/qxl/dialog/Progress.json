@@ -1,0 +1,644 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Progress.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 554
+    },
+    "end": {
+      "line": 266,
+      "column": 3,
+      "index": 6207
+    }
+  },
+  "className": "qxl.dialog.Progress",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A widget with a progress bar and an optional log for messages.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A widget with a progress bar and an optional log for messages.</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Dialog",
+  "properties": {
+    "progress": {
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 705
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 927
+        }
+      },
+      "json": {
+        "check": "[[ ObjectMethod Function ]]",
+        "init": 0,
+        "nullable": false,
+        "event": "changeProgress",
+        "apply": "_applyProgress"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The percentage of the progress, 0-100",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The percentage of the progress, 0-100</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "logContent": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 980
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1071
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeLogContent"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The content of the log",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The content of the log</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "newLogText": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1144
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1275
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "event": "changeNewLogText",
+        "apply": "_applyNewLogText"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * New text that should be written to the log",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>New text that should be written to the log</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "showProgressBar": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1371
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1498
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": true,
+        "event": "changeShowProgressBar"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether or not the progress bar is visible",
+          "     * (default: true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether or not the progress bar is visible\n (default: true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "showLog": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1586
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1698
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": false,
+        "event": "changeShowLog"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether or not the log is visible",
+          "     * (default: false)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether or not the log is visible\n (default: false)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "okButtonText": {
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1804
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 1958
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeOkButtonText",
+        "apply": "_applyOkButtonText"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The text of the OK button. If null, hide the button.",
+          "     * (default: null)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The text of the OK button. If null, hide the button.\n (default: null)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "hideWhenCompleted": {
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2066
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2157
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to hide the widget when the progress is at 100%",
+          "     * (default:true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to hide the widget when the progress is at 100%\n (default:true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "hideWhenCancelled": {
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2271
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2362
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to hide the widget when the cancel button is clicked",
+          "     * (default: true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to hide the widget when the cancel button is clicked\n (default: true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_applyShow": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the 'show' property",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the 'show' property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2476
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2620
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyProgress": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the 'progress' property",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the 'progress' property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 2720
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 2934
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNewLogText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds new text to the log",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds new text to the log</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3027
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 3204
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyOkButtonText": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the OK Button text",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the OK Button text</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3297
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 3544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_progressBar": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 3550
+        },
+        "end": {
+          "line": 164,
+          "column": 22,
+          "index": 3568
+        }
+      },
+      "appearsIn": []
+    },
+    "_logView": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 3574
+        },
+        "end": {
+          "line": 165,
+          "column": 18,
+          "index": 3588
+        }
+      },
+      "appearsIn": []
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the content of the qxl.dialog.",
+          "     * Extending classes must implement this method.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the content of the qxl.dialog.\n Extending classes must implement this method.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 3709
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 5733
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Dialog",
+      "appearsIn": [
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleCancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on cancel button. Calls callback with",
+          "     * an \"undefined\" argument",
+          "     * @override Overridden to be able to observe hideWhenCancelled",
+          "     * property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on cancel button. Calls callback with\n an \"undefined\" argument</p>"
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": "Overridden to be able to observe hideWhenCancelled\n property"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 5929
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 6197
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Dialog",
+      "appearsIn": [
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "statics": {}
+}

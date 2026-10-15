@@ -1,0 +1,24 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082601176,
+  "lastModifiedIso": "2026-10-15T16:43:21.176Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/ColorEngine.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 145,
+      "column": 0,
+      "index": 3708
+    },
+    "end": {
+      "line": 210,
+      "column": 3,
+      "index": 6109
+    }
+  },
+  "className": "qx.theme.tangible.ColorEngine",
+  "jsdoc": null,
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

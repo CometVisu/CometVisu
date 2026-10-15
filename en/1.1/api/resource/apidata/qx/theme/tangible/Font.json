@@ -1,0 +1,49 @@
+{
+  "version": 0.3,
+  "lastModified": 1792082601691,
+  "lastModifiedIso": "2026-10-15T16:43:21.691Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 585
+    },
+    "end": {
+      "line": 65,
+      "column": 3,
+      "index": 1335
+    }
+  },
+  "className": "qx.theme.tangible.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo font theme.",
+      " *",
+      " * @usefont(Roboto)",
+      " * @usefont(Roboto Mono)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo font theme.</p>"
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "Roboto"
+      },
+      {
+        "name": "@usefont",
+        "body": "Roboto Mono"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

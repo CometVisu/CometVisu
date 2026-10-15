@@ -1,0 +1,590 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Wizard.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 602
+    },
+    "end": {
+      "line": 250,
+      "column": 3,
+      "index": 7199
+    }
+  },
+  "className": "qxl.dialog.Wizard",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A wizard-type widget that constructs the wizard pages on-the-fly, using",
+      " * functionality from qxl.dialog.Form.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A wizard-type widget that constructs the wizard pages on-the-fly, using\n functionality from qxl.dialog.Form.</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Form",
+  "properties": {
+    "pageData": {
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 768
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 838
+        }
+      },
+      "json": {
+        "check": "Array",
+        "apply": "_applyPageData"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * An array of maps that sets the properties of this widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>An array of maps that sets the properties of this widget</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "page": {
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 905
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 984
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "apply": "_applyPage",
+        "init": 0
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The number of the page in the wizard",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The number of the page in the wizard</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowBack": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1081
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1174
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeAllowBack"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow the user to go to the previous",
+          "     * wizard page",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow the user to go to the previous\n wizard page</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowNext": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1267
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1360
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeAllowNext"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow the user to go to the next",
+          "     * wizard page",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow the user to go to the next\n wizard page</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowFinish": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1629
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1726
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeAllowFinish"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow the user to finish the wizard. Automatically",
+          "     * set to 'true' on the last page of the wizard. The \"Finish\" button",
+          "     * is enabled if this property is 'true' AND all the form entries pass",
+          "     * the validation tests.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow the user to finish the wizard. Automatically\n set to 'true' on the last page of the wizard. The \"Finish\" button\n is enabled if this property is 'true' AND all the form entries pass\n the validation tests.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_backButton": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1751
+        },
+        "end": {
+          "line": 74,
+          "column": 21,
+          "index": 1768
+        }
+      },
+      "appearsIn": []
+    },
+    "_nextButton": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1774
+        },
+        "end": {
+          "line": 75,
+          "column": 21,
+          "index": 1791
+        }
+      },
+      "appearsIn": []
+    },
+    "_finishButton": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1797
+        },
+        "end": {
+          "line": 76,
+          "column": 23,
+          "index": 1816
+        }
+      },
+      "appearsIn": []
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1884
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 4305
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Form",
+      "appearsIn": [
+        "qxl.dialog.Form",
+        "qxl.dialog.MForm",
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_onFormReady": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add bindings to the validation manager to control the state of",
+          "     * the wizard buttons.",
+          "     * @param form {qx.ui.form.Form} The form to bind",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Add bindings to the validation manager to control the state of\n the wizard buttons.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "form {qx.ui.form.Form} The form to bind",
+            "paramName": "form",
+            "description": " The form to bind",
+            "type": "qx.ui.form.Form"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4479
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4902
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "form",
+          "type": "qx.ui.form.Form"
+        }
+      ],
+      "overriddenFrom": "qxl.dialog.Form",
+      "appearsIn": [
+        "qxl.dialog.Form",
+        "qxl.dialog.MForm"
+      ]
+    },
+    "_applyPageData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply the page data. This initializes the response",
+          "     * data model",
+          "     * @param pageData {Array} The new page data",
+          "     * @param old {Array} The old page data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply the page data. This initializes the response\n data model</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "pageData {Array} The new page data",
+            "paramName": "pageData",
+            "description": " The new page data",
+            "type": "Array<any>"
+          },
+          {
+            "name": "@param",
+            "body": "old {Array} The old page data",
+            "paramName": "old",
+            "description": " The old page data",
+            "type": "Array<any>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 5094
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 5721
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pageData",
+          "type": "Array<any>"
+        },
+        {
+          "name": "old",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyPage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Go to a given wizard page. This recreates the",
+          "     * form.",
+          "     * @param page {Integer} The new page",
+          "     * @param old {Integer} The old page",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Go to a given wizard page. This recreates the\n form.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "page {Integer} The new page",
+            "paramName": "page",
+            "description": " The new page",
+            "type": "Integer"
+          },
+          {
+            "name": "@param",
+            "body": "old {Integer} The old page",
+            "paramName": "old",
+            "description": " The old page",
+            "type": "Integer"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 5893
+        },
+        "end": {
+          "line": 204,
+          "column": 5,
+          "index": 6304
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "Integer"
+        },
+        {
+          "name": "old",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts the wizard",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts the wizard</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 6352
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6409
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "goBack": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Goes to the previous wizard button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Goes to the previous wizard button</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6474
+        },
+        "end": {
+          "line": 223,
+          "column": 5,
+          "index": 6622
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "goForward": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Goes to the next wizard page",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Goes to the next wizard page</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 6681
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 6861
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "finish": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finishes the wizard. Calls callback with the result data map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finishes the wizard. Calls callback with the result data map</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 6952
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 7189
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

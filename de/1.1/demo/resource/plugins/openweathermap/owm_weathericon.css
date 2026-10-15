@@ -1,0 +1,880 @@
+/**
+ * Custom styles for openweathermap plugin.
+ * 
+ * @author: matthias-mw 01/2019
+ * 
+ * - usage of the weather-icon set (https://erikflowers.github.io/weather-icons/)
+ * - Weather Icons licensed under SIL OFL 1.1
+ *
+ *
+ */
+
+/* webfont weather-icon */
+@font-face{
+    font-family: 'weathericon';
+    src:    url('font/weathericons-regular-webfont.eot');
+    src:    url('font/weathericons-regular-webfont.woff') format('woff'),
+            url('font/weathericons-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.jowm {
+    padding: .5rem 1rem;
+}
+
+.jowm .weather-icon {
+    color: #ffffff;
+    display: block;
+    font-family: 'weathericon';
+    font-size: 4.5em;
+    line-height: 1em;
+    margin: 0 1rem;
+    padding: 0.5rem 0 0 0;
+    text-align: center;
+}
+
+
+/*  name="wi_owm_day_200"> f010; 
+    name="wi_owm_day_201"> f010; 
+    name="wi_owm_day_202"> f010; 
+    name="wi_owm_day_210"> f005; 
+    name="wi_owm_day_211"> f005; 
+    name="wi_owm_day_212"> f005; 
+    name="wi_owm_day_221"> f005; 
+    name="wi_owm_day_230"> f010; 
+    name="wi_owm_day_231"> f010; 
+    name="wi_owm_day_232"> f010; 
+    name="wi_owm_night_200"> f02d; 
+    name="wi_owm_night_201"> f02d; 
+    name="wi_owm_night_202"> f02d; 
+    name="wi_owm_night_210"> f025; 
+    name="wi_owm_night_211"> f025; 
+    name="wi_owm_night_212"> f025; 
+    name="wi_owm_night_221"> f025; 
+    name="wi_owm_night_230"> f02d; 
+    name="wi_owm_night_231"> f02d; 
+    name="wi_owm_night_232"> f02d; 
+
+*/
+.jowm .weather-200 .weather-icon:before,
+.jowm .weather-201 .weather-icon:before, 
+.jowm .weather-202 .weather-icon:before,
+.jowm .weather-230 .weather-icon:before,
+.jowm .weather-231 .weather-icon:before, 
+.jowm .weather-232 .weather-icon:before{
+    /* thunderstorm */
+    content: "\f010";
+}
+.jowm .weather-210 .weather-icon:before,
+.jowm .weather-211 .weather-icon:before, 
+.jowm .weather-212 .weather-icon:before,
+.jowm .weather-221 .weather-icon:before{
+    /* heavy thunderstorm */
+    content: "\f005";
+}
+.jowm .night .weather-200 .weather-icon:before,
+.jowm .night .weather-201 .weather-icon:before, 
+.jowm .night .weather-202 .weather-icon:before,
+.jowm .night .weather-230 .weather-icon:before,
+.jowm .night .weather-231 .weather-icon:before, 
+.jowm .night .weather-232 .weather-icon:before{
+    /* thunderstorm */
+    content: "\f02d";
+}
+.jowm .night .weather-210 .weather-icon:before,
+.jowm .night .weather-211 .weather-icon:before, 
+.jowm .night .weather-212 .weather-icon:before,
+.jowm .night .weather-221 .weather-icon:before{
+    /* heavy thunderstorm */
+    content: "\f025";
+}
+
+/*  name="wi_owm_day_300"> f00b; 
+    name="wi_owm_day_301"> f00b; 
+    name="wi_owm_day_302"> f008; 
+    name="wi_owm_day_310"> f008; 
+    name="wi_owm_day_311"> f008; 
+    name="wi_owm_day_312"> f008; 
+    name="wi_owm_day_313"> f008; 
+    name="wi_owm_day_314"> f008; 
+    name="wi_owm_day_321"> f00b; 
+    name="wi_owm_night_300"> f02b; 
+    name="wi_owm_night_301"> f02b; 
+    name="wi_owm_night_302"> f028; 
+    name="wi_owm_night_310"> f028; 
+    name="wi_owm_night_311"> f028; 
+    name="wi_owm_night_312"> f028; 
+    name="wi_owm_night_313"> f028; 
+    name="wi_owm_night_314"> f028; 
+    name="wi_owm_night_321"> f02b; 
+*/
+.jowm .weather-300 .weather-icon:before,
+.jowm .weather-301 .weather-icon:before, 
+.jowm .weather-321 .weather-icon:before{
+    /* drizzle */
+    content: "\f00b";
+}
+.jowm .weather-302 .weather-icon:before,
+.jowm .weather-311 .weather-icon:before, 
+.jowm .weather-312 .weather-icon:before,
+.jowm .weather-313 .weather-icon:before, 
+.jowm .weather-314 .weather-icon:before{
+    /* drizzle rain*/
+    content: "\f008";
+}
+.jowm .night .weather-300 .weather-icon:before,
+.jowm .night .weather-301 .weather-icon:before, 
+.jowm .night .weather-321 .weather-icon:before{
+    /* drizzle */
+    content: "\f02b";
+}
+.jowm .night .weather-302 .weather-icon:before,
+.jowm .night .weather-311 .weather-icon:before, 
+.jowm .night .weather-312 .weather-icon:before,
+.jowm .night .weather-313 .weather-icon:before, 
+.jowm .night .weather-314 .weather-icon:before{
+    /* drizzle rain*/
+    content: "\f028";
+}
+
+/*
+    name="wi_owm_day_500"> f00b; 
+    name="wi_owm_day_501"> f008; 
+    name="wi_owm_day_502"> f008; 
+    name="wi_owm_day_503"> f008; 
+    name="wi_owm_day_504"> f008; 
+    name="wi_owm_day_511"> f006; 
+    name="wi_owm_day_520"> f009; 
+    name="wi_owm_day_521"> f009; 
+    name="wi_owm_day_522"> f009; 
+    name="wi_owm_day_531"> f00e; 
+    name="wi_owm_night_500"> f02b; 
+    name="wi_owm_night_501"> f028; 
+    name="wi_owm_night_502"> f028; 
+    name="wi_owm_night_503"> f028; 
+    name="wi_owm_night_504"> f028; 
+    name="wi_owm_night_511"> f026; 
+    name="wi_owm_night_520"> f029; 
+    name="wi_owm_night_521"> f029; 
+    name="wi_owm_night_522"> f029; 
+    name="wi_owm_night_531"> f02c; 
+    */
+    
+.jowm .weather-500 .weather-icon:before,
+.jowm .weather-501 .weather-icon:before {
+    /* light rain */
+    content: "\f008";
+}
+.jowm .night .weather-500 .weather-icon:before,
+.jowm .night .weather-501 .weather-icon:before {
+    /* light rain */
+    content: "\f028";
+}
+.jowm .weather-502 .weather-icon:before,
+.jowm .weather-503 .weather-icon:before,
+.jowm .weather-504 .weather-icon:before {
+    /* heavy rain */
+    content: "\f008";
+}
+.jowm .night .weather-502 .weather-icon:before,
+.jowm .night .weather-503 .weather-icon:before,
+.jowm .night .weather-504 .weather-icon:before {
+    /* heavy rain */
+    content: "\f028";
+}
+
+.jowm .weather-511 .weather-icon:before {
+    /* freezing rain */
+    content: "\f006";
+}
+.jowm .night .weather-511 .weather-icon:before {
+    /* freezing rain */
+    content: "\f026";
+}
+.jowm .weather-520 .weather-icon:before,
+.jowm .weather-521 .weather-icon:before,
+.jowm .weather-522 .weather-icon:before {
+    /* rain shower */
+    content: "\f009";
+}
+.jowm .night .weather-520 .weather-icon:before,
+.jowm .night .weather-521 .weather-icon:before,
+.jowm .night .weather-522 .weather-icon:before {
+    /* rain shower */
+    content: "\f029";
+}
+.jowm .weather-531 .weather-icon:before {
+    /* ragged shower rain */
+    content: "\f00c";
+}
+.jowm .night .weather-531 .weather-icon:before {
+    /* ragged shower rain */
+    content: "\f02c";
+}
+
+/*  name="wi_owm_day_600"> f00a; 
+    name="wi_owm_day_601"> f0b2; 
+    name="wi_owm_day_602"> f00a; 
+    name="wi_owm_day_611"> f006; 
+    name="wi_owm_day_612"> f006; 
+    name="wi_owm_day_615"> f006; 
+    name="wi_owm_day_616"> f006; 
+    name="wi_owm_day_620"> f006; 
+    name="wi_owm_day_621"> f00a; 
+    name="wi_owm_day_622"> f00a; */
+
+.jowm .weather-600 .weather-icon:before,
+.jowm .weather-621 .weather-icon:before,
+.jowm .weather-622 .weather-icon:before{
+    /* snow */
+    content: "\f00a";
+}
+.jowm .weather-601 .weather-icon:before {
+    /* snow */
+    content: "\f0b2";
+}
+.jowm .weather-602 .weather-icon:before {
+    /* snow */
+    content: "\f00a";
+}
+.jowm .weather-611 .weather-icon:before,
+.jowm .weather-612 .weather-icon:before,
+.jowm .weather-615 .weather-icon:before,
+.jowm .weather-616 .weather-icon:before,
+.jowm .weather-620 .weather-icon:before {
+    /* snow */
+    content: "\f01b";
+}
+  /*name="wi_owm_night_600"> f02a; 
+    name="wi_owm_night_601"> f0b4; 
+    name="wi_owm_night_602"> f02a; 
+    name="wi_owm_night_611"> f026; 
+    name="wi_owm_night_612"> f026; 
+    name="wi_owm_night_615"> f026; 
+    name="wi_owm_night_616"> f026; 
+    name="wi_owm_night_620"> f026; 
+    name="wi_owm_night_621"> f02a; 
+    name="wi_owm_night_622"> f02a; */
+    
+.jowm .night .weather-600 .weather-icon:before,
+.jowm .night .weather-621 .weather-icon:before,
+.jowm .night .weather-622 .weather-icon:before{
+    /* snow */
+    content: "\f02a";
+}
+.jowm .night .weather-601 .weather-icon:before {
+    /* snow */
+    content: "\f0b4";
+}
+.jowm .night .weather-602 .weather-icon:before {
+    /* snow */
+    content: "\f02a";
+}
+.jowm .night .weather-611 .weather-icon:before,
+.jowm .night .weather-612 .weather-icon:before,
+.jowm .night .weather-615 .weather-icon:before,
+.jowm .night .weather-616 .weather-icon:before,
+.jowm .night .weather-620 .weather-icon:before {
+    /* snow */
+    content: "\f026";
+}
+/*
+    name="wi_owm_day_701"> f009; 
+    name="wi_owm_day_711"> f062; 
+    name="wi_owm_day_721"> f0b6; 
+    name="wi_owm_day_731"> f063; 
+    name="wi_owm_day_741"> f003; 
+    name="wi_owm_day_761"> f063; 
+    name="wi_owm_day_762"> f063; 
+    name="wi_owm_day_771"> f000; 
+    name="wi_owm_day_781"> f056; 
+    name="wi_owm_night_701"> f029; 
+    name="wi_owm_night_711"> f062; 
+    name="wi_owm_night_721"> f0b6; 
+    name="wi_owm_night_731"> f063; 
+    name="wi_owm_night_741"> f04a; 
+    name="wi_owm_night_761"> f063; 
+    name="wi_owm_night_762"> f063; 
+    name="wi_owm_night_771"> f022; 
+    name="wi_owm_night_781"> f056; 
+*/
+
+.jowm .weather-701 .weather-icon:before{
+    /* mist */
+    content: "\f009";
+}
+.jowm .weather-721 .weather-icon:before{
+    /* fog */
+    content: "\f0b6";
+}
+.jowm .weather-741 .weather-icon:before {
+    /* haze */
+    content: "\f003";
+}
+.jowm .night .weather-701 .weather-icon:before{
+    /* mist */
+    content: "\f029";
+}
+.jowm .night .weather-721 .weather-icon:before{
+    /* fog */
+    content: "\f0b6";
+}
+.jowm .night .weather-741 .weather-icon:before {
+    /* haze */
+    content: "\f04a";
+}
+
+/*  name="wi_owm_day_800"> f00d; 
+    name="wi_owm_day_801"> f000; 
+    name="wi_owm_day_802"> f000; 
+    name="wi_owm_day_803"> f000; 
+    name="wi_owm_day_804"> f00c; 
+    name="wi_owm_night_800"> f02e; 
+    name="wi_owm_night_801"> f022; 
+    name="wi_owm_night_802"> f022; 
+    name="wi_owm_night_803"> f022; 
+    name="wi_owm_night_804"> f086; */
+
+.jowm .weather-800 .weather-icon:before {
+    /* clear sky */
+    content: "\f00d";
+}
+.jowm .night .weather-800 .weather-icon:before {
+    /* clear sky */
+    content: "\f02e";
+}
+.jowm .weather-801 .weather-icon:before,
+.jowm .weather-802 .weather-icon:before,
+.jowm .weather-803 .weather-icon:before{
+    /* few clouds */
+    content: "\f000";
+}
+.jowm .night .weather-801 .weather-icon:before,
+.jowm .night .weather-802 .weather-icon:before,
+.jowm .night .weather-803 .weather-icon:before{
+    /* few clouds */
+    content: "\f022";
+}
+.jowm .weather-804 .weather-icon:before {
+    /* overcaat cloudy */
+    content: "\f00c";
+}
+.jowm .night .weather-804 .weather-icon:before {
+    /* overcast cloudy */
+    content: "\f086";
+}
+.jowm .weather-thermo .weather-icon:before {
+    /* symbol Thermometer */
+    content: "\f055";
+}
+.jowm .weather-thermo .day{
+    visibility: hidden;
+}
+.jowm .weather-sunrise .weather-icon:before {
+    /* sunrise */
+    content: "\f051";
+}
+.jowm .weather-sunset .weather-icon:before {
+    /* sunrise */
+    content: "\f052";
+}
+
+/******************************************************************
+ all other Icon of the weather-icon set
+*******************************************************************
+ 
+    name="wi_day_sunny"> f00d; 
+    name="wi_day_cloudy"> f002; 
+    name="wi_day_cloudy_gusts"> f000; 
+    name="wi_day_cloudy_windy"> f001; 
+    name="wi_day_fog"> f003; 
+    name="wi_day_hail"> f004; 
+    name="wi_day_haze"> f0b6; 
+    name="wi_day_lightning"> f005; 
+    name="wi_day_rain"> f008; 
+    name="wi_day_rain_mix"> f006; 
+    name="wi_day_rain_wind"> f007; 
+    name="wi_day_showers"> f009; 
+    name="wi_day_sleet"> f0b2; 
+    name="wi_day_sleet_storm"> f068; 
+    name="wi_day_snow"> f00a; 
+    name="wi_day_snow_thunderstorm"> f06b; 
+    name="wi_day_snow_wind"> f065; 
+    name="wi_day_sprinkle"> f00b; 
+    name="wi_day_storm_showers"> f00e; 
+    name="wi_day_sunny_overcast"> f00c; 
+    name="wi_day_thunderstorm"> f010; 
+    name="wi_day_windy"> f085; 
+    name="wi_solar_eclipse"> f06e; 
+    name="wi_hot"> f072; 
+    name="wi_day_cloudy_high"> f07d; 
+    name="wi_day_light_wind"> f0c4; 
+    name="wi_night_clear"> f02e; 
+    name="wi_night_alt_cloudy"> f086; 
+    name="wi_night_alt_cloudy_gusts"> f022; 
+    name="wi_night_alt_cloudy_windy"> f023; 
+    name="wi_night_alt_hail"> f024; 
+    name="wi_night_alt_lightning"> f025; 
+    name="wi_night_alt_rain"> f028; 
+    name="wi_night_alt_rain_mix"> f026; 
+    name="wi_night_alt_rain_wind"> f027; 
+    name="wi_night_alt_showers"> f029; 
+    name="wi_night_alt_sleet"> f0b4; 
+    name="wi_night_alt_sleet_storm"> f06a; 
+    name="wi_night_alt_snow"> f02a; 
+    name="wi_night_alt_snow_thunderstorm"> f06d; 
+    name="wi_night_alt_snow_wind"> f067; 
+    name="wi_night_alt_sprinkle"> f02b; 
+    name="wi_night_alt_storm_showers"> f02c; 
+    name="wi_night_alt_thunderstorm"> f02d; 
+    name="wi_night_cloudy"> f031; 
+    name="wi_night_cloudy_gusts"> f02f; 
+    name="wi_night_cloudy_windy"> f030; 
+    name="wi_night_fog"> f04a; 
+    name="wi_night_hail"> f032; 
+    name="wi_night_lightning"> f033; 
+    name="wi_night_partly_cloudy"> f083; 
+    name="wi_night_rain"> f036; 
+    name="wi_night_rain_mix"> f034; 
+    name="wi_night_rain_wind"> f035; 
+    name="wi_night_showers"> f037; 
+    name="wi_night_sleet"> f0b3; 
+    name="wi_night_sleet_storm"> f069; 
+    name="wi_night_snow"> f038; 
+    name="wi_night_snow_thunderstorm"> f06c; 
+    name="wi_night_snow_wind"> f066; 
+    name="wi_night_sprinkle"> f039; 
+    name="wi_night_storm_showers"> f03a; 
+    name="wi_night_thunderstorm"> f03b; 
+    name="wi_lunar_eclipse"> f070; 
+    name="wi_stars"> f077; 
+    name="wi_storm_showers"> f01d; 
+    name="wi_thunderstorm"> f01e; 
+    name="wi_night_alt_cloudy_high"> f07e; 
+    name="wi_night_cloudy_high"> f080; 
+    name="wi_night_alt_partly_cloudy"> f081; 
+    name="wi_cloud"> f041; 
+    name="wi_cloudy"> f013; 
+    name="wi_cloudy_gusts"> f011; 
+    name="wi_cloudy_windy"> f012; 
+    name="wi_fog"> f014; 
+    name="wi_hail"> f015; 
+    name="wi_rain"> f019; 
+    name="wi_rain_mix"> f017; 
+    name="wi_rain_wind"> f018; 
+    name="wi_showers"> f01a; 
+    name="wi_sleet"> f0b5; 
+    name="wi_snow"> f01b; 
+    name="wi_sprinkle"> f01c; 
+    name="wi_snow_wind"> f064; 
+    name="wi_smog"> f074; 
+    name="wi_smoke"> f062; 
+    name="wi_lightning"> f016; 
+    name="wi_raindrops"> f04e; 
+    name="wi_raindrop"> f078; 
+    name="wi_dust"> f063; 
+    name="wi_snowflake_cold"> f076; 
+    name="wi_windy"> f021; 
+    name="wi_strong_wind"> f050; 
+    name="wi_sandstorm"> f082; 
+    name="wi_earthquake"> f0c6; 
+    name="wi_fire"> f0c7; 
+    name="wi_flood"> f07c; 
+    name="wi_meteor"> f071; 
+    name="wi_tsunami"> f0c5; 
+    name="wi_volcano"> f0c8; 
+    name="wi_hurricane"> f073; 
+    name="wi_tornado"> f056; 
+    name="wi_small_craft_advisory"> f0cc; 
+    name="wi_gale_warning"> f0cd; 
+    name="wi_storm_warning"> f0ce; 
+    name="wi_hurricane_warning"> f0cf; 
+    name="wi_wind_direction"> f0b1; 
+    name="wi_alien"> f075; 
+    name="wi_celsius"> f03c; 
+    name="wi_fahrenheit"> f045; 
+    name="wi_degrees"> f042; 
+    name="wi_thermometer"> f055; 
+    name="wi_thermometer_exterior"> f053; 
+    name="wi_thermometer_internal"> f054; 
+    name="wi_cloud_down"> f03d; 
+    name="wi_cloud_up"> f040; 
+    name="wi_cloud_refresh"> f03e; 
+    name="wi_horizon"> f047; 
+    name="wi_horizon_alt"> f046; 
+    name="wi_sunrise"> f051; 
+    name="wi_sunset"> f052; 
+    name="wi_moonrise"> f0c9; 
+    name="wi_moonset"> f0ca; 
+    name="wi_refresh"> f04c; 
+    name="wi_refresh_alt"> f04b; 
+    name="wi_umbrella"> f084; 
+    name="wi_barometer"> f079; 
+    name="wi_humidity"> f07a; 
+    name="wi_na"> f07b; 
+    name="wi_train"> f0cb; 
+    name="wi_moon_new"> f095; 
+    name="wi_moon_waxing_crescent_1"> f096; 
+    name="wi_moon_waxing_crescent_2"> f097; 
+    name="wi_moon_waxing_crescent_3"> f098; 
+    name="wi_moon_waxing_crescent_4"> f099; 
+    name="wi_moon_waxing_crescent_5"> f09a; 
+    name="wi_moon_waxing_crescent_6"> f09b; 
+    name="wi_moon_first_quarter"> f09c; 
+    name="wi_moon_waxing_gibbous_1"> f09d; 
+    name="wi_moon_waxing_gibbous_2"> f09e; 
+    name="wi_moon_waxing_gibbous_3"> f09f; 
+    name="wi_moon_waxing_gibbous_4"> f0a0; 
+    name="wi_moon_waxing_gibbous_5"> f0a1; 
+    name="wi_moon_waxing_gibbous_6"> f0a2; 
+    name="wi_moon_full"> f0a3; 
+    name="wi_moon_waning_gibbous_1"> f0a4; 
+    name="wi_moon_waning_gibbous_2"> f0a5; 
+    name="wi_moon_waning_gibbous_3"> f0a6; 
+    name="wi_moon_waning_gibbous_4"> f0a7; 
+    name="wi_moon_waning_gibbous_5"> f0a8; 
+    name="wi_moon_waning_gibbous_6"> f0a9; 
+    name="wi_moon_third_quarter"> f0aa; 
+    name="wi_moon_waning_crescent_1"> f0ab; 
+    name="wi_moon_waning_crescent_2"> f0ac; 
+    name="wi_moon_waning_crescent_3"> f0ad; 
+    name="wi_moon_waning_crescent_4"> f0ae; 
+    name="wi_moon_waning_crescent_5"> f0af; 
+    name="wi_moon_waning_crescent_6"> f0b0; 
+    name="wi_moon_alt_new"> f0eb; 
+    name="wi_moon_alt_waxing_crescent_1"> f0d0; 
+    name="wi_moon_alt_waxing_crescent_2"> f0d1; 
+    name="wi_moon_alt_waxing_crescent_3"> f0d2; 
+    name="wi_moon_alt_waxing_crescent_4"> f0d3; 
+    name="wi_moon_alt_waxing_crescent_5"> f0d4; 
+    name="wi_moon_alt_waxing_crescent_6"> f0d5; 
+    name="wi_moon_alt_first_quarter"> f0d6; 
+    name="wi_moon_alt_waxing_gibbous_1"> f0d7; 
+    name="wi_moon_alt_waxing_gibbous_2"> f0d8; 
+    name="wi_moon_alt_waxing_gibbous_3"> f0d9; 
+    name="wi_moon_alt_waxing_gibbous_4"> f0da; 
+    name="wi_moon_alt_waxing_gibbous_5"> f0db; 
+    name="wi_moon_alt_waxing_gibbous_6"> f0dc; 
+    name="wi_moon_alt_full"> f0dd; 
+    name="wi_moon_alt_waning_gibbous_1"> f0de; 
+    name="wi_moon_alt_waning_gibbous_2"> f0df; 
+    name="wi_moon_alt_waning_gibbous_3"> f0e0; 
+    name="wi_moon_alt_waning_gibbous_4"> f0e1; 
+    name="wi_moon_alt_waning_gibbous_5"> f0e2; 
+    name="wi_moon_alt_waning_gibbous_6"> f0e3; 
+    name="wi_moon_alt_third_quarter"> f0e4; 
+    name="wi_moon_alt_waning_crescent_1"> f0e5; 
+    name="wi_moon_alt_waning_crescent_2"> f0e6; 
+    name="wi_moon_alt_waning_crescent_3"> f0e7; 
+    name="wi_moon_alt_waning_crescent_4"> f0e8; 
+    name="wi_moon_alt_waning_crescent_5"> f0e9; 
+    name="wi_moon_alt_waning_crescent_6"> f0ea; 
+    name="wi_moon_0"> f095; 
+    name="wi_moon_1"> f096; 
+    name="wi_moon_2"> f097; 
+    name="wi_moon_3"> f098; 
+    name="wi_moon_4"> f099; 
+    name="wi_moon_5"> f09a; 
+    name="wi_moon_6"> f09b; 
+    name="wi_moon_7"> f09c; 
+    name="wi_moon_8"> f09d; 
+    name="wi_moon_9"> f09e; 
+    name="wi_moon_10"> f09f; 
+    name="wi_moon_11"> f0a0; 
+    name="wi_moon_12"> f0a1; 
+    name="wi_moon_13"> f0a2; 
+    name="wi_moon_14"> f0a3; 
+    name="wi_moon_15"> f0a4; 
+    name="wi_moon_16"> f0a5; 
+    name="wi_moon_17"> f0a6; 
+    name="wi_moon_18"> f0a7; 
+    name="wi_moon_19"> f0a8; 
+    name="wi_moon_20"> f0a9; 
+    name="wi_moon_21"> f0aa; 
+    name="wi_moon_22"> f0ab; 
+    name="wi_moon_23"> f0ac; 
+    name="wi_moon_24"> f0ad; 
+    name="wi_moon_25"> f0ae; 
+    name="wi_moon_26"> f0af; 
+    name="wi_moon_27"> f0b0; 
+    name="wi_time_1"> f08a; 
+    name="wi_time_2"> f08b; 
+    name="wi_time_3"> f08c; 
+    name="wi_time_4"> f08d; 
+    name="wi_time_5"> f08e; 
+    name="wi_time_6"> f08f; 
+    name="wi_time_7"> f090; 
+    name="wi_time_8"> f091; 
+    name="wi_time_9"> f092; 
+    name="wi_time_10"> f093; 
+    name="wi_time_11"> f094; 
+    name="wi_time_12"> f089; 
+    name="wi_direction_up"> f058; 
+    name="wi_direction_up_right"> f057; 
+    name="wi_direction_right"> f04d; 
+    name="wi_direction_down_right"> f088; 
+    name="wi_direction_down"> f044; 
+    name="wi_direction_down_left"> f043; 
+    name="wi_direction_left"> f048; 
+    name="wi_direction_up_left"> f087; 
+    name="wi_wind_beaufort_0"> f0b7; 
+    name="wi_wind_beaufort_1"> f0b8; 
+    name="wi_wind_beaufort_2"> f0b9; 
+    name="wi_wind_beaufort_3"> f0ba; 
+    name="wi_wind_beaufort_4"> f0bb; 
+    name="wi_wind_beaufort_5"> f0bc; 
+    name="wi_wind_beaufort_6"> f0bd; 
+    name="wi_wind_beaufort_7"> f0be; 
+    name="wi_wind_beaufort_8"> f0bf; 
+    name="wi_wind_beaufort_9"> f0c0; 
+    name="wi_wind_beaufort_10"> f0c1; 
+    name="wi_wind_beaufort_11"> f0c2; 
+    name="wi_wind_beaufort_12"> f0c3; 
+    name="wi_yahoo_0"> f056; 
+    name="wi_yahoo_1"> f00e; 
+    name="wi_yahoo_2"> f073; 
+    name="wi_yahoo_3"> f01e; 
+    name="wi_yahoo_4"> f01e; 
+    name="wi_yahoo_5"> f017; 
+    name="wi_yahoo_6"> f017; 
+    name="wi_yahoo_7"> f017; 
+    name="wi_yahoo_8"> f015; 
+    name="wi_yahoo_9"> f01a; 
+    name="wi_yahoo_10"> f015; 
+    name="wi_yahoo_11"> f01a; 
+    name="wi_yahoo_12"> f01a; 
+    name="wi_yahoo_13"> f01b; 
+    name="wi_yahoo_14"> f00a; 
+    name="wi_yahoo_15"> f064; 
+    name="wi_yahoo_16"> f01b; 
+    name="wi_yahoo_17"> f015; 
+    name="wi_yahoo_18"> f017; 
+    name="wi_yahoo_19"> f063; 
+    name="wi_yahoo_20"> f014; 
+    name="wi_yahoo_21"> f021; 
+    name="wi_yahoo_22"> f062; 
+    name="wi_yahoo_23"> f050; 
+    name="wi_yahoo_24"> f050; 
+    name="wi_yahoo_25"> f076; 
+    name="wi_yahoo_26"> f013; 
+    name="wi_yahoo_27"> f031; 
+    name="wi_yahoo_28"> f002; 
+    name="wi_yahoo_29"> f031; 
+    name="wi_yahoo_30"> f002; 
+    name="wi_yahoo_31"> f02e; 
+    name="wi_yahoo_32"> f00d; 
+    name="wi_yahoo_33"> f083; 
+    name="wi_yahoo_34"> f00c; 
+    name="wi_yahoo_35"> f017; 
+    name="wi_yahoo_36"> f072; 
+    name="wi_yahoo_37"> f00e; 
+    name="wi_yahoo_38"> f00e; 
+    name="wi_yahoo_39"> f00e; 
+    name="wi_yahoo_40"> f01a; 
+    name="wi_yahoo_41"> f064; 
+    name="wi_yahoo_42"> f01b; 
+    name="wi_yahoo_43"> f064; 
+    name="wi_yahoo_44"> f00c; 
+    name="wi_yahoo_45"> f00e; 
+    name="wi_yahoo_46"> f01b; 
+    name="wi_yahoo_47"> f00e; 
+    name="wi_yahoo_3200"> f077; 
+    name="wi_forecast_io_clear_day"> f00d; 
+    name="wi_forecast_io_clear_night"> f02e; 
+    name="wi_forecast_io_rain"> f019; 
+    name="wi_forecast_io_snow"> f01b; 
+    name="wi_forecast_io_sleet"> f0b5; 
+    name="wi_forecast_io_wind"> f050; 
+    name="wi_forecast_io_fog"> f014; 
+    name="wi_forecast_io_cloudy"> f013; 
+    name="wi_forecast_io_partly_cloudy_day"> f002; 
+    name="wi_forecast_io_partly_cloudy_night"> f031; 
+    name="wi_forecast_io_hail"> f015; 
+    name="wi_forecast_io_thunderstorm"> f01e; 
+    name="wi_forecast_io_tornado"> f056; 
+    name="wi_wmo4680_0"> f055; 
+    name="wi_wmo4680_00"> f055; 
+    name="wi_wmo4680_1"> f013; 
+    name="wi_wmo4680_01"> f013; 
+    name="wi_wmo4680_2"> f055; 
+    name="wi_wmo4680_02"> f055; 
+    name="wi_wmo4680_3"> f013; 
+    name="wi_wmo4680_03"> f013; 
+    name="wi_wmo4680_4"> f014; 
+    name="wi_wmo4680_04"> f014; 
+    name="wi_wmo4680_5"> f014; 
+    name="wi_wmo4680_05"> f014; 
+    name="wi_wmo4680_10"> f014; 
+    name="wi_wmo4680_11"> f014; 
+    name="wi_wmo4680_12"> f016; 
+    name="wi_wmo4680_18"> f050; 
+    name="wi_wmo4680_20"> f014; 
+    name="wi_wmo4680_21"> f017; 
+    name="wi_wmo4680_22"> f017; 
+    name="wi_wmo4680_23"> f019; 
+    name="wi_wmo4680_24"> f01b; 
+    name="wi_wmo4680_25"> f015; 
+    name="wi_wmo4680_26"> f01e; 
+    name="wi_wmo4680_27"> f063; 
+    name="wi_wmo4680_28"> f063; 
+    name="wi_wmo4680_29"> f063; 
+    name="wi_wmo4680_30"> f014; 
+    name="wi_wmo4680_31"> f014; 
+    name="wi_wmo4680_32"> f014; 
+    name="wi_wmo4680_33"> f014; 
+    name="wi_wmo4680_34"> f014; 
+    name="wi_wmo4680_35"> f014; 
+    name="wi_wmo4680_40"> f017; 
+    name="wi_wmo4680_41"> f01c; 
+    name="wi_wmo4680_42"> f019; 
+    name="wi_wmo4680_43"> f01c; 
+    name="wi_wmo4680_44"> f019; 
+    name="wi_wmo4680_45"> f015; 
+    name="wi_wmo4680_46"> f015; 
+    name="wi_wmo4680_47"> f01b; 
+    name="wi_wmo4680_48"> f01b; 
+    name="wi_wmo4680_50"> f01c; 
+    name="wi_wmo4680_51"> f01c; 
+    name="wi_wmo4680_52"> f019; 
+    name="wi_wmo4680_53"> f019; 
+    name="wi_wmo4680_54"> f076; 
+    name="wi_wmo4680_55"> f076; 
+    name="wi_wmo4680_56"> f076; 
+    name="wi_wmo4680_57"> f01c; 
+    name="wi_wmo4680_58"> f019; 
+    name="wi_wmo4680_60"> f01c; 
+    name="wi_wmo4680_61"> f01c; 
+    name="wi_wmo4680_62"> f019; 
+    name="wi_wmo4680_63"> f019; 
+    name="wi_wmo4680_64"> f015; 
+    name="wi_wmo4680_65"> f015; 
+    name="wi_wmo4680_66"> f015; 
+    name="wi_wmo4680_67"> f017; 
+    name="wi_wmo4680_68"> f017; 
+    name="wi_wmo4680_70"> f01b; 
+    name="wi_wmo4680_71"> f01b; 
+    name="wi_wmo4680_72"> f01b; 
+    name="wi_wmo4680_73"> f01b; 
+    name="wi_wmo4680_74"> f076; 
+    name="wi_wmo4680_75"> f076; 
+    name="wi_wmo4680_76"> f076; 
+    name="wi_wmo4680_77"> f01b; 
+    name="wi_wmo4680_78"> f076; 
+    name="wi_wmo4680_80"> f019; 
+    name="wi_wmo4680_81"> f01c; 
+    name="wi_wmo4680_82"> f019; 
+    name="wi_wmo4680_83"> f019; 
+    name="wi_wmo4680_84"> f01d; 
+    name="wi_wmo4680_85"> f017; 
+    name="wi_wmo4680_86"> f017; 
+    name="wi_wmo4680_87"> f017; 
+    name="wi_wmo4680_89"> f015; 
+    name="wi_wmo4680_90"> f016; 
+    name="wi_wmo4680_91"> f01d; 
+    name="wi_wmo4680_92"> f01e; 
+    name="wi_wmo4680_93"> f01e; 
+    name="wi_wmo4680_94"> f016; 
+    name="wi_wmo4680_95"> f01e; 
+    name="wi_wmo4680_96"> f01e; 
+    name="wi_wmo4680_99"> f056; 
+    name="wi_owm_200"> f01e; 
+    name="wi_owm_201"> f01e; 
+    name="wi_owm_202"> f01e; 
+    name="wi_owm_210"> f016; 
+    name="wi_owm_211"> f016; 
+    name="wi_owm_212"> f016; 
+    name="wi_owm_221"> f016; 
+    name="wi_owm_230"> f01e; 
+    name="wi_owm_231"> f01e; 
+    name="wi_owm_232"> f01e; 
+    name="wi_owm_300"> f01c; 
+    name="wi_owm_301"> f01c; 
+    name="wi_owm_302"> f019; 
+    name="wi_owm_310"> f017; 
+    name="wi_owm_311"> f019; 
+    name="wi_owm_312"> f019; 
+    name="wi_owm_313"> f01a; 
+    name="wi_owm_314"> f019; 
+    name="wi_owm_321"> f01c; 
+    name="wi_owm_500"> f01c; 
+    name="wi_owm_501"> f019; 
+    name="wi_owm_502"> f019; 
+    name="wi_owm_503"> f019; 
+    name="wi_owm_504"> f019; 
+    name="wi_owm_511"> f017; 
+    name="wi_owm_520"> f01a; 
+    name="wi_owm_521"> f01a; 
+    name="wi_owm_522"> f01a; 
+    name="wi_owm_531"> f01d; 
+    name="wi_owm_600"> f01b; 
+    name="wi_owm_601"> f01b; 
+    name="wi_owm_602"> f0b5; 
+    name="wi_owm_611"> f017; 
+    name="wi_owm_612"> f017; 
+    name="wi_owm_615"> f017; 
+    name="wi_owm_616"> f017; 
+    name="wi_owm_620"> f017; 
+    name="wi_owm_621"> f01b; 
+    name="wi_owm_622"> f01b; 
+    name="wi_owm_701"> f01a; 
+    name="wi_owm_711"> f062; 
+    name="wi_owm_721"> f0b6; 
+    name="wi_owm_731"> f063; 
+    name="wi_owm_741"> f014; 
+    name="wi_owm_761"> f063; 
+    name="wi_owm_762"> f063; 
+    name="wi_owm_771"> f011; 
+    name="wi_owm_781"> f056; 
+    name="wi_owm_800"> f00d; 
+    name="wi_owm_801"> f011; 
+    name="wi_owm_802"> f011; 
+    name="wi_owm_803"> f012; 
+    name="wi_owm_804"> f013; 
+    name="wi_owm_900"> f056; 
+    name="wi_owm_901"> f01d; 
+    name="wi_owm_902"> f073; 
+    name="wi_owm_903"> f076; 
+    name="wi_owm_904"> f072; 
+    name="wi_owm_905"> f021; 
+    name="wi_owm_906"> f015; 
+    name="wi_owm_957"> f050; 
+
+    name="wi_owm_day_900"> f056; 
+    name="wi_owm_day_901"> f00e; 
+    name="wi_owm_day_902"> f073; 
+    name="wi_owm_day_903"> f076; 
+    name="wi_owm_day_904"> f072; 
+    name="wi_owm_day_905"> f0c4; 
+    name="wi_owm_day_906"> f004; 
+    name="wi_owm_day_957"> f050; 
+    
+    name="wi_owm_night_900"> f056; 
+    name="wi_owm_night_901"> f03a; 
+    name="wi_owm_night_902"> f073; 
+    name="wi_owm_night_903"> f076; 
+    name="wi_owm_night_904"> f072; 
+    name="wi_owm_night_905"> f021; 
+    name="wi_owm_night_906"> f024; 
+    name="wi_owm_night_957"> f050; 
+    name="wi_wu_chanceflurries"> f064; 
+    name="wi_wu_chancerain"> f019; 
+    name="wi_wu_chancesleat"> f0b5; 
+    name="wi_wu_chancesnow"> f01b; 
+    name="wi_wu_chancetstorms"> f01e; 
+    name="wi_wu_clear"> f00d; 
+    name="wi_wu_cloudy"> f002; 
+    name="wi_wu_flurries"> f064; 
+    name="wi_wu_hazy"> f0b6; 
+    name="wi_wu_mostlycloudy"> f002; 
+    name="wi_wu_mostlysunny"> f00d; 
+    name="wi_wu_partlycloudy"> f002; 
+    name="wi_wu_partlysunny"> f00d; 
+    name="wi_wu_rain"> f01a; 
+    name="wi_wu_sleat"> f0b5; 
+    name="wi_wu_snow"> f01b; 
+    name="wi_wu_sunny"> f00d; 
+    name="wi_wu_tstorms"> f01e; 
+    name="wi_wu_unknown"> f00d; 
+
+*/
