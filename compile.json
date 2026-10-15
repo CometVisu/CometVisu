@@ -76,6 +76,11 @@
             "cv.plugins.diagram.*"
           ]
         },
+        "plugin-diagram2": {
+          "include": [
+            "cv.plugins.diagram2.*"
+          ]
+        },
         "plugin-clock": {
           "include": [
             "cv.plugins.Clock"
