@@ -1,0 +1,173 @@
+/* Diagram2.js
+ *
+ * copyright (c) 2010-2026, Christian Mayer and the CometVisu contributors.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+qx.Class.define('cv.plugins.diagram2.Diagram2', {
+  extend: cv.plugins.diagram2.AbstractDiagram2,
+
+  /*
+   ******************************************************
+   PROPERTIES
+   ******************************************************
+   */
+  properties: {
+    width: {
+      check: 'String',
+      nullable: true
+    },
+
+    height: {
+      check: 'String',
+      nullable: true
+    }
+  },
+
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse(xml, path, flavour, pageType) {
+      return cv.plugins.diagram2.AbstractDiagram2.parse(
+        xml,
+        path,
+        flavour,
+        pageType,
+        this.getAttributeToPropertyMappings()
+      );
+    },
+
+    getAttributeToPropertyMappings() {
+      return {
+        width: {
+          transform(value) {
+            return value ? parseInt(value) + 'px' : '100%';
+          }
+        },
+
+        height: {
+          transform(value) {
+            return value ? parseInt(value) + 'px' : null;
+          }
+        }
+      };
+    }
+  },
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+    _init: true,
+    __vlid1: null,
+
+    _onDomReady() {
+      if (!this.$$domReady) {
+        const pageId = this.getParentPage().getPath();
+        const broker = qx.event.message.Bus;
+
+        // let the refresh only be active when this widget is visible
+        this.setRestartOnVisible(true);
+
+        broker.subscribe(
+          'path.' + pageId + '.beforePageChange',
+          function () {
+            if (!this._init) {
+              this.loadDiagramData(this.plot, false, false);
+            }
+          },
+          this
+        );
+
+        broker.subscribe(
+          'page.' + pageId + '.appear',
+          function () {
+            // create diagram when it's not already existing
+            if (this._init) {
+              this.initDiagram(false);
+            }
+          },
+          this
+        );
+
+        // initialize the diagram but don't make the initialization process wait for it
+        // by using a deferred call
+        if (this.isVisible()) {
+          new qx.util.DeferredCall(function () {
+            if (!this._init) {
+              this.loadDiagramData(this.plot, false, false);
+            } else {
+              this.initDiagram(false);
+            }
+          }, this).schedule();
+        } else {
+          this.__vlid1 = this.addListener('changeVisible', ev => {
+            if (ev.getData()) {
+              if (!this._init) {
+                this.loadDiagramData(this.plot, false, false);
+              } else {
+                this.initDiagram(false);
+              }
+              this.removeListenerById(this.__vlid1);
+              this.__vlid1 = null;
+            }
+          });
+        }
+        this.$$domReady = true;
+        this.initListeners();
+      }
+    },
+
+    _getInnerDomString() {
+      const classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview';
+      const styleStr =
+        'min-height: 40px' +
+        (this.getWidth() ? ';width:' + this.getWidth() : '') +
+        (this.getHeight() ? ';height:' + this.getHeight() : ';height: 100%');
+
+      // only a diagram that opens a popup looks and behaves like something to press
+      const actorClass = this.getPopup() ? 'actor clickable' : 'actor';
+
+      return (
+        '<div class="' + actorClass + '" style="height: 100%; min-height: 40px;"><div class="' +
+        classStr +
+        '" style="' +
+        styleStr +
+        '">loading...</div></div>'
+      );
+    }
+  },
+
+  defer(statics) {
+    // register the parser
+    cv.parser.pure.WidgetParser.addHandler('diagram2', statics);
+    cv.ui.structure.WidgetFactory.registerClass('diagram2', statics);
+  }
+});
