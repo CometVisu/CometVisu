@@ -1048,3 +1048,13 @@ breadcrumbs
 ausblendbare
 Scrollens
 Wrapper
+ioBroker
+Aggregations
+History
+IOB
+Verlaufsdaten
+instance
+iobroker
+sql
+unaggregiert
+websocket

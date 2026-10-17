@@ -399,3 +399,8 @@ auth
 attributeName
 dataset
 tooltips
+ioBroker
+IOB
+iobroker
+sql
+unaggregated
