@@ -133,6 +133,11 @@ jobs:
           fetch-depth: 0
           submodules: recursive
           ref: ${{ steps.release.outputs.ref }}
+      # The sources have to be the ones of the release, but the container setup
+      # must be the current one, otherwise a refresh would use the old base again.
+      - name: Use current Docker setup
+        if: ${{ inputs.container_refresh }}
+        run: git checkout "$GITHUB_SHA" -- Dockerfile utils/ci/docker_push.sh
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v4
