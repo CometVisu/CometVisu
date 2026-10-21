@@ -1,6 +1,11 @@
 name: Build
 on:
   workflow_dispatch:
+    inputs:
+      container_refresh:
+        description: 'Only rebuild and push the container of this release tag on a fresh base image (no new release)'
+        type: boolean
+        default: false
   push:
     paths-ignore:
       - '.github/**'
@@ -134,12 +139,18 @@ jobs:
         run: CV_TAG_RUNTIME=docker grunt release-cv
       - name: Move to release folder
         run: mv release build
-      - run: |
-          curl -sL https://sentry.io/get-cli/ | bash
+      - name: Install Sentry CLI
+        run: curl -sL https://sentry.io/get-cli/ | bash
+      # Injected even on a container refresh to keep the container content identical
+      # to the release it is based on, the debug IDs are derived from the file content.
+      - name: Inject Sentry debug IDs
+        run: sentry-cli sourcemaps inject --ignore node_modules/ --ignore test/ ./build
+      - name: Create Sentry release
+        if: ${{ !inputs.container_refresh }}
+        run: |
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)
           sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli sourcemaps inject --ignore node_modules/ --ignore test/ ./build
           sentry-cli sourcemaps upload -r $SENTRY_RELEASE --no-rewrite --ignore node_modules/ --ignore test/ ./build
           sentry-cli releases finalize $SENTRY_RELEASE
         env:

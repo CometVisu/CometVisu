@@ -86,6 +86,13 @@ fi
 
 echo "building docker container for ${IMAGE_NAME}:${VERSION_TAG},${MASTER_TAG},${SUB_TAG},${TAG} ..."
 
+# Release containers use the stable base image, testing containers the testing one
+if [[ $TESTING == 1 ]]; then
+  CONTAINER_FROM=cometvisu/cometvisuabstractbase:testing
+else
+  CONTAINER_FROM=cometvisu/cometvisuabstractbase:latest
+fi
+
 BUILD_DATE=`date --iso-8601=seconds`
 VCS_REF=`git rev-parse --short HEAD`
 
@@ -105,7 +112,9 @@ echo "TAGS: '${TAGS}'"
 
 docker buildx build -t $IMAGE_NAME:$VERSION_TAG \
   ${TAGS} \
+  --pull \
   --platform linux/amd64,linux/arm/v7,linux/arm64 \
+  --build-arg CONTAINER_FROM="$CONTAINER_FROM" \
   --build-arg BUILD_DATE="$BUILD_DATE" \
   --build-arg VCS_REF="$VCS_REF" \
   --build-arg VERSION_TAG="$VERSION_TAG" \
