@@ -1,18 +1,21 @@
 #!/bin/bash
 
 VERSION_TAG=`cat build/version`
+# RELEASE_REF allows to build the container of a tag while the workflow itself
+# runs from a branch (container refresh of an existing release)
+REF=${RELEASE_REF:-$GITHUB_REF}
 TESTING=0
 IS_RELEASE=0
 
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-if [[ $GITHUB_REF =~ ^refs/tags/(.+) ]]; then
+if [[ $REF =~ ^refs/tags/(.+) ]]; then
   IS_TAG=1
   TAG=${BASH_REMATCH[1]}
   BRANCH=""
 else
   IS_TAG=0
-  BRANCH=`echo $GITHUB_REF | awk '{split($0,a,"/"); print tolower(a[3])}'`
+  BRANCH=`echo $REF | awk '{split($0,a,"/"); print tolower(a[3])}'`
   TAG=""
 
   echo "only tagged git versions are pushed to docker"
