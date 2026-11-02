@@ -59,7 +59,7 @@ qx.Class.define('cv.io.timeseries.IoBrokerSource', {
   */
   members: {
     _historyOptions: null,
-    __unbekannt: false,
+    __warnedAboutText: false,
 
     /**
      * Options for the next getHistory requests, e.g. aggregate and step. They are merged
@@ -371,18 +371,18 @@ qx.Class.define('cv.io.timeseries.IoBrokerSource', {
       // The words come from the ebus datapoints, which spell out their value
       // lists: PhaseOrder is { error: 0, ok: 7 }, PhaseStatus is
       // { missing: 0, present: 1 } for each of the three phases.
-      const wahr = ['true', 'yes', 'on', 'ja', 'an', 'ein', 'ok', 'present'];
-      const falsch = ['false', 'no', 'off', 'nein', 'aus', 'error', 'missing'];
-      const klein = text.toLowerCase();
-      if (wahr.includes(klein)) {
+      const truthy = ['true', 'yes', 'on', 'ja', 'an', 'ein', 'ok', 'present'];
+      const falsy = ['false', 'no', 'off', 'nein', 'aus', 'error', 'missing'];
+      const lower = text.toLowerCase();
+      if (truthy.includes(lower)) {
         return 1;
       }
-      if (falsch.includes(klein)) {
+      if (falsy.includes(lower)) {
         return 0;
       }
 
-      if (!this.__unbekannt) {
-        this.__unbekannt = true;
+      if (!this.__warnedAboutText) {
+        this.__warnedAboutText = true;
         this.error(`cannot draw the value "${text}" of ${this.getStateId()} in a chart, it is not a number`);
       }
 

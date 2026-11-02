@@ -45,3 +45,4 @@ test-results/
 .eslintcache
 *Todos.md
 *.log
+*.code-workspace
