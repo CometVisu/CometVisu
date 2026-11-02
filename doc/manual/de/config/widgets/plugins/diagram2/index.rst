@@ -42,13 +42,15 @@ Datenquellen
 Jede Datenreihe ist ein eigenes Kind-Element. Welche Quellen zur Verfügung stehen, hängt vom
 verwendeten Backend ab:
 
-=============  ========================================================================================
-``<rrd>``      RRD-Datei auf dem Server, wie beim alten Plugin. Der Inhalt ist der Name ohne die
-               Endung ``.rrd``, ``datasourceIndex`` wählt die Spalte innerhalb der Datei.
-``<influx>``   Messreihe aus einer InfluxDB, gefiltert über ``<and>``, ``<or>`` und ``<tag>``.
-``<openhab>``  Item aus der openHAB-Persistenz. Der Inhalt ist der Item-Name.
-``<demo>``     Erzeugte Daten, nur in einer Demo-Konfiguration sinnvoll.
-=============  ========================================================================================
+==============  =======================================================================================
+``<iobroker>``  Zustand aus der ioBroker-History. Der Inhalt ist die State-ID, ``instance`` wählt
+                die History-Instanz (z.B. ``influxdb.0``), ``backend`` einen benannten Backend-Eintrag.
+``<rrd>``       RRD-Datei auf dem Server, wie beim alten Plugin. Der Inhalt ist der Name ohne die
+                Endung ``.rrd``, ``datasourceIndex`` wählt die Spalte innerhalb der Datei.
+``<influx>``    Messreihe aus einer InfluxDB, gefiltert über ``<and>``, ``<or>`` und ``<tag>``.
+``<openhab>``   Item aus der openHAB-Persistenz. Der Inhalt ist der Item-Name.
+``<demo>``      Erzeugte Daten, nur in einer Demo-Konfiguration sinnvoll.
+==============  =======================================================================================
 
 Die Attribute der Datenreihen sind für alle Quellen weitgehend dieselben: ``yaxis`` ordnet die
 Reihe einer Achse zu — der Wert ist der **Name** der Achse, also der Inhalt des zugehörigen
@@ -56,7 +58,7 @@ Reihe einer Achse zu — der Wert ist der **Name** der Achse, also der Inhalt de
 bestimmen Farbe und Beschriftung in der Legende, ``scaling`` und ``offset`` rechnen die Rohwerte
 um, ``style`` wählt zwischen ``lines``, ``bars`` und ``points``, ``fill``, ``steps``, ``barWidth``
 und ``align`` bestimmen die Darstellung, und ``resolution`` sowie ``consolidationFunction``
-(bei ``<rrd>`` und ``<influx>``) steuern, wie die Werte für den dargestellten
+(bei ``<iobroker>``, ``<rrd>`` und ``<influx>``) steuern, wie die Werte für den dargestellten
 Zeitraum zusammengefasst werden. ``fillMissing`` schließt Lücken — bei ``<rrd>`` gibt es dieses
 Attribut nicht.
 
@@ -70,8 +72,8 @@ gelten unverändert: :ref:`diagram`.
       <layout colspan="12" rowspan="6"/>
       <axis unit=" °C" label="Temperatur" position="left" decimals="1">temperature</axis>
       <axis unit=" %" label="Feuchte" position="right" min="0" max="100" decimals="0">humidity</axis>
-      <influx measurement="haus/temperatur" color="#FF0000" label="Aussen [°C]" yaxis="temperature"/>
-      <influx measurement="haus/feuchte" color="#00A0FF" label="Feuchte [%]" yaxis="humidity"/>
+      <iobroker instance="influxdb.0" color="#FF0000" label="Aussen [°C]" yaxis="temperature">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
+      <iobroker instance="influxdb.0" color="#00A0FF" label="Feuchte [%]" yaxis="humidity">hm-rpc.0.LEQ123456.1.HUMIDITY</iobroker>
     </diagram2>
 
 Bedienung im Popup

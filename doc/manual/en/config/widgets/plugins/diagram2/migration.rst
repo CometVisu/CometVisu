@@ -34,8 +34,8 @@ old                           new
 ============================  ==============================
 
 All attributes and child elements stay as they are — ``series``, ``period``, ``legend``,
-``gridcolor``, ``<axis>``, ``<rrd>``, ``<influx>``, ``<openhab>`` and the rest are read exactly as
-before.
+``gridcolor``, ``<axis>``, ``<rrd>``, ``<influx>``, ``<iobroker>``, ``<openhab>`` and the rest are
+read exactly as before.
 
 Step 3: stroke widths and grid colour for the look of ``diagram``
 -----------------------------------------------------------------
@@ -67,7 +67,7 @@ and only the frame more heavily. So three settings are enough for the familiar l
     <diagram2 series="day" period="3" borderwidth="2" linewidth="2" gridopacity="1" popup="true">
         <layout colspan="12" rowspan="6" />
         <axis unit=" °C" label="Temperature" decimals="1">temperature</axis>
-        <influx measurement="house/temperature" color="#FF0000" label="Outside [°C]" yaxis="temperature"/>
+        <iobroker instance="influxdb.0" color="#FF0000" label="Outside [°C]" yaxis="temperature">hm-rpc.0.LEQ123456.1.TEMPERATURE</iobroker>
     </diagram2>
 
 The values apply to a diagram as a whole, not per series, and to ``<diagram2_info>`` just the same.

@@ -221,8 +221,9 @@ qx.Class.define('cv.plugins.diagram2.AbstractDiagram2', {
         axesNameIndex[elem.textContent] = retVal.axesnum;
       }, this);
 
-      // each backend gets the default of its own vocabulary
-      const defaultCFunc = { influx: 'MEAN' };
+      // each backend gets the default of its own vocabulary, ioBroker uses the default
+      // of its history adapters
+      const defaultCFunc = { iobroker: 'MINMAX', influx: 'MEAN' };
 
       // old configurations use <rrd> for openHAB items as well, they are read from its persistence
       let clientType = null;
@@ -231,7 +232,7 @@ qx.Class.define('cv.plugins.diagram2.AbstractDiagram2', {
         clientType = client.getType();
       }
 
-      xmlElement.querySelectorAll('demo,rrd,influx,openhab').forEach(function (elem) {
+      xmlElement.querySelectorAll('iobroker,demo,rrd,influx,openhab').forEach(function (elem) {
         // influx names its data in an attribute, the others carry it as content - and accept the
         // attribute as well, the way the data sets of the tile structure are written
         const src = (elem.getAttribute('measurement') || elem.textContent || '').trim();
@@ -242,6 +243,9 @@ qx.Class.define('cv.plugins.diagram2.AbstractDiagram2', {
           src: src,
           // the connection to read the history from, the default one when not set
           backend: elem.getAttribute('backend'),
+          // the recording adapter instance, e.g. sql.0. Without it ioBroker picks the one
+          // configured on the state itself, which fails when that is not the one holding the data
+          instance: elem.getAttribute('instance'),
           color: elem.getAttribute('color'),
           label: elem.getAttribute('label') || src,
           axisIndex: axesNameIndex[elem.getAttribute('yaxis')] || 1,
@@ -332,6 +336,13 @@ qx.Class.define('cv.plugins.diagram2.AbstractDiagram2', {
     getTimeSeriesSource(ts) {
       if (!ts.source) {
         switch (ts.tsType) {
+          case 'iobroker': {
+            const backend = ts.backend ? ts.backend + '@' : '';
+            // state ids may contain characters that are structural in the resource url ("#", "?", "/")
+            ts.source = new cv.io.timeseries.IoBrokerSource('iobroker://' + backend + encodeURIComponent(ts.src));
+            break;
+          }
+
           case 'demo':
             // the demo data always comes from the mockup client, it has no backend of its own
             ts.source = new cv.io.timeseries.DemoSource('demo://' + ts.src);
@@ -386,6 +397,7 @@ qx.Class.define('cv.plugins.diagram2.AbstractDiagram2', {
       if (typeof source.setHistoryOptions === 'function') {
         source.setHistoryOptions({
           aggregate: ts.cFunc,
+          instance: ts.instance || undefined,
           fill: ts.fillTs,
           // res is the resolution in seconds, either from the data set or from the series
           step: Number.isFinite(res) && res > 0 ? res * 1000 : undefined
